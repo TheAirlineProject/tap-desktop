@@ -44,6 +44,8 @@
                 </TabItem>
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirliners 2001'}" Tag="Order">
                 </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirliners 2003'}" Tag="Fleet">
+                </TabItem>
                 <TabItem Header="" Tag="Manufacturer" Visibility="Collapsed">
                 </TabItem>
                 <TabItem Header="" Tag="Airliner" Visibility="Collapsed"></TabItem>

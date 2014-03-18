@@ -80,7 +80,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
 
             if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
-                airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
+            {
+                lock (airline.Profile.Country.TailNumbers)
+                {
+                    airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
+                }
+            }
 
             FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airport);
 
@@ -346,7 +351,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airportHomeBase.addAirportFacility(sAirline, serviceFacility, GameObject.GetInstance().GameTime);
             airportHomeBase.addAirportFacility(sAirline, checkinFacility, GameObject.GetInstance().GameTime);
 
-            if (!AirportHelpers.HasFreeGates(airportHomeBase, sAirline))
+            if (!AirportHelpers.HasFreeGates(airportHomeBase, sAirline) && airportHomeBase.Terminals.getFreeGates() > 1)
                 AirportHelpers.RentGates(airportHomeBase, sAirline, AirportContract.ContractType.Full, 2);
 
             Airlines.AddAirline(sAirline);

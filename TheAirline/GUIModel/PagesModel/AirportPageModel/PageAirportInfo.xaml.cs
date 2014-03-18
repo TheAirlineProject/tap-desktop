@@ -68,12 +68,14 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             Boolean hasCheckin = this.Airport.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
             AirportContract.ContractType contractType = (AirportContract.ContractType)cbContractType.SelectedItem;
-            
+
+            Boolean autoRenew = cbAutoRenew.IsChecked.Value;
+
             double yearlyPayment = AirportHelpers.GetYearlyContractPayment(this.Airport.Airport,contractType, gates, length);
           
             Boolean payFull = length <= 2;
 
-            AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, this.Airport.Airport, contractType, GameObject.GetInstance().GameTime, gates, length, yearlyPayment, payFull);
+            AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, this.Airport.Airport, contractType, GameObject.GetInstance().GameTime, gates, length, yearlyPayment,autoRenew, payFull);
 
             if (!hasCheckin && contractType == AirportContract.ContractType.Full)
             {
@@ -306,7 +308,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
                 double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport,contractType, gates, 2);
 
-                AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, airport, contractType, GameObject.GetInstance().GameTime, gates, 2, yearlyPayment);
+                AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, airport, contractType, GameObject.GetInstance().GameTime, gates, 2, yearlyPayment,true);
 
                 AirportHelpers.AddAirlineContract(contract);
 

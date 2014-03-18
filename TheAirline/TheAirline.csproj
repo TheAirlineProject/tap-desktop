@@ -241,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineEditAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineFleet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -274,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageAirlinersHumanFleet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -598,6 +606,9 @@
     <Compile Include="GUIModel\ObjectsModel\GUIObject.cs" />
     <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
     <Compile Include="GUIModel\PagesModel\AirlinePageModel\AirlineMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineEditAirliners.xaml.cs">
+      <DependentUpon>PageAirlineEditAirliners.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineFleet.xaml.cs">
       <DependentUpon>PageAirlineFleet.xaml</DependentUpon>
     </Compile>
@@ -625,6 +636,9 @@
     <Compile Include="GUIModel\PagesModel\AirlinersPageModel\AirlinersMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageAirliners.xaml.cs">
       <DependentUpon>PageAirliners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageAirlinersHumanFleet.xaml.cs">
+      <DependentUpon>PageAirlinersHumanFleet.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageManufacturer.xaml.cs">
       <DependentUpon>PageManufacturer.xaml</DependentUpon>

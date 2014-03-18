@@ -39,7 +39,9 @@ namespace TheAirline.Model.AirportModel
         public DateTime ExpireDate { get; set; }
         [Versioning("payfull")]
         public Boolean PayFull { get; set; }
-        public AirportContract(Airline airline, Airport airport, ContractType type, DateTime date, int numberOfGates, int length, double yearlyPayment,Boolean payFull = false, Boolean isExclusiveDeal = false, Terminal terminal = null)
+        [Versioning("renew")]
+        public Boolean AutoRenew { get; set; }
+        public AirportContract(Airline airline, Airport airport, ContractType type, DateTime date, int numberOfGates, int length, double yearlyPayment,Boolean autorenew, Boolean payFull = false, Boolean isExclusiveDeal = false, Terminal terminal = null)
         {
             this.Type = type;
             this.PayFull = payFull;
@@ -52,6 +54,7 @@ namespace TheAirline.Model.AirportModel
             this.IsExclusiveDeal = isExclusiveDeal;
             this.Terminal = terminal;
             this.ExpireDate = this.ContractDate.AddYears(this.Length);
+            this.AutoRenew = autorenew;
 
         }
         //returns the number of months left for the contract
@@ -104,13 +107,16 @@ namespace TheAirline.Model.AirportModel
             {
                 this.Type = ContractType.Full;
             }
-
+            if (version == 2)
+            {
+                this.AutoRenew = true;
+            }
 
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 2);
+            info.AddValue("version", 3);
 
             Type myType = this.GetType();
 

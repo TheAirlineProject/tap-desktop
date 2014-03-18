@@ -135,9 +135,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                         if (contractedOrder)
                             GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += totalAmount;
 
-                 
+                        var sList = new List<AirlinerTypeMVVM>(this.SelectedAirliners);
+                        foreach (AirlinerTypeMVVM type in sList)
+                            type.IsSelected = false;
+
+                        this.SelectedAirliners.Clear();
+             
 
                     }
+
+                
+                
                 }
 
             }

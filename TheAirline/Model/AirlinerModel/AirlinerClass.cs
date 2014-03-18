@@ -27,7 +27,7 @@ namespace TheAirline.Model.AirlinerModel
             private set { ;}
         }
         [Versioning("facilities")]
-        private Dictionary<AirlinerFacility.FacilityType, AirlinerFacility> Facilities;
+        public Dictionary<AirlinerFacility.FacilityType, AirlinerFacility> Facilities{ get; set; } 
 
         public enum ClassType
         {

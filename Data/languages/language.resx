@@ -4860,4 +4860,40 @@ Good luck.</value>
   <data name="PageNewGame_204_name" xml:space="preserve">
     <value>Load Custom Airline</value>
   </data>
+  <data name="PageAirliners_2003_name" xml:space="preserve">
+    <value>Human Fleet</value>
+  </data>
+  <data name="PageAirlinersHumanFleet_1000_name" xml:space="preserve">
+    <value>Delivered Fleet</value>
+  </data>
+  <data name="PageAirlinersHumanFleet_1001_name" xml:space="preserve">
+    <value>Ordered Fleet</value>
+  </data>
+  <data name="PageAirportInfo_1046_name" xml:space="preserve">
+    <value>Autorenew Contract</value>
+  </data>
+  <data name="PageAirlineEditAirliners_1000_name" xml:space="preserve">
+    <value>Selected Airliners</value>
+  </data>
+  <data name="PageAirlineFleet_200_name" xml:space="preserve">
+    <value>Edit Airliner(s)</value>
+  </data>
+  <data name="PageAirline_2006_name" xml:space="preserve">
+    <value>Edit Airliners</value>
+  </data>
+  <data name="PageAirlineEditAirliners_1001_name" xml:space="preserve">
+    <value>Airliners Facilities</value>
+  </data>
+  <data name="MessageBox_2128_message" xml:space="preserve">
+    <value>Are you sure, you want to apply the changes to your airliner(s)?</value>
+  </data>
+  <data name="MessageBox_2128_name" xml:space="preserve">
+    <value>Apply Changes</value>
+  </data>
+  <data name="PageAirlineEditAirliners_200_name" xml:space="preserve">
+    <value>Apply Changes</value>
+  </data>
+  <data name="PageAirlineEditAirliners_201_name" xml:space="preserve">
+    <value>Load Configuration</value>
+  </data>
 </root>

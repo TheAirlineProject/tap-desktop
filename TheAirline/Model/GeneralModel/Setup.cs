@@ -79,6 +79,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadManufacturerLogos();
                 LoadAirliners();
                 LoadAirlinerFacilities();
+                LoadEngineTypes();
                 LoadFlightRestrictions();
                 LoadInflationYears();
                 LoadHolidays();
@@ -884,6 +885,63 @@ namespace TheAirline.Model.GeneralModel
                 Configurations.AddConfiguration(configuration);
             }
         }
+        /*!loads the engine types
+         */
+        private static void LoadEngineTypes()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppSettings.getDataPath() + "\\engines.xml");
+
+            XmlElement root = doc.DocumentElement;
+
+             XmlNodeList enginesList = root.SelectNodes("//engine");
+
+             foreach (XmlElement engineElement in enginesList)
+             {
+                 string manufacturerName = engineElement.Attributes["manufacturer"].Value;
+                 string name = engineElement.Attributes["model"].Value;
+                               
+                 XmlElement specsElement = (XmlElement)engineElement.SelectSingleNode("specs");
+                 EngineType.TypeOfEngine engineType = (EngineType.TypeOfEngine)Enum.Parse(typeof(EngineType.TypeOfEngine), specsElement.Attributes["type"].Value);
+                 EngineType.NoiseLevel noiseLevel = (EngineType.NoiseLevel)Enum.Parse(typeof(EngineType.NoiseLevel), specsElement.Attributes["noise"].Value);
+                 double consumption = Convert.ToDouble(specsElement.Attributes["consumptionModifier"].Value);
+                 long price = Convert.ToInt64(specsElement.Attributes["price"].Value);
+
+                 XmlElement perfElement = (XmlElement)engineElement.SelectSingleNode("performance");
+                 int speed = Convert.ToInt32(perfElement.Attributes["maxspeed"].Value);
+                 int ceiling = Convert.ToInt32(perfElement.Attributes["ceiling"].Value);
+                 double runway = Convert.ToDouble(perfElement.Attributes["runwaylengthrequiredModifier"].Value);
+                 double range = Convert.ToDouble(perfElement.Attributes["rangeModifier"].Value);
+
+                 XmlElement producedElement = (XmlElement)engineElement.SelectSingleNode("produced");
+                 int from = Convert.ToInt16(producedElement.Attributes["from"].Value);
+                 int to = Convert.ToInt16(producedElement.Attributes["to"].Value);
+
+                 XmlElement aircraftElement = (XmlElement)engineElement.SelectSingleNode("aircraft");
+                 string modelsElement = aircraftElement.Attributes["models"].Value;
+
+                 EngineType engine = new EngineType(name, manufacturerName, engineType, noiseLevel, consumption, price, speed, ceiling, runway, range, new Period<int>(from, to));
+                 
+                 string[] models = modelsElement.Split(',');
+
+                 foreach (string model in models)
+                 {
+                     AirlinerType airlinerType = AirlinerTypes.GetAllTypes().FirstOrDefault(a => a.Name == model.Trim());
+
+                     if (airlinerType != null)
+                     {
+                         engine.addAirlinerType(airlinerType);
+                     }
+                     else
+                     {
+                         string s = "";
+                     }
+                 }
+       
+
+             }
+             
+        }
         /*!loads the airliners.
          */
         private static void LoadAirliners()
@@ -932,7 +990,12 @@ namespace TheAirline.Model.GeneralModel
                     if (airliner.HasAttribute("family"))
                         family = airliner.Attributes["family"].Value;
                     else
-                        family = name.Substring(0, name.LastIndexOfAny(new char[] { ' ', '-' }));
+                    {
+                        if (name.LastIndexOfAny(new char[] { ' ', '-' }) > 0)
+                            family = name.Substring(0, name.LastIndexOfAny(new char[] { ' ', '-' }));
+                        else
+                            family = name;
+                    }
 
 
                     Boolean isConvertable;
@@ -2453,7 +2516,7 @@ namespace TheAirline.Model.GeneralModel
                 }
                 else
                 {
-                    AirportHelpers.AddAirlineContract(new AirportContract(airline, airportHomeBase, AirportContract.ContractType.Full, GameObject.GetInstance().GameTime, 2, 25, 0));
+                    AirportHelpers.AddAirlineContract(new AirportContract(airline, airportHomeBase, AirportContract.ContractType.Full, GameObject.GetInstance().GameTime, 2, 25, 0,true));
 
                     AirportHelpers.RentGates(airportDestination, airline, AirportContract.ContractType.Low_Service);
                     //airportDestination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);

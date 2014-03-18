@@ -451,8 +451,17 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             TimeSpan startTime = (TimeSpan)cbStartTime.SelectedItem;
 
             string flightcode1 = this.Airliner.Airliner.Airline.Profile.IATACode + txtFlightNumber.Text;
-            string flightcode2 = this.Airliner.Airliner.Airline.getFlightCodes()[this.Airliner.Airliner.Airline.getFlightCodes().IndexOf(flightcode1) + 1];
 
+            int indexOf = this.Airliner.Airliner.Airline.getFlightCodes().IndexOf(flightcode1);
+
+            string flightcode2;
+
+            if (indexOf == this.Airliner.Airliner.Airline.getFlightCodes().Count)
+                flightcode2 = "";
+            else
+                flightcode2 = this.Airliner.Airliner.Airline.getFlightCodes()[indexOf + 1];
+            
+      
             if (opsType == OpsType.Business)
             {
                 int flightsPerDay = (int)(route.getFlightTime(this.Airliner.Airliner.Type).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner)).TotalMinutes / 2 / maxBusinessRouteTime);

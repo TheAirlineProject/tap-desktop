@@ -33,7 +33,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             GameObject.GetInstance().setHumanAirline(airline);
             GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
-            GameObject.GetInstance().HumanAirline.Money = scenario.StartCash;
+            //GameObject.GetInstance().HumanAirline.Money = scenario.StartCash;
 
             GameObject.GetInstance().Scenario = new ScenarioObject(scenario);
 
@@ -207,6 +207,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 SetupScenarioRoute(route, GameObject.GetInstance().HumanAirline);
             }
+
+          
         }
         //sets up the different scenario setting
         private static void SetupScenario()
@@ -228,9 +230,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
+                airline.Money = GameObject.GetInstance().StartMoney;
+
                 if (airline.IsHuman)
-                    airline.Money = GameObject.GetInstance().StartMoney;
+                    GameObject.GetInstance().HumanMoney = airline.Money;
+
                 airline.StartMoney = airline.Money;
+              
                 airline.Fees = new AirlineFees();
                 airline.addAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 150));
 

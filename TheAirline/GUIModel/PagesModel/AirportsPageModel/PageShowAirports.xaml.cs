@@ -134,7 +134,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
                double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport.Airport,contractType, gates,2);
 
-               AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline,airport.Airport,contractType,GameObject.GetInstance().GameTime,gates,2,yearlyPayment);
+               AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline,airport.Airport,contractType,GameObject.GetInstance().GameTime,gates,2,yearlyPayment,true);
 
                airport.addAirlineContract(contract);
           

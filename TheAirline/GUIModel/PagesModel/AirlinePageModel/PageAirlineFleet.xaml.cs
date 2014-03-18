@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
@@ -27,10 +29,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     public partial class PageAirlineFleet : Page
     {
         public AirlineMVVM Airline { get; set; }
+        public ObservableCollection<FleetAirliner> SelectedAirliners { get; set; }
         public PageAirlineFleet(AirlineMVVM airline)
         {
             this.Airline = airline;
             this.DataContext = this.Airline;
+            this.SelectedAirliners = new ObservableCollection<FleetAirliner>();
 
             InitializeComponent();
         }
@@ -98,6 +102,30 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             }
 
+        }
+
+        private void cbAirliner_Checked(object sender, RoutedEventArgs e)
+        {
+            FleetAirliner airliner = (FleetAirliner)((CheckBox)sender).Tag;
+
+            this.SelectedAirliners.Add(airliner);
+
+        }
+
+        private void cbAirliner_Unchecked(object sender, RoutedEventArgs e)
+        {
+            FleetAirliner airliner = (FleetAirliner)((CheckBox)sender).Tag;
+
+            this.SelectedAirliners.Remove(airliner);
+
+        }
+
+        private void btnEditAirliners_Click(object sender, RoutedEventArgs e)
+        {
+            Frame frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
+
+            if (frmContent != null)
+                frmContent.Navigate(new PageAirlineEditAirliners(this.SelectedAirliners.ToList()) { Tag = this.Tag });
         }
       
     }

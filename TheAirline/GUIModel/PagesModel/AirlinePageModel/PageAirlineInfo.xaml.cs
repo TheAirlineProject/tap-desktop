@@ -37,11 +37,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public AirlineMVVM Airline { get; set; }
         private string logoPath;
         public List<Airport> AllAirports { get; set; }
+        public List<Airport> SubsidiaryAirports { get; set; }
         public PageAirlineInfo(AirlineMVVM airline)
         {
             this.Airline = airline;
             this.DataContext = this.Airline;
             this.AllAirports = new List<Airport>();
+            this.SubsidiaryAirports = new List<Airport>();
 
             InitializeComponent();
 
@@ -50,6 +52,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             foreach (Airport airport in this.Airline.Airline.Airports.FindAll(a => a.Terminals.getFreeSlotsPercent(this.Airline.Airline) > 50))
                 this.AllAirports.Add(airport);
+
+            foreach (Airport airport in this.Airline.Airline.Airports.Where(a => a.Terminals.getFreeGates() > 0))
+                this.SubsidiaryAirports.Add(airport);
 
         }
 

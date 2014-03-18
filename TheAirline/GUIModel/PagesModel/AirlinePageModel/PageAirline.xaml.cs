@@ -122,6 +122,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             TabControl control = (TabControl)sender;
 
+            var matchingItem =
+    control.Items.Cast<TabItem>()
+      .Where(item => item.Tag.ToString() == "Airliners")
+      .FirstOrDefault();
+
+            matchingItem.Visibility = System.Windows.Visibility.Collapsed;
+
             string selection = ((TabItem)control.SelectedItem).Tag.ToString();
 
             Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");

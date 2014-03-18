@@ -266,6 +266,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         public Boolean ChangeableSeats { get; set; }
         public int RegularSeatingCapacity { get; set; }
         public int MaxSeatsCapacity { get; set; }
+     
         public AirlinerClassMVVM(AirlinerClass type, int seating, int regularSeating, int maxseats,  Boolean changeableSeats = false)
         {
             this.Type = type.Type;

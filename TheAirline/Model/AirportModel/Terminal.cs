@@ -62,7 +62,7 @@ namespace TheAirline.Model.AirportModel
 
             double yearlyPayment = AirportHelpers.GetYearlyContractPayment(this.Airport,AirportContract.ContractType.Full, this.Gates.NumberOfGates,20);
 
-            AirportHelpers.AddAirlineContract(new AirportContract(this.Airline,this.Airport,AirportContract.ContractType.Full,GameObject.GetInstance().GameTime,this.Gates.NumberOfGates,20,yearlyPayment * 0.75));
+            AirportHelpers.AddAirlineContract(new AirportContract(this.Airline,this.Airport,AirportContract.ContractType.Full,GameObject.GetInstance().GameTime,this.Gates.NumberOfGates,20,yearlyPayment * 0.75,true));
            
         }
         // chs 11-04-11: changed for the possibility of extending a terminal

@@ -642,7 +642,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void RentGates(Airport airport, Airline airline,AirportContract.ContractType type, int gates)
         {
             int currentgates = airport.AirlineContracts.Where(a => a.Airline == airline).Sum(c => c.NumberOfGates);
-            AirportContract contract = new AirportContract(airline, airport,type, GameObject.GetInstance().GameTime, gates, 20, GetYearlyContractPayment(airport,type, gates, 20));
+            AirportContract contract = new AirportContract(airline, airport,type, GameObject.GetInstance().GameTime, gates, 20, GetYearlyContractPayment(airport,type, gates, 20),true);
             
             if (currentgates == 0)
             {
