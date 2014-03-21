@@ -32,7 +32,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
          //returns the value for a statistics type for a route class
         public int getStatisticsValue(RouteAirlinerClass aClass, StatisticsType type)
         {
-            RouteStatisticsItem item = this.Stats.Find(i => i.Type.Shortname == type.Shortname && i.RouteClass == aClass);
+            RouteStatisticsItem item = this.Stats.Find(i => i.Type.Shortname == type.Shortname && i.RouteClass.Type == aClass.Type);
 
             if (item == null)
                 return 0;

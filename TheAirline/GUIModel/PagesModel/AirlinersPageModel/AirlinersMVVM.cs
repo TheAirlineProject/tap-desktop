@@ -98,15 +98,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         }
         private void Orders_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            long price = this.Orders.Sum(o => o.Type.Price * o.Amount);
-
-            this.Discount = Convert.ToInt64(price * (GeneralHelpers.GetAirlinerOrderDiscount(this.Orders.Sum(o => o.Amount)) / 100));
-
-            if (GameObject.GetInstance().HumanAirline.Contract != null && this.Orders.Count > 0 && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Orders.First().Type.Manufacturer)
-                this.Discount += Convert.ToInt64(price * (GameObject.GetInstance().HumanAirline.Contract.Discount / 100));
-
-            this.TotalAmount = price - this.Discount;
-
+            orderUpdated();
         }
         public void addOrder(AirlinerOrderMVVM order)
         {
@@ -118,7 +110,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         }
         private void order_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            long price = this.Orders.Sum(o => o.Type.Price * o.Amount);
+            orderUpdated();
+        }
+        //the update for the order
+        public void orderUpdated()
+        {
+             long price = this.Orders.Sum(o => o.getOrderPrice());
 
             this.Discount = Convert.ToInt64(price * (GeneralHelpers.GetAirlinerOrderDiscount(this.Orders.Sum(o => o.Amount)) / 100));
 
@@ -126,15 +123,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 this.Discount += Convert.ToInt64(price * (GameObject.GetInstance().HumanAirline.Contract.Discount / 100));
 
             this.TotalAmount = price - this.Discount;
-
         }
-
         //returns a date for delivery based on the aircraft production rate
         public DateTime getDeliveryDate()
         {
             double monthsToComplete = 0;
-
-
 
             foreach (AirlinerOrderMVVM order in this.Orders)
             {
@@ -185,7 +178,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
     public class AirlinerOrderMVVM : INotifyPropertyChanged
     {
         public AirlinerType Type { get; set; }
-        public List<AirlinerClass> Classes { get; set; }
+        public AirlinerOrdersMVVM Order { get; set; }
+        private List<AirlinerClass> _classes;
+        public List<AirlinerClass> Classes 
+        {
+            get { return _classes;}
+            set { _classes = value; this.Order.orderUpdated(); } 
+        }
         public List<Airport> Homebases { get; set; }
         private int _amount;
         public int Amount
@@ -200,12 +199,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             get { return _homebase; }
             set { _homebase = value; NotifyPropertyChanged("Homebase"); }
         }
-
-        public AirlinerOrderMVVM(AirlinerType type, int amount = 1)
+      
+        public AirlinerOrderMVVM(AirlinerType type, AirlinerOrdersMVVM order, int amount = 1)
         {
             this.Type = type;
+            this.Order = order;
             this.Amount = amount;
-            this.Classes = new List<AirlinerClass>();
+            this._classes = new List<AirlinerClass>();
             this.Homebases = new List<Airport>();
 
             if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
@@ -224,6 +224,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
 
 
+        }
+        //returns the price for the order
+        public long getOrderPrice()
+        {
+            double classesPrice=0;
+
+            foreach (AirlinerClass aClass in this.Classes)
+                foreach (AirlinerFacility facility in aClass.AllFacilities)
+                    classesPrice += facility.PricePerSeat * (facility.PercentOfSeats / 100) * aClass.SeatingCapacity;
+
+            return Convert.ToInt64(this.Type.Price * this.Amount +classesPrice);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

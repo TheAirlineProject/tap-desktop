@@ -71,6 +71,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
        
         public PageRoutePlanner(FleetAirliner airliner)
         {
+           
             this.ShowSeason = Weather.Season.All_Year;
 
             this.Airliner = airliner;
@@ -119,12 +120,35 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             this.StopoverMinutes = new List<int>() { 45, 60, 75, 90, 105, 120 };
 
             setCanTransferSchedule();
-
+        
             this.Loaded += PageRoutePlanner_Loaded;
 
             InitializeComponent();
 
 
+
+
+        }
+        //sets the value of the flight number
+        private void setFlightNumbers()
+        {
+            string number="";
+
+            int i=0;
+
+            while (number == "" || this.Entries.FirstOrDefault(e => e.Destination.FlightCode == number) != null)
+            {
+                number = GameObject.GetInstance().HumanAirline.getNextFlightCode(i);
+
+                i++;
+            }
+
+            number = number.Substring(2);
+
+
+            txtFlightNumber.Text = String.Format("{0:0000}",number);
+            txtSchedulerFlightNumber.Text = String.Format("{0:0000}",number);
+           
         }
         //sets the value for transfering of schedule
         private void setCanTransferSchedule()
@@ -167,6 +191,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             }
 
             setViewEntries();
+            setFlightNumbers();
 
             cbRoute.SelectedIndex = 0;
             cbOutbound.SelectedIndex = 0;
@@ -505,8 +530,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                     }
             }
-           
-           
+
+            setFlightNumbers();
 
         }
         private void EntryDeleted_Event(object sender, System.Windows.RoutedEventArgs e)
@@ -751,6 +776,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             }
 
+            setFlightNumbers();
 
         }
 

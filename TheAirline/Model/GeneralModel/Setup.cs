@@ -94,7 +94,7 @@ namespace TheAirline.Model.GeneralModel
 
                 LoadStandardConfigurations();
                 LoadAirlinerTypeConfigurations();
-
+                
                 LoadAirlines();
                 LoadAlliances();
 
@@ -455,7 +455,7 @@ namespace TheAirline.Model.GeneralModel
                     if (paxElement.HasAttribute("airport"))
                         airport = Airports.GetAirport(paxElement.Attributes["airport"].Value);
 
-                    double factor = Convert.ToDouble(paxElement.Attributes["change"].Value);
+                    double factor = Convert.ToDouble(paxElement.Attributes["change"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
 
                     DateTime enddate = new DateTime(scenario.StartYear + Convert.ToInt32(paxElement.Attributes["length"].Value), 1, 1);
 
@@ -470,9 +470,9 @@ namespace TheAirline.Model.GeneralModel
                     string id = parameterElement.Attributes["id"].Value;
                     ScenarioFailure.FailureType failureType = (ScenarioFailure.FailureType)Enum.Parse(typeof(ScenarioFailure.FailureType), parameterElement.Attributes["type"].Value);
                     object failureValue = parameterElement.Attributes["value"].Value;
-                    double checkMonths = parameterElement.HasAttribute("at") ? 12 * Convert.ToDouble(parameterElement.Attributes["at"].Value) : 1;
+                    double checkMonths = parameterElement.HasAttribute("at") ? 12 * Convert.ToDouble(parameterElement.Attributes["at"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat) : 1;
                     string failureText = parameterElement.Attributes["text"].Value;
-                    double monthsOfFailure = parameterElement.HasAttribute("for") ? 12 * Convert.ToDouble(parameterElement.Attributes["for"].Value) : 1;
+                    double monthsOfFailure = parameterElement.HasAttribute("for") ? 12 * Convert.ToDouble(parameterElement.Attributes["for"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat) : 1;
 
                     ScenarioFailure failure = new ScenarioFailure(id, failureType, (int)checkMonths, failureValue, failureText, (int)monthsOfFailure);
 
@@ -611,7 +611,7 @@ namespace TheAirline.Model.GeneralModel
             foreach (XmlElement influenceElement in influencesList)
             {
                 HistoricEventInfluence.InfluenceType type = (HistoricEventInfluence.InfluenceType)Enum.Parse(typeof(HistoricEventInfluence.InfluenceType), influenceElement.Attributes["type"].Value);
-                double value = Convert.ToDouble(influenceElement.Attributes["value"].Value);
+                double value = Convert.ToDouble(influenceElement.Attributes["value"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
                 DateTime endDate = Convert.ToDateTime(influenceElement.Attributes["enddate"].Value, new CultureInfo("en-US", false));
 
                 historicEvent.addInfluence(new HistoricEventInfluence(type, value, endDate));
@@ -740,9 +740,9 @@ namespace TheAirline.Model.GeneralModel
             foreach (XmlElement element in inflationsList)
             {
                 int year = Convert.ToInt16(element.Attributes["year"].Value);
-                double fuelprice = Convert.ToDouble(element.Attributes["fuelprice"].Value);
-                double inflation = Convert.ToDouble(element.Attributes["inflation"].Value);
-                double modifier = Convert.ToDouble(element.Attributes["pricemodifier"].Value);
+                double fuelprice = Convert.ToDouble(element.Attributes["fuelprice"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
+                double inflation = Convert.ToDouble(element.Attributes["inflation"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
+                double modifier = Convert.ToDouble(element.Attributes["pricemodifier"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
 
                 Inflations.AddInflationYear(new Inflation(year, fuelprice, inflation, modifier));
 
@@ -904,14 +904,14 @@ namespace TheAirline.Model.GeneralModel
                  XmlElement specsElement = (XmlElement)engineElement.SelectSingleNode("specs");
                  EngineType.TypeOfEngine engineType = (EngineType.TypeOfEngine)Enum.Parse(typeof(EngineType.TypeOfEngine), specsElement.Attributes["type"].Value);
                  EngineType.NoiseLevel noiseLevel = (EngineType.NoiseLevel)Enum.Parse(typeof(EngineType.NoiseLevel), specsElement.Attributes["noise"].Value);
-                 double consumption = Convert.ToDouble(specsElement.Attributes["consumptionModifier"].Value);
+                 double consumption = Convert.ToDouble(specsElement.Attributes["consumptionModifier"].Value,CultureInfo.GetCultureInfo("en-US").NumberFormat);
                  long price = Convert.ToInt64(specsElement.Attributes["price"].Value);
 
                  XmlElement perfElement = (XmlElement)engineElement.SelectSingleNode("performance");
                  int speed = Convert.ToInt32(perfElement.Attributes["maxspeed"].Value);
                  int ceiling = Convert.ToInt32(perfElement.Attributes["ceiling"].Value);
-                 double runway = Convert.ToDouble(perfElement.Attributes["runwaylengthrequiredModifier"].Value);
-                 double range = Convert.ToDouble(perfElement.Attributes["rangeModifier"].Value);
+                 double runway = Convert.ToDouble(perfElement.Attributes["runwaylengthrequiredModifier"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
+                 double range = Convert.ToDouble(perfElement.Attributes["rangeModifier"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
 
                  XmlElement producedElement = (XmlElement)engineElement.SelectSingleNode("produced");
                  int from = Convert.ToInt16(producedElement.Attributes["from"].Value);
@@ -1055,14 +1055,14 @@ namespace TheAirline.Model.GeneralModel
                     if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
                     {
                         int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
-                        double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value);
+                        double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
                         type = new AirlinerCargoType(manufacturer, name, family, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, fuelcapacity, body, rangeType, engine, new Period<DateTime>(from, to), prodRate, isConvertable);
                     }
                     if (airlinerType == AirlinerType.TypeOfAirliner.Mixed)
                     {
                         int passengers = Convert.ToInt16(capacityElement.Attributes["passengers"].Value);
                         int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
-                        double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value);
+                        double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
                         int cabincrew = Convert.ToInt16(capacityElement.Attributes["cabincrew"].Value);
                         int maxClasses = Convert.ToInt16(capacityElement.Attributes["maxclasses"].Value);
 
@@ -1242,16 +1242,16 @@ namespace TheAirline.Model.GeneralModel
                             PaxValue paxValue = new PaxValue(fromYear, toYear, size, pax);
 
                             if (yearElement.HasAttribute("inflationafter"))
-                                paxValue.InflationAfterYear = Convert.ToDouble(yearElement.Attributes["inflationafter"].Value);
+                                paxValue.InflationAfterYear = Convert.ToDouble(yearElement.Attributes["inflationafter"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
                             if (yearElement.HasAttribute("inflationbefore"))
-                                paxValue.InflationBeforeYear = Convert.ToDouble(yearElement.Attributes["inflationbefore"].Value);
+                                paxValue.InflationBeforeYear = Convert.ToDouble(yearElement.Attributes["inflationbefore"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
 
                             paxValues.Add(paxValue);
                         }
                     }
 
                     GeneralHelpers.Size cargoSize = GeneralHelpers.Size.Very_small;
-                    double cargovolume = sizeElement.HasAttribute("cargovolume") ? Convert.ToDouble(sizeElement.Attributes["cargovolume"].Value) : 0;
+                    double cargovolume = sizeElement.HasAttribute("cargovolume") ? Convert.ToDouble(sizeElement.Attributes["cargovolume"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat) : 0;
 
                     if (sizeElement.HasAttribute("cargo"))
                         cargoSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["cargo"].Value);
@@ -1498,11 +1498,11 @@ namespace TheAirline.Model.GeneralModel
             {
                 string section = root.Name;
                 string uid = element.Attributes["uid"].Value;
-                double price = Convert.ToDouble(element.Attributes["price"].Value);
+                double price = Convert.ToDouble(element.Attributes["price"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
                 int fromyear = Convert.ToInt16(element.Attributes["fromyear"].Value);
-                double monthlyprice = Convert.ToDouble(element.Attributes["monthlyprice"].Value);
+                double monthlyprice = Convert.ToDouble(element.Attributes["monthlyprice"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
                 int servicelevel = Convert.ToInt16(element.Attributes["servicelevel"].Value);
-                double incomeperpax = Convert.ToDouble(element.Attributes["incomeperpax"].Value);
+                double incomeperpax = Convert.ToDouble(element.Attributes["incomeperpax"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
                 GeneralHelpers.Size minsize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), element.Attributes["minsize"].Value);
 
                 CooperationType type = new CooperationType(section, uid,minsize, fromyear, price, monthlyprice, servicelevel, incomeperpax);
@@ -1656,7 +1656,7 @@ namespace TheAirline.Model.GeneralModel
                     foreach (XmlElement currencyElement in currenciesList)
                     {
                         string currencySymbol = currencyElement.Attributes["symbol"].Value; ;
-                        double currencyRate = Convert.ToDouble(currencyElement.Attributes["rate"].Value);
+                        double currencyRate = Convert.ToDouble(currencyElement.Attributes["rate"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
                         CountryCurrency.CurrencyPosition currencyPosition = (CountryCurrency.CurrencyPosition)Enum.Parse(typeof(CountryCurrency.CurrencyPosition), currencyElement.Attributes["position"].Value);
 
                         DateTime currencyFromDate = new DateTime(1900, 1, 1);
@@ -1900,8 +1900,8 @@ namespace TheAirline.Model.GeneralModel
                 int precipitation = Convert.ToInt16(monthElement.Attributes["precipitation"].Value);
 
                 XmlElement tempElement = (XmlElement)monthElement.SelectSingleNode("temp");
-                double minTemp = Convert.ToDouble(tempElement.Attributes["min"].Value);
-                double maxTemp = Convert.ToDouble(tempElement.Attributes["max"].Value);
+                double minTemp = Convert.ToDouble(tempElement.Attributes["min"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
+                double maxTemp = Convert.ToDouble(tempElement.Attributes["max"].Value, CultureInfo.GetCultureInfo("en-US").NumberFormat);
 
                 XmlElement windElement = (XmlElement)monthElement.SelectSingleNode("wind");
                 Weather.eWindSpeed minWind = (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed), windElement.Attributes["min"].Value);

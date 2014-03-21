@@ -308,6 +308,7 @@ namespace TheAirline.GUIModel.HelpersModel
             }
             if (!(country is TemporaryCountry))
             {
+                
                 TemporaryCountry tempCountry = TemporaryCountries.GetTemporaryCountry(country, GameObject.GetInstance().GameTime);
 
                 if (tempCountry == null)

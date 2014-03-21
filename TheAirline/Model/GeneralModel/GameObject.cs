@@ -36,8 +36,8 @@ namespace TheAirline.Model.GeneralModel
         [Versioning("newsbox")]
         public NewsBox NewsBox { get; set; }
         [Versioning("fuelprice")]
-        private double _fuelprice;
-      
+        public double _fuelprice { get; set; }
+       
         public double FuelPrice 
         {
             get { return _fuelprice; }

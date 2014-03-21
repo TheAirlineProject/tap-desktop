@@ -84,6 +84,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             // chs, 2011-11-10 added so seat capacity is correctly calculated
             this.Classes[0].Seating -= seating;
             this.Classes[0].RegularSeating -= seating;
+            this.Classes[0].MaxSeats -= seating;
 
             AirlinerClass.ClassType nextType = AirlinerClass.ClassType.Economy_Class;
 
@@ -121,6 +122,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Classes[0].RegularSeating += aClass.RegularSeating;
             this.Classes[0].Seating += aClass.RegularSeating;
+            this.Classes[0].MaxSeats += aClass.RegularSeating;
 
             this.CanAddNewClass = true;
 
