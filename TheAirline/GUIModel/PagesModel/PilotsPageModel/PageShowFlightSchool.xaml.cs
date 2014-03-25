@@ -28,7 +28,8 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
     public partial class PageShowFlightSchool : Page
     {
         public FlightSchoolMVVM FlightSchool { get; set; }
-       
+        private Random rnd = new Random();
+
         public PageShowFlightSchool(FlightSchool fs)
         {
             this.FlightSchool = new FlightSchoolMVVM(fs);
@@ -59,8 +60,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
         }
         private void btnHire_Click(object sender, RoutedEventArgs e)
         {
-            Random rnd = new Random();
-
+           
             ComboBox cbInstructor = new ComboBox();
             cbInstructor.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbInstructor.Width = 200;

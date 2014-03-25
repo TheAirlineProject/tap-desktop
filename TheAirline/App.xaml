@@ -1,15 +1,16 @@
-﻿ <Application x:Class="TheAirline.App"
+﻿<Application x:Class="TheAirline.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-              xmlns:s="clr-namespace:TheAirline.GUIModel.MasterPageModel"
+             xmlns:local="clr-namespace:TheAirline.GUIModel.MasterPageModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary Source="GraphicsModel\ResourceDirectiories\GameStyles.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="GraphicsModel\ResourceDirectiories\GameTemplates.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="GUIModel\MasterPageModel\standard.xaml"></ResourceDictionary>
-           </ResourceDictionary.MergedDictionaries>
+                <local:SharedResourceDictionary Source="GUIModel\MasterPageModel\standardResources.xaml"></local:SharedResourceDictionary>
+                <local:SharedResourceDictionary Source="GUIModel\MasterPageModel\standardStyles.xaml"></local:SharedResourceDictionary>
+                <local:SharedResourceDictionary Source="GUIModel\MasterPageModel\standardTemplates.xaml"></local:SharedResourceDictionary>
+                <local:SharedResourceDictionary Source="GUIModel\MasterPageModel\standard.xaml"></local:SharedResourceDictionary>
+                </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
 

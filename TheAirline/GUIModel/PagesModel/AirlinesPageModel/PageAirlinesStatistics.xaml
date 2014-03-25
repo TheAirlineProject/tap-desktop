@@ -10,7 +10,7 @@
 	Title="PageAirlinesStatistics">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <ListView  util:GridViewSort.AutoSort="True" x:Name="AirportsList" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AllAirlines,ElementName=pageAirlinesStastistics}">
+        <ListView  util:GridViewSort.AutoSort="True" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AllAirlines,ElementName=pageAirlinesStastistics}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="">

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<cooperations>
+<cooperation uid="100" minsize="Small" price="40000" fromyear="1985" monthlyprice="14300" servicelevel="100" incomeperpax="0.1">
+    <translations>
+      <en-US name="Hotel" />
+      <de-DE name="Hotel" />
+      <en-GB name="Hotel"/>
+      <nl-NL name="Hotel"/>
+      <zh-CN name="Hotel"/>
+      <da-DK name="Hotel"/>
+      <es-ES name="Hotel" />
+      </translations>
+</cooperation>
+<cooperation uid="101" minsize="Small" price="25000" fromyear="1980" monthlyprice="10000" servicelevel="50" incomeperpax="0.06">
+    <translations>
+      <en-US name="Car Rental"/>
+      <de-DE name="Car Rental" />
+      <en-GB name="Car Rental"/>
+      <nl-NL name="Car Rental"/>
+      <zh-CN name="Car Rental"/>
+      <da-DK name="Car Rental"/>
+      <es-ES name="Car Rental" />
+      </translations>
+</cooperation>
+<cooperation uid="102" minsize="Small" price="35000" fromyear="1985" monthlyprice="12500" servicelevel="70" incomeperpax="0.08">
+    <translations>
+      <en-US name="Travel Agency"/>
+      <de-DE name="Travel Agency" />
+      <en-GB name="Travel Agency"/>
+      <nl-NL name="Travel Agency"/>
+      <zh-CN name="Travel Agency"/>
+      <da-DK name="Travel Agency"/>
+      <es-ES name="Travel Agency" />
+      </translations>
+</cooperation>
+<!--
+<cooperation uid="103" minsize="Small" price="35000" fromyear="2000" monthlyprice="12500" servicelevel="70" incomeperpax="0.08">
+    <translations>
+      <en-US name="www.theairlineproject.com"/>
+      <de-DE name="www.theairlineproject.com" />
+      <en-GB name="www.theairlineproject.com"/>
+      <nl-NL name="www.theairlineproject.com"/>
+      <zh-CN name="www.theairlineproject.com"/>
+      <da-DK name="www.theairlineproject.com"/>
+      <es-ES name="www.theairlineproject.com" />
+      </translations>
+</cooperation>-->
+</cooperations>

@@ -70,14 +70,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             this.Orders.addOrder(new AirlinerOrderMVVM(type));
         }
-        /*
-        private void btnAddToOrder_Click(object sender, RoutedEventArgs e)
-        {
-            AirlinerOrderMVVM order = (AirlinerOrderMVVM)((Button)sender).Tag;
-
-            order.Amount++;
-        }
-        */
+       
         private void btnRemoveFromOrder_Click(object sender, RoutedEventArgs e)
         {
             AirlinerOrderMVVM order = (AirlinerOrderMVVM)((Button)sender).Tag;

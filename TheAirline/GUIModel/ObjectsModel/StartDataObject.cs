@@ -24,6 +24,7 @@ namespace TheAirline.GUIModel.ObjectsModel
         public Boolean SameRegion { get; set; }
         public Boolean RandomOpponents { get; set; }
         public Boolean IsPaused { get; set; }
+        public Boolean RealData { get; set; }
         public Boolean MajorAirports { get; set; }
 
         public Airport Airport { get; set; }

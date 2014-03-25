@@ -41,8 +41,35 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <Image Source="/data/images/mail.png" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding IsUnRead,Converter={StaticResource BooleanToVisibility}}"></Image>
-                                        <Image Source="/data/images/nomail.png" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding IsRead,Converter={StaticResource BooleanToVisibility}}"></Image>
+                                        <Image Source="/data/images/mail.png" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality">
+                                                        <Image.Style>
+                                                            <Style TargetType="Image">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsRead}" Value="True">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding News.IsActionNews}" Value="True">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Image.Style>
+                                                    </Image>
+                                                    <Image Source="/data/images/actionmail.png" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality">
+                                                        <Image.Style>
+                                                            <Style TargetType="Image">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsRead}" Value="True">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding News.IsActionNews}" Value="False">
+                                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Image.Style>
+                                                    </Image>
+                                                    <Image Source="/data/images/nomail.png" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding IsRead,Converter={StaticResource BooleanToVisibility}}"></Image>
                                     </WrapPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -137,6 +164,20 @@
                         <Separator/>
                      <!--   <TextBlock TextWrapping="Wrap" Text="{Binding Body,Converter={StaticResource NewsTextConverter}}" VerticalAlignment="Bottom"></TextBlock>-->
                         <ContentControl Content="{Binding Body,Converter={StaticResource NewsTextConverter}}" VerticalAlignment="Bottom"></ContentControl>
+                        <WrapPanel Margin="0 10 0 0">
+                            <WrapPanel.Style>
+                                <Style TargetType="WrapPanel">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsActionNews}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </WrapPanel.Style>
+                            <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Tag="{Binding}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 106'}" Click="btnYes_Click"  Style="{StaticResource StandardButtonStyle}"/>
+                            <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 107'}" Margin="5 0 0 0" Tag="{Binding}" Click="btnNo_Click" Style="{StaticResource StandardButtonStyle}"/>
+                        </WrapPanel>
+                            
                     </StackPanel>
                 </Border>
             </Grid>

@@ -133,7 +133,7 @@
             <Border Style="{StaticResource RoundedBorderStyle}" Margin="0 5 0 0" Grid.Row="1">
                 <StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1008'}" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                    <ListBox ItemTemplate="{DynamicResource OrderItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Orders.Orders,ElementName=pageManufacturer}"></ListBox>
+                    <ListBox ItemTemplate="{DynamicResource OrderItem}" Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Orders.Orders,ElementName=pageManufacturer}"></ListBox>
                     <WrapPanel>
                         <TextBlock VerticalAlignment="Bottom" Width="200" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1009'}" FontWeight="Bold"></TextBlock>
                         <TextBlock VerticalAlignment="Bottom" Text="{Binding Orders.Discount,ElementName=pageManufacturer,Converter={StaticResource ValueCurrencyConverter}}"></TextBlock>

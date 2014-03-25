@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using TheAirline.GUIModel.HelpersModel;
 
 namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
@@ -146,7 +147,24 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
         #endregion
 
         private Hashtable currentFilters = new Hashtable();
+        public Hashtable getCurrentFilters()
+        {
+            return currentFilters;
+        }
+        public void setCurrentFilters(Hashtable filters)
+        {
+            currentFilters = filters;
 
+            ApplyCurrentFilters();
+        }
+        private void AddFilter(String property, FilterValue value, Button button)
+        {
+            if (currentFilters.ContainsKey(property))
+            {
+                currentFilters.Remove(property);
+            }
+            currentFilters.Add(property, new FilterStruct(property, button, new FilterItem[] { new FilterItem(value) }));
+        }
         private void AddFilter(String property, FilterItem value, Button button)
         {
             if (currentFilters.ContainsKey(property))
@@ -242,10 +260,12 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
         {
             Button button = e.OriginalSource as Button;
 
+
             if (button != null)
             {
                 // navigate up to the header
                 GridViewColumnHeader header = (GridViewColumnHeader)UIHelpers.FindElementOfTypeUp(button, typeof(GridViewColumnHeader));
+
 
                 // then down to the popup
                 Popup popup = (Popup)UIHelpers.FindElementOfType(header, typeof(Popup));
@@ -254,9 +274,11 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
                 {
                     // find the property name that we are filtering
                     SortableGridViewColumn column = (SortableGridViewColumn)header.Column;
+
+                    IEnumerable filterValues = ((SortableGridViewColumn)column).FilterValues;
+
                     String propertyName = column.SortPropertyName;
 
-                    
                     // clear the previous filter
                     if (filterList == null)
                     {
@@ -264,42 +286,61 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
                     }
                     filterList.Clear();
 
-                    // if this property is currently being filtered, provide an option to clear the filter.
-                    if (IsPropertyFiltered(propertyName))
+                    bool containsNull = false;
+
+                    //PropertyDescriptor filterPropDesc = TypeDescriptor.GetProperties(typeof(Airport))[propertyName];
+
+                    if (filterValues != null)
                     {
-                        filterList.Add(new FilterItem("Clear"));
+                        filterList.Add(new FilterItem(new FilterValue("All",0,Int32.MaxValue)));
+
+                        foreach (FilterValue value in filterValues)
+                        {
+                            FilterItem filterItem = new FilterItem(value);
+
+                            filterList.Add(filterItem);
+                        }
+                        ContentControl ccPopUp = (ContentControl)popup.Child;
+
+                        ccPopUp.SetResourceReference(ContentControl.ContentTemplateProperty, "FixedFilteredPopUp");
+
                     }
                     else
                     {
-                        bool containsNull = false;
-
-                        //PropertyDescriptor filterPropDesc = TypeDescriptor.GetProperties(typeof(Airport))[propertyName];
-
-
-
-                        // iterate over all the objects in the list
-                        foreach (Object item in Items)
+                        if (IsPropertyFiltered(propertyName))
                         {
-                            object value = getPropertyValue(item, propertyName);
-
-
-                            if (value != null)
+                            filterList.Add(new FilterItem("Clear"));
+                        }
+                        else
+                        {
+                            // iterate over all the objects in the list
+                            foreach (Object item in Items)
                             {
-                                FilterItem filterItem = new FilterItem(value as IComparable);
+                                object value = getPropertyValue(item, propertyName);
 
-                                Boolean contains = filterList.Cast<FilterItem>().ToList().Exists(i=>i.Item.ToString() == filterItem.Item.ToString());
 
-                                if (!filterList.Contains(filterItem) && !contains)
+                                if (value != null)
                                 {
-                                    filterList.Add(filterItem);
+                                    FilterItem filterItem = new FilterItem(value as IComparable);
+
+                                    Boolean contains = filterList.Cast<FilterItem>().ToList().Exists(i => i.Item.ToString() == filterItem.Item.ToString());
+
+                                    if (!filterList.Contains(filterItem) && !contains)
+                                    {
+                                        filterList.Add(filterItem);
+                                    }
+
+                                }
+                                else
+                                {
+                                    containsNull = true;
                                 }
 
                             }
-                            else
-                            {
-                                containsNull = true;
-                            }
                         }
+
+
+
 
                         filterList.Sort();
 
@@ -314,15 +355,28 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
                     CollectionViewSource.GetDefaultView(filterList).Refresh();
                     popup.IsOpen = true;
 
+                    if (filterValues != null)
+                    {
+                        Button btnOk = UIHelpers.FindChild<Button>(popup.Child, "btnOk");
+                        btnOk.Click += btnFixedOk_Click;
+
+                        Button btnCancel = UIHelpers.FindChild<Button>(popup.Child, "btnCancel");
+                        btnCancel.Click += btnCancel_Click;
+                    }
+                    else
+                    {
+                        Button btnOk = UIHelpers.FindChild<Button>(popup.Child, "btnOk");
+                        btnOk.Click += btnOk_Click;
+
+                        Button btnCancel = UIHelpers.FindChild<Button>(popup.Child, "btnCancel");
+                        btnCancel.Click += btnCancel_Click;
+                    }
+
                     // connect to the selection change event
-                    ListView listView = UIHelpers.FindChild<ListView>(popup.Child, "filterList");
+                    //ListView listView = UIHelpers.FindChild<ListView>(popup.Child, "filterList");
                     //listView.SelectionChanged += SelectionChangedHandler;
 
-                    Button btnOk = UIHelpers.FindChild<Button>(popup.Child, "btnOk");
-                    btnOk.Click += btnOk_Click;
 
-                    Button btnCancel = UIHelpers.FindChild<Button>(popup.Child, "btnCancel");
-                    btnCancel.Click += btnCancel_Click;
                 }
             }
         }
@@ -334,19 +388,25 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
         private object getPropertyValue(object obj, string propertyName)
         {
             object value;
-            if (propertyName.Contains('.'))
-            {
-                string[] split = propertyName.Split('.');
 
-                object tObj = obj.GetType().GetProperty(split[0]).GetValue(obj, null);
-
-                string propertyRest = propertyName.Substring(split[0].Length + 1);
-
-                return getPropertyValue(tObj, propertyRest);
-
-            }
+            if (obj == null)
+                value = "";
             else
-                value = obj.GetType().GetProperty(propertyName).GetValue(obj, null);
+            {
+                if (propertyName.Contains('.'))
+                {
+                    string[] split = propertyName.Split('.');
+
+                    object tObj = obj.GetType().GetProperty(split[0]).GetValue(obj, null);
+
+                    string propertyRest = propertyName.Substring(split[0].Length + 1);
+
+                    return getPropertyValue(tObj, propertyRest);
+
+                }
+                else
+                    value = obj.GetType().GetProperty(propertyName).GetValue(obj, null);
+            }
 
             return value;
         }
@@ -371,6 +431,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
                 bool match = true;
                 foreach (FilterStruct filter in currentFilters.Values)
                 {
+                
                     // obtain the value for this property on the item under test
                     //PropertyDescriptor filterPropDesc = TypeDescriptor.GetProperties(typeof(object))[filter.property];
                     object itemValue = getPropertyValue(item, filter.property);// filterPropDesc.GetValue((object)item);
@@ -381,8 +442,24 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
                         // check to see if it meets our filter criteria
                         foreach (FilterItem value in filter.values)
                         {
-                            if (itemValue.Equals(value.Item))
-                                isFilterMatch = true;
+                            if (value.Item is FilterValue)
+                            {
+                                FilterValue fValue = value.Item as FilterValue;
+                         
+                                double num;
+                                if (double.TryParse(itemValue.ToString(), out num))
+                                {
+                                    
+                                    if (num >= fValue.MinValue && num <= fValue.MaxValue)
+                                        isFilterMatch = true;
+                                }
+                   
+                            }
+                            else
+                            {
+                                if (itemValue.Equals(value.Item))
+                                    isFilterMatch = true;
+                            }
                         }
 
                         if (!isFilterMatch)
@@ -410,6 +487,69 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
 
             Popup popup = (Popup)UIHelpers.FindElementOfTypeUp(filterListView, typeof(Popup));
             popup.IsOpen = false;
+        }
+        /// <summary>
+        /// Handles the button click on the ok button for filtered
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFixedOk_Click(object sender, RoutedEventArgs e)
+        {
+            Button btnOk = (Button)sender;
+            ListView filterListView = (ListView)btnOk.Tag;
+
+            // navigate up to the header to obtain the filter property name
+            GridViewColumnHeader header = (GridViewColumnHeader)UIHelpers.FindElementOfTypeUp(filterListView, typeof(GridViewColumnHeader));
+
+            SortableGridViewColumn column = (SortableGridViewColumn)header.Column;
+            String currentFilterProperty = column.SortPropertyName;
+
+            object selectedValue = null;
+            foreach (object o in filterListView.Items)
+            {
+                var item = (FilterItem)o;
+
+                if (item.IsChecked)
+                    selectedValue = o;
+            }
+
+            if (selectedValue is FilterItem)
+            {
+                FilterValue value = (FilterValue)(selectedValue as FilterItem).Item;
+
+                if (value.Text == "All")
+                {
+                    if (currentFilters.ContainsKey(currentFilterProperty))
+                    {
+                        FilterStruct filter = (FilterStruct)currentFilters[currentFilterProperty];
+                        filter.button.ContentTemplate = (DataTemplate)dictionary["filterButtonInactiveTemplate"];
+                        if (FilterButtonInactiveStyle != null)
+                        {
+                            filter.button.Style = FilterButtonInactiveStyle;
+                        }
+                        currentFilters.Remove(currentFilterProperty);
+                    }
+
+                    ApplyCurrentFilters();
+                }
+                else
+                {
+                    // find the button and apply the active style
+                    Button button = (Button)UIHelpers.FindVisualElement(header, "filterButton");
+                    button.ContentTemplate = (DataTemplate)dictionary["filterButtonActiveTemplate"];
+
+                    if (FilterButtonActiveStyle != null)
+                    {
+                        button.Style = FilterButtonActiveStyle;
+                    }
+                    AddFilter(currentFilterProperty,value,button);
+                    //AddFilters(currentFilterProperty, items.ToArray(), button);
+                    ApplyCurrentFilters();
+                }
+                // navigate up to the popup and close it
+                Popup popup = (Popup)UIHelpers.FindElementOfTypeUp(filterListView, typeof(Popup));
+                popup.IsOpen = false;
+            }
         }
         /// <summary>
         /// Handles the button click on the ok button

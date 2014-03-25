@@ -101,9 +101,18 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                             <GridViewColumn Header="" Width="200">
-                                <GridViewColumn.CellTemplate>
+                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <WrapPanel>
+                                            <WrapPanel.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                                            <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </WrapPanel.Style>
                                             <TextBox Text="1000" Style="{StaticResource NumericTextBox}" VerticalAlignment="Bottom" Width="150" Name="txtPay" Tag="{Binding}"></TextBox>
                                             <Button Style="{StaticResource StandardButtonStyle}" Click="btnPayLoan_Click" VerticalAlignment="Bottom" Margin="5 0 0 0" Content="Pay" Tag="{Binding ElementName=txtPay}"></Button>
                                         </WrapPanel>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Air Serbia" iata="JU" color="DarkBlue" country="104" CEO="Dane Kondic" mentality="Moderate" market="Regional" preferedairport="BEG">
+<narrative narrative="Air Serbia (stylized as AirSERBIA) is the flag carrier and largest airline of Serbia. The airline was formerly known as Jat Airways until it was renamed in 2013. Air Serbia commenced operations under its new name on 26 October 2013."/>
+</profile>
+<info real="True" from="2013" to="2199"></info>
+</airline>

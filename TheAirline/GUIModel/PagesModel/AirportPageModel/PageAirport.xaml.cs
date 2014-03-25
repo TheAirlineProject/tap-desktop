@@ -79,6 +79,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             if (selection == "Traffic" && frmContent != null)
                 frmContent.Navigate(new PageAirportTraffic(this.Airport) { Tag = this });
 
+            if (selection == "Gates" && frmContent != null)
+                frmContent.Navigate(new PageAirportGateSchedule(this.Airport) { Tag = this });
+
            
         }
     }

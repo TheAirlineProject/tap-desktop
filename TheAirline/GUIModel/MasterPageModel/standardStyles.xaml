@@ -42,13 +42,17 @@
                         </BulletDecorator.Bullet>
 
                         <!--Text element-->
-                        <TextBlock Margin="3,1,0,0">
+                        <TextBlock Margin="3,1,0,0" Name="TxtContent" >
        <ContentPresenter />
                         </TextBlock>
                     </BulletDecorator>
 
                     <!--If item is checked, trigger the visibility of the mark-->
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="RadioOuter" Property="Background" Value="DarkGray"></Setter>
+                            <Setter TargetName="TxtContent" Property="FontStyle" Value="Italic"></Setter>
+                        </Trigger>
                         <Trigger Property="IsChecked" Value="true">
 
                             <!--If item is checked, trigger the visibility of the mark
@@ -74,6 +78,92 @@ and change the color of the selected bullet into a darker gray for better highli
         <Setter Property="TextAlignment" Value="Right"></Setter>
         <EventSetter Event="PreviewTextInput" Handler="NumericTextBox_Input"></EventSetter>
         <EventSetter Event="PreviewKeyDown" Handler="NumericTextBox_CheckSpace"></EventSetter>
+    </Style>
+    <!--buttons-->
+    <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
+
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+        <!--   <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="2,0,2,1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="ShowShine">
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="HideShine">
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Border CornerRadius="5,5,5,5" BorderThickness="1,1,1,1" RenderTransformOrigin="0.5,0.5" x:Name="border" BorderBrush="#FFFFFFFF">
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                <SkewTransform AngleX="0" AngleY="0"/>
+                                <RotateTransform Angle="0"/>
+                                <TranslateTransform X="0" Y="0"/>
+                            </TransformGroup>
+                        </Border.RenderTransform>
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5,5,5,5" x:Name="border1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.5*"/>
+                                    <RowDefinition Height="0.5*"/>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" CornerRadius="5,5,0,0">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#00FFFFFF" Offset="0"/>
+                                            <GradientStop Color="#7EFFFFFF" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <Border Grid.Row="1" Opacity="0" x:Name="Shine" Width="Auto" Height="Auto" CornerRadius="0,0,5,5" Margin="1,0,-1,0" Background="{TemplateBinding BorderBrush}"/>
+                                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"  Grid.RowSpan="2" HorizontalAlignment="Center" x:Name="contentPresenter"/>
+                            </Grid>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="border1" Value="0.5"/>
+                            <Setter Property="Opacity" TargetName="border" Value="1"/>
+                            <Setter Property="Opacity" TargetName="contentPresenter" Value="0.5"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="RenderTransform" TargetName="border">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                        <SkewTransform AngleX="0" AngleY="0"/>
+                                        <RotateTransform Angle="0"/>
+                                        <TranslateTransform X="0" Y="0"/>
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource HideShine}" x:Name="HideShine_BeginStoryboard"/>
+                            </Trigger.ExitActions>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard x:Name="ShowShine_BeginStoryboard" Storyboard="{StaticResource ShowShine}"/>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     <!--textblocks-->
     <Style TargetType="{x:Type TextBlock}">
@@ -1066,6 +1156,10 @@ and change the color of the selected bullet into a darker gray for better highli
     <Style x:Key="CalendarPickerStyle" TargetType="{x:Type Calendar}">
         <Setter Property="Background" Value="{StaticResource HeaderBackgroundBrush}"></Setter>
     </Style>
+    <Style TargetType="{x:Type DatePickerTextBox}">
+         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
     <!--FilterableListView-->
     <Style TargetType="c:FilterableListView">
             <Style.Resources>
@@ -1314,7 +1408,78 @@ and change the color of the selected bullet into a darker gray for better highli
             </Setter.Value>
         </Setter>
     </Style>
-
+    <DataTemplate x:Key="RegularFilteredPopUp">
+        <StackPanel>
+            <StackPanel.Background>
+                <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+            </StackPanel.Background>
+            <ListView x:Name="filterList" ItemsSource="{Binding}"                               
+                               BorderThickness="1" Background="Transparent">
+                <ListView.View>
+                    <GridView>
+                        <!-- hide the column header -->
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Visibility" Value="Hidden" />
+                                <Setter Property="Height" Value="0" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}" VerticalAlignment="Bottom"></CheckBox>
+                                        <TextBlock Text="{Binding ItemView}" VerticalAlignment="Bottom" Margin="5 0 0 0">
+                                        </TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <WrapPanel HorizontalAlignment="Right" Margin="0 5 0 0">
+                <Button Content="Apply" Tag="{Binding ElementName=filterList}" x:Name="btnOk" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
+                <Button Content="Cancel" VerticalAlignment="Bottom" Margin="5 0 0 0" Tag="{Binding ElementName=filterList}" Name="btnCancel"  Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
+            </WrapPanel>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="FixedFilteredPopUp">
+        <StackPanel>
+            <StackPanel.Background>
+                <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+            </StackPanel.Background>
+            <ListView x:Name="filterList" ItemsSource="{Binding}"                               
+                               BorderThickness="1" Background="Transparent">
+                <ListView.View>
+                    <GridView>
+                        <!-- hide the column header -->
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Visibility" Value="Hidden" />
+                                <Setter Property="Height" Value="0" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <RadioButton IsChecked="{Binding IsChecked,Mode=TwoWay}" VerticalAlignment="Center" GroupName="Item"></RadioButton>
+                                        <TextBlock Text="{Binding ItemView}" VerticalAlignment="Bottom" Margin="5 0 0 0">
+                                        </TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <WrapPanel HorizontalAlignment="Right" Margin="0 5 0 0">
+                <Button Content="Apply" Tag="{Binding ElementName=filterList}" x:Name="btnOk" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
+                <Button Content="Cancel" VerticalAlignment="Bottom" Margin="5 0 0 0" Tag="{Binding ElementName=filterList}" Name="btnCancel"  Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
+            </WrapPanel>
+        </StackPanel>
+    </DataTemplate>
     <DataTemplate x:Key="FilterGridHeaderTemplate" >
         <StackPanel Orientation="Horizontal">
             <!-- render the header text -->
@@ -1325,9 +1490,10 @@ and change the color of the selected bullet into a darker gray for better highli
             <Button  ContentTemplate="{StaticResource filterButtonInactiveTemplate}" Name="filterButton"           
                     Command="{x:Static c:FilterableListView.ShowFilter}">
 
-
             </Button>
             <Popup StaysOpen="false" Name="filterPopup" Placement="Bottom" PlacementTarget="{Binding ElementName=filterButton}" AllowsTransparency="True">
+                <ContentControl Name="ccPopUp" Content="{Binding}" ContentTemplate="{StaticResource RegularFilteredPopUp}"></ContentControl>
+                <!--
                 <StackPanel>
                     <StackPanel.Background>
                         <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
@@ -1336,7 +1502,7 @@ and change the color of the selected bullet into a darker gray for better highli
                                BorderThickness="1" Background="Transparent">
                         <ListView.View>
                             <GridView>
-                                <!-- hide the column header -->
+                             
                                 <GridView.ColumnHeaderContainerStyle>
                                     <Style TargetType="GridViewColumnHeader">
                                         <Setter Property="Visibility" Value="Hidden" />
@@ -1361,7 +1527,7 @@ and change the color of the selected bullet into a darker gray for better highli
                         <Button Content="Apply" Tag="{Binding ElementName=filterList}" Name="btnOk" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
                         <Button Content="Cancel" VerticalAlignment="Bottom" Margin="5 0 0 0" Tag="{Binding ElementName=filterList}" Name="btnCancel"  Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
                     </WrapPanel>
-                </StackPanel>
+                </StackPanel>-->
             </Popup>
         </StackPanel>
     </DataTemplate>

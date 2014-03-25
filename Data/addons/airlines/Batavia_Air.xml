@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Batavia Air" iata="Y6" color="Orange" country="162" CEO="Yudiawan Tansari" mentality="Safe" market="Global" preferedairport="CGK">
+  <narrative narrative="Batavia Air was an Indonesian airline which operated from 2002 to 2013. They operated a fleet of Airbus A320 Family and some Boeing 737. In
+2013, Central Jakarta Regional Court granted a bankruptcy appeal by ILFC." />
+</profile>
+<info real="True" from="2002" to="2013"></info>
+</airline> 

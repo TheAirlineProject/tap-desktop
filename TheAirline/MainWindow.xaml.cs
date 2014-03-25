@@ -12,14 +12,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.Model.GeneralModel;
-using TheAirline.GraphicsModel.PageModel.GeneralModel;
-using TheAirline.GraphicsModel.PageModel.PageAirportsModel;
-using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
-using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using System.Threading;
 using System.Globalization;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.AirlinerModel;
 
 namespace TheAirline
 {
@@ -75,6 +74,30 @@ namespace TheAirline
                 Console.WriteLine(text);
 
                 WPFMessageBox.Show("Threads states", text, WPFMessageBoxButtons.Ok);
+            }
+            if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F12)
+            {
+                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairline.log");
+                   
+                if (Airports.Count() >= 5)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Airport airport = Airports.GetAllAirports()[i];
+
+                        file.WriteLine("Airport demand for {0} of size {1}",airport.Profile.Name,airport.Profile.Size);
+
+                        foreach (Airport demand in airport.getDestinationDemands())
+                        {
+                            file.WriteLine("    Demand to {0} ({2}) is {1}", demand.Profile.Name, airport.getDestinationPassengersRate(demand, AirlinerClass.ClassType.Economy_Class),demand.Profile.Size);
+                            
+                        }
+                    }
+                }
+
+                WPFMessageBox.Show("Demand has been dumped", "The demand has been dumped to the log file", WPFMessageBoxButtons.Ok);
+
+                file.Close();
             }
 
         }

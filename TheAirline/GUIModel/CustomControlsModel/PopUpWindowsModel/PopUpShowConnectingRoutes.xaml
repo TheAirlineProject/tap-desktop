@@ -1,0 +1,22 @@
+﻿<window:PopUpWindow x:Class="TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpShowConnectingRoutes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
+        Title="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpShowConnectingRoutes 1000'}" Height="400" Width="700" WindowStartupLocation="CenterScreen" Background="#004A7F">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel>
+            <ListBox ItemsSource="{Binding}" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" BorderThickness="0" Background="Transparent" VerticalAlignment="Bottom">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom" Width="200"/>
+                            <ContentControl Content="{Binding Destination1}" ContentTemplate="{StaticResource AirportCountryLink}" Width="200"></ContentControl>
+                            <ContentControl Content="{Binding Destination2}" ContentTemplate="{StaticResource AirportCountryLink}" Width="200"></ContentControl>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </StackPanel>
+    </ScrollViewer>
+</window:PopUpWindow>

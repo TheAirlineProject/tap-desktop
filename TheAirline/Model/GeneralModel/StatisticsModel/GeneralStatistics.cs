@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using TheAirline.Model.AirlinerModel;
@@ -9,87 +10,138 @@ using TheAirline.Model.AirlinerModel;
 namespace TheAirline.Model.GeneralModel.StatisticsModel
 {
     //the class for general statistics
-    [DataContract]
-    [KnownType(typeof(AirlinerStatistics))]
-    public class GeneralStatistics
+    [Serializable]
+    public class GeneralStatistics : ISerializable
     {
-        [DataMember]
-        private Dictionary<int, List<StatisticsValue>> StatValues;
+        [Versioning("values")]
+        public List<StatisticsValue> StatValues { get; set; }
         public GeneralStatistics()
         {
-            this.StatValues = new Dictionary<int, List<StatisticsValue>>();
+            this.StatValues = new List<StatisticsValue>();
 
         }
         //returns the value for a statistics type for a year
         public double getStatisticsValue(int year, StatisticsType type)
         {
-            lock (this.StatValues)
-            {
-                if (this.StatValues.ContainsKey(year))
-                {
-                    StatisticsValue value = this.StatValues[year].Find(sv => sv.Stat == type);
-                    if (value != null) return value.Value;
-                }
-                return 0;
-            }
+            StatisticsValue item = this.StatValues.Find(s => s.Year == year && s.Stat.Shortname == type.Shortname);
 
+            if (item == null)
+                return 0;
+            else
+                return item.Value;
+
+           
         }
-        //returns the total valu for a statistics type
+        //returns the total value for a statistics type
         public double getStatisticsValue(StatisticsType type)
         {
-            double value = 0;
-            foreach (int year in this.StatValues.Keys)
-            {
-                StatisticsValue statValue = this.StatValues[year].Find(sv => sv.Stat == type);
-                if (statValue != null) value += statValue.Value;
-            }
-            return value;
+            return this.StatValues.Where(s => s.Stat.Shortname == type.Shortname).Sum(s => s.Value);
+           
         }
         //adds the value for a statistics type for a year
         public void addStatisticsValue(int year, StatisticsType type, double value)
         {
-            lock (this.StatValues)
-            {
-                if (!this.StatValues.ContainsKey(year))
-                    this.StatValues.Add(year, new List<StatisticsValue>());
-                StatisticsValue statValue = this.StatValues[year].Find(sv => sv.Stat == type);
-                if (statValue != null)
-                    statValue.Value += value;
-                else
-                    this.StatValues[year].Add(new StatisticsValue(type, value));
-            }
+            StatisticsValue item = this.StatValues.Find(s => s.Year == year && s.Stat.Shortname == type.Shortname);
+
+            if (item == null)
+                this.StatValues.Add(new StatisticsValue(year, type, value));
+            else
+                item.Value +=value;
         }
         //sets the value for a statistics type for a year
         public void setStatisticsValue(int year, StatisticsType type, double value)
         {
-            lock (this.StatValues)
-            {
-                if (!this.StatValues.ContainsKey(year))
-                    this.StatValues.Add(year, new List<StatisticsValue>());
-                StatisticsValue statValue = this.StatValues[year].Find(sv => sv.Stat == type);
-                if (statValue != null)
-                    statValue.Value = value;
-                else
-                    this.StatValues[year].Add(new StatisticsValue(type, value));
-            }
+            StatisticsValue item = this.StatValues.Find(s => s.Year == year && s.Stat.Shortname == type.Shortname);
+
+            if (item == null)
+                this.StatValues.Add(new StatisticsValue(year, type, value));
+            else
+                item.Value = value;
 
         }
         //returns all years with statistics
         public List<int> getYears()
         {
-            List<int> years = new List<int>();;
-            if (this.StatValues != null)
+            return this.StatValues.Select(s => s.Year).Distinct().ToList();
+           
+            
+        }
+        //clears the statistics
+        public void clear()
+        {
+            lock (this.StatValues)
             {
-                lock (this.StatValues)
+                this.StatValues.Clear();
+            }
+        }
+             private GeneralStatistics(SerializationInfo info, StreamingContext ctxt)
+        {
+            int version = info.GetInt16("version");
+
+            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+
+            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+
+            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+
+            foreach (SerializationEntry entry in info)
+            {
+                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+
+
+                if (prop != null)
                 {
-                   years = new List<int>(this.StatValues.Keys);
+                    if (prop is FieldInfo)
+                        ((FieldInfo)prop).SetValue(this, entry.Value);
+                    else
+                        ((PropertyInfo)prop).SetValue(this, entry.Value);
                 }
             }
 
-            return years;
-            
+            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+
+            foreach (MemberInfo notSet in notSetProps)
+            {
+                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+
+                if (ver.AutoGenerated)
+                {
+                    if (notSet is FieldInfo)
+                        ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    else
+                        ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
+
+                }
+
+            }
         }
 
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("version", 1);
 
+            Type myType = this.GetType();
+
+            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+
+            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+
+            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+
+            foreach (MemberInfo member in propsAndFields)
+            {
+                object propValue;
+
+                if (member is FieldInfo)
+                    propValue = ((FieldInfo)member).GetValue(this);
+                else
+                    propValue = ((PropertyInfo)member).GetValue(this, null);
+
+                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+
+                info.AddValue(att.Name, propValue);
+            }
+
+        }
     }
 }

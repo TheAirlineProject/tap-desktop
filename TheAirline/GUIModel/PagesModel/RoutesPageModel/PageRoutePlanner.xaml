@@ -29,6 +29,11 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
+                <WrapPanel>
+                    <RadioButton GroupName="SeasonType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1014'}" Checked="rbSeason_Checked" Tag="AllYear" IsChecked="True"></RadioButton>
+                    <RadioButton GroupName="SeasonType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1015'}" Checked="rbSeason_Checked" Tag="Summer" Margin="5 0 0 0"></RadioButton>
+                    <RadioButton GroupName="SeasonType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1016'}" Checked="rbSeason_Checked" Tag="Winter" Margin="5 0 0 0"></RadioButton>
+                </WrapPanel>
                 <!--
                 <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Entries,ElementName=pageRoutePlanner}">
                     <ListBox.ItemTemplate>
@@ -42,7 +47,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>-->
-                <uc:ucTimeTable x:Name="uctimetable" Entries="{Binding Entries,ElementName=pageRoutePlanner}" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeTable>
+                <uc:ucTimeTable x:Name="uctimetable" Entries="{Binding ViewEntries,ElementName=pageRoutePlanner}" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeTable>
             </StackPanel>
             <StackPanel Grid.Row="1" Margin="0 5 0 0">
                 <Expander Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1018'}" Style="{StaticResource ExpanderStyle}"> 
@@ -164,7 +169,7 @@
                                     </StackPanel>
                                     <StackPanel Margin="10 0 0 0">
                                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1010'}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
-                                        <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="100" IsSynchronizedWithCurrentItem="True" Name="cbHomebound">
+                                        <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="100" IsSynchronizedWithCurrentItem="True" Name="cbHomebound" SelectionChanged="cbHomebound_SelectionChanged">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <ContentControl ContentTemplate="{StaticResource AirportCodeItem}" VerticalAlignment="Bottom">
@@ -203,14 +208,70 @@
                             <StackPanel>
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1012'}" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
                                 <WrapPanel>
-                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Daily" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1019'}" GroupName="Interval" IsChecked="True"></RadioButton>
-                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Weekdays" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1020'}" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
+                                    <RadioButton Tag="Daily" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1019'}" GroupName="Interval" IsChecked="True">
+                                        <RadioButton.Style>
+                                            <Style BasedOn="{StaticResource RadioButtonLeftSideText}" TargetType="RadioButton">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsLongRoute,ElementName=pageRoutePlanner}" Value="True">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsLongRoute,ElementName=pageRoutePlanner}" Value="True">
+                                                        <Setter Property="IsChecked" Value="False" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </RadioButton.Style>
+                                    </RadioButton>
+                                    <RadioButton Tag="Weekdays" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1020'}" GroupName="Interval" Margin="10 0 0 0">
+                                        <RadioButton.Style>
+                                            <Style BasedOn="{StaticResource RadioButtonLeftSideText}" TargetType="RadioButton">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsLongRoute,ElementName=pageRoutePlanner}" Value="True">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+
+                                                </Style.Triggers>
+                                            </Style>
+                                        </RadioButton.Style>
+                                    </RadioButton>
                                     <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="TTS"  Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1021'}" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
                                 </WrapPanel>
                                 <WrapPanel Margin="0 5 0 0">
-                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="EveryOther" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1022'}" GroupName="Interval"></RadioButton>
-                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Weekend" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1023'}" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
-                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="MWF" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1024'}" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
+                                    <RadioButton Tag="EveryOther" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1022'}" GroupName="Interval">
+                                        <RadioButton.Style>
+                                            <Style BasedOn="{StaticResource RadioButtonLeftSideText}" TargetType="RadioButton">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsLongRoute,ElementName=pageRoutePlanner}" Value="True">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </RadioButton.Style>
+                                    </RadioButton>
+                                    <RadioButton Tag="Weekend" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1023'}" GroupName="Interval" Margin="10 0 0 0">
+                                        <RadioButton.Style>
+                                            <Style BasedOn="{StaticResource RadioButtonLeftSideText}" TargetType="RadioButton">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsLongRoute,ElementName=pageRoutePlanner}" Value="True">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+
+                                                </Style.Triggers>
+                                            </Style>
+                                        </RadioButton.Style>
+                                    </RadioButton>
+                                    <RadioButton Tag="MWF" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1024'}" GroupName="Interval" Margin="10 0 0 0">
+                                        <RadioButton.Style>
+                                            <Style BasedOn="{StaticResource RadioButtonLeftSideText}" TargetType="RadioButton">
+                                                <Style.Triggers>
+
+                                                    <DataTrigger Binding="{Binding IsLongRoute,ElementName=pageRoutePlanner}" Value="True">
+                                                        <Setter Property="IsChecked" Value="True" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </RadioButton.Style>
+                                    </RadioButton>
                                 </WrapPanel>
                                 <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Manual" VerticalAlignment="Bottom" Name="rbManual" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1025'}" GroupName="Interval" Margin="0 5 0 0"></RadioButton>
                                 <WrapPanel Margin="0 5 0 0">
@@ -223,13 +284,14 @@
                                             </Style.Triggers>
                                         </Style>
                                     </WrapPanel.Style>
-                                    <CheckBox Content="M" Name="cbMonday" VerticalAlignment="Bottom" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
+                                    <CheckBox Content="Su" Name="cbSunday" VerticalAlignment="Bottom" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
+                                    <CheckBox Content="M" Name="cbMonday" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
                                     <CheckBox Content="Tu" Name="cbTuesday" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
                                     <CheckBox Content="W" Name="cbWednesday" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
                                     <CheckBox Content="Th" Name="cbThursday" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
                                     <CheckBox Content="F" Name="cbFriday" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
                                     <CheckBox Content="Sa" Name="cbSaturday" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
-                                    <CheckBox Content="Su" Name="cbSunday" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
+                              
                                 </WrapPanel>
                                 <WrapPanel Margin="0 5 0 0" HorizontalAlignment="Center">
                                     <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 204'}" Margin="0 5 0 0" Click="btnAddScheduler_Click">
@@ -253,6 +315,7 @@
                     <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 200'}" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnSave_Click"></Button>
                     <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 201'}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnUndo_Click"></Button>
                     <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 202'}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnClear_Click"></Button>
+                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 205'}" Visibility="{Binding CanTransferSchedule,ElementName=pageRoutePlanner,Converter={StaticResource BooleanToVisibility}}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnTransfer_Click"></Button>
                 </WrapPanel>
                 <Expander Margin="0 10 0 0" Visibility="Collapsed" Style="{StaticResource ExpanderStyle}">
                     <WrapPanel>
@@ -274,7 +337,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Route" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1014'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock VerticalAlignment="Bottom">
@@ -288,7 +351,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1014'}" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1015'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Route.Stopovers}">
@@ -301,17 +364,17 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1015'}" Width="75">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1016'}" Width="75">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Border Width="50" Height="20" Style="{StaticResource RoundedBorderStyle}" BorderBrush="Black" BorderThickness="2" Background="{Binding Brush}"></Border>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1016'}" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1017'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding FlightTime,StringFormat=hh\\:mm}" Margin="20 0 0 0" VerticalAlignment="Bottom"/>
+                                            <TextBlock Text="{Binding FlightTime,StringFormat=hh\\:mm}" VerticalAlignment="Bottom"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

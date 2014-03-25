@@ -12,6 +12,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
     {
         private static Random rnd = new Random();
        
+       
         /*! create a random airliner with a minimum range.
         */
         private static Airliner CreateAirliner(double minRange)
@@ -49,14 +50,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
          */
         public static void CreateStartUpAirliners()
         {
-            int number = AirlinerTypes.GetTypes(delegate(AirlinerType t) { return t.Produced.From <= GameObject.GetInstance().GameTime && t.Produced.To >= GameObject.GetInstance().GameTime.AddYears(-30); }).Count * 25;
+            int number = AirlinerTypes.GetTypes(delegate(AirlinerType t) { return t.Produced.From <= GameObject.GetInstance().GameTime && t.Produced.To.AddYears(-10) >= GameObject.GetInstance().GameTime.AddYears(-30); }).Count * rnd.Next(1, 3);
+            int airlines = Airlines.GetNumberOfAirlines();
+            if (airlines < 5) { number = number / 5; }
+            else if (airlines < 10 && airlines > 5) { number /= 3; }
+            else if (airlines < 20 && airlines > 10) { number /= 2; }
             for (int i = 0; i < number; i++)
             {
+
                 Airliners.AddAirliner(CreateAirliner(0));
             }
 
-       
-        }
+
+        }   
         /*!creates an airliner from a specific year
          */
         public static Airliner CreateAirlinerFromYear(int year)
@@ -86,45 +92,41 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return airliner;
         }
-        //converts the passenger capacity for an airliner type to cargo capacity
-        public static double ConvertPassengersToCargoSize(AirlinerPassengerType type)
+     
+        //returns the airliner classes for an airliner
+        public static List<AirlinerClass> GetAirlinerClasses(AirlinerType type)
         {
-            return type.MaxSeatingCapacity * 2;
-        }
-        //creates the airliner classes for an airliner
-        public static void CreateAirlinerClasses(Airliner airliner)
-        {
+            List<AirlinerClass> classes = new List<AirlinerClass>();
             
-            if (airliner.Type is AirlinerPassengerType)
+            if (type is AirlinerPassengerType)
             {
-                Configuration airlinerTypeConfiguration = Configurations.GetConfigurations(Configuration.ConfigurationType.AirlinerType).Find(c=>((AirlinerTypeConfiguration)c).Airliner == airliner.Type && ((AirlinerTypeConfiguration)c).Period.From <= airliner.BuiltDate && ((AirlinerTypeConfiguration)c).Period.To> airliner.BuiltDate) ;
+                Configuration airlinerTypeConfiguration = Configurations.GetConfigurations(Configuration.ConfigurationType.AirlinerType).Find(c => ((AirlinerTypeConfiguration)c).Airliner == type && ((AirlinerTypeConfiguration)c).Period.From <= GameObject.GetInstance().GameTime && ((AirlinerTypeConfiguration)c).Period.To > GameObject.GetInstance().GameTime);
 
                 if (airlinerTypeConfiguration == null)
                 {
-                    airliner.clearAirlinerClasses();
-
+                  
                     AirlinerConfiguration configuration = null;
 
-                    int classes = rnd.Next(0, ((AirlinerPassengerType)airliner.Type).MaxAirlinerClasses) +1;
+                    int numOfClasses = rnd.Next(0, ((AirlinerPassengerType)type).MaxAirlinerClasses) + 1;
 
                     if (GameObject.GetInstance().GameTime.Year >= (int)AirlinerClass.ClassType.Business_Class)
                     {
-                        if (classes == 1)
+                        if (numOfClasses == 1)
                             configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("200");
-                        if (classes == 2)
+                        if (numOfClasses == 2)
                             configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("202");
-                        if (classes == 3)
+                        if (numOfClasses == 3)
                             configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("203");
                     }
                     else
                     {
-                        if (classes == 1)
+                        if (numOfClasses == 1)
                             configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("200");
-                        if (classes == 2)
+                        if (numOfClasses == 2)
                             configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("201");
-                        if (classes == 3)
+                        if (numOfClasses == 3)
                             configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("201");
-           
+
                     }
 
                     foreach (AirlinerClassConfiguration aClass in configuration.Classes)
@@ -133,57 +135,159 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
 
                         foreach (AirlinerFacility facility in aClass.getFacilities())
-                            airlinerClass.setFacility(airliner.Airline, facility);
+                            airlinerClass.setFacility(null, facility);
 
-                        airlinerClass.SeatingCapacity = Convert.ToInt16(Convert.ToDouble(airlinerClass.RegularSeatingCapacity) / airlinerClass.getFacility(AirlinerFacility.FacilityType.Seat).SeatUses); 
+                        foreach (AirlinerFacility.FacilityType fType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
+                        {
+                            if (!aClass.Facilities.Exists(f => f.Type == fType))
+                            {
+                                airlinerClass.setFacility(null, AirlinerFacilities.GetBasicFacility(fType));
+                            }
+                        }
 
-                         airliner.addAirlinerClass(airlinerClass);
+                        airlinerClass.SeatingCapacity = Convert.ToInt16(Convert.ToDouble(airlinerClass.RegularSeatingCapacity) / airlinerClass.getFacility(AirlinerFacility.FacilityType.Seat).SeatUses);
+
+                        classes.Add(airlinerClass);
                     }
-                    
-                    int seatingDiff = ((AirlinerPassengerType)airliner.Type).MaxSeatingCapacity - configuration.MinimumSeats;
 
-                    airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).RegularSeatingCapacity += seatingDiff;
+                    int seatingDiff = ((AirlinerPassengerType)type).MaxSeatingCapacity - configuration.MinimumSeats;
 
-                    AirlinerFacility seatingFacility = airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Seat);
+                    AirlinerClass economyClass = classes.Find(c => c.Type == AirlinerClass.ClassType.Economy_Class);
+                    economyClass.RegularSeatingCapacity += seatingDiff;
+
+                    AirlinerFacility seatingFacility = economyClass.getFacility(AirlinerFacility.FacilityType.Seat);
 
                     int extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
 
-                    airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).SeatingCapacity += extraSeats;
+                    economyClass.SeatingCapacity += extraSeats;
                 }
                 else
                 {
-                    airliner.clearAirlinerClasses();
-
+                 
                     foreach (AirlinerClassConfiguration aClass in ((AirlinerTypeConfiguration)airlinerTypeConfiguration).Classes)
                     {
                         AirlinerClass airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
                         airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
 
                         foreach (AirlinerFacility facility in aClass.getFacilities())
-                            airlinerClass.setFacility(airliner.Airline, facility);
+                            airlinerClass.setFacility(null, facility);
 
-                        airlinerClass.SeatingCapacity = Convert.ToInt16(Convert.ToDouble(airlinerClass.RegularSeatingCapacity) / airlinerClass.getFacility(AirlinerFacility.FacilityType.Seat).SeatUses); 
+                        airlinerClass.SeatingCapacity = Convert.ToInt16(Convert.ToDouble(airlinerClass.RegularSeatingCapacity) / airlinerClass.getFacility(AirlinerFacility.FacilityType.Seat).SeatUses);
 
-                        airliner.addAirlinerClass(airlinerClass);
+                        classes.Add(airlinerClass);
                     }
-                    
+
                 }
             }
-            else if (airliner.Type is AirlinerCargoType)
+            else if (type is AirlinerCargoType)
             {
-                airliner.clearAirlinerClasses();
-
+              
                 AirlinerClass cargoClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 0);
-                airliner.addAirlinerClass(cargoClass);
+                classes.Add(cargoClass);
             }
-          
-        }
 
+            return classes;
+        }
+        //creates the airliner classes for an airliner
+        public static void CreateAirlinerClasses(Airliner airliner)
+        {
+            airliner.clearAirlinerClasses();
+
+            List<AirlinerClass> classes = GetAirlinerClasses(airliner.Type);
+
+            foreach (AirlinerClass aClass in classes)
+            {
+                airliner.addAirlinerClass(aClass);
+            }
+
+        }
+        //returns the delivery date for a order of airliners
+        public static DateTime GetOrderDeliveryDate(List<AirlinerOrder> orders)
+        {
+            double monthsToComplete = 0;
+
+            foreach (AirlinerOrder order in orders)
+            {
+                double orderToComplete = Math.Ceiling(Convert.ToDouble(order.Amount) / order.Type.ProductionRate);
+
+                if (orderToComplete > monthsToComplete)
+                    monthsToComplete = orderToComplete;
+            }
+
+            DateTime latestDate = new DateTime(1900, 1, 1);
+
+            foreach (AirlinerOrder order in orders)
+            {
+                DateTime date = new DateTime(GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, GameObject.GetInstance().GameTime.Day);
+                int rate = order.Type.ProductionRate;
+                if (order.Amount <= (rate / 4))
+                {
+                    date = date.AddMonths(3);
+                }
+                else
+                {
+                    for (int i = (rate / 4) + 1; i <= order.Amount; i++)
+                    {
+                        double iRate = 365 / rate;
+                        date = date.AddDays(Math.Round(iRate, 0, MidpointRounding.AwayFromZero));
+                    }
+                }
+
+                if (date > latestDate)
+                    latestDate = date;
+            }
+
+            return latestDate;
+        }
+        //returns a random airliner for an airline
         public static FleetAirliner GetRandomAirliner(Airline airline)
         {
             return airline.Fleet[rnd.Next(airline.Fleet.Count)];
          
         }
-       
+        //returns the code for an airliner class
+        public static string GetAirlinerClassCode(AirlinerClass aClass)
+        {
+            string symbol = "Y";
+            
+            if (aClass.Type == AirlinerClass.ClassType.Business_Class)
+                symbol = "C";
+
+            if (aClass.Type == AirlinerClass.ClassType.First_Class)
+                symbol = "F";
+
+            if (aClass.Type == AirlinerClass.ClassType.Economy_Class)
+                symbol = "Y";
+
+            return string.Format("{0}{1}", aClass.SeatingCapacity, symbol);
+        }
+        //returns the cargo size for a passenger airliner if needed to converted
+        public static double GetPassengerCargoSize(AirlinerPassengerType type)
+        {
+            return Convert.ToDouble(type.MaxSeatingCapacity) * 1.25;
+        }
+        //return the days for converting a passenger airliner to a cargo airliner
+        public static int GetCargoConvertingDays(AirlinerPassengerType type)
+        {
+            return (int)(Convert.ToDouble(type.MaxSeatingCapacity) / 1.15);
+        }
+        //returns the price for converting a passenger airliner to a cargo airliner
+        public static double GetCargoConvertingPrice(AirlinerPassengerType type)
+        {
+            double basePrice = 650000;
+
+            if (type.Body == AirlinerType.BodyType.Single_Aisle)
+                basePrice = basePrice * 1.2;
+
+            if (type.Body == AirlinerType.BodyType.Narrow_Body)
+                basePrice = basePrice * 2.4;
+
+            if (type.Body == AirlinerType.BodyType.Wide_Body)
+                basePrice = basePrice * 3.6;
+
+            double paxRate = type.MaxSeatingCapacity * 800;
+
+            return GeneralHelpers.GetInflationPrice(basePrice + paxRate);
+        }
     }
 }

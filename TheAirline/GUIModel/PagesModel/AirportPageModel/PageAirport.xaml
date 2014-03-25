@@ -14,7 +14,7 @@
                 <Border Style="{StaticResource RoundedBorderStyle}">
                     <StackPanel>
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirport 1000'}" FontWeight="Bold" FontSize="14"></TextBlock>
-                        <ListBox Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding ElementName=pageAirport, Path=Distances}">
+                        <ListBox MaxHeight="400" Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding ElementName=pageAirport, Path=Distances}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
@@ -36,13 +36,13 @@
                 </TabItem>
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirport 2001'}" Tag="Traffic">
                 </TabItem>
-                
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirport 2002'}" Tag="Gates">
+                </TabItem>
+
             </TabControl>
         </DataTemplate>
         <DataTemplate x:Key="AirportContent">
             <Frame NavigationUIVisibility="Hidden" Name="frmContent"  />
-
-
         </DataTemplate>
     </Page.Resources>
     <m:StandardMasterPage Style="{StaticResource StandardPage}" RightContentArea="{StaticResource AirportQuickLinks}" MainContentArea="{StaticResource AirportContent}" MainContentMenuArea="{StaticResource AirportContentMenu}"/>

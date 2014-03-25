@@ -26,14 +26,7 @@
                         </TextBox>
                     </h:QuickInfoValue.Value>
             </h:QuickInfoValue>
-                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1003'}">
-                    <h:QuickInfoValue.Value>
-                        <WrapPanel>
-                            <RadioButton Name="rbFull" FlowDirection="RightToLeft" GroupName="AllianceType" IsChecked="True" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1004'}"></RadioButton>
-                            <RadioButton FlowDirection="RightToLeft" Margin="5 0 0 0" GroupName="AllianceType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1005'}"></RadioButton>
-                        </WrapPanel>
-                    </h:QuickInfoValue.Value>
-                </h:QuickInfoValue>
+               
                 <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1001'}">
                     <h:QuickInfoValue.Value>
                         <ComboBox Name="cbHeadquarter" Style="{DynamicResource ComboBoxTransparentStyle}" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource AirportCountryItem}" Width="250"></ComboBox>

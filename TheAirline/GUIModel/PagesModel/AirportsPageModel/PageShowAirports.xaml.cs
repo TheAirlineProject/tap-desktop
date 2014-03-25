@@ -14,9 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.Model.AirlineModel;
@@ -36,9 +37,11 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         public List<AirportMVVM> AllAirports { get; set; }
         public List<Airline> AllAirlines { get; set; }
         public List<AirlinerType> HumanAircrafts { get; set; }
+        public ObservableCollection<AirportMVVM> SelectedAirports { get; set; }
+        public List<FilterValue> RoutesRanges { get; set; }
+        public List<FilterValue> OperatingRanges { get; set; }
         public PageShowAirports(List<Airport> airports)
         {
-            object o = this.Tag;
             createPage(airports);
         }
         public PageShowAirports()
@@ -49,6 +52,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         private void createPage(List<Airport> airports)
         {
             this.AllAirlines = new List<Airline>();
+            this.SelectedAirports = new ObservableCollection<AirportMVVM>();
+            this.RoutesRanges = new List<FilterValue>() { new FilterValue("0",0,0),new FilterValue("1-9",1,9), new FilterValue("10-24",10,24),new FilterValue("25+",25,int.MaxValue) };
+            this.OperatingRanges = new List<FilterValue>() { new FilterValue("0", 0, 0), new FilterValue("1-5", 1, 5), new FilterValue("6+", 5, int.MaxValue) };
 
             Airline dummyAirline = new Airline(new AirlineProfile("All Airlines", "99", "Blue", "", false, 1900, 1900), Airline.AirlineMentality.Safe, Airline.AirlineFocus.Domestic, Airline.AirlineLicense.Domestic, Route.RouteType.Passenger);
             dummyAirline.Profile.addLogo(new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
@@ -63,7 +69,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             foreach (Airport airport in airports.OrderBy(a=>a.Profile.Name))
                 this.AllAirports.Add(new AirportMVVM(airport));
 
-            AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now,DateTime.Now), 0);
+            AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null,false), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now,DateTime.Now), 0,false);
 
             this.HumanAircrafts = new List<AirlinerType>();
 
@@ -92,6 +98,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
            
         }
 
+      
        
         private void clName_Click(object sender, RoutedEventArgs e)
         {
@@ -108,11 +115,15 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
             int gates = Math.Min(2, airport.Airport.Terminals.NumberOfFreeGates);
 
-           WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"),gates, airport.Airport.Profile.Name), WPFMessageBoxButtons.YesNo);
-            
-           if (result == WPFMessageBoxResult.Yes)
+           //WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"),gates, airport.Airport.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+           object o = PopUpAirportContract.ShowPopUp(airport.Airport);
+
+           if (o != null)
            {
-               if (!hasCheckin)
+               AirportContract.ContractType contractType = (AirportContract.ContractType)o;
+
+               if (!hasCheckin && contractType == AirportContract.ContractType.Full)
                {
                    AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
@@ -121,9 +132,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
                }
 
-               double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport.Airport,gates,2);
+               double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport.Airport,contractType, gates,2);
 
-               AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline,airport.Airport,GameObject.GetInstance().GameTime,gates,2,yearlyPayment);
+               AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline,airport.Airport,contractType,GameObject.GetInstance().GameTime,gates,2,yearlyPayment);
 
                airport.addAirlineContract(contract);
           
@@ -182,6 +193,26 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
                     return a != null && a.Airport.getMaxRunwayLength()>=type.MinRunwaylength || type.Manufacturer.Name == "Dummy" ;
                 };
             }
+        }
+
+        private void cbSelected_Checked(object sender, RoutedEventArgs e)
+        {
+            AirportMVVM airport = (AirportMVVM)((CheckBox)sender).Tag;
+
+            this.SelectedAirports.Add(airport);
+        }
+
+        private void cbSelected_Unchecked(object sender, RoutedEventArgs e)
+        {
+            AirportMVVM airport = (AirportMVVM)((CheckBox)sender).Tag;
+
+            this.SelectedAirports.Remove(airport);
+        }
+
+        private void btnCompare_Click(object sender, RoutedEventArgs e)
+        {
+            var airports = this.SelectedAirports.Select(s => s.Airport).ToList();
+            PopUpCompareAirports.ShowPopUp(airports);
         }
         
     }

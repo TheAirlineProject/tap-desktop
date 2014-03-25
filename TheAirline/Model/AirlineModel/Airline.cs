@@ -11,118 +11,125 @@ using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.PilotModel;
 using System.Runtime.Serialization;
+using System.Reflection;
+using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 
 
 namespace TheAirline.Model.AirlineModel
 {
-    [DataContract]
-    [KnownType(typeof(SubsidiaryAirline))]
-    //the class for an airline
-    public class Airline
+    [Serializable]
+     //the class for an airline
+    public class Airline : ISerializable
     {
         public enum AirlineLicense { Domestic, Regional, Short_Haul, Long_Haul }
         public enum AirlineValue { Very_low, Low, Normal, High, Very_high }
         public enum AirlineMentality { Safe,Moderate, Aggressive}
         public enum AirlineFocus { Global, Regional,Domestic, Local }
 
-        [DataMember]
+        [Versioning("routefocus")]
         public Route.RouteType AirlineRouteFocus { get; set; }
 
-        [DataMember]
+        [Versioning("license")]
         public AirlineLicense License { get; set; }
 
-        [DataMember]
+        [Versioning("marketfocus")]
         public AirlineFocus MarketFocus { get; set; }
 
-        [DataMember]
+        [Versioning("mentality")]
         public AirlineMentality Mentality { get; set; }
-
-        [DataMember]
+        [Versioning("shares",Version=2)]
+        public List<AirlineShare> Shares { get; set; }
+        [Versioning("codeshares", Version = 3)]
+        public List<CodeshareAgreement> Codeshares { get; set; }
+        [Versioning("reputation")]
         public int Reputation { get; set; } //0-100 with 0-9 as very_low, 10-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 
-        [DataMember]
+           [Versioning("airports")]
+    
         public List<Airport> Airports { get; set; }
-        [DataMember]
+        [Versioning("fleet")]
         public List<FleetAirliner> Fleet { get; set; }
-        [DataMember]
+        [Versioning("subsidiaries")]
         public List<SubsidiaryAirline> Subsidiaries { get; set; }
-          [DataMember]
+          [Versioning("profile")]
       
         public AirlineProfile Profile { get; set; }
 
-          [DataMember]
+          [Versioning("routes")]
           private List<Route> _Routes;
         public List<Route> Routes { get { return getRoutes(); } set { this._Routes = value; } }
 
-        [DataMember]
+        [Versioning("facilities")]
         public List<AirlineFacility> Facilities { get; set; }
-        [DataMember]
+        [Versioning("advertisements")]
         private Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType> Advertisements;
-        [DataMember]
+        [Versioning("statistics")]
         public GeneralStatistics Statistics { get; set; }
-        [DataMember]
+        [Versioning("money")]
         public double Money { get; set; }
-        [DataMember]
+        [Versioning("startmoney")]
         public double StartMoney { get; set; }
         public Boolean IsHuman { get { return isHuman(); } set { ;} }
         public Boolean IsSubsidiary { get { return isSubsidiaryAirline(); } set { ;} }
-        [DataMember]
+        [Versioning("invoices")]
         private Invoices Invoices;
-        [DataMember]
+        [Versioning("fees")]
         public AirlineFees Fees { get; set; }
-        [DataMember]
+        [Versioning("loans")]
         public List<Loan> Loans { get; set; }
-        [DataMember]
+        [Versioning("flightcodes")]
         private List<string> FlightCodes;
         public List<FleetAirliner> DeliveredFleet { get { return getDeliveredFleet(); } set { ;} }
-        [DataMember]
+        [Versioning("alliances")]
         public List<Alliance> Alliances { get; set; }
-        [DataMember]
+        [Versioning("contract")]
         public ManufacturerContract Contract { get; set; }
-        [DataMember]
+        [Versioning("futureairlines")]
         public List<FutureSubsidiaryAirline> FutureAirlines { get; set; }
-        [DataMember]
+        [Versioning("policies")]
         public List<AirlinePolicy> Policies { get; set; }
-        [DataMember]
+        [Versioning("pilots")]
         public List<Pilot> Pilots { get; set; }
-        [DataMember]
+        [Versioning("budget")]
         public AirlineBudget Budget { get; set; }
-        [DataMember]
+        [Versioning("flightschools")]
         public List<FlightSchool> FlightSchools { get; set; }
-        [DataMember]
+        [Versioning("insurancepolicies")]
         public List<AirlineInsurance> InsurancePolicies { get; set; }
-        [DataMember]
+        [Versioning("avgfleetvalue")]
         public Int64 AvgFleetValue { get; set; }
-        [DataMember]
+        [Versioning("fleetvalue")]
         public Int64 FleetValue { get; set; }
-        [DataMember]
+        [Versioning("eventlog")]
         public List<RandomEvent> EventLog { get; set; }
-        [DataMember]
+        [Versioning("budgethistory")]
         public IDictionary<DateTime, AirlineBudget> BudgetHistory { get; set; }
-        [DataMember]
         public IDictionary<DateTime, AirlineBudget> TestBudget { get; set; }
-        [DataMember]
+        [Versioning("scores")]
         public AirlineScores Scores { get; set; }
-        [DataMember]
+        [Versioning("ratings")]
         public AirlineRatings Ratings { get; set; }
-        [DataMember]
+        [Versioning("overallscore")]
         public int OverallScore { get; set; }
-        [DataMember]
+        [Versioning("gamescores")]
         public Dictionary<DateTime, int> GameScores { get; set; }
-        [DataMember]
+        [Versioning("countedscores")]
         public int CountedScores { get; set; }
-        [DataMember]
+        [Versioning("eventlists")]
         public List<RandomEvent> EventList { get; set; }
-        [DataMember]
+        [Versioning("insuranceclaims")]
         public List<InsuranceClaim> InsuranceClaims { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license, Route.RouteType routeFocus)
         {
             this.Scores = new AirlineScores();
+            this.Shares = new List<AirlineShare>();
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
             this._Routes = new List<Route>();
             this.FutureAirlines = new List<FutureSubsidiaryAirline>();
             this.Subsidiaries = new List<SubsidiaryAirline>();
             this.Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
+            this.Codeshares = new List<CodeshareAgreement>();
             this.Statistics = new GeneralStatistics();
             this.Facilities = new List<AirlineFacility>();
             this.Invoices = new Invoices();
@@ -178,6 +185,9 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Pilots.Remove(pilot);
             pilot.Airline = null;
+
+            if (pilot.Airliner != null)
+                pilot.Airliner.removePilot(pilot);
         }
         //adds a flight school to the airline
         public void addFlightSchool(FlightSchool school)
@@ -242,8 +252,11 @@ namespace TheAirline.Model.AirlineModel
         //removes an alliance
         public void removeAlliance(Alliance alliance)
         {
-            if (this.Alliances.Contains(alliance))
-                this.Alliances.Remove(alliance);
+            lock (this.Alliances)
+            {
+                if (this.Alliances.Contains(alliance))
+                    this.Alliances.Remove(alliance);
+            }
         }
         //adds an airliner to the airlines fleet
         public void addAirliner(FleetAirliner.PurchasedType type, Airliner airliner,  Airport homeBase)
@@ -253,7 +266,10 @@ namespace TheAirline.Model.AirlineModel
         //adds a fleet airliner to the airlines fleet
         public void addAirliner(FleetAirliner airliner)
         {
-            this.Fleet.Add(airliner);
+            lock (this.Fleet)
+            {
+                this.Fleet.Add(airliner);
+            }
         }
         //remove a fleet airliner from the airlines fleet
         public void removeAirliner(FleetAirliner airliner)
@@ -266,13 +282,18 @@ namespace TheAirline.Model.AirlineModel
         //adds an airport to the airline
         public void addAirport(Airport airport)
         {
-            if (airport!=null)
-                this.Airports.Add(airport);
+            lock (this.Airports)
+            {
+                if (airport != null)
+                    this.Airports.Add(airport);
+            }
         }
         //removes an airport from the airline
         public void removeAirport(Airport airport)
         {
             this.Airports.Remove(airport);
+
+            airport.Cooperations.RemoveAll(r => r.Airline == this);
         }
         //returns all hubs airports for the airline
         public List<Airport> getHubs()
@@ -424,12 +445,14 @@ namespace TheAirline.Model.AirlineModel
                     value += facility.Facility.Price;
             }
 
-            var loans = new List<Loan>(this.Loans);
-            foreach (Loan loan in loans)
+            lock (this.Loans)
             {
-                value -= loan.PaymentLeft;
+                var loans = new List<Loan>(this.Loans);
+                foreach (Loan loan in loans)
+                {
+                    value -= loan.PaymentLeft;
+                }
             }
-
             var subs = new List<SubsidiaryAirline>(this.Subsidiaries);
             foreach (SubsidiaryAirline subAirline in subs)
                 value += subAirline.getValue();
@@ -465,7 +488,10 @@ namespace TheAirline.Model.AirlineModel
         //adds a loan to the airline
         public void addLoan(Loan loan)
         {
-            this.Loans.Add(loan);
+            lock (this.Loans)
+            {
+                this.Loans.Add(loan);
+            }
         }
         //removes a loan 
         public void removeLoan(Loan loan)
@@ -606,6 +632,16 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Subsidiaries.Remove(subsidiary);
         }
+        //adds a code share agreement to the airline
+        public void addCodeshareAgreement(CodeshareAgreement share)
+        {
+            this.Codeshares.Add(share);
+        }
+        //removes a code share agreement from the airline
+        public void removeCodeshareAgreement(CodeshareAgreement share)
+        {
+            this.Codeshares.Remove(share);
+        }
         //adds a policy to the airline
         public void addAirlinePolicy(AirlinePolicy policy)
         {
@@ -634,8 +670,91 @@ namespace TheAirline.Model.AirlineModel
 
             return cockpitCrew + cabinCrew + serviceCrew + maintenanceCrew + instructors;
         }
+        //returns all codesharing airlines
+        public List<Airline> getCodesharingAirlines()
+        {
+            return this.Codeshares.Select(c => c.Airline1 == this ? c.Airline2 : c.Airline1).ToList();
+        }
         
-     
+      protected Airline(SerializationInfo info, StreamingContext ctxt)
+        {
+            try
+            {
+                int version = info.GetInt16("version");
+
+                var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+
+                IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+
+                var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+
+                foreach (SerializationEntry entry in info)
+                {
+                    MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+
+                    if (prop != null)
+                    {
+                        if (prop is FieldInfo)
+                            ((FieldInfo)prop).SetValue(this, entry.Value);
+                        else
+                            ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
+                }
+
+                var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+
+                foreach (MemberInfo notSet in notSetProps)
+                {
+                    Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+
+                    if (ver.AutoGenerated)
+                    {
+                        if (notSet is FieldInfo)
+                            ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                        else
+                            ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
+
+                    }
+
+                }
+
+                if (version == 1)
+                {
+                   AirlineHelpers.CreateStandardAirlineShares(this,100);
+                }
+            }
+            catch (Exception e)
+            {
+                string s = e.ToString();
+            }
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("version", 3);
+
+            Type myType = this.GetType();
+
+            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+
+            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+
+            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+
+            foreach (MemberInfo member in propsAndFields)
+            {
+                object propValue;
+
+                if (member is FieldInfo)
+                    propValue = ((FieldInfo)member).GetValue(this);
+                else
+                    propValue = ((PropertyInfo)member).GetValue(this, null);
+
+                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+
+                info.AddValue(att.Name, propValue);
+            }
+        }
        
     }
     //the list of airlines

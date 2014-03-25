@@ -28,11 +28,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             InitializeComponent();
 
+            /*
             CollectionView viewTraffic = (CollectionView)CollectionViewSource.GetDefaultView(lvTraffic.ItemsSource);
             viewTraffic.GroupDescriptions.Clear();
 
             viewTraffic.GroupDescriptions.Add(new PropertyGroupDescription("Type"));
-
+            */
         }
     }
 }

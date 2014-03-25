@@ -13,11 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TheAirline.GraphicsModel.PageModel.GeneralModel;
-using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.GUIModel.MasterPageModel.PopUpPageModel;
 using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
@@ -44,7 +41,9 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             foreach (Region region in Regions.GetAllRegions())
                 cbRegion.Items.Add(region);
 
-            for (int i = 1960; i < 2014; i++)
+            int maxYear = DateTime.Now.Year + 1;
+
+            for (int i = 1960; i < maxYear; i++)
                 cbYear.Items.Insert(0,i);
 
             cbYear.SelectedIndex = 0;
@@ -127,7 +126,9 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             Frame frmContent = UIHelpers.FindChild<Frame>((Page)this.Tag, "frmContent");
 
-            frmContent.Navigate(new PageAirlineData(new StartDataObject() { MajorAirports = cbMajorAirports.IsChecked.Value, IsPaused = cbPaused.IsChecked.Value,Focus = (Airline.AirlineFocus)cbFocus.SelectedItem, SameRegion = cbSameRegion.IsChecked.Value, RandomOpponents = rbRandomOpponents.IsChecked.Value,  UseDayTurns=rbDayTurns.IsChecked.Value, Difficulty = (DifficultyLevel)cbDifficulty.SelectedItem, NumberOfOpponents = (int)cbOpponents.SelectedItem, Year = (int)cbYear.SelectedItem, Continent = (Continent)cbContinent.SelectedItem, Region = (Region)cbRegion.SelectedItem}) { Tag = this.Tag });
+            Boolean useRealData = cbReal.IsChecked.Value;
+
+            frmContent.Navigate(new PageAirlineData(new StartDataObject() { MajorAirports = cbMajorAirports.IsChecked.Value, IsPaused = cbPaused.IsChecked.Value,Focus = (Airline.AirlineFocus)cbFocus.SelectedItem, SameRegion = cbSameRegion.IsChecked.Value, RandomOpponents = rbRandomOpponents.IsChecked.Value,  UseDayTurns=rbDayTurns.IsChecked.Value, Difficulty = (DifficultyLevel)cbDifficulty.SelectedItem, NumberOfOpponents = (int)cbOpponents.SelectedItem, Year = (int)cbYear.SelectedItem, Continent = (Continent)cbContinent.SelectedItem, Region = (Region)cbRegion.SelectedItem, RealData=useRealData}) { Tag = this.Tag });
         }
         private void btnStartMenu_Click(object sender, RoutedEventArgs e)
         {

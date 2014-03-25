@@ -72,7 +72,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         }
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            Alliance alliance = new Alliance(GameObject.GetInstance().GameTime, rbFull.IsChecked.Value ? Alliance.AllianceType.Full : Alliance.AllianceType.Codesharing, txtName.Text.Trim(), (Airport)cbHeadquarter.SelectedItem);
+            Alliance alliance = new Alliance(GameObject.GetInstance().GameTime, txtName.Text.Trim(), (Airport)cbHeadquarter.SelectedItem);
             alliance.Logo = logoPath;
             alliance.addMember(new AllianceMember(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime));
 

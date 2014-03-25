@@ -14,6 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
@@ -42,7 +43,15 @@
                                 FilterButtonInactiveStyle="{StaticResource filterButtonInactive}" Background="Transparent" >
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
-
+                    <filter:SortableGridViewColumn Header="" CanFilter="False">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox VerticalAlignment="Bottom" Style="{StaticResource CheckBoxNormalStyle}" IsChecked="False" Checked="cbSelected_Checked" Unchecked="cbSelected_Unchecked" Tag="{Binding}">
+                                  
+                                </CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn Header="" CanFilter="False">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -150,7 +159,7 @@
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
 
-                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1007'}" CanFilter="False" SortPropertyName="NumberOfAirlines" Width="100">
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1007'}" CanFilter="True" FilterValues="{Binding OperatingRanges,ElementName=pageShowAirports}" SortPropertyName="NumberOfAirlines" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom" Text="{Binding NumberOfAirlines}">
@@ -158,7 +167,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
-                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1008'}" CanFilter="False" SortPropertyName="NumberOfRoutes" Width="100">
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1008'}" FilterValues="{Binding RoutesRanges,ElementName=pageShowAirports}" CanFilter="True"  SortPropertyName="NumberOfRoutes" Width="125">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom" Text="{Binding NumberOfRoutes}">
@@ -170,6 +179,22 @@
             </ListView.View>
             
         </filter:FilterableListView>
-       
+        <WrapPanel Grid.Row="2" Margin="0 5 0 0">
+            <Button VerticalAlignment="Bottom" Click="btnCompare_Click"  HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 200'}">
+                <Button.Style>
+                    <Style BasedOn="{StaticResource StandardButtonStyle}" TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedAirports.Count,ElementName=pageShowAirports}" Value="0">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SelectedAirports.Count,ElementName=pageShowAirports}" Value="1">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </WrapPanel>
     </Grid>
 </Page>

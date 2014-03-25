@@ -18,7 +18,7 @@
         <DataTemplate x:Key="ClassItem">
             <StackPanel Width="150">
                 <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" HorizontalAlignment="Center" FontWeight="Bold" Height="20"></TextBlock>
-                <ListBox ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Facilities}"></ListBox>
+                <ListBox Background="Transparent" ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Facilities}"></ListBox>
             </StackPanel>
         </DataTemplate>
           <DataTemplate x:Key="OpponentDiscountItem">
@@ -43,7 +43,7 @@
         <DataTemplate x:Key="HumanFeeItem">
             <WrapPanel>
                 <TextBlock Text="{Binding FeeType.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <Slider IsSnapToTickEnabled="True" Width="200" Maximum="{Binding FeeType.MaxValue}" Minimum="{Binding FeeType.MinValue}" Value="{Binding Value}" x:Name="slValue" />
+                <Slider IsSnapToTickEnabled="True" TickFrequency="{Binding Frequency}" Width="200" Maximum="{Binding FeeType.MaxValue}" Minimum="{Binding FeeType.MinValue}" Value="{Binding Value}" x:Name="slValue" />
                 <TextBlock Margin="5 0 0 0" Text="{Binding Value,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
         </DataTemplate>
@@ -163,16 +163,16 @@
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1008'}" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
                         <StackPanel>
                     <WrapPanel>
-                        <ListBox Width="100" Margin="0 20 0 0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding FacilityTypes,ElementName=pageAirlineServices}" BorderThickness="0">
+                        <ListBox Background="Transparent" Width="100" Margin="0 20 0 0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding FacilityTypes,ElementName=pageAirlineServices}" BorderThickness="0">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="Black" BorderThickness="1" Height="22" Padding="2 0 0 0">
+                                    <Border BorderBrush="Transparent" BorderThickness="1" Height="22" Padding="2 0 0 0">
                                     <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
                                     </Border>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                    <ListBox Style="{StaticResource VerticalListBoxStyle}"  Name="lbClasses" ItemsSource="{Binding Classes,ElementName=pageAirlineServices}" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
+                    <ListBox Style="{StaticResource VerticalListBoxStyle}" Background="Transparent"  Name="lbClasses" ItemsSource="{Binding Classes,ElementName=pageAirlineServices}" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
                 
                         </WrapPanel>
                         </StackPanel>

@@ -9,10 +9,12 @@
     <c:SmallDistanceToUnitConverter x:Key="SmallDistanceToUnitConverter"></c:SmallDistanceToUnitConverter>
     <c:FuelConsumptionToUnitConverter x:Key="FuelConsumptionConverter"></c:FuelConsumptionToUnitConverter>
     <c:TextUnderscoreConverter x:Key="TextUnderscoreConverter"></c:TextUnderscoreConverter>
+    <c:AirlinerClassCodeConverter x:Key="AirlinerClassCodeConverter"></c:AirlinerClassCodeConverter>
     <c:CargoSizeConverter x:Key="CargoSizeConverter"></c:CargoSizeConverter>
     <c:AirportCodeConverter x:Key="AirportCodeConverter"></c:AirportCodeConverter>
     <c:TranslatorConverter x:Key="TranslatorConverter"></c:TranslatorConverter>
     <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
+    
     <Style TargetType="WrapPanel" x:Key="WrapPanelStyle">
         <Setter Property="Background">
             <Setter.Value>
@@ -22,7 +24,14 @@
         <Setter Property="Margin" Value="0 2 0 2"></Setter>
     </Style>
     <!--countries templates-->
-     <DataTemplate x:Key="CountryFlagItem">
+    <DataTemplate x:Key="CountryFlagLongItem">
+        <DockPanel>
+            <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" VerticalAlignment="Bottom"/>
+        </DockPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CountryFlagItem">
         <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
             <ContentControl.ContentTemplate>
                 <DataTemplate>
@@ -63,8 +72,19 @@
         <WrapPanel>
             <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
             <TextBlock Text="{Binding State.ShortName,TargetNullValue={x:Static sys:String.Empty},StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
+            <Image Source="{Binding State.Flag}" Margin="5 0 0 0" Height="20" Width="20" RenderOptions.BitmapScalingMode="HighQuality">
+                <Image.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding State}" Value="{x:Null}">
+                                <Setter Property="Image.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image> 
             <ContentControl Content="{Binding Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
-                <ContentControl.ContentTemplate>
+                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
 
@@ -77,6 +97,23 @@
         </WrapPanel>
     </DataTemplate>
     <!--airliner templates-->
+        <DataTemplate x:Key="FleetAirlinerLink">
+            <TextBlock VerticalAlignment="Bottom">
+                <TextBlock.ToolTip>
+                <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" Text="{Binding Airliner,Converter={StaticResource AirlinerClassCodeConverter}}"></TextBlock>
+                </TextBlock.ToolTip>
+                <Hyperlink Tag="{Binding}" Click="lnkAirliner_Click">
+                                                  <Run Text="{Binding Name}"></Run>
+                                            </Hyperlink>
+                </TextBlock>
+        </DataTemplate>
+    <DataTemplate x:Key="AirlinerCodeItem">
+        <TextBlock VerticalAlignment="Bottom" Text="{Binding Name}">
+            <TextBlock.ToolTip>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource AirlinerClassCodeConverter}}"></TextBlock>
+            </TextBlock.ToolTip>
+                       </TextBlock>
+    </DataTemplate>
     <DataTemplate x:Key="AirlinerTypeSpecificationItem">
         <StackPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
@@ -258,7 +295,18 @@
     <DataTemplate x:Key="RouteFlagItem">
         <WrapPanel VerticalAlignment="Bottom">
             <Image Source="{Binding Destination1.Profile.Country.Flag}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Height="20"></Image>
-            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0">
+            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0" ToolTipService.ShowDuration="60000">
+                <TextBlock.ToolTip>
+                    <TextBlock VerticalAlignment="Bottom" FontWeight="Bold">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}-{1}">
+                                <Binding Path="Destination1.Profile.Name"/>
+                                <Binding Path="Destination2.Profile.Name"/>
+                            </MultiBinding>
+
+                        </TextBlock.Text>
+                    </TextBlock>
+                </TextBlock.ToolTip>
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0}-{1}">
                         <Binding Path="Destination1" Converter="{StaticResource AirportCodeConverter}" />
@@ -270,13 +318,40 @@
 
         </WrapPanel>
     </DataTemplate>
+    <DataTemplate x:Key="RouteFlagLongItem">
+        <WrapPanel VerticalAlignment="Bottom">
+            <Image Source="{Binding Destination1.Profile.Country.Flag}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Height="20"></Image>
+            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0" ToolTipService.ShowDuration="60000">
+                <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}-{1}">
+                                <Binding Path="Destination1.Profile.Name"/>
+                                <Binding Path="Destination2.Profile.Name"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+            </TextBlock>
+            <Image Source="{Binding Destination2.Profile.Country.Flag}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Height="20"></Image>
+
+        </WrapPanel>
+    </DataTemplate>
     <DataTemplate x:Key="RouteItem">
-        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center">
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ShowDuration="60000">
+            <TextBlock.ToolTip>
+                <TextBlock VerticalAlignment="Bottom" FontWeight="Bold">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}-{1}">
+                            <Binding Path="Destination1.Profile.Name"/>
+                            <Binding Path="Destination2.Profile.Name"/>
+                        </MultiBinding>
+
+                    </TextBlock.Text>
+                </TextBlock>
+            </TextBlock.ToolTip>
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0}-{1}">
                     <Binding Path="Destination1" Converter="{StaticResource AirportCodeConverter}" />
                     <Binding Path="Destination2" Converter="{StaticResource AirportCodeConverter}" />
                 </MultiBinding>
+                
             </TextBlock.Text>
         </TextBlock>
     </DataTemplate>

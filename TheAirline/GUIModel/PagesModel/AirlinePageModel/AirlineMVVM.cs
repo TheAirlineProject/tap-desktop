@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
@@ -25,8 +26,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     //the mvvm object for an airline
     public class AirlineMVVM : INotifyPropertyChanged
     {
-        public List<PropertyInfo> Colors { get; set; }
         public Airline Airline { get; set; }
+        public List<PropertyInfo> Colors { get; set; }
         public ObservableCollection<FleetAirliner> DeliveredFleet { get; set; }
         public List<FleetAirliner> OrderedFleet { get; set; }
         public ObservableCollection<AirlineFacilityMVVM> Facilities { get; set; }
@@ -38,30 +39,65 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<AirlineFeeMVVM> Chargers { get; set; }
         public ObservableCollection<AirlineFeeMVVM> Fees { get; set; }
         public ObservableCollection<SubsidiaryAirline> Subsidiaries { get; set; }
+        public ObservableCollection<Airline> FundsAirlines { get; set; }
+        public ObservableCollection<Airline> Codeshares { get; set; }
         public ObservableCollection<AirlineInsurance> Insurances { get; set; }
         public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
         public ObservableCollection<AirlineDestinationMVVM> Destinations { get; set; }
         public ObservableCollection<Airline> AirlineAirlines { get; set; }
+        public List<CooperationMVVM> Cooperations { get; set; }
+        public List<AirlinerQuantityMVVM> OrderedQuantity { get; set; }
+        public List<AirlinerQuantityMVVM> ActiveQuantity { get; set; }
+
+        public List<AirlineRouteMVVM> Routes { get; set; }
+
         public Boolean IsBuyable { get; set; }
-        public Alliance Alliance { get; set; }
+        private Alliance _alliance;
+        public Alliance Alliance
+        {
+            get { return _alliance; }
+            set { _alliance = value; NotifyPropertyChanged("Alliance"); }
+        }
+        private Boolean _hasalliance;
+        public Boolean HasAlliance
+        {
+            get { return _hasalliance; }
+            set { _hasalliance = value; NotifyPropertyChanged("HasAlliance"); }
+        }
         public double LoanRate { get; set; }
 
         public int CabinCrew { get; set; }
         public int SupportCrew { get; set; }
         public int MaintenanceCrew { get; set; }
-      
+
+        private int _unassignedpilots;
+        public int UnassignedPilots
+        {
+            get { return _unassignedpilots; }
+            set { _unassignedpilots = value; NotifyPropertyChanged("UnassignedPilots"); }
+        }
+
+        private int _pilotstoretire;
+        public int PilotsToRetire
+        {
+            get { return _pilotstoretire; }
+            set { _pilotstoretire = value; NotifyPropertyChanged("PilotsToRetire"); }
+        }
+
+
+        private double _maxtransferfunds;
+        public double MaxTransferFunds 
+        {
+            get { return _maxtransferfunds; }
+            set { _maxtransferfunds = value; NotifyPropertyChanged("MaxTransferFunds"); }
+        }
         private double _maxsubsidiarymoney;
         public double MaxSubsidiaryMoney
         {
             get { return _maxsubsidiarymoney; }
             set { _maxsubsidiarymoney = value; NotifyPropertyChanged("MaxSubsidiaryMoney"); }
         }
-        private int _cockpitCrew;
-        public int CockpitCrew
-        {
-            get { return _cockpitCrew; }
-            set { _cockpitCrew = value; NotifyPropertyChanged("CockpitCrew"); }
-        }
+      
         private double _money;
         public double Money
         {
@@ -113,9 +149,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Advertisements = new ObservableCollection<AirlineAdvertisementMVVM>();
             this.Destinations = new ObservableCollection<AirlineDestinationMVVM>();
             this.AirlineAirlines = new ObservableCollection<Airline>();
+            this.FundsAirlines = new ObservableCollection<Airline>();
+            this.Routes = new List<AirlineRouteMVVM>();
+            this.Codeshares = new ObservableCollection<Airline>();
+            this.Cooperations = new List<CooperationMVVM>();
 
-            this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l)));
+            this.Airline.Routes.ForEach(r => this.Routes.Add(new AirlineRouteMVVM(r)));
+            this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l,this.Airline)));
             this.Airline.Pilots.ForEach(p => this.Pilots.Add(p));
+
+            this.UnassignedPilots = this.Pilots.Count(p => p.Airliner == null);
+            this.PilotsToRetire = this.Pilots.Count(p => p.Profile.Age == Pilot.RetirementAge - 1);
 
             FeeTypes.GetTypes(FeeType.eFeeType.Wage).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Wages.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
             FeeTypes.GetTypes(FeeType.eFeeType.Discount).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Discounts.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
@@ -126,6 +170,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
           
             this.Airline.Subsidiaries.ForEach(s => this.Subsidiaries.Add(s));
             this.Airline.InsurancePolicies.ForEach(i => this.Insurances.Add(i));
+            this.Airline.Codeshares.ForEach(c => this.Codeshares.Add(c.Airline1 == this.Airline ? c.Airline2 : c.Airline1));
+
+            foreach (Airport airport in this.Airline.Airports)
+                foreach (Cooperation cooperation in airport.Cooperations.Where(c => c.Airline == this.Airline))
+                    this.Cooperations.Add(new CooperationMVVM(airport, cooperation));
 
             setValues();
 
@@ -140,7 +189,35 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
            
             double buyingPrice = this.Airline.getValue() * 1000000 * 1.10;
             this.IsBuyable = !this.Airline.IsHuman && GameObject.GetInstance().HumanAirline.Money > buyingPrice;
-     
+
+            this.ActiveQuantity = new List<AirlinerQuantityMVVM>();
+            this.OrderedQuantity = new List<AirlinerQuantityMVVM>();
+
+            var fleet = new List<FleetAirliner>(this.Airline.Fleet);
+
+            foreach (FleetAirliner airliner in fleet)
+            {
+                if (airliner.Airliner.BuiltDate > GameObject.GetInstance().GameTime)
+                {
+                    if (this.OrderedQuantity.Any(o => o.Type == airliner.Airliner.Type))
+                    {
+                        this.OrderedQuantity.First(o => o.Type == airliner.Airliner.Type).Quantity++;
+                    }
+                    else
+                        this.OrderedQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, 1));
+                }
+                else
+                {
+                    if (this.ActiveQuantity.Any(o => o.Type == airliner.Airliner.Type))
+                    {
+                        this.ActiveQuantity.First(o => o.Type == airliner.Airliner.Type).Quantity++;
+                    }
+                    else
+                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, 1));
+                }
+            }
+
+            this.HasAlliance = this.Alliance != null || this.Codeshares.Count > 0;
         }
         //saves all the fees
         public void saveFees()
@@ -184,17 +261,22 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Subsidiaries.Add(airline);
 
             AirlineHelpers.AddSubsidiaryAirline(GameObject.GetInstance().MainAirline, airline, airline.Money, airline.Airports[0]);
-            airline.Airports.RemoveAt(0);
+      //      airline.Airports.RemoveAt(0);
+
 
             this.MaxSubsidiaryMoney = this.Airline.Money / 2;
 
             this.AirlineAirlines.Add(airline);
+
+            this.FundsAirlines.Add(airline);
         }
         //removes a subsidiary airline
         public void removeSubsidiaryAirline(SubsidiaryAirline airline)
         {
             this.Subsidiaries.Remove(airline);
             this.AirlineAirlines.Remove(airline);
+
+            this.FundsAirlines.Remove(airline);
         }
        //adds a facility
         public void addFacility(AirlineFacilityMVVM facility)
@@ -228,11 +310,14 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             this.Pilots.Remove(pilot);
             this.Airline.removePilot(pilot);
+
+            this.UnassignedPilots = this.Pilots.Count(p => p.Airliner == null);
+            this.PilotsToRetire = this.Pilots.Count(p => p.Profile.Age == Pilot.RetirementAge - 1);
         }
         //adds a loan
         public void addLoan(Loan loan)
         {
-            this.Loans.Add(new LoanMVVM(loan));
+            this.Loans.Add(new LoanMVVM(loan,this.Airline));
 
             this.Airline.addLoan(loan);
 
@@ -260,14 +345,14 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Money = this.Airline.Money;
             this.Balance = this.Airline.Money - this.Airline.StartMoney;
             double tMoney = GameObject.GetInstance().HumanMoney;
-            this.CockpitCrew = this.Airline.Pilots.Count;
             this.CabinCrew = this.Airline.Routes.Where(r => r.Type == Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getTotalCabinCrew());
             this.SupportCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees);
             this.MaintenanceCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees);
 
             foreach (AirlineFacility facility in AirlineFacilities.GetFacilities(f=>f.FromYear<=GameObject.GetInstance().GameTime.Year).OrderBy(f=>f.Name))
-                this.Facilities.Add(new AirlineFacilityMVVM(this.Airline,facility,this.Airline.Facilities.Exists(f=>f.Uid == facility.Uid) ? AirlineFacilityMVVM.MVVMType.Purchased : AirlineFacilityMVVM.MVVMType.Available));
-
+                if (this.Airline.Facilities.Exists(f => f.Uid == facility.Uid) || this.Airline.IsHuman)
+                    this.Facilities.Add(new AirlineFacilityMVVM(this.Airline, facility, this.Airline.Facilities.Exists(f => f.Uid == facility.Uid) ? AirlineFacilityMVVM.MVVMType.Purchased : AirlineFacilityMVVM.MVVMType.Available));
+           
             foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
             {
                 if (GameObject.GetInstance().GameTime.Year >= (int)type)
@@ -282,6 +367,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             }
 
             this.MaxSubsidiaryMoney = this.Airline.Money / 2;
+            this.MaxTransferFunds = this.Airline.Money / 2;
+
             this.License = this.Airline.License;
            
             if (this.Airline.IsSubsidiary)
@@ -300,7 +387,25 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             }
 
+            foreach (Airline airline in this.AirlineAirlines)
+                if (airline != GameObject.GetInstance().HumanAirline)
+                    this.FundsAirlines.Add(airline);
+
             this.MaxLoan = AirlineHelpers.GetMaxLoanAmount(this.Airline);
+        }
+        //sets the max transfer funds
+        public void setMaxTransferFunds(Airline airline)
+        {
+            this.MaxTransferFunds = airline.Money / 2;
+
+        }
+        //adds a codeshare agreement
+        public void addCodeshareAgreement(CodeshareAgreement share)
+        {
+            this.Codeshares.Add(share.Airline1 == this.Airline ? share.Airline2 : share.Airline1);
+            this.Airline.addCodeshareAgreement(share);
+
+            this.HasAlliance = this.Alliance != null || this.Codeshares.Count > 0;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
@@ -345,10 +450,16 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     {
         public FeeType FeeType { get; set; }
         public double Value { get; set; }
+        public double Frequency { get; set; }
         public AirlineFeeMVVM(FeeType feeType, double value)
         {
             this.FeeType = feeType;
             this.Value = value;
+
+            if (this.FeeType.MaxValue - this.FeeType.MinValue < 4)
+                this.Frequency = 0.05;
+            else
+                this.Frequency = 0.25;
         }
     }
     //the mvvm object for airline statistics
@@ -537,11 +648,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             get { return _paymentLeft; }
             set { _paymentLeft = value; NotifyPropertyChanged("PaymentLeft"); }
         }
-        public LoanMVVM(Loan loan)
+        public Airline Airline { get; set; }
+        public LoanMVVM(Loan loan,Airline airline)
         {
             this.Loan = loan;
             this.PaymentLeft = loan.PaymentLeft;
             this.MonthsLeft = loan.MonthsLeft;
+            this.Airline = airline;
         }
         //pay some of the loan
         public void payOnLoan(double amount)
@@ -558,6 +671,34 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+    }
+    //the mvvm class for a cooperation
+    public class CooperationMVVM
+    {
+        public Airport Airport { get; set; }
+        public Cooperation Cooperation { get; set; }
+        public CooperationMVVM(Airport airport, Cooperation cooperation)
+        {
+            this.Airport = airport;
+            this.Cooperation = cooperation;
+        }
+    }
+    //the mvvm class for an airline route
+    public class AirlineRouteMVVM
+    {
+        public double PriceIndex { get; set; } 
+        public Route Route { get; set; }
+        public AirlineRouteMVVM(Route route)
+        {
+            this.Route = route;
+
+            if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Passenger)
+                this.PriceIndex = ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).FarePrice;
+            else if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Cargo)
+                this.PriceIndex = ((CargoRoute)this.Route).PricePerUnit;
+            else if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Mixed)
+                this.PriceIndex = ((CombiRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).FarePrice + ((CombiRoute)this.Route).PricePerUnit;
         }
     }
     //the mvvm class for a destination
@@ -584,6 +725,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+    }
+    //the mvvm object for the airliner quantity
+    public class AirlinerQuantityMVVM
+    {
+        public AirlinerType Type { get; set; }
+        public int Quantity { get; set; }
+        public AirlinerQuantityMVVM(AirlinerType type, int quantity)
+        {
+            this.Quantity = quantity;
+            this.Type = type;
         }
     }
     //the converter for the montly payment of a loan
