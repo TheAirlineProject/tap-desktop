@@ -18,6 +18,7 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
@@ -32,6 +33,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     /// </summary>
     public partial class PageCreateRoute : Page, INotifyPropertyChanged
     {
+        private string _routeinformationtext;
+        public string RouteInformationText 
+        {
+            get { return _routeinformationtext; }
+            set { _routeinformationtext = value; NotifyPropertyChanged("RouteInformationText"); }
+        }
+
         public ObservableCollection<Route> ConnectingRoutes { get; set; }
         public List<Airport> Airports { get; set; }
         public List<AirlinerType> HumanAircrafts { get; set; }
@@ -44,6 +52,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         }
         public PageCreateRoute()
         {
+            this.RouteInformationText = "";
             this.ConnectingRoutes = new ObservableCollection<Route>();
             this.Classes = new List<MVVMRouteClass>();
 
@@ -309,7 +318,21 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 foreach (Route route in codesharingConnectingRoutes)
                     this.ConnectingRoutes.Add(route);
 
-                
+                var opponentRoutes = Airlines.GetAllAirlines().Where(a=>!a.IsHuman).SelectMany(a=>a.Routes).Where(r=>(r.Destination1 == destination1 && r.Destination2 == destination2) || (r.Destination2 == destination1 && r.Destination1 == destination2));
+
+                if (opponentRoutes.Count() == 0)
+                    this.RouteInformationText = "";
+                else
+                {
+                    var airlines = opponentRoutes.Select(r=>r.Airline).Distinct();
+                    
+                    if (airlines.Count() == 1)
+                        this.RouteInformationText = string.Format("{0} also operates a route between {1} and {2}",airlines.ElementAt(0).Profile.Name,destination1.Profile.Name,destination2.Profile.Name);
+                    else
+                        this.RouteInformationText = string.Format("{0} other airlines do also operate a route between {1} and {2}",airlines.Count(),destination1.Profile.Name,destination2.Profile.Name);
+                }
+
+
             }
         }
 

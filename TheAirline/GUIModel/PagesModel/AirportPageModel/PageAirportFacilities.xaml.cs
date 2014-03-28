@@ -99,7 +99,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
            int index = facilities.FindIndex(f => currentFacility.Facility == f);
 
-           if (facilities.Count >= index + 1)
+           if (facilities.Count > index + 1)
            {
                AirportFacility facility = facilities[index + 1];
                

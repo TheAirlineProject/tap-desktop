@@ -79,7 +79,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
                 Town town = towns[rnd.Next(towns.Count)];
                 DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
-                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
+                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(town.Country), Names.GetInstance().getRandomLastName(town.Country), birthdate, town);
 
                 PilotStudent student = new PilotStudent(profile, GameObject.GetInstance().GameTime, (Instructor)cbInstructor.SelectedItem);
 

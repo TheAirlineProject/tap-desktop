@@ -63,6 +63,22 @@
                                     </Style>
                                 </ComboBox.Style>
                             </ComboBox>
+                            <Image Source="/data/images/info.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="5 0 0 0" Height="16" ToolTipService.ShowDuration="30000" ToolTip="{Binding ElementName=pageCreateRoute, Path=RouteInformationText}" VerticalAlignment="Bottom">
+                               <!--
+                                <Image.ToolTip>
+                                    <TextBlock Text="One or more airlines are operating the same route" VerticalAlignment="Bottom"></TextBlock>
+                                </Image.ToolTip-->
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=pageCreateRoute, Path=RouteInformationText.Length}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+
                         </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>

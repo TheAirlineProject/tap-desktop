@@ -266,7 +266,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airline.Airline = null;
 
-            airline.Profile.CEO = string.Format("{0} {1}", Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName());
+            airline.Profile.CEO = string.Format("{0} {1}", Names.GetInstance().getRandomFirstName(airline.Profile.Country), Names.GetInstance().getRandomLastName(airline.Profile.Country));
 
             if (!Airlines.ContainsAirline(airline))
                 Airlines.AddAirline(airline);

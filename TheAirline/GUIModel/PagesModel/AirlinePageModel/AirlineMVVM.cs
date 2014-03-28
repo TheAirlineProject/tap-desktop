@@ -586,7 +586,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         public AirlinerClass.ClassType Type { get; set; }
       
-
         public AirlineClassMVVM(AirlinerClass.ClassType type)
         {
             this.Type = type;

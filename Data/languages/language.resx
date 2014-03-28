@@ -4896,4 +4896,7 @@ Good luck.</value>
   <data name="PageAirlineEditAirliners_201_name" xml:space="preserve">
     <value>Load Configuration</value>
   </data>
+  <data name="PageAirlineFleet_201_name" xml:space="preserve">
+    <value>Route Map</value>
+  </data>
 </root>

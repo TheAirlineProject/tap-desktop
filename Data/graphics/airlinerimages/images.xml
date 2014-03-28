@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airlinerimages>
+<airlinerimage image="A300" types="Airbus A300B1,Airbus A300B2,Airbus A300B4,Airbus A300-600"></airlinerimage>
+<airlinerimage image="B747" types="Boeing 747-100,Boeing 747-400,Boeing 747-300,Boeing 747-400ER"></airlinerimage>
+</airlinerimages>

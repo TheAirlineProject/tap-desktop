@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
@@ -126,6 +127,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             if (frmContent != null)
                 frmContent.Navigate(new PageAirlineEditAirliners(this.SelectedAirliners.ToList()) { Tag = this.Tag });
+        }
+
+        private void btnRouteMap_Click(object sender, RoutedEventArgs e)
+        {
+            PopUpMap.ShowPopUp(this.Airline.Airline.Routes);
         }
       
     }
