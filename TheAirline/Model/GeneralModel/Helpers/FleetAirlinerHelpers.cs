@@ -404,7 +404,28 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return 0;
         }
-           //converts a passenger airliner to a cargo airliner
+        //returns the fuel expenses for an airliner
+        public static double GetFuelExpenses(FleetAirliner airliner, double distance)
+        {
+            if (airliner.CurrentFlight.isPassengerFlight())
+            {
+                double basePrice = GameObject.GetInstance().FuelPrice * distance * airliner.Airliner.Type.FuelConsumption;
+                double paxPrice = airliner.CurrentFlight.getTotalPassengers()*distance*0.15;
+                double seatsPrice = airliner.CurrentFlight.Classes.Sum(c=>airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses * c.Passengers);
+                return basePrice + paxPrice + seatsPrice;
+
+             }
+            else
+            {
+                double basePrice = GameObject.GetInstance().FuelPrice * distance * airliner.Airliner.Type.FuelConsumption;
+                double cargoPrice = airliner.CurrentFlight.Cargo * distance * 0.45;
+
+                return basePrice + cargoPrice;
+            }
+        
+    
+        }
+        //converts a passenger airliner to a cargo airliner
         public static void ConvertPassengerToCargoAirliner(FleetAirliner airliner)
         {
             AirlinerPassengerType oldType = (AirlinerPassengerType)airliner.Airliner.Type;

@@ -72,7 +72,7 @@ namespace TheAirline.Model.AirlineModel
         public Boolean IsHuman { get { return isHuman(); } set { ;} }
         public Boolean IsSubsidiary { get { return isSubsidiaryAirline(); } set { ;} }
         [Versioning("invoices")]
-        private Invoices Invoices;
+        public Invoices Invoices {get;set;}
         [Versioning("fees")]
         public AirlineFees Fees { get; set; }
         [Versioning("loans")]
@@ -234,14 +234,16 @@ namespace TheAirline.Model.AirlineModel
         //get routes for the airline
         private List<Route> getRoutes()
         {
-
-            List<Route> routes;
+          
+            var routes = new List<Route>();
             lock (this._Routes)
             {
                 routes = new List<Route>(this._Routes);
             }
 
             return routes;
+           
+          
         }
        
         //adds an alliance to the airline
@@ -779,13 +781,7 @@ namespace TheAirline.Model.AirlineModel
         //returns all airlines
         public static List<Airline> GetAllAirlines()
         {
-            List<Airline> tAirlines;
-            lock (airlines)
-            {
-                tAirlines = new List<Airline>(airlines);
-            }
-
-            return tAirlines;
+            return airlines;
         }
         //returns the number of airlines
         public static int GetNumberOfAirlines()

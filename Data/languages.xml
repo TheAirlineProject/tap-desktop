@@ -13,7 +13,8 @@
     <Language culture="zh-CN" name="中文 (CN)" flag="China-large.png" UnitSystem="Metric" isEnabled="false" />
     <Language culture="da-DK" name="Dansk (DA)" flag="Denmark-round.png" UnitSystem="Metric" isEnabled="true" />
     <Language culture="es-ES" name="Español (ES)" flag="Spain-round.png" UnitSystem="Metric" isEnabled="true" />
-    <Language culture="it-IT" name="Italiana (IT)" flag="Italy-large.png" UnitSystem="Metric" isEnabled="false" />
+ <Language culture="tr-TR" name="Türkçe (TR)" flag="Turkey-round.png" UnitSystem="Metric" isEnabled="true" />
+    <Language culture="it-IT" name="Italiana (IT)" flag="Italy-round.png" UnitSystem="Metric" isEnabled="true" />
      <Language culture="pl-PL" name="Polski (PL)" flag="Poland-large.png" UnitSystem="Metric" isEnabled="false" />
        <Language culture="hr-HR" name="Croatian (HR)" flag="Croatia-large.png" UnitSystem="Metric" isEnabled="false" />
   </Languages>

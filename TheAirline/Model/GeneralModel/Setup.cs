@@ -488,6 +488,14 @@ namespace TheAirline.Model.GeneralModel
 
 
         }
+        /*!loads the configurations*/
+        public static void LoadConfigurations()
+        {
+            Configurations.Clear();
+
+            LoadStandardConfigurations();
+            
+        }
         /*!loads the standard configurations
          */
         private static void LoadStandardConfigurations()
@@ -2079,8 +2087,7 @@ namespace TheAirline.Model.GeneralModel
             if (narrativeElement != null)
                 narrative = narrativeElement.Attributes["narrative"].Value;
 
-
-
+       
             Boolean isReal = true;
             int founded = 1950;
             int folded = 2199;
@@ -2110,6 +2117,19 @@ namespace TheAirline.Model.GeneralModel
             Airline airline = new Airline(new AirlineProfile(name, iata, color, ceo, isReal, founded, folded), mentality, market, license, routeFocus);
             airline.Profile.Countries = countries;
             airline.Profile.Country = airline.Profile.Countries[0];
+
+            XmlElement preferedsElement = (XmlElement)root.SelectSingleNode("prefereds");
+
+            if (preferedsElement != null)
+            {
+                string[] preferedAircrafts = preferedsElement.Attributes["aircrafts"].Value.Split(',');
+
+                foreach (string preferedAircraft in preferedAircrafts)
+                {
+                    AirlinerType pAircraft = AirlinerTypes.GetType(preferedAircraft);
+                    airline.Profile.addPreferedAircraft(pAircraft);
+                }
+            }
 
 
 
@@ -2485,6 +2505,7 @@ namespace TheAirline.Model.GeneralModel
                 if (airports.Count < 4)
                     airports = Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.getFreeGates() > 1);
 
+                
                 Dictionary<Airport, int> list = new Dictionary<Airport, int>();
                 airports.ForEach(a => list.Add(a, ((int)a.Profile.Size) * (AirportHelpers.GetAirportsNearAirport(a, 1000).Count) + 1));
 
@@ -2526,6 +2547,11 @@ namespace TheAirline.Model.GeneralModel
             {
                 List<Airport> airportDestinations = AIHelpers.GetDestinationAirports(airline, airportHomeBase);
 
+                if (airportDestinations.Count == 0)
+                {
+                    airportDestinations = Airports.GetAirports(a => a.Profile.Country.Region == airportHomeBase.Profile.Country.Region && a != airportHomeBase);
+                }
+
                 KeyValuePair<Airliner, Boolean>? airliner = null;
                 Airport airportDestination = null;
 
@@ -2534,16 +2560,18 @@ namespace TheAirline.Model.GeneralModel
                 while ((airportDestination == null || airliner == null || !airliner.HasValue) && airportDestinations.Count > counter)
                 {
                     airportDestination = airportDestinations[counter];
-
+                    
                     airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination, false, airline.AirlineRouteFocus == Route.RouteType.Cargo, true);
 
                     counter++;
+
                 }
 
                 if (airportDestination == null || !airliner.HasValue)
                 {
-
-                    CreateComputerRoutes(airline);
+                    
+                
+                     CreateComputerRoutes(airline);
 
                 }
                 else

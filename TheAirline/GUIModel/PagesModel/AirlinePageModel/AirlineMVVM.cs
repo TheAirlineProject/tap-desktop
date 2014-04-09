@@ -153,7 +153,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Routes = new List<AirlineRouteMVVM>();
             this.Codeshares = new ObservableCollection<Airline>();
             this.Cooperations = new List<CooperationMVVM>();
-
+            
             this.Airline.Routes.ForEach(r => this.Routes.Add(new AirlineRouteMVVM(r)));
             this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l,this.Airline)));
             this.Airline.Pilots.ForEach(p => this.Pilots.Add(p));

@@ -613,22 +613,19 @@ namespace TheAirline.Model.AirportModel
             //The score could be airport facilities for the airline, routes, connecting routes, hotels, service level per route etc
             double score = 0;
 
-            foreach (Cooperation cooperation in this.Cooperations.Where(c => c.Airline == airline))
-                score += 9 * cooperation.Type.ServiceLevel;
-
-            foreach (AirlineAirportFacility facility in this.Facilities.Where(f=>f.Airline == airline))
-                score += 10*facility.Facility.ServiceLevel;
+            score += this.Cooperations.Where(c=>c.Airline == airline).Sum(c=>c.Type.ServiceLevel * 9);
+        
+            lock (this.Facilities)
+            {
+                score += this.Facilities.Where(f => f.Airline == airline).Sum(f => f.Facility.ServiceLevel * 10);
+            }
 
             var airportRoutes = airline.Routes.Where(r => r.Destination1 == this || r.Destination2 == this);
             score += 7*airportRoutes.Count();
             score += 6 * airportRoutes.Where(r => r.Type == AirlinerModel.RouteModel.Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getServiceLevel(AirlinerClass.ClassType.Economy_Class));
 
-            foreach (Alliance alliance in airline.Alliances)
-            {
-                var allianceRoutes = alliance.Members.SelectMany(m => m.Airline.Routes).Count(r => r.Destination1 == this || r.Destination2 == this);
-                score += 5 * allianceRoutes;
-            }
-
+            score += airline.Alliances.Sum(a => 5 * a.Members.SelectMany(m => m.Airline.Routes).Count(r => r.Destination1 == this || r.Destination2 == this));
+          
             foreach (CodeshareAgreement codesharing in airline.Codeshares)
             {
                 var codesharingRoutes = (codesharing.Airline1 == airline ? codesharing.Airline2 : codesharing.Airline1).Routes.Count(r => r.Destination2 == this || r.Destination1 == this);

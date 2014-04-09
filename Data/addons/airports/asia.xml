@@ -1471,50 +1471,240 @@
     </runways>
   </airport>
   <!--South Korea (RK**)-->
-  <airport name="Jeju International Airport" icao="RKPC" iata="CJU" type="Short_Haul_International" season="All_Year">
-    <town town="Jeju" country="165" GMT="09:00:00" DST="09:00:00"/>
-    <coordinates>
-      <latitude value="033°30'40''N"/>
-      <longitude value="126°29'34''E"/>
-    </coordinates>
-    <size value="Large" pax="12448" cargo="Smallest" cargovolume="0"/>
-    <terminals>
-      <terminal name="Terminal" gates="24"/>
-    </terminals>
-    <runways>
-      <runway name="06/24" length="3000" surface="Asphalt"/>
-      <runway name="13/31" length="1910" surface="Asphalt"/>
-    </runways>
-  </airport>
   <airport name="Incheon International Airport" icao="RKSI" iata="ICN" type="Long_Haul_International" season="All_Year">
-    <town town="Seoul" country="165" GMT="09:00:00" DST="09:00:00"/>
+    <town town="Seoul" country="165" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
-      <latitude value="037°27'48''N"/>
-      <longitude value="128°26'04''E"/>
+      <latitude value="037°28'08''N" />
+      <longitude value="126°27'03''E" />
     </coordinates>
-    <size value="Very_large" pax="35191" cargo="Smallest" cargovolume="0"/>
+    <size value="Largest" pax="41483" />
     <terminals>
-      <terminal name="Terminal" gates="74"/>
+      <terminal name="Terminal 1" gates="45" />
+      <terminal name="Terminal A" gates="30" />
     </terminals>
     <runways>
-      <runway name="15L/33R" length="3750" surface="Asphalt"/>
-      <runway name="15R/33L" length="3750" surface="Asphalt"/>
+      <runway name="15L/33R" length="3750" surface="Asphalt" />
+      <runway name="15R/33L" length="3750" surface="Asphalt" />
       <runway name="16/34" length="4000" surface="Asphalt"/>
     </runways>
   </airport>
-  <airport name="Gimpo Airport" icao="RKSS" iata="GMP" type="Short_Haul_International" season="All_Year">
-    <town town="Seoul" country="165" GMT="09:00:00" DST="09:00:00"/>
+
+  <airport name="Gimhae International Airport" icao="RKPK" iata="PUS" type="Short_Haul_International" season="All_Year">
+    <town town="Busan" country="165" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
-      <latitude value="037°33'29''N"/>
-      <longitude value="126°47'26''E"/>
+      <latitude value="035°10'46''N" />
+      <longitude value="128°56'16''E" />
     </coordinates>
-    <size value="Large" pax="14264" cargo="Smallest" cargovolume="0"/>
+    <size value="Medium" pax="9671" />
     <terminals>
-      <terminal name="Terminal" gates="27"/>
+      <terminal name="Terminal A" gates="5" />
+      <terminal name="Terminal B" gates="5" />
     </terminals>
     <runways>
-      <runway name="14L/32R" length="3600" surface="Concrete"/>
-      <runway name="14R/32L" length="3200" surface="Asphalt"/>
+      <runway name="18L/36R" length="2745" surface="Asphalt" />
+      <runway name="18R/36L" length="3200" surface="Concrete" />
+    </runways>
+  </airport>
+
+  <airport name="Gimpo International Airport" icao="RKSS" iata="GMP" type="Short_Haul_International" season="All_Year">
+    <town town="Seoul" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="037°33'29''N" />
+      <longitude value="126°47'27''E" />
+    </coordinates>
+    <size value="Large" pax="19424" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+      <terminal name="Terminal B" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="14L/32R" length="3600" surface="Asphalt" />
+      <runway name="14R/32L" length="3200" surface="Asphalt" />
+    </runways>
+  </airport>
+
+  <airport name="Jeju International Airport" icao="RKPC" iata="CJU" type="Short_Haul_International" season="All_Year">
+    <town town="Jeju City" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="033°30'40''N" />
+      <longitude value="126°29'34''E" />
+    </coordinates>
+    <size value="Large" pax="20055" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="3000" surface="Asphalt" />
+      <runway name="13/31" length="1910" surface="Asphalt" />
+    </runways>
+  </airport>
+
+  <airport name="Cheongju International Airport" icao="RKTU" iata="CJJ" type="Regional" season="All_Year">
+    <town town="Cheongju" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="036°42'59''N" />
+      <longitude value="127°29'56''E" />
+    </coordinates>
+    <size value="Small" pax="1309" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="06L/24R" length="2743" surface="Concrete" />
+      <runway name="06R/24L" length="2743" surface="Concrete" />
+    </runways>
+  </airport>
+
+  <airport name="Daegu International Airport" icao="RKTN" iata="TAE" type="Regional" season="All_Year">
+    <town town="Daegu" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="035°53'38''N" />
+      <longitude value="128°39'32''E" />
+    </coordinates>
+    <size value="Small" pax="1149" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="13L/31R" length="2743" surface="Concrete" />
+      <runway name="13R/31L" length="2755" surface="Concrete" />
+    </runways>
+  </airport>
+
+  <airport name="Muan International Airport" icao="RKJB" iata="MWX" type="Regional" season="All_Year">
+    <town town="Muan" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="034°59'29''N" />
+      <longitude value="126°22'58''E" />
+    </coordinates>
+    <size value="Smallest" pax="134" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2800" surface="Concrete" />
+    </runways>
+  </airport>
+
+  <airport name="Yangyang International Airport" icao="RKNY" iata="YNY" type="Regional" season="All_Year">
+    <town town="Yangyang" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="038°03'40''N" />
+      <longitude value="128°40'08''E" />
+    </coordinates>
+    <size value="Smallest" pax="23" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="2500" surface="Concrete" />
+    </runways>
+  </airport>
+
+  <airport name="Gunsan Airport" icao="RKJK" iata="KUV" type="Domestic" season="All_Year">
+    <town town="Gunsan" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="035°54'13''N" />
+      <longitude value="126°36'57''E" />
+    </coordinates>
+    <size value="Smallest" pax="11" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2743" surface="Concrete" />
+    </runways>
+  </airport>
+
+  <airport name="Gwangju Airport" icao="RKJJ" iata="KWJ" type="Domestic" season="All_Year">
+    <town town="Gwangju" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="035°07'35''N" />
+      <longitude value="126°48'32''E" />
+    </coordinates>
+    <size value="Small" pax="1380" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="04L/22R" length="2835" surface="Concrete" />
+      <runway name="04R/22L" length="2835" surface="Concrete" />
+    </runways>
+  </airport>
+
+  <airport name="Pohang Airport" icao="RKTH" iata="KPO" type="Domestic" season="All_Year">
+    <town town="Pohang" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="035°59'16''N" />
+      <longitude value="129°25'11''E" />
+    </coordinates>
+    <size value="Very_small" pax="262" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2134" surface="Concrete" />
+    </runways>
+  </airport>
+
+  <airport name="Sacheon Airport" icao="RKPS" iata="HIN" type="Domestic" season="All_Year">
+    <town town="Sacheon" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="035°05'18''N" />
+      <longitude value="128°04'12''E" />
+    </coordinates>
+    <size value="Very_small" pax="161" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="06L/24R" length="2743" surface="Concrete" />
+      <runway name="06R/24L" length="2743" surface="Concrete" />
+    </runways>
+  </airport>
+
+  <airport name="Ulsan Airport" icao="RKPU" iata="USN" type="Domestic" season="All_Year">
+    <town town="Ulsan" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="035°35'36''N" />
+      <longitude value="129°21'07''E" />
+    </coordinates>
+    <size value="Very_small" pax="473" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2000" surface="Asphalt" />
+    </runways>
+  </airport>
+
+  <airport name="Wonju Airport" icao="RKNW" iata="WJU" type="Domestic" season="All_Year">
+    <town town="Wonju" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="037°26'17''N" />
+      <longitude value="127°57'35''E" />
+    </coordinates>
+    <size value="Smallest" pax="83" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="2743" surface="Concrete" />
+    </runways>
+  </airport>
+
+  <airport name="Yeosu Airport" icao="RKJY" iata="RSU" type="Domestic" season="All_Year">
+    <town town="Yeosu" country="165" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="034°50'32''N" />
+      <longitude value="127°37'01''E" />
+    </coordinates>
+    <size value="Small" pax="619" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="2100" surface="Asphalt" />
     </runways>
   </airport>
   <!--Philippines (RP**)-->

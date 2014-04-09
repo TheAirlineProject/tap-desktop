@@ -6,6 +6,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
 using System.Runtime.Serialization;
 using System.Reflection;
+using TheAirline.Model.AirlinerModel;
 
 
 
@@ -40,6 +41,8 @@ namespace TheAirline.Model.AirlineModel
         public Boolean IsReal { get; set; }
         [Versioning("narrative")]
         public string Narrative { get; set; }
+        [Versioning("aircrafttypes",Version=2)]
+        public List<AirlinerType> PreferedAircrafts { get; set; }
         public AirlineProfile(string name, string iata, string color,  string ceo, Boolean isReal, int founded, int folded)
         {
             this.Name = name;
@@ -51,6 +54,13 @@ namespace TheAirline.Model.AirlineModel
             this.Folded = folded;
             this.Countries = new List<Country>();
             this.Logos = new List<AirlineLogo>();
+            this.PreferedAircrafts = new List<AirlinerType>();
+
+        }
+        //adds a prefered aircraft type to the airline
+        public void addPreferedAircraft(AirlinerType type)
+        {
+            this.PreferedAircrafts.Add(type);
         }
         //adds a logo to the airline
         public void addLogo(AirlineLogo logo)
@@ -102,11 +112,14 @@ namespace TheAirline.Model.AirlineModel
                 }
 
             }
+
+            if (version == 1)
+                this.PreferedAircrafts = new List<AirlinerType>();
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 

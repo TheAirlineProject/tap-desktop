@@ -217,8 +217,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (airliner.CurrentFlight.isPassengerFlight())
             {
-                tax = groundTaxPerPassenger * airliner.CurrentFlight.getTotalPassengers();
-                fuelExpenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Type.FuelConsumption;
+                tax = groundTaxPerPassenger * airliner.CurrentFlight.getTotalPassengers(); 
+                 fuelExpenses = FleetAirlinerHelpers.GetFuelExpenses(airliner,fdistance);
 
                 foreach (FlightAirlinerClass fac in airliner.CurrentFlight.Classes)
                 {
@@ -273,7 +273,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airliner.CurrentFlight.isCargoFlight())
             {
                 tax = groundTaxPerPassenger * airliner.CurrentFlight.Cargo;
-                fuelExpenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.Cargo * airliner.Airliner.Type.FuelConsumption;
+                fuelExpenses = FleetAirlinerHelpers.GetFuelExpenses(airliner,fdistance);
 
                 ticketsIncome = airliner.CurrentFlight.Cargo * airliner.CurrentFlight.getCargoPrice();
             }

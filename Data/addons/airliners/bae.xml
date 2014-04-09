@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <airliners>
   
 <airliner manufacturer="BAe" name="BAe 146-200" image="BAe 146" price="3803850"> <!--12800000-->
@@ -25,7 +25,7 @@
   
 </airliner>
  
-<airliner manufacturer="BAe" name="Jetstream 31" price="1722540">
+<airliner manufacturer="BAe" name="BAe Jetstream 31" price="1722540">
   
 <type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop"/>
   

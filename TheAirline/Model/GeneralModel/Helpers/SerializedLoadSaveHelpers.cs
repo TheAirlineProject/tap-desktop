@@ -38,7 +38,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //saves a game
         public static void SaveGame(string name)
         {
-              SaveObject so = new SaveObject();
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            SaveObject so = new SaveObject();
             Parallel.Invoke(() =>
             {
                 so.airportsList = new List<Airport>();
@@ -97,18 +100,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             FileSerializer.Serialize(fileName, so);
 
-         
-         
-         
-           //Clearing stats because there is no need for saving those.
-           if (name != "autosave")
-           {
+            sw.Stop();
+            Console.WriteLine("Saving: {0} ms", sw.ElapsedMilliseconds);
+
+
+
+            //Clearing stats because there is no need for saving those.
+            if (name != "autosave")
+            {
                 Airports.GetAllAirports().ForEach(a => a.clearDestinationPassengerStatistics());
                 Airports.GetAllAirports().ForEach(a => a.clearDestinationCargoStatistics());
                 AirlineHelpers.ClearRoutesStatistics();
                 AirlineHelpers.ClearAirlinesStatistics();
                 AirportHelpers.ClearAirportStatistics();
-           }
+            }
             /*
             SaveObject so = new SaveObject();
             Parallel.Invoke(() =>
@@ -178,7 +183,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
           */
-      
+
 
         }
         //loads a game 
@@ -187,25 +192,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + file + ".sav";
 
             SaveObject deserializedSaveObject = FileSerializer.Deserialize<SaveObject>(fileName);
-            
-             /*
+
+            /*
           
-            DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject));
-            SaveObject deserializedSaveObject;
-            string loading;
-            int version;
+           DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject));
+           SaveObject deserializedSaveObject;
+           string loading;
+           int version;
 
-            using (FileStream stream = new FileStream(fileName, FileMode.Open))
-            {
-                using (DeflateStream decompress = new DeflateStream(stream, CompressionMode.Decompress))
-                {
-                    deserializedSaveObject = (SaveObject)serializer.ReadObject(decompress);
-                }
-            }
+           using (FileStream stream = new FileStream(fileName, FileMode.Open))
+           {
+               using (DeflateStream decompress = new DeflateStream(stream, CompressionMode.Decompress))
+               {
+                   deserializedSaveObject = (SaveObject)serializer.ReadObject(decompress);
+               }
+           }
 
-            loading = deserializedSaveObject.savetype;
-            version = deserializedSaveObject.saveversionnumber;
-            */
+           loading = deserializedSaveObject.savetype;
+           version = deserializedSaveObject.saveversionnumber;
+           */
             //Parrarel for loading the game
             Parallel.Invoke(() =>
             {
@@ -267,41 +272,48 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     AirportFacilities.AddFacility(facility);
             },
             () =>
-            {   
-                    FeeTypes.Clear();
+            {
+                FeeTypes.Clear();
 
-                    foreach (FeeType type in deserializedSaveObject.feeTypeslist)
-                        FeeTypes.AddType(type);
-               
+                foreach (FeeType type in deserializedSaveObject.feeTypeslist)
+                    FeeTypes.AddType(type);
+
             },
             () =>
-            {  
-                    AdvertisementTypes.Clear();
+            {
+                AdvertisementTypes.Clear();
 
-                    foreach (AdvertisementType addtype in deserializedSaveObject.advertisementTypeslist)
-                        AdvertisementTypes.AddAdvertisementType(addtype);
-                
+                foreach (AdvertisementType addtype in deserializedSaveObject.advertisementTypeslist)
+                    AdvertisementTypes.AddAdvertisementType(addtype);
+
             },
             () =>
-            {       
-                    AirlinerFacilities.Clear();
+            {
+                AirlinerFacilities.Clear();
 
-                    foreach (AirlinerFacility airlinerfas in deserializedSaveObject.airlinerfacilitieslist)
-                        AirlinerFacilities.AddFacility(airlinerfas);
-                
+                foreach (AirlinerFacility airlinerfas in deserializedSaveObject.airlinerfacilitieslist)
+                    AirlinerFacilities.AddFacility(airlinerfas);
+
             },
              () =>
-             {     RouteFacilities.Clear();
+             {
+                 RouteFacilities.Clear();
 
-                     foreach (RouteFacility routefas in deserializedSaveObject.routefacilitieslist)
-                         RouteFacilities.AddFacility(routefas);
-                 
+                 foreach (RouteFacility routefas in deserializedSaveObject.routefacilitieslist)
+                     RouteFacilities.AddFacility(routefas);
+
              },
             () =>
             {
-                GameObject.SetInstance(deserializedSaveObject.instance); 
+                GameObject.SetInstance(deserializedSaveObject.instance);
                 Settings.SetInstance(deserializedSaveObject.settings);
             }); //close parallel.invoke
+      
+            //for 0.3.9.2 and the issue with no saved facilities on a route classes
+            var emptyRouteClassesFacilities = Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses).SelectMany(c=>((RouteClassesConfiguration)c).Classes.Where(cl=>cl.Facilities == null));
+
+            foreach (RouteClassConfiguration rClassConfiguration in emptyRouteClassesFacilities)
+                rClassConfiguration.Facilities = new List<RouteFacility>();
 
             //Maybe this helps? But i doubt this is the best way
             Action action = () =>
@@ -379,84 +391,87 @@ namespace TheAirline.Model.GeneralModel.Helpers
         [Versioning("routefacilities")]
         public List<RouteFacility> routefacilitieslist { get; set; }
     }
-     public static class FileSerializer
+    public static class FileSerializer
+    {
+
+        public static void Serialize(string filename, object objectToSerialize)
         {
 
-            public static void Serialize(string filename, object objectToSerialize)
+
+            if (objectToSerialize == null)
+
+                throw new ArgumentNullException("objectToSerialize cannot be null");
+
+
+            Stream stream = null;
+
+            try
             {
-               
 
-                if (objectToSerialize == null)
+                stream = File.Open(filename, FileMode.Create);
 
-                    throw new ArgumentNullException("objectToSerialize cannot be null");
+                BinaryFormatter bFormatter = new BinaryFormatter();
 
-                Stream stream = null;
+                bFormatter.Serialize(stream, objectToSerialize);
 
-                try
-                {
-
-                    stream = File.Open(filename, FileMode.Create);
-
-                    BinaryFormatter bFormatter = new BinaryFormatter();
-
-                    bFormatter.Serialize(stream, objectToSerialize);
-                    /*
-                     var serializer = new DataContractSerializer(objectToSerialize.GetType(), null, 
-            0x7FFF /*maxItemsInObjectGraph, */
-           // false /*ignoreExtensionDataObject*/, 
-           // true /*preserveObjectReferences : this is where the magic happens */, 
-           // null /*dataContractSurrogate*/);
-        //serializer.WriteObject(stream, objectToSerialize);
-                }
-
-                finally
-                {
-
-                    if (stream != null)
-
-                        stream.Close();
-                }
+                /*
+                 var serializer = new DataContractSerializer(objectToSerialize.GetType(), null, 
+        0x7FFF /*maxItemsInObjectGraph, */
+                // false /*ignoreExtensionDataObject*/, 
+                // true /*preserveObjectReferences : this is where the magic happens */, 
+                // null /*dataContractSurrogate*/);
+                //serializer.WriteObject(stream, objectToSerialize);
 
             }
 
-            public static T Deserialize<T>(string filename)
+            finally
             {
 
-                T objectToSerialize = default(T);
+                if (stream != null)
 
-                Stream stream = null;
-
-                try
-                {
-
-                    stream = File.Open(filename, FileMode.Open);
-
-                    BinaryFormatter bFormatter = new BinaryFormatter();
-
-                    objectToSerialize = (T)bFormatter.Deserialize(stream);
-
-                }
-
-                catch (Exception err)
-                {
-
-                    Console.WriteLine(err.ToString());
-
-                }
-
-                finally
-                {
-
-                    if (stream != null)
-
-                        stream.Close();
-
-                }
-
-                return objectToSerialize;
-
+                    stream.Close();
             }
+
 
         }
-    
+
+        public static T Deserialize<T>(string filename)
+        {
+
+            T objectToSerialize = default(T);
+
+            Stream stream = null;
+
+            try
+            {
+
+                stream = File.Open(filename, FileMode.Open);
+
+                BinaryFormatter bFormatter = new BinaryFormatter();
+
+                objectToSerialize = (T)bFormatter.Deserialize(stream);
+
+            }
+
+            catch (Exception err)
+            {
+
+                Console.WriteLine(err.ToString());
+
+            }
+
+            finally
+            {
+
+                if (stream != null)
+
+                    stream.Close();
+
+            }
+
+            return objectToSerialize;
+
+        }
+
+    }
 }

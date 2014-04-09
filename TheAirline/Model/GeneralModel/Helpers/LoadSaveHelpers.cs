@@ -1312,7 +1312,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 // chs, 2011-13-10 added for saving of passenger happiness
                 XmlElement airlineHappinessNode = xmlDoc.CreateElement("passengerhappiness");
-                airlineHappinessNode.SetAttribute("value", PassengerHelpers.GetHappinessValue(airline).ToString(new CultureInfo("de-DE", false)));
+                airlineHappinessNode.SetAttribute("value","");// PassengerHelpers.GetHappinessValue(airline).ToString(new CultureInfo("de-DE", false)));
 
                 airlineNode.AppendChild(airlineHappinessNode);
 

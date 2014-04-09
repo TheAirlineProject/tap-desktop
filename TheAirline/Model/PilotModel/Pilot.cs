@@ -171,12 +171,7 @@ namespace TheAirline.Model.PilotModel
         //counts the number of unassigned pilots
         public static int GetNumberOfUnassignedPilots()
         {
-            int pilotsCount = 0;
-            lock (pilots)
-            {
-                pilotsCount = pilots.Count(p => p.Airline == null);
-            }
-            return pilotsCount;
+            return GetUnassignedPilots().Count;
         }
         //counts the number of pilots
         public static int GetNumberOfPilots() 
