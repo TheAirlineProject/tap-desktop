@@ -512,9 +512,9 @@ namespace TheAirline.Model.GeneralModel
         {
             double dist = MathHelpers.GetDistance(dest1, dest2);
 
-            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0078);
+            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0081);
 
-            return ticketPrice * 2;
+            return ticketPrice;// *2;
         }
 
         //returns the suggested passenger price for a route
@@ -522,7 +522,7 @@ namespace TheAirline.Model.GeneralModel
         {
             double dist = MathHelpers.GetDistance(dest1, dest2);
 
-            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0078);
+            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0082);
 
             double minimumTicketPrice = GeneralHelpers.GetInflationPrice(18);
 

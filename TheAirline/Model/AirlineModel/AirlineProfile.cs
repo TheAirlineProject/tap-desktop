@@ -16,6 +16,7 @@ namespace TheAirline.Model.AirlineModel
     //the profile for an airline
     public class AirlineProfile : ISerializable
     {
+        public enum PreferedPurchasing { Random, Leasing, Buying }
         [Versioning("name")]
         public string Name { get; set; }
         [Versioning("ceo")]
@@ -43,6 +44,8 @@ namespace TheAirline.Model.AirlineModel
         public string Narrative { get; set; }
         [Versioning("aircrafttypes",Version=2)]
         public List<AirlinerType> PreferedAircrafts { get; set; }
+        [Versioning("purchasing",Version=3)]
+        public PreferedPurchasing PrimaryPurchasing { get; set; }
         public AirlineProfile(string name, string iata, string color,  string ceo, Boolean isReal, int founded, int folded)
         {
             this.Name = name;
@@ -55,6 +58,7 @@ namespace TheAirline.Model.AirlineModel
             this.Countries = new List<Country>();
             this.Logos = new List<AirlineLogo>();
             this.PreferedAircrafts = new List<AirlinerType>();
+            this.PrimaryPurchasing = PreferedPurchasing.Random;
 
         }
         //adds a prefered aircraft type to the airline
@@ -115,11 +119,14 @@ namespace TheAirline.Model.AirlineModel
 
             if (version == 1)
                 this.PreferedAircrafts = new List<AirlinerType>();
+
+            if (version == 2 || version == 3)
+                this.PrimaryPurchasing = PreferedPurchasing.Random;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 2);
+            info.AddValue("version", 3);
 
             Type myType = this.GetType();
 

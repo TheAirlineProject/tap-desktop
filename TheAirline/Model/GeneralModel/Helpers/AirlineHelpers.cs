@@ -67,7 +67,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static FleetAirliner BuyAirliner(Airline airline, Airliner airliner, Airport airport, double discount)
         {
-            FleetAirliner fAirliner = AddAirliner(airline, airliner, airport);
+            FleetAirliner fAirliner = AddAirliner(airline, airliner, airport,false);
 
             double price = airliner.getPrice() * ((100 - discount) / 100);
 
@@ -76,7 +76,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return fAirliner;
 
         }
-        public static FleetAirliner AddAirliner(Airline airline, Airliner airliner, Airport airport)
+        public static FleetAirliner AddAirliner(Airline airline, Airliner airliner, Airport airport, Boolean leased)
         {
 
             if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
@@ -86,8 +86,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
                 }
             }
-
-            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airport);
+            
+            FleetAirliner fAirliner = new FleetAirliner(leased ? FleetAirliner.PurchasedType.Leased : FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airport);
 
             airline.addAirliner(fAirliner);
 

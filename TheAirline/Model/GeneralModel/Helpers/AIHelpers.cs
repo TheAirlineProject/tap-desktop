@@ -137,7 +137,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             Boolean newAirliners = rnd.Next(newAirlinersInterval * (airliners / 2) * airlinersWithoutRoute) == 0;
 
-            if (newAirliners)
+            if (newAirliners && airline.Profile.PrimaryPurchasing != AirlineProfile.PreferedPurchasing.Leasing)
             {
                 //order new airliners for the airline
                 OrderAirliners(airline);
@@ -662,7 +662,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (destination != null)
                 {
 
-                    Boolean doLeasing = rnd.Next(5) > 1 || airline.Money < 10000000;
+                    Boolean doLeasing = airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Leasing || (airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Random && (rnd.Next(5) > 1 || airline.Money < 10000000));
 
                     FleetAirliner fAirliner;
 
@@ -965,7 +965,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static KeyValuePair<Airliner, Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2, Boolean doLeasing, Boolean forCargo, Boolean forStartdata = false)
         {
             var airlineAircrafts = airline.Profile.PreferedAircrafts;
-
+        
             double maxLoanTotal = 100000000;
             double distance = MathHelpers.GetDistance(destination1.Profile.Coordinates.convertToGeoCoordinate(), destination2.Profile.Coordinates.convertToGeoCoordinate());
 

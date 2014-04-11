@@ -494,7 +494,7 @@ namespace TheAirline.Model.GeneralModel
             Configurations.Clear();
 
             LoadStandardConfigurations();
-            
+
         }
         /*!loads the standard configurations
          */
@@ -2087,7 +2087,7 @@ namespace TheAirline.Model.GeneralModel
             if (narrativeElement != null)
                 narrative = narrativeElement.Attributes["narrative"].Value;
 
-       
+
             Boolean isReal = true;
             int founded = 1950;
             int folded = 2199;
@@ -2122,12 +2122,20 @@ namespace TheAirline.Model.GeneralModel
 
             if (preferedsElement != null)
             {
-                string[] preferedAircrafts = preferedsElement.Attributes["aircrafts"].Value.Split(',');
-
-                foreach (string preferedAircraft in preferedAircrafts)
+                if (preferedsElement.HasAttribute("aircrafts"))
                 {
-                    AirlinerType pAircraft = AirlinerTypes.GetType(preferedAircraft);
-                    airline.Profile.addPreferedAircraft(pAircraft);
+                    string[] preferedAircrafts = preferedsElement.Attributes["aircrafts"].Value.Split(',');
+
+                    foreach (string preferedAircraft in preferedAircrafts)
+                    {
+                        AirlinerType pAircraft = AirlinerTypes.GetType(preferedAircraft);
+                        airline.Profile.addPreferedAircraft(pAircraft);
+                    }
+                }
+                if (preferedsElement.HasAttribute("primarypurchasing"))
+                {
+                    AirlineProfile.PreferedPurchasing primarypurchasing = (AirlineProfile.PreferedPurchasing)Enum.Parse(typeof(AirlineProfile.PreferedPurchasing), preferedsElement.Attributes["primarypurchasing"].Value);
+                    airline.Profile.PrimaryPurchasing = primarypurchasing;
                 }
             }
 
@@ -2505,7 +2513,7 @@ namespace TheAirline.Model.GeneralModel
                 if (airports.Count < 4)
                     airports = Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.getFreeGates() > 1);
 
-                
+
                 Dictionary<Airport, int> list = new Dictionary<Airport, int>();
                 airports.ForEach(a => list.Add(a, ((int)a.Profile.Size) * (AirportHelpers.GetAirportsNearAirport(a, 1000).Count) + 1));
 
@@ -2519,7 +2527,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreateComputerRoutes(Airline airline)
         {
-
+            Boolean leaseAircraft = airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Leasing;
 
             Airport airportHomeBase = FindComputerHomeBase(airline);
 
@@ -2560,8 +2568,9 @@ namespace TheAirline.Model.GeneralModel
                 while ((airportDestination == null || airliner == null || !airliner.HasValue) && airportDestinations.Count > counter)
                 {
                     airportDestination = airportDestinations[counter];
-                    
-                    airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination, false, airline.AirlineRouteFocus == Route.RouteType.Cargo, true);
+
+
+                    airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination, leaseAircraft, airline.AirlineRouteFocus == Route.RouteType.Cargo, true);
 
                     counter++;
 
@@ -2569,13 +2578,12 @@ namespace TheAirline.Model.GeneralModel
 
                 if (airportDestination == null || !airliner.HasValue)
                 {
-                    
-                
-                     CreateComputerRoutes(airline);
+                    CreateComputerRoutes(airline);
 
                 }
                 else
                 {
+                   
                     AirportHelpers.AddAirlineContract(new AirportContract(airline, airportHomeBase, AirportContract.ContractType.Full, GameObject.GetInstance().GameTime, 2, 25, 0, true));
 
                     AirportHelpers.RentGates(airportDestination, airline, AirportContract.ContractType.Low_Service);
@@ -2607,13 +2615,20 @@ namespace TheAirline.Model.GeneralModel
                         airportDestination.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
 
                     }
+                    if (leaseAircraft)
+                        AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -airliner.Value.Key.LeasingPrice * 2);
+                    else
+                        AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice());
 
+                 
 
-                    FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airportHomeBase);
+                    FleetAirliner fAirliner = new FleetAirliner(leaseAircraft ? FleetAirliner.PurchasedType.Leased : FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner.Value.Key, airportHomeBase);
                     fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
                     fAirliner.addRoute(route);
                     AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
                     AirlineHelpers.HireAirlinerPilots(fAirliner);
+
+                    airline.addAirliner(fAirliner);
 
                     airline.addRoute(route);
                     route.LastUpdated = GameObject.GetInstance().GameTime;
@@ -2710,18 +2725,21 @@ namespace TheAirline.Model.GeneralModel
 
                     }
 
+                    Boolean leaseAircraft = airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Leasing;
+
                     if (airliner == null)
                     {
-                        airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1, false, startRoute.RouteType == Route.RouteType.Cargo, true);
+                       
+                        airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1, leaseAircraft, startRoute.RouteType == Route.RouteType.Cargo, true);
 
-                        if (airliner == null)
-                            airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1, true, startRoute.RouteType == Route.RouteType.Cargo, true);
+                        if (airliner == null && airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Random)
+                            AIHelpers.GetAirlinerForRoute(airline, dest2, dest1, true, startRoute.RouteType == Route.RouteType.Cargo, true);
 
                     }
 
                     if (airliner != null)
                     {
-                        FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0]);
+                        FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0],leaseAircraft);
                         fAirliner.addRoute(route);
                         fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
                         AirlineHelpers.HireAirlinerPilots(fAirliner);
@@ -2789,7 +2807,9 @@ namespace TheAirline.Model.GeneralModel
 
                         Airliners.AddAirliner(airliner);
 
-                        FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner, airline.Airports[0]);
+                        Boolean leaseAircraft = airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Leasing;
+
+                        FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner, airline.Airports[0],leaseAircraft);
                         fAirliner.Status = FleetAirliner.AirlinerStatus.Stopped;
                         AirlineHelpers.HireAirlinerPilots(fAirliner);
 
@@ -2835,14 +2855,16 @@ namespace TheAirline.Model.GeneralModel
                         if (routes.RouteType == Route.RouteType.Cargo)
                             route = new CargoRoute(id.ToString(), origin, destination, GameObject.GetInstance().GameTime, PassengerHelpers.GetCargoPrice(origin, destination));
 
-                        KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, false, routes.RouteType == Route.RouteType.Cargo, true);
+                        Boolean leaseAircraft = airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Leasing;
 
-                        if (airliner == null)
+                        KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, leaseAircraft, routes.RouteType == Route.RouteType.Cargo, true);
+
+                        if (airliner == null && airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Random)
                             airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, true, routes.RouteType == Route.RouteType.Cargo, true);
 
                         double distance = MathHelpers.GetDistance(origin, destination);
 
-                        FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0]);
+                        FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0],leaseAircraft);
                         fAirliner.addRoute(route);
                         fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
                         AirlineHelpers.HireAirlinerPilots(fAirliner);

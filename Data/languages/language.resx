@@ -4899,4 +4899,10 @@ Good luck.</value>
   <data name="PageAirlineFleet_201_name" xml:space="preserve">
     <value>Route Map</value>
   </data>
+  <data name="PageSelectOpponents_1000_name" xml:space="preserve">
+    <value>Selected Opponents</value>
+  </data>
+  <data name="PageSelectOpponents_1001_name" xml:space="preserve">
+    <value>Available Opponents</value>
+  </data>
 </root>
