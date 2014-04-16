@@ -1,38 +1,39 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Threading.Tasks;
 using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.PilotModel
 {
-    //the class for a pilot student
-    [Serializable]
-    public class PilotStudent : ISerializable
+    //the class for the rating for a pilot
+     [Serializable]
+    public class PilotRating : ISerializable, IComparable<PilotRating>
     {
-        [Versioning("profile")]
-        public PilotProfile Profile { get; set; }
-        [Versioning("startdate")]
-        public DateTime StartDate { get; set; }
-        [Versioning("enddate")]
-        public DateTime EndDate { get; set; }
-        [Versioning("instructor")]
-        public Instructor Instructor { get; set; }
-        [Versioning("rating")]
-        public PilotRating Rating { get; set; }
-        public const double StudentCost = 33381.69;
-        public PilotStudent(PilotProfile profile, DateTime startDate, Instructor instructor, PilotRating rating)
-        {
-            this.Rating = rating;
-            this.Profile = profile;
-            this.StartDate = startDate;
-            this.EndDate = this.StartDate.AddDays(this.Rating.TrainingDays);
-            this.Instructor = instructor;
-         }
-            private PilotStudent(SerializationInfo info, StreamingContext ctxt)
+       [Versioning("name")]
+       public string Name { get; set; }
+       [Versioning("trainingdays")]
+       public int TrainingDays { get; set; }
+       [Versioning("costindex")]
+       public int CostIndex { get; set; }
+         [Versioning("trainingaircrafts")]
+       public List<TrainingAircraftType> Aircrafts { get; set; }
+       public PilotRating(string name, int trainingdays,int costindex)
+       {
+           this.Name = name;
+           this.TrainingDays = trainingdays;
+           this.CostIndex = costindex;
+           this.Aircrafts = new List<TrainingAircraftType>();
+       }
+         //adds a training aircraft which the rating (pilot) uses in training
+       public void addAircraft(TrainingAircraftType aircraft)
+       {
+           this.Aircrafts.Add(aircraft);
+       }
+        private PilotRating(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -71,17 +72,13 @@ namespace TheAirline.Model.PilotModel
 
                 }
 
-                if (version == 1)
-                {
-                    this.Rating = GeneralHelpers.GetPilotStudentRating(this);
-                }
             }
 
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 2);
+            info.AddValue("version", 1);
 
             Type myType = this.GetType();
 
@@ -105,6 +102,36 @@ namespace TheAirline.Model.PilotModel
                 info.AddValue(att.Name, propValue);
             }
 
+        }
+
+        public int CompareTo(PilotRating other)
+        {
+            return this.CostIndex.CompareTo(other.CostIndex);
+        }
+    }
+    //the list of pilot ratings
+    public class PilotRatings
+    {
+        private static List<PilotRating> ratings = new List<PilotRating>();
+        //adds a rating to the list
+        public static void AddRating(PilotRating rating)
+        {
+            ratings.Add(rating);
+        }
+        //returns the rating with a name
+        public static PilotRating GetRating(string name)
+        {
+            return ratings.FirstOrDefault(r => r.Name == name);
+        }
+        //returns the list of ratings 
+        public static List<PilotRating> GetRatings()
+        {
+            return ratings;
+        }
+        //clears the pilot ratings
+        public static void Clear()
+        {
+            ratings = new List<PilotRating>();
         }
     }
 }

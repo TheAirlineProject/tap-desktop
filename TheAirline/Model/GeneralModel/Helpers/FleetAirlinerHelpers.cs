@@ -407,18 +407,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the fuel expenses for an airliner
         public static double GetFuelExpenses(FleetAirliner airliner, double distance)
         {
+             
             if (airliner.CurrentFlight.isPassengerFlight())
             {
-                double basePrice = GameObject.GetInstance().FuelPrice * distance * airliner.Airliner.Type.FuelConsumption;
-                double paxPrice = airliner.CurrentFlight.getTotalPassengers()*distance*0.15;
-                double seatsPrice = airliner.CurrentFlight.Classes.Sum(c=>airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses * c.Passengers);
+                double fuelPrice = GameObject.GetInstance().FuelPrice;
+                int pax = airliner.CurrentFlight.getTotalPassengers();
+                
+                double basePrice = GameObject.GetInstance().FuelPrice * distance* ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity * airliner.Airliner.Type.FuelConsumption*0.55;
+                double paxPrice = GameObject.GetInstance().FuelPrice * distance * airliner.Airliner.Type.FuelConsumption*airliner.CurrentFlight.getTotalPassengers() * 0.45;
+                double seatsPrice = airliner.CurrentFlight.Classes.Sum(c=>(airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses-1) * c.Passengers);
                 return basePrice + paxPrice + seatsPrice;
 
              }
             else
             {
-                double basePrice = GameObject.GetInstance().FuelPrice * distance * airliner.Airliner.Type.FuelConsumption;
-                double cargoPrice = airliner.CurrentFlight.Cargo * distance * 0.45;
+                double basePrice = GameObject.GetInstance().FuelPrice * distance* ((AirlinerCargoType)airliner.Airliner.Type).CargoSize * airliner.Airliner.Type.FuelConsumption * 0.55;
+                double cargoPrice = GameObject.GetInstance().FuelPrice * airliner.Airliner.Type.FuelConsumption* airliner.CurrentFlight.Cargo * distance * 0.45;
 
                 return basePrice + cargoPrice;
             }

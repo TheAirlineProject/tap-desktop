@@ -406,10 +406,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                  string lastname = instructorNode.Attributes["lastname"].Value;
                  DateTime birthdate = DateTime.Parse(instructorNode.Attributes["birthdate"].Value, new CultureInfo("de-DE", false));
                  Town town = Towns.GetTown(instructorNode.Attributes["town"].Value);
-                 Pilot.PilotRating rating = (Pilot.PilotRating)Enum.Parse(typeof(Pilot.PilotRating), instructorNode.Attributes["rating"].Value);
+                 //Pilot.PilotRating rating = (Pilot.PilotRating)Enum.Parse(typeof(Pilot.PilotRating), instructorNode.Attributes["rating"].Value);
                  string id = instructorNode.Attributes["id"].Value;
 
-                 Instructor instructor = new Instructor(new PilotProfile(firstname, lastname, birthdate, town), rating);
+                 Instructor instructor = new Instructor(new PilotProfile(firstname, lastname, birthdate, town),PilotRatings.GetRating("A"));
 
                  if (id != "-")
                  {
@@ -445,9 +445,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                  Town town = Towns.GetTown(pilotNode.Attributes["town"].Value);
                  DateTime educationdate = DateTime.Parse(pilotNode.Attributes["education"].Value, new CultureInfo("de-DE", false));
 
-                 Pilot.PilotRating rating = (Pilot.PilotRating)Enum.Parse(typeof(Pilot.PilotRating), pilotNode.Attributes["rating"].Value);
+                 //Pilot.PilotRating rating = (Pilot.PilotRating)Enum.Parse(typeof(Pilot.PilotRating), pilotNode.Attributes["rating"].Value);
 
-                 Pilot pilot = new Pilot(new PilotProfile(firstname, lastname, birthdate, town), educationdate, rating);
+                 Pilot pilot = new Pilot(new PilotProfile(firstname, lastname, birthdate, town), educationdate, PilotRatings.GetRating("B"));
 
                  if (pilotNode.Attributes["airline"].Value != "-")
                  {
@@ -904,7 +904,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     Town town = Towns.GetTown(studentNode.Attributes["town"].Value);
                     DateTime startdate = DateTime.Parse(studentNode.Attributes["startdate"].Value, new CultureInfo("de-DE", false));
 
-                    fs.addStudent(new PilotStudent(new PilotProfile(firstname, lastname, birthdate, town), startdate, null));
+                    fs.addStudent(new PilotStudent(new PilotProfile(firstname, lastname, birthdate, town), startdate, null,null));
                 }
 
                 airline.addFlightSchool(fs);

@@ -48,7 +48,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public List<CooperationMVVM> Cooperations { get; set; }
         public List<AirlinerQuantityMVVM> OrderedQuantity { get; set; }
         public List<AirlinerQuantityMVVM> ActiveQuantity { get; set; }
-
+        
         public List<AirlineRouteMVVM> Routes { get; set; }
 
         public Boolean IsBuyable { get; set; }
@@ -345,6 +345,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Money = this.Airline.Money;
             this.Balance = this.Airline.Money - this.Airline.StartMoney;
             double tMoney = GameObject.GetInstance().HumanMoney;
+
             this.CabinCrew = this.Airline.Routes.Where(r => r.Type == Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getTotalCabinCrew());
             this.SupportCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees);
             this.MaintenanceCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees);

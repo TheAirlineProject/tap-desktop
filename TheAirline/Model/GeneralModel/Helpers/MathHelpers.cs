@@ -250,14 +250,18 @@ namespace TheAirline.Model.GeneralModel
         //converts ltr to gallons
         public static double LtrToGallons(double ltr)
         {
-            double aGallon = 3.785411784;
-
-            return ltr * aGallon;
+            double aGallon = 0.264172051;
+          
+            return ltr / aGallon;
+        }
+        //l/seat/km to us gallon/seat/mile
+        public static double LSeatKMToGSeatM(double lsk)
+        {
+            return lsk / LtrToGallons(1) / KMToMiles(1);
         }
         //converts l/km to mpg
         public static double LKMToMPG(double kml)
         {
-
             double aMPG = 2.35;
 
             return kml * aMPG;

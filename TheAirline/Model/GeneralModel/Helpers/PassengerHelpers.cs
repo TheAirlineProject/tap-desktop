@@ -522,7 +522,7 @@ namespace TheAirline.Model.GeneralModel
         {
             double dist = MathHelpers.GetDistance(dest1, dest2);
 
-            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0082);
+            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0084);
 
             double minimumTicketPrice = GeneralHelpers.GetInflationPrice(18);
 

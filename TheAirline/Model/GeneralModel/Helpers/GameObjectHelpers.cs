@@ -522,7 +522,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (PilotStudent student in educatedStudents)
                 {
-                    Pilot pilot = new Pilot(student.Profile, GameObject.GetInstance().GameTime, GeneralHelpers.GetPilotStudentRanking(student));
+                    Pilot pilot = new Pilot(student.Profile, GameObject.GetInstance().GameTime, student.Rating);
                     student.Instructor.removeStudent(student);
                     student.Instructor.FlightSchool.removeStudent(student);
                     student.Instructor = null;
@@ -908,13 +908,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (Pilot pilot in airline.Pilots)
                 {
 
-                    double salary = ((int)pilot.Rating) * airline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));
+                    double salary = pilot.Rating.CostIndex * airline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -salary);
                 }
 
                 foreach (Instructor instructor in airline.FlightSchools.SelectMany(f => f.Instructors))
                 {
-                    double salary = ((int)instructor.Rating) * airline.Fees.getValue(FeeTypes.GetType("Instructor Base Salary"));
+                    double salary = instructor.Rating.CostIndex * airline.Fees.getValue(FeeTypes.GetType("Instructor Base Salary"));
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -salary);
 
                 }

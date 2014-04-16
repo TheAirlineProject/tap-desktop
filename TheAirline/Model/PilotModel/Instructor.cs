@@ -16,12 +16,12 @@ namespace TheAirline.Model.PilotModel
         [Versioning("profile")]
         public PilotProfile Profile { get; set; }
         [Versioning("rating")]
-        public Pilot.PilotRating Rating { get; set; }
+        public PilotRating Rating { get; set; }
         [Versioning("students")]
         public List<PilotStudent> Students { get; set; }
         [Versioning("flightschool")]
         public FlightSchool FlightSchool { get; set; }
-        public Instructor(PilotProfile profile, Pilot.PilotRating rating)
+        public Instructor(PilotProfile profile, PilotRating rating)
         {
             this.Profile = profile;
             this.Rating = rating;

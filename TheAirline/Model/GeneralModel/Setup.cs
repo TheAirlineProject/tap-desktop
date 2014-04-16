@@ -92,7 +92,8 @@ namespace TheAirline.Model.GeneralModel
                 CreateFeeTypes();
                 CreateFlightFacilities();
                 CreateTrainingAircraftTypes();
-
+                CreatePilotRatings();
+              
                 LoadStandardConfigurations();
                 LoadAirlinerTypeConfigurations();
 
@@ -187,6 +188,7 @@ namespace TheAirline.Model.GeneralModel
             Unions.Clear();
             AirlinerTypes.Clear();
             FeeTypes.Clear();
+            PilotRatings.Clear();
             Alliances.Clear();
             FlightRestrictions.Clear();
             Inflations.Clear();
@@ -240,8 +242,34 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreateTrainingAircraftTypes()
         {
-            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Cessna 172", 26705, 2));
-            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Beechcraft King Air 350", 129520, 12));
+            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Cessna 172", 26705, 2,1));
+            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Beechcraft King Air 350", 129520, 12,2));
+        }
+        /*! creates the pilot ratings
+       */
+        private static void CreatePilotRatings()
+        {
+            PilotRating ratingA = new PilotRating("A", 70, 3);
+            ratingA.addAircraft(TrainingAircraftTypes.GetAircraftType("Cessna 172"));
+            ratingA.addAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
+            PilotRatings.AddRating(ratingA);
+
+            PilotRating ratingB = new PilotRating("B", 85, 4);
+            ratingB.addAircraft(TrainingAircraftTypes.GetAircraftType("Cessna 172"));
+            ratingB.addAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
+            PilotRatings.AddRating(ratingB);
+
+            PilotRating ratingC = new PilotRating("C", 95, 5);
+            ratingC.addAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
+            PilotRatings.AddRating(ratingC);
+
+            PilotRating ratingD = new PilotRating("D", 120, 7);
+            ratingD.addAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
+            PilotRatings.AddRating(ratingD);
+
+            PilotRating ratingE = new PilotRating("E", 150, 10);
+            ratingE.addAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
+            PilotRatings.AddRating(ratingE);
 
         }
         /*! creates the Advertisement types
@@ -3003,8 +3031,8 @@ namespace TheAirline.Model.GeneralModel
             RouteFacilities.AddFacility(new RouteFacility("117", RouteFacility.FacilityType.Newspapers, "None", 0, RouteFacility.ExpenseType.Fixed, 0, null));
             RouteFacilities.AddFacility(new RouteFacility("118", RouteFacility.FacilityType.Newspapers, "Available", 35, RouteFacility.ExpenseType.Fixed, 0, null, AirlineFacilities.GetFacility("102")));
         }
-
-        /*! creates the Fee types.
+      
+        /*! creates the fee types.
          */
         private static void CreateFeeTypes()
         {

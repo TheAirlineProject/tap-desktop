@@ -294,8 +294,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             FleetAirlinerHelpers.SetFlightStats(airliner);
 
-
-
             long airportIncome = Convert.ToInt64(dest.getLandingFee());
             dest.Income += airportIncome;
 

@@ -211,13 +211,21 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             ContractMVVM tContract = (ContractMVVM)((Button)sender).Tag;
 
+            AirportContract contract = new AirportContract(tContract.Contract.Airline,tContract.Contract.Airport,tContract.Contract.Type,tContract.Contract.ContractDate,tContract.Contract.NumberOfGates,tContract.Contract.Length,tContract.Contract.YearlyPayment,tContract.Contract.AutoRenew);
 
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2228"), string.Format(Translator.GetInstance().GetString("MessageBox", "2228", "message"), 2), WPFMessageBoxButtons.YesNo);
-            
-            if (result == WPFMessageBoxResult.Yes)
+            object o = PopUpExtendContract.ShowPopUp(contract);
+
+            if (o != null)
             {
-                tContract.extendContract(2);
+                AirportContract nContract = (AirportContract)o;
+
+                tContract.setNumberOfGates(nContract.NumberOfGates);
+                tContract.setExpireDate(nContract.ExpireDate);
+                tContract.Contract.AutoRenew = nContract.AutoRenew;
+
+
             }
+            
         }
 
         private void btnSellTerminal_Click(object sender, RoutedEventArgs e)

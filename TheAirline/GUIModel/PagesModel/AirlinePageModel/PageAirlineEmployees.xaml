@@ -102,10 +102,10 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1008'}" Width="50" util:GridViewSort.PropertyName="Rating">
+                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1008'}" Width="50" util:GridViewSort.PropertyName="Rating.Name">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Rating}"></TextBlock>
+                                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Rating.Name}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

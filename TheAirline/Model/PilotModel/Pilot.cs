@@ -15,17 +15,16 @@ namespace TheAirline.Model.PilotModel
     [Serializable]
     public class Pilot : ISerializable
     {
-        
+        /*
         public enum PilotRating { 
              [EnumMember(Value="A")]A=3, 
              [EnumMember(Value="B")]B=4,
              [EnumMember(Value="C")]C=5, 
              [EnumMember(Value="D")]D=7, 
-             [EnumMember(Value="E")]E=10 }
+             [EnumMember(Value="E")]E=10 } */
         
         [Versioning("rating")]
         public PilotRating Rating { get; set; }
-        
         [Versioning("profile")]
         public PilotProfile Profile { get; set; }
         [Versioning("airline")]
@@ -42,6 +41,8 @@ namespace TheAirline.Model.PilotModel
             this.Profile = profile;
             this.EducationTime = educationTime;
             this.Rating = rating;
+
+             
     
         }
         //sets the airline for a pilot

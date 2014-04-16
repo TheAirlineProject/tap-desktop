@@ -206,8 +206,10 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             allAirliners.AddRange(mainEntries);
             */
 
-            var tAll = entries.Where(e => e != null && e.MainEntry != null && e.MainEntry.Airliner != null).Select(e => e.MainEntry.Airliner).Distinct();
-            tAll.Union(entries.Where(e => e != null && e.Airliner != null).Select(e => e.Airliner));
+            var tx = entries.Where(e => e != null && e.Airliner != null).Select(e => e.Airliner);
+            var tMain = entries.Where(e => e != null && e.MainEntry != null && e.MainEntry.Airliner != null).Select(e => e.MainEntry.Airliner).Distinct();
+
+            var tAll = tx.Union(tMain);
 
             return tAll.ToList();
         }

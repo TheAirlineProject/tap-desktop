@@ -34,7 +34,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
             InitializeComponent();
 
             double pilotBasePrice = GameObject.GetInstance().HumanAirline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));//GeneralHelpers.GetInflationPrice(133.53);<
-            this.Salary = ((int)this.Pilot.Rating) * pilotBasePrice;
+            this.Salary = this.Pilot.Rating.CostIndex * pilotBasePrice;
             
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)

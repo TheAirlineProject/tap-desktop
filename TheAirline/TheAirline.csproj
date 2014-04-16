@@ -189,6 +189,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpExtendContract.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpInviteAlliance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -559,6 +563,9 @@
     </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpCompareAirports.xaml.cs">
       <DependentUpon>PopUpCompareAirports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpExtendContract.xaml.cs">
+      <DependentUpon>PopUpExtendContract.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpInviteAlliance.xaml.cs">
       <DependentUpon>PopUpInviteAlliance.xaml</DependentUpon>
@@ -962,6 +969,7 @@
     <Compile Include="Model\PilotModel\Instructor.cs" />
     <Compile Include="Model\PilotModel\Pilot.cs" />
     <Compile Include="Model\PilotModel\PilotProfile.cs" />
+    <Compile Include="Model\PilotModel\PilotRating.cs" />
     <Compile Include="Model\PilotModel\PilotStudent.cs" />
     <Compile Include="Model\PilotModel\TrainingAircraft.cs" />
     <Compile Include="Model\PilotModel\TrainingAircraftType.cs" />

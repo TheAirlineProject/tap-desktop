@@ -19,7 +19,7 @@ namespace TheAirline.Model.PilotModel
         public FlightSchool FlightSchool { get; set; }
         [Versioning("bought")]
         public DateTime BoughtDate { get; set; }
-        public int Age { get { return MathHelpers.GetAge(this.BoughtDate);} private set { ;} }
+         public int Age { get { return MathHelpers.GetAge(this.BoughtDate);} private set { ;} }
         public TrainingAircraft(TrainingAircraftType type, DateTime boughtDate, FlightSchool flighschool)
         {
             this.Type = type;

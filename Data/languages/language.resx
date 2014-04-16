@@ -4905,4 +4905,19 @@ Good luck.</value>
   <data name="PageSelectOpponents_1001_name" xml:space="preserve">
     <value>Available Opponents</value>
   </data>
+  <data name="PopUpExtendContract_1000_name" xml:space="preserve">
+    <value>Extend Airport Contract</value>
+  </data>
+  <data name="PopUpExtendContract_1001_name" xml:space="preserve">
+    <value>Airport</value>
+  </data>
+  <data name="PopUpExtendContract_1002_name" xml:space="preserve">
+    <value>Number of Gates</value>
+  </data>
+  <data name="PopUpExtendContract_1003_name" xml:space="preserve">
+    <value>Expire Date</value>
+  </data>
+  <data name="PopUpExtendContract_1004_name" xml:space="preserve">
+    <value>Autorenew Contract</value>
+  </data>
 </root>

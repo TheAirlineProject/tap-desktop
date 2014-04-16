@@ -54,10 +54,10 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </filter:SortableGridViewColumn>
-                                <filter:SortableGridViewColumn CanFilter="True" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1002'}" Width="100" SortPropertyName="Rating">
+                                <filter:SortableGridViewColumn CanFilter="True" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1002'}" Width="100" SortPropertyName="Rating.Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Rating}"></TextBlock>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Rating.Name}"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </filter:SortableGridViewColumn>

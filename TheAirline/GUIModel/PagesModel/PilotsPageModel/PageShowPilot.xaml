@@ -35,7 +35,7 @@
                 </g:QuickInfoValue>
                 <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1004'}">
                     <g:QuickInfoValue.Value>
-                        <TextBlock Width="200" Text="{Binding Pilot.Rating,ElementName=pageShowPilot}" VerticalAlignment="Bottom"></TextBlock>
+                        <TextBlock Width="200" Text="{Binding Pilot.Rating.Name,ElementName=pageShowPilot}" VerticalAlignment="Bottom"></TextBlock>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
                 <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1005'}">

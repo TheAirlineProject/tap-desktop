@@ -387,7 +387,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (pilots.Count == 0)
                     pilots = Pilots.GetUnassignedPilots();
 
-                Pilot pilot = pilots.OrderByDescending(p => p.Rating).First();
+                Pilot pilot = pilots.OrderByDescending(p => p.Rating.CostIndex).First();
 
                 if (pilot != null)
                 {

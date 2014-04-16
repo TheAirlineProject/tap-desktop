@@ -59,22 +59,10 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             int cabinCrew = 0;
 
             if (getAirliners().Count > 0)
-                foreach (FleetAirliner fa in getAirliners())
-                {
-                    if (fa.Airliner.Type.TypeAirliner != AirlinerType.TypeOfAirliner.Passenger)
-                    {
-
-                    }
-
-                    else
-                    {
-                        if (((AirlinerPassengerType)fa.Airliner.Type).CabinCrew > cabinCrew)
-                        {
-                            cabinCrew = ((AirlinerPassengerType)fa.Airliner.Type).CabinCrew;
-                        }
-                    }
-                }
-
+            {
+                cabinCrew = getAirliners().Sum(a => ((AirlinerPassengerType)a.Airliner.Type).CabinCrew);
+            }
+           
             return cabinCrew;
         }
       
