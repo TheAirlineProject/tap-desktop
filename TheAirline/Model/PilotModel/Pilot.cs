@@ -23,7 +23,7 @@ namespace TheAirline.Model.PilotModel
              [EnumMember(Value="D")]D=7, 
              [EnumMember(Value="E")]E=10 } */
         
-        [Versioning("rating")]
+        [Versioning("pilotrating",Version=2)]
         public PilotRating Rating { get; set; }
         [Versioning("profile")]
         public PilotProfile Profile { get; set; }
@@ -91,12 +91,15 @@ namespace TheAirline.Model.PilotModel
                 }
 
             }
-
+            if (version == 1)
+            {
+                this.Rating = GeneralHelpers.GetPilotRating();
+            }
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 

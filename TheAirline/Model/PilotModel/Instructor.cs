@@ -77,12 +77,17 @@ namespace TheAirline.Model.PilotModel
 
                 }
 
+
+            }
+            if (version == 1)
+            {
+                this.Rating = GeneralHelpers.GetPilotRating();
             }
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 
