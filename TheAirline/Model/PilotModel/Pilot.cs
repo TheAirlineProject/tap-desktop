@@ -15,17 +15,16 @@ namespace TheAirline.Model.PilotModel
     [Serializable]
     public class Pilot : ISerializable
     {
-        
+        /*
         public enum PilotRating { 
              [EnumMember(Value="A")]A=3, 
              [EnumMember(Value="B")]B=4,
              [EnumMember(Value="C")]C=5, 
              [EnumMember(Value="D")]D=7, 
-             [EnumMember(Value="E")]E=10 }
+             [EnumMember(Value="E")]E=10 } */
         
-        [Versioning("rating")]
+        [Versioning("pilotrating",Version=2)]
         public PilotRating Rating { get; set; }
-        
         [Versioning("profile")]
         public PilotProfile Profile { get; set; }
         [Versioning("airline")]
@@ -42,6 +41,8 @@ namespace TheAirline.Model.PilotModel
             this.Profile = profile;
             this.EducationTime = educationTime;
             this.Rating = rating;
+
+             
     
         }
         //sets the airline for a pilot
@@ -90,12 +91,15 @@ namespace TheAirline.Model.PilotModel
                 }
 
             }
-
+            if (version == 1)
+            {
+                this.Rating = GeneralHelpers.GetPilotRating();
+            }
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 
@@ -171,12 +175,7 @@ namespace TheAirline.Model.PilotModel
         //counts the number of unassigned pilots
         public static int GetNumberOfUnassignedPilots()
         {
-            int pilotsCount = 0;
-            lock (pilots)
-            {
-                pilotsCount = pilots.Count(p => p.Airline == null);
-            }
-            return pilotsCount;
+            return GetUnassignedPilots().Count;
         }
         //counts the number of pilots
         public static int GetNumberOfPilots() 

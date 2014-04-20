@@ -137,7 +137,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             Boolean newAirliners = rnd.Next(newAirlinersInterval * (airliners / 2) * airlinersWithoutRoute) == 0;
 
-            if (newAirliners)
+            if (newAirliners && airline.Profile.PrimaryPurchasing != AirlineProfile.PreferedPurchasing.Leasing)
             {
                 //order new airliners for the airline
                 OrderAirliners(airline);
@@ -147,6 +147,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //orders new airliners for an airline
         private static void OrderAirliners(Airline airline)
         {
+            var airlineAircrafts = airline.Profile.PreferedAircrafts;
+
             int airliners = airline.Fleet.Count;
             int airlinersWithoutRoute = airline.Fleet.Count(a => !a.HasRoute);
 
@@ -163,7 +165,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airport homeAirport = AIHelpers.GetRandomItem(airportsList);
 
             List<AirlinerType> types = AirlinerTypes.GetTypes(t => t.Produced.From <= GameObject.GetInstance().GameTime && t.Produced.To >= GameObject.GetInstance().GameTime && t.Price * numberToOrder < airline.Money);
-
+            
             if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
                 types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
 
@@ -175,7 +177,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Dictionary<AirlinerType, int> list = new Dictionary<AirlinerType, int>();
             
             foreach (AirlinerType type in types)
-                list.Add(type,(int)((type.Range / (Convert.ToDouble(type.Price) / 100000))));
+                list.Add(type,(int)((type.Range / (Convert.ToDouble(type.Price) / 100000))) + (airlineAircrafts.Contains(type) ? 10 : 0));
             /*
             Parallel.ForEach(types, t =>
                 {
@@ -186,7 +188,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 AirlinerType type = AIHelpers.GetRandomItem(list);
 
-               
                 List<AirlinerOrder> orders = new List<AirlinerOrder>();
                 orders.Add(new AirlinerOrder(type, AirlinerHelpers.GetAirlinerClasses(type), numberToOrder, false));
 
@@ -660,12 +661,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (destination != null)
                 {
-                    Boolean doLeasing = rnd.Next(5) > 1 || airline.Money < 10000000;
+
+                    Boolean doLeasing = airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Leasing || (airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Random && (rnd.Next(5) > 1 || airline.Money < 10000000));
 
                     FleetAirliner fAirliner;
 
                     KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination, doLeasing, airline.AirlineRouteFocus == Route.RouteType.Cargo);
-
+                    
                     fAirliner = GetFleetAirliner(airline, airport, destination);
 
                     if (airliner.HasValue || fAirliner != null)
@@ -962,7 +964,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the best fit for an airliner for sale for a route true for loan
         public static KeyValuePair<Airliner, Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2, Boolean doLeasing, Boolean forCargo, Boolean forStartdata = false)
         {
-
+            var airlineAircrafts = airline.Profile.PreferedAircrafts;
+        
             double maxLoanTotal = 100000000;
             double distance = MathHelpers.GetDistance(destination1.Profile.Coordinates.convertToGeoCoordinate(), destination2.Profile.Coordinates.convertToGeoCoordinate());
 
@@ -970,24 +973,47 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             List<Airliner> airliners;
 
-            if (forCargo)
+            if (airlineAircrafts.Count > 0)
             {
-                if (doLeasing)
-                    airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType).FindAll(a => a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
-                else
-                    airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType).FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
+                if (forCargo)
+                {
+                    if (doLeasing)
+                        airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType).FindAll(a => a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Type.Range && airlineAircrafts.Contains(a.Type));
+                    else
+                        airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType).FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range && airlineAircrafts.Contains(a.Type));
 
+                }
+                else
+                {
+                    if (doLeasing)
+                        airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType).FindAll(a => a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Type.Range && airlineAircrafts.Contains(a.Type));
+                    else
+                        airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType).FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range && airlineAircrafts.Contains(a.Type));
+                }
+
+        
             }
             else
             {
-                if (doLeasing)
-                    airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType).FindAll(a => a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
-                else
-                    airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType).FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
-            }
 
+                if (forCargo)
+                {
+                    if (doLeasing)
+                        airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType).FindAll(a => a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Type.Range);
+                    else
+                        airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType).FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range);
+
+                }
+                else
+                {
+                    if (doLeasing)
+                        airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType).FindAll(a => a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Type.Range);
+                    else
+                        airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType).FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range);
+                }
+            }
             if (airliners.Count > 0)
-                return new KeyValuePair<Airliner, Boolean>((from a in airliners orderby a.Type.Range select a).First(), false);
+                return new KeyValuePair<Airliner, Boolean>(airliners.OrderBy(a=>a.Price).First(), false);
             else
             {
                 if (airline.Mentality == Airline.AirlineMentality.Aggressive || airline.Fleet.Count == 0 || forStartdata)
@@ -997,15 +1023,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (airlineLoanTotal < maxLoanTotal)
                     {
                         List<Airliner> loanAirliners;
-                        if (forCargo)
-                            loanAirliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType).FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && distance < a.Type.Range);
 
+                        if (airlineAircrafts.Count > 0)
+                        {
+                            if (forCargo)
+                                loanAirliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType).FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && distance < a.Type.Range && airlineAircrafts.Contains(a.Type));
+                            else
+                                loanAirliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType).FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && distance < a.Type.Range && airlineAircrafts.Contains(a.Type));
+            
+                        }
                         else
-                            loanAirliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType).FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && distance < a.Type.Range);
-
+                        {
+                            if (forCargo)
+                                loanAirliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType).FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && distance < a.Type.Range);
+                            else
+                                loanAirliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType).FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && distance < a.Type.Range);
+                        }
                         if (loanAirliners.Count > 0)
                         {
-                            var airliner = (from a in loanAirliners orderby a.Price select a).First();
+                            var airliner = loanAirliners.OrderBy(a=>a.Price).First();
 
                             if (airliner == null)
                                 return null;
@@ -1025,6 +1061,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
         }
+       
         //sets the homebase for an airliner
         public static void SetAirlinerHomebase(FleetAirliner airliner)
         {

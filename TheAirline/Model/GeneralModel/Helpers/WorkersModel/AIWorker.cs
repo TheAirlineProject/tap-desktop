@@ -33,6 +33,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         //cancels the worker
         public void cancel()
         {
+       
             if (this.Worker.WorkerSupportsCancellation)
                 this.Worker.CancelAsync();
 

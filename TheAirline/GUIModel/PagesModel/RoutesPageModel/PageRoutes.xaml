@@ -21,8 +21,8 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <ContentControl Content="{Binding Route}" ContentTemplate="{StaticResource RouteItem}" VerticalAlignment="Bottom" Width="100"></ContentControl>
-                                        <TextBlock Text="{Binding Percent,StringFormat={}{0:0.#}%}" VerticalAlignment="Bottom"></TextBlock>
+                                        <ContentControl Content="{Binding Route}" ContentTemplate="{StaticResource RouteItem}" VerticalAlignment="Bottom" Width="75"></ContentControl>
+                                        <TextBlock Text="{Binding Percent,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
                                     </WrapPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -36,8 +36,8 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <ContentControl Content="{Binding Route}" ContentTemplate="{StaticResource RouteItem}" VerticalAlignment="Bottom" Width="100"></ContentControl>
-                                        <TextBlock Text="{Binding Percent,StringFormat={}{0:0.#}%}" VerticalAlignment="Bottom"></TextBlock>
+                                        <ContentControl Content="{Binding Route}" ContentTemplate="{StaticResource RouteItem}" VerticalAlignment="Bottom" Width="75"></ContentControl>
+                                        <TextBlock Text="{Binding Percent,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
                                     </WrapPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -51,8 +51,8 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <ContentControl Content="{Binding Route}" ContentTemplate="{StaticResource RouteItem}" VerticalAlignment="Bottom" Width="100"></ContentControl>
-                                        <TextBlock Text="{Binding IncomePerPax,StringFormat={}{0:0.##}}" VerticalAlignment="Bottom"></TextBlock>
+                                        <ContentControl Content="{Binding Route}" ContentTemplate="{StaticResource RouteItem}" VerticalAlignment="Bottom" Width="75"></ContentControl>
+                                        <TextBlock Text="{Binding IncomePerPax,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
                                     </WrapPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

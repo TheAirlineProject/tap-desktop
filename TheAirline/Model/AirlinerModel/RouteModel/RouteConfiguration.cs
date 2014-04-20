@@ -117,6 +117,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
        public AirlinerClass.ClassType Type { get; set; }
       [Versioning("facilities")]
          public List<RouteFacility> Facilities { get; set; }
+
         public RouteClassConfiguration(AirlinerClass.ClassType type)
         {
             this.Type = type;

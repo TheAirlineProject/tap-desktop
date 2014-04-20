@@ -73,15 +73,44 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
             cbInstructor.SelectedIndex = 0;
 
+            var aircraftsTypesFree = this.FlightSchool.Aircrafts.Select(a => a.Type);
+
+            Dictionary<TrainingAircraftType,int> types = this.FlightSchool.Aircrafts.GroupBy(a=>a.Type).
+                     Select(group =>
+                         new
+                         {
+                             Type = group.Key,
+                             Count = group.Sum(g=>g.Type.MaxNumberOfStudents)
+                         }).ToDictionary(g => g.Type, g => g.Count); ;
+
+
+            foreach (PilotStudent student in this.FlightSchool.Students)
+            {
+                var firstAircraft = student.Rating.Aircrafts.OrderBy(a=>a.TypeLevel).First(a=>types.ContainsKey(a) && types[a] > 0);
+
+                if (types.ContainsKey(firstAircraft))
+                    types[firstAircraft]--;
+
+            }
+
+            List<PilotRating> possibleRatings = new List<PilotRating>();
+
+            foreach (PilotRating rating in PilotRatings.GetRatings())
+            {
+                if (rating.Aircrafts.Exists(a => types.ContainsKey(a) && types[a] > 0))
+                    possibleRatings.Add(rating);
+            }
+       
             if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1005"), cbInstructor) == PopUpSingleElement.ButtonSelected.OK && cbInstructor.SelectedItem != null)
             {
                 List<Town> towns = Towns.GetTowns(this.FlightSchool.FlightSchool.Airport.Profile.Country);
 
                 Town town = towns[rnd.Next(towns.Count)];
                 DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
-                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
+                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(town.Country), Names.GetInstance().getRandomLastName(town.Country), birthdate, town);
 
-                PilotStudent student = new PilotStudent(profile, GameObject.GetInstance().GameTime, (Instructor)cbInstructor.SelectedItem);
+                Instructor instructor = (Instructor)cbInstructor.SelectedItem;
+                PilotStudent student = new PilotStudent(profile, GameObject.GetInstance().GameTime,instructor ,GeneralHelpers.GetPilotStudentRating(instructor,possibleRatings));
 
                 this.FlightSchool.addStudent(student);
                 ((Instructor)cbInstructor.SelectedItem).addStudent(student);

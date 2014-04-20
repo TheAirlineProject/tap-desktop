@@ -20,7 +20,7 @@
                     <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0" Width="350">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                         <StackPanel>
-                            <TextBlock Text="Selected Opponents" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSelectOpponents 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                            <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding SelectedAirlines,ElementName=pageSelectOpponents}" >
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
@@ -34,7 +34,8 @@
                             <WrapPanel Margin="0 10 0 0">
                                 <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 201'}" Width="NaN" Click="btnCreateGame_Click"></Button>
                             </WrapPanel>
-                            
+                            <c:SplashControl Visibility="Collapsed" Text="Creating...." HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="scCreating"></c:SplashControl>
+
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
@@ -42,7 +43,7 @@
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
                         <StackPanel>
-                            <TextBlock Text="Available Opponents" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSelectOpponents 1001'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                             <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"  ItemsSource="{Binding Opponents,ElementName=pageSelectOpponents}" >
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>

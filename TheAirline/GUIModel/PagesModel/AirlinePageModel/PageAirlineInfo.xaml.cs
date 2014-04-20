@@ -55,6 +55,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             foreach (Airport airport in this.Airline.Airline.Airports.Where(a => a.Terminals.getFreeGates() > 0))
                 this.SubsidiaryAirports.Add(airport);
+
         }
 
         private void btnCreateSubsidiary_Click(object sender, RoutedEventArgs e)
@@ -64,7 +65,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             Airport airport = (Airport)cbAirport.SelectedItem;
             string color = ((PropertyInfo)cbColor.SelectedItem).Name;
             Route.RouteType focus = rbPassengerType.IsChecked.Value ? Route.RouteType.Passenger : Route.RouteType.Cargo;
-            
+
             string pattern = @"^[A-Za-z0-9]+$";
             Regex regex = new Regex(pattern);
 

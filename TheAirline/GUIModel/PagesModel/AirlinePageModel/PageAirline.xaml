@@ -113,6 +113,7 @@
                 </TabItem>
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 2004'}" Tag="Finances">
                 </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 2006'}" Tag="Airliners" Visibility="Collapsed"></TabItem>
             </TabControl>
         </DataTemplate>
         <DataTemplate x:Key="AirlineContent">

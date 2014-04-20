@@ -256,6 +256,9 @@ namespace TheAirline.Model.GeneralModel
         //returns a temporary country which a country is a part of
         public static TemporaryCountry GetTemporaryCountry(Country country,DateTime date)
         {
+            if (country == null)
+                return null;
+
             TemporaryCountry tCountry = tCountries.Find(c => c.StartDate<date && c.EndDate>date && (c.CountryBefore == country || c.CountryAfter == country || c.Countries.Find(tc=>tc.Country.Uid==country.Uid)!=null));
             return tCountry;
         }

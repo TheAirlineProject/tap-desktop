@@ -260,6 +260,7 @@ namespace TheAirline.Model.AirlinerModel
         {
             lock (airliners)
             {
+              
                 //if (airliners.Exists(a => a.ID == airliner.ID))
                 //  throw new Exception("Airliner element already exists exception");
 
@@ -295,4 +296,5 @@ namespace TheAirline.Model.AirlinerModel
 
 
     }
+    
 }

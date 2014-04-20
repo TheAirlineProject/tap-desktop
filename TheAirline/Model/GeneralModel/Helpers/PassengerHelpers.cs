@@ -38,6 +38,7 @@ namespace TheAirline.Model.GeneralModel
         //adds happiness to an airline
         public static void AddPassengerHappiness(Airline airline)
         {
+            /*
             lock (HappinessPercent)
             {
                 if (HappinessPercent.ContainsKey(airline))
@@ -45,6 +46,7 @@ namespace TheAirline.Model.GeneralModel
                 else
                     HappinessPercent.Add(airline, 1);
             }
+             * */
         }
 
         // chs, 2011-13-10 added for loading of passenger happiness
@@ -309,7 +311,7 @@ namespace TheAirline.Model.GeneralModel
 
             double reputationPercent = reputation / 100;
             
-            double routePriceDiff = priceDiff < 0.5 ? priceDiff : 1;
+            double routePriceDiff = priceDiff < 0.75 ? priceDiff : 1;
 
             routePriceDiff *= GameObject.GetInstance().Difficulty.PriceLevel;
 
@@ -448,6 +450,7 @@ namespace TheAirline.Model.GeneralModel
 
             double flightsPerDay = Convert.ToDouble(routes.Sum(r => r.TimeTable.Entries.Count)) / 7;
 
+                
             cargoDemand = cargoDemand / flightsPerDay;
 
             double totalCapacity = 0;
@@ -458,12 +461,18 @@ namespace TheAirline.Model.GeneralModel
 
             double capacityPercent = cargoDemand > totalCapacity ? 1 : cargoDemand / totalCapacity;
 
+              double basicCargoPrice = GetCargoPrice(airportCurrent, airportDestination);
+            double cargoPrice = airliner.CurrentFlight.getCargoPrice(); 
+
+            double priceDiff = basicCargoPrice / cargoPrice;
+
+            double cargoPriceDiff = priceDiff < 0.75 ? priceDiff : 1;
+
+            cargoPriceDiff *= GameObject.GetInstance().Difficulty.PriceLevel;
+      
             double randomCargo = Convert.ToDouble(rnd.Next(97, 103)) / 100;
 
-            int cargo = (int)Math.Min(capacity, (capacity * capacityPercent * randomCargo));
-
-            if (cargo < 0)
-                totalCapacity = 100;
+            int cargo = (int)Math.Min(capacity, (capacity * capacityPercent * randomCargo * cargoPriceDiff));
 
             return cargo;
         }
@@ -503,9 +512,9 @@ namespace TheAirline.Model.GeneralModel
         {
             double dist = MathHelpers.GetDistance(dest1, dest2);
 
-            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0078);
+            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0081);
 
-            return ticketPrice * 2;
+            return ticketPrice;// *2;
         }
 
         //returns the suggested passenger price for a route
@@ -513,7 +522,7 @@ namespace TheAirline.Model.GeneralModel
         {
             double dist = MathHelpers.GetDistance(dest1, dest2);
 
-            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0078);
+            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0084);
 
             double minimumTicketPrice = GeneralHelpers.GetInflationPrice(18);
 

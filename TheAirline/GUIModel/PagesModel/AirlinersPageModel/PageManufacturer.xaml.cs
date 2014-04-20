@@ -68,7 +68,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         {
             AirlinerType type = (AirlinerType)((Button)sender).Tag;
 
-            this.Orders.addOrder(new AirlinerOrderMVVM(type));
+            this.Orders.addOrder(new AirlinerOrderMVVM(type,this.Orders));
         }
        
         private void btnRemoveFromOrder_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -37,9 +37,7 @@ namespace TheAirline
             System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairline.log");
             file.WriteLine("{0}: {1} {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), e.ExceptionObject.ToString());
             file.WriteLine("---------GAME INFORMATION----------");
-            file.WriteLine("Gametime: {0}, human airline: {1}",GameObject.GetInstance().GameTime.ToShortDateString(),GameObject.GetInstance().HumanAirline.Profile.Name);
-            
-            
+            file.Write("Gametime: {0}, human airline: {1}",GameObject.GetInstance().GameTime.ToShortDateString(),GameObject.GetInstance().HumanAirline.Profile.Name);
             file.Close();
         }
     }

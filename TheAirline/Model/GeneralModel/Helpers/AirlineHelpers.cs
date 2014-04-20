@@ -67,7 +67,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static FleetAirliner BuyAirliner(Airline airline, Airliner airliner, Airport airport, double discount)
         {
-            FleetAirliner fAirliner = AddAirliner(airline, airliner, airport);
+            FleetAirliner fAirliner = AddAirliner(airline, airliner, airport,false);
 
             double price = airliner.getPrice() * ((100 - discount) / 100);
 
@@ -76,13 +76,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return fAirliner;
 
         }
-        public static FleetAirliner AddAirliner(Airline airline, Airliner airliner, Airport airport)
+        public static FleetAirliner AddAirliner(Airline airline, Airliner airliner, Airport airport, Boolean leased)
         {
 
             if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
-                airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
-
-            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airport);
+            {
+                lock (airline.Profile.Country.TailNumbers)
+                {
+                    airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
+                }
+            }
+            
+            FleetAirliner fAirliner = new FleetAirliner(leased ? FleetAirliner.PurchasedType.Leased : FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airport);
 
             airline.addAirliner(fAirliner);
 
@@ -261,7 +266,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airline.Airline = null;
 
-            airline.Profile.CEO = string.Format("{0} {1}", Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName());
+            airline.Profile.CEO = string.Format("{0} {1}", Names.GetInstance().getRandomFirstName(airline.Profile.Country), Names.GetInstance().getRandomLastName(airline.Profile.Country));
 
             if (!Airlines.ContainsAirline(airline))
                 Airlines.AddAirline(airline);
@@ -382,7 +387,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (pilots.Count == 0)
                     pilots = Pilots.GetUnassignedPilots();
 
-                Pilot pilot = pilots.OrderByDescending(p => p.Rating).First();
+                Pilot pilot = pilots.OrderByDescending(p => p.Rating.CostIndex).First();
 
                 if (pilot != null)
                 {

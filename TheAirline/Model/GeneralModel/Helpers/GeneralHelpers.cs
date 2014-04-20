@@ -275,33 +275,72 @@ namespace TheAirline.Model.GeneralModel
             }
             
         }
-        //creates the pilot ranking for a pilot student
-        public static Pilot.PilotRating GetPilotStudentRanking(PilotStudent student)
+        //creates the rating for a pilot student
+        public static PilotRating GetPilotStudentRating(Instructor instructor, List<PilotRating> ratings)
         {
-          
-          
-            Pilot.PilotRating instructorRanking = student.Instructor.Rating;
-            int aircraftCoeff = student.Instructor.FlightSchool.TrainingAircrafts.Exists(a => a.Type.MaxNumberOfStudents > 5) ? 10 : 0;
+            PilotRating instructorRanking = instructor.Rating;
+            int aircraftCoeff = instructor.FlightSchool.TrainingAircrafts.Exists(a => a.Type.MaxNumberOfStudents > 5) ? 10 : 0;
 
-            int instructorRankingIndex = Array.IndexOf(Enum.GetValues(typeof(Pilot.PilotRating)), instructorRanking);
-            Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
+            int instructorRankingIndex = PilotRatings.GetRatings().IndexOf(instructorRanking);
+            Dictionary<PilotRating, int> rankings = new Dictionary<PilotRating, int>();
+            
+            if (ratings.Contains(instructorRanking))
+                rankings.Add(instructorRanking, 50);
+
+            if (instructorRankingIndex > 0)
+            {
+                PilotRating prevRating = PilotRatings.GetRatings()[instructorRankingIndex - 1];
+
+                if (ratings.Contains(prevRating))
+                    rankings.Add(prevRating, 35 - aircraftCoeff);
+            }
+            if (instructorRankingIndex < PilotRatings.GetRatings().Count -1)
+            {
+                PilotRating nextRating = PilotRatings.GetRatings()[instructorRankingIndex + 1];
+
+                if (ratings.Contains(nextRating))
+                    rankings.Add(nextRating, 15 + aircraftCoeff);
+            }
+
+            if (rankings.Count == 0)
+            {
+                ratings.ForEach(r => rankings.Add(r, 20 - r.CostIndex));
+            }
+
+            PilotRating rating = AIHelpers.GetRandomItem<PilotRating>(rankings);
+
+            return rating;
+        }
+        //creates the pilot rating for a pilot student
+        public static PilotRating GetPilotStudentRating(Instructor instructor)
+        {
+            PilotRating instructorRanking = instructor.Rating;
+            int aircraftCoeff = instructor.FlightSchool.TrainingAircrafts.Exists(a => a.Type.MaxNumberOfStudents > 5) ? 10 : 0;
+
+            int instructorRankingIndex = PilotRatings.GetRatings().IndexOf(instructorRanking);
+            Dictionary<PilotRating, int> rankings = new Dictionary<PilotRating, int>();
             rankings.Add(instructorRanking, 50);
 
             if (instructorRankingIndex > 0)
             {
-                Pilot.PilotRating prevRating = (Pilot.PilotRating)Enum.GetValues(typeof(Pilot.PilotRating)).GetValue(instructorRankingIndex-1);
+                PilotRating prevRating = PilotRatings.GetRatings()[instructorRankingIndex - 1];
                 rankings.Add(prevRating, 35 - aircraftCoeff);
             }
-            if (instructorRankingIndex < Enum.GetValues(typeof(Pilot.PilotRating)).Length - 1)
+            if (instructorRankingIndex < PilotRatings.GetRatings().Count)
             {
-                Pilot.PilotRating nextRating = (Pilot.PilotRating)Enum.GetValues(typeof(Pilot.PilotRating)).GetValue(instructorRankingIndex + 1);
-         
+                PilotRating nextRating = PilotRatings.GetRatings()[instructorRankingIndex + 1];
+
                 rankings.Add(nextRating, 15 + aircraftCoeff);
             }
 
-            Pilot.PilotRating rating = AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
+            PilotRating rating = AIHelpers.GetRandomItem<PilotRating>(rankings);
 
             return rating;
+        }
+        //creates the pilot rating for a pilot student
+        public static PilotRating GetPilotStudentRating(PilotStudent student)
+        {
+            return GetPilotStudentRating(student.Instructor);
         }
         //creates a number of pilots
         public static void CreatePilots(int count)
@@ -315,25 +354,31 @@ namespace TheAirline.Model.GeneralModel
                 Town town = towns[rnd.Next(towns.Count)];
                 DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-Pilot.RetirementAge), GameObject.GetInstance().GameTime.AddYears(-23));
                 
-                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
-          
-                Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
-                rankings.Add(Pilot.PilotRating.A, 10);
-                rankings.Add(Pilot.PilotRating.B, 20);
-                rankings.Add(Pilot.PilotRating.C, 40);
-                rankings.Add(Pilot.PilotRating.D, 20);
-                rankings.Add(Pilot.PilotRating.E, 10);
+                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(town.Country), Names.GetInstance().getRandomLastName(town.Country), birthdate, town);
 
-                Pilot.PilotRating ranking = AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
+                PilotRating rating = GetPilotRating();
 
                 int fromYear = Math.Min(GameObject.GetInstance().GameTime.Year - 1, birthdate.AddYears(23).Year);
                 int toYear = Math.Min(GameObject.GetInstance().GameTime.Year, birthdate.AddYears(Pilot.RetirementAge).Year);
 
                 DateTime educationTime = MathHelpers.GetRandomDate(birthdate.AddYears(23), new DateTime(toYear, 1, 1));
-                Pilot pilot = new Pilot(profile, educationTime, ranking);
+                Pilot pilot = new Pilot(profile, educationTime, rating);
 
                 Pilots.AddPilot(pilot);
             }
+        }
+        //returns a rating for a pilot
+        public static PilotRating GetPilotRating()
+        {
+            Dictionary<PilotRating, int> ratings = new Dictionary<PilotRating, int>();
+            ratings.Add(PilotRatings.GetRating("A"), 10);
+            ratings.Add(PilotRatings.GetRating("B"), 20);
+            ratings.Add(PilotRatings.GetRating("C"), 40);
+            ratings.Add(PilotRatings.GetRating("D"), 20);
+            ratings.Add(PilotRatings.GetRating("E"), 10);
+
+            return AIHelpers.GetRandomItem<PilotRating>(ratings);
+
         }
         //creates a number of instructors
         public static void CreateInstructors(int count)
@@ -345,16 +390,16 @@ namespace TheAirline.Model.GeneralModel
             {
                 Town town = towns[rnd.Next(towns.Count)];
                 DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-Pilot.RetirementAge), GameObject.GetInstance().GameTime.AddYears(-23));
-                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
+                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(town.Country), Names.GetInstance().getRandomLastName(town.Country), birthdate, town);
 
-                Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
-                rankings.Add(Pilot.PilotRating.A, 10);
-                rankings.Add(Pilot.PilotRating.B, 20);
-                rankings.Add(Pilot.PilotRating.C, 40);
-                rankings.Add(Pilot.PilotRating.D, 20);
-                rankings.Add(Pilot.PilotRating.E, 10);
+                Dictionary<PilotRating, int> rankings = new Dictionary<PilotRating, int>();
+                rankings.Add(PilotRatings.GetRating("A"), 10);
+                rankings.Add(PilotRatings.GetRating("B"), 20);
+                rankings.Add(PilotRatings.GetRating("C"), 40);
+                rankings.Add(PilotRatings.GetRating("D"), 20);
+                rankings.Add(PilotRatings.GetRating("E"), 10);
 
-                Pilot.PilotRating ranking = AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
+                PilotRating ranking = AIHelpers.GetRandomItem<PilotRating>(rankings);
 
                 Instructor instructor = new Instructor(profile, ranking);
 

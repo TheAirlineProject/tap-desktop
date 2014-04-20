@@ -47,7 +47,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.AirlineScores.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1012"), this.Airline.Airline.OverallScore));
             this.AirlineScores.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1013"), this.Airline.Airline.Reputation));
             this.AirlineScores.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1014"), (int)StatisticsHelpers.GetOnTimePercent(this.Airline.Airline)));
-            this.AirlineScores.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1015"), (int)StatisticsHelpers.GetAirlineFillAverage(this.Airline.Airline)));
+            this.AirlineScores.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1015"), (int)(StatisticsHelpers.GetAirlineFillAverage(this.Airline.Airline)*100)));
 
             this.AirlineStatistics.Add(new AirlineStatisticsMVVM(this.Airline.Airline, StatisticsTypes.GetStatisticsType("Passengers")));
             this.AirlineStatistics.Add(new AirlineStatisticsMVVM(this.Airline.Airline, StatisticsTypes.GetStatisticsType("Passengers%")));

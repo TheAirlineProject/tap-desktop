@@ -68,12 +68,14 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             Boolean hasCheckin = this.Airport.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
             AirportContract.ContractType contractType = (AirportContract.ContractType)cbContractType.SelectedItem;
-            
+
+            Boolean autoRenew = cbAutoRenew.IsChecked.Value;
+
             double yearlyPayment = AirportHelpers.GetYearlyContractPayment(this.Airport.Airport,contractType, gates, length);
           
             Boolean payFull = length <= 2;
 
-            AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, this.Airport.Airport, contractType, GameObject.GetInstance().GameTime, gates, length, yearlyPayment, payFull);
+            AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, this.Airport.Airport, contractType, GameObject.GetInstance().GameTime, gates, length, yearlyPayment,autoRenew, payFull);
 
             if (!hasCheckin && contractType == AirportContract.ContractType.Full)
             {
@@ -209,13 +211,21 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             ContractMVVM tContract = (ContractMVVM)((Button)sender).Tag;
 
+            AirportContract contract = new AirportContract(tContract.Contract.Airline,tContract.Contract.Airport,tContract.Contract.Type,tContract.Contract.ContractDate,tContract.Contract.NumberOfGates,tContract.Contract.Length,tContract.Contract.YearlyPayment,tContract.Contract.AutoRenew);
 
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2228"), string.Format(Translator.GetInstance().GetString("MessageBox", "2228", "message"), 2), WPFMessageBoxButtons.YesNo);
-            
-            if (result == WPFMessageBoxResult.Yes)
+            object o = PopUpExtendContract.ShowPopUp(contract);
+
+            if (o != null)
             {
-                tContract.extendContract(2);
+                AirportContract nContract = (AirportContract)o;
+
+                tContract.setNumberOfGates(nContract.NumberOfGates);
+                tContract.setExpireDate(nContract.ExpireDate);
+                tContract.Contract.AutoRenew = nContract.AutoRenew;
+
+
             }
+            
         }
 
         private void btnSellTerminal_Click(object sender, RoutedEventArgs e)
@@ -306,7 +316,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
                 double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport,contractType, gates, 2);
 
-                AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, airport, contractType, GameObject.GetInstance().GameTime, gates, 2, yearlyPayment);
+                AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, airport, contractType, GameObject.GetInstance().GameTime, gates, 2, yearlyPayment,true);
 
                 AirportHelpers.AddAirlineContract(contract);
 

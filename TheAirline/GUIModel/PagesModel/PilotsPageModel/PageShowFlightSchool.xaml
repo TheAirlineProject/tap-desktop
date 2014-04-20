@@ -35,12 +35,12 @@
                             </g:QuickInfoValue>
                             <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1001'}">
                                 <g:QuickInfoValue.Value>
-                                    <TextBlock Width="200" Text="{Binding FlightSchool.FlightSchool.Instructors.Count,ElementName=pageShowFlightSchool}" VerticalAlignment="Bottom"></TextBlock>
+                                    <TextBlock Width="200" Text="{Binding FlightSchool.NumberOfInstructors,ElementName=pageShowFlightSchool}" VerticalAlignment="Bottom"></TextBlock>
                                 </g:QuickInfoValue.Value>
                             </g:QuickInfoValue>
                             <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1002'}">
                                 <g:QuickInfoValue.Value>
-                                    <TextBlock Width="200" Text="{Binding FlightSchool.FlightSchool.Students.Count,ElementName=pageShowFlightSchool}" VerticalAlignment="Bottom"></TextBlock>
+                                    <TextBlock Width="200" Text="{Binding FlightSchool.NumberOfStudents,ElementName=pageShowFlightSchool}" VerticalAlignment="Bottom"></TextBlock>
                                 </g:QuickInfoValue.Value>
                             </g:QuickInfoValue>
                         </ListBox>
@@ -110,10 +110,10 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1008'}" Width="50" util:GridViewSort.PropertyName="Rating">
+                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1008'}" Width="50" util:GridViewSort.PropertyName="Rating.Name">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Rating}" VerticalAlignment="Bottom"></TextBlock>
+                                                <TextBlock Text="{Binding Rating.Name}" VerticalAlignment="Bottom"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -131,9 +131,19 @@
                 </Border>
                 <Border Style="{StaticResource RoundedBorderStyle}" Margin="5 5 5 5">
                     <StackPanel>
+                        
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1010'}" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView VerticalAlignment="Stretch" x:Name="lvStudents" util:GridViewSort.AutoSort="True" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Students}">
-                        <ListView.View>
+                            <ListView.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Students.Count}" Value="0">
+                                            <Setter Property="ListView.Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListView.Style>
+                                <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="">
                                     <GridViewColumn.CellTemplate>
@@ -162,7 +172,9 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1002'}" Width="150" util:GridViewSort.PropertyName="Instructor.Profile.Name">
+                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1008'}" Width="50" util:GridViewSort.PropertyName="Rating.Name" DisplayMemberBinding="{Binding Rating.Name}">
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1012'}" Width="150" util:GridViewSort.PropertyName="Instructor.Profile.Name">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock VerticalAlignment="Bottom">

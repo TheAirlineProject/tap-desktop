@@ -21,12 +21,15 @@ namespace TheAirline.Model.PilotModel
         public DateTime EndDate { get; set; }
         [Versioning("instructor")]
         public Instructor Instructor { get; set; }
+        [Versioning("rating")]
+        public PilotRating Rating { get; set; }
         public const double StudentCost = 33381.69;
-        public PilotStudent(PilotProfile profile, DateTime startDate, Instructor instructor)
+        public PilotStudent(PilotProfile profile, DateTime startDate, Instructor instructor, PilotRating rating)
         {
+            this.Rating = rating;
             this.Profile = profile;
             this.StartDate = startDate;
-            this.EndDate = this.StartDate.AddDays(90);
+            this.EndDate = this.StartDate.AddDays(this.Rating.TrainingDays);
             this.Instructor = instructor;
          }
             private PilotStudent(SerializationInfo info, StreamingContext ctxt)
@@ -68,13 +71,17 @@ namespace TheAirline.Model.PilotModel
 
                 }
 
+                if (version == 1)
+                {
+                    this.Rating = GeneralHelpers.GetPilotStudentRating(this);
+                }
             }
 
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 

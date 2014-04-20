@@ -56,13 +56,13 @@ namespace TheAirline.Model.AirlineModel
         public AirlineProfile Profile { get; set; }
 
           [Versioning("routes")]
-          private List<Route> _Routes;
+          public List<Route> _Routes {get;set;}
         public List<Route> Routes { get { return getRoutes(); } set { this._Routes = value; } }
 
         [Versioning("facilities")]
         public List<AirlineFacility> Facilities { get; set; }
         [Versioning("advertisements")]
-        private Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType> Advertisements;
+        public Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType> Advertisements {get;set;}
         [Versioning("statistics")]
         public GeneralStatistics Statistics { get; set; }
         [Versioning("money")]
@@ -72,7 +72,7 @@ namespace TheAirline.Model.AirlineModel
         public Boolean IsHuman { get { return isHuman(); } set { ;} }
         public Boolean IsSubsidiary { get { return isSubsidiaryAirline(); } set { ;} }
         [Versioning("invoices")]
-        private Invoices Invoices;
+        public Invoices Invoices {get;set;}
         [Versioning("fees")]
         public AirlineFees Fees { get; set; }
         [Versioning("loans")]
@@ -125,7 +125,7 @@ namespace TheAirline.Model.AirlineModel
             this.Shares = new List<AirlineShare>();
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
-            this._Routes = new List<Route>();
+            this.Routes = new List<Route>();
             this.FutureAirlines = new List<FutureSubsidiaryAirline>();
             this.Subsidiaries = new List<SubsidiaryAirline>();
             this.Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
@@ -234,14 +234,16 @@ namespace TheAirline.Model.AirlineModel
         //get routes for the airline
         private List<Route> getRoutes()
         {
-
-            List<Route> routes;
+          
+            var routes = new List<Route>();
             lock (this._Routes)
             {
                 routes = new List<Route>(this._Routes);
             }
 
             return routes;
+           
+          
         }
        
         //adds an alliance to the airline
@@ -722,6 +724,15 @@ namespace TheAirline.Model.AirlineModel
                 {
                    AirlineHelpers.CreateStandardAirlineShares(this,100);
                 }
+                if (version < 4)
+                {
+                    this.Routes = new List<Route>();
+                    this.Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
+                    createStandardAdvertisement();
+                }
+
+                if (this.Invoices == null)
+                    this.Invoices = new Invoices();
             }
             catch (Exception e)
             {
@@ -731,7 +742,7 @@ namespace TheAirline.Model.AirlineModel
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 3);
+            info.AddValue("version", 4);
 
             Type myType = this.GetType();
 
@@ -779,13 +790,7 @@ namespace TheAirline.Model.AirlineModel
         //returns all airlines
         public static List<Airline> GetAllAirlines()
         {
-            List<Airline> tAirlines;
-            lock (airlines)
-            {
-                tAirlines = new List<Airline>(airlines);
-            }
-
-            return tAirlines;
+            return airlines;
         }
         //returns the number of airlines
         public static int GetNumberOfAirlines()

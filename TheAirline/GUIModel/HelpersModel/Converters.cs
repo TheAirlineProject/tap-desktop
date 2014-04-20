@@ -308,6 +308,7 @@ namespace TheAirline.GUIModel.HelpersModel
             }
             if (!(country is TemporaryCountry))
             {
+                
                 TemporaryCountry tempCountry = TemporaryCountries.GetTemporaryCountry(country, GameObject.GetInstance().GameTime);
 
                 if (tempCountry == null)
@@ -516,11 +517,11 @@ namespace TheAirline.GUIModel.HelpersModel
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             double v = Double.Parse(value.ToString());
-
+            
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
                 return string.Format("{0:0.00} {1}", v, new StringToLanguageConverter().Convert("l/seat/km"));
             else
-                return string.Format("{0:0.00} {1}", MathHelpers.LKMToMPG(v), new StringToLanguageConverter().Convert("l/seat/km"));
+                return string.Format("{0:0.000} {1}", MathHelpers.LSeatKMToGSeatM(v), new StringToLanguageConverter().Convert("l/seat/km"));
             }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

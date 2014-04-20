@@ -16,14 +16,18 @@ namespace TheAirline.Model.PilotModel
         [Versioning("name")]
         public string Name { get; set; }
         [Versioning("price")]
-        private double APrice;
+        public double APrice {get;set;}
         public double Price { get{return GeneralHelpers.GetInflationPrice(this.APrice);} private set { ;} }
         [Versioning("maxstudents")]
         public int MaxNumberOfStudents { get; set; }
-        public TrainingAircraftType(string name, double price, int maxnumberofstudents)
+           [Versioning("level")]
+        public int TypeLevel { get; set; }
+    
+        public TrainingAircraftType(string name, double price, int maxnumberofstudents,int typelevel)
         {
             this.Name = name;
             this.APrice = price;
+            this.TypeLevel = typelevel;
             this.MaxNumberOfStudents = maxnumberofstudents;
         }
             private TrainingAircraftType(SerializationInfo info, StreamingContext ctxt)

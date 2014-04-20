@@ -189,6 +189,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpExtendContract.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpInviteAlliance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -241,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineEditAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineFleet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -274,6 +282,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageAirlinersHumanFleet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -552,6 +564,9 @@
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpCompareAirports.xaml.cs">
       <DependentUpon>PopUpCompareAirports.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpExtendContract.xaml.cs">
+      <DependentUpon>PopUpExtendContract.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpInviteAlliance.xaml.cs">
       <DependentUpon>PopUpInviteAlliance.xaml</DependentUpon>
     </Compile>
@@ -598,6 +613,9 @@
     <Compile Include="GUIModel\ObjectsModel\GUIObject.cs" />
     <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
     <Compile Include="GUIModel\PagesModel\AirlinePageModel\AirlineMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineEditAirliners.xaml.cs">
+      <DependentUpon>PageAirlineEditAirliners.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineFleet.xaml.cs">
       <DependentUpon>PageAirlineFleet.xaml</DependentUpon>
     </Compile>
@@ -625,6 +643,9 @@
     <Compile Include="GUIModel\PagesModel\AirlinersPageModel\AirlinersMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageAirliners.xaml.cs">
       <DependentUpon>PageAirliners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageAirlinersHumanFleet.xaml.cs">
+      <DependentUpon>PageAirlinersHumanFleet.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageManufacturer.xaml.cs">
       <DependentUpon>PageManufacturer.xaml</DependentUpon>
@@ -948,6 +969,7 @@
     <Compile Include="Model\PilotModel\Instructor.cs" />
     <Compile Include="Model\PilotModel\Pilot.cs" />
     <Compile Include="Model\PilotModel\PilotProfile.cs" />
+    <Compile Include="Model\PilotModel\PilotRating.cs" />
     <Compile Include="Model\PilotModel\PilotStudent.cs" />
     <Compile Include="Model\PilotModel\TrainingAircraft.cs" />
     <Compile Include="Model\PilotModel\TrainingAircraftType.cs" />
@@ -992,6 +1014,8 @@
       <Link>Data\languagefiles\language.zh-CN.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Data\languagefiles\language.it-IT.resx" />
+    <EmbeddedResource Include="Data\languagefiles\language.tr-TR.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

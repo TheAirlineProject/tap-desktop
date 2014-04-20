@@ -9,16 +9,16 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlinerModel
 {
-     
-     //the class for a type of airliner
+
+    //the class for a type of airliner
     [Serializable]
-  
+
     public abstract class AirlinerType : ISerializable
     {
         public double Maintenance { get { return getMaintenance(); } private set { ;} }
         [Versioning("name")]
         public string Name { get; set; }
-        [Versioning("isconvertable",Version=2)]
+        [Versioning("isconvertable", Version = 2)]
         public Boolean IsConvertable { get; set; }
         [Versioning("speed")]
         public double CruisingSpeed { get; set; }
@@ -39,8 +39,8 @@ namespace TheAirline.Model.AirlinerModel
         public int CockpitCrew { get; set; }
 
         [Versioning("price")]
-        public long APrice { get; set; }
-        public long Price { get { return Convert.ToInt64(GeneralHelpers.GetInflationPrice(this.APrice)); } set { this.APrice = value; } }
+        public long _APrice { get; set; }
+        public long Price { get { return Convert.ToInt64(GeneralHelpers.GetInflationPrice(this._APrice)); } set { this._APrice = value; } }
 
         [Versioning("produced")]
         public Period<DateTime> Produced { get; set; }
@@ -50,10 +50,10 @@ namespace TheAirline.Model.AirlinerModel
 
         [Versioning("manufacturer")]
         public Manufacturer Manufacturer { get; set; }
-        public enum BodyType {Narrow_Body, Single_Aisle,Wide_Body} 
-        public enum TypeRange {Regional, Short_Range, Medium_Range, Long_Range}
-        public enum EngineType {Jet, Turboprop}
-        public enum TypeOfAirliner { Passenger, Cargo, Mixed}
+        public enum BodyType { Narrow_Body, Single_Aisle, Wide_Body }
+        public enum TypeRange { Regional, Short_Range, Medium_Range, Long_Range }
+        public enum EngineType { Jet, Turboprop }
+        public enum TypeOfAirliner { Passenger, Cargo, Mixed }
         [Versioning("body")]
         public BodyType Body { get; set; }
         [Versioning("rangetype")]
@@ -75,7 +75,7 @@ namespace TheAirline.Model.AirlinerModel
         [Versioning("family")]
         public string AirlinerFamily { get; set; }
         public int Capacity { get { return getCapacity(); } private set { ;} }
-        public AirlinerType(Manufacturer manufacturer,TypeOfAirliner typeOfAirliner, string name,string family, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price,long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced,int prodRate,Boolean isConvertable, Boolean standardType)
+        public AirlinerType(Manufacturer manufacturer, TypeOfAirliner typeOfAirliner, string name, string family, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean isConvertable, Boolean standardType)
         {
             this.TypeAirliner = typeOfAirliner;
             this.AirlinerFamily = family;
@@ -98,7 +98,7 @@ namespace TheAirline.Model.AirlinerModel
             this.ProductionRate = prodRate;
             this.IsConvertable = isConvertable;
         }
-       
+
         //returns the yearly maintenance
         public long getMaintenance()
         {
@@ -117,7 +117,7 @@ namespace TheAirline.Model.AirlinerModel
         }
         //returns the capacity of the airliner
         public abstract int getCapacity();
-          protected AirlinerType(SerializationInfo info, StreamingContext ctxt)
+        protected AirlinerType(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -126,6 +126,7 @@ namespace TheAirline.Model.AirlinerModel
             foreach (SerializationEntry entry in info)
             {
                 PropertyInfo prop = props.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+
 
                 if (prop != null)
                     prop.SetValue(this, entry.Value);
@@ -149,7 +150,7 @@ namespace TheAirline.Model.AirlinerModel
                 else
                     this.IsConvertable = true;
             }
-      
+
 
         }
 
@@ -170,7 +171,7 @@ namespace TheAirline.Model.AirlinerModel
             }
 
         }
-       
+
     }
     //the class for a passenger airliner type
     [Serializable]
@@ -182,7 +183,8 @@ namespace TheAirline.Model.AirlinerModel
         public int CabinCrew { get; set; }
         [Versioning("maxclasses")]
         public int MaxAirlinerClasses { get; set; }
-        public AirlinerPassengerType(Manufacturer manufacturer, string name,string family, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate,Boolean isConvertable, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Passenger,name,family,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,isConvertable, standardType)
+        public AirlinerPassengerType(Manufacturer manufacturer, string name, string family, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean isConvertable, Boolean standardType = true)
+            : base(manufacturer, TypeOfAirliner.Passenger, name, family, cockpitcrew, speed, range, wingspan, length, consumption, price, minRunwaylength, fuelcapacity, body, rangeType, engine, produced, prodRate, isConvertable, standardType)
         {
             this.MaxSeatingCapacity = seating;
             this.CabinCrew = cabincrew;
@@ -193,7 +195,8 @@ namespace TheAirline.Model.AirlinerModel
         {
             return this.MaxSeatingCapacity;
         }
-          protected AirlinerPassengerType(SerializationInfo info, StreamingContext ctxt) : base(info,ctxt)
+        protected AirlinerPassengerType(SerializationInfo info, StreamingContext ctxt)
+            : base(info, ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -250,12 +253,14 @@ namespace TheAirline.Model.AirlinerModel
     {
         [Versioning("cargo")]
         public double CargoSize { get; set; }
-        public AirlinerCombiType(Manufacturer manufacturer, string name,string family, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate,double cargo,Boolean isConvertable, Boolean standardType = true) : base(manufacturer,name,family,seating,cockpitcrew,cabincrew,speed,range,wingspan,length,consumption,price,maxAirlinerClasses, minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,isConvertable, standardType)
+        public AirlinerCombiType(Manufacturer manufacturer, string name, string family, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, double cargo, Boolean isConvertable, Boolean standardType = true)
+            : base(manufacturer, name, family, seating, cockpitcrew, cabincrew, speed, range, wingspan, length, consumption, price, maxAirlinerClasses, minRunwaylength, fuelcapacity, body, rangeType, engine, produced, prodRate, isConvertable, standardType)
         {
             this.CargoSize = cargo;
             this.TypeAirliner = TypeOfAirliner.Mixed;
         }
-        private AirlinerCombiType(SerializationInfo info, StreamingContext ctxt) : base(info,ctxt)
+        private AirlinerCombiType(SerializationInfo info, StreamingContext ctxt)
+            : base(info, ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -312,7 +317,8 @@ namespace TheAirline.Model.AirlinerModel
     {
         [Versioning("cargo")]
         public double CargoSize { get; set; }
-        public AirlinerCargoType(Manufacturer manufacturer, string name,string family, int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate,Boolean isConvertable, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Cargo,name,family,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,isConvertable, standardType)
+        public AirlinerCargoType(Manufacturer manufacturer, string name, string family, int cockpitcrew, double cargoSize, double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean isConvertable, Boolean standardType = true)
+            : base(manufacturer, TypeOfAirliner.Cargo, name, family, cockpitcrew, speed, range, wingspan, length, consumption, price, minRunwaylength, fuelcapacity, body, rangeType, engine, produced, prodRate, isConvertable, standardType)
         {
             this.CargoSize = cargoSize;
         }
@@ -321,7 +327,8 @@ namespace TheAirline.Model.AirlinerModel
         {
             return (int)this.CargoSize;
         }
-          private AirlinerCargoType(SerializationInfo info, StreamingContext ctxt) : base(info,ctxt)
+        private AirlinerCargoType(SerializationInfo info, StreamingContext ctxt)
+            : base(info, ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -398,7 +405,7 @@ namespace TheAirline.Model.AirlinerModel
 
         }
     }
-  
+
     //the collection of airliner types
     public class AirlinerTypes
     {
@@ -427,7 +434,7 @@ namespace TheAirline.Model.AirlinerModel
         //returns a list of airliner types
         public static List<AirlinerType> GetTypes(Predicate<AirlinerType> match)
         {
-            return types.FindAll(t=>t.IsStandardType).FindAll(match);
+            return types.FindAll(t => t.IsStandardType).FindAll(match);
         }
         //returns all non standard airliner types
         public static List<AirlinerType> GetNonStandardTypes()

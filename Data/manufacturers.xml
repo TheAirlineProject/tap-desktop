@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <manufacturers>
   <manufacturer name="Aerospatiale" shortname="Aerospatiale" country="140"/>
   <manufacturer name="Airbus" shortname="Airbus" country="140"/>
@@ -7,6 +7,7 @@
   <manufacturer name="AVIC Xi'an Aircraft" shortname="Avic" country="148"/>
   <manufacturer name="Avions de Transport Régional" shortname="ATR" country="141"/>
   <manufacturer name="Beechcraft" shortname="Beechcraft" country="122"/>
+  <manufacturer name="Britten-Norman" shortname="BN" country="130"/>
   <manufacturer name="Britten-Norman" shortname="BN" country="130"/>
   <manufacturer name="Bombardier Aerospace" shortname="Bombardier" country="113"/>
   <manufacturer name="Bristol Aeroplane Company" shortname="Bristol" country="130"/>

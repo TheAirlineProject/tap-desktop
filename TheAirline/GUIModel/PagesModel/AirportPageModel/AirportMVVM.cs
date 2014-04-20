@@ -413,7 +413,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     {
         public AirportContract Contract { get; set; }
         public Airline Airline { get; set; }
-        public int NumberOfGates { get; set; }
+        private int _numberofgates;
+        public int NumberOfGates 
+        {
+            get { return _numberofgates; }
+            set { _numberofgates = value; NotifyPropertyChanged("NumberOfGates"); } 
+        }
         private int _monthsleft;
         public int MonthsLeft
         {
@@ -433,6 +438,20 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Contract.Length += years;
             this.Contract.ExpireDate = this.Contract.ExpireDate.AddYears(years);
             this.MonthsLeft = this.Contract.MonthsLeft;
+        }
+        //sets the number of gates
+        public void setNumberOfGates(int gates)
+        {
+            this.NumberOfGates = gates;
+            this.Contract.NumberOfGates = gates;
+            this.Contract.YearlyPayment = AirportHelpers.GetYearlyContractPayment(this.Contract.Airport,this.Contract.Type, gates, this.Contract.Length);
+        }
+        //sets the expire date
+        public void setExpireDate(DateTime expireDate)
+        {
+            int years = MathHelpers.CalculateAge(this.Contract.ExpireDate, expireDate);
+            extendContract(years);
+     
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

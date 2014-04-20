@@ -77,6 +77,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             if (selection == "New" && frmContent != null)
                 frmContent.Navigate(new PageNewAirliners() { Tag = this });
 
+            if (selection == "Fleet" && frmContent != null)
+                frmContent.Navigate(new PageAirlinersHumanFleet() { Tag = this });
+
 
         }
     }

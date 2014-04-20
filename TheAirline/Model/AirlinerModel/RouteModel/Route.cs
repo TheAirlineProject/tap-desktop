@@ -199,12 +199,19 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns all airliners assigned to the route
         public List<FleetAirliner> getAirliners()
         {
-            var entries = new List<RouteTimeTableEntry>(this.TimeTable.Entries);
+            var entries =  new List<RouteTimeTableEntry>(this.TimeTable.Entries);
+           /*
             List<FleetAirliner> mainEntries = (from e in entries where e!=null && e.MainEntry != null && e.MainEntry.Airliner != null select e.MainEntry.Airliner).Distinct().ToList();
             List<FleetAirliner> allAirliners = (from e in entries where e!=null && e.Airliner != null select e.Airliner).Distinct().ToList();
             allAirliners.AddRange(mainEntries);
+            */
 
-            return allAirliners;
+            var tx = entries.Where(e => e != null && e.Airliner != null).Select(e => e.Airliner);
+            var tMain = entries.Where(e => e != null && e.MainEntry != null && e.MainEntry.Airliner != null).Select(e => e.MainEntry.Airliner).Distinct();
+
+            var tAll = tx.Union(tMain);
+
+            return tAll.ToList();
         }
         //returns the current airliner on the route
         public FleetAirliner getCurrentAirliner()

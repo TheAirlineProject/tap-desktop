@@ -127,7 +127,7 @@ namespace TheAirline.Model.GeneralModel
 
                 if (prevInflation == null)
                     prevInflation = inflations.Last();
-                
+             
                 Inflation newInflation = new Inflation(year, prevInflation.FuelPrice * inflationPercent, rndInflation, prevInflation.Modifier * inflationPercent);
                 Inflations.AddInflationYear(newInflation);
 
