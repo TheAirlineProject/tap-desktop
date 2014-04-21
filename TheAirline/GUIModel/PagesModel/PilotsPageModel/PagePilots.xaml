@@ -44,7 +44,14 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
-                </GridView>
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1009'}" Width="400"  SortPropertyName="Aircrafts"  CanFilter="False">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Aircrafts}"/>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </filter:SortableGridViewColumn>
+            </GridView>
             </ListView.View>
         </filter:FilterableListView>
 

@@ -445,7 +445,7 @@
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{Binding Text}" Grid.Column="0" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Bottom"/>
+            <TextBlock Text="{Binding Text}" Grid.Column="0" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top"/>
             <ContentControl Grid.Column="1" HorizontalAlignment="Left" Content="{Binding Value}" VerticalAlignment="Bottom"></ContentControl>
         </Grid>
     </DataTemplate>

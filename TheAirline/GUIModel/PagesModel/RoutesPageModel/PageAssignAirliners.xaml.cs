@@ -172,18 +172,22 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     {
                         while (airliner.Airliner.Airliner.Type.CockpitCrew > airliner.Airliner.NumberOfPilots)
                         {
-                            var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == airliner.Airliner.Airliner.Airline.Profile.Country);
+                            var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == airliner.Airliner.Airliner.Airline.Profile.Country && p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
 
                             if (pilots.Count == 0)
-                                pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == airliner.Airliner.Airliner.Airline.Profile.Country.Region);
+                                pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == airliner.Airliner.Airliner.Airline.Profile.Country.Region && p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
 
-                            if (pilots.Count == 0)
-                                pilots = Pilots.GetUnassignedPilots();
+                             if (pilots.Count == 0)
+                             {
+                                        GeneralHelpers.CreatePilots(4, airliner.Airliner.Airliner.Type.AirlinerFamily);
+                                        pilots = Pilots.GetUnassignedPilots(p=>p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
+                                       
+                              }
 
-                            if (pilots.Count == 0)
+                            if (pilots.Count < 5)
                             {
                                 GeneralHelpers.CreatePilots(50);
-                                pilots = Pilots.GetUnassignedPilots();
+                           
                             }
 
 

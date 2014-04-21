@@ -88,7 +88,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1006'}" Width="200" util:GridViewSort.PropertyName="Profile.Name">
+                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1006'}" Width="150" util:GridViewSort.PropertyName="Profile.Name">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Name}"/>
@@ -116,7 +116,22 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-
+                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1013'}" Width="200" util:GridViewSort.PropertyName="Aircrafts">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Aircrafts}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button VerticalAlignment="Bottom" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Background="Transparent" Click="btnTrainPilot_Click" Width="20" Tag="{Binding}">
+                                                    <Image Source="/data/images/school.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                                </Button>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>

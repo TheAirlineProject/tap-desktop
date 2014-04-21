@@ -419,6 +419,19 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             }
         }
     }
+    //the mvvm object for a pilot training facility
+    public class PilotTrainingMVVM
+    {
+        public string Family { get; set; }
+        public int TrainingDays { get; set; }
+        public double Price { get; set; }
+        public PilotTrainingMVVM(string family, int traningdays, double price)
+        {
+            this.Family = family;
+            this.TrainingDays = traningdays;
+            this.Price = price;
+        }
+    }
     //the mvvm object for airline facilities
     public class AirlineFacilityMVVM : INotifyPropertyChanged
     {

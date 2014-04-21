@@ -123,6 +123,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
                        this.Airport.addAirlineFacility(facility);
 
+
+                       object o = cbNextFacility.SelectedItem;
+                       cbNextFacility.SelectedIndex = cbNextFacility.SelectedIndex == cbNextFacility.Items.Count - 1 ? 0 : (cbNextFacility.SelectedIndex+1);
+
+                       cbNextFacility.SelectedItem = o;
+
                    }
                }
            }

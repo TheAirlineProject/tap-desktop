@@ -135,6 +135,12 @@ namespace TheAirline.Model.GeneralModel
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
             /*
+            var aircraftFamilies = AirlinerTypes.GetAllTypes().Select(a => a.AirlinerFamily).Distinct();
+
+            foreach (string family in aircraftFamilies)
+                Console.WriteLine(family);
+
+            /*
             var airlineRegionGroups =
                 from a in Airlines.GetAllAirlines()
                 group a by a.Profile.Country.Region into g

@@ -665,29 +665,30 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             Airport airport = (Airport)values[1];
 
             AirlineAirportFacility currentFacility = airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type);
+            Boolean isDelivered = currentFacility.FinishedDate < GameObject.GetInstance().GameTime;
 
             List<AirportFacility> facilities = AirportFacilities.GetFacilities(type);
             facilities = facilities.OrderBy(f=>f.TypeLevel).ToList();
           
             int index = facilities.FindIndex(f=>currentFacility.Facility == f);
-
+            
             if (parameter.ToString() == "Name")
             {
-                if (index < facilities.Count - 1)
+                if (index < facilities.Count - 1 & isDelivered)
                     return facilities[index + 1].Name;
                 else
                     return "None";
             }
             if (parameter.ToString() == "Price")
             {
-                if (index < facilities.Count - 1)
+                if (index < facilities.Count - 1 && isDelivered)
                     return new ValueCurrencyConverter().Convert(facilities[index + 1].Price);
                 else
                     return "-";
             }
             if (parameter.ToString() == "Employees")
             {
-                if (index < facilities.Count - 1)
+                if (index < facilities.Count - 1 && isDelivered)
                     return facilities[index + 1].NumberOfEmployees.ToString();
                 else
                     return "-";

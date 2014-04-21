@@ -259,6 +259,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return true;
         }
+        //returns if the airline has training facilities for a specific airliner family
+        public static Boolean HasTrainingFacility(Airline airline, string airlinerfamily)
+        {
+            var facilities = airline.Facilities.Where(f => f is PilotTrainingFacility);
+
+            return facilities.SingleOrDefault(f => ((PilotTrainingFacility)f).AirlinerFamily == airlinerfamily) != null;
+        }
         //launches a subsidiary to operate on its own
         public static void MakeSubsidiaryAirlineIndependent(SubsidiaryAirline airline)
         {
@@ -379,15 +386,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             while (airliner.Airliner.Type.CockpitCrew > airliner.NumberOfPilots)
             {
-                var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == airliner.Airliner.Airline.Profile.Country);
+                var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == airliner.Airliner.Airline.Profile.Country && p.Aircrafts.Contains(airliner.Airliner.Type.AirlinerFamily));
 
                 if (pilots.Count == 0)
-                    pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == airliner.Airliner.Airline.Profile.Country.Region);
+                    pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == airliner.Airliner.Airline.Profile.Country.Region && p.Aircrafts.Contains(airliner.Airliner.Type.AirlinerFamily));
 
                 if (pilots.Count == 0)
-                    pilots = Pilots.GetUnassignedPilots();
+                    pilots = Pilots.GetUnassignedPilots(p=>p.Aircrafts.Contains(airliner.Airliner.Type.AirlinerFamily));
 
-                Pilot pilot = pilots.OrderByDescending(p => p.Rating.CostIndex).First();
+                if (pilots.Count == 0)
+                {
+                    GeneralHelpers.CreatePilots(4, airliner.Airliner.Type.AirlinerFamily);
+                    HireAirlinerPilots(airliner);
+                }
+
+                Pilot pilot = pilots.OrderByDescending(p => p.Rating.CostIndex).FirstOrDefault();
 
                 if (pilot != null)
                 {
@@ -402,6 +415,47 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
 
+        }
+        //returns the price for training a pilot
+        public static double GetTrainingPrice(Pilot pilot, string airlinerfamily)
+        {
+            double dayTrainingPrice = GeneralHelpers.GetInflationPrice(750);
+
+            int days = GetTrainingDays(pilot, airlinerfamily);
+
+            if (HasTrainingFacility(pilot.Airline, airlinerfamily))
+                return 0;
+            else
+                return days * dayTrainingPrice;
+        }
+        //returns the number of training days a pilot 
+        public static int GetTrainingDays(Pilot pilot, string airlinerfamily)
+        {
+            Manufacturer manufacturer = AirlinerTypes.GetTypes(t=>t.AirlinerFamily == airlinerfamily).Select(t=>t.Manufacturer).FirstOrDefault();
+
+            Boolean hasManufacturer = false;
+            if (manufacturer != null)
+            {
+                foreach (string family in pilot.Aircrafts)
+                {
+                    Manufacturer tManufacturer = AirlinerTypes.GetTypes(t => t.AirlinerFamily == family).Select(t => t.Manufacturer).FirstOrDefault();
+
+                    if (tManufacturer.ShortName == manufacturer.ShortName)
+                        hasManufacturer = true;
+                }
+            }
+
+            if (hasManufacturer)
+                return 2;
+            else
+                return 14;
+        }
+        //send a pilot for an airline on training
+        public static void SendForTraining(Airline airline, Pilot pilot,string airlinerfamily, int trainingdays, double price)
+        {
+            AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -price);
+
+            pilot.Training = new PilotTraining(airlinerfamily, GameObject.GetInstance().GameTime.AddDays(trainingdays));
         }
         //returns the discount factor for a manufactorer for an airline and for a period
         public static double GetAirlineManufactorerDiscountFactor(Airline airline, int length, Boolean forReputation)
@@ -807,6 +861,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return status;
 
+        }
+        //returns the salary for a pilot at an airline
+        public static double GetPilotSalary(Airline airline, Pilot pilot)
+        {
+             double pilotBasePrice = airline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));//GeneralHelpers.GetInflationPrice(133.53);<
+            
+             double pilotExperienceFee = pilot.Aircrafts.Count * GeneralHelpers.GetInflationPrice(20.3);
+
+            return pilot.Rating.CostIndex * pilotBasePrice + pilotExperienceFee;
+     
         }
     }
     //airline insurance helpers

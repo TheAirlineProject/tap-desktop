@@ -536,6 +536,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 }
 
+                var trainedPilots = airline.Pilots.Where(p => p.Training != null && p.Training.EndDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
+
+                foreach (Pilot pilot in trainedPilots)
+                {
+                   
+                    if (airline.IsHuman)
+                        GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1015"), string.Format(Translator.GetInstance().GetString("News", "1015", "message"), pilot.Profile.Name,pilot.Training.AirlinerFamily)));
+
+                    pilot.Training = null;
+
+                }
+                
+
             }
 
             );
@@ -769,10 +782,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             if (Pilots.GetNumberOfUnassignedPilots() == 0)
                                 GeneralHelpers.CreatePilots(10);
 
-                            Pilot newPilot = Pilots.GetUnassignedPilots().Find(p => p.Rating == pilot.Rating);
+                            Pilot newPilot = Pilots.GetUnassignedPilots().Find(p => p.Rating == pilot.Rating && p.Aircrafts.Contains(pilot.Airliner.Airliner.Type.AirlinerFamily));
 
                             if (newPilot == null)
-                                newPilot = Pilots.GetUnassignedPilots()[0];
+                            {
+                                GeneralHelpers.CreatePilots(4, pilot.Airliner.Airliner.Type.AirlinerFamily);
+                                newPilot = Pilots.GetUnassignedPilots(p=>p.Aircrafts.Contains(pilot.Airliner.Airliner.Type.AirlinerFamily))[0];
+                            }
 
                             airline.addPilot(newPilot);
 
@@ -812,13 +828,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                 else
                                 {
 
-                                    var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == pilot.Airliner.Airliner.Airline.Profile.Country);
+                                    var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == pilot.Airliner.Airliner.Airline.Profile.Country && p.Aircrafts.Contains(pilot.Airliner.Airliner.Type.AirlinerFamily));
 
                                     if (pilots.Count == 0)
-                                        pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == pilot.Airliner.Airliner.Airline.Profile.Country.Region);
+                                        pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == pilot.Airliner.Airliner.Airline.Profile.Country.Region && p.Aircrafts.Contains(pilot.Airliner.Airliner.Type.AirlinerFamily));
 
                                     if (pilots.Count == 0)
-                                        pilots = Pilots.GetUnassignedPilots();
+                                    {
+                                        GeneralHelpers.CreatePilots(4, pilot.Airliner.Airliner.Type.AirlinerFamily);
+                                        pilots = Pilots.GetUnassignedPilots(p=>p.Aircrafts.Contains(pilot.Airliner.Airliner.Type.AirlinerFamily));
+                                       
+                                    }
 
                                     Pilot newPilot = pilots.First();
 
@@ -908,7 +928,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (Pilot pilot in airline.Pilots)
                 {
 
-                    double salary = pilot.Rating.CostIndex * airline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));
+                    double salary = AirlineHelpers.GetPilotSalary(airline,pilot);
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -salary);
                 }
 

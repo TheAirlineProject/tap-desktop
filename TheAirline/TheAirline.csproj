@@ -971,6 +971,8 @@
     <Compile Include="Model\PilotModel\PilotProfile.cs" />
     <Compile Include="Model\PilotModel\PilotRating.cs" />
     <Compile Include="Model\PilotModel\PilotStudent.cs" />
+    <Compile Include="Model\PilotModel\PilotTraining.cs" />
+    <Compile Include="Model\PilotModel\PilotTrainingFacility.cs" />
     <Compile Include="Model\PilotModel\TrainingAircraft.cs" />
     <Compile Include="Model\PilotModel\TrainingAircraftType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -1190,6 +1192,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\actionmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\school.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />
