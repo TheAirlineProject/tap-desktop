@@ -38,6 +38,8 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
             setHireStudentsStatus();
 
             InitializeComponent();
+
+          //  Train student
         }
         private void btnSellAircraft_Click(object sender, RoutedEventArgs e)
         {
@@ -46,7 +48,26 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
             var aircrafts = new List<TrainingAircraft>(this.FlightSchool.Aircrafts);
             aircrafts.Remove(aircraft);
 
-            Boolean canSellAircraft = aircrafts.Sum(a => a.Type.MaxNumberOfStudents) >= this.FlightSchool.Students.Count;
+            
+            Dictionary<TrainingAircraftType,int> types = this.FlightSchool.Aircrafts.GroupBy(a=>a.Type).
+                     Select(group =>
+                         new
+                         {
+                             Type = group.Key,
+                             Count = group.Sum(g=>g.Type.MaxNumberOfStudents)
+                         }).ToDictionary(g => g.Type, g => g.Count); ;
+
+
+            foreach (PilotStudent student in this.FlightSchool.Students)
+            {
+                var firstAircraft = student.Rating.Aircrafts.OrderBy(a=>a.TypeLevel).First(a=>types.ContainsKey(a) && types[a] > 0);
+
+                if (types.ContainsKey(firstAircraft))
+                    types[firstAircraft]--;
+
+            }
+
+            Boolean canSellAircraft = aircrafts.Sum(a => a.Type.MaxNumberOfStudents) >= this.FlightSchool.Students.Count && types[aircraft.Type]>1;
 
             if (canSellAircraft)
             {

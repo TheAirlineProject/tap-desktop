@@ -214,8 +214,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             //checks for new airliner types for purchase
             foreach (AirlinerType aType in AirlinerTypes.GetTypes(a => a.Produced.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+            {
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airliner_News, GameObject.GetInstance().GameTime, "New airliner type available", string.Format("{0} has finished the design of {1} and it is now available for purchase", aType.Manufacturer.Name, aType.Name)));
-
+                
+                if (!AirlineFacilities.GetFacilities(f=>f is PilotTrainingFacility).Exists(f=>((PilotTrainingFacility)f).AirlinerFamily == aType.AirlinerFamily))
+                    AirlineFacilities.AddFacility(new PilotTrainingFacility("airlinefacilities", aType.AirlinerFamily, 9000, 1000, GameObject.GetInstance().GameTime.Year, 0, 0, aType.AirlinerFamily));
+            }
             //checks for airliner types which are out of production
             foreach (AirlinerType aType in AirlinerTypes.GetTypes(a => a.Produced.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airliner_News, GameObject.GetInstance().GameTime, "Airliner type out of production", string.Format("{0} has taken {1} out of production", aType.Manufacturer.Name, aType.Name)));
@@ -540,7 +544,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (Pilot pilot in trainedPilots)
                 {
-                   
+                    pilot.addAirlinerFamily(pilot.Training.AirlinerFamily);
+
                     if (airline.IsHuman)
                         GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1015"), string.Format(Translator.GetInstance().GetString("News", "1015", "message"), pilot.Profile.Name,pilot.Training.AirlinerFamily)));
 

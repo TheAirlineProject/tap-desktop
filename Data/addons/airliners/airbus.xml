@@ -319,7 +319,19 @@
 <produced from="2016" to="2027" rate="10"/>
   
 </airliner>
+
+<airliner manufacturer="Airbus" name="Airbus A350-900R" price="35555720"> <!--277700000-->
+	
+<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
+    
+<specs wingspan="64.80" length="66.89" range="19100" speed="903" fuelcapacity="138000" consumption="0.022" runwaylengthrequired="2810"/>
+    
+<capacity passengers="420" cockpitcrew="2" cabincrew="8" maxclasses="3"/>
+    
+<produced from="2016" to="2027" rate="10"/>
   
+</airliner>
+   
 <airliner manufacturer="Airbus" name="Airbus A350-1000" price="35270025"> <!--320600000-->
 	
 <type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>

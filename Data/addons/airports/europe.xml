@@ -702,6 +702,41 @@
       <runway name="13/31" length="2745" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="St Mary's Airport" icao="EGHE" iata="ISC" type="Domestic" season="All_Year">
+    <town town="St Mary's" country="130" GMT="01:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="049°54'48''N" />
+      <longitude value="006°17'30''W" />
+    </coordinates>
+    <size value="Very_small" pax="146" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+   <runways>
+      <runway name="15/33" length="523" surface="Asphalt" />
+      <runway name="09/27" length="600" surface="Asphalt" />
+    </runways>
+   <helipads>
+      <helipad name="18/36" length="400" surface="Asphalt"/>
+   </helipads>
+  </airport>
+  <airport name="Land's End Airport" icao="EGHC" iata="LEQ" type="Domestic" season="All_Year">
+    <town town="Land's End" country="130" GMT="01:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="050°06'10''N" />
+      <longitude value="005°40'14''W" />
+    </coordinates>
+    <size value="Very_small" pax="1767" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+   <runways>
+      <runway name="16/34" length="792" surface="Grass" />
+      <runway name="02/20" length="604" surface="Grass" />
+      <runway name="17/25" length="695" surface="Grass" />
+      <runway name="12/30" length="600" surface="Grass" />
+    </runways>
+  </airport>
   <airport name="Norwich International Airport" icao="EGSH" iata="NWI" type="Short_Haul_International" season="All_Year">
     <town town="Norwich" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>

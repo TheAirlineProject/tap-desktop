@@ -94,6 +94,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 so.instance = GameObject.GetInstance();
                 so.settings = Settings.GetInstance();
+            }, () =>
+            {
+                so.airlinefacilitieslist = new List<AirlineFacility>();
+                so.airlinefacilitieslist.AddRange(AirlineFacilities.GetFacilities());
             });
 
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
@@ -307,6 +311,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 GameObject.SetInstance(deserializedSaveObject.instance);
                 Settings.SetInstance(deserializedSaveObject.settings);
+            },
+            () =>
+            {
+                AirlineFacilities.Clear();
+
+                foreach (AirlineFacility airlinefac in deserializedSaveObject.airlinefacilitieslist)
+                    AirlineFacilities.AddFacility(airlinefac);
             }); //close parallel.invoke
       
             //for 0.3.9.2 and the issue with no saved facilities on a route classes
@@ -390,6 +401,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         [Versioning("routefacilities")]
         public List<RouteFacility> routefacilitieslist { get; set; }
+
+        [Versioning("airlinefacilities")]
+        public List<AirlineFacility> airlinefacilitieslist { get; set; }
     }
     public static class FileSerializer
     {

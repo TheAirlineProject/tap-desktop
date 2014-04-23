@@ -21,6 +21,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
@@ -151,14 +152,38 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                this.Airline.removeFacility(facility);
+                if (facility.Facility is PilotTrainingFacility)
+                {
+                    this.Airline.removeTrainingFacility(facility);
+                }
+                else
+                {
+                    this.Airline.removeFacility(facility);
 
-                updateClassFacilities();
+                    updateClassFacilities();
+                }
             }
 
 
             ICollectionView view = CollectionViewSource.GetDefaultView(lvFacilities.ItemsSource);
             view.Refresh();
+        }
+        private void btnBuyTrainingFacility_Click(object sender, RoutedEventArgs e)
+        {
+            AirlineFacilityMVVM facility = (AirlineFacilityMVVM)cbTrainingFacilities.SelectedItem;
+
+            if (facility.Facility.Price > GameObject.GetInstance().HumanAirline.Money)
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2101"), Translator.GetInstance().GetString("MessageBox", "2101", "message"), WPFMessageBoxButtons.Ok);
+            else
+            {
+                 WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2102"), string.Format(Translator.GetInstance().GetString("MessageBox", "2102", "message"), facility.Facility.Name), WPFMessageBoxButtons.YesNo);
+
+                 if (result == WPFMessageBoxResult.Yes)
+                 {
+                     this.Airline.addTrainingFacility(facility);
+                 }
+            }
+
         }
         private void btnBuy_Click(object sender, RoutedEventArgs e)
         {

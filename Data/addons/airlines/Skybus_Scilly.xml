@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Isles of Scilly Skybus" iata="SC" color="Gray" country="130" CEO="Brian Butterfield" mentality="Safe" market="Domestic" preferedairport="ISC">
+  </profile>
+  <info real="True" from="1984" to="2199" />
+</airline>

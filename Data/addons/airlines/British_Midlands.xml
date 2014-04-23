@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="British Midland International" iata="BD" color="Blue" country="130" CEO="Peter Simpson" mentality="Aggressive" market="Global" preferedairport="LHR">
+</profile>
+<info real="True" from="1938" to="2012"></info>
+</airline> 

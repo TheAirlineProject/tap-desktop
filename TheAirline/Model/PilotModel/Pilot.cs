@@ -15,6 +15,7 @@ namespace TheAirline.Model.PilotModel
     [Serializable]
     public class Pilot : ISerializable
     {
+        public Boolean OnTraining {get {return this.Training != null;} set {}}
         [Versioning("training",Version=3)]
         public PilotTraining Training { get; set; }
         [Versioning("aircrafts",Version=3)]

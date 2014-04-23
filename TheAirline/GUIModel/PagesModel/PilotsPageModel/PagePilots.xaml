@@ -12,7 +12,16 @@
                                 FilterButtonInactiveStyle="{StaticResource filterButtonInactive}" Background="Transparent" >
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
-                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1005'}" Width="200"  SortPropertyName="Profile.Name"  CanFilter="False">
+                <filter:SortableGridViewColumn CanFilter="False" Width="32">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="20" VerticalAlignment="Bottom" Click="btnHire_Click" Background="Transparent" Tag="{Binding}">
+                                <Image Source="/data/images/money.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                            </Button>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </filter:SortableGridViewColumn>
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1005'}" Width="200"  SortPropertyName="Profile.Name"  CanFilter="False">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom">
@@ -44,7 +53,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
-                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1009'}" Width="400"  SortPropertyName="Aircrafts"  CanFilter="False">
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1009'}" Width="400"  SortPropertyName="Aircrafts.Count" CanFilter="False">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Aircrafts}"/>

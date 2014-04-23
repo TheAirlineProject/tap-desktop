@@ -1940,6 +1940,17 @@
       <es-ES name="Nauru" />
     </translations>
   </country>
+        <country uid="292" shortname="VNT" region="112" flag="Vanuatu" tailformat="V6-\\s3">
+    <translations>
+      <en-US name="Vanuatu" />
+      <de-DE name="Vanuatu" />
+      <en-GB name="Vanuatu" />
+      <nl-NL name="Vanuatu" />
+      <zh-CN name="Vanuatu" />
+      <da-DK name="Vanuatu" />
+      <es-ES name="Vanuatu" />
+    </translations>
+  </country>
   <!--Territories-->
   <country uid="246" shortname="CUW" region="117" flag="Curacao" tailformat="PJ-\\s3">
     <territoryof uid="179" />

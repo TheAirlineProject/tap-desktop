@@ -41,11 +41,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         }
         private void btnFirePilot_Click(object sender, RoutedEventArgs e)
         {
-            Pilot pilot = (Pilot)((Button)sender).Tag;
+            PilotMVVM pilot = (PilotMVVM)((Button)sender).Tag;
 
-            if (pilot.Airliner == null)
+            if (pilot.Pilot.Airliner == null)
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2117"), string.Format(Translator.GetInstance().GetString("MessageBox", "2117", "message"), pilot.Profile.Name), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2117"), string.Format(Translator.GetInstance().GetString("MessageBox", "2117", "message"), pilot.Pilot.Profile.Name), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
@@ -56,7 +56,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             }
             else
             {
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2116"), string.Format(Translator.GetInstance().GetString("MessageBox", "2116", "message"), pilot.Profile.Name), WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2116"), string.Format(Translator.GetInstance().GetString("MessageBox", "2116", "message"), pilot.Pilot.Profile.Name), WPFMessageBoxButtons.Ok);
 
             }
         }
@@ -74,21 +74,20 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             double substituteDayPrice = 500;
 
-            Pilot pilot = (Pilot)((Button)sender).Tag;
+            PilotMVVM pilot = (PilotMVVM)((Button)sender).Tag;
 
             ComboBox cbAirlinerFamily = new ComboBox();
             cbAirlinerFamily.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbAirlinerFamily.SelectedValuePath = "Name";
-            cbAirlinerFamily.DisplayMemberPath = "Name";
+            cbAirlinerFamily.ItemTemplate = this.Resources["TrainingFacility"] as DataTemplate;
             cbAirlinerFamily.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbAirlinerFamily.Width = 200;
+            cbAirlinerFamily.Width = 350;
 
-            var airlinerFamilies = AirlinerTypes.GetTypes(t => t.Produced.From.Year < GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30)).Select(t => t.AirlinerFamily).Distinct().OrderBy(a => a);
+            var airlinerFamilies = AirlinerTypes.GetTypes(t => t.Produced.From.Year < GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30)).Select(t => t.AirlinerFamily).Where(t=>!pilot.Pilot.Aircrafts.Contains(t)).Distinct().OrderBy(a => a);
             
             foreach (string family in airlinerFamilies)
             {
-                double price = AirlineHelpers.GetTrainingPrice(pilot, family); ;
-                cbAirlinerFamily.Items.Add(new PilotTrainingMVVM(family, AirlineHelpers.GetTrainingDays(pilot, family), price));
+                double price = AirlineHelpers.GetTrainingPrice(pilot.Pilot, family); ;
+                cbAirlinerFamily.Items.Add(new PilotTrainingMVVM(family, AirlineHelpers.GetTrainingDays(pilot.Pilot, family), price));
             }
 
             cbAirlinerFamily.SelectedIndex = 0;
@@ -97,9 +96,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             {
                 PilotTrainingMVVM pilotTraining = (PilotTrainingMVVM)cbAirlinerFamily.SelectedItem;
 
-                if (pilot.Airliner == null)
+                if (pilot.Pilot.Airliner == null)
                 {
-                    AirlineHelpers.SendForTraining(GameObject.GetInstance().HumanAirline, pilot, pilotTraining.Family, pilotTraining.TrainingDays, pilotTraining.Price);
+                    AirlineHelpers.SendForTraining(GameObject.GetInstance().HumanAirline, pilot.Pilot, pilotTraining.Family, pilotTraining.TrainingDays, pilotTraining.Price);
+
+                    pilot.OnTraining = true;
                 }
                 else
                 {
@@ -110,8 +111,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     if (result == WPFMessageBoxResult.Yes)
                     {
                         AirlineHelpers.AddAirlineInvoice(this.Airline.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -substitutePrice);
-                        AirlineHelpers.SendForTraining(GameObject.GetInstance().HumanAirline, pilot, pilotTraining.Family, pilotTraining.TrainingDays, pilotTraining.Price);
+                        AirlineHelpers.SendForTraining(GameObject.GetInstance().HumanAirline, pilot.Pilot, pilotTraining.Family, pilotTraining.TrainingDays, pilotTraining.Price);
 
+                        pilot.OnTraining = true;
 
                     }
 

@@ -14,13 +14,17 @@ namespace TheAirline.Model.PilotModel
     [Serializable]
     public class PilotTrainingFacility : AirlineFacility, ISerializable
     {
-          [Versioning("airliner")]
+          [Versioning("family")]
         public string AirlinerFamily { get; set; }
         public PilotTrainingFacility(string section, string uid, double price, double monthlyCost, int fromYear, int serviceLevel, int luxuryLevel, string airlinerfamily) : base(section,uid,price,monthlyCost,fromYear,serviceLevel,luxuryLevel)
         {
             this.AirlinerFamily = airlinerfamily;
         }
-        public string Name
+        public override string Name
+        {
+            get { return this.AirlinerFamily; }
+        }
+        public override string Shortname
         {
             get { return this.AirlinerFamily; }
         }
@@ -66,10 +70,10 @@ namespace TheAirline.Model.PilotModel
             }
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public new void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
-
+            /*
             Type myType = this.GetType();
 
             var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
@@ -91,7 +95,7 @@ namespace TheAirline.Model.PilotModel
 
                 info.AddValue(att.Name, propValue);
             }
-
+            */
             base.GetObjectData(info, context);
 
         }

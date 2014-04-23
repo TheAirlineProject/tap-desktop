@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.GeneralModel;
 using TheAirline.Model.PilotModel;
 
 namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
@@ -22,17 +25,32 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
     /// </summary>
     public partial class PagePilots : Page
     {
-        public List<Pilot> AllPilots { get; set; }
+        public ObservableCollection<Pilot> AllPilots { get; set; }
         public PagePilots()
         {
-            this.AllPilots = Pilots.GetUnassignedPilots();
+            this.AllPilots = new ObservableCollection<Pilot>();
+            Pilots.GetUnassignedPilots().ForEach(p=>this.AllPilots.Add(p));
+
             this.Loaded += PagePilots_Loaded;
 
             InitializeComponent();
 
             
         }
+        private void btnHire_Click(object sender, RoutedEventArgs e)
+        {
+            Pilot pilot = (Pilot)((Button)sender).Tag;
 
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2801"), Translator.GetInstance().GetString("MessageBox", "2801", "message"), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                GameObject.GetInstance().HumanAirline.addPilot(pilot);
+
+                this.AllPilots.Remove(pilot);
+
+            }
+        }
         private void PagePilots_Loaded(object sender, RoutedEventArgs e)
         {
             TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");

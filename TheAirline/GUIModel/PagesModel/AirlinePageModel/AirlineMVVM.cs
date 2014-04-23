@@ -31,9 +31,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<FleetAirliner> DeliveredFleet { get; set; }
         public List<FleetAirliner> OrderedFleet { get; set; }
         public ObservableCollection<AirlineFacilityMVVM> Facilities { get; set; }
+        public ObservableCollection<AirlineFacilityMVVM> TrainingFacilities { get; set; }
         public ObservableCollection<AirlineFinanceMVVM> Finances { get; set; }
         public ObservableCollection<LoanMVVM> Loans { get; set; }
-        public ObservableCollection<Pilot> Pilots { get; set; }
+        public ObservableCollection<PilotMVVM> Pilots { get; set; }
         public ObservableCollection<AirlineFeeMVVM> Wages { get; set; }
         public ObservableCollection<AirlineFeeMVVM> Discounts { get; set; }
         public ObservableCollection<AirlineFeeMVVM> Chargers { get; set; }
@@ -138,10 +139,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.LoanRate = GeneralHelpers.GetAirlineLoanRate(this.Airline);
 
             this.Loans = new ObservableCollection<LoanMVVM>();
-            this.Pilots = new ObservableCollection<Pilot>();
+            this.Pilots = new ObservableCollection<PilotMVVM>();
             this.Wages = new ObservableCollection<AirlineFeeMVVM>();
             this.Discounts = new ObservableCollection<AirlineFeeMVVM>();
             this.Facilities = new ObservableCollection<AirlineFacilityMVVM>();
+            this.TrainingFacilities = new ObservableCollection<AirlineFacilityMVVM>();
             this.Fees = new ObservableCollection<AirlineFeeMVVM>();
             this.Chargers = new ObservableCollection<AirlineFeeMVVM>();
             this.Subsidiaries = new ObservableCollection<SubsidiaryAirline>();
@@ -156,10 +158,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             
             this.Airline.Routes.ForEach(r => this.Routes.Add(new AirlineRouteMVVM(r)));
             this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l,this.Airline)));
-            this.Airline.Pilots.ForEach(p => this.Pilots.Add(p));
+            this.Airline.Pilots.ForEach(p => this.Pilots.Add(new PilotMVVM(p)));
 
-            this.UnassignedPilots = this.Pilots.Count(p => p.Airliner == null);
-            this.PilotsToRetire = this.Pilots.Count(p => p.Profile.Age == Pilot.RetirementAge - 1);
+            this.UnassignedPilots = this.Pilots.Count(p => p.Pilot.Airliner == null);
+            this.PilotsToRetire = this.Pilots.Count(p => p.Pilot.Profile.Age == Pilot.RetirementAge - 1);
 
             FeeTypes.GetTypes(FeeType.eFeeType.Wage).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Wages.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
             FeeTypes.GetTypes(FeeType.eFeeType.Discount).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Discounts.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
@@ -186,7 +188,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             foreach (Airport airport in this.Airline.Airports.OrderByDescending(a=>this.Airline.Airports[0]==a).ThenBy(a=>a.Profile.Name))
                 this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.hasHub(this.Airline)));
 
-           
             double buyingPrice = this.Airline.getValue() * 1000000 * 1.10;
             this.IsBuyable = !this.Airline.IsHuman && GameObject.GetInstance().HumanAirline.Money > buyingPrice;
 
@@ -261,9 +262,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Subsidiaries.Add(airline);
 
             AirlineHelpers.AddSubsidiaryAirline(GameObject.GetInstance().MainAirline, airline, airline.Money, airline.Airports[0]);
-      //      airline.Airports.RemoveAt(0);
-
-
+   
             this.MaxSubsidiaryMoney = this.Airline.Money / 2;
 
             this.AirlineAirlines.Add(airline);
@@ -277,6 +276,29 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.AirlineAirlines.Remove(airline);
 
             this.FundsAirlines.Remove(airline);
+        }
+        //adds a training facility 
+        public void addTrainingFacility(AirlineFacilityMVVM facility)
+        {
+            facility.Type = AirlineFacilityMVVM.MVVMType.Purchased;
+
+            this.TrainingFacilities.Remove(facility);
+
+            this.Facilities.Add(facility);
+
+            this.Airline.addFacility(facility.Facility);
+
+            AirlineHelpers.AddAirlineInvoice(this.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -facility.Facility.Price);
+
+        }
+        //removes a training facility
+        public void removeTrainingFacility(AirlineFacilityMVVM facility)
+        {
+            this.Airline.removeFacility(facility.Facility);
+
+            this.Facilities.Remove(facility);
+
+            this.TrainingFacilities.Add(facility);
         }
        //adds a facility
         public void addFacility(AirlineFacilityMVVM facility)
@@ -306,13 +328,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Airline.removeAirliner(airliner);
         }
         //removes a pilot
-        public void removePilot(Pilot pilot)
+        public void removePilot(PilotMVVM pilot)
         {
             this.Pilots.Remove(pilot);
-            this.Airline.removePilot(pilot);
+            this.Airline.removePilot(pilot.Pilot);
 
-            this.UnassignedPilots = this.Pilots.Count(p => p.Airliner == null);
-            this.PilotsToRetire = this.Pilots.Count(p => p.Profile.Age == Pilot.RetirementAge - 1);
+            this.UnassignedPilots = this.Pilots.Count(p => p.Pilot.Airliner == null);
+            this.PilotsToRetire = this.Pilots.Count(p => p.Pilot.Profile.Age == Pilot.RetirementAge - 1);
         }
         //adds a loan
         public void addLoan(Loan loan)
@@ -353,7 +375,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             foreach (AirlineFacility facility in AirlineFacilities.GetFacilities(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).OrderBy(f => f.Name))
             {
                 if (this.Airline.Facilities.Exists(f => f.Uid == facility.Uid) || this.Airline.IsHuman)
-                    this.Facilities.Add(new AirlineFacilityMVVM(this.Airline, facility, this.Airline.Facilities.Exists(f => f.Uid == facility.Uid) ? AirlineFacilityMVVM.MVVMType.Purchased : AirlineFacilityMVVM.MVVMType.Available));
+                {
+                    if (facility is PilotTrainingFacility && !this.Airline.Facilities.Exists(f=>f.Uid == facility.Uid))
+                        this.TrainingFacilities.Add(new AirlineFacilityMVVM(this.Airline,facility, this.Airline.Facilities.Exists(f => f.Uid == facility.Uid) ? AirlineFacilityMVVM.MVVMType.Purchased : AirlineFacilityMVVM.MVVMType.Available));
+                    else
+                        this.Facilities.Add(new AirlineFacilityMVVM(this.Airline, facility, this.Airline.Facilities.Exists(f => f.Uid == facility.Uid) ? AirlineFacilityMVVM.MVVMType.Purchased : AirlineFacilityMVVM.MVVMType.Available));
+                }
             }
             foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
             {
@@ -408,6 +435,31 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Airline.addCodeshareAgreement(share);
 
             this.HasAlliance = this.Alliance != null || this.Codeshares.Count > 0;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    //the mvvm object for a pilot
+    public class PilotMVVM : INotifyPropertyChanged
+    {
+        private Boolean _ontraining;
+        public Boolean OnTraining
+        {
+            get { return _ontraining; }
+            set { _ontraining = value; NotifyPropertyChanged("OnTraining"); }
+        }
+        public Pilot Pilot { get; set; }
+        public PilotMVVM(Pilot pilot)
+        {
+            this.Pilot = pilot;
+            this.OnTraining = this.Pilot.OnTraining;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

@@ -2400,6 +2400,12 @@ namespace TheAirline.Model.GeneralModel
         {
             CreatePilots();
 
+            //creates the facilities for pilot training
+            var aircraftFamilies = AirlinerTypes.GetTypes(t => t.Produced.From.Year < GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30)).Select(a => a.AirlinerFamily).Distinct();
+            
+            foreach (string family in aircraftFamilies)
+                AirlineFacilities.AddFacility(new PilotTrainingFacility("airlinefacilities", family, 9000, 1000, GameObject.GetInstance().GameTime.Year, 0, 0, family));
+ 
             //sets all the facilities at an airport to none for all airlines
             Parallel.ForEach(Airports.GetAllAirports(), airport =>
             {

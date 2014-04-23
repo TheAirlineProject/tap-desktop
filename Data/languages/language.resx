@@ -4939,9 +4939,15 @@ Good luck.</value>
     <value>Select Training Facility</value>
   </data>
   <data name="News_1015_message" xml:space="preserve">
-    <value>Pilot Training</value>
+    <value>Your pilot {0} has finished the training for {1}</value>
   </data>
   <data name="News_1015_name" xml:space="preserve">
-    <value>Your pilot {0} has finished the training for {1}</value>
+    <value>Pilot Training</value>
+  </data>
+  <data name="PageAirlineServices_1009_name" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PageAirlineServices_1010_name" xml:space="preserve">
+    <value>Pilot Training Facilities</value>
   </data>
 </root>

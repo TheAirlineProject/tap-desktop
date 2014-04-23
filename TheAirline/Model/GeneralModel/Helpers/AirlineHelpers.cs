@@ -424,7 +424,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int days = GetTrainingDays(pilot, airlinerfamily);
 
             if (HasTrainingFacility(pilot.Airline, airlinerfamily))
-                return 0;
+                return dayTrainingPrice;
             else
                 return days * dayTrainingPrice;
         }
