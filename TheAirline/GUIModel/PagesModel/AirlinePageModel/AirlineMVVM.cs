@@ -371,7 +371,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.CabinCrew = this.Airline.Routes.Where(r => r.Type == Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getTotalCabinCrew());
             this.SupportCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees);
             this.MaintenanceCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees);
-
+         
+            this.MaintenanceCrew += this.Airline.Airports.Where(a=>a.getCurrentAirportFacility(this.Airline,AirportFacility.FacilityType.Service).TypeLevel > 0).Sum(a=>this.Airline.Fleet.Count(f=>f.Homebase == a));
+             
             foreach (AirlineFacility facility in AirlineFacilities.GetFacilities(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).OrderBy(f => f.Name))
             {
                 if (this.Airline.Facilities.Exists(f => f.Uid == facility.Uid) || this.Airline.IsHuman)

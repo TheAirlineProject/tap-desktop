@@ -300,7 +300,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             cbHomebase.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbHomebase.Width = 200;
 
-            foreach (Airport airport in GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0 && a.getMaxRunwayLength() >= this.Airliner.Airliner.Airliner.Type.MinRunwaylength))
+            foreach (Airport airport in AirlineHelpers.GetHomebases(GameObject.GetInstance().HumanAirline,this.Airliner.Airliner.Airliner.Type))
             {
                 cbHomebase.Items.Add(airport);
             }

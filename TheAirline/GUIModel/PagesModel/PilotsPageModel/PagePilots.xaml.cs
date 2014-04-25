@@ -14,7 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.PilotModel;
 
@@ -49,6 +51,29 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
                 this.AllPilots.Remove(pilot);
 
+                var fleetMissingPilots = GameObject.GetInstance().HumanAirline.Fleet.Where(f=>f.Pilots.Count < f.Airliner.Type.CockpitCrew);
+
+                if (fleetMissingPilots.Count() > 0)
+                {
+                    ComboBox cbAirliners = new ComboBox();
+                    cbAirliners.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                    cbAirliners.Width = 200;
+                    cbAirliners.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                    cbAirliners.DisplayMemberPath = "Name";
+                    cbAirliners.SelectedValuePath = "Name";
+
+                    foreach (FleetAirliner airliner in fleetMissingPilots)
+                        cbAirliners.Items.Add(airliner);
+
+                    cbAirliners.SelectedIndex = 0;
+                    
+                    if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PagePilots", "1010"), cbAirliners) == PopUpSingleElement.ButtonSelected.OK && cbAirliners.SelectedItem != null)
+                    {
+                        FleetAirliner airliner = (FleetAirliner)cbAirliners.SelectedItem;
+
+                        airliner.addPilot(pilot);
+                    }
+                }
             }
         }
         private void PagePilots_Loaded(object sender, RoutedEventArgs e)

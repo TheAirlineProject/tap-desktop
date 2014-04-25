@@ -154,8 +154,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             int numberToOrder = rnd.Next(1, 3 - (int)airline.Mentality);
 
-            List<Airport> homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
-
+            List<Airport> homeAirports = AirlineHelpers.GetHomebases(airline);
+            
             Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
             Parallel.ForEach(homeAirports, a =>
                 {
@@ -855,7 +855,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             
             lock (airline.Airports)
             {
-                homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0 || a.hasContractType(airline,AirportContract.ContractType.Full_Service));
+                homeAirports = AirlineHelpers.GetHomebases(airline);
             }
             homeAirports.AddRange(airline.getHubs());
 

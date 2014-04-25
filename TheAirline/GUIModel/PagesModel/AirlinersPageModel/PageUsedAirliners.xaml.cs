@@ -216,8 +216,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
                     long minRunway = this.SelectedAirliners.Max(a => a.Airliner.Type.MinRunwaylength);
 
-                    var homebases =  GameObject.GetInstance().HumanAirline.Airports.FindAll(a => (a.hasContractType(GameObject.GetInstance().HumanAirline,AirportContract.ContractType.Full_Service) || a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0) && a.getMaxRunwayLength() >= minRunway);
-         
+                    var homebases = AirlineHelpers.GetHomebases(GameObject.GetInstance().HumanAirline, minRunway); 
+
                     foreach (Airport airport in homebases)
                     {
                         cbHomebase.Items.Add(airport);

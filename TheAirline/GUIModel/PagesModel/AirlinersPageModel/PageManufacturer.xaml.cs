@@ -102,7 +102,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
 
-            DateTime deliveryDate = this.Orders.getDeliveryDate();
+            DateTime deliveryDate = dpDeliveryDate.SelectedDate.HasValue ? dpDeliveryDate.SelectedDate.Value : this.Orders.DeliveryDate;
 
             if (!hasHomebases)
             {
@@ -254,7 +254,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         //orders the airliners
         private void orderAirliners(double discount = 0)
         {
-            DateTime deliveryDate = this.Orders.getDeliveryDate();
+            DateTime deliveryDate = dpDeliveryDate.SelectedDate.HasValue ? dpDeliveryDate.SelectedDate.Value : this.Orders.DeliveryDate;
 
             Guid id = Guid.NewGuid();
 

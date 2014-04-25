@@ -3372,7 +3372,7 @@
       <latitude value="017°41'57''S" />
       <longitude value="168°19'11''E" />
     </coordinates>
-    <size value="Large" pax="10210" />
+    <size value="Smallest" pax="10" />
     <terminals>
       <terminal name="Terminal 1" gates="10" />
     </terminals>

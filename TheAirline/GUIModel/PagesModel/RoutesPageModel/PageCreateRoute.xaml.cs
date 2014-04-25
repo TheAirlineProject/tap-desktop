@@ -66,14 +66,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 }
             }
 
-            this.Airports = GameObject.GetInstance().HumanAirline.Airports.OrderByDescending(a=>a==GameObject.GetInstance().HumanAirline.Airports[0]).ThenBy(a => a.Profile.Name).ToList();
+            this.Airports = GameObject.GetInstance().HumanAirline.Airports.OrderByDescending(a=>a==GameObject.GetInstance().HumanAirline.Airports[0]).ThenBy(a => a.Profile.Country.Name).ThenBy(a=>a.Profile.Name).ToList();
 
             AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null,false), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now, DateTime.Now), 0,false);
 
             this.HumanAircrafts = new List<AirlinerType>();
 
             this.HumanAircrafts.Add(dummyAircraft);
-
 
             foreach (AirlinerType type in GameObject.GetInstance().HumanAirline.Fleet.Select(f => f.Airliner.Type).Distinct())
                 this.HumanAircrafts.Add(type);
@@ -120,6 +119,21 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             dpStartDate.BlackoutDates.Add(daysRange);
             dpStartDate.DisplayDateStart = GameObject.GetInstance().GameTime;
             dpStartDate.DisplayDate = GameObject.GetInstance().GameTime;
+
+            createGrouping(cbDestination1);
+            createGrouping(cbDestination2);
+            createGrouping(cbStopover1);
+            createGrouping(cbStopover2);
+
+        }
+        //creates the grouping for a combobox
+        private void createGrouping(ComboBox cb)
+        {
+            ListCollectionView view = (ListCollectionView)CollectionViewSource.GetDefaultView(cb.ItemsSource);
+            view.GroupDescriptions.Clear();
+
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Profile.Town.Country");
+            view.GroupDescriptions.Add(groupDescription);
         }
         private void btnCreateNew_Click(object sender, RoutedEventArgs e)
         {
@@ -293,46 +307,49 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         }
         private void cbDestination_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Airport destination1 = (Airport)cbDestination1.SelectedItem;
-            Airport destination2 = (Airport)cbDestination2.SelectedItem;
-
-            if (destination1 != null && destination2 != null)
+            if (cbDestination1 != null && cbDestination2 != null && txtDistance!=null)
             {
-                foreach (MVVMRouteClass rClass in this.Classes)
+                Airport destination1 = (Airport)cbDestination1.SelectedItem;
+                Airport destination2 = (Airport)cbDestination2.SelectedItem;
+
+                if (destination1 != null && destination2 != null)
                 {
-                    rClass.FarePrice = PassengerHelpers.GetPassengerPrice(destination1, destination2) * GeneralHelpers.ClassToPriceFactor(rClass.Type);
-                }
+                    foreach (MVVMRouteClass rClass in this.Classes)
+                    {
+                        rClass.FarePrice = PassengerHelpers.GetPassengerPrice(destination1, destination2) * GeneralHelpers.ClassToPriceFactor(rClass.Type);
+                    }
 
-                txtDistance.Text = new DistanceToUnitConverter().Convert(MathHelpers.GetDistance(destination1, destination2)).ToString();
+                    txtDistance.Text = new DistanceToUnitConverter().Convert(MathHelpers.GetDistance(destination1, destination2)).ToString();
 
-                var codesharingRoutes = GameObject.GetInstance().HumanAirline.Codeshares.Where(c=>c.Airline2 == GameObject.GetInstance().HumanAirline || c.Type == Model.AirlineModel.CodeshareAgreement.CodeshareType.Both_Ways).Select(c=>c.Airline1 == GameObject.GetInstance().HumanAirline ? c.Airline2 : c.Airline1).SelectMany(a=>a.Routes);
-                var humanConnectingRoutes = GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination1 == destination1 || r.Destination2 == destination1 || r.Destination1 == destination2 || r.Destination2 == destination2);
+                    var codesharingRoutes = GameObject.GetInstance().HumanAirline.Codeshares.Where(c => c.Airline2 == GameObject.GetInstance().HumanAirline || c.Type == Model.AirlineModel.CodeshareAgreement.CodeshareType.Both_Ways).Select(c => c.Airline1 == GameObject.GetInstance().HumanAirline ? c.Airline2 : c.Airline1).SelectMany(a => a.Routes);
+                    var humanConnectingRoutes = GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination1 == destination1 || r.Destination2 == destination1 || r.Destination1 == destination2 || r.Destination2 == destination2);
 
-                var codesharingConnectingRoutes = codesharingRoutes.Where(r => r.Destination1 == destination1 || r.Destination2 == destination1 || r.Destination1 == destination2 || r.Destination2 == destination2);
+                    var codesharingConnectingRoutes = codesharingRoutes.Where(r => r.Destination1 == destination1 || r.Destination2 == destination1 || r.Destination1 == destination2 || r.Destination2 == destination2);
 
-                this.ConnectingRoutes.Clear();
+                    this.ConnectingRoutes.Clear();
 
-                foreach (Route route in humanConnectingRoutes)
-                    this.ConnectingRoutes.Add(route);
+                    foreach (Route route in humanConnectingRoutes)
+                        this.ConnectingRoutes.Add(route);
 
-                foreach (Route route in codesharingConnectingRoutes)
-                    this.ConnectingRoutes.Add(route);
+                    foreach (Route route in codesharingConnectingRoutes)
+                        this.ConnectingRoutes.Add(route);
 
-                var opponentRoutes = Airlines.GetAllAirlines().Where(a=>!a.IsHuman).SelectMany(a=>a.Routes).Where(r=>(r.Destination1 == destination1 && r.Destination2 == destination2) || (r.Destination2 == destination1 && r.Destination1 == destination2));
+                    var opponentRoutes = Airlines.GetAllAirlines().Where(a => !a.IsHuman).SelectMany(a => a.Routes).Where(r => (r.Destination1 == destination1 && r.Destination2 == destination2) || (r.Destination2 == destination1 && r.Destination1 == destination2));
 
-                if (opponentRoutes.Count() == 0)
-                    this.RouteInformationText = "";
-                else
-                {
-                    var airlines = opponentRoutes.Select(r=>r.Airline).Distinct();
-                    
-                    if (airlines.Count() == 1)
-                        this.RouteInformationText = string.Format("{0} also operates a route between {1} and {2}",airlines.ElementAt(0).Profile.Name,destination1.Profile.Name,destination2.Profile.Name);
+                    if (opponentRoutes.Count() == 0)
+                        this.RouteInformationText = "";
                     else
-                        this.RouteInformationText = string.Format("{0} other airlines do also operate a route between {1} and {2}",airlines.Count(),destination1.Profile.Name,destination2.Profile.Name);
+                    {
+                        var airlines = opponentRoutes.Select(r => r.Airline).Distinct();
+
+                        if (airlines.Count() == 1)
+                            this.RouteInformationText = string.Format("{0} also operates a route between {1} and {2}", airlines.ElementAt(0).Profile.Name, destination1.Profile.Name, destination2.Profile.Name);
+                        else
+                            this.RouteInformationText = string.Format("{0} other airlines do also operate a route between {1} and {2}", airlines.Count(), destination1.Profile.Name, destination2.Profile.Name);
+                    }
+
+
                 }
-
-
             }
         }
 

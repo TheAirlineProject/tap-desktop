@@ -351,7 +351,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (AirlinePolicy policy in airline.Policies)
                 sAirline.addAirlinePolicy(policy);
 
-
             AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
@@ -503,7 +502,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
         }
+        //returns the possible home bases for an airline
+        public static List<Airport> GetHomebases(Airline airline)
+        {
+        
+           return airline.Airports.FindAll(a =>(a.hasContractType(airline, AirportContract.ContractType.Full_Service) || airline.Fleet.Count(ar=>ar.Homebase == a) < a.getCurrentAirportFacility(airline,AirportFacility.FacilityType.Service).ServiceLevel));
 
+        }
+        public static List<Airport> GetHomebases(Airline airline, AirlinerType type)
+        {
+            return GetHomebases(airline, type.MinRunwaylength);
+        }
+        public static List<Airport> GetHomebases(Airline airline, long minrunway)
+        {
+            return GetHomebases(airline).Where(h => h.getMaxRunwayLength() >= minrunway).ToList();
+        }
         //update the damage scores for an airline
         public static void UpdateMaintList(Airline airline)
         {

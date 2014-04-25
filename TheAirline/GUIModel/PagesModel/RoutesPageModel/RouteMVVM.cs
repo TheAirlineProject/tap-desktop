@@ -24,7 +24,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         public Boolean IsEditable { get; set; }
         public List<Route> Legs { get; set; }
         public List<MonthlyInvoice> Invoices { get; set; }
-     
+        public double Distance { get; set; }
         public HumanRouteMVVM(Route route)
         {
             this.Route = route;
@@ -41,7 +41,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             this.Legs = new List<Route>();
             this.Legs.Add(this.Route);
             this.Legs.AddRange(this.Route.Stopovers.SelectMany(s => s.Legs));
-       
+
+            this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
         }
     }
     //the mvvm object for a route

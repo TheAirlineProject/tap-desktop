@@ -10,6 +10,7 @@
 	Title="PageCreateRoute">
     <Page.Resources>
 
+       
         <DataTemplate x:Key="FacilityItem">
             <WrapPanel>
                 <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
@@ -42,16 +43,35 @@
                         </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
-           
                 <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1002'}">
                     <h:QuickInfoValue.Value>
-                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" SelectionChanged="cbDestination_SelectionChanged" Width="300" Name="cbDestination1" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
+                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}"  ItemTemplate="{StaticResource AirportCountryCodeItem}" SelectionChanged="cbDestination_SelectionChanged" Width="300" Name="cbDestination1" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}">
+                            <ComboBox.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                            <ContentControl Content="{Binding Name}" ContentTemplate="{StaticResource CountryFlagLongBoldItem}" Margin="2,5,0,2"></ContentControl>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                            </ComboBox.GroupStyle>
+                        </ComboBox>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
                 <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1003'}">
                     <h:QuickInfoValue.Value>
                         <WrapPanel>
-                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" SelectionChanged="cbDestination_SelectionChanged" Name="cbDestination2" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
+                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryCodeItem}" Width="300" SelectionChanged="cbDestination_SelectionChanged" Name="cbDestination2" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}">
+                                <ComboBox.GroupStyle>
+                                    <GroupStyle>
+                                        <GroupStyle.HeaderTemplate>
+                                            <DataTemplate>
+                                                <ContentControl Content="{Binding Name}" ContentTemplate="{StaticResource CountryFlagLongBoldItem}" Margin="2,5,0,2"></ContentControl>
+                                            </DataTemplate>
+                                        </GroupStyle.HeaderTemplate>
+                                    </GroupStyle>
+                                </ComboBox.GroupStyle>
+                            </ComboBox>
                             <ComboBox Margin="10 0 0 0" Width="200" Name="cbAircraft" IsSynchronizedWithCurrentItem="True" SelectionChanged="cbAircraft_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Name" ItemsSource="{Binding Path=HumanAircrafts,ElementName=pageCreateRoute}">
                                 <ComboBox.Style>
                                     <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxTransparentStyle}">
@@ -85,7 +105,17 @@
                 <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1004'}">
                     <h:QuickInfoValue.Value>
                         <WrapPanel>
-                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" Name="cbStopover1" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
+                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryCodeItem}" Width="300" Name="cbStopover1" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}">
+                                <ComboBox.GroupStyle>
+                                    <GroupStyle>
+                                        <GroupStyle.HeaderTemplate>
+                                            <DataTemplate>
+                                                <ContentControl Content="{Binding Name}" ContentTemplate="{StaticResource CountryFlagLongBoldItem}" Margin="2,5,0,2"></ContentControl>
+                                            </DataTemplate>
+                                        </GroupStyle.HeaderTemplate>
+                                    </GroupStyle>
+                                </ComboBox.GroupStyle>
+                            </ComboBox>
                         <Button Margin="5 0 0 0" Height="16" Click="btnStopover1_Click" VerticalAlignment="Bottom" Background="Transparent">
                             <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                         </Button>
@@ -105,7 +135,17 @@
                     </h:QuickInfoValue.Style>
                     <h:QuickInfoValue.Value>
                         <WrapPanel>
-                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" VerticalAlignment="Bottom" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" Name="cbStopover2" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
+                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" VerticalAlignment="Bottom" ItemTemplate="{StaticResource AirportCountryCodeItem}" Width="300" Name="cbStopover2" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}">
+                                <ComboBox.GroupStyle>
+                                    <GroupStyle>
+                                        <GroupStyle.HeaderTemplate>
+                                            <DataTemplate>
+                                                <ContentControl Content="{Binding Name}" ContentTemplate="{StaticResource CountryFlagLongBoldItem}" Margin="2,5,0,2"></ContentControl>
+                                            </DataTemplate>
+                                        </GroupStyle.HeaderTemplate>
+                                    </GroupStyle>
+                                </ComboBox.GroupStyle>
+                            </ComboBox>
                             <Button Margin="5 0 0 0" Height="16" Click="btnStopover2_Click" VerticalAlignment="Bottom" Background="Transparent">
                                 <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                             </Button>

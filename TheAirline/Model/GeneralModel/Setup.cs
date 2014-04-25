@@ -863,6 +863,8 @@ namespace TheAirline.Model.GeneralModel
 
                 Manufacturers.AddManufacturer(new Manufacturer(name, shortname, country, isReal));
             }
+
+         
         }
         /*!loads the airliner type configuratoins
          */
@@ -977,7 +979,7 @@ namespace TheAirline.Model.GeneralModel
                     }
                     else
                     {
-                        string s = "";
+                     
                     }
                 }
 
@@ -1152,7 +1154,7 @@ namespace TheAirline.Model.GeneralModel
                         airlinerType.Image = imageFile;
                     else
                     {
-                        string s = "";
+                        
                     }
                 }
             }
@@ -1624,11 +1626,11 @@ namespace TheAirline.Model.GeneralModel
 
                 facility.EmployeeType = employeestype;
                 facility.NumberOfEmployees = numberofemployees;
-
-
+                
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
+            
         }
         /*!loads the airline mergers
          */

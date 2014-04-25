@@ -307,6 +307,9 @@ namespace TheAirline.Model.GeneralModel
                 ratings.ForEach(r => rankings.Add(r, 20 - r.CostIndex));
             }
 
+            if (rankings.Count == 0)
+                return GetPilotRating();
+
             PilotRating rating = AIHelpers.GetRandomItem<PilotRating>(rankings);
 
             return rating;
@@ -403,7 +406,7 @@ namespace TheAirline.Model.GeneralModel
         {
             int year = GameObject.GetInstance().GameTime.Year;
 
-            var aircraftFamilies = AirlinerTypes.GetTypes(t => t.Produced.From.Year < GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30)).Select(a => a.AirlinerFamily).Distinct();
+            var airlinerFamilies = AirlinerTypes.GetTypes(t => t.Produced.From.Year <= GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30)).Select(a => a.AirlinerFamily).Distinct();
             
             Random rnd = new Random();
             List<string> families = new List<string>();
@@ -412,7 +415,7 @@ namespace TheAirline.Model.GeneralModel
 
             for (int i = 0; i < numberOfAircrafts; i++)
             {
-                var freeFamilies = aircraftFamilies.Where(a=>!families.Contains(a)).ToList();
+                var freeFamilies = airlinerFamilies.Where(a=>!families.Contains(a)).ToList();
                 string family = freeFamilies[rnd.Next(freeFamilies.Count)];
 
                 families.Add(family);

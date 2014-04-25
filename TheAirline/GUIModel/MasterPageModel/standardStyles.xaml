@@ -669,8 +669,10 @@ and change the color of the selected bullet into a darker gray for better highli
                 BorderThickness="1"
                 BorderBrush="Black"/>
                                 <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
-                                    <VirtualizingStackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"></VirtualizingStackPanel>
-                                    <!-- <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />-->
+                               <!--     <VirtualizingStackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"></VirtualizingStackPanel>
+                    -->
+                                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"></ItemsPresenter>
+                                        <!-- <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />-->
                                 </ScrollViewer>
                             </Grid>
                         </Popup>

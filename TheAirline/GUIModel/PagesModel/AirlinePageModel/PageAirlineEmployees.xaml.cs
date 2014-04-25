@@ -82,7 +82,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             cbAirlinerFamily.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbAirlinerFamily.Width = 350;
 
-            var airlinerFamilies = AirlinerTypes.GetTypes(t => t.Produced.From.Year < GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30)).Select(t => t.AirlinerFamily).Where(t=>!pilot.Pilot.Aircrafts.Contains(t)).Distinct().OrderBy(a => a);
+            var airlinerFamilies = AirlinerTypes.GetTypes(t => t.Produced.From.Year <= GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30)).Select(t => t.AirlinerFamily).Where(t=>!pilot.Pilot.Aircrafts.Contains(t)).Distinct().OrderBy(a => a);
             
             foreach (string family in airlinerFamilies)
             {

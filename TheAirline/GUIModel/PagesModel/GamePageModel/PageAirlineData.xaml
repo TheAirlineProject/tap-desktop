@@ -17,7 +17,7 @@ xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
             <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1002'}">
                 <g:QuickInfoValue.Value>
-                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" ItemTemplate="{StaticResource AirlineLongItem}" Width="300" SelectionChanged="cbAirline_SelectionChanged" Name="cbAirline"></ComboBox>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" ItemTemplate="{StaticResource AirlineCountryItem}" Width="300" SelectionChanged="cbAirline_SelectionChanged" Name="cbAirline"></ComboBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
             <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1021'}">

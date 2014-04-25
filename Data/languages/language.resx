@@ -4950,4 +4950,46 @@ Good luck.</value>
   <data name="PageAirlineServices_1010_name" xml:space="preserve">
     <value>Pilot Training Facilities</value>
   </data>
+  <data name="PageAirlineEditAirliners_1002_name" xml:space="preserve">
+    <value>Select Configuration Name</value>
+  </data>
+  <data name="PageAirlineEditAirliners_202_name" xml:space="preserve">
+    <value>Save Configuration</value>
+  </data>
+  <data name="PagePilots_1010_name" xml:space="preserve">
+    <value>Assign Pilot to Airliner</value>
+  </data>
+  <data name="MessageBox_2811_message" xml:space="preserve">
+    <value>Are you sure you want to hire a new student?</value>
+  </data>
+  <data name="MessageBox_2811_name" xml:space="preserve">
+    <value>Hire Student</value>
+  </data>
+  <data name="PageAirlineFleet_1014_name" xml:space="preserve">
+    <value>Pilots Demand</value>
+  </data>
+  <data name="PageAirlineFleet_1015_name" xml:space="preserve">
+    <value>Pilots</value>
+  </data>
+  <data name="PageShowFlightSchool_1015_name" xml:space="preserve">
+    <value>Hire Student</value>
+  </data>
+  <data name="PageShowFlightSchool_1016_name" xml:space="preserve">
+    <value>Select Instructor</value>
+  </data>
+  <data name="PageShowFlightSchool_1017_name" xml:space="preserve">
+    <value>Train for Airliner</value>
+  </data>
+  <data name="PageManufacturer_1016_name" xml:space="preserve">
+    <value>Delivery Date</value>
+  </data>
+  <data name="PageShowFlightSchool_1018_name" xml:space="preserve">
+    <value>Airliner Family</value>
+  </data>
+  <data name="PageAirlineFinances_1016_name" xml:space="preserve">
+    <value>Employee Wages</value>
+  </data>
+  <data name="PageShowRoute_1005_name" xml:space="preserve">
+    <value>Distance</value>
+  </data>
 </root>
