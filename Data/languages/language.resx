@@ -4471,7 +4471,7 @@ Good luck.</value>
     <value>Daily</value>
   </data>
   <data name="PageShowOptions_1010_name" xml:space="preserve">
-    <value>Montly</value>
+    <value>Monthly</value>
   </data>
   <data name="PageShowOptions_1011_name" xml:space="preserve">
     <value>Yearly</value>
@@ -4988,6 +4988,12 @@ Good luck.</value>
   </data>
   <data name="PageAirlineFinances_1016_name" xml:space="preserve">
     <value>Employee Wages</value>
+  </data>
+  <data name="PageRoutePlanner_1026_name" xml:space="preserve">
+    <value>Airliners</value>
+  </data>
+  <data name="PageRoutePlanner_206_name" xml:space="preserve">
+    <value>Inverse Timetable</value>
   </data>
   <data name="PageShowRoute_1005_name" xml:space="preserve">
     <value>Distance</value>

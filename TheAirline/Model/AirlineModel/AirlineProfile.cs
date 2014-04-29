@@ -29,6 +29,8 @@ namespace TheAirline.Model.AirlineModel
         public List<Country> Countries { get; set; }
         [Versioning("color")]
         public string Color { get; set; }
+        [Versioning("logoname")]
+        public string LogoName { get; set; }
         public string Logo { get { return getCurrentLogo();} private set{;} }
         [Versioning("logos")]
         public List<AirlineLogo> Logos { get; set; }

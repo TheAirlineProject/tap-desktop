@@ -96,6 +96,64 @@
 	</runways>
   </airport>
   <!--Germany (ED**)-->
+    <airport name="Braunschweig Wolfsburg Airport" icao="EDVE" iata="BWE" type="Short_Haul_International" season="All_Year">
+    <town town="Braunschweig" country="163" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="052°19'09''N" />
+      <longitude value="010°33'21''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="1680" surface="Asphalt" />
+      <runway name="08R/26L" length="900" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Kassel-Calden Airport" icao="EDVK" iata="KSF" type="Short_Haul_International" season="All_Year">
+    <town town="Kassel" country="163" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="051°24'29''N" />
+      <longitude value="009°22'38''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Mannheim-City Airport" icao="EDFM" iata="MHG" type="Short_Haul_International" season="All_Year">
+    <town town="Mannheim" country="163" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="049°28'23''N" />
+      <longitude value="008°30'51''E" />
+    </coordinates>
+    <size value="Smallest" pax="11" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1066" surface="Asphalt" />
+      <runway name="09L/27R" length="700" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Niederrhein Airport" icao="EDLV" iata="NRN" type="Short_Haul_International" season="All_Year">
+    <town town="Weeze" country="163" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="051°36'08''N" />
+      <longitude value="006°08'31''E" />
+    </coordinates>
+    <size value="Smallest" pax="13" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2440" surface="Asphalt" />
+    </runways>
+  </airport>
     <airport name="Karlsruhe Baden-Baden Airport" icao="EDSB" iata="FKB" type="Short_Haul_International" season="All_Year">
     <town town="Baden-Baden" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
@@ -309,6 +367,22 @@
     </terminals>
     <runways>
       <runway name="04/22" length="2435" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Helgoland-Düne Airport" icao="EDXH" iata="HGL" type="Domestic" season="All_Year">
+    <town town="Helgoland" country="163" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="054°11'07''N" />
+      <longitude value="007°54'56''E" />
+    </coordinates>
+    <size value="Smallest" pax="7" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="15L/33R" length="480" surface="Concrete" />
+      <runway name="3/21" length="371" surface="Concrete" />
+       <runway name="6/24" length="258" surface="Concrete" />
     </runways>
   </airport>
   <airport name="Berlin Brandenburg Airport" icao="EDDB" iata="BER" type="Long_Haul_International" season="All_Year">

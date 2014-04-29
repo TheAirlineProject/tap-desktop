@@ -39,7 +39,23 @@ namespace TheAirline.Model.GeneralModel
          * holds a random number.
          */
         private static Random rnd = new Random();
+        /*! reads the basic xmls for loading of game
+         */
+        public static void SetupLoadedGame()
+        {
+            Countries.Clear();
+            Regions.Clear();
+            Unions.Clear();
+            Continents.Clear();
 
+            LoadRegions();
+            LoadCountries();
+            LoadStates();
+            LoadTemporaryCountries();
+            LoadUnions();
+
+            CreateContinents();
+        }
         /*! public static method SetupGame().
          * Tries to create game´s environment and base configuration.
          */
@@ -2100,6 +2116,8 @@ namespace TheAirline.Model.GeneralModel
             string iata = profileElement.Attributes["iata"].Value;
             string color = profileElement.Attributes["color"].Value;
 
+            string logoImage = profileElement.HasAttribute("logo") ? profileElement.Attributes["logo"].Value : "";
+
             string sCountries = profileElement.Attributes["country"].Value;
 
             List<Country> countries = new List<Country>();
@@ -2149,10 +2167,10 @@ namespace TheAirline.Model.GeneralModel
             if (market == Airline.AirlineFocus.Regional)
                 license = Airline.AirlineLicense.Regional;
 
-
             Airline airline = new Airline(new AirlineProfile(name, iata, color, ceo, isReal, founded, folded), mentality, market, license, routeFocus);
             airline.Profile.Countries = countries;
             airline.Profile.Country = airline.Profile.Countries[0];
+            airline.Profile.LogoName = logoImage;
 
             XmlElement preferedsElement = (XmlElement)root.SelectSingleNode("prefereds");
 
@@ -2898,7 +2916,7 @@ namespace TheAirline.Model.GeneralModel
                             route = new CargoRoute(id.ToString(), origin, destination, GameObject.GetInstance().GameTime, PassengerHelpers.GetCargoPrice(origin, destination));
 
                         Boolean leaseAircraft = airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Leasing;
-
+                        
                         KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, leaseAircraft, routes.RouteType == Route.RouteType.Cargo, true);
 
                         if (airliner == null && airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Random)
@@ -2906,36 +2924,39 @@ namespace TheAirline.Model.GeneralModel
 
                         double distance = MathHelpers.GetDistance(origin, destination);
 
-                        FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0],leaseAircraft);
-                        fAirliner.addRoute(route);
-                        fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
-                        AirlineHelpers.HireAirlinerPilots(fAirliner);
-
-                        route.LastUpdated = GameObject.GetInstance().GameTime;
-
-                        if (routes.RouteType == Route.RouteType.Passenger || routes.RouteType == Route.RouteType.Mixed)
+                        if (airliner != null)
                         {
-                            AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
+                            FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0], leaseAircraft);
+                            fAirliner.addRoute(route);
+                            fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                            AirlineHelpers.HireAirlinerPilots(fAirliner);
 
-                            RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration((PassengerRoute)route);
+                            route.LastUpdated = GameObject.GetInstance().GameTime;
 
-                            foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                            if (routes.RouteType == Route.RouteType.Passenger || routes.RouteType == Route.RouteType.Mixed)
                             {
-                                ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
+                                AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
 
-                                foreach (RouteFacility rFacility in classConfiguration.getFacilities())
-                                    ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).addFacility(rFacility);
+                                RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration((PassengerRoute)route);
+
+                                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                                {
+                                    ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
+
+                                    foreach (RouteFacility rFacility in classConfiguration.getFacilities())
+                                        ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).addFacility(rFacility);
+                                }
+
+                                AIHelpers.CreateRouteTimeTable(route, fAirliner);
                             }
+                            if (routes.RouteType == Route.RouteType.Cargo)
+                                AIHelpers.CreateCargoRouteTimeTable(route, fAirliner);
 
-                            AIHelpers.CreateRouteTimeTable(route, fAirliner);
+                            airline.addRoute(route);
+
+
+
                         }
-                        if (routes.RouteType == Route.RouteType.Cargo)
-                            AIHelpers.CreateCargoRouteTimeTable(route, fAirliner);
-
-                        airline.addRoute(route);
-
-
-
                     }
                 }
             });
@@ -3013,8 +3034,12 @@ namespace TheAirline.Model.GeneralModel
         {
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
-                if (File.Exists(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png"))
-                    airline.Profile.addLogo(new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png"));
+                string logoName = airline.Profile.IATACode;
+                if (airline.Profile.LogoName.Length > 0)
+                    logoName = airline.Profile.LogoName;
+
+                if (File.Exists(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + logoName + ".png"))
+                    airline.Profile.addLogo(new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + logoName + ".png"));
                 else
                     airline.Profile.addLogo(new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
             }

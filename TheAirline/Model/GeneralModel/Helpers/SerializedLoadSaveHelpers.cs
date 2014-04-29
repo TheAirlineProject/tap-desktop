@@ -314,10 +314,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             },
             () =>
             {
-                AirlineFacilities.Clear();
+                if (deserializedSaveObject.airlinefacilitieslist != null)
+                {
+                    AirlineFacilities.Clear();
 
-                foreach (AirlineFacility airlinefac in deserializedSaveObject.airlinefacilitieslist)
-                    AirlineFacilities.AddFacility(airlinefac);
+                    foreach (AirlineFacility airlinefac in deserializedSaveObject.airlinefacilitieslist)
+                        AirlineFacilities.AddFacility(airlinefac);
+                }
             }); //close parallel.invoke
       
             //for 0.3.9.2 and the issue with no saved facilities on a route classes
@@ -326,6 +329,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (RouteClassConfiguration rClassConfiguration in emptyRouteClassesFacilities)
                 rClassConfiguration.Facilities = new List<RouteFacility>();
 
+            Setup.SetupLoadedGame();
             //Maybe this helps? But i doubt this is the best way
             Action action = () =>
             {

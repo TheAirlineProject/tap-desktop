@@ -35,7 +35,10 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
         //returns the total value for a statistics type
         public double getStatisticsValue(StatisticsType type)
         {
-            return this.StatValues.Where(s => s.Stat.Shortname == type.Shortname).Sum(s => s.Value);
+            if (this.StatValues != null && this.StatValues.Exists(s => s.Stat.Shortname == type.Shortname))
+                return this.StatValues.Where(s => s.Stat.Shortname == type.Shortname).Sum(s => s.Value);
+            else
+                return 0;
            
         }
         //adds the value for a statistics type for a year

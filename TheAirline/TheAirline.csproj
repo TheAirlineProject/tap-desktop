@@ -1017,6 +1017,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\languagefiles\language.it-IT.resx" />
+    <EmbeddedResource Include="Data\languagefiles\language.ru-RU.resx" />
     <EmbeddedResource Include="Data\languagefiles\language.tr-TR.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

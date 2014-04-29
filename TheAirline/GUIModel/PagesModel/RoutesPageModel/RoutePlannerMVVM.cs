@@ -20,7 +20,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         public Route Route { get; set; }
         public Brush Brush { get; set; }
         public TimeSpan FlightTime { get; set; }
-        public Boolean HasAirliners { get; set; }
+        public int Airliners { get; set; }
         public RoutePlannerItemMVVM(Route route, AirlinerType type)
         {
             this.Route = route;
@@ -39,7 +39,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             this.Brush = brush;
             this.FlightTime = MathHelpers.GetFlightTime(this.Route.Destination1, this.Route.Destination2, type);
 
-            this.HasAirliners = true;
+            this.Airliners = this.Route.getAirliners().Count;
         }
     }
     //the mvvm class for an hour item

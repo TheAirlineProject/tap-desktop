@@ -17,5 +17,6 @@
     <Language culture="it-IT" name="Italiana (IT)" flag="Italy-round.png" UnitSystem="Metric" isEnabled="true" />
      <Language culture="pl-PL" name="Polski (PL)" flag="Poland-large.png" UnitSystem="Metric" isEnabled="false" />
        <Language culture="hr-HR" name="Croatian (HR)" flag="Croatia-large.png" UnitSystem="Metric" isEnabled="false" />
+       <Language culture="ru-RU" name="ру́сский язы́к (RU)" flag="Russia-round.png" UnitSystem="Metric" isEnabled="true" />
   </Languages>
  </Translator>

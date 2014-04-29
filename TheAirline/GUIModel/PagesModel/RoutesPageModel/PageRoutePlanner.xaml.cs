@@ -433,7 +433,10 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (RouteTimeTableEntry entry in this.Airliner.Routes.SelectMany(r => r.TimeTable.Entries.Where(en => en.Airliner == this.Airliner)))
                 this.Entries.Add(entry);
         }
-
+        private void btnCopyTimetable_Click(object sender, RoutedEventArgs e)
+        {
+            clearTimeTable();
+        }
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
            clearTimeTable();

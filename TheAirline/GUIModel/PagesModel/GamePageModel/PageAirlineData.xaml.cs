@@ -107,6 +107,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2409"), Translator.GetInstance().GetString("MessageBox", "2409", "message"), WPFMessageBoxButtons.Ok);
 
+                if (cbAirline.Items.Contains(airline))
+                    cbAirline.SelectedItem = airline;
             }
         }
         private void btnCreateGame_Click(object sender, RoutedEventArgs e)
