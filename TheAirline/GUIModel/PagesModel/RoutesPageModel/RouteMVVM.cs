@@ -31,7 +31,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             this.ShowCargoInformation = this.Route.Type == Route.RouteType.Cargo || this.Route.Type == Route.RouteType.Mixed;
             this.ShowPassengersInformation = this.Route.Type == Route.RouteType.Passenger || this.Route.Type == Route.RouteType.Mixed;
 
-            this.IsEditable = !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
+            this.IsEditable = true;// !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
 
             this.Invoices = new List<MonthlyInvoice>();
 

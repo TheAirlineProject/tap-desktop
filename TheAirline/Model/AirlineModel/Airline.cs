@@ -38,7 +38,7 @@ namespace TheAirline.Model.AirlineModel
 
         [Versioning("mentality")]
         public AirlineMentality Mentality { get; set; }
-        [Versioning("shares",Version=2)]
+        /*[Versioning("shares",Version=2)]*/
         public List<AirlineShare> Shares { get; set; }
         [Versioning("codeshares", Version = 3)]
         public List<CodeshareAgreement> Codeshares { get; set; }
@@ -77,9 +77,7 @@ namespace TheAirline.Model.AirlineModel
         public AirlineFees Fees { get; set; }
         [Versioning("loans")]
         public List<Loan> Loans { get; set; }
-        [Versioning("flightcodes")]
-        private List<string> FlightCodes;
-        public List<FleetAirliner> DeliveredFleet { get { return getDeliveredFleet(); } set { ;} }
+         public List<FleetAirliner> DeliveredFleet { get { return getDeliveredFleet(); } set { ;} }
         [Versioning("alliances")]
         public List<Alliance> Alliances { get; set; }
         [Versioning("contract")]
@@ -144,17 +142,15 @@ namespace TheAirline.Model.AirlineModel
             this.Mentality = mentality;
             this.MarketFocus = marketFocus;
             this.License = license;
-            this.FlightCodes = new List<string>();
-            this.Policies = new List<AirlinePolicy>();
+             this.Policies = new List<AirlinePolicy>();
             this.EventLog = new List<RandomEvent>();
             this.Ratings = new AirlineRatings();
             this.OverallScore = this.CountedScores = 0;
             this.GameScores = new Dictionary<DateTime, int>();
             this.InsuranceClaims = new List<InsuranceClaim>();
             this.InsurancePolicies = new List<AirlineInsurance>();
-            for (int i = 1; i < 10000; i++)
-                this.FlightCodes.Add(string.Format("{0}{1:0000}",this.Profile.IATACode, i));
-
+         
+         
             createStandardAdvertisement();
 
             this.Pilots = new List<Pilot>();
@@ -212,11 +208,12 @@ namespace TheAirline.Model.AirlineModel
             {
                 this._Routes.Add(route);
                 route.Airline = this;
-
+            }
+            /*
                 foreach (string flightCode in route.TimeTable.Entries.Select(e => e.Destination.FlightCode).Distinct())
                     this.FlightCodes.Remove(flightCode);
-            }
-         
+          
+         */
         }
         //removes a route from the airline
         public void removeRoute(Route route)
@@ -225,8 +222,9 @@ namespace TheAirline.Model.AirlineModel
             {
                 this._Routes.Remove(route);
 
+                /*
                 foreach (string flightCode in route.TimeTable.Entries.Select(e => e.Destination.FlightCode).Distinct())
-                    this.FlightCodes.Add(flightCode);
+                    this.FlightCodes.Add(flightCode);*/
      
             }
        
@@ -509,9 +507,23 @@ namespace TheAirline.Model.AirlineModel
         //returns the list of flight codes for the airline
         public List<string> getFlightCodes()
         {
-            /*
-            List<string> codes = new List<string>(this.FlightCodes);
+            
+            List<string> codes = new List<string>();
 
+            var rCodes = this.Routes.SelectMany(r=>r.TimeTable.Entries).Select(e=>e.Destination.FlightCode).Distinct();
+
+            for (int i = 0; i < 1000; i++)
+            {
+                string code = string.Format("{0}{1:0000}", this.Profile.IATACode, i);
+
+                if (!rCodes.Contains(code))
+                    codes.Add(code);
+            }
+
+            return codes;
+
+
+            /*
             var routes = new List<Route>(this.Routes);
 
             var entries = new List<RouteTimeTableEntry>(routes.SelectMany(r => r.TimeTable.Entries));
@@ -526,10 +538,9 @@ namespace TheAirline.Model.AirlineModel
             codes.Sort(delegate(string s1, string s2) { return s1.CompareTo(s2); });
             
 
-
+            
             return codes;
-             *  * */
-            return this.FlightCodes;
+         */
         }
         //adds an insurance to the airline
         public void addInsurance(AirlineInsurance insurance)
@@ -719,6 +730,8 @@ namespace TheAirline.Model.AirlineModel
                     }
 
                 }
+              
+                this.Shares = new List<AirlineShare>();
 
                 if (version == 1)
                 {

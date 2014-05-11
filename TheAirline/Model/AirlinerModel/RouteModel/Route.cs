@@ -19,6 +19,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     //the class for a route
     public abstract class Route : ISerializable
     {
+        public const double MinRouteDistance = 25;
         public double Balance { get { return getBalance(); } set { ;} }
         public double FillingDegree { get { return getFillingDegree(); } set { ;} }
         public Boolean IsCargoRoute { get { return this.Type == RouteType.Cargo; } set { ;} }

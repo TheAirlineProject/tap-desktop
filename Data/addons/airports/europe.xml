@@ -1076,6 +1076,7 @@
     </runways>
   </airport>
   <airport name="Manston, Kent's International Airport" icao="EGMH" iata="MSE" type="Short_Haul_International" season="All_Year">
+    <period from="01.07.1989 00:00:00" to="05.15.2014 00:00:00" />
     <town town="Manston, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="051°20'32''N" />

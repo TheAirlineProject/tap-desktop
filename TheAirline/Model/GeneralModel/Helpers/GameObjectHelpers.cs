@@ -222,8 +222,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             //checks for airliner types which are out of production
             foreach (AirlinerType aType in AirlinerTypes.GetTypes(a => a.Produced.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+            {
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airliner_News, GameObject.GetInstance().GameTime, "Airliner type out of production", string.Format("{0} has taken {1} out of production", aType.Manufacturer.Name, aType.Name)));
 
+                Boolean lastFromManufacturer = AirlinerTypes.GetAllTypes().Where(t=>t.Manufacturer == aType.Manufacturer && t.Produced.To > GameObject.GetInstance().GameTime).Count() == 0;
+
+                if (lastFromManufacturer)
+                {
+                    var manufacturerContracts = Airlines.GetAllAirlines().Where(a => a.Contract.Manufacturer == aType.Manufacturer);
+
+                    foreach (Airline contractedAirline in manufacturerContracts)
+                        contractedAirline.Contract = null;
+                }
+            }
             //checks for airport facilities for the human airline
             var humanAirportFacilities = (from f in humanAirlines.SelectMany(ai => ai.Airports.SelectMany(a => a.getAirportFacilities(ai))) where f.FinishedDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() select f);
 
@@ -471,23 +482,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
            );
             //checks for airliners for the human airline
             foreach (FleetAirliner airliner in humanAirlines.SelectMany(a => a.Fleet.FindAll(f => f.Airliner.BuiltDate == GameObject.GetInstance().GameTime && f.Purchased != FleetAirliner.PurchasedType.BoughtDownPayment)))
-                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner [LI airliner={0}] as been delivered to your fleet.\nThe airliner is currently at [LI airport={1}], {2}.", airliner.Airliner.TailNumber, airliner.Homebase.Profile.IATACode, airliner.Homebase.Profile.Country.Name)));
+            {
+                if (airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline)
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner [LI airliner={0}] as been delivered to your fleet.\nThe airliner is currently at [LI airport={1}], {2}", airliner.Airliner.TailNumber, airliner.Homebase.Profile.IATACode, airliner.Homebase.Profile.Country.Name)));
+                else
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("The new airliner [LI airliner={0}] as been delivered for [LI airline={1}].\nThe airliner is currently at [LI airport={2}], {3}", airliner.Airliner.TailNumber, airliner.Airliner.Airline.Profile.IATACode, airliner.Homebase.Profile.IATACode, airliner.Homebase.Profile.Country.Name)));
 
+            }
 
             Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
             {
                 lock (airline.Fleet)
                 {
                     var fleet = new List<FleetAirliner>(airline.Fleet);
-                    foreach (FleetAirliner airliner in fleet.FindAll(a => a != null && a.Airliner.BuiltDate == GameObject.GetInstance().GameTime && a.Purchased == FleetAirliner.PurchasedType.BoughtDownPayment))
+                    foreach (FleetAirliner airliner in fleet.FindAll(a => a != null && a.Airliner.BuiltDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() && a.Purchased == FleetAirliner.PurchasedType.BoughtDownPayment))
                     {
                         if (airline.Money >= airliner.Airliner.Type.Price)
                         {
                             AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Airliner.Type.Price);
                             airliner.Purchased = FleetAirliner.PurchasedType.Bought;
-
-                            if (airline.IsHuman)
-                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner [LI airliner={0}] as been delivered to your fleet.\nThe airliner is currently at [LI airport={1}], {2}", airliner.Airliner.TailNumber, airliner.Homebase.Profile.IATACode, airliner.Homebase.Profile.Country.Name)));
 
                         }
                         else
@@ -1017,7 +1030,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
 
                             //the more aircrafts the more employees
-                            int aircrafts = airline.Fleet.Count(a=>a.Homebase == airport);
+                            int aircrafts = airline.Fleet.Count(a => a.Homebase == airport);
                             employees += aircrafts;
                         }
 

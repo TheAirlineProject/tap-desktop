@@ -58,7 +58,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             this.AllAirports.Clear();
 
-            foreach (var airport in Airports.GetAllAirports(a => airline.Profile.Countries.Contains(a.Profile.Country)).OrderBy(a=>a.Profile.Name))
+            foreach (var airport in Airports.GetAllActiveAirports().Where(a => airline.Profile.Countries.Contains(a.Profile.Country)).OrderBy(a=>a.Profile.Name))
                 this.AllAirports.Add(airport);
 
             if (this.AllAirports.Contains(airline.Profile.PreferedAirport))

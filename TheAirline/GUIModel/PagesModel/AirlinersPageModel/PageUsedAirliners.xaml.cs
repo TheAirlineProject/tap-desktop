@@ -121,7 +121,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
         private void cbPossibleHomebase_Checked(object sender, RoutedEventArgs e)
         {
-
+            //var homebases = AirlineHelpers.GetHomebases(GameObject.GetInstance().HumanAirline,);
             var source = this.lvAirliners.Items as ICollectionView;
             source.Filter = o =>
             {

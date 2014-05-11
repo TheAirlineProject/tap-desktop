@@ -14,6 +14,7 @@ namespace TheAirline.Model.AirlineModel
     [Serializable]
     public class AirlineShare : ISerializable
     {
+        //ændres til antal, percent per airline
         [Versioning("price")]
         public double Price { get; set; }
         [Versioning("airline")]

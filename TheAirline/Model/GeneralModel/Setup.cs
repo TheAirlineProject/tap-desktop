@@ -1179,8 +1179,8 @@ namespace TheAirline.Model.GeneralModel
         /*!loads the airports.
          */
 
-        IDictionary<int, Airport> airports = new Dictionary<int, Airport>();
-        private static void LoadAirports()
+       // IDictionary<int, Airport> airports = new Dictionary<int, Airport>();
+        public static void LoadAirports()
         {
             //LoadAirports(AppSettings.getDataPath() + "\\airports.xml");
             try

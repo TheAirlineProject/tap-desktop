@@ -29,7 +29,7 @@ namespace TheAirline.Model.AirportModel
             this.FinishedDate = date;
             this.Airport = airport;
         }
-           private AirlineAirportFacility(SerializationInfo info, StreamingContext ctxt)
+        private AirlineAirportFacility(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -46,10 +46,13 @@ namespace TheAirline.Model.AirportModel
 
                 if (prop != null)
                 {
+
+
                     if (prop is FieldInfo)
                         ((FieldInfo)prop).SetValue(this, entry.Value);
                     else
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
+
                 }
             }
 
@@ -97,7 +100,16 @@ namespace TheAirline.Model.AirportModel
                     propValue = ((PropertyInfo)member).GetValue(this, null);
 
                 Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
-
+                /*
+                if (att.Name == "airline")
+                {
+                    if (propValue == null)
+                        info.AddValue(att.Name, "");
+                    else
+                        info.AddValue(att.Name, ((Airline)propValue).Profile.IATACode);
+                
+                }
+                else*/
                 info.AddValue(att.Name, propValue);
             }
 

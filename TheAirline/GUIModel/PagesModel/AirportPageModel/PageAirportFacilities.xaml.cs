@@ -59,7 +59,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             Boolean airportHasCargoTerminal = this.Airport.Airport.getCurrentAirportFacility(null, AirportFacility.FacilityType.Cargo) != null && this.Airport.Airport.getCurrentAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel > 0;
             
             AirportContract contract = this.Airport.Contracts.Where(a=>a.Airline == GameObject.GetInstance().HumanAirline) ==null ? null :this.Airport.Contracts.Where(a=>a.Airline == GameObject.GetInstance().HumanAirline).First().Contract;
-
+           
             Boolean isMinimumServiceFacility = facility.Facility.Facility.TypeLevel == 1 && facility.Facility.Facility.Type == AirportFacility.FacilityType.Service && this.Airport.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline) && (contract == null || contract.Type != AirportContract.ContractType.Full_Service);
             Boolean isMinimumHubFacility = facility.Facility.Facility.Type == AirportFacility.FacilityType.Service && hasHub && facility.Facility.Facility == Hub.MinimumServiceFacility && (contract == null || contract.Type == AirportContract.ContractType.Full || contract.Type != AirportContract.ContractType.Medium_Service);
             Boolean isMinimumCheckinFacility = facility.Facility.Facility.Type == AirportFacility.FacilityType.CheckIn && facility.Facility.Facility.TypeLevel == 1 && contract != null && contract.Type == AirportContract.ContractType.Full;

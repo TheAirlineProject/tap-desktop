@@ -161,6 +161,28 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             this.Flights = new List<DestinationFlightsMVVM>();
 
+            var airportRoutes = AirportHelpers.GetAirportRoutes(this.Airport).Where(r=>r.getAirliners().Count>0);
+
+            foreach (Route airportRoute in airportRoutes)
+            {
+                double distance = MathHelpers.GetDistance(airportRoute.Destination1, airportRoute.Destination2);
+
+                Airport destination = airportRoute.Destination1 == this.Airport ? airportRoute.Destination2 : airportRoute.Destination1;
+                if (this.Flights.Exists(f=>f.Airline == airportRoute.Airline && f.Airport == destination))
+                {
+                    DestinationFlightsMVVM flight = this.Flights.First(f=>f.Airline == airportRoute.Airline && f.Airport == destination);
+                    
+                    flight.Flights += airportRoute.TimeTable.getEntries(destination).Count;
+                    
+                    foreach (AirlinerType aircraft in airportRoute.getAirliners().Select(a=>a.Airliner.Type))
+                        if (!flight.Aircrafts.Contains(aircraft))
+                            flight.Aircrafts.Add(aircraft);
+
+                }
+                else
+                    this.Flights.Add(new DestinationFlightsMVVM(destination,airportRoute.Airline,distance,airportRoute.getAirliners().Select(a=>a.Airliner.Type).ToList(),airportRoute.TimeTable.getEntries(destination).Count));
+            }
+            /*
             Dictionary<Airport, int> destinations = new Dictionary<Airport, int>();
             foreach (Route route in AirportHelpers.GetAirportRoutes(this.Airport).FindAll(r => r.getAirliners().Count > 0))
             {
@@ -182,6 +204,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             foreach (Airport a in destinations.Keys)
                 this.Flights.Add(new DestinationFlightsMVVM(a, destinations[a]));
+            */
 
             this.Hubs = new ObservableCollection<Hub>();
 
@@ -411,6 +434,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     //the mvvm class for an airline contract
     public class ContractMVVM : INotifyPropertyChanged
     {
+        public Boolean IsHuman { get; set; }
         public AirportContract Contract { get; set; }
         public Airline Airline { get; set; }
         private int _numberofgates;
@@ -431,6 +455,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Airline = this.Contract.Airline;
             this.NumberOfGates = this.Contract.NumberOfGates;
             this.MonthsLeft = this.Contract.MonthsLeft;
+            this.IsHuman = this.Airline == GameObject.GetInstance().HumanAirline;
         }
         //extends the contract with a number of year
         public void extendContract(int years)
@@ -586,10 +611,16 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     {
         public int Flights { get; set; }
         public Airport Airport { get; set; }
-        public DestinationFlightsMVVM(Airport airport, int flights)
+        public Airline Airline { get; set; }
+        public double Distance{ get; set; }
+        public List<AirlinerType> Aircrafts { get; set; }
+        public DestinationFlightsMVVM(Airport airport,Airline airline, double distance, List<AirlinerType> aircrafts, int flights)
         {
             this.Flights = flights;
             this.Airport = airport;
+            this.Distance = distance;
+            this.Airline = airline;
+            this.Aircrafts = aircrafts;
         }
     }
     //the mvvm object for airport statistics

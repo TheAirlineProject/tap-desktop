@@ -103,7 +103,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             Boolean tryOrder = true;
 
             DateTime deliveryDate = dpDeliveryDate.SelectedDate.HasValue ? dpDeliveryDate.SelectedDate.Value : this.Orders.DeliveryDate;
-
+           
             if (!hasHomebases)
             {
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2002"), Translator.GetInstance().GetString("MessageBox", "2002", "message"), WPFMessageBoxButtons.Ok);
@@ -194,6 +194,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                                 }
                                 if (contractedOrder)
                                     GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += this.Orders.Orders.Sum(o => o.Amount);
+                               
                                 AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -downpaymentPrice);
 
                                 TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
@@ -255,7 +256,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         private void orderAirliners(double discount = 0)
         {
             DateTime deliveryDate = dpDeliveryDate.SelectedDate.HasValue ? dpDeliveryDate.SelectedDate.Value : this.Orders.DeliveryDate;
-
+           //                - if ordering a huge number of planes it is not realistic to receive all ordered planes the same day. I think max 10 planes are more realistic in only one month.
+     
             Guid id = Guid.NewGuid();
 
             foreach (AirlinerOrderMVVM order in this.Orders.Orders)

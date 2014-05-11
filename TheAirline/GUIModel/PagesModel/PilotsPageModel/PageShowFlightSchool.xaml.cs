@@ -80,7 +80,12 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2809"), Translator.GetInstance().GetString("MessageBox", "2809", "message"), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
+                {
                     this.FlightSchool.removeTrainingAircraft(aircraft);
+                    
+                    double price = aircraft.Type.Price * 0.75;
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline,GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, price);
+                }
             }
             else
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2810"), Translator.GetInstance().GetString("MessageBox", "2810", "message"), WPFMessageBoxButtons.Ok);
@@ -124,7 +129,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 List<Town> towns = Towns.GetTowns(this.FlightSchool.FlightSchool.Airport.Profile.Country);
 
                 Town town = towns[rnd.Next(towns.Count)];
-                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-40), GameObject.GetInstance().GameTime.AddYears(-23));
+                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-35), GameObject.GetInstance().GameTime.AddYears(-23));
                 PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(town.Country), Names.GetInstance().getRandomLastName(town.Country), birthdate, town);
 
                 Instructor instructor = (Instructor)cbInstructor.SelectedItem;

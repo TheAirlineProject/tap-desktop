@@ -207,12 +207,17 @@
                                 <ComboBox Name="cbAirport" Width="200" ItemsSource="{Binding AllAirports,ElementName=pageAirlineInfo}" ItemTemplate="{DynamicResource AirportCountryItem}" Style="{DynamicResource ComboBoxTransparentStyle}"></ComboBox>
                             </WrapPanel>
                             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1036'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <ContentControl Content="{Binding SelectedItem.Profile.Country,ElementName=cbAirport}" ContentTemplate="{StaticResource CountryLongFlagItem}" VerticalAlignment="Bottom"></ContentControl>
+                            </WrapPanel>
+                            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1026'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                                 <StackPanel>
-                                <Slider Minimum="1" Maximum="{Binding MaxSubsidiaryMoney}" Width="150" Name="slMoney"></Slider>
-                                <TextBlock Text="{Binding Value,ElementName=slMoney,Converter={StaticResource ValueCurrencyConverter}}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                                    <Slider Minimum="1" Maximum="{Binding MaxSubsidiaryMoney}" Width="150" Name="slMoney"></Slider>
+                                    <TextBlock Text="{Binding Value,ElementName=slMoney,Converter={StaticResource ValueCurrencyConverter}}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                                 </StackPanel>
                             </WrapPanel>
+                           
                             <WrapPanel Margin="0 5 0 0">
                                 <Button Click="btnCreateSubsidiary_Click" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 200'}">
                                     <Button.Style>

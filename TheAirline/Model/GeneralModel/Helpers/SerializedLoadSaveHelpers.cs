@@ -45,7 +45,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Parallel.Invoke(() =>
             {
                 so.airportsList = new List<Airport>();
-                so.airportsList.AddRange(Airports.GetAllAirports());
+                so.airportsfromstringList = new List<string>();
+
+                var airportsInUse = Airports.GetAllAirports().Where(a=>Airlines.GetAllAirlines().Exists(al=>al.Airports.Contains(a)) || a.hasAirlineFacility());
+                so.airportsList.AddRange(airportsInUse);
+
+                foreach (Airport airport in Airports.GetAirports(a => !airportsInUse.Contains(a)))
+                    so.airportsfromstringList.Add(airport.Profile.IATACode);
             }, () =>
             {
                 so.airlinesList = new List<Airline>();
@@ -53,7 +59,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }, () =>
             {
                 so.airlinersList = new List<Airliner>();
-                so.airlinersList.AddRange(Airliners.GetAllAirliners());
+                so.airlinersList.AddRange(Airliners.GetAllAirliners().Where(a=>a.Airline != null));
             }, () =>
             {
                 so.calendaritemsList = new List<CalendarItem>();
@@ -103,7 +109,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
 
             FileSerializer.Serialize(fileName, so);
-
+                     
             sw.Stop();
             Console.WriteLine("Saving: {0} ms", sw.ElapsedMilliseconds);
 
@@ -225,12 +231,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
             },
             () =>
             {
-                Airports.Clear();
+                
+                Setup.LoadAirports();
 
+                var airports = Airports.GetAllAirports();
+
+                Airports.Clear();
+                
                 foreach (Airport airport in deserializedSaveObject.airportsList)
                 {
                     airport.Statics = new AirportStatics(airport);
                     Airports.AddAirport(airport);
+                }
+
+                foreach (string iata in deserializedSaveObject.airportsfromstringList)
+                {
+                    Airport airport = airports.FirstOrDefault(a => a.Profile.IATACode == iata);
+
+                    if (airport != null)
+                        Airports.AddAirport(airport);
                 }
             },
             () =>
@@ -342,11 +361,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 swPax.Stop();
             };
 
-            //Create some pilots for the game
+            //create some pilots for the game
             int pilotsPool = 100 * Airlines.GetAllAirlines().Count;
             GeneralHelpers.CreatePilots(pilotsPool);
             int instructorsPool = 75 * Airlines.GetAllAirlines().Count;
             GeneralHelpers.CreateInstructors(instructorsPool);
+
+            //creates some airliners for the game
+            AirlinerHelpers.CreateStartUpAirliners();
 
             //Start the game paused
             GameObjectWorker.GetInstance().startPaused();
@@ -360,6 +382,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
     [Serializable]
     public class SaveObject
     {
+        [Versioning("airportsfromstrings")]
+        public List<string> airportsfromstringList { get; set; }
         [Versioning("calendaritems")]
         public List<CalendarItem> calendaritemsList { get; set; }
 
@@ -441,7 +465,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 //serializer.WriteObject(stream, objectToSerialize);
 
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
             finally
             {
 

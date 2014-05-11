@@ -53,6 +53,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public List<AirlineRouteMVVM> Routes { get; set; }
 
         public Boolean IsBuyable { get; set; }
+        public int NeededPilots { get; set; }
         private Alliance _alliance;
         public Alliance Alliance
         {
@@ -373,7 +374,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.MaintenanceCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees);
          
             this.MaintenanceCrew += this.Airline.Airports.Where(a=>a.getCurrentAirportFacility(this.Airline,AirportFacility.FacilityType.Service).TypeLevel > 0).Sum(a=>this.Airline.Fleet.Count(f=>f.Homebase == a));
-             
+            this.NeededPilots = this.DeliveredFleet.Sum(f => f.Airliner.Type.CockpitCrew - f.Pilots.Count); 
+
             foreach (AirlineFacility facility in AirlineFacilities.GetFacilities(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).OrderBy(f => f.Name))
             {
                 if (this.Airline.Facilities.Exists(f => f.Uid == facility.Uid) || this.Airline.IsHuman)

@@ -158,7 +158,14 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
-
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1012'}" CanFilter="True" SortPropertyName="LongestRunway" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding LongestRunway,Converter={StaticResource SmallDistanceToUnitConverter}}">
+                                </TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1007'}" CanFilter="True" FilterValues="{Binding OperatingRanges,ElementName=pageShowAirports}" SortPropertyName="NumberOfAirlines" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

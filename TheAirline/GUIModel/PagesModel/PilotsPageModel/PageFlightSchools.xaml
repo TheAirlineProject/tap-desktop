@@ -80,6 +80,15 @@
                     <ListView x:Name="lvFlightSchools" VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" Background="Transparent" BorderThickness="0" ItemsSource="{Binding FlightSchools,ElementName=pageFlightSchools}">
                         <ListView.View>
                             <GridView>
+                                <GridViewColumn Header="" Width="40">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button  VerticalAlignment="Bottom" Tag="{Binding}" Background="Transparent" Click="btnDelete_Click">
+                                                <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                                 <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1000'}" Width="200" util:GridViewSort.PropertyName="Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
@@ -102,6 +111,7 @@
                                 </GridViewColumn>
                                 <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1006'}" Width="100" util:GridViewSort.PropertyName="NumberOfStudents" DisplayMemberBinding="{Binding NumberOfStudents}">
                                 </GridViewColumn>
+                             
                             </GridView>
                         </ListView.View>
                     </ListView>

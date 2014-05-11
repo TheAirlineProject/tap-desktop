@@ -931,7 +931,7 @@
     <value>Airline Routes</value>
   </data>
   <data name="PageAirlineFleet_1002_name" xml:space="preserve">
-    <value>Name</value>
+    <value>Reg. No.</value>
   </data>
   <data name="PageAirlineFleet_1003_name" xml:space="preserve">
     <value>Type</value>
@@ -4997,5 +4997,32 @@ Good luck.</value>
   </data>
   <data name="PageShowRoute_1005_name" xml:space="preserve">
     <value>Distance</value>
+  </data>
+  <data name="PageAirlineEmployees_1015_name" xml:space="preserve">
+    <value>Pilots Needed</value>
+  </data>
+  <data name="PageAirportTraffic_1006_name" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="PageAirportTraffic_1007_name" xml:space="preserve">
+    <value>Airline</value>
+  </data>
+  <data name="PageAirportTraffic_1008_name" xml:space="preserve">
+    <value>Aircrafts</value>
+  </data>
+  <data name="PageShowAirports_1012_name" xml:space="preserve">
+    <value>Longest Runway</value>
+  </data>
+  <data name="MessageBox_2812_message" xml:space="preserve">
+    <value>Are you sure you want to close your flight school at {0}?</value>
+  </data>
+  <data name="MessageBox_2812_name" xml:space="preserve">
+    <value>Close Flight School</value>
+  </data>
+  <data name="PageFlightSchools_1009_name" xml:space="preserve">
+    <value>Move Instructors and Aircrafts</value>
+  </data>
+  <data name="PageAirlineInfo_1036_name" xml:space="preserve">
+    <value>Airline Country</value>
   </data>
 </root>

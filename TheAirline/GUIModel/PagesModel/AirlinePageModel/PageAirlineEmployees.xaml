@@ -58,6 +58,11 @@
                                     <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.UnassignedPilots,ElementName=pageAirlineEmployees}"></TextBlock>
                                 </h:QuickInfoValue.Value>
                             </h:QuickInfoValue>
+                            <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1015'}">
+                                <h:QuickInfoValue.Value>
+                                    <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.NeededPilots,ElementName=pageAirlineEmployees}"></TextBlock>
+                                </h:QuickInfoValue.Value>
+                            </h:QuickInfoValue>
                             <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1012'}">
                                 <h:QuickInfoValue.Value>
                                     <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.PilotsToRetire,ElementName=pageAirlineEmployees}"></TextBlock>

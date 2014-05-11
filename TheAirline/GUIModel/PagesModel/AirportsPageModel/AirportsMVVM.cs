@@ -15,6 +15,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
     //the mvvm class for an airport
     public class AirportMVVM : INotifyPropertyChanged
     {
+        public long LongestRunway { get; set; }
         public Airport Airport { get; set; }
         private int _numberOfRoutes;
         public int NumberOfRoutes
@@ -47,6 +48,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             this.NumberOfFreeGates = this.Airport.Terminals.NumberOfFreeGates;
             this.NumberOfAirlines = this.Airport.AirlineContracts.Select(c => c.Airline).Distinct().Count();
             this.NumberOfRoutes = AirportHelpers.GetAirportRoutes(this.Airport).Count;
+            this.LongestRunway = this.Airport.Runways.Max(r => r.Length);
         }
         public void addAirlineContract(AirportContract contract)
         {

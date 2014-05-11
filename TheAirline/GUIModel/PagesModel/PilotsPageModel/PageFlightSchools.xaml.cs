@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirportModel;
@@ -32,11 +33,12 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
         public ObservableCollection<FlightSchool> FlightSchools { get; set; }
         public PageFlightSchools()
         {
+
             this.AllInstructors = new ObservableCollection<Instructor>();
             this.FlightSchools = new ObservableCollection<FlightSchool>();
 
             Instructors.GetUnassignedInstructors().ForEach(i => this.AllInstructors.Add(i));
-            GameObject.GetInstance().HumanAirline.FlightSchools.ForEach(f=>this.FlightSchools.Add(f));
+            GameObject.GetInstance().HumanAirline.FlightSchools.ForEach(f => this.FlightSchools.Add(f));
 
             this.Loaded += PageFlightSchools_Loaded;
             InitializeComponent();
@@ -63,7 +65,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 matchingItem.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
-       
+
         private void lnkFlightSchool_Click(object sender, RoutedEventArgs e)
         {
             FlightSchool fs = (FlightSchool)((Hyperlink)sender).Tag;
@@ -91,6 +93,69 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 frmContent.Navigate(new PageShowFlightSchool(fs) { Tag = this.Tag });
 
             }
+        }
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            FlightSchool fs = (FlightSchool)((Button)sender).Tag;
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2812"), string.Format(Translator.GetInstance().GetString("MessageBox", "2812", "message"), fs.Airport.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                GameObject.GetInstance().HumanAirline.removeFlightSchool(fs);
+                this.FlightSchools.Remove(fs);
+
+                if (GameObject.GetInstance().HumanAirline.FlightSchools.Count > 0)
+                {
+                    ComboBox cbFlightSchools = new ComboBox();
+                    cbFlightSchools.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                    cbFlightSchools.Width = 200;
+                    cbFlightSchools.SelectedValuePath = "Name";
+                    cbFlightSchools.DisplayMemberPath = "Name";
+                    cbFlightSchools.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+
+                    foreach (FlightSchool fSchool in GameObject.GetInstance().HumanAirline.FlightSchools.Where(f => f.NumberOfInstructors + fs.NumberOfInstructors <= FlightSchool.MaxNumberOfInstructors && f != fs))
+                        cbFlightSchools.Items.Add(fSchool);
+
+                    cbFlightSchools.SelectedIndex = 0;
+
+                    if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageFlightSchools", "1009"), cbFlightSchools) == PopUpSingleElement.ButtonSelected.OK && cbFlightSchools.SelectedItem != null)
+                    {
+                        FlightSchool nFlightSchool = (FlightSchool)cbFlightSchools.SelectedItem;
+
+                        foreach (Instructor instructor in fs.Instructors)
+                        {
+                            instructor.FlightSchool = nFlightSchool;
+                            nFlightSchool.addInstructor(instructor);
+                        }
+
+                        var aircrafts = new List<TrainingAircraft>(fs.TrainingAircrafts);
+                        foreach (TrainingAircraft aircraft in aircrafts)
+                        {
+                            aircraft.FlightSchool = nFlightSchool;
+                            nFlightSchool.addTrainingAircraft(aircraft);
+                        }
+
+                        ICollectionView view = CollectionViewSource.GetDefaultView(lvFlightSchools.ItemsSource);
+                        view.Refresh();
+                    }
+                    else
+                    {
+                        foreach (TrainingAircraft aircraft in fs.TrainingAircrafts)
+                        {
+                            double price = aircraft.Type.Price * 0.75;
+                            AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, price);
+
+                        }
+                        // if terminal built on behalf of subsidiary and closing sub before terminal is already built: should't the main airline receive it then or only the airport? I did it and the gates were only useable by sub, not possible to hire these gates afterwards by main airline.
+
+                    }
+                }
+
+
+
+            }
+
         }
         private void btnBuild_Click(object sender, RoutedEventArgs e)
         {
@@ -156,7 +221,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
                 flightSchool.addInstructor(instructor);
                 instructor.FlightSchool = flightSchool;
-                
+
                 this.AllInstructors.Remove(instructor);
 
                 ICollectionView view = CollectionViewSource.GetDefaultView(lvFlightSchools.ItemsSource);
@@ -164,6 +229,6 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
             }
         }
 
-      
+
     }
 }

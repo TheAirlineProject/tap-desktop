@@ -113,7 +113,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             var contracts = this.Airport.Airport.AirlineContracts.Where(a => a.Airline == GameObject.GetInstance().HumanAirline && a != contract).ToList();
 
-            if (!AirportHelpers.CanFillRoutesEntries(this.Airport.Airport, GameObject.GetInstance().HumanAirline, contracts, Weather.Season.All_Year))
+            if (!AirportHelpers.CanFillRoutesEntries(this.Airport.Airport, GameObject.GetInstance().HumanAirline, contracts, Weather.Season.All_Year) || contracts.Count == 0)
             {
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2224"), Translator.GetInstance().GetString("MessageBox", "2224", "message"), WPFMessageBoxButtons.Ok);
             }

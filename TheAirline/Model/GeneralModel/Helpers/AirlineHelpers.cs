@@ -335,30 +335,32 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airline.addSubsidiaryAirline(sAirline);
 
-            //sets all the facilities at an airport to none for all airlines
-            foreach (Airport airport in Airports.GetAllAirports())
+            if (!AirportHelpers.HasFreeGates(airportHomeBase, sAirline) && airportHomeBase.Terminals.getFreeGates() > 1)
             {
-
-                foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
+                AirportHelpers.RentGates(airportHomeBase, sAirline, AirportContract.ContractType.Full, 2);
+                //sets all the facilities at an airport to none for all airlines
+                foreach (Airport airport in Airports.GetAllAirports())
                 {
-                    AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
 
-                    airport.addAirportFacility(sAirline, noneFacility, GameObject.GetInstance().GameTime);
+                    foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
+                    {
+                        AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
+
+                        airport.addAirportFacility(sAirline, noneFacility, GameObject.GetInstance().GameTime);
+                    }
+
                 }
 
+                foreach (AirlinePolicy policy in airline.Policies)
+                    sAirline.addAirlinePolicy(policy);
+
+                AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
+                AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+                airportHomeBase.addAirportFacility(sAirline, serviceFacility, GameObject.GetInstance().GameTime);
+                airportHomeBase.addAirportFacility(sAirline, checkinFacility, GameObject.GetInstance().GameTime);
+
             }
-
-            foreach (AirlinePolicy policy in airline.Policies)
-                sAirline.addAirlinePolicy(policy);
-
-            AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
-            AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
-
-            airportHomeBase.addAirportFacility(sAirline, serviceFacility, GameObject.GetInstance().GameTime);
-            airportHomeBase.addAirportFacility(sAirline, checkinFacility, GameObject.GetInstance().GameTime);
-
-            if (!AirportHelpers.HasFreeGates(airportHomeBase, sAirline) && airportHomeBase.Terminals.getFreeGates() > 1)
-                AirportHelpers.RentGates(airportHomeBase, sAirline, AirportContract.ContractType.Full, 2);
 
             Airlines.AddAirline(sAirline);
 
@@ -369,7 +371,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static SubsidiaryAirline CreateSubsidiaryAirline(Airline airline, double money, string name, string iata, Airline.AirlineMentality mentality, Airline.AirlineFocus market, Route.RouteType routefocus, Airport homebase)
         {
             AirlineProfile profile = new AirlineProfile(name, iata, airline.Profile.Color, airline.Profile.CEO, true, GameObject.GetInstance().GameTime.Year, 2199);
-            profile.Country = airline.Profile.Country;
+            profile.Country = homebase.Profile.Country;
 
             SubsidiaryAirline sAirline = new SubsidiaryAirline(airline, profile, mentality, market, airline.License, routefocus);
 
@@ -506,6 +508,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static List<Airport> GetHomebases(Airline airline)
         {
         
+           //var curentFacility = 
            return airline.Airports.FindAll(a =>(a.hasContractType(airline, AirportContract.ContractType.Full_Service) || airline.Fleet.Count(ar=>ar.Homebase == a) < a.getCurrentAirportFacility(airline,AirportFacility.FacilityType.Service).ServiceLevel));
 
         }
@@ -818,8 +821,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             select a.Range;
 
                 double maxFlightDistance = query.Max();
-
-                if (minDistance <= 50 || maxDistance > maxFlightDistance)
+                
+                if (minDistance <= Route.MinRouteDistance || maxDistance > maxFlightDistance)
                     routeOkStatus = RouteOkStatus.Wrong_Distance;
 
                 if (routeOkStatus == RouteOkStatus.Ok)

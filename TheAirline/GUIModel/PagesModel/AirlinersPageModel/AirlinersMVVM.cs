@@ -111,9 +111,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         {
             this.Orders.Add(order);
             order.PropertyChanged += order_PropertyChanged;
-
-
-
         }
         private void order_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {

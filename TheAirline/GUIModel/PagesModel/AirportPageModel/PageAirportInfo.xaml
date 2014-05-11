@@ -393,7 +393,7 @@
                                                     <Button.Style>
                                                         <Style TargetType="Button">
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                                                <DataTrigger Binding="{Binding IsHuman}" Value="False">
                                                                     <Setter Property="Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
                                                               
@@ -402,7 +402,7 @@
                                                     </Button.Style>
                                                         <Image Source="/data/images/edit.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                             </Button>
-                                            <Button Background="Transparent" Width="20" Tag="{Binding}" Margin="5 0 0 0" Click="btnRemoveContract_Click" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                                            <Button Background="Transparent" Width="20" Tag="{Binding}" Margin="5 0 0 0" Click="btnRemoveContract_Click" Visibility="{Binding IsHuman,Converter={StaticResource BooleanToVisibility}}">
                                                 <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                             </Button>
                                             </WrapPanel>
