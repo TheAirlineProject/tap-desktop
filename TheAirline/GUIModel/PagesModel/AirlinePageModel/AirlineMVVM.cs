@@ -53,7 +53,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public List<AirlineRouteMVVM> Routes { get; set; }
 
         public Boolean IsBuyable { get; set; }
-        public int NeededPilots { get; set; }
         private Alliance _alliance;
         public Alliance Alliance
         {
@@ -71,7 +70,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public int CabinCrew { get; set; }
         public int SupportCrew { get; set; }
         public int MaintenanceCrew { get; set; }
-
+        private int _neededpilots;
+        public int NeededPilots 
+        {
+            get { return _neededpilots; }
+            set { _neededpilots = value; NotifyPropertyChanged("NeededPilots"); } 
+        }
+      
         private int _unassignedpilots;
         public int UnassignedPilots
         {
@@ -336,6 +341,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             this.UnassignedPilots = this.Pilots.Count(p => p.Pilot.Airliner == null);
             this.PilotsToRetire = this.Pilots.Count(p => p.Pilot.Profile.Age == Pilot.RetirementAge - 1);
+            this.NeededPilots = this.DeliveredFleet.Sum(f => f.Airliner.Type.CockpitCrew - f.Pilots.Count);
         }
         //adds a loan
         public void addLoan(Loan loan)
@@ -345,7 +351,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Airline.addLoan(loan);
 
             setValues();
-         
+          
 
         }
         //saves the advertisements

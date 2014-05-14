@@ -208,6 +208,9 @@ namespace TheAirline.Model.GeneralModel
             double dMinutes = (dtime - hours) * 60;
 
             int minutes = Convert.ToInt16(Math.Floor(dMinutes));
+            
+            //2.5 minutes for takeoff and 2.5 minutes for landing
+            minutes += 5;
 
             return new TimeSpan(hours, minutes, 0);
         }
@@ -229,6 +232,9 @@ namespace TheAirline.Model.GeneralModel
             double dMinutes = (dtime - hours) * 60;
 
             int minutes = Convert.ToInt16(Math.Floor(dMinutes));
+
+            //2.5 minutes for takeoff and 2.5 minutes for landing
+            minutes += 5;
 
             return new TimeSpan(hours, minutes, 0);
         }

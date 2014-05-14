@@ -229,7 +229,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (lastFromManufacturer)
                 {
-                    var manufacturerContracts = Airlines.GetAllAirlines().Where(a => a.Contract.Manufacturer == aType.Manufacturer);
+                    var manufacturerContracts = Airlines.GetAllAirlines().Where(a => a.Contract != null && a.Contract.Manufacturer == aType.Manufacturer);
 
                     foreach (Airline contractedAirline in manufacturerContracts)
                         contractedAirline.Contract = null;

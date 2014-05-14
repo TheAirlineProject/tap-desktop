@@ -321,7 +321,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             }
+            //moves the terminals from the subsidiary to the parent airline
+            foreach (Airport airport in airline.Airports)
+            {
+                var terminals = airport.Terminals.getTerminals().Where(t=>t.Airline == airline);
 
+                foreach (Terminal terminal in terminals)
+                    terminal.Airline = airline.Airline;
+            }
+                
+                
+           
 
         }
         //adds a subsidiary airline to an airline

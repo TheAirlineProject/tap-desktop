@@ -56,8 +56,16 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             }
             else
             {
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2116"), string.Format(Translator.GetInstance().GetString("MessageBox", "2116", "message"), pilot.Pilot.Profile.Name), WPFMessageBoxButtons.Ok);
+                
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2116"), string.Format(Translator.GetInstance().GetString("MessageBox", "2116", "message"), pilot.Pilot.Profile.Name), WPFMessageBoxButtons.YesNo);
 
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    pilot.Pilot.Airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
+                    pilot.Pilot.Airliner.removePilot(pilot.Pilot);
+
+                    this.Airline.removePilot(pilot);
+                }
             }
         }
 

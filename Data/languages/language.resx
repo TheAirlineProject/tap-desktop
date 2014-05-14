@@ -1752,10 +1752,10 @@ Loading of game aborted.</value>
     <value>You can't reassign the pilot since the airliner is on route.</value>
   </data>
   <data name="MessageBox_2116_name" xml:space="preserve">
-    <value>Can't Dismiss Pilot</value>
+    <value>Dismiss Pilot</value>
   </data>
   <data name="MessageBox_2116_message" xml:space="preserve">
-    <value>You can't dismiss {0} since he is assigned to an airliner</value>
+    <value>Are you sure you want to dismiss {0} so the airliner he is assigned to will be stopped?</value>
   </data>
   <data name="MessageBox_2117_name" xml:space="preserve">
     <value>Dismiss Pilot</value>
@@ -5021,6 +5021,9 @@ Good luck.</value>
   </data>
   <data name="PageFlightSchools_1009_name" xml:space="preserve">
     <value>Move Instructors and Aircrafts</value>
+  </data>
+  <data name="PageAirlineEmployees_1016_name" xml:space="preserve">
+    <value>Aircraft</value>
   </data>
   <data name="PageAirlineInfo_1036_name" xml:space="preserve">
     <value>Airline Country</value>

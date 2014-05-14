@@ -98,7 +98,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
         {
             FlightSchool fs = (FlightSchool)((Button)sender).Tag;
 
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2812"), string.Format(Translator.GetInstance().GetString("MessageBox", "2812", "message"), fs.Airport.Profile.Name), WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2812"), string.Format(Translator.GetInstance().GetString("MessageBox", "2812", "message"), fs.Airport.Profile.Town.Name), WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
             {
@@ -147,8 +147,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                             AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, price);
 
                         }
-                        // if terminal built on behalf of subsidiary and closing sub before terminal is already built: should't the main airline receive it then or only the airport? I did it and the gates were only useable by sub, not possible to hire these gates afterwards by main airline.
-
+                      
                     }
                 }
 

@@ -135,7 +135,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="">
+                                    <GridViewColumn Header="" Width="40">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button VerticalAlignment="Bottom" Background="Transparent" Click="btnTrainPilot_Click" Width="20" Tag="{Binding}">
@@ -153,6 +153,13 @@
                                                     </Button.Style>
                                                     <Image Source="/data/images/school.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                                 </Button>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1016'}" Width="100" util:GridViewSort.PropertyName="Aircrafts">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Pilot.Airliner.Name,FallbackValue='-'}" VerticalAlignment="Bottom"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
