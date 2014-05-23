@@ -102,7 +102,7 @@
       <es-ES name="Saint Lucia" />
     </translations>
   </country>
-  <country uid="110" shortname="DNK" region="114" flag="Denmark" tailformat="OY-\\s4">
+  <country uid="110" shortname="DNK" region="114" flag="Denmark" tailformat="OY-\\s3">
 	<currency symbol="kr." position="Right" rate="5.66"/>
     <translations>
       <en-US name="Denmark" />
@@ -1938,6 +1938,17 @@
       <zh-CN name="Nauru" />
       <da-DK name="Nauru" />
       <es-ES name="Nauru" />
+    </translations>
+  </country>
+        <country uid="292" shortname="VNT" region="112" flag="Vanutau" tailformat="V6-\\s3">
+    <translations>
+      <en-US name="Vanutau" />
+      <de-DE name="Vanutau" />
+      <en-GB name="Vanutau" />
+      <nl-NL name="Vanutau" />
+      <zh-CN name="Vanutau" />
+      <da-DK name="Vanutau" />
+      <es-ES name="Vanutau" />
     </translations>
   </country>
   <!--Territories-->

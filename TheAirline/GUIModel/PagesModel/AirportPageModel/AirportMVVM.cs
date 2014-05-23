@@ -105,13 +105,13 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             var internationalDemand = demands.Where(a => new CountryCurrentCountryConverter().Convert(a.Profile.Country) != new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country));
             var domesticDemand = demands.Where(a => new CountryCurrentCountryConverter().Convert(a.Profile.Country) == new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country));
            
-            foreach (Airport destination in internationalDemand.Take(Math.Min(50,internationalDemand.Count())))
+            foreach (Airport destination in internationalDemand)
                 this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),(int)this.Airport.Profile.Pax, (int)this.Airport.getDestinationCargoRate(destination),DemandMVVM.DestinationType.International));
 
-            foreach (Airport destination in domesticDemand.Take(Math.Min(50, domesticDemand.Count())))
+            foreach (Airport destination in domesticDemand)
                 this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),(int)this.Airport.Profile.Pax, (int)this.Airport.getDestinationCargoRate(destination), DemandMVVM.DestinationType.Domestic));
             
-            this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null && f.Facility.TypeLevel!=0).Select(f=>f.Facility).ToList();
+            this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null && f.Facility.TypeLevel!=0).Select(f=>f.Facility).Distinct().ToList();
 
             this.AirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
             this.BuildingAirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
@@ -124,7 +124,10 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                     AirlineAirportFacilityMVVM airlineFacility = new AirlineAirportFacilityMVVM(facility, alliance);
 
                     if (airlineFacility.IsDelivered)
-                        this.AirlineFacilities.Add(airlineFacility);
+                    {
+                        if (facility == Airport.getAirlineAirportFacility(facility.Airline,facility.Facility.Type))
+                            this.AirlineFacilities.Add(airlineFacility);
+                    }
                     else
                         this.BuildingAirlineFacilities.Add(airlineFacility);
                 }
@@ -161,6 +164,28 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             this.Flights = new List<DestinationFlightsMVVM>();
 
+            var airportRoutes = AirportHelpers.GetAirportRoutes(this.Airport).Where(r=>r.getAirliners().Count>0);
+
+            foreach (Route airportRoute in airportRoutes)
+            {
+                double distance = MathHelpers.GetDistance(airportRoute.Destination1, airportRoute.Destination2);
+
+                Airport destination = airportRoute.Destination1 == this.Airport ? airportRoute.Destination2 : airportRoute.Destination1;
+                if (this.Flights.Exists(f=>f.Airline == airportRoute.Airline && f.Airport == destination))
+                {
+                    DestinationFlightsMVVM flight = this.Flights.First(f=>f.Airline == airportRoute.Airline && f.Airport == destination);
+                    
+                    flight.Flights += airportRoute.TimeTable.getEntries(destination).Count;
+                    
+                    foreach (AirlinerType aircraft in airportRoute.getAirliners().Select(a=>a.Airliner.Type))
+                        if (!flight.Aircrafts.Contains(aircraft))
+                            flight.Aircrafts.Add(aircraft);
+
+                }
+                else
+                    this.Flights.Add(new DestinationFlightsMVVM(destination,airportRoute.Airline,distance,airportRoute.getAirliners().Select(a=>a.Airliner.Type).ToList(),airportRoute.TimeTable.getEntries(destination).Count));
+            }
+            /*
             Dictionary<Airport, int> destinations = new Dictionary<Airport, int>();
             foreach (Route route in AirportHelpers.GetAirportRoutes(this.Airport).FindAll(r => r.getAirliners().Count > 0))
             {
@@ -182,6 +207,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             foreach (Airport a in destinations.Keys)
                 this.Flights.Add(new DestinationFlightsMVVM(a, destinations[a]));
+            */
 
             this.Hubs = new ObservableCollection<Hub>();
 
@@ -302,7 +328,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public void removeAirlineFacility(AirlineAirportFacilityMVVM facility)
         {
             
-            this.Airport.downgradeFacility(facility.Facility.Airline, facility.Facility.Facility.Type);
+            this.Airport.removeFacility(facility.Facility.Airline, facility.Facility.Facility);
 
             this.AirlineFacilities.Remove(facility);
 
@@ -322,7 +348,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public void addAirlineFacility(AirportFacility facility)
         {
             AirlineAirportFacility nextFacility = new AirlineAirportFacility(GameObject.GetInstance().HumanAirline,this.Airport, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
-            this.Airport.setAirportFacility(nextFacility);
+            this.Airport.addAirportFacility(nextFacility);
 
             /*
             AirlineAirportFacilityMVVM currentFacility = this.AirlineFacilities.Where(f => f.Facility.Facility.Type == facility.Type).FirstOrDefault();
@@ -411,6 +437,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     //the mvvm class for an airline contract
     public class ContractMVVM : INotifyPropertyChanged
     {
+        public Boolean IsHuman { get; set; }
         public AirportContract Contract { get; set; }
         public Airline Airline { get; set; }
         private int _numberofgates;
@@ -431,6 +458,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Airline = this.Contract.Airline;
             this.NumberOfGates = this.Contract.NumberOfGates;
             this.MonthsLeft = this.Contract.MonthsLeft;
+            this.IsHuman = this.Airline == GameObject.GetInstance().HumanAirline;
         }
         //extends the contract with a number of year
         public void extendContract(int years)
@@ -547,7 +575,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
                 gatenumber++;
             }
-
+            
      
         }
         //purchase a terminal
@@ -586,10 +614,16 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     {
         public int Flights { get; set; }
         public Airport Airport { get; set; }
-        public DestinationFlightsMVVM(Airport airport, int flights)
+        public Airline Airline { get; set; }
+        public double Distance{ get; set; }
+        public List<AirlinerType> Aircrafts { get; set; }
+        public DestinationFlightsMVVM(Airport airport,Airline airline, double distance, List<AirlinerType> aircrafts, int flights)
         {
             this.Flights = flights;
             this.Airport = airport;
+            this.Distance = distance;
+            this.Airline = airline;
+            this.Aircrafts = aircrafts;
         }
     }
     //the mvvm object for airport statistics
@@ -656,51 +690,32 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             throw new NotImplementedException();
         }
     }
-    //the converter for the next facility
-    public class NextFacilityConverter : IMultiValueConverter
+    //the converter for the facilities for a specific type
+    public class TypeFacilitiesConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             AirportFacility.FacilityType type = (AirportFacility.FacilityType)values[0];
             Airport airport = (Airport)values[1];
 
-            AirlineAirportFacility currentFacility = airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type);
+            var currentFacility = airport.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, type);
+            var buildingFacility = airport.getAirlineBuildingFacility(GameObject.GetInstance().HumanAirline, type);
 
-            List<AirportFacility> facilities = AirportFacilities.GetFacilities(type);
-            facilities = facilities.OrderBy(f=>f.TypeLevel).ToList();
-          
-            int index = facilities.FindIndex(f=>currentFacility.Facility == f);
-
-            if (parameter.ToString() == "Name")
+            var facilities = new List<AirportFacility>();
+            foreach (AirportFacility facility in AirportFacilities.GetFacilities(type).Where(f=>f.TypeLevel > currentFacility.TypeLevel))
             {
-                if (index < facilities.Count - 1)
-                    return facilities[index + 1].Name;
-                else
-                    return "None";
-            }
-            if (parameter.ToString() == "Price")
-            {
-                if (index < facilities.Count - 1)
-                    return new ValueCurrencyConverter().Convert(facilities[index + 1].Price);
-                else
-                    return "-";
-            }
-            if (parameter.ToString() == "Employees")
-            {
-                if (index < facilities.Count - 1)
-                    return facilities[index + 1].NumberOfEmployees.ToString();
-                else
-                    return "-";
+                if (buildingFacility == null || facility.TypeLevel > buildingFacility.TypeLevel) 
+                    facilities.Add(facility);
             }
 
-            return "-";
+            return facilities;
         }
-
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }
     }
+
     //the converter for the temperature (in celsius) to text
     public class TemperatureToTextConverter : IValueConverter
     {

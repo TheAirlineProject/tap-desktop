@@ -16,7 +16,7 @@ namespace TheAirline.Model.PassengerModel
     public class DestinationDemand : ISerializable
     {
         [Versioning("rate")]
-        public ushort Rate { get; set; }
+        public ushort Rate { get; set; } 
         [Versioning("destination")]
         public string Destination { get; set; }
          public DestinationDemand(string destination, ushort rate)

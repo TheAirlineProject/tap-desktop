@@ -4544,4 +4544,36 @@
       <runway name="11/29" length="1525" surface="Asphalt" />
     </runways>
   </airport>
+<!--Falkland Islands (SF**,EG**)-->
+  <airport name="Port Stanley Airport" icao="SFAL" iata="PSY" type="Domestic" season="All_Year">
+    <town town="Stanley" country="130" GMT="-04:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="051°41'08''S" />
+      <longitude value="057°46'39''W" />
+    </coordinates>
+    <size value="Smallest" pax="218" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+      <terminal name="Terminal 1" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="9/27" length="918" surface="Asphalt" />
+      <runway name="18/36" length="338" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="RAF Mt. Pleasant" icao="EGYP" iata="MPN" type="Long_Haul_International" season="All_Year">
+    <town town="East Falkland" country="130" GMT="-04:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="051°49'22''S" />
+      <longitude value="058°26'50''W" />
+    </coordinates>
+    <size value="Medium" pax="6786" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+      <terminal name="Terminal B" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2590" surface="Asphalt" />
+      <runway name="05/23" length="1525" surface="Asphalt" />
+    </runways>
+  </airport>
 </airports>

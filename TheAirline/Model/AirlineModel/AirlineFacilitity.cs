@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.AirlineModel
 {
@@ -19,10 +20,11 @@ namespace TheAirline.Model.AirlineModel
         [Versioning("uid")]
         public string Uid { get; set; }
         [Versioning("price")]
-        private double APrice;
+        public double APrice {get;set;}
         public double Price { get { return GeneralHelpers.GetInflationPrice(this.APrice); } set { this.APrice = value; } }
         [Versioning("monthlycost")]
-        public double MonthlyCost { get; set; }
+        public double AMonthlyCost { get; set; }
+        public double MonthlyCost { get { return GeneralHelpers.GetInflationPrice(this.AMonthlyCost); } set { this.AMonthlyCost = value; } }
         [Versioning("luxury")]
         public int LuxuryLevel { get; set; } //for business customers
         [Versioning("service")]
@@ -39,16 +41,16 @@ namespace TheAirline.Model.AirlineModel
             this.LuxuryLevel = luxuryLevel;
             this.ServiceLevel = serviceLevel;
         }
-        public string Name
+        public virtual string Name
         {
             get { return Translator.GetInstance().GetString(AirlineFacility.Section, this.Uid); }
         }
 
-        public string Shortname
+        public virtual string Shortname
         {
             get { return Translator.GetInstance().GetString(AirlineFacility.Section, this.Uid, "shortname"); }
         }
-        private AirlineFacility(SerializationInfo info, StreamingContext ctxt)
+        public AirlineFacility(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -92,7 +94,8 @@ namespace TheAirline.Model.AirlineModel
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            if (!(this is PilotTrainingFacility))
+                info.AddValue("version", 1);
 
             Type myType = this.GetType();
 

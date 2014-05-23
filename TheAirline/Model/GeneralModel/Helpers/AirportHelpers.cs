@@ -619,10 +619,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return true;
 
         }
-        public static void RentGates(Airport airport, Airline airline,AirportContract.ContractType type, int gates)
+        public static void RentGates(Airport airport, Airline airline,AirportContract.ContractType type, int gates, int length = 20)
         {
             int currentgates = airport.AirlineContracts.Where(a => a.Airline == airline).Sum(c => c.NumberOfGates);
-            AirportContract contract = new AirportContract(airline, airport,type, GameObject.GetInstance().GameTime, gates, 20, GetYearlyContractPayment(airport,type, gates, 20),true);
+            AirportContract contract = new AirportContract(airline, airport,type, GameObject.GetInstance().GameTime, gates, length, GetYearlyContractPayment(airport,type, gates, length),true);
             
             if (currentgates == 0)
             {

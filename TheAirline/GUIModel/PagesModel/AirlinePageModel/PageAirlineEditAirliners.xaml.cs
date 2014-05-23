@@ -110,6 +110,36 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
 
         }
+        private void btnSaveConfiguration_Click(object sender, RoutedEventArgs e)
+        {
+            int totalServiceLevel = this.Classes.Sum(c => c.Facilities.Sum(f => f.SelectedFacility.ServiceLevel));
+            TextBox txtName = new TextBox();
+            txtName.Width = 200;
+            txtName.Background = Brushes.Transparent;
+            txtName.Foreground = Brushes.White;
+            txtName.Text = string.Format("Custom configuration ({0} classes)", this.Classes.Count);
+            txtName.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+
+            if (TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineEditAirliners", "1002"), txtName) == TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpSingleElement.ButtonSelected.OK && txtName.Text.Trim().Length > 2)
+            {
+                string name = txtName.Text.Trim();
+                AirlinerConfiguration configuration = new AirlinerConfiguration(name,getMinimumAirliner().Airliner.getTotalSeatCapacity(),false);
+
+                foreach (AirlinerClassMVVM type in this.Classes)
+                {
+                    AirlinerClassConfiguration classConfiguration = new AirlinerClassConfiguration(type.Type,type.Seating,type.RegularSeatingCapacity);
+
+                    foreach (AirlinerFacilityMVVM facility in type.Facilities)
+                        classConfiguration.addFacility(facility.SelectedFacility);
+
+                    configuration.addClassConfiguration(classConfiguration);
+                }
+
+                Configurations.AddConfiguration(configuration);
+
+      
+            }
+        }
         private void btnLoadConfiguration_Click(object sender, RoutedEventArgs e)
         {
 

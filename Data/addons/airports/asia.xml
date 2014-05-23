@@ -4929,7 +4929,7 @@
     </runways>
   </airport>
   <airport name="Palmyra Airport" icao="OSPR" iata="PMS" type="Regional" season="All_Year">
-    <town town="" country="281" GMT="02:00:00" DST="01:00:00" />
+    <town town="Tadmur" country="281" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="034°33'26''N" />
       <longitude value="038°19'00''E" />

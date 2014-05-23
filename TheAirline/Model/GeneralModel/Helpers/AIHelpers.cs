@@ -154,8 +154,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             int numberToOrder = rnd.Next(1, 3 - (int)airline.Mentality);
 
-            List<Airport> homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
-
+            List<Airport> homeAirports = AirlineHelpers.GetHomebases(airline);
+            
             Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
             Parallel.ForEach(homeAirports, a =>
                 {
@@ -855,7 +855,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             
             lock (airline.Airports)
             {
-                homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0 || a.hasContractType(airline,AirportContract.ContractType.Full_Service));
+                homeAirports = AirlineHelpers.GetHomebases(airline);
             }
             homeAirports.AddRange(airline.getHubs());
 
@@ -911,7 +911,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airports = airports.FindAll(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) > 100 && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) > 100);
                     break;
                 case Airline.AirlineFocus.Local:
-                    airports = airports.FindAll(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) < Math.Max(minDistance, 1000) && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) > 50);
+                    airports = airports.FindAll(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) < Math.Max(minDistance, 1000) && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) >= Route.MinRouteDistance);
                     break;
                 case Airline.AirlineFocus.Regional:
                     airports = airports.FindAll(a => a.Profile.Country.Region == airport.Profile.Country.Region && AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) < maxDistance && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) > 100);
@@ -920,7 +920,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (airports.Count == 0)
             {
-                airports = (from a in Airports.GetAirports(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) < 5000 && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) > 50) orderby a.Profile.Size descending select a).ToList();
+                airports = (from a in Airports.GetAirports(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) < 5000 && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) >= Route.MinRouteDistance) orderby a.Profile.Size descending select a).ToList();
             }
 
             return (from a in airports where routes.Find(r => r.Destination1 == a || r.Destination2 == a) == null && (a.Terminals.getFreeGates() > 0 || AirportHelpers.HasFreeGates(a, airline)) orderby ((int)airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class)) + ((int)a.getDestinationPassengersRate(airport, AirlinerClass.ClassType.Economy_Class)) descending select a).ToList();
@@ -1058,8 +1058,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 else
                     return null;
             }
-
-
+   
         }
        
         //sets the homebase for an airliner

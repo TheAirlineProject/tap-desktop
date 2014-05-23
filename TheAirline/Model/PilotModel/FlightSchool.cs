@@ -40,7 +40,7 @@ namespace TheAirline.Model.PilotModel
             this.Instructors = new List<Instructor>();
             this.TrainingAircrafts = new List<TrainingAircraft>();
             this.ID = id.ToString();
-        }
+         }
         //adds a training aircraft to the flight school
         public void addTrainingAircraft(TrainingAircraft aircraft)
         {
@@ -111,6 +111,7 @@ namespace TheAirline.Model.PilotModel
                 }
 
             }
+
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

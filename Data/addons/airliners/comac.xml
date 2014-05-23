@@ -1,8 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
-  
-<airliner manufacturer="Comac" name="Shanghai Y-10" price="3231122"> <!--7700000-->
+  <airliner manufacturer="Comac" name="Shanghai Y-10" price="3231122"> <!--7700000-->
 	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
     <specs wingspan="42.24" length="42.93" range="1732" speed="639" fuelcapacity="12130" consumption="0.093" runwaylengthrequired="2000"/>
     <capacity passengers="178" cockpitcrew="3" cabincrew="2" maxclasses="2"/>

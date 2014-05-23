@@ -51,7 +51,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
 
             return this.Classes.Find(cl => cl.Type == type);
-
+    
         }
         //returns the total number of cabin crew for the route based on airliner
         public int getTotalCabinCrew()

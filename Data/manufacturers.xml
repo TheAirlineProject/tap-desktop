@@ -3,6 +3,7 @@
   <manufacturer name="Aerospatiale" shortname="Aerospatiale" country="140"/>
   <manufacturer name="Airbus" shortname="Airbus" country="140"/>
   <manufacturer name="Airbus Military" shortname="Airbus Military" country="140"/>
+  <manufacturer name="Airspeed Limited" shortname="Airspeed" country="130"/>
   <manufacturer name="Antonov" shortname="Antonov" country="134"/>
   <manufacturer name="AVIC Xi'an Aircraft" shortname="Avic" country="148"/>
   <manufacturer name="Avions de Transport Régional" shortname="ATR" country="141"/>
@@ -13,6 +14,7 @@
   <manufacturer name="Bristol Aeroplane Company" shortname="Bristol" country="130"/>
   <manufacturer name="British Aerospace" shortname="BAe" country="130"/>
   <manufacturer name="British Aircraft Corporation" shortname="BAC" country="130"/>
+  <manufacturer name="Britten Norman Aircraft" shortname="Britten" country="130"/>
   <manufacturer name="Cessna Aircraft Company" shortname="Cessna" country="122"/>
   <manufacturer name="Convair" shortname="Convair" country="122"/>
   <manufacturer name="Dassault Aviation" shortname="Dassault" country="140"/>
@@ -28,6 +30,7 @@
   <manufacturer name="Let Kunovice" shortname="Let" country="106"/>
   <manufacturer name="Lockheed Corporation" shortname="Lockheed" country="122"/>
   <manufacturer name="McDonnell Douglas" shortname="MD" country="122"/>
+  <manufacturer name="Open Joint Stock Company Ilyushin" shortname="Ilyushin" country="149"/>
   <manufacturer name="Public Stock Company Tupolev" shortname="Tupolev" country="149"/>
   <manufacturer name="Saab AB" shortname="Saab" country="168"/>
   <manufacturer name="Sud Aviation" shortname="Sud Aviation" country="140"/>

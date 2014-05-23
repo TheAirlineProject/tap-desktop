@@ -21,19 +21,15 @@ namespace TheAirline.Model.GeneralModel
         //shuffles a list of items
         public static List<T> Shuffle<T>(List<T> list)
         {
-            RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
             int n = list.Count;
             while (n > 1)
             {
-                byte[] box = new byte[1];
-                do provider.GetBytes(box);
-                while (!(box[0] < n * (Byte.MaxValue / n)));
-                int k = (box[0] % n);
                 n--;
+                int k = rnd.Next(n + 1);
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
-            }
+            }  
 
             return list;
         }
@@ -212,6 +208,9 @@ namespace TheAirline.Model.GeneralModel
             double dMinutes = (dtime - hours) * 60;
 
             int minutes = Convert.ToInt16(Math.Floor(dMinutes));
+            
+            //2.5 minutes for takeoff and 2.5 minutes for landing
+            minutes += 5;
 
             return new TimeSpan(hours, minutes, 0);
         }
@@ -233,6 +232,9 @@ namespace TheAirline.Model.GeneralModel
             double dMinutes = (dtime - hours) * 60;
 
             int minutes = Convert.ToInt16(Math.Floor(dMinutes));
+
+            //2.5 minutes for takeoff and 2.5 minutes for landing
+            minutes += 5;
 
             return new TimeSpan(hours, minutes, 0);
         }

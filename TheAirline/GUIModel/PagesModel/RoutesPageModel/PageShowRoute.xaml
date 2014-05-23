@@ -83,6 +83,10 @@
               
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 1005'}" FontWeight="Bold" VerticalAlignment="Center" Width="100"/>
+                <TextBlock Text="{Binding Distance,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 1004'}" FontWeight="Bold" VerticalAlignment="Center" Width="100"/>
                 <TextBlock Text="{Binding Route.Season,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>

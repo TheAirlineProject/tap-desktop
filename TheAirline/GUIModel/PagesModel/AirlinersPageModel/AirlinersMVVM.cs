@@ -10,6 +10,7 @@ using System.Windows.Data;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
@@ -96,6 +97,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             this.Orders.CollectionChanged += Orders_CollectionChanged;
 
         }
+        private DateTime _deliverydate;
+        public DateTime DeliveryDate
+        {
+            get { return _deliverydate; }
+            set { _deliverydate = value; NotifyPropertyChanged("DeliveryDate"); }
+        }
         private void Orders_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             orderUpdated();
@@ -104,9 +111,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         {
             this.Orders.Add(order);
             order.PropertyChanged += order_PropertyChanged;
-
-
-
         }
         private void order_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -123,9 +127,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 this.Discount += Convert.ToInt64(price * (GameObject.GetInstance().HumanAirline.Contract.Discount / 100));
 
             this.TotalAmount = price - this.Discount;
+
+            this.DeliveryDate = getDeliveryDate();
         }
         //returns a date for delivery based on the aircraft production rate
-        public DateTime getDeliveryDate()
+        private DateTime getDeliveryDate()
         {
             double monthsToComplete = 0;
 
@@ -217,7 +223,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             long minRunway = this.Type.MinRunwaylength;
 
-            var homebases = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => (a.hasContractType(GameObject.GetInstance().HumanAirline, AirportContract.ContractType.Full_Service) || a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0) && a.getMaxRunwayLength() >= minRunway);
+            //var homebases = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => (a.hasContractType(GameObject.GetInstance().HumanAirline, AirportContract.ContractType.Full_Service) || a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0) && a.getMaxRunwayLength() >= minRunway);
+
+            var homebases = AirlineHelpers.GetHomebases(GameObject.GetInstance().HumanAirline, minRunway);
          
             foreach (var homebase in homebases)
                 this.Homebases.Add(homebase);

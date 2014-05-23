@@ -18,7 +18,7 @@ namespace TheAirline.Model.AirlinerModel
         public Country Registered { get { return Countries.GetCountryFromTailNumber(this.TailNumber);} private set { ;} }
         [Versioning("tailnumber")]
         public string TailNumber { get; set; }
-[Versioning("id")]        
+        [Versioning("id")]        
         public string ID { get; set; }
         [Versioning("built")]
         public DateTime BuiltDate { get; set; }
@@ -133,11 +133,14 @@ namespace TheAirline.Model.AirlinerModel
         //adds a new airliner class to the airliner
         public void addAirlinerClass(AirlinerClass airlinerClass)
         {
-           
-            this.Classes.Add(airlinerClass);
 
-            if (airlinerClass.getFacilities().Count == 0)
-                airlinerClass.createBasicFacilities(this.Airline);
+            if (airlinerClass != null && !this.Classes.Exists(c => c.Type == airlinerClass.Type))
+            {
+                this.Classes.Add(airlinerClass);
+
+                if (airlinerClass.getFacilities().Count == 0)
+                    airlinerClass.createBasicFacilities(this.Airline);
+            }
         }
         //removes an airliner class from the airliner
         public void removeAirlinerClass(AirlinerClass airlinerClass)
@@ -214,6 +217,16 @@ namespace TheAirline.Model.AirlinerModel
                 }
 
             }
+            
+             this.Classes.RemoveAll(c=>c == null);
+
+            var doubleClasses = new List<AirlinerClass.ClassType>(this.Classes.Where(c => this.Classes.Count(cc=>cc.Type == c.Type) > 1).Select(c=>c.Type));
+
+             foreach (var doubleClassType in doubleClasses)
+             {
+                 var dClass = this.Classes.Last(c=>c.Type == doubleClassType);
+                 this.Classes.Remove(dClass);
+             }
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

@@ -200,8 +200,8 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             cbPilots.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbPilots.Width = 200;
 
-            foreach (Pilot pilot in this.Airliner.Airliner.Airliner.Airline.Pilots.Where(p => p.Airliner == null))
-                cbPilots.Items.Add(pilot);
+            foreach (Pilot pilot in this.Airliner.Airliner.Airliner.Airline.Pilots.Where(p => p.Airliner == null && p.Aircrafts.Contains(this.Airliner.Airliner.Airliner.Type.AirlinerFamily)))
+                cbPilots.Items.Add(pilot); 
 
             cbPilots.SelectedIndex = 0;
 
@@ -300,7 +300,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             cbHomebase.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbHomebase.Width = 200;
 
-            foreach (Airport airport in GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0 && a.getMaxRunwayLength() >= this.Airliner.Airliner.Airliner.Type.MinRunwaylength))
+            foreach (Airport airport in AirlineHelpers.GetHomebases(GameObject.GetInstance().HumanAirline,this.Airliner.Airliner.Airliner.Type))
             {
                 cbHomebase.Items.Add(airport);
             }

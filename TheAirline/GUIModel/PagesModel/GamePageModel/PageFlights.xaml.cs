@@ -29,6 +29,9 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         public PageFlights()
         {
             this.AllFlights = Airlines.GetAllAirlines().SelectMany(a => a.Routes.SelectMany(r => r.TimeTable.Entries)).ToList();
+
+            var routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes);
+
             InitializeComponent();
 
             this.Loaded += PageFlights_Loaded;

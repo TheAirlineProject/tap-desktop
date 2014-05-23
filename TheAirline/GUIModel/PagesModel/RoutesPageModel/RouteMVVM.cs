@@ -24,14 +24,14 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         public Boolean IsEditable { get; set; }
         public List<Route> Legs { get; set; }
         public List<MonthlyInvoice> Invoices { get; set; }
-     
+        public double Distance { get; set; }
         public HumanRouteMVVM(Route route)
         {
             this.Route = route;
             this.ShowCargoInformation = this.Route.Type == Route.RouteType.Cargo || this.Route.Type == Route.RouteType.Mixed;
             this.ShowPassengersInformation = this.Route.Type == Route.RouteType.Passenger || this.Route.Type == Route.RouteType.Mixed;
 
-            this.IsEditable = !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
+            this.IsEditable = true;// !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
 
             this.Invoices = new List<MonthlyInvoice>();
 
@@ -41,7 +41,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             this.Legs = new List<Route>();
             this.Legs.Add(this.Route);
             this.Legs.AddRange(this.Route.Stopovers.SelectMany(s => s.Legs));
-       
+
+            this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
         }
     }
     //the mvvm object for a route
@@ -52,11 +53,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         public double Total { get; set; }
         public double Average { get; set; }
         public double Balance { get; set; }
+        public double Distance { get; set; }
         public RouteMVVM(Route route)
         {
             this.Route = route;
             this.FillingDegree = this.Route.FillingDegree;
             this.Balance = this.Route.Balance;
+            this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
 
             if (route.Type == Route.RouteType.Passenger)
             {

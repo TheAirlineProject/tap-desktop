@@ -47,6 +47,20 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </filter:SortableGridViewColumn>
+                        <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1014'}" CanFilter="False" SortPropertyName="Airliner.Type.CockpitCrew" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Airliner.Type.CockpitCrew}" VerticalAlignment="Bottom"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </filter:SortableGridViewColumn>
+                        <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1015'}" CanFilter="False" SortPropertyName="Pilots.Count" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Pilots.Count}" VerticalAlignment="Bottom"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </filter:SortableGridViewColumn>
                     </GridView>
                 </ListView.View>
             </filter:FilterableListView>

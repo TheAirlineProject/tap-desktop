@@ -177,7 +177,7 @@
                     <DataTemplate>
                             <WrapPanel>
                                 <TextBlock Text="{Binding Profile.Name}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
-                                <TextBlock Text="{Binding Rating}" VerticalAlignment="Bottom" Width="50"></TextBlock>
+                                <TextBlock Text="{Binding Rating.Name}" VerticalAlignment="Bottom" Width="50"></TextBlock>
                                 <Button Margin="5 0 0 0" Height="16" Tag="{Binding}" VerticalAlignment="Bottom" Click="btnDeletePilot_Click" Background="Transparent">
                                     <Button.Style>
                                         <Style TargetType="Button">

@@ -11,9 +11,9 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*" />
+             <!--   <ColumnDefinition Width="*" />-->
             </Grid.ColumnDefinitions>
-            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
+            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 0 0">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
                 <StackPanel>
@@ -30,12 +30,37 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1007'}" Width="250" util:GridViewSort.PropertyName="Airline.Profile.Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                                 <ContentControl Content="{Binding Airline}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirlineLongLink}"></ContentControl>
+                                         </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1006'}" Width="100" util:GridViewSort.PropertyName="Distance">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Distance,StringFormat={}{0:0}}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1008'}" Width="300" util:GridViewSort.PropertyName="Airport.Profile.Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ListBox ItemsSource="{Binding Aircrafts}" BorderThickness="0" Style="{StaticResource VerticalListBoxStyle}"  VerticalAlignment="Bottom">
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock VerticalAlignment="Bottom" Text="{Binding Name}"></TextBlock>
+                                                     </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                                 <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1002'}" Width="100" util:GridViewSort.PropertyName="Flights">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Bottom">
-                                                <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom"></TextBlock>
-                                            </TextBlock>
+                                            <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -45,11 +70,12 @@
                 </StackPanel>
             </ScrollViewer>
         </Border>
+            <!--
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 0 0 0">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
                 <StackPanel>
-                    <!--
+                    
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1003'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView Name="lvTraffic" VerticalAlignment="Stretch" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding Traffic}">
                         <ListView.View>
@@ -84,9 +110,10 @@
                             </GroupStyle>
                         </ListView.GroupStyle>
                     </ListView>
-                    -->
+                 
                 </StackPanel>
             </ScrollViewer>
         </Border>
+       -->
         </Grid>
 </Page>

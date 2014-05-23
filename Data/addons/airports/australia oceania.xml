@@ -160,7 +160,7 @@
       <terminal name="Terminal" gates="3" />
     </terminals>
     <runways>
-      <runway name="11/29" length="4921" surface="Asphalt" />
+      <runway name="11/29" length="1500" surface="Asphalt" />
     </runways>
   </airport>
   <!--New Zealand (NZ**)-->
@@ -3364,6 +3364,20 @@
     </terminals>
     <runways>
       <runway name="09/27" length="2440" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Bauerfield International Airport" icao="NVVV" iata="VLI" type="Long_Haul_International" season="All_Year">
+    <town town="Port Vila" country="292" GMT="11:00:00" DST="11:00:00" />
+    <coordinates>
+      <latitude value="017°41'57''S" />
+      <longitude value="168°19'11''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal 1" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="2600" surface="Asphalt" />
     </runways>
   </airport>
 </airports>

@@ -113,7 +113,7 @@
 	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
     <specs wingspan="28.35" length="28.65" range="2850" speed="780" fuelcapacity="17900" consumption="0.051" runwaylengthrequired="1275"/>
     <capacity passengers="124" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
-    <produced from="1967" to="1971" rate="160"/>
+    <produced from="1967" to="1971" rate="132"/>
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 737-200" image="Boeing 737-200" price="6205670"> <!--7000000-->
 	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
@@ -366,6 +366,18 @@
     <specs wingspan="64.80" length="73.90" range="14690" speed="905" fuelcapacity="181283" consumption="0.022" runwaylengthrequired="2780"/>
     <capacity passengers="550" cockpitcrew="2" cabincrew="11" maxclasses="3"/>
     <produced from="2004" to="2015" rate="54"/>
+  </airliner>
+  <airliner manufacturer="Boeing" name="Boeing 777-8X" image="Boeing 777-300" price="44112820"> <!--256000000-->
+	<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
+    <specs wingspan="64.80" length="69.50" range="17224" speed="905" fuelcapacity="181283" consumption="0.020" runwaylengthrequired="2780"/>
+    <capacity passengers="500" cockpitcrew="2" cabincrew="11" maxclasses="3"/>
+    <produced from="2017" to="2199" rate="54"/>
+  </airliner>
+  <airliner manufacturer="Boeing" name="Boeing 777-9X" image="Boeing 777-300" price="56112820"> <!--256000000-->
+	<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
+    <specs wingspan="64.80" length="76.50" range="15186" speed="905" fuelcapacity="181283" consumption="0.020" runwaylengthrequired="2780"/>
+    <capacity passengers="600" cockpitcrew="2" cabincrew="11" maxclasses="3"/>
+    <produced from="2017" to="2199" rate="54"/>
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 787-8" image="Boeing 787-8" price="26322720"> <!--200000000-->
 	<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>

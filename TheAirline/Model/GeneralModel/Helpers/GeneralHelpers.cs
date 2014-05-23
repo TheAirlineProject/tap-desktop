@@ -307,6 +307,9 @@ namespace TheAirline.Model.GeneralModel
                 ratings.ForEach(r => rankings.Add(r, 20 - r.CostIndex));
             }
 
+            if (rankings.Count == 0)
+                return GetPilotRating();
+
             PilotRating rating = AIHelpers.GetRandomItem<PilotRating>(rankings);
 
             return rating;
@@ -342,6 +345,35 @@ namespace TheAirline.Model.GeneralModel
         {
             return GetPilotStudentRating(student.Instructor);
         }
+        //creates a number of pilots with a specific aircraft
+        public static void CreatePilots(int count, string airlinerFamily)
+        {
+            List<Town> towns = Towns.GetTowns();
+
+            Random rnd = new Random();
+            for (int i = 0; i < count; i++)
+            {
+
+                Town town = towns[rnd.Next(towns.Count)];
+                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-Pilot.RetirementAge), GameObject.GetInstance().GameTime.AddYears(-23));
+
+                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(town.Country), Names.GetInstance().getRandomLastName(town.Country), birthdate, town);
+
+                PilotRating rating = GetPilotRating();
+
+                int fromYear = Math.Min(GameObject.GetInstance().GameTime.Year - 1, birthdate.AddYears(23).Year);
+                int toYear = Math.Min(GameObject.GetInstance().GameTime.Year, birthdate.AddYears(Pilot.RetirementAge).Year);
+
+                DateTime educationTime = MathHelpers.GetRandomDate(birthdate.AddYears(23), new DateTime(toYear, 1, 1));
+                Pilot pilot = new Pilot(profile, educationTime, rating);
+
+                pilot.Aircrafts = GetPilotAircrafts(pilot);
+                pilot.Aircrafts.RemoveAt(0);
+                pilot.Aircrafts.Add(airlinerFamily);
+
+                Pilots.AddPilot(pilot);
+            }
+        }
         //creates a number of pilots
         public static void CreatePilots(int count)
         {
@@ -364,9 +396,34 @@ namespace TheAirline.Model.GeneralModel
                 DateTime educationTime = MathHelpers.GetRandomDate(birthdate.AddYears(23), new DateTime(toYear, 1, 1));
                 Pilot pilot = new Pilot(profile, educationTime, rating);
 
+                pilot.Aircrafts = GetPilotAircrafts(pilot);
+
                 Pilots.AddPilot(pilot);
             }
         }
+        //creates a number of airliner families a pilot can fly
+        public static List<string> GetPilotAircrafts(Pilot pilot)
+        {
+            int year = GameObject.GetInstance().GameTime.Year;
+
+            var airlinerFamilies = AirlinerTypes.GetTypes(t => t.Produced.From.Year <= GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30)).Select(a => a.AirlinerFamily).Distinct();
+            
+            Random rnd = new Random();
+            List<string> families = new List<string>();
+
+            int numberOfAircrafts=PilotRatings.GetRatings().IndexOf(pilot.Rating) + 1;
+
+            for (int i = 0; i < numberOfAircrafts; i++)
+            {
+                var freeFamilies = airlinerFamilies.Where(a=>!families.Contains(a)).ToList();
+                string family = freeFamilies[rnd.Next(freeFamilies.Count)];
+
+                families.Add(family);
+            }
+
+            return families;
+        }
+        
         //returns a rating for a pilot
         public static PilotRating GetPilotRating()
         {

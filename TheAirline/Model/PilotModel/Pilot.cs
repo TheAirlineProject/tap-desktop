@@ -15,14 +15,11 @@ namespace TheAirline.Model.PilotModel
     [Serializable]
     public class Pilot : ISerializable
     {
-        /*
-        public enum PilotRating { 
-             [EnumMember(Value="A")]A=3, 
-             [EnumMember(Value="B")]B=4,
-             [EnumMember(Value="C")]C=5, 
-             [EnumMember(Value="D")]D=7, 
-             [EnumMember(Value="E")]E=10 } */
-        
+        public Boolean OnTraining {get {return this.Training != null;} set {}}
+        [Versioning("training",Version=3)]
+        public PilotTraining Training { get; set; }
+        [Versioning("aircrafts",Version=3)]
+        public List<string> Aircrafts { get; set; }
         [Versioning("pilotrating",Version=2)]
         public PilotRating Rating { get; set; }
         [Versioning("profile")]
@@ -41,10 +38,15 @@ namespace TheAirline.Model.PilotModel
             this.Profile = profile;
             this.EducationTime = educationTime;
             this.Rating = rating;
-
+            this.Aircrafts = new List<string>();
              
     
         }
+        //adds an airliner type family which the pilot expirence
+         public void addAirlinerFamily(string family)
+         {
+             this.Aircrafts.Add(family);
+         }
         //sets the airline for a pilot
         public void setAirline(Airline airline, DateTime signDate)
         {
@@ -95,11 +97,16 @@ namespace TheAirline.Model.PilotModel
             {
                 this.Rating = GeneralHelpers.GetPilotRating();
             }
+            if (version < 3)
+            {
+                this.Aircrafts = GeneralHelpers.GetPilotAircrafts(this);
+                this.Training = null;
+            }
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 2);
+            info.AddValue("version", 3);
 
             Type myType = this.GetType();
 

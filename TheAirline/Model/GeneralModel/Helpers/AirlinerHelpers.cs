@@ -51,10 +51,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void CreateStartUpAirliners()
         {
             int number = AirlinerTypes.GetTypes(delegate(AirlinerType t) { return t.Produced.From <= GameObject.GetInstance().GameTime && t.Produced.To.AddYears(-10) >= GameObject.GetInstance().GameTime.AddYears(-30); }).Count * rnd.Next(1, 3);
+            
             int airlines = Airlines.GetNumberOfAirlines();
-            if (airlines < 5) { number = number / 5; }
-            else if (airlines < 10 && airlines > 5) { number /= 3; }
-            else if (airlines < 20 && airlines > 10) { number /= 2; }
+
+            number = (airlines* number)/5;
             for (int i = 0; i < number; i++)
             {
 

@@ -21,7 +21,14 @@
                             <DataTemplate>
                                 <WrapPanel>
                                     <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
-                                    <TextBlock Text="{Binding SelectedFacility.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                 <!--   <TextBlock Text="{Binding SelectedFacility.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                   --> <ComboBox SelectedItem="{Binding SelectedFacility}"  Style="{DynamicResource ComboBoxTransparentStyle}"  VerticalAlignment="Bottom" ItemsSource="{Binding Facilities}" Width="200">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
                                  </WrapPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -62,6 +69,8 @@
                         </Button>
                         <Button Click="btnApply_Click" Style="{StaticResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEditAirliners 200'}" Margin="5 0 0 0">
                     </Button>
+                        <Button Click="btnSaveConfiguration_Click" Style="{StaticResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEditAirliners 202'}" Margin="5 0 0 0">
+                        </Button>
                     </WrapPanel>
                 </StackPanel>
                 

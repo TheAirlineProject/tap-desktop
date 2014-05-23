@@ -101,9 +101,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             }
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
-
-            DateTime deliveryDate = this.Orders.getDeliveryDate();
-
+            
+            DateTime deliveryDate = dpDeliveryDate.SelectedDate.HasValue ? dpDeliveryDate.SelectedDate.Value : this.Orders.DeliveryDate;
+           
             if (!hasHomebases)
             {
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2002"), Translator.GetInstance().GetString("MessageBox", "2002", "message"), WPFMessageBoxButtons.Ok);
@@ -194,6 +194,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                                 }
                                 if (contractedOrder)
                                     GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += this.Orders.Orders.Sum(o => o.Amount);
+                               
                                 AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -downpaymentPrice);
 
                                 TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
@@ -254,8 +255,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         //orders the airliners
         private void orderAirliners(double discount = 0)
         {
-            DateTime deliveryDate = this.Orders.getDeliveryDate();
-
+            DateTime deliveryDate = dpDeliveryDate.SelectedDate.HasValue ? dpDeliveryDate.SelectedDate.Value : this.Orders.DeliveryDate;
+ 
             Guid id = Guid.NewGuid();
 
             foreach (AirlinerOrderMVVM order in this.Orders.Orders)

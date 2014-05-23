@@ -38,6 +38,12 @@
                         <TextBlock Width="200" Text="{Binding Pilot.Rating.Name,ElementName=pageShowPilot}" VerticalAlignment="Bottom"></TextBlock>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
+                <g:QuickInfoValue VerticalAlignment="Top" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1006'}">
+                    <g:QuickInfoValue.Value>
+                        <ListBox Background="Transparent" BorderThickness="0"  Style="{StaticResource HorizontalListBoxStyle}" ItemsSource="{Binding Pilot.Aircrafts,ElementName=pageShowPilot}">
+                        </ListBox>
+                    </g:QuickInfoValue.Value>
+                </g:QuickInfoValue>
                 <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1005'}">
                     <g:QuickInfoValue.Value>
                         <TextBlock Width="200" Text="{Binding Salary,ElementName=pageShowPilot,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>

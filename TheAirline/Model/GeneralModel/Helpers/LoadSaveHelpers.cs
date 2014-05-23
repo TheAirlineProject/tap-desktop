@@ -904,7 +904,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     Town town = Towns.GetTown(studentNode.Attributes["town"].Value);
                     DateTime startdate = DateTime.Parse(studentNode.Attributes["startdate"].Value, new CultureInfo("de-DE", false));
 
-                    fs.addStudent(new PilotStudent(new PilotProfile(firstname, lastname, birthdate, town), startdate, null,null));
+                    fs.addStudent(new PilotStudent(new PilotProfile(firstname, lastname, birthdate, town), startdate, null,null,""));
                 }
 
                 airline.addFlightSchool(fs);

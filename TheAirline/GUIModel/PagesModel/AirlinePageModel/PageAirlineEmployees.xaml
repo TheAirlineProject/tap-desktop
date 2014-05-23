@@ -10,6 +10,13 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirlineEmployees">
     <Page.Resources>
+        <DataTemplate x:Key="TrainingFacility">
+            <WrapPanel>
+                <TextBlock Text="{Binding Family}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                <TextBlock Text="{Binding TrainingDays,StringFormat={}Days: {0}}" VerticalAlignment="Bottom" Width="50"></TextBlock>
+                <TextBlock Text="{Binding Price,Converter={StaticResource ValueCurrencyConverter},StringFormat={}Price: {0}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
         <DataTemplate x:Key="OpponentWageItem">
             <WrapPanel>
                 <TextBlock Text="{Binding FeeType.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
@@ -51,6 +58,11 @@
                                     <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.UnassignedPilots,ElementName=pageAirlineEmployees}"></TextBlock>
                                 </h:QuickInfoValue.Value>
                             </h:QuickInfoValue>
+                            <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1015'}">
+                                <h:QuickInfoValue.Value>
+                                    <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.NeededPilots,ElementName=pageAirlineEmployees}"></TextBlock>
+                                </h:QuickInfoValue.Value>
+                            </h:QuickInfoValue>
                             <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1012'}">
                                 <h:QuickInfoValue.Value>
                                     <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.PilotsToRetire,ElementName=pageAirlineEmployees}"></TextBlock>
@@ -82,41 +94,75 @@
                                     <GridViewColumn Header="">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button VerticalAlignment="Bottom" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Background="Transparent" Click="btnFirePilot_Click" Width="20" Tag="{Binding}">
+                                                <Button VerticalAlignment="Bottom" Visibility="{Binding Pilot.Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Background="Transparent" Click="btnFirePilot_Click" Width="20" Tag="{Binding}">
                                                     <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                                 </Button>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1006'}" Width="200" util:GridViewSort.PropertyName="Profile.Name">
+                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1006'}" Width="150" util:GridViewSort.PropertyName="Profile.Name">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Name}"/>
+                                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Pilot.Profile.Name}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1007'}" Width="50" util:GridViewSort.PropertyName="Profile.Age">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Age}"></TextBlock>
+                                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Pilot.Profile.Age}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1008'}" Width="50" util:GridViewSort.PropertyName="Rating.Name">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Rating.Name}"></TextBlock>
+                                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Pilot.Rating.Name}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1009'}" Width="200" util:GridViewSort.PropertyName="Profile.Town.Country.Name">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <ContentControl Content="{Binding Profile.Town}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource TownItem}"></ContentControl>
+                                                <ContentControl Content="{Binding Pilot.Profile.Town}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource TownItem}"></ContentControl>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-
+                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1013'}" Width="200" util:GridViewSort.PropertyName="Aircrafts">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Pilot.Aircrafts}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="" Width="40">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button VerticalAlignment="Bottom" Background="Transparent" Click="btnTrainPilot_Click" Width="20" Tag="{Binding}">
+                                                    <Button.Style>
+                                                        <Style>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Pilot.Airline.IsHuman}" Value="False">
+                                                                    <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding OnTraining}" Value="True">
+                                                                    <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
+                                                    <Image Source="/data/images/school.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                                </Button>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1016'}" Width="100" util:GridViewSort.PropertyName="Aircrafts">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Pilot.Airliner.Name,FallbackValue='-'}" VerticalAlignment="Bottom"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>

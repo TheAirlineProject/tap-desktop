@@ -135,6 +135,21 @@
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1008'}" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListBox ItemTemplate="{DynamicResource OrderItem}" Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Orders.Orders,ElementName=pageManufacturer}"></ListBox>
                     <WrapPanel>
+                        <TextBlock VerticalAlignment="Bottom" Width="200" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1016'}" FontWeight="Bold"></TextBlock>
+                        <DatePicker Foreground="White" CalendarStyle="{StaticResource CalendarPickerStyle}" x:Name="dpDeliveryDate" DisplayDateStart="{Binding Orders.DeliveryDate,ElementName=pageManufacturer}" DisplayDate="{Binding Orders.DeliveryDate,ElementName=pageManufacturer}" SelectedDate="{Binding Orders.DelivertDate,ElementName=pageManufacturer}">
+                            <DatePicker.Style>
+                                <Style TargetType="DatePicker">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Orders.Orders.Count,ElementName=pageManufacturer}" Value="0">
+                                            <Setter Property="IsEnabled" Value="False" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DatePicker.Style>
+                        </DatePicker>
+                    </WrapPanel>
+                 
+                    <WrapPanel>
                         <TextBlock VerticalAlignment="Bottom" Width="200" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1009'}" FontWeight="Bold"></TextBlock>
                         <TextBlock VerticalAlignment="Bottom" Text="{Binding Orders.Discount,ElementName=pageManufacturer,Converter={StaticResource ValueCurrencyConverter}}"></TextBlock>
                     </WrapPanel>

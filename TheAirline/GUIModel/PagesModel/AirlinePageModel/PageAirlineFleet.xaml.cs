@@ -41,6 +41,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         }
         private void btnSellAirliner_Click(object sender, RoutedEventArgs e)
         {
+           
             FleetAirliner airliner = (FleetAirliner)((Button)sender).Tag;
 
             if (airliner.Status != FleetAirliner.AirlinerStatus.Stopped)

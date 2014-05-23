@@ -43,6 +43,9 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                 double cargoCapacity = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Capacity")));
 
+                if (cargo > cargoCapacity)
+                    return 1;
+
                 return cargo / cargoCapacity;
             }
         }

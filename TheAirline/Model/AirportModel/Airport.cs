@@ -24,13 +24,13 @@ namespace TheAirline.Model.AirportModel
     {
         [Versioning("profile")]
         public AirportProfile Profile { get; set; }
-         [Versioning("destinationpassengers")]
+        [Versioning("destinationpassengers")]
         private List<DestinationDemand> DestinationPassengers { get; set; }
         [Versioning("destinationcargo")]
         private List<DestinationDemand> DestinationCargo { get; set; }
-       [Versioning("passengerstatistics")]
+        [Versioning("passengerstatistics")]
         private Dictionary<Airport, long> DestinationPassengerStatistics { get; set; }
-       [Versioning("cargostatistics")]
+        [Versioning("cargostatistics")]
         private Dictionary<Airport, double> DestinationCargoStatistics { get; set; }
         [Versioning("facilities")]
         private List<AirlineAirportFacility> Facilities;
@@ -42,10 +42,10 @@ namespace TheAirline.Model.AirportModel
         public List<Runway> Runways { get; set; }
         [Versioning("terminals")]
         public Terminals Terminals { get; set; }
-        [Versioning("cooperations",Version=2)]
+        [Versioning("cooperations", Version = 2)]
         public List<Cooperation> Cooperations { get; set; }
         private List<Hub> _Hubs;
-              [Versioning("hubs")]
+        [Versioning("hubs")]
         public List<Hub> Hubs { private get { return getHubs(); } set { this._Hubs = value; } }
         public Boolean IsHub { get { return getHubs().Count > 0; } set { ;} }
         [Versioning("income")]
@@ -54,7 +54,7 @@ namespace TheAirline.Model.AirportModel
         public DateTime LastExpansionDate { get; set; }
         [Versioning("contracts")]
         private List<AirportContract> _Contracts;
-        public List<AirportContract> AirlineContracts { get { return getAirlineContracts();} set { this._Contracts = value; } }
+        public List<AirportContract> AirlineContracts { get { return getAirlineContracts(); } set { this._Contracts = value; } }
         public AirportStatics Statics { get; set; }
         public Airport(AirportProfile profile)
         {
@@ -145,7 +145,7 @@ namespace TheAirline.Model.AirportModel
             lock (this._Contracts)
             {
                 contracts = new List<AirportContract>(this._Contracts);
-             
+
             }
             return contracts;
         }
@@ -168,7 +168,7 @@ namespace TheAirline.Model.AirportModel
             DestinationDemand pax = this.DestinationPassengers.Find(a => a.Destination == destination.Profile.IATACode);
 
             var values = Enum.GetValues(typeof(AirlinerClass.ClassType));
- 
+
             int classFactor = 0;
 
             int i = 1;
@@ -176,35 +176,35 @@ namespace TheAirline.Model.AirportModel
             foreach (AirlinerClass.ClassType value in values)
             {
                 if (value == type)
-                   classFactor = i;
+                    classFactor = i;
                 i++;
             }
-                          
+
             if (pax == null)
-                return this.Statics.getDestinationPassengersRate(destination,type);
+                return this.Statics.getDestinationPassengersRate(destination, type);
             else
             {
-                return (ushort)(this.Statics.getDestinationPassengersRate(destination,type)+(ushort)(pax.Rate / classFactor));
+                return (ushort)(this.Statics.getDestinationPassengersRate(destination, type) + (ushort)(pax.Rate / classFactor));
             }
-      
+
         }
         //returns the destination cargo for a specific destination
         public ushort getDestinationCargoRate(Airport destination)
         {
             DestinationDemand cargo = this.DestinationCargo.Find(a => a.Destination == destination.Profile.IATACode);
 
-         
+
             if (cargo == null)
                 return this.Statics.getDestinationCargoRate(destination);
             else
                 return (ushort)(cargo.Rate + (ushort)this.Statics.getDestinationCargoRate(destination));
-            
+
         }
         //adds a passenger rate for a destination
         public void addDestinationPassengersRate(DestinationDemand passengers)
         {
             this.Statics.addPassengerDemand(passengers);
-          
+
         }
         //adds a cargo rate for a destination
         public void addDestinationCargoRate(DestinationDemand cargo)
@@ -217,7 +217,7 @@ namespace TheAirline.Model.AirportModel
 
             lock (this.DestinationPassengers)
             {
-             
+
                 DestinationDemand destinationPassengers = getDestinationPassengersObject(destination);
 
                 if (destinationPassengers != null)
@@ -229,9 +229,9 @@ namespace TheAirline.Model.AirportModel
         //adds a cargo rate value to a destination
         public void addDestinationCargoRate(Airport destination, ushort rate)
         {
-            lock (this.DestinationCargo) 
+            lock (this.DestinationCargo)
             {
-                
+
                 DestinationDemand destinationCargo = getDestinationCargoObject(destination);
 
                 if (destinationCargo != null)
@@ -343,7 +343,7 @@ namespace TheAirline.Model.AirportModel
             {
                 if (this.DestinationCargoStatistics.ContainsKey(destination))
                     cargo = this.DestinationCargoStatistics[destination];
-                
+
             }
             return cargo;
         }
@@ -369,6 +369,7 @@ namespace TheAirline.Model.AirportModel
             long sizeValue = 151 * ((int)this.Profile.Size + 1);
             return GeneralHelpers.GetInflationPrice(sizeValue);
         }
+        /*
         //adds a facility to an airline
         public void addAirportFacility(Airline airline, AirportFacility facility, DateTime finishedDate)
         {
@@ -376,17 +377,17 @@ namespace TheAirline.Model.AirportModel
             {
                 this.Facilities.Add(new AirlineAirportFacility(airline, this, facility, finishedDate));
             }
-        }
+        }*/
         //sets the facility for an airline
-        public void setAirportFacility(Airline airline, AirportFacility facility, DateTime finishedDate)
+        public void addAirportFacility(Airline airline, AirportFacility facility, DateTime finishedDate)
         {
-            this.Facilities.RemoveAll(f => f.Airline == airline && f.Facility.Type == facility.Type);
+            //this.Facilities.RemoveAll(f => f.Airline == airline && f.Facility.Type == facility.Type);
             this.Facilities.Add(new AirlineAirportFacility(airline, this, facility, finishedDate));
         }
         //sets the facility for an airline
-        public void setAirportFacility(AirlineAirportFacility facility)
+        public void addAirportFacility(AirlineAirportFacility facility)
         {
-            this.Facilities.RemoveAll(f => f.Airline == facility.Airline && f.Facility.Type == facility.Facility.Type);
+            //this.Facilities.RemoveAll(f => f.Airline == facility.Airline && f.Facility.Type == facility.Facility.Type);
             this.Facilities.Add(facility);
         }
         //returns the facility of a specific type for an airline - useAirport == true if it should also check for the airports facility
@@ -402,7 +403,7 @@ namespace TheAirline.Model.AirportModel
                 return airportFacility == null || airlineFacility.TypeLevel > airportFacility.TypeLevel ? airlineFacility : airportFacility;
             }
         }
-         //returns the current airport facility of a specific type for an airlines
+        //returns the current airport facility of a specific type for an airlines
         public AirportFacility getCurrentAirportFacility(Airline airline, AirportFacility.FacilityType type)
         {
             List<AirportFacility> facilities = new List<AirportFacility>();
@@ -411,7 +412,7 @@ namespace TheAirline.Model.AirportModel
             lock (this.Facilities)
             {
 
-                facilities = (from f in tFacilities where f.Airline == airline && f.Facility.Type == type && f.FinishedDate <= GameObject.GetInstance().GameTime orderby f.Facility.TypeLevel descending select f.Facility).ToList();
+                facilities = (from f in tFacilities where f.Airline == airline && f.Facility.Type == type && f.FinishedDate <= GameObject.GetInstance().GameTime orderby f.FinishedDate descending select f.Facility).ToList();
                 int numberOfFacilities = facilities.Count();
 
                 if (numberOfFacilities == 0 && airline != null)
@@ -421,17 +422,33 @@ namespace TheAirline.Model.AirportModel
 
                     facilities.Add(noneFacility);
 
+
                 }
-             }
+            }
             return facilities.FirstOrDefault();
         }
-        //return the airport facility for a specific type for an airline
+        //returns if the airport has a facility for any airline
+        public Boolean hasAirlineFacility()
+        {
+            return this.Facilities.Exists(f => f.Airline != null && f.Facility.TypeLevel > 0);
+        }
+        //returns the facilities being build for an airline
+        public AirportFacility getAirlineBuildingFacility(Airline airline, AirportFacility.FacilityType type)
+        {
+            var facility =  this.Facilities.FirstOrDefault(f => f.Airline == airline && f.Facility.Type == type && GameObject.GetInstance().GameTime < f.FinishedDate);
+
+            if (facility == null)
+                return null;
+            else
+                return facility.Facility;
+        }
+        //returns the airport facility for a specific type for an airline
         public AirlineAirportFacility getAirlineAirportFacility(Airline airline, AirportFacility.FacilityType type)
         {
             List<AirlineAirportFacility> facilities = new List<AirlineAirportFacility>();
             lock (this.Facilities)
             {
-                facilities = (from f in this.Facilities where f.Airline == airline && f.Facility.Type == type orderby f.Facility.TypeLevel descending select f).ToList();
+                facilities = (from f in this.Facilities where f.Airline == airline && f.Facility.Type == type && GameObject.GetInstance().GameTime >= f.FinishedDate orderby f.FinishedDate descending select f).ToList();
 
                 if (facilities.Count() == 0)
                 {
@@ -505,22 +522,11 @@ namespace TheAirline.Model.AirportModel
 
             return false;
         }
-        //downgrades the facility for a specific type for an airline
-        public void downgradeFacility(Airline airline, AirportFacility.FacilityType type)
+        //removes the facility for an airline
+        public void removeFacility(Airline airline, AirportFacility facility)
         {
-            AirportFacility currentFacility = getAirportFacility(airline, type);
-            AirlineAirportFacility aaf = getAirlineAirportFacility(airline, type);
-
-            List<AirportFacility> facilities = AirportFacilities.GetFacilities(type);
-
-            facilities.Sort((delegate(AirportFacility f1, AirportFacility f2) { return f1.TypeLevel.CompareTo(f2.TypeLevel); }));
-
-            int index = facilities.IndexOf(getAirportFacility(airline, type));
-
-            addAirportFacility(airline, facilities[index - 1], GameObject.GetInstance().GameTime);
-
-            this.Facilities.Remove(aaf);
-
+            this.Facilities.RemoveAll(f=>f.Airline == airline && f.Facility.Type == facility.Type);
+           
         }
         //clears the list of facilites
         public void clearFacilities()
@@ -539,8 +545,8 @@ namespace TheAirline.Model.AirportModel
             List<Hub> hubs;
             lock (this._Hubs)
                 hubs = new List<Hub>(this._Hubs);
-            
-            return hubs.FindAll(h=>h.Type.Type == type);
+
+            return hubs.FindAll(h => h.Type.Type == type);
         }
         //returns all hubs
         public List<Hub> getHubs()
@@ -613,19 +619,19 @@ namespace TheAirline.Model.AirportModel
             //The score could be airport facilities for the airline, routes, connecting routes, hotels, service level per route etc
             double score = 0;
 
-            score += this.Cooperations.Where(c=>c.Airline == airline).Sum(c=>c.Type.ServiceLevel * 9);
-        
+            score += this.Cooperations.Where(c => c.Airline == airline).Sum(c => c.Type.ServiceLevel * 9);
+
             lock (this.Facilities)
             {
                 score += this.Facilities.Where(f => f.Airline == airline).Sum(f => f.Facility.ServiceLevel * 10);
             }
 
             var airportRoutes = airline.Routes.Where(r => r.Destination1 == this || r.Destination2 == this);
-            score += 7*airportRoutes.Count();
+            score += 7 * airportRoutes.Count();
             score += 6 * airportRoutes.Where(r => r.Type == AirlinerModel.RouteModel.Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getServiceLevel(AirlinerClass.ClassType.Economy_Class));
 
             score += airline.Alliances.Sum(a => 5 * a.Members.SelectMany(m => m.Airline.Routes).Count(r => r.Destination1 == this || r.Destination2 == this));
-          
+
             foreach (CodeshareAgreement codesharing in airline.Codeshares)
             {
                 var codesharingRoutes = (codesharing.Airline1 == airline ? codesharing.Airline2 : codesharing.Airline1).Routes.Count(r => r.Destination2 == this || r.Destination1 == this);
@@ -652,6 +658,8 @@ namespace TheAirline.Model.AirportModel
 
                 if (prop != null)
                 {
+
+
                     if (prop is FieldInfo)
                         ((FieldInfo)prop).SetValue(this, entry.Value);
                     else
@@ -667,6 +675,7 @@ namespace TheAirline.Model.AirportModel
 
                 if (ver.AutoGenerated)
                 {
+
                     if (notSet is FieldInfo)
                         ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
                     else
@@ -708,7 +717,7 @@ namespace TheAirline.Model.AirportModel
     {
         private static List<Airport> airports = new List<Airport>();
         public static double LargestAirports, VeryLargeAirports, LargeAirports, MediumAirports, SmallAirports, VerySmallAirports, SmallestAirports;
-        public static Dictionary<GeneralHelpers.Size, int> CargoAirportsSizes = new Dictionary<GeneralHelpers.Size,int>();
+        public static Dictionary<GeneralHelpers.Size, int> CargoAirportsSizes = new Dictionary<GeneralHelpers.Size, int>();
         //clears the list
         public static void Clear()
         {

@@ -96,6 +96,64 @@
 	</runways>
   </airport>
   <!--Germany (ED**)-->
+    <airport name="Braunschweig Wolfsburg Airport" icao="EDVE" iata="BWE" type="Short_Haul_International" season="All_Year">
+    <town town="Braunschweig" country="163" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="052°19'09''N" />
+      <longitude value="010°33'21''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="1680" surface="Asphalt" />
+      <runway name="08R/26L" length="900" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Kassel-Calden Airport" icao="EDVK" iata="KSF" type="Short_Haul_International" season="All_Year">
+    <town town="Kassel" country="163" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="051°24'29''N" />
+      <longitude value="009°22'38''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Mannheim-City Airport" icao="EDFM" iata="MHG" type="Short_Haul_International" season="All_Year">
+    <town town="Mannheim" country="163" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="049°28'23''N" />
+      <longitude value="008°30'51''E" />
+    </coordinates>
+    <size value="Smallest" pax="11" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1066" surface="Asphalt" />
+      <runway name="09L/27R" length="700" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Niederrhein Airport" icao="EDLV" iata="NRN" type="Short_Haul_International" season="All_Year">
+    <town town="Weeze" country="163" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="051°36'08''N" />
+      <longitude value="006°08'31''E" />
+    </coordinates>
+    <size value="Smallest" pax="13" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2440" surface="Asphalt" />
+    </runways>
+  </airport>
     <airport name="Karlsruhe Baden-Baden Airport" icao="EDSB" iata="FKB" type="Short_Haul_International" season="All_Year">
     <town town="Baden-Baden" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
@@ -311,8 +369,24 @@
       <runway name="04/22" length="2435" surface="Asphalt" />
     </runways>
   </airport>
+    <airport name="Helgoland-Düne Airport" icao="EDXH" iata="HGL" type="Domestic" season="All_Year">
+    <town town="Helgoland" country="163" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="054°11'07''N" />
+      <longitude value="007°54'56''E" />
+    </coordinates>
+    <size value="Smallest" pax="7" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="15L/33R" length="480" surface="Concrete" />
+      <runway name="3/21" length="371" surface="Concrete" />
+       <runway name="6/24" length="258" surface="Concrete" />
+    </runways>
+  </airport>
   <airport name="Berlin Brandenburg Airport" icao="EDDB" iata="BER" type="Long_Haul_International" season="All_Year">
-    <period from="03.17.2014 00:00:00" to="01.01.2199 00:00:00" />
+    <period from="03.17.2022 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Berlin" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="052°22'00''N" />
@@ -328,7 +402,7 @@
     </runways>
   </airport>
   <airport name="Berlin Schönefeld Airport" icao="EDDB" iata="SXF" type="Long_Haul_International" season="All_Year">
-    <period from="10.15.1934 00:00:00" to="03.17.2014 00:00:00" />
+    <period from="10.15.1934 00:00:00" to="03.17.2022 00:00:00" />
     <town town="Berlin" country="1001" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="052°22'43''N" />
@@ -504,7 +578,7 @@
     </runways>
   </airport>
   <airport name="Berlin Tegel Airport" icao="EDDT" iata="TXL" type="Long_Haul_International" season="All_Year">
-    <period from="01.01.1960 00:00:00" to="03.17.2014 00:00:00" />
+    <period from="01.01.1960 00:00:00" to="03.17.2022 00:00:00" />
     <town town="Berlin" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="052°33'34''N" />
@@ -700,6 +774,41 @@
     </terminals>
     <runways>
       <runway name="13/31" length="2745" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="St Mary's Airport" icao="EGHE" iata="ISC" type="Domestic" season="All_Year">
+    <town town="St Mary's" country="130" GMT="01:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="049°54'48''N" />
+      <longitude value="006°17'30''W" />
+    </coordinates>
+    <size value="Very_small" pax="146" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+   <runways>
+      <runway name="15/33" length="523" surface="Asphalt" />
+      <runway name="09/27" length="600" surface="Asphalt" />
+    </runways>
+   <helipads>
+      <helipad name="18/36" length="400" surface="Asphalt"/>
+   </helipads>
+  </airport>
+  <airport name="Land's End Airport" icao="EGHC" iata="LEQ" type="Domestic" season="All_Year">
+    <town town="Land's End" country="130" GMT="01:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="050°06'10''N" />
+      <longitude value="005°40'14''W" />
+    </coordinates>
+    <size value="Very_small" pax="1767" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+   <runways>
+      <runway name="16/34" length="792" surface="Grass" />
+      <runway name="02/20" length="604" surface="Grass" />
+      <runway name="17/25" length="695" surface="Grass" />
+      <runway name="12/30" length="600" surface="Grass" />
     </runways>
   </airport>
   <airport name="Norwich International Airport" icao="EGSH" iata="NWI" type="Short_Haul_International" season="All_Year">
@@ -967,6 +1076,7 @@
     </runways>
   </airport>
   <airport name="Manston, Kent's International Airport" icao="EGMH" iata="MSE" type="Short_Haul_International" season="All_Year">
+    <period from="01.07.1989 00:00:00" to="05.15.2014 00:00:00" />
     <town town="Manston, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="051°20'32''N" />

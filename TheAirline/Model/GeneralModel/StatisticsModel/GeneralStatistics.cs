@@ -23,20 +23,25 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
         //returns the value for a statistics type for a year
         public double getStatisticsValue(int year, StatisticsType type)
         {
-            StatisticsValue item = this.StatValues.Find(s => s.Year == year && s.Stat.Shortname == type.Shortname);
+            var stats = new List<StatisticsValue>(this.StatValues);
+
+            StatisticsValue item = stats.FirstOrDefault(s => s.Stat != null && s.Year == year && s.Stat.Shortname == type.Shortname);
 
             if (item == null)
                 return 0;
             else
                 return item.Value;
 
-           
+
         }
         //returns the total value for a statistics type
         public double getStatisticsValue(StatisticsType type)
         {
-            return this.StatValues.Where(s => s.Stat.Shortname == type.Shortname).Sum(s => s.Value);
-           
+            if (this.StatValues != null && this.StatValues.Exists(s => s.Stat != null && s.Stat.Shortname == type.Shortname))
+                return this.StatValues.Where(s => s.Stat != null && s.Stat.Shortname == type.Shortname).Sum(s => s.Value);
+            else
+                return 0;
+
         }
         //adds the value for a statistics type for a year
         public void addStatisticsValue(int year, StatisticsType type, double value)
@@ -46,7 +51,7 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
             if (item == null)
                 this.StatValues.Add(new StatisticsValue(year, type, value));
             else
-                item.Value +=value;
+                item.Value += value;
         }
         //sets the value for a statistics type for a year
         public void setStatisticsValue(int year, StatisticsType type, double value)
@@ -63,8 +68,8 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
         public List<int> getYears()
         {
             return this.StatValues.Select(s => s.Year).Distinct().ToList();
-           
-            
+
+
         }
         //clears the statistics
         public void clear()
@@ -74,7 +79,7 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
                 this.StatValues.Clear();
             }
         }
-             private GeneralStatistics(SerializationInfo info, StreamingContext ctxt)
+        private GeneralStatistics(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 

@@ -78,7 +78,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 {
                     AirlineProfile profile = new AirlineProfile(name, iata, color, GameObject.GetInstance().MainAirline.Profile.CEO, false, GameObject.GetInstance().GameTime.Year, 2199);
 
-                    profile.Country = GameObject.GetInstance().MainAirline.Profile.Country;
+                    profile.Country = airport.Profile.Country;//GameObject.GetInstance().MainAirline.Profile.Country;<
 
                     SubsidiaryAirline subAirline = new SubsidiaryAirline(GameObject.GetInstance().MainAirline, profile, Model.AirlineModel.Airline.AirlineMentality.Safe, Model.AirlineModel.Airline.AirlineFocus.Local, Model.AirlineModel.Airline.AirlineLicense.Domestic, focus);
                     subAirline.addAirport(airport);

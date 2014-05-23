@@ -30,7 +30,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.Stats.Clear();
         }
          //returns the value for a statistics type for a route class
-        public int getStatisticsValue(RouteAirlinerClass aClass, StatisticsType type)
+        public long getStatisticsValue(RouteAirlinerClass aClass, StatisticsType type)
         {
             RouteStatisticsItem item = this.Stats.Find(i => i.Type.Shortname == type.Shortname && i.RouteClass.Type == aClass.Type);
 
@@ -39,7 +39,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             else
                 return item.Value;
         }
-         public int getStatisticsValue(StatisticsType type)
+         public long getStatisticsValue(StatisticsType type)
         {
             RouteAirlinerClass aClass = new RouteAirlinerClass(AirlinerClass.ClassType.Economy_Class, RouteAirlinerClass.SeatingType.Free_Seating, 0);
 
@@ -78,9 +78,9 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             setStatisticsValue(aClass, type, value);
         }
         //returns the total value of a statistics type
-         public int getTotalValue(StatisticsType type)
+         public long getTotalValue(StatisticsType type)
          {
-             int value = 0;
+             long value = 0;
 
              lock (this.Stats)
              {
@@ -247,7 +247,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     {
         public RouteAirlinerClass RouteClass { get; set; }
         public StatisticsType Type { get; set; }
-        public int Value { get; set; }
+        public long Value { get; set; }
         public RouteStatisticsItem(RouteAirlinerClass routeClass, StatisticsType type, int value)
         {
             this.RouteClass = routeClass;

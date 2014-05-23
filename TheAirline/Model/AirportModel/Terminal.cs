@@ -86,13 +86,12 @@ namespace TheAirline.Model.AirportModel
         //returns the number of free gates
         public int getFreeGates()
         {
-            //4 fordelt på 24 gates og 5 gates - burde være 20/24 og 5/5
             if (this.Airline != null)
                 return this.Gates.NumberOfGates;
 
-            int terminalIndex = this.Airport.Terminals.AirportTerminals.Where(a=>a.Airline==null).ToList().IndexOf(this);
+            int terminalIndex = this.Airport.Terminals.AirportTerminals.Where(a=>a.Airline==null && a.DeliveryDate<=GameObject.GetInstance().GameTime).ToList().IndexOf(this);
 
-            int terminalGates = this.Airport.Terminals.AirportTerminals.Where(a => a.Airline != null).Sum(t => t.Gates.NumberOfGates);
+            int terminalGates = this.Airport.Terminals.AirportTerminals.Where(a => a.Airline != null && a.DeliveryDate<=GameObject.GetInstance().GameTime).Sum(t => t.Gates.NumberOfGates);
                         
             int contracts = this.Airport.AirlineContracts.Sum(c => c.NumberOfGates) - terminalGates;
             
@@ -101,11 +100,12 @@ namespace TheAirline.Model.AirportModel
             int i = 0;
             while (gates < contracts)
             {
-                gates += this.Airport.Terminals.AirportTerminals.Where(a => a.Airline == null).ToList()[i].Gates.NumberOfGates;
+                gates += this.Airport.Terminals.AirportTerminals.Where(a => a.Airline == null && a.DeliveryDate<=GameObject.GetInstance().GameTime).ToList()[i].Gates.NumberOfGates;
 
                 if (gates < contracts)
                     i++;
             }
+            
             if (terminalIndex > i || contracts == 0)
                 return this.Gates.NumberOfGates;
 

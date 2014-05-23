@@ -184,8 +184,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
             AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
 
-            airport.setAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
-            airport.setAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+            airport.addAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
+            airport.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
         }
         //sets up the human airline 

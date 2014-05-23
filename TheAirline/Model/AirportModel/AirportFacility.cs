@@ -50,7 +50,7 @@ namespace TheAirline.Model.AirportModel
             this.Type = type;
         }
 
-        public string Name
+        public virtual string Name
         {
             get { return Translator.GetInstance().GetString(AirportFacility.Section, this.Uid); }
         }

@@ -132,11 +132,19 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
                }
 
+               //AirportHelpers.RentGates(airport.Airport, GameObject.GetInstance().HumanAirline, contractType, gates, 2);
+               
                double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport.Airport,contractType, gates,2);
-
+               
                AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline,airport.Airport,contractType,GameObject.GetInstance().GameTime,gates,2,yearlyPayment,true);
 
                airport.addAirlineContract(contract);
+              
+               for (int i = 0; i < gates; i++)
+               {
+                   Gate gate = airport.Airport.Terminals.getGates().Where(g => g.Airline == null).First();
+                   gate.Airline = GameObject.GetInstance().HumanAirline;
+               }
           
             }
 
