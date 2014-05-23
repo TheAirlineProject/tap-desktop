@@ -13,7 +13,7 @@
                 <ColumnDefinition Width="*"/>
              <!--   <ColumnDefinition Width="*" />-->
             </Grid.ColumnDefinitions>
-            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
+            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 0 0">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
                 <StackPanel>

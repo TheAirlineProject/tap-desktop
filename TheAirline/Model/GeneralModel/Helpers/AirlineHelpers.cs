@@ -314,7 +314,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (AirportFacility facility in airports[i].getCurrentAirportFacilities(airline))
                 {
                     if (airports[i].getAirlineAirportFacility(airline.Airline, facility.Type).Facility.TypeLevel < facility.TypeLevel)
-                        airports[i].setAirportFacility(airline.Airline, facility, GameObject.GetInstance().GameTime);
+                        airports[i].addAirportFacility(airline.Airline, facility, GameObject.GetInstance().GameTime);
                 }
 
                 airports[i].clearFacilities(airline);
@@ -766,7 +766,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     AirportFacility noneFacility = AirportFacilities.GetFacilities(facility.Type).Find(f => f.TypeLevel == 0);
 
-                    airport.setAirportFacility(airlineFrom, noneFacility, GameObject.GetInstance().GameTime);
+                    airport.addAirportFacility(airlineFrom, noneFacility, GameObject.GetInstance().GameTime);
 
                 }
             }

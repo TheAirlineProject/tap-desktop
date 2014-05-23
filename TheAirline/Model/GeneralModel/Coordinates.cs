@@ -124,6 +124,12 @@ namespace TheAirline.Model.GeneralModel
             this.Seconds = seconds;
 
         }
+        public override string ToString()
+        {
+           
+            return string.Format("{0}°{1}'{2}", this.Degrees, this.Minutes, this.Seconds);
+
+        }
         private Coordinate(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");

@@ -105,13 +105,13 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             var internationalDemand = demands.Where(a => new CountryCurrentCountryConverter().Convert(a.Profile.Country) != new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country));
             var domesticDemand = demands.Where(a => new CountryCurrentCountryConverter().Convert(a.Profile.Country) == new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country));
            
-            foreach (Airport destination in internationalDemand.Take(Math.Min(50,internationalDemand.Count())))
+            foreach (Airport destination in internationalDemand)
                 this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),(int)this.Airport.Profile.Pax, (int)this.Airport.getDestinationCargoRate(destination),DemandMVVM.DestinationType.International));
 
-            foreach (Airport destination in domesticDemand.Take(Math.Min(50, domesticDemand.Count())))
+            foreach (Airport destination in domesticDemand)
                 this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),(int)this.Airport.Profile.Pax, (int)this.Airport.getDestinationCargoRate(destination), DemandMVVM.DestinationType.Domestic));
             
-            this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null && f.Facility.TypeLevel!=0).Select(f=>f.Facility).ToList();
+            this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null && f.Facility.TypeLevel!=0).Select(f=>f.Facility).Distinct().ToList();
 
             this.AirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
             this.BuildingAirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
@@ -124,7 +124,10 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                     AirlineAirportFacilityMVVM airlineFacility = new AirlineAirportFacilityMVVM(facility, alliance);
 
                     if (airlineFacility.IsDelivered)
-                        this.AirlineFacilities.Add(airlineFacility);
+                    {
+                        if (facility == Airport.getAirlineAirportFacility(facility.Airline,facility.Facility.Type))
+                            this.AirlineFacilities.Add(airlineFacility);
+                    }
                     else
                         this.BuildingAirlineFacilities.Add(airlineFacility);
                 }
@@ -325,7 +328,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public void removeAirlineFacility(AirlineAirportFacilityMVVM facility)
         {
             
-            this.Airport.downgradeFacility(facility.Facility.Airline, facility.Facility.Facility.Type);
+            this.Airport.removeFacility(facility.Facility.Airline, facility.Facility.Facility);
 
             this.AirlineFacilities.Remove(facility);
 
@@ -345,7 +348,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public void addAirlineFacility(AirportFacility facility)
         {
             AirlineAirportFacility nextFacility = new AirlineAirportFacility(GameObject.GetInstance().HumanAirline,this.Airport, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
-            this.Airport.setAirportFacility(nextFacility);
+            this.Airport.addAirportFacility(nextFacility);
 
             /*
             AirlineAirportFacilityMVVM currentFacility = this.AirlineFacilities.Where(f => f.Facility.Facility.Type == facility.Type).FirstOrDefault();
@@ -572,7 +575,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
                 gatenumber++;
             }
-
+            
      
         }
         //purchase a terminal
@@ -687,52 +690,32 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             throw new NotImplementedException();
         }
     }
-    //the converter for the next facility
-    public class NextFacilityConverter : IMultiValueConverter
+    //the converter for the facilities for a specific type
+    public class TypeFacilitiesConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             AirportFacility.FacilityType type = (AirportFacility.FacilityType)values[0];
             Airport airport = (Airport)values[1];
 
-            AirlineAirportFacility currentFacility = airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type);
-            Boolean isDelivered = currentFacility.FinishedDate < GameObject.GetInstance().GameTime;
+            var currentFacility = airport.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, type);
+            var buildingFacility = airport.getAirlineBuildingFacility(GameObject.GetInstance().HumanAirline, type);
 
-            List<AirportFacility> facilities = AirportFacilities.GetFacilities(type);
-            facilities = facilities.OrderBy(f=>f.TypeLevel).ToList();
-          
-            int index = facilities.FindIndex(f=>currentFacility.Facility == f);
-            
-            if (parameter.ToString() == "Name")
+            var facilities = new List<AirportFacility>();
+            foreach (AirportFacility facility in AirportFacilities.GetFacilities(type).Where(f=>f.TypeLevel > currentFacility.TypeLevel))
             {
-                if (index < facilities.Count - 1 & isDelivered)
-                    return facilities[index + 1].Name;
-                else
-                    return "None";
-            }
-            if (parameter.ToString() == "Price")
-            {
-                if (index < facilities.Count - 1 && isDelivered)
-                    return new ValueCurrencyConverter().Convert(facilities[index + 1].Price);
-                else
-                    return "-";
-            }
-            if (parameter.ToString() == "Employees")
-            {
-                if (index < facilities.Count - 1 && isDelivered)
-                    return facilities[index + 1].NumberOfEmployees.ToString();
-                else
-                    return "-";
+                if (buildingFacility == null || facility.TypeLevel > buildingFacility.TypeLevel) 
+                    facilities.Add(facility);
             }
 
-            return "-";
+            return facilities;
         }
-
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }
     }
+
     //the converter for the temperature (in celsius) to text
     public class TemperatureToTextConverter : IValueConverter
     {

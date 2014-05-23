@@ -72,11 +72,14 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
+                    double payingAmount = Math.Min(amount, loan.PaymentLeft);
 
-                    AirlineHelpers.AddAirlineInvoice(this.Airline.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Loans, Math.Max(-amount, -loan.PaymentLeft));
+                    loan.payOnLoan(payingAmount);
 
-                    loan.payOnLoan(Math.Min(amount, loan.PaymentLeft));
+                    AirlineHelpers.AddAirlineInvoice(this.Airline.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Loans, -payingAmount);
 
+                    if (loan.PaymentLeft <= 0)
+                        this.Airline.Loans.Remove(loan);
                 }
             }
         }

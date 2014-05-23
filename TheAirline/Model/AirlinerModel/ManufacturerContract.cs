@@ -75,13 +75,22 @@ namespace TheAirline.Model.AirlinerModel
             {
                 MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
 
-
                 if (prop != null)
                 {
-                    if (prop is FieldInfo)
-                        ((FieldInfo)prop).SetValue(this, entry.Value);
+                    if (prop.Name.ToLower() == "manufacturer")
+                    {
+                        string manufacturer = ((Manufacturer)entry.Value).Name;
+                        this.Manufacturer = Manufacturers.GetManufacturer(manufacturer);
+
+                    }
                     else
-                        ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    {
+                        if (prop is FieldInfo)
+                            ((FieldInfo)prop).SetValue(this, entry.Value);
+                        else
+                            ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
+
                 }
             }
 

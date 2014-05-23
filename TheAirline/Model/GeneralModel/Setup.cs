@@ -131,7 +131,60 @@ namespace TheAirline.Model.GeneralModel
                 string s = e.ToString();
             }
 
+            Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
+            Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
+            /*
+            System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
+
+            string lines = "Name;IATA;ICAO;Type;Season;Town;Country;GMT;DST;Latitude;Longitude;Size;Pax;Cargosize;Cargo;Terminals[Name%Gates];Runways[Name%Surface%Lenght]";
+            
+            aFile.WriteLine(lines);
+
+            foreach (Airport airport in Airports.GetAllAirports())
+            {
+                string airportLine = airport.Profile.Name;
+                airportLine += ";" + airport.Profile.IATACode;
+                airportLine += ";" + airport.Profile.ICAOCode;
+                airportLine += ";" + airport.Profile.Type.ToString();
+                airportLine += ";" + airport.Profile.Season.ToString(); 
+                airportLine += ";" + airport.Profile.Town.Name;
+                airportLine += ";" + airport.Profile.Country.Name;
+                airportLine += ";" + airport.Profile.OffsetGMT.ToString();
+                airportLine += ";" + airport.Profile.OffsetDST.ToString();
+                airportLine += ";" + airport.Profile.Coordinates.Latitude.ToString();
+                airportLine += ";" + airport.Profile.Coordinates.Longitude.ToString();
+                airportLine += ";" + airport.Profile.Size.ToString();
+                airportLine += ";" + airport.Profile.Pax.ToString();
+                airportLine += ";" + airport.Profile.Cargo.ToString();
+                airportLine += ";" + airport.Profile.CargoVolume.ToString();
+
+                string runwaysLine="";
+                string terminalsLine="";
+
+                foreach (Terminal terminal in airport.Terminals.AirportTerminals)
+                {
+                    terminalsLine += "[" + terminal.Name + "%" + terminal.Gates.NumberOfGates.ToString() + "]";
+                }
+
+                foreach (Runway runway in airport.Runways)
+                {
+                    runwaysLine +=  "[" + runway.Name + "%" + runway.Surface.ToString() + "%" + runway.Length + "]";
+                }
+
+                airportLine += ";" + terminalsLine;
+                airportLine += ";" + runwaysLine;
+
+                aFile.WriteLine(airportLine);
+            
+                    
+                    
+                    //string.Format("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16}", airport.Profile.Name, airport.Profile.IATACode, airport.Profile.ICAOCode, airport.Profile.Type.ToString(), airport.Profile.Season.ToString(),airport.Profile.Town.Name,airport.Profile.Town.Country.Name,airport.Profile.OffsetGMT.ToString(),airport.Profile.OffsetDST.ToString());
+
+               
+            }
+            aFile.Close();
+        */
             /*
                 var townGroups =
                     from a in Airports.GetAllAirports() where a.Profile.Town.Name.Trim().Length == 0
@@ -147,8 +200,6 @@ namespace TheAirline.Model.GeneralModel
                     }
                 } */
 
-            Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
-            Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
             /*
             var aircraftFamilies = AirlinerTypes.GetAllTypes().Select(a => a.AirlinerFamily).Distinct();
@@ -1347,6 +1398,25 @@ namespace TheAirline.Model.GeneralModel
 
                     if (sizeElement.HasAttribute("cargo"))
                         cargoSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["cargo"].Value);
+                    else
+                    {
+                        //calculates the cargo size
+                        GeneralHelpers.Size[] cargoSizes = (GeneralHelpers.Size[])Enum.GetValues(typeof(GeneralHelpers.Size));
+                       
+                        int i=0;
+
+                       Dictionary<GeneralHelpers.Size,int> list = new Dictionary<GeneralHelpers.Size,int>();
+
+                        while (i<cargoSizes.Length && cargoSizes[i] <= paxValues.First().Size)
+                        {
+                            list.Add(cargoSizes[i], 10 - i);        
+                            i++;
+                        }
+
+                        cargoSize = AIHelpers.GetRandomItem(list);
+
+                       }
+
 
                     Town eTown = null;
                     if (town.Contains(","))

@@ -53,11 +53,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         public double Total { get; set; }
         public double Average { get; set; }
         public double Balance { get; set; }
+        public double Distance { get; set; }
         public RouteMVVM(Route route)
         {
             this.Route = route;
             this.FillingDegree = this.Route.FillingDegree;
             this.Balance = this.Route.Balance;
+            this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
 
             if (route.Type == Route.RouteType.Passenger)
             {

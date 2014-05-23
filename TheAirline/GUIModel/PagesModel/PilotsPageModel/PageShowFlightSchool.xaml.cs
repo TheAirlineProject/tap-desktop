@@ -106,9 +106,9 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
             foreach (PilotStudent student in this.FlightSchool.Students)
             {
-                var firstAircraft = student.Rating.Aircrafts.OrderBy(a=>a.TypeLevel).First(a=>types.ContainsKey(a) && types[a] > 0);
+                var firstAircraft = student.Rating.Aircrafts.OrderBy(a=>a.TypeLevel).FirstOrDefault(a=>types.ContainsKey(a) && types[a] > 0);
 
-                if (types.ContainsKey(firstAircraft))
+                if (firstAircraft != null && types.ContainsKey(firstAircraft))
                     types[firstAircraft]--;
 
             }

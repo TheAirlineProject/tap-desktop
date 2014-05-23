@@ -46,7 +46,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
            
 
-
+            /*
             CollectionView viewDemands = (CollectionView)CollectionViewSource.GetDefaultView(lvDemand.ItemsSource);
             viewDemands.GroupDescriptions.Clear();
 
@@ -57,7 +57,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             SortDescription sortPassengersDescription = new SortDescription("Passengers", ListSortDirection.Descending);
             viewDemands.SortDescriptions.Add(sortPassengersDescription);
-
+            */
 
 
         }
@@ -287,7 +287,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             }
 
         }
-
+        /*
         private void btnDemandContract_Click(object sender, RoutedEventArgs e)
         {
             DemandMVVM demand = (DemandMVVM)((Button)sender).Tag;
@@ -329,6 +329,6 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 demand.Contracted = true;
             }
         }
-
+        */
     }
 }

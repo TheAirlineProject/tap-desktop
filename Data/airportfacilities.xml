@@ -77,9 +77,9 @@
     </translations>
   </airportfacility>
   <airportfacility uid="105" shortname="Basic ServiceCenter" type="Service" typelevel="1" price="140000" buildingdays="45">
-    <level service="3" luxury="0">
+    <level service="30" luxury="0">
     </level>
-    <employees type="Maintenance" numberofemployees="10">
+    <employees type="Maintenance" numberofemployees="20">
     </employees>
     <translations>
       <en-US name="Basic Service Center" />
@@ -92,9 +92,9 @@
     </translations>
   </airportfacility>
   <airportfacility uid="106" shortname="ServiceCenter" type="Service" typelevel="2" price="325000" buildingdays="60">
-    <level service="7" luxury="0">
+    <level service="100" luxury="0">
     </level>
-    <employees type="Maintenance" numberofemployees="20">
+    <employees type="Maintenance" numberofemployees="30">
     </employees>
     <translations>
       <en-US name="Service Center" />
@@ -107,9 +107,9 @@
     </translations>
   </airportfacility>
   <airportfacility uid="107" shortname="Large ServiceCenter" type="Service" typelevel="3" price="600000" buildingdays="120">
-    <level service="10" luxury="0">
+    <level service="200" luxury="0">
     </level>
-    <employees type="Maintenance" numberofemployees="40">
+    <employees type="Maintenance" numberofemployees="55">
     </employees>
     <translations>
       <en-US name="Large Service Center" />
@@ -209,6 +209,21 @@
       <zh-CN name="机场售票处" />
       <da-DK name="Stor lufthavnsbilletkontor" />
       <es-ES name="Oficina de Billetes" />
+    </translations>
+  </airportfacility>
+   <airportfacility uid="114" shortname="Mega ServiceCenter" type="Service" typelevel="4" price="725000" buildingdays="150">
+    <level service="500" luxury="0">
+    </level>
+    <employees type="Maintenance" numberofemployees="75">
+    </employees>
+    <translations>
+      <en-US name="Mega Service Center" />
+      <de-DE name="Informationsschalter" />
+      <en-GB name="Service Center" />
+      <nl-NL name="Servicecentrum" />
+      <zh-CN name="服务中心" />
+      <da-DK name="Størst ServiceCenter" />
+      <es-ES name="Centro de Servicio" />
     </translations>
   </airportfacility>
     <airportfacility uid="200" shortname="Cargo None" type="Cargo" typelevel="0" price="0" buildingdays="0">

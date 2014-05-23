@@ -129,11 +129,14 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         //creates the grouping for a combobox
         private void createGrouping(ComboBox cb)
         {
-            ListCollectionView view = (ListCollectionView)CollectionViewSource.GetDefaultView(cb.ItemsSource);
-            view.GroupDescriptions.Clear();
+            if (cb != null)
+            {
+                ListCollectionView view = (ListCollectionView)CollectionViewSource.GetDefaultView(cb.ItemsSource);
+                view.GroupDescriptions.Clear();
 
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Profile.Town.Country");
-            view.GroupDescriptions.Add(groupDescription);
+                PropertyGroupDescription groupDescription = new PropertyGroupDescription("Profile.Town.Country");
+                view.GroupDescriptions.Add(groupDescription);
+            }
         }
         private void btnCreateNew_Click(object sender, RoutedEventArgs e)
         {

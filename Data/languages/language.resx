@@ -1788,10 +1788,10 @@ Loading of game aborted.</value>
     <value>The airport serves as homebase for a fleet airliner, so it needs to have at least basic service facilities.</value>
   </data>
   <data name="MessageBox_2204_name" xml:space="preserve">
-    <value>Downgrade Facility</value>
+    <value>Delete Facility</value>
   </data>
   <data name="MessageBox_2204_message" xml:space="preserve">
-    <value>Are you sure you want to downgrade the facilities from {0}?</value>
+    <value>Are you sure you want to delete the facilities from {0}?</value>
   </data>
   <data name="MessageBox_2205_name" xml:space="preserve">
     <value>Not Enough Money</value>
@@ -3853,7 +3853,7 @@ Good luck.</value>
     <value>Yearly Payment</value>
   </data>
   <data name="PageAirportInfo_1029_name" xml:space="preserve">
-    <value>Demand (Top 50 Destinations)</value>
+    <value>Destination Demand</value>
   </data>
   <data name="PageAirportInfo_1030_name" xml:space="preserve">
     <value>Destination</value>
@@ -5027,5 +5027,20 @@ Good luck.</value>
   </data>
   <data name="PageAirlineInfo_1036_name" xml:space="preserve">
     <value>Airline Country</value>
+  </data>
+  <data name="MessageBox_2233_message" xml:space="preserve">
+    <value>You are already building another facility of that type</value>
+  </data>
+  <data name="MessageBox_2233_name" xml:space="preserve">
+    <value>Can't Build Facility</value>
+  </data>
+  <data name="PageAirportDemand_1001_name" xml:space="preserve">
+    <value>Search for Airport</value>
+  </data>
+  <data name="PageAirport_2003_name" xml:space="preserve">
+    <value>Airport Demand</value>
+  </data>
+  <data name="PageHumanRoutes_1011_name" xml:space="preserve">
+    <value>Distance</value>
   </data>
 </root>
