@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-  <profile name="Blue Air" iata="0B" color="Black" country="147" CEO="Sheriff Ussama" mentality="Safe" market="Global" preferedairport="OTP"></profile>
-  <info real="True" from="2004" to="2199" />
-</airline>

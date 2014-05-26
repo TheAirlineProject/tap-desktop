@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-<profile name="Emirates" iata="EK" color="LightPink" country="156" CEO="Tim Clark" mentality="Aggressive" market="Global" preferedairport="DXB">
-  <narrative narrative="Emirates is the largest airline in the Middle East, operating out of Dubai since 1985. They currently fly to 129 destinations around the world on a fleet of A330, A340, A380, and 777s. " />
-</profile>
-</airline>

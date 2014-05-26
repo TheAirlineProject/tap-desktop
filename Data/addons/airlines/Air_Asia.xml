@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-<profile name="Air Asia" iata="AK" color="Tomato" country="173" CEO="Tony Fernandes" mentality="Aggressive" market="Global" preferedairport="KUL">
-  <narrative narrative="Air Asia is a budget airline based out of Kuala Lumpur and has been in operation since 1993. They operate over 140 routes to 78 destionations, on a fleet consisting exclusively of Airbus A320s. " />
-</profile>
-<info real="True" from="1993" to="2199"></info>
-</airline> 

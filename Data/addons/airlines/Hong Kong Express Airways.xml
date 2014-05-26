@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-<profile name="Hong Kong Express Airways" iata="UO" color="DarkRed" country="176" CEO="Yang Jian Hong" mentality="Moderate" market="Regional" preferedairport="HKG">
-<narrative narrative="Hong Kong Express Airways is a Hong Kong-based low-cost airline that provides scheduled air service to 8 destinations in Asia, including China, Japan, Malaysia, Taiwan and Thailand. The airline main hub at Hong Kong International Airport, using a fleet that consists exclusively of Airbus A320s."/>
-</profile>
-<info real="True" from="2004" to="2199"></info>
-</airline>

@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-<profile name="Balkan Bulgarian Airlines" iata="LZ" logo="LZ2" color="Green" country="185" CEO="Unknown" mentality="Moderate" market="Regional" preferedairport="SOF">
-<narrative narrative="Balkan Airlines (Bulgarian: Балкан) was Bulgaria's government-owned flag carrier between 1947 and 2002. During the 1970s, the airliner became a significant European carrier. The company encountered financial instability following the fall of communism in Eastern Europe. Despite managing to continue operations, following the start of the 21st century and a controversial privatisation, it declared bankruptcy in 2002. Balkan was liquidated in late October 2002. Bulgaria Air was appointed Balkan's successor in December 2002."/>
-</profile>
-<info real="True" from="1947" to="2002"></info>
-
-</airline>

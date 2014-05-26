@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-<profile name="Air France" iata="AF" color="LimeGreen" country="140" CEO="Alexandre de Juniac" mentality="Aggressive" market="Global" preferedairport="CDG">
-  <narrative narrative="Air France is the flag airline of France, operating out of Paris since 1933. They fly a fleet of over 250 aircraft to 272 destinations throughout the world. Their fleet consists of a full range of Airbus aircraft in addition to Boeing 777s. " />
-</profile>
-<info real="True" from="1933" to="2199"></info>
-</airline>
-

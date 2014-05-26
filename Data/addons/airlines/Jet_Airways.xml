@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-  <profile name="Jet Airways" iata="9W" color="Navy" country="152" CEO="Naresh Goyal" mentality="Aggressive" market="Global" preferedairport="BOM">
-    <narrative narrative="Jet Airways is the second largest airline in India and is parent company of JetLite."></narrative>
-  </profile>
-  <info real="True" from="1992" to="2199" />
-</airline>

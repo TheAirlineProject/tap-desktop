@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-<profile name="People Express Airlines" iata="PE" color="Brown" country="122" CEO="Don Burr" mentality="Moderate" market="Regional" preferedairport="EWR">
-<narrative narrative="People Express Airlines, stylized as PEOPLExpress, also known as People Express Travel, was an American low-cost airline that operated from 1981 to 1987, when they merged into Continental Airlines. The airline's headquarters was in the North Terminal of Newark International Airport in Newark, New Jersey."/>
-</profile>
-<info real="True" from="1981" to="1987"></info>
-</airline>

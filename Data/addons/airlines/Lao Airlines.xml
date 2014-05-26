@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-  <profile name="Lao Airlines" iata="QV" color="Green" country="279" CEO="Dr. Somphone Douangdara" mentality="Moderate" market="Regional" preferedairport="VTE">
-    <narrative narrative="Lao Airlines State Enterprise is the national airline of Laos, headquartered in Vientiane. It operates domestic as well as international services to countries such as Cambodia, China, Thailand, Vietnam, and Singapore." />
-  </profile>
-  <info real="True" from="1976" to="2199"></info>
-</airline>

@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<airline>
-  <profile name="Cebu Pacific Air" iata="5J" color="DarkCyan" country="131" CEO="Lance Gokongwei" mentality="Aggressive" market="Global " preferedairport="MNL">
-    <narrative narrative="Cebu Pacific is an airline based in Manila since 1988. They fly to 33 South/East Asia destinations on a fleet of 33 Airbus A320s and 7 ATR 72-500s." />
-  </profile>
-  <info real="True" from="1996" to="2199" />
-</airline>
