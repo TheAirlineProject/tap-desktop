@@ -2607,6 +2607,70 @@
       <runway name="09/27" length="3600" surface="Asphalt" />
     </runways>
   </airport>
+  
+  <airport name="Varna Airport" icao="LBWN" iata="VAR" type="Long_Haul_International" season="All_Year">
+    <town town="Varna" country="185" GMT="03:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="043°13'55''N" />
+      <longitude value="027°49'30''E" />
+    </coordinates>
+    <size value="Small" pax="1320" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+     <terminal name="Terminal 1" gates="10" />
+     <terminal name="Terminal 2" gates="8" />
+     <terminal name="Terminal 3" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2517" surface="Asphalt" />
+    </runways>
+  </airport>
+    
+  <airport name="Burgas Airport" icao="LBBG" iata="BOJ" type="Long_Haul_International" season="All_Year">
+    <town town="Burgas" country="185" GMT="03:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="042°34'13''N" />
+      <longitude value="027°30'55''E" />
+    </coordinates>
+    <size value="Medium" pax="2356" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+      <terminal name="Terminal 2" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="04/32" length="3200" surface="Concrete" />
+    </runways>
+  </airport>
+   
+  <airport name="Plovdiv Airport" icao="LBPD" iata="PDV" type="Short_Haul_International" season="All_Year">
+    <town town="Plovdiv" country="185" GMT="03:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="042°04'04''N" />
+      <longitude value="024°51'53''E" />
+    </coordinates>
+    <size value="Smallest" pax="91" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+      <terminal name="Terminal 1" gates="8" />
+      <terminal name="Terminal 2" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2500" surface="Concrete" />
+    </runways>
+  </airport>
+    
+  <airport name="Gorna Oryahovitsa Airport" icao="LBGO" iata="GOZ" type="Long_Haul_International" season="All_Year">
+    <town town="Veliko Tarnovo" country="185" GMT="03:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="043°09'05''N" />
+      <longitude value="025°42'40''E" />
+    </coordinates>
+    <size value="Smallest" pax="0" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+      <terminal name="Terminal 1" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2450" surface="Asphalt" />
+    </runways>
+  </airport>
+    
   <!--Cyprus (LC**)-->
   <airport name="Larnaca International Airport" icao="LCLK" iata="LCA" type="Long_Haul_International" season="All_Year">
     <town town="Larnaca" country="154" GMT="03:00:00" DST="02:00:00" />
@@ -5187,20 +5251,66 @@
     </runways>
   </airport>
   <!--Bosnia and Herzegovina (LQ**)-->
-  <airport name="Sarajevo International Airport" icao="LQSA" iata="SJJ" type="Long_Haul_International" season="All_Year">
+
+    <airport name="Sarajevo International Airport" icao="LQSA" iata="SJJ" type="Long_Haul_International" season="All_Year">
     <town town="Sarajevo" country="248" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
-      <latitude value="043°49'29''N" />
+    <latitude value="043°49'29''N" />
       <longitude value="018°19'53''E" />
     </coordinates>
-    <size value="Small" pax="599" cargo="Smallest" cargovolume="0"/>
+    <size value="Small" pax="665" cargo="Smallest" cargovolume="0"/>
     <terminals>
       <terminal name="Terminal" gates="7" />
     </terminals>
     <runways>
-      <runway name="12/30" length="2600" surface="Asphalt" />
+      <runway name="12/30" length="2700" surface="Asphalt" />
     </runways>
   </airport>
+        <airport name="Tuzla International Airport" icao="LQTZ" iata="TZL" type="Long_Haul_International" season="All_Year">
+    <town town="Tuzla" country="248" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="044°27'31''N" />
+      <longitude value="018°43'29''E" />
+    </coordinates>
+    <size value="Smallest" pax="95" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+      <terminal name="Terminal" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2480" surface="Asphalt" />
+    </runways>
+  </airport>
+  
+  <airport name="Banja Luka International Airport" icao="LQBK" iata="BNX" type="Long_Haul_International" season="All_Year">
+    <town town="Banja Luka" country="248" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="044°56'29''N" />
+      <longitude value="017°17'51''E" />
+    </coordinates>
+    <size value="Smallest" pax="20" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+      <terminal name="Terminal" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+  
+  <airport name="Mostar International Airport" icao="LQMO" iata="OMO" type="Long_Haul_International" season="All_Year">
+    <town town="Mostar" country="248" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="043°16'58''N" />
+      <longitude value="017°50'45''E" />
+    </coordinates>
+    <size value="Smallest" pax="68" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+      <terminal name="Terminal" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="2400" surface="Asphalt" />
+    </runways>
+  </airport>
+  
   <!--Romania (LR**)-->
   <airport name="Henri Coandă International Airport" icao="LROP" iata="OTP" type="Long_Haul_International" season="All_Year">
     <town town="Bucharest" country="147" GMT="03:00:00" DST="02:00:00" />
@@ -6029,35 +6139,84 @@
       <latitude value="044°49'09''N" />
       <longitude value="020°18'24''E" />
     </coordinates>
-    <size value="Medium" pax="3124" cargo="Smallest" cargovolume="0"/>
+    <size value="Medium" pax="3543" cargo="Smallest" cargovolume="0"/>
     <terminals>
-      <terminal name="Terminal 1" gates="8" />
+      <terminal name="Terminal 1" gates="12" />
       <terminal name="Terminal 2" gates="6" />
     </terminals>
     <runways>
       <runway name="12/30" length="3400" surface="Asphalt" />
     </runways>
   </airport>
+ 
+   <airport name="Niš Constantine the Great Airport" icao="LYNI" iata="INI" type="Long_Haul_International" season="All_Year">
+    <town town="Niš" country="104" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="043°20'14''N" />
+      <longitude value="021°51'13'E" />
+    </coordinates>
+    <size value="Smallest" pax="22" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+      <terminal name="Terminal 1" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="14L/32R" length="2200" surface="Asphalt" />
+    </runways>
+  </airport>
+  
+   <airport name="Užice-Ponikve Airport" icao="LYUE" iata="UZC" type="Regional" season="All_Year">
+    <town town="Niš" country="104" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="043°53'55''N" />
+      <longitude value="019°41'51'E" />
+    </coordinates>
+    <size value="Smallest" pax="22" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+      <terminal name="Terminal 1" gates="4" />
+    </terminals>
+     <runways>
+      <runway name="11L/29R" length="2250" surface="Asphalt" />
+      <runway name="11R/29L" length="1500" surface="Grass" />
+    </runways>
+  </airport>
+  
+   <airport name="Morava Airport" icao="LYKV" iata="KVO" type="Short_Haul_International" season="All_Year">
+    <town town="Kraljevo" country="104" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="043°49'07''N" />
+      <longitude value="020°35'07'E" />
+    </coordinates>
+    <size value="Smallest" pax="0" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+      <terminal name="Terminal 1" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="11R/29L" length="2500" surface="Asphalt" />
+      <runway name="11L/29R" length="1700" surface="Grass" />
+    </runways>
+  </airport>
+  
   <airport name="Podgorica Airport" icao="LYPG" iata="TGD" type="Long_Haul_International" season="All_Year">
     <town town="Podgorica" country="249" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="042°21'34''N" />
       <longitude value="019°15'07''E" />
     </coordinates>
-    <size value="Small" pax="611" cargo="Smallest" cargovolume="0"/>
+    <size value="Small" pax="680" cargo="Smallest" cargovolume="0"/>
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
     <runways>
       <runway name="18/36" length="2500" surface="Asphalt" />
     </runways>
+      </airport>
     <airport name="Tivat Airport" icao="LYTV" iata="TIV" type="Short_Haul_International" season="All_Year">
       <town town="Tivat" country="249" GMT="01:00:00" DST="00:00:00" />
       <coordinates>
         <latitude value="042°24'16''N" />
         <longitude value="018°43'23''E" />
       </coordinates>
-      <size value="Small" pax="647" cargo="Smallest" cargovolume="0"/>
+      <size value="Small" pax="868" cargo="Smallest" cargovolume="0"/>
       <terminals>
         <terminal name="Terminal A" gates="6" />
       </terminals>
@@ -6065,7 +6224,8 @@
         <runway name="14/32" length="2502" surface="Asphalt" />
       </runways>
     </airport>
-    <airport name="Berane Airport" icao="LYBR" iata="IVG" type="Domestic" season="All_Year">
+ 
+   <airport name="Berane Airport" icao="LYBR" iata="IVG" type="Domestic" season="All_Year">
       <town town="Berane" country="249" GMT="01:00:00" DST="00:00:00" />
       <coordinates>
         <latitude value="042°50'20''N" />
@@ -6079,7 +6239,7 @@
         <runway name="01/19" length="1900" surface="Concrete" />
       </runways>
     </airport>
-  </airport>
+  
   <!--Slovakia (LZ**)-->
   <airport name="M. R. Štefánik Airport" icao="LZIB" iata="BTS" type="Short_Haul_International" season="All_Year">
     <town town="Bratislava" country="231" GMT="02:00:00" DST="01:00:00" />

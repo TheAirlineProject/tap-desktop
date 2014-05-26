@@ -40,7 +40,7 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
             if (this.StatValues != null && this.StatValues.Exists(s => s.Stat != null && s.Stat.Shortname == type.Shortname))
                 return this.StatValues.Where(s => s.Stat != null && s.Stat.Shortname == type.Shortname).Sum(s => s.Value);
             else
-                return 0;
+                return 0; 
 
         }
         //adds the value for a statistics type for a year

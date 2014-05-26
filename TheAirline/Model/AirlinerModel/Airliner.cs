@@ -74,8 +74,8 @@ namespace TheAirline.Model.AirlinerModel
         {
 
 
-            double months = 20 * 15;
-            double rate = 1.20;
+            double months = 12 * 15;
+            double rate = 1.30;
 
             double leasingPrice = (this.getPrice() * rate / months);
             return Convert.ToInt64(leasingPrice);

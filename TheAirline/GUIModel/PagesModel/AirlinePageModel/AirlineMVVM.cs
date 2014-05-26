@@ -206,18 +206,18 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             {
                 if (airliner.Airliner.BuiltDate > GameObject.GetInstance().GameTime)
                 {
-                    if (this.OrderedQuantity.Any(o => o.Type == airliner.Airliner.Type))
+                    if (this.OrderedQuantity.Any(o => o.Type.Name == airliner.Airliner.Type.Name))
                     {
-                        this.OrderedQuantity.First(o => o.Type == airliner.Airliner.Type).Quantity++;
+                        this.OrderedQuantity.First(o => o.Type.Name == airliner.Airliner.Type.Name).Quantity++;
                     }
                     else
                         this.OrderedQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, 1));
                 }
                 else
                 {
-                    if (this.ActiveQuantity.Any(o => o.Type == airliner.Airliner.Type))
+                    if (this.ActiveQuantity.Any(o => o.Type.Name == airliner.Airliner.Type.Name))
                     {
-                        this.ActiveQuantity.First(o => o.Type == airliner.Airliner.Type).Quantity++;
+                        this.ActiveQuantity.First(o => o.Type.Name == airliner.Airliner.Type.Name).Quantity++;
                     }
                     else
                         this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, 1));

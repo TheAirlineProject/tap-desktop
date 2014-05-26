@@ -122,8 +122,8 @@ namespace TheAirline.Model.GeneralModel
             double demandOrigin = 0;
             double demandDestination = 0;
 
-            var routesFromDestination = airliner.Airliner.Airline.Routes.FindAll(r => ((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)));
-            var routesToOrigin = airliner.Airliner.Airline.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)));
+            var routesFromDestination = airliner.Airliner.Airline.Routes.FindAll(r => !r.IsCargoRoute && ((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)));
+            var routesToOrigin = airliner.Airliner.Airline.Routes.FindAll(r => !r.IsCargoRoute && ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)));
 
             foreach (PassengerRoute route in routesFromDestination)
             {
@@ -168,7 +168,7 @@ namespace TheAirline.Model.GeneralModel
                 allianceRoutesFromDestination = allianceRoutesFromDestination.Union(codesharingRoutesFromDestination);
                 allianceRoutesToOrigin = allianceRoutesToOrigin.Union(codesharingRoutesToOrigin);
 
-                foreach (PassengerRoute route in allianceRoutesFromDestination)
+                foreach (PassengerRoute route in allianceRoutesFromDestination.Where(r=>!r.IsCargoRoute))
                 {
                     Airport tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1;
 
@@ -183,7 +183,7 @@ namespace TheAirline.Model.GeneralModel
                     }
                 }
 
-                foreach (PassengerRoute route in allianceRoutesToOrigin)
+                foreach (PassengerRoute route in allianceRoutesToOrigin.Where(r=>!r.IsCargoRoute))
                 {
                     Airport tDest = route.Destination1 == airportCurrent ? route.Destination2 : route.Destination1;
 

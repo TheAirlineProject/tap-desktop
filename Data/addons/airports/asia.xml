@@ -4037,7 +4037,7 @@
     </runways>
   </airport>
   <airport name="Fuzhou Changle International Airport" icao="ZSFZ" iata="FOC" type="Long_Haul_International" season="All_Year">
-    <town town="Guiyang" country="148" GMT="08:00:00" DST="08:00:00"/>
+    <town town="Fuzhou" country="148" GMT="08:00:00" DST="08:00:00"/>
     <coordinates>
       <latitude value="25°56'6''N"/>
       <longitude value="119°39'47''E"/>
@@ -4051,7 +4051,7 @@
     </runways>
   </airport>
   <airport name="Nanning Wuxu International Airport" icao="ZGNN" iata="NNG" type="Long_Haul_International" season="All_Year">
-    <town town="Guiyang" country="148" GMT="08:00:00" DST="08:00:00"/>
+    <town town="Nanning" country="148" GMT="08:00:00" DST="08:00:00"/>
     <coordinates>
       <latitude value="22°36'27''N"/>
       <longitude value="108°10'19''E"/>
