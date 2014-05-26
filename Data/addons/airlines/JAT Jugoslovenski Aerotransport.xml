@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="JAT Jugoslovenski Aerotransport" iata="JU" logo="JU4" color="DarkBlue" country="104" CEO=" Unknown" mentality="Moderate" market="Global" preferedairport="BEG">
+<narrative narrative="JAT traces its heritage back to 1927 when Aeroput, the first civil airline in Yugoslavia was founded. Their first international flight was in 1929 between Belgrade and Graz.[6] In 1937, the expansion of international routes and an increase in passenger numbers enabled Aeroput to acquire the Lockheed Model 10 Electra. Aeroput continued to operate until the start of World War II. Jat Yugoslav Airlines was launched on 1 April 1947, and formally replaced Aeroput in 1948. the name was changed to JAT - Jugoslovenski Aerotransport (Yugoslavian Air Transport), then to JAT Yugoslav Airlines and finally to Jat Airways on 8 August 2003 and Air Serbia in October 2013"/>
+</profile>
+<info real="True" from="1927" to="1994"></info>
+  <startdata>
+    <airliners>
+      <airliner type="Douglas DC-9-30" early="4" late="10"></airliner>
+	  <airliner type="Boeing 727-200" early="2" late="6"></airliner>
+	  <airliner type="MD DC-10-30" early="2" late="5"></airliner>
+	  <airliner type="Boeing 737-300" early="0" late="10"></airliner>
+      <airliner type="ATR 72-210" early="0" late="4"></airliner>
+	  <airliner type="ATR 42-200" early="0" late="3"></airliner>
+    </airliners>
+  </startdata>
+  
+</airline>
