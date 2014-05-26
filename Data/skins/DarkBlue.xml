@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<skin name="Dark Blue">
+  <property name="ButtonBrush">
+    <!--
+    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+      <LinearGradientBrush.GradientStops>
+        <GradientStop Color="#FF0000FF" Offset="0.2" />
+        <GradientStop Color="#FFADD8E6" Offset="0.85" />
+        <GradientStop Color="#FF0000FF" Offset="1" />
+      </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+    -->
+    <SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">#FF00008B</SolidColorBrush>
+  </property>
+  <property name="HeaderBackgroundBrush2">
+    <SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">#324D6A</SolidColorBrush>
+  </property>
+  <property name="HeaderBackgroundBrush">
+    <SolidColorBrush Color="#FF0000FF" Opacity="0.2" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" />
+  </property>
+  <property name="BackgroundImage">
+    <BitmapImage BaseUri="{x:Null}" UriSource="Data/skins/bg2.jpg" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+  </property>
+  <property name="BackgroundTop">
+    <SolidColorBrush Color="#FF000000" Opacity="0.8" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" />
+  </property>
+  <property name="BackgroundBottom">
+    <SolidColorBrush Color="#FF000000" Opacity="0.8" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" />
+  </property>
+  <property name="TextColor">
+    <SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">#FFFFFF</SolidColorBrush>
+  </property>
+<property name="HeaderTextColor">
+    <SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">#FFD800</SolidColorBrush>
+  </property>
+</skin>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Translator>
+  <Languages>
+    <Language culture="en-US" name="English (US)" flag="United States-round.png" UnitSystem="Imperial" isEnabled="true">
+      <Word original="km." translated="miles" />
+      <Word original="km/t" translated="mph" />
+      <Word original="l/seat/km" translated="g/seat/m" />
+      <Word original="ltr" translated="gal" />
+    </Language>
+    <Language culture="en-GB" name="English (UK)" flag="England-round.png" UnitSystem="Metric" isEnabled="true" />
+    <Language culture="de-DE" name="Deutsch (DE)" flag="Germany-round.png" UnitSystem="Metric" isEnabled="true" />
+    <Language culture="nl-NL" name="Nederlands (NL)" flag="Netherlands-large.png" UnitSystem="Metric" isEnabled="false" />
+    <Language culture="zh-CN" name="中文 (CN)" flag="China-large.png" UnitSystem="Metric" isEnabled="false" />
+    <Language culture="da-DK" name="Dansk (DA)" flag="Denmark-round.png" UnitSystem="Metric" isEnabled="true" />
+    <Language culture="es-ES" name="Español (ES)" flag="Spain-round.png" UnitSystem="Metric" isEnabled="true" />
+ <Language culture="tr-TR" name="Türkçe (TR)" flag="Turkey-round.png" UnitSystem="Metric" isEnabled="true" />
+    <Language culture="it-IT" name="Italiana (IT)" flag="Italy-round.png" UnitSystem="Metric" isEnabled="true" />
+     <Language culture="pl-PL" name="Polski (PL)" flag="Poland-large.png" UnitSystem="Metric" isEnabled="false" />
+       <Language culture="hr-HR" name="Croatian (HR)" flag="Croatia-large.png" UnitSystem="Metric" isEnabled="false" />
+       <Language culture="ru-RU" name="ру́сский язы́к (RU)" flag="Russia-round.png" UnitSystem="Metric" isEnabled="true" />
+  </Languages>
+ </Translator>

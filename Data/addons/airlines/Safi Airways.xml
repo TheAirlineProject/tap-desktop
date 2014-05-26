@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Safi Airways" iata="4Q" color="Purple" country="253" CEO="Ghulam Hazrat Safi" mentality="Moderate" market="Local" preferedairport="KBL">
+<narrative narrative="Safi Airways is an afghan airline which operates Airbus A320-212, Boeing 767-200ER and Boeing 757-200 aircraft"/>
+</profile>
+<info real="True" from="2006" to="2199"></info>
+</airline>

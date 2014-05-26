@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="CityJet" iata="WX" color="Blue" country="130" CEO="Christine Ourmières" mentality="Moderate" market="Regional" preferedairport="CWL">
+<narrative narrative="The airline was established on 28 September 1992 and started scheduled operations on 12 January 1994. It was founded by Pat Byrne and began operations between London City Airport and Dublin under a franchise agreement with Virgin Atlantic Airways. On 4 July 1997, the airline began operations on the route using its own identity, with Saab 2000 aircraft."/>
+</profile>
+<info real="True" from="1992" to="2199"></info>
+</airline>

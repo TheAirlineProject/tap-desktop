@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air Arabia" iata="G9" color="Black" country="156" CEO="Adel Ali" mentality="Safe" market="Global" preferedairport="SHJ"></profile>
+  <info real="True" from="2003" to="2199" />
+</airline>

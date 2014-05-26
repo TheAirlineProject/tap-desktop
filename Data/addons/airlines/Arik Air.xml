@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Arik Air" iata="W3" color="Darkblue" country="145" CEO="Michael Arumemi-Ikhide" mentality="Aggressive" market="Regional" preferedairport="LOS">
+<narrative narrative="Arik Air is a Nigerian airline operating a domestic, regional and international flight network. It is currently the largest airline operator in Nigeria and also the national carrier of Sierra Leone. It operates mainly from two hubs at Murtala Mohammed International Airport, Lagos and Nnamdi Azikiwe International Airport, Abuja. Arik Air's head office is the Arik Air Aviation Center on the grounds of Murtala Muhammed International Airport in Ikeja, Lagos State." />
+  </profile>
+  <startdata>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="Airbus A340-500" early="0" late="2"></airliner> 
+    <airliner type="Boeing 737-700" early="0" late="9"></airliner> 
+    <airliner type="Boeing 737-800" early="0" late="4"></airliner> 
+    <airliner type="Bombardier CRJ900" early="0" late="4"></airliner> 
+    <airliner type="Bombardier Dash 8-400" early="0" late="3"></airliner>    
+  </airliners>
+  </startdata>
+</airline>

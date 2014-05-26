@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="KLM" iata="KL" color="Cyan" country="179" CEO="P F Hartman" mentality="Aggressive" market="Global " preferedairport="AMS">
+<narrative narrative="Koninklijke Luchtvaart Maatschappij N.V. (Royal Aviation Company), known by its initials KLM, is the flag carrier airline of the Netherlands. KLM's headquarters is in Amstelveen near its hub at Amsterdam Airport Schiphol. KLM operates worldwide scheduled passenger and cargo services to more than 90 destinations. It is the oldest airline in the world still operating under its original name. As of 31 March 2010 it had 31,787 employees." />  
+</profile>
+<startdata>
+   <airliners>
+    <airliner type="Airbus A330-200" early="0" late="11"></airliner>  
+    <airliner type="Airbus A330-300" early="0" late="3"></airliner>
+    <airliner type="Boeing 737-700" early="0" late="18"></airliner>
+    <airliner type="Boeing 737-800" early="0" late="23"></airliner> 
+    <airliner type="Boeing 737-900" early="0" late="5"></airliner>
+    <airliner type="Boeing 747-400" early="0" late="6"></airliner>
+    <airliner type="Boeing 747-400ER" early="0" late="16"></airliner> 
+    <airliner type="Boeing 777-200ER" early="0" late="15"></airliner> 
+    <airliner type="Boeing 777-300ER" early="0" late="7"></airliner>    
+  </airliners>
+</startdata>
+<subsidiaries>
+<subsidiary name="KLM Cityhopper" IATA="WA" homebase="AMS" mentality="Moderate" market="Local" logo="WA"></subsidiary>
+</subsidiaries>
+<info real="True" from="1919" to="2199" />
+</airline>
+

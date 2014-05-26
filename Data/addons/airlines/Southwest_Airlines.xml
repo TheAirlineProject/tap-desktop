@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Southwest Airlines" iata="WN" color="SteelBlue" country="122" CEO="Gary Kelley" mentality="Aggressive" market="Domestic" preferedairport="MDW">
+<narrative narrative="Southwest Airlines traces their roots to the March 16, 1967 incorporation of Air Southwest Co. by Rollin King and Herb Kelleher to provide service within the state of Texas. Southwest Airlines has solely operated Boeing 737s, except for a few years in the 1970s and 1980s, when they operated a few Boeing 727s"/>
+</profile>
+<prefereds aircrafts="Boeing 737-100,Boeing 737-200,Boeing 737-300,Boeing 737-400,Boeing 737-500,Boeing 737-600,Boeing 737-700,Boeing 737-800,Boeing 737-900,Boeing 737 MAX 7,Boeing 737 MAX 8,Boeing 737 MAX 9"></prefereds>
+<info real="True" from="1971" to="2199"></info>
+</airline>

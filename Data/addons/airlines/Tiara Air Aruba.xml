@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Tiara Air Aruba" iata="3P" color="DarkBlue" country="244" CEO="Alejandro Muyale" mentality="Moderate" market="Local" preferedairport="AUA">
+<narrative narrative="The airline was founded by Alejandro Muyale, whose family owns and performs Ground Handling Services at the Queen Beatrix International Airport in Aruba for over 30 years under the name of General Air Services (GenAir)."/>
+</profile>
+<info real="True" from="2006" to="2199"></info>
+</airline>

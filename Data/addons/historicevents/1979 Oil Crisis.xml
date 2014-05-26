@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<event name="1979 Oil Crisis" text="The shah has fled Iran, which has now nationalised its oil reserves" date="01.16.1979 00:00:00">
+  <influences>
+    <influence type="FuelPrices" value="10" enddate="12.01.1980 00:00:00"></influence>
+  </influences>
+</event>

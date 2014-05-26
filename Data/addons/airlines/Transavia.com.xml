@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Transavia.com" iata="HV" color="Black" country="179" CEO="Skúli Mogensen" mentality="Safe" market="Global" preferedairport="AMS"></profile>
+  <info real="True" from="1966" to="2199" />
+</airline>

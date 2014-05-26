@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Air Kiribati" iata="4A" color="Red" country="115" CEO="Iosabata Namakin" mentality="Moderate" market="Local" preferedairport="TRW">
+<narrative narrative="Air Kiribati Limited is the national airline of Kiribati operating passenger services within the Gilbert Islands of Kiribati, and to Fiji"/>
+</profile>
+<info real="True" from="1995" to="2199"></info>
+</airline>

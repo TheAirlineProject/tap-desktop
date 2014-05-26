@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Air Moorea" iata="VT" color="Orange" country="140" CEO="Freddy Chanseau" mentality="Safe" market="Local" preferedairport="PPT">
+<narrative narrative="Air Moorea was an airline based on the grounds of Faa'a International Airport in Faaa, Tahiti, French Polynesia"/>
+</profile>
+<info real="True" from="1968" to="2010"></info>
+</airline>

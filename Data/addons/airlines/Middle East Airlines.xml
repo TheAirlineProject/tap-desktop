@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Middle East Airlines" iata="ME" color="DarkGreen" country="129" CEO="Mohammed El-Hout" mentality="Safe" market="Domestic" preferedairport="BEY">
+<narrative narrative="Middle East Airlines was founded on 31 May 1945 by Saeb Salam and Tariq Shammaa and is the national flag-carrier airline of Lebanon" /> 
+</profile>
+<info real="True" from="1945" to="2199"></info>
+</airline>
+

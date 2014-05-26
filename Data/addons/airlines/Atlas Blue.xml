@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Atlas Blue" iata="8A" color="Orange" country="133" CEO="Driss Benhima" mentality="Moderate" market="Regional" preferedairport="RAK">
+  <narrative narrative="Atlas Blue was a low-cost airline with its head office on the grounds of Marrakech-Menara Airport in Marrakech, Morocco, operating out of Menara International Airport" />
+   </profile>
+    <info real="True" from="2004" to="2009" />
+    </airline>

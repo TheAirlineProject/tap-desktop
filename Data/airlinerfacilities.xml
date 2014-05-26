@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airlinerfacilities>
+  <airlinerfacility uid="100" type="Audio" fromyear="1950">
+    <level service="0">
+    </level>
+    <seats percent="0" price="0" uses="1">
+    </seats>
+    <translations>
+      <en-US name="No Audio" />
+      <de-DE name="keine Kopfhörer" />
+      <en-GB name="No Audio" />
+      <nl-NL name="Geen hoofdtelefoon" />
+      <zh-CN name="没有音乐服务" />
+      <da-DK name="Ingen lydsystem" />
+      <es-ES name="Sin Audio" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="101" type="Audio" fromyear="1977">
+    <level service="20">
+    </level>
+    <seats percent="100" price="80" uses="1">
+    </seats>
+    <translations>
+      <en-US name="Personal Radio" />
+      <de-DE name="Personlichen kopfhorer" />
+      <en-GB name="Personal Radio" />
+      <nl-NL name="Persoonlijke radio" />
+      <zh-CN name="标准音乐服务" />
+      <da-DK name="Personligt lydsystem" />
+      <es-ES name="Radio Personal" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="102" type="Audio" fromyear="1982">
+    <level service="30">
+    </level>
+    <seats percent="100" price="200" uses="1">
+    </seats>
+    <translations>
+      <en-US name="Standard Audio on Demand" />
+      <de-DE name="Standard Kopfhörer auf Nachfrage" />
+      <en-GB name="Standard Audio on Demand" />
+      <nl-NL name="Standaardaudiopakket" />
+      <zh-CN name="标准音乐服务" />
+      <da-DK name="Standard Audio on Demand" />
+      <es-ES name="Audio Estándar por encargo" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="103" type="Audio" fromyear="1995">
+    <level service="65">
+    </level>
+    <seats percent="100" price="270" uses="1">
+    </seats>
+    <translations>
+      <en-US name="Extended Audio on Demand" />
+      <de-DE name="Bessere Kopfhörer auf Nachfrage" />
+      <en-GB name="Extended Audio on Demand" />
+      <nl-NL name="Uitgebreid audiopakket" />
+      <zh-CN name="高级音乐服务" />
+      <da-DK name="Udvidet Audio on Demand" />
+      <es-ES name="Audio por encargo ampliado" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="104" type="Seat" fromyear="1950">
+    <level service="0">
+    </level>
+    <seats percent="100" price="0" uses="1">
+    </seats>
+    <translations>
+      <en-US name="Standard Seats" />
+      <de-DE name="Standard-Sitze" />
+      <en-GB name="Standard Seats" />
+      <nl-NL name="Standaardstoelen" />
+      <zh-CN name="标准座舱" />
+      <da-DK name="Standard sæder" />
+      <es-ES name="Asientos Estándar" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="105" type="Seat" fromyear="1960">
+    <level service="5">
+    </level>
+    <seats percent="100" price="200" uses="1.2">
+    </seats>
+    <translations>
+      <en-US name="Premium Seats" />
+      <de-DE name="Luxus-Sitze" />
+      <en-GB name="Premium Seats" />
+      <nl-NL name="Comfortstoelen" />
+      <zh-CN name="高级座舱" />
+      <da-DK name="Premium sæder" />
+      <es-ES name="Asientos  Superiores" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="106" type="Seat" fromyear="1970">
+    <level service="20">
+    </level>
+    <seats percent="100" price="250" uses="1.5">
+    </seats>
+    <translations>
+      <en-US name="Luxury Seats" />
+      <de-DE name="Luxury Seats" />
+      <en-GB name="Luxury Seats" />
+      <nl-NL name="Luxestoelen" />
+      <zh-CN name="豪华座舱" />
+      <da-DK name="Luksussæder" />
+      <es-ES name="Asientos de Lujo" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="107" type="Seat" fromyear="1980">
+    <level service="35">
+    </level>
+    <seats percent="100" price="360" uses="2">
+    </seats>
+    <translations>
+      <en-US name="Cradle Seats" />
+      <de-DE name="Wiege-Sitze" />
+      <en-GB name="Cradle Seats" />
+      <nl-NL name="Extra brede stoelen" />
+      <zh-CN name="婴儿座" />
+      <da-DK name="Vuggesæder" />
+      <es-ES name="Asientos Cuna" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="108" type="Seat" fromyear="1989">
+    <level service="50">
+    </level>
+    <seats percent="100" price="390" uses="2.5">
+    </seats>
+    <translations>
+      <en-US name="Angled Lie-Flat Seats" />
+      <de-DE name="Standard-Liege-Sitze" />
+      <en-GB name="Angled Lie-Flat Seats" />
+      <nl-NL name="Standaardligstoel" />
+      <zh-CN name="固定角度的靠背椅" />
+      <da-DK name="Vinklet og liggende sæder" />
+      <es-ES name="Asientos Reclinables" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="109" type="Seat" fromyear="1997">
+    <level service="75">
+    </level>
+    <seats percent="100" price="420" uses="3">
+    </seats>
+    <translations>
+      <en-US name="Full-Flat Seats" />
+      <de-DE name="Luxus-Liege-Sitze" />
+      <en-GB name="Full-Flat Seats" />
+      <nl-NL name="Comfortligstoel" />
+      <zh-CN name="全角度靠背椅" />
+      <da-DK name="Liggende sæder" />
+      <es-ES name="Asientos Cama" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="110" type="Seat" fromyear="1999">
+    <level service="100">
+    </level>
+    <seats percent="100" price="450" uses="4">
+    </seats>
+    <translations>
+      <en-US name="Full-Flat Beds" />
+      <de-DE name="Luxus-Liege-Bett" />
+      <en-GB name="Full-Flat Beds" />
+      <nl-NL name="Comfortbedstoel" />
+      <zh-CN name="平整的床" />
+      <da-DK name="Liggende senge" />
+      <es-ES name="Asientos Cama" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="111" type="Video" fromyear="1950">
+    <level service="0">
+    </level>
+    <seats percent="0" price="0" uses="1">
+    </seats>
+    <translations>
+      <en-US name="No Video" />
+      <de-DE name="kein Monitor" />
+      <en-GB name="No Video" />
+      <nl-NL name="Geen video" />
+      <zh-CN name="无视频服务" />
+      <da-DK name="Ingen video" />
+      <es-ES name="Sin Video" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="112" type="Video" fromyear="1965">
+    <level service="30">
+    </level>
+    <seats percent="20" price="150" uses="1">
+    </seats>
+    <translations>
+      <en-US name="In-flight Movies system" />
+      <de-DE name="Kinoleinwand" />
+      <en-GB name="In-flight Movies system" />
+      <nl-NL name="Films tijdens de vlucht" />
+      <zh-CN name="空中影院系统" />
+      <da-DK name="In-flight video system" />
+      <es-ES name="Sistema de Película de abordo" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="114" type="Video" fromyear="1988">
+    <level service="40">
+    </level>
+    <seats percent="100" price="270" uses="1">
+    </seats>
+    <translations>
+      <en-US name="Standard PTV" />
+      <de-DE name="Sitzmonitor Standard" />
+      <en-GB name="Standard PTV" />
+      <nl-NL name="Persoonlijk tv-scherm" />
+      <zh-CN name="标准 PTV" />
+      <da-DK name="Standard PTV" />
+      <es-ES name="Televisión de Pago Estándar" />
+    </translations>
+  </airlinerfacility>
+  <airlinerfacility uid="115" type="Video" fromyear="1997">
+    <level service="100">
+    </level>
+    <seats percent="100" price="350" uses="1">
+    </seats>
+    <translations>
+      <en-US name="Extended PTV" />
+      <de-DE name="Sitzmonitor Luxus" />
+      <en-GB name="Extended PTV" />
+      <nl-NL name="Interactief tv-scherm" />
+      <zh-CN name="高级 PTV" />
+      <da-DK name="Udvidet PTV" />
+      <es-ES name="Televisión de Pago Ampliada" />
+    </translations>
+  </airlinerfacility>
+</airlinerfacilities>

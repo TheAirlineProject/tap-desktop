@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--name is title/header of mbox, text is main content of mbox. Ecountry is the country the event happened
+in. Acountry1(2,3,etc) are countries affected by the event that occurred in Ecountry. Number is max
+occurences per instance. Frequency is number per 36 month period. Important "yes" should display mbox, 
+important "no" should send mail. EcountryNameValue is the airline's name value in the Ecountry. global is 
+the airline's overall name value-->
+<events type="Political">
+	<event name="Civil Unrest" text="Due to civil unrest and violence in [Ecountry], the following countries
+	have temporarily banned commercial flight to and from any airports there: [Acountry1],[Acountry2],
+	[Acountry3],[Acountry4],[Acuntry5]. Your routes to this country have been stopped, and you may reassign
+	them."	number="1" frequency="1" important="Yes">
+		<effects duration="0" customerHappiness="0" money="0" EcountryNameValue="-2" globalNameValue="0" />
+	</event>
+</events>

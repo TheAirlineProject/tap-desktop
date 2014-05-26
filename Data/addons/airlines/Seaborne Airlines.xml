@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Seaborne Airlines" iata="BB" color="Red" country="122" CEO="Ronald Casso" mentality="Moderate" market="Local" preferedairport="STT">
+<narrative narrative="Seaborne Airlines was established in 1992 and operates domestic seaplane and land plane services among the U.S. Virgin Islands, Puerto Rico, the British Virgin Islands, Martinique, Dominica, and Guadeloupe"/>
+</profile>
+<info real="True" from="1992" to="2199"></info>
+</airline>

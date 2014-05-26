@@ -1,0 +1,6 @@
+﻿<airline>
+  <profile name="Hewa Bora Airways" iata="EO" color="LightBlue" country="221" CEO="Stavros Papaioannou" mentality="Moderate" market="Regional" preferedairport="FIH">
+    <narrative narrative="Hewa Bora Airways Sarl (operating as Hewa Bora Airways) was the national airline of the Democratic Republic of the Congo based in Barumbu, Kinshasa, Democratic Republic of the Congo" />
+  </profile>
+  <info real="True" from="1984" to="2001"></info>
+</airline>

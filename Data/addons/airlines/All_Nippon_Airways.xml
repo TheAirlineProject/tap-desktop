@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="All Nippon Airways" iata="NH" color="aquamarine" country="171" CEO="Shinichiro Ito" mentality="Aggressive" market="Global" preferedairport="NRT">
+  <narrative narrative="All Nippon is the largest airline in Japan, operating since 1952 out of Tokyo. They fly to 81 destinations in Asia, U.S., and Europe on a fleet of 173 aircraft. The fleet consists almost exclusively of a wide range of Boeing aircraft. " />
+</profile>
+</airline> 

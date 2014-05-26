@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Leeward Islands Air Transport" iata="LI" color="Red" country="243" CEO="Brian Challenger" mentality="Safe" market="Local " preferedairport="ANU">
+  <narrative narrative="Leeward Islands Air Transport or LIAT, is an airline headquartered on the grounds of V. C. Bird International Airport in Antigua. It operates high-frequency inter-island scheduled services serving 21 destinations in the Caribbean"></narrative>
+  </profile>
+    <info real="True" from="1956" to="2199" />
+</airline>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Aegean Airlines" iata="A3" color="White" country="118" CEO="Theodoros Vassilakis" mentality="Aggressive" market="Global" preferedairport="ATH">
+ <narrative narrative="Aegean Airlines is since 2009 the largest Greek airline with a fleet of 35 aircrafts and over 6 million passengers carried yearly." />
+ </profile>
+  <info real="True" from="1999" to="2199"></info>
+  </airline>
+  

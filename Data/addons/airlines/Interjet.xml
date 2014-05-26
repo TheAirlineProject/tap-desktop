@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Interjet" iata="4O" color="Black" country="157" CEO="Miguel Aleman Magnani " mentality="Safe" market="Global" preferedairport="MEX">
+  <narrative narrative="Interjet started operations on December 1, 2005, with an initial fleet of seven Airbus A320 aircraft, which had previously belonged to Volare Airlines. The airline placed an order for 16 new A320 aircraft to replace the second-hand ones, which was increased by another 10 aircraft on 10 January 2010."/>
+</profile>
+  <info real="True" from="2005" to="2199" />
+</airline>

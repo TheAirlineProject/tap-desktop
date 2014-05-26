@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Philippine Airlines" iata="PR" color="Blue" country="131" CEO="Lucio Tan" mentality="Aggressive" market="Global" preferedairport="MNL">
+    <narrative narrative="Philippine Airlines is the flag carrier of the Philippines. Founded in 1941, it is the oldest commercial airline in Asia still under its original name. PAL serves 36 destinations over 14 countries using a mixed fleet of 33 Airbus jets and 9 Boeing jets." />
+  </profile>
+  <startdata>
+  <!--some random routes from an origin-->
+  <random_routes>
+  <routes origin="MNL" destinations="40" minimumsize="Smallest">
+<countries>
+<country value="131"></country>
+<country value="113"></country>
+<country value="122"></country>
+<country value="148"></country>
+<country value="176"></country>
+<country value="171"></country>
+<country value="172"></country>
+<country value="165"></country>
+<country value="152"></country>
+<country value="162"></country>
+<country value="174"></country>
+<country value="175"></country>
+<country value="170"></country>
+</countries>  
+  </routes>  
+  </random_routes>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="Boeing 737-300" early="0" late="10"></airliner>  
+  </airliners>
+  </startdata>
+</airline>
+

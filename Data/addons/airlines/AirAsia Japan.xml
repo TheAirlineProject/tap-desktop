@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="AirAsia Japan" iata="JW" color="Black" country="171" CEO="Sadao Saito" mentality="Safe" market="Global" preferedairport="NRT"></profile>
+  <info real="True" from="2011" to="2199" />
+</airline>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Air Transat" iata="TS" color="Blue" country="113" CEO="Jean-François Lemay" mentality="Moderate" market="Regional" preferedairport="YUL">
+<narrative narrative="Air Transat is a Canadian airline based in Montreal, Quebec, operating scheduled and charter flights, serving 60 destinations in 25 countries. The airline is owned and operated by Transat A.T. Inc. During the summer season its main destinations are Europe and in the winter season the Caribbean, Mexico, USA and Central America, though the airline operates many year-round flights to Europe from their Toronto and Montreal bases,"/>
+</profile>
+<info real="True" from="1987" to="2199"></info>
+</airline>

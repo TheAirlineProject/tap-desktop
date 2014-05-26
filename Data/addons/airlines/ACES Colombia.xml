@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="ACES Colombia" iata="VX" logo="VXt" color="Blue" country="183" CEO="Orlando Botero Escobar" mentality="Moderate" market="Regional" preferedairport="MDE">
+<narrative narrative="ACES (Spanish acronym: Aerolíneas Centrales de Colombia) was an airline with its headquarters in the Edificio del Cafe in Medellín, Colombia and founded on August 30, 1971 by a group of 13 Colombian entrepreneurs, amongst them, most notably Orlando Botero Escobar and German Peñaloza Arias from Manizales and Luis H. Coulson, Jorge Coulson R., Alberto Jaramillo and Hernán Zuluaga from Medellín."/>
+</profile>
+<info real="True" from="1972" to="2003"></info>
+</airline>
