@@ -1,136 +1,280 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Data;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirportModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.Helpers;
-
-namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
+﻿namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
+    using System.ComponentModel;
+    using System.Globalization;
+    using System.Linq;
+    using System.Windows;
+    using System.Windows.Data;
+
+    using TheAirline.Model.AirlinerModel;
+    using TheAirline.Model.AirportModel;
+    using TheAirline.Model.GeneralModel;
+    using TheAirline.Model.GeneralModel.Helpers;
+
     //the mvvm class for an airliner type
     public class AirlinerTypeMVVM : INotifyPropertyChanged
     {
-        public AirlinerType Type { get; set; }
+        #region Fields
+
         private Boolean _isselected;
-        public Boolean IsSelected
-        {
-            get { return _isselected; }
-            set { _isselected = value; NotifyPropertyChanged("IsSelected"); }
-        }
+
+        #endregion
+
+        #region Constructors and Destructors
+
         public AirlinerTypeMVVM(AirlinerType type)
         {
             this.Type = type;
             this.IsSelected = false;
         }
+
+        #endregion
+
+        #region Public Events
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Public Properties
+
+        public Boolean IsSelected
+        {
+            get
+            {
+                return this._isselected;
+            }
+            set
+            {
+                this._isselected = value;
+                this.NotifyPropertyChanged("IsSelected");
+            }
+        }
+
+        public AirlinerType Type { get; set; }
+
+        #endregion
+
+        #region Methods
+
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            PropertyChangedEventHandler handler = this.PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        #endregion
     }
+
     //the mvvm class for an airliner
     public class AirlinerMVVM : INotifyPropertyChanged
     {
-        public Airliner Airliner { get; set; }
+        #region Fields
+
         private Boolean _isselected;
-        public Boolean IsSelected
-        {
-            get { return _isselected; }
-            set { _isselected = value; NotifyPropertyChanged("IsSelected"); }
-        }
+
+        #endregion
+
+        #region Constructors and Destructors
+
         public AirlinerMVVM(Airliner airliner)
         {
             this.Airliner = airliner;
             this.IsSelected = false;
         }
+
+        #endregion
+
+        #region Public Events
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Public Properties
+
+        public Airliner Airliner { get; set; }
+
+        public Boolean IsSelected
+        {
+            get
+            {
+                return this._isselected;
+            }
+            set
+            {
+                this._isselected = value;
+                this.NotifyPropertyChanged("IsSelected");
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            PropertyChangedEventHandler handler = this.PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        #endregion
     }
+
     //the class for the fleet sizes (most used aircrafts)
     public class AirlineFleetSizeMVVM
     {
-        public AirlinerType Type { get; set; }
-        public int Count { get; set; }
+        #region Constructors and Destructors
+
         public AirlineFleetSizeMVVM(AirlinerType type, int count)
         {
             this.Type = type;
             this.Count = count;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        public int Count { get; set; }
+
+        public AirlinerType Type { get; set; }
+
+        #endregion
     }
+
     //the class for the airliner orders
     public class AirlinerOrdersMVVM : INotifyPropertyChanged
     {
-        public ObservableCollection<AirlinerOrderMVVM> Orders { get; set; }
-        private long _totalamount;
-        public long TotalAmount
-        {
-            get { return _totalamount; }
-            set { _totalamount = value; NotifyPropertyChanged("TotalAmount"); }
-        }
+        #region Fields
+
+        private DateTime _deliverydate;
+
         private long _discount;
-        public long Discount
-        {
-            get { return _discount; }
-            set { _discount = value; NotifyPropertyChanged("Discount"); }
-        }
+
+        private long _totalamount;
+
+        #endregion
+
+        #region Constructors and Destructors
+
         public AirlinerOrdersMVVM()
         {
             this.Orders = new ObservableCollection<AirlinerOrderMVVM>();
-            this.Orders.CollectionChanged += Orders_CollectionChanged;
-
+            this.Orders.CollectionChanged += this.Orders_CollectionChanged;
         }
-        private DateTime _deliverydate;
+
+        #endregion
+
+        #region Public Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Public Properties
+
         public DateTime DeliveryDate
         {
-            get { return _deliverydate; }
-            set { _deliverydate = value; NotifyPropertyChanged("DeliveryDate"); }
+            get
+            {
+                return this._deliverydate;
+            }
+            set
+            {
+                this._deliverydate = value;
+                this.NotifyPropertyChanged("DeliveryDate");
+            }
         }
-        private void Orders_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+
+        public long Discount
         {
-            orderUpdated();
+            get
+            {
+                return this._discount;
+            }
+            set
+            {
+                this._discount = value;
+                this.NotifyPropertyChanged("Discount");
+            }
         }
+
+        public ObservableCollection<AirlinerOrderMVVM> Orders { get; set; }
+
+        public long TotalAmount
+        {
+            get
+            {
+                return this._totalamount;
+            }
+            set
+            {
+                this._totalamount = value;
+                this.NotifyPropertyChanged("TotalAmount");
+            }
+        }
+
+        #endregion
+
+        #region Public Methods and Operators
+
         public void addOrder(AirlinerOrderMVVM order)
         {
             this.Orders.Add(order);
-            order.PropertyChanged += order_PropertyChanged;
+            order.PropertyChanged += this.order_PropertyChanged;
         }
-        private void order_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            orderUpdated();
-        }
+
         //the update for the order
         public void orderUpdated()
         {
-             long price = this.Orders.Sum(o => o.getOrderPrice());
+            long price = this.Orders.Sum(o => o.getOrderPrice());
 
-            this.Discount = Convert.ToInt64(price * (GeneralHelpers.GetAirlinerOrderDiscount(this.Orders.Sum(o => o.Amount)) / 100));
+            this.Discount =
+                Convert.ToInt64(price * (GeneralHelpers.GetAirlinerOrderDiscount(this.Orders.Sum(o => o.Amount)) / 100));
 
-            if (GameObject.GetInstance().HumanAirline.Contract != null && this.Orders.Count > 0 && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Orders.First().Type.Manufacturer)
-                this.Discount += Convert.ToInt64(price * (GameObject.GetInstance().HumanAirline.Contract.Discount / 100));
+            if (GameObject.GetInstance().HumanAirline.Contract != null && this.Orders.Count > 0
+                && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Orders.First().Type.Manufacturer)
+            {
+                this.Discount += Convert.ToInt64(
+                    price * (GameObject.GetInstance().HumanAirline.Contract.Discount / 100));
+            }
 
             this.TotalAmount = price - this.Discount;
 
-            this.DeliveryDate = getDeliveryDate();
+            this.DeliveryDate = this.getDeliveryDate();
         }
+
+        #endregion
+
         //returns a date for delivery based on the aircraft production rate
+
+        #region Methods
+
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        private void Orders_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            this.orderUpdated();
+        }
+
         private DateTime getDeliveryDate()
         {
             double monthsToComplete = 0;
@@ -140,14 +284,19 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 double orderToComplete = Math.Ceiling(Convert.ToDouble(order.Amount) / order.Type.ProductionRate);
 
                 if (orderToComplete > monthsToComplete)
+                {
                     monthsToComplete = orderToComplete;
+                }
             }
 
-            DateTime latestDate = new DateTime(1900, 1, 1);
+            var latestDate = new DateTime(1900, 1, 1);
 
             foreach (AirlinerOrderMVVM order in this.Orders)
             {
-                DateTime date = new DateTime(GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, GameObject.GetInstance().GameTime.Day);
+                var date = new DateTime(
+                    GameObject.GetInstance().GameTime.Year,
+                    GameObject.GetInstance().GameTime.Month,
+                    GameObject.GetInstance().GameTime.Day);
                 int rate = order.Type.ProductionRate;
                 if (order.Amount <= (rate / 4))
                 {
@@ -163,49 +312,37 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 }
 
                 if (date > latestDate)
+                {
                     latestDate = date;
+                }
             }
 
             return latestDate;
-
-
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String propertyName)
+
+        private void order_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            this.orderUpdated();
         }
+
+        #endregion
     }
+
     //the class for an airliner order
     public class AirlinerOrderMVVM : INotifyPropertyChanged
     {
-        public AirlinerType Type { get; set; }
-        public AirlinerOrdersMVVM Order { get; set; }
-        private List<AirlinerClass> _classes;
-        public List<AirlinerClass> Classes 
-        {
-            get { return _classes;}
-            set { _classes = value; this.Order.orderUpdated(); } 
-        }
-        public List<Airport> Homebases { get; set; }
+        #region Fields
+
         private int _amount;
-        public int Amount
-        {
-            get { return _amount; }
-            set { _amount = value; NotifyPropertyChanged("Amount"); }
-        }
+
+        private List<AirlinerClass> _classes;
 
         private Airport _homebase;
-        public Airport Homebase
-        {
-            get { return _homebase; }
-            set { _homebase = value; NotifyPropertyChanged("Homebase"); }
-        }
-      
+
+        #endregion
+
+        #region Constructors and Destructors
+
         public AirlinerOrderMVVM(AirlinerType type, AirlinerOrdersMVVM order, int amount = 1)
         {
             this.Type = type;
@@ -216,7 +353,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
             {
-                AirlinerClass eClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)type).MaxSeatingCapacity);
+                var eClass = new AirlinerClass(
+                    AirlinerClass.ClassType.Economy_Class,
+                    ((AirlinerPassengerType)type).MaxSeatingCapacity);
                 eClass.createBasicFacilities(null);
                 this.Classes.Add(eClass);
             }
@@ -225,85 +364,202 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             //var homebases = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => (a.hasContractType(GameObject.GetInstance().HumanAirline, AirportContract.ContractType.Full_Service) || a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0) && a.getMaxRunwayLength() >= minRunway);
 
-            var homebases = AirlineHelpers.GetHomebases(GameObject.GetInstance().HumanAirline, minRunway);
-         
-            foreach (var homebase in homebases)
+            List<Airport> homebases = AirlineHelpers.GetHomebases(GameObject.GetInstance().HumanAirline, minRunway);
+
+            foreach (Airport homebase in homebases)
+            {
                 this.Homebases.Add(homebase);
-
-
-
+            }
         }
+
+        #endregion
+
         //returns the price for the order
+
+        #region Public Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Public Properties
+
+        public int Amount
+        {
+            get
+            {
+                return this._amount;
+            }
+            set
+            {
+                this._amount = value;
+                this.NotifyPropertyChanged("Amount");
+            }
+        }
+
+        public List<AirlinerClass> Classes
+        {
+            get
+            {
+                return this._classes;
+            }
+            set
+            {
+                this._classes = value;
+                this.Order.orderUpdated();
+            }
+        }
+
+        public Airport Homebase
+        {
+            get
+            {
+                return this._homebase;
+            }
+            set
+            {
+                this._homebase = value;
+                this.NotifyPropertyChanged("Homebase");
+            }
+        }
+
+        public List<Airport> Homebases { get; set; }
+
+        public AirlinerOrdersMVVM Order { get; set; }
+
+        public AirlinerType Type { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
         public long getOrderPrice()
         {
-            double classesPrice=0;
+            double classesPrice = 0;
 
             foreach (AirlinerClass aClass in this.Classes)
+            {
                 foreach (AirlinerFacility facility in aClass.AllFacilities)
+                {
                     classesPrice += facility.PricePerSeat * (facility.PercentOfSeats / 100) * aClass.SeatingCapacity;
+                }
+            }
 
-            return Convert.ToInt64(this.Type.Price * this.Amount +classesPrice);
+            return Convert.ToInt64(this.Type.Price * this.Amount + classesPrice);
         }
-        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Methods
+
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            PropertyChangedEventHandler handler = this.PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        #endregion
     }
+
     //the mvvm class for the manufacturer contract
     public class ManufacturerContractMVVM : INotifyPropertyChanged
     {
-        private Boolean _hascontract;
-        public Boolean HasContract
-        {
-            get { return _hascontract; }
-            set { _hascontract = value; NotifyPropertyChanged("HasContract"); }
-        }  
+        #region Fields
+
         private Manufacturer _contracted;
-        public Manufacturer Contracted
-        {
-            get { return _contracted; }
-            set { _contracted = value; this.HasContract = (value != null && this.Manufacturer == value); NotifyPropertyChanged("Contracted"); }
-        }
-        public Manufacturer Manufacturer { get; set; }
+
+        private Boolean _hascontract;
+
+        #endregion
+
+        #region Constructors and Destructors
 
         public ManufacturerContractMVVM(Manufacturer manufacturer, Manufacturer contracted)
         {
             this.Contracted = contracted;
             this.Manufacturer = manufacturer;
         }
+
+        #endregion
+
+        #region Public Events
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Public Properties
+
+        public Manufacturer Contracted
+        {
+            get
+            {
+                return this._contracted;
+            }
+            set
+            {
+                this._contracted = value;
+                this.HasContract = (value != null && this.Manufacturer == value);
+                this.NotifyPropertyChanged("Contracted");
+            }
+        }
+
+        public Boolean HasContract
+        {
+            get
+            {
+                return this._hascontract;
+            }
+            set
+            {
+                this._hascontract = value;
+                this.NotifyPropertyChanged("HasContract");
+            }
+        }
+
+        public Manufacturer Manufacturer { get; set; }
+
+        #endregion
+
+        #region Methods
+
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            PropertyChangedEventHandler handler = this.PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        #endregion
     }
+
     //the converter if the human has contract with the manufacturer
     public class HumanManufacturerContractConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        #region Public Methods and Operators
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Manufacturer manufacturer = (Manufacturer)value;
+            var manufacturer = (Manufacturer)value;
 
-            if (GameObject.GetInstance().HumanAirline.Contract != null && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == manufacturer)
+            if (GameObject.GetInstance().HumanAirline.Contract != null
+                && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == manufacturer)
+            {
                 return Visibility.Visible;
-            else
-                return Visibility.Collapsed;
-
-
+            }
+            return Visibility.Collapsed;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

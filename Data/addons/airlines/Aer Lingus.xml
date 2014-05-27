@@ -1,15 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <airline>
-<profile name="Aer Lingus" iata="EI" color="Green" country="137" CEO="Christoph Mueller" mentality="Moderate" market="Global" preferedairport="DUB">
-<narrative narrative="Aer Lingus Group Plc an anglicisation of the Irish Aer Loingeas meaning air fleet, is an airline and the flag carrier of Ireland. It operates a fleet of Airbus aircraft serving Europe, North America, North Africa and Asia. It is Ireland's oldest extant airline, and its second largest, after low-cost rival Ryanair. The airline's head office is located on the grounds of Dublin Airport in Swords, Fingal, Ireland." />
-</profile>
-<startdata>
-  <airliners>
-   <airliner type="Airbus A319-100" early="0" late="2"></airliner>  
-   <airliner type="Airbus A320-200" early="0" late="32"></airliner> 
-   <airliner type="Airbus A321-200" early="0" late="3"></airliner> 
-   <airliner type="Airbus A330-200" early="0" late="3"></airliner> 
-   <airliner type="Airbus A330-300" early="0" late="4"></airliner>  
-  </airliners>
+  <profile name="Aer Lingus" iata="EI" color="Green" country="137" CEO="Christoph Mueller" mentality="Moderate"
+           market="Global" preferedairport="DUB">
+    <narrative
+      narrative="Aer Lingus Group Plc an anglicisation of the Irish Aer Loingeas meaning air fleet, is an airline and the flag carrier of Ireland. It operates a fleet of Airbus aircraft serving Europe, North America, North Africa and Asia. It is Ireland's oldest extant airline, and its second largest, after low-cost rival Ryanair. The airline's head office is located on the grounds of Dublin Airport in Swords, Fingal, Ireland." />
+  </profile>
+  <startdata>
+    <airliners>
+      <airliner type="Airbus A319-100" early="0" late="2"></airliner>
+      <airliner type="Airbus A320-200" early="0" late="32"></airliner>
+      <airliner type="Airbus A321-200" early="0" late="3"></airliner>
+      <airliner type="Airbus A330-200" early="0" late="3"></airliner>
+      <airliner type="Airbus A330-300" early="0" late="4"></airliner>
+    </airliners>
   </startdata>
 </airline>

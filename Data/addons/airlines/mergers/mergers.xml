@@ -1,10 +1,28 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <mergers>
-<merger name="Lufthansa takes over Austrian Airlines which continues as a subsidiary for Lufthansa" airline1="LH" airline2="OS" type="Subsidiary" date="09.13.2009 00:00:00"></merger>
-<merger name="Lufthansa takes over Swiss which continues as a subsidiary for Lufthansa" airline1="LH" airline2="LX" type="Subsidiary" date="07.01.2007 00:00:00"></merger>
-<merger name="Delta Air Lines and Northwest Airlines have merged together and continues under the name Delta Air Lines" airline1="DL" airline2="NW" type="Merger" date="01.31.2010 00:00:00"></merger>
-<merger name="Delta Air Lines and Western Airlines have merged together and continues under the name Delta Air Lines" airline1="DL" airline2="WA" type="Merger" date="04.01.1987 00:00:00"></merger>
-<merger name="Air Jamaica has been bought by Carribean Airlines and will continue as a subsidiary for Carribean Airlines" airline1="BW" airline2="JM" type="Subsidiary" date="05.01.2010 00:00:00"></merger>
-<merger name="United Airlines and Continental Airlines have merged togehter and continues under the name United Airlines" airline1="UA" airline2="CO" type="Subsidiary" date="03.03.2012 00:00:00"></merger>
-<merger name="Royal Air Maroc has bought Atlas Blue" airline1="AT" airline2="8A" type="Merger" date="12.31.2009 00:00:00"></merger>
+  <merger name="Lufthansa takes over Austrian Airlines which continues as a subsidiary for Lufthansa" airline1="LH"
+          airline2="OS" type="Subsidiary" date="09.13.2009 00:00:00">
+  </merger>
+  <merger name="Lufthansa takes over Swiss which continues as a subsidiary for Lufthansa" airline1="LH" airline2="LX"
+          type="Subsidiary" date="07.01.2007 00:00:00">
+  </merger>
+  <merger
+    name="Delta Air Lines and Northwest Airlines have merged together and continues under the name Delta Air Lines"
+    airline1="DL" airline2="NW" type="Merger" date="01.31.2010 00:00:00">
+  </merger>
+  <merger name="Delta Air Lines and Western Airlines have merged together and continues under the name Delta Air Lines"
+          airline1="DL" airline2="WA" type="Merger" date="04.01.1987 00:00:00">
+  </merger>
+  <merger
+    name="Air Jamaica has been bought by Carribean Airlines and will continue as a subsidiary for Carribean Airlines"
+    airline1="BW" airline2="JM" type="Subsidiary" date="05.01.2010 00:00:00">
+  </merger>
+  <merger
+    name="United Airlines and Continental Airlines have merged togehter and continues under the name United Airlines"
+    airline1="UA" airline2="CO" type="Subsidiary" date="03.03.2012 00:00:00">
+  </merger>
+  <merger name="Royal Air Maroc has bought Atlas Blue" airline1="AT" airline2="8A" type="Merger"
+          date="12.31.2009 00:00:00">
+  </merger>
 </mergers>

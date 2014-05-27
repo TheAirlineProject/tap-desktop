@@ -1,25 +1,32 @@
 ﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirlinersPageModel.PageManufacturer"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
       Name="pageManufacturer"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300"
-	Title="PageManufacturer">
+      Title="PageManufacturer">
     <Page.Resources>
         <DataTemplate x:Key="OrderItem">
             <WrapPanel>
-            <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" Width="200"></TextBlock>
-             <!--   <TextBlock Text="{Binding Amount}" VerticalAlignment="Bottom" Width="50"></TextBlock> -->
-                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedItem="{Binding Amount}" Width="50" SelectionChanged="cbNumberOfAirliners_SelectionChanged" Tag="{Binding}" ItemsSource="{Binding NumberOfAirliners,ElementName=pageManufacturer}" VerticalAlignment="Bottom"></ComboBox>
-                <ComboBox Margin="25 0 0 0" Style="{DynamicResource ComboBoxTransparentStyle}" SelectedItem="{Binding Homebase}" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" ItemsSource="{Binding Homebases}"></ComboBox>
-                
-                <Button Width="20" Background="Transparent" Click="btnRemoveFromOrder_Click" Margin="5 0 0 0"  Tag="{Binding}">
-                    <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" Width="200" />
+                <!--   <TextBlock Text="{Binding Amount}" VerticalAlignment="Bottom" Width="50"></TextBlock> -->
+                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedItem="{Binding Amount}" Width="50"
+                          SelectionChanged="cbNumberOfAirliners_SelectionChanged" Tag="{Binding}"
+                          ItemsSource="{Binding NumberOfAirliners,ElementName=pageManufacturer}"
+                          VerticalAlignment="Bottom" />
+                <ComboBox Margin="25 0 0 0" Style="{DynamicResource ComboBoxTransparentStyle}"
+                          SelectedItem="{Binding Homebase}" IsSynchronizedWithCurrentItem="True"
+                          ItemTemplate="{StaticResource AirportCountryItem}" Width="300"
+                          ItemsSource="{Binding Homebases}" />
+
+                <Button Width="20" Background="Transparent" Click="btnRemoveFromOrder_Click" Margin="5 0 0 0"
+                        Tag="{Binding}">
+                    <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
-                <Button Width="20" Background="Transparent" Click="btnEquipped_Click"  Margin="5 0 0 0"  Tag="{Binding}">
+                <Button Width="20" Background="Transparent" Click="btnEquipped_Click" Margin="5 0 0 0" Tag="{Binding}">
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                             <Style.Triggers>
@@ -29,91 +36,122 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                        <Image Source="/data/images/configuration.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    <Image Source="/data/images/configuration.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
             </WrapPanel>
-               
+
         </DataTemplate>
     </Page.Resources>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Border Style="{StaticResource RoundedBorderStyle}" Grid.Row="0">
-                <ListView x:Name="lvAirliners" util:GridViewSort.AutoSort="True" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
+                <ListView x:Name="lvAirliners" util:GridViewSort.AutoSort="True" VerticalAlignment="Stretch"
+                          Background="Transparent" BorderThickness="0">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Width="20" Background="Transparent" Click="btnAddType_Click" Tag="{Binding}">
-                                            <Image Source="/data/images/add.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                        <Button Width="20" Background="Transparent" Click="btnAddType_Click"
+                                                Tag="{Binding}">
+                                            <Image Source="/data/images/add.png"
+                                                   RenderOptions.BitmapScalingMode="HighQuality" />
                                         </Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1000'}" Width="200" util:GridViewSort.PropertyName="Name">
+                            <GridViewColumn
+                                Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1000'}"
+                                Width="200" util:GridViewSort.PropertyName="Name">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock ToolTipService.ShowDuration="30000" Text="{Binding Name}" VerticalAlignment="Bottom">
+                                        <TextBlock ToolTipService.ShowDuration="30000" Text="{Binding Name}"
+                                                   VerticalAlignment="Bottom">
                                             <TextBlock.ToolTip>
                                                 <ToolTip>
-                                                    <ContentControl Content="{Binding}" ContentTemplate="{StaticResource AirlinerTypeSpecificationItem}"></ContentControl>
+                                                    <ContentControl Content="{Binding}"
+                                                                    ContentTemplate="{StaticResource AirlinerTypeSpecificationItem}" />
                                                 </ToolTip>
                                             </TextBlock.ToolTip>
                                         </TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1001'}" Width="100" util:GridViewSort.PropertyName="TypeAirliner">
+                            <GridViewColumn
+                                Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1001'}"
+                                Width="100" util:GridViewSort.PropertyName="TypeAirliner">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding TypeAirliner}" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock Text="{Binding TypeAirliner}" VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1002'}" Width="100" util:GridViewSort.PropertyName="Range">
+                            <GridViewColumn
+                                Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1002'}"
+                                Width="100" util:GridViewSort.PropertyName="Range">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Range,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock
+                                            Text="{Binding Range,Converter={StaticResource DistanceToUnitConverter}}"
+                                            VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1003'}" Width="100" util:GridViewSort.PropertyName="CruisingSpeed">
+                            <GridViewColumn
+                                Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1003'}"
+                                Width="100" util:GridViewSort.PropertyName="CruisingSpeed">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock
+                                            Text="{Binding CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}"
+                                            VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1004'}" Width="100" util:GridViewSort.PropertyName="MinRunwaylength">
+                            <GridViewColumn
+                                Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1004'}"
+                                Width="100" util:GridViewSort.PropertyName="MinRunwaylength">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock
+                                            Text="{Binding MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                                            VerticalAlignment="Bottom" />
 
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1005'}" Width="100" util:GridViewSort.PropertyName="FuelConsumption">
+                            <GridViewColumn
+                                Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1005'}"
+                                Width="100" util:GridViewSort.PropertyName="FuelConsumption">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock
+                                            Text="{Binding FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}"
+                                            VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1006'}" Width="75" util:GridViewSort.PropertyName="Produced.From.Year">
+                            <GridViewColumn
+                                Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1006'}"
+                                Width="75" util:GridViewSort.PropertyName="Produced.From.Year">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Produced.From.Year}" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock Text="{Binding Produced.From.Year}" VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1007'}" Width="125" util:GridViewSort.PropertyName="Price">
+                            <GridViewColumn
+                                Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1007'}"
+                                Width="125" util:GridViewSort.PropertyName="Price">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Price,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock
+                                            Text="{Binding Price,Converter={StaticResource ValueCurrencyConverter}}"
+                                            VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -123,7 +161,7 @@
                         <GroupStyle>
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>
-                                    <TextBlock Style="{StaticResource SmallHeaderStyle}" Text="{Binding Name}"/>
+                                    <TextBlock Style="{StaticResource SmallHeaderStyle}" Text="{Binding Name}" />
                                 </DataTemplate>
                             </GroupStyle.HeaderTemplate>
                         </GroupStyle>
@@ -132,15 +170,27 @@
             </Border>
             <Border Style="{StaticResource RoundedBorderStyle}" Margin="0 5 0 0" Grid.Row="1">
                 <StackPanel>
-                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1008'}" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                    <ListBox ItemTemplate="{DynamicResource OrderItem}" Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Orders.Orders,ElementName=pageManufacturer}"></ListBox>
+                    <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1008'}"
+                        Style="{StaticResource SmallHeaderStyle}" />
+                    <ListBox ItemTemplate="{DynamicResource OrderItem}" Background="Transparent" BorderThickness="0"
+                             ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                             ItemsSource="{Binding Orders.Orders,ElementName=pageManufacturer}" />
                     <WrapPanel>
-                        <TextBlock VerticalAlignment="Bottom" Width="200" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1016'}" FontWeight="Bold"></TextBlock>
-                        <DatePicker Foreground="White" CalendarStyle="{StaticResource CalendarPickerStyle}" x:Name="dpDeliveryDate" DisplayDateStart="{Binding Orders.DeliveryDate,ElementName=pageManufacturer}" DisplayDate="{Binding Orders.DeliveryDate,ElementName=pageManufacturer}" SelectedDate="{Binding Orders.DelivertDate,ElementName=pageManufacturer}">
+                        <TextBlock VerticalAlignment="Bottom" Width="200"
+                                   Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1016'}"
+                                   FontWeight="Bold" />
+                        <DatePicker Foreground="White" CalendarStyle="{StaticResource CalendarPickerStyle}"
+                                    x:Name="dpDeliveryDate"
+                                    DisplayDateStart="{Binding Orders.DeliveryDate,ElementName=pageManufacturer}"
+                                    DisplayDate="{Binding Orders.DeliveryDate,ElementName=pageManufacturer}"
+                                    SelectedDate="{Binding Orders.DelivertDate,ElementName=pageManufacturer}">
                             <DatePicker.Style>
                                 <Style TargetType="DatePicker">
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Orders.Orders.Count,ElementName=pageManufacturer}" Value="0">
+                                        <DataTrigger
+                                            Binding="{Binding Orders.Orders.Count,ElementName=pageManufacturer}"
+                                            Value="0">
                                             <Setter Property="IsEnabled" Value="False" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -148,26 +198,37 @@
                             </DatePicker.Style>
                         </DatePicker>
                     </WrapPanel>
-                 
+
                     <WrapPanel>
-                        <TextBlock VerticalAlignment="Bottom" Width="200" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1009'}" FontWeight="Bold"></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" Text="{Binding Orders.Discount,ElementName=pageManufacturer,Converter={StaticResource ValueCurrencyConverter}}"></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" Width="200"
+                                   Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1009'}"
+                                   FontWeight="Bold" />
+                        <TextBlock VerticalAlignment="Bottom"
+                                   Text="{Binding Orders.Discount,ElementName=pageManufacturer,Converter={StaticResource ValueCurrencyConverter}}" />
                     </WrapPanel>
                     <WrapPanel>
-                        <TextBlock VerticalAlignment="Bottom" Width="200" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1010'}" FontWeight="Bold"></TextBlock>
-                        <TextBlock VerticalAlignment="Bottom" Text="{Binding Orders.TotalAmount,ElementName=pageManufacturer,Converter={StaticResource ValueCurrencyConverter}}"></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" Width="200"
+                                   Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1010'}"
+                                   FontWeight="Bold" />
+                        <TextBlock VerticalAlignment="Bottom"
+                                   Text="{Binding Orders.TotalAmount,ElementName=pageManufacturer,Converter={StaticResource ValueCurrencyConverter}}" />
                     </WrapPanel>
                     <WrapPanel>
-                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1011'}" Width="200" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                        <CheckBox Name="cbDownPayment" VerticalAlignment="Bottom"></CheckBox>
+                        <TextBlock
+                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1011'}"
+                            Width="200" VerticalAlignment="Bottom" FontWeight="Bold" />
+                        <CheckBox Name="cbDownPayment" VerticalAlignment="Bottom" />
                     </WrapPanel>
-                
+
                     <WrapPanel Margin="0 10 0 0">
-                        <Button Click="btnOrder_Click"  Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 200'}">
+                        <Button Click="btnOrder_Click"
+                                Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 200'}">
                             <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Orders.Orders.Count,ElementName=pageManufacturer}" Value="0">
+                                        <DataTrigger
+                                            Binding="{Binding Orders.Orders.Count,ElementName=pageManufacturer}"
+                                            Value="0">
                                             <Setter Property="Button.IsEnabled" Value="False" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -175,38 +236,54 @@
                             </Button.Style>
                         </Button>
                     </WrapPanel>
-                    <Expander Margin="0 10 0 0" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1013'}" Style="{StaticResource ExpanderStyle}">
+                    <Expander Margin="0 10 0 0"
+                              Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1013'}"
+                              Style="{StaticResource ExpanderStyle}">
                         <StackPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1015'}" Width="150" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
-                                <TextBlock Text="{Binding Contract.Contracted.Name,FallbackValue='-',ElementName=pageManufacturer}" VerticalAlignment="Bottom"></TextBlock>
+                                <TextBlock
+                                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1015'}"
+                                    Width="150" FontWeight="Bold" VerticalAlignment="Bottom" />
+                                <TextBlock
+                                    Text="{Binding Contract.Contracted.Name,FallbackValue='-',ElementName=pageManufacturer}"
+                                    VerticalAlignment="Bottom" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1014'}" Width="150" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
-                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" ItemStringFormat="{}{0} years"  Name="cbContractLenth" VerticalAlignment="Bottom" Width="100">
-                                    <ComboBoxItem Content="3" Tag="3"></ComboBoxItem>
-                                    <ComboBoxItem Content="5" Tag="5"></ComboBoxItem>
-                                    <ComboBoxItem Content="7" Tag="7"></ComboBoxItem>
-                                    <ComboBoxItem Content="10" Tag="10"></ComboBoxItem>
+                                <TextBlock
+                                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1014'}"
+                                    Width="150" FontWeight="Bold" VerticalAlignment="Bottom" />
+                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0"
+                                          ItemStringFormat="{}{0} years" Name="cbContractLenth"
+                                          VerticalAlignment="Bottom" Width="100">
+                                    <ComboBoxItem Content="3" Tag="3" />
+                                    <ComboBoxItem Content="5" Tag="5" />
+                                    <ComboBoxItem Content="7" Tag="7" />
+                                    <ComboBoxItem Content="10" Tag="10" />
                                 </ComboBox>
                             </WrapPanel>
                             <WrapPanel Margin="0 5 0 0">
-                                <Button Click="btnExtendContract_Click" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 202'}">
+                                <Button Click="btnExtendContract_Click"
+                                        Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 202'}">
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Contract.HasContract,ElementName=pageManufacturer}" Value="False">
+                                                <DataTrigger
+                                                    Binding="{Binding Contract.HasContract,ElementName=pageManufacturer}"
+                                                    Value="False">
                                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </Button.Style>
                                 </Button>
-                                <Button Click="btnSignContract_Click" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 201'}">
+                                <Button Click="btnSignContract_Click"
+                                        Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 201'}">
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Contract.HasContract,ElementName=pageManufacturer}" Value="True">
+                                                <DataTrigger
+                                                    Binding="{Binding Contract.HasContract,ElementName=pageManufacturer}"
+                                                    Value="True">
                                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -219,7 +296,7 @@
 
                 </StackPanel>
             </Border>
-           
+
         </Grid>
     </ScrollViewer>
 </Page>

@@ -1,63 +1,69 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <scenario name="New Management" startYear="2012" startCash="75000000" difficulty="Hard" endYear="2017">
-  <intro text="After years of mismanagement, Pacific Airways has been strained heavily financially and has accumulated significant debt. After the Board removed the previous CEO, they have elected you to get the company back on solid financial footing. Heavy competition will hinder you in your efforts. You know this task will not be easy but the fate of the entire company lies in your hands. Good Luck!"/>
-  <success text="Congratulations! You have successfully saved the company from bankruptcy and you may just have a job for some time into the future."/>
-	<start airline="PCA" homeBase="SFO" debt="500000000">
-	<routes>
-	  <route departure="SFO" destination="JFK" airliner="Boeing 767-200" quantity="1"/>
-	  <route departure="SFO" destination="LAX" airliner="Boeing 737-800" quantity="1"/>
-	  <route departure="SFO" destination="ORD" airliner="Boeing 737-800" quantity="1"/>
-	  <route departure="SFO" destination="ORD" airliner="Boeing 737-900" quantity="1"/>
-	  <route departure="SFO" destination="SEA" airliner="Boeing 757-200" quantity="1"/>
-	  <route departure="SFO" destination="DEN" airliner="Boeing 737-700" quantity="1"/>
-	  <route departure="SFO" destination="DEN" airliner="Boeing 737-800" quantity="1"/>
-	  <route departure="SFO" destination="MSP" airliner="Boeing 737-800" quantity="1"/>
-	  <route departure="SFO" destination="MIA" airliner="Boeing 757-200" quantity="1"/>
-	  <route departure="SFO" destination="HNL" airliner="Boeing 767-300" quantity="1"/>
-	  <route departure="SFO" destination="PHX" airliner="Boeing 737-800" quantity="1"/>
-	  <route departure="SFO" destination="RNO" airliner="Bombardier CRJ700" quantity="1"/>
-	  <route departure="SFO" destination="HND" airliner="Boeing 777-200ER" quantity="2"/>
-	  <route departure="SFO" destination="PEK" airliner="Boeing 777-200ER" quantity="2"/>
-	  <route departure="SFO" destination="PVG" airliner="Boeing 777-200ER" quantity="2"/>
-	  <route departure="SFO" destination="SYD" airliner="Boeing 747-400" quantity="2"/>
-	  <route departure="SFO" destination="LHR" airliner="Boeing 777-200ER" quantity="2"/>
-	</routes>
+  <intro
+    text="After years of mismanagement, Pacific Airways has been strained heavily financially and has accumulated significant debt. After the Board removed the previous CEO, they have elected you to get the company back on solid financial footing. Heavy competition will hinder you in your efforts. You know this task will not be easy but the fate of the entire company lies in your hands. Good Luck!" />
+  <success
+    text="Congratulations! You have successfully saved the company from bankruptcy and you may just have a job for some time into the future." />
+  <start airline="PCA" homeBase="SFO" debt="500000000">
+    <routes>
+      <route departure="SFO" destination="JFK" airliner="Boeing 767-200" quantity="1" />
+      <route departure="SFO" destination="LAX" airliner="Boeing 737-800" quantity="1" />
+      <route departure="SFO" destination="ORD" airliner="Boeing 737-800" quantity="1" />
+      <route departure="SFO" destination="ORD" airliner="Boeing 737-900" quantity="1" />
+      <route departure="SFO" destination="SEA" airliner="Boeing 757-200" quantity="1" />
+      <route departure="SFO" destination="DEN" airliner="Boeing 737-700" quantity="1" />
+      <route departure="SFO" destination="DEN" airliner="Boeing 737-800" quantity="1" />
+      <route departure="SFO" destination="MSP" airliner="Boeing 737-800" quantity="1" />
+      <route departure="SFO" destination="MIA" airliner="Boeing 757-200" quantity="1" />
+      <route departure="SFO" destination="HNL" airliner="Boeing 767-300" quantity="1" />
+      <route departure="SFO" destination="PHX" airliner="Boeing 737-800" quantity="1" />
+      <route departure="SFO" destination="RNO" airliner="Bombardier CRJ700" quantity="1" />
+      <route departure="SFO" destination="HND" airliner="Boeing 777-200ER" quantity="2" />
+      <route departure="SFO" destination="PEK" airliner="Boeing 777-200ER" quantity="2" />
+      <route departure="SFO" destination="PVG" airliner="Boeing 777-200ER" quantity="2" />
+      <route departure="SFO" destination="SYD" airliner="Boeing 747-400" quantity="2" />
+      <route departure="SFO" destination="LHR" airliner="Boeing 777-200ER" quantity="2" />
+    </routes>
     <AI>
       <airline name="DL" homeBase="ATL">
-        <route departure="ATL" destination="JFK" airliner="Boeing 737-600" quantity="2"/>
-        <route departure="ATL" destination="LAX" airliner="Boeing 757-200" quantity="3"/>
-        <route departure="ATL" destination="BOS" airliner="Boeing 737-600" quantity="1"/>
-        <route departure="ATL" destination="PHL" airliner="Boeing 737-600" quantity="2"/>
-        <route departure="ATL" destination="LHR" airliner="Boeing 747-400" quantity="1"/>
-        <route departure="ATL" destination="DFW" airliner="Boeing 737-600" quantity="2"/>
-		<route departure="ATL" destination="MSP" airliner="MD-88 (DC-9-88)" quantity="2"/>
-		<route departure="ATL" destination="MSP" airliner="Boeing 757-200" quantity="2"/>
-		<route departure="ATL" destination="LHR" airliner="Boeing 767-400ER" quantity="2"/>
+        <route departure="ATL" destination="JFK" airliner="Boeing 737-600" quantity="2" />
+        <route departure="ATL" destination="LAX" airliner="Boeing 757-200" quantity="3" />
+        <route departure="ATL" destination="BOS" airliner="Boeing 737-600" quantity="1" />
+        <route departure="ATL" destination="PHL" airliner="Boeing 737-600" quantity="2" />
+        <route departure="ATL" destination="LHR" airliner="Boeing 747-400" quantity="1" />
+        <route departure="ATL" destination="DFW" airliner="Boeing 737-600" quantity="2" />
+        <route departure="ATL" destination="MSP" airliner="MD-88 (DC-9-88)" quantity="2" />
+        <route departure="ATL" destination="MSP" airliner="Boeing 757-200" quantity="2" />
+        <route departure="ATL" destination="LHR" airliner="Boeing 767-400ER" quantity="2" />
       </airline>
       <airline name="AA" homeBase="DFW">
-        <route departure="DFW" destination="ATL" airliner="Boeing 737-600" quantity="2"/>
-        <route departure="DFW" destination="JFK" airliner="Boeing 737-800" quantity="2"/>
-        <route departure="DFW" destination="LAX" airliner="Boeing 737-800" quantity="3"/>
-        <route departure="DFW" destination="MIA" airliner="Boeing 737-800" quantity="2"/>
-        <route departure="DFW" destination="ORD" airliner="Boeing 717-200" quantity="4"/>
+        <route departure="DFW" destination="ATL" airliner="Boeing 737-600" quantity="2" />
+        <route departure="DFW" destination="JFK" airliner="Boeing 737-800" quantity="2" />
+        <route departure="DFW" destination="LAX" airliner="Boeing 737-800" quantity="3" />
+        <route departure="DFW" destination="MIA" airliner="Boeing 737-800" quantity="2" />
+        <route departure="DFW" destination="ORD" airliner="Boeing 717-200" quantity="4" />
       </airline>
       <airline name="UA" homeBase="IAH">
-        <route departure="IAH" destination="CLE" airliner="Airbus A320-200" quantity="2"/>
-        <route departure="IAH" destination="DEN" airliner="Airbus A320-200" quantity="2"/>
-        <route departure="IAH" destination="SFO" airliner="Boeing 757-200" quantity="3"/>
-        <route departure="IAH" destination="LAX" airliner="Boeing 737-900" quantity="2"/>
-        <route departure="IAH" destination="NRT" airliner="Boeing 777-200ER" quantity="2"/>
+        <route departure="IAH" destination="CLE" airliner="Airbus A320-200" quantity="2" />
+        <route departure="IAH" destination="DEN" airliner="Airbus A320-200" quantity="2" />
+        <route departure="IAH" destination="SFO" airliner="Boeing 757-200" quantity="3" />
+        <route departure="IAH" destination="LAX" airliner="Boeing 737-900" quantity="2" />
+        <route departure="IAH" destination="NRT" airliner="Boeing 777-200ER" quantity="2" />
       </airline>
     </AI>
-</start>
-	<modifiers>
+  </start>
+  <modifiers>
     <!--country/airport is modified by change(%) for length(years)-->
-	</modifiers>
-	<parameters>
+  </modifiers>
+  <parameters>
     <!--all values are less than. For is if that value is true for that amount of years. At is if it is true at n years into the scenario-->
     <!--example: failure if fleet is less than 49 at 5 years into the scenario or if cash is less than zero for 0.25 years (3 months)-->
-		<failure id="1" type="Cash" value="0" for="0.25" text="You have failed the scenario because you didn't maintain a positive balance, maybe you aren't the right CEO for this company!"/>
-		<failure id="2" type="Debt" value="0" for="1" text="You have failed the scenario because you have accumulated too much debt!"/>
-		<failure id="3" type="Safety" value="20" for="1" text="You have failed the scenario because you didn't maintain a satisfactory safety rating for an entire year!"/>
-	</parameters>
+    <failure id="1" type="Cash" value="0" for="0.25"
+             text="You have failed the scenario because you didn't maintain a positive balance, maybe you aren't the right CEO for this company!" />
+    <failure id="2" type="Debt" value="0" for="1"
+             text="You have failed the scenario because you have accumulated too much debt!" />
+    <failure id="3" type="Safety" value="20" for="1"
+             text="You have failed the scenario because you didn't maintain a satisfactory safety rating for an entire year!" />
+  </parameters>
 </scenario>

@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <majordestinations>
   <majordestination airport="PPG">
     <destinations>
@@ -855,7 +856,7 @@
   </majordestination>
   <majordestination airport="ATL">
     <destinations>
-      <destination airport="MCO" pax="1055"/>
+      <destination airport="MCO" pax="1055" />
       <destination airport="LGA" pax="920" />
       <destination airport="TPA" pax="765" />
       <destination airport="FLL" pax="944" />

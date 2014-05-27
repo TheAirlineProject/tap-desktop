@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <countries>
   <country uid="1001" shortname="DDR" region="113" flag="East Germany" tailformat="DDR-\\s3" type="ManyToOne">
     <translations>
@@ -52,7 +53,7 @@
     </history>
   </country>
   <country uid="1004" shortname="SUN" region="113" flag="Soviet Union" tailformat="EW-\\d5" type="OneToMany">
-	<currency format="руб." rate="30.83" />
+    <currency format="руб." rate="30.83" />
     <translations>
       <en-US name="Soviet Union" />
       <de-DE name="Sowjetunion" />

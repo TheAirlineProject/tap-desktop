@@ -1,139 +1,175 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-using TheAirline.GUIModel.HelpersModel;
-using TheAirline.GUIModel.ObjectsModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.CountryModel;
-
-namespace TheAirline.GUIModel.PagesModel.GamePageModel
+﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows;
+    using System.Windows.Controls;
+
+    using TheAirline.GUIModel.HelpersModel;
+    using TheAirline.GUIModel.ObjectsModel;
+    using TheAirline.Model.AirlineModel;
+    using TheAirline.Model.GeneralModel;
+    using TheAirline.Model.GeneralModel.CountryModel;
+
     /// <summary>
-    /// Interaction logic for PageStartData.xaml
+    ///     Interaction logic for PageStartData.xaml
     /// </summary>
     public partial class PageStartData : Page
     {
+        #region Constructors and Destructors
+
         public PageStartData()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            Continent continentAll = new Continent("100", "All continents");
-                       
-            cbContinent.Items.Add(continentAll);
+            var continentAll = new Continent("100", "All continents");
+
+            this.cbContinent.Items.Add(continentAll);
 
             foreach (Continent continent in Continents.GetContinents())
-                cbContinent.Items.Add(continent);
+            {
+                this.cbContinent.Items.Add(continent);
+            }
 
             foreach (Region region in Regions.GetAllRegions())
-                cbRegion.Items.Add(region);
+            {
+                this.cbRegion.Items.Add(region);
+            }
 
             int maxYear = DateTime.Now.Year + 1;
 
             for (int i = 1960; i < maxYear; i++)
-                cbYear.Items.Insert(0,i);
+            {
+                this.cbYear.Items.Insert(0, i);
+            }
 
-            cbYear.SelectedIndex = 0;
+            this.cbYear.SelectedIndex = 0;
 
-            cbDifficulty.ItemsSource = DifficultyLevels.GetDifficultyLevels();
+            this.cbDifficulty.ItemsSource = DifficultyLevels.GetDifficultyLevels();
 
             foreach (Airline.AirlineFocus focus in Enum.GetValues(typeof(Airline.AirlineFocus)))
-                cbFocus.Items.Add(focus);
+            {
+                this.cbFocus.Items.Add(focus);
+            }
         }
+
+        #endregion
+
+        #region Methods
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            var frmContent = UIHelpers.FindChild<Frame>((Page)this.Tag, "frmContent");
+
+            Boolean useRealData = this.cbReal.IsChecked.Value;
+
+            frmContent.Navigate(
+                new PageAirlineData(
+                    new StartDataObject
+                    {
+                        MajorAirports = this.cbMajorAirports.IsChecked.Value,
+                        IsPaused = this.cbPaused.IsChecked.Value,
+                        Focus = (Airline.AirlineFocus)this.cbFocus.SelectedItem,
+                        SameRegion = this.cbSameRegion.IsChecked.Value,
+                        RandomOpponents = this.rbRandomOpponents.IsChecked.Value,
+                        UseDayTurns = this.rbDayTurns.IsChecked.Value,
+                        Difficulty = (DifficultyLevel)this.cbDifficulty.SelectedItem,
+                        NumberOfOpponents = (int)this.cbOpponents.SelectedItem,
+                        Year = (int)this.cbYear.SelectedItem,
+                        Continent = (Continent)this.cbContinent.SelectedItem,
+                        Region = (Region)this.cbRegion.SelectedItem,
+                        RealData = useRealData
+                    }) { Tag = this.Tag });
+        }
+
+        private void btnStartMenu_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageStartMenu());
+        }
+
         private void cbContinent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Continent selectedContinent = (Continent)cbContinent.SelectedItem;
+            var selectedContinent = (Continent)this.cbContinent.SelectedItem;
 
-            cbRegion.Items.Clear();
+            this.cbRegion.Items.Clear();
 
             if (selectedContinent.Uid == "100")
+            {
                 foreach (Region region in Regions.GetAllRegions().OrderBy(r => r.Name))
-                    cbRegion.Items.Add(region);
+                {
+                    this.cbRegion.Items.Add(region);
+                }
+            }
             else
             {
-                 if (selectedContinent.Regions.Count > 1)
-                    cbRegion.Items.Add(Regions.GetRegion("100"));
+                if (selectedContinent.Regions.Count > 1)
+                {
+                    this.cbRegion.Items.Add(Regions.GetRegion("100"));
+                }
 
                 foreach (Region region in selectedContinent.Regions.OrderBy(r => r.Name))
-                    cbRegion.Items.Add(region);
+                {
+                    this.cbRegion.Items.Add(region);
+                }
             }
 
-
-            cbRegion.SelectedIndex = 0;
-        }
-
-       
-        private void cbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Continent continent = (Continent)cbContinent.SelectedItem;
-
-            if (continent == null)
-            {
-                cbContinent.SelectedIndex = 0;
-                continent = (Continent)cbContinent.SelectedItem;
-            }
-
-            Region region = (Region)cbRegion.SelectedItem;
-            if (region == null)
-            {
-                cbRegion.SelectedIndex = 0;
-                region = (Region)cbRegion.SelectedItem;
-            }
-
-            setNumberOfOpponents();
-
+            this.cbRegion.SelectedIndex = 0;
         }
 
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            setNumberOfOpponents();
+            this.setNumberOfOpponents();
+        }
+
+        private void cbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var continent = (Continent)this.cbContinent.SelectedItem;
+
+            if (continent == null)
+            {
+                this.cbContinent.SelectedIndex = 0;
+                continent = (Continent)this.cbContinent.SelectedItem;
+            }
+
+            var region = (Region)this.cbRegion.SelectedItem;
+            if (region == null)
+            {
+                this.cbRegion.SelectedIndex = 0;
+                region = (Region)this.cbRegion.SelectedItem;
+            }
+
+            this.setNumberOfOpponents();
         }
 
         //sets the number of opponents
         private void setNumberOfOpponents()
         {
-            if (cbYear.SelectedItem != null && cbRegion.SelectedItem != null && cbContinent.SelectedItem != null)
+            if (this.cbYear.SelectedItem != null && this.cbRegion.SelectedItem != null
+                && this.cbContinent.SelectedItem != null)
             {
-                int year = (int)cbYear.SelectedItem;
-                Region region = (Region)cbRegion.SelectedItem;
-                Continent continent = (Continent)cbContinent.SelectedItem;
+                var year = (int)this.cbYear.SelectedItem;
+                var region = (Region)this.cbRegion.SelectedItem;
+                var continent = (Continent)this.cbContinent.SelectedItem;
 
-                var airlines = Airlines.GetAirlines(airline => (airline.Profile.Country.Region == region || (region.Uid == "100" && continent.Uid == "100") || (region.Uid == "100" && continent.hasRegion(airline.Profile.Country.Region))) && airline.Profile.Founded <= year && airline.Profile.Folded > year);
+                List<Airline> airlines =
+                    Airlines.GetAirlines(
+                        airline =>
+                            (airline.Profile.Country.Region == region || (region.Uid == "100" && continent.Uid == "100")
+                             || (region.Uid == "100" && continent.hasRegion(airline.Profile.Country.Region)))
+                            && airline.Profile.Founded <= year && airline.Profile.Folded > year);
 
-                cbOpponents.Items.Clear();
+                this.cbOpponents.Items.Clear();
 
                 for (int i = 0; i < airlines.Count; i++)
-                    cbOpponents.Items.Add(i);
+                {
+                    this.cbOpponents.Items.Add(i);
+                }
 
-                cbOpponents.SelectedIndex = Math.Min(cbOpponents.Items.Count - 1, 3);
+                this.cbOpponents.SelectedIndex = Math.Min(this.cbOpponents.Items.Count - 1, 3);
             }
         }
 
-        private void btnNext_Click(object sender, RoutedEventArgs e)
-        {
-            Frame frmContent = UIHelpers.FindChild<Frame>((Page)this.Tag, "frmContent");
-
-            Boolean useRealData = cbReal.IsChecked.Value;
-
-            frmContent.Navigate(new PageAirlineData(new StartDataObject() { MajorAirports = cbMajorAirports.IsChecked.Value, IsPaused = cbPaused.IsChecked.Value,Focus = (Airline.AirlineFocus)cbFocus.SelectedItem, SameRegion = cbSameRegion.IsChecked.Value, RandomOpponents = rbRandomOpponents.IsChecked.Value,  UseDayTurns=rbDayTurns.IsChecked.Value, Difficulty = (DifficultyLevel)cbDifficulty.SelectedItem, NumberOfOpponents = (int)cbOpponents.SelectedItem, Year = (int)cbYear.SelectedItem, Continent = (Continent)cbContinent.SelectedItem, Region = (Region)cbRegion.SelectedItem, RealData=useRealData}) { Tag = this.Tag });
-        }
-        private void btnStartMenu_Click(object sender, RoutedEventArgs e)
-        {
-           
-            PageNavigator.NavigateTo(new PageStartMenu());
-        }
+        #endregion
     }
 }

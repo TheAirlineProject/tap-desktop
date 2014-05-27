@@ -1,40 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TheAirline.Model.GeneralModel.CountryModel.TownModel;
-using TheAirline.Model.AirportModel;
-using System.Runtime.Serialization;
-using System.Reflection;
-
-
-namespace TheAirline.Model.GeneralModel.WeatherModel
+﻿namespace TheAirline.Model.GeneralModel.WeatherModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+
+    using TheAirline.Model.AirportModel;
+    using TheAirline.Model.GeneralModel.CountryModel.TownModel;
+
     //the class for the averages for a month for a region/state/country/town
     [Serializable]
     public class WeatherAverage : ISerializable
     {
-        [Versioning("airport")]
-        public Airport Airport { get; set; }
-        [Versioning("country")]
-        public Country Country { get; set; }
-        [Versioning("town")]
-        public Town Town { get; set; }
-        [Versioning("month")]
-        public int Month { get; set; }
-        //in mm
-        [Versioning("precip")]
-        public int Precipitation { get; set; }
-        //in celcius
-        [Versioning("max")]
-        public double TemperatureMax { get; set; }
-        [Versioning("min")]
-        public double TemperatureMin { get; set; }
-        [Versioning("windmax")]
-        public Weather.eWindSpeed WindSpeedMax { get; set; }
-        [Versioning("windmin")]
-        public Weather.eWindSpeed WindSpeedMin { get; set; }
-        public WeatherAverage(int month, double temperatureMin, double temperatureMax,int precipitation, Weather.eWindSpeed windspeedMin, Weather.eWindSpeed windspeedMax, Country country, Town town,Airport airport)
+        #region Constructors and Destructors
+
+        public WeatherAverage(
+            int month,
+            double temperatureMin,
+            double temperatureMax,
+            int precipitation,
+            Weather.eWindSpeed windspeedMin,
+            Weather.eWindSpeed windspeedMax,
+            Country country,
+            Town town,
+            Airport airport)
         {
             this.Month = month;
             this.Airport = airport;
@@ -46,60 +36,155 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
             this.WindSpeedMin = windspeedMin;
             this.Precipitation = precipitation;
         }
-        public WeatherAverage(int month, double temperatureMin, double temperatureMax, int precipitation, Weather.eWindSpeed windspeedMin, Weather.eWindSpeed windspeedMax, Town town)
-            : this(month, temperatureMin, temperatureMax, precipitation, windspeedMin, windspeedMax, town.Country, town,null)
+
+        public WeatherAverage(
+            int month,
+            double temperatureMin,
+            double temperatureMax,
+            int precipitation,
+            Weather.eWindSpeed windspeedMin,
+            Weather.eWindSpeed windspeedMax,
+            Town town)
+            : this(
+                month,
+                temperatureMin,
+                temperatureMax,
+                precipitation,
+                windspeedMin,
+                windspeedMax,
+                town.Country,
+                town,
+                null)
         {
         }
-        public WeatherAverage(int month, double temperatureMin, double temperatureMax, int precipitation, Weather.eWindSpeed windspeedMin, Weather.eWindSpeed windspeedMax, Country country)
-            : this(month, temperatureMin, temperatureMax, precipitation, windspeedMin, windspeedMax, country, null,null)
+
+        public WeatherAverage(
+            int month,
+            double temperatureMin,
+            double temperatureMax,
+            int precipitation,
+            Weather.eWindSpeed windspeedMin,
+            Weather.eWindSpeed windspeedMax,
+            Country country)
+            : this(month, temperatureMin, temperatureMax, precipitation, windspeedMin, windspeedMax, country, null, null
+                )
         {
         }
-        public WeatherAverage(int month, double temperatureMin, double temperatureMax, int precipitation, Weather.eWindSpeed windspeedMin, Weather.eWindSpeed windspeedMax, Airport airport)
-            : this(month, temperatureMin, temperatureMax, precipitation, windspeedMin, windspeedMax,airport.Profile.Town.Country, airport.Profile.Town,airport)
+
+        public WeatherAverage(
+            int month,
+            double temperatureMin,
+            double temperatureMax,
+            int precipitation,
+            Weather.eWindSpeed windspeedMin,
+            Weather.eWindSpeed windspeedMax,
+            Airport airport)
+            : this(
+                month,
+                temperatureMin,
+                temperatureMax,
+                precipitation,
+                windspeedMin,
+                windspeedMax,
+                airport.Profile.Town.Country,
+                airport.Profile.Town,
+                airport)
         {
         }
-          private WeatherAverage(SerializationInfo info, StreamingContext ctxt)
+
+        private WeatherAverage(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
-            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                this.GetType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (SerializationEntry entry in info)
             {
-                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
-
+                MemberInfo prop =
+                    propsAndFields.FirstOrDefault(
+                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
+                    {
                         ((FieldInfo)prop).SetValue(this, entry.Value);
+                    }
                     else
+                    {
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
                 }
             }
 
-            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+            IEnumerable<MemberInfo> notSetProps =
+                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
+                    {
                         ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
                     else
+                    {
                         ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
-
+                    }
                 }
-
             }
-
         }
+
+        #endregion
+
+        #region Public Properties
+
+        [Versioning("airport")]
+        public Airport Airport { get; set; }
+
+        [Versioning("country")]
+        public Country Country { get; set; }
+
+        [Versioning("month")]
+        public int Month { get; set; }
+
+        //in mm
+        [Versioning("precip")]
+        public int Precipitation { get; set; }
+
+        //in celcius
+        [Versioning("max")]
+        public double TemperatureMax { get; set; }
+
+        [Versioning("min")]
+        public double TemperatureMin { get; set; }
+
+        [Versioning("town")]
+        public Town Town { get; set; }
+
+        [Versioning("windmax")]
+        public Weather.eWindSpeed WindSpeedMax { get; set; }
+
+        [Versioning("windmin")]
+        public Weather.eWindSpeed WindSpeedMin { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -107,65 +192,96 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
 
             Type myType = this.GetType();
 
-            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
 
                 if (member is FieldInfo)
+                {
                     propValue = ((FieldInfo)member).GetValue(this);
+                }
                 else
+                {
                     propValue = ((PropertyInfo)member).GetValue(this, null);
+                }
 
-                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
         }
-       
 
+        #endregion
     }
+
     //the list of weather averages
     public class WeatherAverages
     {
-        private static List<WeatherAverage> averages = new List<WeatherAverage>();
+        #region Static Fields
+
+        private static readonly List<WeatherAverage> averages = new List<WeatherAverage>();
+
+        #endregion
+
         //adds a weather average to the list
+
+        #region Public Methods and Operators
+
         public static void AddWeatherAverage(WeatherAverage average)
         {
             averages.Add(average);
         }
+
+        public static void Clear()
+        {
+            averages.Clear();
+        }
+
         //returns the weather average for a specific airport and specific month
         public static WeatherAverage GetWeatherAverage(int month, Airport airport)
         {
             WeatherAverage airportAverage = averages.Find(w => w.Airport == airport && w.Month == month);
             WeatherAverage townAverage = averages.Find(w => w.Town == airport.Profile.Town && w.Month == month);
-            WeatherAverage countryAverage = averages.Find(w => w.Country == airport.Profile.Town.Country && w.Month == month);
+            WeatherAverage countryAverage =
+                averages.Find(w => w.Country == airport.Profile.Town.Country && w.Month == month);
 
             if (airportAverage != null)
+            {
                 return airportAverage;
+            }
 
             if (townAverage != null)
-                return townAverage ;
+            {
+                return townAverage;
+            }
 
             if (countryAverage != null)
+            {
                 return countryAverage;
-        
+            }
+
             return null;
         }
+
         //returns all weather averages with a specific match
         public static List<WeatherAverage> GetWeatherAverages(Predicate<WeatherAverage> match)
         {
             return averages.FindAll(match);
         }
+
+        #endregion
+
         //clears the list of weather averages
-        public static void Clear()
-        {
-            averages.Clear();
-        }
     }
 }

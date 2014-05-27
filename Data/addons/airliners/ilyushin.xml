@@ -1,62 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <airliners>
-  
-<airliner type="Cargo" manufacturer="Ilyushin" name="Il-76" price="25572740"> <!--59600000-->
-	
-<type body="Wide_Body" rangetype="Medium_Range" engine="Jet"/>
-    
-<specs wingspan="50.5" length="46.59" range="4300" speed="900" fuelcapacity="80200" consumption="0.044" runwaylengthrequired="2470"/>
-    
-<capacity cockpitcrew="5" cargo="577"/>
-    
-<produced from="1971" to="2199" rate="17"/>
 
-</airliner>
-<airliner type="Cargo" manufacturer="Ilyushin" name="Il-76TD" price="26572740"> <!--59600000-->
-	
-<type body="Wide_Body" rangetype="Medium_Range" engine="Jet"/>
-    
-<specs wingspan="50.5" length="46.59" range="5600" speed="900" fuelcapacity="80200" consumption="0.044" runwaylengthrequired="2470"/>
-    
-<capacity cockpitcrew="5" cargo="577"/>
-    
-<produced from="1974" to="2199" rate="17"/>
+  <airliner type="Cargo" manufacturer="Ilyushin" name="Il-76" price="25572740"> <!--59600000-->
 
-</airliner> 
-<airliner manufacturer="Ilyushin" name="Il-86" price="3322540">
- <!--59600000--> 
-<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
-  
-<specs wingspan="48.06" length="60.21" range="5000" speed="875" fuelcapacity="32750" consumption="0.049" runwaylengthrequired="2450"/>
- 
- <capacity passengers="350" cockpitcrew="3" cabincrew="11" maxclasses="3"/>
-  
-<produced from="1980" to="2011" rate="54"/>
-  
-</airliner>
-<airliner manufacturer="Ilyushin" name="Il-96-300" price="3103600">
- <!--59600000--> 
-<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
-  
-<specs wingspan="60.11" length="55.3" range="13500" speed="875" fuelcapacity="40332" consumption="0.039" runwaylengthrequired="2340"/>
- 
- <capacity passengers="300" cockpitcrew="3" cabincrew="11" maxclasses="3"/>
-  
-<produced from="1992" to="2199" rate="10"/>
-  
-</airliner> 
-<airliner manufacturer="Ilyushin" name="Il-114" price="17244510">
- <!--59600000--> 
-<type body="Single_Aisle" rangetype="Regional" engine="Turboprop"/>
-  
-<specs wingspan="30" length="26.87" range="1400" speed="500" fuelcapacity="8220" consumption="0.039" runwaylengthrequired="879"/>
- 
- <capacity passengers="64" cockpitcrew="2" cabincrew="1" maxclasses="3"/>
-  
-<produced from="1992" to="2011" rate="5"/>
-  
-</airliner> 
+    <type body="Wide_Body" rangetype="Medium_Range" engine="Jet" />
+
+    <specs wingspan="50.5" length="46.59" range="4300" speed="900" fuelcapacity="80200" consumption="0.044"
+           runwaylengthrequired="2470" />
+
+    <capacity cockpitcrew="5" cargo="577" />
+
+    <produced from="1971" to="2199" rate="17" />
+
+  </airliner>
+  <airliner type="Cargo" manufacturer="Ilyushin" name="Il-76TD" price="26572740"> <!--59600000-->
+
+    <type body="Wide_Body" rangetype="Medium_Range" engine="Jet" />
+
+    <specs wingspan="50.5" length="46.59" range="5600" speed="900" fuelcapacity="80200" consumption="0.044"
+           runwaylengthrequired="2470" />
+
+    <capacity cockpitcrew="5" cargo="577" />
+
+    <produced from="1974" to="2199" rate="17" />
+
+  </airliner>
+  <airliner manufacturer="Ilyushin" name="Il-86" price="3322540">
+    <!--59600000-->
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+
+    <specs wingspan="48.06" length="60.21" range="5000" speed="875" fuelcapacity="32750" consumption="0.049"
+           runwaylengthrequired="2450" />
+
+    <capacity passengers="350" cockpitcrew="3" cabincrew="11" maxclasses="3" />
+
+    <produced from="1980" to="2011" rate="54" />
+
+  </airliner>
+  <airliner manufacturer="Ilyushin" name="Il-96-300" price="3103600">
+    <!--59600000-->
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+
+    <specs wingspan="60.11" length="55.3" range="13500" speed="875" fuelcapacity="40332" consumption="0.039"
+           runwaylengthrequired="2340" />
+
+    <capacity passengers="300" cockpitcrew="3" cabincrew="11" maxclasses="3" />
+
+    <produced from="1992" to="2199" rate="10" />
+
+  </airliner>
+  <airliner manufacturer="Ilyushin" name="Il-114" price="17244510">
+    <!--59600000-->
+    <type body="Single_Aisle" rangetype="Regional" engine="Turboprop" />
+
+    <specs wingspan="30" length="26.87" range="1400" speed="500" fuelcapacity="8220" consumption="0.039"
+           runwaylengthrequired="879" />
+
+    <capacity passengers="64" cockpitcrew="2" cabincrew="1" maxclasses="3" />
+
+    <produced from="1992" to="2011" rate="5" />
+
+  </airliner>
 
 
 </airliners>

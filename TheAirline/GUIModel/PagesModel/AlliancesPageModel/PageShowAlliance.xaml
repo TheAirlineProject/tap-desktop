@@ -1,17 +1,19 @@
 ﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AlliancesPageModel.PageShowAlliance"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      mc:Ignorable="d" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300"
-	Name="pageShowAlliance"
+      Name="pageShowAlliance"
       Title="PageShowAlliance">
     <Page.Resources>
         <DataTemplate x:Key="AllianceMemberItem">
             <WrapPanel>
-            <ContentControl ContentTemplate="{StaticResource AirlineLink}" Width="200" Content="{Binding Member.Airline}"></ContentControl>
-            <Button  Click="btnRemoveFromAlliance_Click" VerticalAlignment="Bottom" Tag="{Binding}" Background="Transparent">
+                <ContentControl ContentTemplate="{StaticResource AirlineLink}" Width="200"
+                                Content="{Binding Member.Airline}" />
+                <Button Click="btnRemoveFromAlliance_Click" VerticalAlignment="Bottom" Tag="{Binding}"
+                        Background="Transparent">
                     <Button.Style>
                         <Style>
                             <Style.Triggers>
@@ -19,94 +21,140 @@
                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Member.Airline.IsHuman}" Value="True">
-                                    <Setter Property="Button.Visibility" Value="Collapsed"></Setter>
+                                    <Setter Property="Button.Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                        <Image Source="/Data/images/delete.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-            </Button>
+                    <Image Source="/Data/images/delete.png" Height="16" Width="16"
+                           RenderOptions.BitmapScalingMode="HighQuality" />
+                </Button>
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="PendingMemberItem">
             <WrapPanel>
-                <ContentControl ContentTemplate="{StaticResource AirlineLink}" Content="{Binding Airline}" VerticalAlignment="Bottom"></ContentControl>
-                <Button  Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}" VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnAccept_Click" Background="Transparent">
-                    <Image Source="/Data/images/add.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                <ContentControl ContentTemplate="{StaticResource AirlineLink}" Content="{Binding Airline}"
+                                VerticalAlignment="Bottom" />
+                <Button Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}"
+                        VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnAccept_Click"
+                        Background="Transparent">
+                    <Image Source="/Data/images/add.png" Height="16" Width="16"
+                           RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
-                <Button  Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}" VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnDecline_Click" Background="Transparent">
-                    <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                <Button Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}"
+                        VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnDecline_Click"
+                        Background="Transparent">
+                    <Image Source="/Data/images/delete.png" Height="16" Width="16"
+                           RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel>
-        <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1000'}" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-        <ListBox ItemTemplate="{DynamicResource AllianceMemberItem}" Background="Transparent" ItemsSource="{Binding Members}" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
-        <StackPanel>
-            <StackPanel.Style>
-                <Style>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding PendingMembers.Count}" Value="0">
-                            <Setter Property="StackPanel.Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
-            <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1001'}" Margin="0 10 0 0" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-        <ListBox ItemTemplate="{DynamicResource PendingMemberItem}" ItemsSource="{Binding PendingMembers}" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
-        </StackPanel>
-        <WrapPanel Margin="0 5 0 0">
-            <Button Style="{DynamicResource StandardButtonStyle}" Click="btnRouteMap_Click" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 203'}"></Button>
-            <Button Style="{DynamicResource StandardButtonStyle}" Click="btnJoin_Click" Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 200'}" Margin="5 0 0 0"></Button>
-            <Button Style="{DynamicResource StandardButtonStyle}" Click="btnInvite_Click" Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 201'}" Margin="5 0 0 0"></Button>
-            <Button Style="{DynamicResource StandardButtonStyle}" Margin="5 0 0 0" Click="btnExit_Click" Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 202'}"></Button>
-        </WrapPanel>
-            <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1002'}" Margin="0 10 0 0" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-          
+            <TextBlock
+                Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1000'}"
+                Style="{StaticResource SmallHeaderStyle}" />
+            <ListBox ItemTemplate="{DynamicResource AllianceMemberItem}" Background="Transparent"
+                     ItemsSource="{Binding Members}"
+                     ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" />
+            <StackPanel>
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding PendingMembers.Count}" Value="0">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1001'}"
+                    Margin="0 10 0 0" Style="{StaticResource SmallHeaderStyle}" />
+                <ListBox ItemTemplate="{DynamicResource PendingMemberItem}" ItemsSource="{Binding PendingMembers}"
+                         ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" />
+            </StackPanel>
+            <WrapPanel Margin="0 5 0 0">
+                <Button Style="{DynamicResource StandardButtonStyle}" Click="btnRouteMap_Click"
+                        Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 203'}" />
+                <Button Style="{DynamicResource StandardButtonStyle}" Click="btnJoin_Click"
+                        Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}"
+                        Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 200'}"
+                        Margin="5 0 0 0" />
+                <Button Style="{DynamicResource StandardButtonStyle}" Click="btnInvite_Click"
+                        Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}"
+                        Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 201'}"
+                        Margin="5 0 0 0" />
+                <Button Style="{DynamicResource StandardButtonStyle}" Margin="5 0 0 0" Click="btnExit_Click"
+                        Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}"
+                        Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 202'}" />
+            </WrapPanel>
+            <TextBlock
+                Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1002'}"
+                Margin="0 10 0 0" Style="{StaticResource SmallHeaderStyle}" />
+
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1004'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <ContentControl Content="{Binding Alliance.Headquarter}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryLink}"></ContentControl>
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1004'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <ContentControl Content="{Binding Alliance.Headquarter}" VerticalAlignment="Bottom"
+                                ContentTemplate="{StaticResource AirportCountryLink}" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1005'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <TextBlock Text="{Binding FleetSize}" VerticalAlignment="Bottom"></TextBlock>
-             </WrapPanel>
-            <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1006'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <TextBlock Text="{Binding Destinations}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1005'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding FleetSize}" VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1008'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <TextBlock Text="{Binding ServingCountries}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1006'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding Destinations}" VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1007'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <TextBlock Text="{Binding Routes}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1008'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding ServingCountries}" VerticalAlignment="Bottom" />
             </WrapPanel>
-          
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1009'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <TextBlock Text="{Binding Passengers}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1007'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding Routes}" VerticalAlignment="Bottom" />
             </WrapPanel>
-            <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1010'}" Margin="0 10 0 0" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-            <ListBox Background="Transparent" ItemsSource="{Binding AllianceRoutes}" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}">
+
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1009'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding Passengers}" VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <TextBlock
+                Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1010'}"
+                Margin="0 10 0 0" Style="{StaticResource SmallHeaderStyle}" />
+            <ListBox Background="Transparent" ItemsSource="{Binding AllianceRoutes}"
+                     ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
-                            <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLink}" Width="150" VerticalAlignment="Bottom"></ContentControl>
-                            <ContentControl Content="{Binding Route}" ContentTemplate="{StaticResource RouteFlagLongItem}" VerticalAlignment="Bottom"></ContentControl>
+                            <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLink}"
+                                            Width="150" VerticalAlignment="Bottom" />
+                            <ContentControl Content="{Binding Route}"
+                                            ContentTemplate="{StaticResource RouteFlagLongItem}"
+                                            VerticalAlignment="Bottom" />
                         </WrapPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
 
             <WrapPanel Margin="0 5 0 0">
-                <Button Style="{DynamicResource StandardButtonStyle}" Click="btnRouteMap_Click" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 203'}"></Button>
-               
-            </WrapPanel>    
+                <Button Style="{DynamicResource StandardButtonStyle}" Click="btnRouteMap_Click"
+                        Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 203'}" />
+
+            </WrapPanel>
         </StackPanel>
-       
+
     </ScrollViewer>
 </Page>

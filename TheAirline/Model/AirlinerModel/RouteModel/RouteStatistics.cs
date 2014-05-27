@@ -1,135 +1,96 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.StatisticsModel;
-
-namespace TheAirline.Model.AirlinerModel.RouteModel
+﻿namespace TheAirline.Model.AirlinerModel.RouteModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+
+    using TheAirline.Model.GeneralModel;
+    using TheAirline.Model.GeneralModel.StatisticsModel;
 
     /*! Route statistics.
    * This is used for statistics for a route.
    * The class needs no parameters
    */
-     [Serializable]
+
+    [Serializable]
     public class RouteStatistics : ISerializable
     {
-         [Versioning("stats")]
-        public List<RouteStatisticsItem> Stats { get; set; }
+        #region Constructors and Destructors
+
         public RouteStatistics()
         {
             this.Stats = new List<RouteStatisticsItem>();
         }
-        //clears the list
-        public void clear()
-        {
-            this.Stats.Clear();
-        }
-         //returns the value for a statistics type for a route class
-        public long getStatisticsValue(RouteAirlinerClass aClass, StatisticsType type)
-        {
-            RouteStatisticsItem item = this.Stats.Find(i => i.Type.Shortname == type.Shortname && i.RouteClass.Type == aClass.Type);
 
-            if (item == null)
-                return 0;
-            else
-                return item.Value;
-        }
-         public long getStatisticsValue(StatisticsType type)
-        {
-            RouteAirlinerClass aClass = new RouteAirlinerClass(AirlinerClass.ClassType.Economy_Class, RouteAirlinerClass.SeatingType.Free_Seating, 0);
-
-            return getStatisticsValue(aClass, type);
-        }
-        //adds the value for a statistics type to a route class
-         public void addStatisticsValue(RouteAirlinerClass aClass, StatisticsType type, int value)
-         {
-             RouteStatisticsItem item = this.Stats.Find(i => i.Type.Shortname == type.Shortname && i.RouteClass == aClass);
-
-             if (item == null)
-                 this.Stats.Add(new RouteStatisticsItem(aClass, type, value));
-             else
-                 item.Value += value;
-         }
-         public void addStatisticsValue(StatisticsType type, int value)
-         {
-            RouteAirlinerClass aClass = new RouteAirlinerClass(AirlinerClass.ClassType.Economy_Class, RouteAirlinerClass.SeatingType.Free_Seating, 0);
-
-            addStatisticsValue(aClass,type,value);
-         }
-        //sets the value for a statistics type to a route class
-         public void setStatisticsValue(RouteAirlinerClass aClass, StatisticsType type, int value)
-         {
-             RouteStatisticsItem item = this.Stats.Find(i => i.Type.Shortname == type.Shortname && i.RouteClass == aClass);
-
-             if (item == null)
-                 this.Stats.Add(new RouteStatisticsItem(aClass, type, value));
-             else
-                 item.Value = value;
-         }
-         public void setStatisticsValue(StatisticsType type, int value)
-        {
-            RouteAirlinerClass aClass = new RouteAirlinerClass(AirlinerClass.ClassType.Economy_Class,RouteAirlinerClass.SeatingType.Free_Seating, 0);
-
-            setStatisticsValue(aClass, type, value);
-        }
-        //returns the total value of a statistics type
-         public long getTotalValue(StatisticsType type)
-         {
-             long value = 0;
-
-             lock (this.Stats)
-             {
-                 value = this.Stats.Where(s => s.Type.Shortname == type.Shortname).Sum(s => s.Value);
-             }
-
-             return value;
-         }
-            private RouteStatistics(SerializationInfo info, StreamingContext ctxt)
+        private RouteStatistics(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
-            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                this.GetType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (SerializationEntry entry in info)
             {
-                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
-
+                MemberInfo prop =
+                    propsAndFields.FirstOrDefault(
+                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
+                    {
                         ((FieldInfo)prop).SetValue(this, entry.Value);
+                    }
                     else
+                    {
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
                 }
             }
 
-            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+            IEnumerable<MemberInfo> notSetProps =
+                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
+                    {
                         ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
                     else
+                    {
                         ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
-
+                    }
                 }
-
             }
         }
+
+        #endregion
+
+        #region Public Properties
+
+        [Versioning("stats")]
+        public List<RouteStatisticsItem> Stats { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -137,28 +98,135 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             Type myType = this.GetType();
 
-            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
 
                 if (member is FieldInfo)
+                {
                     propValue = ((FieldInfo)member).GetValue(this);
+                }
                 else
+                {
                     propValue = ((PropertyInfo)member).GetValue(this, null);
+                }
 
-                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
-
         }
+
+        public void addStatisticsValue(RouteAirlinerClass aClass, StatisticsType type, int value)
+        {
+            RouteStatisticsItem item = this.Stats.Find(
+                i => i.Type.Shortname == type.Shortname && i.RouteClass == aClass);
+
+            if (item == null)
+            {
+                this.Stats.Add(new RouteStatisticsItem(aClass, type, value));
+            }
+            else
+            {
+                item.Value += value;
+            }
+        }
+
+        public void addStatisticsValue(StatisticsType type, int value)
+        {
+            var aClass = new RouteAirlinerClass(
+                AirlinerClass.ClassType.Economy_Class,
+                RouteAirlinerClass.SeatingType.Free_Seating,
+                0);
+
+            this.addStatisticsValue(aClass, type, value);
+        }
+
+        //clears the list
+        public void clear()
+        {
+            this.Stats.Clear();
+        }
+
+        //returns the value for a statistics type for a route class
+        public long getStatisticsValue(RouteAirlinerClass aClass, StatisticsType type)
+        {
+            RouteStatisticsItem item =
+                this.Stats.Find(i => i.Type.Shortname == type.Shortname && i.RouteClass.Type == aClass.Type);
+
+            if (item == null)
+            {
+                return 0;
+            }
+            return item.Value;
+        }
+
+        public long getStatisticsValue(StatisticsType type)
+        {
+            var aClass = new RouteAirlinerClass(
+                AirlinerClass.ClassType.Economy_Class,
+                RouteAirlinerClass.SeatingType.Free_Seating,
+                0);
+
+            return this.getStatisticsValue(aClass, type);
+        }
+
+        public long getTotalValue(StatisticsType type)
+        {
+            long value = 0;
+
+            lock (this.Stats)
+            {
+                value = this.Stats.Where(s => s.Type.Shortname == type.Shortname).Sum(s => s.Value);
+            }
+
+            return value;
+        }
+
+        //adds the value for a statistics type to a route class
+
+        //sets the value for a statistics type to a route class
+        public void setStatisticsValue(RouteAirlinerClass aClass, StatisticsType type, int value)
+        {
+            RouteStatisticsItem item = this.Stats.Find(
+                i => i.Type.Shortname == type.Shortname && i.RouteClass == aClass);
+
+            if (item == null)
+            {
+                this.Stats.Add(new RouteStatisticsItem(aClass, type, value));
+            }
+            else
+            {
+                item.Value = value;
+            }
+        }
+
+        public void setStatisticsValue(StatisticsType type, int value)
+        {
+            var aClass = new RouteAirlinerClass(
+                AirlinerClass.ClassType.Economy_Class,
+                RouteAirlinerClass.SeatingType.Free_Seating,
+                0);
+
+            this.setStatisticsValue(aClass, type, value);
+        }
+
+        #endregion
+
+        //returns the total value of a statistics type
     }
+
     /*
     public class RouteStatistics
     {
@@ -245,14 +313,25 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     [Serializable]
     public class RouteStatisticsItem
     {
-        public RouteAirlinerClass RouteClass { get; set; }
-        public StatisticsType Type { get; set; }
-        public long Value { get; set; }
+        #region Constructors and Destructors
+
         public RouteStatisticsItem(RouteAirlinerClass routeClass, StatisticsType type, int value)
         {
             this.RouteClass = routeClass;
             this.Type = type;
             this.Value = value;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        public RouteAirlinerClass RouteClass { get; set; }
+
+        public StatisticsType Type { get; set; }
+
+        public long Value { get; set; }
+
+        #endregion
     }
 }

@@ -3,71 +3,83 @@
                     xmlns:c="clr-namespace:TheAirline.GUIModel.HelpersModel"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     x:Class="TheAirline.GUIModel.MasterPageModel.standardTemplatesEvents">
-    <c:AirlineColorConverter x:Key="airlineColorConverter"></c:AirlineColorConverter>
-    <c:SpeedToUnitConverter x:Key="SpeedToUnitConverter"></c:SpeedToUnitConverter>
-    <c:DistanceToUnitConverter x:Key="DistanceToUnitConverter"></c:DistanceToUnitConverter>
-    <c:SmallDistanceToUnitConverter x:Key="SmallDistanceToUnitConverter"></c:SmallDistanceToUnitConverter>
-    <c:FuelConsumptionToUnitConverter x:Key="FuelConsumptionConverter"></c:FuelConsumptionToUnitConverter>
-    <c:TextUnderscoreConverter x:Key="TextUnderscoreConverter"></c:TextUnderscoreConverter>
-    <c:AirlinerClassCodeConverter x:Key="AirlinerClassCodeConverter"></c:AirlinerClassCodeConverter>
-    <c:CargoSizeConverter x:Key="CargoSizeConverter"></c:CargoSizeConverter>
-    <c:AirportCodeConverter x:Key="AirportCodeConverter"></c:AirportCodeConverter>
-    <c:TranslatorConverter x:Key="TranslatorConverter"></c:TranslatorConverter>
-    <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
-    
+    <c:AirlineColorConverter x:Key="airlineColorConverter" />
+    <c:SpeedToUnitConverter x:Key="SpeedToUnitConverter" />
+    <c:DistanceToUnitConverter x:Key="DistanceToUnitConverter" />
+    <c:SmallDistanceToUnitConverter x:Key="SmallDistanceToUnitConverter" />
+    <c:FuelConsumptionToUnitConverter x:Key="FuelConsumptionConverter" />
+    <c:TextUnderscoreConverter x:Key="TextUnderscoreConverter" />
+    <c:AirlinerClassCodeConverter x:Key="AirlinerClassCodeConverter" />
+    <c:CargoSizeConverter x:Key="CargoSizeConverter" />
+    <c:AirportCodeConverter x:Key="AirportCodeConverter" />
+    <c:TranslatorConverter x:Key="TranslatorConverter" />
+    <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter" />
+
     <Style TargetType="WrapPanel" x:Key="WrapPanelStyle">
         <Setter Property="Background">
             <Setter.Value>
-                <SolidColorBrush Color="Black" Opacity="0.2"></SolidColorBrush>
+                <SolidColorBrush Color="Black" Opacity="0.2" />
             </Setter.Value>
         </Setter>
-        <Setter Property="Margin" Value="0 2 0 2"></Setter>
+        <Setter Property="Margin" Value="0 2 0 2" />
     </Style>
     <!--countries templates-->
     <DataTemplate x:Key="CountryFlagLongBoldItem">
         <DockPanel>
-            <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
-            <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" FontWeight="Bold" VerticalAlignment="Bottom"/>
+            <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
+            <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" FontWeight="Bold"
+                       VerticalAlignment="Bottom" />
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="CountryFlagLongItem">
         <DockPanel>
-            <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
-            <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" VerticalAlignment="Bottom"/>
+            <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
+            <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" VerticalAlignment="Bottom" />
         </DockPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="CountryFlagItem">
-        <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
+        <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter}}"
+                        VerticalAlignment="Bottom">
             <ContentControl.ContentTemplate>
                 <DataTemplate>
                     <DockPanel>
-                        <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
-                        <TextBlock Text="{Binding ShortName}" Margin="5 0 0 0" TextAlignment="Left" Width="30" VerticalAlignment="Bottom"/>
+                        <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
+                        <TextBlock Text="{Binding ShortName}" Margin="5 0 0 0" TextAlignment="Left" Width="30"
+                                   VerticalAlignment="Bottom" />
                     </DockPanel>
                 </DataTemplate>
             </ContentControl.ContentTemplate>
         </ContentControl>
     </DataTemplate>
     <DataTemplate x:Key="CountryLongFlagItem">
-        <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
+        <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter}}"
+                        VerticalAlignment="Bottom">
             <ContentControl.ContentTemplate>
                 <DataTemplate>
                     <DockPanel>
-                        <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
-                        <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" VerticalAlignment="Bottom"/>
+                        <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
+                        <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left"
+                                   VerticalAlignment="Bottom" />
                     </DockPanel>
                 </DataTemplate>
             </ContentControl.ContentTemplate>
         </ContentControl>
     </DataTemplate>
     <DataTemplate x:Key="CountryShortFlagItem">
-        <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
+        <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter}}"
+                        VerticalAlignment="Bottom">
             <ContentControl.ContentTemplate>
                 <DataTemplate>
                     <DockPanel>
-                        <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
-                        <TextBlock Text="{Binding ShortName}" Margin="5 0 0 0" TextAlignment="Left" VerticalAlignment="Bottom"/>
+                        <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
+                        <TextBlock Text="{Binding ShortName}" Margin="5 0 0 0" TextAlignment="Left"
+                                   VerticalAlignment="Bottom" />
                     </DockPanel>
                 </DataTemplate>
             </ContentControl.ContentTemplate>
@@ -76,9 +88,12 @@
     <!--town templates-->
     <DataTemplate x:Key="TownItem">
         <WrapPanel>
-            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
-            <TextBlock Text="{Binding State.ShortName,TargetNullValue={x:Static sys:String.Empty},StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
-            <Image Source="{Binding State.Flag}" Margin="5 0 0 0" Height="20" Width="20" RenderOptions.BitmapScalingMode="HighQuality">
+            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
+            <TextBlock
+                Text="{Binding State.ShortName,TargetNullValue={x:Static sys:String.Empty},StringFormat='{}, {0}'}"
+                VerticalAlignment="Bottom" />
+            <Image Source="{Binding State.Flag}" Margin="5 0 0 0" Height="20" Width="20"
+                   RenderOptions.BitmapScalingMode="HighQuality">
                 <Image.Style>
                     <Style>
                         <Style.Triggers>
@@ -88,14 +103,16 @@
                         </Style.Triggers>
                     </Style>
                 </Image.Style>
-            </Image> 
-            <ContentControl Content="{Binding Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
-                 <ContentControl.ContentTemplate>
+            </Image>
+            <ContentControl Content="{Binding Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                            VerticalAlignment="Bottom">
+                <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
 
-                            <TextBlock Text="{Binding Name,StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
-                            <Image Source="{Binding Flag}" Width="20" Height="20" Margin="5 0 0 0" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <TextBlock Text="{Binding Name,StringFormat='{}, {0}'}" VerticalAlignment="Bottom" />
+                            <Image Source="{Binding Flag}" Width="20" Height="20" Margin="5 0 0 0"
+                                   VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
@@ -103,22 +120,24 @@
         </WrapPanel>
     </DataTemplate>
     <!--airliner templates-->
-        <DataTemplate x:Key="FleetAirlinerLink">
-            <TextBlock VerticalAlignment="Bottom">
-                <TextBlock.ToolTip>
-                <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" Text="{Binding Airliner,Converter={StaticResource AirlinerClassCodeConverter}}"></TextBlock>
-                </TextBlock.ToolTip>
-                <Hyperlink Tag="{Binding}" Click="lnkAirliner_Click">
-                                                  <Run Text="{Binding Name}"></Run>
-                                            </Hyperlink>
-                </TextBlock>
-        </DataTemplate>
+    <DataTemplate x:Key="FleetAirlinerLink">
+        <TextBlock VerticalAlignment="Bottom">
+            <TextBlock.ToolTip>
+                <TextBlock VerticalAlignment="Bottom" FontWeight="Bold"
+                           Text="{Binding Airliner,Converter={StaticResource AirlinerClassCodeConverter}}" />
+            </TextBlock.ToolTip>
+            <Hyperlink Tag="{Binding}" Click="lnkAirliner_Click">
+                <Run Text="{Binding Name}" />
+            </Hyperlink>
+        </TextBlock>
+    </DataTemplate>
     <DataTemplate x:Key="AirlinerCodeItem">
         <TextBlock VerticalAlignment="Bottom" Text="{Binding Name}">
             <TextBlock.ToolTip>
-                <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource AirlinerClassCodeConverter}}"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom"
+                           Text="{Binding Converter={StaticResource AirlinerClassCodeConverter}}" />
             </TextBlock.ToolTip>
-                       </TextBlock>
+        </TextBlock>
     </DataTemplate>
     <DataTemplate x:Key="AirlinerTypeSpecificationItem">
         <StackPanel>
@@ -132,20 +151,28 @@
                         </Style.Triggers>
                     </Style>
                 </WrapPanel.Style>
-                <Image Source="{Binding Image}" Width="300" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <Image Source="{Binding Image}" Width="300" VerticalAlignment="Bottom"
+                       RenderOptions.BitmapScalingMode="HighQuality" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1000'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1000'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1001'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <Image Source="{Binding Manufacturer.Logo}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="20"></Image>
-                <TextBlock Text="{Binding Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1001'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <Image Source="{Binding Manufacturer.Logo}" VerticalAlignment="Bottom"
+                       RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
+                <TextBlock Text="{Binding Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1002'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding TypeAirliner}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1002'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding TypeAirliner}" VerticalAlignment="Bottom" />
             </WrapPanel>
             <StackPanel>
                 <StackPanel.Style>
@@ -158,12 +185,16 @@
                     </Style>
                 </StackPanel.Style>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1011'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding MaxSeatingCapacity}" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1011'}"
+                        Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                    <TextBlock Text="{Binding MaxSeatingCapacity}" VerticalAlignment="Bottom" />
                 </WrapPanel>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1012'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding MaxAirlinerClasses}" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1012'}"
+                        Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                    <TextBlock Text="{Binding MaxAirlinerClasses}" VerticalAlignment="Bottom" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel>
@@ -177,147 +208,196 @@
                     </Style>
                 </StackPanel.Style>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1013'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding CargoSize,Converter={StaticResource CargoSizeConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1013'}"
+                        Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                    <TextBlock Text="{Binding CargoSize,Converter={StaticResource CargoSizeConverter}}"
+                               VerticalAlignment="Bottom" />
                 </WrapPanel>
             </StackPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1014'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding CockpitCrew}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1014'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding CockpitCrew}" VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1003'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding Body,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1003'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Body,Converter={StaticResource TextUnderscoreConverter}}"
+                           VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1004'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding Engine,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1004'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Engine,Converter={StaticResource TextUnderscoreConverter}}"
+                           VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1005'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding Length,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1005'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Length,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                           VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1006'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding Wingspan,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1006'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Wingspan,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                           VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1007'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding Range,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1007'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Range,Converter={StaticResource DistanceToUnitConverter}}"
+                           VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1008'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1008'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}"
+                           VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1009'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1009'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                           VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1010'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1010'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}"
+                           VerticalAlignment="Bottom" />
             </WrapPanel>
-           
+
         </StackPanel>
     </DataTemplate>
     <!--airport templates-->
     <DataTemplate x:Key="AirportCountryLink">
         <DockPanel>
-            <ContentControl Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
+            <ContentControl
+                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
-                             <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                            <Hyperlink Tag="{Binding}" Click="Airport_Click">
-                                <Run Text="{Binding Profile.Name}"></Run>
-                            </Hyperlink>
+                <Hyperlink Tag="{Binding}" Click="Airport_Click">
+                    <Run Text="{Binding Profile.Name}" />
+                </Hyperlink>
             </TextBlock>
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirportCountryItem">
         <DockPanel>
-            <ContentControl Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
+            <ContentControl
+                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
 
-                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}"/>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
 
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirportCountryCodeItem">
         <DockPanel>
-            <ContentControl Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
+            <ContentControl
+                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}"/>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Converter={StaticResource AirportCodeConverter},StringFormat={}({0})}"></TextBlock>
-            
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0"
+                       Text="{Binding Converter={StaticResource AirportCodeConverter},StringFormat={}({0})}" />
+
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirportCodeItem">
         <DockPanel>
-            <ContentControl Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
+            <ContentControl
+                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Converter={StaticResource AirportCodeConverter}}"></TextBlock>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0"
+                       Text="{Binding Converter={StaticResource AirportCodeConverter}}" />
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirportShortCountryLink">
         <DockPanel>
-            <ContentControl Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
+            <ContentControl
+                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
 
-                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                            <Hyperlink Tag="{Binding}" Click="Airport_Click">
-                                <Run Text="{Binding Path=.,Converter={StaticResource AirportCodeConverter}}"></Run>
-                            </Hyperlink>
+                <Hyperlink Tag="{Binding}" Click="Airport_Click">
+                    <Run Text="{Binding Path=.,Converter={StaticResource AirportCodeConverter}}" />
+                </Hyperlink>
             </TextBlock>
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirportCountryLongLink">
         <DockPanel>
             <TextBlock VerticalAlignment="Bottom">
-                            <Hyperlink Tag="{Binding}" Click="Airport_Click">
-                                <Run Text="{Binding Profile.Name}"></Run>
-                            </Hyperlink>
+                <Hyperlink Tag="{Binding}" Click="Airport_Click">
+                    <Run Text="{Binding Profile.Name}" />
+                </Hyperlink>
             </TextBlock>
-           <ContentControl Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
+            <ContentControl
+                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <TextBlock Text="{Binding Name,StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding Name,StringFormat='{}, {0}'}" VerticalAlignment="Bottom" />
 
-                            <Image Source="{Binding Flag}" Width="20" Height="20" Margin="5 0 0 0" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <Image Source="{Binding Flag}" Width="20" Height="20" Margin="5 0 0 0"
+                                   VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
@@ -327,14 +407,16 @@
     <!--route templates-->
     <DataTemplate x:Key="RouteFlagItem">
         <WrapPanel VerticalAlignment="Bottom">
-            <Image Source="{Binding Destination1.Profile.Country.Flag}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Height="20"></Image>
-            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0" ToolTipService.ShowDuration="60000">
+            <Image Source="{Binding Destination1.Profile.Country.Flag}" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" Height="20" />
+            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0"
+                       ToolTipService.ShowDuration="60000">
                 <TextBlock.ToolTip>
                     <TextBlock VerticalAlignment="Bottom" FontWeight="Bold">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="{}{0}-{1}">
-                                <Binding Path="Destination1.Profile.Name"/>
-                                <Binding Path="Destination2.Profile.Name"/>
+                                <Binding Path="Destination1.Profile.Name" />
+                                <Binding Path="Destination2.Profile.Name" />
                             </MultiBinding>
 
                         </TextBlock.Text>
@@ -347,22 +429,26 @@
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
-            <Image Source="{Binding Destination2.Profile.Country.Flag}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Height="20"></Image>
+            <Image Source="{Binding Destination2.Profile.Country.Flag}" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" Height="20" />
 
         </WrapPanel>
     </DataTemplate>
     <DataTemplate x:Key="RouteFlagLongItem">
         <WrapPanel VerticalAlignment="Bottom">
-            <Image Source="{Binding Destination1.Profile.Country.Flag}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Height="20"></Image>
-            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0" ToolTipService.ShowDuration="60000">
+            <Image Source="{Binding Destination1.Profile.Country.Flag}" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" Height="20" />
+            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0"
+                       ToolTipService.ShowDuration="60000">
                 <TextBlock.Text>
-                            <MultiBinding StringFormat="{}{0}-{1}">
-                                <Binding Path="Destination1.Profile.Name"/>
-                                <Binding Path="Destination2.Profile.Name"/>
-                            </MultiBinding>
-                        </TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0}-{1}">
+                        <Binding Path="Destination1.Profile.Name" />
+                        <Binding Path="Destination2.Profile.Name" />
+                    </MultiBinding>
+                </TextBlock.Text>
             </TextBlock>
-            <Image Source="{Binding Destination2.Profile.Country.Flag}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Height="20"></Image>
+            <Image Source="{Binding Destination2.Profile.Country.Flag}" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" Height="20" />
 
         </WrapPanel>
     </DataTemplate>
@@ -372,8 +458,8 @@
                 <TextBlock VerticalAlignment="Bottom" FontWeight="Bold">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0}-{1}">
-                            <Binding Path="Destination1.Profile.Name"/>
-                            <Binding Path="Destination2.Profile.Name"/>
+                            <Binding Path="Destination1.Profile.Name" />
+                            <Binding Path="Destination2.Profile.Name" />
                         </MultiBinding>
 
                     </TextBlock.Text>
@@ -384,7 +470,7 @@
                     <Binding Path="Destination1" Converter="{StaticResource AirportCodeConverter}" />
                     <Binding Path="Destination2" Converter="{StaticResource AirportCodeConverter}" />
                 </MultiBinding>
-                
+
             </TextBlock.Text>
         </TextBlock>
     </DataTemplate>
@@ -401,72 +487,81 @@
     <!--alliance templates-->
     <DataTemplate x:Key="AllianceLink">
         <DockPanel>
-            <Image Source="{Binding Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Image Source="{Binding Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Width="100">
-                            <Hyperlink Tag="{Binding}" Click="Alliance_Click">
-                                <Run Text="{Binding Name}"></Run>
-                            </Hyperlink>
+                <Hyperlink Tag="{Binding}" Click="Alliance_Click">
+                    <Run Text="{Binding Name}" />
+                </Hyperlink>
             </TextBlock>
-         </DockPanel>
+        </DockPanel>
     </DataTemplate>
     <!--airline templates-->
     <DataTemplate x:Key="AirlineLink">
         <DockPanel>
-            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                            <Hyperlink Tag="{Binding}" Click="Airline_Click">
-                                <Run Text="{Binding Profile.Name}"></Run>
-                            </Hyperlink>
+                <Hyperlink Tag="{Binding}" Click="Airline_Click">
+                    <Run Text="{Binding Profile.Name}" />
+                </Hyperlink>
             </TextBlock>
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineLargeLogoLink">
         <DockPanel>
-            <Image Source="{Binding Profile.Logo}" Width="48" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Image Source="{Binding Profile.Logo}" Width="48" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                    <Hyperlink Tag="{Binding}" Click="Airline_Click" >
-                        <Run Text="{Binding Profile.Name}"></Run>
-                    </Hyperlink>
+                <Hyperlink Tag="{Binding}" Click="Airline_Click">
+                    <Run Text="{Binding Profile.Name}" />
+                </Hyperlink>
             </TextBlock>
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineLongLink">
         <DockPanel>
-            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                            <Hyperlink Tag="{Binding}" Click="Airline_Click">
-                                <Run Text="{Binding Profile.Name}"></Run>
-                            </Hyperlink>
+                <Hyperlink Tag="{Binding}" Click="Airline_Click">
+                    <Run Text="{Binding Profile.Name}" />
+                </Hyperlink>
             </TextBlock>
-            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,StringFormat={} ({0})}"></TextBlock>
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,StringFormat={} ({0})}" />
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineItem">
         <WrapPanel>
-            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}">
-            </TextBlock>
+            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
         </WrapPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineLongItem">
         <DockPanel>
-            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}"></TextBlock>
-            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,StringFormat={} ({0})}"></TextBlock>
+            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,StringFormat={} ({0})}" />
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineCountryItem">
         <DockPanel>
-            
-            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}"></TextBlock>
-            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,StringFormat='{} ({0}) , '}"></TextBlock>
-            <ContentControl  Margin="5 0 0 0" Content="{Binding Profile.Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
+
+            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,StringFormat='{} ({0}) , '}" />
+            <ContentControl Margin="5 0 0 0"
+                            Content="{Binding Profile.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                            VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel VerticalAlignment="Bottom">
 
-                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
@@ -475,17 +570,20 @@
     </DataTemplate>
     <!--random templates-->
     <DataTemplate x:Key="AirlineColorItem">
-        <Rectangle Width="50" Height="20" Stroke="Black" StrokeThickness="2" Fill="{Binding Converter={StaticResource airlineColorConverter}}" RadiusX="10" RadiusY="10" Margin="0 5 0 0">
-        </Rectangle>
+        <Rectangle Width="50" Height="20" Stroke="Black" StrokeThickness="2"
+                   Fill="{Binding Converter={StaticResource airlineColorConverter}}" RadiusX="10" RadiusY="10"
+                   Margin="0 5 0 0" />
     </DataTemplate>
     <DataTemplate x:Key="QuickInfoItem">
         <Grid Visibility="{Binding Visibility}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{Binding Text}" Grid.Column="0" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top"/>
-            <ContentControl Grid.Column="1" HorizontalAlignment="Left" Content="{Binding Value}" VerticalAlignment="Bottom"></ContentControl>
+            <TextBlock Text="{Binding Text}" Grid.Column="0" HorizontalAlignment="Left" FontWeight="Bold"
+                       VerticalAlignment="Top" />
+            <ContentControl Grid.Column="1" HorizontalAlignment="Left" Content="{Binding Value}"
+                            VerticalAlignment="Bottom" />
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

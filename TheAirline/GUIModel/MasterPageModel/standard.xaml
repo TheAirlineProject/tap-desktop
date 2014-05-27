@@ -5,49 +5,63 @@
                     xmlns:g="clr-namespace:TheAirline.GUIModel.ObjectsModel"
                     xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
                     xmlns:local="clr-namespace:TheAirline.GUIModel.MasterPageModel">
-  
-    <g:GUIObject x:Key="gameObject"></g:GUIObject>
+
+    <g:GUIObject x:Key="gameObject" />
     <DataTemplate x:Key="HeaderContent">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Image Source="/data/images/logo_banner.png" Grid.Column="0" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+            <Image Source="/data/images/logo_banner.png" Grid.Column="0" VerticalAlignment="Bottom"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
             <WrapPanel Grid.Column="0" VerticalAlignment="Bottom">
-                <Image Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Source="/data/images/gas.png"></Image>
-                <TextBlock FontWeight="Bold" Text="{Binding GameObject.FuelPrice,Source={StaticResource gameObject},Converter={StaticResource FuelUnitConverter}}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                <Image Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"
+                       Source="/data/images/gas.png" />
+                <TextBlock FontWeight="Bold"
+                           Text="{Binding GameObject.FuelPrice,Source={StaticResource gameObject},Converter={StaticResource FuelUnitConverter}}"
+                           VerticalAlignment="Bottom" Margin="5 0 0 0" />
             </WrapPanel>
             <WrapPanel Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                <Image                                  
-                               Source="{Binding GameObject.HumanAirline.Profile.Logo,Source={StaticResource gameObject}}"
-                               RenderOptions.BitmapScalingMode="HighQuality"
-                               HorizontalAlignment="Left"
-                              Margin="0 0 20 0" Opacity="0.8"
-                VerticalAlignment="Center"
-                              Height="32"/>
+                <Image
+                    Source="{Binding GameObject.HumanAirline.Profile.Logo,Source={StaticResource gameObject}}"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    HorizontalAlignment="Left"
+                    Margin="0 0 20 0" Opacity="0.8"
+                    VerticalAlignment="Center"
+                    Height="32" />
 
-                <TextBlock Text="{Binding GameObject.HumanAirline.Profile.Name,Source={StaticResource gameObject}}" Style="{StaticResource HeaderStyle}"  HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Text="{Binding GameObject.HumanAirline.Profile.Name,Source={StaticResource gameObject}}"
+                           Style="{StaticResource HeaderStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </WrapPanel>
             <StackPanel VerticalAlignment="Center" Grid.Column="2" Margin="0 0 10 0">
-                <TextBlock Text="{Binding GameObject.HumanAirline.Profile.CEO,Source={StaticResource gameObject}}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding GameObject.GameTime,Source={StaticResource gameObject},ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" HorizontalAlignment="Center" FontWeight="Bold">
+                <TextBlock Text="{Binding GameObject.HumanAirline.Profile.CEO,Source={StaticResource gameObject}}"
+                           HorizontalAlignment="Center" FontWeight="Bold" />
+                <TextBlock
+                    Text="{Binding GameObject.GameTime,Source={StaticResource gameObject},ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                    HorizontalAlignment="Center" FontWeight="Bold">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding GameObject.DayRoundEnabled,Source={StaticResource gameObject}}" Value="True">
+                                <DataTrigger
+                                    Binding="{Binding GameObject.DayRoundEnabled,Source={StaticResource gameObject}}"
+                                    Value="True">
                                     <Setter Property="TextBlock.Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBlock Text="{Binding GameObject.GameTime,Source={StaticResource gameObject},ConverterCulture={x:Static gl:CultureInfo.CurrentCulture},StringFormat={}{0:D}}" HorizontalAlignment="Center" FontWeight="Bold">
+                <TextBlock
+                    Text="{Binding GameObject.GameTime,Source={StaticResource gameObject},ConverterCulture={x:Static gl:CultureInfo.CurrentCulture},StringFormat={}{0:D}}"
+                    HorizontalAlignment="Center" FontWeight="Bold">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding GameObject.DayRoundEnabled,Source={StaticResource gameObject}}" Value="False"> 
+                                <DataTrigger
+                                    Binding="{Binding GameObject.DayRoundEnabled,Source={StaticResource gameObject}}"
+                                    Value="False">
                                     <Setter Property="TextBlock.Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -55,139 +69,175 @@
                     </TextBlock.Style>
                 </TextBlock>
                 <WrapPanel>
-                    <TextBlock Text="{Binding GameObject.HumanMoney,Source={StaticResource gameObject},Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding GameObject.HumanMoney,Source={StaticResource gameObject},Converter={StaticResource ValueIsMinusConverter}}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
-                <TextBlock Margin="10 0 0 0" Text="{Binding GameObject.HumanAirline.OverallScore,Source={StaticResource gameObject},StringFormat=Human Score: {0}}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                    <TextBlock
+                        Text="{Binding GameObject.HumanMoney,Source={StaticResource gameObject},Converter={StaticResource ValueCurrencyConverter}}"
+                        Foreground="{Binding GameObject.HumanMoney,Source={StaticResource gameObject},Converter={StaticResource ValueIsMinusConverter}}"
+                        HorizontalAlignment="Center" FontWeight="Bold" />
+                    <TextBlock Margin="10 0 0 0"
+                               Text="{Binding GameObject.HumanAirline.OverallScore,Source={StaticResource gameObject},StringFormat=Human Score: {0}}"
+                               HorizontalAlignment="Center" FontWeight="Bold" />
                 </WrapPanel>
             </StackPanel>
 
         </Grid>
     </DataTemplate>
-    <DataTemplate x:Key="MainContentMenu">
-
-    </DataTemplate>
+    <DataTemplate x:Key="MainContentMenu" />
     <DataTemplate x:Key="MainContent">
-        <TextBlock Text="Main content"></TextBlock>
+        <TextBlock Text="Main content" />
 
     </DataTemplate>
     <DataTemplate x:Key="LeftContent">
         <StackPanel>
             <WrapPanel HorizontalAlignment="Center">
-                <Button Background="#3772A1" Width="32" Click="btnBack_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3006'}">
-                    <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding NavigatorCanGoBack,Source={StaticResource gameObject}}" Value="False">
-                                <Setter Property="Button.IsEnabled" Value="False" />
-                              </DataTrigger>
-                            </Style.Triggers>
-                    </Style>
-                    </Button.Style>
-                    <Image Source="/data/images/back.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                </Button>
-                <Button Background="#3772A1" Width="32" Margin="5 0 0 0"  Click="btnPause_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3002'}">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding GameWorker.IsPaused,Source={StaticResource gameObject}}" Value="True">
-                                <Setter Property="Button.Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                <Image Source="/data/images/pause.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-            </Button>
-                <Button Background="#3772A1" Margin="5 0 0 0" Width="32" Click="btnStart_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3003'}">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding GameWorker.IsPaused,Source={StaticResource gameObject}}" Value="False">
-                                <Setter Property="Button.Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                <Image Source="/data/images/play.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-            </Button>
-
-                <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnNewGame_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3000'}">
-                    <Image Source="/data/images/newgame.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                </Button>
-               
-                </WrapPanel>
-                    
-                <WrapPanel HorizontalAlignment="Center" Margin="0 5 0 0">
-                <Button Background="#3772A1" Width="32" Click="btnNews_Click"  ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu'}">
+                <Button Background="#3772A1" Width="32" Click="btnBack_Click"
+                        ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3006'}">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding GameObject.NewsBox.HasUnreadNews,Source={StaticResource gameObject}}" Value="False">
+                                <DataTrigger Binding="{Binding NavigatorCanGoBack,Source={StaticResource gameObject}}"
+                                             Value="False">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Image Source="/data/images/back.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                </Button>
+                <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnPause_Click"
+                        ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3002'}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding GameWorker.IsPaused,Source={StaticResource gameObject}}"
+                                             Value="True">
                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                    <Image Source="/data/images/mail.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    <Image Source="/data/images/pause.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
-                <Button Background="#3772A1" Width="32" Click="btnNews_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3004'}">
+                <Button Background="#3772A1" Margin="5 0 0 0" Width="32" Click="btnStart_Click"
+                        ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3003'}">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding GameObject.NewsBox.HasUnreadNews,Source={StaticResource gameObject}}" Value="True">
+                                <DataTrigger Binding="{Binding GameWorker.IsPaused,Source={StaticResource gameObject}}"
+                                             Value="False">
                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                    <Image Source="/data/images/nomail.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    <Image Source="/data/images/play.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
-                <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnCalendar_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3005'}">
-                    <Image Source="/data/images/calendar.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                </Button>
-                <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnExitGame_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3001'}">
 
-                    <Image Source="/data/images/exit.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnNewGame_Click"
+                        ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3000'}">
+                    <Image Source="/data/images/newgame.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                </Button>
+
+            </WrapPanel>
+
+            <WrapPanel HorizontalAlignment="Center" Margin="0 5 0 0">
+                <Button Background="#3772A1" Width="32" Click="btnNews_Click"
+                        ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu'}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding GameObject.NewsBox.HasUnreadNews,Source={StaticResource gameObject}}"
+                                    Value="False">
+                                    <Setter Property="Button.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Image Source="/data/images/mail.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                </Button>
+                <Button Background="#3772A1" Width="32" Click="btnNews_Click"
+                        ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3004'}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding GameObject.NewsBox.HasUnreadNews,Source={StaticResource gameObject}}"
+                                    Value="True">
+                                    <Setter Property="Button.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Image Source="/data/images/nomail.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                </Button>
+                <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnCalendar_Click"
+                        ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3005'}">
+                    <Image Source="/data/images/calendar.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                </Button>
+                <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnExitGame_Click"
+                        ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3001'}">
+
+                    <Image Source="/data/images/exit.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
             </WrapPanel>
-            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1000'}" Style="{StaticResource MenuButtonStyle}" Click="Home_Click" Margin="0 5 0 0"></Button>
-            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1001'}" Style="{StaticResource MenuButtonStyle}" Click="RoutesManager_Click" Margin="0 5 0 0"></Button>
-            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1002'}" Style="{StaticResource MenuButtonStyle}" Click="Airliners_Click"  Margin="0 5 0 0"></Button>
-            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1003'}" Style="{StaticResource MenuButtonStyle}" Click="Airports_Click" Margin="0 5 0 0" ></Button>
-            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1004'}" Style="{StaticResource MenuButtonStyle}" Click="Alliances_Click" Margin="0 5 0 0" ></Button>
-            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1005'}" Style="{StaticResource MenuButtonStyle}" Click="Pilots_Click"  Margin="0 5 0 0" ></Button>
-            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1007'}" Style="{StaticResource MenuButtonStyle}" Click="Airlines_Click" Margin="0 5 0 0" ></Button>
-            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1009'}" Style="{StaticResource MenuButtonStyle}" Click="Flights_Click" Margin="0 5 0 0" ></Button>
-            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1008'}" Style="{StaticResource MenuButtonStyle}" Click="Options_Click" Margin="0 5 0 0" ></Button>
-            
+            <Button
+                Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1000'}"
+                Style="{StaticResource MenuButtonStyle}" Click="Home_Click" Margin="0 5 0 0" />
+            <Button
+                Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1001'}"
+                Style="{StaticResource MenuButtonStyle}" Click="RoutesManager_Click" Margin="0 5 0 0" />
+            <Button
+                Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1002'}"
+                Style="{StaticResource MenuButtonStyle}" Click="Airliners_Click" Margin="0 5 0 0" />
+            <Button
+                Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1003'}"
+                Style="{StaticResource MenuButtonStyle}" Click="Airports_Click" Margin="0 5 0 0" />
+            <Button
+                Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1004'}"
+                Style="{StaticResource MenuButtonStyle}" Click="Alliances_Click" Margin="0 5 0 0" />
+            <Button
+                Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1005'}"
+                Style="{StaticResource MenuButtonStyle}" Click="Pilots_Click" Margin="0 5 0 0" />
+            <Button
+                Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1007'}"
+                Style="{StaticResource MenuButtonStyle}" Click="Airlines_Click" Margin="0 5 0 0" />
+            <Button
+                Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1009'}"
+                Style="{StaticResource MenuButtonStyle}" Click="Flights_Click" Margin="0 5 0 0" />
+            <Button
+                Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1008'}"
+                Style="{StaticResource MenuButtonStyle}" Click="Options_Click" Margin="0 5 0 0" />
+
         </StackPanel>
 
     </DataTemplate>
-    <DataTemplate x:Key="ActionMenu">
-        
-    </DataTemplate>
+    <DataTemplate x:Key="ActionMenu" />
     <DataTemplate x:Key="RightContent">
-        <TextBlock Text=""></TextBlock>
+        <TextBlock Text="" />
     </DataTemplate>
     <DataTemplate x:Key="FooterContent">
-        <TextBlock Text="{Binding Source={x:Static p:Settings.Default},
-                               Path=Version,StringFormat={}The Airline Project {0}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+        <TextBlock
+            Text="{Binding Source={x:Static p:Settings.Default},
+                               Path=Version,StringFormat={}The Airline Project {0}}"
+            FontWeight="Bold" VerticalAlignment="Bottom" />
 
     </DataTemplate>
     <Style TargetType="{x:Type local:StandardMasterPage}" x:Key="StandardPage">
-        <Setter Property="FooterContentArea" Value="{StaticResource FooterContent}"></Setter>
-        <Setter Property="HeaderContentArea"  Value="{StaticResource HeaderContent}"/>
-        <Setter Property="MainContentArea" Value="{StaticResource MainContent}"/>
-        <Setter Property="RightContentArea" Value="{StaticResource RightContent}"/>
-        <Setter Property="LeftContentArea" Value="{StaticResource LeftContent}"/>
-        <Setter Property="MainContentMenuArea" Value="{StaticResource MainContentMenu}"></Setter>
+        <Setter Property="FooterContentArea" Value="{StaticResource FooterContent}" />
+        <Setter Property="HeaderContentArea" Value="{StaticResource HeaderContent}" />
+        <Setter Property="MainContentArea" Value="{StaticResource MainContent}" />
+        <Setter Property="RightContentArea" Value="{StaticResource RightContent}" />
+        <Setter Property="LeftContentArea" Value="{StaticResource LeftContent}" />
+        <Setter Property="MainContentMenuArea" Value="{StaticResource MainContentMenu}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:StandardMasterPage}">
                     <Grid>
                         <Grid.Background>
-                            <ImageBrush ImageSource="/data/images/bg.jpg"/>
+                            <ImageBrush ImageSource="/data/images/bg.jpg" />
                         </Grid.Background>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="50" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="20" />
                         </Grid.RowDefinitions>
@@ -197,55 +247,63 @@
                                     <LinearGradientBrush.GradientStops>
                                         <GradientStop Offset="0.25">
                                             <GradientStop.Color>
-                                                <Color A="50" R="255" G="158" B="0"></Color>
+                                                <Color A="50" R="255" G="158" B="0" />
                                             </GradientStop.Color>
                                         </GradientStop>
                                         <GradientStop Offset="1">
                                             <GradientStop.Color>
-                                                <Color A="50" R="117" G="69" B="15"></Color>
+                                                <Color A="50" R="117" G="69" B="15" />
                                             </GradientStop.Color>
                                         </GradientStop>
                                     </LinearGradientBrush.GradientStops>
                                 </LinearGradientBrush>
                             </Grid.Background>
-                            <ContentControl VerticalAlignment="Center" Margin="10 0 0 0" Grid.Row="0" x:Name="HeaderContentArea" ContentTemplate="{TemplateBinding HeaderContentArea}"/>
+                            <ContentControl VerticalAlignment="Center" Margin="10 0 0 0" Grid.Row="0"
+                                            x:Name="HeaderContentArea"
+                                            ContentTemplate="{TemplateBinding HeaderContentArea}" />
 
                         </Grid>
                         <Grid Grid.Row="1" Margin="10 50 10 50">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="150" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="150" />
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
-                                 </Grid.RowDefinitions>
-                            <ContentControl x:Name="LeftContentArea" Grid.Row="0" VerticalAlignment="Top" ContentTemplate="{TemplateBinding LeftContentArea}"/>
-                                <ContentControl x:Name="ActionMenuArea" Grid.Row="1" VerticalAlignment="Bottom" ContentTemplate="{TemplateBinding ActionMenuArea}"/>
+                                </Grid.RowDefinitions>
+                                <ContentControl x:Name="LeftContentArea" Grid.Row="0" VerticalAlignment="Top"
+                                                ContentTemplate="{TemplateBinding LeftContentArea}" />
+                                <ContentControl x:Name="ActionMenuArea" Grid.Row="1" VerticalAlignment="Bottom"
+                                                ContentTemplate="{TemplateBinding ActionMenuArea}" />
 
 
                             </Grid>
 
                             <Grid Grid.Column="1" Margin="10 0 10 0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
-                                <ContentControl Grid.Row="0"  x:Name="MainContentMenuArea" ContentTemplate="{TemplateBinding MainContentMenuArea}"/>
+                                <ContentControl Grid.Row="0" x:Name="MainContentMenuArea"
+                                                ContentTemplate="{TemplateBinding MainContentMenuArea}" />
 
                                 <DockPanel Grid.Row="1">
                                     <Border Style="{StaticResource RoundedBorderStyle}">
-                                        <ContentControl  x:Name="MainContentArea" ContentTemplate="{TemplateBinding MainContentArea}"/>
+                                        <ContentControl x:Name="MainContentArea"
+                                                        ContentTemplate="{TemplateBinding MainContentArea}" />
                                     </Border>
                                 </DockPanel>
                             </Grid>
 
-                            <ContentControl Grid.Column="2" x:Name="RightContentArea" ContentTemplate="{TemplateBinding RightContentArea}"/>
+                            <ContentControl Grid.Column="2" x:Name="RightContentArea"
+                                            ContentTemplate="{TemplateBinding RightContentArea}" />
 
                         </Grid>
-                        <ContentControl Grid.Row="2" x:Name="FooterContentArea" ContentTemplate="{TemplateBinding FooterContentArea}"/>
+                        <ContentControl Grid.Row="2" x:Name="FooterContentArea"
+                                        ContentTemplate="{TemplateBinding FooterContentArea}" />
                     </Grid>
                 </ControlTemplate>
 
@@ -254,5 +312,5 @@
         </Setter>
 
     </Style>
-    
+
 </ResourceDictionary>

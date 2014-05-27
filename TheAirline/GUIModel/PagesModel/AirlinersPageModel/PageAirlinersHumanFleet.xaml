@@ -1,94 +1,128 @@
 ﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirlinersPageModel.PageAirlinersHumanFleet"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-       xmlns:filter="clr-namespace:TheAirline.GUIModel.CustomControlsModel.FilterableListView"
-      mc:Ignorable="d" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:filter="clr-namespace:TheAirline.GUIModel.CustomControlsModel.FilterableListView"
+      mc:Ignorable="d"
       Name="pageAirlinersHumanFleet"
       d:DesignHeight="300" d:DesignWidth="300"
-	Title="PageAirlinersHumanFleet">
+      Title="PageAirlinersHumanFleet">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel>
-            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinersHumanFleet 1000'}" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-            <filter:FilterableListView BorderThickness="0" ItemContainerStyle="{StaticResource ListViewItemStyle}" ItemsSource="{Binding Fleet,ElementName=pageAirlinersHumanFleet}"  FilterButtonActiveStyle="{StaticResource filterButtonActive}"           
-                                FilterButtonInactiveStyle="{StaticResource filterButtonInactive}" Background="Transparent" >
+            <TextBlock
+                Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinersHumanFleet 1000'}"
+                Style="{StaticResource SmallHeaderStyle}" />
+            <filter:FilterableListView BorderThickness="0" ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                       ItemsSource="{Binding Fleet,ElementName=pageAirlinersHumanFleet}"
+                                       FilterButtonActiveStyle="{StaticResource filterButtonActive}"
+                                       FilterButtonInactiveStyle="{StaticResource filterButtonInactive}"
+                                       Background="Transparent">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
-                        
-                        <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1002'}" CanFilter="False" SortPropertyName="Name" Width="150">
+
+                        <filter:SortableGridViewColumn
+                            Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1002'}"
+                            CanFilter="False" SortPropertyName="Name" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource FleetAirlinerLink}"></ContentControl>
+                                    <ContentControl Content="{Binding}" VerticalAlignment="Bottom"
+                                                    ContentTemplate="{StaticResource FleetAirlinerLink}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </filter:SortableGridViewColumn>
-                        <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1003'}" CanFilter="True" SortPropertyName="Airliner.Type.Name" Width="200">
+                        <filter:SortableGridViewColumn
+                            Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1003'}"
+                            CanFilter="True" SortPropertyName="Airliner.Type.Name" Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <Image Source="{Binding Airliner.Type.Manufacturer.Logo}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="20"></Image>
-                                        <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                        <Image Source="{Binding Airliner.Type.Manufacturer.Logo}"
+                                               VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"
+                                               Width="20" />
+                                        <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name}"
+                                                   VerticalAlignment="Bottom" />
                                     </WrapPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </filter:SortableGridViewColumn>
-                        <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1004'}" CanFilter="False" SortPropertyName="Airliner.Routes" Width="150">
+                        <filter:SortableGridViewColumn
+                            Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1004'}"
+                            CanFilter="False" SortPropertyName="Airliner.Routes" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ListBox ItemsSource="{Binding Routes}" BorderThickness="0" Style="{StaticResource VerticalListBoxStyle}"  VerticalAlignment="Bottom">
+                                    <ListBox ItemsSource="{Binding Routes}" BorderThickness="0"
+                                             Style="{StaticResource VerticalListBoxStyle}" VerticalAlignment="Bottom">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource RouteFlagItem}" VerticalAlignment="Bottom"></ContentControl>
+                                                <ContentControl Content="{Binding}"
+                                                                ContentTemplate="{StaticResource RouteFlagItem}"
+                                                                VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
                                     </ListBox>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </filter:SortableGridViewColumn>
-                        <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1014'}" CanFilter="False" SortPropertyName="Airliner.Type.CockpitCrew" Width="100">
+                        <filter:SortableGridViewColumn
+                            Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1014'}"
+                            CanFilter="False" SortPropertyName="Airliner.Type.CockpitCrew" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Airliner.Type.CockpitCrew}" VerticalAlignment="Bottom"></TextBlock>
+                                    <TextBlock Text="{Binding Airliner.Type.CockpitCrew}" VerticalAlignment="Bottom" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </filter:SortableGridViewColumn>
-                        <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1015'}" CanFilter="False" SortPropertyName="Pilots.Count" Width="50">
+                        <filter:SortableGridViewColumn
+                            Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1015'}"
+                            CanFilter="False" SortPropertyName="Pilots.Count" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Pilots.Count}" VerticalAlignment="Bottom"></TextBlock>
+                                    <TextBlock Text="{Binding Pilots.Count}" VerticalAlignment="Bottom" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </filter:SortableGridViewColumn>
                     </GridView>
                 </ListView.View>
             </filter:FilterableListView>
-            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinersHumanFleet 1001'}" Margin="0 10 0 0" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <TextBlock
+                Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinersHumanFleet 1001'}"
+                Margin="0 10 0 0" Style="{StaticResource SmallHeaderStyle}" />
 
-            <filter:FilterableListView BorderThickness="0" ItemContainerStyle="{StaticResource ListViewItemStyle}" ItemsSource="{Binding OrderedFleet,ElementName=pageAirlinersHumanFleet}"  FilterButtonActiveStyle="{StaticResource filterButtonActive}"           
-                                FilterButtonInactiveStyle="{StaticResource filterButtonInactive}" Background="Transparent" >
+            <filter:FilterableListView BorderThickness="0" ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                       ItemsSource="{Binding OrderedFleet,ElementName=pageAirlinersHumanFleet}"
+                                       FilterButtonActiveStyle="{StaticResource filterButtonActive}"
+                                       FilterButtonInactiveStyle="{StaticResource filterButtonInactive}"
+                                       Background="Transparent">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
 
-                        <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1002'}" CanFilter="False" SortPropertyName="Name" Width="150">
+                        <filter:SortableGridViewColumn
+                            Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1002'}"
+                            CanFilter="False" SortPropertyName="Name" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </filter:SortableGridViewColumn>
-                        <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1003'}" CanFilter="True" SortPropertyName="Airliner.Type.Name" Width="200">
+                        <filter:SortableGridViewColumn
+                            Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1003'}"
+                            CanFilter="True" SortPropertyName="Airliner.Type.Name" Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <Image Source="{Binding Airliner.Type.Manufacturer.Logo}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="20"></Image>
-                                        <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                        <Image Source="{Binding Airliner.Type.Manufacturer.Logo}"
+                                               VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"
+                                               Width="20" />
+                                        <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name}"
+                                                   VerticalAlignment="Bottom" />
                                     </WrapPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </filter:SortableGridViewColumn>
-                      
+
                     </GridView>
                 </ListView.View>
             </filter:FilterableListView>

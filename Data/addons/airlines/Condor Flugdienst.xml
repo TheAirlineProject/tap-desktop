@@ -1,6 +1,8 @@
 ﻿<airline>
-  <profile name="Condor Flugdienst" iata="DE" color="Yellow" country="1002" CEO="Ralf Teckentrup" mentality="Moderate" market="Global" preferedairport="FRA">
-    <narrative narrative="Condor is an airline based in Frankfurt, Germany, operating scheduled leisure flights to the Mediterranean, Asia, Africa, North America, South America and the Caribbean as part of Thomas Cook Group" />
+  <profile name="Condor Flugdienst" iata="DE" color="Yellow" country="1002" CEO="Ralf Teckentrup" mentality="Moderate"
+           market="Global" preferedairport="FRA">
+    <narrative
+      narrative="Condor is an airline based in Frankfurt, Germany, operating scheduled leisure flights to the Mediterranean, Asia, Africa, North America, South America and the Caribbean as part of Thomas Cook Group" />
   </profile>
   <info real="True" from="1956" to="2199"></info>
 </airline>

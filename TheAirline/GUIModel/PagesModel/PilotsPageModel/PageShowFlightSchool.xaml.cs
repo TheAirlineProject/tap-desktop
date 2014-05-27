@@ -1,234 +1,185 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.CountryModel.TownModel;
-using TheAirline.Model.GeneralModel.Helpers;
-using TheAirline.Model.PilotModel;
-
-namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
+﻿namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+
+    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+    using TheAirline.Model.AirlinerModel;
+    using TheAirline.Model.GeneralModel;
+    using TheAirline.Model.GeneralModel.CountryModel.TownModel;
+    using TheAirline.Model.GeneralModel.Helpers;
+    using TheAirline.Model.PilotModel;
+
     /// <summary>
-    /// Interaction logic for PageShowFlightSchool.xaml
+    ///     Interaction logic for PageShowFlightSchool.xaml
     /// </summary>
     public partial class PageShowFlightSchool : Page
     {
-        public FlightSchoolMVVM FlightSchool { get; set; }
-        public List<string> AirlinerFamilies { get; set; }
-        public ObservableCollection<Instructor> Instructors { get; set; }
-        private Random rnd = new Random();
+        #region Fields
+
+        private readonly Random rnd = new Random();
+
+        #endregion
+
+        #region Constructors and Destructors
 
         public PageShowFlightSchool(FlightSchool fs)
         {
             this.FlightSchool = new FlightSchoolMVVM(fs);
             this.Instructors = new ObservableCollection<Instructor>();
-            this.AirlinerFamilies = AirlinerTypes.GetTypes(t => t.Produced.From.Year <= GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30)).Select(t => t.AirlinerFamily).Distinct().OrderBy(a => a).ToList();
-            
+            this.AirlinerFamilies =
+                AirlinerTypes.GetTypes(
+                    t =>
+                        t.Produced.From.Year <= GameObject.GetInstance().GameTime.Year
+                        && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30))
+                    .Select(t => t.AirlinerFamily)
+                    .Distinct()
+                    .OrderBy(a => a)
+                    .ToList();
+
             this.DataContext = this.FlightSchool;
 
-            setHireStudentsStatus();
+            this.setHireStudentsStatus();
 
-            InitializeComponent();
-
+            this.InitializeComponent();
         }
-        private void btnSellAircraft_Click(object sender, RoutedEventArgs e)
+
+        #endregion
+
+        #region Public Properties
+
+        public List<string> AirlinerFamilies { get; set; }
+
+        public FlightSchoolMVVM FlightSchool { get; set; }
+
+        public ObservableCollection<Instructor> Instructors { get; set; }
+
+        #endregion
+
+        #region Methods
+
+        private void btnBuyAircraft_Click(object sender, RoutedEventArgs e)
         {
-            TrainingAircraft aircraft = (TrainingAircraft)((Button)sender).Tag;
-            
-            var aircrafts = new List<TrainingAircraft>(this.FlightSchool.Aircrafts);
-            aircrafts.Remove(aircraft);
+            var cbAircraft = new ComboBox();
+            cbAircraft.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
+            cbAircraft.HorizontalAlignment = HorizontalAlignment.Left;
+            cbAircraft.ItemTemplate = this.Resources["TrainingAircraftTypeItem"] as DataTemplate;
+            cbAircraft.Width = 300;
 
-            
-            Dictionary<TrainingAircraftType,int> types = this.FlightSchool.Aircrafts.GroupBy(a=>a.Type).
-                     Select(group =>
-                         new
-                         {
-                             Type = group.Key,
-                             Count = group.Sum(g=>g.Type.MaxNumberOfStudents)
-                         }).ToDictionary(g => g.Type, g => g.Count); ;
-
-
-            foreach (PilotStudent student in this.FlightSchool.Students)
+            foreach (
+                TrainingAircraftType type in
+                    TrainingAircraftTypes.GetAircraftTypes()
+                        .FindAll(
+                            t => GeneralHelpers.GetInflationPrice(t.Price) < GameObject.GetInstance().HumanAirline.Money)
+                )
             {
-                var firstAircraft = student.Rating.Aircrafts.OrderBy(a=>a.TypeLevel).First(a=>types.ContainsKey(a) && types[a] > 0);
-
-                if (types.ContainsKey(firstAircraft))
-                    types[firstAircraft]--;
-
+                cbAircraft.Items.Add(type);
             }
 
-            Boolean canSellAircraft = aircrafts.Sum(a => a.Type.MaxNumberOfStudents) >= this.FlightSchool.Students.Count && types[aircraft.Type]>1;
+            cbAircraft.SelectedIndex = 0;
 
-            if (canSellAircraft)
+            if (PopUpSingleElement.ShowPopUp(
+                Translator.GetInstance().GetString("PageShowFlightSchool", "1014"),
+                cbAircraft) == PopUpSingleElement.ButtonSelected.OK && cbAircraft.SelectedItem != null)
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2809"), Translator.GetInstance().GetString("MessageBox", "2809", "message"), WPFMessageBoxButtons.YesNo);
+                var aircraft = (TrainingAircraftType)cbAircraft.SelectedItem;
+                double price = aircraft.Price;
 
-                if (result == WPFMessageBoxResult.Yes)
-                {
-                    this.FlightSchool.removeTrainingAircraft(aircraft);
-                    
-                    double price = aircraft.Type.Price * 0.75;
-                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline,GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, price);
-                }
+                this.FlightSchool.addTrainingAircraft(
+                    new TrainingAircraft(aircraft, GameObject.GetInstance().GameTime, this.FlightSchool.FlightSchool));
+
+                AirlineHelpers.AddAirlineInvoice(
+                    GameObject.GetInstance().HumanAirline,
+                    GameObject.GetInstance().GameTime,
+                    Invoice.InvoiceType.Airline_Expenses,
+                    -price);
+
+                this.setHireStudentsStatus();
             }
-            else
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2810"), Translator.GetInstance().GetString("MessageBox", "2810", "message"), WPFMessageBoxButtons.Ok);
         }
-        private void btnHire_Click(object sender, RoutedEventArgs e)
+
+        private void btnChangeInstructor_Click(object sender, RoutedEventArgs e)
         {
-          
-            var aircraftsTypesFree = this.FlightSchool.Aircrafts.Select(a => a.Type);
+            var student = (PilotStudent)((Hyperlink)sender).Tag;
 
-            Dictionary<TrainingAircraftType,int> types = this.FlightSchool.Aircrafts.GroupBy(a=>a.Type).
-                     Select(group =>
-                         new
-                         {
-                             Type = group.Key,
-                             Count = group.Sum(g=>g.Type.MaxNumberOfStudents)
-                         }).ToDictionary(g => g.Type, g => g.Count); ;
+            var cbInstructor = new ComboBox();
+            cbInstructor.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
+            cbInstructor.Width = 200;
+            cbInstructor.HorizontalAlignment = HorizontalAlignment.Left;
+            cbInstructor.DisplayMemberPath = "Profile.Name";
+            cbInstructor.SelectedValuePath = "Profile.Name";
 
-
-            foreach (PilotStudent student in this.FlightSchool.Students)
+            foreach (
+                Instructor instructor in
+                    this.FlightSchool.Instructors.Where(
+                        i =>
+                            i.Students.Count < Model.PilotModel.FlightSchool.MaxNumberOfStudentsPerInstructor
+                            && i != student.Instructor))
             {
-                var firstAircraft = student.Rating.Aircrafts.OrderBy(a=>a.TypeLevel).FirstOrDefault(a=>types.ContainsKey(a) && types[a] > 0);
-
-                if (firstAircraft != null && types.ContainsKey(firstAircraft))
-                    types[firstAircraft]--;
-
+                cbInstructor.Items.Add(instructor);
             }
 
-            List<PilotRating> possibleRatings = new List<PilotRating>();
-            
-            foreach (PilotRating rating in PilotRatings.GetRatings())
+            cbInstructor.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp(
+                Translator.GetInstance().GetString("PanelFlightSchool", "1005"),
+                cbInstructor) == PopUpSingleElement.ButtonSelected.OK && cbInstructor.SelectedItem != null)
             {
-                if (rating.Aircrafts.Exists(a => types.ContainsKey(a) && types[a] > 0))
-                    possibleRatings.Add(rating);
+                student.Instructor.removeStudent(student);
+                student.Instructor = (Instructor)cbInstructor.SelectedItem;
+
+                ICollectionView view = CollectionViewSource.GetDefaultView(this.lvStudents.ItemsSource);
+                view.Refresh();
             }
-
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2811"), string.Format(Translator.GetInstance().GetString("MessageBox", "2811", "message")), WPFMessageBoxButtons.YesNo);
-            
-            if (result == WPFMessageBoxResult.Yes)
-            {
-              
-                List<Town> towns = Towns.GetTowns(this.FlightSchool.FlightSchool.Airport.Profile.Country);
-
-                Town town = towns[rnd.Next(towns.Count)];
-                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-35), GameObject.GetInstance().GameTime.AddYears(-23));
-                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(town.Country), Names.GetInstance().getRandomLastName(town.Country), birthdate, town);
-
-                Instructor instructor = (Instructor)cbInstructor.SelectedItem;
-                string airlinerFamily = cbTrainAircraft.SelectedItem.ToString();
-
-                PilotStudent student = new PilotStudent(profile, GameObject.GetInstance().GameTime,instructor ,GeneralHelpers.GetPilotStudentRating(instructor,possibleRatings),airlinerFamily);
-
-                TrainingAircraft aircraft = getStudentAircraft(student);
-
-                student.Aircraft = aircraft;
-
-                this.FlightSchool.addStudent(student);
-                instructor.addStudent(student);
-
-                setHireStudentsStatus();
-
-                double studentPrice = GeneralHelpers.GetInflationPrice(PilotStudent.StudentCost);
-
-                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -studentPrice);
-            }
-
         }
+
         private void btnDeleteInstructor_Click(object sender, RoutedEventArgs e)
         {
-            Instructor instructor = (Instructor)((Button)sender).Tag;
+            var instructor = (Instructor)((Button)sender).Tag;
 
             if (instructor.Students.Count > 0)
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2805"), string.Format(Translator.GetInstance().GetString("MessageBox", "2805", "message"), instructor.Profile.Name), WPFMessageBoxButtons.Ok);
+            {
+                WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2805"),
+                    string.Format(
+                        Translator.GetInstance().GetString("MessageBox", "2805", "message"),
+                        instructor.Profile.Name),
+                    WPFMessageBoxButtons.Ok);
+            }
             else
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2806"), string.Format(Translator.GetInstance().GetString("MessageBox", "2806", "message"), instructor.Profile.Name), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2806"),
+                    string.Format(
+                        Translator.GetInstance().GetString("MessageBox", "2806", "message"),
+                        instructor.Profile.Name),
+                    WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
                     this.FlightSchool.removeInstructor(instructor);
 
                     instructor.FlightSchool = null;
-                
                 }
             }
         }
-        private void btnBuyAircraft_Click(object sender, RoutedEventArgs e)
-        {
-            
-            ComboBox cbAircraft = new ComboBox();
-            cbAircraft.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbAircraft.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbAircraft.ItemTemplate = this.Resources["TrainingAircraftTypeItem"] as DataTemplate;
-            cbAircraft.Width = 300;
 
-            foreach (TrainingAircraftType type in TrainingAircraftTypes.GetAircraftTypes().FindAll(t => GeneralHelpers.GetInflationPrice(t.Price) < GameObject.GetInstance().HumanAirline.Money))
-                cbAircraft.Items.Add(type);
-
-            cbAircraft.SelectedIndex = 0;
-            
-            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageShowFlightSchool", "1014"), cbAircraft) == PopUpSingleElement.ButtonSelected.OK && cbAircraft.SelectedItem != null)
-            {
-
-                TrainingAircraftType aircraft = (TrainingAircraftType)cbAircraft.SelectedItem;
-                double price = aircraft.Price;
-
-                this.FlightSchool.addTrainingAircraft(new TrainingAircraft(aircraft, GameObject.GetInstance().GameTime, this.FlightSchool.FlightSchool));
-
-                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -price);
-
-                setHireStudentsStatus();
-
-            }
-        }
-        private void btnChangeInstructor_Click(object sender, RoutedEventArgs e)
-        {
-            PilotStudent student = (PilotStudent)((Hyperlink)sender).Tag;
-
-            ComboBox cbInstructor = new ComboBox();
-            cbInstructor.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbInstructor.Width = 200;
-            cbInstructor.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbInstructor.DisplayMemberPath = "Profile.Name";
-            cbInstructor.SelectedValuePath = "Profile.Name";
-
-            foreach (Instructor instructor in this.FlightSchool.Instructors.Where(i => i.Students.Count <  Model.PilotModel.FlightSchool.MaxNumberOfStudentsPerInstructor && i != student.Instructor))
-                cbInstructor.Items.Add(instructor);
-
-            cbInstructor.SelectedIndex = 0;
-
-            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1005"), cbInstructor) == PopUpSingleElement.ButtonSelected.OK && cbInstructor.SelectedItem != null)
-            {
-                student.Instructor.removeStudent(student);
-                student.Instructor = (Instructor)cbInstructor.SelectedItem;
-
-                ICollectionView view = CollectionViewSource.GetDefaultView(lvStudents.ItemsSource);
-                view.Refresh();
-            }
-        }
         private void btnDeleteStudent_Click(object sender, RoutedEventArgs e)
         {
-            PilotStudent student = (PilotStudent)((Button)sender).Tag;
+            var student = (PilotStudent)((Button)sender).Tag;
 
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2807"), string.Format(Translator.GetInstance().GetString("MessageBox", "2807", "message"), student.Profile.Name), WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+                Translator.GetInstance().GetString("MessageBox", "2807"),
+                string.Format(Translator.GetInstance().GetString("MessageBox", "2807", "message"), student.Profile.Name),
+                WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
             {
@@ -236,46 +187,190 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 student.Instructor.removeStudent(student);
                 student.Instructor = null;
 
-                setHireStudentsStatus();
-                
+                this.setHireStudentsStatus();
             }
         }
-        //sets the status for hiring of students
-        private void setHireStudentsStatus()
+
+        private void btnHire_Click(object sender, RoutedEventArgs e)
         {
-            double studentPrice = GeneralHelpers.GetInflationPrice(PilotStudent.StudentCost);
+            IEnumerable<TrainingAircraftType> aircraftsTypesFree = this.FlightSchool.Aircrafts.Select(a => a.Type);
 
-            int studentsCapacity = Math.Min(this.FlightSchool.Instructors.Count * Model.PilotModel.FlightSchool.MaxNumberOfStudentsPerInstructor, this.FlightSchool.FlightSchool.TrainingAircrafts.Sum(f => f.Type.MaxNumberOfStudents));
+            Dictionary<TrainingAircraftType, int> types =
+                this.FlightSchool.Aircrafts.GroupBy(a => a.Type)
+                    .Select(group => new { Type = group.Key, Count = group.Sum(g => g.Type.MaxNumberOfStudents) })
+                    .ToDictionary(g => g.Type, g => g.Count);
+            ;
 
-            this.FlightSchool.HireStudents = studentsCapacity > this.FlightSchool.Students.Count && GameObject.GetInstance().HumanAirline.Money > studentPrice;
+            foreach (PilotStudent student in this.FlightSchool.Students)
+            {
+                TrainingAircraftType firstAircraft =
+                    student.Rating.Aircrafts.OrderBy(a => a.TypeLevel)
+                        .FirstOrDefault(a => types.ContainsKey(a) && types[a] > 0);
 
-            this.Instructors.Clear();
+                if (firstAircraft != null && types.ContainsKey(firstAircraft))
+                {
+                    types[firstAircraft]--;
+                }
+            }
 
-            foreach (Instructor instructor in this.FlightSchool.Instructors.Where(i => i.Students.Count < Model.PilotModel.FlightSchool.MaxNumberOfStudentsPerInstructor))
-                this.Instructors.Add(instructor);
+            var possibleRatings = new List<PilotRating>();
+
+            foreach (PilotRating rating in PilotRatings.GetRatings())
+            {
+                if (rating.Aircrafts.Exists(a => types.ContainsKey(a) && types[a] > 0))
+                {
+                    possibleRatings.Add(rating);
+                }
+            }
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+                Translator.GetInstance().GetString("MessageBox", "2811"),
+                string.Format(Translator.GetInstance().GetString("MessageBox", "2811", "message")),
+                WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                List<Town> towns = Towns.GetTowns(this.FlightSchool.FlightSchool.Airport.Profile.Country);
+
+                Town town = towns[this.rnd.Next(towns.Count)];
+                DateTime birthdate = MathHelpers.GetRandomDate(
+                    GameObject.GetInstance().GameTime.AddYears(-35),
+                    GameObject.GetInstance().GameTime.AddYears(-23));
+                var profile = new PilotProfile(
+                    Names.GetInstance().getRandomFirstName(town.Country),
+                    Names.GetInstance().getRandomLastName(town.Country),
+                    birthdate,
+                    town);
+
+                var instructor = (Instructor)this.cbInstructor.SelectedItem;
+                string airlinerFamily = this.cbTrainAircraft.SelectedItem.ToString();
+
+                var student = new PilotStudent(
+                    profile,
+                    GameObject.GetInstance().GameTime,
+                    instructor,
+                    GeneralHelpers.GetPilotStudentRating(instructor, possibleRatings),
+                    airlinerFamily);
+
+                TrainingAircraft aircraft = this.getStudentAircraft(student);
+
+                student.Aircraft = aircraft;
+
+                this.FlightSchool.addStudent(student);
+                instructor.addStudent(student);
+
+                this.setHireStudentsStatus();
+
+                double studentPrice = GeneralHelpers.GetInflationPrice(PilotStudent.StudentCost);
+
+                AirlineHelpers.AddAirlineInvoice(
+                    GameObject.GetInstance().HumanAirline,
+                    GameObject.GetInstance().GameTime,
+                    Invoice.InvoiceType.Airline_Expenses,
+                    -studentPrice);
+            }
         }
+
+        private void btnSellAircraft_Click(object sender, RoutedEventArgs e)
+        {
+            var aircraft = (TrainingAircraft)((Button)sender).Tag;
+
+            var aircrafts = new List<TrainingAircraft>(this.FlightSchool.Aircrafts);
+            aircrafts.Remove(aircraft);
+
+            Dictionary<TrainingAircraftType, int> types =
+                this.FlightSchool.Aircrafts.GroupBy(a => a.Type)
+                    .Select(group => new { Type = group.Key, Count = group.Sum(g => g.Type.MaxNumberOfStudents) })
+                    .ToDictionary(g => g.Type, g => g.Count);
+            ;
+
+            foreach (PilotStudent student in this.FlightSchool.Students)
+            {
+                TrainingAircraftType firstAircraft =
+                    student.Rating.Aircrafts.OrderBy(a => a.TypeLevel).First(a => types.ContainsKey(a) && types[a] > 0);
+
+                if (types.ContainsKey(firstAircraft))
+                {
+                    types[firstAircraft]--;
+                }
+            }
+
+            Boolean canSellAircraft = aircrafts.Sum(a => a.Type.MaxNumberOfStudents) >= this.FlightSchool.Students.Count
+                                      && types[aircraft.Type] > 1;
+
+            if (canSellAircraft)
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2809"),
+                    Translator.GetInstance().GetString("MessageBox", "2809", "message"),
+                    WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    this.FlightSchool.removeTrainingAircraft(aircraft);
+
+                    double price = aircraft.Type.Price * 0.75;
+                    AirlineHelpers.AddAirlineInvoice(
+                        GameObject.GetInstance().HumanAirline,
+                        GameObject.GetInstance().GameTime,
+                        Invoice.InvoiceType.Airline_Expenses,
+                        price);
+                }
+            }
+            else
+            {
+                WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2810"),
+                    Translator.GetInstance().GetString("MessageBox", "2810", "message"),
+                    WPFMessageBoxButtons.Ok);
+            }
+        }
+
+        //sets the status for hiring of students
+
         //returns the aircraft for a student
         private TrainingAircraft getStudentAircraft(PilotStudent student)
         {
-            Dictionary<TrainingAircraftType, int> types = this.FlightSchool.Aircrafts.GroupBy(a => a.Type).
-                     Select(group =>
-                         new
-                         {
-                             Type = group.Key,
-                             Count = group.Sum(g => g.Type.MaxNumberOfStudents)
-                         }).ToDictionary(g => g.Type, g => g.Count); ;
-
+            Dictionary<TrainingAircraftType, int> types =
+                this.FlightSchool.Aircrafts.GroupBy(a => a.Type)
+                    .Select(group => new { Type = group.Key, Count = group.Sum(g => g.Type.MaxNumberOfStudents) })
+                    .ToDictionary(g => g.Type, g => g.Count);
+            ;
 
             foreach (PilotStudent ps in this.FlightSchool.Students)
             {
                 types[ps.Aircraft.Type]--;
-
             }
 
-            var freeTypes = types.Where(t => t.Value > 0).Select(t => t.Key).OrderBy(t=>t.TypeLevel);
+            IOrderedEnumerable<TrainingAircraftType> freeTypes =
+                types.Where(t => t.Value > 0).Select(t => t.Key).OrderBy(t => t.TypeLevel);
 
-            return this.FlightSchool.Aircrafts.First(a=>a.Type ==  freeTypes.First());
+            return this.FlightSchool.Aircrafts.First(a => a.Type == freeTypes.First());
         }
-       
+
+        private void setHireStudentsStatus()
+        {
+            double studentPrice = GeneralHelpers.GetInflationPrice(PilotStudent.StudentCost);
+
+            int studentsCapacity =
+                Math.Min(
+                    this.FlightSchool.Instructors.Count * Model.PilotModel.FlightSchool.MaxNumberOfStudentsPerInstructor,
+                    this.FlightSchool.FlightSchool.TrainingAircrafts.Sum(f => f.Type.MaxNumberOfStudents));
+
+            this.FlightSchool.HireStudents = studentsCapacity > this.FlightSchool.Students.Count
+                                             && GameObject.GetInstance().HumanAirline.Money > studentPrice;
+
+            this.Instructors.Clear();
+
+            foreach (
+                Instructor instructor in
+                    this.FlightSchool.Instructors.Where(
+                        i => i.Students.Count < Model.PilotModel.FlightSchool.MaxNumberOfStudentsPerInstructor))
+            {
+                this.Instructors.Add(instructor);
+            }
+        }
+
+        #endregion
     }
 }
