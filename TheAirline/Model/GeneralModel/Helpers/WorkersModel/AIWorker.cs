@@ -1,70 +1,96 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using TheAirline.Model.AirlineModel;
-
-namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
+﻿namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
 {
-    class AIWorker
+    using System;
+    using System.ComponentModel;
+
+    using TheAirline.Model.AirlineModel;
+
+    internal class AIWorker
     {
+        #region Static Fields
+
         private static AIWorker Instance;
-        private BackgroundWorker Worker;
+
+        #endregion
+
+        #region Fields
+
+        private readonly BackgroundWorker Worker;
+
+        #endregion
+
+        #region Constructors and Destructors
+
         private AIWorker()
         {
             this.Worker = new BackgroundWorker();
 
             this.Worker.WorkerReportsProgress = true;
             this.Worker.WorkerSupportsCancellation = true;
-            this.Worker.DoWork += new DoWorkEventHandler(bw_DoWork);
+            this.Worker.DoWork += this.bw_DoWork;
             //bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
-            Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-
+            this.Worker.RunWorkerCompleted += this.bw_RunWorkerCompleted;
         }
+
+        #endregion
+
         //returns the instance
+
+        #region Public Methods and Operators
+
         public static AIWorker GetInstance()
         {
             if (Instance == null)
+            {
                 Instance = new AIWorker();
+            }
 
             return Instance;
         }
+
         //cancels the worker
         public void cancel()
         {
-       
             if (this.Worker.WorkerSupportsCancellation)
+            {
                 this.Worker.CancelAsync();
-
+            }
         }
+
         //starts the worker
         public void start()
         {
             if (!this.Worker.IsBusy)
+            {
                 this.Worker.RunWorkerAsync();
+            }
         }
+
+        #endregion
+
+        #region Methods
+
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
-                if ((this.Worker.CancellationPending == true))
+                if (this.Worker.CancellationPending)
                 {
                     e.Cancel = true;
-
                 }
                 else
                 {
                     if (!airline.IsHuman)
+                    {
                         AIHelpers.UpdateCPUAirline(airline);
-
+                    }
                 }
             }
-                 
         }
+
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if ((e.Cancelled == true))
+            if (e.Cancelled)
             {
                 Console.WriteLine("Canceled!");
             }
@@ -79,5 +105,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
                 this.Worker.RunWorkerAsync();
             }
         }
+
+        #endregion
     }
 }

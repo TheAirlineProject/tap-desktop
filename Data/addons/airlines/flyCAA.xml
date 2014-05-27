@@ -1,6 +1,8 @@
 ﻿<airline>
-  <profile name="flyCAA" iata="BU" color="Red" country="221" CEO="Eric Ngoie" mentality="Moderate" market="Regional" preferedairport="FIH">
-    <narrative narrative="Compagnie Africaine d'Aviation (literally African Aviation Company, commonly abbreviated CAA and marketed as flyCAA) is a regional airline from the Democratic Republic of the Congo, based at N'djili Airport in Kinshasa" />
+  <profile name="flyCAA" iata="BU" color="Red" country="221" CEO="Eric Ngoie" mentality="Moderate" market="Regional"
+           preferedairport="FIH">
+    <narrative
+      narrative="Compagnie Africaine d'Aviation (literally African Aviation Company, commonly abbreviated CAA and marketed as flyCAA) is a regional airline from the Democratic Republic of the Congo, based at N'djili Airport in Kinshasa" />
   </profile>
   <info real="True" from="1993" to="2199"></info>
 </airline>

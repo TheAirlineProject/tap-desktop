@@ -1,12 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAirline", "TheAirline\TheAirline.csproj", "{63A09097-FD0E-4159-A2ED-528EA26FD097}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3698F27D-D600-4EFB-81DF-EB0AD8A1BCE3}"
 	ProjectSection(SolutionItems) = preProject
 		Performance1.psess = Performance1.psess
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data.csproj", "{00489C09-70F5-43C8-90B0-5F5B5CF7250D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,11 +40,20 @@ Global
 		{63A09097-FD0E-4159-A2ED-528EA26FD097}.Release|x64.Build.0 = Release|x64
 		{63A09097-FD0E-4159-A2ED-528EA26FD097}.Release|x86.ActiveCfg = Release|Any CPU
 		{63A09097-FD0E-4159-A2ED-528EA26FD097}.Release|x86.Build.0 = Release|Any CPU
+		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Release|x64.ActiveCfg = Release|Any CPU
+		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

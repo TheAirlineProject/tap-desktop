@@ -1,17 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:c="clr-namespace:TheAirline.GUIModel.HelpersModel">
-    <c:TextUnderscoreConverter x:Key="TextUnderscoreConverter"></c:TextUnderscoreConverter>
-    <c:BooleanToVisibility x:Key="BooleanToVisibility"></c:BooleanToVisibility>
-    <c:TranslatorConverter x:Key="TranslatorConverter"></c:TranslatorConverter>
-    <c:ValueCurrencyConverter x:Key="ValueCurrencyConverter"></c:ValueCurrencyConverter>
-    <c:ValueIsMinusConverter x:Key="ValueIsMinusConverter"/>
-    <c:ListBoxItemStyleSelectorTransparent x:Key="ListBoxItemStyleSelector"></c:ListBoxItemStyleSelectorTransparent>
-    <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
-    <c:AirportCodeConverter x:Key="AirportCodeConverter"></c:AirportCodeConverter>
-    <c:SpeedToUnitConverter x:Key="SpeedToUnitConverter"></c:SpeedToUnitConverter>
-    <c:DistanceToUnitConverter x:Key="DistanceToUnitConverter"></c:DistanceToUnitConverter>
-    <c:SmallDistanceToUnitConverter x:Key="SmallDistanceToUnitConverter"></c:SmallDistanceToUnitConverter>
-    <c:FuelConsumptionToUnitConverter x:Key="FuelConsumptionConverter"></c:FuelConsumptionToUnitConverter>
-    <c:FuelUnitConverter x:Key="FuelUnitConverter"></c:FuelUnitConverter>
- </ResourceDictionary>
+    <c:TextUnderscoreConverter x:Key="TextUnderscoreConverter" />
+    <c:BooleanToVisibility x:Key="BooleanToVisibility" />
+    <c:TranslatorConverter x:Key="TranslatorConverter" />
+    <c:ValueCurrencyConverter x:Key="ValueCurrencyConverter" />
+    <c:ValueIsMinusConverter x:Key="ValueIsMinusConverter" />
+    <c:ListBoxItemStyleSelectorTransparent x:Key="ListBoxItemStyleSelector" />
+    <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter" />
+    <c:AirportCodeConverter x:Key="AirportCodeConverter" />
+    <c:SpeedToUnitConverter x:Key="SpeedToUnitConverter" />
+    <c:DistanceToUnitConverter x:Key="DistanceToUnitConverter" />
+    <c:SmallDistanceToUnitConverter x:Key="SmallDistanceToUnitConverter" />
+    <c:FuelConsumptionToUnitConverter x:Key="FuelConsumptionConverter" />
+    <c:FuelUnitConverter x:Key="FuelUnitConverter" />
+</ResourceDictionary>

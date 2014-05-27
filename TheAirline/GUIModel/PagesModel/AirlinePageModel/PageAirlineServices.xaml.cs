@@ -1,42 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.Helpers;
-using TheAirline.Model.PilotModel;
-
-namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
+﻿namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Media;
+
+    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+    using TheAirline.Model.AirlinerModel;
+    using TheAirline.Model.AirlinerModel.RouteModel;
+    using TheAirline.Model.GeneralModel;
+    using TheAirline.Model.GeneralModel.Helpers;
+    using TheAirline.Model.PilotModel;
+
     /// <summary>
-    /// Interaction logic for PageAirlineServices.xaml
+    ///     Interaction logic for PageAirlineServices.xaml
     /// </summary>
     public partial class PageAirlineServices : Page
     {
-        public AirlineMVVM Airline { get; set; }
-        public ObservableCollection<AirlineClassMVVM> Classes { get; set; }
-        public List<RouteFacility.FacilityType> FacilityTypes
-        {
-            get { return this.Classes.SelectMany(c => c.Facilities.Select(f => f.Type)).Distinct().ToList(); }
-            private set { ;}
-        }
+        #region Constructors and Destructors
+
         public PageAirlineServices(AirlineMVVM airline)
         {
             this.Classes = new ObservableCollection<AirlineClassMVVM>();
@@ -45,21 +33,28 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             {
                 if ((int)type <= GameObject.GetInstance().GameTime.Year)
                 {
-                    AirlineClassMVVM rClass = new AirlineClassMVVM(type);
+                    var rClass = new AirlineClassMVVM(type);
 
-                    foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                    foreach (
+                        RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                     {
                         if (GameObject.GetInstance().GameTime.Year >= (int)facilityType)
                         {
-                            AirlineClassFacilityMVVM facility = new AirlineClassFacilityMVVM(facilityType);
+                            var facility = new AirlineClassFacilityMVVM(facilityType);
 
                             facility.Facilities.Clear();
 
-                            foreach (RouteFacility rFacility in AirlineHelpers.GetRouteFacilities(GameObject.GetInstance().HumanAirline, facilityType))
+                            foreach (
+                                RouteFacility rFacility in
+                                    AirlineHelpers.GetRouteFacilities(
+                                        GameObject.GetInstance().HumanAirline,
+                                        facilityType))
+                            {
                                 facility.Facilities.Add(rFacility);
+                            }
 
-                            facility.SelectedFacility = RouteFacilities.GetBasicFacility(facility.Type);//GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
-
+                            facility.SelectedFacility = RouteFacilities.GetBasicFacility(facility.Type);
+                                //GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
 
                             rClass.Facilities.Add(facility);
                         }
@@ -70,85 +65,258 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             this.Airline = airline;
             this.DataContext = this.Airline;
-            this.Loaded += PageAirlineServices_Loaded;
+            this.Loaded += this.PageAirlineServices_Loaded;
 
-            InitializeComponent();
+            this.InitializeComponent();
 
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvFacilities.ItemsSource);
+            var view = (CollectionView)CollectionViewSource.GetDefaultView(this.lvFacilities.ItemsSource);
             view.GroupDescriptions.Clear();
             view.SortDescriptions.Clear();
 
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Type");
+            var groupDescription = new PropertyGroupDescription("Type");
             view.GroupDescriptions.Add(groupDescription);
 
-            SortDescription sortTypeDescription = new SortDescription("Type", ListSortDirection.Ascending);
+            var sortTypeDescription = new SortDescription("Type", ListSortDirection.Ascending);
             view.SortDescriptions.Add(sortTypeDescription);
 
-            SortDescription sortFacilityDescription = new SortDescription("Facility.Name", ListSortDirection.Ascending);
+            var sortFacilityDescription = new SortDescription("Facility.Name", ListSortDirection.Ascending);
             view.SortDescriptions.Add(sortFacilityDescription);
 
             for (int i = 120; i < 300; i += 15)
-                cbCancellationPolicy.Items.Add(i);
+            {
+                this.cbCancellationPolicy.Items.Add(i);
+            }
 
-            cbCancellationPolicy.SelectedItem = this.Airline.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue;
-
+            this.cbCancellationPolicy.SelectedItem =
+                this.Airline.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        public AirlineMVVM Airline { get; set; }
+
+        public ObservableCollection<AirlineClassMVVM> Classes { get; set; }
+
+        public List<RouteFacility.FacilityType> FacilityTypes
+        {
+            get
+            {
+                return this.Classes.SelectMany(c => c.Facilities.Select(f => f.Type)).Distinct().ToList();
+            }
+            private set
+            {
+                ;
+            }
+        }
+
+        #endregion
+
+        #region Methods
 
         private void PageAirlineServices_Loaded(object sender, RoutedEventArgs e)
         {
-
             foreach (AirlineClassMVVM rClass in this.Classes)
             {
                 foreach (AirlineClassFacilityMVVM rFacility in rClass.Facilities)
                 {
-                    rFacility.SelectedFacility = RouteFacilities.GetBasicFacility(rFacility.Type);//GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
-
+                    rFacility.SelectedFacility = RouteFacilities.GetBasicFacility(rFacility.Type);
+                        //GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
                 }
-
             }
         }
+
         //updates the facilities
-        private void updateClassFacilities()
+
+        private void btnBuyTrainingFacility_Click(object sender, RoutedEventArgs e)
         {
-            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+            var facility = (AirlineFacilityMVVM)this.cbTrainingFacilities.SelectedItem;
+
+            if (facility.Facility.Price > GameObject.GetInstance().HumanAirline.Money)
             {
-                AirlineClassMVVM rClass = this.Classes.FirstOrDefault(c => c.Type == type);
+                WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2101"),
+                    Translator.GetInstance().GetString("MessageBox", "2101", "message"),
+                    WPFMessageBoxButtons.Ok);
+            }
+            else
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2102"),
+                    string.Format(
+                        Translator.GetInstance().GetString("MessageBox", "2102", "message"),
+                        facility.Facility.Name),
+                    WPFMessageBoxButtons.YesNo);
 
-                if (rClass != null)
+                if (result == WPFMessageBoxResult.Yes)
                 {
-                    foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                    this.Airline.addTrainingFacility(facility);
+                }
+            }
+        }
+
+        private void btnBuy_Click(object sender, RoutedEventArgs e)
+        {
+            var facility = (AirlineFacilityMVVM)((Button)sender).Tag;
+
+            if (facility.Facility.Price > GameObject.GetInstance().HumanAirline.Money)
+            {
+                WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2101"),
+                    Translator.GetInstance().GetString("MessageBox", "2101", "message"),
+                    WPFMessageBoxButtons.Ok);
+            }
+            else
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2102"),
+                    string.Format(
+                        Translator.GetInstance().GetString("MessageBox", "2102", "message"),
+                        facility.Facility.Name),
+                    WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    this.Airline.addFacility(facility);
+
+                    this.updateClassFacilities();
+                }
+            }
+
+            ICollectionView view = CollectionViewSource.GetDefaultView(this.lvFacilities.ItemsSource);
+            view.Refresh();
+        }
+
+        private void btnCreateConfiguration_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (AirlineClassMVVM rClass in this.Classes)
+            {
+                foreach (AirlineClassFacilityMVVM rFacility in rClass.Facilities)
+                {
+                    rFacility.SelectedFacility = RouteFacilities.GetBasicFacility(rFacility.Type);
+                        //GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
+                }
+            }
+
+            this.btnCreate.Visibility = Visibility.Collapsed;
+            this.btnSave.Visibility = Visibility.Visible;
+        }
+
+        private void btnLoadConfiguration_Click(object sender, RoutedEventArgs e)
+        {
+            var cbConfigurations = new ComboBox();
+            cbConfigurations.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
+            cbConfigurations.SelectedValuePath = "Name";
+            cbConfigurations.DisplayMemberPath = "Name";
+            cbConfigurations.HorizontalAlignment = HorizontalAlignment.Left;
+            cbConfigurations.Width = 200;
+
+            foreach (
+                RouteClassesConfiguration confItem in
+                    Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses))
+            {
+                cbConfigurations.Items.Add(confItem);
+            }
+
+            cbConfigurations.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp(
+                Translator.GetInstance().GetString("PageAirlineWages", "1013"),
+                cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
+            {
+                foreach (AirlineClassMVVM rClass in this.Classes)
+                {
+                    foreach (AirlineClassFacilityMVVM rFacility in rClass.Facilities)
                     {
+                        rFacility.SelectedFacility = RouteFacilities.GetBasicFacility(rFacility.Type);
+                            //GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
+                    }
+                }
 
-                        if (GameObject.GetInstance().GameTime.Year >= (int)facilityType)
+                var configuration = (RouteClassesConfiguration)cbConfigurations.SelectedItem;
+
+                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                {
+                    foreach (RouteFacility facility in classConfiguration.getFacilities())
+                    {
+                        AirlineClassMVVM aClass =
+                            this.Classes.Where(c => c.Type == classConfiguration.Type).FirstOrDefault();
+
+                        if (aClass != null)
                         {
-                            AirlineClassFacilityMVVM facility = rClass.Facilities.FirstOrDefault(c => c.Type == facilityType);
+                            AirlineClassFacilityMVVM aFacility =
+                                aClass.Facilities.Where(f => f.Type == facility.Type).FirstOrDefault();
 
-                            if (facility == null)
+                            if (aFacility != null)
                             {
-                                facility = new AirlineClassFacilityMVVM(facilityType);
-
-                                rClass.Facilities.Add(facility);
+                                aFacility.SelectedFacility = facility;
                             }
-
-                            facility.Facilities.Clear();
-
-                            foreach (RouteFacility rFacility in AirlineHelpers.GetRouteFacilities(GameObject.GetInstance().HumanAirline, facilityType))
-                                facility.Facilities.Add(rFacility);
-
-                            facility.SelectedFacility = RouteFacilities.GetBasicFacility(facility.Type);
-
-
                         }
                     }
                 }
 
+                this.btnSave.Visibility = Visibility.Visible;
             }
         }
+
+        private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            this.Airline.saveFees();
+
+            var cancellationMinutes = (int)this.cbCancellationPolicy.SelectedItem;
+
+            GameObject.GetInstance().HumanAirline.setAirlinePolicy("Cancellation Minutes", cancellationMinutes);
+        }
+
+        private void btnSaveConfiguration_Click(object sender, RoutedEventArgs e)
+        {
+            int totalServiceLevel = this.Classes.Sum(c => c.Facilities.Sum(f => f.SelectedFacility.ServiceLevel));
+            var txtName = new TextBox();
+            txtName.Width = 200;
+            txtName.Background = Brushes.Transparent;
+            txtName.Foreground = Brushes.White;
+            txtName.Text = string.Format(
+                "Configuration {0} (Service level: {1})",
+                Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses).Count + 1,
+                totalServiceLevel);
+            txtName.HorizontalAlignment = HorizontalAlignment.Left;
+
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineWages", "1013"), txtName)
+                == PopUpSingleElement.ButtonSelected.OK && txtName.Text.Trim().Length > 2)
+            {
+                string name = txtName.Text.Trim();
+                var configuration = new RouteClassesConfiguration(name, true);
+
+                foreach (AirlineClassMVVM type in this.Classes)
+                {
+                    var classConfiguration = new RouteClassConfiguration(type.Type);
+
+                    foreach (AirlineClassFacilityMVVM facility in type.Facilities)
+                    {
+                        classConfiguration.addFacility(facility.SelectedFacility);
+                    }
+
+                    configuration.addClass(classConfiguration);
+                }
+
+                Configurations.AddConfiguration(configuration);
+
+                this.btnSave.Visibility = Visibility.Collapsed;
+                this.btnCreate.Visibility = Visibility.Visible;
+            }
+        }
+
         private void btnSell_Click(object sender, RoutedEventArgs e)
         {
-            AirlineFacilityMVVM facility = (AirlineFacilityMVVM)((Button)sender).Tag;
+            var facility = (AirlineFacilityMVVM)((Button)sender).Tag;
 
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2103"), string.Format(Translator.GetInstance().GetString("MessageBox", "2103", "message"), facility.Facility.Name), WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+                Translator.GetInstance().GetString("MessageBox", "2103"),
+                string.Format(
+                    Translator.GetInstance().GetString("MessageBox", "2103", "message"),
+                    facility.Facility.Name),
+                WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
             {
@@ -160,172 +328,63 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 {
                     this.Airline.removeFacility(facility);
 
-                    updateClassFacilities();
+                    this.updateClassFacilities();
                 }
             }
 
-
-            ICollectionView view = CollectionViewSource.GetDefaultView(lvFacilities.ItemsSource);
+            ICollectionView view = CollectionViewSource.GetDefaultView(this.lvFacilities.ItemsSource);
             view.Refresh();
         }
-        private void btnBuyTrainingFacility_Click(object sender, RoutedEventArgs e)
-        {
-            AirlineFacilityMVVM facility = (AirlineFacilityMVVM)cbTrainingFacilities.SelectedItem;
 
-            if (facility.Facility.Price > GameObject.GetInstance().HumanAirline.Money)
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2101"), Translator.GetInstance().GetString("MessageBox", "2101", "message"), WPFMessageBoxButtons.Ok);
-            else
-            {
-                 WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2102"), string.Format(Translator.GetInstance().GetString("MessageBox", "2102", "message"), facility.Facility.Name), WPFMessageBoxButtons.YesNo);
-
-                 if (result == WPFMessageBoxResult.Yes)
-                 {
-                     this.Airline.addTrainingFacility(facility);
-                 }
-            }
-
-        }
-        private void btnBuy_Click(object sender, RoutedEventArgs e)
-        {
-            AirlineFacilityMVVM facility = (AirlineFacilityMVVM)((Button)sender).Tag;
-
-            if (facility.Facility.Price > GameObject.GetInstance().HumanAirline.Money)
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2101"), Translator.GetInstance().GetString("MessageBox", "2101", "message"), WPFMessageBoxButtons.Ok);
-            else
-            {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2102"), string.Format(Translator.GetInstance().GetString("MessageBox", "2102", "message"), facility.Facility.Name), WPFMessageBoxButtons.YesNo);
-
-                if (result == WPFMessageBoxResult.Yes)
-                {
-                    this.Airline.addFacility(facility);
-
-                    updateClassFacilities();
-
-                }
-            }
-
-
-            ICollectionView view = CollectionViewSource.GetDefaultView(lvFacilities.ItemsSource);
-            view.Refresh();
-
-        }
-        private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
-        {
-            this.Airline.saveFees();
-
-            int cancellationMinutes = (int)cbCancellationPolicy.SelectedItem;
-
-            GameObject.GetInstance().HumanAirline.setAirlinePolicy("Cancellation Minutes", cancellationMinutes);
-        }
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
             this.Airline.resetFees();
 
-            cbCancellationPolicy.SelectedItem = this.Airline.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue;
-        }
-        private void btnCreateConfiguration_Click(object sender, RoutedEventArgs e)
-        {
-        
-            foreach (AirlineClassMVVM rClass in this.Classes)
-            {
-                foreach (AirlineClassFacilityMVVM rFacility in rClass.Facilities)
-                {
-                    rFacility.SelectedFacility = RouteFacilities.GetBasicFacility(rFacility.Type);//GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
-
-                }
-
-            }
-
-             btnCreate.Visibility = System.Windows.Visibility.Collapsed;
-             btnSave.Visibility = System.Windows.Visibility.Visible;
-
-        
-        }
-        private void btnSaveConfiguration_Click(object sender, RoutedEventArgs e)
-        {
-            int totalServiceLevel = this.Classes.Sum(c => c.Facilities.Sum(f => f.SelectedFacility.ServiceLevel));
-            TextBox txtName = new TextBox();
-            txtName.Width = 200;
-            txtName.Background = Brushes.Transparent;
-            txtName.Foreground = Brushes.White;
-            txtName.Text = string.Format("Configuration {0} (Service level: {1})", Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses).Count + 1, totalServiceLevel);
-            txtName.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-
-            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineWages", "1013"), txtName) == PopUpSingleElement.ButtonSelected.OK && txtName.Text.Trim().Length > 2)
-            {
-                string name = txtName.Text.Trim();
-                RouteClassesConfiguration configuration = new RouteClassesConfiguration(name, true);
-
-                foreach (AirlineClassMVVM type in this.Classes)
-                {
-                    RouteClassConfiguration classConfiguration = new RouteClassConfiguration(type.Type);
-
-                    foreach (AirlineClassFacilityMVVM facility in type.Facilities)
-                        classConfiguration.addFacility(facility.SelectedFacility);
-
-                    configuration.addClass(classConfiguration);
-                }
-
-                Configurations.AddConfiguration(configuration);
-
-                btnSave.Visibility = System.Windows.Visibility.Collapsed;
-                btnCreate.Visibility = System.Windows.Visibility.Visible;
-            }
+            this.cbCancellationPolicy.SelectedItem =
+                this.Airline.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue;
         }
 
-        private void btnLoadConfiguration_Click(object sender, RoutedEventArgs e)
+        private void updateClassFacilities()
         {
-    
-            ComboBox cbConfigurations = new ComboBox();
-            cbConfigurations.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbConfigurations.SelectedValuePath = "Name";
-            cbConfigurations.DisplayMemberPath = "Name";
-            cbConfigurations.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbConfigurations.Width = 200;
-
-            foreach (RouteClassesConfiguration confItem in Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses))
-                cbConfigurations.Items.Add(confItem);
-
-            cbConfigurations.SelectedIndex = 0;
-
-            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineWages", "1013"), cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
+            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
-           
-                foreach (AirlineClassMVVM rClass in this.Classes)
+                AirlineClassMVVM rClass = this.Classes.FirstOrDefault(c => c.Type == type);
+
+                if (rClass != null)
                 {
-                    foreach (AirlineClassFacilityMVVM rFacility in rClass.Facilities)
+                    foreach (
+                        RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                     {
-                        rFacility.SelectedFacility = RouteFacilities.GetBasicFacility(rFacility.Type);//GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
-
-                    }
-
-                }
-
-                RouteClassesConfiguration configuration = (RouteClassesConfiguration)cbConfigurations.SelectedItem;
-
-                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
-                {
-                    foreach (RouteFacility facility in classConfiguration.getFacilities())
-                    {
-
-                        AirlineClassMVVM aClass = this.Classes.Where(c => c.Type == classConfiguration.Type).FirstOrDefault();
-
-                        if (aClass != null)
+                        if (GameObject.GetInstance().GameTime.Year >= (int)facilityType)
                         {
-                            AirlineClassFacilityMVVM aFacility = aClass.Facilities.Where(f => f.Type == facility.Type).FirstOrDefault();
+                            AirlineClassFacilityMVVM facility =
+                                rClass.Facilities.FirstOrDefault(c => c.Type == facilityType);
 
-                            if (aFacility != null)
-                             aFacility.SelectedFacility = facility;
+                            if (facility == null)
+                            {
+                                facility = new AirlineClassFacilityMVVM(facilityType);
+
+                                rClass.Facilities.Add(facility);
+                            }
+
+                            facility.Facilities.Clear();
+
+                            foreach (
+                                RouteFacility rFacility in
+                                    AirlineHelpers.GetRouteFacilities(
+                                        GameObject.GetInstance().HumanAirline,
+                                        facilityType))
+                            {
+                                facility.Facilities.Add(rFacility);
+                            }
+
+                            facility.SelectedFacility = RouteFacilities.GetBasicFacility(facility.Type);
                         }
                     }
                 }
-
-                
-                btnSave.Visibility = System.Windows.Visibility.Visible;
-
-         
-
             }
         }
+
+        #endregion
     }
 }

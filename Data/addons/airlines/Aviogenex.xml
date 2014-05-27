@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <airline>
-<profile name="Aviogenex" iata="JJ" logo="JJ2" color="Red" country="104" CEO="Bojan Nikolić" mentality="Moderate" market="Regional" preferedairport="BEG">
-<narrative narrative="Aviogenex is a charter airline based in Belgrade, Serbia. It operates regular and ad hoc charter flights, and wet-lease services, worldwide. Its main base is Belgrade Nikola Tesla Airport."/>
-</profile>
-<info real="True" from="1968" to="2199"></info>
-	<startdata>
-		<airliners>
-			<airliner type="Boeing 727-200 Adv." early="5" late="1"></airliner>
-			<airliner type="Tupolev Tu-134" early="3" late="0"></airliner>
-			<airliner type="Boeing 727-200 Adv." early="5" late="0"></airliner>
-		</airliners>
-	</startdata>
+  <profile name="Aviogenex" iata="JJ" logo="JJ2" color="Red" country="104" CEO="Bojan Nikolić" mentality="Moderate"
+           market="Regional" preferedairport="BEG">
+    <narrative
+      narrative="Aviogenex is a charter airline based in Belgrade, Serbia. It operates regular and ad hoc charter flights, and wet-lease services, worldwide. Its main base is Belgrade Nikola Tesla Airport." />
+  </profile>
+  <info real="True" from="1968" to="2199"></info>
+  <startdata>
+    <airliners>
+      <airliner type="Boeing 727-200 Adv." early="5" late="1"></airliner>
+      <airliner type="Tupolev Tu-134" early="3" late="0"></airliner>
+      <airliner type="Boeing 727-200 Adv." early="5" late="0"></airliner>
+    </airliners>
+  </startdata>
 </airline>

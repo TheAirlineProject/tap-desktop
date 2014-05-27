@@ -1,41 +1,41 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.GeneralModel;
-
-namespace TheAirline.Model.AirlinerModel.RouteModel
+﻿namespace TheAirline.Model.AirlinerModel.RouteModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+
+    using TheAirline.Model.AirlineModel;
+    using TheAirline.Model.GeneralModel;
+
     //the class for the in flight facilities on a route
     [Serializable]
     public class RouteFacility : ISerializable
     {
-        public enum ExpenseType { Random, Fixed }
-        [Versioning("etype")]
-        public ExpenseType EType { get; set; }
-        [Versioning("expensesperpassenger")]
-        public double ExpensePerPassenger { get; set; }
-        public enum FacilityType { Food, Drinks, Alcoholic_Drinks, Newspapers = 1950, Magazines = 1955, WiFi = 2007 }
-        [Versioning("type")]
-        public FacilityType Type { get; set; }
-        [Versioning("name")]
-        public string Name { get; set; }
-        [Versioning("servicelevel")]
-        public int ServiceLevel { get; set; }
-        [Versioning("feetype")]
-        public FeeType FeeType { get; set; }
-        [Versioning("uid")]
-        public string Uid { get; set; }
-        [Versioning("requires")]
-        public AirlineFacility Requires { get; set; }
-        public RouteFacility(string uid, FacilityType type, string name, int serviceLevel, ExpenseType eType, double expense, FeeType feeType) : this(uid,type,name,serviceLevel,eType,expense,feeType,null)
+        #region Constructors and Destructors
+
+        public RouteFacility(
+            string uid,
+            FacilityType type,
+            string name,
+            int serviceLevel,
+            ExpenseType eType,
+            double expense,
+            FeeType feeType)
+            : this(uid, type, name, serviceLevel, eType, expense, feeType, null)
         {
         }
-        public RouteFacility(string uid, FacilityType type, string name, int serviceLevel, ExpenseType eType, double expense, FeeType feeType,AirlineFacility requires)
+
+        public RouteFacility(
+            string uid,
+            FacilityType type,
+            string name,
+            int serviceLevel,
+            ExpenseType eType,
+            double expense,
+            FeeType feeType,
+            AirlineFacility requires)
         {
             this.Type = type;
             this.Name = name;
@@ -46,47 +46,121 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.FeeType = feeType;
             this.Requires = requires;
         }
-           private RouteFacility(SerializationInfo info, StreamingContext ctxt)
+
+        private RouteFacility(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
-            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                this.GetType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (SerializationEntry entry in info)
             {
-                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
-
+                MemberInfo prop =
+                    propsAndFields.FirstOrDefault(
+                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
+                    {
                         ((FieldInfo)prop).SetValue(this, entry.Value);
+                    }
                     else
+                    {
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
                 }
             }
 
-            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+            IEnumerable<MemberInfo> notSetProps =
+                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
+                    {
                         ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
                     else
+                    {
                         ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
-
+                    }
                 }
-
             }
         }
+
+        #endregion
+
+        #region Enums
+
+        public enum ExpenseType
+        {
+            Random,
+
+            Fixed
+        }
+
+        public enum FacilityType
+        {
+            Food,
+
+            Drinks,
+
+            Alcoholic_Drinks,
+
+            Newspapers = 1950,
+
+            Magazines = 1955,
+
+            WiFi = 2007
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        [Versioning("etype")]
+        public ExpenseType EType { get; set; }
+
+        [Versioning("expensesperpassenger")]
+        public double ExpensePerPassenger { get; set; }
+
+        [Versioning("feetype")]
+        public FeeType FeeType { get; set; }
+
+        [Versioning("name")]
+        public string Name { get; set; }
+
+        [Versioning("requires")]
+        public AirlineFacility Requires { get; set; }
+
+        [Versioning("servicelevel")]
+        public int ServiceLevel { get; set; }
+
+        [Versioning("type")]
+        public FacilityType Type { get; set; }
+
+        [Versioning("uid")]
+        public string Uid { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -94,68 +168,96 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             Type myType = this.GetType();
 
-            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
 
                 if (member is FieldInfo)
+                {
                     propValue = ((FieldInfo)member).GetValue(this);
+                }
                 else
+                {
                     propValue = ((PropertyInfo)member).GetValue(this, null);
+                }
 
-                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
-
         }
 
+        #endregion
     }
+
     //the list of facilities for each type
     public class RouteFacilities
     {
+        #region Static Fields
+
         private static List<RouteFacility> facilities = new List<RouteFacility>();
+
+        #endregion
+
         //private static Dictionary<RouteFacility.FacilityType, List<RouteFacility>> facilities = new Dictionary<RouteFacility.FacilityType, List<RouteFacility>>();
         //clears the list
-        public static void Clear()
-        {
-            facilities = new List<RouteFacility>();
-        }
+
         //adds a facility to the list
+
+        #region Public Methods and Operators
+
         public static void AddFacility(RouteFacility facility)
         {
             facilities.Add(facility);
         }
+
+        public static void Clear()
+        {
+            facilities = new List<RouteFacility>();
+        }
+
         //returns all facilities
-        public static List<RouteFacility> GetFacilities()
-        {
-            return facilities;
-        }
-        //returns all facilities for a specific type
-        public static List<RouteFacility> GetFacilities(RouteFacility.FacilityType type)
-        {
-            return facilities.FindAll(f => f.Type == type);
-        }
+
         //Return all facilities
         public static List<RouteFacility> GetAllFacilities()
         {
             return facilities;
         }
+
         //returns the basic facility for a specific type
         public static RouteFacility GetBasicFacility(RouteFacility.FacilityType type)
         {
             return facilities.FindAll(f => f.Type == type).OrderBy(f => f.ServiceLevel).First();
         }
+
+        public static List<RouteFacility> GetFacilities()
+        {
+            return facilities;
+        }
+
+        //returns all facilities for a specific type
+        public static List<RouteFacility> GetFacilities(RouteFacility.FacilityType type)
+        {
+            return facilities.FindAll(f => f.Type == type);
+        }
+
         //returns the facility with an uid
         public static RouteFacility GetFacility(string uid)
         {
             return facilities.Find(f => f.Uid == uid);
         }
+
+        #endregion
     }
 }

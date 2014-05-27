@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="BH Airlines" iata="JA" logo="JA" color="DarkBlue" country="248" CEO="Amir Jažić" mentality="Moderate" market="Regional" preferedairport="SSJ">
+<narrative narrative="BH Airlines is an airline with its head office in Sarajevo, Bosnia and Herzegovina, operating scheduled services, charter passenger services and small cargo services. With its home base at the Sarajevo International Airport, the airline is the flag carrier of Bosnia and Herzegovina." />
+</profile>
+<info real="True" from="1994" to="2199"></info>
+	<startdata>
+		<airliners>
+			<airliner type="Boeing 737-400" 	early="1" late="0"></airliner>
+			<airliner type="Airbus A319-100" 	early="1" late="0"></airliner>
+			<airliner type="ATR 72-210" 		early="2" late="2"></airliner>
+		</airliners>
+	</startdata>
+</airline>

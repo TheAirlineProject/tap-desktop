@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="JAT Yugoslav Airlines" iata="JU" logo="JU3" color="DarkBlue" country="104" CEO=" Žika Petrović" mentality="Moderate" market="Regional" preferedairport="BEG">
+<narrative narrative="With the reintroduction of international flights in 1994 after two years of economic sanctions, JAT introduced a new livery and corporate image. New tail logo which contained a stylized Yugoslav flag with the white colour being represented by a pair of white wings, the larger wing symbolizing Serbia and the smaller Montenegro."/>
+</profile>
+<info real="True" from="1994" to="2003"></info>
+  <startdata>
+    <airliners>
+      
+	  <airliner type="Douglas DC-9-30" early="10" late="0"></airliner>
+	  <airliner type="Boeing 727-200" early="4" late="0"></airliner>
+	  <airliner type="MD DC-10-30" early="5" late="1"></airliner>
+	  <airliner type="Boeing 737-300" early="10" late="4"></airliner>
+      <airliner type="ATR 72-210" early="4" late="3"></airliner>
+	  
+    </airliners>
+  </startdata>
+  
+</airline>

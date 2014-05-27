@@ -1,6 +1,8 @@
 ﻿<airline>
-  <profile name="Cape Air" iata="9K" color="Blue" country="122" CEO="Daniel A. Wolf" mentality="Moderate" market="Regional" preferedairport="HYA">
-    <narrative narrative="The airline was co-founded in 1988 by company pilots Craig Stewart and Dan Wolf, and investor Grant Wilson. Initially, Cape Air flew between Provincetown and Boston in Massachusetts, but throughout the early 1990s new routes were added to destinations across southeastern New England. In 1994, Cape Air and Nantucket Airlines merged and now offer hourly flights between Nantucket and Hyannis.Services in Florida and the Caribbean were added in the late 1990s" />
+  <profile name="Cape Air" iata="9K" color="Blue" country="122" CEO="Daniel A. Wolf" mentality="Moderate"
+           market="Regional" preferedairport="HYA">
+    <narrative
+      narrative="The airline was co-founded in 1988 by company pilots Craig Stewart and Dan Wolf, and investor Grant Wilson. Initially, Cape Air flew between Provincetown and Boston in Massachusetts, but throughout the early 1990s new routes were added to destinations across southeastern New England. In 1994, Cape Air and Nantucket Airlines merged and now offer hourly flights between Nantucket and Hyannis.Services in Florida and the Caribbean were added in the late 1990s" />
   </profile>
   <info real="True" from="1989" to="2199"></info>
 </airline>

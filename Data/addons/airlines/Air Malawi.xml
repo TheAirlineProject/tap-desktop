@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <airline>
-  <profile name="Air Malawi" iata="QM" color="Red" country="286" CEO="Mathews Chikaonda" mentality="Moderate" market="Regional" preferedairport="BLZ">
-    <narrative narrative="Air Malawi began operations in 1964 as a wholly owned subsidiary of Central African Airways (CAA), which had also set up Air Rhodesia and Zambia Airways. CAA supplied Air Malawi with two Douglas DC-3s and three de Havilland Canada DHC-2 Beavers to begin services, and also provided technical assistant, equipment and personnel." />
+  <profile name="Air Malawi" iata="QM" color="Red" country="286" CEO="Mathews Chikaonda" mentality="Moderate"
+           market="Regional" preferedairport="BLZ">
+    <narrative
+      narrative="Air Malawi began operations in 1964 as a wholly owned subsidiary of Central African Airways (CAA), which had also set up Air Rhodesia and Zambia Airways. CAA supplied Air Malawi with two Douglas DC-3s and three de Havilland Canada DHC-2 Beavers to begin services, and also provided technical assistant, equipment and personnel." />
   </profile>
   <info real="True" from="1964" to="2013"></info>
 </airline>

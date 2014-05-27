@@ -1,29 +1,30 @@
 ﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirportPageModel.PageAirportFacilities"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.AirportPageModel"
       xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       Name="pageAirportFacilities"
       d:DesignHeight="300" d:DesignWidth="300"
-	Title="PageAirportFacilities">
+      Title="PageAirportFacilities">
     <Page.Resources>
-        <local:TypeFacilitiesConverter x:Key="TypeFacilitiesConverter"></local:TypeFacilitiesConverter>
+        <local:TypeFacilitiesConverter x:Key="TypeFacilitiesConverter" />
         <DataTemplate x:Key="AllianceItem">
             <WrapPanel>
-                <Image Source="{Binding Logo}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Margin="0 0 5 0"/>
-                <TextBlock VerticalAlignment="Bottom" Width="100" Text="{Binding Name}"></TextBlock>
+                <Image Source="{Binding Logo}" Width="20" VerticalAlignment="Bottom"
+                       RenderOptions.BitmapScalingMode="HighQuality" Margin="0 0 5 0" />
+                <TextBlock VerticalAlignment="Bottom" Width="100" Text="{Binding Name}" />
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
                 <StackPanel>
@@ -37,13 +38,18 @@
                                 </Style.Triggers>
                             </Style>
                         </StackPanel.Style>
-                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                        <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AirportFacilities}">
+                        <TextBlock
+                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1000'}"
+                            VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
+                        <ListBox Background="Transparent" BorderThickness="0"
+                                 ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                                 ItemsSource="{Binding AirportFacilities}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <Image Source="/data/images/airplane.png" VerticalAlignment="Bottom" Width="20" RenderOptions.BitmapScalingMode="HighQuality"/>
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                                        <Image Source="/data/images/airplane.png" VerticalAlignment="Bottom" Width="20"
+                                               RenderOptions.BitmapScalingMode="HighQuality" />
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
                                     </WrapPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -59,15 +65,27 @@
                                 </Style.Triggers>
                             </Style>
                         </StackPanel.Style>
-                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1001'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                        <ListBox Background="Transparent" Name="lbFacilities" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AirlineFacilities}">
+                        <TextBlock
+                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1001'}"
+                            VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
+                        <ListBox Background="Transparent" Name="lbFacilities" BorderThickness="0"
+                                 ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                                 ItemsSource="{Binding AirlineFacilities}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <ContentControl Content="{Binding Facility.Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom" Width="200" />
-                                        <ContentControl Content="{Binding Alliance}" ContentTemplate="{StaticResource AllianceItem}" VerticalAlignment="Bottom" Width="200" />
-                                        <TextBlock Text="{Binding Facility.Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                                        <Button Click="btnDeleteFacility_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 3000'}" Width="20" Tag="{Binding}" VerticalAlignment="Bottom" Background="Transparent">
+                                        <ContentControl Content="{Binding Facility.Airline}"
+                                                        ContentTemplate="{StaticResource AirlineLink}"
+                                                        VerticalAlignment="Bottom" Width="200" />
+                                        <ContentControl Content="{Binding Alliance}"
+                                                        ContentTemplate="{StaticResource AllianceItem}"
+                                                        VerticalAlignment="Bottom" Width="200" />
+                                        <TextBlock Text="{Binding Facility.Facility.Name}" VerticalAlignment="Bottom"
+                                                   Width="150" />
+                                        <Button Click="btnDeleteFacility_Click"
+                                                ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 3000'}"
+                                                Width="20" Tag="{Binding}" VerticalAlignment="Bottom"
+                                                Background="Transparent">
                                             <Button.Style>
                                                 <Style>
                                                     <Style.Triggers>
@@ -80,9 +98,10 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </Button.Style>
-                                            <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                            <Image Source="/data/images/delete.png"
+                                                   RenderOptions.BitmapScalingMode="HighQuality" />
                                         </Button>
-                                       
+
                                     </WrapPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -98,56 +117,89 @@
                                 </Style.Triggers>
                             </Style>
                         </StackPanel.Style>
-                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1011'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                        <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding BuildingAirlineFacilities}">
+                        <TextBlock
+                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1011'}"
+                            VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
+                        <ListBox Background="Transparent" BorderThickness="0"
+                                 ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                                 ItemsSource="{Binding BuildingAirlineFacilities}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <ContentControl Content="{Binding Facility.Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom" Width="200" />
-                                        <ContentControl Content="{Binding Alliance}" ContentTemplate="{StaticResource AllianceItem}" VerticalAlignment="Bottom" Width="200" />
-                                        <TextBlock Text="{Binding Facility.Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                                        <TextBlock Text="{Binding Facility.FinishedDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                        <ContentControl Content="{Binding Facility.Airline}"
+                                                        ContentTemplate="{StaticResource AirlineLink}"
+                                                        VerticalAlignment="Bottom" Width="200" />
+                                        <ContentControl Content="{Binding Alliance}"
+                                                        ContentTemplate="{StaticResource AllianceItem}"
+                                                        VerticalAlignment="Bottom" Width="200" />
+                                        <TextBlock Text="{Binding Facility.Facility.Name}" VerticalAlignment="Bottom"
+                                                   Width="150" />
+                                        <TextBlock
+                                            Text="{Binding Facility.FinishedDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                                            VerticalAlignment="Bottom" Width="150" />
                                     </WrapPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </StackPanel>
-                    <Expander Margin="0 5 0 0" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1002'}" Style="{StaticResource ExpanderStyle}">
+                    <Expander Margin="0 5 0 0"
+                              Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1002'}"
+                              Style="{StaticResource ExpanderStyle}">
                         <StackPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1003'}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                                <ComboBox VerticalAlignment="Bottom" Name="cbNextFacility" Style="{DynamicResource ComboBoxTransparentStyle}" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding FacilityTypes,ElementName=pageAirportFacilities}" Width="100"></ComboBox>
+                                <TextBlock
+                                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1003'}"
+                                    FontWeight="Bold" VerticalAlignment="Bottom" Width="150" />
+                                <ComboBox VerticalAlignment="Bottom" Name="cbNextFacility"
+                                          Style="{DynamicResource ComboBoxTransparentStyle}"
+                                          IsSynchronizedWithCurrentItem="True"
+                                          ItemsSource="{Binding FacilityTypes,ElementName=pageAirportFacilities}"
+                                          Width="100" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1004'}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                                <ComboBox VerticalAlignment="Bottom" Name="cbFacility" Width="200" Style="{DynamicResource ComboBoxTransparentStyle}" IsSynchronizedWithCurrentItem="True">
+                                <TextBlock
+                                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1004'}"
+                                    FontWeight="Bold" VerticalAlignment="Bottom" Width="150" />
+                                <ComboBox VerticalAlignment="Bottom" Name="cbFacility" Width="200"
+                                          Style="{DynamicResource ComboBoxTransparentStyle}"
+                                          IsSynchronizedWithCurrentItem="True">
                                     <ComboBox.ItemsSource>
                                         <MultiBinding Converter="{StaticResource TypeFacilitiesConverter}">
-                                            <Binding Path="SelectedItem" ElementName="cbNextFacility"></Binding>
-                                            <Binding Path="Airport"></Binding>
+                                            <Binding Path="SelectedItem" ElementName="cbNextFacility" />
+                                            <Binding Path="Airport" />
                                         </MultiBinding>
                                     </ComboBox.ItemsSource>
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
                             </WrapPanel>
-                                                      <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1009'}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                                <TextBlock VerticalAlignment="Bottom" Text="{Binding ElementName=cbFacility,Path=SelectedItem.Price,Converter={StaticResource ValueCurrencyConverter}}"></TextBlock>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock
+                                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1009'}"
+                                    FontWeight="Bold" VerticalAlignment="Bottom" Width="150" />
+                                <TextBlock VerticalAlignment="Bottom"
+                                           Text="{Binding ElementName=cbFacility,Path=SelectedItem.Price,Converter={StaticResource ValueCurrencyConverter}}" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1010'}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                                <TextBlock VerticalAlignment="Bottom" Text="{Binding ElementName=cbFacility,Path=SelectedItem.NumberOfEmployees}"></TextBlock>
+                                <TextBlock
+                                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1010'}"
+                                    FontWeight="Bold" VerticalAlignment="Bottom" Width="150" />
+                                <TextBlock VerticalAlignment="Bottom"
+                                           Text="{Binding ElementName=cbFacility,Path=SelectedItem.NumberOfEmployees}" />
                             </WrapPanel>
-                            <WrapPanel Margin="0 5 0 0" >
-                                <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 200'}" Click="btnBuyFacility_Click">
+                            <WrapPanel Margin="0 5 0 0">
+                                <Button
+                                    Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 200'}"
+                                    Click="btnBuyFacility_Click">
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ElementName=cbFacility, Path=SelectedItem}" Value="{x:Null}">
+                                                <DataTrigger
+                                                    Binding="{Binding ElementName=cbFacility, Path=SelectedItem}"
+                                                    Value="{x:Null}">
                                                     <Setter Property="Button.IsEnabled" Value="False" />
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -157,16 +209,25 @@
                             </WrapPanel>
                         </StackPanel>
                     </Expander>
-                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1014'}" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                    
-                    <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Cooperations}">
+                    <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1014'}"
+                        Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
+
+                    <ListBox Background="Transparent" BorderThickness="0"
+                             ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                             ItemsSource="{Binding Cooperations}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <WrapPanel>
-                                    <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom" Width="200" />
-                                    <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                                    <TextBlock Text="{Binding BuiltDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom"></TextBlock>
-                                    <Button Width="20" Click="btnDeleteCooperation_Click" Tag="{Binding}" Margin="20 0 0 0" VerticalAlignment="Bottom" Background="Transparent">
+                                    <ContentControl Content="{Binding Airline}"
+                                                    ContentTemplate="{StaticResource AirlineLink}"
+                                                    VerticalAlignment="Bottom" Width="200" />
+                                    <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" Width="150" />
+                                    <TextBlock
+                                        Text="{Binding BuiltDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                                        VerticalAlignment="Bottom" />
+                                    <Button Width="20" Click="btnDeleteCooperation_Click" Tag="{Binding}"
+                                            Margin="20 0 0 0" VerticalAlignment="Bottom" Background="Transparent">
                                         <Button.Style>
                                             <Style>
                                                 <Style.Triggers>
@@ -176,14 +237,17 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </Button.Style>
-                                        <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                        <Image Source="/data/images/delete.png"
+                                               RenderOptions.BitmapScalingMode="HighQuality" />
 
                                     </Button>
                                 </WrapPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 201'}" Click="btnAddCooperation_Click" Margin="0 5 0 0">
+                    <Button VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                            Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 201'}"
+                            Click="btnAddCooperation_Click" Margin="0 5 0 0">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                 <Style.Triggers>
@@ -195,72 +259,97 @@
                         </Button.Style>
                     </Button>
                 </StackPanel>
-                
+
             </ScrollViewer>
         </Border>
-            <Border Margin="5 0 0 0" Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1">
+        <Border Margin="5 0 0 0" Style="{StaticResource RoundedBorderStyle}" Grid.Column="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
                 <StackPanel>
-                    <ListView  VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AirlineStatistics}">
+                    <ListView VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0"
+                              ItemsSource="{Binding AirlineStatistics}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <WrapPanel>
-                                                <Image Source="/data/images/human.png" VerticalAlignment="Bottom" Width="20" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}"/>
-                                                <Image Source="/data/images/airplane.png" VerticalAlignment="Bottom" Width="20" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding Airline.IsSubsidiary,Converter={StaticResource BooleanToVisibility}}" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 3000'}"/>
+                                                <Image Source="/data/images/human.png" VerticalAlignment="Bottom"
+                                                       Width="20" RenderOptions.BitmapScalingMode="HighQuality"
+                                                       Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" />
+                                                <Image Source="/data/images/airplane.png" VerticalAlignment="Bottom"
+                                                       Width="20" RenderOptions.BitmapScalingMode="HighQuality"
+                                                       Visibility="{Binding Airline.IsSubsidiary,Converter={StaticResource BooleanToVisibility}}"
+                                                       ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 3000'}" />
                                             </WrapPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1005'}" Width="200">
+                                <GridViewColumn
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1005'}"
+                                    Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLongLink}" VerticalAlignment="Bottom"></ContentControl>
+                                            <ContentControl Content="{Binding Airline}"
+                                                            ContentTemplate="{StaticResource AirlineLongLink}"
+                                                            VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1013'}" Width="100">
+                                <GridViewColumn
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1013'}"
+                                    Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Routes}" VerticalAlignment="Bottom"></TextBlock>
+                                            <TextBlock Text="{Binding Routes}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1006'}" Width="100">
+                                <GridViewColumn
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1006'}"
+                                    Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom"></TextBlock>
+                                            <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1007'}" Width="100">
+                                <GridViewColumn
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1007'}"
+                                    Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Passengers}" VerticalAlignment="Bottom"></TextBlock>
+                                            <TextBlock Text="{Binding Passengers}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1008'}" Width="100">
+                                <GridViewColumn
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1008'}"
+                                    Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding PassengersPerFlight}" VerticalAlignment="Bottom"></TextBlock>
+                                            <TextBlock Text="{Binding PassengersPerFlight}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1012'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
-                    <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AirlineReputations}">
+                    <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1012'}"
+                        VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0" />
+                    <ListBox Background="Transparent" BorderThickness="0"
+                             ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                             ItemsSource="{Binding AirlineReputations}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <WrapPanel>
-                                    <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom" Width="200" />
-                                    <ProgressBar Width="100" Value="{Binding Reputation}" VerticalAlignment="Bottom" Height="15" Background="Transparent" BorderBrush="Black"></ProgressBar>
-                                    <TextBlock Text="{Binding Reputation}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                                    <ContentControl Content="{Binding Airline}"
+                                                    ContentTemplate="{StaticResource AirlineLink}"
+                                                    VerticalAlignment="Bottom" Width="200" />
+                                    <ProgressBar Width="100" Value="{Binding Reputation}" VerticalAlignment="Bottom"
+                                                 Height="15" Background="Transparent" BorderBrush="Black" />
+                                    <TextBlock Text="{Binding Reputation}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
                                 </WrapPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -268,5 +357,5 @@
                 </StackPanel>
             </ScrollViewer>
         </Border>
-        </Grid>
- </Page>
+    </Grid>
+</Page>

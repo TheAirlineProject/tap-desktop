@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <!--For each type there must be one with typelevel == 0 -->
 <airportfacilities>
   <airportfacility uid="100" shortname="Service None" type="Service" typelevel="0" price="0" buildingdays="0">
@@ -76,7 +77,8 @@
       <es-ES name="Ninguna" />
     </translations>
   </airportfacility>
-  <airportfacility uid="105" shortname="Basic ServiceCenter" type="Service" typelevel="1" price="140000" buildingdays="45">
+  <airportfacility uid="105" shortname="Basic ServiceCenter" type="Service" typelevel="1" price="140000"
+                   buildingdays="45">
     <level service="30" luxury="0">
     </level>
     <employees type="Maintenance" numberofemployees="20">
@@ -106,7 +108,8 @@
       <es-ES name="Centro de Servicio" />
     </translations>
   </airportfacility>
-  <airportfacility uid="107" shortname="Large ServiceCenter" type="Service" typelevel="3" price="600000" buildingdays="120">
+  <airportfacility uid="107" shortname="Large ServiceCenter" type="Service" typelevel="3" price="600000"
+                   buildingdays="120">
     <level service="200" luxury="0">
     </level>
     <employees type="Maintenance" numberofemployees="55">
@@ -181,7 +184,8 @@
       <es-ES name="Autofacturación" />
     </translations>
   </airportfacility>
-  <airportfacility uid="112" shortname="Small Ticket Office" type="TicketOffice" typelevel="1" price="12500" buildingdays="10">
+  <airportfacility uid="112" shortname="Small Ticket Office" type="TicketOffice" typelevel="1" price="12500"
+                   buildingdays="10">
     <level service="1" luxury="15">
     </level>
     <employees type="Support" numberofemployees="4">
@@ -196,7 +200,8 @@
       <es-ES name="Oficina de Billetes" />
     </translations>
   </airportfacility>
-    <airportfacility uid="113" shortname="Large Ticket Office" type="TicketOffice" typelevel="2" price="25000" buildingdays="10">
+  <airportfacility uid="113" shortname="Large Ticket Office" type="TicketOffice" typelevel="2" price="25000"
+                   buildingdays="10">
     <level service="2" luxury="15">
     </level>
     <employees type="Support" numberofemployees="8">
@@ -211,7 +216,8 @@
       <es-ES name="Oficina de Billetes" />
     </translations>
   </airportfacility>
-   <airportfacility uid="114" shortname="Mega ServiceCenter" type="Service" typelevel="4" price="725000" buildingdays="150">
+  <airportfacility uid="114" shortname="Mega ServiceCenter" type="Service" typelevel="4" price="725000"
+                   buildingdays="150">
     <level service="500" luxury="0">
     </level>
     <employees type="Maintenance" numberofemployees="75">
@@ -226,13 +232,13 @@
       <es-ES name="Centro de Servicio" />
     </translations>
   </airportfacility>
-    <airportfacility uid="200" shortname="Cargo None" type="Cargo" typelevel="0" price="0" buildingdays="0">
+  <airportfacility uid="200" shortname="Cargo None" type="Cargo" typelevel="0" price="0" buildingdays="0">
     <level service="50" luxury="15">
     </level>
     <employees type="Support" numberofemployees="0">
     </employees>
     <translations>
-        <en-US name="None" />
+      <en-US name="None" />
       <de-DE name="Keiner" />
       <en-GB name="None" />
       <nl-NL name="Geen" />
@@ -241,7 +247,7 @@
       <es-ES name="Ninguna" />
     </translations>
   </airportfacility>
-   <airportfacility uid="201" shortname="Cargo Terminal" type="Cargo" typelevel="1" price="125000" buildingdays="30">
+  <airportfacility uid="201" shortname="Cargo Terminal" type="Cargo" typelevel="1" price="125000" buildingdays="30">
     <level service="75" luxury="15">
     </level>
     <employees type="Support" numberofemployees="4">
@@ -256,7 +262,7 @@
       <es-ES name="Missing" />
     </translations>
   </airportfacility>
-     <airportfacility uid="202" shortname="Cargo Center" type="Cargo" typelevel="2" price="250000" buildingdays="45">
+  <airportfacility uid="202" shortname="Cargo Center" type="Cargo" typelevel="2" price="250000" buildingdays="45">
     <level service="100" luxury="15">
     </level>
     <employees type="Support" numberofemployees="8">
@@ -271,7 +277,7 @@
       <es-ES name="Missing" />
     </translations>
   </airportfacility>
-  
+
   <!-- <airportfacility uid="113" shortname="International Departures" type="IntlService" typelevel="1" price="260000" buildingdays="10">
     <level service="0" luxury="5"></level>
     <translations>

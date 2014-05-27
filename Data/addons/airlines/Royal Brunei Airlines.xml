@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <airline>
-  <profile name="Royal Brunei Airlines" iata="BI" color="Yellow" country="277" CEO="Dermot Mannion" mentality="Moderate" market="Global" preferedairport="BWN">
-    <narrative narrative="Royal Brunei Airlines is the flag carrier airline of the Sultanate of Brunei, headquartered in the RBA Plaza in Bandar Seri Begawan" />
+  <profile name="Royal Brunei Airlines" iata="BI" color="Yellow" country="277" CEO="Dermot Mannion"
+           mentality="Moderate" market="Global" preferedairport="BWN">
+    <narrative
+      narrative="Royal Brunei Airlines is the flag carrier airline of the Sultanate of Brunei, headquartered in the RBA Plaza in Bandar Seri Begawan" />
   </profile>
   <info real="True" from="1975" to="2199"></info>
 </airline>

@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <alliance name="Oneworld" logo="oneworld" type="Full" formation="02.01.1999 00:00:00" headquarter="JFK">
-<members>
-<member airline="AA" joined="02.01.1999 00:00:00"></member>
-<member airline="BA" joined="02.01.1999 00:00:00"></member>
-<member airline="QF" joined="02.01.1999 00:00:00"></member>
-<member airline="AY" joined="02.01.1999 00:00:00"></member>
-<member airline="IB" joined="02.01.1999 00:00:00"></member>
-<member airline="CX" joined="02.01.1999 00:00:00"></member>
-<member airline="EI" joined="02.01.2000 00:00:00" exited="07.01.2007 00:00:00"></member>
-<member airline="AB" joined="02.01.2012 00:00:00"></member>
-<member airline="JL" joined="03.01.2007 00:00:00"></member>
-<member airline="LA" joined="02.01.2000 00:00:00"></member>
-<member airline="MH" joined="01.01.2013 00:00:00"></member>
-<member airline="QR" joined="07.01.2013 00:00:00"></member>
-</members>
+  <members>
+    <member airline="AA" joined="02.01.1999 00:00:00"></member>
+    <member airline="BA" joined="02.01.1999 00:00:00"></member>
+    <member airline="QF" joined="02.01.1999 00:00:00"></member>
+    <member airline="AY" joined="02.01.1999 00:00:00"></member>
+    <member airline="IB" joined="02.01.1999 00:00:00"></member>
+    <member airline="CX" joined="02.01.1999 00:00:00"></member>
+    <member airline="EI" joined="02.01.2000 00:00:00" exited="07.01.2007 00:00:00"></member>
+    <member airline="AB" joined="02.01.2012 00:00:00"></member>
+    <member airline="JL" joined="03.01.2007 00:00:00"></member>
+    <member airline="LA" joined="02.01.2000 00:00:00"></member>
+    <member airline="MH" joined="01.01.2013 00:00:00"></member>
+    <member airline="QR" joined="07.01.2013 00:00:00"></member>
+  </members>
 </alliance>

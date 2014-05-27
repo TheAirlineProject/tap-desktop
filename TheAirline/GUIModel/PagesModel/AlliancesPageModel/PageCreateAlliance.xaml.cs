@@ -1,95 +1,101 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TheAirline.GUIModel.HelpersModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.AirportModel;
-using TheAirline.Model.GeneralModel;
-
-namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
+﻿namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 {
+    using System;
+    using System.Linq;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media.Imaging;
+
+    using Microsoft.Win32;
+
+    using TheAirline.GUIModel.HelpersModel;
+    using TheAirline.Model.AirlineModel;
+    using TheAirline.Model.AirportModel;
+    using TheAirline.Model.GeneralModel;
+
     /// <summary>
-    /// Interaction logic for PageCreateAlliance.xaml
+    ///     Interaction logic for PageCreateAlliance.xaml
     /// </summary>
     public partial class PageCreateAlliance : Page
     {
+        #region Fields
+
         private string logoPath;
+
+        #endregion
+
+        #region Constructors and Destructors
+
         public PageCreateAlliance()
         {
-           
-            InitializeComponent();
+            this.InitializeComponent();
 
-            cbHeadquarter.ItemsSource = GameObject.GetInstance().HumanAirline.Airports;
-            
-            logoPath = AppSettings.getDataPath() + "\\graphics\\alliancelogos\\default.png";
-            imgLogo.Source = new BitmapImage(new Uri(logoPath, UriKind.RelativeOrAbsolute));
+            this.cbHeadquarter.ItemsSource = GameObject.GetInstance().HumanAirline.Airports;
 
-            this.Loaded += PageCreateAlliance_Loaded;
+            this.logoPath = AppSettings.getDataPath() + "\\graphics\\alliancelogos\\default.png";
+            this.imgLogo.Source = new BitmapImage(new Uri(this.logoPath, UriKind.RelativeOrAbsolute));
+
+            this.Loaded += this.PageCreateAlliance_Loaded;
         }
+
+        #endregion
+
+        #region Methods
 
         private void PageCreateAlliance_Loaded(object sender, RoutedEventArgs e)
         {
-            TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
-                var matchingItem =
-     tab_main.Items.Cast<TabItem>()
-       .Where(item => item.Tag.ToString() == "Alliance")
-       .FirstOrDefault();
+                TabItem matchingItem =
+                    tab_main.Items.Cast<TabItem>().Where(item => item.Tag.ToString() == "Alliance").FirstOrDefault();
 
-                matchingItem.Visibility = System.Windows.Visibility.Collapsed;
+                matchingItem.Visibility = Visibility.Collapsed;
             }
         }
 
-        private void btnLogo_Click(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-            dlg.DefaultExt = ".png";
-            dlg.Filter = "Images (.png)|*.png";
-            dlg.InitialDirectory = AppSettings.getDataPath() + "\\graphics\\alliancelogos\\";
-
-            Nullable<bool> result = dlg.ShowDialog();
-
-            if (result == true)
-            {
-                logoPath = dlg.FileName;
-                imgLogo.Source = new BitmapImage(new Uri(logoPath, UriKind.RelativeOrAbsolute));
-
-            }
-        }
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            Alliance alliance = new Alliance(GameObject.GetInstance().GameTime, txtName.Text.Trim(), (Airport)cbHeadquarter.SelectedItem);
-            alliance.Logo = logoPath;
-            alliance.addMember(new AllianceMember(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime));
+            var alliance = new Alliance(
+                GameObject.GetInstance().GameTime,
+                this.txtName.Text.Trim(),
+                (Airport)this.cbHeadquarter.SelectedItem);
+            alliance.Logo = this.logoPath;
+            alliance.addMember(
+                new AllianceMember(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime));
 
             Alliances.AddAlliance(alliance);
-         
-            TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+
+            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
-                var matchingItem =
-     tab_main.Items.Cast<TabItem>()
-       .Where(item => item.Tag.ToString() == "Alliances")
-       .FirstOrDefault();
+                TabItem matchingItem =
+                    tab_main.Items.Cast<TabItem>().Where(item => item.Tag.ToString() == "Alliances").FirstOrDefault();
 
                 //matchingItem.IsSelected = true;
                 tab_main.SelectedItem = matchingItem;
             }
         }
+
+        private void btnLogo_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new OpenFileDialog();
+
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "Images (.png)|*.png";
+            dlg.InitialDirectory = AppSettings.getDataPath() + "\\graphics\\alliancelogos\\";
+
+            bool? result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                this.logoPath = dlg.FileName;
+                this.imgLogo.Source = new BitmapImage(new Uri(this.logoPath, UriKind.RelativeOrAbsolute));
+            }
+        }
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <weather type="town" value="Bogotá">
   <months>
     <month month="1" precipitation="50">

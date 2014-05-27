@@ -1,76 +1,105 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-namespace TheAirline.Model.GeneralModel
+﻿namespace TheAirline.Model.GeneralModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+
     //the class for the names
     public class Names
     {
-        private static Names Instance;
-        private Dictionary<Country, List<string>> FirstNames;
-        private Dictionary<Country, List<string>> LastNames;
-        private Random rnd;
-        public static Names GetInstance()
-        {
-            if (Instance == null)
-                Instance = new Names();
+        #region Static Fields
 
-            return Instance;
-        }
+        private static Names Instance;
+
+        #endregion
+
+        #region Fields
+
+        private readonly Dictionary<Country, List<string>> FirstNames;
+
+        private readonly Dictionary<Country, List<string>> LastNames;
+
+        private readonly Random rnd;
+
+        #endregion
+
+        #region Constructors and Destructors
+
         private Names()
         {
-            rnd = new Random();
+            this.rnd = new Random();
 
             this.FirstNames = new Dictionary<Country, List<string>>();
             this.LastNames = new Dictionary<Country, List<string>>();
 
-            setupNames();
+            this.setupNames();
         }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        public static Names GetInstance()
+        {
+            if (Instance == null)
+            {
+                Instance = new Names();
+            }
+
+            return Instance;
+        }
+
         //returns a random first name from a country
         public string getRandomFirstName(Country country)
         {
             if (!this.FirstNames.ContainsKey(country))
             {
-                var countries = this.FirstNames.Select(n => n.Key);
-                country = countries.ElementAt(rnd.Next(countries.Count()));
+                IEnumerable<Country> countries = this.FirstNames.Select(n => n.Key);
+                country = countries.ElementAt(this.rnd.Next(countries.Count()));
             }
-         
-            return getRandomElement(this.FirstNames[country]);
+
+            return this.getRandomElement(this.FirstNames[country]);
         }
+
         //returns a random last name
         public string getRandomLastName(Country country)
         {
             if (!this.LastNames.ContainsKey(country))
             {
-                var countries = this.FirstNames.Select(n => n.Key);
-                country = countries.ElementAt(rnd.Next(countries.Count()));
+                IEnumerable<Country> countries = this.FirstNames.Select(n => n.Key);
+                country = countries.ElementAt(this.rnd.Next(countries.Count()));
             }
-       
-            return getRandomElement(this.LastNames[country]);
+
+            return this.getRandomElement(this.LastNames[country]);
         }
+
+        #endregion
+
         //returns a random element from a list
+
+        #region Methods
+
         private string getRandomElement(List<string> list)
         {
-            return list[rnd.Next(list.Count)];
+            return list[this.rnd.Next(list.Count)];
         }
+
         //setup the names
         private void setupNames()
         {
-            DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\names");
-            
+            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\names");
+
             foreach (FileInfo file in dir.GetFiles("*.names"))
             {
-                List<Country> countries = new List<Country>();
+                var countries = new List<Country>();
 
-                System.IO.StreamReader reader =
-   new System.IO.StreamReader(file.FullName, System.Text.Encoding.GetEncoding("iso-8859-1"));
-                
+                var reader = new StreamReader(file.FullName, Encoding.GetEncoding("iso-8859-1"));
+
                 //first line is the attributes for the file. Format: [TYPE=F(irstnames)||L(astnames)][COUNTRIES=110,111....]
-                string[] attributes = reader.ReadLine().Split(new string[]{"["},StringSplitOptions.RemoveEmptyEntries);
-                Boolean isFirstname = attributes[0].Substring(attributes[0].IndexOf("=") + 1,1) == "F";
+                string[] attributes = reader.ReadLine().Split(new[] { "[" }, StringSplitOptions.RemoveEmptyEntries);
+                Boolean isFirstname = attributes[0].Substring(attributes[0].IndexOf("=") + 1, 1) == "F";
 
                 string attrCountries = attributes[1].Substring(attributes[1].IndexOf("=") + 1);
 
@@ -88,7 +117,9 @@ namespace TheAirline.Model.GeneralModel
                         foreach (Country country in countries)
                         {
                             if (!this.FirstNames.ContainsKey(country))
+                            {
                                 this.FirstNames.Add(country, new List<string>());
+                            }
                             this.FirstNames[country].Add(line);
                         }
                     }
@@ -97,11 +128,12 @@ namespace TheAirline.Model.GeneralModel
                         foreach (Country country in countries)
                         {
                             if (!this.LastNames.ContainsKey(country))
+                            {
                                 this.LastNames.Add(country, new List<string>());
+                            }
                             this.LastNames[country].Add(line);
                         }
                     }
-              
                 }
 
                 reader.Close();
@@ -125,7 +157,8 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
              * */
-
         }
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <countries>
   <country uid="100" shortname="---" region="100" flag="United Nations" tailformat="">
     <translations>
@@ -67,7 +68,7 @@
     </translations>
   </country>
   <country uid="106" shortname="ARG" region="120" flag="Argentina" tailformat="LV-\\s3">
-	<currency symbol="$" position="Left" rate="4.90" />
+    <currency symbol="$" position="Left" rate="4.90" />
     <translations>
       <en-US name="Argentina" />
       <de-DE name="Argentinien" />
@@ -79,8 +80,8 @@
     </translations>
   </country>
   <country uid="107" shortname="BEL" region="116" flag="Belgium" tailformat="OO-\\s3">
-	<currency symbol="fr." position="Right" rate="30.54" from="01.01.1832 00:00:00" to="01.01.2002 00:00:00"/>
-	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
+    <currency symbol="fr." position="Right" rate="30.54" from="01.01.1832 00:00:00" to="01.01.2002 00:00:00" />
+    <currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Belgium" />
       <de-DE name="Belgien" />
@@ -103,7 +104,7 @@
     </translations>
   </country>
   <country uid="110" shortname="DNK" region="114" flag="Denmark" tailformat="OY-\\s3">
-	<currency symbol="kr." position="Right" rate="5.66"/>
+    <currency symbol="kr." position="Right" rate="5.66" />
     <translations>
       <en-US name="Denmark" />
       <de-DE name="Dänemark" />
@@ -126,7 +127,7 @@
     </translations>
   </country>
   <country uid="113" shortname="CAN" region="119" flag="Canada" tailformat="CF-\\s3">
-	<currency symbol="C$" position="Left" rate="0.99" />
+    <currency symbol="C$" position="Left" rate="0.99" />
     <translations>
       <en-US name="Canada" />
       <de-DE name="Kanada" />
@@ -160,7 +161,7 @@
     </translations>
   </country>
   <country uid="116" shortname="AUS" region="111" flag="Australia" tailformat="VH-\\s3">
-	<currency symbol="A$" position="Left" rate="0.96" />
+    <currency symbol="A$" position="Left" rate="0.96" />
     <translations>
       <en-US name="Australia" />
       <de-DE name="Australien" />
@@ -183,8 +184,8 @@
     </translations>
   </country>
   <country uid="118" shortname="GRC" region="115" flag="Greece" tailformat="SX-\\s3">
-	<currency symbol="Δρχ." position="Right" rate="257.25" from="01.01.1832 00:00:00" to="01.01.2002 00:00:00"/>
-	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
+    <currency symbol="Δρχ." position="Right" rate="257.25" from="01.01.1832 00:00:00" to="01.01.2002 00:00:00" />
+    <currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Greece" />
       <de-DE name="Griechenland" />
@@ -229,7 +230,7 @@
     </translations>
   </country>
   <country uid="122" shortname="USA" region="119" flag="United States" tailformat="N-\\d4">
-	<currency symbol="$" position="Left" rate="1" />
+    <currency symbol="$" position="Left" rate="1" />
     <translations>
       <en-US name="United States" />
       <de-DE name="Vereinigte Staaten" />
@@ -241,8 +242,8 @@
     </translations>
   </country>
   <country uid="123" shortname="ESP" region="115" flag="Spain" tailformat="EC-\\s3">
-	<currency symbol="₧" position="Right" rate="126.46" from="01.01.1869 00:00:00" to="01.01.2002 00:00:00"/>
-	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
+    <currency symbol="₧" position="Right" rate="126.46" from="01.01.1869 00:00:00" to="01.01.2002 00:00:00" />
+    <currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Spain" />
       <de-DE name="Spanien" />
@@ -320,7 +321,7 @@
     </translations>
   </country>
   <country uid="130" shortname="GBR" region="116" flag="United Kingdom" tailformat="G-\\s4">
-	<currency symbol="£" position="Left" rate="0.62" />
+    <currency symbol="£" position="Left" rate="0.62" />
     <translations>
       <en-US name="United Kingdom" />
       <de-DE name="Vereinigtes Königreich" />
@@ -409,7 +410,7 @@
     </translations>
   </country>
   <country uid="138" shortname="BRA" region="120" flag="Brazil" tailformat="PP-\\s3">
-	<currency symbol="R$" position="Left" rate="2.07" />
+    <currency symbol="R$" position="Left" rate="2.07" />
     <translations>
       <en-US name="Brazil" />
       <de-DE name="Brasilien" />
@@ -421,7 +422,7 @@
     </translations>
   </country>
   <country uid="139" shortname="NOR" region="114" flag="Norway" tailformat="LN-\\s3">
-	<currency symbol="kr." position="Right" rate="5.56" />
+    <currency symbol="kr." position="Right" rate="5.56" />
     <translations>
       <en-US name="Norway" />
       <de-DE name="Norwegen" />
@@ -433,8 +434,8 @@
     </translations>
   </country>
   <country uid="140" shortname="FRA" region="116" flag="France" tailformat="F-\\s4">
-	<currency symbol="₣" position="Right" rate="4.97" from="01.01.1795 00:00:00" to="01.01.2002 00:00:00"/>
-	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
+    <currency symbol="₣" position="Right" rate="4.97" from="01.01.1795 00:00:00" to="01.01.2002 00:00:00" />
+    <currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="France" />
       <de-DE name="Frankreich" />
@@ -446,8 +447,8 @@
     </translations>
   </country>
   <country uid="141" shortname="ITA" region="115" flag="Italy" tailformat="I-\\s4">
-	<currency symbol="₤" position="Right" rate="1465.87" from="01.01.1861 00:00:00" to="01.01.2002 00:00:00"/>
-	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
+    <currency symbol="₤" position="Right" rate="1465.87" from="01.01.1861 00:00:00" to="01.01.2002 00:00:00" />
+    <currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Italy" />
       <de-DE name="Italien" />
@@ -514,7 +515,7 @@
     </translations>
   </country>
   <country uid="148" shortname="CHN" region="107" flag="China" tailformat="B-\\d4">
-	<currency symbol="CN¥" position="Left" rate="6.23" />
+    <currency symbol="CN¥" position="Left" rate="6.23" />
     <translations>
       <en-US name="China" />
       <de-DE name="China" />
@@ -526,7 +527,7 @@
     </translations>
   </country>
   <country uid="149" shortname="RUS" region="113" flag="Russia" tailformat="RA-\\d5">
-	<currency symbol="руб." position="Right" rate="30.83" />
+    <currency symbol="руб." position="Right" rate="30.83" />
     <translations>
       <en-US name="Russia" />
       <de-DE name="Russland" />
@@ -560,7 +561,7 @@
     </translations>
   </country>
   <country uid="152" shortname="IND" region="108" flag="India" tailformat="VT-\\s3">
-	<currency symbol="INR" position="Left" rate="55.06" />
+    <currency symbol="INR" position="Left" rate="55.06" />
     <translations>
       <en-US name="India" />
       <de-DE name="Indien" />
@@ -616,7 +617,7 @@
     </translations>
   </country>
   <country uid="157" shortname="MEX" region="118" flag="Mexico" tailformat="XA-\\s3">
-	<currency symbol="Mex$" position="Left" rate="12.88" />
+    <currency symbol="Mex$" position="Left" rate="12.88" />
     <translations>
       <en-US name="Mexico" />
       <de-DE name="Mexiko" />
@@ -628,7 +629,7 @@
     </translations>
   </country>
   <country uid="158" shortname="ZAF" region="104" flag="South Africa" tailformat="ZS-\\s3">
-	<currency symbol="R" position="Left" rate="1.00" />
+    <currency symbol="R" position="Left" rate="1.00" />
     <translations>
       <en-US name="South Africa" />
       <de-DE name="Südafrika" />
@@ -684,8 +685,8 @@
     </translations>
   </country>
   <country uid="163" shortname="DEU" region="116" flag="Germany" tailformat="D-\\s4">
-	<currency symbol="DM" position="Left" rate="1.48" from="01.01.1948 00:00:00" to="01.01.2002 00:00:00"/>
-	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
+    <currency symbol="DM" position="Left" rate="1.48" from="01.01.1948 00:00:00" to="01.01.2002 00:00:00" />
+    <currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Germany" />
       <de-DE name="Deutschland" />
@@ -697,7 +698,7 @@
     </translations>
   </country>
   <country uid="164" shortname="CHE" region="116" flag="Switzerland" tailformat="HB-\\s3">
-	<currency symbol="CHF" position="Right" rate="0.92" />
+    <currency symbol="CHF" position="Right" rate="0.92" />
     <translations>
       <en-US name="Switzerland" />
       <de-DE name="Schweiz" />
@@ -709,7 +710,7 @@
     </translations>
   </country>
   <country uid="165" shortname="KOR" region="107" flag="South Korea" tailformat="HL-\\d4">
-	<currency symbol="₩" position="Left" rate="1076.24" />
+    <currency symbol="₩" position="Left" rate="1076.24" />
     <translations>
       <en-US name="South Korea" />
       <de-DE name="Südkorea" />
@@ -754,8 +755,8 @@
     </translations>
   </country>
   <country uid="169" shortname="AUT" region="116" flag="Austria" tailformat="OE-\\s3">
-	<currency symbol="S" position="Right" rate="10.42" from="01.01.1945 00:00:00" to="01.01.2002 00:00:00"/>
-	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
+    <currency symbol="S" position="Right" rate="10.42" from="01.01.1945 00:00:00" to="01.01.2002 00:00:00" />
+    <currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Austria" />
       <de-DE name="Österreich" />
@@ -778,7 +779,7 @@
     </translations>
   </country>
   <country uid="171" shortname="JPN" region="107" flag="Japan" tailformat="JA-\\d4">
-	<currency symbol="¥" position="Left" rate="84.09" />
+    <currency symbol="¥" position="Left" rate="84.09" />
     <translations>
       <en-US name="Japan" />
       <de-DE name="Japan" />
@@ -834,7 +835,7 @@
     </translations>
   </country>
   <country uid="176" shortname="HKG" region="109" flag="Hong Kong" tailformat="B-\\s3">
-	<currency symbol="HK$" position="Left" rate="7.75" />
+    <currency symbol="HK$" position="Left" rate="7.75" />
     <translations>
       <en-US name="Hong Kong" />
       <de-DE name="Hong Kong" />
@@ -868,8 +869,8 @@
     </translations>
   </country>
   <country uid="179" shortname="NLD" region="116" flag="Netherlands" tailformat="PH-\\s3">
-	<currency symbol="ƒ" position="Left" rate="1.67" from="01.01.1700 00:00:00" to="01.01.2002 00:00:00"/>
-	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
+    <currency symbol="ƒ" position="Left" rate="1.67" from="01.01.1700 00:00:00" to="01.01.2002 00:00:00" />
+    <currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Netherlands" />
       <de-DE name="Niederlande" />
@@ -936,7 +937,7 @@
     </translations>
   </country>
   <country uid="186" shortname="NZL" region="111" flag="New Zealand" tailformat="ZK-\s3">
-	<currency symbol="NZ$" position="Left" rate="1.21" />
+    <currency symbol="NZ$" position="Left" rate="1.21" />
     <translations>
       <en-US name="New Zealand" />
       <de-DE name="Neuseeland" />
@@ -1014,7 +1015,7 @@
     </translations>
   </country>
   <country uid="193" shortname="SLV" region="118" flag="El Salvador" tailformat="YS-\s3">
-	<currency symbol="$" position="Left" rate="1" />
+    <currency symbol="$" position="Left" rate="1" />
     <translations>
       <en-US name="El Salvador" />
       <de-DE name="El Salvador" />
@@ -1544,26 +1545,26 @@
     </translations>
   </country>
   <country uid="252" shortname="BTN" region="108" flag="Bhutan" tailformat="A5-\\s3">
-	<translations>
-		<en-US name="Bhutan" />
-		<de-DE name="Bhutan" />
-		<en-GB name="Bhutan" />
-		<nl-NL name="Bhutan" />
-		<zh-CN name="不丹" />
-		<da-DK name="Bhutan" />
-		<es-ES name="Bhutan" />
-	</translations>
+    <translations>
+      <en-US name="Bhutan" />
+      <de-DE name="Bhutan" />
+      <en-GB name="Bhutan" />
+      <nl-NL name="Bhutan" />
+      <zh-CN name="不丹" />
+      <da-DK name="Bhutan" />
+      <es-ES name="Bhutan" />
+    </translations>
   </country>
   <country uid="253" shortname="AFG" region="108" flag="Afghanistan" tailformat="YA-\\s3">
-	<translations>
-		<en-US name="Afghanistan" />
-		<de-DE name="Afghanistan" />
-		<en-GB name="Afghanistan" />
-		<nl-NL name="Afghanistan" />
-		<zh-CN name="Afghanistan" />
-		<da-DK name="Afghanistan" />
-		<es-ES name="Afghanistan" />
-	</translations>
+    <translations>
+      <en-US name="Afghanistan" />
+      <de-DE name="Afghanistan" />
+      <en-GB name="Afghanistan" />
+      <nl-NL name="Afghanistan" />
+      <zh-CN name="Afghanistan" />
+      <da-DK name="Afghanistan" />
+      <es-ES name="Afghanistan" />
+    </translations>
   </country>
   <country uid="255" shortname="ZWE" region="104" flag="Zimbabwe" tailformat="NP-\\s3">
     <translations>
@@ -1874,7 +1875,7 @@
       <es-ES name="Cape Verde" />
     </translations>
   </country>
-    <country uid="286" shortname="MWI" region="102" flag="Malawi" tailformat="7Q-\\s3">
+  <country uid="286" shortname="MWI" region="102" flag="Malawi" tailformat="7Q-\\s3">
     <translations>
       <en-US name="Malawi" />
       <de-DE name="Malawi" />
@@ -1885,7 +1886,7 @@
       <es-ES name="Malawi" />
     </translations>
   </country>
-      <country uid="287" shortname="MHL" region="112" flag="Marshall Islands" tailformat="V7-\\d4">
+  <country uid="287" shortname="MHL" region="112" flag="Marshall Islands" tailformat="V7-\\d4">
     <translations>
       <en-US name="Marshall Islands" />
       <de-DE name="Marshall Islands" />
@@ -1896,7 +1897,7 @@
       <es-ES name="Marshall Islands" />
     </translations>
   </country>
-       <country uid="288" shortname="PLW" region="112" flag="Palau" tailformat="V9-\\d4">
+  <country uid="288" shortname="PLW" region="112" flag="Palau" tailformat="V9-\\d4">
     <translations>
       <en-US name="Palau" />
       <de-DE name="Palau" />
@@ -1907,7 +1908,7 @@
       <es-ES name="Palau" />
     </translations>
   </country>
-         <country uid="289" shortname="SLB" region="112" flag="Solomon Islands" tailformat="H4-\\s3">
+  <country uid="289" shortname="SLB" region="112" flag="Solomon Islands" tailformat="H4-\\s3">
     <translations>
       <en-US name="Solomon Islands" />
       <de-DE name="Solomon Islands" />
@@ -1918,7 +1919,7 @@
       <es-ES name="Solomon Islands" />
     </translations>
   </country>
-      <country uid="290" shortname="FSM" region="112" flag="Micronesia" tailformat="V6-\\s3">
+  <country uid="290" shortname="FSM" region="112" flag="Micronesia" tailformat="V6-\\s3">
     <translations>
       <en-US name="Federated States of Micronesia" />
       <de-DE name="Federated States of Micronesia" />
@@ -1929,7 +1930,7 @@
       <es-ES name="Federated States of Micronesia" />
     </translations>
   </country>
-        <country uid="291" shortname="NRU" region="112" flag="Nauru" tailformat="V6-\\s3">
+  <country uid="291" shortname="NRU" region="112" flag="Nauru" tailformat="V6-\\s3">
     <translations>
       <en-US name="Nauru" />
       <de-DE name="Nauru" />
@@ -1940,7 +1941,7 @@
       <es-ES name="Nauru" />
     </translations>
   </country>
-        <country uid="292" shortname="VNT" region="112" flag="Vanutau" tailformat="V6-\\s3">
+  <country uid="292" shortname="VNT" region="112" flag="Vanutau" tailformat="V6-\\s3">
     <translations>
       <en-US name="Vanutau" />
       <de-DE name="Vanutau" />

@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <airline>
-<profile name="Alsie Express" iata="6I" color="Black" country="110" CEO="Jens Østerlund" mentality="Moderate" market="Regional" preferedairport="SGB">
-<narrative narrative="Alsie Express was founded in 2013 and it started operation on the route between Sonderborg and Copenhagen on 17 June 2013."/>
-</profile>
-<info real="True" from="2013" to="2199"></info>
+  <profile name="Alsie Express" iata="6I" color="Black" country="110" CEO="Jens Østerlund" mentality="Moderate"
+           market="Regional" preferedairport="SGB">
+    <narrative
+      narrative="Alsie Express was founded in 2013 and it started operation on the route between Sonderborg and Copenhagen on 17 June 2013." />
+  </profile>
+  <info real="True" from="2013" to="2199"></info>
 </airline>

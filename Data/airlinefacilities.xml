@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <airlinefacilities>
   <airlinefacility uid="100" price="100000" fromyear="1970" monthlycost="10000">
     <level service="0" luxury="10">

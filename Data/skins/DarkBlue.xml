@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <skin name="Dark Blue">
   <property name="ButtonBrush">
     <!--
@@ -19,7 +20,9 @@
     <SolidColorBrush Color="#FF0000FF" Opacity="0.2" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" />
   </property>
   <property name="BackgroundImage">
-    <BitmapImage BaseUri="{x:Null}" UriSource="Data/skins/bg2.jpg" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <BitmapImage BaseUri="{x:Null}" UriSource="Data/skins/bg2.jpg"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
   </property>
   <property name="BackgroundTop">
     <SolidColorBrush Color="#FF000000" Opacity="0.8" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" />
@@ -30,7 +33,7 @@
   <property name="TextColor">
     <SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">#FFFFFF</SolidColorBrush>
   </property>
-<property name="HeaderTextColor">
+  <property name="HeaderTextColor">
     <SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">#FFD800</SolidColorBrush>
   </property>
 </skin>

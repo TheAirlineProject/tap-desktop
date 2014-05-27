@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <weather type="town" value="Toronto, ON">
   <months>
     <month month="1" precipitation="61">
-      <temp min="-7" max="-1"/>
+      <temp min="-7" max="-1" />
       <wind min="Calm" max="Near_Gale" />
     </month>
     <month month="2" precipitation="51">

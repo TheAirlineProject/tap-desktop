@@ -1,42 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Data;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.CountryModel;
-using TheAirline.Model.GeneralModel.InvoicesModel;
-using TheAirline.Model.GeneralModel.StatisticsModel;
-
-namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
+﻿namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Globalization;
+    using System.Linq;
+    using System.Windows.Data;
+
+    using TheAirline.Model.AirlinerModel;
+    using TheAirline.Model.AirlinerModel.RouteModel;
+    using TheAirline.Model.GeneralModel;
+    using TheAirline.Model.GeneralModel.CountryModel;
+    using TheAirline.Model.GeneralModel.InvoicesModel;
+    using TheAirline.Model.GeneralModel.StatisticsModel;
+
     //the mvvm object for a human route
     public class HumanRouteMVVM
     {
-        public Route Route { get; set; }
-        public Boolean ShowCargoInformation { get; set; }
-        public Boolean ShowPassengersInformation { get; set; }
-        public Boolean IsEditable { get; set; }
-        public List<Route> Legs { get; set; }
-        public List<MonthlyInvoice> Invoices { get; set; }
-        public double Distance { get; set; }
+        #region Constructors and Destructors
+
         public HumanRouteMVVM(Route route)
         {
             this.Route = route;
-            this.ShowCargoInformation = this.Route.Type == Route.RouteType.Cargo || this.Route.Type == Route.RouteType.Mixed;
-            this.ShowPassengersInformation = this.Route.Type == Route.RouteType.Passenger || this.Route.Type == Route.RouteType.Mixed;
+            this.ShowCargoInformation = this.Route.Type == Route.RouteType.Cargo
+                                        || this.Route.Type == Route.RouteType.Mixed;
+            this.ShowPassengersInformation = this.Route.Type == Route.RouteType.Passenger
+                                             || this.Route.Type == Route.RouteType.Mixed;
 
-            this.IsEditable = true;// !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
+            this.IsEditable = true;
+                // !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
 
             this.Invoices = new List<MonthlyInvoice>();
 
             foreach (Invoice.InvoiceType type in this.Route.getRouteInvoiceTypes())
+            {
                 this.Invoices.Add(new MonthlyInvoice(type, 1950, 1, this.Route.getRouteInvoiceAmount(type)));
+            }
 
             this.Legs = new List<Route>();
             this.Legs.Add(this.Route);
@@ -44,16 +43,33 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
         }
+
+        #endregion
+
+        #region Public Properties
+
+        public double Distance { get; set; }
+
+        public List<MonthlyInvoice> Invoices { get; set; }
+
+        public Boolean IsEditable { get; set; }
+
+        public List<Route> Legs { get; set; }
+
+        public Route Route { get; set; }
+
+        public Boolean ShowCargoInformation { get; set; }
+
+        public Boolean ShowPassengersInformation { get; set; }
+
+        #endregion
     }
+
     //the mvvm object for a route
     public class RouteMVVM
     {
-        public Route Route { get; set; }
-        public double FillingDegree { get; set; }
-        public double Total { get; set; }
-        public double Average { get; set; }
-        public double Balance { get; set; }
-        public double Distance { get; set; }
+        #region Constructors and Destructors
+
         public RouteMVVM(Route route)
         {
             this.Route = route;
@@ -63,68 +79,141 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             if (route.Type == Route.RouteType.Passenger)
             {
-                RouteAirlinerClass raClass = ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
+                RouteAirlinerClass raClass =
+                    ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
 
-                this.Total = route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"));
-                this.Average = route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"));
-
-                
+                this.Total = route.Statistics.getStatisticsValue(
+                    raClass,
+                    StatisticsTypes.GetStatisticsType("Passengers"));
+                this.Average = route.Statistics.getStatisticsValue(
+                    raClass,
+                    StatisticsTypes.GetStatisticsType("Passengers%"));
             }
             if (route.Type == Route.RouteType.Cargo)
             {
                 this.Total = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
                 this.Average = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
-
-               
             }
 
             if (this.Average < 0)
+            {
                 this.Average = 0;
+            }
         }
+
+        #endregion
+
+        #region Public Properties
+
+        public double Average { get; set; }
+
+        public double Balance { get; set; }
+
+        public double Distance { get; set; }
+
+        public double FillingDegree { get; set; }
+
+        public Route Route { get; set; }
+
+        public double Total { get; set; }
+
+        #endregion
     }
-   
+
     //the mvvm object for an airliner
     public class FleetAirlinerMVVM : INotifyPropertyChanged
     {
-        public enum StatusMVVM { Stopped, Started }
-        
+        #region Fields
+
         private StatusMVVM _status;
-        public StatusMVVM Status
-        {
-            get { return _status; }
-            set { _status= value; NotifyPropertyChanged("Status"); }
-        }
-        public Boolean HasRoute { get; set; }
-        public FleetAirliner Airliner { get; set; }
+
+        #endregion
+
+        #region Constructors and Destructors
+
         public FleetAirlinerMVVM(FleetAirliner airliner)
         {
             this.Airliner = airliner;
             this.HasRoute = this.Airliner.HasRoute;
-            this.Status = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped ? StatusMVVM.Stopped : StatusMVVM.Started;
+            this.Status = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
+                ? StatusMVVM.Stopped
+                : StatusMVVM.Started;
         }
+
+        #endregion
+
         //sets the status of the airliner
+
+        #region Public Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Enums
+
+        public enum StatusMVVM
+        {
+            Stopped,
+
+            Started
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        public FleetAirliner Airliner { get; set; }
+
+        public Boolean HasRoute { get; set; }
+
+        public StatusMVVM Status
+        {
+            get
+            {
+                return this._status;
+            }
+            set
+            {
+                this._status = value;
+                this.NotifyPropertyChanged("Status");
+            }
+        }
+
+        #endregion
+
+        #region Public Methods and Operators
+
         public void setStatus(FleetAirliner.AirlinerStatus status)
         {
             this.Airliner.Status = status;
 
-            this.Status = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped ? StatusMVVM.Stopped : StatusMVVM.Started;
-       
+            this.Status = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
+                ? StatusMVVM.Stopped
+                : StatusMVVM.Started;
         }
-        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Methods
+
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            PropertyChangedEventHandler handler = this.PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        #endregion
     }
+
     //the pax/income for a route
     public class RouteIncomePerPaxMVVM
     {
-        public Route Route { get; set; }
-        public double IncomePerPax { get; set; }
+        #region Constructors and Destructors
+
         public RouteIncomePerPaxMVVM(Route route)
         {
             StatisticsType stat = StatisticsTypes.GetStatisticsType("Passengers");
@@ -135,12 +224,23 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             this.IncomePerPax = this.Route.Balance / pax;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        public double IncomePerPax { get; set; }
+
+        public Route Route { get; set; }
+
+        #endregion
     }
+
     //the profit for a route
     public class RouteProfitMVVM
     {
-        public Route Route { get; set; }
-        public double Percent { get; set; }
+        #region Constructors and Destructors
+
         public RouteProfitMVVM(Route route, double total)
         {
             this.Route = route;
@@ -149,53 +249,91 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             this.Percent = balance / total * 100;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        public double Percent { get; set; }
+
+        public Route Route { get; set; }
+
+        #endregion
     }
+
     //the facilities for a route
     public class MVVMRouteFacility : INotifyPropertyChanged
     {
-        public List<RouteFacility> Facilities { get; set; }
+        #region Fields
 
         private RouteFacility _selectedFacility;
-        public RouteFacility SelectedFacility
-        {
-            get { return _selectedFacility; }
-            set { _selectedFacility = value; NotifyPropertyChanged("SelectedFacility"); }
-        }
 
-        public RouteFacility.FacilityType Type { get; set; }
+        #endregion
+
+        #region Constructors and Destructors
+
         public MVVMRouteFacility(RouteFacility.FacilityType type)
         {
             this.Facilities = new List<RouteFacility>();
 
             this.Type = type;
-
         }
+
+        #endregion
+
+        #region Public Events
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Public Properties
+
+        public List<RouteFacility> Facilities { get; set; }
+
+        public RouteFacility SelectedFacility
+        {
+            get
+            {
+                return this._selectedFacility;
+            }
+            set
+            {
+                this._selectedFacility = value;
+                this.NotifyPropertyChanged("SelectedFacility");
+            }
+        }
+
+        public RouteFacility.FacilityType Type { get; set; }
+
+        #endregion
+
+        #region Methods
+
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            PropertyChangedEventHandler handler = this.PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        #endregion
     }
+
     //the route class
     public class MVVMRouteClass : INotifyPropertyChanged
     {
-
-        public RouteAirlinerClass.SeatingType Seating { get; set; }
+        #region Fields
 
         private double _fareprice;
-        public double FarePrice
-        {
-            get { return _fareprice; }
-            set { _fareprice = value; NotifyPropertyChanged("FarePrice"); }
-        }
-        public List<MVVMRouteFacility> Facilities { get; set; }
 
-        public AirlinerClass.ClassType Type { get; set; }
+        #endregion
+
         //public int CabinCrew { get; set; }
+
+        #region Constructors and Destructors
 
         public MVVMRouteClass(AirlinerClass.ClassType type, RouteAirlinerClass.SeatingType seating, double fareprice)
         {
@@ -209,46 +347,87 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             {
                 if (GameObject.GetInstance().GameTime.Year >= (int)facType)
                 {
-
-                    MVVMRouteFacility facility = new MVVMRouteFacility(facType);
+                    var facility = new MVVMRouteFacility(facType);
 
                     foreach (RouteFacility fac in RouteFacilities.GetFacilities(facType))
+                    {
                         facility.Facilities.Add(fac);
-
+                    }
 
                     this.Facilities.Add(facility);
                 }
             }
         }
+
+        #endregion
+
+        #region Public Events
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Public Properties
+
+        public List<MVVMRouteFacility> Facilities { get; set; }
+
+        public double FarePrice
+        {
+            get
+            {
+                return this._fareprice;
+            }
+            set
+            {
+                this._fareprice = value;
+                this.NotifyPropertyChanged("FarePrice");
+            }
+        }
+
+        public RouteAirlinerClass.SeatingType Seating { get; set; }
+
+        public AirlinerClass.ClassType Type { get; set; }
+
+        #endregion
+
+        #region Methods
+
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            PropertyChangedEventHandler handler = this.PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 
+        #endregion
     }
+
     //the converter for the statistics for a route
     public class RouteStatisticsConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        #region Public Methods and Operators
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Route route = (Route)value;
-            List<KeyValuePair<string, object>> stats = new List<KeyValuePair<string, object>>();
+            var route = (Route)value;
+            var stats = new List<KeyValuePair<string, object>>();
 
             if (route.Type == Route.RouteType.Passenger)
             {
-                RouteAirlinerClass raClass = ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
+                RouteAirlinerClass raClass =
+                    ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
 
-                double passengers = route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"));
-                double avgPassengers = route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"));
+                double passengers = route.Statistics.getStatisticsValue(
+                    raClass,
+                    StatisticsTypes.GetStatisticsType("Passengers"));
+                double avgPassengers = route.Statistics.getStatisticsValue(
+                    raClass,
+                    StatisticsTypes.GetStatisticsType("Passengers%"));
 
                 stats.Add(new KeyValuePair<string, object>("Total Passengers", passengers));
-                stats.Add(new KeyValuePair<string, object>("Average Passengers", Math.Max(0,avgPassengers)));
-
+                stats.Add(new KeyValuePair<string, object>("Average Passengers", Math.Max(0, avgPassengers)));
             }
             if (route.Type == Route.RouteType.Cargo)
             {
@@ -256,39 +435,47 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 double avgCargo = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
 
                 stats.Add(new KeyValuePair<string, object>("Total Cargo", cargo));
-                stats.Add(new KeyValuePair<string, object>("Average Cargo", Math.Max(0,avgCargo)));
+                stats.Add(new KeyValuePair<string, object>("Average Cargo", Math.Max(0, avgCargo)));
             }
 
-            stats.Add(new KeyValuePair<string, object>("Filling Degree", string.Format("{0:0.##} %", route.FillingDegree * 100)));
+            stats.Add(
+                new KeyValuePair<string, object>(
+                    "Filling Degree",
+                    string.Format("{0:0.##} %", route.FillingDegree * 100)));
 
             return stats;
-
-
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
+
     //the converter for an unions member
     public class UnionMemberConverter : IValueConverter
     {
+        #region Public Methods and Operators
 
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            BaseUnit unit = (BaseUnit)value;
+            var unit = (BaseUnit)value;
 
             if (unit is Union)
             {
-                var countries = ((Union)unit).Members.Where(m => GameObject.GetInstance().GameTime >= m.MemberFromDate && GameObject.GetInstance().GameTime <= m.MemberToDate).Select(m => m.Country);
+                IEnumerable<Country> countries =
+                    ((Union)unit).Members.Where(
+                        m =>
+                            GameObject.GetInstance().GameTime >= m.MemberFromDate
+                            && GameObject.GetInstance().GameTime <= m.MemberToDate).Select(m => m.Country);
 
                 return countries;
             }
             else
             {
-               
-                List<Country> countries = new List<Country>();
+                var countries = new List<Country>();
 
                 countries.Add((Country)unit);
 
@@ -296,10 +483,11 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
-    
 }
