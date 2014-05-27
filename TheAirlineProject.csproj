@@ -1591,7 +1591,8 @@
     <Folder Include=".git\refs\tags\" />
     <Folder Include="Data\" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+	<Import Project="Resource\Build\Microsoft.Expression.Blend.WPF.targets" />
+	<Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />
   </ProjectExtensions>
