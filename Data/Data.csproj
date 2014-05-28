@@ -19,7 +19,7 @@ to produce any output during builds or rebuilds of solution
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <OutputPath>bin\$(AssemblyName)</OutputPath>
+    <OutputPath>..\bin\$(Configuration)</OutputPath>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -42,23 +42,25 @@ to produce any output during builds or rebuilds of solution
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Data\**\*.*">
+    <Content Include="Data\**\*.*" Exclude="Data\**\Thumbs.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+	
   </ItemGroup>
-  <ItemGroup>
-   
-  </ItemGroup>
+  
   <Target Name="Build">
-    <!-- Do nothing -->
+    <Copy SourceFiles="@(Content)" SkipUnchangedFiles="true" DestinationFolder="$(OutputPath)\Data\%(RecursiveDir)" />
   </Target>
+  
   <Target Name="Clean">
-    <!-- Do nothing -->
+    <RemoveDir Directories="$(OutputPath)\Data" ContinueOnError="true" />
   </Target>
+  
   <Target Name="Rebuild" DependsOnTargets="Clean;Build">
-    <!-- Do nothing -->
+    <Message Text="Rebuild is successful" />
   </Target>
-  <!--<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />-->
+ 
+  <!-- <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" /> -->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
