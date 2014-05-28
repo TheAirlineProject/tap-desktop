@@ -13,7 +13,7 @@ to produce any output during builds or rebuilds of solution
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TheAirline.Data</RootNamespace>
     <AssemblyName>TheAirline.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
