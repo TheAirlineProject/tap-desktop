@@ -1,6 +1,15 @@
 <h3>The Airline Project - freshly converted to git!</h3>
 
-Current build status: [![Build status](https://ci.appveyor.com/api/projects/status/vee7sdpon84qmc08)](https://ci.appveyor.com/project/ipavlovi/tap-desktop-444)
+|-------------------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| **Repo / Fork**               | **Branch**                          | **Current build status**                                                                                                                  |
+|-------------------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| TheAirlineProject/tap-desktop | master                              | [![Build status](https://ci.appveyor.com/api/projects/status/vee7sdpon84qmc08)](https://ci.appveyor.com/project/ipavlovi/tap-desktop-444) |
+|-------------------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| TheAirlineProject/tap-desktop | 040-dev                             | [![Build status](https://ci.appveyor.com/api/projects/status/8dbfj20boratauyj)](https://ci.appveyor.com/project/ipavlovi/tap-desktop-133) |
+|-------------------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| ipavlovi/tap-desktop          | ContinuousBuildAndClickOneInstaller | [![Build status](https://ci.appveyor.com/api/projects/status/8dbfj20boratauyj)](https://ci.appveyor.com/project/ipavlovi/tap-desktop-133) |
+|-------------------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+
 
 <h2>Getting Started</h2>
 
@@ -11,6 +20,8 @@ For Testing: Dual Core 2.0GHz, 2+GB RAM
 .NET Framework 4.5
 Windows Vista/7/8
 Visual Studio (2012) or newer
+WiX Toolset 3.8
+-https://wix.codeplex.com/releases/view/115492
 
 <h3>I. Developing</h3>
 If you are developing new features, please do a fork and pull request. Pull requests should generally be made on the current in-development branch nnn-dev.
