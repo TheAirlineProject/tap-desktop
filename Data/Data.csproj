@@ -59,7 +59,12 @@ to produce any output during builds or rebuilds of solution
   <Target Name="Rebuild" DependsOnTargets="Clean;Build">
     <Message Text="Rebuild is successful" />
   </Target>
- 
+
+
+  <Target Name="GetNativeManifest">
+    <!-- Do nothing -->  
+  </Target>
+  
   <!-- <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" /> -->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
