@@ -6,7 +6,7 @@
 		<MajorUpgrade DowngradeErrorMessage="A newer version of TheAirline is already installed." />
 		<MediaTemplate />
 
-		<Feature Id="ProductFeature" Title="Installer" Level="1">
+		<Feature Id="ProductFeature" Title="TheAirline" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
 	</Product>
@@ -14,7 +14,7 @@
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="Installer" />
+				<Directory Id="INSTALLFOLDER" Name="TheAirline" />
 			</Directory>
 		</Directory>
 	</Fragment>
