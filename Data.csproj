@@ -47,7 +47,7 @@ to produce any output during builds or rebuilds of solution
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+   
   </ItemGroup>
   <Target Name="Build">
     <!-- Do nothing -->
