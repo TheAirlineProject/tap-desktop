@@ -24,11 +24,13 @@
     <NoStdLib>False</NoStdLib>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <ExpressionBlendVersion>5.2.30810.0</ExpressionBlendVersion>
-	<OutputPath>..\bin\$(Configuration)\</OutputPath>
+    <OutputPath>..\bin\$(Configuration)\</OutputPath>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">   
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>Full</DebugType>
-    <Optimize>false</Optimize>    
+    <Optimize>false</Optimize>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -1008,15 +1010,15 @@
       <Link>Data\languagefiles\language.zh-CN.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\Data\Data\languages\language.it-IT.resx" >
+    <EmbeddedResource Include="..\Data\Data\languages\language.it-IT.resx">
       <Link>Data\languagefiles\language.it-IT.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\Data\Data\languages\language.ru-RU.resx" >
+    <EmbeddedResource Include="..\Data\Data\languages\language.ru-RU.resx">
       <Link>Data\languagefiles\language.ru-RU.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\Data\Data\languages\language.tr-TR.resx" >
+    <EmbeddedResource Include="..\Data\Data\languages\language.tr-TR.resx">
       <Link>Data\languagefiles\language.tr-TR.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1203,6 +1205,13 @@
     <Resource Include="Data\images\star_gold.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
