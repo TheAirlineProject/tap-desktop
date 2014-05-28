@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?ifdef $(env.appveyor_build_version)?>
-<?define version=$(env.appveyor_build_version) ?>
+<!-- Begin Arcane Magic -->
+
+<?ifdef env.APPVEYOR_BUILD_VERSION?>
+<?define version= env.APPVEYOR_BUILD_VERSION ?>
 <?else?>
 <?define version= "0.0.0.0"?>
 <?endif?>
 
+<!-- End Arcane Magic -->
+
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="TheAirline" Language="1033" Version="$(var.version)" Manufacturer="$(var.version)" UpgradeCode="45a10e0b-745b-4027-969e-c0050c2d7bb9">
+	<Product Id="*" Name="TheAirline $(var.version)" Language="1033" Version="$(var.version)" Manufacturer="TheAirline Project" UpgradeCode="45a10e0b-745b-4027-969e-c0050c2d7bb9">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of TheAirline is already installed." />
