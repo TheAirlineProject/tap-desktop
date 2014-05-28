@@ -3,7 +3,7 @@
 <!-- Begin Arcane Magic -->
 
 <?ifdef env.APPVEYOR_BUILD_VERSION ?>
-<?define version =$(env.APPVEYOR_BUILD_VERSION) ?>
+<?define version=$(env.APPVEYOR_BUILD_VERSION) ?>
 <?else?>
 <?define version= "0.0.0.0"?>
 <?endif?>
