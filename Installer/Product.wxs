@@ -53,6 +53,7 @@ PLATFORM
 
 <!-- End Arcane Magic -->
 
+
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<Product Id="*" Name="TheAirline" Language="1033" Version="$(var.version)" Manufacturer="TheAirline Project" UpgradeCode="45a10e0b-745b-4027-969e-c0050c2d7bb9">
     
@@ -68,7 +69,8 @@ PLATFORM
     <UIRef Id="WixUI_ErrorProgressText" />
 
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
-    
+
+    <WixVariable Id="DataSourceDir" Value="..\bin\$(var.Configuration)\Data"/>
     <WixVariable Id="WixUILicenseRtf" Value="Resources\License.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="Resources\banner.bmp" />
     <WixVariable Id="WixUIDialogBmp" Value="Resources\dialog.bmp" />
@@ -81,22 +83,22 @@ PLATFORM
              Absent='disallow'
              ConfigurableDirectory="INSTALLDIR">
 			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="DataFiles" />
       <ComponentRef Id="ProgramMenuDir" />
 		</Feature>
-    
-	</Product>
+
+  </Product>
 
   <Fragment>
-
     <Icon Id="TheAirline.exe" SourceFile="..\bin\$(var.Configuration)\TheAirline.ico"/>
     <Property Id="ARPPRODUCTICON" Value="TheAirline.exe" />
-    
   </Fragment>
   
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder" Name="TheAirline Project">
-				<Directory Id="INSTALLDIR" Name="TheAirline" />
+				<Directory Id="INSTALLDIR" Name="TheAirline">
+        </Directory>
 			</Directory>
 	
       <Directory Id="ProgramMenuFolder" Name="Programs">
@@ -168,4 +170,5 @@ PLATFORM
       
     </ComponentGroup>
 	</Fragment>
+
 </Wix>
