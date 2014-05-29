@@ -1,22 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Begin Arcane Magic -->
+<!-- Begin Arcane Magic 
 
-<?ifdef env.APPVEYOR_BUILD_VERSION ?>
-<?define version=$(env.APPVEYOR_BUILD_VERSION) ?>
+Summon acient APPVEYOR runes stored as env variables diring build process
+
+CI
+APPVEYOR_BUILD_NUMBER
+APPVEYOR_BUILD_VERSION
+APPVEYOR_REPO_NAME
+APPVEYOR_REPO_BRANCH
+APPVEYOR_REPO_COMMIT
+PLATFORM
+
+-->
+
+<?ifdef env.CI ?>
+<?define ci=$(env.CI) ?>
+<?else?>
+<?define ci="Local build"?>
+<?endif?>
+
+<?ifdef env.APPVEYOR_BUILD_NUMBER ?>
+<?define version=$(env.APPVEYOR_BUILD_NUMBER) ?>
 <?else?>
 <?define version= "0.0.0.0"?>
+<?endif?>
+
+<?ifdef env.APPVEYOR_BUILD_VERSION ?>
+<?define versionName=$(env.APPVEYOR_BUILD_VERSION) ?>
+<?else?>
+<?define versionName="unknown"?>
+<?endif?>
+
+<?ifdef env.APPVEYOR_REPO_NAME ?>
+<?define repoName=$(env.APPVEYOR_REPO_NAME) ?>
+<?else?>
+<?define repoName="local"?>
+<?endif?>
+
+<?ifdef env.APPVEYOR_REPO_BRANCH ?>
+<?define repoBranch=$(env.APPVEYOR_REPO_BRANCH) ?>
+<?else?>
+<?define repoBranch="local"?>
+<?endif?>
+
+<?ifdef env.APPVEYOR_REPO_COMMIT ?>
+<?define commit=$(env.APPVEYOR_REPO_COMMIT) ?>
+<?else?>
+<?define commit="local"?>
+<?endif?>
+
+<?ifdef env.PLATFORM ?>
+<?define platform=$(env.PLATFORM) ?>
+<?else?>
+<?define platform="unknown"?>
 <?endif?>
 
 <!-- End Arcane Magic -->
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="TheAirline $(var.version)" Language="1033" Version="$(var.version)" Manufacturer="TheAirline Project" UpgradeCode="45a10e0b-745b-4027-969e-c0050c2d7bb9">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+	<Product Id="*" Name="TheAirline" Language="1033" Version="$(var.version)" Manufacturer="TheAirline Project" UpgradeCode="45a10e0b-745b-4027-969e-c0050c2d7bb9">
+    
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"  
+            Keywords="TheAirline, $(var.platform),$(var.repoName),$(var.repoBranch),$(var.commit),$(var.versionName),$(var.version)"
+            Description="The Airline is a free, open source airline business simulation game where you control and build an airline."
+            Comments="Build by $(var.ci) using repo $(var.repoName) and $(var.repoBranch). Last commit is $(var.commit)."
+            Manufacturer="TheAirline Project" />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of TheAirline is already installed." />
-		<MediaTemplate />
-
+     <Media Id='1' Cabinet='TheAirline.cab' EmbedCab='yes' />
+      
 		<Feature Id="ProductFeature" Title="TheAirline" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
@@ -24,7 +76,7 @@
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
+			<Directory Id="ProgramFilesFolder" Name="TheAirline Project">
 				<Directory Id="INSTALLFOLDER" Name="TheAirline" />
 			</Directory>
 		</Directory>
@@ -32,10 +84,9 @@
 
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-			<!-- <Component Id="ProductComponent"> -->
-				<!-- TODO: Insert files, registry keys, and other resources here. -->
-			<!-- </Component> -->
+			 <Component Id="GameExecutable" Guid="1AAE1D32-9649-4164-8EB0-FFF1F0CDCB09"> 
+				 <File Id="TheAirlineEXE" Name="TheAirline.exe" Source="..\bin\$(var.Configuration)\TheAirline.exe" KeyPath="yes" />
+			 </Component> 
 		</ComponentGroup>
 	</Fragment>
 </Wix>
