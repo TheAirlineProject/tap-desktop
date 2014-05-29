@@ -26,7 +26,24 @@
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\TheAirline\TheAirline.ico">
+      <Link>TheAirline.ico</Link>
+    </Content>
     <Content Include="packages.config" />
+    <Content Include="Resources\banner.bmp" />
+    <Content Include="Resources\dialog.bmp" />
+    <Content Include="Resources\License.rtf" />
+    <Content Include="TestEnviroment\optional-set local env for build testing.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources" />
+    <Folder Include="TestEnviroment" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\WiX Toolset v3.8\bin\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
   </ItemGroup>
   <PropertyGroup>
     <WixToolPath>$(SolutionDir)packages\WiX.Toolset.3.8.1128.0\tools\wix\</WixToolPath>

@@ -84,7 +84,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>TheAirline.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MathNet.Numerics">
@@ -1114,6 +1115,9 @@
     <Resource Include="Data\images\United Nations.png" />
     <Resource Include="Data\images\video.png" />
     <Resource Include="Data\images\Wind.png" />
+    <Content Include="TheAirline.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\Airplane-white.png" />
@@ -1204,9 +1208,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\search.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="TheAirline.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\actionmail.png" />
