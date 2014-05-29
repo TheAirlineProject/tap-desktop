@@ -15,6 +15,8 @@
         public PageCredits()
         {
             this.InitializeComponent();
+            
+           this.DataContext = new GameVersionMVVM();
         }
 
         #endregion

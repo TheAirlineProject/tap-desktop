@@ -745,6 +745,7 @@
       <DependentUpon>PageFleetAirlinerInsurances.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\DifficultyMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\GamePageModel\GameVersionMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml.cs">
       <DependentUpon>PageAirlineData.xaml</DependentUpon>
     </Compile>
@@ -992,6 +993,7 @@
     <Compile Include="Model\PilotModel\PilotTrainingFacility.cs" />
     <Compile Include="Model\PilotModel\TrainingAircraft.cs" />
     <Compile Include="Model\PilotModel\TrainingAircraftType.cs" />
+    <Compile Include="Properties\AssemblyVersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

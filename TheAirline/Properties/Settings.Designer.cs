@@ -22,14 +22,5 @@ namespace TheAirline.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.4.0 Pre-Alpha")]
-        public string Version {
-            get {
-                return ((string)(this["Version"]));
-            }
-        }
     }
 }
