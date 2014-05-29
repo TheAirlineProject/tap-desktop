@@ -20,17 +20,12 @@ PLATFORM
 <?define ci="Local build"?>
 <?endif?>
 
-<?ifdef env.APPVEYOR_BUILD_NUMBER ?>
-<?define version=$(env.APPVEYOR_BUILD_NUMBER) ?>
+<?ifdef env.APPVEYOR_BUILD_VERSION ?>
+<?define version=$(env.APPVEYOR_BUILD_VERSION) ?>
 <?else?>
 <?define version= "0.0.0.0"?>
 <?endif?>
 
-<?ifdef env.APPVEYOR_BUILD_VERSION ?>
-<?define versionName=$(env.APPVEYOR_BUILD_VERSION) ?>
-<?else?>
-<?define versionName="unknown"?>
-<?endif?>
 
 <?ifdef env.APPVEYOR_REPO_NAME ?>
 <?define repoName=$(env.APPVEYOR_REPO_NAME) ?>
@@ -61,8 +56,8 @@ PLATFORM
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<Product Id="*" Name="TheAirline" Language="1033" Version="$(var.version)" Manufacturer="TheAirline Project" UpgradeCode="45a10e0b-745b-4027-969e-c0050c2d7bb9">
     
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"  
-            Keywords="TheAirline, $(var.platform),$(var.repoName),$(var.repoBranch),$(var.commit),$(var.versionName),$(var.version)"
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"
+            Keywords="TheAirline,$(var.Configuration),$(var.platform),$(var.repoName),$(var.repoBranch),$(var.commit),$(var.version)"
             Description="The Airline is a free, open source airline business simulation game where you control and build an airline."
             Comments="Build by $(var.ci) using repo $(var.repoName) and $(var.repoBranch). Last commit is $(var.commit)."
             Manufacturer="TheAirline Project" />
@@ -79,7 +74,7 @@ PLATFORM
     <WixVariable Id="WixUIDialogBmp" Value="Resources\dialog.bmp" />
 
 		<Feature Id="ProductFeature"
-             Title="TheAirline $(var.versionName)"
+             Title="TheAirline $(var.version)"
              Description="The complete package."
              Display="expand"
              Level="1"
