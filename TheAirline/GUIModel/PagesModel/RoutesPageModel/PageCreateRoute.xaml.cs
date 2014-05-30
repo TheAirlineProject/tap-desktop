@@ -401,13 +401,20 @@
 
         private void createGrouping(ComboBox cb)
         {
-            if (cb != null)
+            if (cb != null && cb.ItemsSource != null)
             {
                 var view = (ListCollectionView)CollectionViewSource.GetDefaultView(cb.ItemsSource);
-                view.GroupDescriptions.Clear();
 
-                var groupDescription = new PropertyGroupDescription("Profile.Town.Country");
-                view.GroupDescriptions.Add(groupDescription);
+                if (view != null)
+                {
+                    if (view.GroupDescriptions != null)
+                    {
+                        view.GroupDescriptions.Clear();
+
+                        var groupDescription = new PropertyGroupDescription("Profile.Town.Country");
+                        view.GroupDescriptions.Add(groupDescription);
+                    }
+                }
             }
         }
 
