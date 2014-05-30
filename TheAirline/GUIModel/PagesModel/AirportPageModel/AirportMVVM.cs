@@ -278,7 +278,7 @@
                 this.Hubs.Add(hub);
             }
 
-            this.CanBuildHub = this.canBuildHub();
+            this.CanBuildHub = canBuildHub();
             this.CanMakeCooperation = GameObject.GetInstance().HumanAirline.Airports.Exists(a => a == this.Airport);
 
             this.LocalTime = MathHelpers.ConvertDateTimeToLoalTime(
@@ -588,7 +588,7 @@
                 Convert.ToDouble(this.Contracts.Count(c => c.Airline == GameObject.GetInstance().HumanAirline))
                 / Convert.ToDouble(this.Airport.Terminals.NumberOfGates);
 
-            return gatesPercent > 0.2 && this.Hubs.Count == 0 && hasServiceCenter;
+           return gatesPercent > 0.2 && this.Hubs.Count == 0 && hasServiceCenter;
         }
 
         #endregion

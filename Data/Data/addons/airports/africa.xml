@@ -2933,7 +2933,7 @@
       <latitude value="033°22'04''N" />
       <longitude value="007°35'16''W" />
     </coordinates>
-    <size value="Medium" pax="7245" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="7245" cargo="Small" cargovolume="53" />
     <terminals>
       <terminal name="Terminal 1" gates="9" />
       <terminal name="Terminal 2" gates="7" />
@@ -2949,7 +2949,7 @@
       <latitude value="031°36'24''N" />
       <longitude value="008°02'10''W" />
     </coordinates>
-    <size value="Medium" pax="3453" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3373" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="6" />
       <terminal name="Terminal 2" gates="7" />
@@ -3160,7 +3160,7 @@
   </airport>
   <!--Libya (HL**)-->
   <airport name="Tripoli International Airport" icao="HLLT" iata="TIP" type="Long_Haul_International" season="All_Year">
-    <town town="Tripoli" country="125" GMT="02:00:00" DST="02:00:00" />
+    <town town="Tripoli" country="1010" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="032°39'48''N" />
       <longitude value="013°09'32''E" />
@@ -3175,7 +3175,7 @@
     </runways>
   </airport>
   <airport name="La Abraq Airport" icao="HLLQ" iata="LAQ" type="Short_Haul_International" season="All_Year">
-    <town town="Al Bayda'" country="125" GMT="02:00:00" DST="02:00:00" />
+    <town town="Al Bayda'" country="1010" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="032°47'19''N" />
       <longitude value="021°57'51''E" />
@@ -3190,7 +3190,7 @@
     </runways>
   </airport>
   <airport name="Benina International Airport" icao="HLLB" iata="BEN" type="Long_Haul_International" season="All_Year">
-    <town town="Benghazi" country="125" GMT="02:00:00" DST="02:00:00" />
+    <town town="Benghazi" country="1010" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="032°05'48''N" />
       <longitude value="020°16'10''E" />
@@ -3205,7 +3205,7 @@
     </runways>
   </airport>
   <airport name="Marsa Brega Airport" icao="HLMB" iata="LMQ" type="Domestic" season="All_Year">
-    <town town="Brega" country="125" GMT="02:00:00" DST="02:00:00" />
+    <town town="Brega" country="1010" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="030°22'41''N" />
       <longitude value="019°34'35''E" />
@@ -3219,7 +3219,7 @@
     </runways>
   </airport>
   <airport name="Ghadames East Airport" icao="HLTD" iata="LTD" type="Domestic" season="All_Year">
-    <town town="Ghadames" country="125" GMT="02:00:00" DST="02:00:00" />
+    <town town="Ghadames" country="1010" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="030°09'06''N" />
       <longitude value="009°42'55''E" />
@@ -3234,7 +3234,7 @@
     </runways>
   </airport>
   <airport name="Ghadames East Airport" icao="HLTD" iata="LTD" type="Domestic" season="All_Year">
-    <town town="Ghadames" country="125" GMT="02:00:00" DST="02:00:00" />
+    <town town="Ghadames" country="1010" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="030°09'06''N" />
       <longitude value="009°42'55''E" />
@@ -3249,7 +3249,7 @@
     </runways>
   </airport>
   <airport name="Ghat Airport" icao="HLGT" iata="GHT" type="Domestic" season="All_Year">
-    <town town="Ghat" country="125" GMT="02:00:00" DST="02:00:00" />
+    <town town="Ghat" country="1010" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="025°08'44''N" />
       <longitude value="010°08'33''E" />
@@ -3264,7 +3264,7 @@
     </runways>
   </airport>
   <airport name="Kufra Airport" icao="HLKF" iata="AKF" type="Domestic" season="All_Year">
-    <town town="Kufra" country="125" GMT="02:00:00" DST="02:00:00" />
+    <town town="Kufra" country="1010" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="024°10'43''N" />
       <longitude value="023°18'50''E" />
@@ -3279,7 +3279,7 @@
     </runways>
   </airport>
   <airport name="Sabha Airport" icao="HLLS" iata="SEB" type="Domestic" season="All_Year">
-    <town town="Sabha" country="125" GMT="02:00:00" DST="02:00:00" />
+    <town town="Sabha" country="1010" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="026°59'13''N" />
       <longitude value="014°28'20''E" />
@@ -3294,7 +3294,7 @@
     </runways>
   </airport>
   <airport name="Gardabya Airport" icao="HLGD" iata="SRX" type="Domestic" season="All_Year">
-    <town town="Sirt" country="125" GMT="02:00:00" DST="02:00:00" />
+    <town town="Sirt" country="1010" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="031°03'48''N" />
       <longitude value="016°35'41''E" />
@@ -3309,7 +3309,7 @@
     </runways>
   </airport>
   <airport name="Gamal Abdel Nasser Airport" icao="HLGN" iata="TOB" type="Domestic" season="All_Year">
-    <town town="Tobruk" country="125" GMT="02:00:00" DST="02:00:00" />
+    <town town="Tobruk" country="1010" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="031°51'39''N" />
       <longitude value="023°54'25''E" />
@@ -3325,7 +3325,7 @@
     </runways>
   </airport>
   <airport name="Mitiga Airport" icao="HLLM" iata="MJI" type="Short_Haul_International" season="All_Year">
-    <town town="Tripoli" country="125" GMT="02:00:00" DST="02:00:00" />
+    <town town="Tripoli" country="1010" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="032°53'38''N" />
       <longitude value="013°16'33''E" />

@@ -1920,9 +1920,9 @@
       <latitude value="050°04'39''N" />
       <longitude value="019°47'05''E" />
     </coordinates>
-    <size value="Medium" pax="3014" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3647" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="6" />
+      <terminal name="Terminal" gates="50" />
     </terminals>
     <runways>
       <runway name="07/25" length="2550" surface="Concrete" />
@@ -1935,9 +1935,9 @@
       <latitude value="052°27'04''N" />
       <longitude value="020°39'06''E" />
     </coordinates>
-    <size value="Medium" pax="2033" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="344" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="8" />
+      <terminal name="Terminal" gates="20" />
     </terminals>
     <runways>
       <runway name="08/26" length="2500" surface="Asphalt" />
@@ -1949,7 +1949,7 @@
       <latitude value="052°09'56''N" />
       <longitude value="020°58'01''E" />
     </coordinates>
-    <size value="Medium" pax="9337" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="10638" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="45" />
     </terminals>

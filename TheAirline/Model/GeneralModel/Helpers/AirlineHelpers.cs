@@ -361,9 +361,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 }
 
-                foreach (AirlinePolicy policy in airline.Policies)
-                    sAirline.addAirlinePolicy(policy);
-
+            
                 AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
                 AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
@@ -371,6 +369,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airportHomeBase.addAirportFacility(sAirline, checkinFacility, GameObject.GetInstance().GameTime);
 
             }
+
+            foreach (AirlinePolicy policy in airline.Policies)
+                sAirline.addAirlinePolicy(policy);
 
             Airlines.AddAirline(sAirline);
 

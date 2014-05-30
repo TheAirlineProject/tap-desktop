@@ -1,0 +1,2274 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airports>
+<!--Poland-->
+  <airport name="Katowice International Airport" icao="EPKT" iata="KTW" type="Long_Haul_International" season="All_Year">
+    <town town="Katowice" country="135" GMT="01:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="050°28'27''N" />
+      <longitude value="019°04'47''E" />
+    </coordinates>
+    <size value="Medium" pax="2550" cargo="Very_small" cargovolume="11" />
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+      <terminal name="Terminal B" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2799" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Gdansk Lech Wałęsa Airport" icao="EPGD" iata="GDN" type="Long_Haul_International" season="All_Year">
+    <town town="Gdansk" country="135" GMT="01:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="054°22'39''N" />
+      <longitude value="018°27'58''E" />
+    </coordinates>
+    <size value="Medium" pax="2906" cargo="Smallest" cargovolume="5"/>
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+      <terminal name="Terminal B" gates="25" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="2800" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Copernicus Wrocław Airport" icao="EPWR" iata="WRO" type="Long_Haul_International" season="All_Year">
+    <town town="Wrocław" country="135" GMT="01:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="051°06'09''N" />
+      <longitude value="016°53'08''E" />
+    </coordinates>
+    <size value="Medium" pax="1902" />
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+      <terminal name="Terminal B" gates="30" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2500" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Poznań-Ławica Airport" icao="EPPO" iata="POZ" type="Long_Haul_International" season="All_Year">
+    <town town="Poznań" country="135" GMT="01:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="052°25'15''N" />
+      <longitude value="016°49'34''E" />
+    </coordinates>
+    <size value="Small" pax="1355" />
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+      <terminal name="Terminal B" gates="25" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="700" surface="Grass" />
+      <runway name="10/28" length="2504" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Rzeszów-Jasionka Airport" icao="EPRZ" iata="RZE" type="Long_Haul_International" season="All_Year">
+    <town town="Rzeszów" country="135" GMT="01:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="050°06'36''N" />
+      <longitude value="022°01'08''E" />
+    </coordinates>
+    <size value="Small" pax="589" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="823" surface="Asphalt" />
+      <runway name="09/27" length="3200" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Łódź Władysław Reymont Airport" icao="EPLL" iata="LCJ" type="Short_Haul_International" season="All_Year">
+    <town town="Łódź" country="135" GMT="01:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="051°43'18''N" />
+      <longitude value="019°23'53''E" />
+    </coordinates>
+    <size value="Very_small" pax="353" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="07L/25R" length="2445" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Szczecin-Goleniów Solidarność Airport" icao="EPSC" iata="SZZ" type="Short_Haul_International" season="All_Year">
+    <town town="Goleniow" country="135" GMT="01:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="053°35'04''N" />
+      <longitude value="014°54'07''E" />
+    </coordinates>
+    <size value="Very_small" pax="349" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Bydgoszcz Ignacy Jan Paderewski Airport" icao="EPBY" iata="BZG" type="Short_Haul_International" season="All_Year">
+    <town town="Bydgoszcz" country="135" GMT="01:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="053°05'48''N" />
+      <longitude value="017°58'39''E" />
+    </coordinates>
+    <size value="Very_small" pax="343" />
+    <terminals>
+      <terminal name="Terminal A" gates="27" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2500" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Lublin Airport" icao="EPLB" iata="LUZ" type="Long_Haul_International" season="All_Year">
+    <town town="Lublin" country="135" GMT="01:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="051°13'54''N" />
+      <longitude value="022°41'25''E" />
+    </coordinates>
+    <size value="Smallest" pax="189" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="2520" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Zielona Góra-Babimost Airport" icao="EPZG" iata="IEG" type="Domestic" season="All_Year">
+    <town town="Babimost" country="135" GMT="01:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="052°08'18''N" />
+      <longitude value="015°47'54''E" />
+    </coordinates>
+    <size value="Smallest" pax="15" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="2500" surface="Concrete" />
+    </runways>
+  </airport>
+  <!--India-->
+    <airport name="Cochin International Airport" icao="VOCI" iata="COK" type="Long_Haul_International" season="All_Year">
+    <town town="Cochin" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="010°09'07''N" />
+      <longitude value="076°24'06''E" />
+    </coordinates>
+    <size value="Medium" pax="5383" cargo="Medium" cargovolume="52" />
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+      <terminal name="Terminal B" gates="16" />
+      <terminal name="Terminal C" gates="16" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="3400" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Calicut International Airport" icao="VOCL" iata="CCJ" type="Long_Haul_International" season="All_Year">
+    <town town="Calicut" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="011°08'12''N" />
+      <longitude value="075°57'19''E" />
+    </coordinates>
+    <size value="Medium" pax="2209" cargo="Small" cargovolume="25"  />
+    <terminals>
+      <terminal name="Terminal A" gates="24" />
+      <terminal name="Terminal B" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2860" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Trivandrum International Airport" icao="VOTV" iata="TRV" type="Long_Haul_International" season="All_Year">
+    <town town="Trivandrum" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="008°28'55''N" />
+      <longitude value="076°55'12''E" />
+    </coordinates>
+    <size value="Medium" pax="2814" cargo="Medium" cargovolume="48"/>
+    <terminals>
+      <terminal name="Terminal A" gates="24" />
+      <terminal name="Terminal B" gates="25" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="3398" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Mangalore International Airport" icao="VOML" iata="IXE" type="Long_Haul_International" season="All_Year">
+    <town town="Mangalore" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="012°57'40''N" />
+      <longitude value="074°53'24''E" />
+    </coordinates>
+    <size value="Small" pax="1032" />
+    <terminals>
+      <terminal name="Terminal A" gates="19" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1615" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Dabolim Airport" icao="VOGO" iata="GOI" type="Long_Haul_International" season="All_Year">
+    <town town="Vasco da Gama" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="015°22'50''N" />
+      <longitude value="073°49'53''E" />
+    </coordinates>
+    <size value="Medium" pax="3521" cargo="Smallest" cargovolume="6" />
+    <terminals>
+      <terminal name="Terminal A" gates="22" />
+      <terminal name="Terminal B" gates="20" />
+      <terminal name="Terminal C" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="3458" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Jaipur International Airport" icao="VIJP" iata="JAI" type="Long_Haul_International" season="All_Year">
+    <town town="Jaipur" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="026°49'27''N" />
+      <longitude value="075°48'43''E" />
+    </coordinates>
+    <size value="Small" pax="1655" />
+    <terminals>
+      <terminal name="Terminal A" gates="22" />
+      <terminal name="Terminal B" gates="16" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2797" surface="Asphalt" />
+      <runway name="15/33" length="1592" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Vishakhapatnam Airport" icao="VOVZ" iata="VTZ" type="Long_Haul_International" season="All_Year">
+    <town town="Visakhapatnam" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="017°43'16''N" />
+      <longitude value="083°13'28''E" />
+    </coordinates>
+    <size value="Small" pax="900" />
+    <terminals>
+      <terminal name="Terminal A" gates="22" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="1829" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Rajiv Gandhi Airport" icao="VOHY" iata="HYD" type="Long_Haul_International" season="All_Year">
+    <town town="Hyderabad" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="014°08'57''N" />
+      <longitude value="077°47'27''E" />
+    </coordinates>
+    <size value="Medium" pax="8300" cargo="Medium" cargovolume="79"  />
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+      <terminal name="Terminal B" gates="30" />
+      <terminal name="Terminal C" gates="30" />
+    </terminals>
+    <runways>
+      <runway name="09L/27R" length="2340" surface="Asphalt" />
+       <runway name="09R/27L" length="2230" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Dr. Babasaheb Ambedkar International Airport" icao="VANP" iata="NAG" type="Long_Haul_International" season="All_Year">
+    <town town="Naqpur" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="021°05'31''N" />
+      <longitude value="079°02'49''E" />
+    </coordinates>
+    <size value="Small" pax="1415" cargo="Smallest" cargovolume="9"   />
+    <terminals>
+      <terminal name="Terminal A" gates="24" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1938" surface="Asphalt" />
+      <runway name="14/32" length="3200" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Sardar Vallabhbhai Patel International Airport" icao="VAAH" iata="AMD" type="Long_Haul_International" season="All_Year">
+    <town town="Ahmedabad" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="023°04'37''N" />
+      <longitude value="072°38'04''E" />
+    </coordinates>
+    <size value="Medium" pax="4162"  cargo="Small" cargovolume="48"/>
+    <terminals>
+      <terminal name="Terminal A" gates="24" />
+      <terminal name="Terminal B" gates="24" />
+      <terminal name="Terminal C" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="3489" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Sheikh ul Alam Airport" icao="VISR" iata="SXR" type="Long_Haul_International" season="All_Year">
+    <town town="Srinagar" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="033°59'13''N" />
+      <longitude value="074°46'27''E" />
+    </coordinates>
+    <size value="Small" pax="1632" cargo="Smallest" cargovolume="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="23" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="3685" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Coimbatore International Airport" icao="VOCB" iata="CJB" type="Long_Haul_International" season="All_Year">
+    <town town="Coimbatore" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="011°01'47''N" />
+      <longitude value="077°02'36''E" />
+    </coordinates>
+    <size value="Small" pax="1297" cargo="Smallest" cargovolume="7"  />
+    <terminals>
+      <terminal name="Terminal A" gates="24" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2585" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Lokpriya Gopinath Bordoloi International Airport" icao="VEGT" iata="GAU" type="Long_Haul_International" season="All_Year">
+    <town town="Guwahati" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="026°06'21''N" />
+      <longitude value="091°35'09''E" />
+    </coordinates>
+    <size value="Small" pax="1934" cargo="Smallest" cargovolume="9"  />
+    <terminals>
+      <terminal name="Terminal A" gates="24" />
+      <terminal name="Terminal B" gates="14" />
+      <terminal name="Terminal C" gates="14" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2743" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Chaudhary Charan Singh International Airport" icao="VILK" iata="LKO" type="Long_Haul_International" season="All_Year">
+    <town town="Lucknow" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="026°45'38''N" />
+      <longitude value="080°53'21''E" />
+    </coordinates>
+    <size value="Medium" pax="2976" cargo="Smallest" cargovolume="4"   />
+    <terminals>
+      <terminal name="Terminal A" gates="22" />
+      <terminal name="Terminal B" gates="22" />
+      <terminal name="Terminal C" gates="22" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2742" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Chaudhary Charan Singh International Airport" icao="VILK" iata="LKO" type="Long_Haul_International" season="All_Year">
+    <town town="Lucknow" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="026°45'38''N" />
+      <longitude value="080°53'21''E" />
+    </coordinates>
+    <size value="Small" pax="870" cargo="Smallest" cargovolume="3"  />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2742" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Lal Bahadur Shastri Airport" icao="VIBN" iata="VNS" type="Long_Haul_International" season="All_Year">
+    <town town="Varanasi" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="025°27'08''N" />
+      <longitude value="082°51'33''E" />
+    </coordinates>
+    <size value="Small" pax="556" />
+    <terminals>
+      <terminal name="Terminal A" gates="27" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2206" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Bagdogra Airport" icao="VEBD" iata="IXB" type="Long_Haul_International" season="All_Year">
+    <town town="Siliguri" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="026°40'52''N" />
+      <longitude value="088°19'42''E" />
+    </coordinates>
+    <size value="Small" pax="735" cargo="Smallest" cargovolume="1"  />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2754" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Biju Patnaik Airport" icao="VEBS" iata="BBI" type="Long_Haul_International" season="All_Year">
+    <town town="Bhubaneswar" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="020°14'39''N" />
+      <longitude value="085°49'04''E" />
+    </coordinates>
+    <size value="Small" pax="1389" cargo="Smallest" cargovolume="3"  />
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="1379" surface="Asphalt" />
+      <runway name="14/32" length="2243" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Devi Ahilyabai Holkar Airport" icao="VAID" iata="IDR" type="Long_Haul_International" season="All_Year">
+    <town town="Indore" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="022°43'18''N" />
+      <longitude value="075°48'03''E" />
+    </coordinates>
+    <size value="Small" pax="1112" />
+    <terminals>
+      <terminal name="Terminal A" gates="21" />
+      <terminal name="Terminal B" gates="12" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="2280" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Vir Savarkar International Airport" icao="VOPB" iata="IXZ" type="Domestic" season="All_Year">
+    <town town="Port Blair" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="011°38'28''N" />
+      <longitude value="092°43'46''E" />
+    </coordinates>
+    <size value="Small" pax="581"  cargo="Smallest" cargovolume="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="17" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="3290" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Pune Airport" icao="VAPO" iata="PNQ" type="Long_Haul_International" season="All_Year">
+    <town town="Pune" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="018°34'55''N" />
+      <longitude value="073°55'10''E" />
+    </coordinates>
+    <size value="Medium" pax="3294"  cargo="Small" cargovolume="20"  />
+    <terminals>
+      <terminal name="Terminal A" gates="25" />
+      <terminal name="Terminal B" gates="15" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2539" surface="Asphalt" />
+      <runway name="14/32" length="1796" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Lok Nayak Jayaprakash Airport" icao="VEPT" iata="PAT" type="Domestic" season="All_Year">
+    <town town="Patna" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="025°35'28''N" />
+      <longitude value="085°05'16''E" />
+    </coordinates>
+    <size value="Small" pax="1257"  cargo="Smallest" cargovolume="3" />
+    <terminals>
+      <terminal name="Terminal A" gates="19" />
+      <terminal name="Terminal B" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="1954" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Chandigarh Airport" icao="VICG" iata="IXC" type="Domestic" season="All_Year">
+    <town town="Chandigarh" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="030°40'24''N" />
+      <longitude value="076°47'18''E" />
+    </coordinates>
+    <size value="Small" pax="1052" />
+    <terminals>
+      <terminal name="Terminal A" gates="18" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="2744" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Jammu Airport" icao="VIJU" iata="IXJ" type="Domestic" season="All_Year">
+    <town town="Jammu" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="032°41'20''N" />
+      <longitude value="074°50'14''E" />
+    </coordinates>
+    <size value="Small" pax="822" />
+    <terminals>
+      <terminal name="Terminal A" gates="22" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="2059" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Agartala Airport" icao="VEAT" iata="IXA" type="Domestic" season="All_Year">
+    <town town="Agartala" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="023°53'13''N" />
+      <longitude value="091°14'25''E" />
+    </coordinates>
+    <size value="Small" pax="795" cargo="Smallest" cargovolume="7"  />
+    <terminals>
+      <terminal name="Terminal A" gates="14" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2286" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Vadodara Airport" icao="VABO" iata="BDQ" type="Domestic" season="All_Year">
+    <town town="Vadodara" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="022°20'10''N" />
+      <longitude value="073°13'34''E" />
+    </coordinates>
+    <size value="Small" pax="663" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2469" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Imphal Airport" icao="VEIM" iata="IMF" type="Short_Haul_International" season="All_Year">
+    <town town="Imphal" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="024°45'36''N" />
+      <longitude value="093°53'48''E" />
+    </coordinates>
+    <size value="Small" pax="644" />
+    <terminals>
+      <terminal name="Terminal A" gates="15" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2746" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Madurai Airport" icao="VOMD" iata="IXM" type="Long_Haul_International" season="All_Year">
+    <town town="Madurai" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="009°50'04''N" />
+      <longitude value="078°05'36''E" />
+    </coordinates>
+    <size value="Small" pax="670" cargo="Smallest" cargovolume="1" />
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1826" surface="Asphalt" />
+      <runway name="13/31" length="1403" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Maharana Pratap Airport" icao="VAUD" iata="UDR" type="Domestic" season="All_Year">
+    <town town="Udaipur" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="024°37'03''N" />
+      <longitude value="073°53'45''E" />
+    </coordinates>
+    <size value="Very_small" pax="419" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2281" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Leh Kushok Bakula Rimpochee Airport" icao="VILH" iata="IXL" type="Domestic" season="All_Year">
+    <town town="Leh" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="034°08'09''N" />
+      <longitude value="077°32'47''E" />
+    </coordinates>
+    <size value="Very_small" pax="323" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="152" surface="Asphalt" />
+      <runway name="07/25" length="152" surface="Asphalt" />
+      <runway name="07L/25R" length="2755" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Rajkot Airport" icao="VARK" iata="RAJ" type="Domestic" season="All_Year">
+    <town town="Rajkot" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="022°18'33''N" />
+      <longitude value="070°46'46''E" />
+    </coordinates>
+    <size value="Very_small" pax="303" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="1841" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Jodhpur Airport" icao="VIJO" iata="JDH" type="Domestic" season="All_Year">
+    <town town="Jodhpur" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="026°15'03''N" />
+      <longitude value="073°02'56''E" />
+    </coordinates>
+    <size value="Very_small" pax="299" cargo="Smallest" cargovolume="3" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2745" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Tirupati Airport" icao="VOTP" iata="TIR" type="Domestic" season="All_Year">
+    <town town="Tirupati" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="013°37'56''N" />
+      <longitude value="079°32'35''E" />
+    </coordinates>
+    <size value="Very_small" pax="269" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2286" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Dibrugarh Airport" icao="VEMN" iata="DIB" type="Domestic" season="All_Year">
+    <town town="Dibrugarh" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="027°29'02''N" />
+      <longitude value="095°01'00''E" />
+    </coordinates>
+    <size value="Very_small" pax="236" />
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="1829" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Dehradun Airport" icao="VIDN" iata="DED" type="Domestic" season="All_Year">
+    <town town="Dehradun" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="030°11'22''N" />
+      <longitude value="078°10'49''E" />
+    </coordinates>
+    <size value="Very_small" pax="225" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="1145" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Gaya Airport" icao="VEGY" iata="GAY" type="Short_Haul_International" season="All_Year">
+    <town town="Gaya" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="024°44'39''N" />
+      <longitude value="084°57'04''E" />
+    </coordinates>
+    <size value="Smallest" pax="105" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2286" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Birsa Munda Airport" icao="VERC" iata="IXR" type="Domestic" season="All_Year">
+    <town town="Ranchi" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="023°18'51''N" />
+      <longitude value="085°19'18''E" />
+    </coordinates>
+    <size value="Very_small" pax="459" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="2699" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Raja Bhoj International Airport" icao="VABP" iata="BHO" type="Domestic" season="All_Year">
+    <town town="Bhopal" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="023°17'15''N" />
+      <longitude value="077°20'14''E" />
+    </coordinates>
+    <size value="Very_small" pax="384" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="1042" surface="Asphalt" />
+      <runway name="12/30" length="2042" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Aurangabad Airport" icao="VAAU" iata="IXU" type="Domestic" season="All_Year">
+    <town town="Aurangabad" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="019°51'45''N" />
+      <longitude value="075°23'53''E" />
+    </coordinates>
+    <size value="Very_small" pax="374" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2351" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Silchar Airport" icao="VEKU" iata="IXS" type="Domestic" season="All_Year">
+    <town town="Silchar" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="024°54'46''N" />
+      <longitude value="092°58'43''E" />
+    </coordinates>
+    <size value="Very_small" pax="214" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="1827" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Agra Airport" icao="VIAG" iata="AGR" type="Domestic" season="All_Year">
+    <town town="Agra" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="027°09'20''N" />
+      <longitude value="077°57'39''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2743" surface="Concrete" />
+      <runway name="12/30" length="1818" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Bhuj Airport" icao="VABJ" iata="BHJ" type="Domestic" season="All_Year">
+    <town town="Bhuj" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="023°17'16''N" />
+      <longitude value="069°40'12''E" />
+    </coordinates>
+    <size value="Smallest" pax="80" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2501" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Bhavnagar Airport" icao="VABV" iata="BHU" type="Domestic" season="All_Year">
+    <town town="Bhavnagar" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="021°45'07''N" />
+      <longitude value="072°11'06''E" />
+    </coordinates>
+    <size value="Smallest" pax="32" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="1920" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Jamnagar Airport" icao="VAJM" iata="JGA" type="Domestic" season="All_Year">
+    <town town="Jamnagar" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="022°27'55''N" />
+      <longitude value="070°00'45''E" />
+    </coordinates>
+    <size value="Smallest" pax="55" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="2512" surface="Concrete" />
+      <runway name="12/30" length="2510" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Surat Airport" icao="VASU" iata="STV" type="Domestic" season="All_Year">
+    <town town="Surat" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="021°06'50''N" />
+      <longitude value="072°44'30''E" />
+    </coordinates>
+    <size value="Smallest" pax="95" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2250" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Porbandar Airport" icao="VAPR" iata="PBD" type="Domestic" season="All_Year">
+    <town town="Porbandar" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="021°38'55''N" />
+      <longitude value="069°39'25''E" />
+    </coordinates>
+    <size value="Smallest" pax="45" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1372" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Jorhat Airport" icao="VEJT" iata="JRH" type="Domestic" season="All_Year">
+    <town town="Jorhat" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="026°43'53''N" />
+      <longitude value="094°10'31''E" />
+    </coordinates>
+    <size value="Smallest" pax="72" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2743" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Kangra Airport" icao="VIGG" iata="DHM" type="Domestic" season="All_Year">
+    <town town="Kangra" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="032°09'54''N" />
+      <longitude value="076°15'48''E" />
+    </coordinates>
+    <size value="Smallest" pax="65" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="1408" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Belgaum Airport" icao="VOBM" iata="IXG" type="Domestic" season="All_Year">
+    <town town="Belgaum" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="015°51'33''N" />
+      <longitude value="074°37'05''E" />
+    </coordinates>
+    <size value="Smallest" pax="55" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="1459" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Hubli Airport" icao="VOHB" iata="HBX" type="Domestic" season="All_Year">
+    <town town="Hubli" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="015°21'42''N" />
+      <longitude value="075°05'05''E" />
+    </coordinates>
+    <size value="Smallest" pax="95" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="1670" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Mysore Airport" icao="VOMY" iata="MYQ" type="Domestic" season="All_Year">
+    <town town="Mysore" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="012°18'25''N" />
+      <longitude value="076°38'58''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+      <runways>
+      <runway name="09/27" length="1970" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Kanpur Airport" icao="VIKA" iata="KNU" type="Domestic" season="All_Year">
+    <town town="Kanpur" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="026°26'29''N" />
+      <longitude value="080°21'53''E" />
+    </coordinates>
+    <size value="Smallest" pax="20" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="1123" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Rajahmundry Airport" icao="VORY" iata="RJA" type="Domestic" season="All_Year">
+    <town town="Rajahmundry" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="017°06'37''N" />
+      <longitude value="081°49'05''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="1740" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Dimapur Airport" icao="VEMR" iata="DMU" type="Domestic" season="All_Year">
+    <town town="Dimapur" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="025°53'02''N" />
+      <longitude value="093°46'15''E" />
+    </coordinates>
+    <size value="Smallest" pax="55" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2290" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Vijayawada Airport" icao="VOBZ" iata="VGA" type="Domestic" season="All_Year">
+    <town town="Vijayawada" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="016°31'49''N" />
+      <longitude value="080°47'48''E" />
+    </coordinates>
+    <size value="Smallest" pax="70" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2408" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Tuirial Airport" icao="VEAZ" iata="AJL" type="Domestic" season="All_Year">
+    <town town="Aizawl" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="023°44'47''N" />
+      <longitude value="092°48'10''E" />
+    </coordinates>
+    <size value="Smallest" pax="75" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="1145" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Shillong Airport" icao="VEBI" iata="SHL" type="Domestic" season="All_Year">
+    <town town="Shillong" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="025°42'12''N" />
+      <longitude value="091°58'43''E" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="1829" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Khajuraho Airport" icao="VAKJ" iata="HJR" type="Domestic" season="All_Year">
+    <town town="Khajuraho" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="024°49'01''N" />
+      <longitude value="079°55'06''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2274" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Agatti Airport" icao="VOAT" iata="AGX" type="Domestic" season="All_Year">
+    <town town="Agatti" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="010°49'25''N" />
+      <longitude value="072°10'33''E" />
+    </coordinates>
+    <size value="Smallest" pax="30" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="1291" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Jabalpur Airport" icao="VAJB" iata="JLR" type="Domestic" season="All_Year">
+    <town town="Jabalpur" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="023°10'40''N" />
+      <longitude value="080°03'07''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="1988" surface="Asphalt" />
+    </runways>
+  </airport>
+  <!--Taiwan-->
+    <airport name="Hualien Airport" icao="RCYU" iata="HUN" type="Short_Haul_International" season="All_Year">
+    <town town="Hualien City" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="024°01'23''N" />
+      <longitude value="121°37'04''E" />
+    </coordinates>
+    <size value="Smallest" pax="75" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="2750" surface="Asphalt" />
+      <runway name="03L/21R" length="2750" surface="Asphalt" />
+      <runway name="03R/21L" length="2745" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Taitung Airport" icao="RCFN" iata="TTT" type="Short_Haul_International" season="All_Year">
+    <town town="Taitung City" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="022°45'17''N" />
+      <longitude value="121°06'07''E" />
+    </coordinates>
+    <size value="Smallest" pax="45" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2438" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Tainan Airport" icao="RCNN" iata="TNN" type="Short_Haul_International" season="All_Year">
+    <town town="Tainan City" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="022°57'01''N" />
+      <longitude value="120°12'21''E" />
+    </coordinates>
+    <size value="Smallest" pax="45" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="18L/36R" length="3050" surface="Concrete" />
+      <runway name="18R/36L" length="3050" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Makung Airport" icao="RCQC" iata="MZG" type="Short_Haul_International" season="All_Year">
+    <town town="Makung City" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="023°34'07''N" />
+      <longitude value="119°37'40''E" />
+    </coordinates>
+    <size value="Very_small" pax="450" />
+    <terminals>
+      <terminal name="Terminal A" gates="14" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="3000" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Kinmen Airport" icao="RCBS" iata="KNH" type="Domestic" season="All_Year">
+    <town town="Shang-I" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="024°25'40''N" />
+      <longitude value="118°21'32''E" />
+    </coordinates>
+    <size value="Small" pax="1200" />
+    <terminals>
+      <terminal name="Terminal A" gates="14" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="3007" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Taichung Ching Chuang Kang Airport" icao="RCMQ" iata="RMQ" type="Long_Haul_International" season="All_Year">
+    <town town="Taichung City" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="024°15'52''N" />
+      <longitude value="120°37'15''E" />
+    </coordinates>
+    <size value="Small" pax="1592" />
+    <terminals>
+      <terminal name="Terminal A" gates="24" />
+      <terminal name="Terminal B" gates="18" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="3658" surface="Concrete" />
+    </runways>
+  </airport>
+  <!--Kazakhstan-->
+    <airport name="Atyrau Airport" icao="UATG" iata="GUW" type="Long_Haul_International" season="All_Year">
+    <town town="Atyrau" country="236" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="047°07'18''N" />
+      <longitude value="051°49'17''E" />
+    </coordinates>
+    <size value="Medium" pax="3000" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Almaty Airport" icao="UAAA" iata="ALA" type="Long_Haul_International" season="All_Year">
+    <town town="Almaty" country="236" GMT="06:00:00" DST="06:00:00" />
+    <coordinates>
+      <latitude value="043°21'07''N" />
+      <longitude value="077°02'25''E" />
+    </coordinates>
+    <size value="Medium" pax="4500"  cargo="Medium" cargovolume="101" />
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+      <terminal name="Terminal B" gates="30" />
+      <terminal name="Terminal C" gates="26" />
+    </terminals>
+    <runways>
+      <runway name="05L/23R" length="4397" surface="Asphalt" />
+        <runway name="05R/23L" length="4497" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Aktau Airport" icao="UATE" iata="SCO" type="Long_Haul_International" season="All_Year">
+    <town town="Aktau" country="236" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="043°51'36''N" />
+      <longitude value="051°05'31''E" />
+    </coordinates>
+    <size value="Medium" pax="3900" />
+    <terminals>
+      <terminal name="Terminal A" gates="29" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2652" surface="Asphalt" />
+      <runway name="12L/30R" length="2935" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Aktobe Airport" icao="UATT" iata="AKX" type="Domestic" season="All_Year">
+    <town town="Aktyuinsk" country="236" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="050°14'44''N" />
+      <longitude value="057°12'24''E" />
+    </coordinates>
+    <size value="Smallest" pax="110" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="3097" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Balkhash Airport" icao="UAAH" iata="BXH" type="Domestic" season="All_Year">
+    <town town="Balkhash" country="236" GMT="06:00:00" DST="06:00:00" />
+    <coordinates>
+      <latitude value="046°53'35''N" />
+      <longitude value="075°00'17''E" />
+    </coordinates>
+    <size value="Smallest" pax="90" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2502" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Sary-Arka Airport" icao="UAKK" iata="KGF" type="Long_Haul_International" season="All_Year">
+    <town town="Karaganda" country="236" GMT="06:00:00" DST="06:00:00" />
+    <coordinates>
+      <latitude value="049°40'14''N" />
+      <longitude value="073°20'03''E" />
+    </coordinates>
+    <size value="Medium" pax="2000" />
+    <terminals>
+      <terminal name="Terminal A" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="3301" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Kostanay West Airport" icao="UAUU" iata="KSN" type="Short_Haul_International" season="All_Year">
+    <town town="Kostanay" country="236" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="053°12'24''N" />
+      <longitude value="063°33'01''E" />
+    </coordinates>
+    <size value="Small" pax="1000" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="2484" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Kzyl-Orda Southwest Airport" icao="UAOO" iata="KZO" type="Domestic" season="All_Year">
+    <town town="Kzyl-Orda" country="236" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="044°42'24''N" />
+      <longitude value="065°35'32''E" />
+    </coordinates>
+    <size value="Medium" pax="1000" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="2684" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Uralsk Airport" icao="UARR" iata="URA" type="Domestic" season="All_Year">
+    <town town="Uralsk" country="236" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="051°09'02''N" />
+      <longitude value="051°32'35''E" />
+    </coordinates>
+    <size value="Very_small" pax="500" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2400" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Ust-Kamennogorsk Airport" icao="UASK" iata="UKK" type="Short_Haul_International" season="All_Year">
+    <town town="Ust Kamenogorsk" country="236" GMT="06:00:00" DST="06:00:00" />
+    <coordinates>
+      <latitude value="050°02'11''N" />
+      <longitude value="082°29'39''E" />
+    </coordinates>
+    <size value="Small" pax="800" />
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2510" surface="Asphalt" />
+      <runway name="12L/30R" length="1856" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Pavlodar Airport" icao="UASP" iata="PWQ" type="Short_Haul_International" season="All_Year">
+    <town town="Pavlodar" country="236" GMT="06:00:00" DST="06:00:00" />
+    <coordinates>
+      <latitude value="052°11'41''N" />
+      <longitude value="077°04'26''E" />
+    </coordinates>
+    <size value="Small" pax="750" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="2500" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Petropavlosk South Airport" icao="UACP" iata="PPK" type="Domestic" season="All_Year">
+    <town town="Petropavlosk" country="236" GMT="06:00:00" DST="06:00:00" />
+    <coordinates>
+      <latitude value="054°46'28''N" />
+      <longitude value="069°11'02''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2496" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Shymkent Airport" icao="UAII" iata="CIT" type="Long_Haul_International" season="All_Year">
+    <town town="Shymkent" country="236" GMT="06:00:00" DST="06:00:00" />
+    <coordinates>
+      <latitude value="042°21'51''N" />
+      <longitude value="069°28'44''E" />
+    </coordinates>
+    <size value="Very_small" pax="300" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2800" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Dzhezkazgan Airport" icao="UAKD" iata="DZN" type="Domestic" season="All_Year">
+    <town town="Dzhezkazgan" country="236" GMT="06:00:00" DST="06:00:00" />
+    <coordinates>
+      <latitude value="047°46'14''N" />
+      <longitude value="067°40'24''E" />
+    </coordinates>
+    <size value="Very_small" pax="300" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Kokshetau Airport" icao="UACK" iata="KOV" type="Domestic" season="All_Year">
+    <town town="Kokshetau" country="236" GMT="06:00:00" DST="06:00:00" />
+    <coordinates>
+      <latitude value="053°19'44''N" />
+      <longitude value="069°35'40''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2537" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Taraz Airport" icao="UADD" iata="DMB" type="Domestic" season="All_Year">
+    <town town="Taraz" country="236" GMT="06:00:00" DST="06:00:00" />
+    <coordinates>
+      <latitude value="042°51'12''N" />
+      <longitude value="071°18'12''E" />
+    </coordinates>
+    <size value="Smallest" pax="90" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="2900" surface="Asphalt" />
+    </runways>
+  </airport>
+  <!--Japan-->
+   <airport name="Hiroshima Airport" icao="RJOA" iata="HIJ" type="Long_Haul_International" season="All_Year">
+    <town town="Hiroshima" country="171" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="034°26'09''N" />
+      <longitude value="132°55'08''E" />
+    </coordinates>
+    <size value="Medium" pax="2810" />
+    <terminals>
+      <terminal name="Terminal A" gates="15" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Memanbetsu Airport" icao="RJCM" iata="MMB" type="Domestic" season="All_Year">
+    <town town="Ōzora" country="171" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="043°52'50''N" />
+      <longitude value="144°09'50''E" />
+    </coordinates>
+    <size value="Small" pax="1000" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Misawa Air Base" icao="RJSM" iata="MSJ" type="Domestic" season="All_Year">
+    <town town="Misawa" country="171" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="040°42'11''N" />
+      <longitude value="141°22'04''E" />
+    </coordinates>
+    <size value="Small" pax="40" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="3048" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Matsuyama Airport" icao="RJOM" iata="MYJ" type="Short_Haul_International" season="All_Year">
+    <town town="Matsuyama" country="171" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="033°49'37''N" />
+      <longitude value="132°41'59''E" />
+    </coordinates>
+    <size value="Medium" pax="2362" />
+    <terminals>
+      <terminal name="Terminal A" gates="16" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="2499" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Matsumoto Airport" icao="RJAF" iata="MMJ" type="Domestic" season="All_Year">
+    <town town="Matsumoto" country="171" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="036°10'00''N" />
+      <longitude value="137°55'22''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Iwami Airport" icao="RJOW" iata="IWJ" type="Domestic" season="All_Year">
+    <town town="Masuda" country="171" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="034°40'35''N" />
+      <longitude value="131°47'23''E" />
+    </coordinates>
+    <size value="Smallest" pax="80" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="2000" surface="Asphalt" />
+    </runways>
+  </airport>
+  <!--Malaysia-->
+    <airport name="Labuan Airport" icao="WBKL" iata="LBU" type="Domestic" season="All_Year">
+    <town town="Labuan" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="005°18'02''N" />
+      <longitude value="115°15'00''E" />
+    </coordinates>
+    <size value="Small" pax="738"  cargo="Smallest" cargovolume="5"  />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="2745" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Sultan Abdul Halim Airport" icao="WMKA" iata="AOR" type="Domestic" season="All_Year">
+    <town town="Alor Satar" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="006°11'22''N" />
+      <longitude value="100°23'52''E" />
+    </coordinates>
+    <size value="Small" pax="535" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2745" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Kuantan Airport" icao="WMKD" iata="KUA" type="Domestic" season="All_Year">
+    <town town="Kuantan" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="003°46'31''N" />
+      <longitude value="103°12'32''E" />
+    </coordinates>
+    <size value="Very_small" pax="317" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2804" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Lahad Datu Airport" icao="WBKD" iata="LDU" type="Domestic" season="All_Year">
+    <town town="Lahad Datu" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="005°01'56''N" />
+      <longitude value="118°19'26''E" />
+    </coordinates>
+    <size value="Smallest" pax="146" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="1371" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Limbang Airport" icao="WBGJ" iata="LMN" type="Domestic" season="All_Year">
+    <town town="Limbang" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="004°48'29''N" />
+      <longitude value="115°00'36''E" />
+    </coordinates>
+    <size value="Smallest" pax="61" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="1500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Malacca International Airport" icao="WMKM" iata="MKZ" type="Short_Haul_International" season="All_Year">
+    <town town="Malacca" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="002°15'48''N" />
+      <longitude value="102°15'07''E" />
+    </coordinates>
+    <size value="Smallest" pax="21" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="2135" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Sultan Azlan Shah Airport" icao="WMKI" iata="IPH" type="Short_Haul_International" season="All_Year">
+    <town town="Ipoh" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="004°34'04''N" />
+      <longitude value="101°05'31''E" />
+    </coordinates>
+    <size value="Smallest" pax="73" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="1798" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Kerteh Airport" icao="WMKE" iata="KTE" type="Domestic" season="All_Year">
+    <town town="Kerteh" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="004°32'13''N" />
+      <longitude value="103°25'37''E" />
+    </coordinates>
+    <size value="Smallest" pax="23" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="1355" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="LTS Pulau Redang Airport" icao="WMPR" iata="RDN" type="Short_Haul_International" season="All_Year">
+    <town town="Redang" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="005°45'55''N" />
+      <longitude value="103°00'25''E" />
+    </coordinates>
+    <size value="Smallest" pax="35" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="940" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Pulau Tioman Airport" icao="WMBT" iata="TOD" type="Domestic" season="All_Year">
+    <town town="Pulau Tioman" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="002°49'05''N" />
+      <longitude value="104°09'36''E" />
+    </coordinates>
+    <size value="Smallest" pax="60" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="992" surface="Asphalt" />
+    </runways>
+  </airport>
+  <!--Uzbekistan-->
+    <airport name="Andizhan Airport" icao="UTFA" iata="AZN" type="Long_Haul_International" season="All_Year">
+    <town town="Andizhan" country="237" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="040°43'39''N" />
+      <longitude value="072°17'38''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2978" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Bukhara Airport" icao="UTSB" iata="BHK" type="Long_Haul_International" season="All_Year">
+    <town town="Bukhara" country="237" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="039°46'30''N" />
+      <longitude value="064°28'59''E" />
+    </coordinates>
+    <size value="Very_small" pax="275" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Fergana International Airport" icao="UTFF" iata="FEG" type="Long_Haul_International" season="All_Year">
+    <town town="Fergana" country="237" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="040°21'31''N" />
+      <longitude value="071°44'42''E" />
+    </coordinates>
+    <size value="Very_small" pax="350" />
+    <terminals>
+      <terminal name="Terminal A" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2860" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Karshi Khanabad Airport" icao="UTSK" iata="KSQ" type="Short_Haul_International" season="All_Year">
+    <town town="Khanabad" country="237" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="038°50'00''N" />
+      <longitude value="065°55'17''E" />
+    </coordinates>
+    <size value="Smallest" pax="70" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="2498" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Namangan Airport" icao="UTFN" iata="NMA" type="Long_Haul_International" season="All_Year">
+    <town town="Namangan" country="237" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="040°59'04''N" />
+      <longitude value="071°33'24''E" />
+    </coordinates>
+    <size value="Very_small" pax="375" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="3261" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Navoi Airport" icao="UTSA" iata="NVI" type="Short_Haul_International" season="All_Year">
+    <town town="Navoi" country="237" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="040°07'01''N" />
+      <longitude value="065°10'14''E" />
+    </coordinates>
+    <size value="Smallest" pax="125" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+     <runways>
+      <runway name="07/25" length="4000" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Nukus Airport" icao="UTNN" iata="NCU" type="Short_Haul_International" season="All_Year">
+    <town town="Nukus" country="237" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="042°29'18''N" />
+      <longitude value="059°37'23''E" />
+    </coordinates>
+    <size value="Very_small" pax="175" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="605" surface="Asphalt" />
+      <runway name="15/33" length="2797" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Nukus Airport" icao="UTNN" iata="NCU" type="Long_Haul_International" season="All_Year">
+    <town town="Nukus" country="237" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="042°29'18''N" />
+      <longitude value="059°37'23''E" />
+    </coordinates>
+    <size value="Very_small" pax="425" />
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="605" surface="Asphalt" />
+      <runway name="15/33" length="2797" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Termez Airport" icao="UTST" iata="TMJ" type="Short_Haul_International" season="All_Year">
+    <town town="Termez" country="237" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="037°17'12''N" />
+      <longitude value="067°18'35''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="3000" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Urgench Airport" icao="UTNU" iata="UGC" type="Long_Haul_International" season="All_Year">
+    <town town="Urgench" country="237" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="041°35'03''N" />
+      <longitude value="060°38'30''E" />
+    </coordinates>
+    <size value="Very_small" pax="200" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="3373" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Sugraly Airport" icao="UTSN" iata="AFS" type="Domestic" season="All_Year">
+    <town town="Zarafshan" country="237" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="041°36'50''N" />
+      <longitude value="064°13'59''E" />
+    </coordinates>
+    <size value="Smallest" pax="20" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="1859" surface="Asphalt" />
+    </runways>
+  </airport>
+  <!--Morocco-->
+    <airport name="Smara Airport" icao="GMMA" iata="SMW" type="Domestic" season="All_Year">
+    <town town="Smara" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="026°43'54''N" />
+      <longitude value="011°41'04''W" />
+    </coordinates>
+    <size value="Smallest" pax="15" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="3002" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Dakhla Airport" icao="GMMH" iata="VIL" type="Short_Haul_International" season="All_Year">
+    <town town="Dakhla" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="023°43'05''N" />
+      <longitude value="015°55'55''W" />
+    </coordinates>
+    <size value="Smallest" pax="42" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Hassan I Airport" icao="GMML" iata="EUN" type="Short_Haul_International" season="All_Year">
+    <town town="El Aaiún" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="027°09'06''N" />
+      <longitude value="013°13'09''W" />
+    </coordinates>
+    <size value="Smallest" pax="108" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2701" surface="Asphalt" />
+      <runway name="04/22" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Saniat Rmel Airport" icao="GMTN" iata="TTU" type="Short_Haul_International" season="All_Year">
+    <town town="" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="035°35'39''N" />
+      <longitude value="005°19'12''W" />
+    </coordinates>
+    <size value="Smallest" pax="15" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="2300" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Mogador Airport" icao="GMMI" iata="ESU" type="Short_Haul_International" season="All_Year">
+    <town town="Essaouira" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="031°23'50''N" />
+      <longitude value="009°40'54''W" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="2100" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Cherif Al Idrissi Airport" icao="GMTA" iata="AHU" type="Short_Haul_International" season="All_Year">
+    <town town="Al Hoceima" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="035°10'37''N" />
+      <longitude value="003°50'22''W" />
+    </coordinates>
+    <size value="Smallest" pax="44" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ouarzazate Airport" icao="GMMZ" iata="OZZ" type="Short_Haul_International" season="All_Year">
+    <town town="Ouarzazate" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="030°56'20''N" />
+      <longitude value="006°54'33''W" />
+    </coordinates>
+    <size value="Smallest" pax="60" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Angads Airport" icao="GMFO" iata="OUD" type="Long_Haul_International" season="All_Year">
+    <town town="Oujda" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="034°47'13''N" />
+      <longitude value="001°55'26''W" />
+    </coordinates>
+    <size value="Very_small" pax="448" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Nador International Airport" icao="GMMW" iata="NDR" type="Long_Haul_International" season="All_Year">
+    <town town="Nador" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="034°59'19''N" />
+      <longitude value="003°01'41''W" />
+    </coordinates>
+    <size value="Small" pax="602" />
+    <terminals>
+      <terminal name="Terminal A" gates="15" />
+      <terminal name="Terminal B" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Saïss Airport" icao="GMFF" iata="FEZ" type="Long_Haul_International" season="All_Year">
+    <town town="Fes" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="033°55'38''N" />
+      <longitude value="004°58'40''W" />
+    </coordinates>
+    <size value="Small" pax="654" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="3200" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Al Massira Airport" icao="GMAD" iata="AGA" type="Long_Haul_International" season="All_Year">
+    <town town="Agadir" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="030°19'30''N" />
+      <longitude value="009°24'47''W" />
+    </coordinates>
+    <size value="Small" pax="1385" />
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="3200" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Rabat-Salé Airport" icao="GMME" iata="RBA" type="Long_Haul_International" season="All_Year">
+    <town town="Rabat" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="034°03'05''N" />
+      <longitude value="006°45'05''W" />
+    </coordinates>
+    <size value="Very_small" pax="351" />
+    <terminals>
+      <terminal name="Terminal A" gates="19" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="3500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ibn Batouta Airport" icao="GMTT" iata="TNG" type="Long_Haul_International" season="All_Year">
+    <town town="Tangier" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="035°43'36''N" />
+      <longitude value="005°55'00''W" />
+    </coordinates>
+    <size value="Small" pax="646" />
+    <terminals>
+      <terminal name="Terminal A" gates="19" />
+      <terminal name="Terminal B" gates="16" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="2000" surface="Asphalt" />
+      <runway name="10/28" length="3500" surface="Asphalt" />
+    </runways>
+  </airport>
+  <!--Philippines-->
+   <airport name="Laguindingan Airport" icao="RPXX" iata="CGY" type="Domestic" season="All_Year">
+    <town town="Cagayan de Oro City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="008°36'43''N" />
+      <longitude value="124°27'23''E" />
+    </coordinates>
+    <size value="Small" pax="1614" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2100" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Daniel Z. Romualdez Airport" icao="RPVA" iata="TAC" type="Domestic" season="All_Year">
+    <town town="Tacloban City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="011°13'39''N" />
+      <longitude value="125°01'40''E" />
+    </coordinates>
+    <size value="Small" pax="1149"  cargo="Smallest" cargovolume="6"/>
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2138" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Tagbilaran Airport" icao="RPVT" iata="TAG" type="Domestic" season="All_Year">
+    <town town="Tagbilaran City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="009°39'50''N" />
+      <longitude value="123°51'10''E" />
+    </coordinates>
+    <size value="Small" pax="734" cargo="Smallest" cargovolume="5" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="1779" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Godofredo P. Ramos Airport" icao="RPVE" iata="MPH" type="Domestic" season="All_Year">
+    <town town="Malay" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="011°55'28''N" />
+      <longitude value="121°57'14''E" />
+    </coordinates>
+    <size value="Small" pax="596"  cargo="Smallest" cargovolume="5"/>
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="950" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Legazpi City International Airport" icao="RPLP" iata="LGP" type="Domestic" season="All_Year">
+    <town town="Legazpi City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="013°09'27''N" />
+      <longitude value="123°44'05''E" />
+    </coordinates>
+    <size value="Small" pax="578" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="2280" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Bancasi Airport" icao="RPME" iata="BXU" type="Domestic" season="All_Year">
+    <town town="Butuan City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="008°57'05''N" />
+      <longitude value="125°28'43''E" />
+    </coordinates>
+    <size value="Small" pax="524" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="1966" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Sibulan Airport" icao="RPVD" iata="DGT" type="Domestic" season="All_Year">
+    <town town="Dumaguete City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="009°20'01''N" />
+      <longitude value="123°18'00''E" />
+    </coordinates>
+    <size value="Very_small" pax="451"  cargo="Smallest" cargovolume="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1870" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Labo Airport" icao="RPMO" iata="OZC" type="Domestic" season="All_Year">
+    <town town="Ozamiz City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="008°10'42''N" />
+      <longitude value="123°50'31''E" />
+    </coordinates>
+    <size value="Very_small" pax="272"  cargo="Smallest" cargovolume="4"  />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="1743" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Awang Airport" icao="RPMC" iata="CBO" type="Domestic" season="All_Year">
+    <town town="Cotabato City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="007°09'54''N" />
+      <longitude value="124°12'35''E" />
+    </coordinates>
+    <size value="Very_small" pax="246" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="1900" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Tuguegarao Airport" icao="RPUT" iata="TUG" type="Domestic" season="All_Year">
+    <town town="Tuguegarao City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="017°38'36''N" />
+      <longitude value="121°43'59''E" />
+    </coordinates>
+    <size value="Very_small" pax="223" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="1967" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Roxas Airport" icao="RPVR" iata="RXS" type="Domestic" season="All_Year">
+    <town town="Roxas City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="011°35'51''N" />
+      <longitude value="122°45'07''E" />
+    </coordinates>
+    <size value="Very_small" pax="217"  cargo="Smallest" cargovolume="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="1890" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Naga Airport" icao="RPUN" iata="WNP" type="Domestic" season="All_Year">
+    <town town="Naga" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="013°35'05''N" />
+      <longitude value="123°16'11''E" />
+    </coordinates>
+    <size value="Very_small" pax="204"  cargo="Smallest" cargovolume="2"  />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="1402" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Dipolog Airport" icao="RPMG" iata="DPL" type="Domestic" season="All_Year">
+    <town town="Dipolog City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="008°36'07''N" />
+      <longitude value="123°20'30''E" />
+    </coordinates>
+    <size value="Very_small" pax="189" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="1912" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Laoag International Airport" icao="RPLI" iata="LAO" type="Domestic" season="All_Year">
+    <town town="Laoag City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="018°10'41''N" />
+      <longitude value="120°31'55''E" />
+    </coordinates>
+    <size value="Very_small" pax="188" cargo="Smallest" cargovolume="2"   />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2780" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Pagadian Airport" icao="RPMP" iata="PAG" type="Domestic" season="All_Year">
+    <town town="Pagadian City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="007°49'50''N" />
+      <longitude value="123°27'40''E" />
+    </coordinates>
+    <size value="Very_small" pax="152" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="1680" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Surigao Airport" icao="RPMS" iata="SUG" type="Domestic" season="All_Year">
+    <town town="Surigao City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="009°45'21''N" />
+      <longitude value="125°28'51''E" />
+    </coordinates>
+    <size value="Smallest" pax="119" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="1708" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="San Jose Airport" icao="RPUH" iata="SJI" type="Domestic" season="All_Year">
+    <town town="San Jose" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="012°21'41''N" />
+      <longitude value="121°02'49''E" />
+    </coordinates>
+    <size value="Smallest" pax="109" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="1836" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Francisco B. Reyes Airport" icao="RPVV" iata="USU" type="Domestic" season="All_Year">
+    <town town="Coron" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="012°07'17''N" />
+      <longitude value="120°05'59''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" cargo="Smallest" cargovolume="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="1006" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Catarman National Airport" icao="RPVF" iata="CRM" type="Domestic" season="All_Year">
+    <town town="Catarman" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="012°30'08''N" />
+      <longitude value="124°38'09''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="1350" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Moises R. Espinosa Airport" icao="RPVJ" iata="MBT" type="Domestic" season="All_Year">
+    <town town="Masbate" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="012°22'09''N" />
+      <longitude value="123°37'44''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="1500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Calbayog Airport" icao="RPVC" iata="CYP" type="Domestic" season="All_Year">
+    <town town="Calbayog City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="012°04'21''N" />
+      <longitude value="124°32'41''E" />
+    </coordinates>
+    <size value="Smallest" pax="50" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="1476" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Virac Airport" icao="RPUV" iata="VRC" type="Domestic" season="All_Year">
+    <town town="Virac" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="013°34'35''N" />
+      <longitude value="124°12'21''E" />
+    </coordinates>
+    <size value="Smallest" pax="30" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="1560" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Basco Airport" icao="RPUO" iata="BSO" type="Domestic" season="All_Year">
+    <town town="Basco" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="020°27'04''N" />
+      <longitude value="121°58'48''E" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="1250" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Jolo Airport" icao="RPMJ" iata="JOL" type="Domestic" season="All_Year">
+    <town town="" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="006°03'13''N" />
+      <longitude value="121°00'39''E" />
+    </coordinates>
+    <size value="Smallest" pax="18" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1263" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ormoc Airport" icao="RPVO" iata="OMC" type="Domestic" season="All_Year">
+    <town town="Ormoc City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="011°03'28''N" />
+      <longitude value="124°33'54''E" />
+    </coordinates>
+    <size value="Smallest" pax="18" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="1865" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Tugdan Airport" icao="RPVU" iata="TBH" type="Domestic" season="All_Year">
+    <town town="Alcantara" country="131" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="012°18'39''N" />
+      <longitude value="122°05'05''E" />
+    </coordinates>
+    <size value="Smallest" pax="17" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="1390" surface="Asphalt" />
+    </runways>
+  </airport>
+  </airports>

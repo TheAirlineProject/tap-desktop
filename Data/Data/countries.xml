@@ -265,7 +265,7 @@
       <es-ES name="Etiopía" />
     </translations>
   </country>
-  <country uid="125" shortname="LBY" region="103" flag="Libya" tailformat="5A-\\s3">
+  <country uid="125" shortname="LBY" region="103" flag="Libya - New" tailformat="5A-\\s3">
     <translations>
       <en-US name="Libya" />
       <de-DE name="Libyen" />

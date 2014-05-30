@@ -1,0 +1,1601 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airports>
+  <airport name="Mangshi Airport" icao="ZPLX" iata="LUM" type="Short_Haul_International" season="All_Year">
+    <town town="Luxi" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="024°24'03''N" />
+      <longitude value="098°31'54''E" />
+    </coordinates>
+    <size value="Small" pax="929" cargo="Smallest" cargovolume="4" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+      <runways>
+      <runway name="05/23" length="2200" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Ürümqi Diwopu International Airport" icao="ZWWW" iata="URC" type="Long_Haul_International" season="All_Year">
+    <town town="Ürümqi" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="043°54'25''N" />
+      <longitude value="087°28'27''E" />
+    </coordinates>
+    <size value="Very_large" pax="15359" cargo="Large" cargovolume="153"  />
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+      <terminal name="Terminal B" gates="30" />
+      <terminal name="Terminal C" gates="30" />
+      <terminal name="Terminal D" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="3600" surface="Concrete"/>
+    </runways>
+  </airport>
+    <airport name="Guilin Liangjiang International Airport" icao="ZGKL" iata="KWL" type="Long_Haul_International" season="All_Year">
+    <town town="Guilin City" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="025°13'05''N" />
+      <longitude value="110°02'20''E" />
+    </coordinates>
+    <size value="Medium" pax="5875" cargo="Small" cargovolume="33"  />
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+      <terminal name="Terminal B" gates="30" />
+      <terminal name="Terminal C" gates="28" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2800" surface="Concrete" />
+    </runways>
+  </airport>
+       <airport name="Lijiang Airport" icao="ZPLJ" iata="LJG" type="Long_Haul_International" season="All_Year">
+    <town town="Lijiang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="026°40'48''N" />
+      <longitude value="100°14'45''E" />
+    </coordinates>
+    <size value="Medium" pax="3999"  cargo="Very_small" cargovolume="6" />
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+      <terminal name="Terminal B" gates="30" />
+      <terminal name="Terminal C" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="9800" surface="Concrete" />
+    </runways>
+   </airport>
+   <airport name="Bailian Airport" icao="ZGZH" iata="LZH" type="Domestic" season="All_Year">
+    <town town="Liuzhou" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="024°12'27''N" />
+      <longitude value="109°23'27''E" />
+    </coordinates>
+    <size value="Small" pax="733" cargo="Smallest" cargovolume="4" />
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+    </terminals>
+     <runways>
+      <runway name="16/34" length="8230" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Shubuling Airport" icao="ZSLY" iata="LYI" type="Domestic" season="All_Year">
+    <town town="Linyi" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="035°02'45''N" />
+      <longitude value="118°24'43''E" />
+    </coordinates>
+    <size value="Small" pax="767" />
+    <terminals>
+      <terminal name="Terminal A" gates="14" cargo="Smallest" cargovolume="4" />
+    </terminals>
+       <runways>
+      <runway name="1/19" length="7546" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Nanping Wuyishan Airport" icao="ZSWY" iata="WUS" type="Domestic" season="All_Year">
+    <town town="Wuyishan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="027°42'06''N" />
+      <longitude value="118°00'03''E" />
+    </coordinates>
+    <size value="Small" pax="787" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" cargo="Smallest" cargovolume="2" />
+    </terminals>
+     <runways>
+      <runway name="3/21" length="7900" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Beihai Airport" icao="ZGBH" iata="BHY" type="Domestic" season="All_Year">
+    <town town="Beihai" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="021°32'21''N" />
+      <longitude value="109°17'38''E" />
+    </coordinates>
+    <size value="Small" pax="848" cargo="Smallest" cargovolume="5" />
+    <terminals>
+      <terminal name="Terminal A" gates="22" />
+    </terminals>
+       <runways>
+      <runway name="1/19" length="10500" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Yichang Airport" icao="ZHYC" iata="YIH" type="Domestic" season="All_Year">
+    <town town="Yichang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="030°33'23''N" />
+      <longitude value="111°28'47''E" />
+    </coordinates>
+    <size value="Small" pax="900" />
+    <terminals>
+      <terminal name="Terminal A" gates="27"  cargo="Smallest" cargovolume="5" />
+    </terminals>
+      <runways>
+      <runway name="14/32" length="8530" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Mianyang Airport" icao="ZUMY" iata="MIG" type="Domestic" season="All_Year">
+    <town town="Mianyang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="031°25'41''N" />
+      <longitude value="104°44'27''E" />
+    </coordinates>
+    <size value="Small" pax="917"  cargo="Smallest" cargovolume="5"/>
+    <terminals>
+      <terminal name="Terminal A" gates="24" />
+    </terminals>
+       <runways>
+      <runway name="14/32" length="7900" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Zhangjiajie Hehua Airport" icao="ZGDY" iata="DYG" type="Domestic" season="All_Year">
+    <town town="Dayong" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="029°06'10''N" />
+      <longitude value="110°26'34''E" />
+    </coordinates>
+    <size value="Small" pax="1006" cargo="Smallest" cargovolume="6" />
+    <terminals>
+      <terminal name="Terminal A" gates="24" />
+    </terminals>
+          <runways>
+      <runway name="8/26" length="8530" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Yuncheng Guangong Airport" icao="ZBYC" iata="YCU" type="Domestic" season="All_Year">
+    <town town="Yuncheng" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="035°06'59''N" />
+      <longitude value="111°01'53''E" />
+    </coordinates>
+    <size value="Small" pax="1010"  cargo="Smallest" cargovolume="3" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="8/26" length="9800" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Xuzhou Guanyin Airport" icao="ZSXZ" iata="XUZ" type="Domestic" season="All_Year">
+    <town town="Xuzhou" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="034°03'32''N" />
+      <longitude value="117°33'19''E" />
+    </coordinates>
+    <size value="Small" pax="1112" cargo="Smallest" cargovolume="6" />
+    <terminals>
+      <terminal name="Terminal A" gates="23" />
+    </terminals>
+       <runways>
+      <runway name="9/27" length="11115" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Yanji Chaoyangchuan Airport" icao="ZYYJ" iata="YNJ" type="Short_Haul_International" season="All_Year">
+    <town town="Yanji" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="042°52'58''N" />
+      <longitude value="129°27'03''E" />
+    </coordinates>
+    <size value="Small" pax="1114" cargo="Smallest" cargovolume="6" />
+    <terminals>
+      <terminal name="Terminal A" gates="18" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Weihai Airport" icao="ZSWH" iata="WEH" type="Short_Haul_International" season="All_Year">
+    <town town="Weihai" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="037°11'13''N" />
+      <longitude value="122°13'44''E" />
+    </coordinates>
+    <size value="Small" pax="1145"  cargo="Smallest" cargovolume="6" />
+    <terminals>
+      <terminal name="Terminal A" gates="17" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Kashgar Airport" icao="ZWSH" iata="KHG" type="Short_Haul_International" season="All_Year">
+    <town town="Kashgar" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="039°32'34''N" />
+      <longitude value="076°01'11''E" />
+    </coordinates>
+    <size value="Small" pax="1149" cargo="Smallest" cargovolume="6"  />
+    <terminals>
+      <terminal name="Terminal A" gates="17" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="3200" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Yiwu Airport" icao="ZSYW" iata="YIW" type="Short_Haul_International" season="All_Year">
+    <town town="Yiwu" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="029°20'40''N" />
+      <longitude value="120°01'55''E" />
+    </coordinates>
+    <size value="Small" pax="1161"  cargo="Smallest" cargovolume="3"/>
+    <terminals>
+      <terminal name="Terminal A" gates="24" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="8200" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Yulin Airport" icao="ZLYL" iata="UYN" type="Domestic" season="All_Year">
+    <town town="Yulin" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="038°16'09''N" />
+      <longitude value="109°43'51''E" />
+    </coordinates>
+    <size value="Small" pax="1191"  cargo="Smallest" cargovolume="3" />
+    <terminals>
+      <terminal name="Terminal A" gates="17" />
+    </terminals>
+  <runways>
+      <runway name="16/34" length="9186" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Jiuzhai Huanglong Airport" icao="ZUJZ" iata="JZH" type="Domestic" season="All_Year">
+    <town town="Jiuzhaigou" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="032°51'11''N" />
+      <longitude value="103°40'55''E" />
+    </coordinates>
+    <size value="Small" pax="1351" />
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+    </terminals>
+     <runways>
+      <runway name="2/20" length="10400" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Changzhou Airport" icao="ZSCG" iata="CZX" type="Domestic" season="All_Year">
+    <town town="Changzhou" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="031°55'10''N" />
+      <longitude value="119°46'44''E" />
+    </coordinates>
+    <size value="Small" pax="1526" cargo="Small" cargovolume="15" />
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+    </terminals>
+        <runways>
+      <runway name="11/29" length="9186" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Ordos Ejin Horo Airport" icao="ZBDS" iata="DSN" type="Domestic" season="All_Year">
+    <town town="Ordos" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="039°29'24''N" />
+      <longitude value="109°51'41''E" />
+    </coordinates>
+    <size value="Small" pax="1731" cargo="Very_small" cargovolume="9" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+      <terminal name="Terminal B" gates="15" />
+    </terminals>
+      <runways>
+      <runway name="13/30" length="9300" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Lhasa Gonggar Airport" icao="ZULS" iata="LXA" type="Short_Haul_International" season="All_Year">
+    <town town="Lhasa" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="029°17'52''N" />
+      <longitude value="090°54'42''E" />
+    </coordinates>
+    <size value="Medium" pax="2296" cargo="Small" cargovolume="21"  />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+      <terminal name="Terminal B" gates="20" />
+    </terminals>
+     <runways>
+        <runway name="09L/27R" length="13123" surface="Asphalt" />
+      <runway name="09R/27L" length="11811" surface="Concrete" />
+    </runways>
+  </airport>
+     <airport name="Xining Caojiabu Airport" icao="ZLXN" iata="XNN" type="Domestic" season="All_Year">
+    <town town="Xining" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="036°31'39''N" />
+      <longitude value="102°02'34''E" />
+    </coordinates>
+    <size value="Medium" pax="3236" cargo="Small" cargovolume="19"  />
+    <terminals>
+      <terminal name="Terminal A" gates="29" />
+      <terminal name="Terminal B" gates="20" />
+      <terminal name="Terminal C" gates="11" />
+    </terminals>
+  <runways>
+      <runway name="11/29" length="12467" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Dongshan Airport" icao="ZBLA" iata="HLD" type="Short_Haul_International" season="All_Year">
+    <town town="Hailar" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="049°12'18''N" />
+      <longitude value="119°49'29''E" />
+    </coordinates>
+    <size value="Small" pax="1287"  cargo="Smallest" cargovolume="5"/>
+    <terminals>
+      <terminal name="Terminal A" gates="17" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Korla Airport" icao="ZWKL" iata="KRL" type="Domestic" season="All_Year">
+    <town town="Korla" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="041°41'52''N" />
+      <longitude value="086°07'44''E" />
+    </coordinates>
+    <size value="Very_small" pax="731" cargo="Smallest" cargovolume="3" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+     <runways>
+      <runway name="04/22" length="1500" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Nantong Airport" icao="ZSNT" iata="NTG" type="Domestic" season="All_Year">
+    <town town="Nantong" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="032°04'14''N" />
+      <longitude value="120°58'33''E" />
+    </coordinates>
+    <size value="Very_small" pax="675" />
+    <terminals>
+      <terminal name="Terminal A" gates="17"  cargo="Small" cargovolume="21" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="7600" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Shantou Waisha Airport" icao="ZGOW" iata="SWA" type="Short_Haul_International" season="All_Year">
+    <town town="Shantou" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="023°25'36''N" />
+      <longitude value="116°45'43''E" />
+    </coordinates>
+    <size value="Medium" pax="2686" cargo="Small" cargovolume="17"  />
+    <terminals>
+      <terminal name="Terminal A" gates="17" />
+      <terminal name="Terminal B" gates="16" />
+    </terminals>
+     <runways>
+      <runway name="04/22" length="9100" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Lianyungang Airport" icao="ZSLG" iata="LYG" type="Domestic" season="All_Year">
+    <town town="Lianyungang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="034°34'18''N" />
+      <longitude value="118°52'24''E" />
+    </coordinates>
+    <size value="Very_small" pax="563" cargo="Smallest" cargovolume="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="19" />
+    </terminals>
+       <runways>
+      <runway name="03/21" length="8202" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Tongliao Airport" icao="ZBTL" iata="TGO" type="Domestic" season="All_Year">
+    <town town="Tongliao" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="043°33'24''N" />
+      <longitude value="122°11'59''E" />
+    </coordinates>
+    <size value="Very_small" pax="572" cargo="Smallest" cargovolume="2"  />
+    <terminals>
+      <terminal name="Terminal A" gates="14" />
+    </terminals>
+     <runways>
+      <runway name="01/19" length="7527" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Luoyang Airport" icao="ZHLY" iata="LYA" type="Domestic" season="All_Year">
+    <town town="Luoyang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="034°44'27''N" />
+      <longitude value="112°23'16''E" />
+    </coordinates>
+    <size value="Very_small" pax="594"  cargo="Smallest" cargovolume="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="14" />
+    </terminals>
+       <runways>
+      <runway name="08/26" length="8200" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Xiangfan Airport" icao="ZHXF" iata="XFN" type="Domestic" season="All_Year">
+    <town town="Xiangfan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="032°09'02''N" />
+      <longitude value="112°17'27''E" />
+    </coordinates>
+    <size value="Very_small" pax="601" cargo="Smallest" cargovolume="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="15" />
+    </terminals>
+     <runways>
+      <runway name="01/19" length="7900" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Huangyan Luqiao Airport" icao="ZSLQ" iata="HYN" type="Domestic" season="All_Year">
+    <town town="Huangyan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="028°33'43''N" />
+      <longitude value="121°25'44''E" />
+    </coordinates>
+    <size value="Very_small" pax="610" cargo="Very_small" cargovolume="7"/>
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+   <runways>
+      <runway name="03/21" length="8200" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ganzhou Airport" icao="ZSGZ" iata="KOW" type="Domestic" season="All_Year">
+    <town town="Ganzhou" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="025°49'32''N" />
+      <longitude value="114°54'43''E" />
+    </coordinates>
+    <size value="Very_small" pax="626" cargo="Smallest" cargovolume="4" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+   <runways>
+      <runway name="03/21" length="8530" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Chifeng Airport" icao="ZBCF" iata="CIF" type="Domestic" season="All_Year">
+    <town town="Chifeng" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="042°14'06''N" />
+      <longitude value="118°54'28''E" />
+    </coordinates>
+    <size value="Very_small" pax="660" cargo="Smallest" cargovolume="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="17" />
+    </terminals>
+     <runways>
+      <runway name="01/19" length="5774" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Zhanjiang Airport" icao="ZGZJ" iata="ZHA" type="Domestic" season="All_Year">
+    <town town="Zhanjiang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="021°12'51''N" />
+      <longitude value="110°21'28''E" />
+    </coordinates>
+    <size value="Very_small" pax="691" cargo="Smallest" cargovolume="3" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+        <runways>
+      <runway name="16/34" length="7874" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Yining Airport" icao="ZWYN" iata="YIN" type="Domestic" season="All_Year">
+    <town town="Yining" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="043°57'20''N" />
+      <longitude value="081°19'49''E" />
+    </coordinates>
+    <size value="Very_small" pax="581" cargo="Smallest" cargovolume="2"/>
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+          <runways>
+      <runway name="06/24" length="7874" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Aksu Airport" icao="ZWAK" iata="AKU" type="Domestic" season="All_Year">
+    <town town="Aksu" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="041°15'45''N" />
+      <longitude value="080°17'30''E" />
+    </coordinates>
+    <size value="Very_small" pax="631" cargo="Smallest" cargovolume="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+        <runways>
+      <runway name="09/27" length="7874" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Changzhi Airport" icao="ZBCZ" iata="CIH" type="Domestic" season="All_Year">
+    <town town="Changzhi" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="036°14'51''N" />
+      <longitude value="113°07'33''E" />
+    </coordinates>
+    <size value="Very_small" pax="574" />
+    <terminals>
+      <terminal name="Terminal A" gates="10"  cargo="Smallest" cargovolume="1" />
+    </terminals>
+         <runways>
+      <runway name="10/19" length="8530" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Tunxi International Airport" icao="ZSTX" iata="TXN" type="Short_Haul_International" season="All_Year">
+    <town town="Huangshan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="029°43'59''N" />
+      <longitude value="118°15'21''E" />
+    </coordinates>
+    <size value="Very_small" pax="552" />
+    <terminals>
+      <terminal name="Terminal A" gates="14" cargo="Smallest" cargovolume="3" />
+    </terminals>
+        <runways>
+      <runway name="13/31" length="8500" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Jiagedaqi Airport" icao="" iata="JGD" type="Domestic" season="All_Year">
+    <town town="Jiagedaqi" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="050°22'30''N" />
+      <longitude value="124°07'00''E" />
+    </coordinates>
+    <size value="Smallest" pax="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+       <runways>
+      <runway name="17/35" length="7546" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Heihe Airport" icao="ZYHE" iata="HEK" type="Domestic" season="All_Year">
+    <town town="Heihe" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="050°10'17''N" />
+      <longitude value="127°18'31''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+     <runways>
+      <runway name="14/32" length="8200" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Yushu Batang Airport" icao="ZYLS" iata="YUS" type="Domestic" season="All_Year">
+    <town town="Yushu" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="032°50'11''N" />
+      <longitude value="097°02'11''E" />
+    </coordinates>
+    <size value="Smallest" pax="20" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+      <runways>
+      <runway name="10/29" length="3800" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Golmud Airport" icao="ZLGM" iata="GOQ" type="Domestic" season="All_Year">
+    <town town="Golmud" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="036°24'02''N" />
+      <longitude value="094°47'09''E" />
+    </coordinates>
+    <size value="Smallest" pax="50" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+     <runways>
+      <runway name="9/27" length="4800" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Guyuan Liupanshan Airport" icao="ZLGY" iata="GYU" type="Domestic" season="All_Year">
+    <town town="Guyuan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="036°04'44''N" />
+      <longitude value="106°13'00''E" />
+    </coordinates>
+    <size value="Smallest" pax="30" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="3150" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Chaoyang Airport" icao="ZYCY" iata="CHG" type="Domestic" season="All_Year">
+    <town town="Chaoyang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="041°32'17''N" />
+      <longitude value="120°26'05''E" />
+    </coordinates>
+    <size value="Smallest" pax="30" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+      <runways>
+      <runway name="18/36" length="2225" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Changbaishan Airport" icao="" iata="NBS" type="Domestic" season="All_Year">
+    <town town="Baishan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="042°04'00''N" />
+      <longitude value="127°36'07''E" />
+    </coordinates>
+    <size value="Smallest" pax="60" />
+    <terminals>
+      <terminal name="Terminal A" gates="10" />
+    </terminals>
+     <runways>
+      <runway name="01/19" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Jiujiang Lushan Airport" icao="ZSJJ" iata="JIU" type="Domestic" season="All_Year">
+    <town town="Jiujiang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="029°28'36''N" />
+      <longitude value="115°48'03''E" />
+    </coordinates>
+    <size value="Smallest" pax="30" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="3100" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Longyan Guanzhishan Airport" icao="ZSLD" iata="LCX" type="Domestic" season="All_Year">
+    <town town="Longyan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="025°40'28''N" />
+      <longitude value="116°44'49''E" />
+    </coordinates>
+    <size value="Smallest" pax="20" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="2650" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Anqing Airport" icao="ZSAQ" iata="AQG" type="Domestic" season="All_Year">
+    <town town="Anqing" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="030°34'55''N" />
+      <longitude value="117°03'00''E" />
+    </coordinates>
+    <size value="Smallest" pax="79" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+       <runways>
+      <runway name="08/26" length="3350" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Tian Yang Air Base" icao="ZBGS" iata="AEB" type="Domestic" season="All_Year">
+    <town town="Baise" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="023°43'14''N" />
+      <longitude value="106°57'35''E" />
+    </coordinates>
+    <size value="Smallest" pax="30" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+      <runways>
+      <runway name="30/12" length="2800" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Anshun Huangguoshu Airport" icao="ZUAS" iata="AVA" type="Domestic" season="All_Year">
+    <town town="Anshun" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="026°15'38''N" />
+      <longitude value="105°52'23''E" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+     <runways>
+      <runway name="07/25" length="3100" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Zhijiang Airport" icao="ZGCJ" iata="HJJ" type="Domestic" season="All_Year">
+    <town town="Huaihua" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="027°26'27''N" />
+      <longitude value="109°42'00''E" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+      <runways>
+      <runway name="04/22" length="2325" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Ulanhot Airport" icao="ZBUL" iata="HLH" type="Domestic" season="All_Year">
+    <town town="Ulanhot" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="046°11'43''N" />
+      <longitude value="122°00'29''E" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+      <runways>
+      <runway name="13/31" length="2950" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Gu-Lian Airport" icao="ZYMH" iata="OHE" type="Domestic" season="All_Year">
+    <town town="Mohe" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="052°54'46''N" />
+      <longitude value="122°25'48''E" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+     <runways>
+      <runway name="13/31" length="2500" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Handan Airport" icao="ZBHD" iata="HDG" type="Domestic" season="All_Year">
+    <town town="Handan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="036°31'32''N" />
+      <longitude value="114°25'32''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+      <runways>
+      <runway name="05/23" length="2750" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Tangshan Sannühe Airport" icao="ZBTS" iata="TVS" type="Domestic" season="All_Year">
+    <town town="Tangshan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="039°43'04''N" />
+      <longitude value="118°00'09''E" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+     <runways>
+      <runway name="09/27" length="2975" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Jinzhou Airport" icao="ZYJZ" iata="JNZ" type="Domestic" season="All_Year">
+    <town town="Jinzhou" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="041°06'05''N" />
+      <longitude value="121°03'43''E" />
+    </coordinates>
+    <size value="Smallest" pax="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+   <runways>
+      <runway name="02/20" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Weifang Airport" icao="ZSWF" iata="WEF" type="Domestic" season="All_Year">
+    <town town="Weifang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="036°38'48''N" />
+      <longitude value="119°07'08''E" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+      <runways>
+      <runway name="17/35" length="2900" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Foshan Shadi Airport" icao="ZGFS" iata="FUO" type="Domestic" season="All_Year">
+    <town town="Foshan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="023°04'59''N" />
+      <longitude value="113°04'11''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="3275" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Qamdo Bangda Airport" icao="ZUBD" iata="BPX" type="Domestic" season="All_Year">
+    <town town="Bangda" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="030°33'12''N" />
+      <longitude value="097°06'29''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+   <runways>
+      <runway name="14/32" length="5500" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Tengchong Tuofeng Airport" icao="ZUTC" iata="TCZ" type="Domestic" season="All_Year">
+    <town town="Tengchong" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="024°56'17''N" />
+      <longitude value="098°29'08''E" />
+    </coordinates>
+    <size value="Very_small" pax="556" />
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+    </terminals>
+      <runways>
+      <runway name="18/36" length="2650" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Nanyang Airport" icao="ZHNY" iata="NNY" type="Domestic" season="All_Year">
+    <town town="Nanyang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="032°58'50''N" />
+      <longitude value="112°36'53''E" />
+    </coordinates>
+    <size value="Smallest" pax="405" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2550" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Yibin Caiba Airport" icao="ZUYB" iata="YBP" type="Domestic" season="All_Year">
+    <town town="Yibin" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="028°48'02''N" />
+      <longitude value="104°32'42''E" />
+    </coordinates>
+    <size value="Smallest" pax="434"  cargo="Smallest" cargovolume="3"/>
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+    </terminals>
+       <runways>
+      <runway name="08/26" length="2250" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Saertu Airport" icao="ZYDQ" iata="DQA" type="Domestic" season="All_Year">
+    <town town="Daqing Shi" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="046°44'47''N" />
+      <longitude value="125°08'26''E" />
+    </coordinates>
+    <size value="Very_small" pax="541" cargo="Smallest" cargovolume="3" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+       <runways>
+      <runway name="17/35" length="2900" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Diqing Airport" icao="ZPDQ" iata="DIG" type="Domestic" season="All_Year">
+    <town town="Shangri-La" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="027°47'36''N" />
+      <longitude value="099°40'37''E" />
+    </coordinates>
+    <size value="Smallest" pax="501" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+  <runways>
+      <runway name="16/34" length="3875" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Hotan Airport" icao="ZWTN" iata="HTN" type="Domestic" season="All_Year">
+    <town town="Hotan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="037°02'18''N" />
+      <longitude value="079°51'53''E" />
+    </coordinates>
+    <size value="Smallest" pax="501"  cargo="Smallest" cargovolume="2"/>
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="3200" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Zhoushan Airport" icao="ZSZS" iata="HSN" type="Domestic" season="All_Year">
+    <town town="Zhoushan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="029°56'03''N" />
+      <longitude value="122°21'43''E" />
+    </coordinates>
+    <size value="Smallest" pax="479" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+   <runways>
+      <runway name="18/36" length="2800" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Wuhai Airport" icao="ZBUH" iata="WUA" type="Domestic" season="All_Year">
+    <town town="Wuhai" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="039°47'36''N" />
+      <longitude value="106°47'57''E" />
+    </coordinates>
+    <size value="Smallest" pax="470" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2900" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Xilinhot Airport" icao="ZBXH" iata="XIL" type="Domestic" season="All_Year">
+    <town town="Xilinhot" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="043°54'56''N" />
+      <longitude value="115°57'50''E" />
+    </coordinates>
+    <size value="Smallest" pax="465" cargo="Smallest" cargovolume="2" />
+    <terminals>
+      <terminal name="Terminal A" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="3250" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Mudanjiang Hailang International Airport" icao="ZYMD" iata="MDG" type="Short_Haul_International" season="All_Year">
+    <town town="Mudanjiang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="044°31'26''N" />
+      <longitude value="129°34'08''E" />
+    </coordinates>
+    <size value="Smallest" pax="446" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Jiamusi Airport" icao="ZYJM" iata="JMU" type="Short_Haul_International" season="All_Year">
+    <town town="Jiamusi" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="046°50'36''N" />
+      <longitude value="130°27'53''E" />
+    </coordinates>
+    <size value="Smallest" pax="416" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="2200" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Jingdezhen Airport" icao="ZSJD" iata="JDZ" type="Domestic" season="All_Year">
+    <town town="Jingdezhen" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="029°20'18''N" />
+      <longitude value="117°10'33''E" />
+    </coordinates>
+    <size value="Smallest" pax="405" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+   <runways>
+      <runway name="04/22" length="2650" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Lianshui Airport" icao="ZSSH" iata="HIA" type="Domestic" season="All_Year">
+    <town town="Huai'an" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="033°47'26''N" />
+      <longitude value="119°07'30''E" />
+    </coordinates>
+    <size value="Smallest" pax="404"  cargo="Smallest" cargovolume="3"/>
+    <terminals>
+      <terminal name="Terminal A" gates="19" />
+    </terminals>
+     <runways>
+      <runway name="02/20" length="2725" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Datong Airport" icao="ZBDT" iata="DAT" type="Domestic" season="All_Year">
+    <town town="Datong" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="040°03'37''N" />
+      <longitude value="113°28'55''E" />
+    </coordinates>
+    <size value="Smallest" pax="404" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+        <runways>
+      <runway name="14/32" length="3500" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Dali Airport" icao="ZPDL" iata="DLU" type="Domestic" season="All_Year">
+    <town town="Xiaguan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="025°38'57''N" />
+      <longitude value="100°19'08''E" />
+    </coordinates>
+    <size value="Smallest" pax="501" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="2700" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Jinggangshan Airport" icao="ZSGS" iata="JGS" type="Domestic" season="All_Year">
+    <town town="Ji'an" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="026°51'24''N" />
+      <longitude value="114°44'13''E" />
+    </coordinates>
+    <size value="Smallest" pax="444" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+       <runways>
+      <runway name="08/26" length="2700" surface="Concrete" />
+    </runways>
+  </airport>
+   
+   <airport name="Qiqihar Sanjiazi Airport" icao="ZYQQ" iata="NDG" type="Short_Haul_International" season="All_Year">
+    <town town="Qiqihar" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="047°14'22''N" />
+      <longitude value="123°55'04''E" />
+    </coordinates>
+    <size value="Smallest" pax="65" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Xichang Qingshan Airport" icao="ZUXC" iata="XIC" type="Domestic" season="All_Year">
+    <town town="Xichang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="027°59'20''N" />
+      <longitude value="102°11'02''E" />
+    </coordinates>
+    <size value="Smallest" pax="522" cargo="Smallest" cargovolume="4"  />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="3600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Changde Airport" icao="ZGCD" iata="CGD" type="Domestic" season="All_Year">
+    <town town="Changde" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="028°55'08''N" />
+      <longitude value="111°38'23''E" />
+    </coordinates>
+    <size value="Smallest" pax="308" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+<runways>
+      <runway name="18/36" length="2800" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Wanxian Airport" icao="ZUWX" iata="WXN" type="Domestic" season="All_Year">
+    <town town="Wanxian" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="030°48'06''N" />
+      <longitude value="108°25'58''E" />
+    </coordinates>
+    <size value="Smallest" pax="251" cargo="Smallest" cargovolume="2"  />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+<runways>
+      <runway name="04/22" length="3700" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Dunhuang Airport" icao="ZLDH" iata="DNH" type="Domestic" season="All_Year">
+    <town town="Dunhuang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="040°09'39''N" />
+      <longitude value="094°48'33''E" />
+    </coordinates>
+    <size value="Smallest" pax="315"  cargo="Smallest" cargovolume="3" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+<runways>
+      <runway name="09/27" length="3300" surface="Concrete" />
+    </runways>
+    </airport>
+      <airport name="Yancheng Airport" icao="ZSYN" iata="YNZ" type="Short_Haul_International" season="All_Year">
+    <town town="Yancheng" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="033°25'32''N" />
+      <longitude value="120°12'11''E" />
+    </coordinates>
+    <size value="Smallest" pax="317" />
+    <terminals>
+      <terminal name="Terminal A" gates="14" />
+    </terminals>
+<runways>
+      <runway name="04/22" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Simao Airport" icao="ZPSM" iata="SYM" type="Domestic" season="All_Year">
+    <town town="Simao" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="022°47'35''N" />
+      <longitude value="100°57'32''E" />
+    </coordinates>
+    <size value="Smallest" pax="238" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+ <runways>
+      <runway name="18/36" length="2850" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Enshi Airport" icao="ZHES" iata="ENH" type="Domestic" season="All_Year">
+    <town town="Enshi" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="030°19'13''N" />
+      <longitude value="109°29'06''E" />
+    </coordinates>
+    <size value="Smallest" pax="314" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+     <runways>
+      <runway name="01/19" length="2350" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Jining Qufu Airport" icao="ZLJN" iata="JNG" type="Domestic" season="All_Year">
+    <town town="Jining" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="035°17'34''N" />
+      <longitude value="116°20'48''E" />
+    </coordinates>
+    <size value="Smallest" pax="243" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="08/36" length="3350" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Zhaotong Airport" icao="ZPZT" iata="ZAT" type="Domestic" season="All_Year">
+    <town town="Zhaotong" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="027°19'32''N" />
+      <longitude value="103°45'17''E" />
+    </coordinates>
+    <size value="Smallest" pax="65" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+     <runways>
+      <runway name="04/22" length="3100" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Bao'anying Airport" icao="ZUZH" iata="PZI" type="Domestic" season="All_Year">
+    <town town="Panzhihua" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="026°32'23''N" />
+      <longitude value="101°47'54''E" />
+    </coordinates>
+    <size value="Smallest" pax="177" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+     <runways>
+      <runway name="02/20" length="3150" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Dachuan Airport" icao="ZUDX" iata="DAX" type="Domestic" season="All_Year">
+    <town town="Dazhou" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="031°07'48''N" />
+      <longitude value="107°25'46''E" />
+    </coordinates>
+    <size value="Smallest" pax="144" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+     <runways>
+      <runway name="02/20" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Baoshan Yunduan Airport" icao="ZPBS" iata="BSD" type="Domestic" season="All_Year">
+    <town town="Baoshan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="025°03'11''N" />
+      <longitude value="099°10'05''E" />
+    </coordinates>
+    <size value="Smallest" pax="150" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+   <runways>
+      <runway name="01/19" length="2900" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Altay Air Base" icao="ZWAT" iata="AAT" type="Domestic" season="All_Year">
+    <town town="Altay" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="047°44'59''N" />
+      <longitude value="088°05'08''E" />
+    </coordinates>
+    <size value="Smallest" pax="116" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+  <runways>
+      <runway name="12/30" length="1900" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Lintsang Airfield" icao="ZPLC" iata="LNJ" type="Domestic" season="All_Year">
+    <town town="Lincang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="023°44'17''N" />
+      <longitude value="100°01'30''E" />
+    </coordinates>
+    <size value="Smallest" pax="116" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+   <runways>
+      <runway name="16/34" length="2625" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Dandong Airport" icao="ZYDD" iata="DDG" type="Domestic" season="All_Year">
+    <town town="Dandong" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="040°01'28''N" />
+      <longitude value="124°17'09''E" />
+    </coordinates>
+    <size value="Smallest" pax="62" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+     <runways>
+      <runway name="01/19" length="2925" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Tongren Fenghuang Airport" icao="ZUTR" iata="TEN" type="Domestic" season="All_Year">
+    <town town="Tongren" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="027°52'59''N" />
+      <longitude value="109°18'32''E" />
+    </coordinates>
+    <size value="Smallest" pax="71" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+   <runways>
+      <runway name="04/22" length="2525" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Shanhaiguan Airport" icao="ZBSH" iata="SHP" type="Domestic" season="All_Year">
+    <town town="Qinhuangdao" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="039°58'05''N" />
+      <longitude value="119°43'51''E" />
+    </coordinates>
+    <size value="Smallest" pax="85" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+     <runways>
+      <runway name="06/24" length="2425" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Qianjiang Wulingshan Airport" icao="" iata="JIQ" type="Domestic" season="All_Year">
+    <town town="Qianjiang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="029°30'47''N" />
+      <longitude value="108°49'51''E" />
+    </coordinates>
+    <size value="Smallest" pax="50" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+       <runways>
+      <runway name="02/20" length="2275" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Jiayuguan Airport" icao="ZLJQ" iata="JGN" type="Domestic" season="All_Year">
+    <town town="Jiayuguan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="039°51'24''N" />
+      <longitude value="098°20'29''E" />
+    </coordinates>
+    <size value="Smallest" pax="75" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="2997" surface="Paved" />
+    </runways>
+  </airport>
+    <airport name="Jinchuan Airport" icao="ZLJC" iata="JIC" type="Domestic" season="All_Year">
+    <town town="Jinchang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="038°32'31''N" />
+      <longitude value="102°20'53''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+   <runways>
+      <runway name="03/31" length="3103" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Qingyang Airport" icao="ZLQY" iata="IQN" type="Domestic" season="All_Year">
+    <town town="Qingyang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="035°47'58''N" />
+      <longitude value="107°36'10''E" />
+    </coordinates>
+    <size value="Smallest" pax="35" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+ <runways>
+      <runway name="15/33" length="2700" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Anshan Air Base" icao="ZYAS" iata="AOG" type="Domestic" season="All_Year">
+    <town town="Anshan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="041°06'19''N" />
+      <longitude value="122°51'14''E" />
+    </coordinates>
+    <size value="Smallest" pax="50" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+  <runways>
+      <runway name="15/33" length="2700" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Ankang Airport" icao="ZLAK" iata="AKA" type="Domestic" season="All_Year">
+    <town town="Ankang" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="032°42'29''N" />
+      <longitude value="108°55'51''E" />
+    </coordinates>
+    <size value="Smallest" pax="20" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="1700" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Dongying Shengli Airport" icao="ZSDY" iata="DOY" type="Domestic" season="All_Year">
+    <town town="Dongying" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="037°30'30''N" />
+      <longitude value="118°47'16''E" />
+    </coordinates>
+    <size value="Smallest" pax="80" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="3015" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Nanchong Airport" icao="ZUNC" iata="NAO" type="Domestic" season="All_Year">
+    <town town="Nanchong" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="030°47'43''N" />
+      <longitude value="106°09'45''E" />
+    </coordinates>
+    <size value="Smallest" pax="60" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+      <runways>
+      <runway name="06/24" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Guangyuan Airport" icao="ZUGU" iata="GYS" type="Domestic" season="All_Year">
+    <town town="Guangyuan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="032°23'27''N" />
+      <longitude value="105°42'07''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+         <runways>
+      <runway name="08/26" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Nyingchi Airport" icao="ZUNZ" iata="LZY" type="Domestic" season="All_Year">
+    <town town="Nyingchi" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="029°18'11''N" />
+      <longitude value="094°20'07''E" />
+    </coordinates>
+    <size value="Smallest" pax="50" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Quzhou Airport" icao="ZSJU" iata="JUZ" type="Domestic" season="All_Year">
+    <town town="Quzhou" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="028°57'56''N" />
+      <longitude value="118°53'56''E" />
+    </coordinates>
+    <size value="Smallest" pax="35" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+     <runways>
+      <runway name="06/24" length="1800" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Alashankou Bole (Bortala) airport" icao="ZWBL" iata="BPL" type="Domestic" season="All_Year">
+    <town town="Bole" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="044°53'42''N" />
+      <longitude value="082°17'59''E" />
+    </coordinates>
+    <size value="Smallest" pax="20" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+     <runways>
+      <runway name="10/28" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Hami Airport" icao="ZWHM" iata="HMI" type="Domestic" season="All_Year">
+    <town town="Hami" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="042°50'29''N" />
+      <longitude value="093°40'09''E" />
+    </coordinates>
+    <size value="Smallest" pax="70" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+   <runways>
+      <runway name="11/29" length="2425" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Kuqa Airport" icao="ZWKC" iata="KCA" type="Domestic" season="All_Year">
+    <town town="Kuqa" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="041°43'05''N" />
+      <longitude value="082°59'12''E" />
+    </coordinates>
+    <size value="Smallest" pax="30" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+ <runways>
+      <runway name="06/24" length="2650" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Karamay Airport" icao="ZWKM" iata="KRY" type="Domestic" season="All_Year">
+    <town town="Karamay" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="045°27'59''N" />
+      <longitude value="084°57'09''E" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+ <runways>
+      <runway name="13/31" length="2750" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Tacheng Airport" icao="ZWTC" iata="TCG" type="Domestic" season="All_Year">
+    <town town="Tacheng" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="046°40'21''N" />
+      <longitude value="083°20'26''E" />
+    </coordinates>
+    <size value="Smallest" pax="20" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2425" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Changzhoudao Airport" icao="ZGWZ" iata="WUZ" type="Domestic" season="All_Year">
+    <town town="Wuzhou" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="023°27'24''N" />
+      <longitude value="111°14'52''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+      <runways>
+      <runway name="18/36" length="1800" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Baoshan Yunduan Airport" icao="ZPBS" iata="BSD" type="Domestic" season="All_Year">
+    <town town="Baoshan" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="025°03'11''N" />
+      <longitude value="099°10'05''E" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+      <runways>
+      <runway name="01/19" length="2420" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Macau International Airport" icao="VMMC" iata="MFM" type="Long_Haul_International" season="All_Year">
+    <town town="Taipa, MO" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="022°08'58''N" />
+      <longitude value="113°35'31''E" />
+    </coordinates>
+    <size value="Medium" pax="4491" />
+    <terminals>
+      <terminal name="Terminal A" gates="18" />
+      <terminal name="Terminal B" gates="16" />
+      <terminal name="Terminal C" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="3214" surface="Concrete" />
+    </runways>
+  </airport>
+</airports>

@@ -618,13 +618,15 @@
 
             foreach (RouteTimeTableEntry entry in deleteEntries)
             {
-                entry.TimeTable.Route.TimeTable.removeEntry(entry);
-
-                if (entry.TimeTable.Entries.Count(en => en.Airliner == this.Airliner) == 0)
+                entry.TimeTable.removeEntry(entry);
+          
+                if (entry.TimeTable.Entries.Count(en => en.Airliner == this.Airliner) == 0 || entry.TimeTable.Entries.Count == 0)
                 {
                     this.Airliner.removeRoute(entry.TimeTable.Route);
                 }
             }
+
+ 
         }
 
         private void btnSwap_Click(object sender, RoutedEventArgs e)
@@ -985,7 +987,7 @@
         private void clearTimeTable()
         {
             var entries = new ObservableCollection<RouteTimeTableEntry>(this.Entries);
-
+            
             foreach (RouteTimeTableEntry entry in entries)
             {
                 this.Entries.Remove(entry);

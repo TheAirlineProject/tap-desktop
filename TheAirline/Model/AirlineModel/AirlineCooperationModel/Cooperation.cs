@@ -46,13 +46,24 @@
 
                 if (prop != null)
                 {
-                    if (prop is FieldInfo)
+                    if (entry.Name.ToLower() == "type")
                     {
-                        ((FieldInfo)prop).SetValue(this, entry.Value);
-                    }
+                        var type = ((CooperationType)entry.Value);
+
+                        this.Type = CooperationTypes.GetCooperationType(type.Uid);
+                        
+                    }//nick½ + willie credits
                     else
                     {
-                        ((PropertyInfo)prop).SetValue(this, entry.Value);
+
+                        if (prop is FieldInfo)
+                        {
+                            ((FieldInfo)prop).SetValue(this, entry.Value);
+                        }
+                        else
+                        {
+                            ((PropertyInfo)prop).SetValue(this, entry.Value);
+                        }
                     }
                 }
             }

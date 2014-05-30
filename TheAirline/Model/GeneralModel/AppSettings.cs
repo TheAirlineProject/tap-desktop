@@ -19,7 +19,7 @@
          * stores the path to the Data directory.
          */
 
-        private static readonly string dataPath = basePath + "\\data";
+        private static readonly string dataPath = basePath + "\\data\\data";
 
         /*! private static variable basePath.
          * stores the path to the Plugin directory.

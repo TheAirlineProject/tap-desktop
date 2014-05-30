@@ -51,7 +51,7 @@
                     this.Classes.Add(rClass);
                 }
             }
-
+            
             this.Airports =
                 GameObject.GetInstance()
                     .HumanAirline.Airports.OrderByDescending(

@@ -204,4 +204,19 @@
       </tempcountries>
     </history>
   </country>
+  <country uid="1010" shortname="LBY" region="103" flag="Libya" tailformat="5A-\\s3" type="ManyToOne">
+    <translations>
+      <en-US name="Libya" />
+      <de-DE name="Libyen" />
+      <en-GB name="Libya" />
+      <nl-NL name="Libië" />
+      <zh-CN name="利比亚" />
+      <da-DK name="Libyen" />
+      <es-ES name="Libia" />
+    </translations>
+    <period start="01.01.1949 00:00:00" end="02.27.2011 00:00:00">
+    </period>
+    <history before="125" after="125">
+    </history>
+  </country>
 </countries>

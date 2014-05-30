@@ -467,7 +467,7 @@
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
-            /*
+               /*
             System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
 
             string lines = "Name;IATA;ICAO;Type;Season;Town;Country;GMT;DST;Latitude;Longitude;Size;Pax;Cargosize;Cargo;Terminals[Name%Gates];Runways[Name%Surface%Lenght]";
@@ -2504,6 +2504,7 @@
                     }
                     else
                     {
+                       
                         eTown = new Town(town, Countries.GetCountry(country));
                     }
 

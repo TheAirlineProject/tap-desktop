@@ -52,7 +52,7 @@
                     </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn
                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1000'}"
-                        CanFilter="False" SortPropertyName="Name" Width="150">
+                        CanFilter="True" SortPropertyName="Type.AirlinerFamily" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Type.Name}" />
