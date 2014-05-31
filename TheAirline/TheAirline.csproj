@@ -38,6 +38,7 @@
     <DebugSymbols>true</DebugSymbols>
     <PlatformTarget>x64</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>PdbOnly</DebugType>
@@ -83,7 +84,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>TheAirline.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MathNet.Numerics">
@@ -743,6 +745,7 @@
       <DependentUpon>PageFleetAirlinerInsurances.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\DifficultyMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\GamePageModel\GameVersionMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml.cs">
       <DependentUpon>PageAirlineData.xaml</DependentUpon>
     </Compile>
@@ -990,6 +993,7 @@
     <Compile Include="Model\PilotModel\PilotTrainingFacility.cs" />
     <Compile Include="Model\PilotModel\TrainingAircraft.cs" />
     <Compile Include="Model\PilotModel\TrainingAircraftType.cs" />
+    <Compile Include="Properties\AssemblyVersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -1113,6 +1117,9 @@
     <Resource Include="Data\images\United Nations.png" />
     <Resource Include="Data\images\video.png" />
     <Resource Include="Data\images\Wind.png" />
+    <Content Include="TheAirline.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\Airplane-white.png" />
@@ -1203,9 +1210,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\search.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="TheAirline.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\actionmail.png" />

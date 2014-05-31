@@ -1,30 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Begin Arcane Magic 
+
+Summon acient APPVEYOR runes stored as env variables diring build process
+
+CI
+APPVEYOR_BUILD_NUMBER
+APPVEYOR_BUILD_VERSION
+APPVEYOR_REPO_NAME
+APPVEYOR_REPO_BRANCH
+APPVEYOR_REPO_COMMIT
+PLATFORM
+
+-->
+
+<?ifdef env.CI ?>
+<?define ci=$(env.CI) ?>
+<?else?>
+<?define ci="Local build"?>
+<?endif?>
+
+<?ifdef env.APPVEYOR_BUILD_VERSION ?>
+<?define version=$(env.APPVEYOR_BUILD_VERSION) ?>
+<?else?>
+<?define version= "0.0.0.0"?>
+<?endif?>
+
+
+<?ifdef env.APPVEYOR_REPO_NAME ?>
+<?define repoName=$(env.APPVEYOR_REPO_NAME) ?>
+<?else?>
+<?define repoName="local"?>
+<?endif?>
+
+<?ifdef env.APPVEYOR_REPO_BRANCH ?>
+<?define repoBranch=$(env.APPVEYOR_REPO_BRANCH) ?>
+<?else?>
+<?define repoBranch="local"?>
+<?endif?>
+
+<?ifdef env.APPVEYOR_REPO_COMMIT ?>
+<?define commit=$(env.APPVEYOR_REPO_COMMIT) ?>
+<?else?>
+<?define commit="local"?>
+<?endif?>
+
+<?ifdef env.PLATFORM ?>
+<?define platform=$(env.PLATFORM) ?>
+<?else?>
+<?define platform="unknown"?>
+<?endif?>
+
+<!-- End Arcane Magic -->
+
+
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="TheAirline" Language="1033" Version="0.4.0.0" Manufacturer="TheAirline Project" UpgradeCode="45a10e0b-745b-4027-969e-c0050c2d7bb9">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+	<Product Id="*" Name="The Airline Project" Language="1033" Version="$(var.version)" Manufacturer="The Airline Project" UpgradeCode="45a10e0b-745b-4027-969e-c0050c2d7bb9">
+    
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"
+            Keywords="The Airline Project,$(var.Configuration),$(var.platform),$(var.repoName),$(var.repoBranch),$(var.commit),$(var.version)"
+            Description="The Airline Project is a free, open source airline business simulation game where you control and build an airline."
+            Comments="Build by $(var.ci) using repo $(var.repoName) and $(var.repoBranch). Last commit is $(var.commit)."
+            Manufacturer="The Airline Project" />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of TheAirline is already installed." />
-		<MediaTemplate />
+    <Media Id='1' Cabinet='TheAirlineProject.cab' EmbedCab='yes' />
 
-		<Feature Id="ProductFeature" Title="TheAirline" Level="1">
+    <UIRef Id="WixUI_Mondo" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+
+    <WixVariable Id="DataSourceDir" Value="..\bin\$(var.Configuration)\Data"/>
+    <WixVariable Id="WixUILicenseRtf" Value="Resources\License.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="Resources\banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="Resources\dialog.bmp" />
+
+		<Feature Id="ProductFeature"
+             Title="The Airline Project $(var.version)"
+             Description="The complete package."
+             Display="expand"
+             Level="1"
+             Absent='disallow'
+             ConfigurableDirectory="INSTALLDIR">
 			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="DataFiles" />
+      <ComponentRef Id="ProgramMenuDir" />
 		</Feature>
-	</Product>
 
+  </Product>
+
+  <Fragment>
+    <Icon Id="TheAirline.exe" SourceFile="..\bin\$(var.Configuration)\TheAirline.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="TheAirline.exe" />
+  </Fragment>
+  
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="TheAirline" />
+			<Directory Id="ProgramFilesFolder" Name="TheAirline Project">
+				<Directory Id="INSTALLDIR" Name="TheAirline">
+        </Directory>
 			</Directory>
-		</Directory>
-	</Fragment>
+	
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="TheAirline">
+          <Component Id="ProgramMenuDir" Guid="E34B7634-C90E-4D7A-BC14-E78437F2B1D2">
+            <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
+            <RegistryValue Root='HKCU' Key='Software\TheAirline Project\TheAirline' Type='string' Value='' KeyPath='yes' />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <Directory Id="DesktopFolder" Name="Desktop" />
+	  </Directory>
+
+  </Fragment>
 
 	<Fragment>
-		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-			<!-- <Component Id="ProductComponent"> -->
-				<!-- TODO: Insert files, registry keys, and other resources here. -->
-			<!-- </Component> -->
-		</ComponentGroup>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLDIR">
+			 <Component Id="GameExecutable" Guid="1AAE1D32-9649-4164-8EB0-FFF1F0CDCB09">
+         <File Id="TheAirlineEXE" Name="TheAirline.exe" Source="..\bin\$(var.Configuration)\TheAirline.exe" KeyPath="yes">
+           <Shortcut Id="startmenuTheAirlineEXE" Directory="ProgramMenuDir" Name="TheAirline" WorkingDirectory='INSTALLDIR' Icon='TheAirline.exe' IconIndex="0" Advertise="yes" />
+           <Shortcut Id="desktopTheAirlineEXE"   Directory="DesktopFolder"  Name="TheAirline" WorkingDirectory='INSTALLDIR' Icon='TheAirline.exe' IconIndex="0" Advertise="yes" />
+         </File>
+      </Component>
+      
+      <Component Id="GameExecutableConfig" Guid="C7B9E88E-73AB-4706-BDDA-08B599A3BA94">
+        <File Id="TheAirlineEXECONFIG" Name="TheAirline.exe.config" Source="..\bin\$(var.Configuration)\TheAirline.exe.config" KeyPath="yes" />
+      </Component>
+      
+      <Component Id="MathNetNumericsDLLibrary" Guid="2BC0BB5B-5E08-4A15-8054-E3C384337EB6">
+        <File Id="MathNetNumericsDLL" Name="MathNet.Numerics.dll" Source="..\bin\$(var.Configuration)\MathNet.Numerics.dll" KeyPath="yes" />
+      </Component>
+      
+      <Component Id="MathNetNumericsIODLLibrary" Guid="2D836329-F45B-4A62-BD37-C56F15CDA7A9">
+        <File Id="MathNetNumericsIODLL" Name="MathNet.Numerics.IO.dll" Source="..\bin\$(var.Configuration)\MathNet.Numerics.IO.dll" KeyPath="yes" />
+      </Component>
+      
+      <Component Id="MicrosoftExpressionInteractionsDLLibrary" Guid="1DE3F0B5-D9F3-48DD-B279-AB64A338CE98">
+        <File Id="MicrosoftExpressionInteractionsDLL"  Name="Microsoft.Expression.Interactions.dll" Source="..\bin\$(var.Configuration)\Microsoft.Expression.Interactions.dll" KeyPath="yes" />
+      </Component>
+      
+      <Component Id="SystemWindowsInteractivityDLLibrary" Guid="647068B6-36AA-4EF6-B101-4E0D2C47F5A5">
+        <File Id="SystemWindowsInteractivityDLL" Name="System.Windows.Interactivity.dll" Source="..\bin\$(var.Configuration)\System.Windows.Interactivity.dll" KeyPath="yes" />
+      </Component>
+        
+      <Component Id="XceedWpfAvalonDockDLLibrary" Guid="68A45A35-AFB9-4DFE-900E-15E32B5BE35F">
+          <File Id="XceedWpfAvalonDockDLL" Name="Xceed.Wpf.AvalonDock.dll" Source="..\bin\$(var.Configuration)\Xceed.Wpf.AvalonDock.dll" KeyPath="yes" />
+      </Component>
+      
+      <Component Id="XceedWpfAvalonDockThemesAeroDLLibrary" Guid="95CFE5D2-C4F3-4E1D-948D-26F480BF307B">
+          <File Id="XceedWpfAvalonDockThemesAeroDLL" Name="Xceed.Wpf.AvalonDock.Themes.Aero.dll" Source="..\bin\$(var.Configuration)\Xceed.Wpf.AvalonDock.Themes.Aero.dll" KeyPath="yes" />
+      </Component>
+      
+      <Component Id="XceedWpfAvalonDockThemesMetroDLLibrary" Guid="24678ED1-80FF-403B-A103-64628ADD2906">
+          <File Id="XceedWpfAvalonDockThemesMetroDLL" Name="Xceed.Wpf.AvalonDock.Themes.Metro.dll" Source="..\bin\$(var.Configuration)\Xceed.Wpf.AvalonDock.Themes.Metro.dll" KeyPath="yes" />
+      </Component>
+      
+      <Component Id="XceedWpfAvalonDockThemesVS2010DLLibrary" Guid="8A14AF8E-77E3-4143-BF48-2C9D0688669F">
+          <File Id="XceedWpfAvalonDockThemesVS2010DLL" Name="Xceed.Wpf.AvalonDock.Themes.VS2010.dll" Source="..\bin\$(var.Configuration)\Xceed.Wpf.AvalonDock.Themes.VS2010.dll" KeyPath="yes" />
+      </Component>
+      
+      <Component Id="XceedWpfDataGridDLLibrary" Guid="6C7B0822-E0F4-446B-A150-B15A6F1990CD">
+          <File Id="XceedWpfDataGridDLL" Name="Xceed.Wpf.DataGrid.dll" Source="..\bin\$(var.Configuration)\Xceed.Wpf.DataGrid.dll" KeyPath="yes" />
+      </Component>
+       
+      <Component Id="XceedWpfToolkitDLLibrary" Guid="0E3B9CB5-2149-486D-816F-01628814757D">
+          <File Id="XceedWpfToolkitDLL" Name="Xceed.Wpf.Toolkit.dll" Source="..\bin\$(var.Configuration)\Xceed.Wpf.Toolkit.dll" KeyPath="yes" />
+      </Component>
+      
+    </ComponentGroup>
 	</Fragment>
+
 </Wix>
