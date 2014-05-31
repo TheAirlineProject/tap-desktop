@@ -2271,4 +2271,47 @@
       <runway name="03/21" length="1390" surface="Asphalt" />
     </runways>
   </airport>
+  <!--Yemen-->
+    <airport name="Ta'izz International Airport" icao="OYTZ" iata="TAI" type="Short_Haul_International" season="All_Year">
+    <town town="Ta'izz" country="282" GMT="03:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="013°41'09''N" />
+      <longitude value="044°08'20''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="3060" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Socotra International Airport" icao="OYSQ" iata="SCT" type="Domestic" season="All_Year">
+    <town town="Socotra Islands" country="282" GMT="03:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="012°37'50''N" />
+      <longitude value="053°54'20''E" />
+    </coordinates>
+    <size value="Smallest" pax="70" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="3300" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Sayun International Airport" icao="OYSY" iata="GXF" type="Short_Haul_International" season="All_Year">
+    <town town="Sayun" country="282" GMT="03:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="015°57'57''N" />
+      <longitude value="048°47'17''E" />
+    </coordinates>
+    <size value="Smallest" pax="90" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
   </airports>

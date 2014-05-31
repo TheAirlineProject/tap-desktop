@@ -69,7 +69,7 @@
                 () =>
                 {
                     Setup.LoadAirports();
-
+                    
                     List<Airport> airports = Airports.GetAllAirports();
 
                     Airports.Clear();
@@ -220,7 +220,7 @@
                 //Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
                 swPax.Stop();
             };
-
+            
             //create some pilots for the game
             int pilotsPool = 100 * Airlines.GetAllAirlines().Count;
             GeneralHelpers.CreatePilots(pilotsPool);

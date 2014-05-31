@@ -16,9 +16,9 @@
             <TextBlock Text="Mike" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20"
                        HorizontalAlignment="Center" />
             <TextBlock Text="Webmaster" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
-            <TextBlock Text="Rayhan" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20"
-                       HorizontalAlignment="Center" />
-            <TextBlock Text="DLC Contributer" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+            <TextBlock Text="Rayhan, RobotWillie and Nick" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20"
+                           HorizontalAlignment="Center" />
+            <TextBlock Text="Main Contributers" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
             <TextBlock Text="Offical Website" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold"
                        FontSize="32" Margin="0 20 0 0" />
             <TextBlock Text="www.theairlineproject.com" VerticalAlignment="Bottom" HorizontalAlignment="Center"

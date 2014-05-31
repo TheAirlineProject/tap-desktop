@@ -559,7 +559,7 @@
       <runway name="13/31" length="8500" surface="Concrete" />
     </runways>
   </airport>
-    <airport name="Jiagedaqi Airport" icao="" iata="JGD" type="Domestic" season="All_Year">
+    <airport name="Jiagedaqi Airport" icao="ZYJD" iata="JGD" type="Domestic" season="All_Year">
     <town town="Jiagedaqi" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="050°22'30''N" />
@@ -643,7 +643,7 @@
       <runway name="18/36" length="2225" surface="Concrete" />
     </runways>
   </airport>
-    <airport name="Changbaishan Airport" icao="" iata="NBS" type="Domestic" season="All_Year">
+    <airport name="Changbaishan Airport" icao="ZYBS" iata="NBS" type="Domestic" season="All_Year">
     <town town="Baishan" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="042°04'00''N" />
@@ -1330,7 +1330,7 @@
       <runway name="06/24" length="2425" surface="Concrete" />
     </runways>
   </airport>
-    <airport name="Qianjiang Wulingshan Airport" icao="" iata="JIQ" type="Domestic" season="All_Year">
+    <airport name="Qianjiang Wulingshan Airport" icao="ZUQJ" iata="JIQ" type="Domestic" season="All_Year">
     <town town="Qianjiang" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="029°30'47''N" />

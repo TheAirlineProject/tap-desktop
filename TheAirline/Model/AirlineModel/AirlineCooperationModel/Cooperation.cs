@@ -52,7 +52,8 @@
 
                         this.Type = CooperationTypes.GetCooperationType(type.Uid);
                         
-                    }//nick½ + willie credits
+                    }
+                         
                     else
                     {
 

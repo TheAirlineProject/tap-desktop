@@ -25,12 +25,14 @@
 	<state country="140" name="Réunion" shortname="RE"  flag="France - Reunion" overseas="True" region="102"></state>
 	<state country="140" name="Saint Pierre and Miquelon" shortname="PM"  flag="France - Saint Pierre and Miquelon" overseas="True" region="119"></state>
 	<!--United Kingdom-->
-	<state country="130" name="Bermuda" shortname="BM"  flag="UK - Bermuda" overseas="True" region="119"></state>
+	<state country="130" name="Anguilla" shortname="AI"  flag="UK - Anguilla" overseas="True" region="117"></state>
+  <state country="130" name="Bermuda" shortname="BM"  flag="UK - Bermuda" overseas="True" region="119"></state>
 	<state country="130" name="Cayman Islands" shortname="KY"  flag="UK - Cayman Islands" overseas="True" region="117"></state>
 	<state country="130" name="England" shortname="ENG"  flag="UK - England"></state>
 	<state country="130" name="Guernsey" shortname="GG"  flag="UK - Guernsey"></state>
 	<state country="130" name="Gibraltar" shortname="GI"  flag="UK - Gibraltar"></state>
 	<state country="130" name="Isle of Man" shortname="IM"  flag="UK - Isle of Man"></state>
+  <state country="130" name="Montserrat" shortname="MS"  flag="UK - Montserrat" overseas="True" region="117"></state>
 	<state country="130" name="Northern Ireland" shortname="NIR"  flag="UK - Northern Ireland"></state>
 	<state country="130" name="Jersey" shortname="JE"  flag="UK - Jersey"></state>
 	<state country="130" name="Scotland" shortname="SCT"  flag="UK - Scotland"></state>

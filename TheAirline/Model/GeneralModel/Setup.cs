@@ -467,6 +467,7 @@
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
+       
                /*
             System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
 
@@ -3337,6 +3338,7 @@
             {
                 string section = root.Name;
                 string uid = element.Attributes["uid"].Value;
+
 
                 Regions.AddRegion(new Region(section, uid));
 
