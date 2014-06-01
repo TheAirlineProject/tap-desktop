@@ -104,12 +104,14 @@
             List<AirportContract> contracts,
             Weather.Season season)
         {
+            var routes = GetAirportRoutes(airport, airline);
+
             int numberOfOccupiedSlots =
                 GetOccupiedSlotTimes(airport, airline, contracts, season)
                     .GroupBy(s => s.Ticks)
                     .Where(x => x.Count() > 1)
                     .Count();
-            return numberOfOccupiedSlots == 0;
+            return numberOfOccupiedSlots == 0 && !(routes.Count > 0 && contracts.Count == 0);
         }
 
         public static void CheckForExtendGates(Airport airport)

@@ -2204,7 +2204,7 @@
       <latitude value="013°54'45''N" />
       <longitude value="100°36'24''E" />
     </coordinates>
-    <size value="Largest" pax="47910" cargo="Smallest" cargovolume="0" />
+    <size value="Largest" pax="51363" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="70" />
     </terminals>
@@ -2226,7 +2226,7 @@
         <yearvalue from="1900" to="2005" value="Largest" pax="38000" cargo="Smallest" cargovolume="0"
                    inflationbefore="5">
         </yearvalue>
-        <yearvalue from="2006" to="2199" value="Medium" pax="5983" cargo="Smallest" cargovolume="0" inflationafter="3"></yearvalue>
+        <yearvalue from="2006" to="2199" value="Large" pax="16479" cargo="Smallest" cargovolume="0" inflationafter="3"></yearvalue>
       </yearvalues>
     </size>
     <terminals>
@@ -2245,7 +2245,7 @@
       <latitude value="018°46'05''N" />
       <longitude value="098°57'46''E" />
     </coordinates>
-    <size value="Medium" pax="3880" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="5463" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="8" />
     </terminals>
@@ -2259,7 +2259,7 @@
       <latitude value="008°06'47''N" />
       <longitude value="098°19'00''E" />
     </coordinates>
-    <size value="Medium" pax="8467" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="11342" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="12" />
     </terminals>

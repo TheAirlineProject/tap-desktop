@@ -216,7 +216,7 @@
                     this.Airport.Airport,
                     GameObject.GetInstance().HumanAirline,
                     contracts,
-                    Weather.Season.All_Year) || contracts.Count == 0)
+                    Weather.Season.All_Year))
             {
                 WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2224"),

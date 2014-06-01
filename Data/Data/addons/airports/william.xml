@@ -2314,4 +2314,745 @@
       <runway name="07/25" length="3000" surface="Asphalt" />
     </runways>
   </airport>
+  <!--Turkmenistan-->
+  <airport name="Mary Airport" icao="UTAM" iata="MYP" type="Domestic" season="All_Year">
+    <town town="Mary" country="238" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="037°37'09''N" />
+      <longitude value="061°53'48''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="18L/36R" length="2776" surface="Concrete" />
+      <runway name="18R/36L" length="2437" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Turkmenabat Airport" icao="UTAV" iata="CRZ" type="Domestic" season="All_Year">
+    <town town="Türkmenabat" country="238" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="039°04'59''N" />
+      <longitude value="063°36'47''E" />
+    </coordinates>
+    <size value="Very_small" pax="200" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="2750" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Turkmenbashi Airport" icao="UTAK" iata="KRW" type="Short_Haul_International" season="All_Year">
+    <town town="Krasnovodsk" country="238" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="040°03'47''N" />
+      <longitude value="053°00'25''E" />
+    </coordinates>
+    <size value="Very_small" pax="400" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="2500" surface="Concrete" />
+    </runways>
+  </airport>
+  <!--Tajikistan-->
+    <airport name="Khudzhand Airport" icao="UTDL" iata="LBD" type="Long_Haul_International" season="All_Year">
+    <town town="Khudzhand" country="240" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="040°12'55''N" />
+      <longitude value="069°41'40''E" />
+    </coordinates>
+    <size value="Small" pax="600" />
+    <terminals>
+      <terminal name="Terminal A" gates="25" />
+      <terminal name="Terminal B" gates="19" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="3185" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Qurghonteppa International Airport" icao="UTDT" iata="KQT" type="Long_Haul_International" season="All_Year">
+    <town town="Kurgan-Tyube" country="240" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="037°51'59''N" />
+      <longitude value="068°51'52''E" />
+    </coordinates>
+    <size value="Very_small" pax="200" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+  <runways>
+      <runway name="17/25" length="2285" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Kulob Airport" icao="UTDK" iata="TJU" type="Long_Haul_International" season="All_Year">
+    <town town="Kulyab" country="240" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="037°59'17''N" />
+      <longitude value="069°48'18''E" />
+    </coordinates>
+    <size value="Very_small" pax="200" />
+    <terminals>
+      <terminal name="Terminal A" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+  <!--Russia-->
+    <airport name="Pobedilovo Airport" icao="USKK" iata="KVX" type="Domestic" season="All_Year">
+    <town town="Kirov" country="149" GMT="04:00:00" DST="04:00:00" />
+    <coordinates>
+      <latitude value="058°30'11''N" />
+      <longitude value="049°20'53''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+    </terminals>
+       <runways>
+      <runway name="02/21" length="2250" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Astrakhan Airport" icao="URWA" iata="ASF" type="Short_Haul_International" season="All_Year">
+    <town town="Astrakhan" country="149" GMT="04:00:00" DST="04:00:00" />
+    <coordinates>
+      <latitude value="046°16'59''N" />
+      <longitude value="048°00'22''E" />
+    </coordinates>
+    <size value="Very_small" pax="390" />
+    <terminals>
+      <terminal name="Terminal A" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2500" surface="Concrete" />
+      <runway name="11/29" length="1800" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Murmansk Airport" icao="ULMM" iata="MMK" type="Short_Haul_International" season="All_Year">
+    <town town="Murmansk" country="149" GMT="04:00:00" DST="04:00:00" />
+    <coordinates>
+      <latitude value="068°46'54''N" />
+      <longitude value="032°45'02''E" />
+    </coordinates>
+    <size value="Small" pax="614" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="2500" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Voronezh International Airport" icao="UUOO" iata="VOZ" type="Long_Haul_International" season="All_Year">
+    <town town="Voronezh" country="149" GMT="04:00:00" DST="04:00:00" />
+    <coordinates>
+      <latitude value="051°48'51''N" />
+      <longitude value="039°13'46''E" />
+    </coordinates>
+    <size value="Very_small" pax="358" />
+    <terminals>
+      <terminal name="Terminal A" gates="25" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="2300" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Saratov Central Airport" icao="UWSS" iata="RTW" type="Long_Haul_International" season="All_Year">
+    <town town="Saratov" country="149" GMT="04:00:00" DST="04:00:00" />
+    <coordinates>
+      <latitude value="051°33'53''N" />
+      <longitude value="046°02'48''E" />
+    </coordinates>
+    <size value="Very_small" pax="273" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2281" surface="Asphalt" />
+    </runways>
+  </airport>
+  <!--Ukraine-->
+    <airport name="Donetsk International Airport" icao="UKCC" iata="DOK" type="Long_Haul_International" season="All_Year">
+    <town town="Donetsk" country="134" GMT="02:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="048°04'24''N" />
+      <longitude value="037°44'22''E" />
+    </coordinates>
+    <size value="Small" pax="1100" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2484" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Odessa International Airport" icao="UKOO" iata="ODS" type="Long_Haul_International" season="All_Year">
+    <town town="Odessa" country="134" GMT="02:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="046°25'36''N" />
+      <longitude value="030°40'35''E" />
+    </coordinates>
+    <size value="Small" pax="1069" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="553" surface="Asphalt" />
+      <runway name="16/34" length="2799" surface="Asphalt" />
+      <runway name="18/36" length="899" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Kiev Zhuliany International Airport" icao="UKKK" iata="IEV" type="Long_Haul_International" season="All_Year">
+    <town town="Kiev" country="134" GMT="02:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="050°24'06''N" />
+      <longitude value="030°26'58''E" />
+    </coordinates>
+    <size value="Small" pax="1838" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+      <terminal name="Terminal B" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="1800" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Kharkiv International Airport" icao="UKHH" iata="HRK" type="Long_Haul_International" season="All_Year">
+    <town town="Kharkiv" country="134" GMT="02:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="049°55'29''N" />
+      <longitude value="036°17'24''E" />
+    </coordinates>
+    <size value="Small" pax="605" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2220" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Dnipropetrovsk International Airport" icao="UKDD" iata="DNK" type="Long_Haul_International" season="All_Year">
+    <town town="Dnipropetrovsk" country="134" GMT="02:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="048°21'25''N" />
+      <longitude value="035°06'02''E" />
+    </coordinates>
+    <size value="Very_small" pax="455" />
+    <terminals>
+      <terminal name="Terminal A" gates="17" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2841" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Zaporizhzhia International Airport" icao="UKDE" iata="OZH" type="Short_Haul_International" season="All_Year">
+    <town town="Zaporizhia" country="134" GMT="02:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="047°52'01''N" />
+      <longitude value="035°18'56''E" />
+    </coordinates>
+    <size value="Smallest" pax="56" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2502" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Luhansk International Airport" icao="UKCW" iata="VSG" type="Short_Haul_International" season="All_Year">
+    <town town="Luhansk" country="134" GMT="02:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="048°25'02''N" />
+      <longitude value="039°22'26''E" />
+    </coordinates>
+    <size value="Smallest" pax="51" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2880" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ivano-Frankivsk International Airport" icao="UKLI" iata="IFO" type="Domestic" season="All_Year">
+    <town town="Ivano-Frankivsk" country="134" GMT="02:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="048°53'03''N" />
+      <longitude value="024°41'09''E" />
+    </coordinates>
+    <size value="Smallest" pax="32" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2507" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Vinnytsia/Gavyryshivka Airport" icao="UKWW" iata="VIN" type="Short_Haul_International" season="All_Year">
+    <town town="Vinnitsa" country="134" GMT="02:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="049°14'33''N" />
+      <longitude value="028°36'49''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="2610" surface="Asphalt" />
+    </runways>
+  </airport>
+  <!--Mongolia-->
+   <airport name="Khovd Airport" icao="ZMKD" iata="HVD" type="Domestic" season="All_Year">
+    <town town="Khovd" country="241" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="047°57'14''N" />
+      <longitude value="091°37'41''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="2850" surface="Asphalt" />
+      <runway name="16L/34R" length="1992" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Mörön Airport" icao="ZMMN" iata="MXV" type="Domestic" season="All_Year">
+    <town town="Mörön" country="241" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="049°39'47''N" />
+      <longitude value="100°05'56''E" />
+    </coordinates>
+    <size value="Smallest" pax="13" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2440" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ulaangom Airport" icao="ZMUG" iata="ULO" type="Domestic" season="All_Year">
+    <town town="" country="241" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="049°58'23''N" />
+      <longitude value="092°04'46''E" />
+    </coordinates>
+    <size value="Smallest" pax="12" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+     <runways>
+      <runway name="01/19" length="2830" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Ölgii Airport" icao="" iata="ULG" type="Short_Haul_International" season="All_Year">
+    <town town="Ölgii" country="241" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="048°58'01''N" />
+      <longitude value="089°58'01''E" />
+    </coordinates>
+    <size value="Smallest" pax="13" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+ <runways>
+      <runway name="13/31" length="3030" surface="Concrete" />
+    </runways>
+  </airport>
+  <!--Thailand-->
+    <airport name="Samui Airport" icao="VTSM" iata="USM" type="Short_Haul_International" season="All_Year">
+    <town town="Na Thon (Ko Samui Island)" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="009°32'52''N" />
+      <longitude value="100°03'43''E" />
+    </coordinates>
+    <size value="Small" pax="1968" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="2060" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Hua Hin Airport" icao="VTPH" iata="HHQ" type="Short_Haul_International" season="All_Year">
+    <town town="Hua Hin" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="012°38'10''N" />
+      <longitude value="099°57'05''E" />
+    </coordinates>
+    <size value="Small" pax="8" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="2100" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Buri Ram Airport" icao="VTUO" iata="BFV" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="015°13'46''N" />
+      <longitude value="103°15'10''E" />
+    </coordinates>
+    <size value="Small" pax="11" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2100" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Phrae Airport" icao="VTCP" iata="PRH" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="018°07'55''N" />
+      <longitude value="100°09'54''E" />
+    </coordinates>
+    <size value="Small" pax="13" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="1500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ranong Airport" icao="VTSR" iata="UNN" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="009°46'39''N" />
+      <longitude value="098°35'07''E" />
+    </coordinates>
+    <size value="Small" pax="30" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2000" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Loei Airport" icao="VTUL" iata="LOE" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="017°26'20''N" />
+      <longitude value="101°43'19''E" />
+    </coordinates>
+    <size value="Small" pax="41" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2100" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Chumphon Airport" icao="VTSE" iata="CJM" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="010°42'40''N" />
+      <longitude value="099°21'42''E" />
+    </coordinates>
+    <size value="Small" pax="45" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="2100" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Sukhothai Airport" icao="VTPO" iata="THS" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="017°14'16''N" />
+      <longitude value="099°49'05''E" />
+    </coordinates>
+    <size value="Small" pax="50" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2100" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Mae Hong Son Airport" icao="VTCH" iata="HGN" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="019°18'04''N" />
+      <longitude value="097°58'32''E" />
+    </coordinates>
+    <size value="Small" pax="54" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="2000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Roi Et Airport" icao="VTUV" iata="ROI" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="016°07'00''N" />
+      <longitude value="103°46'26''E" />
+    </coordinates>
+    <size value="Small" pax="60" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2100" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Trat Airport" icao="VTBO" iata="TDX" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="012°16'28''N" />
+      <longitude value="102°19'08''E" />
+    </coordinates>
+    <size value="Small" pax="68" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="1509" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Lampang Airport" icao="VTCL" iata="LPT" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="018°16'15''N" />
+      <longitude value="099°30'15''E" />
+    </coordinates>
+    <size value="Small" pax="77" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="1971" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Nan Airport" icao="VTCN" iata="NNT" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="018°48'28''N" />
+      <longitude value="100°46'58''E" />
+    </coordinates>
+    <size value="Small" pax="82" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2000" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Mae Sot Airport" icao="VTPM" iata="MAQ" type="Short_Haul_International" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="016°41'59''N" />
+      <longitude value="098°32'42''E" />
+    </coordinates>
+    <size value="Small" pax="87" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Sakon Nakhon Airport" icao="VTUI" iata="SNO" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="017°11'42''N" />
+      <longitude value="104°07'08''E" />
+    </coordinates>
+    <size value="Small" pax="109" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2600" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Narathiwat Airport" icao="VTSC" iata="NAW" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="006°31'11''N" />
+      <longitude value="101°44'34''E" />
+    </coordinates>
+    <size value="Small" pax="111" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="U-Tapao International Airport" icao="VTBU" iata="UTP" type="Long_Haul_International" season="All_Year">
+    <town town="Rayong" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="012°40'47''N" />
+      <longitude value="101°00'17''E" />
+    </coordinates>
+    <size value="Small" pax="127" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="3505" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Nakhon Phanom Airport" icao="VTUW" iata="KOP" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="017°23'01''N" />
+      <longitude value="104°38'34''E" />
+    </coordinates>
+    <size value="Very_small" pax="197" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Phitsanulok Airport" icao="VTPP" iata="PHS" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="016°46'58''N" />
+      <longitude value="100°16'44''E" />
+    </coordinates>
+    <size value="Very_small" pax="242" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Trang Airport" icao="VTST" iata="TST" type="Domestic" season="All_Year">
+    <town town="" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="007°30'31''N" />
+      <longitude value="099°36'59''E" />
+    </coordinates>
+    <size value="Small" pax="504" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2100" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Khon Kaen Airport" icao="VTUK" iata="KKC" type="Domestic" season="All_Year">
+    <town town="Khon Kaen" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="016°27'59''N" />
+      <longitude value="102°47'02''E" />
+    </coordinates>
+    <size value="Small" pax="592" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="3050" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ubon Ratchathani Airport" icao="VTUU" iata="UBP" type="Short_Haul_International" season="All_Year">
+    <town town="Ubon Ratchathani" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="015°15'04''N" />
+      <longitude value="104°52'12''E" />
+    </coordinates>
+    <size value="Small" pax="835" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="3002" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Nakhon Si Thammarat Airport" icao="VTSF" iata="NST" type="Short_Haul_International" season="All_Year">
+    <town town="Nakhon Si Thammarat" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="008°32'22''N" />
+      <longitude value="099°56'40''E" />
+    </coordinates>
+    <size value="Small" pax="950" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2100" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Surat Thani Airport" icao="VTSB" iata="URT" type="Short_Haul_International" season="All_Year">
+    <town town="Surat Thani" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="009°07'57''N" />
+      <longitude value="099°08'08''E" />
+    </coordinates>
+    <size value="Small" pax="1080" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Krabi Airport" icao="VTSG" iata="KBV" type="Short_Haul_International" season="All_Year">
+    <town town="Krabi" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="008°05'56''N" />
+      <longitude value="098°59'10''E" />
+    </coordinates>
+    <size value="Small" pax="1668" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Chiang Rai International Airport" icao="VTCT" iata="CEI" type="Short_Haul_International" season="All_Year">
+    <town town="Chiang Rai" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="019°57'08''N" />
+      <longitude value="099°52'58''E" />
+    </coordinates>
+    <size value="Small" pax="1089" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Udon Thani Airport" icao="VTUD" iata="UTH" type="Domestic" season="All_Year">
+    <town town="Udon Thani" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="017°23'11''N" />
+      <longitude value="102°47'16''E" />
+    </coordinates>
+    <size value="Small" pax="1325" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="3048" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Hat Yai International Airport" icao="VTSS" iata="HDY" type="Short_Haul_International" season="All_Year">
+    <town town="Hat Yai" country="175" GMT="07:00:00" DST="07:00:00" />
+    <coordinates>
+      <latitude value="006°55'59''N" />
+      <longitude value="100°23'34''E" />
+    </coordinates>
+    <size value="Medium" pax="2552" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="3050" surface="Asphalt" />
+    </runways>
+  </airport>
   </airports>
