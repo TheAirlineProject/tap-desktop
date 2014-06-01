@@ -139,7 +139,7 @@
 
             if (startData.RandomOpponents || startData.Opponents == null)
             {
-                Setup.SetupMainGame(opponents, startData.SameRegion);
+                Setup.SetupMainGame(opponents,airline.AirlineRouteFocus, startData.SameRegion);
             }
             else
             {

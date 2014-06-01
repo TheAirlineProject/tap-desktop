@@ -613,9 +613,9 @@
             SetupMainGame();
         }
 
-        public static void SetupMainGame(int opponents, Boolean sameRegion)
+        public static void SetupMainGame(int opponents,Route.RouteType airlineType, Boolean sameRegion)
         {
-            RemoveAirlines(opponents, sameRegion);
+            RemoveAirlines(opponents,airlineType, sameRegion);
 
             SetupMainGame();
         }
@@ -3882,7 +3882,7 @@
             }
         }
 
-        private static void RemoveAirlines(int opponnents, Boolean sameRegion)
+        private static void RemoveAirlines(int opponnents, Route.RouteType airlineType, Boolean sameRegion)
         {
             Airport humanAirport = GameObject.GetInstance().HumanAirline.Airports[0];
             int year = GameObject.GetInstance().GameTime.Year;
@@ -3905,7 +3905,7 @@
             if (sameRegion)
             {
                 airlines =
-                    airlines.OrderByDescending(
+                    airlines.OrderBy(a=>a.AirlineRouteFocus == airlineType).ThenByDescending(
                         a =>
                             a.Profile.PreferedAirport == null
                                 ? Double.MaxValue
@@ -3913,7 +3913,17 @@
             }
             else
             {
-                airlines = MathHelpers.Shuffle(airlines);
+                var sameTypes = airlines.FindAll(a => a.AirlineRouteFocus == airlineType);
+                var notSameTypes = airlines.FindAll(a => a.AirlineRouteFocus != airlineType);
+
+                sameTypes = MathHelpers.Shuffle(sameTypes);
+                notSameTypes = MathHelpers.Shuffle(notSameTypes);
+
+                airlines.Clear();
+
+                airlines.AddRange(notSameTypes);
+                airlines.AddRange(sameTypes);
+
             }
 
             for (int i = 0; i < count - opponnents; i++)

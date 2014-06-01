@@ -6,12 +6,16 @@
       xmlns:filter="clr-namespace:TheAirline.GUIModel.CustomControlsModel.FilterableListView"
       xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
       xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
+         xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.AirlinePageModel"
+   
       Name="pageAirlineFleet"
       mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PageAirlineFleet">
-
-    <Grid>
+    <Page.Resources>
+        <local:AirlinerToSubsidiaryConverter x:Key="airlinerToSubsidiaryConverter"></local:AirlinerToSubsidiaryConverter>
+    </Page.Resources>
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -30,7 +34,7 @@
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
                                 <filter:SortableGridViewColumn Header="" CanFilter="False" SortPropertyName="Name"
-                                                               Width="35">
+                                                               Width="32">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <CheckBox VerticalAlignment="Bottom" Checked="cbAirliner_Checked"
@@ -60,7 +64,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </filter:SortableGridViewColumn>
                                 <filter:SortableGridViewColumn Header="" CanFilter="False" SortPropertyName="Name"
-                                                               Width="40">
+                                                               Width="32">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button Click="btnSellAirliner_Click" Background="Transparent"
@@ -76,6 +80,28 @@
                                                     </Style>
                                                 </Button.Style>
                                                 <Image Source="/data/images/delete.png"
+                                                       RenderOptions.BitmapScalingMode="HighQuality" />
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </filter:SortableGridViewColumn>
+                                <filter:SortableGridViewColumn Header="" CanFilter="False" SortPropertyName="Name"
+                                                               Width="32">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="btnMoveAirliner_Click" Background="Transparent"
+                                                    Tag="{Binding}" Width="20" VerticalAlignment="Bottom">
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Converter={StaticResource airlinerToSubsidiaryConverter}}"
+                                                                         Value="False">
+                                                                <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                                <Image Source="/data/images/moveairliner.png"
                                                        RenderOptions.BitmapScalingMode="HighQuality" />
                                             </Button>
                                         </DataTemplate>

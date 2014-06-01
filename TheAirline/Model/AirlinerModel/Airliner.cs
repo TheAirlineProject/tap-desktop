@@ -317,9 +317,9 @@
                 AirlinerFacility videoFacility = aClass.getFacility(AirlinerFacility.FacilityType.Video);
                 AirlinerFacility seatFacility = aClass.getFacility(AirlinerFacility.FacilityType.Seat);
 
-                double audioPrice = audioFacility.PricePerSeat * audioFacility.PercentOfSeats * aClass.SeatingCapacity;
-                double videoPrice = videoFacility.PricePerSeat * videoFacility.PercentOfSeats * aClass.SeatingCapacity;
-                double seatPrice = seatFacility.PricePerSeat * seatFacility.PercentOfSeats * aClass.SeatingCapacity;
+                double audioPrice = audioFacility.PricePerSeat * (audioFacility.PercentOfSeats/100) * aClass.SeatingCapacity;
+                double videoPrice = videoFacility.PricePerSeat * (videoFacility.PercentOfSeats/100) * aClass.SeatingCapacity;
+                double seatPrice = seatFacility.PricePerSeat * (seatFacility.PercentOfSeats/100) * aClass.SeatingCapacity;
 
                 facilityPrice += audioPrice + videoPrice + seatPrice;
             }

@@ -432,7 +432,21 @@
 
             this.setValues();
         }
+        //moves an airliner to other airline
+        public void moveAirliner(FleetAirliner airliner, Airline airline)
+        {
+            this.DeliveredFleet.Remove(airliner);
 
+            this.Airline.removeAirliner(airliner);
+
+            airline.addAirliner(airliner);
+            
+            var pilots = new List<Pilot>(airliner.Pilots);
+
+            foreach (Pilot pilot in pilots)
+                pilot.Airline = airline;
+     
+        }
         //adds a subsidiary airline
         public void addSubsidiaryAirline(SubsidiaryAirline airline)
         {
@@ -1503,7 +1517,23 @@
 
         #endregion
     }
+    //the converter if an airliner can be moved to a subsidiary
+    public class AirlinerToSubsidiaryConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            FleetAirliner airliner = (FleetAirliner)value;
 
+            Boolean hasSubsidiary = airliner.Airliner.Airline.Subsidiaries.Count > 0 || airliner.Airliner.Airline.IsSubsidiary;
+
+            return airliner.Status == FleetAirliner.AirlinerStatus.Stopped && airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline && hasSubsidiary;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter if an airline is the human airline in use
     public class AirlineInuseConverter : IValueConverter
     {

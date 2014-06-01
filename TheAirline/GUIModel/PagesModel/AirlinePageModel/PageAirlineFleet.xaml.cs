@@ -5,10 +5,11 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
+    using TheAirline.Model.AirlineModel;
+    using TheAirline.Model.AirlineModel.SubsidiaryModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
@@ -57,7 +58,34 @@
         {
             PopUpMap.ShowPopUp(this.Airline.Airline.Routes);
         }
+        private void btnMoveAirliner_Click(object sender, RoutedEventArgs e)
+        {
+            var airliner = (FleetAirliner)((Button)sender).Tag;
+            
+            ComboBox cbAirlines = new ComboBox();
+            cbAirlines.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
+            cbAirlines.ItemTemplate = Application.Current.Resources["AirlineItem"] as DataTemplate;
+            cbAirlines.HorizontalAlignment = HorizontalAlignment.Left;
+            cbAirlines.Width = 200;
 
+            if (this.Airline.Airline.Subsidiaries.Count > 0)
+                foreach (SubsidiaryAirline sAirline in this.Airline.Airline.Subsidiaries)
+                    cbAirlines.Items.Add(sAirline);
+            else
+                cbAirlines.Items.Add(((SubsidiaryAirline)this.Airline.Airline).Airline);
+
+            cbAirlines.SelectedIndex = 0;
+
+            if (
+                PopUpSingleElement.ShowPopUp(
+                    Translator.GetInstance().GetString("PageAirlineFleet", "1016"),
+                    cbAirlines) == PopUpSingleElement.ButtonSelected.OK && cbAirlines.SelectedItem != null)
+            {
+                var airline = cbAirlines.SelectedItem as Airline;
+
+                this.Airline.moveAirliner(airliner, airline);
+            }
+        }
         private void btnSellAirliner_Click(object sender, RoutedEventArgs e)
         {
             var airliner = (FleetAirliner)((Button)sender).Tag;

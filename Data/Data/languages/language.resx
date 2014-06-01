@@ -5055,4 +5055,7 @@ Good luck.</value>
   <data name="MessageBox_3006_name" xml:space="preserve">
     <value>Route Exists Already</value>
   </data>
+  <data name="PageAirlineFleet_1016_name" xml:space="preserve">
+    <value>Move Airliner</value>
+  </data>
 </root>

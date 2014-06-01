@@ -427,6 +427,7 @@
             lock (this.Fleet)
             {
                 this.Fleet.Add(airliner);
+                airliner.Airliner.Airline = this;
             }
         }
 
