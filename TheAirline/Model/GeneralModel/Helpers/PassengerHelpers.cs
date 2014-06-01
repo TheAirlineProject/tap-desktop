@@ -57,7 +57,13 @@
         public static void ChangePaxDemand(List<Airport> airports, double factor)
         {
             //increases the passenger demand between airports with 5%
-            Parallel.ForEach(airports, airport => { ChangePaxDemand(airport, factor); });
+            //Parallel.ForEach(airports, airport => { ChangePaxDemand(airport, factor); });
+
+            foreach (var airport in airports)
+            {
+                ChangePaxDemand(airport, factor);
+            }
+
         }
 
         //changes the demand for all airports belonging to an airline with a factor
@@ -115,20 +121,21 @@
 
             foreach (Airport airport in airports)
             {
-                Parallel.ForEach(
-                    Airports.GetAllAirports(),
-                    dAirport =>
+                //Parallel.ForEach(
+                //    Airports.GetAllAirports(),
+                //    dAirport =>
+                foreach (var dAirport in Airports.GetAllAirports())
+                {
+                    airport.Statics.addDistance(dAirport, MathHelpers.GetDistance(airport, dAirport));
+
+                    if (airport != dAirport && airport.Profile.Town != dAirport.Profile.Town
+                        && MathHelpers.GetDistance(airport, dAirport) > 50)
                     {
-                        airport.Statics.addDistance(dAirport, MathHelpers.GetDistance(airport, dAirport));
+                        CreateDestinationPassengers(airport, dAirport);
 
-                        if (airport != dAirport && airport.Profile.Town != dAirport.Profile.Town
-                            && MathHelpers.GetDistance(airport, dAirport) > 50)
-                        {
-                            CreateDestinationPassengers(airport, dAirport);
-
-                            CreateDestinationCargo(airport, dAirport);
-                        }
-                    });
+                        CreateDestinationCargo(airport, dAirport);
+                    }
+                } //);
                 if (airport.getDestinationPassengersSum() == 0)
                 {
                     List<Airport> subAirports =

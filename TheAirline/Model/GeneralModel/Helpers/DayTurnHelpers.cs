@@ -32,45 +32,46 @@
         {
             var sw = new Stopwatch();
             sw.Start();
-            //foreach (FleetAirliner airliner in airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped))
-            Parallel.ForEach(
-                airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped),
-                airliner =>
+
+            foreach (
+                FleetAirliner airliner in airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped)) //Parallel.ForEach(
+                //    airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped),
+                //    airliner =>
+            {
+                if (airliner.CurrentFlight != null)
                 {
-                    if (airliner.CurrentFlight != null)
+                    //Boolean stopoverRoute = airliner.CurrentFlight.Entry.MainEntry != null;
+
+                    SimulateLanding(airliner);
+                }
+
+                IOrderedEnumerable<RouteTimeTableEntry> dayEntries =
+                    airliner.Routes.Where(r => r.StartDate <= GameObject.GetInstance().GameTime)
+                        .SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek))
+                        .Where(
+                            e =>
+                                e.Airliner == airliner
+                                && (e.TimeTable.Route.Season == Weather.Season.All_Year
+                                    || e.TimeTable.Route.Season
+                                    == GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime)))
+                        .OrderBy(e => e.Time);
+
+                if (GameObject.GetInstance().GameTime > airliner.GroundedToDate)
+                {
+                    foreach (RouteTimeTableEntry entry in dayEntries)
                     {
-                        //Boolean stopoverRoute = airliner.CurrentFlight.Entry.MainEntry != null;
-
-                        SimulateLanding(airliner);
-                    }
-
-                    IOrderedEnumerable<RouteTimeTableEntry> dayEntries =
-                        airliner.Routes.Where(r => r.StartDate <= GameObject.GetInstance().GameTime)
-                            .SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek))
-                            .Where(
-                                e =>
-                                    e.Airliner == airliner
-                                    && (e.TimeTable.Route.Season == Weather.Season.All_Year
-                                        || e.TimeTable.Route.Season
-                                        == GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime)))
-                            .OrderBy(e => e.Time);
-
-                    if (GameObject.GetInstance().GameTime > airliner.GroundedToDate)
-                    {
-                        foreach (RouteTimeTableEntry entry in dayEntries)
+                        if (entry.TimeTable.Route.HasStopovers)
                         {
-                            if (entry.TimeTable.Route.HasStopovers)
-                            {
-                                SimulateStopoverFlight(entry);
-                            }
-                            else
-                            {
-                                SimulateFlight(entry);
-                            }
+                            SimulateStopoverFlight(entry);
                         }
-                        CheckForService(airliner);
+                        else
+                        {
+                            SimulateFlight(entry);
+                        }
                     }
-                });
+                    CheckForService(airliner);
+                }
+            } //);
 
             sw.Stop();
         }

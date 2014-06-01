@@ -297,6 +297,11 @@
             </ContentControl>
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
                 <Hyperlink Tag="{Binding}" Click="Airport_Click">
+                    <Run Text="{Binding Profile.IATACode}" />
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                <Hyperlink Tag="{Binding}" Click="Airport_Click">
                     <Run Text="{Binding Profile.Name}" />
                 </Hyperlink>
             </TextBlock>
@@ -310,7 +315,6 @@
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
-
                             <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
                                    RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
@@ -335,10 +339,9 @@
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0"
                        Text="{Binding Converter={StaticResource AirportCodeConverter},StringFormat={}({0})}" />
-
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirportCodeItem">
@@ -359,6 +362,7 @@
                        Text="{Binding Converter={StaticResource AirportCodeConverter}}" />
         </DockPanel>
     </DataTemplate>
+
     <DataTemplate x:Key="AirportShortCountryLink">
         <DockPanel>
             <ContentControl
@@ -414,9 +418,11 @@
                 <TextBlock.ToolTip>
                     <TextBlock VerticalAlignment="Bottom" FontWeight="Bold">
                         <TextBlock.Text>
-                            <MultiBinding StringFormat="{}{0}-{1}">
+                            <MultiBinding StringFormat="{}{0(2)}-{1(3)}">
                                 <Binding Path="Destination1.Profile.Name" />
                                 <Binding Path="Destination2.Profile.Name" />
+                                <Binding Path="Destination1.Profile.IATACode" />
+                                <Binding Path="Destination2.Profile.IATACode" />
                             </MultiBinding>
 
                         </TextBlock.Text>

@@ -2090,7 +2090,11 @@
             List<Airport> homeAirports = AirlineHelpers.GetHomebases(airline);
 
             var airportsList = new Dictionary<Airport, int>();
-            Parallel.ForEach(homeAirports, a => { airportsList.Add(a, (int)a.Profile.Size); });
+            //Parallel.ForEach(homeAirports, a => { airportsList.Add(a, (int)a.Profile.Size); });
+            foreach (var a in homeAirports)
+            {
+                airportsList.Add(a, (int)a.Profile.Size);
+            }
 
             Airport homeAirport = GetRandomItem(airportsList);
 

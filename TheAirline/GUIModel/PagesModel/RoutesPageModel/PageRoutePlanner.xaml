@@ -209,7 +209,6 @@
                                 </Style>
                             </Button.Style>
                         </Button>
-
                     </WrapPanel>
                 </Expander>
                 <Expander Margin="0 5 0 0"
@@ -225,9 +224,9 @@
                                         <TextBlock
                                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1008'}"
                                             HorizontalAlignment="Center" FontWeight="Bold" />
-                                        <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="100"
+                                        <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="300"
                                                   SelectionChanged="cbOutbound_SelectionChanged" Name="cbOutbound"
-                                                  ItemTemplate="{StaticResource AirportCodeItem}"
+                                                  ItemTemplate="{StaticResource AirportCountryCodeItem}"
                                                   ItemsSource="{Binding OutboundAirports,ElementName=pageRoutePlanner}" />
                                         <TextBlock
                                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1009'}"
@@ -243,12 +242,12 @@
                                         <TextBlock
                                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1010'}"
                                             HorizontalAlignment="Center" FontWeight="Bold" />
-                                        <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="100"
+                                        <ComboBox Style="{StaticResource ComboBoxTransparentStyle}"  Width="300"
                                                   IsSynchronizedWithCurrentItem="True" Name="cbHomebound"
                                                   SelectionChanged="cbHomebound_SelectionChanged">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
-                                                    <ContentControl ContentTemplate="{StaticResource AirportCodeItem}"
+                                                    <ContentControl ContentTemplate="{StaticResource AirportCountryCodeItem}"
                                                                     VerticalAlignment="Bottom">
                                                         <ContentControl.Content>
                                                             <MultiBinding
@@ -284,7 +283,6 @@
                                                              Value="{x:Null}">
                                                     <Setter Property="IsEnabled" Value="False" />
                                                 </DataTrigger>
-
                                             </Style.Triggers>
                                         </Style>
                                     </Button.Style>
