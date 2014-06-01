@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="China United Airlines" iata="KN" color="Red" country="148" CEO="Liu Shaoyong" mentality="Aggressive" market="Domestic" preferedairport="NAY">
+<narrative narrative="China United Airlines hub is at Beijing Nanyuan airport, the smaller of Beijing two airports. It also has a focus city at Foshan Shadi. Founded in 1986 to transport troops
+of the People's Liberation Army, it no longer serves this purpose being relaunched in 2005. However they are still the only civilian airline in China allowled to use military airports if needed. All 20
+of their destinations are in China and they have 28 planes. Twenty0five 737's and three A319's."/>
+</profile>
+<info real="True" from="1986" to="2199"></info>
+</airline>

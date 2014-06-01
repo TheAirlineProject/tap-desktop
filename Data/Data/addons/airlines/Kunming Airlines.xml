@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Kunming Airlines" iata="KY" color="Maroon" country="148" CEO="Wang Qungmin " mentality="Moderate" market="Domestic" preferedairport="KMG">
+<narrative narrative="Kunming Airlines is based at Kunming,Yunnan,China. They began operations in 2009 and currently serve 21 destinations in China. Their small fleet consists of six 737-700's. They are
+owned by Shenzhen Airlines."/>
+</profile>
+<info real="True" from="2009" to="2199"></info>
+</airline>

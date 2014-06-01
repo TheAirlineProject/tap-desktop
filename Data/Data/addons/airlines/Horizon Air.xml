@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Horizon Air" iata="QX" color="Maroon" country="122" CEO="Glenn Johnson" mentality="Aggressive" market="Regional" preferedairport="SEA">
+    <narrative narrative="Horizon Air is a regional carrier based out of Seattle-Tacoma. They also have hubs at Portland,Oregon, Los Angeles, and Anchorage. Their primary market is the western US and western Canada but also fly to Loreto,Mexico. They have 38 destinations and a fleet of 51 Dash 8 Q400's. It is the eighth largest regional airline in the USA. Their sister airline is Alaskan Airlines and they are both owned by the Alaska Air Group." />
+  </profile>
+  <info real="True" from="1981" to="2199" />
+</airline>

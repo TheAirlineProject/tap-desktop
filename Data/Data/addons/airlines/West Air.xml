@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="West Air" iata="PN" color="Red" country="148" CEO="Ma Guohua" mentality="Aggressive" market="Domestic" preferedairport="CKG">
+<narrative narrative="West Air is based at Chongqing Jiangbei Airport. Founded in 2007 by its parent company Lucky Air it has a fleet of 15 aircraft. Nine A320's, four A319's and two 737-300's. It serves 20 destinations
+in China."/>
+</profile>
+<info real="True" from="2007" to="2199"></info>
+</airline>

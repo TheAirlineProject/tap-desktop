@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Okay Airways" iata="BK" color="Orange" country="148" CEO="Liu Jieyin" mentality="Moderate" market="Domestic" preferedairport="TSN">
+<narrative narrative="Okay Airways hub is at Tianjin Binhai Airport. It is the first private sector airline in China, meaning the giovernment didn't found it or owns any part of it. It is it's own private company. They serve 16 destinations in China and 
+have 24 planes. Twelve 737-800's, eleven Xian MA60's and one 737-300 which is used as a freighter. "/>
+</profile>
+<info real="True" from="2004" to="2199"></info>
+</airline>

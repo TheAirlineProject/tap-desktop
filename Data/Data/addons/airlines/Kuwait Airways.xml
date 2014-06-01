@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Kuwait Airways" iata="KU" color="Teal" country="126" CEO="Rasha Abdulaziz Al-Roumi " mentality="Moderate" market="Global" preferedairport="KWI">
+    <narrative narrative="Kuwait Airways is the flag carrier of Kuwait. Founded in 1953, they are 100% owned by the government of Kuwait. They have destinations around the globe, besides the Middle East they also fly to Europe,Asia and North America and have 34 destinations and a fleet of 17 planes, five A300's, three A310's, three A320's, four A340's and a single Boeing 777." />
+  </profile>
+  <info real="True" from="1953" to="2199" />
+</airline>

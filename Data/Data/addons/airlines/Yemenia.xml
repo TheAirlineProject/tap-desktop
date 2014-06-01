@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Yemenia" iata="IY" color="Red" country="236" CEO="Captain Ahmed Massoud Alwani" mentality="Moderate" market="Global" preferedairport="SAH">
+    <narrative narrative="Yemenia is the flag carrier of Yemen, its base it at Sana'a Airport in the capital city of Yemen. It can be dated all the way back to the mid to late 40's when the King of Yemen founded it. It serves 24 destinations throughout the Middle East,Africa,Europe and Asia." />
+  </profile>
+  <info real="True" from="1948" to="2199" />
+</airline>
