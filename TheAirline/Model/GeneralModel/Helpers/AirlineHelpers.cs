@@ -67,7 +67,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static FleetAirliner BuyAirliner(Airline airline, Airliner airliner, Airport airport, double discount)
         {
-            FleetAirliner fAirliner = AddAirliner(airline, airliner, airport,false);
+            FleetAirliner fAirliner = AddAirliner(airline, airliner, airport, false);
 
             double price = airliner.getPrice() * ((100 - discount) / 100);
 
@@ -86,7 +86,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
                 }
             }
-            
+
             FleetAirliner fAirliner = new FleetAirliner(leased ? FleetAirliner.PurchasedType.Leased : FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airport);
 
             airline.addAirliner(fAirliner);
@@ -324,14 +324,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //moves the terminals from the subsidiary to the parent airline
             foreach (Airport airport in airline.Airports)
             {
-                var terminals = airport.Terminals.getTerminals().Where(t=>t.Airline == airline);
+                var terminals = airport.Terminals.getTerminals().Where(t => t.Airline == airline);
 
                 foreach (Terminal terminal in terminals)
                     terminal.Airline = airline.Airline;
             }
-                
-                
-           
+
+
+
 
         }
         //adds a subsidiary airline to an airline
@@ -361,7 +361,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 }
 
-            
+
                 AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
                 AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
@@ -404,7 +404,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == airliner.Airliner.Airline.Profile.Country.Region && p.Aircrafts.Contains(airliner.Airliner.Type.AirlinerFamily));
 
                 if (pilots.Count == 0)
-                    pilots = Pilots.GetUnassignedPilots(p=>p.Aircrafts.Contains(airliner.Airliner.Type.AirlinerFamily));
+                    pilots = Pilots.GetUnassignedPilots(p => p.Aircrafts.Contains(airliner.Airliner.Type.AirlinerFamily));
 
                 if (pilots.Count == 0)
                 {
@@ -443,7 +443,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the number of training days a pilot 
         public static int GetTrainingDays(Pilot pilot, string airlinerfamily)
         {
-            Manufacturer manufacturer = AirlinerTypes.GetTypes(t=>t.AirlinerFamily == airlinerfamily).Select(t=>t.Manufacturer).FirstOrDefault();
+            Manufacturer manufacturer = AirlinerTypes.GetTypes(t => t.AirlinerFamily == airlinerfamily).Select(t => t.Manufacturer).FirstOrDefault();
 
             Boolean hasManufacturer = false;
             if (manufacturer != null)
@@ -463,7 +463,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return 14;
         }
         //send a pilot for an airline on training
-        public static void SendForTraining(Airline airline, Pilot pilot,string airlinerfamily, int trainingdays, double price)
+        public static void SendForTraining(Airline airline, Pilot pilot, string airlinerfamily, int trainingdays, double price)
         {
             AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -price);
 
@@ -518,9 +518,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the possible home bases for an airline
         public static List<Airport> GetHomebases(Airline airline)
         {
-        
-           //var curentFacility = 
-           return airline.Airports.FindAll(a =>(a.hasContractType(airline, AirportContract.ContractType.Full_Service) || airline.Fleet.Count(ar=>ar.Homebase == a) < a.getCurrentAirportFacility(airline,AirportFacility.FacilityType.Service).ServiceLevel));
+
+            //var curentFacility = 
+            return airline.Airports.FindAll(a => (a.hasContractType(airline, AirportContract.ContractType.Full_Service) || airline.Fleet.Count(ar => ar.Homebase == a) < a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).ServiceLevel));
 
         }
         public static List<Airport> GetHomebases(Airline airline, AirlinerType type)
@@ -772,7 +772,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
         }
-        private enum RouteOkStatus { Ok, Missing_Cargo, Wrong_Distance, Appropriate_Type, Restrictions };
+        private enum RouteOkStatus { Ok, Missing_Cargo, Wrong_Distance, Appropriate_Type, Restrictions, MissingLicense };
         //returns if a route can be created
         public static Boolean IsRouteDestinationsOk(Airline airline, Airport destination1, Airport destination2, Route.RouteType routeType, Airport stopover1 = null, Airport stopover2 = null)
         {
@@ -849,7 +849,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         throw new Exception("3003");
                     else if (routeOkStatus == RouteOkStatus.Restrictions)
                         throw new Exception("3004");
-
+                    else if (routeOkStatus == RouteOkStatus.MissingLicense)
+                        throw new Exception("3005");
                     throw new Exception("3000");
 
                 }
@@ -877,13 +878,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (status == RouteOkStatus.Ok)
             {
-                if (AirlineHelpers.HasAirlineLicens(GameObject.GetInstance().HumanAirline, airport1, airport2) && AIHelpers.IsRouteInCorrectArea(airport1, airport2))
-                    if (!FlightRestrictions.HasRestriction(airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport2.Profile.Country, airport1.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline, airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime))
-                        status = RouteOkStatus.Ok;
+                if (AirlineHelpers.HasAirlineLicens(GameObject.GetInstance().HumanAirline, airport1, airport2))
+                {
+                    if (AIHelpers.IsRouteInCorrectArea(airport1, airport2))
+                    {
+                        if (!FlightRestrictions.HasRestriction(airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport2.Profile.Country, airport1.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline, airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime))
+                            status = RouteOkStatus.Ok;
+                        else
+                            status = RouteOkStatus.Restrictions;
+                    }
                     else
-                        status = RouteOkStatus.Restrictions;
+                        status = RouteOkStatus.Appropriate_Type;
+                }
                 else
-                    status = RouteOkStatus.Appropriate_Type;
+                    status = RouteOkStatus.MissingLicense;
             }
 
             return status;
@@ -892,12 +900,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the salary for a pilot at an airline
         public static double GetPilotSalary(Airline airline, Pilot pilot)
         {
-             double pilotBasePrice = airline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));//GeneralHelpers.GetInflationPrice(133.53);<
-            
-             double pilotExperienceFee = pilot.Aircrafts.Count * GeneralHelpers.GetInflationPrice(20.3);
+            double pilotBasePrice = airline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));//GeneralHelpers.GetInflationPrice(133.53);<
+
+            double pilotExperienceFee = pilot.Aircrafts.Count * GeneralHelpers.GetInflationPrice(20.3);
 
             return pilot.Rating.CostIndex * pilotBasePrice + pilotExperienceFee;
-     
+
         }
     }
     //airline insurance helpers

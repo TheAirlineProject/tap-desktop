@@ -224,12 +224,12 @@
     </employees>
     <translations>
       <en-US name="Mega Service Center" />
-      <de-DE name="Informationsschalter" />
-      <en-GB name="Service Center" />
-      <nl-NL name="Servicecentrum" />
-      <zh-CN name="服务中心" />
+      <de-DE name="Mega Service Center" />
+      <en-GB name="Mega Service Center" />
+      <nl-NL name="Mega Service Center" />
+      <zh-CN name="Mega Service Center" />
       <da-DK name="Størst ServiceCenter" />
-      <es-ES name="Centro de Servicio" />
+      <es-ES name="Mega Service Center" />
     </translations>
   </airportfacility>
   <airportfacility uid="200" shortname="Cargo None" type="Cargo" typelevel="0" price="0" buildingdays="0">

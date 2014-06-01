@@ -4521,10 +4521,10 @@ Good luck.</value>
   <data name="MessageBox_3003_name" xml:space="preserve">
     <value>Cargo error</value>
   </data>
-  <data name="MessageBox_3005_message" xml:space="preserve">
+  <data name="MessageBox_3004_message" xml:space="preserve">
     <value>There are flight restrictions between the airports</value>
   </data>
-  <data name="MessageBox_3005_name" xml:space="preserve">
+  <data name="MessageBox_3004_name" xml:space="preserve">
     <value>Airport restrictions</value>
   </data>
   <data name="PageHumanRoutes_1004_name" xml:space="preserve">
@@ -5042,5 +5042,17 @@ Good luck.</value>
   </data>
   <data name="PageHumanRoutes_1011_name" xml:space="preserve">
     <value>Distance</value>
+  </data>
+  <data name="MessageBox_3005_message" xml:space="preserve">
+    <value>Your airline doesn't have the correct license for this route</value>
+  </data>
+  <data name="MessageBox_3005_name" xml:space="preserve">
+    <value>Incorrect License</value>
+  </data>
+  <data name="MessageBox_3006_message" xml:space="preserve">
+    <value>You already have a route from {0} to {1}</value>
+  </data>
+  <data name="MessageBox_3006_name" xml:space="preserve">
+    <value>Route Exists Already</value>
   </data>
 </root>

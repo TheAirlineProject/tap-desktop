@@ -435,6 +435,17 @@
             season = this.rbSeasonSummer.IsChecked.Value ? Weather.Season.Summer : season;
             season = this.rbSeasonWinter.IsChecked.Value ? Weather.Season.Winter : season;
 
+            Boolean routeExists = GameObject.GetInstance().HumanAirline.Routes.Exists(r => r.Destination1 == destination1 && r.Destination2 == destination2);
+
+            if (routeExists)
+            {
+                WPFMessageBox.Show(
+                                  Translator.GetInstance().GetString("MessageBox", "3006"),
+                                  string.Format(Translator.GetInstance().GetString("MessageBox", "3006", "message"),destination1.Profile.Name,destination2.Profile.Name),
+                                  WPFMessageBoxButtons.Ok);
+                return false;
+            }
+
             try
             {
                 if (AirlineHelpers.IsRouteDestinationsOk(
