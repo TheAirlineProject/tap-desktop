@@ -140,7 +140,7 @@
                     this.Airline.Airports.OrderByDescending(a => this.Airline.Airports[0] == a)
                         .ThenBy(a => a.Profile.Name))
             {
-                this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.hasHub(this.Airline)));
+                this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.hasHub(this.Airline), this.Airline.hasRouteTo(airport), this.Airline.hasAirplaneOnRouteTo(airport)));
             }
 
             double buyingPrice = this.Airline.getValue() * 1000000 * 1.10;
@@ -1408,9 +1408,11 @@
 
         #region Constructors and Destructors
 
-        public AirlineDestinationMVVM(Airport airport, Boolean isHub)
+        public AirlineDestinationMVVM(Airport airport, bool isHub, bool hasRoutes, bool hasAirplaneOnRouteTo)
         {
             this.IsHub = isHub;
+            this.HasRoutes = hasRoutes;
+            this.HasAirplaneOnRouteTo = hasAirplaneOnRouteTo;
             this.Airport = airport;
         }
 
@@ -1438,6 +1440,10 @@
                 this.NotifyPropertyChanged("IsHub");
             }
         }
+
+        public bool HasRoutes { get; set; }
+
+        public bool HasAirplaneOnRouteTo { get; set; }
 
         #endregion
 

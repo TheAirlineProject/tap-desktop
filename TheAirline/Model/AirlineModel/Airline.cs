@@ -1017,6 +1017,25 @@
         #endregion
 
         //returns a policy for the airline
+        public bool hasRouteTo(Airport airport)
+        {
+            return
+                Routes.Any(
+                    r =>
+                        ((r.Destination1.Profile.IATACode == airport.Profile.IATACode)
+                         || (r.Destination2.Profile.IATACode == airport.Profile.IATACode)));
+        }
+
+        //returns a policy for the airline
+        public bool hasAirplaneOnRouteTo(Airport airport)
+        {
+            return
+                Routes.Any(
+                    r =>
+                        ((r.Destination1.Profile.IATACode == airport.Profile.IATACode)
+                         || (r.Destination2.Profile.IATACode == airport.Profile.IATACode)) && r.HasAirliner);
+        }
+
     }
 
     //the list of airlines

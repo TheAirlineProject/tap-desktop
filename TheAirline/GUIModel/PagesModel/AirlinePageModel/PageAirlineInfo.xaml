@@ -425,7 +425,7 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
-                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1008'}"
+                                    Header=""
                                     util:GridViewSort.PropertyName="Type.Manufacturer.Name" Width="40">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
@@ -441,7 +441,7 @@
                                 </GridViewColumn>
                                 <GridViewColumn
                                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1009'}"
-                                    util:GridViewSort.PropertyName="Type.Name" Width="150">
+                                    util:GridViewSort.PropertyName="Type.Name" Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" />
@@ -450,7 +450,7 @@
                                 </GridViewColumn>
                                 <GridViewColumn
                                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1037'}"
-                                    util:GridViewSort.PropertyName="CabinConfiguration" Width="100">
+                                    util:GridViewSort.PropertyName="CabinConfiguration" Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding CabinConfiguration}" VerticalAlignment="Bottom" />
@@ -459,7 +459,7 @@
                                 </GridViewColumn>
                                 <GridViewColumn
                                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1038'}"
-                                    util:GridViewSort.PropertyName="Quantity" Width="100">
+                                    util:GridViewSort.PropertyName="Quantity" Width="50">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Quantity}" VerticalAlignment="Bottom" />
@@ -468,7 +468,7 @@
                                 </GridViewColumn>
                                 <GridViewColumn
                                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1033'}"
-                                    util:GridViewSort.PropertyName="OnOrder" Width="100">
+                                    util:GridViewSort.PropertyName="OnOrder" Width="50">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding OnOrder}" VerticalAlignment="Bottom" />
@@ -505,12 +505,34 @@
                                 </GridViewColumn>
                                 <GridViewColumn
                                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1025'}"
-                                    Width="25">
+                                    Width="50">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Image Source="/data/images/tick.png" VerticalAlignment="Bottom"
                                                    RenderOptions.BitmapScalingMode="HighQuality" Width="20"
                                                    Visibility="{Binding IsHub,Converter={StaticResource BooleanToVisibility}}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1039'}"
+                                    Width="50">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="/data/images/tick.png" VerticalAlignment="Bottom"
+                                                   RenderOptions.BitmapScalingMode="HighQuality" Width="20"
+                                                   Visibility="{Binding HasRoutes,Converter={StaticResource BooleanToVisibility}}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1040'}"
+                                    Width="110">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="/data/images/tick.png" VerticalAlignment="Bottom"
+                                                   RenderOptions.BitmapScalingMode="HighQuality" Width="20"
+                                                   Visibility="{Binding HasAirplaneOnRouteTo,Converter={StaticResource BooleanToVisibility}}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
