@@ -147,35 +147,36 @@
             this.IsBuyable = !this.Airline.IsHuman && GameObject.GetInstance().HumanAirline.Money > buyingPrice;
 
             this.ActiveQuantity = new List<AirlinerQuantityMVVM>();
-            this.OrderedQuantity = new List<AirlinerQuantityMVVM>();
-
+            
             var fleet = new List<FleetAirliner>(this.Airline.Fleet);
 
             foreach (FleetAirliner airliner in fleet)
             {
                 if (airliner.Airliner.BuiltDate > GameObject.GetInstance().GameTime)
                 {
-                    if (this.OrderedQuantity.Any(o => o.Type.Name == airliner.Airliner.Type.Name))
+                    if (this.ActiveQuantity.Any(o => o.Type.Name == airliner.Airliner.Type.Name && o.CabinConfiguration == airliner.Airliner.CabinConfiguration))
                     {
-                        this.OrderedQuantity.First(o => o.Type.Name == airliner.Airliner.Type.Name).Quantity++;
+                        this.ActiveQuantity.First(o => o.Type.Name == airliner.Airliner.Type.Name && o.CabinConfiguration == airliner.Airliner.CabinConfiguration).OnOrder++;
                     }
                     else
                     {
-                        this.OrderedQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, airliner.Airliner.CabinConfiguration, 1));
+                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, airliner.Airliner.CabinConfiguration,0, 1));
                     }
                 }
                 else
                 {
-                    if (this.ActiveQuantity.Any(o => o.Type.Name == airliner.Airliner.Type.Name))
+                    if (this.ActiveQuantity.Any(o => o.Type.Name == airliner.Airliner.Type.Name && o.CabinConfiguration == airliner.Airliner.CabinConfiguration))
                     {
-                        this.ActiveQuantity.First(o => o.Type.Name == airliner.Airliner.Type.Name).Quantity++;
+                        this.ActiveQuantity.First(o => o.Type.Name == airliner.Airliner.Type.Name && o.CabinConfiguration == airliner.Airliner.CabinConfiguration).Quantity++;
                     }
                     else
                     {
-                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, airliner.Airliner.CabinConfiguration, 1));
+                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, airliner.Airliner.CabinConfiguration, 1,0));
                     }
                 }
             }
+
+            this.ActiveQuantity = ActiveQuantity.OrderBy(a => a.Type.Name).ToList();
 
             this.HasAlliance = this.Alliance != null || this.Codeshares.Count > 0;
         }
@@ -350,8 +351,6 @@
         }
 
         public List<FleetAirliner> OrderedFleet { get; set; }
-
-        public List<AirlinerQuantityMVVM> OrderedQuantity { get; set; }
 
         public ObservableCollection<PilotMVVM> Pilots { get; set; }
 
@@ -1461,9 +1460,10 @@
     {
         #region Constructors and Destructors
 
-        public AirlinerQuantityMVVM(AirlinerType type, string cabinConfig, int quantity)
+        public AirlinerQuantityMVVM(AirlinerType type, string cabinConfig, int quantity, int onOrder)
         {
             this.Quantity = quantity;
+            this.OnOrder = onOrder;
             this.Type = type;
             this.CabinConfiguration = cabinConfig;
         }
@@ -1471,6 +1471,8 @@
         #endregion
 
         #region Public Properties
+
+        public int OnOrder { get; set; }
 
         public int Quantity { get; set; }
 

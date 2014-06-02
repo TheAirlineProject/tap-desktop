@@ -5043,4 +5043,10 @@ Good luck.</value>
   <data name="PageHumanRoutes_1011_name" xml:space="preserve">
     <value>Distance</value>
   </data>
+  <data name="PageAirlineInfo_1037_name" xml:space="preserve">
+    <value>Cabin</value>
+  </data>
+  <data name="PageAirlineInfo_1038_name" xml:space="preserve">
+    <value>On Order</value>
+  </data>
 </root>
