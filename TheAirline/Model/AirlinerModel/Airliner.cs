@@ -322,6 +322,12 @@
             {
                 return ((AirlinerCargoType)this.Type).CargoSize;
             }
+
+            if (this.Type is AirlinerCombiType)
+            {
+                return ((AirlinerCombiType)this.Type).CargoSize;
+            }
+
             return 0;
         }
 
