@@ -141,6 +141,23 @@
 
         [Versioning("classes")]
         public List<AirlinerClass> Classes { get; set; }
+        
+        public string CabinConfiguration
+        {
+            get
+            {
+                return string.Format("{0}F | {1}C | {2}Y", 
+                    this.GetSeatingCapacity(AirlinerClass.ClassType.First_Class),
+                    this.GetSeatingCapacity(AirlinerClass.ClassType.Business_Class),
+                    this.GetSeatingCapacity(AirlinerClass.ClassType.Economy_Class)
+                    );
+            }
+        }
+
+        private int GetSeatingCapacity(AirlinerClass.ClassType classType)
+        {
+            return this.Classes.Exists(x=> x.Type == classType) ? this.Classes.Find(x=> x.Type == classType).SeatingCapacity : 0;
+        }
 
         [Versioning("condition")]
         public double Condition { get; set; }
@@ -203,7 +220,7 @@
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
@@ -242,13 +259,19 @@
         //adds a new airliner class to the airliner
         public void addAirlinerClass(AirlinerClass airlinerClass)
         {
-            if (airlinerClass != null && !this.Classes.Exists(c => c.Type == airlinerClass.Type))
+            if (airlinerClass != null)
             {
-                this.Classes.Add(airlinerClass);
-
-                if (airlinerClass.getFacilities().Count == 0)
+                if (this.Classes.Exists(c => c.Type == airlinerClass.Type))
                 {
-                    airlinerClass.createBasicFacilities(this.Airline);
+                    Classes[Classes.FindIndex(c => c.Type == airlinerClass.Type)] = airlinerClass;
+                }
+                else
+                {
+                    this.Classes.Add(airlinerClass);
+                    if (airlinerClass.getFacilities().Count == 0)
+                    {
+                        airlinerClass.createBasicFacilities(this.Airline);
+                    }
                 }
             }
         }

@@ -160,7 +160,7 @@
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (!(this is PilotTrainingFacility))
             {

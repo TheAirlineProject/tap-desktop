@@ -644,7 +644,7 @@
 
         #region Methods
 
-        private static void ClearLists()
+        public static void ClearLists()
         {
             AdvertisementTypes.Clear();
             TimeZones.Clear();
@@ -689,7 +689,7 @@
         /*! creates the Advertisement types
          */
 
-        private static void CreateAdvertisementTypes()
+        public static void CreateAdvertisementTypes()
         {
             AdvertisementTypes.AddAdvertisementType(
                 new AdvertisementType(AdvertisementType.AirlineAdvertisementType.Internet, "No Advertisement", 0, 0));
@@ -1798,7 +1798,7 @@
             return configuration;
         }
 
-        private static void LoadAirlinerFacilities()
+        public static void LoadAirlinerFacilities()
         {
             var doc = new XmlDocument();
             doc.Load(AppSettings.getDataPath() + "\\airlinerfacilities.xml");
@@ -3079,7 +3079,7 @@
         /*! loads the inflation years
          */
 
-        private static void LoadInflationYears()
+        public static void LoadInflationYears()
         {
             var doc = new XmlDocument();
             doc.Load(AppSettings.getDataPath() + "\\inflations.xml");

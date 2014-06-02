@@ -78,7 +78,7 @@
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
@@ -196,7 +196,7 @@
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 

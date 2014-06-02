@@ -161,7 +161,7 @@
                     }
                     else
                     {
-                        this.OrderedQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, 1));
+                        this.OrderedQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, airliner.Airliner.CabinConfiguration, 1));
                     }
                 }
                 else
@@ -172,7 +172,7 @@
                     }
                     else
                     {
-                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, 1));
+                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, airliner.Airliner.CabinConfiguration, 1));
                     }
                 }
             }
@@ -1461,10 +1461,11 @@
     {
         #region Constructors and Destructors
 
-        public AirlinerQuantityMVVM(AirlinerType type, int quantity)
+        public AirlinerQuantityMVVM(AirlinerType type, string cabinConfig, int quantity)
         {
             this.Quantity = quantity;
             this.Type = type;
+            this.CabinConfiguration = cabinConfig;
         }
 
         #endregion
@@ -1474,6 +1475,8 @@
         public int Quantity { get; set; }
 
         public AirlinerType Type { get; set; }
+
+        public string CabinConfiguration { get; set; }
 
         #endregion
     }

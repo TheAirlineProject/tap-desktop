@@ -248,7 +248,7 @@ namespace TheAirline.Model.GeneralModel
             }
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
