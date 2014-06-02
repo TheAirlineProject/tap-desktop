@@ -78,10 +78,7 @@
                 }
             }
 
-            if (!File.Exists(Flag))
-            {
-                Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + this.Name + ".png";
-            }
+           
 
         }
 
@@ -94,6 +91,10 @@
         {
             get
             {
+                if (!File.Exists(this.flag))
+                {
+                    Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + this.Name + ".png";
+                }
                 return this.flag;
             }
             set

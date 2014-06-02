@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.Serialization;
@@ -10,6 +11,8 @@
     [Serializable]
     public class State : ISerializable
     {
+        private string flag;
+
         #region Constructors and Destructors
 
         public State(Country country, string name, string shortname, Boolean overseas)
@@ -85,7 +88,21 @@
         public Country Country { get; set; }
 
         [Versioning("flag")]
-        public string Flag { get; set; }
+        public string Flag
+        {
+            get
+            {
+                if (!File.Exists(this.flag))
+                {
+                    Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + this.Name + ".png";
+                }
+                return this.flag;
+            }
+            set
+            {
+                this.flag = value;
+            }
+        }
 
         [Versioning("isoverseas")]
         public Boolean IsOverseas { get; set; }
