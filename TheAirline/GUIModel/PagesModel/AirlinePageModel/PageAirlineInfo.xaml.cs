@@ -119,7 +119,7 @@
                         focus);
                     subAirline.addAirport(airport);
                     subAirline.Profile.Logos.Clear();
-                    subAirline.Profile.addLogo(new AirlineLogo(this.logoPath));
+                    subAirline.Profile.AddLogo(new AirlineLogo(this.logoPath));
                     subAirline.Money = this.slMoney.Value;
 
                     this.Airline.addSubsidiaryAirline(subAirline);

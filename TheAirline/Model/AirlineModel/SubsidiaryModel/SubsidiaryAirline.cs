@@ -28,7 +28,7 @@
 
             foreach (AirlineLogo logo in this.Airline.Profile.Logos)
             {
-                this.Profile.addLogo(logo);
+                this.Profile.AddLogo(logo);
             }
         }
 

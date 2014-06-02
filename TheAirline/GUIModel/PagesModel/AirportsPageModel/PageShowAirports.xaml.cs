@@ -222,7 +222,7 @@
                 Airline.AirlineFocus.Domestic,
                 Airline.AirlineLicense.Domestic,
                 Route.RouteType.Passenger);
-            dummyAirline.Profile.addLogo(
+            dummyAirline.Profile.AddLogo(
                 new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
 
             this.AllAirlines.Add(dummyAirline);

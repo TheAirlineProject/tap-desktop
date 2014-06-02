@@ -144,7 +144,7 @@
                     foreach (string preferedAircraft in preferedAircrafts)
                     {
                         AirlinerType pAircraft = AirlinerTypes.GetType(preferedAircraft);
-                        airline.Profile.addPreferedAircraft(pAircraft);
+                        airline.Profile.AddPreferedAircraft(pAircraft);
                     }
                 }
                 if (preferedsElement.HasAttribute("primarypurchasing"))
@@ -167,7 +167,7 @@
                 string logoPath = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\multilogos\\"
                                   + logoElement.Attributes["path"].Value + ".png";
 
-                airline.Profile.addLogo(new AirlineLogo(logoFromYear, logoToYear, logoPath));
+                airline.Profile.AddLogo(new AirlineLogo(logoFromYear, logoToYear, logoPath));
             }
 
             if (profileElement.HasAttribute("preferedairport"))
@@ -737,12 +737,12 @@
 
                 if (File.Exists(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + logoName + ".png"))
                 {
-                    airline.Profile.addLogo(
+                    airline.Profile.AddLogo(
                         new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + logoName + ".png"));
                 }
                 else
                 {
-                    airline.Profile.addLogo(
+                    airline.Profile.AddLogo(
                         new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
                 }
             }

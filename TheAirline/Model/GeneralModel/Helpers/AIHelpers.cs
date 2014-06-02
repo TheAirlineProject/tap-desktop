@@ -1752,7 +1752,7 @@
                 futureAirline.Market,
                 futureAirline.AirlineRouteFocus,
                 futureAirline.PreferedAirport);
-            sAirline.Profile.addLogo(new AirlineLogo(futureAirline.Logo));
+            sAirline.Profile.AddLogo(new AirlineLogo(futureAirline.Logo));
             sAirline.Profile.Color = airline.Profile.Color;
 
             CreateNewRoute(sAirline);

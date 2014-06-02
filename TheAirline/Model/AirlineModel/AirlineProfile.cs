@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.Serialization;
@@ -150,7 +151,7 @@
         {
             get
             {
-                return this.getCurrentLogo();
+                return this.GetCurrentLogo();
             }
             private set
             {
@@ -220,12 +221,12 @@
         }
 
         //adds a logo to the airline
-        public void addLogo(AirlineLogo logo)
+        public void AddLogo(AirlineLogo logo)
         {
             this.Logos.Add(logo);
         }
 
-        public void addPreferedAircraft(AirlinerType type)
+        public void AddPreferedAircraft(AirlinerType type)
         {
             this.PreferedAircrafts.Add(type);
         }
@@ -236,13 +237,21 @@
 
         #region Methods
 
-        private string getCurrentLogo()
+        private string GetCurrentLogo()
         {
-            return
+            var ret =
                 this.Logos.Find(
                     l =>
                         l.FromYear <= GameObject.GetInstance().GameTime.Year
-                        && l.ToYear >= GameObject.GetInstance().GameTime.Year).Path;
+                        && l.ToYear >= GameObject.GetInstance().GameTime.Year);
+
+            if (!File.Exists(ret.Path))
+            {
+                ret.Path = string.Format("{0}\\graphics\\airlinelogos\\{1}.png", AppSettings.getDataPath(), LogoName);
+            }
+
+            return ret.Path;
+
         }
 
         #endregion

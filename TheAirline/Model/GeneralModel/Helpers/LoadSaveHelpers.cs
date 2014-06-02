@@ -2034,7 +2034,7 @@
                 string logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\"
                               + airlineNode.Attributes["logo"].Value;
 
-                airline.Profile.addLogo(new AirlineLogo(logo));
+                airline.Profile.AddLogo(new AirlineLogo(logo));
             }
             airline.Fleet.Clear();
             airline.Airports.Clear();
@@ -2058,7 +2058,7 @@
                                + logoPath.Substring(logoPath.LastIndexOf('\\') + 1);
                 }
 
-                airline.Profile.addLogo(new AirlineLogo(logoFromYear, logoToYear, logoPath));
+                airline.Profile.AddLogo(new AirlineLogo(logoFromYear, logoToYear, logoPath));
             }
 
             var airlineContractNode = (XmlElement)airlineNode.SelectSingleNode("contract");
