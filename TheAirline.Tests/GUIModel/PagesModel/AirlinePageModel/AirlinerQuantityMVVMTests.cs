@@ -4,10 +4,6 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Moq;
-
-    using Ninject.MockingKernel.Moq;
-
     using TheAirline.GUIModel.PagesModel.AirlinePageModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
@@ -22,7 +18,7 @@
         {
             const string Expected = "12F | 24C | 180Y";
 
-            var target = new AirlinerQuantityMVVM(this.GetNewDummyPassengerAirliner(), Expected, 1);
+            var target = new AirlinerQuantityMVVM(this.GetNewDummyPassengerAirliner(), Expected, 1, 0);
 
             Assert.AreEqual(Expected, target.CabinConfiguration);
         }

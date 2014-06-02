@@ -146,11 +146,26 @@
         {
             get
             {
-                return string.Format("{0}F | {1}C | {2}Y", 
+                if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
+                {
+                    return string.Format(
+                        "{0}F | {1}C | {2}Y",
+                        this.GetSeatingCapacity(AirlinerClass.ClassType.First_Class),
+                        this.GetSeatingCapacity(AirlinerClass.ClassType.Business_Class),
+                        this.GetSeatingCapacity(AirlinerClass.ClassType.Economy_Class));
+                }
+                
+                if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
+                {
+                    return string.Format("{0} t", this.getCargoCapacity());
+                }
+                
+                return string.Format(
+                    "{0}F | {1}C | {2}Y | {3} t",
                     this.GetSeatingCapacity(AirlinerClass.ClassType.First_Class),
                     this.GetSeatingCapacity(AirlinerClass.ClassType.Business_Class),
-                    this.GetSeatingCapacity(AirlinerClass.ClassType.Economy_Class)
-                    );
+                    this.GetSeatingCapacity(AirlinerClass.ClassType.Economy_Class),
+                    this.getCargoCapacity());
             }
         }
 

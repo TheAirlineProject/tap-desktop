@@ -65,7 +65,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Model\AirlinerModel\AirlinerTests.cs" />
+    <Compile Include="Model\AirlinerModel\CombiAirlinerTests.cs" />
+    <Compile Include="Model\AirlinerModel\CargoAirlinerTests.cs" />
+    <Compile Include="Model\AirlinerModel\Fakes.cs" />
+    <Compile Include="Model\AirlinerModel\PassengerAirlinerTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
