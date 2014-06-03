@@ -194,7 +194,7 @@
       <latitude value="024°25'58''N" />
       <longitude value="054°39'04''E" />
     </coordinates>
-    <size value="Large" pax="12448" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="14700" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="10" />
       <terminal name="Terminal 2" gates="3" />
@@ -211,7 +211,7 @@
       <latitude value="025°15'17''N" />
       <longitude value="055°21'51''E" />
     </coordinates>
-    <size value="Largest" pax="50977" cargo="Smallest" cargovolume="0" />
+    <size value="Largest" pax="66431" cargo="Largest" cargovolume="2435" />
     <terminals>
       <terminal name="Terminal 1" gates="80" />
       <terminal name="Terminal 2" gates="21" />
@@ -359,7 +359,7 @@
       <latitude value="035°45'53''N" />
       <longitude value="140°23'11''E" />
     </coordinates>
-    <size value="Large" pax="32678" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="32678" cargo="Very_large" cargovolume="2167" />
     <terminals>
       <terminal name="Terminal" gates="71" />
     </terminals>
@@ -375,7 +375,7 @@
       <latitude value="034°25'38''N" />
       <longitude value="135°14'38''E" />
     </coordinates>
-    <size value="Large" pax="15332" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="15332" cargo="Very_large" cargovolume="759" />
     <terminals>
       <terminal name="Terminal" gates="47" />
     </terminals>
@@ -390,7 +390,7 @@
       <latitude value="042°46'30''N" />
       <longitude value="141°41'32''E" />
     </coordinates>
-    <size value="Large" pax="16452" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="16452" cargo="Large" cargovolume="228" />
     <terminals>
       <terminal name="Terminal" gates="37" />
     </terminals>
@@ -421,7 +421,7 @@
       <latitude value="033°35'04''N" />
       <longitude value="130°27'06''E" />
     </coordinates>
-    <size value="Large" pax="16344" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="16344" cargo="Large" cargovolume="257" />
     <terminals>
       <terminal name="Terminal" gates="24" />
     </terminals>
@@ -436,7 +436,7 @@
       <latitude value="034°51'30''N" />
       <longitude value="136°48'19''E" />
     </coordinates>
-    <size value="Medium" pax="9271" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="9271" cargo="Large" cargovolume="162" />
     <terminals>
       <terminal name="Terminal" gates="19" />
     </terminals>
@@ -450,7 +450,7 @@
       <latitude value="034°47'04''N" />
       <longitude value="135°26'21''E" />
     </coordinates>
-    <size value="Large" pax="14788" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="14788" cargo="Large" cargovolume="135" />
     <terminals>
       <terminal name="Terminal" gates="15" />
     </terminals>
@@ -479,7 +479,7 @@
       <latitude value="035°33'08''N" />
       <longitude value="139°46'46''E" />
     </coordinates>
-    <size value="Largest" pax="64211" cargo="Smallest" cargovolume="0" />
+    <size value="Largest" pax="64211" cargo="Large" cargovolume="818" />
     <terminals>
       <terminal name="Terminal" gates="133" />
     </terminals>
@@ -611,7 +611,7 @@
       <latitude value="26°11'45''N" />
       <longitude value="127°38'45''E" />
     </coordinates>
-    <size value="Large" pax="14525" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="14525" cargo="Very_large" cargovolume="388" />
     <terminals>
       <terminal name="Terminal" gates="27" />
     </terminals>
@@ -2145,12 +2145,26 @@
       <latitude value="007°10'45''N" />
       <longitude value="079°52'59''E" />
     </coordinates>
-    <size value="Very_small" pax="155" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="7328" cargo="Large" cargovolume="191" />
     <terminals>
       <terminal name="Terminal" gates="14" />
     </terminals>
     <runways>
       <runway name="04/22" length="3350" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Mattala Rajapaksa International Airport" icao="VCRI" iata="HRI" type="Long_Haul_International" season="All_Year">
+    <town town="Hambantota" country="153" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="006°11'12''N" />
+      <longitude value="081°08'12''E" />
+    </coordinates>
+    <size value="Small" pax="1000" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="3500" surface="Asphalt" />
     </runways>
   </airport>
   <!--Bangladesh (VG**)-->
@@ -4430,9 +4444,9 @@
       <latitude value="047°50'35''N" />
       <longitude value="106°45'59''E" />
     </coordinates>
-    <size value="Small" pax="665" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1099" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="16" />
+      <terminal name="Terminal" gates="37" />
     </terminals>
     <runways>
       <runway name="14/32" length="3100" surface="Asphalt" />

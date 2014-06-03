@@ -192,6 +192,7 @@
                     var subMarket =
                         (Airline.AirlineFocus)
                             Enum.Parse(typeof(Airline.AirlineFocus), subsidiaryElement.Attributes["market"].Value);
+                    
                     string subLogo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\"
                                      + subsidiaryElement.Attributes["logo"].Value + ".png";
 

@@ -5058,4 +5058,10 @@ Good luck.</value>
   <data name="PageAirlineFleet_1016_name" xml:space="preserve">
     <value>Move Airliner</value>
   </data>
+  <data name="News_1016_message" xml:space="preserve">
+    <value>[LI airline={0}] has ordered [1] [2]s</value>
+  </data>
+  <data name="News_1016_name" xml:space="preserve">
+    <value>Ordered airliners</value>
+  </data>
 </root>

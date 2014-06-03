@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Pakistan International Airlines" iata="PK" color="Dark Green" country="202" CEO="Junad Yusaf " mentality="Aggressive" market="Global" preferedairport="KHI">
+    <narrative narrative="Founded in 1946 as Orient Airways, PIA calls Jinnah Intl. Airport in Karachi its primary base. It is Pakistan's largest airline and it's flag carrier. It was the first Asian airline to use jet aircraft and the first Asian operator of the Boeing 737. It currently serves 38 international destinations in 27 countries across Asia,Europe,and North America. It has 27 as of April 2014 with five 777-300ER's on order. " />
+  </profile>
+  <info real="True" from="1946=" to="2199" />
+</airline>

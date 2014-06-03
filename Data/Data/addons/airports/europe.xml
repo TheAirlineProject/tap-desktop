@@ -8089,7 +8089,7 @@
       <latitude value="049°48'45''N" />
       <longitude value="023°57'21''E" />
     </coordinates>
-    <size value="Very_small" pax="297" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="700" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="3" />
     </terminals>

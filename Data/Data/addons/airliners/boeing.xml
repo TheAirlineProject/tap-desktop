@@ -318,6 +318,13 @@
     <capacity passengers="605" cockpitcrew="2" cabincrew="12" maxclasses="3" />
     <produced from="2012" to="2025" rate="32" />
   </airliner>
+   <airliner manufacturer="Boeing" name="Boeing 747SP" family="Boeing 747" price="24690210"> <!--351400000-->
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <specs wingspan="59.64" length="56.31" range="12320" speed="990" fuelcapacity="190600" consumption="0.038"
+           runwaylengthrequired="2985" />
+    <capacity passengers="331" cockpitcrew="2" cabincrew="12" maxclasses="3" />
+    <produced from="1976" to="1989" rate="32" />
+  </airliner>
   <airliner manufacturer="Boeing" name="Boeing 757-200" price="10698370"> <!--36000000-->
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
     <specs wingspan="38.05" length="47.32" range="7222" speed="850" fuelcapacity="43490" consumption="0.026"
