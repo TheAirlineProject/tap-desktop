@@ -462,10 +462,14 @@
                         Visibility="{Binding CanTransferSchedule,ElementName=pageRoutePlanner,Converter={StaticResource BooleanToVisibility}}"
                         Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom"
                         Click="btnTransfer_Click" />
-                    <Button Visibility="Collapsed" Margin="5 0 0 0" VerticalAlignment="Bottom"
+                    <Button Margin="5 0 0 0" VerticalAlignment="Bottom"
                             Style="{StaticResource StandardButtonStyle}"
                             Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 206'}"
                             Click="btnCopyTimetable_Click" />
+                    <Button Margin="5 0 0 0" VerticalAlignment="Bottom"
+                            Style="{StaticResource StandardButtonStyle}"
+                            Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 207'}"
+                            Click="btnLoadTimetable_Click" />
                 </WrapPanel>
                 <Expander Margin="0 10 0 0" Visibility="Collapsed" Style="{StaticResource ExpanderStyle}">
                     <WrapPanel>

@@ -591,10 +591,78 @@
         {
             this.clearTimeTable();
         }
+        private void btnLoadTimetable_Click(object sender, RoutedEventArgs e)
+        {
+             ComboBox cbConfigurations = new ComboBox();
+            cbConfigurations.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
+            cbConfigurations.SelectedValuePath = "Name";
+            cbConfigurations.DisplayMemberPath = "Name";
+            cbConfigurations.HorizontalAlignment = HorizontalAlignment.Left;
+            cbConfigurations.Width = 350;
 
+            foreach (
+                AirlinerScheduleConfiguration confItem in
+                    Configurations.GetConfigurations(Configuration.ConfigurationType.AirlinerSchedule)
+                    )
+            {
+                cbConfigurations.Items.Add(confItem);
+            }
+
+            cbConfigurations.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp(
+                Translator.GetInstance().GetString("PageAirlineWages", "1013"),
+                cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
+            {
+                var configuration = (AirlinerScheduleConfiguration)cbConfigurations.SelectedItem;
+
+                AirlinerType originType = configuration.AirlinerType;
+                AirlinerType destType = this.Airliner.Airliner.Type;
+
+                Boolean canFlyRoute = originType.TypeAirliner == destType.TypeAirliner && TimeTableHelpers.IsTimeTableValid(this.Airliner,configuration.Entries);
+
+                if (canFlyRoute)
+                {
+                    this.clearTimeTable();
+
+                    foreach (RouteTimeTableEntry entry in configuration.Entries)
+                        this.Entries.Add(entry);
+                }
+                else
+                {
+                    WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2707"),
+                    Translator.GetInstance().GetString("MessageBox", "2707", "message"),
+                    WPFMessageBoxButtons.Ok);
+                }
+               
+            }
+        }
         private void btnCopyTimetable_Click(object sender, RoutedEventArgs e)
         {
-            this.clearTimeTable();
+
+            var entries = this.Entries.Count;
+            var aircraft = this.Airliner.Airliner.Type.Name;
+
+            var txtName = new TextBox();
+            txtName.Width = 350;
+            txtName.Background = Brushes.Transparent;
+            txtName.Foreground = Brushes.White;
+            txtName.Text = string.Format("Route schedule (Aircraft: {0} with {1} entries)",aircraft, entries);
+            txtName.HorizontalAlignment = HorizontalAlignment.Left;
+
+            if (PopUpSingleElement.ShowPopUp(
+                Translator.GetInstance().GetString("PageAirlineEditAirliners", "1002"),
+                txtName) == PopUpSingleElement.ButtonSelected.OK && txtName.Text.Trim().Length > 2)
+            {
+                string name = txtName.Text.Trim();
+                var configuration = new AirlinerScheduleConfiguration(name, this.Airliner.Airliner.Type);
+
+                foreach (RouteTimeTableEntry entry in this.Entries)
+                    configuration.addEntry(entry);
+
+                Configurations.AddConfiguration(configuration);
+            }
         }
 
         private void btnSave_Click(Object sender, RoutedEventArgs e)

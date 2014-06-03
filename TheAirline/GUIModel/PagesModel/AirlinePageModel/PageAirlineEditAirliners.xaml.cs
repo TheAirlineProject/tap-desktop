@@ -159,7 +159,7 @@
 
         private void btnLoadConfiguration_Click(object sender, RoutedEventArgs e)
         {
-            var cbConfigurations = new ComboBox();
+            ComboBox cbConfigurations = new ComboBox();
             cbConfigurations.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
             cbConfigurations.SelectedValuePath = "Name";
             cbConfigurations.DisplayMemberPath = "Name";

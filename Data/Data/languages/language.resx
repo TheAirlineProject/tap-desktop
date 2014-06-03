@@ -4993,7 +4993,7 @@ Good luck.</value>
     <value>Airliners</value>
   </data>
   <data name="PageRoutePlanner_206_name" xml:space="preserve">
-    <value>Inverse Timetable</value>
+    <value>Save Schedule</value>
   </data>
   <data name="PageShowRoute_1005_name" xml:space="preserve">
     <value>Distance</value>
@@ -5058,10 +5058,19 @@ Good luck.</value>
   <data name="PageAirlineFleet_1016_name" xml:space="preserve">
     <value>Move Airliner</value>
   </data>
+  <data name="MessageBox_2707_message" xml:space="preserve">
+    <value>The airliner can't handle the selected schedule</value>
+  </data>
+  <data name="MessageBox_2707_name" xml:space="preserve">
+    <value>Can't Load Schedule</value>
+  </data>
   <data name="News_1016_message" xml:space="preserve">
     <value>[LI airline={0}] has ordered [1] [2]s</value>
   </data>
   <data name="News_1016_name" xml:space="preserve">
     <value>Ordered airliners</value>
+  </data>
+  <data name="PageRoutePlanner_207_name" xml:space="preserve">
+    <value>Load Schedule</value>
   </data>
 </root>

@@ -111,7 +111,23 @@
             }
             return true;
         }
+        public static Boolean IsTimeTableValid(
+            FleetAirliner airliner,
+            List<RouteTimeTableEntry> entries,
+            Boolean withSlots = true)
+        {
+            foreach (RouteTimeTableEntry e in entries)
+            {
+                var tEntries = new List<RouteTimeTableEntry>(entries);
+                tEntries.Remove(e);
 
+                if (!IsRouteEntryValid(e, airliner, tEntries, withSlots))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         public static Boolean IsTimeTableValid(
             RouteTimeTable timeTable,
             FleetAirliner airliner,

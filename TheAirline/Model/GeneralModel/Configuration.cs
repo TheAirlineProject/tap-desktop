@@ -87,7 +87,9 @@
 
             Routeclasses,
 
-            AirlinerType
+            AirlinerType,
+
+            AirlinerSchedule
         }
 
         #endregion
