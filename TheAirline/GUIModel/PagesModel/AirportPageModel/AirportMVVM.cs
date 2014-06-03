@@ -405,7 +405,7 @@
 
             this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
 
-            this.CanBuildHub = this.Contracts.Count(c => c.Airline == GameObject.GetInstance().HumanAirline) > 0;
+            this.CanBuildHub = canBuildHub();
 
             foreach (AirportTerminalMVVM terminal in this.Terminals)
             {

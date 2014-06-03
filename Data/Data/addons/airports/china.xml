@@ -60,7 +60,7 @@
       <terminal name="Terminal C" gates="5" />
     </terminals>
     <runways>
-      <runway name="02/20" length="9800" surface="Concrete" />
+      <runway name="02/20" length="3000" surface="Concrete" />
     </runways>
    </airport>
    <airport name="Bailian Airport" icao="ZGZH" iata="LZH" type="Domestic" season="All_Year">

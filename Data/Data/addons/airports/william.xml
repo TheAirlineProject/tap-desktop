@@ -3055,4 +3055,307 @@
       <runway name="08/26" length="3050" surface="Asphalt" />
     </runways>
   </airport>
+  <!--Pakistan-->
+    <airport name="Faisalabad International Airport" icao="OPFA" iata="LYP" type="Domestic" season="All_Year">
+    <town town="Faisalabad" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="031°21'53''N" />
+      <longitude value="072°59'41''E" />
+    </coordinates>
+    <size value="Very_small" pax="295" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="2826" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Zhob Airport" icao="OPZB" iata="PZH" type="Domestic" season="All_Year">
+    <town town="Fort Sandeman" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="031°21'30''N" />
+      <longitude value="069°27'48''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1829" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Sukkur Airport" icao="OPSK" iata="SKZ" type="Domestic" season="All_Year">
+    <town town="Mirpur Khas" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="027°43'19''N" />
+      <longitude value="068°47'30''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="2743" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Skardu Airport" icao="OPSD" iata="KDU" type="Domestic" season="All_Year">
+    <town town="Skardu" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="035°20'07''N" />
+      <longitude value="075°32'09''E" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="3641" surface="Asphalt" />
+      <runway name="15/33" length="1982" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Sialkot Airport" icao="OPST" iata="SKT" type="Long_Haul_International" season="All_Year">
+    <town town="Sialkot" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="032°32'08''N" />
+      <longitude value="074°21'50''E" />
+    </coordinates>
+    <size value="Small" pax="1000" />
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+    </terminals>
+    <runways>
+      <runway name="22L/04R" length="3600" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Shaikh Zaid Airport" icao="OPRK" iata="RYK" type="Long_Haul_International" season="All_Year">
+    <town town="Rahim Yar Khan" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="028°23'02''N" />
+      <longitude value="070°16'46''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Panjgur Airport" icao="OPPG" iata="PJG" type="Long_Haul_International" season="All_Year">
+    <town town="Panjgur" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="026°57'16''N" />
+      <longitude value="064°07'56''E" />
+    </coordinates>
+    <size value="Smallest" pax="15" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="1524" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Nawabshah Airport" icao="OPNH" iata="WNS" type="Domestic" season="All_Year">
+    <town town="Nawabash" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="026°13'09''N" />
+      <longitude value="068°23'24''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2743" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Multan International Airport" icao="OPMT" iata="MUX" type="Long_Haul_International" season="All_Year">
+    <town town="Multan" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="030°12'11''N" />
+      <longitude value="071°25'08''E" />
+    </coordinates>
+    <size value="Small" pax="600" />
+    <terminals>
+      <terminal name="Terminal A" gates="14" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2757" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Moenjodaro Airport" icao="OPMJ" iata="MJD" type="Domestic" season="All_Year">
+    <town town="Moenjodaro" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="027°20'06''N" />
+      <longitude value="068°08'35''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="1985" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Gilgit Airport" icao="OPGT" iata="GIL" type="Domestic" season="All_Year">
+    <town town="Gilgit" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="035°55'07''N" />
+      <longitude value="074°20'00''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="1646" surface="Asphalt" />
+      <runway name="09/27" length="300" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Dera Ismael Khan Airport" icao="OPDI" iata="DSK" type="Domestic" season="All_Year">
+    <town town="Dera Ismael Khan" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="031°54'33''N" />
+      <longitude value="070°53'47''E" />
+    </coordinates>
+    <size value="Smallest" pax="35" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="1524" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Dera Ghazi Khan Airport" icao="OPDG" iata="DEA" type="Long_Haul_International" season="All_Year">
+    <town town="Dera Ghazi Khan" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="029°57'39''N" />
+      <longitude value="070°29'09''E" />
+    </coordinates>
+    <size value="Smallest" pax="60" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="1981" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Chitral Airport" icao="OPCH" iata="CJL" type="Domestic" season="All_Year">
+    <town town="Chitral" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="035°53'11''N" />
+      <longitude value="071°48'02''E" />
+    </coordinates>
+    <size value="Smallest" pax="15" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="1750" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Alama Iqbal International Airport" icao="OPLA" iata="LHE" type="Long_Haul_International" season="All_Year">
+    <town town="Lahore" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="031°31'17''N" />
+      <longitude value="074°24'12''E" />
+    </coordinates>
+    <size value="Medium" pax="6500" />
+    <terminals>
+      <terminal name="Terminal A" gates="28" />
+      <terminal name="Terminal B" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="18L/36R" length="3360" surface="Concrete" />
+      <runway name="18R/36L" length="2743" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Bahawalpur Airport" icao="OPBW" iata="BHV" type="Domestic" season="All_Year">
+    <town town="Bahawalpur" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="029°20'53''N" />
+      <longitude value="071°43'04''E" />
+    </coordinates>
+    <size value="Smallest" pax="70" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2848" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Gwadar International Airport" icao="OPGD" iata="GWD" type="Long_Haul_International" season="All_Year">
+    <town town="Gwadar" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="025°13'59''N" />
+      <longitude value="062°19'46''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="1512" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Peshawar International Airport" icao="OPPS" iata="PEW" type="Long_Haul_International" season="All_Year">
+    <town town="Peshawar" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="033°59'38''N" />
+      <longitude value="071°30'52''E" />
+    </coordinates>
+    <size value="Small" pax="1035" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+      <terminal name="Terminal B" gates="17" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="2743" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Turbat International Airport" icao="OPTU" iata="TUK" type="Long_Haul_International" season="All_Year">
+    <town town="Turbat" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="025°59'11''N" />
+      <longitude value="063°01'48''E" />
+    </coordinates>
+    <size value="Smallest" pax="125" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="1829" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Quetta International Airport" icao="OPQT" iata="UET" type="Long_Haul_International" season="All_Year">
+    <town town="Quetta" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="030°15'05''N" />
+      <longitude value="066°56'16''E" />
+    </coordinates>
+    <size value="Very_small" pax="325" />
+    <terminals>
+      <terminal name="Terminal A" gates="15" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="3658" surface="Asphalt" />
+      <runway name="13R/31L" length="3648" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Benazir Bhutto International Airport" icao="OPRN" iata="ISB" type="Long_Haul_International" season="All_Year">
+    <town town="Islamabad" country="202" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="033°37'00''N" />
+      <longitude value="073°05'57''E" />
+    </coordinates>
+    <size value="Medium" pax="7300" />
+    <terminals>
+      <terminal name="Terminal A" gates="26" />
+      <terminal name="Terminal B" gates="20" />
+      <terminal name="Terminal C" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="3287" surface="Asphalt" />
+    </runways>
+  </airport>
   </airports>

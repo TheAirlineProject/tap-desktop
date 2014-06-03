@@ -25,8 +25,14 @@
                     .HumanAirline.Airports.OrderBy(a => a.Profile.Pax)
                     .ToList()
                     .GetRange(0, Math.Min(GameObject.GetInstance().HumanAirline.Airports.Count, 5));
-            this.HumanHubs = GameObject.GetInstance().HumanAirline.getHubs();
 
+            var hubs =GameObject.GetInstance().HumanAirline.getHubs();
+
+            this.HumanHubs =hubs.OrderBy(h=>h.Profile.Pax)
+                .ToList()
+                .GetRange(0,Math.Min(hubs.Count,5));
+
+          
             this.Loaded += this.PageAirports_Loaded;
 
             this.InitializeComponent();

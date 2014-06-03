@@ -2157,6 +2157,7 @@
                     {
                         AirlinerTypes.AddType(type);
                     }
+
                 }
             }
             catch (Exception e)

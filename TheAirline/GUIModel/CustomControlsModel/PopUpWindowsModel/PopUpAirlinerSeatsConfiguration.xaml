@@ -113,8 +113,8 @@
                 </TabItem>
                 </TabControl>
             <WrapPanel Margin="0 10 0 0">
-                <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 201'}" Style="{StaticResource StandardButtonStyle}" Click="btnSave_Click"/>
-                <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 202'}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" Click="btnCancel_Click"/>
+                <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" IsDefault="True" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 201'}" Style="{StaticResource StandardButtonStyle}" Click="btnSave_Click"/>
+                <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" IsCancel="True" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 202'}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" Click="btnCancel_Click"/>
 
             </WrapPanel>
         </StackPanel>

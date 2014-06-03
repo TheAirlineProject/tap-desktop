@@ -86,7 +86,7 @@
     <translations>
       <en-US name="Basic Service Center" />
       <de-DE name="Einfacher Informationsschalter" />
-      <en-GB name="Basic Service Center" />
+      <en-GB name="Basic Service Centre" />
       <nl-NL name="Eenvoudige informatiebalie" />
       <zh-CN name="简陋服务中心" />
       <da-DK name="Basis ServiceCenter" />
@@ -101,7 +101,7 @@
     <translations>
       <en-US name="Service Center" />
       <de-DE name="Informationsschalter" />
-      <en-GB name="Service Center" />
+      <en-GB name="Service Centre" />
       <nl-NL name="Servicecentrum" />
       <zh-CN name="服务中心" />
       <da-DK name="ServiceCenter" />
@@ -117,7 +117,7 @@
     <translations>
       <en-US name="Large Service Center" />
       <de-DE name="Großer Informationsschalter" />
-      <en-GB name="Large Service Center" />
+      <en-GB name="Large Service Centre" />
       <nl-NL name="Uitgebreid servicecentrum" />
       <zh-CN name="大型服务中心" />
       <da-DK name="Større ServiceCenter" />
@@ -225,7 +225,7 @@
     <translations>
       <en-US name="Mega Service Center" />
       <de-DE name="Mega Service Center" />
-      <en-GB name="Mega Service Center" />
+      <en-GB name="Mega Service Centre" />
       <nl-NL name="Mega Service Center" />
       <zh-CN name="Mega Service Center" />
       <da-DK name="Størst ServiceCenter" />

@@ -104,7 +104,9 @@
 
             Paved,
 
-            Unpaved
+            Unpaved,
+
+            Sand
         }
 
         #endregion

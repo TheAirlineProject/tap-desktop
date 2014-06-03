@@ -63,6 +63,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnOk.Width = Double.NaN;
             btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
+            btnOk.IsDefault = true;
     
             buttonsPanel.Children.Add(btnOk);
 
@@ -72,6 +73,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnCancel.Height = Double.NaN;
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
             btnCancel.Width = Double.NaN;
+            btnCancel.IsCancel = true;
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnCancel.Content = Translator.GetInstance().GetString("General", btnCancel.Uid);
          

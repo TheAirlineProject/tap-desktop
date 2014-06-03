@@ -22,7 +22,8 @@
             var airlinerTypes = new List<AirlinerType>(AirlinerTypes.GetAllTypes());
             this.AllManufacturers = (from a in airlinerTypes
                 where
-                    a.Produced.From <= GameObject.GetInstance().GameTime
+                    a !=null 
+                    && a.Produced.From <= GameObject.GetInstance().GameTime
                     && a.Produced.To >= GameObject.GetInstance().GameTime
                 orderby a.Manufacturer.Name
                 select a.Manufacturer).Distinct().ToList();

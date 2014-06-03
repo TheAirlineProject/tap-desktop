@@ -258,7 +258,7 @@
       <latitude value="024°54'24''N" />
       <longitude value="067°09'38''E" />
     </coordinates>
-    <size value="Medium" pax="6162" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="16065" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="42" />
     </terminals>
@@ -274,7 +274,7 @@
       <latitude value="033°15'45''N" />
       <longitude value="044°14'04''E" />
     </coordinates>
-    <size value="Small" pax="603" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="603" cargo="Very_large" cargovolume="169" />
     <terminals>
       <terminal name="Terminal" gates="10" />
     </terminals>
@@ -4349,20 +4349,7 @@
       <runway name="04/22" length="2600" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Lijiang Sanyi Airport" icao="ZPLJ" iata="LJG" type="Long_Haul_International" season="All_Year">
-    <town town="Lijiang" country="148" GMT="08:00:00" DST="08:00:00" />
-    <coordinates>
-      <latitude value="26°40'45''N" />
-      <longitude value="100°14'45''E" />
-    </coordinates>
-    <size value="Medium" pax="2183" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="50" />
-    </terminals>
-    <runways>
-      <runway name="02/20" length="3000" surface="Concrete" />
-    </runways>
-  </airport>
+ 
   <airport name="Xining Caojiabao Airport" icao="ZLXN" iata="XNN" type="Long_Haul_International" season="All_Year">
     <town town="Xining" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
