@@ -9,6 +9,7 @@
     using System.Reflection;
     using System.Windows;
     using System.Windows.Data;
+    using System.Windows.Markup;
     using System.Windows.Media;
 
     using TheAirline.GUIModel.HelpersModel;
@@ -72,7 +73,7 @@
                 a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
             this.Finances = new ObservableCollection<AirlineFinanceMVVM>();
             this.LoanRate = GeneralHelpers.GetAirlineLoanRate(this.Airline);
-
+            this.FleetStatus = new ObservableCollection<KeyValuePair<string, int>>();
             this.Loans = new ObservableCollection<LoanMVVM>();
             this.Pilots = new ObservableCollection<PilotMVVM>();
             this.Wages = new ObservableCollection<AirlineFeeMVVM>();
@@ -179,7 +180,35 @@
             this.ActiveQuantity = ActiveQuantity.OrderBy(a => a.Type.Name).ToList();
 
             this.HasAlliance = this.Alliance != null || this.Codeshares.Count > 0;
+
+            FillFleetStatusReport();
         }
+
+        private void FillFleetStatusReport()
+        {
+            this.FleetStatus.Add(new KeyValuePair<string, int>(
+                Translator.GetInstance().GetString("PageAirlineInfo", "1038"),
+                ActiveQuantity.Sum(aq => aq.OnOrder)));
+
+            this.FleetStatus.Add(new KeyValuePair<string, int>(
+                Translator.GetInstance().GetString("PageAirlineInfo", "1042"),
+                ActiveQuantity.Sum(aq => aq.Quantity)));
+
+            this.FleetStatus.Add(new KeyValuePair<string, int>(
+                Translator.GetInstance().GetString("PageAirlineInfo", "1043"),
+                this.Airline.Fleet.Count(fa => fa.GroundedToDate > GameObject.GetInstance().GameTime)));
+
+            this.FleetStatus.Add(new KeyValuePair<string, int>(
+               Translator.GetInstance().GetString("PageAirlineInfo", "1044"),
+               ActiveQuantity.Sum(aq => aq.Quantity) - this.Airline.Fleet.Count(fa => fa.GroundedToDate > GameObject.GetInstance().GameTime)));
+            
+            this.FleetStatus.Add(new KeyValuePair<string, int>(
+               Translator.GetInstance().GetString("PageAirlineInfo", "1045"),
+               this.Airline.Fleet.Count(fa => !fa.HasRoute)));
+
+        }
+
+        public ObservableCollection<KeyValuePair<string, int>> FleetStatus { get; private set; }
 
         #endregion
 

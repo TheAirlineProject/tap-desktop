@@ -5055,4 +5055,19 @@ Good luck.</value>
   <data name="PageAirlineInfo_1040_name" xml:space="preserve">
     <value>Airliner on route</value>
   </data>
+  <data name="PageAirlineInfo_1041_name" xml:space="preserve">
+    <value>Fleet Status</value>
+  </data>
+  <data name="PageAirlineInfo_1042_name" xml:space="preserve">
+    <value>On List</value>
+  </data>
+  <data name="PageAirlineInfo_1043_name" xml:space="preserve">
+    <value>Out of Service</value>
+  </data>
+  <data name="PageAirlineInfo_1044_name" xml:space="preserve">
+    <value>In Service</value>
+  </data>
+  <data name="PageAirlineInfo_1045_name" xml:space="preserve">
+    <value>Idle Airliners</value>
+  </data>
 </root>

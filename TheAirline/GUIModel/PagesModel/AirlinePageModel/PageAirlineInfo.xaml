@@ -478,10 +478,39 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    
-                   
-                    
-                    
+
+                    <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1041'}"
+                        VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
+
+                    <ListView VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" BorderThickness="0"
+                              Background="Transparent" ItemsSource="{Binding FleetStatus}">
+
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <WrapPanel>
+                                                <TextBlock Text="{Binding Key}" Margin="5 0 0 0"
+                                                           VerticalAlignment="Bottom" />
+                                            </WrapPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Value}" VerticalAlignment="Bottom" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                              
+                            </GridView>
+                        </ListView.View>
+
+                    </ListView>
+
                 </StackPanel>
             </ScrollViewer>
         </Border>
