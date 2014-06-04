@@ -27,10 +27,10 @@ namespace TheAirline.Tests.Model.AirlineModel
             var target = Fakes.CreateNewDummyAirline();
             const int Expected = 40;
 
-            target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, long>(new DateTime(1995, 1, 1), 10));
-            target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, long>(new DateTime(1995, 1, 2), 20));
-            target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, long>(new DateTime(1995, 1, 3), 30));
-            target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, long>(new DateTime(1995, 1, 4), Expected));
+            target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, double>(new DateTime(1995, 1, 1), 10));
+            target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, double>(new DateTime(1995, 1, 2), 20));
+            target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, double>(new DateTime(1995, 1, 3), 30));
+            target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, double>(new DateTime(1995, 1, 4), Expected));
 
             Assert.AreEqual(Expected, target.DailyOperatingBalance);
         

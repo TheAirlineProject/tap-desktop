@@ -65,7 +65,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Model\AirlineModel\UnitTest1.cs" />
+    <Compile Include="Model\AirlineModel\AirlineTest.cs" />
     <Compile Include="Model\AirlinerModel\CombiAirlinerTests.cs" />
     <Compile Include="Model\AirlinerModel\CargoAirlinerTests.cs" />
     <Compile Include="Model\AirlinerModel\Fakes.cs" />
