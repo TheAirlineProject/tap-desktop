@@ -204,7 +204,7 @@
             
             this.FleetStatus.Add(new KeyValuePair<string, int>(
                Translator.GetInstance().GetString("PageAirlineInfo", "1045"),
-               this.Airline.Fleet.Count(fa => !fa.HasRoute)));
+               this.Airline.Fleet.Count(fa => !fa.HasRoute && fa.Airliner.BuiltDate <= GameObject.GetInstance().GameTime)));
 
         }
 

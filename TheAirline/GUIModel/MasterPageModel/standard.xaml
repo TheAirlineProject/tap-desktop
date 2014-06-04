@@ -77,6 +77,13 @@
                                Text="{Binding GameObject.HumanAirline.OverallScore,Source={StaticResource gameObject},StringFormat=Human Score: {0}}"
                                HorizontalAlignment="Center" FontWeight="Bold" />
                 </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="DOB:"></TextBlock>
+                    <TextBlock Margin="10 0 0 0"
+                        Text="{Binding GameObject.HumanAirline.DailyOperatingBalance,Source={StaticResource gameObject},Converter={StaticResource ValueCurrencyConverter}}"
+                        Foreground="{Binding GameObject.HumanAirline.DailyOperatingBalance,Source={StaticResource gameObject},Converter={StaticResource ValueIsMinusConverter}}"
+                        HorizontalAlignment="Center" FontWeight="Bold" />
+                </WrapPanel>
             </StackPanel>
 
         </Grid>

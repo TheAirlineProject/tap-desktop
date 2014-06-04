@@ -2,8 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.CompilerServices;
     using System.Runtime.Serialization;
 
     using TheAirline.Model.AirlineModel.SubsidiaryModel;
@@ -18,8 +21,12 @@
 
     [Serializable]
     //the class for an airline
-    public class Airline : ISerializable
+    public class Airline : ISerializable, INotifyPropertyChanged
     {
+        private long dailyOperatingBalance;
+
+        private ObservableCollection<KeyValuePair<DateTime, double>> dailyOperatingBalanceHistory;
+
         #region Constructors and Destructors
 
         public Airline(
@@ -369,6 +376,36 @@
 
         [Versioning("routes")]
         public List<Route> _Routes { get; set; }
+
+        public double DailyOperatingBalance
+        {
+            get
+            {
+
+                return this.DailyOperatingBalanceHistory.Any()
+                    ? this.DailyOperatingBalanceHistory.OrderByDescending(dobh => dobh.Key).FirstOrDefault().Value
+                    : 0;
+            }
+        }
+
+        [Versioning("dailyoperatingbalancehistory")]
+        public ObservableCollection<KeyValuePair<DateTime, double>> DailyOperatingBalanceHistory
+        {
+            get
+            {
+                if (this.dailyOperatingBalanceHistory == null)
+                {
+                    this.dailyOperatingBalanceHistory = new ObservableCollection<KeyValuePair<DateTime, double>>();
+
+                    this.dailyOperatingBalanceHistory.CollectionChanged += delegate
+                    {
+                        OnPropertyChanged("DailyOperatingBalance");
+                    };
+                }
+
+                return this.dailyOperatingBalanceHistory;
+            }
+        }
 
         #endregion
 
@@ -1036,6 +1073,16 @@
                          || (r.Destination2.Profile.IATACode == airport.Profile.IATACode)) && r.HasAirliner);
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 
     //the list of airlines
