@@ -405,6 +405,18 @@
 
                 return this.dailyOperatingBalanceHistory;
             }
+            protected set
+            {
+                if (value != null)
+                {
+                    this.dailyOperatingBalanceHistory = value;
+
+                    this.dailyOperatingBalanceHistory.CollectionChanged += delegate
+                    {
+                        OnPropertyChanged("DailyOperatingBalance");
+                    };
+                }
+            }
         }
 
         #endregion

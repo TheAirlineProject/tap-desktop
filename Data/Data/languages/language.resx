@@ -5070,4 +5070,16 @@ Good luck.</value>
   <data name="PageAirlineInfo_1045_name" xml:space="preserve">
     <value>Idle Airliners</value>
   </data>
+  <data name="PageAirlineFinances_1017_name" xml:space="preserve">
+    <value>Daily Operating Profit</value>
+  </data>
+  <data name="PageAirlineFinances_1018_name" xml:space="preserve">
+    <value>DOB History</value>
+  </data>
+  <data name="PageAirlineFinances_1019_name" xml:space="preserve">
+    <value>Last 90 Days</value>
+  </data>
+  <data name="PageAirlineFinances_1020_name" xml:space="preserve">
+    <value>Daily Operating Profit </value>
+  </data>
 </root>

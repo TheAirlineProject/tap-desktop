@@ -4,7 +4,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:c="clr-namespace:TheAirline.GUIModel.CustomControlsModel.FilterableListView"
                     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
-                    xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero">
+                    xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+                    xmlns:metroChart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart">
     <!--brushes-->
     <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#004A7F" />
     <SolidColorBrush x:Key="BackgroundTransparentBrush" Color="#004A7F" Opacity="0.95" />
@@ -1624,4 +1625,14 @@ and change the color of the selected bullet into a darker gray for better highli
             <Label Name="sortIndicator" VerticalAlignment="Center" Style="{StaticResource HeaderTemplateTransparent}" />
         </StackPanel>
     </DataTemplate>
+
+
+    <Style x:Key="MinimalChartStyle" TargetType="metroChart:ChartBase">
+        <Setter Property="Margin" Value="0 5 0 0" />
+        <Setter Property="Height" Value="250"/>
+        <Setter Property="Background" Value="Transparent" />
+        
+        
+    </Style>
+
 </ResourceDictionary>
