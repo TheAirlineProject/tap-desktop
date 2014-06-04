@@ -458,7 +458,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn
-                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1038'}"
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1033'}"
                                     util:GridViewSort.PropertyName="Quantity" Width="50">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
@@ -467,7 +467,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn
-                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1033'}"
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1038'}"
                                     util:GridViewSort.PropertyName="OnOrder" Width="50">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
@@ -478,6 +478,9 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    
+                   
+                    
                     
                 </StackPanel>
             </ScrollViewer>

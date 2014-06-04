@@ -118,7 +118,10 @@
 
             Single_Aisle,
 
-            Wide_Body
+            Wide_Body,
+
+            Helicopter
+
         }
 
         public enum EngineType
