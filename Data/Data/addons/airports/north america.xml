@@ -1320,7 +1320,7 @@
       <latitude value="039°02'51''N" />
       <longitude value="084°40'03''W" />
     </coordinates>
-    <size value="Medium" pax="3906" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="5718" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="39" />
     </terminals>
@@ -2500,6 +2500,65 @@
       <runway name="14/32" length="2113" surface="Asphalt" />
     </runways>
   </airport>
+    <airport name="Rogue Valley International Medford Airport" icao="KMFR" iata="MFR" type="Domestic" season="All_Year">
+    <town town="Medford, NC" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="042°22'27''N" />
+      <longitude value="122°52'22''W" />
+    </coordinates>
+    <size value="Very_small" pax="310" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="956" surface="Asphalt" />
+      <runway name="14/32" length="2682" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Yellowstone Regional Airport" icao="KCOD" iata="COD" type="Domestic" season="All_Year">
+    <town town="Cody, WY" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="044°31'12''N" />
+      <longitude value="109°01'26''W" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2520" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Gillette Campbell County Airport" icao="KGCC" iata="GCC" type="Domestic" season="All_Year">
+    <town town="Gillette, WY" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="044°20'56''N" />
+      <longitude value="105°32'20''W" />
+    </coordinates>
+    <size value="Smallest" pax="28" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="1769" surface="Concrete" />
+      <runway name="16/34" length="2286" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Riverton Regional Airport" icao="KRIW" iata="RIW" type="Domestic" season="All_Year">
+    <town town="Riverton, WY" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="043°03'51''N" />
+      <longitude value="108°27'35''W" />
+    </coordinates>
+    <size value="Smallest" pax="17" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="1463" surface="Asphalt" />
+      <runway name="10/28" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Portland International Airport" icao="KPDX" iata="PDX" type="Short_Haul_International"
            season="All_Year">
     <town town="Portland, OR" country="122" GMT="-07:00:00" DST="-08:00:00" />
@@ -2507,7 +2566,7 @@
       <latitude value="045°35'19''N" />
       <longitude value="122°35'51''W" />
     </coordinates>
-    <size value="Medium" pax="6808" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="15029" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="29" />
     </terminals>
@@ -2759,7 +2818,7 @@
       <latitude value="039°29'59''N" />
       <longitude value="119°46'04''W" />
     </coordinates>
-    <size value="Medium" pax="1857" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3431" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="23" />
     </terminals>
@@ -2767,6 +2826,53 @@
       <runway name="07/25" length="1860" surface="Concrete" />
       <runway name="16L/34R" length="2743" surface="Concrete" />
       <runway name="16R/34L" length="3353" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Del Rio International Airport" icao="KDRT" iata="DRT" type="Domestic" season="All_Year">
+    <town town="Del Rio, TX" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="029°22'27''N" />
+      <longitude value="100°55'37''W" />
+    </coordinates>
+    <size value="Smallest" pax="13" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="1920" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Victoria Regional Airport" icao="KVCT" iata="VCT" type="Domestic" season="All_Year">
+    <town town="Victoria, TX" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="028°51'09''N" />
+      <longitude value="096°55'06''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="1280" surface="Asphalt" />
+      <runway name="12L/30R" length="2774" surface="Asphalt" />
+      <runway name="12R/30L" length="1415" surface="Concrete" />
+      <runway name="17/35" length="1493" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Boulder City Municipal Airport" icao="KBVU" iata="BLD" type="Domestic" season="All_Year">
+    <town town="Boulder City, NV" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="035°56'50''N" />
+      <longitude value="114°51'39''W" />
+    </coordinates>
+    <size value="Very_small" pax="170" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="09L/27R" length="671" surface="Asphalt" />
+      <runway name="09R/27L" length="1463" surface="Asphalt" />
+      <runway name="15/33" length="1173" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Greater Rochester International Airport" icao="KROC" iata="ROC" type="Short_Haul_International"
@@ -2905,7 +3011,7 @@
       <latitude value="038°10'28''N" />
       <longitude value="085°44'10''W" />
     </coordinates>
-    <size value="Small" pax="1651" cargo="Smallest" cargovolume="10637" />
+    <size value="Medium" pax="3300" cargo="Large" cargovolume="10637" />
     <terminals>
       <terminal name="Terminal" gates="7" />
     </terminals>
@@ -2913,6 +3019,321 @@
       <runway name="11/29" length="2210" surface="Concrete" />
       <runway name="17L/35R" length="2615" surface="Concrete" />
       <runway name="17R/35L" length="3624" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Chautauqua County-Jamestown Airport" icao="KJHW" iata="JHW" type="Domestic" season="All_Year">
+    <town town="Jamestown, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="042°09'12''N" />
+      <longitude value="079°15'28''W" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="1615" surface="Asphalt" />
+      <runway name="13/31" length="1372" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Niagara Falls International Airport" icao="KIAG" iata="IAG" type="Domestic" season="All_Year">
+    <town town="Niagara Falls, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="043°06'26''N" />
+      <longitude value="078°56'46''W" />
+    </coordinates>
+    <size value="Very_small" pax="200" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="1582" surface="Asphalt" />
+      <runway name="10L/28R" length="2996" surface="Asphalt" />
+      <runway name="10R/28L" length="1211" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Watertown International Airport" icao="KART" iata="ART" type="Domestic" season="All_Year">
+    <town town="Watertown, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="043°59'30''N" />
+      <longitude value="076°01'18''W" />
+    </coordinates>
+    <size value="Smallest" pax="17" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="1524" surface="Asphalt" />
+      <runway name="10/28" length="1524" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Delta County Airport" icao="KESC" iata="ESC" type="Domestic" season="All_Year">
+    <town town="Escanaba, MI" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="045°43'21''N" />
+      <longitude value="087°05'37''W" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1982" surface="Asphalt" />
+      <runway name="18/36" length="1524" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Sawyer International Airport" icao="KSAW" iata="MQT" type="Domestic" season="All_Year">
+    <town town="Marquette, MI" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="046°21'12''N" />
+      <longitude value="087°23'43''W" />
+    </coordinates>
+    <size value="Smallest" pax="76" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="3770" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Alpena County Regional Airport" icao="KAPN" iata="APN" type="Domestic" season="All_Year">
+    <town town="Alpena, MI" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="045°04'41''N" />
+      <longitude value="083°33'37''W" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2744" surface="Concrete" />
+      <runway name="07/25" length="1533" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Ford Airport" icao="KIMT" iata="IMT" type="Domestic" season="All_Year">
+    <town town="Iron Mountain Kingsford, MI" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="045°49'06''N" />
+      <longitude value="088°06'52''W" />
+    </coordinates>
+    <size value="Smallest" pax="19" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="1981" surface="Asphalt" />
+      <runway name="13/31" length="1162" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Montrose Regional Airport" icao="KMTJ" iata="MTJ" type="Domestic" season="All_Year">
+    <town town="Montrose, CO" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="038°30'35''N" />
+      <longitude value="107°53'38''W" />
+    </coordinates>
+    <size value="Very_small" pax="195" />
+    <terminals>
+      <terminal name="Terminal A" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="2286" surface="Asphalt" />
+      <runway name="17/35" length="3048" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Cortez Municipal Airport" icao="KCEZ" iata="CEZ" type="Domestic" season="All_Year">
+    <town town="Cortez, CO" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="037°18'10''N" />
+      <longitude value="108°37'40''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="2196" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Gunnison Crested Butte Regional Airport" icao="KGUC" iata="GUC" type="Domestic" season="All_Year">
+    <town town="Gunnison, CO" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="038°32'02''N" />
+      <longitude value="106°55'58''W" />
+    </coordinates>
+    <size value="Smallest" pax="74" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="2865" surface="Asphalt" />
+      <runway name="17/35" length="914" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Telluride Regional Airport" icao="KTEX" iata="TEX" type="Domestic" season="All_Year">
+    <town town="Telluride, CO" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="037°57'13''N" />
+      <longitude value="107°54'28''W" />
+    </coordinates>
+    <size value="Smallest" pax="18" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2094" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="San Luis Valley Regional Bergman Field" icao="KALS" iata="ALS" type="Domestic" season="All_Year">
+    <town town="Alamosa, CO" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="037°26'05''N" />
+      <longitude value="105°52'01''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2597" surface="Asphalt" />
+      <runway name="06/24" length="975" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Brainerd Lakes Regional Airport" icao="KBRD" iata="BRD" type="Domestic" season="All_Year">
+    <town town="Brainerd, MN" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="046°23'53''N" />
+      <longitude value="094°08'17''W" />
+    </coordinates>
+    <size value="Smallest" pax="17" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="853" surface="Asphalt" />
+      <runway name="05/23" length="1981" surface="Asphalt" />
+      <runway name="12/30" length="1244" surface="Asphalt" />
+      <runway name="16/34" length="1981" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Bemidji Regional Airport" icao="KBJI" iata="BJI" type="Domestic" season="All_Year">
+    <town town="Bemidji, MN" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="047°30'33''N" />
+      <longitude value="094°56'01''W" />
+    </coordinates>
+    <size value="Smallest" pax="23" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="1737" surface="Asphalt" />
+      <runway name="13/31" length="2011" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Chisholm Hibbing Airport" icao="KHIB" iata="HIB" type="Domestic" season="All_Year">
+    <town town="Hibbing, MN" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="047°23'11''N" />
+      <longitude value="092°50'20''W" />
+    </coordinates>
+    <size value="Smallest" pax="11" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="937" surface="Asphalt" />
+      <runway name="13/31" length="2060" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Western Neb. Rgnl/William B. Heilig Airport" icao="KBFF" iata="BFF" type="Domestic" season="All_Year">
+    <town town="Scottsbluff, NE" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="041°52'26''N" />
+      <longitude value="103°35'45''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2439" surface="Asphalt" />
+      <runway name="12/30" length="2523" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Kearney Regional Airport" icao="KEAR" iata="EAR" type="Domestic" season="All_Year">
+    <town town="Kearney, NE" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="040°43'37''N" />
+      <longitude value="099°00'24''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="1371" surface="Concrete" />
+      <runway name="18/36" length="2162" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="North Platte Regional Airport Lee Bird Field" icao="KLBF" iata="LBF" type="Domestic" season="All_Year">
+    <town town="North Platte, NE" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="041°07'34''N" />
+      <longitude value="100°41'02''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2438" surface="Concrete" />
+      <runway name="17/35" length="1352" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Charles M. Schulz Sonoma County Airport" icao="KSTS" iata="STS" type="Domestic" season="All_Year">
+    <town town="Santa Rosa, CA" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="038°30'32''N" />
+      <longitude value="122°48'46''W" />
+    </coordinates>
+    <size value="Very_small" pax="250" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="1525" surface="Asphalt" />
+      <runway name="14/32" length="1559" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Arcata Airport" icao="KACV" iata="ACV" type="Domestic" season="All_Year">
+    <town town="Arcata/Eureka, CA" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="040°58'41''N" />
+      <longitude value="124°06'32''W" />
+    </coordinates>
+    <size value="Very_small" pax="173" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="1371" surface="Asphalt" />
+      <runway name="14/32" length="1829" surface="Asphalt" />
+    </runways>
+  </airport>
+ 
+    <airport name="Blue Grass Airport" icao="KLEX" iata="LEX" type="Domestic" season="All_Year">
+    <town town="Lexington, KY" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="038°02'11''N" />
+      <longitude value="084°36'21''W" />
+    </coordinates>
+    <size value="Small" pax="1104" />
+    <terminals>
+      <terminal name="Terminal A" gates="16" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2135" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Seattle-Tacoma International Airport" icao="KSEA" iata="SEA" type="Long_Haul_International"
@@ -5403,7 +5824,7 @@
       <latitude value="044°07'28''N" />
       <longitude value="123°12'43''W" />
     </coordinates>
-    <size value="Very_small" pax="366" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="369" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="7" />
     </terminals>
@@ -5457,6 +5878,20 @@
     <runways>
       <runway name="04/22" length="1830" surface="Asphalt" />
       <runway name="14/32" length="1219" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Albert J Ellis Airport" icao="KOAJ" iata="OAJ" type="Domestic" season="All_Year">
+    <town town="Jacksonville, NC" country="122" GMT="-05:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="034°49'45''N" />
+      <longitude value="077°36'43''W" />
+    </coordinates>
+    <size value="Very_small" pax="344" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2164" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Key West International Airport" icao="KEYW" iata="EYW" type="Short_Haul_International"
