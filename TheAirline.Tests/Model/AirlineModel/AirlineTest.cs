@@ -33,7 +33,7 @@ namespace TheAirline.Tests.Model.AirlineModel
             target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, double>(new DateTime(1995, 1, 4), Expected));
 
             Assert.AreEqual(Expected, target.DailyOperatingBalance);
-        
+
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace TheAirline.Tests.Model.AirlineModel
                     flag = args.PropertyName == "DailyOperatingBalance";
                 };
 
-            target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, long>(new DateTime(1995, 1, 1), 12345));
+            target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, double>(new DateTime(1995, 1, 1), 12345));
 
             Assert.IsTrue(flag);
         }
@@ -66,7 +66,6 @@ namespace TheAirline.Tests.Model.AirlineModel
             Setup.CreateAdvertisementTypes();
             Setup.LoadInflationYears();
         }
-
 
     }
 }

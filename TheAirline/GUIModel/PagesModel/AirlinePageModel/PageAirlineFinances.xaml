@@ -34,15 +34,17 @@
                 <StackPanel>
 
                     <metroChart:ClusteredBarChart
+                        DataContext="{Binding Source={StaticResource gameObject}}"
                         ChartTitle="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1018'}"
                         ChartSubTitle="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1019'}">
                         
                         <metroChart:ClusteredBarChart.Series>
                             <metroChart:ChartSeries
+                                
                                 SeriesTitle="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1019'}"
                                 DisplayMember="Key"
                                 ValueMember="Value"
-                                ItemsSource="{Binding Path=Airline.DailyOperatingBalance}"
+                                ItemsSource="{Binding Path=GameObject.HumanAirline.DailyOperatingBalance}"
                                 ></metroChart:ChartSeries>
                         </metroChart:ClusteredBarChart.Series>
                     </metroChart:ClusteredBarChart>
