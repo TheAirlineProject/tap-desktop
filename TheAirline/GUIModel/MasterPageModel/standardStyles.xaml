@@ -1628,8 +1628,8 @@ and change the color of the selected bullet into a darker gray for better highli
 
 
     <Style x:Key="MinimalChartStyle" TargetType="metroChart:ChartBase">
-        <Setter Property="Margin" Value="0 5 0 0" />
-        <Setter Property="Height" Value="250"/>
+        
+        <Setter Property="Height" Value="300"/>
         <Setter Property="Background" Value="Transparent" />
         
         

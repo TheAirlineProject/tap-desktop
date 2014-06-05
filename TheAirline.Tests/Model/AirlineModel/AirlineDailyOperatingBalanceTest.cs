@@ -12,7 +12,7 @@ namespace TheAirline.Tests.Model.AirlineModel
     using TheAirline.Tests.Model.AirlinerModel;
 
     [TestClass]
-    public class AirlineTests
+    public class AirlineDailyOperatingBalanceTests
     {
         [TestMethod]
         public void DailyOperatingBalanceIsZeroByDefault()
