@@ -266,7 +266,7 @@
                     GameObject.GetInstance().GameTime,
                     this.Gates.NumberOfGates,
                     20,
-                    yearlyPayment * 0.75,
+                    yearlyPayment * 0.60,
                     true));
         }
 

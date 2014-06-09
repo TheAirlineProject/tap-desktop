@@ -300,7 +300,7 @@
                                                         Click="btnSellTerminal_Click" Tag="{Binding}"
                                                         Visibility="{Binding IsSellable,Converter={StaticResource BooleanToVisibility}}">
                                                     <Image RenderOptions.BitmapScalingMode="HighQuality"
-                                                           Source="/data/images/delete.png" />
+                                                           Source="/data/images/sell.png" />
                                                 </Button>
                                             </WrapPanel>
                                         </DataTemplate>

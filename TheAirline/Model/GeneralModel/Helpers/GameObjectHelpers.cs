@@ -635,7 +635,7 @@
                 airline.Routes.OrderByDescending(
                     r =>
                         r.getBalance(GameObject.GetInstance().GameTime.AddMonths(-1), GameObject.GetInstance().GameTime));
-            Airport homeAirport = airline.Airports[0];
+          
 
             foreach (Route route in routes)
             {
@@ -655,45 +655,48 @@
 
             Airport largestDestination;
 
-            if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+            if (airline.Airports.Count > 0)
             {
-                largestDestination =
-                    homeAirport.getDestinationDemands()
-                        .Where(
-                            a =>
-                                a != null && GeneralHelpers.IsAirportActive(a)
-                                && !airline.Routes.Exists(
-                                    r =>
-                                        (r.Destination1 == homeAirport && r.Destination2 == a)
-                                        || (r.Destination2 == homeAirport && r.Destination1 == a)))
-                        .OrderByDescending(a => homeAirport.getDestinationCargoRate(a))
-                        .FirstOrDefault();
-            }
-            else
-            {
-                largestDestination =
-                    homeAirport.getDestinationDemands()
-                        .Where(
-                            a =>
-                                a != null && GeneralHelpers.IsAirportActive(a)
-                                && !airline.Routes.Exists(
-                                    r =>
-                                        (r.Destination1 == homeAirport && r.Destination2 == a)
-                                        || (r.Destination2 == homeAirport && r.Destination1 == a)))
-                        .OrderByDescending(
-                            a => homeAirport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class))
-                        .FirstOrDefault();
-            }
+                Airport homeAirport = airline.Airports[0];
+                if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                {
+                    largestDestination =
+                        homeAirport.getDestinationDemands()
+                            .Where(
+                                a =>
+                                    a != null && GeneralHelpers.IsAirportActive(a)
+                                    && !airline.Routes.Exists(
+                                        r =>
+                                            (r.Destination1 == homeAirport && r.Destination2 == a)
+                                            || (r.Destination2 == homeAirport && r.Destination1 == a)))
+                            .OrderByDescending(a => homeAirport.getDestinationCargoRate(a))
+                            .FirstOrDefault();
+                }
+                else
+                {
+                    largestDestination =
+                        homeAirport.getDestinationDemands()
+                            .Where(
+                                a =>
+                                    a != null && GeneralHelpers.IsAirportActive(a)
+                                    && !airline.Routes.Exists(
+                                        r =>
+                                            (r.Destination1 == homeAirport && r.Destination2 == a)
+                                            || (r.Destination2 == homeAirport && r.Destination1 == a)))
+                            .OrderByDescending(
+                                a => homeAirport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class))
+                            .FirstOrDefault();
+                }
 
-            if (largestDestination != null)
-            {
-                summary +=
-                    string.Format(
-                        "The largest destination in terms of demand from [LI airport={0}] where you don't have a route, is [LI airport={1}]",
-                        homeAirport.Profile.IATACode,
-                        largestDestination.Profile.IATACode);
+                if (largestDestination != null)
+                {
+                    summary +=
+                        string.Format(
+                            "The largest destination in terms of demand from [LI airport={0}] where you don't have a route, is [LI airport={1}]",
+                            homeAirport.Profile.IATACode,
+                            largestDestination.Profile.IATACode);
+                }
             }
-
             summary += "\n[HEAD=Fleet Summary]\n";
 
             int fleetSize = GameObject.GetInstance().HumanAirline.DeliveredFleet.Count;
@@ -1229,7 +1232,7 @@
                                         GameObject.GetInstance().GameTime,
                                         terminal.Gates.NumberOfGates,
                                         20,
-                                        yearlyPayment * 0.75,
+                                        yearlyPayment * 0.60,
                                         true,
                                         false,
                                         false));

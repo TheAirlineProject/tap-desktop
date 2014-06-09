@@ -200,7 +200,8 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
         public FilterableListView()
         {
             CommandBindings.Add(new CommandBinding(ShowFilter, ShowFilterCommand));
-        }
+  
+         }
 
 
         protected override void OnInitialized(EventArgs e)

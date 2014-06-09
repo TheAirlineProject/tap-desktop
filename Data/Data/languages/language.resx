@@ -1808,16 +1808,16 @@ Loading of game aborted.</value>
 All your rented gates will be moved to this terminal when finish building it.</value>
   </data>
   <data name="MessageBox_2207_name" xml:space="preserve">
-    <value>Remove Terminal</value>
+    <value>Stop Building Terminal</value>
   </data>
   <data name="MessageBox_2207_message" xml:space="preserve">
     <value>Are you sure you want to stop building this terminal?</value>
   </data>
   <data name="MessageBox_2208_name" xml:space="preserve">
-    <value>Remove Terminal</value>
+    <value>Sell Terminal</value>
   </data>
   <data name="MessageBox_2208_message" xml:space="preserve">
-    <value>Are you sure you want to remove this terminal with {0} gates?</value>
+    <value>Are you sure you want to sell this terminal with {0} gates for {1:C}?</value>
   </data>
   <data name="MessageBox_2209_name" xml:space="preserve">
     <value>Removal Not Possible</value>

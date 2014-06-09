@@ -58,6 +58,13 @@
                                    FilterButtonActiveStyle="{StaticResource filterButtonActive}"
                                    FilterButtonInactiveStyle="{StaticResource filterButtonInactive}"
                                    Background="Transparent">
+           
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                      <VirtualizingStackPanel>
+                    </VirtualizingStackPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
                     <filter:SortableGridViewColumn Header="" CanFilter="False">

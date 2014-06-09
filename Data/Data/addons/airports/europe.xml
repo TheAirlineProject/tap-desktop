@@ -6748,20 +6748,7 @@
       <runway name="18/36" length="2821" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Magdagachi Airport" icao="UHBI" iata="GDG" type="Domestic" season="All_Year">
-    <town town="Magdagachi" country="149" GMT="09:00:00" DST="08:00:00" />
-    <coordinates>
-      <latitude value="053°28'23''N" />
-      <longitude value="125°47'41''E" />
-    </coordinates>
-    <size value="Smallest" pax="1" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="06/24" length="5905" surface="Asphalt" />
-    </runways>
-  </airport>
+
   <airport name="Tynda Airport" icao="UHBW" iata="TYD" type="Domestic" season="All_Year">
     <town town="Tynda" country="149" GMT="09:00:00" DST="08:00:00" />
     <coordinates>
@@ -7238,21 +7225,7 @@
       <runway name="01L/19R" length="2000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Dikson Airport" icao="UODD" iata="DKS" type="Domestic" season="All_Year">
-    <town town="Dikson" country="149" GMT="05:00:00" DST="04:00:00" />
-    <coordinates>
-      <latitude value="073°31'04''N" />
-      <longitude value="080°22'46''E" />
-    </coordinates>
-    <size value="Smallest" pax="13" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="06/24" length="1500" surface="Concrete" />
-    </runways>
-  </airport>
-  <airport name="Khatanga Airport" icao="UOHH" iata="HTG" type="Domestic" season="All_Year">
+    <airport name="Khatanga Airport" icao="UOHH" iata="HTG" type="Domestic" season="All_Year">
     <town town="Khatanga" country="149" GMT="07:00:00" DST="06:00:00" />
     <coordinates>
       <latitude value="071°58'41''N" />
@@ -7663,12 +7636,21 @@
     </runways>
   </airport>
   <airport name="Bykovo Airport" icao="UUBB" iata="BKA" type="Domestic" season="All_Year">
+  <period from="03.17.1933 00:00:00" to="10.18.2010 00:00:00" />
     <town town="Moscow" country="149" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="055°37'01''N" />
       <longitude value="038°03'36''E" />
     </coordinates>
-    <size value="Smallest" pax="30" cargo="Smallest" cargovolume="0" />
+  <size>
+      <yearvalues>
+        <!--inflationbefore: the growth in pax from the year before the year. inflationafter: the growth in pax after the year -->
+        <yearvalue from="1933" to="1980" value="Small" pax="1500" cargo="Smallest" cargovolume="0"
+                   inflationbefore="5">
+        </yearvalue>
+        <yearvalue from="1981" to="2010" value="Smallest" pax="500" cargo="Very_small" cargovolume="0" inflationafter="-10"></yearvalue>
+      </yearvalues>
+    </size>
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
