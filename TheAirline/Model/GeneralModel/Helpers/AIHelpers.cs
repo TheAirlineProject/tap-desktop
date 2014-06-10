@@ -2096,53 +2096,55 @@
                 airportsList.Add(a, (int)a.Profile.Size);
             }
 
-            Airport homeAirport = GetRandomItem(airportsList);
-
-            List<AirlinerType> types =
-                AirlinerTypes.GetTypes(
-                    t =>
-                        t.Produced.From <= GameObject.GetInstance().GameTime
-                        && t.Produced.To >= GameObject.GetInstance().GameTime && t.Price * numberToOrder < airline.Money);
-
-            if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+            if (airportsList.Count > 0)
             {
-                types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
-            }
+                Airport homeAirport = GetRandomItem(airportsList);
 
-            if (airline.AirlineRouteFocus == Route.RouteType.Passenger)
-            {
-                types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
-            }
+                List<AirlinerType> types =
+                    AirlinerTypes.GetTypes(
+                        t =>
+                            t.Produced.From <= GameObject.GetInstance().GameTime
+                            && t.Produced.To >= GameObject.GetInstance().GameTime && t.Price * numberToOrder < airline.Money);
 
-            types = types.OrderBy(t => t.Price).ToList();
-
-            var list = new Dictionary<AirlinerType, int>();
-
-            foreach (AirlinerType type in types)
-            {
-                list.Add(
-                    type,
-                    (int)((type.Range / (Convert.ToDouble(type.Price) / 100000)))
-                    + (airlineAircrafts.Contains(type) ? 10 : 0));
-            }
-            /*
-            Parallel.ForEach(types, t =>
+                if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
                 {
-                    list.Add(t, (int)((t.Range / (t.Price / 100000))));
-                });*/
+                    types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
+                }
 
-            if (list.Keys.Count > 0)
-            {
-                AirlinerType type = GetRandomItem(list);
+                if (airline.AirlineRouteFocus == Route.RouteType.Passenger)
+                {
+                    types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
+                }
 
-                var orders = new List<AirlinerOrder>();
-                orders.Add(new AirlinerOrder(type, AirlinerHelpers.GetAirlinerClasses(type), numberToOrder, false));
+                types = types.OrderBy(t => t.Price).ToList();
 
-                DateTime deliveryDate = AirlinerHelpers.GetOrderDeliveryDate(orders);
-                AirlineHelpers.OrderAirliners(airline, orders, homeAirport, deliveryDate);
+                var list = new Dictionary<AirlinerType, int>();
+
+                foreach (AirlinerType type in types)
+                {
+                    list.Add(
+                        type,
+                        (int)((type.Range / (Convert.ToDouble(type.Price) / 100000)))
+                        + (airlineAircrafts.Contains(type) ? 10 : 0));
+                }
+                /*
+                Parallel.ForEach(types, t =>
+                    {
+                        list.Add(t, (int)((t.Range / (t.Price / 100000))));
+                    });*/
+
+                if (list.Keys.Count > 0)
+                {
+                    AirlinerType type = GetRandomItem(list);
+
+                    var orders = new List<AirlinerOrder>();
+                    orders.Add(new AirlinerOrder(type, AirlinerHelpers.GetAirlinerClasses(type), numberToOrder, false));
+
+                    DateTime deliveryDate = AirlinerHelpers.GetOrderDeliveryDate(orders);
+                    AirlineHelpers.OrderAirliners(airline, orders, homeAirport, deliveryDate);
+                }
             }
         }
-
         private static void news_Action(object o)
         {
             var agreement = (CodeshareAgreement)o;

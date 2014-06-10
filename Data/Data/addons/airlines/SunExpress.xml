@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="SunExpress" iata="XQ" color="Orange" country="161" CEO="Paul Schwaiger" mentality="Aggressive" market="Global" preferedairport="AYT">
+ <narrative narrative="SunExpress are based at Antalya,Turkey. Which is one of or is the most popular tourist destinations in Turkey outside Istanbul itself. It is famous for it's beaches on the  Mediterranean coast. Which gives SunExpress the perfect name. It was founded in 1989 as a joint venture between Turkish Airlines and Lufthansa Group who still each own 50% of the airline today. It also has a hub at Izmir. It goes to 19 Turkish cities outside the two hubs.And goes to 18 German airports. They have 52 destinations total, including other European,some African and Middle Eastern destinations. SunExpress Deutschland is a recently founded subsidiary based in Germany. Their 64 planes are 54 737-800s and 10 737-700s. There are 25 more 737-800s on order, and 15 737 MAX 8's, the next newer version of the 737.     " />
+  </profile>
+  <info real="True" from="1989" to="2199" />
+  

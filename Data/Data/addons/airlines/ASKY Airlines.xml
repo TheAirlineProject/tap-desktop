@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="ASKY Airlines" iata="KP" color="Brown" country="188" CEO="Yissehak Zewoldi " mentality="Aggressive" market="Regional" preferedairport="LFW">
+    <narrative narrative="ASKY Airlines is based at Lome-Tokoin Airport in Togo. It was founded in 2008 at a conference of the Economic Community of West African States and the West African Economic and Monetary Union as an agreement between the nations of West Africa. It has an alliance and codeshare agreements with Ethiopian Airlines who they also lease four Dash 8 Q400s from. They also have three 737-700s and a 737-400 Freighter. All 23 of their destinations are in West Africa at this time serving every country within this region, but they also hope to begin service to Beirut,Lebanon in the near future." /></profile>
+  <info real="True" from="2008" to="2199" />
+</airline>

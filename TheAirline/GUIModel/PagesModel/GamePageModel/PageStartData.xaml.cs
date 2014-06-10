@@ -148,6 +148,8 @@
             if (this.cbYear.SelectedItem != null && this.cbRegion.SelectedItem != null
                 && this.cbContinent.SelectedItem != null)
             {
+                int index = cbOpponents.SelectedIndex;
+                
                 var year = (int)this.cbYear.SelectedItem;
                 var region = (Region)this.cbRegion.SelectedItem;
                 var continent = (Continent)this.cbContinent.SelectedItem;
@@ -166,7 +168,10 @@
                     this.cbOpponents.Items.Add(i);
                 }
 
-                this.cbOpponents.SelectedIndex = Math.Min(this.cbOpponents.Items.Count - 1, 3);
+                if (index != -1 && index < cbOpponents.Items.Count)
+                    this.cbOpponents.SelectedIndex = index;
+                else
+                    this.cbOpponents.SelectedIndex = Math.Min(this.cbOpponents.Items.Count - 1, 3);
             }
         }
 

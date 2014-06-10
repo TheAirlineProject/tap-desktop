@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Ozark Air Lines" iata="OZ" logo="OZ2" color="Yellow" country="122" CEO="Lester L. Cox" mentality="Aggressive" market="Local" preferedairport="STL">
+    <narrative narrative="  Ozark Air Lines was an airline based at St. Louis,Missouri's Lambert Airport. It was founded in 1950 in Springfield,MO and flew from there to St. Louis with Beech 17 Staggerwings and then Cessna AT-17 Bobcat's. They were certified to begin new routes in 1950 and were officially founded then. They flew DC-3s from St. Louis to Chicago,Tulsa in Oklahoma and to Memphis in Tennessee. In 1955 they had 13 DC-3s and 35 destinations. In 1960 they got some Fairchild F-27's and in 1964 some Martin 4-0-4's. At it's end in 1986 they served 57 mainline cities and 21 Midwestern cities. They had 46 DC-9's of a few variations and four MD-82s. They were bought by TWA for $242 million in 1986 and their fleet was gradually repainted into TWA colors over the next few years. A second Ozark Air Lines began in 2000 after William E. Stricker of Coumbia,MO bought the name rights, it also flew out of Columbia and Chicago-Midway using Fairchild Dornier 328JET's, but it only lasted a year and was bought by Great Plains Airlines.  " /></profile>
+  <info real="True" from="1950" to="1986" />
+</airline>

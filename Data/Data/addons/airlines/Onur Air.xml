@@ -1,0 +1,6 @@
+ï»¿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Onur Air" iata="8Q" color="LightBlue" country="161" CEO="Sahabettin Bolukçu" mentality="Aggressive" market="Global" preferedairport="IST">
+    <narrative narrative="Onur Air were established in 1992 and are based at Ataturk Airport in Istanbul,Turkey. Thier regular schedule has 21 destinations, all but two of these being in Turkey. Those would be flights to Odessa,Ukraine and Urmia,Iran. Thier fleet of 21 planes as of April 2014 are 8 A320's,9 A321's and 4 A330s. The two A321-100's are to be retired in 2015." /></profile>
+  <info real="True" from="1992" to="2199" />
+</airline>

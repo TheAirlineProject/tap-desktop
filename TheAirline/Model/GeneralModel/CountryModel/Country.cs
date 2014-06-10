@@ -374,7 +374,13 @@
         //returns a country with a specific tailnumberformat
         public static Country GetCountryFromTailNumber(string tailnumber)
         {
-            return GetCountries().Find(co => co.TailNumbers.isMatch(tailnumber));
+            tailnumber = "PJ-AEK";
+            Country country = GetCountries().Find(co => co.TailNumbers.isMatch(tailnumber));
+
+            if (country != null)
+                return country;
+            else
+                return null;
         }
 
         #endregion
