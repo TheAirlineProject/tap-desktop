@@ -9,6 +9,7 @@
     using System.Reflection;
     using System.Windows;
     using System.Windows.Data;
+    using System.Windows.Markup;
     using System.Windows.Media;
 
     using TheAirline.GUIModel.HelpersModel;
@@ -72,7 +73,7 @@
                 a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
             this.Finances = new ObservableCollection<AirlineFinanceMVVM>();
             this.LoanRate = GeneralHelpers.GetAirlineLoanRate(this.Airline);
-
+            this.FleetStatus = new ObservableCollection<KeyValuePair<string, int>>();
             this.Loans = new ObservableCollection<LoanMVVM>();
             this.Pilots = new ObservableCollection<PilotMVVM>();
             this.Wages = new ObservableCollection<AirlineFeeMVVM>();
@@ -140,45 +141,74 @@
                     this.Airline.Airports.OrderByDescending(a => this.Airline.Airports[0] == a)
                         .ThenBy(a => a.Profile.Name))
             {
-                this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.hasHub(this.Airline)));
+                this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.hasHub(this.Airline), this.Airline.hasRouteTo(airport), this.Airline.hasAirplaneOnRouteTo(airport)));
             }
 
             double buyingPrice = this.Airline.getValue() * 1000000 * 1.10;
             this.IsBuyable = !this.Airline.IsHuman && GameObject.GetInstance().HumanAirline.Money > buyingPrice;
 
             this.ActiveQuantity = new List<AirlinerQuantityMVVM>();
-            this.OrderedQuantity = new List<AirlinerQuantityMVVM>();
-
+            
             var fleet = new List<FleetAirliner>(this.Airline.Fleet);
 
             foreach (FleetAirliner airliner in fleet)
             {
                 if (airliner.Airliner.BuiltDate > GameObject.GetInstance().GameTime)
                 {
-                    if (this.OrderedQuantity.Any(o => o.Type.Name == airliner.Airliner.Type.Name))
+                    if (this.ActiveQuantity.Any(o => o.Type.Name == airliner.Airliner.Type.Name && o.CabinConfiguration == airliner.Airliner.CabinConfiguration))
                     {
-                        this.OrderedQuantity.First(o => o.Type.Name == airliner.Airliner.Type.Name).Quantity++;
+                        this.ActiveQuantity.First(o => o.Type.Name == airliner.Airliner.Type.Name && o.CabinConfiguration == airliner.Airliner.CabinConfiguration).OnOrder++;
                     }
                     else
                     {
-                        this.OrderedQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, 1));
+                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, airliner.Airliner.CabinConfiguration,0, 1));
                     }
                 }
                 else
                 {
-                    if (this.ActiveQuantity.Any(o => o.Type.Name == airliner.Airliner.Type.Name))
+                    if (this.ActiveQuantity.Any(o => o.Type.Name == airliner.Airliner.Type.Name && o.CabinConfiguration == airliner.Airliner.CabinConfiguration))
                     {
-                        this.ActiveQuantity.First(o => o.Type.Name == airliner.Airliner.Type.Name).Quantity++;
+                        this.ActiveQuantity.First(o => o.Type.Name == airliner.Airliner.Type.Name && o.CabinConfiguration == airliner.Airliner.CabinConfiguration).Quantity++;
                     }
                     else
                     {
-                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, 1));
+                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, airliner.Airliner.CabinConfiguration, 1,0));
                     }
                 }
             }
 
+            this.ActiveQuantity = ActiveQuantity.OrderBy(a => a.Type.Name).ToList();
+
             this.HasAlliance = this.Alliance != null || this.Codeshares.Count > 0;
+
+            FillFleetStatusReport();
         }
+
+        private void FillFleetStatusReport()
+        {
+            this.FleetStatus.Add(new KeyValuePair<string, int>(
+                Translator.GetInstance().GetString("PageAirlineInfo", "1038"),
+                ActiveQuantity.Sum(aq => aq.OnOrder)));
+
+            this.FleetStatus.Add(new KeyValuePair<string, int>(
+                Translator.GetInstance().GetString("PageAirlineInfo", "1042"),
+                ActiveQuantity.Sum(aq => aq.Quantity)));
+
+            this.FleetStatus.Add(new KeyValuePair<string, int>(
+                Translator.GetInstance().GetString("PageAirlineInfo", "1043"),
+                this.Airline.Fleet.Count(fa => fa.GroundedToDate > GameObject.GetInstance().GameTime)));
+
+            this.FleetStatus.Add(new KeyValuePair<string, int>(
+               Translator.GetInstance().GetString("PageAirlineInfo", "1044"),
+               ActiveQuantity.Sum(aq => aq.Quantity) - this.Airline.Fleet.Count(fa => fa.GroundedToDate > GameObject.GetInstance().GameTime)));
+            
+            this.FleetStatus.Add(new KeyValuePair<string, int>(
+               Translator.GetInstance().GetString("PageAirlineInfo", "1045"),
+               this.Airline.Fleet.Count(fa => !fa.HasRoute && fa.Airliner.BuiltDate <= GameObject.GetInstance().GameTime)));
+
+        }
+
+        public ObservableCollection<KeyValuePair<string, int>> FleetStatus { get; private set; }
 
         #endregion
 
@@ -351,8 +381,6 @@
 
         public List<FleetAirliner> OrderedFleet { get; set; }
 
-        public List<AirlinerQuantityMVVM> OrderedQuantity { get; set; }
-
         public ObservableCollection<PilotMVVM> Pilots { get; set; }
 
         public int PilotsToRetire
@@ -432,21 +460,7 @@
 
             this.setValues();
         }
-        //moves an airliner to other airline
-        public void moveAirliner(FleetAirliner airliner, Airline airline)
-        {
-            this.DeliveredFleet.Remove(airliner);
 
-            this.Airline.removeAirliner(airliner);
-
-            airline.addAirliner(airliner);
-            
-            var pilots = new List<Pilot>(airliner.Pilots);
-
-            foreach (Pilot pilot in pilots)
-                pilot.Airline = airline;
-     
-        }
         //adds a subsidiary airline
         public void addSubsidiaryAirline(SubsidiaryAirline airline)
         {
@@ -1423,9 +1437,11 @@
 
         #region Constructors and Destructors
 
-        public AirlineDestinationMVVM(Airport airport, Boolean isHub)
+        public AirlineDestinationMVVM(Airport airport, bool isHub, bool hasRoutes, bool hasAirplaneOnRouteTo)
         {
             this.IsHub = isHub;
+            this.HasRoutes = hasRoutes;
+            this.HasAirplaneOnRouteTo = hasAirplaneOnRouteTo;
             this.Airport = airport;
         }
 
@@ -1454,6 +1470,10 @@
             }
         }
 
+        public bool HasRoutes { get; set; }
+
+        public bool HasAirplaneOnRouteTo { get; set; }
+
         #endregion
 
         #region Methods
@@ -1475,19 +1495,25 @@
     {
         #region Constructors and Destructors
 
-        public AirlinerQuantityMVVM(AirlinerType type, int quantity)
+        public AirlinerQuantityMVVM(AirlinerType type, string cabinConfig, int quantity, int onOrder)
         {
             this.Quantity = quantity;
+            this.OnOrder = onOrder;
             this.Type = type;
+            this.CabinConfiguration = cabinConfig;
         }
 
         #endregion
 
         #region Public Properties
 
+        public int OnOrder { get; set; }
+
         public int Quantity { get; set; }
 
         public AirlinerType Type { get; set; }
+
+        public string CabinConfiguration { get; set; }
 
         #endregion
     }
@@ -1517,23 +1543,7 @@
 
         #endregion
     }
-    //the converter if an airliner can be moved to a subsidiary
-    public class AirlinerToSubsidiaryConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            FleetAirliner airliner = (FleetAirliner)value;
 
-            Boolean hasSubsidiary = airliner.Airliner.Airline.Subsidiaries.Count > 0 || airliner.Airliner.Airline.IsSubsidiary;
-
-            return airliner.Status == FleetAirliner.AirlinerStatus.Stopped && airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline && hasSubsidiary;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
     //the converter if an airline is the human airline in use
     public class AirlineInuseConverter : IValueConverter
     {

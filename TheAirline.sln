@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F5470F
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAirline.Tests", "TheAirline.Tests\TheAirline.Tests.csproj", "{F5B4EC05-E23D-47B5-8C63-0C4996333901}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Release|x64.ActiveCfg = Release|Any CPU
 		{00489C09-70F5-43C8-90B0-5F5B5CF7250D}.Release|x86.ActiveCfg = Release|Any CPU
+		{F5B4EC05-E23D-47B5-8C63-0C4996333901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5B4EC05-E23D-47B5-8C63-0C4996333901}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5B4EC05-E23D-47B5-8C63-0C4996333901}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F5B4EC05-E23D-47B5-8C63-0C4996333901}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F5B4EC05-E23D-47B5-8C63-0C4996333901}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F5B4EC05-E23D-47B5-8C63-0C4996333901}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F5B4EC05-E23D-47B5-8C63-0C4996333901}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5B4EC05-E23D-47B5-8C63-0C4996333901}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5B4EC05-E23D-47B5-8C63-0C4996333901}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F5B4EC05-E23D-47B5-8C63-0C4996333901}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F5B4EC05-E23D-47B5-8C63-0C4996333901}.Release|x64.ActiveCfg = Release|Any CPU
+		{F5B4EC05-E23D-47B5-8C63-0C4996333901}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

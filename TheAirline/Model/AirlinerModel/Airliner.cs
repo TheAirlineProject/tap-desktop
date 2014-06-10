@@ -74,21 +74,14 @@
 
                 if (prop != null)
                 {
-                    if (entry.Name.ToLower() == "type")
+                    if (prop is FieldInfo)
                     {
-                        var type = ((AirlinerType)entry.Value);
-
-                        this.Type = AirlinerTypes.GetType(type.Name);
+                        ((FieldInfo)prop).SetValue(this, entry.Value);
                     }
                     else
-                        if (prop is FieldInfo)
-                        {
-                            ((FieldInfo)prop).SetValue(this, entry.Value);
-                        }
-                        else
-                        {
-                            ((PropertyInfo)prop).SetValue(this, entry.Value);
-                        }
+                    {
+                        ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
                 }
             }
 
@@ -148,6 +141,38 @@
 
         [Versioning("classes")]
         public List<AirlinerClass> Classes { get; set; }
+        
+        public string CabinConfiguration
+        {
+            get
+            {
+                if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
+                {
+                    return string.Format(
+                        "{0}F | {1}C | {2}Y",
+                        this.GetSeatingCapacity(AirlinerClass.ClassType.First_Class),
+                        this.GetSeatingCapacity(AirlinerClass.ClassType.Business_Class),
+                        this.GetSeatingCapacity(AirlinerClass.ClassType.Economy_Class));
+                }
+                
+                if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
+                {
+                    return string.Format("{0} t", this.getCargoCapacity());
+                }
+                
+                return string.Format(
+                    "{0}F | {1}C | {2}Y | {3} t",
+                    this.GetSeatingCapacity(AirlinerClass.ClassType.First_Class),
+                    this.GetSeatingCapacity(AirlinerClass.ClassType.Business_Class),
+                    this.GetSeatingCapacity(AirlinerClass.ClassType.Economy_Class),
+                    this.getCargoCapacity());
+            }
+        }
+
+        private int GetSeatingCapacity(AirlinerClass.ClassType classType)
+        {
+            return this.Classes.Exists(x=> x.Type == classType) ? this.Classes.Find(x=> x.Type == classType).SeatingCapacity : 0;
+        }
 
         [Versioning("condition")]
         public double Condition { get; set; }
@@ -210,7 +235,7 @@
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
@@ -249,13 +274,19 @@
         //adds a new airliner class to the airliner
         public void addAirlinerClass(AirlinerClass airlinerClass)
         {
-            if (airlinerClass != null && !this.Classes.Exists(c => c.Type == airlinerClass.Type))
+            if (airlinerClass != null)
             {
-                this.Classes.Add(airlinerClass);
-
-                if (airlinerClass.getFacilities().Count == 0)
+                if (this.Classes.Exists(c => c.Type == airlinerClass.Type))
                 {
-                    airlinerClass.createBasicFacilities(this.Airline);
+                    Classes[Classes.FindIndex(c => c.Type == airlinerClass.Type)] = airlinerClass;
+                }
+                else
+                {
+                    this.Classes.Add(airlinerClass);
+                    if (airlinerClass.getFacilities().Count == 0)
+                    {
+                        airlinerClass.createBasicFacilities(this.Airline);
+                    }
                 }
             }
         }
@@ -291,6 +322,12 @@
             {
                 return ((AirlinerCargoType)this.Type).CargoSize;
             }
+
+            if (this.Type is AirlinerCombiType)
+            {
+                return ((AirlinerCombiType)this.Type).CargoSize;
+            }
+
             return 0;
         }
 
@@ -317,9 +354,9 @@
                 AirlinerFacility videoFacility = aClass.getFacility(AirlinerFacility.FacilityType.Video);
                 AirlinerFacility seatFacility = aClass.getFacility(AirlinerFacility.FacilityType.Seat);
 
-                double audioPrice = audioFacility.PricePerSeat * (audioFacility.PercentOfSeats/100) * aClass.SeatingCapacity;
-                double videoPrice = videoFacility.PricePerSeat * (videoFacility.PercentOfSeats/100) * aClass.SeatingCapacity;
-                double seatPrice = seatFacility.PricePerSeat * (seatFacility.PercentOfSeats/100) * aClass.SeatingCapacity;
+                double audioPrice = audioFacility.PricePerSeat * audioFacility.PercentOfSeats * aClass.SeatingCapacity;
+                double videoPrice = videoFacility.PricePerSeat * videoFacility.PercentOfSeats * aClass.SeatingCapacity;
+                double seatPrice = seatFacility.PricePerSeat * seatFacility.PercentOfSeats * aClass.SeatingCapacity;
 
                 facilityPrice += audioPrice + videoPrice + seatPrice;
             }

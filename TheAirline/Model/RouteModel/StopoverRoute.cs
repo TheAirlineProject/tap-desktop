@@ -9,43 +9,21 @@
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
 
-    /*! RouteTimeTableEntry.
- * This class is used for an entry in a time table
- * The class needs parameters for the time table, the day of flight, the time of flight and the destination
- */
-
     [Serializable]
-    public class RouteTimeTableEntry : IComparable<RouteTimeTableEntry>, ISerializable
+    //the class for the stop over routes
+    public class StopoverRoute : ISerializable
     {
         #region Constructors and Destructors
 
-        public RouteTimeTableEntry(
-            RouteTimeTable timeTable,
-            DayOfWeek day,
-            TimeSpan time,
-            RouteEntryDestination destination)
-            : this(timeTable, day, time, destination, null)
+        public StopoverRoute(Airport stopover)
         {
+            this.Legs = new List<Route>();
+            this.Stopover = stopover;
         }
 
-        public RouteTimeTableEntry(
-            RouteTimeTable timeTable,
-            DayOfWeek day,
-            TimeSpan time,
-            RouteEntryDestination destination,
-            Gate outboundgate)
-        {
-            Guid id = Guid.NewGuid();
+        //adds a leg to the stopover route
 
-            this.Day = day;
-            this.Time = time;
-            this.TimeTable = timeTable;
-            this.Destination = destination;
-            this.ID = id.ToString();
-            this.Gate = outboundgate;
-        }
-
-        private RouteTimeTableEntry(SerializationInfo info, StreamingContext ctxt)
+        private StopoverRoute(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -106,59 +84,17 @@
 
         #region Public Properties
 
-        [Versioning("airliner")]
-        public FleetAirliner Airliner { get; set; }
+        [Versioning("legs")]
+        public List<Route> Legs { get; set; }
 
-        [Versioning("day")]
-        public DayOfWeek Day { get; set; }
-
-        public Airport DepartureAirport
-        {
-            get
-            {
-                return this.getDepartureAirport();
-            }
-            set
-            {
-                ;
-            }
-        }
-
-        [Versioning("destination")]
-        public RouteEntryDestination Destination { get; set; }
-
-        [Versioning("gate")]
-        public Gate Gate { get; set; }
-
-        [Versioning("id")]
-        public string ID { get; set; }
-
-        [Versioning("mainentry")]
-        public RouteTimeTableEntry MainEntry { get; set; }
-
-        [Versioning("time")]
-        public TimeSpan Time { get; set; }
-
-        [Versioning("timetable")]
-        public RouteTimeTable TimeTable { get; set; }
+        [Versioning("stopover")]
+        public Airport Stopover { get; set; }
 
         #endregion
 
         #region Public Methods and Operators
 
-        public int CompareTo(RouteTimeTableEntry entry)
-        {
-            int compare = entry.Day.CompareTo(this.Day);
-            if (compare == 0)
-            {
-                return entry.Time.CompareTo(this.Time);
-            }
-            return compare;
-        }
-
-        //returns the timespan between two entries
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
@@ -194,20 +130,9 @@
             }
         }
 
-        public Airport getDepartureAirport()
+        public void addLeg(Route leg)
         {
-            return this.Destination.Airport == this.TimeTable.Route.Destination1
-                ? this.TimeTable.Route.Destination2
-                : this.TimeTable.Route.Destination1;
-        }
-
-        public TimeSpan getTimeDifference(RouteTimeTableEntry entry)
-        {
-            int daysBetween = Math.Abs(this.Day - entry.Day);
-
-            TimeSpan time = entry.Time.Subtract(this.Time);
-
-            return new TimeSpan(24 * daysBetween, 0, 0).Add(time);
+            this.Legs.Add(leg);
         }
 
         #endregion

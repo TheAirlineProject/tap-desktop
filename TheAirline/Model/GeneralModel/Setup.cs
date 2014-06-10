@@ -144,7 +144,7 @@
                     foreach (string preferedAircraft in preferedAircrafts)
                     {
                         AirlinerType pAircraft = AirlinerTypes.GetType(preferedAircraft);
-                        airline.Profile.addPreferedAircraft(pAircraft);
+                        airline.Profile.AddPreferedAircraft(pAircraft);
                     }
                 }
                 if (preferedsElement.HasAttribute("primarypurchasing"))
@@ -167,7 +167,7 @@
                 string logoPath = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\multilogos\\"
                                   + logoElement.Attributes["path"].Value + ".png";
 
-                airline.Profile.addLogo(new AirlineLogo(logoFromYear, logoToYear, logoPath));
+                airline.Profile.AddLogo(new AirlineLogo(logoFromYear, logoToYear, logoPath));
             }
 
             if (profileElement.HasAttribute("preferedairport"))
@@ -468,8 +468,7 @@
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
-       
-               /*
+            /*
             System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
 
             string lines = "Name;IATA;ICAO;Type;Season;Town;Country;GMT;DST;Latitude;Longitude;Size;Pax;Cargosize;Cargo;Terminals[Name%Gates];Runways[Name%Surface%Lenght]";
@@ -614,9 +613,9 @@
             SetupMainGame();
         }
 
-        public static void SetupMainGame(int opponents,Route.RouteType airlineType, Boolean sameRegion)
+        public static void SetupMainGame(int opponents, Boolean sameRegion)
         {
-            RemoveAirlines(opponents,airlineType, sameRegion);
+            RemoveAirlines(opponents, sameRegion);
 
             SetupMainGame();
         }
@@ -646,7 +645,7 @@
 
         #region Methods
 
-        private static void ClearLists()
+        public static void ClearLists()
         {
             AdvertisementTypes.Clear();
             TimeZones.Clear();
@@ -691,7 +690,7 @@
         /*! creates the Advertisement types
          */
 
-        private static void CreateAdvertisementTypes()
+        public static void CreateAdvertisementTypes()
         {
             AdvertisementTypes.AddAdvertisementType(
                 new AdvertisementType(AdvertisementType.AirlineAdvertisementType.Internet, "No Advertisement", 0, 0));
@@ -739,12 +738,12 @@
 
                 if (File.Exists(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + logoName + ".png"))
                 {
-                    airline.Profile.addLogo(
+                    airline.Profile.AddLogo(
                         new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + logoName + ".png"));
                 }
                 else
                 {
-                    airline.Profile.addLogo(
+                    airline.Profile.AddLogo(
                         new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
                 }
             }
@@ -1800,7 +1799,7 @@
             return configuration;
         }
 
-        private static void LoadAirlinerFacilities()
+        public static void LoadAirlinerFacilities()
         {
             var doc = new XmlDocument();
             doc.Load(AppSettings.getDataPath() + "\\airlinerfacilities.xml");
@@ -3083,7 +3082,7 @@
         /*! loads the inflation years
          */
 
-        private static void LoadInflationYears()
+        public static void LoadInflationYears()
         {
             var doc = new XmlDocument();
             doc.Load(AppSettings.getDataPath() + "\\inflations.xml");
@@ -3884,7 +3883,7 @@
             }
         }
 
-        private static void RemoveAirlines(int opponnents, Route.RouteType airlineType, Boolean sameRegion)
+        private static void RemoveAirlines(int opponnents, Boolean sameRegion)
         {
             Airport humanAirport = GameObject.GetInstance().HumanAirline.Airports[0];
             int year = GameObject.GetInstance().GameTime.Year;
@@ -3907,7 +3906,7 @@
             if (sameRegion)
             {
                 airlines =
-                    airlines.OrderBy(a=>a.AirlineRouteFocus == airlineType).ThenByDescending(
+                    airlines.OrderByDescending(
                         a =>
                             a.Profile.PreferedAirport == null
                                 ? Double.MaxValue
@@ -3915,17 +3914,7 @@
             }
             else
             {
-                var sameTypes = airlines.FindAll(a => a.AirlineRouteFocus == airlineType);
-                var notSameTypes = airlines.FindAll(a => a.AirlineRouteFocus != airlineType);
-
-                sameTypes = MathHelpers.Shuffle(sameTypes);
-                notSameTypes = MathHelpers.Shuffle(notSameTypes);
-
-                airlines.Clear();
-
-                airlines.AddRange(notSameTypes);
-                airlines.AddRange(sameTypes);
-
+                airlines = MathHelpers.Shuffle(airlines);
             }
 
             for (int i = 0; i < count - opponnents; i++)

@@ -6,25 +6,46 @@
     using System.Reflection;
     using System.Runtime.Serialization;
 
+    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
 
-    /*! Flight airliner class.
-   * This class is used for an airliner class onboard of a flight
-   * The class needs parameters for type of class and the number of passengers
-   */
+    /*! RouteTimeTableEntry.
+ * This class is used for an entry in a time table
+ * The class needs parameters for the time table, the day of flight, the time of flight and the destination
+ */
 
     [Serializable]
-    public class FlightAirlinerClass : ISerializable
+    public class RouteTimeTableEntry : IComparable<RouteTimeTableEntry>, ISerializable
     {
         #region Constructors and Destructors
 
-        public FlightAirlinerClass(RouteAirlinerClass aClass, int passengers)
+        public RouteTimeTableEntry(
+            RouteTimeTable timeTable,
+            DayOfWeek day,
+            TimeSpan time,
+            RouteEntryDestination destination)
+            : this(timeTable, day, time, destination, null)
         {
-            this.AirlinerClass = aClass;
-            this.Passengers = passengers;
         }
 
-        private FlightAirlinerClass(SerializationInfo info, StreamingContext ctxt)
+        public RouteTimeTableEntry(
+            RouteTimeTable timeTable,
+            DayOfWeek day,
+            TimeSpan time,
+            RouteEntryDestination destination,
+            Gate outboundgate)
+        {
+            Guid id = Guid.NewGuid();
+
+            this.Day = day;
+            this.Time = time;
+            this.TimeTable = timeTable;
+            this.Destination = destination;
+            this.ID = id.ToString();
+            this.Gate = outboundgate;
+        }
+
+        private RouteTimeTableEntry(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -85,17 +106,59 @@
 
         #region Public Properties
 
-        [Versioning("class")]
-        public RouteAirlinerClass AirlinerClass { get; set; }
+        [Versioning("airliner")]
+        public FleetAirliner Airliner { get; set; }
 
-        [Versioning("passengers")]
-        public int Passengers { get; set; }
+        [Versioning("day")]
+        public DayOfWeek Day { get; set; }
+
+        public Airport DepartureAirport
+        {
+            get
+            {
+                return this.getDepartureAirport();
+            }
+            set
+            {
+                ;
+            }
+        }
+
+        [Versioning("destination")]
+        public RouteEntryDestination Destination { get; set; }
+
+        [Versioning("gate")]
+        public Gate Gate { get; set; }
+
+        [Versioning("id")]
+        public string ID { get; set; }
+
+        [Versioning("mainentry")]
+        public RouteTimeTableEntry MainEntry { get; set; }
+
+        [Versioning("time")]
+        public TimeSpan Time { get; set; }
+
+        [Versioning("timetable")]
+        public RouteTimeTable TimeTable { get; set; }
 
         #endregion
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public int CompareTo(RouteTimeTableEntry entry)
+        {
+            int compare = entry.Day.CompareTo(this.Day);
+            if (compare == 0)
+            {
+                return entry.Time.CompareTo(this.Time);
+            }
+            return compare;
+        }
+
+        //returns the timespan between two entries
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
@@ -129,6 +192,22 @@
 
                 info.AddValue(att.Name, propValue);
             }
+        }
+
+        public Airport getDepartureAirport()
+        {
+            return this.Destination.Airport == this.TimeTable.Route.Destination1
+                ? this.TimeTable.Route.Destination2
+                : this.TimeTable.Route.Destination1;
+        }
+
+        public TimeSpan getTimeDifference(RouteTimeTableEntry entry)
+        {
+            int daysBetween = Math.Abs(this.Day - entry.Day);
+
+            TimeSpan time = entry.Time.Subtract(this.Time);
+
+            return new TimeSpan(24 * daysBetween, 0, 0).Add(time);
         }
 
         #endregion

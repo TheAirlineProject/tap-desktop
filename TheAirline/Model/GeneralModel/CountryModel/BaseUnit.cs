@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
+    using System.IO;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.Serialization;
@@ -10,6 +12,8 @@
     [Serializable]
     public class BaseUnit : ISerializable
     {
+        private string flag;
+
         #region Constructors and Destructors
 
         public BaseUnit(string uid, string shortname)
@@ -73,6 +77,9 @@
                     }
                 }
             }
+
+           
+
         }
 
         #endregion
@@ -80,7 +87,21 @@
         #region Public Properties
 
         [Versioning("flag")]
-        public string Flag { get; set; }
+        public string Flag
+        {
+            get
+            {
+                if (!File.Exists(this.flag))
+                {
+                    Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + this.Name + ".png";
+                }
+                return this.flag;
+            }
+            set
+            {
+                this.flag = value;
+            }
+        }
 
         public virtual string Name
         {
@@ -165,7 +186,7 @@
             return this.Uid.GetHashCode() ^ this.ShortName.GetHashCode();
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 

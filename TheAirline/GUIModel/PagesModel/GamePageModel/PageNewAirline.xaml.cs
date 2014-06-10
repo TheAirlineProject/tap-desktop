@@ -221,7 +221,7 @@
             var profile = new AirlineProfile(name, iata, color, ceo, false, 1950, 2199);
             profile.Countries = new List<Country> { country };
             profile.Country = country;
-            profile.addLogo(new AirlineLogo(this.logoPath));
+            profile.AddLogo(new AirlineLogo(this.logoPath));
             profile.PreferedAirport = this.cbAirport.SelectedItem != null ? (Airport)this.cbAirport.SelectedItem : null;
 
             Route.RouteType focus = this.rbPassengerType.IsChecked.Value

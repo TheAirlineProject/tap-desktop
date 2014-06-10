@@ -6,29 +6,32 @@
     using System.Reflection;
     using System.Runtime.Serialization;
 
+    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
 
-    /*! Route airliner class for passengers.
-    * This class is used for an airliner class onboard of a route airliner for passengers
-    * The class needs parameters for type of class and the fare price
-    */
+    /*! RouteEntryDestination.
+  * This is used for destination for the route.
+  * The class needs parameter for the destination airport and the flight code
+  */
 
     [Serializable]
-    public class RouteAirlinerClass : ISerializable
+    public class RouteEntryDestination : IComparable<RouteEntryDestination>, ISerializable
     {
-        // chs, 2011-18-10 added seating type to a route airliner class
-
         #region Constructors and Destructors
 
-        public RouteAirlinerClass(AirlinerClass.ClassType type, SeatingType seating, double fareprice)
+        public RouteEntryDestination(Airport airport, string flightCode)
+            : this(airport, flightCode, null)
         {
-            this.Facilities = new List<RouteFacility>();
-            this.FarePrice = fareprice;
-            this.Seating = seating;
-            this.Type = type;
         }
 
-        private RouteAirlinerClass(SerializationInfo info, StreamingContext ctxt)
+        public RouteEntryDestination(Airport airport, string flightCode, Gate inboundgate)
+        {
+            this.Airport = airport;
+            this.FlightCode = flightCode;
+            this.Gate = inboundgate;
+        }
+
+        private RouteEntryDestination(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -87,36 +90,32 @@
 
         #endregion
 
-        #region Enums
-
-        public enum SeatingType
-        {
-            Reserved_Seating,
-
-            Free_Seating
-        }
-
-        #endregion
-
         #region Public Properties
 
-        [Versioning("facilities")]
-        public List<RouteFacility> Facilities { get; set; }
+        [Versioning("airport")]
+        public Airport Airport { get; set; }
 
-        [Versioning("fareprice")]
-        public double FarePrice { get; set; }
+        [Versioning("flightcode")]
+        public string FlightCode { get; set; }
 
-        [Versioning("seating")]
-        public SeatingType Seating { get; set; }
-
-        [Versioning("type")]
-        public AirlinerClass.ClassType Type { get; set; }
+        [Versioning("gate")]
+        public Gate Gate { get; set; }
 
         #endregion
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public int CompareTo(RouteEntryDestination entry)
+        {
+            int compare = entry.FlightCode.CompareTo(this.FlightCode);
+            if (compare == 0)
+            {
+                return entry.Airport.Profile.IATACode.CompareTo(this.Airport.Profile.IATACode);
+            }
+            return compare;
+        }
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
@@ -150,35 +149,6 @@
 
                 info.AddValue(att.Name, propValue);
             }
-        }
-
-        //public int CabinCrew { get; set; }
-
-        //adds a facility to the route class
-        public void addFacility(RouteFacility facility)
-        {
-            if (facility != null)
-            {
-                if (this.Facilities.Exists(f => f.Type == facility.Type))
-                {
-                    this.Facilities.RemoveAll(f => f.Type == facility.Type);
-                }
-
-                this.Facilities.Add(facility);
-            }
-        }
-
-        //returns the facility for a type for the route class
-
-        //returns all facilities
-        public List<RouteFacility> getFacilities()
-        {
-            return this.Facilities;
-        }
-
-        public RouteFacility getFacility(RouteFacility.FacilityType type)
-        {
-            return this.Facilities.Find(f => f.Type == type);
         }
 
         #endregion

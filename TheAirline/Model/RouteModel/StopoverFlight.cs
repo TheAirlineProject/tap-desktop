@@ -369,7 +369,7 @@
         private Boolean isLastTrip()
         {
             return this.CurrentFlight == Math.Max(this.AllClasses.Keys.Count, this.AllCargo.Keys.Count);
-                //this.AllClasses.Keys.ToList().IndexOf(this.Entry.TimeTable.Route) == this.AllClasses.Keys.Count -1;
+            //this.AllClasses.Keys.ToList().IndexOf(this.Entry.TimeTable.Route) == this.AllClasses.Keys.Count -1;
         }
 
         #endregion

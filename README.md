@@ -4,7 +4,7 @@
 |:----------------------------- | :---------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------: |
 | TheAirlineProject/tap-desktop | master                              | [![Build status](https://ci.appveyor.com/api/projects/status/vee7sdpon84qmc08)](https://ci.appveyor.com/project/ipavlovi/tap-desktop-444) |
 | TheAirlineProject/tap-desktop | 040-dev                             | [![Build status](https://ci.appveyor.com/api/projects/status/8dbfj20boratauyj)](https://ci.appveyor.com/project/ipavlovi/tap-desktop-133) |
-| ipavlovi/tap-desktop          | ContinuousBuildAndClickOneInstaller | [![Build status](https://ci.appveyor.com/api/projects/status/i9fqgfxev6ckyf5m)](https://ci.appveyor.com/project/ipavlovi/tap-desktop-475) |
+| ipavlovi/tap-desktop          | CabinConfigurations                 | [![Build status](https://ci.appveyor.com/api/projects/status/xrhj3w46ak96u8yd)](https://ci.appveyor.com/project/ipavlovi/tap-desktop)     |
 
 <h2>Getting Started</h2>
 

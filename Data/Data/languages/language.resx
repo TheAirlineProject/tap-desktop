@@ -1808,16 +1808,16 @@ Loading of game aborted.</value>
 All your rented gates will be moved to this terminal when finish building it.</value>
   </data>
   <data name="MessageBox_2207_name" xml:space="preserve">
-    <value>Stop Building Terminal</value>
+    <value>Remove Terminal</value>
   </data>
   <data name="MessageBox_2207_message" xml:space="preserve">
     <value>Are you sure you want to stop building this terminal?</value>
   </data>
   <data name="MessageBox_2208_name" xml:space="preserve">
-    <value>Sell Terminal</value>
+    <value>Remove Terminal</value>
   </data>
   <data name="MessageBox_2208_message" xml:space="preserve">
-    <value>Are you sure you want to sell this terminal with {0} gates for {1:C}?</value>
+    <value>Are you sure you want to remove this terminal with {0} gates?</value>
   </data>
   <data name="MessageBox_2209_name" xml:space="preserve">
     <value>Removal Not Possible</value>
@@ -3064,7 +3064,7 @@ Good luck.</value>
     <value>Largest Human Airports</value>
   </data>
   <data name="PageAirports_1003_name" xml:space="preserve">
-    <value>Largest Human Hubs</value>
+    <value>Human Hubs</value>
   </data>
   <data name="PageAirports_2000_name" xml:space="preserve">
     <value>Airports</value>
@@ -4521,10 +4521,10 @@ Good luck.</value>
   <data name="MessageBox_3003_name" xml:space="preserve">
     <value>Cargo error</value>
   </data>
-  <data name="MessageBox_3004_message" xml:space="preserve">
+  <data name="MessageBox_3005_message" xml:space="preserve">
     <value>There are flight restrictions between the airports</value>
   </data>
-  <data name="MessageBox_3004_name" xml:space="preserve">
+  <data name="MessageBox_3005_name" xml:space="preserve">
     <value>Airport restrictions</value>
   </data>
   <data name="PageHumanRoutes_1004_name" xml:space="preserve">
@@ -4993,7 +4993,7 @@ Good luck.</value>
     <value>Airliners</value>
   </data>
   <data name="PageRoutePlanner_206_name" xml:space="preserve">
-    <value>Save Schedule</value>
+    <value>Inverse Timetable</value>
   </data>
   <data name="PageShowRoute_1005_name" xml:space="preserve">
     <value>Distance</value>
@@ -5043,34 +5043,43 @@ Good luck.</value>
   <data name="PageHumanRoutes_1011_name" xml:space="preserve">
     <value>Distance</value>
   </data>
-  <data name="MessageBox_3005_message" xml:space="preserve">
-    <value>Your airline doesn't have the correct license for this route</value>
+  <data name="PageAirlineInfo_1037_name" xml:space="preserve">
+    <value>Cabin</value>
   </data>
-  <data name="MessageBox_3005_name" xml:space="preserve">
-    <value>Incorrect License</value>
+  <data name="PageAirlineInfo_1038_name" xml:space="preserve">
+    <value>On Order</value>
   </data>
-  <data name="MessageBox_3006_message" xml:space="preserve">
-    <value>You already have a route from {0} to {1}</value>
+  <data name="PageAirlineInfo_1039_name" xml:space="preserve">
+    <value>Routes</value>
   </data>
-  <data name="MessageBox_3006_name" xml:space="preserve">
-    <value>Route Exists Already</value>
+  <data name="PageAirlineInfo_1040_name" xml:space="preserve">
+    <value>Airliner on route</value>
   </data>
-  <data name="PageAirlineFleet_1016_name" xml:space="preserve">
-    <value>Move Airliner</value>
+  <data name="PageAirlineInfo_1041_name" xml:space="preserve">
+    <value>Fleet Status</value>
   </data>
-  <data name="MessageBox_2707_message" xml:space="preserve">
-    <value>The airliner can't handle the selected schedule</value>
+  <data name="PageAirlineInfo_1042_name" xml:space="preserve">
+    <value>On List</value>
   </data>
-  <data name="MessageBox_2707_name" xml:space="preserve">
-    <value>Can't Load Schedule</value>
+  <data name="PageAirlineInfo_1043_name" xml:space="preserve">
+    <value>Out of Service</value>
   </data>
-  <data name="News_1016_message" xml:space="preserve">
-    <value>[LI airline={0}] has ordered [1] [2]s</value>
+  <data name="PageAirlineInfo_1044_name" xml:space="preserve">
+    <value>In Service</value>
   </data>
-  <data name="News_1016_name" xml:space="preserve">
-    <value>Ordered airliners</value>
+  <data name="PageAirlineInfo_1045_name" xml:space="preserve">
+    <value>Idle Airliners</value>
   </data>
-  <data name="PageRoutePlanner_207_name" xml:space="preserve">
-    <value>Load Schedule</value>
+  <data name="PageAirlineFinances_1017_name" xml:space="preserve">
+    <value>Daily Operating Profit</value>
+  </data>
+  <data name="PageAirlineFinances_1018_name" xml:space="preserve">
+    <value>DOB History</value>
+  </data>
+  <data name="PageAirlineFinances_1019_name" xml:space="preserve">
+    <value>Last 90 Days</value>
+  </data>
+  <data name="PageAirlineFinances_1020_name" xml:space="preserve">
+    <value>Daily Operating Profit </value>
   </data>
 </root>

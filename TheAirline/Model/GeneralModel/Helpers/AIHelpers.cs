@@ -124,7 +124,7 @@
             if (minFlightTime.Hours < 12 && minFlightTime.Days < 1 && isDaily)
             {
                 var flightTime = new TimeSpan(startTime.Hours, startTime.Minutes, startTime.Seconds);
-                //new TimeSpan(startHour, 0, 0).Add(new TimeSpan(0, startMinutes / 2, 0));
+                    //new TimeSpan(startHour, 0, 0).Add(new TimeSpan(0, startMinutes / 2, 0));
 
                 for (int i = 0; i < numberOfFlights; i++)
                 {
@@ -615,10 +615,10 @@
             double maxDistance = airliners.Count() == 0 ? 5000 : airliners.Max();
 
             double minDistance = (from a in Airports.GetAirports(a => a != airport)
-                                  select
-                                      MathHelpers.GetDistance(
-                                          a.Profile.Coordinates.convertToGeoCoordinate(),
-                                          airport.Profile.Coordinates.convertToGeoCoordinate())).Min();
+                select
+                    MathHelpers.GetDistance(
+                        a.Profile.Coordinates.convertToGeoCoordinate(),
+                        airport.Profile.Coordinates.convertToGeoCoordinate())).Min();
 
             List<Airport> airports =
                 Airports.GetAirports(
@@ -709,27 +709,27 @@
             {
                 airports =
                     (from a in
-                         Airports.GetAirports(
-                             a =>
-                                 IsRouteInCorrectArea(airport, a)
-                                 && MathHelpers.GetDistance(
-                                     a.Profile.Coordinates.convertToGeoCoordinate(),
-                                     airport.Profile.Coordinates.convertToGeoCoordinate()) < 5000
-                                 && MathHelpers.GetDistance(
-                                     a.Profile.Coordinates.convertToGeoCoordinate(),
-                                     airport.Profile.Coordinates.convertToGeoCoordinate()) >= Route.MinRouteDistance)
-                     orderby a.Profile.Size descending
-                     select a).ToList();
+                        Airports.GetAirports(
+                            a =>
+                                IsRouteInCorrectArea(airport, a)
+                                && MathHelpers.GetDistance(
+                                    a.Profile.Coordinates.convertToGeoCoordinate(),
+                                    airport.Profile.Coordinates.convertToGeoCoordinate()) < 5000
+                                && MathHelpers.GetDistance(
+                                    a.Profile.Coordinates.convertToGeoCoordinate(),
+                                    airport.Profile.Coordinates.convertToGeoCoordinate()) >= Route.MinRouteDistance)
+                        orderby a.Profile.Size descending
+                        select a).ToList();
             }
 
             return (from a in airports
-                    where
-                        routes.Find(r => r.Destination1 == a || r.Destination2 == a) == null
-                        && (a.Terminals.getFreeGates() > 0 || AirportHelpers.HasFreeGates(a, airline))
-                    orderby
-                        ((int)airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class))
-                        + ((int)a.getDestinationPassengersRate(airport, AirlinerClass.ClassType.Economy_Class)) descending
-                    select a).ToList();
+                where
+                    routes.Find(r => r.Destination1 == a || r.Destination2 == a) == null
+                    && (a.Terminals.getFreeGates() > 0 || AirportHelpers.HasFreeGates(a, airline))
+                orderby
+                    ((int)airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class))
+                    + ((int)a.getDestinationPassengersRate(airport, AirlinerClass.ClassType.Economy_Class)) descending
+                select a).ToList();
         }
 
         public static T GetRandomItem<T>(Dictionary<T, int> list)
@@ -989,7 +989,7 @@
                         //creates a new alliance for the airline
                         CreateNewAlliance(airline);
                     }
-                    //joins an existing alliance
+                        //joins an existing alliance
                     else
                     {
                         if (alliance.IsHumanAlliance)
@@ -1752,7 +1752,7 @@
                 futureAirline.Market,
                 futureAirline.AirlineRouteFocus,
                 futureAirline.PreferedAirport);
-            sAirline.Profile.addLogo(new AirlineLogo(futureAirline.Logo));
+            sAirline.Profile.AddLogo(new AirlineLogo(futureAirline.Logo));
             sAirline.Profile.Color = airline.Profile.Color;
 
             CreateNewRoute(sAirline);
@@ -1775,9 +1775,9 @@
         private static Alliance GetAirlineAlliance(Airline airline)
         {
             Alliance bestAlliance = (from a in Alliances.GetAlliances()
-                                     where !a.Members.ToList().Exists(m => m.Airline == airline)
-                                     orderby GetAirlineAllianceScore(airline, a, true) descending
-                                     select a).FirstOrDefault();
+                where !a.Members.ToList().Exists(m => m.Airline == airline)
+                orderby GetAirlineAllianceScore(airline, a, true) descending
+                select a).FirstOrDefault();
 
             if (bestAlliance != null && GetAirlineAllianceScore(airline, bestAlliance, true) > 50)
             {
@@ -1811,9 +1811,9 @@
         private static Airline GetAllianceAirline(Alliance alliance)
         {
             Airline bestAirline = (from a in Airlines.GetAllAirlines()
-                                   where !alliance.Members.ToList().Exists(m => m.Airline == a) && a.Alliances.Count == 0
-                                   orderby GetAirlineAllianceScore(a, alliance, false) descending
-                                   select a).FirstOrDefault();
+                where !alliance.Members.ToList().Exists(m => m.Airline == a) && a.Alliances.Count == 0
+                orderby GetAirlineAllianceScore(a, alliance, false) descending
+                select a).FirstOrDefault();
 
             if (GetAirlineAllianceScore(bestAirline, alliance, false) > 50)
             {
@@ -2090,73 +2090,56 @@
             List<Airport> homeAirports = AirlineHelpers.GetHomebases(airline);
 
             var airportsList = new Dictionary<Airport, int>();
-            Parallel.ForEach(homeAirports, a => { airportsList.Add(a, (int)a.Profile.Size); });
-
-            if (airportsList.Count > 0)
+            //Parallel.ForEach(homeAirports, a => { airportsList.Add(a, (int)a.Profile.Size); });
+            foreach (var a in homeAirports)
             {
+                airportsList.Add(a, (int)a.Profile.Size);
+            }
 
-                Airport homeAirport = GetRandomItem(airportsList);
+            Airport homeAirport = GetRandomItem(airportsList);
 
-                List<AirlinerType> types =
-                    AirlinerTypes.GetTypes(
-                        t =>
-                            t.Produced.From <= GameObject.GetInstance().GameTime
-                            && t.Produced.To >= GameObject.GetInstance().GameTime && t.Price * numberToOrder < airline.Money);
+            List<AirlinerType> types =
+                AirlinerTypes.GetTypes(
+                    t =>
+                        t.Produced.From <= GameObject.GetInstance().GameTime
+                        && t.Produced.To >= GameObject.GetInstance().GameTime && t.Price * numberToOrder < airline.Money);
 
-                if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+            if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+            {
+                types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
+            }
+
+            if (airline.AirlineRouteFocus == Route.RouteType.Passenger)
+            {
+                types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
+            }
+
+            types = types.OrderBy(t => t.Price).ToList();
+
+            var list = new Dictionary<AirlinerType, int>();
+
+            foreach (AirlinerType type in types)
+            {
+                list.Add(
+                    type,
+                    (int)((type.Range / (Convert.ToDouble(type.Price) / 100000)))
+                    + (airlineAircrafts.Contains(type) ? 10 : 0));
+            }
+            /*
+            Parallel.ForEach(types, t =>
                 {
-                    types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
-                }
+                    list.Add(t, (int)((t.Range / (t.Price / 100000))));
+                });*/
 
-                if (airline.AirlineRouteFocus == Route.RouteType.Passenger)
-                {
-                    types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
-                }
+            if (list.Keys.Count > 0)
+            {
+                AirlinerType type = GetRandomItem(list);
 
-                types = types.OrderBy(t => t.Price).ToList();
+                var orders = new List<AirlinerOrder>();
+                orders.Add(new AirlinerOrder(type, AirlinerHelpers.GetAirlinerClasses(type), numberToOrder, false));
 
-                var list = new Dictionary<AirlinerType, int>();
-
-                foreach (AirlinerType type in types)
-                {
-                    list.Add(
-                        type,
-                        (int)((type.Range / (Convert.ToDouble(type.Price) / 100000)))
-                        + (airlineAircrafts.Contains(type) ? 10 : 0));
-                }
-                /*
-                Parallel.ForEach(types, t =>
-                    {
-                        list.Add(t, (int)((t.Range / (t.Price / 100000))));
-                    });*/
-
-                if (list.Keys.Count > 0)
-                {
-                    AirlinerType type = GetRandomItem(list);
-
-                    var orders = new List<AirlinerOrder>();
-                    orders.Add(new AirlinerOrder(type, AirlinerHelpers.GetAirlinerClasses(type), numberToOrder, false));
-
-                    DateTime deliveryDate = AirlinerHelpers.GetOrderDeliveryDate(orders);
-                    AirlineHelpers.OrderAirliners(airline, orders, homeAirport, deliveryDate);
-
-                    if (Settings.GetInstance().MailsOnAirlineRoutes)
-                    {
-                        foreach (AirlinerOrder order in orders)
-                        {
-                            GameObject.GetInstance()
-                                      .NewsBox.addNews(
-                                          new News(
-                                              News.NewsType.Airline_News,
-                                              GameObject.GetInstance().GameTime,
-                                              Translator.GetInstance().GetString("News", "1016"),
-                                              string.Format(
-                                                  Translator.GetInstance().GetString("News", "1016", "message"),
-                                                  airline.Profile.IATACode, order.Amount, order.Type.Name
-                                                 )));
-                        }
-                    }
-                }
+                DateTime deliveryDate = AirlinerHelpers.GetOrderDeliveryDate(orders);
+                AirlineHelpers.OrderAirliners(airline, orders, homeAirport, deliveryDate);
             }
         }
 

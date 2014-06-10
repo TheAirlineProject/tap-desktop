@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.Serialization;
@@ -15,6 +16,8 @@
     //the class for a profile for an airport
     public class AirportProfile : ISerializable
     {
+        private string logo;
+
         #region Constructors and Destructors
 
         public AirportProfile(
@@ -145,7 +148,21 @@
         public string ID { get; set; }
 
         [Versioning("logo")]
-        public string Logo { get; set; }
+        public string Logo
+        {
+            get
+            {
+                if (!File.Exists(this.logo))
+                {
+                    Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + this.IATACode + ".png";
+                }
+                return this.logo;
+            }
+            set
+            {
+                this.logo = value;
+            }
+        }
 
         [Versioning("majordestinations")]
         public Dictionary<string, int> MajorDestionations { get; set; }
@@ -218,7 +235,7 @@
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
@@ -412,7 +429,7 @@
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 

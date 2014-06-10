@@ -172,10 +172,6 @@
             {
                 return this.Routes.Count > 0;
             }
-            set
-            {
-                ;
-            }
         }
 
         [Versioning("homebase")]
@@ -210,10 +206,6 @@
             get
             {
                 return this.Pilots.Count;
-            }
-            private set
-            {
-                ;
             }
         }
 
@@ -254,7 +246,7 @@
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
@@ -321,7 +313,6 @@
         public void removeRoute(Route route)
         {
             this.Routes.Remove(route);
-
             route.TimeTable.Entries.RemoveAll(e => e.Airliner == this);
         }
 

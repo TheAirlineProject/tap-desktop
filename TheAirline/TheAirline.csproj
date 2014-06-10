@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
     <DebugSymbols>true</DebugSymbols>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
@@ -88,6 +88,9 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="De.TorstenMandelkow.MetroChart">
+      <HintPath>..\Resource\De.TorstenMandelkow.MetroChart.dll</HintPath>
+    </Reference>
     <Reference Include="MathNet.Numerics">
       <HintPath>..\packages\MathNet.Numerics.2.6.2\lib\net40\MathNet.Numerics.dll</HintPath>
     </Reference>
@@ -866,8 +869,7 @@
     <Compile Include="Model\AirlineModel\CodeshareAgreement.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerInsurance.cs" />
     <Compile Include="Model\AirlinerModel\EngineType.cs" />
-    <Compile Include="Model\AirlinerModel\AirlinerScheduleConfiguration.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\CombiRoute.cs" />
+    <Compile Include="Model\RouteModel\CombiRoute.cs" />
     <Compile Include="Model\AirportModel\AirportContract.cs" />
     <Compile Include="Model\AirlineModel\Alliance.cs" />
     <Compile Include="Model\AirlineModel\AllianceMember.cs" />
@@ -886,20 +888,20 @@
     <Compile Include="Model\AirlinerModel\Manufacturer.cs" />
     <Compile Include="Model\AirlinerModel\ManufacturerContract.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerOrder.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\CargoRoute.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\Flight.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\FlightAirlinerClass.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\Route.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\RouteAirlinerClass.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\RouteConfiguration.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\RouteEntryDestination.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\RouteFacility.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\PassengerRoute.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\RouteStatistics.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\RouteTimeTable.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\RouteTimeTableEntry.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\StopoverFlight.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\StopoverRoute.cs" />
+    <Compile Include="Model\RouteModel\CargoRoute.cs" />
+    <Compile Include="Model\RouteModel\Flight.cs" />
+    <Compile Include="Model\RouteModel\FlightAirlinerClass.cs" />
+    <Compile Include="Model\RouteModel\Route.cs" />
+    <Compile Include="Model\RouteModel\RouteAirlinerClass.cs" />
+    <Compile Include="Model\RouteModel\RouteConfiguration.cs" />
+    <Compile Include="Model\RouteModel\RouteEntryDestination.cs" />
+    <Compile Include="Model\RouteModel\RouteFacility.cs" />
+    <Compile Include="Model\RouteModel\PassengerRoute.cs" />
+    <Compile Include="Model\RouteModel\RouteStatistics.cs" />
+    <Compile Include="Model\RouteModel\RouteTimeTable.cs" />
+    <Compile Include="Model\RouteModel\RouteTimeTableEntry.cs" />
+    <Compile Include="Model\RouteModel\StopoverFlight.cs" />
+    <Compile Include="Model\RouteModel\StopoverRoute.cs" />
     <Compile Include="Model\AirportModel\AirlineAirportFacility.cs" />
     <Compile Include="Model\AirportModel\Airport.cs" />
     <Compile Include="Model\AirportModel\AirportFacility.cs" />
@@ -1118,8 +1120,6 @@
     <Resource Include="Data\images\United Nations.png" />
     <Resource Include="Data\images\video.png" />
     <Resource Include="Data\images\Wind.png" />
-    <Resource Include="Data\images\MoveAirliner.png" />
-    <Resource Include="Data\images\sell.png" />
     <Content Include="TheAirline.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

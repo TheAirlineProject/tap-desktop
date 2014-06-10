@@ -6,24 +6,25 @@
     using System.Reflection;
     using System.Runtime.Serialization;
 
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
 
+    /*! Flight airliner class.
+   * This class is used for an airliner class onboard of a flight
+   * The class needs parameters for type of class and the number of passengers
+   */
+
     [Serializable]
-    //the class for the stop over routes
-    public class StopoverRoute : ISerializable
+    public class FlightAirlinerClass : ISerializable
     {
         #region Constructors and Destructors
 
-        public StopoverRoute(Airport stopover)
+        public FlightAirlinerClass(RouteAirlinerClass aClass, int passengers)
         {
-            this.Legs = new List<Route>();
-            this.Stopover = stopover;
+            this.AirlinerClass = aClass;
+            this.Passengers = passengers;
         }
 
-        //adds a leg to the stopover route
-
-        private StopoverRoute(SerializationInfo info, StreamingContext ctxt)
+        private FlightAirlinerClass(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -84,17 +85,17 @@
 
         #region Public Properties
 
-        [Versioning("legs")]
-        public List<Route> Legs { get; set; }
+        [Versioning("class")]
+        public RouteAirlinerClass AirlinerClass { get; set; }
 
-        [Versioning("stopover")]
-        public Airport Stopover { get; set; }
+        [Versioning("passengers")]
+        public int Passengers { get; set; }
 
         #endregion
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
@@ -128,11 +129,6 @@
 
                 info.AddValue(att.Name, propValue);
             }
-        }
-
-        public void addLeg(Route leg)
-        {
-            this.Legs.Add(leg);
         }
 
         #endregion

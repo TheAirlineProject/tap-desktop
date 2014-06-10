@@ -133,11 +133,11 @@
 
                 if (File.Exists(imagePath))
                 {
-                    airline.Profile.addLogo(new AirlineLogo(imagePath));
+                    airline.Profile.AddLogo(new AirlineLogo(imagePath));
                 }
                 else
                 {
-                    airline.Profile.addLogo(
+                    airline.Profile.AddLogo(
                         new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
                 }
 

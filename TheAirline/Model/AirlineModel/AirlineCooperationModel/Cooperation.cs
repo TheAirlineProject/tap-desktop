@@ -46,25 +46,14 @@
 
                 if (prop != null)
                 {
-                    if (entry.Name.ToLower() == "type")
+                    if (prop is FieldInfo)
                     {
-                        var type = ((CooperationType)entry.Value);
-
-                        this.Type = CooperationTypes.GetCooperationType(type.Uid);
-                        
+                        ((FieldInfo)prop).SetValue(this, entry.Value);
                     }
                          
                     else
                     {
-
-                        if (prop is FieldInfo)
-                        {
-                            ((FieldInfo)prop).SetValue(this, entry.Value);
-                        }
-                        else
-                        {
-                            ((PropertyInfo)prop).SetValue(this, entry.Value);
-                        }
+                        ((PropertyInfo)prop).SetValue(this, entry.Value);
                     }
                 }
             }
@@ -107,7 +96,7 @@
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 

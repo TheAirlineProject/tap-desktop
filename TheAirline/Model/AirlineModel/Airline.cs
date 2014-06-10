@@ -2,8 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.CompilerServices;
     using System.Runtime.Serialization;
 
     using TheAirline.Model.AirlineModel.SubsidiaryModel;
@@ -18,8 +21,12 @@
 
     [Serializable]
     //the class for an airline
-    public class Airline : ISerializable
+    public class Airline : ISerializable, INotifyPropertyChanged
     {
+        private long dailyOperatingBalance;
+
+        private ObservableCollection<KeyValuePair<DateTime, double>> dailyOperatingBalanceHistory;
+
         #region Constructors and Destructors
 
         public Airline(
@@ -370,11 +377,53 @@
         [Versioning("routes")]
         public List<Route> _Routes { get; set; }
 
+        public double DailyOperatingBalance
+        {
+            get
+            {
+
+                return this.DailyOperatingBalanceHistory.Any()
+                    ? this.DailyOperatingBalanceHistory.OrderByDescending(dobh => dobh.Key).FirstOrDefault().Value
+                    : 0;
+            }
+        }
+
+        [Versioning("dailyoperatingbalancehistory")]
+        public ObservableCollection<KeyValuePair<DateTime, double>> DailyOperatingBalanceHistory
+        {
+            get
+            {
+                if (this.dailyOperatingBalanceHistory == null)
+                {
+                    this.dailyOperatingBalanceHistory = new ObservableCollection<KeyValuePair<DateTime, double>>();
+
+                    this.dailyOperatingBalanceHistory.CollectionChanged += delegate
+                    {
+                        OnPropertyChanged("DailyOperatingBalance");
+                    };
+                }
+
+                return this.dailyOperatingBalanceHistory;
+            }
+            protected set
+            {
+                if (value != null)
+                {
+                    this.dailyOperatingBalanceHistory = value;
+
+                    this.dailyOperatingBalanceHistory.CollectionChanged += delegate
+                    {
+                        OnPropertyChanged("DailyOperatingBalance");
+                    };
+                }
+            }
+        }
+
         #endregion
 
         #region Public Methods and Operators
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 4);
 
@@ -427,7 +476,6 @@
             lock (this.Fleet)
             {
                 this.Fleet.Add(airliner);
-                airliner.Airliner.Airline = this;
             }
         }
 
@@ -1018,6 +1066,35 @@
         #endregion
 
         //returns a policy for the airline
+        public bool hasRouteTo(Airport airport)
+        {
+            return
+                Routes.Any(
+                    r =>
+                        ((r.Destination1.Profile.IATACode == airport.Profile.IATACode)
+                         || (r.Destination2.Profile.IATACode == airport.Profile.IATACode)));
+        }
+
+        //returns a policy for the airline
+        public bool hasAirplaneOnRouteTo(Airport airport)
+        {
+            return
+                Routes.Any(
+                    r =>
+                        ((r.Destination1.Profile.IATACode == airport.Profile.IATACode)
+                         || (r.Destination2.Profile.IATACode == airport.Profile.IATACode)) && r.HasAirliner);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 
     //the list of airlines
