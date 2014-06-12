@@ -2315,7 +2315,22 @@
     </runways>
   </airport>
   <!--Turkmenistan-->
-  <airport name="Mary Airport" icao="UTAM" iata="MYP" type="Domestic" season="All_Year">
+   <airport name="Darwaz Airport" icao="OADZ" iata="DAZ" type="Domestic" season="All_Year">
+    <town town="Darwaz" country="238" GMT="05:00:00" DST="05:00:00" />
+    <coordinates>
+      <latitude value="038°27'39''N" />
+      <longitude value="070°52'56''E" />
+    </coordinates>
+    <size value="Smallest" pax="15" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+        <runways>
+      <runway name="9L/27R" length="2700" surface="Concrete" />
+      <runway name="9R/27L" length="1500" surface="Concrete" />
+    </runways>
+  </airport>
+   <airport name="Mary Airport" icao="UTAM" iata="MYP" type="Domestic" season="All_Year">
     <town town="Mary" country="238" GMT="05:00:00" DST="05:00:00" />
     <coordinates>
       <latitude value="037°37'09''N" />
@@ -3444,6 +3459,36 @@
     </terminals>
     <runways>
       <runway name="11/29" length="3750" surface="Asphalt" />
+    </runways>
+  </airport>
+  <!--Oman-->
+    <airport name="Khasab Airport" icao="OOKB" iata="KHS" type="Short_Haul_International" season="All_Year">
+    <town town="Khasab" country="178" GMT="04:00:00" DST="04:00:00" />
+    <coordinates>
+      <latitude value="026°10'15''N" />
+      <longitude value="056°14'26''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Salalah Airport" icao="OOSA" iata="SLL" type="Short_Haul_International" season="All_Year">
+    <town town="Salalah" country="178" GMT="04:00:00" DST="04:00:00" />
+    <coordinates>
+      <latitude value="017°02'19''N" />
+      <longitude value="054°05'28''E" />
+    </coordinates>
+    <size value="Small" pax="629" />
+    <terminals>
+      <terminal name="Terminal A" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="3342" surface="Asphalt" />
+      <runway name="17/35" length="1279" surface="Asphalt" />
     </runways>
   </airport>
   </airports>

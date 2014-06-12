@@ -374,7 +374,6 @@
         //returns a country with a specific tailnumberformat
         public static Country GetCountryFromTailNumber(string tailnumber)
         {
-            tailnumber = "PJ-AEK";
             Country country = GetCountries().Find(co => co.TailNumbers.isMatch(tailnumber));
 
             if (country != null)

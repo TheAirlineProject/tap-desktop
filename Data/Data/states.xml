@@ -74,6 +74,7 @@
 	<state country="122" name="New Jersey" shortname="NJ"  flag="USA - New Jersey"></state>
 	<state country="122" name="New Mexico" shortname="NM"  flag="USA - New Mexico"></state>
 	<state country="122" name="New York" shortname="NY"  flag="USA - New York"></state>
+		<state country="122" name="Northern Mariana Islands" shortname="MP"  flag="USA - Northern Mariana Islands" overseas="True" region="112"></state>
 	<state country="122" name="North Carolina" shortname="NC"  flag="USA - North Carolina"></state>
 	<state country="122" name="North Dakota" shortname="ND"  flag="USA - North Dakota"></state>
 	<state country="122" name="Ohio" shortname="OH"  flag="USA - Ohio"></state>

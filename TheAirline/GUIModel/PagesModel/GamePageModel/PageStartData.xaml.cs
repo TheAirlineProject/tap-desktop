@@ -154,6 +154,8 @@
                 var region = (Region)this.cbRegion.SelectedItem;
                 var continent = (Continent)this.cbContinent.SelectedItem;
 
+              
+
                 List<Airline> airlines =
                     Airlines.GetAirlines(
                         airline =>

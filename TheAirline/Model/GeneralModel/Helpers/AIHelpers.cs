@@ -857,8 +857,8 @@
                 oRoutes.Where(
                     r =>
                         (r.Type == Route.RouteType.Mixed || r.Type == Route.RouteType.Passenger)
-                        && (r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2)
-                        || (r.Destination2 == route.Destination1 && r.Destination1 == route.Destination2));
+                        && ((r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2)
+                        || (r.Destination2 == route.Destination1 && r.Destination1 == route.Destination2)));
 
             if (sameRoutes.Count() > 0)
             {

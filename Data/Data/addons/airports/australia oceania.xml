@@ -120,6 +120,35 @@
       <runway name="17/35" length="1509" surface="Grass" />
     </runways>
   </airport>
+  <!--Northern Marianas Islands-->
+   <airport name="Rota International Airport" icao="PGRO" iata="ROP" type="Domestic" season="All_Year">
+    <town town="Rota Island, MP" country="122" GMT="10:00:00" DST="10:00:00" />
+    <coordinates>
+      <latitude value="014°10'27''N" />
+      <longitude value="145°14'34''E" />
+    </coordinates>
+    <size value="Smallest" pax="56" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1829" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Tinian International Airport" icao="PGWT" iata="TIQ" type="Domestic" season="All_Year">
+    <town town="Tinian Island, MP" country="122" GMT="10:00:00" DST="10:00:00" />
+    <coordinates>
+      <latitude value="014°59'57''N" />
+      <longitude value="145°37'08''E" />
+    </coordinates>
+    <size value="Smallest" pax="50" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2621" surface="Asphalt" />
+    </runways>
+  </airport> 
   <!--Samoa, American (NS**)-->
   <airport name="Pago Pago International Airport" icao="NSTU" iata="PPG" type="Long_Haul_International"
            season="All_Year">
@@ -1114,21 +1143,7 @@
       <runway name="16/34" length="579" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Dillingham Airport" icao="PADL" iata="DLG" type="Regional" season="All_Year">
-    <town town="Dillingham, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
-    <coordinates>
-      <latitude value="059°02'40''N" />
-      <longitude value="158°30'18''W" />
-    </coordinates>
-    <size value="Smallest" pax="42" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="1/19" length="1951" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Unalaska Airport" icao="PADU" iata="DUT" type="Regional" season="All_Year">
+    <airport name="Unalaska Airport" icao="PADU" iata="DUT" type="Regional" season="All_Year">
     <town town="Unalaska, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="053°54'00''N" />
@@ -1251,20 +1266,7 @@
       <runway name="14/32" length="3531" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hoonah Airport" icao="PAOH" iata="HNH" type="Regional" season="All_Year">
-    <town town="Hoonah, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
-    <coordinates>
-      <latitude value="058°05'45''N" />
-      <longitude value="135°24'36''W" />
-    </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="6/24" length="913" surface="Asphalt" />
-    </runways>
-  </airport>
+
   <airport name="Petersburg James A Johnson Airport" icao="PAPG" iata="PSG" type="Regional" season="All_Year">
     <town town="Petersburg, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
@@ -1321,20 +1323,7 @@
       <runway name="6/24" length="1984" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Wrangell Airport" icao="PAWG" iata="WRG" type="Regional" season="All_Year">
-    <town town="Wrangell, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
-    <coordinates>
-      <latitude value="056°29'03''N" />
-      <longitude value="132°22'11''W" />
-    </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="10/28" length="1828" surface="Asphalt" />
-    </runways>
-  </airport>
+ 
   <!--United States (Guam) (PG**)-->
   <airport name="Francisco C. Ada Saipan International Airport" icao="PGSN" iata="SPN" type="Short_Haul_International"
            season="All_Year">

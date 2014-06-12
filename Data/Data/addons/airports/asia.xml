@@ -242,7 +242,7 @@
       <latitude value="023°37'59''N" />
       <longitude value="058°31'59''E" />
     </coordinates>
-    <size value="Medium" pax="6479" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="8310" cargo="Large" cargovolume="120" />
     <terminals>
       <terminal name="Terminal" gates="14" />
     </terminals>
@@ -2014,7 +2014,7 @@
       <latitude value="037°59'13''N" />
       <longitude value="058°21'39''E" />
     </coordinates>
-    <size value="Very_small" pax="294" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1500" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="24" />
     </terminals>
