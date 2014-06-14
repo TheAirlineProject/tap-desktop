@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Zagros Airlines" iata="ZV" color="LightBlue" country="177" CEO="Babak Eskandar Alinejad" mentality="Moderate" market="Global" preferedairport="THR">
+    <narrative narrative=" Zagros Airlines is an Iranian airline based at Mehrabad Airport in Tehran with a second hub at Abadan Airport. They serve 12 domestic airports, 3 in Iraq, Kuwait, 3 in Turkey and Dubai,UAE. They have 12 planes, 6 MD-82's, 4 MD-83's, and 2 A320's.  " /></profile>
+  <info real="True" from="2005" to="2199" />
+</airline>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Jet America Airlines" iata="SI" logo="SI2" color="Blue" country="122" CEO="Alan Kenison " mentality="Safe" market="Local" preferedairport="LGB">
+    <narrative narrative=" Founded in 1980 Jet America was headed by executives from AirCal and Air Florida. It's main base was Long Beach,CA. At it's height they served 12 destinations. Besides Long Beach they served Orange County,CA, Oakland,CA, Chicago,Minneapolis,St. Louis,Portland,OR ,Dallas, Detroit, Washington DC, Seattle, and Las Vegas. They had 8 MD-82s and 2 707's. In 1986 they were bought by Alaskan Airlines Group and merged in 1987 after an attempt at being operated seperatly proved too costly. " /></profile>
+  <info real="True" from="1980" to="1987" />
+</airline>

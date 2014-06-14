@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="New York Air" iata="NY" color="Brown" country="122" CEO="Mike Arnone" mentality="Aggressive" market="Local" preferedairport="LGA">
+    <narrative narrative="New York Air was based at LaGuardia in New York City. It was founded in 1980 by Frank Lorenzo and his Texas Air Corporation who also owned Texas International Airlines and Continental and merged the two airlines. They served 27 destinations in 13 states in 1985, all in the eastern U.S. At the end they had 20 DC-9's,12 MD-82's, and 8 737-300's. New York Air Connection was ran by the original Colgan Air using using Shorts 330's and Beech 1900's.In 1987 they merged with their parent companies Continental Airlines. " />
+  </profile>
+  <info real="True" from="1980" to="1987"></info>
+</airline>

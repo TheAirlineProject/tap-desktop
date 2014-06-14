@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Pacific Air Lines" iata="PC" logo="PC2" color="DarkRed" country="122" CEO="Leland Hayward" mentality="Moderate" market="Local" preferedairport="SFO">
+    <narrative narrative="  Pacific Air Lines was founded in 1941 as Southwest Airways, not to be confused with the more modern Southwest Airlines of Dallas. It's hub was San Francisco. In 1958 it got the name Pacific. It served 29 airports in California, 2 in Nevada and Portland,OR as of 1968. 12 of these were serviced with 727's. They also had F-27's. In 1968 they merged with Bonanza Air Lines and West Coast Airlines to form Air West, who would be bought by Howard Hughes and renamed Hughes Air West two years later. " /></profile>
+  <info real="True" from="1941" to="1968" />
+</airline>

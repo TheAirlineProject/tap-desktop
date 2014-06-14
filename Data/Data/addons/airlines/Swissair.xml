@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Swissair" iata="SR" logo="SR" color="Red" country="164" CEO="Mario Corti" mentality="Aggressive" market="Global" preferedairport="ZRH">
+    <narrative narrative="Swissair was the flag carrier of Switzerland from 1931 to 2002. In 2002 after financial trouble it was taken over by it's sister airline which was also owned by the SAirGroup called Crossair. They merged to form Swiss International Airlines becoming a new entity. Swiss had hubs at Zurich,Geneva, and Basel-Mulhouse. It was formed in 1931 when Balair and Ad Astra Aero merged. The the end it had 76 planes. most of them went to the new airline. This includes 15 A340's, 14 A330's, 8 A321's, 24 A320's, and 5 A319's. They served 157 destinations worldwide. The new airline would become a part of the Lufthansa Group in 2005. " /></profile>
+  <info real="True" from="1931" to="2002" />
+</airline>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Sabena" iata="SN" logo="SN2" color="Purple" country="107" CEO="Christophe Muller" mentality="Aggressive" market="Global" preferedairport="BRU">
+    <narrative narrative=" Sabena was the flag carrier of Belgium from 1923-2001 when it went bankrupt. The newly formed SN Brussels took over some of it's assets afterwards. And they went on to merge with Virgin Express in 2007 to become simly Brussels Airlines. At the time of thier collapse they served 99 destinations globally and had 51 planes. 15 A319's, 6 A320's, 3 A321's, 7 A330's, 4 A340's, 11 737's, and 2 MD-11's.   " /></profile>
+  <info real="True" from="1923" to="2001" />
+</airline>

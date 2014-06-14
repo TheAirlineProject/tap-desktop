@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Crossair" iata="LX" logo="LX2" color="Red" country="164" CEO="Andraos " mentality="Aggressive" market="Regional" preferedairport="BSL">
+    <narrative narrative="Crossair was an airline based at Basel-Mulhouse,Switzerland and was a sister airline to Swissair, both being owned by the SAir Group. It was founded in 1978 as Business Flyers Basel AG but changed it's name in 1979 to Crossair and began flights from Zurich to Nuremberg,Innsbruck and Klagenfurt. In 2002 it merged with the financially troubled Swissair to form Swiss International Airlines, simply known as Swiss with the air dropped. The new airline became part of the Lufthansa Group in 2005 and uses the same code as Crossair, LX. It had 88 planes at its end, some of the planes it had over its life include 26 Embraer 145's, 12 MD-83's, 32 Saab 2000's, 34 Saab 340's and 16 Avro RJ-100's." /></profile>
+  <info real="True" from="1978" to="2002" />
+</airline>

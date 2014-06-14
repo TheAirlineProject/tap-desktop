@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Biman Bangladesh Airlines" iata="BG" color="DarkGreen" country="216" CEO="Air Marshal Mosaddique Ahmed" mentality="Aggressive" market="Global" preferedairport="DAC">
+    <narrative narrative="Biman Bangladesh are the flag carrier of Bangladesh and are based out of Shahjalal Airport in the capital and largest city of Dhaka. As of April 2014 they serve 22 cities in 16 countries. They also fly to Europe and many place in the Middle East. Their current fleet of 10 planes consists of six 777's, two 737-800's, and two A310's. They have two more 737's on order and have four 787-8's on order but are not expected to take delivery until 2019 at the earliest. They own their own catering service, ground handling service, flight school and a chicken farm where 90% of the eggs layed end up being served through the catering service." />
+  </profile>
+  <info real="True" from="1972" to="2199" />
+</airline>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Travel Service Airlines" logo="QS2" iata="QS" color="DarkBlue" country="166" CEO="Roman Vik" mentality="Aggressive" market="Global" preferedairport="PRG">
+    <narrative narrative="Travel Service Airlines are based out of Prague,Czech Republic. It's mainly a charter airline and leases planes to other airlines. They have four subsidiaries, Travel Service Poland, Travel Service Slovakia, Travel Service Hungary and Smart Wings. They cater to 46 destinations around the world. Their fleet of planes include 29 737-800s, 10 A320's and a few Cessna Citations, this does not include their subsidiaries." /></profile>
+  <info real="True" from="1998" to="2199" />
+</airline>

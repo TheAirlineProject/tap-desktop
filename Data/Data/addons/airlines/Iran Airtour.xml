@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Iran Airtour" iata="B9" color="Purple" country="177" CEO="Abbas Fallah" mentality="Safe" market="Regional" preferedairport="THR">
+    <narrative narrative=" Iran Airtour is a subsidiary or Iran Air and acts as a low cost airline. It is based at Tehran Mehrabad Airport and Mashhad. It serves 17 domestic airports and Baghdad,Iraq, Dubai,UAE, and Damascus,Syria. It has 10 MD-82's and 5 Tu-204s on order." /></profile>
+  <info real="True" from="1973" to="2199" />
+</airline>

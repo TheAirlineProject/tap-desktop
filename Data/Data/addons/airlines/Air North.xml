@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Air North" iata="4N" color="Blue" country="113" CEO="Joseph Sparling" mentality="Moderate" market="Regional" preferedairport="YXY">
+  <narrative narrative="Air North is based out of Whitehorse in Canada's Yukon Territories. All but one of their 10 destinations are in Canada, that being Fairbanks,Alaska. They have five 737's, all older versions, and five Hawker Siddeley HS 748's." />
+</profile>
+<info real="True" from="1977" to="2199"></info>
+</airline> 

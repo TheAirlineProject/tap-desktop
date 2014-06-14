@@ -2958,6 +2958,192 @@
       <runway name="10/28" length="3100" surface="Asphalt" />
     </runways>
   </airport>
+   <airport name="Smara Airport" icao="GMMA" iata="SMW" type="Domestic" season="All_Year">
+    <town town="Smara" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="026°43'54''N" />
+      <longitude value="011°41'04''W" />
+    </coordinates>
+    <size value="Smallest" pax="15" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="3002" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Dakhla Airport" icao="GMMH" iata="VIL" type="Short_Haul_International" season="All_Year">
+    <town town="Dakhla" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="023°43'05''N" />
+      <longitude value="015°55'55''W" />
+    </coordinates>
+    <size value="Smallest" pax="42" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Hassan I Airport" icao="GMML" iata="EUN" type="Short_Haul_International" season="All_Year">
+    <town town="El Aaiún" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="027°09'06''N" />
+      <longitude value="013°13'09''W" />
+    </coordinates>
+    <size value="Smallest" pax="108" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2701" surface="Asphalt" />
+      <runway name="04/22" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Saniat Rmel Airport" icao="GMTN" iata="TTU" type="Short_Haul_International" season="All_Year">
+    <town town="Saniat" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="035°35'39''N" />
+      <longitude value="005°19'12''W" />
+    </coordinates>
+    <size value="Smallest" pax="15" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="2300" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Mogador Airport" icao="GMMI" iata="ESU" type="Short_Haul_International" season="All_Year">
+    <town town="Essaouira" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="031°23'50''N" />
+      <longitude value="009°40'54''W" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="2100" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Cherif Al Idrissi Airport" icao="GMTA" iata="AHU" type="Short_Haul_International" season="All_Year">
+    <town town="Al Hoceima" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="035°10'37''N" />
+      <longitude value="003°50'22''W" />
+    </coordinates>
+    <size value="Smallest" pax="44" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ouarzazate Airport" icao="GMMZ" iata="OZZ" type="Short_Haul_International" season="All_Year">
+    <town town="Ouarzazate" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="030°56'20''N" />
+      <longitude value="006°54'33''W" />
+    </coordinates>
+    <size value="Smallest" pax="60" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Angads Airport" icao="GMFO" iata="OUD" type="Long_Haul_International" season="All_Year">
+    <town town="Oujda" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="034°47'13''N" />
+      <longitude value="001°55'26''W" />
+    </coordinates>
+    <size value="Very_small" pax="448" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Nador International Airport" icao="GMMW" iata="NDR" type="Long_Haul_International" season="All_Year">
+    <town town="Nador" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="034°59'19''N" />
+      <longitude value="003°01'41''W" />
+    </coordinates>
+    <size value="Small" pax="602" />
+    <terminals>
+      <terminal name="Terminal A" gates="15" />
+      <terminal name="Terminal B" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Saïss Airport" icao="GMFF" iata="FEZ" type="Long_Haul_International" season="All_Year">
+    <town town="Fes" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="033°55'38''N" />
+      <longitude value="004°58'40''W" />
+    </coordinates>
+    <size value="Small" pax="654" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="3200" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Al Massira Airport" icao="GMAD" iata="AGA" type="Long_Haul_International" season="All_Year">
+    <town town="Agadir" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="030°19'30''N" />
+      <longitude value="009°24'47''W" />
+    </coordinates>
+    <size value="Small" pax="1385" />
+    <terminals>
+      <terminal name="Terminal A" gates="30" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="3200" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Rabat-Salé Airport" icao="GMME" iata="RBA" type="Long_Haul_International" season="All_Year">
+    <town town="Rabat" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="034°03'05''N" />
+      <longitude value="006°45'05''W" />
+    </coordinates>
+    <size value="Very_small" pax="351" />
+    <terminals>
+      <terminal name="Terminal A" gates="19" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="3500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ibn Batouta Airport" icao="GMTT" iata="TNG" type="Long_Haul_International" season="All_Year">
+    <town town="Tangier" country="133" GMT="00:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="035°43'36''N" />
+      <longitude value="005°55'00''W" />
+    </coordinates>
+    <size value="Small" pax="646" />
+    <terminals>
+      <terminal name="Terminal A" gates="19" />
+      <terminal name="Terminal B" gates="16" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="2000" surface="Asphalt" />
+      <runway name="10/28" length="3500" surface="Asphalt" />
+    </runways>
+  </airport>
   <!--Senegal (GO**)-->
   <airport name="Léopold Sédar Senghor International Airport" icao="GOOY" iata="DKR" type="Long_Haul_International"
            season="All_Year">

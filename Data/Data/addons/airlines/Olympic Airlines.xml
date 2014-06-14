@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Olympic Airlines" iata="OA" logo="OA2" color="Blue" country="118" CEO="Pyrros D. Papadimitriou " mentality="Aggressive" market="Global" preferedairport="ATH">
+    <narrative narrative=" Olympic Airlines also known as Olympic Airways was the flag carrier of Greece from 1957 to 2009 when it collapsed and was then aquired by Aegean Airlines being reformed into a subsidiary called Olympic Air. It's main base was Athens as is the current incarnation's. In 2009 they had 43 planes and served 50 destinations. Macedonian Airlines was also one it's subsidiaries. At their height they served 37 domestic and 32 international destinations in 23 countries. " /></profile>
+  <info real="True" from="1957" to="2009" />
+</airline>

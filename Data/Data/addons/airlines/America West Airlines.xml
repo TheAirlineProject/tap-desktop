@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="America West Airlines" iata="HP" logo="HP" color="LightGreen" country="122" CEO="Doug Parker" mentality="Aggressive" market="Regional" preferedairport="PHX">
+    <narrative narrative=" America West operated from 1981 to 2005 and was the second largest low fare airline in the U.S after Southwest Airlines. It's main base was Phoenix with another at Las Vegas. In 2005 it had 140 planes and served 100 destinations in the US,Canada, and Mexico. It had codeshare agreements with other airlines for European service. It's final fleet was 55 A320's, 39 A319's, 27 737-300's, and 12 757's. In the past it also had 64 737-200's, 8 737-100's, 4 747-200's, and 12 Dash 8-100's. It merged with U.S Airways in 2005 helping out that bankrupt company, but used the U.S Airways name. The new U.S Airways would pretty much be America West with a new name and livery. They still used the America West callsign of Cactus and one of their main hubs was still Phoenix. In 2013 U.S Airways would merge with American Airlines making American Airlines the largest airline in the world.  " /></profile>
+  <info real="True" from="1981" to="2005" />
+</airline>

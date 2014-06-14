@@ -1,8 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
 <airline>
-  <profile name="Blue Air" iata="0B" color="Black" country="147" CEO="Sheriff Ussama" mentality="Safe" market="Global"
-           preferedairport="OTP">
-  </profile>
+  <profile name="Blue Air" iata="0B" color="SkyBlue" country="147" CEO="Gheorghe Racaru" mentality="Moderate" market="Regional" preferedairport="OTP">
+    <narrative narrative="Blue Air was founded in 2004 and is based mainly at Bucharest-Henri Coanda Airport. It is a low-cost airline. It has 26 destinations througout Europe. It's 10 planes are all older 737's, eight of them being the 400 type." /></profile>
   <info real="True" from="2004" to="2199" />
 </airline>
