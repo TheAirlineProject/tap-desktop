@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
+    using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
@@ -148,7 +148,7 @@
                         airport.LastExpansionDate = GameObject.GetInstance().GameTime;
                     }
                 }
-                    //build new terminal
+                //build new terminal
                 else
                 {
                     int numberOfGates = airport.Terminals.getTerminals()[0].Gates.NumberOfDeliveredGates;
@@ -658,7 +658,123 @@
 
             return minDistance;
         }
+        //sets the airport expansion to an airport
+        public static void SetAirportExpansion(Airport airport, AirportExpansion expansion, Boolean onStartUp = false)
+        {
+            if (expansion.Type == AirportExpansion.ExpansionType.Name)
+            {
 
+                if (expansion.NotifyOnChange && !onStartUp)
+                {
+                    GameObject.GetInstance()
+                      .NewsBox.addNews(
+                          new News(
+                              News.NewsType.Airport_News,
+                              GameObject.GetInstance().GameTime,
+                              "Airport Name Changed",
+                              string.Format(
+                                  "[LI airport={0}]({1}) has changed its name to {2}",
+                                  airport.Profile.IATACode,
+                                  new AirportCodeConverter().Convert(airport),
+                                expansion.Name)));
+                }
+
+                airport.Profile.Name = expansion.Name;
+
+            }
+            if (expansion.Type == AirportExpansion.ExpansionType.New_runway)
+            {
+                Runway runway = new Runway(expansion.Name, expansion.Length, expansion.Surface, expansion.Date, true);
+                airport.Runways.Add(runway);
+
+                if (expansion.NotifyOnChange && !onStartUp)
+                {
+                    GameObject.GetInstance()
+                     .NewsBox.addNews(
+                         new News(
+                             News.NewsType.Airport_News,
+                             GameObject.GetInstance().GameTime,
+                             "New Runway",
+                             string.Format(
+                                 "[LI airport={0}]({1}) has created a new runway",
+                                 airport.Profile.IATACode,
+                                 new AirportCodeConverter().Convert(airport))));
+                }
+            }
+            if (expansion.Type == AirportExpansion.ExpansionType.New_terminal)
+            {
+                Terminal terminal = new Terminal(airport, expansion.Name, expansion.Gates, expansion.Date);
+                airport.addTerminal(terminal);
+
+                if (expansion.NotifyOnChange && !onStartUp)
+                {
+                    GameObject.GetInstance()
+                     .NewsBox.addNews(
+                         new News(
+                             News.NewsType.Airport_News,
+                             GameObject.GetInstance().GameTime,
+                             "New Terminal",
+                             string.Format(
+                                 "[LI airport={0}]({1}) has created a new terminal with {2} gates",
+                                 airport.Profile.IATACode,
+                                 new AirportCodeConverter().Convert(airport),
+                               expansion.Gates)));
+                }
+            }
+            if (expansion.Type == AirportExpansion.ExpansionType.Extra_gates)
+            {
+                Terminal terminal = airport.Terminals.AirportTerminals.FirstOrDefault(t => t.Name == expansion.Name);
+
+                if (terminal != null)
+                {
+                    for (int i = 0; i < expansion.Gates; i++)
+                        terminal.Gates.addGate(new Gate(expansion.Date));
+
+                    if (expansion.NotifyOnChange && !onStartUp)
+                    {
+                        GameObject.GetInstance()
+                         .NewsBox.addNews(
+                             new News(
+                                 News.NewsType.Airport_News,
+                                 GameObject.GetInstance().GameTime,
+                                 "New Gates at Airport",
+                                 string.Format(
+                                     "[LI airport={0}]({1}) has created {2} gates in {3}",
+                                     airport.Profile.IATACode,
+                                     new AirportCodeConverter().Convert(airport),
+                                   expansion.Gates,
+                                   expansion.Name)));
+                    }
+                }
+            }
+            if (expansion.Type == AirportExpansion.ExpansionType.Close_terminal)
+            {
+                Terminal terminal = airport.Terminals.AirportTerminals.FirstOrDefault(t => t.Name == expansion.Name);
+
+                if (terminal != null)
+                {
+                    airport.removeTerminal(terminal);
+
+                    if (expansion.NotifyOnChange && !onStartUp)
+                    {
+                        GameObject.GetInstance()
+                         .NewsBox.addNews(
+                             new News(
+                                 News.NewsType.Airport_News,
+                                 GameObject.GetInstance().GameTime,
+                                 "Closed Terminal",
+                                 string.Format(
+                                     "[LI airport={0}]({1}) has closed its terminal {2}",
+                                     airport.Profile.IATACode,
+                                     new AirportCodeConverter().Convert(airport),
+                                     expansion.Name)));
+                    }
+                }
+            }
+            //close terminal
+
+
+        }
         //returns if an airline has enough free slots at an airport
 
         //returns the yearly payment for a number of gates
@@ -698,7 +814,7 @@
         public static Boolean HasBadWeather(Airport airport)
         {
             return false;
-                //airport.Weather[0].WindSpeed == Weather.eWindSpeed.Hurricane || airport.Weather[0].WindSpeed == Weather.eWindSpeed.Violent_Storm;
+            //airport.Weather[0].WindSpeed == Weather.eWindSpeed.Hurricane || airport.Weather[0].WindSpeed == Weather.eWindSpeed.Violent_Storm;
         }
 
         public static Boolean HasFreeGates(Airport airport, Airline airline)
@@ -1044,7 +1160,7 @@
                 double maxTemp = Math.Min(average.TemperatureMax, previousTemperature + 5);
 
                 temperatureHigh = MathHelpers.GetRandomDoubleNumber(Math.Max(maxTemp - 5, temperatureLow), maxTemp + 5);
-                    //rnd.NextDouble() * ((maxTemp + 5) - Math.Max(maxTemp - 5, temperatureLow + 2)) + Math.Max(maxTemp - 5, temperatureLow + 2);
+                //rnd.NextDouble() * ((maxTemp + 5) - Math.Max(maxTemp - 5, temperatureLow + 2)) + Math.Max(maxTemp - 5, temperatureLow + 2);
             }
 
             double tempDiff = temperatureHigh - temperatureLow;

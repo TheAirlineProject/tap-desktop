@@ -1481,6 +1481,9 @@
       <runway name="01/19" length="3560" surface="Asphalt" />
       <runway name="14/32" length="1700" surface="Asphalt" />
     </runways>
+     <expansions>
+     <expansion type="New_runway" name="1/19" length="3300" surface="Asphalt" date="12.01.2016 00:00:00" notify="True"></expansion>
+   </expansions>
   </airport>
   <airport name="Gold Coast Airport" icao="YBCG" iata="OOL" type="Long_Haul_International" season="All_Year">
     <town town="Coolangatta, QLD" country="116" GMT="10:00:00" DST="11:00:00" />

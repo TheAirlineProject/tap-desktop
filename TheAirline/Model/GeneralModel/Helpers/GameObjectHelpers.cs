@@ -1438,6 +1438,12 @@
                         }
                     }
                 }
+                //checks for airport expansions
+                foreach (AirportExpansion expansion in airport.Profile.Expansions.Where(e=>e.Date.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+                {
+                    AirportHelpers.SetAirportExpansion(airport,expansion);
+                }
+
             } //);
             //checks for airliners for the human airline
             foreach (

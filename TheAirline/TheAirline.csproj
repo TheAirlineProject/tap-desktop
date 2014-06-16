@@ -870,6 +870,7 @@
     <Compile Include="Model\AirlinerModel\AirlinerInsurance.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerScheduleConfiguration.cs" />
     <Compile Include="Model\AirlinerModel\EngineType.cs" />
+    <Compile Include="Model\AirportModel\AirportExpansion.cs" />
     <Compile Include="Model\RouteModel\CombiRoute.cs" />
     <Compile Include="Model\AirportModel\AirportContract.cs" />
     <Compile Include="Model\AirlineModel\Alliance.cs" />

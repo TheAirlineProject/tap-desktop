@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<airline>
-  <profile name="Cambodia Angkor Air" iata="K6" color="Purple" country="KHM" CEO="Trinh Hong Quang" mentality="Moderate" market="Regional" preferedairport="PNH">
-    <narrative narrative="Cambodia Angkor air is the flag carrier of Cambodia, founded in 2009. It is owned 51% by the government and 49% by Vietnam Airlines. It has two bases, one at Phnom Penh and another at Siem Reap. It has 5 destinations in China,2 in Vietnam and aBangkok in Thailand and also flies to Sihanoukville in Cambodia. As of 2014 it has four A321's and three ATR-72's. " /></profile>
-  <info real="True" from="2009" to="2199" />
-</airline>

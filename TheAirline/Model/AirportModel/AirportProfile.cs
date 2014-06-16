@@ -36,6 +36,7 @@
         {
             this.PaxValues = new List<PaxValue>();
 
+            this.Expansions = new List<AirportExpansion>();
             this.Name = name;
             this.Period = period;
             this.IATACode = code;
@@ -96,6 +97,9 @@
                     prop.SetValue(this, ver.DefaultValue);
                 }
             }
+
+            if (version == 1)
+                this.Expansions = new List<AirportExpansion>();
         }
 
         #endregion
@@ -116,6 +120,8 @@
         #endregion
 
         #region Public Properties
+        [Versioning("expansions")]
+        public List<AirportExpansion> Expansions { get; set; }
 
         [Versioning("cargo")]
         public GeneralHelpers.Size Cargo { get; set; }
@@ -237,7 +243,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
             IList<PropertyInfo> props =
@@ -272,7 +278,11 @@
 
             this.PaxValues.Add(tPaxValue);
         }
-
+        //adds an expansion to the airport
+        public void addExpansion(AirportExpansion expansion)
+        {
+            this.Expansions.Add(expansion);
+        }
         #endregion
 
         //returns the current pax value

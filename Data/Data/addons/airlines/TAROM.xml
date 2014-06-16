@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <airline>
   <profile name="TAROM" iata="RO" color="Blue" country="147" CEO="Christian Edouard Heinzmann" mentality="Aggressive" market="Global" preferedairport="OTP">
-    <narrative narrative="TAROM were founded in 1920 as CFRNA - (French-Romanian Company for Air Navigation). Their current name adopted in 1954 means Transporturi Aeriene Romane - Romanian Air Transport. They are the flag carrier of Romania. Based in the Bucharest suburb of Otopeni they fly to 53 destinations in Europe, the Middle East and North Africa, and have 24 planes. They are a member of SkyTeam." />
+    <narrative narrative="TAROM were founded in 1920 as CFRNA - (French-Romanian Company for Air Navigation). Their current name adopted in 1954 means Transporturi Aeriene Romaine - Romanian Air Transport. They are the flag carrier of Romania. Based in the Bucharest suburb of Otopeni they fly to 53 destinations in Europe, the Middle East and North Africa, and have 24 planes. They are a member of SkyTeam." />
   </profile>
   <info real="True" from="1920" to="2199" />
 </airline>

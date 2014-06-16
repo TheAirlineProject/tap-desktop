@@ -192,7 +192,7 @@
                     var subMarket =
                         (Airline.AirlineFocus)
                             Enum.Parse(typeof(Airline.AirlineFocus), subsidiaryElement.Attributes["market"].Value);
-                    
+
                     string subLogo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\"
                                      + subsidiaryElement.Attributes["logo"].Value + ".png";
 
@@ -554,17 +554,17 @@
             }
 
 
-			var airlines = Airlines.GetAllAirlines().FindAll(a => a.Profile.PreferedAirport == null);
-			var airlineLogos = Airlines.GetAllAirlines().FindAll(a => a.Profile.Logos.Count==0);
+            var airlines = Airlines.GetAllAirlines().FindAll(a => a.Profile.PreferedAirport == null);
+            var airlineLogos = Airlines.GetAllAirlines().FindAll(a => a.Profile.Logos.Count==0);
 
-			foreach (Airline noLogoAirline in airlineLogos)
-				Console.WriteLine(noLogoAirline.Profile.Name);
+            foreach (Airline noLogoAirline in airlineLogos)
+                Console.WriteLine(noLogoAirline.Profile.Name);
 
-			var noRunwayAirports = Airports.GetAirports(a => a.Runways.Count == 0);
-			var cargoAirliners = AirlinerTypes.GetAllTypes().FindAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
+            var noRunwayAirports = Airports.GetAirports(a => a.Runways.Count == 0);
+            var cargoAirliners = AirlinerTypes.GetAllTypes().FindAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
 
-			foreach (Airport airport in noRunwayAirports)
-				Console.WriteLine(airport.Profile.Name);
+            foreach (Airport airport in noRunwayAirports)
+                Console.WriteLine(airport.Profile.Name);
 
             */
         }
@@ -2507,7 +2507,7 @@
                     }
                     else
                     {
-                       
+
                         eTown = new Town(town, Countries.GetCountry(country));
                     }
 
@@ -2570,6 +2570,72 @@
 
                         airport.Runways.Add(
                             new Runway(runwayName, runwayLength, surface, new DateTime(1900, 1, 1), true));
+                    }
+
+                    XmlNodeList expansionsList = airportElement.SelectNodes("expansions/expansion");
+
+                    foreach (XmlElement expansionNode in expansionsList)
+                    {
+
+                        AirportExpansion.ExpansionType expansionType =
+                             (AirportExpansion.ExpansionType)
+                                 Enum.Parse(typeof(AirportExpansion.ExpansionType), expansionNode.Attributes["type"].Value);
+
+                        DateTime expansionDate = Convert.ToDateTime(
+                    expansionNode.Attributes["date"].Value,
+                    new CultureInfo("en-US", false));
+
+                        Boolean expansionNotify = Convert.ToBoolean(expansionNode.Attributes["notify"].Value);
+
+                        AirportExpansion expansion = new AirportExpansion(expansionType, expansionDate, expansionNotify);
+
+                        if (expansionType == AirportExpansion.ExpansionType.Name)
+                        {
+                            string expansionName = expansionNode.Attributes["name"].Value;
+
+                            expansion.Name = expansionName;
+                        }
+                        if (expansionType == AirportExpansion.ExpansionType.New_runway)
+                        {
+                            string expansionName = expansionNode.Attributes["name"].Value;
+                            long length = Convert.ToInt64(expansionNode.Attributes["length"].Value);
+
+                            var surface =
+                      (Runway.SurfaceType)
+                          Enum.Parse(typeof(Runway.SurfaceType), expansionNode.Attributes["surface"].Value);
+
+                            expansion.Name = expansionName;
+                            expansion.Length = length;
+                            expansion.Surface = surface;
+                        }
+             
+                        if (expansionType == AirportExpansion.ExpansionType.New_terminal)
+                        {
+                            string expansionName = expansionNode.Attributes["name"].Value;
+                            int gates = Convert.ToInt16(expansionNode.Attributes["gates"].Value);
+
+                            expansion.Name = expansionName;
+                            expansion.Gates = gates;
+                        }
+                        if (expansionType == AirportExpansion.ExpansionType.Extra_gates)
+                        {
+                            string expansionName = expansionNode.Attributes["name"].Value;
+                            int gates = Convert.ToInt16(expansionNode.Attributes["gates"].Value);
+
+                            expansion.Name = expansionName;
+                            expansion.Gates = gates;
+                        }
+                        if (expansionType == AirportExpansion.ExpansionType.Close_terminal)
+                        {
+                            string expansionName = expansionNode.Attributes["name"].Value;
+                            int gates = Convert.ToInt16(expansionNode.Attributes["gates"].Value);
+
+                            expansion.Name = expansionName;
+                            expansion.Gates = gates;
+                        }
+                        airport.Profile.addExpansion(expansion); 
+
+                       
                     }
 
                     if (Airports.GetAirport(a => a.Profile.ID == airport.Profile.ID) == null)
@@ -3998,6 +4064,12 @@
                     }
 
                     AirportHelpers.CreateAirportWeather(airport);
+
+                    //creates the already existing expansions
+                    var expansions = airport.Profile.Expansions.Where(e => GameObject.GetInstance().GameTime > e.Date);
+
+                    foreach (AirportExpansion expansion in expansions)
+                        AirportHelpers.SetAirportExpansion(airport, expansion, true);
                 });
 
             foreach (Airline airline in Airlines.GetAllAirlines())
