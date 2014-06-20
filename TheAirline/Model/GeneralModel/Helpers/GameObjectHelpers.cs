@@ -512,6 +512,7 @@
 
                 if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime))
                 {
+                  
                     DoMonthlyUpdate();
                 }
 
@@ -531,7 +532,7 @@
                         {
                             AIHelpers.UpdateCPUAirline(airline);
                         }
-
+              
                         DayTurnHelpers.SimulateAirlineFlights(airline);
 
                         airline.DailyOperatingBalanceHistory.Add(

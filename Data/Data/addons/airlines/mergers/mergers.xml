@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <mergers>
+<merger name="Alaska Airlines has bought Horizon Air" airline1="AS" airline2="QX" type="Subsidiary" date="01.01.1987 00:00:00"></merger> 
   <merger name="Lufthansa takes over Austrian Airlines which continues as a subsidiary for Lufthansa" airline1="LH"
           airline2="OS" type="Subsidiary" date="09.13.2009 00:00:00">
   </merger>

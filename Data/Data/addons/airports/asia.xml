@@ -6538,6 +6538,7 @@
   </airport>
   <!--Singapore (WS**)-->
   <airport name="Singapore Changi Airport" icao="WSSS" iata="SIN" type="Long_Haul_International" season="All_Year">
+  <period from="07.01.1981 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Singapore" country="174" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="001°21'20''N" />
@@ -6552,9 +6553,61 @@
     <runways>
       <runway name="02L/20R" length="4000" surface="Concrete" />
       <runway name="02C/20C" length="4000" surface="Concrete" />
-      <runway name="02R/20L" length="2750" surface="Asphalt" />
     </runways>
+    <expansions>
+<expansion type="New_terminal" name="Terminal 2" gates="46" date="11.22.1990 00:00:00" notify="True"></expansion>
+<expansion type="New_runway" name="02C/20C" length="4000" surface="Asphalt" date="04.17.1984 00:00:00" notify="True"></expansion>
+<expension type="Extra_gates" name="Terminal 1" gates="45" date="06.01.1995 00:00:00" notify="True"></expension>
+<expansion type="New_terminal" name="Budget Terminal" gates="10" date="03.26.2006 00:00:00" notify="True"></expansion>
+<expansion type="New_terminal" name="Terminal 3" gates="18" date="09.01.2008 00:00:00" notify="True"></expansion>
+<expansion type="Close_terminal" name="Budget Terminal" gates="10" date="09.25.2012 00:00:00" notify="True"></expansion>
+</expansions>
   </airport>
+  <airport name="Singapore International Airport" icao="WSAP" iata="QPG" type="Long_Haul_International" season="All_Year">
+<period from="08.22.1955 00:00:00" to="07.01.1981 00:00:00" />
+<town town="Singapore" country="174" GMT="08:00:00" DST="08:00:00"/>
+<coordinates>
+<latitude value="001°21'37''N"/>
+<longitude value="103°54'34''E"/>
+</coordinates>
+<size value="Small" pax="1554" cargo="Smallest" cargovolume="0"/>
+<terminals>
+<terminal name="Terminal 1" gates="10"/>
+</terminals>
+<runways>
+<runway name="02/20" length="3780" surface="Asphalt"/>
+</runways>
+</airport> 
+<airport name="RAF Selatar" icao="XSP" iata="WSSL" type="Long_Haul_International" season="All_Year">
+<period from="01.01.1930 00:00:00" to="06.12.1937 00:00:00" />
+<town town="Singapore" country="174" GMT="08:00:00" DST="08:00:00"/>
+<coordinates>
+<latitude value="001°25'01''N"/>
+<longitude value="103°52'04''E"/>
+</coordinates>
+<size value="Smallest" pax="25" cargo="Smallest" cargovolume="0"/>
+<terminals>
+<terminal name="Terminal 1" gates="1"/>
+</terminals>
+<runways>
+<runway name="03/21" length="1836" surface="Asphalt"/>
+</runways>
+</airport> 
+<airport name="Kallang Airport" icao="WSAP" iata="SIN" type="Long_Haul_International" season="All_Year">
+<period from="08.22.1955 00:00:00" to="08.20.1955 00:00:00" />
+<town town="Singapore" country="174" GMT="08:00:00" DST="08:00:00"/>
+<coordinates>
+<latitude value="001°18'26''N"/>
+<longitude value="103°52'24''E"/>
+</coordinates>
+<size value="Smallest" pax="154" cargo="Smallest" cargovolume="0"/>
+<terminals>
+<terminal name="Terminal 1" gates="4"/>
+</terminals>
+<runways>
+<runway name="06/24" length="1677" surface="Asphalt"/>
+</runways>
+</airport>
   <!--China (Z***) except ZK** and ZM**-->
   <airport name="Mangshi Airport" icao="ZPLX" iata="LUM" type="Short_Haul_International" season="All_Year">
     <town town="Luxi" country="148" GMT="08:00:00" DST="08:00:00" />

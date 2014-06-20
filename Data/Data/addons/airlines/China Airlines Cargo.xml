@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="China Airlines Cargo" iata="CI" logo="CI2" color="Pink" country="172" CEO="Samuel P. Lin" mentality="Aggressive" market="Global" preferedairport="TPE" routefocus="Cargo">
+  <narrative narrative="China Airlines Cargo is the cargo branch of China Airlines, the flag carrier of Taiwan. They are comprised of 21 747-400F's. They fly around the globe and were named 7th of 25 in the 2008 The World's Top 25 Airlines by Air Transport World in the freight category." />
+   </profile>
+   <prefereds aircrafts="Boeing 747-400F,Boeing 747-200F"></prefereds>
+    <info real="True" from="1980" to="2199" />
+</airline>

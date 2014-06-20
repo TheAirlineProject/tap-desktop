@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Etihad Cargo" iata="EY" logo="EY2" color="Gold" country="156" CEO="James Hogan " mentality="Aggressive" market="Global" preferedairport="AUH" routefocus="Cargo"><narrative narrative="Etihad Cargo is the cargo division of Etihad Airlines in Abu Dhabi,United Arab Emirates. It used to be called Etihad Crystal Cargo but the Crystal part was dropped in 2012. As of June 2014 they have 3 777F's with 1 on order and an option for 2 more, 3 A330-200F's with 2 on order and an option for 1 more, 1 747-8F which is operated by Atlas Air but in Etihad colors, a 747-400F operated by Atlas Air, and 1 747-400ERF operated by Martinair Cargo in KLM colors. They delivered 368,000 tonnes of cargo in 2012. They have a new facility at Abu Dhabi that will be able to handle 500,000 tonnes a year. " />
+   </profile>
+   <prefereds aircrafts="Airbus A330-200F,Boeing 747-400F,Boeing 747-400ERF,Boeing 747-8F,Boeing 777F></prefereds>
+    <info real="True" from="2003" to="2199" />
+</airline>

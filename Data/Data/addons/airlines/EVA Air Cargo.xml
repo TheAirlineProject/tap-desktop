@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="EVA Air Cargo" iata="BR" logo="BR" color="Green" country="172" CEO="Cheng Chuan-yi " mentality="Aggressive" market="Global" preferedairport="TPE" routefocus="Cargo"><narrative narrative="EVA Air Cargo is the cargo division of EVA Air, the Taiwanese airlines based at Taipei Taoyuan. They were founded in 1989 at the same time as the passenger part of the airline. As of May 2014 they have 9 747-400F's and 3 MD-11F's. It also has hubs at Brussels, and Hong Kong.It is a global operation. It is one of the 10 largest cargo airlines in the world and was the 10th largest in terms of freight tonne-kilometres flown at 4,470 millions in 2012, right behind it's main Taiwanese competitor China Airlines Cargo." />
+   </profile>
+   <prefereds aircrafts="Boeing 747-400F,MD-11F"></prefereds>
+    <info real="True" from="1989" to="2199" />
+</airline>
