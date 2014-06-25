@@ -1,7 +1,97 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-  <profile name="Horizon Air" iata="QX" color="Maroon" country="122" CEO="Glenn Johnson" mentality="Aggressive" market="Regional" preferedairport="SEA">
+﻿<airline>
+  <profile name="Horizon Air" iata="QX" color="Maroon" country="122" CEO="Glenn Johnson" mentality="Moderate" market="Regional" preferedairport="SEA">
     <narrative narrative="Horizon Air is a regional carrier based out of Seattle-Tacoma. They also have hubs at Portland,Oregon, Los Angeles, and Anchorage. Their primary market is the western US and western Canada but also fly to Loreto,Mexico. They have 38 destinations and a fleet of 51 Dash 8 Q400's. It is the eighth largest regional airline in the USA. Their sister airline is Alaskan Airlines and they are both owned by the Alaska Air Group." />
   </profile>
   <info real="True" from="1981" to="2199" />
-</airline>
+  
+  <startdata>
+  
+  <prefereds aircrafts="Bombardier CRJ700,Bombardier Dash 8-100,Bombardier Dash 8-200,Bombardier Dash 8-400,Dornier 328-110,Douglas DC-9-10,Fairchild Swearingen Merlin,Fairchild Swearingen Metroliner,Fokker F27,Fokker F28-1000,Fokker F28-2000,Fokker F28-3000,Fokker F28-4000,Fokker F28-6000"></prefereds>
+  
+         <airliners>
+	  
+	     <airliner type="Bombardier CRJ700" early="21" late="0"></airliner>
+	    <airliner type="Bombardier Dash 8-100" early="9" late="24"></airliner>
+	    <airliner type="Bombardier Dash 8-200" early="0" late="28"></airliner>
+	    <airliner type="Bombardier Dash 8-400" early="15" late="54"></airliner>
+	 
+	  </airliners>
+	  
+	  <routes>
+	  
+	        <route destination1="YKM" destination2="SEA" opened="1981" closed="2199"/>
+		<route destination1="PSC" destination2="SEA" opened="1981" closed="2199"/>
+		<route destination1="PDX" destination2="SEA" opened="1981" closed="2199"/>
+		<route destination1="YKM" destination2="PDX" opened="1981" closed="2199"/>
+		<route destination1="PSC" destination2="PDX" opened="1981" closed="2199"/>
+		<route destination1="EUG" destination2="PDX" opened="1982" closed="2199"/>
+		<route destination1="EUG" destination2="SEA" opened="1982" closed="2199"/>
+		<route destination1="MFR" destination2="PDX" opened="1982" closed="2199"/>
+		<route destination1="MFR" destination2="SEA" opened="1982" closed="2199"/>
+		<route destination1="RDM" destination2="PDX" opened="1982" closed="2199"/>
+		<route destination1="RDM" destination2="SEA" opened="1982" closed="2199"/>
+		<route destination1="BOI" destination2="LWS"  destination3="PUW"  destination4="SEA" destination5="BOI" opened="1983" closed="2199"/>
+		<route destination1="GEG" destination2="SEA" opened="1983" closed="2199"/>
+		<route destination1="GEG" destination2="PDX" opened="1983" closed="2199"/>
+		<route destination1="PDX" destination2="BOI" opened="1983" closed="1981"/>
+		<route destination1="SUN" destination2="SEA" opened="1983" closed="2000"/>
+		<route destination1="EAT" destination2="SEA" opened="1984" closed="2199"/>
+		<route destination1="ALW" destination2="SEA" opened="1985" closed="2199"/>
+		<route destination1="SEA" destination2="GTF"  destination3="HLN"  destination4="SEA" opened="1986" closed="2199"/>
+		<route destination1="FCA" destination2="SEA" opened="1986" closed="2199"/>
+		<route destination1="MSO" destination2="SEA" opened="1986" closed="2199"/>
+		<route destination1="BLI" destination2="SEA" opened="1987" closed="2199"/>
+		<route destination1="BLI" destination2="PDX" opened="1987" closed="2199"/>
+		<route destination1="BIL" destination2="SEA" opened="1988" closed="2199"/>
+		<route destination1="YYJ" destination2="SEA" opened="1989" closed="2199"/>
+		<route destination1="YVR" destination2="SEA" opened="1989" closed="2199"/>
+		<route destination1="BZN" destination2="SEA" opened="1990" closed="2199"/>
+		<route destination1="YYC" destination2="SEA" opened="1992" closed="2199"/>
+		<route destination1="SMF" destination2="PDX" opened="1993" closed="2199"/>
+		<route destination1="SMF" destination2="BOI" opened="1993" closed="2199"/>
+		<route destination1="ACV" destination2="PDX" opened="1994" closed="2011"/>
+		<route destination1="YEG" destination2="SEA" opened="1995" closed="2199"/>
+		<route destination1="YLW" destination2="SEA" opened="1998" closed="2199"/>
+		<route destination1="FAT" destination2="SEA" opened="1999" closed="2199"/>
+		<route destination1="FAT" destination2="PDX" opened="1999" closed="2199"/>
+		<route destination1="FAT" destination2="SAN" opened="1999" closed="2199"/>
+		<route destination1="SAN" destination2="BOI" opened="1999" closed="2199"/>
+		<route destination1="LAX" destination2="SEA" opened="1999" closed="2199"/>
+		<route destination1="LAX" destination2="MFR" opened="1999" closed="2199"/>
+		<route destination1="ACV" destination2="LAX" opened="1999" closed="2011"/>
+		<route destination1="BUR" destination2="PDX" opened="2000" closed="2199"/>
+		<route destination1="OAK" destination2="PDX" opened="2005" closed="2199"/>
+		<route destination1="MRY" destination2="SAN" opened="2008" closed="2199"/>
+		<route destination1="STS" destination2="SEA" opened="2007" closed="2199"/>
+		<route destination1="STS" destination2="PDX" opened="2007" closed="2199"/>
+		<route destination1="STS" destination2="SAN" opened="2007" closed="2199"/>
+		<route destination1="STS" destination2="LAX" opened="2007" closed="2199"/>
+		<route destination1="STS" destination2="LAS" opened="2007" closed="2012"/>
+		<route destination1="LAX" destination2="LTO" opened="2008" closed="2199"/>
+		<route destination1="LAX" destination2="LAP" opened="2008" closed="2013"/>
+		<route destination1="RNO" destination2="SEA" opened="2005" closed="2199"/>
+		<route destination1="RNO" destination2="PDX" opened="2005" closed="2199"/>
+		<route destination1="RNO" destination2="SJC" opened="2005" closed="2199"/>
+		<route destination1="LAX" destination2="MMH" opened="2008" closed="2199"/>
+		<route destination1="SJC" destination2="PDX" opened="2005" closed="2199"/>
+		<route destination1="SJC" destination2="BOI" opened="2009" closed="2199"/>
+		<route destination1="SLC" destination2="BOI" opened="2007" closed="2199"/>
+		<route destination1="SLC" destination2="LAS" opened="2007" closed="2012"/>
+		<route destination1="GEG" destination2="SJC" opened="2010" closed="2011"/>
+		<route destination1="GEG" destination2="SMF" opened="2010" closed="2011"/>
+		<route destination1="SAN" destination2="MMH" opened="2008" closed="2199" season="summer"/>
+		<route destination1="PSP" destination2="SMF" opened="2002" closed="2199" season="summer"/>
+		<route destination1="BZN" destination2="PDX" opened="2005" closed="2199" season="summer"/>
+		<route destination1="BIL" destination2="PDX" opened="2005" closed="2199" season="summer"/>
+		<route destination1="MSO" destination2="PDX" opened="2005" closed="2199" season="summer"/>
+		<route destination1="FCA" destination2="PDX" opened="2005" closed="2199" season="summer"/>
+		<route destination1="SUN" destination2="LAX" opened="2005" closed="2199" season="winter"/>
+		
+		
+		
+	  </routes>
+	  
+  </startdata>
+  
+ </airline>
+

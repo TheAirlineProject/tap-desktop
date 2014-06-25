@@ -276,6 +276,13 @@
     <capacity passengers="524" cockpitcrew="2" cabincrew="11" maxclasses="3" />
     <produced from="1989" to="2007" rate="32" />
   </airliner>
+    <airliner manufacturer="Boeing" name="Boeing 747-400D" image="Boeing 747-400" price="32451500"> <!--139500000-->
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <specs wingspan="59.60" length="70.60" range="2905" speed="910" fuelcapacity="204355" consumption="0.036"
+           runwaylengthrequired="1550" />
+    <capacity passengers="568" cockpitcrew="2" cabincrew="11" maxclasses="3" />
+    <produced from="1989" to="1995" rate="32" />
+  </airliner>
   <airliner type="Cargo" manufacturer="Boeing" name="Boeing 747-400F" price="32671040"> <!--159500000-->
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
     <specs wingspan="64.40" length="70.60" range="8230" speed="908" fuelcapacity="216840" consumption="0.031"
@@ -447,16 +454,23 @@
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 787-8" image="Boeing 787-8" price="26322720"> <!--200000000-->
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
-    <specs wingspan="60.00" length="56.70" range="15200" speed="913" fuelcapacity="126920" consumption="0.032"
+    <specs wingspan="60.00" length="56.70" range="14500" speed="913" fuelcapacity="126920" consumption="0.032"
            runwaylengthrequired="2260" />
     <capacity passengers="264" cockpitcrew="2" cabincrew="5" maxclasses="3" />
     <produced from="2011" to="2026" rate="12" />
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 787-9" price="29937320"> <!--243600000-->
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
-    <specs wingspan="60.00" length="62.80" range="15700" speed="913" fuelcapacity="138700" consumption="0.030"
+    <specs wingspan="60.00" length="62.80" range="15200" speed="913" fuelcapacity="138700" consumption="0.030"
            runwaylengthrequired="2290" />
     <capacity passengers="290" cockpitcrew="2" cabincrew="5" maxclasses="3" />
     <produced from="2014" to="2027" rate="12" />
+  </airliner>
+    <airliner manufacturer="Boeing" name="Boeing 787-10" price="31239910"> <!--243600000-->
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <specs wingspan="60.00" length="62.80" range="13000" speed="913" fuelcapacity="138700" consumption="0.030"
+           runwaylengthrequired="2290" />
+    <capacity passengers="323" cockpitcrew="2" cabincrew="5" maxclasses="3" />
+    <produced from="2016" to="2029" rate="12" />
   </airliner>
 </airliners>

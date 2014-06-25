@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
+﻿<airline>
   <profile name="XiamenAir" iata="MF" color="Blue" country="148" CEO="Shanglun Che " mentality="Moderate" market="Regional" preferedairport="XMN">
     <narrative narrative="Xiamen Air is the first privately owned airline in the People's Republic of China. Established on July 25, 1984 and based in Xiamen,Fujian Province it operates scheduled passenger flights out of Xiamen Gaoqi International Airport and, to a lesser extent, Fuzhou Changle International Airport and Hangzhou Xiaoshan International Airport. The airline is owned by China Southern Airlines (51%), Xiamen Construction and 
     Development Group (34%), and Jizhong Energy Group (15%). XiamenAir is the only major Chinese carrier which operates an all Boeing fleet, which consists of mostly 737's. XiamenAir was honored with the title of 'The Best Airline In Mainland China' for 6 consecutive quarters in the 'Airlines Service Survey' 
@@ -8,4 +7,27 @@
 The airline is regarded as one of the most profitable airlines in the world, having made a profit every year since 1988." />
   </profile>
   <info real="True" from="1984" to="2199" />
-</airline>
+  
+  <startdata>
+  
+  <prefereds aircrafts="Boeing 737-200,Boeing 737-300,Boeing 737-500,Boeing 737-700,Boeing 737-800,Boeing 737 MAX 8,Boeing 757-200,Boeing 787-8"></prefereds>
+  
+         <airliners>
+	       	<airliner type="Boeing 737-200" early="0" late="7"></airliner>
+		<airliner type="Boeing 737-300" early="0" late="5"></airliner>
+		<airliner type="Boeing 737-500" early="0" late="7"></airliner>
+		<airliner type="Boeing 737-700" early="4" late="15"></airliner>
+		<airliner type="Boeing 737-800" early="0" late="149"></airliner>
+		<airliner type="Boeing 737 MAX 8" early="3" late="30"></airliner>
+		<airliner type="Boeing 757-200" early="0" late="9"></airliner>
+		<airliner type="Boeing 787-8" early="0" late="6"></airliner>
+	 
+ </airliners>
+	  
+	  
+	  
+  </startdata>
+  </airline>
+  
+
+

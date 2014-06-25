@@ -339,6 +339,7 @@
                         var airport = cbHomebase.SelectedItem as Airport;
 
                         var selectedAirliners = new List<AirlinerMVVM>(this.SelectedAirliners);
+                        
                         foreach (AirlinerMVVM airliner in selectedAirliners)
                         {
                             if (Countries.GetCountryFromTailNumber(airliner.Airliner.TailNumber).Name

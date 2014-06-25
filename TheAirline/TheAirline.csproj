@@ -202,6 +202,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpCreateSubsidiary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpExtendContract.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -580,6 +584,9 @@
     </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpCompareAirports.xaml.cs">
       <DependentUpon>PopUpCompareAirports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpCreateSubsidiary.xaml.cs">
+      <DependentUpon>PopUpCreateSubsidiary.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpExtendContract.xaml.cs">
       <DependentUpon>PopUpExtendContract.xaml</DependentUpon>

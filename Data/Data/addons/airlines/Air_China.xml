@@ -1,10 +1,48 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-
 <airline>
-  <profile name="Air China" iata="CA" color="Linen" country="148" CEO="Wang Changshun" mentality="Aggressive"
-           market="Global" preferedairport="PEK">
-    <narrative
-      narrative="Air China is the flag carrier of China, in operation since 1988 out of its main hub in Beijing. They operate a fleet of almost 300 to 185 destionations throughout the world. Their fleet is a mix of various Airbus and Boeing aircraft, with 250 more on order. " />
-  </profile>
-  <info real="True" from="1988" to="2199"></info>
+<profile name="Air China" iata="CA" color="Linen" country="148" CEO="Wang Changshun" mentality="Aggressive" market="Global" preferedairport="PEK">
+  <narrative narrative="Air China is the flag carrier of China, in operation since 1988 out of its main hub in Beijing. They operate a fleet of almost 300 to 185 destionations throughout the world. Their fleet is a mix of various Airbus and Boeing aircraft, with many many more on order. " />
+</profile>
+<info real="True" from="1988" to="2199"></info>
+
+<prefereds aircrafts="Airbus A319-100,Airbus A320-200,Airbus A320neo,Airbus A321-200,Airbus A330-200,Airbus A330-300,Airbus A350-900,Boeing 737-300,Boeing 737-700,Boeing 737-800,Boeing 747-400,Boeing 777-200,Boeing 777-300ER,Boeing 787-9,Comac C919"></prefereds>
+
+    
+     <airliners>
+	       
+	         <airliner type="Airbus A319-100" early="0" late="30"></airliner>
+	        <airliner type="Airbus A320-200" early="0" late="58"></airliner>
+		<airliner type="Airbus A320neo" early="5" late="33"></airliner>
+		 <airliner type="Airbus A321-200" early="0" late="58"></airliner>
+		 <airliner type="Airbus A330-200" early="0" late="30"></airliner>
+		 <airliner type="Airbus A330-300" early="0" late="23"></airliner>
+		 <airliner type="Airbus A340-300" early="0" late="6"></airliner>
+		  <airliner type="Airbus A350-900" early="2" late="10"></airliner>
+		  <airliner type="BAe 146-200" early="0" late="6"></airliner>
+		  <airliner type="Boeing 737-200" early="0" late="3"></airliner>
+		 <airliner type="Boeing 737-300" early="0" late="21"></airliner>
+		  <airliner type="Boeing 737-500" early="0" late="1"></airliner>
+		  <airliner type="Boeing 737-600" early="6" late="0"></airliner>
+		   <airliner type="Boeing 737-700" early="0" late="21"></airliner>
+		   <airliner type="Boeing 737-800" early="0" late="95"></airliner>
+		   <airliner type="Boeing 747-200B" early="0" late="4"></airliner>
+		    <airliner type="Boeing 747-400" early="0" late="15"></airliner>
+		    <airliner type="Boeing 747-400M" early="0" late="3"></airliner>
+		    <airliner type="Boeing 747SP" early="0" late="5"></airliner>
+		    <airliner type="Boeing 757-200" early="0" late="8"></airliner>
+		     <airliner type="Boeing 767-200ER" early="0" late="6"></airliner>
+		     <airliner type="Boeing 767-300" early="0" late="4"></airliner>
+		     <airliner type="Boeing 767-300ER" early="0" late="5"></airliner>
+		    <airliner type="Boeing 777-200" early="0" late="10"></airliner>
+		    <airliner type="Boeing 777-300ER" early="0" late="19"></airliner>
+		    <airliner type="Boeing 787-9" early="5" late="15"></airliner>
+		    <airliner type="Comac C919" early="4" late="20"></airliner>
+
+
+
+
+	 
+	  </airliners>
+
+
 </airline>
+

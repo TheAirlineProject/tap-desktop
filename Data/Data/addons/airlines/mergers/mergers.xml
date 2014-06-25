@@ -26,4 +26,9 @@
   <merger name="Royal Air Maroc has bought Atlas Blue" airline1="AT" airline2="8A" type="Merger"
           date="12.31.2009 00:00:00">
   </merger>
+  <merger name="China Northern Airlines has merged with China Southern Airlines and now uses the China Southern name" airline1="CZ" airline2="CJ" type="Merger" date="01.01.2003 00:00:00"></merger>
+<merger name="China Airlines has founded a cargo subsidiary called China Airlines Cargo" airline1="CI" airline2="CI2" type="Subsidiary" date="01.01.1980 00:00:00"></merger>
+<merger name="Air China has founded a cargo subsidiary called Air China Cargo" airline1="CA" airline2="CA2" type="Subsidiary" date="01.01.2003 00:00:00"></merger>
+<merger name="Emirates has been founded and has created the cargo subsidiary Emirates SkyCargo" airline1="EK" airline2="EK2" type="Subsidiary" date="01.01.1985 00:00:00"></merger>
+
 </mergers>

@@ -1179,8 +1179,7 @@
         {
             airlines.RemoveAll(match);
         }
-
-        #endregion
+         #endregion
 
         //returns if the list of airlines contains an airline
     }

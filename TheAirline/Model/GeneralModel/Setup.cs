@@ -939,7 +939,7 @@
                 startData.Airliners,
                 airliners =>
                 {
-                    AirlinerType type = AirlinerTypes.GetType(airliners.Type);
+                    AirlinerType type = AirlinerTypes.GetType(airliners.Type);//B747-200
 
                     int totalSpan = 2010 - 1960;
                     int yearSpan = GameObject.GetInstance().GameTime.Year - 1960;
@@ -947,8 +947,15 @@
                     double span = valueSpan / Convert.ToDouble(totalSpan);
 
                     int numbers = Math.Max(1, Convert.ToInt16(span * yearSpan) / startDataFactor);
-                    //type==null
-                    if (type.Produced.From <= GameObject.GetInstance().GameTime)
+
+                    if (type == null)
+                    {
+                        string tAirline = airline.Profile.Name;
+                        string typeNull = airliners.Type;
+
+                        Console.WriteLine(tAirline + " " + typeNull);
+                    }
+                    if (type != null && type.Produced.From <= GameObject.GetInstance().GameTime)
                     {
                         for (int i = 0; i < Math.Max(numbers, airliners.AirlinersEarly); i++)
                         {
@@ -2869,13 +2876,20 @@
                 country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
                 Countries.AddCountry(country);
 
-                if (element.SelectSingleNode("translations") != null)
+                try
                 {
-                    Translator.GetInstance()
-                        .addTranslation(
-                            root.Name,
-                            element.Attributes["uid"].Value,
-                            element.SelectSingleNode("translations"));
+                    if (element.SelectSingleNode("translations") != null)
+                    {
+                        Translator.GetInstance()
+                            .addTranslation(
+                                root.Name,
+                                element.Attributes["uid"].Value,
+                                element.SelectSingleNode("translations"));
+                    }
+                }
+                catch (Exception e)
+                {
+                    string s = e.ToString();
                 }
             }
         }

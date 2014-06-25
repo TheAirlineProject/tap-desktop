@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="RwandAir" iata="WB" color="Yellow" country="293" CEO="John Mirenge" mentality="Moderate" market="Global" preferedairport="KGL">
+    <narrative narrative="RwandAir is the flag carrier of Rwanda, based at Kigali Airport at the nations capital. It was founded in 2002. All but one of its 16 destinations are in Africa, that being Dubai. It's 8 plane fleet include two 737-800s, two 737-700s, two CRJ900's, one Dash 8 Q400 and one Dash 8 100." /></profile>
+  <info real="True" from="2002" to="2199" />
+</airline>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
   <airliner manufacturer="Douglas" name="Douglas DC-3" price="3100000">
@@ -119,5 +119,11 @@
            runwaylengthrequired="1390" />
     <capacity passengers="115" cockpitcrew="2" cabincrew="2" maxclasses="1" />
     <produced from="1967" to="1982" rate="54" />
+  </airliner>
+    <airliner manufacturer="Douglas" name="Douglas DC-4-1009" price="3500000">
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop"/>
+	<specs wingspan="35.8" length="28.6" range="6839" speed="365" fuelcapacity="7949" consumption="0.097" runwaylengthrequired="2000"/>
+	<capacity passengers="86" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+	<produced from="1945" to="1947" rate="40"/>
   </airliner>
 </airliners>

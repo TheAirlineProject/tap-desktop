@@ -1952,6 +1952,28 @@
       <es-ES name="Vanutau" />
     </translations>
   </country>
+   <country uid="293" shortname="RWA" region="101" flag="Rwanda" tailformat="9XR-\\s2">
+    <translations>
+      <en-US name="Rwanda" />
+      <de-DE name="Rwanda" />
+      <en-GB name="Rwanda" />
+      <nl-NL name="Rwanda" />
+      <zh-CN name="Rwanda" />
+      <da-DK name="Rwanda" />
+      <es-ES name="Rwanda" />
+    </translations>
+  </country>
+   <country uid="294" shortname="KHM" region="109" flag="Cambodja" tailformat="XU-\\s3">
+    <translations>
+      <en-US name="Cambodia" />
+      <de-DE name="Cambodia" />
+      <en-GB name="Cambodia" />
+      <nl-NL name="Cambodia" />
+      <zh-CN name="Cambodia" />
+      <da-DK name="Cambodia" />
+      <es-ES name="Cambodia" />
+    </translations>
+  </country>
   <!--Territories-->
   <country uid="246" shortname="CUW" region="117" flag="Curacao" tailformat="PJ-\\s3">
     <territoryof uid="179" />

@@ -66,6 +66,16 @@
     <produced from="1988" to="1996" rate="8" />
 
   </airliner>
+  <airliner manufacturer="BAe" name="Avro RJ85" price="9084300">
 
+    <type body="Single_Aisle" rangetype="Regional" engine="Jet" />
 
+    <specs wingspan="26.21" length="30.99" range="2760" speed="763" fuelcapacity="4050" consumption="0.040"
+           runwaylengthrequired="1400" />
+
+    <capacity passengers="128" cockpitcrew="2" cabincrew="2" maxclasses="2" />
+
+    <produced from="1992" to="2002" rate="8" />
+
+  </airliner>
 </airliners>

@@ -5082,4 +5082,7 @@ Good luck.</value>
   <data name="PageAirlineFinances_1020_name" xml:space="preserve">
     <value>Daily Operating Profit </value>
   </data>
+  <data name="PopUpCreateSubsidiary_1000_name" xml:space="preserve">
+    <value>Create New Subsidiary</value>
+  </data>
 </root>

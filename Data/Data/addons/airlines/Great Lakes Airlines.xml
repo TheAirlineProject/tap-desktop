@@ -1,10 +1,18 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-
 <airline>
-  <profile name="Great Lakes Airlines" iata="ZK" color="DarkBlue" country="122" CEO="Doug Voss" mentality="Moderate"
-           market="Local" preferedairport="DEN">
-    <narrative
-      narrative="Great Lakes Airlines serves 48 of its destinations through the Essential Air Service program and is the largest Essential Air Service provider in the United States." />
-  </profile>
-  <info real="True" from="1977" to="2199" />
+  <profile name="Great Lakes Airlines" iata="ZK" color="DarkBlue" country="122" CEO="Doug Voss" mentality="Moderate" market="Local" preferedairport="DEN">
+  <narrative narrative="Great Lakes Airlines serves 48 of its destinations through the Essential Air Service program and is the largest Essential Air Service provider in the United States. They operate for other airlines also, which includes 24 1900D's in Frontier Airlines name and 6 EMB 120 Brasilias. They also operate as United Express. " />
+   </profile>
+    <info real="True" from="1977" to="2199" />
+<startdata>
+	
+	<prefereds aircrafts="Beechcraft Queen Air  B80,Beechcraft King Air B200,Beechcraft 1900C,Beechcraft 1900D,EMB 120 Brasilia"></prefereds>
+	
+	         <airliners>
+		 
+           <airliner type="Beechcraft 1900D" early="0" late="63"></airliner>
+	     <airliner type="EMB 120 Brasilia" early="0" late="16"></airliner>
+	     
+	  </airliners>
+	</startdata>
+
 </airline>

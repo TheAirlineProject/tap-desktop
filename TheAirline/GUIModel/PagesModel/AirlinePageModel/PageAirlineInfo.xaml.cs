@@ -22,17 +22,13 @@
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
     using TheAirline.Model.PilotModel;
+    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
 
     /// <summary>
     ///     Interaction logic for PageAirlineInfo.xaml
     /// </summary>
     public partial class PageAirlineInfo : Page
     {
-        #region Fields
-
-        private string logoPath;
-
-        #endregion
 
         #region Constructors and Destructors
 
@@ -45,9 +41,7 @@
 
             this.InitializeComponent();
 
-            this.logoPath = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png";
-            this.imgLogo.Source = new BitmapImage(new Uri(this.logoPath, UriKind.RelativeOrAbsolute));
-
+          
             foreach (
                 Airport airport in
                     this.Airline.Airline.Airports.FindAll(
@@ -79,6 +73,14 @@
 
         private void btnCreateSubsidiary_Click(object sender, RoutedEventArgs e)
         {
+            Object o =  PopUpCreateSubsidiary.ShowPopUp(this.Airline.Airline);
+
+            if (o != null)
+            {
+                SubsidiaryAirline subAirline = (SubsidiaryAirline)o;
+                this.Airline.addSubsidiaryAirline(subAirline);
+            }
+            /*
             string iata = this.txtIATA.Text.ToUpper().Trim();
             string name = this.txtAirlineName.Text.Trim();
             var airport = (Airport)this.cbAirport.SelectedItem;
@@ -132,7 +134,7 @@
                     Translator.GetInstance().GetString("MessageBox", "2404"),
                     Translator.GetInstance().GetString("MessageBox", "2404", "message"),
                     WPFMessageBoxButtons.Ok);
-            }
+            }*/
         }
 
         private void btnDeleteSubsidiary_Click(object sender, RoutedEventArgs e)
@@ -166,22 +168,7 @@
             }
         }
 
-        private void btnLogo_Click(object sender, RoutedEventArgs e)
-        {
-            var dlg = new OpenFileDialog();
-
-            dlg.DefaultExt = ".png";
-            dlg.Filter = "Images (.png)|*.png";
-            dlg.InitialDirectory = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\";
-
-            bool? result = dlg.ShowDialog();
-
-            if (result == true)
-            {
-                this.logoPath = dlg.FileName;
-                this.imgLogo.Source = new BitmapImage(new Uri(this.logoPath, UriKind.RelativeOrAbsolute));
-            }
-        }
+       
 
         private void btnReleaseSubsidiary_Click(object sender, RoutedEventArgs e)
         {
