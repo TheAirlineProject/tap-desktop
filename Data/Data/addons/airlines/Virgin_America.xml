@@ -4,4 +4,5 @@
   <profile name="Virgin America" iata="VX" color="Red" country="122" CEO="C. David Cush" mentality="Aggressive"
            market="Domestic" preferedairport="SFO">
   </profile>
+  <info real="True" from="2004" to="2199"></info>
 </airline>

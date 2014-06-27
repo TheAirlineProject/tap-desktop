@@ -106,4 +106,5 @@
     <capacity passengers="130" cockpitcrew="2" cabincrew="2" maxclasses="2" />
     <produced from="2014" to="2019" rate="24" />
   </airliner>
+  
 </airliners>

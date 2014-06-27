@@ -6,6 +6,7 @@
     <narrative
       narrative="Zest Airways started life as Asian Spirit, the first airline in the Philippines to be run as a cooperative. Operating out of Manila, Zest has 18 aircraft, namely the Airbus A319, A320 and the Xian MA60. They also have 31 aircraft on order. They currently serve 19 destinations in the Philippines, Taiwan, China, and South Korea. " />
   </profile>
+    <info real="True" from="1995" to="2199"></info>
   <startdata>
     <!--some random routes from an origin-->
     <random_routes>
