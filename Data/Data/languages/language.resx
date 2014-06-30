@@ -5085,4 +5085,7 @@ Good luck.</value>
   <data name="PopUpCreateSubsidiary_1000_name" xml:space="preserve">
     <value>Create New Subsidiary</value>
   </data>
+  <data name="PageAirlineFleet_1016_name" xml:space="preserve">
+    <value>Move Airliner To</value>
+  </data>
 </root>

@@ -1536,11 +1536,18 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            FleetAirliner airliner = (FleetAirliner)value;
+            try
+            {
+                FleetAirliner airliner = (FleetAirliner)value;
 
-            Boolean hasSubsidiary = airliner.Airliner.Airline.Subsidiaries.Count > 0 || airliner.Airliner.Airline.IsSubsidiary;
+                Boolean hasSubsidiary = airliner.Airliner.Airline.Subsidiaries.Count > 0 || airliner.Airliner.Airline.IsSubsidiary;
 
-            return airliner.Status == FleetAirliner.AirlinerStatus.Stopped && airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline && hasSubsidiary;
+                return airliner.Status == FleetAirliner.AirlinerStatus.Stopped && airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline && hasSubsidiary;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

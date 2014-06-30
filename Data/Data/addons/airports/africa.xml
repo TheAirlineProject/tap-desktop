@@ -4022,22 +4022,7 @@
       <runway name="18/36" length="1700" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Entebbe International Airport" icao="HUEN" iata="EBB" type="Long_Haul_International" season="All_Year">
-    <town town="Kampala" country="270" GMT="03:00:00" DST="00:00:00" />
-    <coordinates>
-      <latitude value="000°02'32''N" />
-      <longitude value="032°26'36''E" />
-    </coordinates>
-    <size value="Small" pax="1230" />
-    <terminals>
-      <terminal name="Terminal A" gates="6" />
-    </terminals>
-    <runways>
-      <runway name="12/30" length="2408" surface="Asphalt" />
-      <runway name="17/35" length="3658" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Gulu Airport" icao="HUGU" iata="ULU" type="Domestic" season="All_Year">
+    <airport name="Gulu Airport" icao="HUGU" iata="ULU" type="Domestic" season="All_Year">
     <town town="Gulu" country="270" GMT="03:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="002°48'20''N" />

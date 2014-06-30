@@ -933,7 +933,6 @@
                         airline.addRoute(route);
                     }
                 });
-            
             //adds the airliners
             Parallel.ForEach(
                 startData.Airliners,
