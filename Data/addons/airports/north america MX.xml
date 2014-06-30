@@ -2821,7 +2821,10 @@
     </coordinates>
     <size value="Medium" pax="3748" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="28" />
+      <terminal name="Concourse B" gates="9" />     
+      <terminal name="Concourse C" gates="9" />
+      <terminal name="Concourse D" gates="10" />
+      <terminal name="Cargo Ramp" gates="4" />
     </terminals>
     <runways>
       <runway name="6/24" length="3658" surface="Asphalt" />
