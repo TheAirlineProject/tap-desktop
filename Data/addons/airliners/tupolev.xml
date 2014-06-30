@@ -12,16 +12,22 @@
     <capacity passengers="114" cockpitcrew="3" cabincrew="3" maxclasses="2"/>
     <produced from="1972" to="2006" rate="22"/>
   </airliner>
-  <airliner manufacturer="Tupolev" name="Tupolev Tu-204-100" price="3074500"> <!--4200000-->
+  <airliner manufacturer="Tupolev" name="Tupolev Tu-204-100" price="9545800"> <!--4200000-->
 	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
-    <specs wingspan="41.8" length="46.14" range="4300" speed="825" fuelcapacity="41000" consumption="0.057" runwaylengthrequired="2250"/>
-    <capacity passengers="210" cockpitcrew="3" cabincrew="5" maxclasses="2"/>
-    <produced from="1990" to="2199" rate="14"/>
+    <specs wingspan="41.8" length="46.14" range="4400" speed="810" fuelcapacity="30812" consumption="0.033" runwaylengthrequired="2150"/>
+    <capacity passengers="214" cockpitcrew="3" cabincrew="5" maxclasses="3"/>
+    <produced from="1996" to="2025" rate="14"/>
   </airliner>
-  <airliner manufacturer="Tupolev" name="Tupolev Tu-204-300" price="3574500"> <!--4200000-->
+    <airliner manufacturer="Tupolev" name="Tupolev Tu-204-120" price="1005200"> <!--4200000-->
 	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
-    <specs wingspan="41.8" length="40.19" range="6500" speed="825" fuelcapacity="41000" consumption="0.057" runwaylengthrequired="2250"/>
-    <capacity passengers="156" cockpitcrew="3" cabincrew="5" maxclasses="2"/>
-    <produced from="1990" to="2199" rate="4"/>
+    <specs wingspan="41.8" length="46.14" range="4500" speed="850" fuelcapacity="30812" consumption="0.032" runwaylengthrequired="2150"/>
+    <capacity passengers="214" cockpitcrew="3" cabincrew="5" maxclasses="3"/>
+    <produced from="1998" to="2025" rate="14"/>
+  </airliner>
+  <airliner manufacturer="Tupolev" name="Tupolev Tu-204-300" price="8854200"> <!--4200000-->
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="42.2" length="40.19" range="6500" speed="850" fuelcapacity="45000" consumption="0.041" runwaylengthrequired="2050"/>
+    <capacity passengers="166" cockpitcrew="3" cabincrew="4" maxclasses="2"/>
+    <produced from="1997" to="2025" rate="8"/>
   </airliner>
 </airliners>
