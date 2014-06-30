@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
-  <profile name="AirTran Airways" iata="FL" color="Black" country="122" CEO="Bob Fornaro" mentality="Safe"
-           market="Global" preferedairport="BWI">
-  </profile>
-  <info real="True" from="1992" to="2199" />
+  <profile name="AirTran Airways" iata="FL" color="Black" country="122" CEO="Bob Fornaro" mentality="Safe" market="Global" preferedairport="MCO"></profile>
+  <narrative narrative="AirTran Airways is an American low-cost airline, it was originaly named Valuejet, but after a fatal crash, the company bought a startup and rebranded itself AirTran Airways. In present times, AirTran Airways is a subsidary of Southwest Airlines, and will cease operations by 2015."/>
+</profile>
+<prefereds aircrafts="Boeing 737-700,Boeing 717-200,Boeing 737-200,Douglas DC-9-30"></prefereds>
+<info real="True" from="1992" to="2015"></info>
 </airline>
