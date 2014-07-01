@@ -439,7 +439,14 @@
 
             return ltr / aGallon;
         }
+        //converts kg to pound
+        public static double KgToPound(double kg)
+        {
+         
+            var perpound = 0.45359237;
 
+            return kg / perpound;
+        }
         //converts miles to km
 
         //converts meter to feet

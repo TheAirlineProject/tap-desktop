@@ -257,6 +257,7 @@
                 0,
                 0,
                 0,
+                0,
                 AirlinerType.BodyType.Single_Aisle,
                 AirlinerType.TypeRange.Regional,
                 AirlinerType.EngineType.Jet,

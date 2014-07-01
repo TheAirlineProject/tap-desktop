@@ -6,12 +6,12 @@
     using System.Linq;
     using System.Reflection;
     using System.Runtime.Serialization;
-
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlineModel.AirlineCooperationModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
+    using TheAirline.Model.GeneralModel.Helpers;
     using TheAirline.Model.GeneralModel.WeatherModel;
     using TheAirline.Model.PassengerModel;
 
@@ -108,6 +108,9 @@
                     }
                 }
             }
+
+            if (version < 3)
+                this.LandingFee = AirportHelpers.GetStandardLandingFee(this);
         }
 
         #endregion
@@ -177,6 +180,8 @@
         [Versioning("weather")]
         public Weather[] Weather { get; set; }
 
+        [Versioning("landingfee",Version=3)]
+        public double LandingFee { get; set; }
         #endregion
 
         #region Properties
@@ -199,7 +204,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 2);
+            info.AddValue("version", 3);
 
             Type myType = this.GetType();
 
@@ -710,13 +715,13 @@
 
             return hubs;
         }
-
+        /*
         //returns the fee for landing at the airport
         public double getLandingFee()
         {
             long sizeValue = 151 * ((int)this.Profile.Size + 1);
             return GeneralHelpers.GetInflationPrice(sizeValue);
-        }
+        }*/
 
         public Dictionary<Airport, int> getMajorDestinations()
         {

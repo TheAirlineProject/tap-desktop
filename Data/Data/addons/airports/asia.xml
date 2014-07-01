@@ -914,7 +914,7 @@
       <runway name="11/29" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Narita International Airport" icao="RJAA" iata="NRT" type="Long_Haul_International" season="All_Year">
+  <airport name="Narita International Airport" icao="RJAA" iata="NRT" type="Long_Haul_International" season="All_Year"  landingfee="2.94">
     <town town="Tokyo" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="035°45'53''N" />
@@ -929,7 +929,7 @@
       <runway name="16R/34L" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kansai International Airport" icao="RJBB" iata="KIX" type="Long_Haul_International" season="All_Year">
+  <airport name="Kansai International Airport" icao="RJBB" iata="KIX" type="Long_Haul_International" season="All_Year"  landingfee="2.56">
     <period from="09.04.1994 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Osaka" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
@@ -8208,7 +8208,7 @@
     </runways>
   </airport>
   <airport name="Beijing Capital International Airport" icao="ZBAA" iata="PEK" type="Long_Haul_International"
-           season="All_Year">
+           season="All_Year"  landingfee="1.83">
     <town town="Beijing" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="040°04'48''N" />
@@ -8242,7 +8242,7 @@
     </runways>
   </airport>
   <airport name="Guangzhou Baiyun International Airport" icao="ZGGG" iata="CAN" type="Long_Haul_International"
-           season="All_Year">
+           season="All_Year"  landingfee="1.83">
     <town town="Guangzhou" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="023°11'03''N" />
@@ -8381,7 +8381,7 @@
     </runways>
   </airport>
   <airport name="Shanghai Pudong International Airport" icao="ZSPD" iata="PVG" type="Long_Haul_International"
-           season="All_Year">
+           season="All_Year"  landingfee="1.83">
     <town town="Shanghai" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="031°08'36''N" />
@@ -8399,7 +8399,7 @@
     </runways>
   </airport>
   <airport name="Shanghai Hongqiao International Airport" icao="ZSSS" iata="SHA" type="Long_Haul_International"
-           season="All_Year">
+           season="All_Year"  landingfee="1.83">
     <town town="Shanghai" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="031°11'52''N" />

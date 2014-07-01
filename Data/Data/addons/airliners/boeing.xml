@@ -271,7 +271,7 @@
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 747-400" image="Boeing 747-400" price="33301500"> <!--139500000-->
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
-    <specs wingspan="64.40" length="70.60" range="13450" speed="913" fuelcapacity="216840" consumption="0.031"
+    <specs wingspan="64.40" length="70.60" weight="396890" range="13450" speed="913" fuelcapacity="216840" consumption="0.031"
            runwaylengthrequired="2990" />
     <capacity passengers="524" cockpitcrew="2" cabincrew="11" maxclasses="3" />
     <produced from="1989" to="2007" rate="32" />
@@ -285,14 +285,14 @@
   </airliner>
   <airliner type="Cargo" manufacturer="Boeing" name="Boeing 747-400F" price="32671040"> <!--159500000-->
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
-    <specs wingspan="64.40" length="70.60" range="8230" speed="908" fuelcapacity="216840" consumption="0.031"
+    <specs wingspan="64.40" length="70.60" weight="396890" range="8230" speed="908" fuelcapacity="216840" consumption="0.031"
            runwaylengthrequired="3000" />
     <capacity cockpitcrew="2" cargo="779" />
     <produced from="1993" to="2009" rate="32" />
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 747-400ER" image="Boeing 747-400" price="36524580"> <!--212500000-->
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
-    <specs wingspan="64.40" length="70.60" range="14205" speed="917" fuelcapacity="241140" consumption="0.032"
+    <specs wingspan="64.40" length="70.60" weight="412775" range="14205" speed="917" fuelcapacity="241140" consumption="0.032"
            runwaylengthrequired="3000" />
     <capacity passengers="524" cockpitcrew="2" cabincrew="11" maxclasses="3" />
     <produced from="2000" to="2007" rate="32" />
@@ -306,7 +306,7 @@
   </airliner>
   <airliner type="Cargo" manufacturer="Boeing" name="Boeing 747-400ERF" price="35117060"> <!--210000000-->
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
-    <specs wingspan="64.40" length="70.60" range="9200" speed="908" fuelcapacity="241140" consumption="0.032"
+    <specs wingspan="64.40" length="70.60"  weight="396890" range="9200" speed="908" fuelcapacity="241140" consumption="0.032"
            runwaylengthrequired="3000" />
     <capacity cockpitcrew="2" cargo="779" />
     <produced from="2001" to="2009" rate="32" />

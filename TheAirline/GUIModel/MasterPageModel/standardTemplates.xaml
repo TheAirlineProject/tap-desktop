@@ -14,6 +14,7 @@
     <c:AirportCodeConverter x:Key="AirportCodeConverter" />
     <c:TranslatorConverter x:Key="TranslatorConverter" />
     <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter" />
+    <c:WeightToUnitConverter x:Key="WeightToUnitConverter"></c:WeightToUnitConverter>
 
     <Style TargetType="WrapPanel" x:Key="WrapPanelStyle">
         <Setter Property="Background">
@@ -247,6 +248,13 @@
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1006'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
                 <TextBlock Text="{Binding Wingspan,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                           VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1015'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Weight,Converter={StaticResource WeightToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">

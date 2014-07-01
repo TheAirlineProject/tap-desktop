@@ -7,6 +7,7 @@
     using System.Runtime.Serialization;
 
     using TheAirline.Model.GeneralModel;
+    using TheAirline.Model.GeneralModel.Helpers;
 
     //the class for a type of airliner
     [Serializable]
@@ -24,6 +25,7 @@
             long range,
             double wingspan,
             double length,
+            double weight,
             double consumption,
             long price,
             long minRunwaylength,
@@ -44,6 +46,7 @@
             this.Range = range;
             this.Wingspan = wingspan;
             this.Length = length;
+            this.Weight = weight;
             this.CockpitCrew = cockpitCrew;
             this.Price = price;
             this.FuelConsumption = consumption;
@@ -106,6 +109,8 @@
                     this.IsConvertable = true;
                 }
             }
+            if (version < 3)
+                this.Weight = AirlinerHelpers.GetCalculatedWeight(this);
         }
 
         #endregion
@@ -194,6 +199,9 @@
         [Versioning("image")]
         public string Image { get; set; }
 
+        [Versioning("weight",Version=3)]
+        public double Weight { get; set; }
+
         [Versioning("isconvertable", Version = 2)]
         public Boolean IsConvertable { get; set; }
 
@@ -263,7 +271,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 2);
+            info.AddValue("version", 3);
 
             Type myType = this.GetType();
             IList<PropertyInfo> props =
@@ -316,6 +324,7 @@
             long range,
             double wingspan,
             double length,
+            double weight,
             double consumption,
             long price,
             int maxAirlinerClasses,
@@ -338,6 +347,7 @@
                 range,
                 wingspan,
                 length,
+            weight,
                 consumption,
                 price,
                 minRunwaylength,
@@ -457,6 +467,7 @@
             long range,
             double wingspan,
             double length,
+            double weight,
             double consumption,
             long price,
             int maxAirlinerClasses,
@@ -481,6 +492,7 @@
                 range,
                 wingspan,
                 length,
+            weight,
                 consumption,
                 price,
                 maxAirlinerClasses,
@@ -588,6 +600,7 @@
             long range,
             double wingspan,
             double length,
+            double weight,
             double consumption,
             long price,
             long minRunwaylength,
@@ -609,6 +622,7 @@
                 range,
                 wingspan,
                 length,
+            weight,
                 consumption,
                 price,
                 minRunwaylength,

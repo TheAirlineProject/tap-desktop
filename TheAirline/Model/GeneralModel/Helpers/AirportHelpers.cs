@@ -21,7 +21,18 @@
         #endregion
 
         #region Public Methods and Operators
+        //returns the standard landing fee for an airport
+        public static double GetStandardLandingFee(Airport airport)
+        {
+            double basefee = 0.27;
 
+            return basefee * ((int)(airport.Profile.Size) + 1);
+        }
+        //returns the landing fee for an airliner at an airport
+        public static double GetLandingFee(Airport airport, Airliner airliner)
+        {
+            return (airliner.Type.Weight / 1000) * GeneralHelpers.GetInflationPrice(airport.LandingFee);
+        }
         public static void AddAirlineContract(AirportContract contract)
         {
             contract.Airport.addAirlineContract(contract);

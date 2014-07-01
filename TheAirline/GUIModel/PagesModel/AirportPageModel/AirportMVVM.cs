@@ -39,6 +39,7 @@
 
             this.TerminalGatePrice = this.Airport.getTerminalGatePrice();
             this.TerminalPrice = this.Airport.getTerminalPrice();
+            this.LandingFee = GeneralHelpers.GetInflationPrice(this.Airport.LandingFee);
 
             this.Cooperations = new ObservableCollection<Cooperation>();
             this.Terminals = new ObservableCollection<AirportTerminalMVVM>();
@@ -382,6 +383,8 @@
         public Boolean ShowLocalTime { get; set; }
 
         public double TerminalGatePrice { get; set; }
+
+        public double LandingFee { get; set; }
 
         public double TerminalPrice { get; set; }
 

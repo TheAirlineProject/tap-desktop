@@ -396,7 +396,37 @@
 
         #endregion
     }
+    //the converter for weight
+    public class WeightToUnitConverter : IValueConverter
+    {
+        #region Public Methods and Operators
 
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+           
+            
+            var weight = (double)value;
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+            {
+                return string.Format("{0:0} kg", weight);
+            }
+        
+            return string.Format("{0:0} lbs", MathHelpers.KgToPound(weight));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+    }
     //the converter for the cargo size from an airliner
     public class CargoSizeConverter : IValueConverter
     {

@@ -437,7 +437,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double cargoSize = AirlinerHelpers.GetPassengerCargoSize(oldType);
             DateTime builtDate = GameObject.GetInstance().GameTime.AddDays(AirlinerHelpers.GetCargoConvertingDays(oldType));
 
-            AirlinerCargoType newType = new AirlinerCargoType(oldType.Manufacturer,oldType.Name + "F",oldType.AirlinerFamily,oldType.CockpitCrew,cargoSize,oldType.CruisingSpeed,oldType.Range,oldType.Wingspan,oldType.Length,oldType.FuelConsumption,oldType.Price,oldType.MinRunwaylength,oldType.FuelCapacity,oldType.Body,oldType.RangeType,oldType.Engine,oldType.Produced,oldType.ProductionRate,false,false);
+            AirlinerCargoType newType = new AirlinerCargoType(oldType.Manufacturer,oldType.Name + "F",oldType.AirlinerFamily,oldType.CockpitCrew,cargoSize,oldType.CruisingSpeed,oldType.Range,oldType.Wingspan,oldType.Length,oldType.Weight, oldType.FuelConsumption,oldType.Price,oldType.MinRunwaylength,oldType.FuelCapacity,oldType.Body,oldType.RangeType,oldType.Engine,oldType.Produced,oldType.ProductionRate,false,false);
             
             airliner.Airliner.Type = newType;
             airliner.Airliner.BuiltDate = builtDate;

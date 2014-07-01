@@ -1129,6 +1129,7 @@
     <Resource Include="Data\images\United Nations.png" />
     <Resource Include="Data\images\video.png" />
     <Resource Include="Data\images\Wind.png" />
+    <Resource Include="Data\images\MoveAirliner.png" />
     <Content Include="TheAirline.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

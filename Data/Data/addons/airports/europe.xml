@@ -1796,7 +1796,7 @@
       <runway name="17/35" length="2990" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Oslo-Fornebu Airport" icao="ENFB" iata="FBU" type="Long_Haul_International" season="All_Year">
+  <airport name="Oslo-Fornebu Airport" icao="ENFB" iata="FBU" type="Long_Haul_International" season="All_Year"   landingfee="1.85">
   <period from="01.07.1939 00:00:00" to="10.07.1998 00:00:00" />
     <town town="Oslo" country="139" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
@@ -1811,12 +1811,9 @@
       <runway name="01L/19R" length="3600" surface="Asphalt" />
       <runway name="01R/19L" length="2950" surface="Asphalt" />
     </runways>
-    <expansions>
-      <expansion type="Name" name="Oslo Airport" date="12.31.2010 00:00:00" notify="False"></expansion>
-      <expansion type="New_terminal" name="Terminal 2" gates="10" date="02.01.2017 00:00:00" notify="True"></expansion>
-    </expansions>
+   
   </airport>
-    <airport name="Oslo-Gardermoen Airport" icao="ENGM" iata="OSL" type="Long_Haul_International" season="All_Year">
+    <airport name="Oslo-Gardermoen Airport" icao="ENGM" iata="OSL" type="Long_Haul_International" season="All_Year"   landingfee="1.85">
   <period from="10.07.1998 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Oslo" country="139" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
@@ -1831,6 +1828,10 @@
       <runway name="01L/19R" length="3600" surface="Asphalt" />
       <runway name="01R/19L" length="2950" surface="Asphalt" />
     </runways>
+     <expansions>
+      <expansion type="Name" name="Oslo Airport" date="12.31.2010 00:00:00" notify="False"></expansion>
+      <expansion type="New_terminal" name="Terminal 2" gates="10" date="02.01.2017 00:00:00" notify="True"></expansion>
+    </expansions>
   </airport>
   <airport name="Svalbard Airport, Longyear" icao="ENSB" iata="LYR" type="Domestic" season="All_Year">
     <town town="Longyearbyen" country="139" GMT="02:00:00" DST="01:00:00" />
@@ -2081,7 +2082,7 @@
       <runway name="08/26" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Warsaw Chopin Airport" icao="EPWA" iata="WAW" type="Long_Haul_International" season="All_Year">
+  <airport name="Warsaw Chopin Airport" icao="EPWA" iata="WAW" type="Long_Haul_International" season="All_Year"   landingfee="2.00">
     <town town="Warsaw" country="135" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="052°09'56''N" />
@@ -5058,7 +5059,7 @@
       <runway name="16/34" length="2750" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Vienna International Airport" icao="LOWW" iata="VIE" type="Long_Haul_International" season="All_Year">
+  <airport name="Vienna International Airport" icao="LOWW" iata="VIE" type="Long_Haul_International" season="All_Year"   landingfee="1.825">
     <town town="Vienna" country="169" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="048°06'37''N" />

@@ -334,7 +334,7 @@
                 dest.Profile.Coordinates.convertToGeoCoordinate(),
                 dept.Profile.Coordinates.convertToGeoCoordinate());
 
-            double expenses = fuelExpenses + dest.getLandingFee() + tax;
+            double expenses = fuelExpenses + AirportHelpers.GetLandingFee(dest,airliner.Airliner) + tax;
 
             if (double.IsNaN(expenses))
             {
@@ -348,7 +348,7 @@
 
             FleetAirlinerHelpers.SetFlightStats(airliner);
 
-            long airportIncome = Convert.ToInt64(dest.getLandingFee());
+            long airportIncome = Convert.ToInt64(AirportHelpers.GetLandingFee(dest,airliner.Airliner));
             dest.Income += airportIncome;
 
             Airline airline = airliner.Airliner.Airline;

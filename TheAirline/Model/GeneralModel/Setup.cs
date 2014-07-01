@@ -2046,11 +2046,19 @@
                     double wingspan = XmlConvert.ToDouble(specsElement.Attributes["wingspan"].Value);
                     double length = XmlConvert.ToDouble(specsElement.Attributes["length"].Value);
                     long range = Convert.ToInt64(specsElement.Attributes["range"].Value);
+
                     double speed = XmlConvert.ToDouble(specsElement.Attributes["speed"].Value);
                     long fuelcapacity = XmlConvert.ToInt64(specsElement.Attributes["fuelcapacity"].Value);
                     double fuel = XmlConvert.ToDouble(specsElement.Attributes["consumption"].Value);
                     long runwaylenght = XmlConvert.ToInt64(specsElement.Attributes["runwaylengthrequired"].Value);
 
+                    double weight;
+
+                    if (specsElement.HasAttribute("weight"))
+                        weight = Convert.ToDouble(specsElement.Attributes["weight"].Value);
+                    else
+                        weight = AirlinerHelpers.GetCalculatedWeight(wingspan,length,fuelcapacity);
+                
                     var capacityElement = (XmlElement)airliner.SelectSingleNode("capacity");
 
                     var producedElement = (XmlElement)airliner.SelectSingleNode("produced");
@@ -2082,6 +2090,7 @@
                             range,
                             wingspan,
                             length,
+                            weight,
                             fuel,
                             price,
                             maxClasses,
@@ -2110,6 +2119,7 @@
                             range,
                             wingspan,
                             length,
+                            weight,
                             fuel,
                             price,
                             runwaylenght,
@@ -2142,6 +2152,7 @@
                             range,
                             wingspan,
                             length,
+                            weight,
                             fuel,
                             price,
                             maxClasses,
@@ -2643,6 +2654,16 @@
 
                        
                     }
+
+                    //30.06.14: Added for loading of landing fees
+                    double landingFee;
+
+                    if (airportElement.HasAttribute("landingfee"))
+                        landingFee = Convert.ToDouble(airportElement.Attributes["landingfee"].Value, new CultureInfo("en-US", false));
+                    else
+                        landingFee = AirportHelpers.GetStandardLandingFee(airport);
+
+                    airport.LandingFee = landingFee;
 
                     if (Airports.GetAirport(a => a.Profile.ID == airport.Profile.ID) == null)
                     {

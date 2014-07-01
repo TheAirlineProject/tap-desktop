@@ -23,6 +23,15 @@
 
         #region Public Methods and Operators
 
+        //returns a calculated weight for an airliner
+        public static double GetCalculatedWeight(AirlinerType type)
+        {
+            return GetCalculatedWeight(type.Wingspan, type.Length, type.FuelCapacity);
+        }
+        public static double GetCalculatedWeight(double wingspan, double lenght, long fuel)
+        {
+            return (wingspan*lenght*4) + fuel;
+        }
         public static void CreateAirlinerClasses(Airliner airliner)
         {
             airliner.clearAirlinerClasses();

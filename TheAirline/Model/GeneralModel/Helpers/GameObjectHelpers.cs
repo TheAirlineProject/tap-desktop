@@ -349,7 +349,7 @@
                 dest.Profile.Coordinates.convertToGeoCoordinate(),
                 dept.Profile.Coordinates.convertToGeoCoordinate());
 
-            double expenses = fuelExpenses + dest.getLandingFee() + tax;
+            double expenses = fuelExpenses + AirportHelpers.GetLandingFee(dest,airliner.Airliner) + tax;
             if (double.IsNaN(expenses))
             {
                 expenses = 0;
@@ -362,7 +362,7 @@
 
             FleetAirlinerHelpers.SetFlightStats(airliner);
 
-            long airportIncome = Convert.ToInt64(dest.getLandingFee());
+            long airportIncome = Convert.ToInt64(AirportHelpers.GetLandingFee(dest, airliner.Airliner));
             dest.Income += airportIncome;
 
             Airline airline = airliner.Airliner.Airline;
@@ -2746,7 +2746,7 @@
                 airliner.CurrentPosition);
             double expenses = GameObject.GetInstance().FuelPrice * fdistance
                               * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Type.FuelConsumption
-                              + airliner.CurrentPosition.getLandingFee();
+                              + AirportHelpers.GetLandingFee(airliner.CurrentPosition, airliner.Airliner);
 
             servicePrice += expenses;
 
