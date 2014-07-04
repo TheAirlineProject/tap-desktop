@@ -557,12 +557,34 @@
 
             this.CanBuildHub = this.canBuildHub();
         }
+        public void purchaseTerminal(AirportTerminalMVVM terminal, Airline airline)
+        {
+            terminal.purchaseTerminal(airline);
 
+            
+            foreach (AirportContract contract in this.Airport.AirlineContracts)
+            {
+                if (this.Contracts.FirstOrDefault(c=>c.Contract == contract) == null)
+                    this.Contracts.Add(new ContractMVVM(contract));
+     
+            }
+
+            
+        }
         public void removeTerminal(AirportTerminalMVVM terminal)
         {
             this.Airport.removeTerminal(terminal.Terminal);
 
             this.Terminals.Remove(terminal);
+
+            var contracts = new List<ContractMVVM>(this.Contracts);
+
+            foreach (ContractMVVM contract in contracts)
+            {
+                if (!this.Airport.AirlineContracts.Exists(c=>contract.Contract == c))
+                    this.Contracts.Remove(contract);
+            }
+            
         }
 
         #endregion
@@ -999,6 +1021,8 @@
             this.IsBuyable = false;
 
             this.FreeGates = 0;
+
+           
         }
 
         #endregion

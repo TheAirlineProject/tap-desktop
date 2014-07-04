@@ -149,6 +149,8 @@
         {
             string text = value.ToString();
 
+            text = text.Replace("\n", Environment.NewLine);
+
             var txtBlock = new TextBlock();
             txtBlock.TextWrapping = TextWrapping.Wrap;
 
@@ -179,6 +181,7 @@
                 }
             }
 
+         
             return txtBlock;
         }
 

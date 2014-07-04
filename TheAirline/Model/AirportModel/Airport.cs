@@ -111,6 +111,11 @@
 
             if (version < 3)
                 this.LandingFee = AirportHelpers.GetStandardLandingFee(this);
+
+            if (this.Weather.Contains(null))
+            {
+                AirportHelpers.CreateAirportWeather(this);
+            }
         }
 
         #endregion

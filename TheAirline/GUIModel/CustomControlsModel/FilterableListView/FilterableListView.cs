@@ -304,7 +304,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
                         ContentControl ccPopUp = (ContentControl)popup.Child;
 
                         ccPopUp.SetResourceReference(ContentControl.ContentTemplateProperty, "FixedFilteredPopUp");
-
+                        
                     }
                     else
                     {
@@ -390,7 +390,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
         {
             object value;
 
-            if (obj == null)
+            if (obj == null || propertyName.Length == 0)
                 value = "";
             else
             {

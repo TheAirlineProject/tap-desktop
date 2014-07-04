@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-
+﻿
 <!--must be placed in \data\addons\airports-->
 <airports>
   <!--Canada (C***)-->
@@ -11,18 +10,6 @@
       <longitude value="113°34'47''W" />
     </coordinates>
     <size value="Medium" pax="6277" cargo="Smallest" cargovolume="0" />
-    <destinations>
-      <destination airport="LAS" pax="179" cargo="Smallest" cargovolume="0" />
-      <destination airport="PHX" pax="142" cargo="Smallest" cargovolume="0" />
-      <destination airport="DEN" pax="119" cargo="Smallest" cargovolume="0" />
-      <destination airport="SEA" pax="118" cargo="Smallest" cargovolume="0" />
-      <destination airport="MSP" pax="116" cargo="Smallest" cargovolume="0" />
-      <destination airport="LHR" pax="99" cargo="Smallest" cargovolume="0" />
-      <destination airport="IAH" pax="94" cargo="Smallest" cargovolume="0" />
-      <destination airport="ORD" pax="85" cargo="Smallest" cargovolume="0" />
-      <destination airport="SFO" pax="81" cargo="Smallest" cargovolume="0" />
-      <destination airport="LAX" pax="77" cargo="Smallest" cargovolume="0" />
-    </destinations>
     <terminals>
       <terminal name="Terminal" gates="30" />
     </terminals>
@@ -389,7 +376,7 @@
       <latitude value="040°39'08''N" />
       <longitude value="075°26'26''W" />
     </coordinates>
-    <size value="Very_small" pax="414" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="652" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="9" />
     </terminals>
@@ -404,7 +391,7 @@
       <latitude value="032°24'47''N" />
       <longitude value="099°40'59''W" />
     </coordinates>
-    <size value="Smallest" pax="73" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="147" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="2" />
     </terminals>
@@ -420,18 +407,7 @@
       <latitude value="035°02'25''N" />
       <longitude value="106°36'33''W" />
     </coordinates>
-    <size value="Medium" pax="2828" cargo="Smallest" cargovolume="0" />
-    <destinations>
-      <destination airport="PHX" pax="336" cargo="Smallest" cargovolume="0" />
-      <destination airport="DEN" pax="299" cargo="Smallest" cargovolume="0" />
-      <destination airport="DFW" pax="292" cargo="Smallest" cargovolume="0" />
-      <destination airport="DAL" pax="179" cargo="Smallest" cargovolume="0" />
-      <destination airport="LAX" pax="174" cargo="Smallest" cargovolume="0" />
-      <destination airport="ATL" pax="143" cargo="Smallest" cargovolume="0" />
-      <destination airport="SLC" pax="107" cargo="Smallest" cargovolume="0" />
-      <destination airport="IAH" pax="95" cargo="Smallest" cargovolume="0" />
-      <destination airport="HOU" pax="83" cargo="Smallest" cargovolume="0" />
-    </destinations>
+    <size value="Medium" pax="5800" cargo="Medium" cargovolume="61" />
     <terminals>
       <terminal name="Terminal" gates="25" />
     </terminals>
@@ -448,7 +424,7 @@
       <latitude value="045°26'56''N" />
       <longitude value="098°25'18''W" />
     </coordinates>
-    <size value="Smallest" pax="23" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="40" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -463,7 +439,7 @@
       <latitude value="031°32'07''N" />
       <longitude value="084°11'40''W" />
     </coordinates>
-    <size value="Smallest" pax="35" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="70" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -478,7 +454,7 @@
       <latitude value="041°15'11''N" />
       <longitude value="070°03'36''W" />
     </coordinates>
-    <size value="Very_small" pax="201" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="384" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -494,7 +470,7 @@
       <latitude value="031°36'40''N" />
       <longitude value="097°13'49''W" />
     </coordinates>
-    <size value="Very_small" pax="61" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="123" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -509,7 +485,7 @@
       <latitude value="039°27'27''N" />
       <longitude value="074°34'37''W" />
     </coordinates>
-    <size value="Small" pax="669" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1200" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="8" />
     </terminals>
@@ -524,7 +500,7 @@
       <latitude value="031°19'38''N" />
       <longitude value="092°32'59''W" />
     </coordinates>
-    <size value="Very_small" pax="179" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="266" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -534,12 +510,12 @@
     </runways>
   </airport>
    <airport name="Trenton Mercer Airport" icao="KTTN" iata="TTN" type="Domestic" season="All_Year">
-    <town town="Trenton, NM" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Trenton, NJ" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="040°16'36''N" />
       <longitude value="074°48'48''W" />
     </coordinates>
-    <size value="Smallest" pax="124" />
+    <size value="Very_small" pax="408" />
     <terminals>
       <terminal name="Terminal A" gates="17" />
     </terminals>
@@ -554,7 +530,7 @@
       <latitude value="033°22'11''N" />
       <longitude value="081°57'52''W" />
     </coordinates>
-    <size value="Very_small" pax="246" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="400" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -569,7 +545,7 @@
       <latitude value="042°43'59''N" />
       <longitude value="073°47'59''W" />
     </coordinates>
-    <size value="Small" pax="1250" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2531" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="20" />
     </terminals>
@@ -584,7 +560,7 @@
       <latitude value="046°05'41''N" />
       <longitude value="118°17'16''W" />
     </coordinates>
-    <size value="Smallest" pax="32" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="56" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -600,7 +576,7 @@
       <latitude value="035°13'10''N" />
       <longitude value="101°42'21''W" />
     </coordinates>
-    <size value="Very_small" pax="394" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="805" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="14" />
     </terminals>
@@ -615,7 +591,7 @@
       <latitude value="039°13'23''N" />
       <longitude value="106°52'08''W" />
     </coordinates>
-    <size value="Very_small" pax="222" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="444" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="12" />
     </terminals>
@@ -630,31 +606,8 @@
       <latitude value="033°38'25''N" />
       <longitude value="084°25'37''W" />
     </coordinates>
-    <size value="Largest" pax="92365" cargo="Smallest" cargovolume="0" />
-    <destinations>
-      <destination airport="MCO" pax="1305" cargo="Smallest" cargovolume="0" />
-      <destination airport="FLL" pax="1187" cargo="Smallest" cargovolume="0" />
-      <destinatoin airport="LGA" pax="1155" cargo="Smallest" cargovolume="0" />
-      <destination airport="TPA" pax="954" cargo="Smallest" cargovolume="0" />
-      <destination airport="LAX" pax="894" cargo="Smallest" cargovolume="0" />
-      <destination airport="DCA" pax="850" cargo="Smallest" cargovolume="0" />
-      <destination airport="CHA" pax="845" cargo="Smallest" cargovolume="0" />
-      <destination airport="PHL" pax="833" cargo="Smallest" cargovolume="0" />
-      <destination airport="BWI" pax="778" cargo="Smallest" cargovolume="0" />
-      <destination airport="CUN" pax="619" cargo="Smallest" cargovolume="0" />
-      <destination airport="CDG" pax="511" cargo="Smallest" cargovolume="0" />
-      <destination airport="AMS" pax="397" cargo="Smallest" cargovolume="0" />
-      <destination airport="MBJ" pax="392" cargo="Smallest" cargovolume="0" />
-      <destination airport="YYZ" pax="346" cargo="Smallest" cargovolume="0" />
-      <destination airport="LHR" pax="319" cargo="Smallest" cargovolume="0" />
-      <destination airport="NAS" pax="317" cargo="Smallest" cargovolume="0" />
-      <destination airport="MEX" pax="292" cargo="Smallest" cargovolume="0" />
-      <destination airport="FRA" pax="283" cargo="Smallest" cargovolume="0" />
-      <destination airport="ICN" pax="256" cargo="Smallest" cargovolume="0" />
-      <destination airport="GDL" pax="123" cargo="Smallest" cargovolume="0" />
-      <destination airport="SCL" pax="112" cargo="Smallest" cargovolume="0" />
-    </destinations>
-    <terminals>
+    <size value="Largest" pax="94431" cargo="Very_large" cargovolume="616" />
+        <terminals>
       <terminal name="Terminal" gates="199" />
     </terminals>
     <runways>
@@ -671,7 +624,7 @@
       <latitude value="044°15'29''N" />
       <longitude value="088°31'08''W" />
     </coordinates>
-    <size value="Very_small" pax="259" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="526" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="8" />
     </terminals>
@@ -687,19 +640,7 @@
       <latitude value="030°11'39''N" />
       <longitude value="097°40'12''W" />
     </coordinates>
-    <size value="Medium" pax="4436" cargo="Smallest" cargovolume="0" />
-    <destinations>
-      <destination airport="DFW" pax="626" cargo="Smallest" cargovolume="0" />
-      <destination airport="IAH" pax="343" cargo="Smallest" cargovolume="0" />
-      <destination airport="DEN" pax="301" cargo="Smallest" cargovolume="0" />
-      <destination airport="ATL" pax="289" cargo="Smallest" cargovolume="0" />
-      <destination airport="DAL" pax="286" cargo="Smallest" cargovolume="0" />
-      <destination airport="PHX" pax="232" cargo="Smallest" cargovolume="0" />
-      <destination airport="LAX" pax="220" cargo="Smallest" cargovolume="0" />
-      <destination airport="ORD" pax="199" cargo="Smallest" cargovolume="0" />
-      <destination airport="HOU" pax="139" cargo="Smallest" cargovolume="0" />
-      <destination airport="LAS" pax="130" cargo="Smallest" cargovolume="0" />
-    </destinations>
+    <size value="Large" pax="10017" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="25" />
     </terminals>
@@ -714,7 +655,7 @@
       <latitude value="035°38'06''N" />
       <longitude value="077°23'07''W" />
     </coordinates>
-    <size value="Smallest" pax="61" />
+    <size value="Smallest" pax="124" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -730,7 +671,7 @@
       <latitude value="035°26'10''N" />
       <longitude value="082°32'30''W" />
     </coordinates>
-    <size value="Small" pax="682" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="790" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="7" />
     </terminals>
@@ -744,7 +685,7 @@
       <latitude value="040°20'18''N" />
       <longitude value="075°43'24''W" />
     </coordinates>
-    <size value="Very_small" pax="213" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="471" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -759,7 +700,7 @@
       <latitude value="042°14'06''N" />
       <longitude value="085°33'07''W" />
     </coordinates>
-    <size value="Very_small" pax="135" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="253" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -775,7 +716,7 @@
       <latitude value="036°31'55''N" />
       <longitude value="093°12'02''W" />
     </coordinates>
-    <size value="Smallest" pax="91" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="238" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="3" />
     </terminals>
@@ -790,19 +731,7 @@
       <latitude value="041°56'19''N" />
       <longitude value="072°40'57''W" />
     </coordinates>
-    <size value="Medium" pax="2640" cargo="Smallest" cargovolume="0" />
-    <destinations>
-      <destination airport="ATL" pax="263" cargo="Smallest" cargovolume="0" />
-      <destination airport="BWI" pax="250" cargo="Smallest" cargovolume="0" />
-      <destination airport="MCO" pax="244" cargo="Smallest" cargovolume="0" />
-      <destination airport="CHA" pax="219" cargo="Smallest" cargovolume="0" />
-      <destination airport="ORD" pax="219" cargo="Smallest" cargovolume="0" />
-      <destination airport="DFW" pax="136" cargo="Smallest" cargovolume="0" />
-      <destination airport="PHL" pax="132" cargo="Smallest" cargovolume="0" />
-      <destination airport="DTW" pax="131" cargo="Smallest" cargovolume="0" />
-      <destination airport="FLL" pax="121" cargo="Smallest" cargovolume="0" />
-      <destination airport="MSP" pax="115" cargo="Smallest" cargovolume="0" />
-    </destinations>
+    <size value="Medium" pax="5421" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="24" />
     </terminals>
@@ -819,7 +748,7 @@
       <latitude value="047°31'47''N" />
       <longitude value="122°18'07''W" />
     </coordinates>
-    <size value="Smallest" pax="34" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="67" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -834,7 +763,7 @@
       <latitude value="035°26'00''N" />
       <longitude value="119°03'25''W" />
     </coordinates>
-    <size value="Very_small" pax="148" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="285" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -849,7 +778,7 @@
       <latitude value="042°12'31''N" />
       <longitude value="075°58'47''W" />
     </coordinates>
-    <size value="Very_small" pax="108" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="207" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -864,7 +793,7 @@
       <latitude value="044°03'36''N" />
       <longitude value="069°05'57''W" />
     </coordinates>
-    <size value="Smallest" pax="17" />
+    <size value="Smallest" pax="35" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -879,7 +808,7 @@
       <latitude value="044°48'26''N" />
       <longitude value="068°49'41''W" />
     </coordinates>
-    <size value="Very_small" pax="355" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="833" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="5" />
     </terminals>
@@ -893,7 +822,7 @@
       <latitude value="044°27'00''N" />
       <longitude value="068°21'41''W" />
     </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="22" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -910,7 +839,7 @@
       <latitude value="033°34'00''N" />
       <longitude value="086°45'00''W" />
     </coordinates>
-    <size value="Small" pax="1443" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3070" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="13" />
     </terminals>
@@ -925,7 +854,7 @@
       <latitude value="045°48'28''N" />
       <longitude value="108°32'34''W" />
     </coordinates>
-    <size value="Very_small" pax="422" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="900" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="7" />
     </terminals>
@@ -941,7 +870,7 @@
       <latitude value="046°46'22''N" />
       <longitude value="100°44'45''W" />
     </coordinates>
-    <size value="Very_small" pax="178" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="511" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -956,7 +885,7 @@
       <latitude value="048°47'34''N" />
       <longitude value="122°32'16''W" />
     </coordinates>
-    <size value="Small" pax="515" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1231" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -970,7 +899,7 @@
       <latitude value="040°28'38''N" />
       <longitude value="088°54'57''W" />
     </coordinates>
-    <size value="Very_small" pax="274" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="485" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="9" />
     </terminals>
@@ -999,7 +928,7 @@
       <latitude value="043°33'51''N" />
       <longitude value="116°13'22''W" />
     </coordinates>
-    <size value="Small" pax="1574" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2805" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="12" />
     </terminals>
@@ -1015,19 +944,7 @@
       <latitude value="036°07'27''N" />
       <longitude value="086°40'41''W" />
     </coordinates>
-    <size value="Medium" pax="4673" cargo="Smallest" cargovolume="0" />
-    <destinations>
-      <destination airport="ATL" pax="341" cargo="Smallest" cargovolume="0" />
-      <destination airport="DFW" pax="281" cargo="Smallest" cargovolume="0" />
-      <destination airport="DEN" pax="260" cargo="Smallest" cargovolume="0" />
-      <destination airport="MDW" pax="237" cargo="Smallest" cargovolume="0" />
-      <destination airport="CHA" pax="215" cargo="Smallest" cargovolume="0" />
-      <destination airport="DTW" pax="214" cargo="Smallest" cargovolume="0" />
-      <destination airport="BWI" pax="204" cargo="Smallest" cargovolume="0" />
-      <destination airport="ORD" pax="182" cargo="Smallest" cargovolume="0" />
-      <destination airport="MCO" pax="152" cargo="Smallest" cargovolume="0" />
-      <destination airport="PHL" pax="144" cargo="Smallest" cargovolume="0" />
-    </destinations>
+    <size value="Medium" pax="9651" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="47" />
     </terminals>
@@ -1045,7 +962,7 @@
       <latitude value="042°21'51''N" />
       <longitude value="071°00'18''W" />
     </coordinates>
-    <size value="Very_large" pax="28866" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="30218" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="56" />
     </terminals>
@@ -1064,7 +981,7 @@
       <latitude value="029°57'02''N" />
       <longitude value="094°01'14''W" />
     </coordinates>
-    <size value="Smallest" pax="17" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="35" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -1079,7 +996,7 @@
       <latitude value="031°15'31''N" />
       <longitude value="081°27'59''W" />
     </coordinates>
-    <size value="Smallest" pax="30" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="60" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -1094,7 +1011,7 @@
       <latitude value="025°54'24''N" />
       <longitude value="097°25'33''W" />
     </coordinates>
-    <size value="Smallest" pax="84" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="149" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -1110,7 +1027,7 @@
       <latitude value="045°57'17''N" />
       <longitude value="112°29'49''W" />
     </coordinates>
-    <size value="Smallest" pax="30" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="51" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -1126,7 +1043,7 @@
       <latitude value="030°31'58''N" />
       <longitude value="091°09'00''W" />
     </coordinates>
-    <size value="Very_small" pax="382" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="765" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="7" />
     </terminals>
@@ -1142,7 +1059,7 @@
       <latitude value="044°28'19''N" />
       <longitude value="073°09'12''W" />
     </coordinates>
-    <size value="Small" pax="747" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1303" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="5" />
     </terminals>
@@ -1151,13 +1068,28 @@
       <runway name="15/33" length="2536" surface="Asphalt" />
     </runways>
   </airport>
+   <airport name="Rutland-Southern Vermont Regional Airport" icao="KRUT" iata="RUT" type="Domestic" season="All_Year">
+    <town town="Rutland, VT" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="043°31'48''N" />
+      <longitude value="072°56'59''W" />
+    </coordinates>
+    <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="1525" surface="Asphalt" />
+      <runway name="13/31" length="966" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Buffalo Niagara International Airport" icao="KBUF" iata="BUF" type="Domestic" season="All_Year">
     <town town="Buffalo, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="042°56'26''N" />
       <longitude value="078°43'56''W" />
     </coordinates>
-    <size value="Medium" pax="2602" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="5118" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="26" />
     </terminals>
@@ -1172,7 +1104,7 @@
       <latitude value="034°12'00''N" />
       <longitude value="118°20'59''W" />
     </coordinates>
-    <size value="Medium" pax="2239" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3844" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="9" />
       <terminal name="Terminal B" gates="5" />
@@ -1189,7 +1121,7 @@
       <latitude value="039°10'31''N" />
       <longitude value="076°40'06''W" />
     </coordinates>
-    <size value="Large" pax="11067" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="22498" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="84" />
     </terminals>
@@ -1206,7 +1138,7 @@
       <latitude value="045°46'39''N" />
       <longitude value="111°09'10''W" />
     </coordinates>
-    <size value="Very_small" pax="349" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="885" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="7" />
     </terminals>
@@ -1222,7 +1154,7 @@
       <latitude value="033°56'19''N" />
       <longitude value="081°07'10''W" />
     </coordinates>
-    <size value="Small" pax="565" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2056" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="16" />
     </terminals>
@@ -1237,7 +1169,7 @@
       <latitude value="041°35'12''N" />
       <longitude value="083°48'28''W" />
     </coordinates>
-    <size value="Smallest" pax="93" />
+    <size value="Very_small" pax="187" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -1252,7 +1184,7 @@
       <latitude value="040°54'57''N" />
       <longitude value="081°26'31''W" />
     </coordinates>
-    <size value="Small" pax="715" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1431" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="11" />
     </terminals>
@@ -1268,7 +1200,7 @@
       <latitude value="032°53'54''N" />
       <longitude value="080°02'26''W" />
     </coordinates>
-    <size value="Small" pax="1174" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2870" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="18" />
     </terminals>
@@ -1283,7 +1215,7 @@
       <latitude value="041°53'05''N" />
       <longitude value="091°42'39''W" />
     </coordinates>
-    <size value="Very_small" pax="462" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="864" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="13" />
     </terminals>
@@ -1299,7 +1231,7 @@
       <latitude value="041°24'42''N" />
       <longitude value="081°50'59''W" />
     </coordinates>
-    <size value="Medium" pax="4401" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="9004" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="66" />
     </terminals>
@@ -1309,6 +1241,22 @@
       <runway name="10/28" length="1834" surface="Asphalt" />
     </runways>
   </airport>
+    <airport name="Rickenbacker International Airport" icao="KLCK" iata="LCK" type="Domestic"
+           season="All_Year">
+    <town town="Columbus, OH" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="039°48'50''N" />
+      <longitude value="082°55'40''W" />
+    </coordinates>
+    <size value="Smallest" pax="13" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="5R/23L" length="3689" surface="Asphalt" />
+      <runway name="5L/23R" length="3638" surface="Asphalt" />
+        </runways>
+  </airport>
   <airport name="Charlotte/Douglas International Airport" icao="KCLT" iata="CLT" type="Short_Haul_International"
            season="All_Year">
     <town town="Charlotte, NC" country="122" GMT="-04:00:00" DST="-05:00:00" />
@@ -1316,7 +1264,7 @@
       <latitude value="035°12'50''N" />
       <longitude value="080°56'35''W" />
     </coordinates>
-    <size value="Very_large" pax="39043" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="41228" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="91" />
     </terminals>
@@ -1327,6 +1275,21 @@
       <runway name="18R/36L" length="2743" surface="Concrete" />
     </runways>
   </airport>
+    <airport name="Concord Regional Airport" icao="KJQF" iata="USA" type="Domestic"
+           season="All_Year">
+    <town town="Concord, NC" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="035°23'07''N" />
+      <longitude value="080°42'35''W" />
+    </coordinates>
+    <size value="Smallest" pax="19" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="2256" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Port Columbus International Airport" icao="KCMH" iata="CMH" type="Short_Haul_International"
            season="All_Year">
     <town town="Columbus, OH" country="122" GMT="-04:00:00" DST="-05:00:00" />
@@ -1334,7 +1297,7 @@
       <latitude value="039°59'58''N" />
       <longitude value="082°53'16''W" />
     </coordinates>
-    <size value="Medium" pax="3096" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="6233" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="44" />
     </terminals>
@@ -1343,13 +1306,13 @@
       <runway name="10R/28L" length="3086" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Colorado Springs Airport" icao="KCOS" iata="COS" type="Domestic" season="All_Year">
+  <airport name="City of Colorado Springs Municipal Airport" icao="KCOS" iata="COS" type="Domestic" season="All_Year">
     <town town="Colorado Springs, CO" country="122" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="038°49'00''N" />
       <longitude value="104°43'00''W" />
     </coordinates>
-    <size value="Small" pax="877" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1754" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="16" />
     </terminals>
@@ -1365,7 +1328,7 @@
       <latitude value="027°46'13''N" />
       <longitude value="097°30'04''W" />
     </coordinates>
-    <size value="Very_small" pax="339" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="681" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -1380,7 +1343,7 @@
       <latitude value="038°22'33''N" />
       <longitude value="081°35'35''W" />
     </coordinates>
-    <size value="Very_small" pax="243" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="530" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="7" />
     </terminals>
@@ -1412,7 +1375,7 @@
       <latitude value="041°09'20''N" />
       <longitude value="104°48'38''W" />
     </coordinates>
-    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="33" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="3" />
     </terminals>
@@ -1427,7 +1390,7 @@
       <latitude value="032°50'49''N" />
       <longitude value="096°51'07''W" />
     </coordinates>
-    <size value="Medium" pax="3852" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="7960" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="19" />
     </terminals>
@@ -1443,7 +1406,7 @@
       <latitude value="039°45'00''N" />
       <longitude value="084°10'59''W" />
     </coordinates>
-    <size value="Small" pax="1240" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2607" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="26" />
     </terminals>
@@ -1458,13 +1421,13 @@
     <town town="Washington DC" country="122" GMT="-03:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="038°51'08''N" />
-      <longitude value="077°02'16''W" />
+   <longitude value="077°02'16''W" />
     </coordinates>
-    <size value="Medium" pax="9053" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="20145" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="35" />
     </terminals>
-    <runways>
+   <runways>
       <runway name="1/19" length="2094" surface="Asphalt" />
       <runway name="4/22" length="1497" surface="Asphalt" />
       <runway name="15/33" length="1586" surface="Asphalt" />
@@ -1473,11 +1436,11 @@
   <airport name="Denver International Airport" icao="KDEN" iata="DEN" type="Long_Haul_International" season="All_Year">
     <period from="02.28.1995 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Denver, CO" country="122" GMT="-06:00:00" DST="-07:00:00" />
-    <coordinates>
+  <coordinates>
       <latitude value="039°51'30''N" />
       <longitude value="104°40'01''W" />
     </coordinates>
-    <size value="Largest" pax="52699" cargo="Smallest" cargovolume="0" />
+    <size value="Largest" pax="52556" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="136" />
     </terminals>
@@ -1512,23 +1475,20 @@
     </runways>
   </airport>
   <airport name="Dallas/Fort Worth International Airport" icao="KDFW" iata="DFW" type="Long_Haul_International"
-           season="All_Year"  landingfee="1.95">
+           season="All_Year" landingfee="1.95">
     <period from="01.13.1974 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Dallas, TX" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="032°53'47''N" />
       <longitude value="097°02'15''W" />
     </coordinates>
-    <size value="Largest" pax="57806" cargo="Smallest" cargovolume="3031" />
+    <size value="Largest" pax="60470" cargo="Smallest" cargovolume="3031" />
     <terminals>
-       <terminal name="Terminal A" gates="31" />
-      <terminal name="Terminal B" gates="49" />
+      <terminal name="Terminal A" gates="31" />
+      <terminal name="Terminal B" gates="35" />
       <terminal name="Terminal C" gates="31" />
       <terminal name="Terminal D" gates="29" />
-      <terminal name="Terminal E" gates="35" />
-      <terminal name="Fedex Cargo Ramp" gates="8" />
-      <terminal name="UPS Cargo Ramp" gates="9" />
-      <terminal name="West Cargo Ramp" gates="10" />
+      <terminal name="Terminal E" gates="26" />
     </terminals>
     <runways>
       <runway name="13L/31R" length="2743" surface="Concrete" />
@@ -1546,7 +1506,7 @@
       <latitude value="046°50'32''N" />
       <longitude value="092°11'37''W" />
     </coordinates>
-    <size value="Very_small" pax="147" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="338" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="10" />
     </terminals>
@@ -1562,7 +1522,7 @@
       <latitude value="042°12'44''N" />
       <longitude value="083°21'12''W" />
     </coordinates>
-    <size value="Very_large" pax="32419" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="32242" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Edward H. McNamara Terminal" gates="122" />
       <terminal name="North Terminal" gates="26" />
@@ -1582,7 +1542,7 @@
       <latitude value="041°32'02''N" />
       <longitude value="093°39'47''W" />
     </coordinates>
-    <size value="Small" pax="898" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2077" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="12" />
     </terminals>
@@ -1597,7 +1557,7 @@
       <latitude value="031°48'00''N" />
       <longitude value="106°22'59''W" />
     </coordinates>
-    <size value="Small" pax="1509" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="3065" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="15" />
     </terminals>
@@ -1613,7 +1573,7 @@
       <latitude value="042°04'55''N" />
       <longitude value="080°10'34''W" />
     </coordinates>
-    <size value="Very_small" pax="127" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="254" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="7" />
     </terminals>
@@ -1629,7 +1589,7 @@
       <latitude value="040°41'32''N" />
       <longitude value="074°10'07''W" />
     </coordinates>
-    <size value="Very_large" pax="33577" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="35016" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="110" />
     </terminals>
@@ -1645,7 +1605,7 @@
       <latitude value="046°55'14''N" />
       <longitude value="096°48'57''W" />
     </coordinates>
-    <size value="Very_small" pax="326" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="868" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="11" />
     </terminals>
@@ -1662,7 +1622,7 @@
       <latitude value="036°46'15''N" />
       <longitude value="119°43'08''W" />
     </coordinates>
-    <size value="Small" pax="569" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1400" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="10" />
     </terminals>
@@ -1678,8 +1638,8 @@
       <latitude value="026°04'21''N" />
       <longitude value="080°09'09''W" />
     </coordinates>
-    <size value="Large" pax="11332" cargo="Smallest" cargovolume="0" />
-    <terminals>
+    <size value="Very_large" pax="23559" cargo="Smallest" cargovolume="0" />
+   <terminals>
       <terminal name="Terminal 1" gates="18" />
       <terminal name="Terminal 2" gates="9" />
       <terminal name="Terminal 3" gates="20" />
@@ -1697,7 +1657,7 @@
       <latitude value="042°57'56''N" />
       <longitude value="083°44'37''W" />
     </coordinates>
-    <size value="Very_small" pax="497" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="938" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="7" />
     </terminals>
@@ -1712,7 +1672,7 @@
       <latitude value="043°34'55''N" />
       <longitude value="096°44'31''W" />
     </coordinates>
-    <size value="Very_small" pax="367" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1045" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="11" />
     </terminals>
@@ -1728,8 +1688,8 @@
       <latitude value="047°37'12''N" />
       <longitude value="117°32'02''W" />
     </coordinates>
-    <size value="Small" pax="1487" cargo="Smallest" cargovolume="0" />
-    <terminals>
+    <size value="Medium" pax="3005" cargo="Medium" cargovolume="61" />
+   <terminals>
       <terminal name="Terminal" gates="24" />
     </terminals>
     <runways>
@@ -1757,7 +1717,7 @@
       <latitude value="030°24'26''N" />
       <longitude value="089°04'12''W" />
     </coordinates>
-    <size value="Very_small" pax="461" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="722" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -1772,7 +1732,7 @@
       <latitude value="044°28'59''N" />
       <longitude value="088°07'59''W" />
     </coordinates>
-    <size value="Very_small" pax="410" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="604" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="12" />
     </terminals>
@@ -1788,7 +1748,7 @@
       <latitude value="042°52'59''N" />
       <longitude value="085°31'59''W" />
     </coordinates>
-    <size value="Small" pax="1089" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2237" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="25" />
     </terminals>
@@ -1804,7 +1764,7 @@
       <latitude value="036°05'52''N" />
       <longitude value="79°56'14''W" />
     </coordinates>
-    <size value="Small" pax="863" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1691" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="30" />
     </terminals>
@@ -1820,7 +1780,7 @@
       <latitude value="034°53'44''N" />
       <longitude value="082°13'08''W" />
     </coordinates>
-    <size value="Small" pax="699" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="1809" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="13" />
     </terminals>
@@ -1834,13 +1794,13 @@
       <latitude value="046°36'24''N" />
       <longitude value="111°58'57''W" />
     </coordinates>
-    <size value="Smallest" pax="85" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="212" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="5" />
     </terminals>
     <runways>
-      <runway name="5/23" length="1415" surface="Asphalt" />
-      <runway name="9/27" length="2743" surface="Asphalt" />
+      <runway name="5/23" length="1415" surface="Asphalt"/>
+ <runway name="9/27" length="2743" surface="Asphalt" />
       <runway name="16/34" length="911" surface="Asphalt" />
     </runways>
   </airport>
@@ -1850,7 +1810,7 @@
       <latitude value="041°04'01''N" />
       <longitude value="073°42'27''W" />
     </coordinates>
-    <size value="Small" pax="999" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1536" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -1865,7 +1825,7 @@
       <latitude value="029°38'43''N" />
       <longitude value="095°16'43''W" />
     </coordinates>
-    <size value="Medium" pax="4753" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="9054" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="26" />
     </terminals>
@@ -1899,7 +1859,7 @@
       <latitude value="038°56'40''N" />
       <longitude value="077°27'20''W" />
     </coordinates>
-    <size value="Large" pax="11043" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="21947" cargo="Very_large" cargovolume="253" />
     <terminals>
       <terminal name="Main Terminal" gates="143" />
       <terminal name="Midfield Terminal" gates="39" />
@@ -1919,7 +1879,7 @@
       <latitude value="029°58'49''N" />
       <longitude value="095°20'23''W" />
     </coordinates>
-    <size value="Very_large" pax="40170" cargo="Smallest" cargovolume="0" />
+    <size value="Largest" pax="40170" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="20" />
       <terminal name="Terminal B" gates="37" />
@@ -1941,7 +1901,7 @@
       <latitude value="037°38'59''N" />
       <longitude value="097°25'59''W" />
     </coordinates>
-    <size value="Small" pax="751" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1471" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="11" />
     </terminals>
@@ -1957,7 +1917,7 @@
       <latitude value="039°40'43''N" />
       <longitude value="075°36'24''W" />
     </coordinates>
-    <size value="Smallest" pax="469" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="147" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -1974,7 +1934,7 @@
       <latitude value="039°43'02''N" />
       <longitude value="086°17'39''W" />
     </coordinates>
-    <size value="Medium" pax="3670" cargo="Smallest" cargovolume="4717" />
+    <size value="Medium" pax="7526" cargo="Very_large" cargovolume="992" />
     <terminals>
       <terminal name="Colonel H. Weir Cook Terminal" gates="46" />
     </terminals>
@@ -1990,7 +1950,7 @@
       <latitude value="040°47'43''N" />
       <longitude value="073°06'01''W" />
     </coordinates>
-    <size value="Small" pax="858" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1392" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="11" />
     </terminals>
@@ -2007,7 +1967,7 @@
       <latitude value="032°18'39''N" />
       <longitude value="090°04'32''W" />
     </coordinates>
-    <size value="Small" pax="618" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1000" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="19" />
     </terminals>
@@ -2022,7 +1982,7 @@
       <latitude value="030°29'39''N" />
       <longitude value="081°41'16''W" />
     </coordinates>
-    <size value="Medium" pax="2700" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="5600" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="20" />
     </terminals>
@@ -2032,19 +1992,13 @@
     </runways>
   </airport>
   <airport name="John F. Kennedy International Airport" icao="KJFK" iata="JFK" type="Long_Haul_International"
-           season="All_Year" landingfee="1.48">
-    <town town="New York, NY" country="122" GMT="-04:00:00" DST="-05:00:00" cargo="Large" cargovolume="1343" />
+           season="All_Year"  landingfee="1.48">
+    <town town="New York, NY" country="122" GMT="-04:00:00" DST="-05:00:00" cargo="Very_large" cargovolume="1295" />
     <coordinates>
       <latitude value="040°38'23''N" />
       <longitude value="073°46'44''W" />
     </coordinates>
-    <size value="Very_large" pax="47854" cargo="Smallest" cargovolume="3923" />
-    <destinations>
-      <destination airport="LHR" pax="2624" cargo="Smallest" cargovolume="0" />
-      <destination airport="CDG" pax="1228" cargo="Smallest" cargovolume="0" />
-      <destination airport="LAX" pax="1581" cargo="Smallest" cargovolume="0" />
-      <destination airport="SFO" pax="1105" cargo="Smallest" cargovolume="0" />
-    </destinations>
+    <size value="Very_large" pax="50423" cargo="Very_large" cargovolume="3923" />
     <terminals>
       <terminal name="Terminal 1" gates="11" />
       <terminal name="Terminal 2" gates="24" />
@@ -2068,7 +2022,7 @@
       <latitude value="042°46'43''N" />
       <longitude value="084°35'10''W" />
     </coordinates>
-    <size value="Very_small" pax="136" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="418" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="9" />
     </terminals>
@@ -2085,7 +2039,7 @@
       <latitude value="033°56'33''N" />
       <longitude value="118°24'29''W" />
     </coordinates>
-    <size value="Largest" pax="61848" cargo="Smallest" cargovolume="3954" />
+    <size value="Largest" pax="66667" cargo="Very_large" cargovolume="1747" />
     <terminals>
       <terminal name="Terminal 1" gates="15" />
       <terminal name="Terminal 2" gates="11" />
@@ -2111,7 +2065,7 @@
       <latitude value="036°04'59''N" />
       <longitude value="115°10'00''W" />
     </coordinates>
-    <size value="Very_large" pax="41479" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="40933" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="96" />
       <terminal name="Terminal 2" gates="8" />
@@ -2124,13 +2078,13 @@
       <runway name="7R/25L" length="3208" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="LaGuardia Airport" icao="KLGA" iata="LGA" type="Short_Haul_International" season="All_Year"  landingfee="1.92">
+  <airport name="LaGuardia Airport" icao="KLGA" iata="LGA" type="Short_Haul_International" season="All_Year" landingfee="1.92">
     <town town="New York, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="040°46'38''N" />
       <longitude value="073°52'21''W" />
     </coordinates>
-    <size value="Large" pax="11989" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="26722" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Central Terminal Building" gates="40" />
     </terminals>
@@ -2145,7 +2099,7 @@
       <latitude value="33°49'04''N" />
       <longitude value="118°09'06''W" />
     </coordinates>
-    <size value="Small" pax="1512" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3000" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="13" />
     </terminals>
@@ -2163,7 +2117,7 @@
       <latitude value="034°43'45''N" />
       <longitude value="092°13'27''W" />
     </coordinates>
-    <size value="Small" pax="1097" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2255" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="12" />
     </terminals>
@@ -2179,7 +2133,7 @@
       <latitude value="040°51'04''N" />
       <longitude value="096°45'33''W" />
     </coordinates>
-    <size value="Very_small" pax="143" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="290" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -2195,7 +2149,7 @@
       <latitude value="027°32'38''N" />
       <longitude value="099°27'42''W" />
     </coordinates>
-    <size value="Very_small" pax="112" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="225" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="4" />
     </terminals>
@@ -2211,7 +2165,7 @@
       <latitude value="031°56'33''N" />
       <longitude value="102°12'07''W" />
     </coordinates>
-    <size value="Very_small" pax="445" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1067" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="11" />
     </terminals>
@@ -2229,7 +2183,7 @@
       <latitude value="039°17'51''N" />
       <longitude value="094°42'50''W" />
     </coordinates>
-    <size value="Medium" pax="5011" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="10150" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="30" />
       <terminal name="Terminal B" gates="30" />
@@ -2247,7 +2201,7 @@
       <latitude value="028°25'44''N" />
       <longitude value="081°18'57''W" />
     </coordinates>
-    <size value="Very_large" pax="35356" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="32724" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="50" />
       <terminal name="Terminal B" gates="59" />
@@ -2266,28 +2220,27 @@
       <latitude value="040°11'37''N" />
       <longitude value="076°45'48''W" />
     </coordinates>
-    <size value="Small" pax="664" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1330" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="12" />
     </terminals>
-    <runways>
+   <runways>
       <runway name="13/31" length="3048" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Chicago Midway International Airport" icao="KMDW" iata="MDW" type="Short_Haul_International"
-           season="All_Year" landingfee="1.02">
+           season="All_Year"  landingfee="1.02">
     <town town="Chicago, IL" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="041°47'09''N" />
       <longitude value="087°45'08''W" />
     </coordinates>
-    <size value="Medium" pax="9134" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="20474" cargo="Small" cargovolume="26"/>
     <terminals>
       <terminal name="Terminal" gates="43" />
     </terminals>
     <runways>
-      <runway name="4L/22R" length="1679" surface="Asphalt" />
-      <runway name="4R/22L" length="1965" surface="Asphalt" />
+      <runway name="4L/22R" length="1679" surface="Asphalt" /> <runway name="4R/22L" length="1965" surface="Asphalt" />
       <runway name="13L/31R" length="1567" surface="Asphalt" />
       <runway name="13C/31C" length="1988" surface="Concrete" />
       <runway name="13R/31L" length="1176" surface="Concrete" />
@@ -2296,11 +2249,11 @@
   <airport name="Memphis International Airport" icao="KMEM" iata="MEM" type="Short_Haul_International"
            season="All_Year">
     <town town="Memphis, TN" country="122" GMT="-05:00:00" DST="-06:00:00" />
-    <coordinates>
+  <coordinates>
       <latitude value="035°02'32''N" />
       <longitude value="089°58'36''W" />
     </coordinates>
-    <size value="Medium" pax="4344" cargo="Smallest" cargovolume="19544" />
+    <size value="Medium" pax="7875" cargo="Very_large" cargovolume="4138" />
     <terminals>
       <terminal name="Terminal A" gates="23" />
       <terminal name="Terminal B" gates="42" />
@@ -2319,7 +2272,7 @@
       <latitude value="042°55'57''N" />
       <longitude value="071°26'08''W" />
     </coordinates>
-    <size value="Small" pax="1834" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2814" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="7" />
     </terminals>
@@ -2330,11 +2283,11 @@
   </airport>
   <airport name="Miami International Airport" icao="KMIA" iata="MIA" type="Long_Haul_International" season="Summer">
     <town town="Miami, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
-    <coordinates>
+ <coordinates>
       <latitude value="025°47'35''N" />
       <longitude value="080°17'26''W" />
     </coordinates>
-    <size value="Very_large" pax="38314" cargo="Smallest" cargovolume="6905" />
+    <size value="Very_large" pax="40500" cargo="Smallest" cargovolume="6905" />
     <terminals>
       <terminal name="North Terminal" gates="45" />
       <terminal name="Central Terminal" gates="47" />
@@ -2354,15 +2307,15 @@
       <latitude value="042°56'48''N" />
       <longitude value="087°53'48''W" />
     </coordinates>
-    <size value="Medium" pax="4671" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="7620" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="48" />
     </terminals>
     <runways>
-      <runway name="1L/19R" length="2954" surface="Asphalt" />
+      <runway name="1L/19R" length="3045" surface="Asphalt" />
       <runway name="1R/19L" length="1275" surface="Asphalt" />
       <runway name="7L/25R" length="1463" surface="Asphalt" />
-      <runway name="7R/25L" length="2442" surface="Asphalt" />
+      <runway name="7R/25L" length="2530" surface="Asphalt" />
       <runway name="13/31" length="1789" surface="Asphalt" />
     </runways>
   </airport>
@@ -2372,7 +2325,7 @@
       <latitude value="041°26'55''N" />
       <longitude value="090°30'27''W" />
     </coordinates>
-    <size value="Very_small" pax="477" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="820" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="13" />
     </terminals>
@@ -2388,9 +2341,9 @@
       <latitude value="043°08'23''N" />
       <longitude value="089°20'15''W" />
     </coordinates>
-    <size value="Small" pax="728" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="2380" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="13" />
+ <terminal name="Terminal" gates="13" />
     </terminals>
     <runways>
       <runway name="3/21" length="2195" surface="Concrete" />
@@ -2398,14 +2351,14 @@
       <runway name="18/36" length="2745" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Minneapolis−Saint Paul International Airport" icao="KMSP" iata="MSP" type="Long_Haul_International"
+  <airport name="Minneapolis Saint Paul International Airport" icao="KMSP" iata="MSP" type="Long_Haul_International"
            season="All_Year">
     <town town="Minneapolis, MN" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="044°52'49''N" />
       <longitude value="093°13'00''W" />
     </coordinates>
-    <size value="Very_large" pax="33074" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="33897" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="117" />
       <terminal name="Terminal 2" gates="10" />
@@ -2424,7 +2377,7 @@
       <latitude value="029°59'36''N" />
       <longitude value="090°15'28''W" />
     </coordinates>
-    <size value="Medium" pax="4255" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="9208" cargo="Small" cargovolume="0" />
     <terminals>
       <terminal name="East Terminal" gates="19" />
       <terminal name="West Terminal" gates="22" />
@@ -2441,7 +2394,7 @@
       <latitude value="033°40'47''N" />
       <longitude value="078°55'42''W" />
     </coordinates>
-    <size value="Small" pax="705" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="1665" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="7" />
     </terminals>
@@ -2455,7 +2408,7 @@
       <latitude value="032°39'23''N" />
       <longitude value="114°36'21''W" />
     </coordinates>
-    <size value="Smallest" pax="82" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="164" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -2473,7 +2426,7 @@
       <latitude value="037°43'16''N" />
       <longitude value="122°13'14''W" />
     </coordinates>
-    <size value="Medium" pax="4550" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="10040" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="17" />
       <terminal name="Terminal 2" gates="13" />
@@ -2491,7 +2444,7 @@
       <latitude value="034°34'03''N" />
       <longitude value="098°24'59''W" />
     </coordinates>
-    <size value="Smallest" pax="77" />
+    <size value="Very_small" pax="155" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -2505,7 +2458,7 @@
       <latitude value="035°23'35''N" />
       <longitude value="097°36'02''W" />
     </coordinates>
-    <size value="Small" pax="1838" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3683" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="17" />
     </terminals>
@@ -2522,7 +2475,7 @@
       <latitude value="041°17'59''N" />
       <longitude value="095°54'00''W" />
     </coordinates>
-    <size value="Medium" pax="2097" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="4000" cargo="Small" cargovolume="42" />
     <terminals>
       <terminal name="Terminal" gates="20" />
     </terminals>
@@ -2539,7 +2492,7 @@
       <latitude value="034°03'21''N" />
       <longitude value="117°36'04''W" />
     </coordinates>
-    <size value="Medium" pax="2380" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3969" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 2" gates="12" />
       <terminal name="Terminal 4" gates="14" />
@@ -2557,7 +2510,7 @@
       <latitude value="041°58'46''N" />
       <longitude value="087°54'16''W" />
     </coordinates>
-    <size value="Largest" pax="66834" cargo="Smallest" cargovolume="4895" />
+    <size value="Largest" pax="66909" cargo="Very_large" cargovolume="1434" />
     <terminals>
       <terminal name="Terminal 1" gates="53" />
       <terminal name="Terminal 2" gates="38" />
@@ -2580,7 +2533,7 @@
       <latitude value="036°53'59''N" />
       <longitude value="076°12'00''W" />
     </coordinates>
-    <size value="Small" pax="1786" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3300" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="30" />
     </terminals>
@@ -2596,7 +2549,7 @@
       <latitude value="026°40'59''N" />
       <longitude value="080°05'44''W" />
     </coordinates>
-    <size value="Medium" pax="2877" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="5691" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="14" />
     </terminals>
@@ -2607,12 +2560,12 @@
     </runways>
   </airport>
     <airport name="Rogue Valley International Medford Airport" icao="KMFR" iata="MFR" type="Domestic" season="All_Year">
-    <town town="Medford, NC" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Medford, OR" country="122" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="042°22'27''N" />
       <longitude value="122°52'22''W" />
     </coordinates>
-    <size value="Very_small" pax="310" />
+    <size value="Small" pax="622" />
     <terminals>
       <terminal name="Terminal A" gates="8" />
     </terminals>
@@ -2627,7 +2580,7 @@
       <latitude value="044°31'12''N" />
       <longitude value="109°01'26''W" />
     </coordinates>
-    <size value="Smallest" pax="25" />
+    <size value="Smallest" pax="52" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -2641,7 +2594,7 @@
       <latitude value="044°20'56''N" />
       <longitude value="105°32'20''W" />
     </coordinates>
-    <size value="Smallest" pax="28" />
+    <size value="Smallest" pax="56" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -2656,7 +2609,7 @@
       <latitude value="043°03'51''N" />
       <longitude value="108°27'35''W" />
     </coordinates>
-    <size value="Smallest" pax="17" />
+    <size value="Smallest" pax="34" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -2680,6 +2633,23 @@
       <runway name="3/21" length="1829" surface="Asphalt" />
       <runway name="10L/28R" length="2995" surface="Asphalt" />
       <runway name="10R/28L" length="3353" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Eastern Oregon Regional Airport" icao="KPDT" iata="PDT" type="Domestic"
+           season="All_Year">
+    <town town="Pendleton, OR" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="045°41'42''N" />
+      <longitude value="118°50'29''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="1921" surface="Asphalt" />
+      <runway name="11/29" length="1700" surface="Asphalt" />
+      <runway name="16/34" length="1323" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Philadelphia International Airport" icao="KPHL" iata="PHL" type="Long_Haul_International"
@@ -2713,7 +2683,7 @@
       <latitude value="033°26'03''N" />
       <longitude value="112°00'29''W" />
     </coordinates>
-    <size value="Very_large" pax="40565" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="40565" cargo="Very_large" cargovolume="302" />
     <terminals>
       <terminal name="Terminal 2" gates="9" />
       <terminal name="Terminal 3" gates="17" />
@@ -2731,7 +2701,7 @@
       <latitude value="040°39'51''N" />
       <longitude value="089°41'36''W" />
     </coordinates>
-    <size value="Very_small" pax="249" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1527" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="9" />
     </terminals>
@@ -2747,7 +2717,7 @@
       <latitude value="027°54'36''N" />
       <longitude value="082°41'15''W" />
     </coordinates>
-    <size value="Very_small" pax="412" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="865" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="13" />
     </terminals>
@@ -2764,7 +2734,7 @@
       <latitude value="042°54'35''N" />
       <longitude value="112°35'45''W" />
     </coordinates>
-    <size value="Smallest" pax="25" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="46" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="4" />
     </terminals>
@@ -2780,7 +2750,7 @@
       <latitude value="040°29'29''N" />
       <longitude value="080°13'58''W" />
     </coordinates>
-    <size value="Medium" pax="4070" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="8200" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="75" />
     </terminals>
@@ -2797,7 +2767,7 @@
       <latitude value="030°28'00''N" />
       <longitude value="087°10'59''W" />
     </coordinates>
-    <size value="Small" pax="750" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1500" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="13" />
     </terminals>
@@ -2813,7 +2783,7 @@
       <latitude value="033°49'59''N" />
       <longitude value="116°30'00''W" />
     </coordinates>
-    <size value="Small" pax="759" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1550" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="15" />
     </terminals>
@@ -2828,7 +2798,7 @@
       <latitude value="041°20'58''N" />
       <longitude value="071°48'12''W" />
     </coordinates>
-    <size value="Smallest" pax="11" />
+    <size value="Smallest" pax="23" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -2843,7 +2813,7 @@
       <latitude value="041°10'05''N" />
       <longitude value="071°34'40''W" />
     </coordinates>
-    <size value="Smallest" pax="10" />
+    <size value="Smallest" pax="20" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -2857,7 +2827,7 @@
       <latitude value="041°43'59''N" />
       <longitude value="071°25'59''W" />
     </coordinates>
-    <size value="Medium" pax="2342" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3651" cargo="Very_small" cargovolume="11" />
     <terminals>
       <terminal name="Terminal" gates="22" />
     </terminals>
@@ -2873,7 +2843,7 @@
       <latitude value="043°38'59''N" />
       <longitude value="070°17'59''W" />
     </coordinates>
-    <size value="Small" pax="876" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1703" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="12" />
     </terminals>
@@ -2888,7 +2858,7 @@
       <latitude value="044°02'43''N" />
       <longitude value="103°03'26''W" />
     </coordinates>
-    <size value="Very_small" pax="273" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="559" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="11" />
     </terminals>
@@ -2898,13 +2868,13 @@
     </runways>
   </airport>
   <airport name="Raleigh-Durham International Airport" icao="KRDU" iata="RDU" type="Short_Haul_International"
-           season="All_Year"  landingfee="1.15">
+           season="All_Year" landingfee="1.15">
     <town town="Morrisville, NC" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="035°52'19''N" />
       <longitude value="078°47'06''W" />
     </coordinates>
-    <size value="Medium" pax="4462" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="9187" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="18" />
       <terminal name="Terminal 2" gates="45" />
@@ -2921,7 +2891,7 @@
       <latitude value="042°11'43''N" />
       <longitude value="089°05'50''W" />
     </coordinates>
-    <size value="Smallest" pax="96" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="163" cargo="Very_large" cargovolume="418" />
     <terminals>
       <terminal name="Terminal" gates="5" />
     </terminals>
@@ -2937,11 +2907,11 @@
       <latitude value="037°30'00''N" />
       <longitude value="077°19'00''W" />
     </coordinates>
-    <size value="Small" pax="1733" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3312" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="21" />
     </terminals>
-    <runways>
+   <runways>
       <runway name="2/20" length="2014" surface="Asphalt" />
       <runway name="7/25" length="1623" surface="Asphalt" />
       <runway name="16/34" length="2744" surface="Asphalt" />
@@ -2953,7 +2923,7 @@
       <latitude value="039°29'59''N" />
       <longitude value="119°46'04''W" />
     </coordinates>
-    <size value="Medium" pax="3431" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3432" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="23" />
     </terminals>
@@ -2969,7 +2939,7 @@
       <latitude value="029°22'27''N" />
       <longitude value="100°55'37''W" />
     </coordinates>
-    <size value="Smallest" pax="13" />
+    <size value="Smallest" pax="26" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3011,13 +2981,13 @@
     </runways>
   </airport>
   <airport name="Greater Rochester International Airport" icao="KROC" iata="ROC" type="Short_Haul_International"
-           season="All_Year">
+ season="All_Year">
     <town town="Rochester, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="043°07'08''N" />
       <longitude value="077°40'21''W" />
     </coordinates>
-    <size value="Small" pax="1263" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2534" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="22" />
     </terminals>
@@ -3027,6 +2997,21 @@
       <runway name="10/28" length="1951" surface="Asphalt" />
     </runways>
   </airport>
+    <airport name="Kinston Regional Jetport/Stallings Field" icao="KISO" iata="ISO" type="Domestic"
+ season="All_Year">
+    <town town="Kinston, NC" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="035°19'42''N" />
+      <longitude value="077°36'43''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="3505" surface="Asphalt" />
+     </runways>
+  </airport>
   <airport name="Southwest Florida International Airport" icao="KRSW" iata="RSW" type="Long_Haul_International"
            season="Winter">
     <town town="Fort Myers, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
@@ -3034,12 +3019,9 @@
       <latitude value="026°32'10''N" />
       <longitude value="081°45'18''W" />
     </coordinates>
-    <size value="Medium" pax="3748" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="7637" cargo="Smallest" cargovolume="0" />
     <terminals>
-       <terminal name="Concourse B" gates="9" />
-      <terminal name="Concourse C" gates="9" />
-      <terminal name="Concourse D" gates="10" />
-      <terminal name="Cargo Ramp" gates="4" />
+      <terminal name="Terminal" gates="28" />
     </terminals>
     <runways>
       <runway name="6/24" length="3658" surface="Asphalt" />
@@ -3051,7 +3033,7 @@
       <latitude value="036°44'28''N" />
       <longitude value="108°13'48''W" />
     </coordinates>
-    <size value="Smallest" pax="13" />
+    <size value="Smallest" pax="27" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -3066,7 +3048,7 @@
       <latitude value="035°37'02''N" />
       <longitude value="106°05'22''W" />
     </coordinates>
-    <size value="Smallest" pax="43" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="88" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="5" />
     </terminals>
@@ -3083,7 +3065,7 @@
       <latitude value="032°44'00''N" />
       <longitude value="117°11'22''W" />
     </coordinates>
-    <size value="Medium" pax="8465" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="17250" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="19" />
       <terminal name="Terminal 2" gates="22" />
@@ -3100,7 +3082,7 @@
       <latitude value="029°32'01''N" />
       <longitude value="098°28'12''W" />
     </coordinates>
-    <size value="Medium" pax="3983" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="8034" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="24" />
     </terminals>
@@ -3116,7 +3098,7 @@
       <latitude value="032°07'59''N" />
       <longitude value="081°12'00''W" />
     </coordinates>
-    <size value="Small" pax="798" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1600" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="15" />
     </terminals>
@@ -3131,7 +3113,7 @@
       <latitude value="034°25'34''N" />
       <longitude value="119°50'25''W" />
     </coordinates>
-    <size value="Very_small" pax="382" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="789" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="10" />
     </terminals>
@@ -3148,7 +3130,7 @@
       <latitude value="038°20'24''N" />
       <longitude value="75°30'34''W" />
     </coordinates>
-    <size value="Smallest" pax="65" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="131" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Richard A. Henson Terminal" gates="4" />
     </terminals>
@@ -3164,7 +3146,7 @@
       <latitude value="038°10'28''N" />
       <longitude value="085°44'10''W" />
     </coordinates>
-    <size value="Medium" pax="3300" cargo="Large" cargovolume="10637" />
+    <size value="Medium" pax="3587" cargo="Very_large" cargovolume="2216" />
     <terminals>
       <terminal name="Terminal" gates="7" />
     </terminals>
@@ -3180,7 +3162,7 @@
       <latitude value="042°09'12''N" />
       <longitude value="079°15'28''W" />
     </coordinates>
-    <size value="Smallest" pax="25" />
+    <size value="Smallest" pax="7" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3211,7 +3193,7 @@
       <latitude value="043°59'30''N" />
       <longitude value="076°01'18''W" />
     </coordinates>
-    <size value="Smallest" pax="17" />
+    <size value="Smallest" pax="36" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -3358,7 +3340,7 @@
       <latitude value="046°23'53''N" />
       <longitude value="094°08'17''W" />
     </coordinates>
-    <size value="Smallest" pax="17" />
+    <size value="Smallest" pax="35" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3375,7 +3357,7 @@
       <latitude value="047°30'33''N" />
       <longitude value="094°56'01''W" />
     </coordinates>
-    <size value="Smallest" pax="23" />
+    <size value="Smallest" pax="52" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3390,7 +3372,7 @@
       <latitude value="047°23'11''N" />
       <longitude value="092°50'20''W" />
     </coordinates>
-    <size value="Smallest" pax="11" />
+    <size value="Smallest" pax="24" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3405,7 +3387,7 @@
       <latitude value="041°52'26''N" />
       <longitude value="103°35'45''W" />
     </coordinates>
-    <size value="Smallest" pax="10" />
+    <size value="Smallest" pax="20" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -3420,7 +3402,7 @@
       <latitude value="040°43'37''N" />
       <longitude value="099°00'24''W" />
     </coordinates>
-    <size value="Smallest" pax="10" />
+    <size value="Smallest" pax="19" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3435,7 +3417,7 @@
       <latitude value="041°07'34''N" />
       <longitude value="100°41'02''W" />
     </coordinates>
-    <size value="Smallest" pax="10" />
+    <size value="Smallest" pax="17" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3496,10 +3478,10 @@
       <latitude value="047°26'56''N" />
       <longitude value="122°18'33''W" />
     </coordinates>
-    <size value="Very_large" pax="32820" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="34777" cargo="Very_large" cargovolume="293" />
     <terminals>
       <terminal name="Central Terminal" gates="52" />
-      <terminal name="North Satellite Terminal" gates="14" />
+    <terminal name="North Satellite Terminal" gates="14" />
       <terminal name="South Satellite Terminal" gates="13" />
     </terminals>
     <runways>
@@ -3515,7 +3497,7 @@
       <latitude value="028°46'59''N" />
       <longitude value="081°15'00''W" />
     </coordinates>
-    <size value="Smallest" pax="768" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1100" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="22" />
     </terminals>
@@ -3533,7 +3515,7 @@
       <latitude value="037°37'08''N" />
       <longitude value="122°22'29''W" />
     </coordinates>
-    <size value="Very_large" pax="40907" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="45011" cargo="Very_large" cargovolume="325" />
     <terminals>
       <terminal name="Terminal 1" gates="46" />
       <terminal name="Terminal 2" gates="14" />
@@ -3552,7 +3534,7 @@
       <latitude value="037°15'00''N" />
       <longitude value="093°22'59''W" />
     </coordinates>
-    <size value="Very_small" pax="381" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="823" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="19" />
     </terminals>
@@ -3567,7 +3549,7 @@
       <latitude value="032°26'48''N" />
       <longitude value="093°49'32''W" />
     </coordinates>
-    <size value="Very_small" pax="237" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1158" cargo="Small" cargovolume="26" />
     <terminals>
       <terminal name="Terminal" gates="8" />
     </terminals>
@@ -3583,7 +3565,7 @@
       <latitude value="037°21'10''N" />
       <longitude value="121°55'09''W" />
     </coordinates>
-    <size value="Medium" pax="4108" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="8500" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="16" />
       <terminal name="Terminal B" gates="12" />
@@ -3600,7 +3582,7 @@
       <latitude value="037°42'03''N" />
       <longitude value="113°05'56''W" />
     </coordinates>
-    <size value="Smallest" pax="10" />
+    <size value="Smallest" pax="12" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3609,13 +3591,28 @@
       <runway name="08/26" length="1470" surface="Asphalt" />
     </runways>
   </airport>
+      <airport name="Provo Municipal Airport" icao="KPVU" iata="PVU" type="Domestic" season="All_Year">
+    <town town="Provo, UT" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="040°13'09''N" />
+      <longitude value="111°43'24''W" />
+    </coordinates>
+    <size value="Smallest" pax="30" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="2621" surface="Asphalt" />
+      <runway name="1/19" length="2016" surface="Asphalt" />
+    </runways>
+  </airport>
     <airport name="St George Municipal Airport" icao="KSGU" iata="SGU" type="Domestic" season="All_Year">
     <town town="St George, UT" country="122" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="037°02'11''N" />
       <longitude value="113°30'37''W" />
     </coordinates>
-    <size value="Smallest" pax="37" />
+    <size value="Smallest" pax="75" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3623,16 +3620,31 @@
       <runway name="16/34" length="2014" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Salt Lake City International Airport" icao="KSLC" iata="SLC" type="Short_Haul_International"
-           season="All_Year">
+      <airport name="Wendover Airport" icao="KENV" iata="ENV" type="Domestic" season="All_Year">
+    <town town="Wendover, UT" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="040°43'07''N" />
+      <longitude value="114°01'51''W" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="16" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2439" surface="Asphalt" />
+       <runway name="8/26" length="2438" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Salt Lake City International Airport" icao="KSLC" iata="SLC" type="Short_Haul_International"
+    season="All_Year">
     <town town="Salt Lake City, UT" country="122" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="040°47'18''N" />
       <longitude value="111°58'39''W" />
     </coordinates>
-    <size value="Medium" pax="9701" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="20102" cargo="Large" cargovolume="156" />
     <terminals>
-      <terminal name="Terminal 1" gates="30" />
+   <terminal name="Terminal 1" gates="30" />
       <terminal name="Terminal 2" gates="51" />
     </terminals>
     <runways>
@@ -3649,7 +3661,7 @@
       <latitude value="038°41'42''N" />
       <longitude value="121°35'29''W" />
     </coordinates>
-    <size value="Medium" pax="4370" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="8910" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="24" />
     </terminals>
@@ -3664,7 +3676,7 @@
       <latitude value="033°40'00''N" />
       <longitude value="117°52'00''W" />
     </coordinates>
-    <size value="Medium" pax="4247" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="9232" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="32" />
     </terminals>
@@ -3674,13 +3686,13 @@
     </runways>
   </airport>
   <airport name="Lambert-St. Louis International Airport" icao="KSTL" iata="STL" type="Short_Haul_International"
-           season="All_Year"  landingfee="1.36">
+           season="All_Year" landingfee="1.36">
     <town town="St. Louis, MO" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="038°44'51''N" />
       <longitude value="090°21'35''W" />
     </coordinates>
-    <size value="Medium" pax="6159" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="13322" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="46" />
       <terminal name="Terminal 2" gates="15" />
@@ -3698,7 +3710,7 @@
       <latitude value="042°33'05''N" />
       <longitude value="094°11'33''W" />
     </coordinates>
-    <size value="Smallest" pax="11" />
+    <size value="Smallest" pax="5" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3713,7 +3725,7 @@
       <latitude value="043°09'28''N" />
       <longitude value="093°19'52''W" />
     </coordinates>
-    <size value="Smallest" pax="11" />
+    <size value="Smallest" pax="7" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3728,7 +3740,7 @@
       <latitude value="042°33'25''N" />
       <longitude value="092°24'01''W" />
     </coordinates>
-    <size value="Smallest" pax="22" />
+    <size value="Smallest" pax="45" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3744,7 +3756,7 @@
       <latitude value="042°24'09''N" />
       <longitude value="096°23'03''W" />
     </coordinates>
-    <size value="Smallest" pax="24" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="56" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="2" />
     </terminals>
@@ -3759,7 +3771,7 @@
       <latitude value="041°30'14''N" />
       <longitude value="074°06'17''W" />
     </coordinates>
-    <size value="Very_small" pax="201" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="404" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="14" />
     </terminals>
@@ -3775,7 +3787,7 @@
       <latitude value="043°07'00''N" />
       <longitude value="076°07'00''W" />
     </coordinates>
-    <size value="Small" pax="1024" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2036" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="16" />
     </terminals>
@@ -3790,7 +3802,7 @@
       <latitude value="030°23'48''N" />
       <longitude value="084°21'01''W" />
     </coordinates>
-    <size value="Very_small" pax="305" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="650" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -3805,7 +3817,7 @@
       <latitude value="027°58'32''N" />
       <longitude value="082°32'00''W" />
     </coordinates>
-    <size value="Medium" pax="8174" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="16920" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="62" />
     </terminals>
@@ -3821,7 +3833,7 @@
       <latitude value="036°28'30''N" />
       <longitude value="082°24'26''W" />
     </coordinates>
-    <size value="Very_small" pax="202" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="881" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -3836,7 +3848,7 @@
       <latitude value="036°11'53''N" />
       <longitude value="095°53'17''W" />
     </coordinates>
-    <size value="Small" pax="1606" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2794" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="17" />
     </terminals>
@@ -3882,7 +3894,7 @@
       <latitude value="044°44'29''N" />
       <longitude value="085°34'55''W" />
     </coordinates>
-    <size value="Very_small" pax="167" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="378" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="5" />
     </terminals>
@@ -3898,7 +3910,7 @@
       <latitude value="042°28'54''N" />
       <longitude value="114°29'16''W" />
     </coordinates>
-    <size value="Smallest" pax="29" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="57" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="2" />
     </terminals>
@@ -3913,7 +3925,7 @@
       <latitude value="033°27'13''N" />
       <longitude value="093°59'27''W" />
     </coordinates>
-    <size value="Smallest" pax="26" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="53" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="2" />
     </terminals>
@@ -3928,7 +3940,7 @@
       <latitude value="032°21'14''N" />
       <longitude value="095°24'08''W" />
     </coordinates>
-    <size value="Smallest" pax="74" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="149" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="3" />
     </terminals>
@@ -3944,11 +3956,11 @@
       <latitude value="035°57'00''N" />
       <longitude value="083°55'00''W" />
     </coordinates>
-    <size value="Small" pax="839" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1689" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="23" />
     </terminals>
-    <runways>
+   <runways>
       <runway name="5L/23R" length="2745" surface="Concrete" />
       <runway name="5R/23L" length="2743" surface="Asphalt" />
     </runways>
@@ -3959,7 +3971,7 @@
       <latitude value="030°46'56''N" />
       <longitude value="083°16'36''W" />
     </coordinates>
-    <size value="Smallest" pax="42" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="85" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="3" />
     </terminals>
@@ -3969,13 +3981,13 @@
       <runway name="17/35" length="1921" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Eglin Air Force Base" icao="KVPS" iata="VPS" type="Domestic" season="All_Year">
+  <airport name="Northwest Florida Regional Airport" icao="KVPS" iata="VPS" type="Domestic" season="All_Year">
     <town town="Valparaiso, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="030°28'59''N" />
       <longitude value="086°31'31''W" />
     </coordinates>
-    <size value="Small" pax="434" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="772" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -3990,7 +4002,7 @@
       <latitude value="036°16'54''N" />
       <longitude value="094°18'24''W" />
     </coordinates>
-    <size value="Small" pax="549" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1128" cargo="Medium" cargovolume="59" />
     <terminals>
       <terminal name="Terminal" gates="20" />
     </terminals>
@@ -4005,7 +4017,7 @@
       <latitude value="046°34'05''N" />
       <longitude value="120°32'38''W" />
     </coordinates>
-    <size value="Smallest" pax="55" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="109" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -4020,7 +4032,7 @@
       <latitude value="041°15'38''N" />
       <longitude value="080°40'44''W" />
     </coordinates>
-    <size value="Smallest" pax="17" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="94" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -5548,7 +5560,7 @@
       <latitude value="018°26'13''N" />
       <longitude value="066°00'04''W" />
     </coordinates>
-    <size value="Medium" pax="3983" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="8448" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="17" />
     </terminals>
@@ -5577,7 +5589,7 @@
       <latitude value="018°00'29''N" />
       <longitude value="066°33'46''W" />
     </coordinates>
-    <size value="Smallest" pax="205" />
+    <size value="Smallest" pax="189" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -5773,7 +5785,7 @@
       <latitude value="035°02'07''N" />
       <longitude value="085°12'13''W" />
     </coordinates>
-    <size value="Very_small" pax="300" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="663" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="8" />
     </terminals>
@@ -5788,7 +5800,7 @@
       <latitude value="038°08'18''N" />
       <longitude value="078°27'10''W" />
     </coordinates>
-    <size value="Very_small" pax="169" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="440" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -5802,7 +5814,7 @@
       <latitude value="037°19'36''N" />
       <longitude value="079°12'01''W" />
     </coordinates>
-    <size value="Smallest" pax="93" />
+    <size value="Smallest" pax="188" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -5817,7 +5829,7 @@
       <latitude value="038°15'49''N" />
       <longitude value="078°53'47''W" />
     </coordinates>
-    <size value="Smallest" pax="10" />
+    <size value="Smallest" pax="21" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -5831,7 +5843,7 @@
       <latitude value="046°15'02''N" />
       <longitude value="084°28'20''W" />
     </coordinates>
-    <size value="Smallest" pax="14" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="39" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -5846,7 +5858,7 @@
       <latitude value="039°17'47''N" />
       <longitude value="080°13'41''W" />
     </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="21" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -5875,7 +5887,7 @@
       <latitude value="030°35'18''N" />
       <longitude value="096°21'49''W" />
     </coordinates>
-    <size value="Smallest" pax="72" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="168" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -5891,7 +5903,7 @@
       <latitude value="040°02'21''N" />
       <longitude value="088°16'41''W" />
     </coordinates>
-    <size value="Smallest" pax="85" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="171" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -5908,7 +5920,7 @@
       <latitude value="047°10'06''N" />
       <longitude value="088°29'20''W" />
     </coordinates>
-    <size value="Smallest" pax="21" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="51" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -5923,7 +5935,7 @@
       <latitude value="038°49'05''N" />
       <longitude value="092°13'10''W" />
     </coordinates>
-    <size value="Smallest" pax="38" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="77" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -5938,7 +5950,7 @@
       <latitude value="042°54'28''N" />
       <longitude value="106°27'50''W" />
     </coordinates>
-    <size value="Smallest" pax="74" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="148" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -5955,7 +5967,7 @@
       <latitude value="032°30'58''N" />
       <longitude value="084°56'20''W" />
     </coordinates>
-    <size value="Smallest" pax="63" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="120" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -5970,7 +5982,7 @@
       <latitude value="044°46'39''N" />
       <longitude value="089°40'00''W" />
     </coordinates>
-    <size value="Very_small" pax="154" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="264" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="9" />
     </terminals>
@@ -5986,7 +5998,7 @@
       <latitude value="029°10'47''N" />
       <longitude value="081°03'29''W" />
     </coordinates>
-    <size value="Very_small" pax="282" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="490" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Domestic Terminal" gates="6" />
       <terminal name="International Terminal" gates="3" />
@@ -6003,7 +6015,7 @@
       <latitude value="042°24'07''N" />
       <longitude value="090°42'34''W" />
     </coordinates>
-    <size value="Smallest" pax="33" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="68" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6018,7 +6030,7 @@
       <latitude value="031°19'16''N" />
       <longitude value="085°26'58''W" />
     </coordinates>
-    <size value="Smallest" pax="41" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="83" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6033,7 +6045,7 @@
       <latitude value="037°09'05''N" />
       <longitude value="107°45'14''W" />
     </coordinates>
-    <size value="Very_small" pax="163" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="327" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="4" />
     </terminals>
@@ -6047,7 +6059,7 @@
       <latitude value="044°51'56''N" />
       <longitude value="091°29'03''W" />
     </coordinates>
-    <size value="Smallest" pax="18" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="41" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6058,17 +6070,35 @@
   </airport>
   <airport name="Northwest Florida Beaches International Airport" icao="KECP" iata="ECP" type="Domestic"
            season="All_Year">
+	   <period from="05.23.2010 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Panama City Beach, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="030°20'30''N" />
       <longitude value="085°47'50''W" />
     </coordinates>
-    <size value="Very_small" pax="417" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="785" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="7" />
     </terminals>
     <runways>
       <runway name="16/34" length="3048" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Panama City-Bay County International Airport" icao="KPFN" iata="PFN" type="Domestic"
+           season="All_Year">
+	   <period from="01.01.1932 00:00:00" to="05.22.2010 00:00:00" />
+    <town town="Panama City Beach, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="030°12'43''N" />
+      <longitude value="085°40'58''W" />
+    </coordinates>
+    <size value="Small" pax="500" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal 1" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="1923" surface="Asphalt" />
+      <runway name="5/23" length="1949" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Eagle County Regional Airport" icao="KEGE" iata="EGE" type="Domestic" season="All_Year">
@@ -6077,7 +6107,7 @@
       <latitude value="039°38'33''N" />
       <longitude value="106°55'04''W" />
     </coordinates>
-    <size value="Very_small" pax="201" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="402" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="5" />
     </terminals>
@@ -6092,7 +6122,7 @@
       <latitude value="040°49'29''N" />
       <longitude value="115°47'31''W" />
     </coordinates>
-    <size value="Smallest" pax="21" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="41" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6107,7 +6137,7 @@
       <latitude value="042°09'35''N" />
       <longitude value="076°53'29''W" />
     </coordinates>
-    <size value="Very_small" pax="131" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="314" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="6" />
     </terminals>
@@ -6123,7 +6153,7 @@
       <latitude value="044°07'28''N" />
       <longitude value="123°12'43''W" />
     </coordinates>
-    <size value="Very_small" pax="369" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="936" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="7" />
     </terminals>
@@ -6139,7 +6169,7 @@
       <latitude value="038°02'13''N" />
       <longitude value="087°31'56''W" />
     </coordinates>
-    <size value="Very_small" pax="193" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="350" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="10" />
     </terminals>
@@ -6155,7 +6185,7 @@
       <latitude value="042°04'18''N" />
       <longitude value="070°13'17''W" />
     </coordinates>
-    <size value="Smallest" pax="11" />
+    <size value="Smallest" pax="23" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -6169,7 +6199,7 @@
       <latitude value="041°40'33''N" />
       <longitude value="070°57'24''W" />
     </coordinates>
-    <size value="Smallest" pax="12" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="25" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6184,7 +6214,7 @@
       <latitude value="035°04'22''N" />
       <longitude value="077°02'34''W" />
     </coordinates>
-    <size value="Very_small" pax="111" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="273" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -6199,7 +6229,7 @@
       <latitude value="034°49'45''N" />
       <longitude value="077°36'43''W" />
     </coordinates>
-    <size value="Very_small" pax="344" />
+    <size value="Very_small" pax="345" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -6214,7 +6244,7 @@
       <latitude value="024°33'21''N" />
       <longitude value="081°45'34''W" />
     </coordinates>
-    <size value="Very_small" pax="335" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="575" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -6228,7 +6258,7 @@
       <latitude value="034°59'28''N" />
       <longitude value="078°52'49''W" />
     </coordinates>
-    <size value="Very_small" pax="202" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="518" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -6243,7 +6273,7 @@
       <latitude value="048°07'12''N" />
       <longitude value="123°30'00''W" />
     </coordinates>
-    <size value="Smallest" pax="10" />
+    <size value="Smallest" pax="21" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -6258,7 +6288,7 @@
       <latitude value="047°23'56''N" />
       <longitude value="120°12'25''W" />
     </coordinates>
-    <size value="Smallest" pax="46" />
+    <size value="Smallest" pax="92" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -6267,13 +6297,29 @@
       <runway name="12/30" length="1737" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Friday Harbor Airport" icao="KFHR" iata="FRD" type="Regional" season="All_Year">
+  
+  <airport name="Pullman-Moscow Regional Airport" icao="KPUW" iata="PUW" type="Domestic" season="All_Year">
+    <town town="Pullman, WA" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="046°44'38''N" />
+      <longitude value="117°06'34''W" />
+    </coordinates>
+    <size value="Smallest" pax="99" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="16/24" length="2051" surface="Asphalt" />
+     </runways>
+  </airport>
+ 
+<airport name="Friday Harbor Airport" icao="KFHR" iata="FRD" type="Regional" season="All_Year">
     <town town="Friday Harbor, WA" country="122" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="048°31'19''N" />
       <longitude value="123°01'26''W" />
     </coordinates>
-    <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="25" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6287,7 +6333,7 @@
       <latitude value="035°08'18''N" />
       <longitude value="111°40'15''W" />
     </coordinates>
-    <size value="Smallest" pax="62" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="124" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -6301,7 +6347,7 @@
       <latitude value="032°13'27''N" />
       <longitude value="080°41'51''W" />
     </coordinates>
-    <size value="Smallest" pax="33" />
+    <size value="Smallest" pax="66" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -6330,7 +6376,7 @@
       <latitude value="035°20'11''N" />
       <longitude value="094°22'02''W" />
     </coordinates>
-    <size value="Smallest" pax="083" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="168" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -6345,7 +6391,7 @@
       <latitude value="040°58'42''N" />
       <longitude value="085°11'42''W" />
     </coordinates>
-    <size value="Very_small" pax="282" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="577" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="7" />
     </terminals>
@@ -6361,7 +6407,7 @@
       <latitude value="037°55'39''N" />
       <longitude value="100°43'26''W" />
     </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="47" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6376,7 +6422,7 @@
       <latitude value="035°57'08''N" />
       <longitude value="112°08'49''W" />
     </coordinates>
-    <size value="Very_small" pax="318" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="636" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6390,7 +6436,7 @@
       <latitude value="048°10'40''N" />
       <longitude value="103°38'31''W" />
     </coordinates>
-    <size value="Smallest" pax="12" />
+    <size value="Smallest" pax="24" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -6420,7 +6466,7 @@
       <latitude value="047°56'57''N" />
       <longitude value="097°10'33''W" />
     </coordinates>
-    <size value="Smallest" pax="88" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="319" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -6437,7 +6483,7 @@
       <latitude value="032°23'02''N" />
       <longitude value="094°42'41''W" />
     </coordinates>
-    <size value="Smallest" pax="21" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="44" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6467,7 +6513,7 @@
       <latitude value="029°41'24''N" />
       <longitude value="082°16'18''W" />
     </coordinates>
-    <size value="Very_small" pax="177" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="401" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -6482,7 +6528,7 @@
       <latitude value="048°18'37''N" />
       <longitude value="114°15'21''W" />
     </coordinates>
-    <size value="Very_small" pax="186" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="441" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -6498,7 +6544,7 @@
       <latitude value="040°58'02''N" />
       <longitude value="098°18'34''W" />
     </coordinates>
-    <size value="Smallest" pax="37" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="74" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6513,7 +6559,7 @@
       <latitude value="031°04'01''N" />
       <longitude value="097°49'44''W" />
     </coordinates>
-    <size value="Very_small" pax="243" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="488" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -6527,7 +6573,7 @@
       <latitude value="047°28'55''N" />
       <longitude value="111°22'15''W" />
     </coordinates>
-    <size value="Very_small" pax="143" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="399" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="5" />
     </terminals>
@@ -6543,7 +6589,7 @@
       <latitude value="40°28'52''N" />
       <longitude value="107°13'04''W" />
     </coordinates>
-    <size value="Smallest" pax="110" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="220" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -6557,7 +6603,7 @@
       <latitude value="039°42'28''N" />
       <longitude value="077°43'46''W" />
     </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="25" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6572,7 +6618,7 @@
       <latitude value="026°13'42''N" />
       <longitude value="097°39'15''W" />
     </coordinates>
-    <size value="Very_small" pax="373" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="648" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="7" />
     </terminals>
@@ -6588,7 +6634,7 @@
       <latitude value="038°22'00''N" />
       <longitude value="082°33'28''W" />
     </coordinates>
-    <size value="Smallest" pax="83" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="227" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -6603,7 +6649,7 @@
       <latitude value="041°15'49''N" />
       <longitude value="072°53'12''W" />
     </coordinates>
-    <size value="Smallest" pax="35" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="70" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6618,7 +6664,7 @@
       <latitude value="041°40'09''N" />
       <longitude value="070°16'49''W" />
     </coordinates>
-    <size value="Very_small" pax="124" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="249" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6633,7 +6679,7 @@
       <latitude value="043°30'52''N" />
       <longitude value="112°04'15''W" />
     </coordinates>
-    <size value="Very_small" pax="148" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="319" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -6648,7 +6694,7 @@
       <latitude value="035°09'26''N" />
       <longitude value="114°33'35''W" />
     </coordinates>
-    <size value="Very_small" pax="121" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="123" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6662,7 +6708,7 @@
       <latitude value="034°16'14''N" />
       <longitude value="077°54'09''W" />
     </coordinates>
-    <size value="Small" pax="469" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="796" cargo="Smallest" cargovolume="2" />
     <terminals>
       <terminal name="Terminal 1" gates="8" />
     </terminals>
@@ -6677,7 +6723,7 @@
       <latitude value="048°33'58''N" />
       <longitude value="093°24'11''W" />
     </coordinates>
-    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="33" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="2" />
     </terminals>
@@ -6692,7 +6738,7 @@
       <latitude value="042°29'27''N" />
       <longitude value="076°27'30''W" />
     </coordinates>
-    <size value="Very_small" pax="121" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="243" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="4" />
     </terminals>
@@ -6707,7 +6753,7 @@
       <latitude value="033°18'28''N" />
       <longitude value="111°39'17''W" />
     </coordinates>
-    <size value="Small" pax="417" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1000" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="9" />
     </terminals>
@@ -6723,7 +6769,7 @@
       <latitude value="043°36'26''N" />
       <longitude value="110°44'16''W" />
     </coordinates>
-    <size value="Very_small" pax="305" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="611" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="6" />
     </terminals>
@@ -6737,7 +6783,7 @@
       <latitude value="041°18'43''N" />
       <longitude value="105°40'30''W" />
     </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="21" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -6752,7 +6798,7 @@
       <latitude value="033°39'48''N" />
       <longitude value="101°49'22''W" />
     </coordinates>
-    <size value="Small" pax="508" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1018" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="9" />
     </terminals>
@@ -6768,7 +6814,7 @@
       <latitude value="040°16'33''N" />
       <longitude value="079°24'17''W" />
     </coordinates>
-    <size value="Smallest" pax="65" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="14" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -6783,7 +6829,7 @@
       <latitude value="030°07'33''N" />
       <longitude value="093°13'23''W" />
     </coordinates>
-    <size value="Smallest" pax="66" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="251" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="13" />
     </terminals>
@@ -6798,7 +6844,7 @@
       <latitude value="030°12'19''N" />
       <longitude value="091°59'15''W" />
     </coordinates>
-    <size value="Very_small" pax="220" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="440" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="6" />
     </terminals>
@@ -6814,7 +6860,7 @@
       <latitude value="043°52'44''N" />
       <longitude value="091°15'24''W" />
     </coordinates>
-    <size value="Very_small" pax="111" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="185" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -6830,7 +6876,7 @@
       <latitude value="046°22'28''N" />
       <longitude value="117°00'53''W" />
     </coordinates>
-    <size value="Smallest" pax="64" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="122" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -6845,7 +6891,7 @@
       <latitude value="043°31'58''N" />
       <longitude value="084°04'46''W" />
     </coordinates>
-    <size value="Very_small" pax="146" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="244" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -6860,7 +6906,7 @@
       <latitude value="032°19'57''N" />
       <longitude value="088°45'06''W" />
     </coordinates>
-    <size value="Very_small" pax="16" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="13" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -6875,7 +6921,7 @@
       <latitude value="026°10'32''N" />
       <longitude value="098°14'18''W" />
     </coordinates>
-    <size value="Very_small" pax="344" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="689" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="6" />
     </terminals>
@@ -6890,7 +6936,7 @@
       <latitude value="032°18'02''N" />
       <longitude value="086°23'38''W" />
     </coordinates>
-    <size value="Very_small" pax="194" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="363" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="6" />
     </terminals>
@@ -6905,7 +6951,7 @@
       <latitude value="039°08'27''N" />
       <longitude value="096°40'14''W" />
     </coordinates>
-    <size value="Smallest" pax="44" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="138" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -6920,7 +6966,7 @@
       <latitude value="043°10'10''N" />
       <longitude value="086°14'17''W" />
     </coordinates>
-    <size value="Smallest" pax="13" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="36" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -6935,7 +6981,7 @@
       <latitude value="028°06'10''N" />
       <longitude value="080°38'43''W" />
     </coordinates>
-    <size value="Very_small" pax="207" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="360" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="6" />
     </terminals>
@@ -6951,7 +6997,7 @@
       <latitude value="032°30'39''N" />
       <longitude value="092°02'15''W" />
     </coordinates>
-    <size value="Very_small" pax="100" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="222" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="6" />
     </terminals>
@@ -6967,7 +7013,7 @@
       <latitude value="030°41'28''N" />
       <longitude value="088°14'34''W" />
     </coordinates>
-    <size value="Very_small" pax="277" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="623" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="6" />
     </terminals>
@@ -7049,13 +7095,29 @@
     <runways>
       <runway name="06/24" length="1493" surface="Asphalt" />
     </runways>
-  </airport>  <airport name="Page Municipal Airport" icao="KPGA" iata="PGA" type="Domestic" season="All_Year">
+  </airport>  
+   <airport name="Stockton Metropilitan Airport" icao="KSCK" iata="SCK" type="Domestic" season="All_Year">
+    <town town="Stockton, CA" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="037°53'39''N" />
+      <longitude value="121°14'19''W" />
+    </coordinates>
+    <size value="Smallest" pax="150" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="11L/29R" length="3246" surface="Asphalt" />
+      <runway name="11R/29L" length="1356" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Page Municipal Airport" icao="KPGA" iata="PGA" type="Domestic" season="All_Year">
     <town town="Page, AZ" country="122" GMT="-07:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="036°55'33''N" />
       <longitude value="111°26'52''W" />
     </coordinates>
-    <size value="Smallest" pax="11" />
+    <size value="Smallest" pax="12" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7101,7 +7163,7 @@
       <latitude value="048°15'33''N" />
       <longitude value="101°16'47''W" />
     </coordinates>
-    <size value="Smallest" pax="71" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="222" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7116,7 +7178,7 @@
       <latitude value="036°35'13''N" />
       <longitude value="121°50'34''W" />
     </coordinates>
-    <size value="Very_small" pax="190" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="438" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -7131,7 +7193,7 @@
       <latitude value="046°54'58''N" />
       <longitude value="114°05'27''W" />
     </coordinates>
-    <size value="Very_small" pax="288" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="594" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="6" />
     </terminals>
@@ -7146,7 +7208,7 @@
       <latitude value="041°23'35''N" />
       <longitude value="070°36'51''W" />
     </coordinates>
-    <size value="Smallest" pax="43" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="88" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7162,7 +7224,7 @@
       <latitude value="042°16'02''N" />
       <longitude value="071°52'32''W" />
     </coordinates>
-    <size value="Smallest" pax="35" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="72" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="6" />
     </terminals>
@@ -7177,7 +7239,7 @@
       <latitude value="043°25'01''N" />
       <longitude value="124°14'45''W" />
     </coordinates>
-    <size value="Smallest" pax="23" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="46" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7192,7 +7254,7 @@
       <latitude value="037°44'24''N" />
       <longitude value="087°10'00''W" />
     </coordinates>
-    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="46" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7207,7 +7269,7 @@
       <latitude value="037°03'38''N" />
       <longitude value="088°46'25''W" />
     </coordinates>
-    <size value="Smallest" pax="19" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="44" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7222,7 +7284,7 @@
       <latitude value="044°39'03''N" />
       <longitude value="073°28'05''W" />
     </coordinates>
-    <size value="Smallest" pax="94" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="296" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7236,7 +7298,7 @@
       <latitude value="039°20'42''N" />
       <longitude value="081°26'21''W" />
     </coordinates>
-    <size value="Smallest" pax="10" />
+    <size value="Smallest" pax="16" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7251,7 +7313,7 @@
       <latitude value="037°51'29''N" />
       <longitude value="080°23'58''W" />
     </coordinates>
-    <size value="Smallest" pax="12" />
+    <size value="Smallest" pax="25" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7265,7 +7327,7 @@
       <latitude value="039°38'34''N" />
       <longitude value="079°54'58''W" />
     </coordinates>
-    <size value="Smallest" pax="11" />
+    <size value="Smallest" pax="22" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7281,7 +7343,7 @@
       <latitude value="037°07'54''N" />
       <longitude value="076°29'34''W" />
     </coordinates>
-    <size value="Small" pax="504" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1040" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
@@ -7296,7 +7358,7 @@
       <latitude value="031°28'01''N" />
       <longitude value="089°20'13''W" />
     </coordinates>
-    <size value="Smallest" pax="13" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="12" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7310,7 +7372,7 @@
       <latitude value="044°54'50''N" />
       <longitude value="097°09'16''W" />
     </coordinates>
-    <size value="Smallest" pax="11" />
+    <size value="Smallest" pax="16" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7325,7 +7387,7 @@
       <latitude value="044°22'57''N" />
       <longitude value="100°17'09''W" />
     </coordinates>
-    <size value="Smallest" pax="15" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="29" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7341,7 +7403,7 @@
       <latitude value="045°34'15''N" />
       <longitude value="084°47'48''W" />
     </coordinates>
-    <size value="Smallest" pax="23" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="48" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7357,7 +7419,7 @@
       <latitude value="046°41'20''N" />
       <longitude value="068°02'41''W" />
     </coordinates>
-    <size value="Smallest" pax="13" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="30" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7372,7 +7434,7 @@
       <latitude value="046°15'52''N" />
       <longitude value="119°07'08''W" />
     </coordinates>
-    <size value="Very_small" pax="327" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="707" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -7388,7 +7450,7 @@
       <latitude value="043°04'40''N" />
       <longitude value="070°49'23''W" />
     </coordinates>
-    <size value="Smallest" pax="49" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="100" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7402,7 +7464,7 @@
       <latitude value="038°17'20''N" />
       <longitude value="104°29'49''W" />
     </coordinates>
-    <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="22" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7450,7 +7512,7 @@
       <latitude value="044°15'14''N" />
       <longitude value="121°09'00''W" />
     </coordinates>
-    <size value="Smallest" pax="226" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="453" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7465,7 +7527,7 @@
       <latitude value="045°37'52''N" />
       <longitude value="089°28'02''W" />
     </coordinates>
-    <size value="Smallest" pax="26" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="44" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7481,7 +7543,7 @@
       <latitude value="041°35'39''N" />
       <longitude value="109°03'54''W" />
     </coordinates>
-    <size value="Smallest" pax="25" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="52" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7496,7 +7558,7 @@
       <latitude value="037°19'31''N" />
       <longitude value="079°58'31''W" />
     </coordinates>
-    <size value="Very_small" pax="315" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="676" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="7" />
     </terminals>
@@ -7511,7 +7573,7 @@
       <latitude value="033°18'05''N" />
       <longitude value="104°31'51''W" />
     </coordinates>
-    <size value="Smallest" pax="38" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="76" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7527,7 +7589,7 @@
       <latitude value="043°54'29''N" />
       <longitude value="092°30'00''W" />
     </coordinates>
-    <size value="Very_small" pax="151" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="244" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
@@ -7542,7 +7604,7 @@
       <latitude value="041°42'31''N" />
       <longitude value="086°19'02''W" />
     </coordinates>
-    <size value="Very_small" pax="357" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="640" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="14" />
     </terminals>
@@ -7558,7 +7620,7 @@
       <latitude value="035°14'12''N" />
       <longitude value="120°38'31''W" />
     </coordinates>
-    <size value="Very_small" pax="129" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="272" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -7573,7 +7635,7 @@
       <latitude value="020°57'46''N" />
       <longitude value="156°40'22''W" />
     </coordinates>
-    <size value="Smallest" pax="40" />
+    <size value="Smallest" pax="80" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -7582,12 +7644,12 @@
     </runways>
   </airport>
     <airport name="Williamsport Regional Airport" icao="KIPT" iata="IPT" type="Domestic" season="All_Year">
-    <town town="Williamsport, SC" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Williamsport, PA" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="041°14'30''N" />
       <longitude value="076°55'15''W" />
     </coordinates>
-    <size value="Smallest" pax="22" />
+    <size value="Smallest" pax="44" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7602,7 +7664,7 @@
       <latitude value="040°50'57''N" />
       <longitude value="077°50'55''W" />
     </coordinates>
-    <size value="Very_small" pax="143" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="286" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -7616,7 +7678,7 @@
       <latitude value="044°46'09''N" />
       <longitude value="106°58'48''W" />
     </coordinates>
-    <size value="Smallest" pax="17" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="35" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7632,8 +7694,8 @@
       <latitude value="031°21'27''N" />
       <longitude value="100°29'45''W" />
     </coordinates>
-    <size value="Smallest" pax="56" cargo="Smallest" cargovolume="0" />
-    <terminals>
+    <size value="Smallest" pax="112" cargo="Smallest" cargovolume="0" />
+   <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
     <runways>
@@ -7663,8 +7725,8 @@
       <latitude value="039°50'38''N" />
       <longitude value="089°40'40''W" />
     </coordinates>
-    <size value="Smallest" pax="61" cargo="Smallest" cargovolume="0" />
-    <terminals>
+    <size value="Smallest" pax="123" cargo="Smallest" cargovolume="0" />
+   <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
@@ -7696,7 +7758,7 @@
       <latitude value="033°59'19''N" />
       <longitude value="098°29'30''W" />
     </coordinates>
-    <size value="Smallest" pax="44" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="89" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7713,7 +7775,7 @@
       <latitude value="045°32'47''N" />
       <longitude value="094°03'35''W" />
     </coordinates>
-    <size value="Smallest" pax="20" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="41" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7721,5 +7783,345 @@
       <runway name="05/23" length="914" surface="Asphalt" />
       <runway name="13/31" length="2134" surface="Concrete" />
     </runways>
+  </airport>
+    <airport name="Altoona-Blair County Airport" icao="KAOO" iata="AOO" type="Domestic" season="All_Year">
+    <town town="Martinsburg, PA" country="122" GMT="-05:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="040°17'47''N" />
+      <longitude value="078°19'12''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="1666" surface="Asphalt" />
+      <runway name="12/30" length="1118" surface="Asphalt" />
+    </runways>
+  </airport>
+      <airport name="DuBois Regional Airport" icao="KDUJ" iata="DUJ" type="Domestic" season="All_Year">
+    <town town="DuBois, PA" country="122" GMT="-05:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="041°10'42''N" />
+      <longitude value="078°53'55''W" />
+    </coordinates>
+    <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="1677" surface="Asphalt" />
+      </runways>
+  </airport>
+        <airport name="John Murtha Johnstown-Cambria County Airport" icao="KJST" iata="JST" type="Domestic" season="All_Year">
+    <town town="Johnstown, PA" country="122" GMT="-05:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="040°18'58''N" />
+      <longitude value="078°50'02''W" />
+    </coordinates>
+    <size value="Smallest" pax="17" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="2135" surface="Asphalt" />
+      <runway name="5/23" length="1337" surface="Asphalt" />
+      </runways>
+  </airport>
+    <airport name="Adirondack Regional Airport" icao="KSLK" iata="SLK" type="Domestic"
+ season="All_Year">
+    <town town="Harrietstown, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="044°23'07''N" />
+      <longitude value="074°12'22''W" />
+    </coordinates>
+    <size value="Smallest" pax="12" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2000" surface="Asphalt" />
+      <runway name="9/27" length="1219" surface="Asphalt" />
+      </runways>
+  </airport>
+      <airport name="Teterboro Airport" icao="KTEB" iata="TEB" type="Domestic"
+ season="All_Year">
+    <town town="Teterboro, NJ" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="040°51'00''N" />
+      <longitude value="074°03'39''W" />
+    </coordinates>
+    <size value="Smallest" pax="14" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2134" surface="Asphalt" />
+      <runway name="06/24" length="1833" surface="Asphalt" />
+      </runways>
+  </airport>
+        <airport name="Lebanon Municipal Airport" icao="KLEB" iata="LEB" type="Domestic"
+ season="All_Year">
+    <town town="Lebanon, NH" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="043°37'34''N" />
+      <longitude value="072°18'15''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="1675" surface="Asphalt" />
+      <runway name="18/36" length="1585" surface="Asphalt" />
+      </runways>
+  </airport>
+  <airport name="North Las Vegas Airport" icao="KVGT" iata="VGT" type="Domestic" season="All_Year">
+    <town town="North Las Vegas, NV" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="036°12'42''N" />
+      <longitude value="115°11'45''W" />
+    </coordinates>
+    <size value="Smallest" pax="130" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal 1" gates="14" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="1525" surface="Asphalt" />
+      <runway name="12R/30L" length="1524" surface="Asphalt" />
+      <runway name="12L/30R" length="1281" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Henderson Executive Airport" icao="KHND" iata="HSH" type="Domestic" season="All_Year">
+    <town town="Henderson, NV" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="035°58'22''N" />
+      <longitude value="115°08'04''W" />
+    </coordinates>
+    <size value="Smallest" pax="26" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal 1" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="17R/35L" length="1982" surface="Asphalt" />
+      <runway name="17L/35R" length="1524" surface="Asphalt" />
+     </runways>
+  </airport>
+    <airport name="Cape Girardeau Regional Airport" icao="KCGI" iata="CGI" type="Domestic" season="All_Year">
+    <town town="Cape Girardeau, MO" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="037°13'31''N" />
+      <longitude value="089°34'15''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="1981" surface="Concrete" />
+      <runway name="2/20" length="1218" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Charlevoix Municipal Airport" icao="KCVX" iata="CVX" type="Domestic"
+           season="All_Year">
+    <town town="Charlevoix, MI" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="045°18'17''N" />
+      <longitude value="085°16'31''W" />
+    </coordinates>
+    <size value="Smallest" pax="34" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="9/27" length="1387" surface="Asphalt" />
+      </runways>
+  </airport>
+  <airport name="Augusta State Airport" icao="KAUG" iata="AUG" type="Domestic" season="All_Year">
+    <town town="Augusta, ME" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="044°19'14''N" />
+      <longitude value="069°47'50''W" />
+    </coordinates>
+    <size value="Smallest" pax="11" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="1524" surface="Asphalt" />
+      <runway name="8/26" length="824" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Liberal Mid-America Regional Airport" icao="KLBL" iata="LBL" type="Domestic" season="All_Year">
+    <town town="Liberal, KS" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="037°02'39''N" />
+      <longitude value="100°57'35''W" />
+    </coordinates>
+    <size value="Smallest" pax="12" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="4/22" length="1744" surface="Concrete" />
+      <runway name="17/35" length="2166" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Topeka Regional Airport" icao="KFOE" iata="FOE" type="Domestic" season="All_Year">
+    <town town="Topeka, KS" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="038°57'03''N" />
+      <longitude value="095°39'49''W" />
+    </coordinates>
+    <size value="Smallest" pax="17" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="2134" surface="Concrete" />
+      <runway name="13/31" length="3904" surface="Concrete" />
+    </runways>
+  </airport>
+      <airport name="Dodge City Regional Airport" icao="KDDC" iata="DDC" type="Domestic" season="All_Year">
+    <town town="Dodge City, KS" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="037°45'48''N" />
+      <longitude value="099°57'56''W" />
+    </coordinates>
+    <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="2103" surface="Asphalt" />
+      <runway name="14/32" length="1417" surface="Asphalt" />
+    </runways>
+  </airport>
+      <airport name="Southeast Iowa Regional Airport" icao="KBRL" iata="BRL" type="Domestic" season="All_Year">
+    <town town="Burlington, IA" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="040°46'60''N" />
+      <longitude value="091°07'32''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="1631" surface="Concrete" />
+      <runway name="18/36" length="2042" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Williamson County Regional Airport" icao="KMWA" iata="MWA" type="Domestic" season="All_Year">
+    <town town="Marion, IL" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="040°39'51''N" />
+      <longitude value="089°41'36''W" />
+    </coordinates>
+    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="2439" surface="Asphalt" />
+      <runway name="11/29" length="1523" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Quincy Regional Airport" icao="KUIN" iata="UIN" type="Domestic" season="All_Year">
+    <town town="Quincy, IL" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="039°56'34''N" />
+      <longitude value="091°11'40''W" />
+    </coordinates>
+    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="4/22" length="2163" surface="Asphalt" />
+      <runway name="13/31" length="1791" surface="Asphalt" />
+      <runway name="18/36" length="1645" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Sarasota-Brandenton International Airport" icao="KSRQ" iata="SRQ" type="Short_Haul_International"
+           season="All_Year">
+    <town town="Sarasota, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="027°23'44''N" />
+      <longitude value="082°33'16''W" />
+    </coordinates>
+    <size value="Small" pax="1247" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal 1" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="2896" surface="Asphalt" />
+      <runway name="4/22" length="1527" surface="Asphalt" />
+    </runways>
+  </airport>
+     <airport name="Punta Gorda Airport" icao="KPGD" iata="PGD" type="Domestic"
+           season="All_Year">
+    <town town="Punta Gorda, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="026°55'13''N" />
+      <longitude value="081°59'26''W" />
+    </coordinates>
+    <size value="Very_small" pax="294" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal 1" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="1734" surface="Asphalt" />
+      <runway name="4/22" length="2192" surface="Asphalt" />
+      <runway name="9/27" length="803" surface="Asphalt" />
+    </runways>
+  </airport>
+       <airport name="Northeast Florida Regional Airport" icao="KSGJ" iata="UST" type="Domestic"
+           season="All_Year">
+    <town town="St. Augustine, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="029°57'33''N" />
+      <longitude value="081°20'23''W" />
+    </coordinates>
+    <size value="Smallest" pax="36" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal 1" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="2439" surface="Asphalt" />
+      <runway name="6/24" length="826" surface="Asphalt" />
+      <runway name="2/20" length="796" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Fort Collins-Loveland Municipal Airport" icao="KFNL" iata="FNL" type="Domestic" season="All_Year">
+    <town town="Fort Collins, CO" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="040°27'07''N" />
+      <longitude value="105°00'41''W" />
+    </coordinates>
+    <size value="Smallest" pax="70" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="2591" surface="Asphalt" />
+      <runway name="6/24" length="693" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Hanscom Field" icao="KBED" iata="BED"
+           type="Domestic" season="All_Year">
+    <town town="Bedford, MA" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="042°28'12''N" />
+      <longitude value="071°17'21''W" />
+    </coordinates>
+    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="5/23" length="1557" surface="Asphalt" />
+      <runway name="11/29" length="2137" surface="Asphalt" />
+       </runways>
   </airport>
 </airports>

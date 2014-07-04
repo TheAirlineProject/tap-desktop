@@ -256,7 +256,7 @@
 
   </airliner>
 
-  <airliner manufacturer="Airbus" name="Airbus A330-300" image="Airbus A330-300" price="29259040"> <!--146500000-->
+  <airliner manufacturer="Airbus" name="Airbus A330-300" image="A333" price="29259040"> <!--146500000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
 

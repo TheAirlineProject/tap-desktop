@@ -129,13 +129,15 @@
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    terminal.purchaseTerminal(GameObject.GetInstance().HumanAirline);
-
+                    this.Airport.purchaseTerminal(terminal, GameObject.GetInstance().HumanAirline);
+                 
                     AirlineHelpers.AddAirlineInvoice(
                         GameObject.GetInstance().HumanAirline,
                         GameObject.GetInstance().GameTime,
                         Invoice.InvoiceType.Purchases,
                         -price);
+
+                    
                 }
             }
         }
