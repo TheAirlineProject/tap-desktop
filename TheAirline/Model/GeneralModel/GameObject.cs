@@ -132,8 +132,8 @@ namespace TheAirline.Model.GeneralModel
         public DifficultyLevel Difficulty { get; set; }
 
         public Boolean FinancePageEnabled { get; set; }
-
-        public double FuelPrice
+        /*
+        public double FuelPrice 
         {
             get
             {
@@ -145,7 +145,7 @@ namespace TheAirline.Model.GeneralModel
                 this.NotifyPropertyChanged("FuelPrice");
             }
         }
-
+        */
         public DateTime GameTime
         {
             get
@@ -210,7 +210,7 @@ namespace TheAirline.Model.GeneralModel
         public GameTimeZone TimeZone { get; set; }
 
         [Versioning("fuelprice")]
-        public double _fuelprice { get; set; }
+        public double FuelPrice { get; set; }
 
         #endregion
 

@@ -55,5 +55,7 @@
   <airlinerimage image="D328" types="Dornier 328-110"></airlinerimage>
     <airlinerimage image="F100" types="Fokker 100"></airlinerimage>
   <airlinerimage image="F50" types="Fokker 50"></airlinerimage>
+      <airlinerimage image="DC10" types="MD DC-10-10,MD DC-10-10F,MD DC-10-15"></airlinerimage>
     <airlinerimage image="MD11" types="MD-11,MD-11ER,MD-11F"></airlinerimage>
+     <airlinerimage image="MD80" types="MD-81 (DC-9-81),MD-82 (DC-9-82),MD-83 (DC-9-83),MD-87 (DC-9-87),MD-88 (DC-9-88)"></airlinerimage>
 </airlinerimages>

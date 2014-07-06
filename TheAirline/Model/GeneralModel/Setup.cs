@@ -3440,9 +3440,11 @@
             {
                 string section = root.Name;
                 string uid = element.Attributes["uid"].Value;
+                double fuelindex = Convert.ToDouble(
+                    element.Attributes["fuel"].Value,
+                        CultureInfo.GetCultureInfo("en-US").NumberFormat);
 
-
-                Regions.AddRegion(new Region(section, uid));
+                Regions.AddRegion(new Region(section, uid,fuelindex));
 
                 if (element.SelectSingleNode("translations") != null)
                 {

@@ -155,7 +155,10 @@
             {
                 frmContent.Navigate(new PageShowAirports { Tag = this });
             }
-
+            if (selection == "Overview" && frmContent != null)
+            {
+                frmContent.Navigate(new PageAirportsOverview { Tag = this });
+            }
             if (selection == "Statistics" && frmContent != null)
             {
                 frmContent.Navigate(new PageAirportsStatistics { Tag = this });

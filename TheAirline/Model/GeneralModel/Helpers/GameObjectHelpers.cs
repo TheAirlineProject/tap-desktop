@@ -2744,7 +2744,7 @@
             double fdistance = MathHelpers.GetDistance(
                 airliner.CurrentFlight.Entry.Destination.Airport,
                 airliner.CurrentPosition);
-            double expenses = GameObject.GetInstance().FuelPrice * fdistance
+            double expenses = AirportHelpers.GetFuelPrice(airliner.CurrentPosition) * fdistance
                               * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Type.FuelConsumption
                               + AirportHelpers.GetLandingFee(airliner.CurrentPosition, airliner.Airliner);
 

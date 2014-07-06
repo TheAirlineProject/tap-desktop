@@ -889,8 +889,7 @@
             double fuelPrice = Convert.ToDouble(
                 gameSettingsNode.Attributes["fuelprice"].Value,
                 new CultureInfo("de-DE", false));
-            GameObject.GetInstance().FuelPrice = fuelPrice;
-
+           
             GameTimeZone timezone =
                 TimeZones.GetTimeZones()
                     .Find(
@@ -1905,10 +1904,7 @@
             gameSettingsNode.SetAttribute("name", GameObject.GetInstance().Name);
             gameSettingsNode.SetAttribute("human", GameObject.GetInstance().HumanAirline.Profile.IATACode);
             gameSettingsNode.SetAttribute("mainairline", GameObject.GetInstance().MainAirline.Profile.IATACode);
-            gameSettingsNode.SetAttribute(
-                "fuelprice",
-                GameObject.GetInstance().FuelPrice.ToString(new CultureInfo("de-DE", false)));
-            gameSettingsNode.SetAttribute("timezone", GameObject.GetInstance().TimeZone.UTCOffset.ToString());
+             gameSettingsNode.SetAttribute("timezone", GameObject.GetInstance().TimeZone.UTCOffset.ToString());
             gameSettingsNode.SetAttribute("mailonlandings", Settings.GetInstance().MailsOnLandings.ToString());
             gameSettingsNode.SetAttribute("mailonbadweather", Settings.GetInstance().MailsOnBadWeather.ToString());
             gameSettingsNode.SetAttribute("airportcode", Settings.GetInstance().AirportCodeDisplay.ToString());

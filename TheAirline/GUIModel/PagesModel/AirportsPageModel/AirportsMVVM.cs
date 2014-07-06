@@ -133,7 +133,6 @@
 
         #endregion
     }
-
     //the converter for the airports statistics
     public class AirportStatisticsConverter : IValueConverter
     {

@@ -1359,25 +1359,30 @@
         {
             string name = Alliance.GenerateAllianceName();
             Airport headquarter =
-                airline.Airports.FindAll(
-                    a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0)[0];
-            var alliance = new Alliance(GameObject.GetInstance().GameTime, name, headquarter);
-            alliance.addMember(new AllianceMember(airline, GameObject.GetInstance().GameTime));
+                airline.Airports.FirstOrDefault(
+                    a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
 
-            Alliances.AddAlliance(alliance);
 
-            GameObject.GetInstance()
-                .NewsBox.addNews(
-                    new News(
-                        News.NewsType.Standard_News,
-                        GameObject.GetInstance().GameTime,
-                        "New alliance",
-                        string.Format(
-                            "A new alliance: {0} has been created by [LI airline={1}]",
-                            name,
-                            airline.Profile.IATACode)));
+            if (headquarter != null)
+            {
+                var alliance = new Alliance(GameObject.GetInstance().GameTime, name, headquarter);
+                alliance.addMember(new AllianceMember(airline, GameObject.GetInstance().GameTime));
 
-            InviteToAlliance(airline, alliance);
+                Alliances.AddAlliance(alliance);
+
+                GameObject.GetInstance()
+                    .NewsBox.addNews(
+                        new News(
+                            News.NewsType.Standard_News,
+                            GameObject.GetInstance().GameTime,
+                            "New alliance",
+                            string.Format(
+                                "A new alliance: {0} has been created by [LI airline={1}]",
+                                name,
+                                airline.Profile.IATACode)));
+
+                InviteToAlliance(airline, alliance);
+            }
         }
 
         private static void CreateNewHub(Airline airline)

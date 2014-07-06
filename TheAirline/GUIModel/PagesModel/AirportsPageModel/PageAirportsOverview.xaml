@@ -1,0 +1,44 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirportsPageModel.PageAirportsOverview"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      Name="pageAirportsOverview"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirportsOverview">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <ListView x:Name="AirportsList" VerticalAlignment="Stretch"
+                      BorderThickness="0" Background="Transparent"
+                      ItemsSource="{Binding ElementName=pageAirportsOverview, Path=AllAirports}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+                            Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportsOverview 1000'}"
+                           Width="300">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl ContentTemplate="{StaticResource CountryLongFlagItem}"
+                                                    VerticalAlignment="Bottom" Content="{Binding Key}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn HeaderContainerStyle="{StaticResource GridViewHeaderRightAlign}"
+                                        Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportsOverview 1001'}"
+                                        Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Value}"
+                                               Width="100" VerticalAlignment="Bottom" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

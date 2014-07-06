@@ -741,10 +741,13 @@ and change the color of the selected bullet into a darker gray for better highli
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToolTip">
-                    <Border Background="#2A4861" Name="Border"
+                    <Border Name="Border"
                             BorderThickness="1"
                             Width="{TemplateBinding Width}"
                             Height="{TemplateBinding Height}">
+                        <Border.Background>
+                            <SolidColorBrush Color="#2A4861" Opacity="0.6"/>
+                        </Border.Background>
                         <ContentPresenter Margin="4"
                                           HorizontalAlignment="Left"
                                           VerticalAlignment="Top" />
@@ -1492,6 +1495,11 @@ and change the color of the selected bullet into a darker gray for better highli
             </StackPanel.Background>
             <ListView x:Name="filterList" ItemsSource="{Binding}"
                       BorderThickness="1" Background="Transparent">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel MaxHeight="400" Orientation="Vertical"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <ListView.View>
                     <GridView>
                         <!-- hide the column header -->
@@ -1533,7 +1541,13 @@ and change the color of the selected bullet into a darker gray for better highli
             </StackPanel.Background>
             <ListView x:Name="filterList" ItemsSource="{Binding}"
                       BorderThickness="1" Background="Transparent">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel MaxHeight="400" Orientation="Vertical"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <ListView.View>
+                    
                     <GridView>
                         <!-- hide the column header -->
                         <GridView.ColumnHeaderContainerStyle>

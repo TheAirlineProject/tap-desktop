@@ -21,6 +21,15 @@
         #endregion
 
         #region Public Methods and Operators
+        //returns the fuel price for an airport
+        public static double GetFuelPrice(Airport airport)
+        {
+            return GetFuelPrice(airport.Profile.Country.Region);
+        }
+        public static double GetFuelPrice(Region region)
+        {
+            return region.FuelIndex * GameObject.GetInstance().FuelPrice;
+        }
         //returns the standard landing fee for an airport
         public static double GetStandardLandingFee(Airport airport)
         {

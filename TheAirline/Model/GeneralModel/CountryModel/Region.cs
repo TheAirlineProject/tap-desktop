@@ -16,10 +16,11 @@
     {
         #region Constructors and Destructors
 
-        public Region(string section, string uid)
+        public Region(string section, string uid, double fuelindex)
         {
             Section = section;
             this.Uid = uid;
+            this.FuelIndex = fuelindex;
         }
 
         private Region(SerializationInfo info, StreamingContext ctxt)
@@ -77,6 +78,9 @@
                     }
                 }
             }
+
+            if (version == 1)
+                this.FuelIndex = 1;
         }
 
         #endregion
@@ -95,6 +99,8 @@
 
         [Versioning("uid")]
         public string Uid { get; set; }
+        [Versioning("fuelindex",Version=2)]
+        public double FuelIndex { get; set; }
 
         #endregion
 
@@ -102,7 +108,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 

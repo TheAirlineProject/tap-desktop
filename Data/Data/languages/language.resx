@@ -5094,4 +5094,16 @@ Good luck.</value>
   <data name="PageAirportInfo_1047_name" xml:space="preserve">
     <value>Landing / 1000 kg.</value>
   </data>
+  <data name="PageAirportInfo_1048_name" xml:space="preserve">
+    <value>Fuel Price</value>
+  </data>
+  <data name="PageAirportsOverview_1000_name" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="PageAirportsOverview_1001_name" xml:space="preserve">
+    <value>Airports</value>
+  </data>
+  <data name="PageAirports_2003_name" xml:space="preserve">
+    <value>Overview</value>
+  </data>
 </root>

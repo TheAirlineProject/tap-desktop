@@ -633,8 +633,27 @@
       <runway name="11/29" length="1982" surface="Concrete" />
     </runways>
   </airport>
+    <airport name="Robert Mueller Municipal Airport" icao="KAUS" iata="AUS" type="Domestic" season="All_Year"> 
+    <period from="10.14.1930 00:00:00" to="05.22.1999 00:00:00" />
+    <town town="Austin, TX" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="030°18'00''N" />
+      <longitude value="097°42'00''W" />
+    </coordinates>
+    <size value="Medium" pax="6000" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="13R/31L" length="2216" surface="Concrete" />
+      <runway name="13L/31R" length="967" surface="Concrete" />
+      <runway name="17/35" length="1526" surface="Concrete" />
+    </runways>
+  </airport>
+
   <airport name="Austin-Bergstrom International Airport" icao="KAUS" iata="AUS" type="Short_Haul_International"
            season="All_Year">
+    <period from="05.22.1999 00:00:00" to="12.31.2199 00:00:00" />
     <town town="Austin, TX" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="030°11'39''N" />
@@ -3606,20 +3625,36 @@
       <runway name="1/19" length="2016" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="St George Municipal Airport" icao="KSGU" iata="SGU" type="Domestic" season="All_Year">
-    <town town="St George, UT" country="122" GMT="-06:00:00" DST="-07:00:00" />
-    <coordinates>
-      <latitude value="037°02'11''N" />
-      <longitude value="113°30'37''W" />
-    </coordinates>
-    <size value="Smallest" pax="75" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="16/34" length="2014" surface="Asphalt" />
-    </runways>
-  </airport>
+  <airport name="Greater Southwest International Airport" icao="KGSW" iata="GSW" type="Short_Haul_International" season="All_Year"> 
+  <period from="01.01.1953 00:00:00" to="01.01.1974 00:00:00" /> <town town="Fort Worth, TX" country="122" GMT="-06:00:00" DST="-05:00:00" />
+<coordinates>
+<latitude value="032°49'53''N" />
+<longitude value="097°02'57''W" />
+</coordinates>
+<size value="Small" pax="1000" />
+<terminals>
+<terminal name="Terminal A" gates="14" />
+</terminals>
+<runways>
+<runway name="17/35" length="2579" surface="Concrete" />
+<runway name="13/31" length="1951" surface="Concrete" />
+</runways>
+</airport> 
+    <airport name="St George Municipal Airport" icao="KSGU" iata="SGU" type="Domestic" season="All_Year"> 
+    <period from="01.01.1972 00:00:00" to="01.12.2011 00:00:00" />
+<town town="St George, UT" country="122" GMT="-06:00:00" DST="-07:00:00" />
+<coordinates>
+<latitude value="037°05'26''N" />
+<longitude value="113°35'35''W" />
+</coordinates>
+<size value="Smallest" pax="75" />
+<terminals>
+<terminal name="Terminal A" gates="2" />
+</terminals>
+<runways>
+<runway name="16/34" length="2014" surface="Asphalt" />
+</runways>
+</airport> 
       <airport name="Wendover Airport" icao="KENV" iata="ENV" type="Domestic" season="All_Year">
     <town town="Wendover, UT" country="122" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>

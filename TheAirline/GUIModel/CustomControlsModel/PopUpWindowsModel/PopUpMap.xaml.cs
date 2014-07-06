@@ -642,8 +642,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
             brdToolTip.Padding = new Thickness(5);
            // brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
-
-
+       
             ContentControl lblAirport = new ContentControl();
             lblAirport.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryItem");
             lblAirport.Content = airport;

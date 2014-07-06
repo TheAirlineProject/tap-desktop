@@ -16,13 +16,14 @@
             </Grid.ColumnDefinitions>
             <Image Source="/data/images/logo_banner.png" Grid.Column="0" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" />
+            <!--
             <WrapPanel Grid.Column="0" VerticalAlignment="Bottom">
                 <Image Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"
                        Source="/data/images/gas.png" />
                 <TextBlock FontWeight="Bold"
                            Text="{Binding GameObject.FuelPrice,Source={StaticResource gameObject},Converter={StaticResource FuelUnitConverter}}"
                            VerticalAlignment="Bottom" Margin="5 0 0 0" />
-            </WrapPanel>
+            </WrapPanel>-->
             <WrapPanel Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <Image
                     Source="{Binding GameObject.HumanAirline.Profile.Logo,Source={StaticResource gameObject}}"
