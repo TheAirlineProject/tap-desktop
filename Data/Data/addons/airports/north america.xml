@@ -1499,15 +1499,18 @@
     <town town="Dallas, TX" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="032°53'47''N" />
-      <longitude value="097°02'15''W" />
+      <longitude value="097°02'17''W" />
     </coordinates>
     <size value="Largest" pax="60470" cargo="Smallest" cargovolume="3031" />
     <terminals>
-      <terminal name="Terminal A" gates="31" />
-      <terminal name="Terminal B" gates="35" />
+       <terminal name="Terminal A" gates="31" />
+      <terminal name="Terminal B" gates="49" />
       <terminal name="Terminal C" gates="31" />
       <terminal name="Terminal D" gates="29" />
-      <terminal name="Terminal E" gates="26" />
+      <terminal name="Terminal E" gates="35" />
+      <terminal name="Fedex Cargo Ramp" gates="8" type="Cargo" />
+      <terminal name="UPS Cargo Ramp" gates="9" type="Cargo"  />
+      <terminal name="West Cargo Ramp" gates="10"  type="Cargo" />
     </terminals>
     <runways>
       <runway name="13L/31R" length="2743" surface="Concrete" />
@@ -3040,7 +3043,10 @@
     </coordinates>
     <size value="Medium" pax="7637" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="28" />
+     <terminal name="Concourse B" gates="9" />
+      <terminal name="Concourse C" gates="9" />
+      <terminal name="Concourse D" gates="10" />
+      <terminal name="Cargo Ramp" gates="4" type="Cargo" />
     </terminals>
     <runways>
       <runway name="6/24" length="3658" surface="Asphalt" />
@@ -5800,7 +5806,7 @@
 
   <!--Add-on airports United States-->
   <airport name="Jack Mc Namara Field Airport" icao="KCEC" iata="CEC" type="Regional" season="All_Year">
-    <town town="Crescent City" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Crescent City, CA" country="122" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="041°46'48''N" />
       <longitude value="124°14'13''W" />
@@ -6437,7 +6443,7 @@
     </runways>
   </airport>
   <airport name="Garden City Regional Airport" icao="KGCK" iata="GCK" type="Regional" season="All_Year">
-    <town town="Garden City" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Garden City, KS" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="037°55'39''N" />
       <longitude value="100°43'26''W" />
@@ -6724,7 +6730,7 @@
     </runways>
   </airport>
   <airport name="Laughlin Bullhead International Airport" icao="KIFP" iata="IFP" type="Regional" season="All_Year">
-    <town town="Bullhead City" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Bullhead City, AZ" country="122" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="035°09'26''N" />
       <longitude value="114°33'35''W" />
@@ -6830,8 +6836,8 @@
   <airport name="Lubbock Preston Smith International Airport" icao="KLBB" iata="LBB" type="Domestic" season="All_Year">
     <town town="Lubbock, TX" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
-      <latitude value="033°39'48''N" />
-      <longitude value="101°49'22''W" />
+      <latitude value="033°39'49''N" />
+      <longitude value="101°49'14''W" />
     </coordinates>
     <size value="Small" pax="1018" cargo="Smallest" cargovolume="0" />
     <terminals>

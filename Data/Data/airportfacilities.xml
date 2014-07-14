@@ -247,33 +247,33 @@
       <es-ES name="Ninguna" />
     </translations>
   </airportfacility>
-  <airportfacility uid="201" shortname="Cargo Terminal" type="Cargo" typelevel="1" price="125000" buildingdays="30">
+  <airportfacility uid="201" shortname="Cargo Handling Center" type="Cargo" typelevel="1" price="125000" buildingdays="30">
     <level service="75" luxury="15">
     </level>
     <employees type="Support" numberofemployees="4">
     </employees>
     <translations>
-      <en-US name="Cargo Terminal" />
+      <en-US name="Cargo Handling Center" />
       <de-DE name="Missing" />
-      <en-GB name="Cargo Terminal" />
+      <en-GB name="Cargo Handling Center" />
       <nl-NL name="Missing" />
       <zh-CN name="Missing" />
-      <da-DK name="Fragtterminal" />
+      <da-DK name="Fragthåndteringscenter" />
       <es-ES name="Missing" />
     </translations>
   </airportfacility>
-  <airportfacility uid="202" shortname="Cargo Center" type="Cargo" typelevel="2" price="250000" buildingdays="45">
+  <airportfacility uid="202" shortname="Cargo Handling Center Large" type="Cargo" typelevel="2" price="250000" buildingdays="45">
     <level service="100" luxury="15">
     </level>
     <employees type="Support" numberofemployees="8">
     </employees>
     <translations>
-      <en-US name="Cargo Center" />
+      <en-US name="Large Cargo Handling Center" />
       <de-DE name="Missing" />
-      <en-GB name="Cargo Center" />
+      <en-GB name="Large Cargo Handling Center" />
       <nl-NL name="Missing" />
       <zh-CN name="Missing" />
-      <da-DK name="Fragtcenter" />
+      <da-DK name="Stort fragthåndteringscenter" />
       <es-ES name="Missing" />
     </translations>
   </airportfacility>

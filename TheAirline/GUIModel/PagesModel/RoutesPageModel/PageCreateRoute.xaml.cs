@@ -38,6 +38,7 @@
 
         public PageCreateRoute()
         {
+            this.Airports = new ObservableCollection<Airport>();
             this.RouteInformationText = "";
             this.ConnectingRoutes = new ObservableCollection<Route>();
             this.Classes = new List<MVVMRouteClass>();
@@ -51,14 +52,14 @@
                     this.Classes.Add(rClass);
                 }
             }
-
-            this.Airports = 
+            /*
+            this.Airports =
                 GameObject.GetInstance()
                     .HumanAirline.Airports.OrderByDescending(
                         a => a == GameObject.GetInstance().HumanAirline.Airports[0])
                     .ThenBy(a => a.Profile.Country.Name)
                     .ThenBy(a => a.Profile.Name)
-                    .ToList();
+                    .ToList();*/
 
             AirlinerType dummyAircraft = new AirlinerCargoType(
                 new Manufacturer("Dummy", "", null, false),
@@ -108,7 +109,7 @@
 
         #region Public Properties
 
-        public List<Airport> Airports { get; set; }
+        public ObservableCollection<Airport> Airports { get; set; }
 
         public List<MVVMRouteClass> Classes { get; set; }
 
@@ -442,7 +443,7 @@
             {
                 WPFMessageBox.Show(
                                   Translator.GetInstance().GetString("MessageBox", "3006"),
-                                  string.Format(Translator.GetInstance().GetString("MessageBox", "3006", "message"),destination1.Profile.Name,destination2.Profile.Name),
+                                  string.Format(Translator.GetInstance().GetString("MessageBox", "3006", "message"), destination1.Profile.Name, destination2.Profile.Name),
                                   WPFMessageBoxButtons.Ok);
                 return false;
             }
@@ -476,7 +477,7 @@
                             }
                         }
                     }
-                        //cargo route
+                    //cargo route
                     else if (this.RouteType == Route.RouteType.Cargo)
                     {
                         double cargoPrice = Convert.ToDouble(this.txtCargoPrice.Text);
@@ -526,6 +527,43 @@
         {
             string type = ((RadioButton)sender).Tag.ToString();
             this.RouteType = (Route.RouteType)Enum.Parse(typeof(Route.RouteType), type, true);
+
+          
+            while (this.Airports.Count > 0)
+            {
+                this.Airports.RemoveAt(this.Airports.Count - 1);
+            }
+
+            if (this.RouteType == Route.RouteType.Cargo)
+            {
+                var airports = GameObject.GetInstance()
+                    .HumanAirline.Airports.Where(a=>a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c=>c.TerminalType == Terminal.TerminalType.Cargo)).OrderByDescending(
+                        a => a == GameObject.GetInstance().HumanAirline.Airports[0])
+                    .ThenBy(a => a.Profile.Country.Name)
+                    .ThenBy(a => a.Profile.Name);
+
+                foreach (Airport airport in airports)
+                {
+                    this.Airports.Add(airport);
+                }
+            }
+            else
+            {
+                var airports = GameObject.GetInstance()
+                      .HumanAirline.Airports.Where(a => a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
+                          a => a == GameObject.GetInstance().HumanAirline.Airports[0])
+                      .ThenBy(a => a.Profile.Country.Name)
+                      .ThenBy(a => a.Profile.Name);
+
+                foreach (Airport airport in airports)
+                {
+                    this.Airports.Add(airport);
+                }
+            }
+
+
+
+
         }
 
         #endregion

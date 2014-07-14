@@ -482,7 +482,7 @@
                     string terminalName = terminalNode.Attributes["name"].Value;
                     int gates = Convert.ToInt32(terminalNode.Attributes["totalgates"].Value);
 
-                    var terminal = new Terminal(airport, owner, terminalName, gates, deliveryDate);
+                    var terminal = new Terminal(airport, owner, terminalName, gates, deliveryDate,Terminal.TerminalType.Passenger);
                     terminal.Gates.clear();
 
                     XmlNodeList airportGatesList = terminalNode.SelectNodes("gates/gate");
@@ -524,6 +524,7 @@
                         contractAirline,
                         airport,
                         AirportContract.ContractType.Full,
+                        Terminal.TerminalType.Passenger,
                         contractDate,
                         contractGates,
                         contractLength,

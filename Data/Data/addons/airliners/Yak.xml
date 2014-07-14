@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+<airliner manufacturer="Yak" name="Yak-40" price="5000000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="25" length="20.36" weight="15500" range="1800" speed="470" fuelcapacity="4200" consumption="0.12"
+  runwaylengthrequired="1400" />
+    <capacity passengers="32" cockpitcrew="3" cabincrew="1" maxclasses="1" />
+    <produced from="1967" to="1981" rate="73" />
+  </airliner>
+</airliners>

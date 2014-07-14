@@ -29,4 +29,11 @@
     <capacity passengers="119" cockpitcrew="2" cabincrew="1" maxclasses="1" />
     <produced from="1958" to="1991" rate="8" />
   </airliner>
+  <airliner manufacturer="DH" name="DHC-7-100" price="6000000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="28.35" length="24.58" weight="20000" range="1852" speed="436" fuelcapacity="3200" consumption="0.02343"
+  runwaylengthrequired="366" />
+    <capacity passengers="54" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1975" to="1988" rate="9" />
+  </airliner>
 </airliners>

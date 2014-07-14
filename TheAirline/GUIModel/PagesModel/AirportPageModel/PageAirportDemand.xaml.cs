@@ -90,6 +90,7 @@
                     GameObject.GetInstance().HumanAirline,
                     airport,
                     contractType,
+                    Terminal.TerminalType.Passenger,
                     GameObject.GetInstance().GameTime,
                     gates,
                     2,

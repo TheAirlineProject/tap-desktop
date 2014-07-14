@@ -17,7 +17,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0" Width="350">
+                <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0" Width="400">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                         <StackPanel>
                             <TextBlock
@@ -30,7 +30,9 @@
                                     <DataTemplate>
                                         <WrapPanel>
                                             <ContentControl ContentTemplate="{StaticResource AirlineItem}"
-                                                            Content="{Binding}" VerticalAlignment="Bottom" Width="300" />
+                                                            Content="{Binding}" VerticalAlignment="Bottom" Width="250" />
+                                            <TextBlock Text="{Binding AirlineRouteFocus}" Width="100" VerticalAlignment="Bottom"></TextBlock>
+
                                             <Image VerticalAlignment="Bottom" Tag="{Binding}"
                                                    MouseDown="imgDeselect_MouseDown" Width="20"
                                                    Source="/data/images/tick.png" />
@@ -49,7 +51,7 @@
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
-                <Border Style="{StaticResource RoundedBorderStyle}" Margin="5 0 0 0" Grid.Column="1" Width="350">
+                <Border Style="{StaticResource RoundedBorderStyle}" Margin="5 0 0 0" Grid.Column="1" Width="400">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
                         <StackPanel>
@@ -63,7 +65,8 @@
                                     <DataTemplate>
                                         <WrapPanel>
                                             <ContentControl ContentTemplate="{StaticResource AirlineItem}"
-                                                            Content="{Binding}" VerticalAlignment="Bottom" Width="300" />
+                                                            Content="{Binding}" VerticalAlignment="Bottom" Width="250" />
+                                            <TextBlock Text="{Binding AirlineRouteFocus}" Width="100" VerticalAlignment="Bottom"></TextBlock>
                                             <Image VerticalAlignment="Bottom" Tag="{Binding}"
                                                    MouseDown="imgSelect_MouseDown" Width="20"
                                                    Source="/data/images/tickgrey.png" />

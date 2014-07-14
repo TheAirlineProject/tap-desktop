@@ -31,6 +31,8 @@ namespace TheAirline.Model.AirportModel
         public long Length { get; set; }
         [Versioning("surface")]
         public Runway.SurfaceType Surface { get; set; }
+        [Versioning("terminaltype")]
+        public Terminal.TerminalType TerminalType { get; set; }
         public AirportExpansion(ExpansionType type, DateTime date, Boolean notifyOnChange)
         {
             this.Type = type;

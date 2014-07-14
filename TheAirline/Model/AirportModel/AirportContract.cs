@@ -19,6 +19,7 @@
             Airline airline,
             Airport airport,
             ContractType type,
+            Terminal.TerminalType terminaltype,
             DateTime date,
             int numberOfGates,
             int length,
@@ -40,6 +41,7 @@
             this.Terminal = terminal;
             this.ExpireDate = this.ContractDate.AddYears(this.Length);
             this.AutoRenew = autorenew;
+            this.TerminalType = terminaltype;
         }
 
         private AirportContract(SerializationInfo info, StreamingContext ctxt)
@@ -76,6 +78,8 @@
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
                     }
                 }
+
+           
             }
 
             IEnumerable<MemberInfo> notSetProps =
@@ -106,6 +110,8 @@
             {
                 this.AutoRenew = true;
             }
+            if (version < 4)
+                this.TerminalType = AirportModel.Terminal.TerminalType.Passenger;
         }
 
         #endregion
@@ -133,7 +139,7 @@
         [Versioning("airport")]
         public Airport Airport { get; set; }
 
-        [Versioning("renew")]
+        [Versioning("renew",Version=3)]
         public Boolean AutoRenew { get; set; }
 
         [Versioning("date")]
@@ -144,6 +150,9 @@
 
         [Versioning("isexclusive")]
         public Boolean IsExclusiveDeal { get; set; }
+
+        [Versioning("terminaltype",Version=4)]
+        public Terminal.TerminalType TerminalType { get; set; }
 
         [Versioning("length")]
         public int Length { get; set; }
@@ -181,7 +190,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 3);
+            info.AddValue("version", 4);
 
             Type myType = this.GetType();
 

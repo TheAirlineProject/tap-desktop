@@ -36,6 +36,7 @@
             this.NumberOfAirlines = this.Airport.AirlineContracts.Select(c => c.Airline).Distinct().Count();
             this.NumberOfRoutes = AirportHelpers.GetAirportRoutes(this.Airport).Count;
             this.LongestRunway = this.Airport.Runways.Count == 0 ? 0 : this.Airport.Runways.Max(r => r.Length);
+            this.HasCargoTerminal = this.Airport.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo);
         }
 
         #endregion
@@ -47,6 +48,8 @@
         #endregion
 
         #region Public Properties
+
+        public Boolean HasCargoTerminal { get; set; }
 
         public Airport Airport { get; set; }
 

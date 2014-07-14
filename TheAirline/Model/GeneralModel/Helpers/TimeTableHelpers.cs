@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
+    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel.WeatherModel;
 
     //the helpers class for time tables
@@ -22,11 +22,11 @@
             List<TimeSpan> occupiedSlots1 = AirportHelpers.GetOccupiedSlotTimes(
                 entry.DepartureAirport,
                 airliner.Airliner.Airline,
-                GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime));
+                GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime),entry.TimeTable.Route.IsCargoRoute ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger);
             List<TimeSpan> occupiedSlots2 = AirportHelpers.GetOccupiedSlotTimes(
                 entry.Destination.Airport,
                 airliner.Airliner.Airline,
-                GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime));
+                GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime), entry.TimeTable.Route.IsCargoRoute ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger);
 
             var gateTimeBefore = new TimeSpan(0, 15, 0);
             var gateTimeAfter = new TimeSpan(0, 15, 0);

@@ -112,7 +112,16 @@
 
         public static double DMStoDeg(int degrees, int minutes, int seconds)
         {
-            return Convert.ToDouble(degrees) + (Convert.ToDouble(minutes) / 60) + (Convert.ToDouble(seconds) / 3600);
+            double d = Convert.ToDouble(Math.Abs(degrees));
+            double m = Convert.ToDouble(minutes) / 60;
+            double s = Convert.ToDouble(seconds) / 3600;
+
+            if (degrees < 0)
+                return -(d + m + s);
+            else
+                return d + m + s;
+
+            //return Convert.ToDouble(degrees) + (Convert.ToDouble(minutes) / 60) + (Convert.ToDouble(seconds) / 3600);
         }
 
         public static double DegreeToRadian(double angle)

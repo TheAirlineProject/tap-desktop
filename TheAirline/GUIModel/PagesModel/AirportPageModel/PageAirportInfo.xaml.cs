@@ -66,6 +66,8 @@
             int gates = Convert.ToInt16(this.slGates.Value);
             string name = this.txtName.Text.Trim();
 
+            Terminal.TerminalType terminalType = rbTerminalType.IsChecked.Value ? Terminal.TerminalType.Passenger : Terminal.TerminalType.Cargo;
+
             // chs, 2011-01-11 changed so a message for confirmation are shown9han
             double price = gates * this.Airport.TerminalGatePrice + this.Airport.TerminalPrice;
 
@@ -93,7 +95,8 @@
                         GameObject.GetInstance().HumanAirline,
                         name,
                         gates,
-                        deliveryDate);
+                        deliveryDate,
+                        terminalType);
 
                     this.Airport.addTerminal(terminal);
 
@@ -183,6 +186,7 @@
                 tContract.Contract.Airline,
                 tContract.Contract.Airport,
                 tContract.Contract.Type,
+                tContract.Contract.TerminalType,
                 tContract.Contract.ContractDate,
                 tContract.Contract.NumberOfGates,
                 tContract.Contract.Length,
@@ -288,7 +292,7 @@
 
             int totalRentedGates = this.Airport.Airport.AirlineContracts.Sum(c => c.NumberOfGates);
 
-            Boolean isTerminalFree = this.Airport.Airport.Terminals.getNumberOfGates() - terminal.Gates
+            Boolean isTerminalFree = this.Airport.Airport.Terminals.getNumberOfGates(terminal.Terminal.Type) - terminal.Gates
                                      >= totalRentedGates; 
             if (isTerminalFree)
             {
@@ -354,6 +358,8 @@
 
         private void btnSignContract_Click(object sender, RoutedEventArgs e)
         {
+            Terminal.TerminalType terminalType = rbTerminalContractType.IsChecked.Value ? Terminal.TerminalType.Passenger : Terminal.TerminalType.Cargo;
+
             int gates = Convert.ToInt16(this.slContractGates.Value);
             int length = Convert.ToInt16(this.slContractLenght.Value);
 
@@ -377,6 +383,7 @@
                 GameObject.GetInstance().HumanAirline,
                 this.Airport.Airport,
                 contractType,
+                terminalType,
                 GameObject.GetInstance().GameTime,
                 gates,
                 length,

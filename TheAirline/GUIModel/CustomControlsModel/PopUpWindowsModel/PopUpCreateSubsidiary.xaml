@@ -35,10 +35,10 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1021'}"
                                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
                 <RadioButton Name="rbPassengerType" Style="{StaticResource RadioButtonLeftSideText}"
-                                             GroupName="AirlineType" IsChecked="True"
+                                             GroupName="AirlineType" Checked="rbPassengerType_Checked" IsChecked="True"
                                              Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1007'}" />
                 <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Margin="5 0 0 0"
-                                             GroupName="AirlineType"
+                                             GroupName="AirlineType" Checked="rbPassengerType_Checked"
                                              Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1008'}" />
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">

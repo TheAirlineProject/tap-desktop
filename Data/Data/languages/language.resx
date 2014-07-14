@@ -5097,6 +5097,24 @@ Good luck.</value>
   <data name="PageAirportInfo_1048_name" xml:space="preserve">
     <value>Fuel Price</value>
   </data>
+  <data name="PageAirportInfo_1049_name" xml:space="preserve">
+    <value>Terminal Type</value>
+  </data>
+  <data name="PageAirportInfo_1050_name" xml:space="preserve">
+    <value>Passenger</value>
+  </data>
+  <data name="PageAirportInfo_1051_name" xml:space="preserve">
+    <value>Cargo</value>
+  </data>
+  <data name="PageAirportInfo_1052_name" xml:space="preserve">
+    <value>Total Pax Gates</value>
+  </data>
+  <data name="PageAirportInfo_1053_name" xml:space="preserve">
+    <value>Total Cargo Gates</value>
+  </data>
+  <data name="PageAirportInfo_1054_name" xml:space="preserve">
+    <value>Gates</value>
+  </data>
   <data name="PageAirportsOverview_1000_name" xml:space="preserve">
     <value>Country</value>
   </data>
@@ -5105,5 +5123,17 @@ Good luck.</value>
   </data>
   <data name="PageAirports_2003_name" xml:space="preserve">
     <value>Overview</value>
+  </data>
+  <data name="PageAirportInfo_1055_name" xml:space="preserve">
+    <value>Handling Type</value>
+  </data>
+  <data name="PageShowAirports_1014_name" xml:space="preserve">
+    <value>Cargo Terminal</value>
+  </data>
+  <data name="MessageBox_3006_message" xml:space="preserve">
+    <value>You already have a route between {0} and {1}</value>
+  </data>
+  <data name="MessageBox_3006_name" xml:space="preserve">
+    <value>Route exists already</value>
   </data>
 </root>

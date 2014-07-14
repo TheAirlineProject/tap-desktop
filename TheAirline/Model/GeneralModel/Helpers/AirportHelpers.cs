@@ -186,7 +186,8 @@
                             null,
                             "Terminal",
                             numberOfGates,
-                            GameObject.GetInstance().GameTime.AddDays(daysToBuild));
+                            GameObject.GetInstance().GameTime.AddDays(daysToBuild),
+                            Terminal.TerminalType.Passenger);
 
                         airport.addTerminal(terminal);
                         airport.Income -= price;
@@ -650,12 +651,12 @@
             return slots.Where(s => s.Slots.Count() >= gates).SelectMany(s => s.Slots).ToList();
         }
 
-        public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline, Weather.Season season)
+        public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline, Weather.Season season,Terminal.TerminalType type)
         {
             return GetOccupiedSlotTimes(
                 airport,
                 airline,
-                airport.AirlineContracts.Where(c => c.Airline == airline).ToList(),
+                airport.AirlineContracts.Where(c => c.Airline == airline && c.TerminalType == type).ToList(),
                 season);
         }
 
@@ -723,7 +724,7 @@
             }
             if (expansion.Type == AirportExpansion.ExpansionType.New_terminal)
             {
-                Terminal terminal = new Terminal(airport, expansion.Name, expansion.Gates, expansion.Date);
+                Terminal terminal = new Terminal(airport, expansion.Name, expansion.Gates, expansion.Date,expansion.TerminalType);
                 airport.addTerminal(terminal);
 
                 if (expansion.NotifyOnChange && !onStartUp)
@@ -836,17 +837,23 @@
             return false;
             //airport.Weather[0].WindSpeed == Weather.eWindSpeed.Hurricane || airport.Weather[0].WindSpeed == Weather.eWindSpeed.Violent_Storm;
         }
-
         public static Boolean HasFreeGates(Airport airport, Airline airline)
         {
-            List<AirportContract> contracts = airport.getAirlineContracts(airline);
+            Terminal.TerminalType type = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+            
+            return HasFreeGates(airport, airline, type);
+        }
+        public static Boolean HasFreeGates(Airport airport, Airline airline, Terminal.TerminalType type)
+        {
+
+            List<AirportContract> contracts = airport.getAirlineContracts(airline).Where(c=>c.TerminalType == type).ToList();
 
             if (contracts.Count == 0)
             {
                 return false;
             }
 
-            return airport.Terminals.getFreeSlotsPercent(airline) > 90;
+            return airport.Terminals.getFreeSlotsPercent(airline,type) > 90;
         }
 
         public static Boolean HasRoute(Airport airport1, Airport airport2)
@@ -877,10 +884,15 @@
                 }
             }
         }
-
         public static Boolean RentGates(Airport airport, Airline airline, AirportContract.ContractType type)
         {
-            int maxGates = airport.Terminals.getFreeGates();
+            Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+
+            return RentGates(airport, airline, type, terminaltype);
+        }
+        public static Boolean RentGates(Airport airport, Airline airline, AirportContract.ContractType type, Terminal.TerminalType terminaltype)
+        {
+            int maxGates = airport.Terminals.getFreeGates(terminaltype);
 
             int gatesToRent = Math.Min(maxGates, (int)(airline.Mentality) + 2);
 
@@ -889,7 +901,7 @@
                 return false;
             }
 
-            RentGates(airport, airline, type, gatesToRent);
+            RentGates(airport, airline, type,terminaltype, gatesToRent);
 
             return true;
         }
@@ -898,14 +910,16 @@
             Airport airport,
             Airline airline,
             AirportContract.ContractType type,
+            Terminal.TerminalType terminaltype,
             int gates,
             int length = 20)
         {
-            int currentgates = airport.AirlineContracts.Where(a => a.Airline == airline).Sum(c => c.NumberOfGates);
+            int currentgates = airport.AirlineContracts.Where(a => a.Airline == airline && a.TerminalType == terminaltype).Sum(c => c.NumberOfGates);
             var contract = new AirportContract(
                 airline,
                 airport,
                 type,
+                terminaltype,
                 GameObject.GetInstance().GameTime,
                 gates,
                 length,

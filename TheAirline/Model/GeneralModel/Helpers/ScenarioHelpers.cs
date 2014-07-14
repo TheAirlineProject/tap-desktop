@@ -309,7 +309,7 @@
 
         private static void SetupOpponentAirline(ScenarioAirline airline)
         {
-            AirportHelpers.RentGates(airline.Homebase, airline.Airline, AirportContract.ContractType.Full);
+            AirportHelpers.RentGates(airline.Homebase, airline.Airline, AirportContract.ContractType.Full,airline.Airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger);
 
             AirportFacility checkinFacility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
@@ -385,6 +385,7 @@
 
         private static void SetupScenarioAirport(Airline airline, Airport airport, int quantity = 2)
         {
+       
             for (int i = 0; i < quantity; i++)
             {
                 if (!AirportHelpers.HasFreeGates(airport, airline))

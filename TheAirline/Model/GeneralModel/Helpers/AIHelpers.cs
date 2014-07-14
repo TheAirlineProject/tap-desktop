@@ -611,6 +611,7 @@
 
         public static List<Airport> GetDestinationAirports(Airline airline, Airport airport)
         {
+      
             IEnumerable<long> airliners = from a in Airliners.GetAirlinersForSale() select a.Type.Range;
             double maxDistance = airliners.Count() == 0 ? 5000 : airliners.Max();
 
@@ -643,6 +644,8 @@
             List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
 
             Airline.AirlineFocus marketFocus = airline.MarketFocus;
+
+            Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
             if (airline.Airports.Count < 4)
             {
@@ -725,7 +728,7 @@
             return (from a in airports
                 where
                     routes.Find(r => r.Destination1 == a || r.Destination2 == a) == null
-                    && (a.Terminals.getFreeGates() > 0 || AirportHelpers.HasFreeGates(a, airline))
+                    && (a.Terminals.getFreeGates(terminaltype) > 0 || AirportHelpers.HasFreeGates(a, airline,terminaltype))
                 orderby
                     ((int)airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class))
                     + ((int)a.getDestinationPassengersRate(airport, AirlinerClass.ClassType.Economy_Class)) descending
@@ -773,6 +776,7 @@
 
         public static Boolean IsCargoRouteDestinationsCorrect(Airport dest1, Airport dest2, Airline airline)
         {
+
             return dest1.getAirportFacility(airline, AirportFacility.FacilityType.Cargo, true).TypeLevel > 0
                    && dest2.getAirportFacility(airline, AirportFacility.FacilityType.Cargo, true).TypeLevel > 0;
         }
@@ -806,7 +810,7 @@
 
             if (homebase.Terminals.getNumberOfGates(airliner.Airliner.Airline) == 0)
             {
-                AirportHelpers.RentGates(homebase, airliner.Airliner.Airline, AirportContract.ContractType.Full);
+                AirportHelpers.RentGates(homebase, airliner.Airliner.Airline, AirportContract.ContractType.Full,airliner.Airliner.Airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger);
                 AirportFacility checkinFacility =
                     AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
@@ -1885,22 +1889,24 @@
                 homeAirports = AirlineHelpers.GetHomebases(airline);
             }
             homeAirports.AddRange(airline.getHubs());
+        
+            Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
-            Airport airport = homeAirports.Find(a => AirportHelpers.HasFreeGates(a, airline));
+            Airport airport = homeAirports.Find(a => AirportHelpers.HasFreeGates(a, airline,terminaltype));
 
             if (airport == null)
             {
-                airport = homeAirports.Find(a => a.Terminals.getFreeGates() > 0);
+                airport = homeAirports.Find(a => a.Terminals.getFreeGates(terminaltype) > 0);
                 if (airport != null)
                 {
-                    AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service);
+                    AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service,terminaltype);
                 }
                 else
                 {
                     airport = GetServiceAirport(airline);
                     if (airport != null)
                     {
-                        AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service);
+                        AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service,terminaltype);
                     }
                 }
             }
@@ -1914,7 +1920,7 @@
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
 
             IOrderedEnumerable<Airport> airports =
-                from a in airline.Airports.FindAll(aa => aa.Terminals.getFreeGates() > 0)
+                from a in airline.Airports.FindAll(aa => aa.Terminals.getFreeGates(airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0)
                 orderby a.Profile.Size descending
                 select a;
 

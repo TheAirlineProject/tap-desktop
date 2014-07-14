@@ -1137,6 +1137,7 @@
     <Resource Include="Data\images\video.png" />
     <Resource Include="Data\images\Wind.png" />
     <Resource Include="Data\images\MoveAirliner.png" />
+    <Resource Include="Data\images\Cargo1.png" />
     <Content Include="TheAirline.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

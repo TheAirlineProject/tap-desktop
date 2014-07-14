@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="ABX Air" iata="GB" color="Red" country="122" CEO="Joe Hete" mentality="Moderate"
+           market="Regional" preferedairport="SEA" routefocus="Cargo">
+    <narrative
+      narrative="The airline was established in 1980 when Airborne Freight acquired Midwest Air Charter. It started operations on 17 April 1980. Airborne Express, as the airline was initially named, was a wholly owned subsidiary of Airborne Freight of Seattle." />
+  </profile>
+  <info real="True" from="1980" to="2199"></info>
+</airline>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -31,7 +32,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
     {
         private string logoPath;
         public Airline Airline { get; set; }
-        public List<Airport> AllAirports { get; set; }
+        public ObservableCollection<Airport> AllAirports { get; set; }
         public List<PropertyInfo> Colors { get; set; }
         public double MaxSubsidiaryMoney { get; set; }
         private Boolean _iataok;
@@ -71,16 +72,16 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
                 this.Colors.Add(c);
             }
 
-            this.AllAirports = new List<Airport>();
+            this.AllAirports = new ObservableCollection<Airport>();
 
             foreach (
                 Airport airport in
                     this.Airline.Airports.FindAll(
-                        a => a.Terminals.getFreeSlotsPercent(this.Airline) > 50))
+                    a => a.Terminals.getFreeSlotsPercent(this.Airline,this.Airline.AirlineRouteFocus == Route.RouteType.Passenger ? Terminal.TerminalType.Passenger : Terminal.TerminalType.Cargo) > 50))
             {
                 this.AllAirports.Add(airport);
             }
-
+            
             this.Loaded += PopUpCreateSubsidiary_Loaded;
 
             InitializeComponent();
@@ -154,7 +155,26 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             this.Close();
 
         }
+        private void rbPassengerType_Checked(object sender, RoutedEventArgs e)
+        {
+            Route.RouteType focus = this.rbPassengerType.IsChecked.Value
+          ? Route.RouteType.Passenger
+          : Route.RouteType.Cargo;
 
+            while (this.AllAirports.Count > 0)
+            {
+                this.AllAirports.RemoveAt(this.AllAirports.Count - 1);
+            }
+
+            foreach (
+               Airport airport in
+                   this.Airline.Airports.FindAll(
+                   a => a.Terminals.getFreeSlotsPercent(this.Airline, focus == Route.RouteType.Passenger ? Terminal.TerminalType.Passenger : Terminal.TerminalType.Cargo) > 50))
+            {
+                this.AllAirports.Add(airport);
+            }
+
+        }
         private void txtAirlineName_TextChanged(object sender, TextChangedEventArgs e)
         {
             setIATAOk();
@@ -201,6 +221,8 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
         }
 
         #endregion
+
+       
 
    
     }

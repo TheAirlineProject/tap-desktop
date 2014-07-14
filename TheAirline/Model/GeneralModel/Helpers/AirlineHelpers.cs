@@ -337,6 +337,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //adds a subsidiary airline to an airline
         public static void AddSubsidiaryAirline(Airline airline, SubsidiaryAirline sAirline, double money, Airport airportHomeBase)
         {
+            Terminal.TerminalType terminaltype = sAirline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
             AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -money);
             sAirline.Money = money;
             sAirline.StartMoney = money;
@@ -345,9 +346,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airline.addSubsidiaryAirline(sAirline);
 
-            if (!AirportHelpers.HasFreeGates(airportHomeBase, sAirline) && airportHomeBase.Terminals.getFreeGates() > 1)
+            if (!AirportHelpers.HasFreeGates(airportHomeBase, sAirline,terminaltype) && airportHomeBase.Terminals.getFreeGates(terminaltype) > 1)
             {
-                AirportHelpers.RentGates(airportHomeBase, sAirline, AirportContract.ContractType.Full, 2);
+                AirportHelpers.RentGates(airportHomeBase, sAirline, AirportContract.ContractType.Full,terminaltype, 2);
                 //sets all the facilities at an airport to none for all airlines
                 foreach (Airport airport in Airports.GetAllAirports())
                 {
@@ -492,12 +493,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns if an airline can create a hub at an airport
         public static Boolean CanCreateHub(Airline airline, Airport airport, HubType type)
         {
+            Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == AirlinerModel.RouteModel.Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+      
             Boolean airlineHub = airport.getHubs().Exists(h => h.Airline == airline);
 
             int airlineValue = (int)airline.getAirlineValue() + 1;
 
             int totalAirlineHubs = airline.getHubs().Count;// 'Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
-            double airlineGatesPercent = Convert.ToDouble(airport.Terminals.getNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.getNumberOfGates()) * 100;
+            double airlineGatesPercent = Convert.ToDouble(airport.Terminals.getNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.getNumberOfGates(terminaltype)) * 100;
 
             switch (type.Type)
             {

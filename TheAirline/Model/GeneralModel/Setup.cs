@@ -464,9 +464,14 @@
 
                 string s = e.ToString();
             }
-
+         
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
+
+            Airport lbb = Airports.GetAirport("LBB");
+            Airport dfw = Airports.GetAirport("DFW");
+
+            Console.WriteLine("Distance: " + MathHelpers.GetDistance(lbb,dfw));
 
             /*
             System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
@@ -765,6 +770,7 @@
                         r.Opened <= GameObject.GetInstance().GameTime.Year
                         && r.Closed >= GameObject.GetInstance().GameTime.Year);
 
+            Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
             //creates the routes
             List<StartDataRoute> sRoutes = startroutes.GetRange(0, startroutes.Count / startDataFactor);
             Parallel.ForEach(
@@ -776,12 +782,6 @@
 
                     if (dest1 != null && dest2 != null)
                     {
-                        //if (dest1.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
-                        //dest1.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
-
-                        //if (dest2.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
-                        //dest2.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
-
                         if (dest1.getAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0
                             && dest1.getAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0
                             && airline.AirlineRouteFocus == Route.RouteType.Cargo)
@@ -796,14 +796,14 @@
                             dest2.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
                         }
 
-                        if (!AirportHelpers.HasFreeGates(dest1, airline))
+                        if (!AirportHelpers.HasFreeGates(dest1, airline,terminaltype))
                         {
-                            AirportHelpers.RentGates(dest1, airline, AirportContract.ContractType.Low_Service);
+                            AirportHelpers.RentGates(dest1, airline, AirportContract.ContractType.Low_Service,terminaltype);
                         }
 
-                        if (!AirportHelpers.HasFreeGates(dest2, airline))
+                        if (!AirportHelpers.HasFreeGates(dest2, airline,terminaltype))
                         {
-                            AirportHelpers.RentGates(dest2, airline, AirportContract.ContractType.Low_Service);
+                            AirportHelpers.RentGates(dest2, airline, AirportContract.ContractType.Low_Service,terminaltype);
                         }
 
                         Guid id = Guid.NewGuid();
@@ -1007,16 +1007,18 @@
 
                     if (origin != null)
                     {
+                        Terminal.TerminalType terminalType = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+                           
                         for (int i = 0;
-                            i < Math.Min(routes.Destinations / startDataFactor, origin.Terminals.getFreeGates());
+                            i < Math.Min(routes.Destinations / startDataFactor, origin.Terminals.getFreeGates(terminalType));
                             i++)
                         {
                             //if (origin.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                             //origin.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
-                            if (!AirportHelpers.HasFreeGates(origin, airline))
+                            if (!AirportHelpers.HasFreeGates(origin, airline,terminalType))
                             {
-                                AirportHelpers.RentGates(origin, airline, AirportContract.ContractType.Low_Service);
+                                AirportHelpers.RentGates(origin, airline, AirportContract.ContractType.Low_Service,terminalType);
                             }
 
                             Airport destination = GetStartDataRoutesDestination(routes);
@@ -1024,9 +1026,9 @@
                             //if (destination.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                             //destination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
-                            if (!AirportHelpers.HasFreeGates(destination, airline))
+                            if (!AirportHelpers.HasFreeGates(destination, airline,terminalType))
                             {
-                                AirportHelpers.RentGates(destination, airline, AirportContract.ContractType.Low_Service);
+                                AirportHelpers.RentGates(destination, airline, AirportContract.ContractType.Low_Service,terminalType);
                             }
 
                             Guid id = Guid.NewGuid();
@@ -1203,6 +1205,7 @@
                             airline,
                             airportHomeBase,
                             AirportContract.ContractType.Full,
+                            airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger,
                             GameObject.GetInstance().GameTime,
                             2,
                             25,
@@ -1646,19 +1649,20 @@
 
         private static Airport FindComputerHomeBase(Airline airline)
         {
+            Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
             if (airline.Profile.PreferedAirport != null
                 && GeneralHelpers.IsAirportActive(airline.Profile.PreferedAirport)
-                && airline.Profile.PreferedAirport.Terminals.getFreeGates() > 1)
+                && airline.Profile.PreferedAirport.Terminals.getFreeGates(terminaltype) > 1)
             {
                 return airline.Profile.PreferedAirport;
             }
             List<Airport> airports =
-                Airports.GetAirports(airline.Profile.Country).FindAll(a => a.Terminals.getFreeGates() > 1);
+                Airports.GetAirports(airline.Profile.Country).FindAll(a => a.Terminals.getFreeGates(terminaltype) > 1);
 
             if (airports.Count < 4)
             {
                 airports =
-                    Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.getFreeGates() > 1);
+                    Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.getFreeGates(terminaltype) > 1);
             }
 
             var list = new Dictionary<Airport, int>();
@@ -1686,7 +1690,7 @@
                             routes.Countries.Contains(a.Profile.Country)
                             && MathHelpers.GetDistance(Airports.GetAirport(routes.Origin), a) < maxRange
                             && a != Airports.GetAirport(routes.Origin)
-                            && ((int)a.Profile.Cargo) >= ((int)routes.MinimumSize) && a.Terminals.getFreeGates() > 0);
+                            && ((int)a.Profile.Cargo) >= ((int)routes.MinimumSize) && a.Terminals.getFreeGates(Terminal.TerminalType.Cargo) > 0);
             }
 
             if (routes.RouteType == Route.RouteType.Passenger || routes.RouteType == Route.RouteType.Mixed)
@@ -1697,7 +1701,7 @@
                             routes.Countries.Contains(a.Profile.Country)
                             && MathHelpers.GetDistance(Airports.GetAirport(routes.Origin), a) < maxRange
                             && a != Airports.GetAirport(routes.Origin)
-                            && ((int)a.Profile.Size) >= ((int)routes.MinimumSize) && a.Terminals.getFreeGates() > 0);
+                            && ((int)a.Profile.Size) >= ((int)routes.MinimumSize) && a.Terminals.getFreeGates(Terminal.TerminalType.Passenger) > 0);
             }
 
             return airports[rnd.Next(airports.Count)];
@@ -2571,8 +2575,17 @@
                         string terminalName = terminalNode.Attributes["name"].Value;
                         int terminalGates = XmlConvert.ToInt32(terminalNode.Attributes["gates"].Value);
 
+                        Terminal.TerminalType terminalType;
+
+                        if (terminalNode.HasAttribute("type"))
+                            terminalType =
+                            (Terminal.TerminalType)
+                                Enum.Parse(typeof(Terminal.TerminalType), terminalNode.Attributes["type"].Value);
+                        else
+                            terminalType = Terminal.TerminalType.Passenger;
+
                         airport.Terminals.addTerminal(
-                            new Terminal(airport, null, terminalName, terminalGates, new DateTime(1950, 1, 1)));
+                            new Terminal(airport, null, terminalName, terminalGates, new DateTime(1950, 1, 1),terminalType));
                     }
 
                     XmlNodeList runwaysList = airportElement.SelectNodes("runways/runway");
@@ -2631,8 +2644,18 @@
                             string expansionName = expansionNode.Attributes["name"].Value;
                             int gates = Convert.ToInt16(expansionNode.Attributes["gates"].Value);
 
+                            Terminal.TerminalType terminalType;
+
+                            if (expansionNode.HasAttribute("terminaltype"))
+                                terminalType =
+                                    (Terminal.TerminalType)
+                          Enum.Parse(typeof(Terminal.TerminalType), expansionNode.Attributes["terminaltype"].Value);
+                            else
+                                terminalType = Terminal.TerminalType.Passenger;
+
                             expansion.Name = expansionName;
                             expansion.Gates = gates;
+                            expansion.TerminalType = terminalType;
                         }
                         if (expansionType == AirportExpansion.ExpansionType.Extra_gates)
                         {
@@ -4097,6 +4120,11 @@
                                 .Find(f => f.TypeLevel > 0);
 
                         airport.addAirportFacility(null, cargoTerminal, GameObject.GetInstance().GameTime);
+
+                        if (!airport.Terminals.AirportTerminals.Exists(t=>t.Type == Terminal.TerminalType.Cargo))
+                        {
+                            airport.Terminals.addTerminal(new Terminal(airport,"Cargo Terminal",((int)airport.Profile.Cargo) + 5,GameObject.GetInstance().GameTime,Terminal.TerminalType.Cargo));
+                        }
                     }
 
                     AirportHelpers.CreateAirportWeather(airport);

@@ -13,6 +13,12 @@
             <ListView x:Name="AirportsList" VerticalAlignment="Stretch"
                       BorderThickness="0" Background="Transparent"
                       ItemsSource="{Binding ElementName=pageAirportsOverview, Path=AllAirports}">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel>
+                        </VirtualizingStackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <ListView.View>
                     <GridView>
                         <GridViewColumn

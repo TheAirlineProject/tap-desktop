@@ -88,7 +88,7 @@
 
             Airport airport = startData.Airport;
 
-            AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Full, 2);
+            AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Full, airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger,  2);
 
             AirportFacility checkinFacility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
@@ -1187,9 +1187,9 @@
 
                         if (terminal.Airline != null)
                         {
-                            var oldContracts = new List<AirportContract>(airport.getAirlineContracts(terminal.Airline));
+                            var oldContracts = new List<AirportContract>(airport.getAirlineContracts(terminal.Airline)).Where(c=>c.TerminalType == terminal.Type);
 
-                            if (oldContracts.Count > 0)
+                            if (oldContracts.Count() > 0)
                             {
                                 int totalGates = oldContracts.Sum(c => c.NumberOfGates);
 
@@ -1202,6 +1202,7 @@
                                         terminal.Airline,
                                         airport,
                                         AirportContract.ContractType.Full,
+                                        terminal.Type,
                                         GameObject.GetInstance().GameTime,
                                         gatesDiff,
                                         length,
@@ -1240,6 +1241,7 @@
                                     terminal.Airline,
                                     airport,
                                     AirportContract.ContractType.Full,
+                                    terminal.Type,
                                     GameObject.GetInstance().GameTime,
                                     terminal.Gates.NumberOfGates,
                                     20,
@@ -2445,7 +2447,7 @@
             //Parallel.ForEach(
             //    Airports.GetAllAirports(a => a.Terminals.getInusePercent() > 90),
             //    airport => { AirportHelpers.CheckForExtendGates(airport); });
-            foreach (var airport in Airports.GetAllAirports(a => a.Terminals.getInusePercent() > 90))
+            foreach (var airport in Airports.GetAllAirports(a => a.Terminals.getInusePercent(Terminal.TerminalType.Passenger) > 90))
             {
                 AirportHelpers.CheckForExtendGates(airport);
             }

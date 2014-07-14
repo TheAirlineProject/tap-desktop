@@ -32,6 +32,9 @@
             this.FacilityTypes =
                 Enum.GetValues(typeof(AirportFacility.FacilityType)).Cast<AirportFacility.FacilityType>().ToList();
 
+            if (!airport.Airport.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo))
+                this.FacilityTypes.Remove(AirportFacility.FacilityType.Cargo);
+
             this.InitializeComponent();
 
             var view = (CollectionView)CollectionViewSource.GetDefaultView(this.lbFacilities.ItemsSource);
@@ -105,12 +108,7 @@
             {
                 if (buildingFacility == null)
                 {
-                    if (facility.Type == AirportFacility.FacilityType.Cargo
-                        && !GameObject.GetInstance().HumanAirline.Airports.Contains(this.Airport.Airport))
-                    {
-                        GameObject.GetInstance().HumanAirline.addAirport(this.Airport.Airport);
-                    }
-
+                    
                     double price = facility.Price;
 
                     if (this.Airport.Airport.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country)
@@ -286,12 +284,6 @@
                 if (result == WPFMessageBoxResult.Yes)
                 {
                     this.Airport.removeAirlineFacility(facility);
-
-                    if (facility.Facility.Facility.Type == AirportFacility.FacilityType.Cargo
-                        && facility.Facility.Facility.TypeLevel == 1)
-                    {
-                        GameObject.GetInstance().HumanAirline.removeAirport(this.Airport.Airport);
-                    }
                 }
             }
         }

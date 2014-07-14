@@ -25,6 +25,10 @@
 
         private Boolean _canBuildHub;
 
+        private int _freeCargoGates;
+
+        private int _freePaxGates;
+
         private Boolean _canMakeCooperation;
 
         private int _freeGates;
@@ -42,6 +46,9 @@
             this.LandingFee = GeneralHelpers.GetInflationPrice(this.Airport.LandingFee);
             this.FuelPrice = AirportHelpers.GetFuelPrice(this.Airport);
 
+            this.TotalPaxGates = this.Airport.Terminals.AirportTerminals.Where(t=>t.Type == Terminal.TerminalType.Passenger).Sum(t=>t.Gates.NumberOfDeliveredGates);
+            this.TotalCargoGates = this.Airport.Terminals.AirportTerminals.Where(t=>t.Type == Terminal.TerminalType.Cargo).Sum(t=>t.Gates.NumberOfDeliveredGates);
+        
             this.Cooperations = new ObservableCollection<Cooperation>();
             this.Terminals = new ObservableCollection<AirportTerminalMVVM>();
             this.BuildingTerminals = new ObservableCollection<AirportTerminalMVVM>();
@@ -82,6 +89,10 @@
             }
 
             this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
+
+            this.FreeCargoGates = this.Airport.Terminals.AirportTerminals.Where(t=>t.Type == Terminal.TerminalType.Cargo).Sum(t=>t.getFreeGates());
+
+            this.FreePaxGates = this.Airport.Terminals.AirportTerminals.Where(t => t.Type == Terminal.TerminalType.Passenger).Sum(t => t.getFreeGates());
 
             this.Demands = new List<DemandMVVM>();
 
@@ -364,6 +375,33 @@
 
         public List<DestinationFlightsMVVM> Flights { get; set; }
 
+
+        public int FreeCargoGates 
+        {
+            get
+            {
+               return this._freeCargoGates ;
+            }
+            set
+            {
+                this._freeCargoGates = value;
+                this.NotifyPropertyChanged("FreeCargoGates");
+            } 
+        }
+
+        public int FreePaxGates 
+        {
+            get
+            {
+             return this._freePaxGates   ;
+            }
+            set
+            {
+                this._freePaxGates = value;
+                this.NotifyPropertyChanged("FreePaxGates");
+            }
+        }
+
         public int FreeGates
         {
             get
@@ -397,6 +435,10 @@
 
         public List<Weather> Weather { get; set; }
 
+        public double TotalPaxGates { get; set; }
+
+        public double TotalCargoGates { get; set; }
+
         #endregion
 
         //adds an airline contract to the airport
@@ -419,6 +461,11 @@
             }
 
             this.CanMakeCooperation = GameObject.GetInstance().HumanAirline.Airports.Exists(a => a == this.Airport);
+
+            this.FreeCargoGates = this.Airport.Terminals.AirportTerminals.Where(t => t.Type == Terminal.TerminalType.Cargo).Sum(t => t.getFreeGates());
+
+            this.FreePaxGates = this.Airport.Terminals.AirportTerminals.Where(t => t.Type == Terminal.TerminalType.Passenger).Sum(t => t.getFreeGates());
+
         }
 
         public void addAirlineFacility(AirportFacility facility)
@@ -562,16 +609,16 @@
         }
         public void purchaseTerminal(AirportTerminalMVVM terminal, Airline airline)
         {
+
             terminal.purchaseTerminal(airline);
 
-            
             foreach (AirportContract contract in this.Airport.AirlineContracts)
             {
                 if (this.Contracts.FirstOrDefault(c=>c.Contract == contract) == null)
                     this.Contracts.Add(new ContractMVVM(contract));
      
             }
-
+        
             
         }
         public void removeTerminal(AirportTerminalMVVM terminal)
@@ -1025,7 +1072,6 @@
 
             this.FreeGates = 0;
 
-           
         }
 
         #endregion

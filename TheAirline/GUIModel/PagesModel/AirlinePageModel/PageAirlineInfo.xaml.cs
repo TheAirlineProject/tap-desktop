@@ -36,19 +36,19 @@
         {
             this.Airline = airline;
             this.DataContext = this.Airline;
-            this.AllAirports = new List<Airport>();
+            //this.AllAirports = new List<Airport>();
             this.SubsidiaryAirports = new List<Airport>();
 
             this.InitializeComponent();
 
-          
+          /*
             foreach (
                 Airport airport in
                     this.Airline.Airline.Airports.FindAll(
                         a => a.Terminals.getFreeSlotsPercent(this.Airline.Airline) > 50))
             {
                 this.AllAirports.Add(airport);
-            }
+            }*/
 
             foreach (Airport airport in this.Airline.Airline.Airports.Where(a => a.Terminals.getFreeGates() > 0))
             {
@@ -63,7 +63,7 @@
 
         public AirlineMVVM Airline { get; set; }
 
-        public List<Airport> AllAirports { get; set; }
+        //public List<Airport> AllAirports { get; set; }
 
         public List<Airport> SubsidiaryAirports { get; set; }
 

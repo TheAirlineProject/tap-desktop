@@ -22,17 +22,18 @@
     {
         #region Constructors and Destructors
 
-        public Terminal(Airport airport, string name, int gates, DateTime deliveryDate)
-            : this(airport, null, name, gates, deliveryDate)
+        public Terminal(Airport airport, string name, int gates, DateTime deliveryDate, TerminalType type)
+            : this(airport, null, name, gates, deliveryDate,type)
         {
         }
 
-        public Terminal(Airport airport, Airline airline, string name, int gates, DateTime deliveryDate)
+        public Terminal(Airport airport, Airline airline, string name, int gates, DateTime deliveryDate, TerminalType type)
         {
             this.Airport = airport;
             this.Airline = airline;
             this.Name = name;
             this.DeliveryDate = new DateTime(deliveryDate.Year, deliveryDate.Month, deliveryDate.Day);
+            this.Type = type;
 
             this.Gates = new Gates(gates, this.DeliveryDate, airline);
         }
@@ -92,11 +93,16 @@
                     }
                 }
             }
+
+            if (version == 1)
+                this.Type = TerminalType.Passenger;
         }
 
         #endregion
 
         #region Public Properties
+
+        public enum TerminalType { Cargo, Passenger }
 
         [Versioning("airline")]
         public Airline Airline { get; set; }
@@ -109,6 +115,9 @@
 
         [Versioning("gates")]
         public Gates Gates { get; set; }
+
+        [Versioning("type",Version=2)]
+        public TerminalType Type { get; set; }
 
         public Boolean IsBuilt
         {
@@ -143,7 +152,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 
@@ -200,19 +209,18 @@
             {
                 return this.Gates.NumberOfGates;
             }
-
             int terminalIndex =
                 this.Airport.Terminals.AirportTerminals.Where(
-                    a => a.Airline == null && a.DeliveryDate <= GameObject.GetInstance().GameTime)
+                    a => a.Airline == null && a.Type == this.Type && a.DeliveryDate <= GameObject.GetInstance().GameTime)
                     .ToList()
                     .IndexOf(this);
 
             int terminalGates =
                 this.Airport.Terminals.AirportTerminals.Where(
-                    a => a.Airline != null && a.DeliveryDate <= GameObject.GetInstance().GameTime)
+                    a => a.Airline != null && a.Type == this.Type && a.DeliveryDate <= GameObject.GetInstance().GameTime)
                     .Sum(t => t.Gates.NumberOfGates);
 
-            int contracts = this.Airport.AirlineContracts.Sum(c => c.NumberOfGates) - terminalGates;
+            int contracts = this.Airport.AirlineContracts.Where(c=>c.TerminalType == this.Type).Sum(c => c.NumberOfGates) - terminalGates;
 
             int gates = 0;
 
@@ -221,7 +229,7 @@
             {
                 gates +=
                     this.Airport.Terminals.AirportTerminals.Where(
-                        a => a.Airline == null && a.DeliveryDate <= GameObject.GetInstance().GameTime).ToList()[i].Gates
+                        a => a.Airline == null && a.Type == this.Type && a.DeliveryDate <= GameObject.GetInstance().GameTime).ToList()[i].Gates
                         .NumberOfGates;
 
                 if (gates < contracts)
@@ -263,6 +271,7 @@
                     this.Airline,
                     this.Airport,
                     AirportContract.ContractType.Full,
+                    this.Type,
                     GameObject.GetInstance().GameTime,
                     this.Gates.NumberOfGates,
                     20,
@@ -281,9 +290,9 @@
 
         private Boolean isBuyable()
         {
-            int freeGates = this.Airport.Terminals.getFreeGates();
+            int freeGates = this.Airport.Terminals.getFreeGates(this.Type);
 
-            return freeGates > this.Gates.NumberOfGates && this.Airport.Terminals.getNumberOfAirportTerminals() > 1
+            return freeGates > this.Gates.NumberOfGates && this.Airport.Terminals.getNumberOfAirportTerminals(this.Type) > 1
                    && this.Airline == null;
         }
 
@@ -461,17 +470,20 @@
                 this.AirportTerminals.FindAll(
                     (delegate(Terminal terminal) { return terminal.DeliveryDate <= GameObject.GetInstance().GameTime; }));
         }
-
         public int getFreeGates()
         {
-            return this.getNumberOfGates() - this.getInuseGates();
+            return getFreeGates(Terminal.TerminalType.Cargo) + getFreeGates(Terminal.TerminalType.Passenger);
+        }
+        public int getFreeGates(Terminal.TerminalType type)
+        {
+            return this.getNumberOfGates(type) - this.getInuseGates(type);
         }
 
-        public double getFreeSlotsPercent(Airline airline)
+        public double getFreeSlotsPercent(Airline airline,Terminal.TerminalType type)
         {
             double numberOfSlots = (22 - 6) * 4 * 7; //from 06.00 to 22.00 each quarter each day (7 days a week) 
 
-            double usedSlots = AirportHelpers.GetOccupiedSlotTimes(this.Airport, airline, Weather.Season.All_Year).Count;
+            double usedSlots = AirportHelpers.GetOccupiedSlotTimes(this.Airport, airline, Weather.Season.All_Year,type).Count;
 
             double percent = ((numberOfSlots - usedSlots) / numberOfSlots) * 100;
 
@@ -512,17 +524,17 @@
         //adds a terminal to the list
 
         //returns the number of gates in use
-        public int getInuseGates()
+        public int getInuseGates(Terminal.TerminalType type)
         {
             return
-                this.Airport.AirlineContracts.Where(c => c.ContractDate <= GameObject.GetInstance().GameTime)
+                this.Airport.AirlineContracts.Where(c => c.ContractDate <= GameObject.GetInstance().GameTime && c.TerminalType == type)
                     .Sum(c => c.NumberOfGates);
         }
 
-        public double getInusePercent()
+        public double getInusePercent(Terminal.TerminalType type)
         {
-            int freeGates = this.getFreeGates();
-            int totalGates = this.getNumberOfGates();
+            int freeGates = this.getFreeGates(type);
+            int totalGates = this.getNumberOfGates(type);
 
             int usedGates = totalGates - freeGates;
 
@@ -543,21 +555,29 @@
                     .FindAll((delegate(Terminal terminal) { return terminal.Airline == null; }))
                     .Count;
         }
-
+        public int getNumberOfAirportTerminals(Terminal.TerminalType terminaltype)
+        {
+            return getDeliveredTerminals().Count(t => t.Type == terminaltype);
+           
+        }
         //returns the number of free gates
 
         //returns the total number of gates
+        public int getNumberOfGates(Terminal.TerminalType type)
+        {
+            return this.AirportTerminals.Where(t=>t.Type == type).Sum(t => t.Gates.NumberOfDeliveredGates);
+        }
         public int getNumberOfGates()
         {
-            return this.AirportTerminals.Sum(t => t.Gates.NumberOfDeliveredGates);
+            return getNumberOfGates(Terminal.TerminalType.Passenger) + getNumberOfGates(Terminal.TerminalType.Cargo);
         }
-
         //returns the number of gates for an airline
         public int getNumberOfGates(Airline airline)
         {
+            Terminal.TerminalType type = airline.AirlineRouteFocus == AirlinerModel.RouteModel.Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
             return
                 this.Airport.AirlineContracts.Where(
-                    c => c.Airline == airline && c.ContractDate <= GameObject.GetInstance().GameTime)
+                    c => c.Airline == airline && c.TerminalType == type && c.ContractDate <= GameObject.GetInstance().GameTime)
                     .Sum(c => c.NumberOfGates);
         }
 

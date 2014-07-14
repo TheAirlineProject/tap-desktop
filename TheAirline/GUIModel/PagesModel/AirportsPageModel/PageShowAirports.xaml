@@ -203,6 +203,19 @@
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn
+                        Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1014'}"
+                        CanFilter="False" SortPropertyName="HasCargoTerminal" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="/data/images/tick.png" VerticalAlignment="Bottom"
+                                                   RenderOptions.BitmapScalingMode="HighQuality" Width="20"
+                                                   Visibility="{Binding HasCargoTerminal,Converter={StaticResource BooleanToVisibility}}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
+
+
+                     <filter:SortableGridViewColumn
                         Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1012'}"
                         CanFilter="True" SortPropertyName="LongestRunway" Width="100">
                         <GridViewColumn.CellTemplate>
