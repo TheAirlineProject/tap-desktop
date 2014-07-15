@@ -4,4 +4,5 @@
   <profile name="Qantas" iata="QF" color="NavajoWhite" country="116" CEO="Alan Joyce" mentality="Aggressive"
            market="Global" preferedairport="SYD">
   </profile>
+   <info real="True" from="1920" to="2199"></info>
 </airline>

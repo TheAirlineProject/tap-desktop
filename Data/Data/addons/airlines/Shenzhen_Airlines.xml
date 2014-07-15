@@ -4,4 +4,5 @@
   <profile name="Shenzhen Airlines" iata="ZH" color="rosybrown" country="148" CEO="Li Kun" mentality="Aggressive"
            market="Global" preferedairport="SZX">
   </profile>
+   <info real="True" from="1992" to="2199"></info>
 </airline>

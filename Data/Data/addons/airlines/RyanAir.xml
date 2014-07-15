@@ -6,6 +6,7 @@
     <narrative
       narrative="Ryanair Ltd. is an Irish low-cost airline. Its headquarters is located on the grounds of Dublin Airport in Swords, County Dublin, Ireland, with its primary operational bases at Dublin Airport and London Stansted Airports." />
   </profile>
+   <info real="True" from="1985" to="2199"></info>
   <startdata>
     <airliners>
       <airliner type="Boeing 737-800" early="0" late="305"></airliner>

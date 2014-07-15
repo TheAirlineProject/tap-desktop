@@ -6,6 +6,7 @@
     <narrative
       narrative="Royal Air Maroc literally Royal Moroccan Lines or Royal Moroccan Airlines; more commonly known as simply RAM, is the flag carrier of Morocco, as well as the country's largest airline. RAM is fully owned by the government of Morocco, and has its headquarters on the grounds of Casablanca-Anfa Airport. From its base at Mohammed V International Airport, the carrier operates a domestic network in Morocco, scheduled international flights to Africa, Asia, Europe, and North America, and occasionally charter flights that include Hajj services." />
   </profile>
+   <info real="True" from="1957" to="2199"></info>
   <startdata>
     <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
     <airliners>

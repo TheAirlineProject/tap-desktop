@@ -6,6 +6,7 @@
     <narrative
       narrative="LAN Airlines S.A. is a group of South American Airlines based in Santiago, Chile and part of LATAM Airlines Group, Latin America's largest Airline holding. LATAM was formed by the takeover by LAN of Brazilian TAM Airlines which was completed on June 22, 2012, although both companies operate with different certificates and liveries. Its headquarters is located in Las Condes, Santiago Province." />
   </profile>
+     <info real="True" from="1929" to="2199"></info>
   <startdata>
     <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
     <airliners>

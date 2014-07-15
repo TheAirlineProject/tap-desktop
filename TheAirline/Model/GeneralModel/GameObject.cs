@@ -303,7 +303,7 @@ namespace TheAirline.Model.GeneralModel
 
         private long getStartMoney()
         {
-            double baseStartMoney = 12500000;
+            double baseStartMoney = 7500000;
 
             baseStartMoney *= this.Difficulty.MoneyLevel;
 

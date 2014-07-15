@@ -1730,8 +1730,10 @@
 
             if (GameObject.GetInstance().GameTime.Day % 7 == 0)
             {
-                GameObject.GetInstance().HumanAirline.OverallScore +=
-                    StatisticsHelpers.GetWeeklyScore(GameObject.GetInstance().HumanAirline);
+                foreach (Airline airline in Airlines.GetAllAirlines())
+                    airline.OverallScore += StatisticsHelpers.GetWeeklyScore(airline);
+               // GameObject.GetInstance().HumanAirline.OverallScore +=
+                 //   StatisticsHelpers.GetWeeklyScore(GameObject.GetInstance().HumanAirline);
             }
         }
 

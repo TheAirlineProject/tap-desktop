@@ -6,6 +6,7 @@
     <narrative
       narrative="Eaglexpress is a charter airline baes in Malaysia. It is a Joint Venture of Malaysian and South Korean investors, with a 60-40 split. Specializing in Pilgrimage Charters, they operate a single Boeing 747-400 acquired from Malaysia Airlines, and is in the process of adding 2 Boeing 747-400's and up to 8 Boeing 737-800 aircraft.   " />
   </profile>
+     <info real="True" from="2011" to="2199"></info>
   <startdata>
     <!--some random routes from an origin-->
     <random_routes>

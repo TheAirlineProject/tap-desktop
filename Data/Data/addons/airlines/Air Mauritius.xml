@@ -6,6 +6,7 @@
     <narrative
       narrative="Air Mauritius Limited, doing business as Air Mauritius, is the flag carrier of Mauritius. The airline is headquartered at the Air Mauritius Centre in Port Louis, Mauritius. Its main base is Sir Seewoosagur Ramgoolam International Airport." />
   </profile>
+   <info real="True" from="1967" to="2199"></info>
   <startdata>
     <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
     <airliners>

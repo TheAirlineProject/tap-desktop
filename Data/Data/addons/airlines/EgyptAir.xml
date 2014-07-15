@@ -6,6 +6,7 @@
     <narrative
       narrative="EgyptAir is the flag carrier airline of Egypt.The airline is based at Cairo International Airport, its main hub, operating scheduled passenger and freight services to more than 75 destinations in the Middle East, Europe, Africa, Asia, and the Americas. An extensive network of domestic services is focused on Cairo, Egypt's capital. The airline is a member of Star Alliance, having joined on 11 July 2008." />
   </profile>
+     <info real="True" from="1932" to="2199"></info>
   <startdata>
     <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
     <airliners>

@@ -6,4 +6,5 @@
     <narrative
       narrative="Australian Airlines was a commuter subsidiary of Qantas, based out of Cairns from 2001 to 2006. They fleet to 13 mainly Asian desinations on a fleet of 5 Boeing 767s." />
   </profile>
+     <info real="True" from="2001" to="2006"></info>
 </airline>

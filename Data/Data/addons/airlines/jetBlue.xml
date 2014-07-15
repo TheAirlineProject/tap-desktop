@@ -6,6 +6,7 @@
     <narrative
       narrative="jetBlue is an American Low-Cost Airline founded by David Neeleman and is headquartered in Long Island, New York. Operating a fleet of 126 Airbus A320-200 and 53 Embraer E190 aircraft, jetBlue serves 75 destinations in 12 countries." />
   </profile>
+     <info real="True" from="1999" to="2199"></info>
   <startdata>
     <!--some random routes from an origin-->
     <random_routes>

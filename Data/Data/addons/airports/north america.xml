@@ -4831,7 +4831,7 @@
       <latitude value="020°31'18''N" />
       <longitude value="103°18'40''W" />
     </coordinates>
-    <size value="Medium" pax="7201" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="7201" cargo="Large" cargovolume="128" />
     <terminals>
       <terminal name="Terminal" gates="14" />
     </terminals>
@@ -4847,7 +4847,7 @@
       <latitude value="019°26'10''N" />
       <longitude value="099°04'19''W" />
     </coordinates>
-    <size value="Very_large" pax="26368" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="26368" cargo="Very_large" cargovolume="412" />
     <terminals>
       <terminal name="Terminal 1" gates="53" />
       <terminal name="Terminal 2" gates="40" />
@@ -4864,7 +4864,7 @@
       <latitude value="025°46'42''N" />
       <longitude value="100°06'24''W" />
     </coordinates>
-    <size value="Medium" pax="5380" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="5380" cargo="Medium" cargovolume="45" />
     <terminals>
       <terminal name="Terminal A" gates="20" />
       <terminal name="Terminal B" gates="8" />
@@ -4913,7 +4913,7 @@
       <latitude value="032°32'27''N" />
       <longitude value="116°58'12''W" />
     </coordinates>
-    <size value="Medium" pax="3500" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="3500" cargo="Very_small" cargovolume="15" />
     <terminals>
       <terminal name="Terminal A" gates="23" />
     </terminals>
@@ -5112,20 +5112,7 @@
       <runway name="17/35" length="1420" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Captain Rogelio Castillo National Airport" icao="MMCY" iata="CYW" type="Domestic" season="All_Year">
-    <town town="Celaya" country="157" GMT="-06:00:00" DST="-07:00:00" />
-    <coordinates>
-      <latitude value="020°32'45''N" />
-      <longitude value="100°53'13''W" />
-    </coordinates>
-    <size value="Smallest" pax="22" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="08/26" length="1915" surface="Asphalt" />
-    </runways>
-  </airport>
+ 
   <airport name="Chichen Itza International Airport" icao="MMCT" iata="CZA" type="Domestic" season="All_Year">
     <town town="Chichen Itza" country="157" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>

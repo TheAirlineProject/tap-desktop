@@ -4,4 +4,5 @@
   <profile name="Sichuan Airlines" iata="3U" color="aquamarine" country="148" CEO="Nan Xinguo" mentality="Aggressive"
            market="Global" preferedairport="CTU">
   </profile>
+   <info real="True" from="1986" to="2199"></info>
 </airline>

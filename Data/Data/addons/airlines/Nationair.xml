@@ -4,4 +4,5 @@
   <profile name="Nationair" iata="NXA" color="DarkRed" country="113" CEO="Robert Obadia" mentality="Aggressive"
            market="Global" preferedairport="YUL">
   </profile>
+     <info real="True" from="1986" to="1993"></info>
 </airline>

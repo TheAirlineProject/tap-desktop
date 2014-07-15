@@ -6,6 +6,7 @@
     <narrative
       narrative="MASwings is a regional airline owned by Malaysia Airlines and is dedicated to flying subsidized Rural Air Services in Malaysia, as well as limited service in Brunei and Indonesia. They operate 3 DHC-6 aircraft for poor runways and also the ATR 72-500 which is the backbone of their fleet, of which they have 10. " />
   </profile>
+     <info real="True" from="2007" to="2199"></info>
   <startdata>
     <!--some random routes from an origin-->
     <random_routes>

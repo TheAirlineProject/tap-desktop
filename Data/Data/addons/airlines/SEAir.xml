@@ -6,6 +6,7 @@
     <narrative
       narrative="South East Asian Airlines, more widely known as SEAir, is an airline based in Manila, Philippines. They operate the Airbus A319, A320 and the Dornier 328 to 13 destinations in the Philippines, Malaysia, Singapore, Thailand and Hong Kong." />
   </profile>
+   <info real="True" from="1995" to="2199"></info>
   <startdata>
     <!--some random routes from an origin-->
     <random_routes>

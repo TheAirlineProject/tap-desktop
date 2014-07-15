@@ -17,7 +17,6 @@
         public PageAirlineRatings(AirlineMVVM airline)
         {
             this.AirlineRatings = new ObservableCollection<AirlineScoreMVVM>();
-            this.AirlineScores = new ObservableCollection<AirlineScoreMVVM>();
             this.AirlineStatistics = new ObservableCollection<AirlineStatisticsMVVM>();
             this.Airline = airline;
             this.DataContext = this.Airline;
@@ -45,21 +44,7 @@
                     Translator.GetInstance().GetString("PageAirlineRatings", "1011"),
                     this.Airline.Airline.Ratings.MaintenanceRating));
 
-            this.AirlineScores.Add(
-                new AirlineScoreMVVM(
-                    Translator.GetInstance().GetString("PageAirlineRatings", "1012"),
-                    this.Airline.Airline.OverallScore));
-            // this.AirlineScores.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1013"), this.Airline.Airline.Reputation));<
-            this.AirlineScores.Add(
-                new AirlineScoreMVVM(
-                    Translator.GetInstance().GetString("PageAirlineRatings", "1014"),
-                    (int)StatisticsHelpers.GetOnTimePercent(this.Airline.Airline)));
-            this.AirlineScores.Add(
-                new AirlineScoreMVVM(
-                    Translator.GetInstance().GetString("PageAirlineRatings", "1015"),
-                    (int)(StatisticsHelpers.GetAirlineFillAverage(this.Airline.Airline) * 100)));
-
-            this.AirlineStatistics.Add(
+          this.AirlineStatistics.Add(
                 new AirlineStatisticsMVVM(this.Airline.Airline, StatisticsTypes.GetStatisticsType("Passengers")));
             this.AirlineStatistics.Add(
                 new AirlineStatisticsMVVM(this.Airline.Airline, StatisticsTypes.GetStatisticsType("Passengers%")));
@@ -75,9 +60,7 @@
 
         public ObservableCollection<AirlineScoreMVVM> AirlineRatings { get; set; }
 
-        public ObservableCollection<AirlineScoreMVVM> AirlineScores { get; set; }
-
-        public ObservableCollection<AirlineStatisticsMVVM> AirlineStatistics { get; set; }
+       public ObservableCollection<AirlineStatisticsMVVM> AirlineStatistics { get; set; }
 
         #endregion
     }

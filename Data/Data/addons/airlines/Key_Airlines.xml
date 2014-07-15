@@ -4,4 +4,5 @@
   <profile name="Key Airlines" iata="KWY" color="Black" country="122" CEO="Peter Hanson" mentality="Aggressive"
            market="Local" preferedairport="SLC">
   </profile>
+     <info real="True" from="1968" to="1993"></info>
 </airline>

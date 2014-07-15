@@ -11,6 +11,7 @@ Part of the SAS Group and headquartered at Stockholm Arlanda Airport (ARN) in Si
       <logo from="1984" to="1998" path="SK1984-1998"></logo>
     </logos>
   </profile>
+   <info real="True" from="1946" to="2199"></info>
   <startdata>
     <routes>
       <route destination1="CPH" destination2="HEL" opened="1960" closed="2199" airliner="Boeing 737-900ER"></route>

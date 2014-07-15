@@ -1,7 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Northeast Airlines" iata="NS" color="Gold" country="130" CEO="James Barnby" mentality="Aggressive"
            market="Local" preferedairport="NCL">
   </profile>
+     <info real="True" from="1931" to="1972"></info>
 </airline>

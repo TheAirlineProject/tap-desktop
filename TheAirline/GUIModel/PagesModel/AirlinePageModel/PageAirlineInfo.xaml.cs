@@ -23,6 +23,7 @@
     using TheAirline.Model.GeneralModel.Helpers;
     using TheAirline.Model.PilotModel;
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+    using System.Collections.ObjectModel;
 
     /// <summary>
     ///     Interaction logic for PageAirlineInfo.xaml
@@ -36,25 +37,24 @@
         {
             this.Airline = airline;
             this.DataContext = this.Airline;
-            //this.AllAirports = new List<Airport>();
-            this.SubsidiaryAirports = new List<Airport>();
+            this.AirlineScores = new ObservableCollection<AirlineScoreMVVM>();
+        
+            this.AirlineScores.Add(
+               new AirlineScoreMVVM(
+                   Translator.GetInstance().GetString("PageAirlineRatings", "1012"),
+                   this.Airline.Airline.OverallScore));
+            this.AirlineScores.Add(
+                new AirlineScoreMVVM(
+                    Translator.GetInstance().GetString("PageAirlineRatings", "1014"),
+                    (int)StatisticsHelpers.GetOnTimePercent(this.Airline.Airline)));
+            this.AirlineScores.Add(
+                new AirlineScoreMVVM(
+                    Translator.GetInstance().GetString("PageAirlineRatings", "1015"),
+                    (int)(StatisticsHelpers.GetAirlineFillAverage(this.Airline.Airline) * 100)));
 
             this.InitializeComponent();
 
-          /*
-            foreach (
-                Airport airport in
-                    this.Airline.Airline.Airports.FindAll(
-                        a => a.Terminals.getFreeSlotsPercent(this.Airline.Airline) > 50))
-            {
-                this.AllAirports.Add(airport);
-            }*/
-
-            foreach (Airport airport in this.Airline.Airline.Airports.Where(a => a.Terminals.getFreeGates() > 0))
-            {
-                this.SubsidiaryAirports.Add(airport);
-            }
-
+          
         }
 
         #endregion
@@ -63,9 +63,7 @@
 
         public AirlineMVVM Airline { get; set; }
 
-        //public List<Airport> AllAirports { get; set; }
-
-        public List<Airport> SubsidiaryAirports { get; set; }
+        public ObservableCollection<AirlineScoreMVVM> AirlineScores { get; set; }
 
         #endregion
 

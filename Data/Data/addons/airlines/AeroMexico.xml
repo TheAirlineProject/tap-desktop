@@ -6,6 +6,7 @@
     <narrative
       narrative="AeroMexico is the flag carrier of Mexico, based in Mexico City. It has been in operation since 1934 and is rapidly expanding, with destinations primarily in Mexico and North/Central America. Their fleet currently consists exclusively of Boeing aircraft, primarily the 737.  " />
   </profile>
+   <info real="True" from="1934" to="2199"></info>
   <startdata>
     <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
     <airliners>

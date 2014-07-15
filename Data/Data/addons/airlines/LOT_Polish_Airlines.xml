@@ -6,6 +6,7 @@
     <narrative
       narrative="Polskie Linie Lotnicze LOT S.A. trading as LOT Polish Airlines, is the flag carrier of Poland. Based in Warsaw, LOT was established in 1929, making it one of the world's oldest airlines still in operation. Using a fleet of 55 aircraft, LOT operates a complex network to 60 destinations in Europe, the Middle East, North America, and Asia. Most of the destinations are served from its hub, Warsaw Chopin Airport." />
   </profile>
+     <info real="True" from="1929" to="2199"></info>
   <startdata>
     <airliners>
       <airliner type="Embraer E-170" early="0" late="10"></airliner>

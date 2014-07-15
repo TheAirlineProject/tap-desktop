@@ -76,6 +76,9 @@
             else
             {
                 Settings.GetInstance().Mode = Settings.ScreenMode.Windowed;
+                PageNavigator.MainWindow.WindowStyle = WindowStyle.ToolWindow;
+                PageNavigator.MainWindow.WindowState = WindowState.Maximized;
+                PageNavigator.MainWindow.Focus();
             }
 
             var cbLanguage = UIHelpers.FindChild<ComboBox>(this, "cbLanguage");

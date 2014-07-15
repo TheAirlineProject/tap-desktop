@@ -1,8 +1,8 @@
-<airline>
+﻿<airline>
 <profile name="China Airlines" iata="CI" color="Salmon" country="172" CEO="Zhang Jiazhu" mentality="Aggressive" market="Global" preferedairport="TPE">
   <narrative narrative="China Airlines is the flag carrier of the Republic of China (Taiwan). They fly to 112 worldwide destinations on a mixed fleet of Boeing and Airbus aircraft. " />
 </profile>
-
+   <info real="True" from="1959" to="2199"></info>
 <prefereds aircrafts="Airbus A300-600,Airbus A300B4,Airbus A330-300,Airbus A340-300,Airbus A350-900,Boeing 737-200,Boeing 737-400,Boeing 737-800,Boeing 747-100,Boeing 747-200B,Boeing 747-400,Boeing 747SP"></prefereds>
        
   <airliners>

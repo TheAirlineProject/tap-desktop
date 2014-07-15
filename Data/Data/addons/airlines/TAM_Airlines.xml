@@ -6,6 +6,7 @@
     <narrative
       narrative="TAM Airlines is the Brazilian brand of LATAM Airlines Group. The merger of TAM with LAN Airlines was completed on June 22, 2012. The company is currently the largest Brazilian airline." />
   </profile>
+   <info real="True" from="1976" to="2199"></info>
   <startdata>
     <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
     <airliners>

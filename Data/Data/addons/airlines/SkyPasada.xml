@@ -6,6 +6,7 @@
     <narrative
       narrative="SkyPasada is a relatively new airline in the Philippines which operates mostly missionary routes to isolated locals in the country. They operate the Let L-410 aircraft, of which they have 3. They serve 8 destinations, all in the Philippines. " />
   </profile>
+   <info real="True" from="2010" to="2199"></info>
   <startdata>
     <!--some random routes from an origin-->
     <random_routes>

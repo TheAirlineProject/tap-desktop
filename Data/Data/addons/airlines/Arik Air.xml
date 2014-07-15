@@ -6,6 +6,7 @@
     <narrative
       narrative="Arik Air is a Nigerian airline operating a domestic, regional and international flight network. It is currently the largest airline operator in Nigeria and also the national carrier of Sierra Leone. It operates mainly from two hubs at Murtala Mohammed International Airport, Lagos and Nnamdi Azikiwe International Airport, Abuja. Arik Air's head office is the Arik Air Aviation Center on the grounds of Murtala Muhammed International Airport in Ikeja, Lagos State." />
   </profile>
+     <info real="True" from="2002" to="2199"></info>
   <startdata>
     <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
     <airliners>

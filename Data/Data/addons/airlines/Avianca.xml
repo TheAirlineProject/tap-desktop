@@ -7,5 +7,5 @@
       narrative="Avianca S.A is the flag carrier airline of Colombia since December 5, 1919 when it was initially registered under the name SCADTA">
     </narrative>
   </profile>
-  <info real="True" from="1919" to="2014"></info>
+  <info real="True" from="1919" to="2199"></info>
 </airline>

@@ -8,7 +8,7 @@
 <logo from="1969" to="2012" path="AA1969-2012"></logo>
 </logos>
 </profile>
-
+   <info real="True" from="1946" to="2199"></info>
 <startdata>
          <airliners>
 	    <airliner type="Airbus A300-600" early="0" late="35"></airliner>

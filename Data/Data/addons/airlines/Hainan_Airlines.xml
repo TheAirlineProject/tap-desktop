@@ -3,5 +3,9 @@
 <airline>
   <profile name="Hainan Airlines" iata="HU" color="blanchedalmond" country="148" CEO="Chen Ming" mentality="Aggressive"
            market="Global" preferedairport="HAK">
+  <narrative
+      narrative="Hainan Airlines was established in October 1989 as Hainan Province Airlines in Hainan, the largest special economy zone in China." />
   </profile>
+
+     <info real="True" from="1989" to="2199"></info>
 </airline>

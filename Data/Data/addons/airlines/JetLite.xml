@@ -4,6 +4,7 @@
   <profile name="JetLite" iata="S2" color="Yellow" country="152" CEO="Subrata Roy" mentality="Aggressive"
            market="Global" preferedairport="BOM">
   </profile>
+     <info real="True" from="2007" to="2012"></info>
   <!--<fleet>
     <Boeing 737-700="9"/>
     <Boeing 737-800="8"/>

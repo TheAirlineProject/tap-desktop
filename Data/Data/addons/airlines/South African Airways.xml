@@ -6,6 +6,7 @@
     <narrative
       narrative="South African Airways (SAA) is the national flag carrier and largest airline of South Africa, with headquarters in Airways Park on the grounds of OR Tambo International Airport in Kempton Park, Ekurhuleni, Gauteng. The airline flies to 38 destinations worldwide from its hub at OR Tambo International Airport, using a fleet of 54 aircraft. The airline is headed by Acting CEO Nico Bezuindenhout" />
   </profile>
+   <info real="True" from="1934" to="2199"></info>
   <startdata>
     <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
     <airliners>

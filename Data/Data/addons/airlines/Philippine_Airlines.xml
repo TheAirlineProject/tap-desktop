@@ -6,6 +6,7 @@
     <narrative
       narrative="Philippine Airlines is the flag carrier of the Philippines. Founded in 1941, it is the oldest commercial airline in Asia still under its original name. PAL serves 36 destinations over 14 countries using a mixed fleet of 33 Airbus jets and 9 Boeing jets." />
   </profile>
+       <info real="True" from="1935" to="2199"></info>
   <startdata>
     <!--some random routes from an origin-->
     <random_routes>

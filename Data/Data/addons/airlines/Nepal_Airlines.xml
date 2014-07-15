@@ -4,4 +4,5 @@
   <profile name="Nepal Airlines" iata="RA" color="Red" country="251" CEO="Yagya Prasad Gautam" mentality="Safe"
            market="Regional" preferedairport="KTM">
   </profile>
+     <info real="True" from="1958" to="2199"></info>
 </airline>

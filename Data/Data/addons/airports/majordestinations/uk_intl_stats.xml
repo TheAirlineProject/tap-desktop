@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-
 <majordestinations>
   <majordestination airport="LOS">
     <destinations>
@@ -748,7 +747,7 @@
       <destination airport="RDU" pax="9" />
       <destination airport="SAN" pax="12" />
       <destination airport="SFO" pax="65" />
-      <destination airport="SEA" pax="13" />
+      <destination airport="SEA" pax="390" />
       <destination airport="IAD" pax="68" />
       <destination airport="TAS" pax="1" />
       <destination airport="LUN" pax="2" />

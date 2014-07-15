@@ -4,4 +4,5 @@
   <profile name="Japan Airlines" iata="JL" color="Brown" country="171" CEO="Kazuo Inamori" mentality="Aggressive"
            market="Global" preferedairport="HND">
   </profile>
+     <info real="True" from="1951" to="2199"></info>
 </airline>

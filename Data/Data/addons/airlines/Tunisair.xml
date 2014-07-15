@@ -6,6 +6,7 @@
     <narrative
       narrative="Tunisian Air Company , or Tunisair is the flag carrier airline of Tunisia. Formed in 1948, it operates scheduled international services to European, African and Middle Eastern destinations. Its main base is Tunis-Carthage International Airport. The airline's head office is in Tunis, near Tunis Airport. Tunisair is a member of the Arab Air Carriers Organization." />
   </profile>
+   <info real="True" from="1948" to="2199"></info>
   <startdata>
     <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
     <airliners>

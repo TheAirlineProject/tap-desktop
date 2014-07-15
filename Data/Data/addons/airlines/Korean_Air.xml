@@ -4,4 +4,5 @@
   <profile name="Korean Air" iata="KE" color="RoyalBlue" country="165" CEO="Cho Yangho" mentality="Aggressive"
            market="Global" preferedairport="ICN">
   </profile>
+     <info real="True" from="1962" to="2199"></info>
 </airline>

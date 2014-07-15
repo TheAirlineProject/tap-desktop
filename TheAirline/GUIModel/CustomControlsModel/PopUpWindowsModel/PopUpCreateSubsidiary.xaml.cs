@@ -73,14 +73,14 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             }
 
             this.AllAirports = new ObservableCollection<Airport>();
-
+            /*
             foreach (
                 Airport airport in
                     this.Airline.Airports.FindAll(
                     a => a.Terminals.getFreeSlotsPercent(this.Airline,this.Airline.AirlineRouteFocus == Route.RouteType.Passenger ? Terminal.TerminalType.Passenger : Terminal.TerminalType.Cargo) > 50))
             {
                 this.AllAirports.Add(airport);
-            }
+            }*/
             
             this.Loaded += PopUpCreateSubsidiary_Loaded;
 
