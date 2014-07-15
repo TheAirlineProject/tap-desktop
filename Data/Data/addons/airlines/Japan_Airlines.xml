@@ -3,6 +3,8 @@
 <airline>
   <profile name="Japan Airlines" iata="JL" color="Brown" country="171" CEO="Kazuo Inamori" mentality="Aggressive"
            market="Global" preferedairport="HND">
+            <narrative
+      narrative="Japan Air Lines Co., Ltd. was established on 1 August 1951, with the government of Japan recognizing the need for a reliable air transportation system to help Japan grow in the aftermath of the World War II. The airline was founded with an initial capital of ¥100 million; and its headquarters located in Ginza, Chūō, Tokyo. Between 27 and 29 August, the airline operated invitational flights on a Douglas DC-3 Kinsei, leased from Philippine Airlines. On 25 October, Japan's first post-war domestic airline service was inaugurated, using a Martin 2-0-2 aircraft, named Mokusei, and crew leased from Northwest Airlines." />
   </profile>
      <info real="True" from="1951" to="2199"></info>
 </airline>

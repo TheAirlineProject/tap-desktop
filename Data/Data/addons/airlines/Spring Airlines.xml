@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Spring Airlines" iata="9C" color="Black" country="148" CEO="Wang Zhenghua" mentality="Safe"
            market="Global" preferedairport="PVG">
+            <narrative
+      narrative="The airline was given approval to be established on 26 May 2004. Its first aircraft, an Airbus A320 (formerly of Lotus Air), was delivered on 12 July 2005, at Shanghai Hongqiao International Airport. Spring Airlines started operations on 18 July 2005 and the first flight on that day was between Shanghai and Yantai. Daily flights to Guilin were also initiated." />
   </profile>
   <info real="True" from="2004" to="2199" />
 </airline>

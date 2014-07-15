@@ -3,6 +3,8 @@
 <airline>
   <profile name="Qantas" iata="QF" color="NavajoWhite" country="116" CEO="Alan Joyce" mentality="Aggressive"
            market="Global" preferedairport="SYD">
+            <narrative
+      narrative="Qantas Airways is the flag carrier airline of Australia. The name was originally 'QANTAS', an acronym for 'Queensland and Northern Territory Aerial Services'. Nicknamed 'The Flying Kangaroo', Qantas is Australia's largest airline, and the second oldest in the world. Founded in November 1920, it began flying international services in May 1935." />
   </profile>
    <info real="True" from="1920" to="2199"></info>
 </airline>

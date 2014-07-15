@@ -3,6 +3,8 @@
 <airline>
   <profile name="Northeast Airlines" iata="NS" color="Gold" country="130" CEO="James Barnby" mentality="Aggressive"
            market="Local" preferedairport="NCL">
+            <narrative
+      narrative="The airline commenced operations in October 1951 from its base at Southend Airport as BKS Aero Charter flying a Douglas DC-3. (BKS were the founders' initials - i.e. James Barnby, Thomas Keegan and Cyril Stevens) ." />
   </profile>
-     <info real="True" from="1931" to="1972"></info>
+     <info real="True" from="1951" to="1976"></info>
 </airline>

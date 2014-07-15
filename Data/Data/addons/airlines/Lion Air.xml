@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Lion Air" iata="JT" color="Red" country="162" CEO="Rudsi Kirana" mentality="Safe " market="Local"
            preferedairport="CGK">
+            <narrative
+      narrative="PT Lion Mentari Airlines, operating as Lion Air, is Indonesia's largest privately run airline, capturing the largest share of the domestic market. Headquartered in Jakarta, Indonesia." />
   </profile>
   <info real="True" from="1996" to="2199" />
 </airline>

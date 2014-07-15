@@ -3,6 +3,8 @@
 <airline>
   <profile name="Intra Airways" iata="JY" color="Red" country="130" CEO="Mike Thomas" mentality="Aggressive"
            market="Local" preferedairport="JER">
+            <narrative
+      narrative="Intra Airways Ltd was formed on 1 January 1969 by former British United (C.I.) Airways employees to operate passenger and cargo charters from the Channel Islands to the UK and the Continent with a single Douglas DC-3. At the time of its inception, Intra Airways also applied to the Air Transport Licensing Board (ATLB) for a licence to commence scheduled services between Jersey and Guernsey." />
   </profile>
      <info real="True" from="1969" to="1979"></info>
 </airline>
