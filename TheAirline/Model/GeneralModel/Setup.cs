@@ -464,7 +464,13 @@
 
                 string s = e.ToString();
             }
+
          
+            var noRunways = Airports.GetAllAirports().Where(a => a.Runways.Count == 0);
+
+            foreach (Airport airport in noRunways)
+                Console.WriteLine("{0}, {1} in {2} has no runways", airport.Profile.Name, airport.Profile.IATACode, airport.Profile.Country.Name);
+
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
@@ -670,6 +676,7 @@
             States.Clear();
             Unions.Clear();
             AirlinerTypes.Clear();
+            EngineTypes.Clear();
             FeeTypes.Clear();
             PilotRatings.Clear();
             Alliances.Clear();
@@ -795,7 +802,7 @@
                         {
                             dest2.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
                         }
-
+                        
                         if (!AirportHelpers.HasFreeGates(dest1, airline,terminaltype))
                         {
                             AirportHelpers.RentGates(dest1, airline, AirportContract.ContractType.Low_Service,terminaltype);
@@ -874,7 +881,7 @@
                                 dest2,
                                 dest1,
                                 leaseAircraft,
-                                startRoute.RouteType == Route.RouteType.Cargo,
+                                startRoute.RouteType,
                                 true);
 
                             if (airliner == null
@@ -885,7 +892,7 @@
                                     dest2,
                                     dest1,
                                     true,
-                                    startRoute.RouteType == Route.RouteType.Cargo,
+                                    startRoute.RouteType,
                                     true);
                             }
                         }
@@ -980,6 +987,8 @@
 
                             airliner.Flown = km;
 
+                            airliner.EngineType = EngineTypes.GetStandardEngineType(airliner.Type, airliner.BuiltDate.Year);
+
                             Airliners.AddAirliner(airliner);
 
                             Boolean leaseAircraft = airline.Profile.PrimaryPurchasing
@@ -1066,7 +1075,7 @@
                                 origin,
                                 destination,
                                 leaseAircraft,
-                                routes.RouteType == Route.RouteType.Cargo,
+                                routes.RouteType,
                                 true);
 
                             if (airliner == null
@@ -1077,7 +1086,7 @@
                                     origin,
                                     destination,
                                     true,
-                                    routes.RouteType == Route.RouteType.Cargo,
+                                    routes.RouteType,
                                     true);
                             }
 
@@ -1188,7 +1197,7 @@
                         airportHomeBase,
                         airportDestination,
                         leaseAircraft,
-                        airline.AirlineRouteFocus == Route.RouteType.Cargo,
+                        airline.AirlineRouteFocus,
                         true);
 
                     counter++;
@@ -1243,6 +1252,33 @@
                             foreach (RouteFacility rFacility in classConfiguration.getFacilities())
                             {
                                 ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type)
+                                    .addFacility(rFacility);
+                            }
+                        }
+                    }
+                    if (airline.AirlineRouteFocus == Route.RouteType.Helicopter)
+                    {
+                        route = new HelicopterRoute(
+                          id.ToString(),
+                          airportDestination,
+                          airline.Airports[0],
+                          GameObject.GetInstance().GameTime,
+                          price);
+
+                        RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration((HelicopterRoute)route);
+
+                        foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                        {
+                            ((HelicopterRoute)route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
+                                                                                                               * GeneralHelpers
+                                                                                                                   .ClassToPriceFactor
+                                                                                                                   (
+                                                                                                                       classConfiguration
+                                                                                                                           .Type);
+
+                            foreach (RouteFacility rFacility in classConfiguration.getFacilities())
+                            {
+                                ((HelicopterRoute)route).getRouteAirlinerClass(classConfiguration.Type)
                                     .addFacility(rFacility);
                             }
                         }
@@ -2021,7 +2057,8 @@
                     else
                     {
                         if (airlinerType == AirlinerType.TypeOfAirliner.Cargo
-                            || airlinerType == AirlinerType.TypeOfAirliner.Mixed)
+                            || airlinerType == AirlinerType.TypeOfAirliner.Mixed
+                            || airlinerType == AirlinerType.TypeOfAirliner.Helicopter)
                         {
                             isConvertable = false;
                         }
@@ -2039,12 +2076,14 @@
                     var body =
                         (AirlinerType.BodyType)
                             Enum.Parse(typeof(AirlinerType.BodyType), typeElement.Attributes["body"].Value);
+
+                    
                     var rangeType =
                         (AirlinerType.TypeRange)
                             Enum.Parse(typeof(AirlinerType.TypeRange), typeElement.Attributes["rangetype"].Value);
                     var engine =
-                        (AirlinerType.EngineType)
-                            Enum.Parse(typeof(AirlinerType.EngineType), typeElement.Attributes["engine"].Value);
+                        (AirlinerType.TypeOfEngine)
+                            Enum.Parse(typeof(AirlinerType.TypeOfEngine), typeElement.Attributes["engine"].Value);
 
                     var specsElement = (XmlElement)airliner.SelectSingleNode("specs");
                     double wingspan = XmlConvert.ToDouble(specsElement.Attributes["wingspan"].Value);
@@ -2076,6 +2115,39 @@
                     var to = new DateTime(toYear, 12, 31);
 
                     AirlinerType type = null;
+
+                    if (airlinerType == AirlinerType.TypeOfAirliner.Helicopter)
+                    {
+                        int passengers = Convert.ToInt16(capacityElement.Attributes["passengers"].Value);
+                        int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
+                        int cabincrew = Convert.ToInt16(capacityElement.Attributes["cabincrew"].Value);
+                        int maxClasses = Convert.ToInt16(capacityElement.Attributes["maxclasses"].Value);
+                        type = new AirlinerPassengerType(
+                            manufacturer,
+                            name,
+                            family,
+                            passengers,
+                            cockpitcrew,
+                            cabincrew,
+                            speed,
+                            range,
+                            wingspan,
+                            length,
+                            weight,
+                            fuel,
+                            price,
+                            maxClasses,
+                            runwaylenght,
+                            fuelcapacity,
+                            body,
+                            rangeType,
+                            engine,
+                            new Period<DateTime>(from, to),
+                            prodRate,
+                            isConvertable);
+
+                        type.TypeAirliner = AirlinerType.TypeOfAirliner.Helicopter;
+                    }
 
                     if (airlinerType == AirlinerType.TypeOfAirliner.Passenger)
                     {
@@ -2173,9 +2245,10 @@
 
                     //if (airliner.HasAttribute("image") && airliner.Attributes["image"].Value.Length > 1)
                     //type.Image = dir + airliner.Attributes["image"].Value + ".png";
-
+                    
                     if (type != null)
                     {
+                        
                         AirlinerTypes.AddType(type);
                     }
 
@@ -2598,8 +2671,17 @@
                             (Runway.SurfaceType)
                                 Enum.Parse(typeof(Runway.SurfaceType), runwayNode.Attributes["surface"].Value);
 
+                        Runway.RunwayType runwayType = Runway.RunwayType.Regular;
+                        
+                        if (runwayNode.HasAttribute("type"))
+                        {
+                            runwayType =
+                            (Runway.RunwayType)
+                                Enum.Parse(typeof(Runway.RunwayType), runwayNode.Attributes["type"].Value);
+                        }
+
                         airport.Runways.Add(
-                            new Runway(runwayName, runwayLength, surface, new DateTime(1900, 1, 1), true));
+                            new Runway(runwayName, runwayLength, runwayType, surface, new DateTime(1900, 1, 1), true));
                     }
 
                     XmlNodeList expansionsList = airportElement.SelectNodes("expansions/expansion");
@@ -2936,11 +3018,19 @@
                 }
             }
         }
-
         private static void LoadEngineTypes()
         {
+            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\engines");
+
+            foreach (FileInfo file in dir.GetFiles("*.xml"))
+            {
+                LoadEngineTypes(file.FullName);
+            }
+        }
+        private static void LoadEngineTypes(string file)
+        {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\engines.xml");
+            doc.Load(file);
 
             XmlElement root = doc.DocumentElement;
 
@@ -2949,6 +3039,8 @@
             foreach (XmlElement engineElement in enginesList)
             {
                 string manufacturerName = engineElement.Attributes["manufacturer"].Value;
+                Manufacturer manufacturer = Manufacturers.GetManufacturer(manufacturerName);
+
                 string name = engineElement.Attributes["model"].Value;
 
                 var specsElement = (XmlElement)engineElement.SelectSingleNode("specs");
@@ -2982,7 +3074,7 @@
 
                 var engine = new EngineType(
                     name,
-                    manufacturerName,
+                    manufacturer,
                     engineType,
                     noiseLevel,
                     consumption,
@@ -3003,7 +3095,11 @@
                     {
                         engine.addAirlinerType(airlinerType);
                     }
+                    else
+                        Console.WriteLine("Missing airliner type for engine: " + model);
                 }
+
+                EngineTypes.AddEngineType(engine);
             }
         }
 
@@ -3256,8 +3352,9 @@
 
                 if (majorPax > 0)
                 {
-                    airport.Profile.setPaxValue(Math.Max(0, airport.Profile.Pax - majorPax));
+                    airport.Profile.setPaxValue(Math.Max(airport.Profile.Pax,majorPax));
                 }
+
             }
         }
 
@@ -3286,6 +3383,7 @@
 
                         airport.addMajorDestination(destination, pax);
                     }
+
                 }
             }
             catch (Exception e)
@@ -4109,7 +4207,18 @@
                             airport.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
                         }
                     }
+                    if (airport.Profile.Size == GeneralHelpers.Size.Largest
+                        || airport.Profile.Size == GeneralHelpers.Size.Very_large
+                        || airport.Profile.Size == GeneralHelpers.Size.Large)
+                    {
 
+                        if (!airport.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad))
+                        {
+                            Runway helipad = new Runway("H1", rnd.Next(17, 25), Runway.RunwayType.Helipad, Runway.SurfaceType.Concrete, GameObject.GetInstance().GameTime, true);
+
+                            airport.Runways.Add(helipad);
+                        }
+                    }
                     if (airport.Profile.Cargo == GeneralHelpers.Size.Very_large
                         || airport.Profile.Cargo == GeneralHelpers.Size.Largest
                         || airport.Profile.Size == GeneralHelpers.Size.Largest
@@ -4125,6 +4234,7 @@
                         {
                             airport.Terminals.addTerminal(new Terminal(airport,"Cargo Terminal",((int)airport.Profile.Cargo) + 5,GameObject.GetInstance().GameTime,Terminal.TerminalType.Cargo));
                         }
+
                     }
 
                     AirportHelpers.CreateAirportWeather(airport);

@@ -140,6 +140,225 @@
             </TextBlock.ToolTip>
         </TextBlock>
     </DataTemplate>
+    <!--Airliner specification items-->
+    <DataTemplate x:Key="AirlinerSpecificationItem">
+        <StackPanel>
+            <WrapPanel>
+                <WrapPanel.Style>
+                    <Style BasedOn="{StaticResource WrapPanelStyle}" TargetType="WrapPanel">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Type.Image}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </WrapPanel.Style>
+                <Image Source="{Binding Type.Image}" Width="300" VerticalAlignment="Bottom"
+                       RenderOptions.BitmapScalingMode="HighQuality" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1000'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1001'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <Image Source="{Binding Type.Manufacturer.Logo}" VerticalAlignment="Bottom"
+                       RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
+                <TextBlock Text="{Binding Type.Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1002'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Type.TypeAirliner}" VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <StackPanel>
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Cargo">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1011'}"
+                        Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                    <TextBlock Text="{Binding Type.MaxSeatingCapacity}" VerticalAlignment="Bottom" />
+                </WrapPanel>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1012'}"
+                        Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                    <TextBlock Text="{Binding Type.MaxAirlinerClasses}" VerticalAlignment="Bottom" />
+                </WrapPanel>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Passenger">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Helicopter">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1013'}"
+                        Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                    <TextBlock Text="{Binding Type.CargoSize,Converter={StaticResource CargoSizeConverter}}"
+                               VerticalAlignment="Bottom" />
+                </WrapPanel>
+            </StackPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1014'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Type.CockpitCrew}" VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1003'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Type.Body,Converter={StaticResource TextUnderscoreConverter}}"
+                           VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1004'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Type.Engine,Converter={StaticResource TextUnderscoreConverter}}"
+                           VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1005'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Type.Length,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                           VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1006'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Type.Wingspan,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                           VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1015'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Type.Weight,Converter={StaticResource WeightToUnitConverter}}"
+                           VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1007'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding Range,Converter={StaticResource DistanceToUnitConverter}}"
+                           VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1008'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}"
+                           VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1009'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                           VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1010'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}"
+                           VerticalAlignment="Bottom" />
+            </WrapPanel>
+            <WrapPanel>
+                <WrapPanel.Style>
+                    <Style BasedOn="{StaticResource WrapPanelStyle}" TargetType="WrapPanel">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding EngineType}" 
+
+Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </WrapPanel.Style>
+                <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1016'}"
+                        Width="150" VerticalAlignment="Bottom" 
+FontWeight="Bold" />
+                <Image Source="{Binding EngineType.Manufacturer.Logo}" VerticalAlignment="Bottom"
+                       RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
+      <TextBlock Text="{Binding EngineType.Model}" 
+VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                <Image VerticalAlignment="Bottom" Source="/Data/images/info.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality" Margin="5 0 0 0"
+                       ToolTipService.ShowDuration="60000">
+                    <Image.ToolTip>
+                        <StackPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1006'}"  Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <Image Source="{Binding EngineType.Manufacturer.Logo}" VerticalAlignment="Bottom"
+                       RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
+                                <TextBlock Text="{Binding EngineType.Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1007'}"  Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <TextBlock Text="{Binding EngineType.Model}" VerticalAlignment="Bottom"></TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1008'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <TextBlock Text="{Binding EngineType.Engine}" VerticalAlignment="Bottom"></TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1009'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <TextBlock Text="{Binding EngineType.Noise,Converter={StaticResource TextUnderscoreConverter}}"  VerticalAlignment="Bottom"></TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1010'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <TextBlock Text="{Binding EngineType.Ceiling}" VerticalAlignment="Bottom"></TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1011'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <TextBlock Text="{Binding EngineType.MaxSpeed,Converter={StaticResource SpeedToUnitConverter}}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                            </WrapPanel>
+                           
+                        </StackPanel>
+                    </Image.ToolTip>
+                    </Image>
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1004'}"
+                            Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <ContentControl Content="{Binding Registered}" VerticalAlignment="Bottom"
+                                        ContentTemplate="{StaticResource CountryLongFlagItem}" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1009'}"
+                            Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <TextBlock Text="{Binding BuiltDate.Year}" VerticalAlignment="Bottom" />
+            </WrapPanel>
+        </StackPanel>
+    </DataTemplate>
     <DataTemplate x:Key="AirlinerTypeSpecificationItem">
         <StackPanel>
             <WrapPanel>
@@ -285,7 +504,6 @@
                 <TextBlock Text="{Binding FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
-
         </StackPanel>
     </DataTemplate>
     <!--airport templates-->
@@ -561,7 +779,7 @@
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineCountryItem">
-        <DockPanel>
+        <WrapPanel>
 
             <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" />
@@ -580,7 +798,7 @@
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
-        </DockPanel>
+        </WrapPanel>
     </DataTemplate>
     <!--random templates-->
     <DataTemplate x:Key="AirlineColorItem">

@@ -1073,7 +1073,7 @@
     </runways>
   </airport>
   <airport name="Burlington International Airport" icao="KBTV" iata="BTV" type="Domestic" season="All_Year">
-    <town town="South Burlington, VT" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Burlington, VT" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="044°28'19''N" />
       <longitude value="073°09'12''W" />
@@ -1357,7 +1357,7 @@
     </runways>
   </airport>
   <airport name="Yeager Airport" icao="KCRW" iata="CRW" type="Domestic" season="All_Year">
-    <town town="Charleston, WY" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Charleston, WV" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="038°22'33''N" />
       <longitude value="081°35'35''W" />
@@ -2100,6 +2100,62 @@
       <runway name="7R/25L" length="3208" surface="Concrete" />
     </runways>
   </airport>
+        <airport name="West 30th Street Heliport" icao="KJRA" iata="JRA" type="Regional" season="All_Year">
+    <town town="New York, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="040°75'46''N" />
+      <longitude value="074°00'68''W" />
+    </coordinates>
+    <size value="Smallest" pax="19" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="H1" length="13" surface="Asphalt" type="Helipad" />
+      <runway name="H2" length="13" surface="Asphalt" type="Helipad" />
+      <runway name="H3" length="13" surface="Asphalt" type="Helipad" />
+      <runway name="H4" length="13" surface="Asphalt" type="Helipad" />
+      <runway name="H5" length="11" surface="Asphalt" type="Helipad" />
+        <runway name="H6" length="11" surface="Asphalt" type="Helipad" />
+      <runway name="H7" length="11" surface="Asphalt" type="Helipad" />
+      <runway name="H8" length="13" surface="Asphalt" type="Helipad" />
+      <runway name="H9" length="13" surface="Asphalt" type="Helipad" />
+      <runway name="H10" length="11" surface="Asphalt" type="Helipad" />
+         <runway name="H11" length="11" surface="Asphalt" type="Helipad" />
+     </runways>
+  </airport>
+      <airport name="East 34th Street Heliport" icao="KTSS" iata="TSS" type="Regional" season="All_Year">
+    <town town="New York, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="040°44'33''N" />
+      <longitude value="073°58'19''W" />
+    </coordinates>
+    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="H1" length="93" surface="Asphalt" type="Helipad" />
+      <runway name="H2" length="13" surface="Asphalt" type="Helipad" />
+      <runway name="H3" length="13" surface="Asphalt" type="Helipad" />
+      <runway name="H4" length="13" surface="Asphalt" type="Helipad" />
+      <runway name="HT" length="13" surface="Asphalt" type="Helipad" />
+     </runways>
+  </airport>
+    <airport name="Downtown Manhattan Heliport" icao="KJRB" iata="JRB" type="Regional" season="All_Year">
+    <town town="New York, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="040°70'11''N" />
+      <longitude value="074°00'88''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="H1" length="19" surface="Concrete" type="Helipad" />
+     </runways>
+  </airport>
   <airport name="LaGuardia Airport" icao="KLGA" iata="LGA" type="Short_Haul_International" season="All_Year" landingfee="1.92">
     <town town="New York, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
@@ -2165,6 +2221,22 @@
       <runway name="18/36" length="3932" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Chadron Municipal Airport" icao="KCDR" iata="CDR" type="Domestic"
+season="All_Year">
+<town town="Chadron, NE" country="122" GMT="-06:00:00" DST="-07:00:00" />
+<coordinates>
+<latitude value="042°50'15''N" />
+<longitude value="103°05'43''W" />
+</coordinates>
+<size value="Smallest" pax="20" cargo="Smallest" cargovolume="0" />
+<terminals>
+<terminal name="Terminal" gates="2" />
+</terminals>
+<runways>
+<runway name="2/20" length="1828" surface="Concrete" />
+<runway name="11/29" length="1341" surface="Concrete" />
+</runways>
+</airport> 
   <airport name="Laredo International Airport" icao="KLRD" iata="LRD" type="Domestic" season="All_Year">
     <town town="Laredo, TX" country="122" GMT="-05:00:00" DST="-04:00:00" />
     <coordinates>
@@ -2891,7 +2963,7 @@
   </airport>
   <airport name="Raleigh-Durham International Airport" icao="KRDU" iata="RDU" type="Short_Haul_International"
            season="All_Year" landingfee="1.15">
-    <town town="Morrisville, NC" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Raleigh/Durham, NC" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="035°52'19''N" />
       <longitude value="078°47'06''W" />
@@ -4023,7 +4095,7 @@
     </runways>
   </airport>
   <airport name="Northwest Florida Regional Airport" icao="KVPS" iata="VPS" type="Domestic" season="All_Year">
-    <town town="Valparaiso, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Fort Walton Beach/Destin, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="030°28'59''N" />
       <longitude value="086°31'31''W" />
@@ -4810,6 +4882,20 @@
       <runway name="10/28" length="3302" surface="Concrete" />
     </runways>
   </airport>
+  <airport name="Piedra Negras International Airport" icao="MMPG" iata="PDS" type="Domestic" season="All_Year">
+<town town="Piedras Negras" country="157" GMT="-06:00:00" DST="-05:00:00" />
+<coordinates>
+<latitude value="028°37'39''N" />
+<longitude value="100°32'07''W" />
+</coordinates>
+<size value="Smallest" pax="11" />
+<terminals>
+<terminal name="Terminal A" gates="2" />
+</terminals>
+<runways>
+<runway name="12/30" length="2028" surface="Asphalt" />
+</runways>
+</airport> 
   <airport name="Cozumel International Airport" icao="MMCZ" iata="CZM" type="Long_Haul_International" season="Winter">
     <town town="Cozumel" country="157" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
@@ -4859,7 +4945,7 @@
   </airport>
   <airport name="General Mariano Escobedo International Airport" icao="MMMY" iata="MTY" type="Long_Haul_International"
            season="All_Year">
-    <town town="Apodaca" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Monterrey" country="157" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="025°46'42''N" />
       <longitude value="100°06'24''W" />
@@ -4872,6 +4958,482 @@
     <runways>
       <runway name="11/29" length="3000" surface="Concrete" />
       <runway name="16/34" length="1801" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Ensenada Airport" icao="MMES" iata="ESE" type="Domestic" season="All_Year">
+    <town town="Ensenada" country="157" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="031°47'43''N" />
+      <longitude value="116°36'10''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="1491" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Licenciado Adolfo Lopez Mateos International Airport" icao="MMTO" iata="TLC" type="Short_Haul_International" season="All_Year">
+    <town town="Toluca" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="019°20'13''N" />
+      <longitude value="099°33'57''W" />
+    </coordinates>
+    <size value="Small" pax="1161" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="4200" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Puerto Peñasco International Airport" icao="MMPE" iata="PPE" type="Short_Haul_International" season="All_Year">
+    <town town="Puerto Peñasco" country="157" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="031°21'22''N" />
+      <longitude value="113°31'32''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="1015" surface="Asphalt" />
+      <runway name="11/29" length="1465" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Amado Nervo National Airport" icao="MMEP" iata="TPQ" type="Domestic" season="All_Year">
+    <town town="Tepic" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="021°25'10''N" />
+      <longitude value="104°50'34''W" />
+    </coordinates>
+    <size value="Smallest" pax="88" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2300" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="General Servando Canales International Airport" icao="MMMA" iata="MAM" type="Domestic" season="All_Year">
+    <town town="Matamoros" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="025°46'11''N" />
+      <longitude value="097°31'31''W" />
+    </coordinates>
+    <size value="Smallest" pax="97" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="2300" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Lic. y General Ignacio Lopez Rayon Airport" icao="MMPN" iata="UPN" type="Short_Haul_International" season="All_Year">
+    <town town="Uruapan" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="019°23'48''N" />
+      <longitude value="102°02'20''W" />
+    </coordinates>
+    <size value="Smallest" pax="113" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2400" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="El Tajín National Airport" icao="MMPA" iata="PAZ" type="Domestic" season="All_Year">
+    <town town="Poza Rica" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="020°36'09''N" />
+      <longitude value="097°27'38''W" />
+    </coordinates>
+    <size value="Smallest" pax="113" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="1800" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Puerto Escondido International Airport" icao="MMPS" iata="PXM" type="Domestic" season="All_Year">
+    <town town="Puerto Escondido" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="015°52'36''N" />
+      <longitude value="097°05'20''W" />
+    </coordinates>
+    <size value="Smallest" pax="122" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2300" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Plan De Guadalupe International Airport" icao="MMIO" iata="SLW" type="Short_Haul_International" season="All_Year">
+    <town town="Saltillo" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="025°32'58''N" />
+      <longitude value="100°55'44''W" />
+    </coordinates>
+    <size value="Smallest" pax="133" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="1058" surface="Asphalt" />
+      <runway name="17/35" length="2897" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Tapachula International Airport" icao="MMTP" iata="TAP" type="Domestic" season="All_Year">
+    <town town="Tapachula" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="014°47'39''N" />
+      <longitude value="092°22'12''W" />
+    </coordinates>
+    <size value="Very_small" pax="156" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Minatitlán/Coatzacoalcos National Airport" icao="MMMT" iata="MTT" type="Domestic" season="All_Year">
+    <town town="Minatitlán" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="018°06'12''N" />
+      <longitude value="094°34'50''W" />
+    </coordinates>
+    <size value="Very_small" pax="175" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2100" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ciudad Obregón International Airport" icao="MMCN" iata="CEN" type="Domestic" season="All_Year">
+    <town town="Ciudad Obregón" country="157" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="027°23'33''N" />
+      <longitude value="109°49'58''W" />
+    </coordinates>
+    <size value="Very_small" pax="191" />
+    <terminals>
+      <terminal name="Terminal A" gates="14" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="2300" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Playa De Oro International Airport" icao="MMZO" iata="ZLO" type="Short_Haul_International" season="All_Year">
+    <town town="Manzanillo" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="019°08'41''N" />
+      <longitude value="104°33'32''W" />
+    </coordinates>
+    <size value="Very_small" pax="193" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2200" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="General Leobardo C. Ruiz International Airport" icao="MMZC" iata="ZCL" type="Short_Haul_International" season="All_Year">
+    <town town="Zacatecas" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="022°53'49''N" />
+      <longitude value="102°41'13''W" />
+    </coordinates>
+    <size value="Very_small" pax="260" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="3000" surface="Asphalt" />
+      <runway name="08/26" length="1000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ponciano Arriaga International Airport" icao="MMSP" iata="SLP" type="Short_Haul_International" season="All_Year">
+    <town town="San Luis Potosí" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="022°15'15''N" />
+      <longitude value="100°55'51''W" />
+    </coordinates>
+    <size value="Very_small" pax="262" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="993" surface="Asphalt" />
+      <runway name="14/32" length="3007" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Hermanos Serdán International Airport" icao="MMPB" iata="PBC" type="Short_Haul_International" season="All_Year">
+    <town town="Puebla" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="019°09'29''N" />
+      <longitude value="098°22'17''W" />
+    </coordinates>
+    <size value="Very_small" pax="292" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="3600" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Querétaro Intercontinental Airport" icao="MMQT" iata="QRO" type="Short_Haul_International" season="All_Year">
+    <town town="Querétaro" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="020°37'02''N" />
+      <longitude value="100°11'09''W" />
+    </coordinates>
+    <size value="Very_small" pax="292" />
+    <terminals>
+      <terminal name="Terminal A" gates="14" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="3500" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="General Lucio Blanco International Airport" icao="MMRX" iata="REX" type="Domestic" season="All_Year">
+    <town town="Reynosa" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="026°00'32''N" />
+      <longitude value="098°13'42''W" />
+    </coordinates>
+    <size value="Very_small" pax="392" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="1903" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="General Francisco J. Mujica International Airport" icao="MMMM" iata="MLM" type="Short_Haul_International" season="All_Year">
+    <town town="Morelia" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="019°50'59''N" />
+      <longitude value="101°01'30''W" />
+    </coordinates>
+    <size value="Very_small" pax="425" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="3400" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Ixtapa Zihuatanejo International Airport" icao="MMZH" iata="ZIH" type="Short_Haul_International" season="All_Year">
+    <town town="Ixtapa" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="017°36'05''N" />
+      <longitude value="101°27'39''W" />
+    </coordinates>
+    <size value="Very_small" pax="460" />
+    <terminals>
+      <terminal name="Terminal A" gates="15" />
+      <terminal name="Terminal B" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Francisco Sarabia International Airport" icao="MMTC" iata="TRC" type="Short_Haul_International" season="All_Year">
+    <town town="Torreón" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="025°34'05''N" />
+      <longitude value="103°24'39''W" />
+    </coordinates>
+    <size value="Very_small" pax="415" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="1718" surface="Asphalt" />
+      <runway name="12/30" length="2750" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Xoxocotlán International Airport" icao="MMOX" iata="OAX" type="Short_Haul_International" season="All_Year">
+    <town town="Oaxaca" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="016°59'59''N" />
+      <longitude value="096°43'35''W" />
+    </coordinates>
+    <size value="Small" pax="510" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2450" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="General Francisco Javier Mina International Airport" icao="MMTM" iata="TAM" type="Short_Haul_International" season="All_Year">
+    <town town="Tampico" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="022°17'47''N" />
+      <longitude value="097°51'57''W" />
+    </coordinates>
+    <size value="Small" pax="608" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1200" surface="Asphalt" />
+      <runway name="13/31" length="2550" surface="Asphalt" />
+      <runway name="18/36" length="1300" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="General Rafael Buelna International Airport" icao="MMMZ" iata="MZT" type="Short_Haul_International" season="All_Year">
+    <town town="Mazatlán" country="157" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="023°09'41''N" />
+      <longitude value="106°15'57''W" />
+    </coordinates>
+    <size value="Small" pax="731" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+      <terminal name="Terminal B" gates="12" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2700" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Angel Albino Corzo International Airport" icao="MMTG" iata="TGZ" type="Domestic" season="All_Year">
+    <town town="Tuxtla Gutiérrez" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="016°33'48''N" />
+      <longitude value="093°01'20''W" />
+    </coordinates>
+    <size value="Small" pax="855" />
+    <terminals>
+      <terminal name="Terminal A" gates="13" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="General Heriberto Jara International Airport" icao="MMVR" iata="VER" type="Short_Haul_International" season="All_Year">
+    <town town="Veracruz" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="019°08'45''N" />
+      <longitude value="096°11'14''W" />
+    </coordinates>
+    <size value="Small" pax="1011" />
+    <terminals>
+      <terminal name="Terminal A" gates="21" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1523" surface="Asphalt" />
+      <runway name="18/36" length="2400" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Carlos Rovirosa Pérez International Airport" icao="MMVA" iata="VSA" type="Short_Haul_International" season="All_Year">
+    <town town="Villahermosa" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="017°59'49''N" />
+      <longitude value="092°49'02''W" />
+    </coordinates>
+    <size value="Small" pax="1014" />
+    <terminals>
+      <terminal name="Terminal A" gates="21" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2200" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Licenciado Manuel Crescencio Rejon Int Airport" icao="MMMD" iata="MID" type="Long_Haul_International" season="All_Year">
+    <town town="Mérida" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="020°56'13''N" />
+      <longitude value="089°39'27''W" />
+    </coordinates>
+    <size value="Small" pax="1316" />
+    <terminals>
+      <terminal name="Terminal A" gates="19" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="3200" surface="Asphalt" />
+      <runway name="18/36" length="2300" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="General Rodolfo Sánchez Taboada International Airport" icao="MMML" iata="MXL" type="Domestic" season="All_Year">
+    <town town="Mexicali" country="157" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="032°37'50''N" />
+      <longitude value="115°14'31''W" />
+    </coordinates>
+    <size value="Small" pax="496" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Los Cabos International Airport" icao="MMSD" iata="SJD" type="Long_Haul_International" season="All_Year">
+    <town town="San José del Cabo" country="157" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="023°09'06''N" />
+      <longitude value="109°43'15''W" />
+    </coordinates>
+    <size value="Medium" pax="3234" />
+    <terminals>
+      <terminal name="Terminal A" gates="20" />
+      <terminal name="Terminal B" gates="20" />
+      <terminal name="Terminal C" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Cabo San Lucas International Airport" icao="MMSL" iata="CSL" type="Domestic" season="All_Year">
+    <town town="Cabo San Lucas" country="157" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="022°56'51''N" />
+      <longitude value="109°56'13''W" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal A" gates="16" />
+         </terminals>
+    <runways>
+      <runway name="11/29" length="2133" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Quetzalcóatl International Airport" icao="MMNL" iata="NLD" type="Domestic" season="All_Year">
+    <town town="Nuevo Laredo" country="157" GMT="-06:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="027°26'38''N" />
+      <longitude value="099°34'14''W" />
+    </coordinates>
+    <size value="Smallest" pax="70" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+         </terminals>
+    <runways>
+      <runway name="14/32" length="2000" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Nuevo Casa Grandes Municipal  Airport" icao="MMCG" iata="NCG" type="Domestic" season="All_Year">
+    <town town="Nuevo Casas Grandes" country="157" GMT="-07:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="031°38'11''N" />
+      <longitude value="106°25'43''W" />
+    </coordinates>
+    <size value="Smallest" pax="699" />
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+         </terminals>
+    <runways>
+      <runway name="03/21" length="2700" surface="Asphalt" />
+<runway name="14/32" length="1750" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Lic. Gustavo Díaz Ordaz International Airport" icao="MMPR" iata="PVR" type="Long_Haul_International"
@@ -5624,18 +6186,6 @@
     <runways>
       <runway name="12/30" length="2104" surface="Asphalt" />
     </runways>
-  </airport>
-  <airport name="Vieques Airport" icao="TJCG" iata="VQS" type="Regional" season="All_Year">
-    <town town="Vieques Island, PR" country="122" GMT="-04:00:00" DST="-04:00:00" />
-    <coordinates>
-      <latitude value="018°06'56''N" />
-      <longitude value="065°25'21''W" />
-    </coordinates>
-    <size value="Smallest" pax="165" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways />
   </airport>
   <!--Saint Kitts and Nevis (TK**)-->
   <airport name="Robert L. Bradshaw International Airport" icao="TKPK" iata="SKB" type="Long_Haul_International"
@@ -7813,7 +8363,7 @@
     </runways>
   </airport>
     <airport name="Altoona-Blair County Airport" icao="KAOO" iata="AOO" type="Domestic" season="All_Year">
-    <town town="Martinsburg, PA" country="122" GMT="-05:00:00" DST="-04:00:00" />
+    <town town="Altoona, PA" country="122" GMT="-05:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="040°17'47''N" />
       <longitude value="078°19'12''W" />
@@ -7858,7 +8408,7 @@
   </airport>
     <airport name="Adirondack Regional Airport" icao="KSLK" iata="SLK" type="Domestic"
  season="All_Year">
-    <town town="Harrietstown, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Saranac Lake/Lake Placid, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="044°23'07''N" />
       <longitude value="074°12'22''W" />

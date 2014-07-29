@@ -72,6 +72,16 @@
 
             airliner.Flown = km;
 
+            var engines = EngineTypes.GetEngineTypes(airliner.Type, GameObject.GetInstance().GameTime.Year);
+
+            if (engines.Count > 0)
+            {
+                int engineNumber = rnd.Next(engines.Count);
+
+                airliner.EngineType = engines[engineNumber];
+            }
+
+      
             CreateAirlinerClasses(airliner);
 
             return airliner;
@@ -240,7 +250,11 @@
                 var cargoClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 0);
                 classes.Add(cargoClass);
             }
-
+            else if (type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
+            {
+                var helicopterClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 0);
+                classes.Add(helicopterClass);
+            }
             return classes;
         }
 
@@ -339,7 +353,7 @@
         private static Airliner CreateAirliner(double minRange)
         {
             Guid id = Guid.NewGuid();
-
+            
             List<AirlinerType> types =
                 AirlinerTypes.GetTypes(
                     delegate(AirlinerType t)
@@ -377,6 +391,15 @@
             airliner.Flown = km;
 
             CreateAirlinerClasses(airliner);
+
+            var engines = EngineTypes.GetEngineTypes(airliner.Type, GameObject.GetInstance().GameTime.Year);
+
+            if (engines.Count > 0)
+            {
+                int engineNumber = rnd.Next(engines.Count);
+
+                airliner.EngineType = engines[engineNumber];
+            }
 
             return airliner;
         }

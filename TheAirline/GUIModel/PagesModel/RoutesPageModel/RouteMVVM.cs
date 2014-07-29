@@ -1,12 +1,14 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Globalization;
     using System.Linq;
     using System.Windows.Data;
-
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
@@ -25,7 +27,7 @@
             this.ShowCargoInformation = this.Route.Type == Route.RouteType.Cargo
                                         || this.Route.Type == Route.RouteType.Mixed;
             this.ShowPassengersInformation = this.Route.Type == Route.RouteType.Passenger
-                                             || this.Route.Type == Route.RouteType.Mixed;
+                                             || this.Route.Type == Route.RouteType.Mixed || this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter;
 
             this.IsEditable = true;
                 // !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
@@ -77,7 +79,7 @@
             this.Balance = this.Route.Balance;
             this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
 
-            if (route.Type == Route.RouteType.Passenger)
+            if (route.Type == Route.RouteType.Passenger || route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter)
             {
                 RouteAirlinerClass raClass =
                     ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
@@ -126,6 +128,7 @@
         #region Fields
 
         private StatusMVVM _status;
+        private Boolean _hasroute;
 
         #endregion
 
@@ -138,6 +141,11 @@
             this.Status = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
                 ? StatusMVVM.Stopped
                 : StatusMVVM.Started;
+
+            this.Routes = new ObservableCollection<Route>();
+
+            foreach (Route route in this.Airliner.Routes)
+                this.Routes.Add(route);
         }
 
         #endregion
@@ -165,7 +173,18 @@
 
         public FleetAirliner Airliner { get; set; }
 
-        public Boolean HasRoute { get; set; }
+        public Boolean HasRoute 
+        {
+            get
+            {
+                return this._hasroute;
+            }
+            set
+            {
+               this._hasroute = value ;
+               this.NotifyPropertyChanged("HasRoute");
+            }
+        }
 
         public StatusMVVM Status
         {
@@ -179,6 +198,7 @@
                 this.NotifyPropertyChanged("Status");
             }
         }
+        public ObservableCollection<Route> Routes { get; set; }
 
         #endregion
 
@@ -274,7 +294,7 @@
 
         public MVVMRouteFacility(RouteFacility.FacilityType type)
         {
-            this.Facilities = new List<RouteFacility>();
+            this.Facilities = new ObservableCollection<RouteFacility>();
 
             this.Type = type;
         }
@@ -289,7 +309,7 @@
 
         #region Public Properties
 
-        public List<RouteFacility> Facilities { get; set; }
+        public ObservableCollection<RouteFacility> Facilities { get; set; }
 
         public RouteFacility SelectedFacility
         {
@@ -341,7 +361,7 @@
             this.Seating = seating;
             this.FarePrice = fareprice;
 
-            this.Facilities = new List<MVVMRouteFacility>();
+            this.Facilities = new ObservableCollection<MVVMRouteFacility>();
 
             foreach (RouteFacility.FacilityType facType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
             {
@@ -369,7 +389,7 @@
 
         #region Public Properties
 
-        public List<MVVMRouteFacility> Facilities { get; set; }
+        public ObservableCollection<MVVMRouteFacility> Facilities { get; set; }
 
         public double FarePrice
         {
@@ -414,7 +434,7 @@
             var route = (Route)value;
             var stats = new List<KeyValuePair<string, object>>();
 
-            if (route.Type == Route.RouteType.Passenger)
+            if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Helicopter)
             {
                 RouteAirlinerClass raClass =
                     ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
@@ -490,4 +510,5 @@
 
         #endregion
     }
+   
 }

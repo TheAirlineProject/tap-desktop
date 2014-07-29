@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Allegiant Air" iata="G4" color="Black" country="122" CEO="Maurice J. Gallagher, Jr." mentality="Safe"
            market="Global" preferedairport="LAX">
-  </profile>
+  <narrative narrative="Allegiant Air is an American low-cost airline owned by Allegiant Travel Co. that operates scheduled and charter flights. Allegiant Travel Company is a publicly traded company with 1,800 employees and $1 billion USD market capitalization. The corporate headquarters are in Enterprise, Nevada, an unincorporated suburb of Las Vegas."/>
+</profile>
   <info real="True" from="1997" to="2199" />
 </airline>

@@ -116,6 +116,10 @@
                 AirlinerClass dClass = this.Classes.Last(c => c.Type == doubleClassType);
                 this.Classes.Remove(dClass);
             }
+
+            if (version == 1)
+                this.EngineType = null;
+
         }
 
         #endregion
@@ -132,7 +136,6 @@
             {
             }
         }
-
         [Versioning("airline")]
         public Airline Airline { get; set; }
 
@@ -141,7 +144,10 @@
 
         [Versioning("classes")]
         public List<AirlinerClass> Classes { get; set; }
-        
+
+        [Versioning("enginetype", Version = 2)]
+        public EngineType EngineType { get; set; }
+
         public string CabinConfiguration
         {
             get
@@ -154,12 +160,12 @@
                         this.GetSeatingCapacity(AirlinerClass.ClassType.Business_Class),
                         this.GetSeatingCapacity(AirlinerClass.ClassType.Economy_Class));
                 }
-                
+
                 if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
                 {
                     return string.Format("{0} t", this.getCargoCapacity());
                 }
-                
+
                 return string.Format(
                     "{0}F | {1}C | {2}Y | {3} t",
                     this.GetSeatingCapacity(AirlinerClass.ClassType.First_Class),
@@ -171,7 +177,7 @@
 
         private int GetSeatingCapacity(AirlinerClass.ClassType classType)
         {
-            return this.Classes.Exists(x=> x.Type == classType) ? this.Classes.Find(x=> x.Type == classType).SeatingCapacity : 0;
+            return this.Classes.Exists(x => x.Type == classType) ? this.Classes.Find(x => x.Type == classType).SeatingCapacity : 0;
         }
 
         [Versioning("condition")]
@@ -224,7 +230,47 @@
                 ;
             }
         }
+        public double FuelConsumption
+        {
+            get
+            {
+                if (this.EngineType == null)
+                    return this.Type.FuelConsumption;
+                else
+                    return this.Type.FuelConsumption * this.EngineType.ConsumptationModifier;
+            }
+        }
+        public double CruisingSpeed
+        {
+            get
+            {
+                if (this.EngineType == null)
+                    return this.Type.CruisingSpeed;
+                else
+                    return Math.Min(this.Type.CruisingSpeed, this.EngineType.MaxSpeed);
+            }
+        }
+        public long MinRunwaylength
+        {
+            get
+            {
+                if (this.EngineType == null)
+                    return this.Type.MinRunwaylength;
+                else
+                    return Convert.ToInt64(this.Type.MinRunwaylength * this.EngineType.RunwayModifier);
+            }
+        }
+        public long Range
+        {
+            get
+            {
+                if (this.EngineType == null)
+                    return this.Type.Range;
+                else
+                    return Convert.ToInt64(this.Type.Range * this.EngineType.RangeModifier);
+            }
 
+        }
         [Versioning("tailnumber")]
         public string TailNumber { get; set; }
 
@@ -237,7 +283,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 
@@ -362,6 +408,20 @@
             }
 
             basePrice += facilityPrice;
+
+            double diffEnginePrice;
+
+            if (this.EngineType == null)
+                diffEnginePrice = 0;
+            else
+            {
+                double enginePrice = this.EngineType.Price;
+                double standardEnginePrice = EngineTypes.GetStandardEngineType(this.Type).Price;
+
+                diffEnginePrice = enginePrice - standardEnginePrice;
+            }
+
+            basePrice += diffEnginePrice;
 
             int age = this.getAge();
             double devaluationPercent = 1 - (0.02 * age);

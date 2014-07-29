@@ -8,7 +8,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
-
+    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
@@ -62,17 +62,29 @@
             List<Airport> airports = this.SelectedAirports.Select(s => s.Airport).ToList();
             PopUpCompareAirports.ShowPopUp(airports);
         }
-
+        private void btnShowOnMap_Click(object sender, RoutedEventArgs e)
+        {
+            List<Airport> airports = this.AllAirports.Select(a => a.Airport).ToList();
+        
+            PopUpMap.ShowPopUp(airports);
+        }
         private void btnContract_Click(object sender, RoutedEventArgs e)
         {
             var airport = (AirportMVVM)((Button)sender).Tag;
+           
+            Route.RouteType airlineFocus = GameObject.GetInstance().HumanAirline.AirlineRouteFocus;
 
+            Boolean hasCargo =
+                airport.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Cargo, true)
+                .TypeLevel > 0;
+            
             Boolean hasCheckin =
                 airport.Airport.getAirportFacility(
                     GameObject.GetInstance().HumanAirline,
                     AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
 
-            int gates = Math.Min(2, airport.Airport.Terminals.NumberOfFreeGates);
+            int paxGates = Math.Min(2, airport.Airport.Terminals.getFreeGates(Terminal.TerminalType.Passenger));
+            int cargoGates = Math.Min(2,airport.Airport.Terminals.getFreeGates(Terminal.TerminalType.Cargo));
 
             //WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"),gates, airport.Airport.Profile.Name), WPFMessageBoxButtons.YesNo);
 
@@ -82,24 +94,57 @@
             {
                 var contractType = (AirportContract.ContractType)o;
 
-                if (!hasCheckin && contractType == AirportContract.ContractType.Full)
+                Terminal.TerminalType terminalType;
+
+                int gates;
+
+                if (airlineFocus == Route.RouteType.Cargo)
                 {
-                    AirportFacility checkinFacility =
-                        AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn)
-                            .Find(f => f.TypeLevel == 1);
+                    if (!hasCargo && contractType == AirportContract.ContractType.Full)
+                    {
+                        AirportFacility cargoFacility =
+                            AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo)
+                                .Find(f => f.TypeLevel == 1);
 
-                    airport.Airport.addAirportFacility(
-                        GameObject.GetInstance().HumanAirline,
-                        checkinFacility,
-                        GameObject.GetInstance().GameTime);
-                    AirlineHelpers.AddAirlineInvoice(
-                        GameObject.GetInstance().HumanAirline,
-                        GameObject.GetInstance().GameTime,
-                        Invoice.InvoiceType.Purchases,
-                        -checkinFacility.Price);
+                        airport.Airport.addAirportFacility(
+                            GameObject.GetInstance().HumanAirline,
+                            cargoFacility,
+                            GameObject.GetInstance().GameTime);
+                        AirlineHelpers.AddAirlineInvoice(
+                            GameObject.GetInstance().HumanAirline,
+                            GameObject.GetInstance().GameTime,
+                            Invoice.InvoiceType.Purchases,
+                            -cargoFacility.Price);
+                    }
+
+                    terminalType = Terminal.TerminalType.Cargo;
+                    gates = cargoGates;
                 }
+                else
+                {
 
-                //AirportHelpers.RentGates(airport.Airport, GameObject.GetInstance().HumanAirline, contractType, gates, 2);
+                    if (!hasCheckin && contractType == AirportContract.ContractType.Full)
+                    {
+                        AirportFacility checkinFacility =
+                            AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn)
+                                .Find(f => f.TypeLevel == 1);
+
+                        airport.Airport.addAirportFacility(
+                            GameObject.GetInstance().HumanAirline,
+                            checkinFacility,
+                            GameObject.GetInstance().GameTime);
+                        AirlineHelpers.AddAirlineInvoice(
+                            GameObject.GetInstance().HumanAirline,
+                            GameObject.GetInstance().GameTime,
+                            Invoice.InvoiceType.Purchases,
+                            -checkinFacility.Price);
+                    }
+
+                    terminalType = Terminal.TerminalType.Passenger;
+                    gates = paxGates;
+
+
+                }
 
                 double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport.Airport, contractType, gates, 2);
 
@@ -107,20 +152,22 @@
                     GameObject.GetInstance().HumanAirline,
                     airport.Airport,
                     contractType,
-                    Terminal.TerminalType.Passenger,
+                    terminalType,
                     GameObject.GetInstance().GameTime,
                     gates,
                     2,
                     yearlyPayment,
                     true);
 
-                airport.addAirlineContract(contract);
+                AirportHelpers.AddAirlineContract(contract);
 
                 for (int i = 0; i < gates; i++)
                 {
                     Gate gate = airport.Airport.Terminals.getGates().Where(g => g.Airline == null).First();
                     gate.Airline = GameObject.GetInstance().HumanAirline;
                 }
+
+                airport.IsHuman = true;
             }
         }
 
@@ -261,7 +308,7 @@
                 0,
                 AirlinerType.BodyType.Single_Aisle,
                 AirlinerType.TypeRange.Regional,
-                AirlinerType.EngineType.Jet,
+                AirlinerType.TypeOfEngine.Jet,
                 new Period<DateTime>(DateTime.Now, DateTime.Now),
                 0,
                 false);

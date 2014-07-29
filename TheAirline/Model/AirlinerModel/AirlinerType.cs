@@ -32,7 +32,7 @@
             long fuelcapacity,
             BodyType body,
             TypeRange rangeType,
-            EngineType engine,
+            TypeOfEngine engine,
             Period<DateTime> produced,
             int prodRate,
             Boolean isConvertable,
@@ -111,7 +111,8 @@
             }
             if (version < 3)
                 this.Weight = AirlinerHelpers.GetCalculatedWeight(this);
-        }
+
+          }
 
         #endregion
 
@@ -129,7 +130,7 @@
 
         }
 
-        public enum EngineType
+        public enum TypeOfEngine
         {
             Jet,
 
@@ -142,7 +143,9 @@
 
             Cargo,
 
-            Mixed
+            Mixed,
+
+            Helicopter
         }
 
         public enum TypeRange
@@ -169,6 +172,7 @@
         [Versioning("body")]
         public BodyType Body { get; set; }
 
+              
         public int Capacity
         {
             get
@@ -184,18 +188,12 @@
         [Versioning("cockpit")]
         public int CockpitCrew { get; set; }
 
-        [Versioning("speed")]
-        public double CruisingSpeed { get; set; }
-
         [Versioning("engine")]
-        public EngineType Engine { get; set; }
+        public TypeOfEngine Engine { get; set; }
 
         [Versioning("fuelcapacity")]
         public long FuelCapacity { get; set; }
-
-        [Versioning("fuel")]
-        public double FuelConsumption { get; set; }
-
+   
         [Versioning("image")]
         public string Image { get; set; }
 
@@ -226,9 +224,18 @@
         [Versioning("manufacturer")]
         public Manufacturer Manufacturer { get; set; }
 
+        [Versioning("speed")]
+        public double CruisingSpeed { get; set; }
+    
+        [Versioning("range")]
+        public long Range { get; set; }
+    
+        [Versioning("fuel")]
+        public double FuelConsumption { get; set; }
+    
         [Versioning("runway")]
         public long MinRunwaylength { get; set; }
-
+      
         [Versioning("name")]
         public string Name { get; set; }
 
@@ -249,9 +256,6 @@
 
         [Versioning("production")]
         public int ProductionRate { get; set; }
-
-        [Versioning("range")]
-        public long Range { get; set; }
 
         [Versioning("rangetype")]
         public TypeRange RangeType { get; set; }
@@ -332,7 +336,7 @@
             long fuelcapacity,
             BodyType body,
             TypeRange rangeType,
-            EngineType engine,
+            TypeOfEngine engine,
             Period<DateTime> produced,
             int prodRate,
             Boolean isConvertable,
@@ -475,7 +479,7 @@
             long fuelcapacity,
             BodyType body,
             TypeRange rangeType,
-            EngineType engine,
+            TypeOfEngine engine,
             Period<DateTime> produced,
             int prodRate,
             double cargo,
@@ -607,7 +611,7 @@
             long fuelcapacity,
             BodyType body,
             TypeRange rangeType,
-            EngineType engine,
+            TypeOfEngine engine,
             Period<DateTime> produced,
             int prodRate,
             Boolean isConvertable,

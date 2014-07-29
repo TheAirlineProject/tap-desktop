@@ -16,7 +16,7 @@
 
         public EngineType(
             string model,
-            string manufacturer,
+            Manufacturer manufacturer,
             TypeOfEngine engine,
             NoiseLevel noise,
             double consumptation,
@@ -38,6 +38,7 @@
             this.RangeModifier = range;
             this.Produced = produced;
             this.Types = new List<AirlinerType>();
+            this.Noise = noise;
         }
 
         private EngineType(SerializationInfo info, StreamingContext ctxt)
@@ -103,11 +104,15 @@
 
         public enum NoiseLevel
         {
+            Very_high,
+            
             High,
 
             Medium,
 
-            Low
+            Low,
+
+            Very_low
         }
 
         public enum TypeOfEngine
@@ -131,7 +136,7 @@
         public TypeOfEngine Engine { get; set; }
 
         [Versioning("manufacturer")]
-        public string Manufacturer { get; set; }
+        public Manufacturer Manufacturer { get; set; }
 
         [Versioning("speed")]
         public int MaxSpeed { get; set; }
@@ -210,14 +215,17 @@
     {
         #region Static Fields
 
-        private static readonly List<EngineType> types = new List<EngineType>();
+        private static List<EngineType> types = new List<EngineType>();
 
         #endregion
 
         //adds an engine type to the list
 
         #region Public Methods and Operators
-
+        public static void Clear()
+        {
+            types = new List<EngineType>();
+        }
         public static void AddEngineType(EngineType type)
         {
             types.Add(type);
@@ -230,11 +238,49 @@
         }
 
         //returns the list of engine types for an airliner type
+        public static List<EngineType> GetEngineTypes(AirlinerType type, int year)
+        {
+            return GetEngineTypes(type).FindAll(t=>t.Produced.From<= year && t.Produced.To >= year);
+        }
+        //Activator
         public static List<EngineType> GetEngineTypes(AirlinerType type)
         {
-            return types.FindAll(t => t.Types.Contains(type));
-        }
+            List<EngineType> ttypes = new List<EngineType>();
 
+            foreach (EngineType t in types)
+            {
+                foreach (AirlinerType at in t.Types)
+                    if (at.Name == type.Name)
+                        ttypes.Add(t);
+            }
+
+            return ttypes;
+        }
+        //returns the standard engine for an airliner type
+        public static EngineType GetStandardEngineType(AirlinerType type, int year)
+        {
+            var allTypes = GetEngineTypes(type, year);
+
+            if (allTypes.Count > 0)
+            {
+                return allTypes.OrderBy(t => t.Price).First();
+
+            }
+
+            return null;
+        }
+        public static EngineType GetStandardEngineType(AirlinerType type)
+        {
+            var allTypes = GetEngineTypes(type);
+
+            if (allTypes.Count > 0)
+            {
+                return allTypes.OrderBy(t => t.Price).First();
+
+            }
+
+            return null;
+        }
         #endregion
     }
 }

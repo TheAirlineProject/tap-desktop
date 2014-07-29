@@ -19,7 +19,7 @@
     {
         #region Constants
 
-        public const double MinRouteDistance = 25;
+        public const double MinRouteDistance = 10;
 
         #endregion
 
@@ -114,7 +114,9 @@
 
             Mixed,
 
-            Passenger
+            Passenger,
+
+            Helicopter
         }
 
         #endregion

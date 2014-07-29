@@ -6,6 +6,7 @@
   <manufacturer name="Airbus Military" shortname="Airbus Military" country="140" />
   <manufacturer name="Airspeed Limited" shortname="Airspeed" country="130" />
   <manufacturer name="Antonov" shortname="Antonov" country="134" />
+  <manufacturer name="AgustaWestland" shortname="AW" country="141" />
   <manufacturer name="AVIC Xi'an Aircraft" shortname="Avic" country="148" />
   <manufacturer name="Avions de Transport Régional" shortname="ATR" country="141" />
   <manufacturer name="Beechcraft" shortname="Beechcraft" country="122" />
@@ -32,6 +33,7 @@
   <manufacturer name="Open Joint Stock Company Ilyushin" shortname="Ilyushin" country="149" />
   <manufacturer name="Public Stock Company Tupolev" shortname="Tupolev" country="149" />
   <manufacturer name="Saab AB" shortname="Saab" country="168" />
+    <manufacturer name="Sikorsky Aircraft Corporation" shortname="Sikorsky" country="122" />
   <manufacturer name="Sud Aviation" shortname="Sud Aviation" country="140" />
   <manufacturer name="Sukhoi Aviation Corporation" shortname="Sukhoi" country="149" />
   <manufacturer name="The Boeing Company" shortname="Boeing" country="122" />
@@ -39,5 +41,13 @@
   <manufacturer name="Viking Air" shortname="Viking" country="113" />
   <manufacturer name="Commercial Aircraft Corporation of China" shortname="Comac" country="148" />
    <manufacturer name="Yak Aircraft Corporation" shortname="Yak" country="134" />
-</manufacturers>
+   <!--engines-->
+  <manufacturer name="CFM International" shortname="CFM" country="140" />
+  <manufacturer name="Engine Alliance" shortname="EA" country="140" />
+  <manufacturer name="GE Aviation" shortname="GE" country="140" />
+  <manufacturer name="International Aero Engines" shortname="IAE-Engines" country="140" />
+  <manufacturer name="Pratt &amp; Whitney" shortname="Pratt" country="140" />
+  <manufacturer name="Rolls-Royce" shortname="Rolls-Royce" country="140" />
+  <manufacturer name="TurboMeca" shortname="TurboMeca" country="140" />
+  </manufacturers>
 

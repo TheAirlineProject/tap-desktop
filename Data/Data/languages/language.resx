@@ -5128,12 +5128,63 @@ Good luck.</value>
     <value>Handling Type</value>
   </data>
   <data name="PageShowAirports_1014_name" xml:space="preserve">
-    <value>Cargo Terminal</value>
+    <value>Cargo</value>
   </data>
   <data name="MessageBox_3006_message" xml:space="preserve">
     <value>You already have a route between {0} and {1}</value>
   </data>
   <data name="MessageBox_3006_name" xml:space="preserve">
     <value>Route exists already</value>
+  </data>
+  <data name="PageAirportInfo_1056_name" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="PageCreateRoute_1020_name" xml:space="preserve">
+    <value>Helicopter Route</value>
+  </data>
+  <data name="PageNewGame_1030_name" xml:space="preserve">
+    <value>Use Heliports</value>
+  </data>
+  <data name="PageRoutePlanner_207_name" xml:space="preserve">
+    <value>Load Timetable</value>
+  </data>
+  <data name="PageShowAirports_1013_name" xml:space="preserve">
+    <value>Helipad</value>
+  </data>
+  <data name="AirlinerTypeSpecifications_1016_name" xml:space="preserve">
+    <value>Engine</value>
+  </data>
+  <data name="PageAssignAirliners_1004_name" xml:space="preserve">
+    <value>Select Airliner For Replacement</value>
+  </data>
+  <data name="PageShowAirports_201_name" xml:space="preserve">
+    <value>Show Map</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1004_name" xml:space="preserve">
+    <value>Engine</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1005_name" xml:space="preserve">
+    <value>Select Engine</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1006_name" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1007_name" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1008_name" xml:space="preserve">
+    <value>Engine Type</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1009_name" xml:space="preserve">
+    <value>Noise Level</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1010_name" xml:space="preserve">
+    <value>Ceiling</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1011_name" xml:space="preserve">
+    <value>Max Speed</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1012_name" xml:space="preserve">
+    <value>Price</value>
   </data>
 </root>

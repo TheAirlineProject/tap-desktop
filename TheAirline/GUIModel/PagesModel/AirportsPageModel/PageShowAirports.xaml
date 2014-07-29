@@ -102,7 +102,7 @@
                                                     <DataTrigger Binding="{Binding IsHuman}" Value="True">
                                                         <Setter Property="Button.Visibility" Value="Collapsed" />
                                                     </DataTrigger>
-                                                    <DataTrigger Binding="{Binding NumberOfFreeGates}" Value="0">
+                                                    <DataTrigger Binding="{Binding HasFreeGates}" Value="False">
                                                         <Setter Property="Button.Visibility" Value="Collapsed" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -158,7 +158,7 @@
                     </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn
                         Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1003'}"
-                        CanFilter="False" SortPropertyName="Airport.Profile.Town.Country.Name" Width="75">
+                        CanFilter="True" SortPropertyName="Airport.Profile.Town.Country.Name" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}"
@@ -204,7 +204,7 @@
                     </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn
                         Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1014'}"
-                        CanFilter="False" SortPropertyName="HasCargoTerminal" Width="100">
+                        CanFilter="False" SortPropertyName="HasCargoTerminal" Width="75">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="/data/images/tick.png" VerticalAlignment="Bottom"
@@ -213,9 +213,20 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn
+                        Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1013'}"
+                        CanFilter="False" SortPropertyName="HasHelipad" Width="75">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="/data/images/tick.png" VerticalAlignment="Bottom"
+                                                   RenderOptions.BitmapScalingMode="HighQuality" Width="20"
+                                                   Visibility="{Binding HasHelipad,Converter={StaticResource BooleanToVisibility}}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
 
 
-                     <filter:SortableGridViewColumn
+                    <filter:SortableGridViewColumn
                         Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1012'}"
                         CanFilter="True" SortPropertyName="LongestRunway" Width="100">
                         <GridViewColumn.CellTemplate>
@@ -268,6 +279,9 @@
                     </Style>
                 </Button.Style>
             </Button>
+            <Button VerticalAlignment="Bottom" Click="btnShowOnMap_Click" HorizontalAlignment="Left" Style="{StaticResource StandardButtonStyle}"
+                    Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 201'}" Margin="5 0 0 0">
+                </Button>
         </WrapPanel>
     </Grid>
 </Page>

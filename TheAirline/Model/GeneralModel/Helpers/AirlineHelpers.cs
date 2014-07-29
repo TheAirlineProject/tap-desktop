@@ -779,11 +779,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns if a route can be created
         public static Boolean IsRouteDestinationsOk(Airline airline, Airport destination1, Airport destination2, Route.RouteType routeType, Airport stopover1 = null, Airport stopover2 = null)
         {
+            Terminal.TerminalType type = routeType == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+            
             var distances = new List<double>();
 
-            Boolean stopoverOk = (stopover1 == null || routeType == Route.RouteType.Cargo ? true : AirportHelpers.HasFreeGates(stopover1, airline)) && (stopover2 == null || routeType == Route.RouteType.Cargo ? true : AirportHelpers.HasFreeGates(stopover2, airline));
+            Boolean stopoverOk = (stopover1 == null || routeType == Route.RouteType.Cargo ? true : AirportHelpers.HasFreeGates(stopover1, airline,type)) && (stopover2 == null || routeType == Route.RouteType.Cargo ? true : AirportHelpers.HasFreeGates(stopover2, airline,type));
 
-            if ((AirportHelpers.HasFreeGates(destination1, airline) && AirportHelpers.HasFreeGates(destination2, airline) && stopoverOk) || routeType == Route.RouteType.Cargo)
+            if ((AirportHelpers.HasFreeGates(destination1, airline,type) && AirportHelpers.HasFreeGates(destination2, airline,type) && stopoverOk) || routeType == Route.RouteType.Cargo)
             {
                 RouteOkStatus routeOkStatus = RouteOkStatus.Ok;
 

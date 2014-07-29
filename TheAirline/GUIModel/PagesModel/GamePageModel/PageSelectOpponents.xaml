@@ -29,7 +29,7 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <WrapPanel>
-                                            <ContentControl ContentTemplate="{StaticResource AirlineItem}"
+                                            <ContentControl ContentTemplate="{StaticResource AirlineCountryItem}"
                                                             Content="{Binding}" VerticalAlignment="Bottom" Width="250" />
                                             <TextBlock Text="{Binding AirlineRouteFocus}" Width="100" VerticalAlignment="Bottom"></TextBlock>
 
@@ -64,7 +64,7 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <WrapPanel>
-                                            <ContentControl ContentTemplate="{StaticResource AirlineItem}"
+                                            <ContentControl ContentTemplate="{StaticResource AirlineCountryItem}"
                                                             Content="{Binding}" VerticalAlignment="Bottom" Width="250" />
                                             <TextBlock Text="{Binding AirlineRouteFocus}" Width="100" VerticalAlignment="Bottom"></TextBlock>
                                             <Image VerticalAlignment="Bottom" Tag="{Binding}"

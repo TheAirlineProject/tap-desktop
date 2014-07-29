@@ -6596,7 +6596,7 @@
     </runways>
   </airport>
     <airport name="Košice Airport" icao="LZKZ" iata="KSC" type="Short_Haul_International" season="All_Year">
-    <town town="Košice" country="134" GMT="02:00:00" DST="01:00:00" />
+    <town town="Košice" country="231" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="048°39'47''N" />
       <longitude value="021°14'27''E" />
@@ -6623,6 +6623,20 @@
     </terminals>
        <runways>
       <runway name="02/21" length="2250" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Chulman Neryungri Airport" icao="UELL" iata="NER" type="Domestic" season="All_Year">
+    <town town="Chulman/Neryungri" country="149" GMT="09:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="056°54'48''N" />
+      <longitude value="124°54'42''E" />
+    </coordinates>
+    <size value="Small" pax="150" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+       <runways>
+      <runway name="08/26" length="3600" surface="Concrete" />
     </runways>
   </airport>
     <airport name="Astrakhan Airport" icao="URWA" iata="ASF" type="Short_Haul_International" season="All_Year">
@@ -7032,7 +7046,7 @@
     </runways>
   </airport>
   <airport name="Polyarny Airport" icao="UERP" iata="PYJ" type="Domestic" season="All_Year">
-    <town town="Yakutia" country="149" GMT="09:00:00" DST="08:00:00" />
+    <town town="Udachny" country="149" GMT="09:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="066°24'01''N" />
       <longitude value="112°01'47''E" />
@@ -7343,7 +7357,7 @@
       <terminal name="Terminal A" gates="2" />
     </terminals>
     <runways>
-      <runway name="06/24" length="1500" surface="Concrete" />
+      <runway name="06/24" length="1500" surface="Steel" />
     </runways>
   </airport>
   <airport name="Cherepovets Airport" icao="ULBC" iata="CEE" type="Domestic" season="All_Year">
@@ -7605,21 +7619,7 @@
       <runway name="01L/19R" length="2000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Dikson Airport" icao="UODD" iata="DKS" type="Domestic" season="All_Year">
-    <town town="Dikson" country="149" GMT="05:00:00" DST="04:00:00" />
-    <coordinates>
-      <latitude value="073°31'04''N" />
-      <longitude value="080°22'46''E" />
-    </coordinates>
-    <size value="Smallest" pax="13" cargo="Smallest" cargovolume="0"/>
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="06/24" length="1500" surface="Concrete" />
-    </runways>
-  </airport>
-  <airport name="Khatanga Airport" icao="UOHH" iata="HTG" type="Domestic" season="All_Year">
+    <airport name="Khatanga Airport" icao="UOHH" iata="HTG" type="Domestic" season="All_Year">
     <town town="Khatanga" country="149" GMT="07:00:00" DST="06:00:00" />
     <coordinates>
       <latitude value="071°58'41''N" />
@@ -7733,7 +7733,7 @@
     </runways>
   </airport>
   <airport name="Beslan Airport" icao="URMO" iata="OGZ" type="Domestic" season="All_Year">
-    <town town="Beslan" country="149" GMT="03:00:00" DST="02:00:00" />
+    <town town="Vladikavkaz" country="149" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="043°12'18''N" />
       <longitude value="044°36'23''E" />
@@ -8016,6 +8016,7 @@
     </runways>
   </airport>
   <airport name="Bykovo Airport" icao="UUBB" iata="BKA" type="Domestic" season="All_Year">
+   <period from="01.01.1933 00:00:00" to="10.18.2010 00:00:00" />
     <town town="Moscow" country="149" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="055°37'01''N" />
@@ -8504,20 +8505,7 @@
       <runway name="10/28" length="2038" surface="Concrete" />
     </runways>
   </airport>
-    <airport name="Zaporizhzhia International Airport" icao="UKDE" iata="OZH" type="Short_Haul_International" season="All_Year">
-    <town town="Zaporizhia" country="134" GMT="03:00:00" DST="02:00:00" />
-    <coordinates>
-      <latitude value="047°52'01''N" />
-      <longitude value="035°18'56''E" />
-    </coordinates>
-    <size value="Smallest" pax="17" />
-    <terminals>
-      <terminal name="Terminal A" gates="4" />
-    </terminals>
-    <runways>
-      <runway name="02/20" length="2502" surface="Concrete" />
-    </runways>
-  </airport>
+   
     <airport name="Donetsk International Airport" icao="UKCC" iata="DOK" type="Long_Haul_International" season="All_Year">
     <town town="Donetsk" country="134" GMT="02:00:00" DST="03:00:00" />
     <coordinates>

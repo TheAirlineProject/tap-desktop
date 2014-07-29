@@ -24,7 +24,7 @@
             this.Entry = entry;
 
             if (this.Entry.TimeTable.Route.Type == Route.RouteType.Passenger
-                || this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed)
+                || this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed || this.Entry.TimeTable.Route.Type == Route.RouteType.Helicopter)
             {
                 this.Classes = new List<FlightAirlinerClass>();
 
@@ -277,7 +277,8 @@
         public Boolean isPassengerFlight()
         {
             return this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed
-                   || this.Entry.TimeTable.Route.Type == Route.RouteType.Passenger;
+                   || this.Entry.TimeTable.Route.Type == Route.RouteType.Passenger
+                   || this.Entry.TimeTable.Route.Type == Route.RouteType.Helicopter;
         }
 
         #endregion

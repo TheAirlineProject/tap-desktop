@@ -152,15 +152,15 @@
                         passengers,
                         baseType.CockpitCrew,
                         cabincrew,
-                        baseType.CruisingSpeed,
-                        baseType.Range,
+                        0,
+                        0,
                         baseType.Wingspan,
                         baseType.Length,
                         baseType.Weight,
-                        baseType.FuelConsumption,
+                        0,
                         baseType.Price,
                         maxclasses,
-                        baseType.MinRunwaylength,
+                        0,
                         baseType.FuelCapacity,
                         baseType.Body,
                         baseType.RangeType,
@@ -181,19 +181,20 @@
                         "",
                         baseType.CockpitCrew,
                         cargo,
-                        baseType.CruisingSpeed,
-                        baseType.Range,
+                        0,
+                        0,
                         baseType.Wingspan,
                         baseType.Length,
                         baseType.Weight,
-                        baseType.FuelConsumption,
+                        0,
                         baseType.Price,
-                        baseType.MinRunwaylength,
+                        0,
                         baseType.FuelCapacity,
                         baseType.Body,
                         baseType.RangeType,
                         baseType.Engine,
                         baseType.Produced,
+                       
                         baseType.ProductionRate,
                         false,
                         false);
@@ -344,7 +345,7 @@
                         runwayElement.Attributes["date"].Value,
                         new CultureInfo("de-DE", false));
 
-                    airport.Runways.Add(new Runway(runwayName, runwayLenght, runwaySurface, runwayDate, false));
+                    airport.Runways.Add(new Runway(runwayName, runwayLenght,Runway.RunwayType.Regular, runwaySurface, runwayDate, false));
                 }
 
                 XmlNodeList airportHubsList = airportNode.SelectNodes("hubs/hub");

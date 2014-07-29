@@ -217,8 +217,21 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
+                                <GridViewColumn
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1056'}"
+                                    Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Text="{Binding Type}"
+                                                VerticalAlignment="Bottom" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
                             </GridView>
+                      
+                            
                         </ListView.View>
                     </ListView>
                     <StackPanel Margin=" 0 10 0 0">
@@ -546,8 +559,18 @@
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1049'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                                <RadioButton Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1050'}" VerticalAlignment="Bottom" GroupName="TerminalType" Name="rbTerminalType" Style="{StaticResource RadioButtonLeftSideText}" IsChecked="True" />
-                                <RadioButton Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1051'}" VerticalAlignment="Bottom" GroupName="TerminalType" Margin="5 0 0 0" Style="{StaticResource RadioButtonLeftSideText}"  />
+                                <RadioButton Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1050'}" VerticalAlignment="Bottom" GroupName="TerminalType" Name="rbTerminalType" Style="{StaticResource RadioButtonLeftSideText}" />
+                                <RadioButton Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1051'}" VerticalAlignment="Bottom" GroupName="TerminalType" Margin="5 0 0 0" >
+                                    <RadioButton.Style>
+                                        <Style TargetType="RadioButton" BasedOn="{StaticResource RadioButtonLeftSideText}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsHeliport}" Value="True">
+                                                    <Setter Property="IsEnabled" Value="False" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </RadioButton.Style>
+                                </RadioButton>
                             </WrapPanel>
                             <WrapPanel Margin="0 5 0 0">
                                 <Button Style="{DynamicResource StandardButtonStyle}"

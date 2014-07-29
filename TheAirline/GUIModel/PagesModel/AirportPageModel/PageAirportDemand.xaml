@@ -51,8 +51,8 @@
                                                             <Setter Property="Button.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
                                                         <DataTrigger
-                                                            Binding="{Binding Destination.Terminals.NumberOfFreeGates}"
-                                                            Value="0">
+                                                            Binding="{Binding HasFreeGates}"
+                                                            Value="False">
                                                             <Setter Property="Button.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
                                                     </Style.Triggers>

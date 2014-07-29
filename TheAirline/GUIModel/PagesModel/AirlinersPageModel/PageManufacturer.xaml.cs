@@ -88,11 +88,12 @@
         {
             var order = (AirlinerOrderMVVM)((Button)sender).Tag;
 
-            var classes = (List<AirlinerClass>)PopUpAirlinerSeatsConfiguration.ShowPopUp(order.Type, order.Classes);
+            var confObject = (AirlinerConfigurationObject)PopUpAirlinerSeatsConfiguration.ShowPopUp(order.Type, order.Classes,order.Engine);
 
-            if (classes != null)
+            if (confObject != null)
             {
-                order.Classes = classes;
+                order.Classes = confObject.Classes;
+                order.Engine = confObject.Engine;
             }
         }
 
@@ -187,7 +188,7 @@
                 if (tryOrder)
                 {
                     int totalAmount = this.Orders.Orders.Sum(o => o.Amount);
-                    double price = this.Orders.Orders.Sum(o => o.Type.Price * o.Amount);
+                    double price = this.Orders.Orders.Sum(o => o.getOrderPrice());
 
                     double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)));
 
@@ -251,11 +252,15 @@
                                             airliner.addAirlinerClass(tClass);
                                         }
 
+                                        airliner.EngineType = order.Engine;
+
                                         Model.AirlinerModel.Airliners.AddAirliner(airliner);
 
                                         var pType = FleetAirliner.PurchasedType.BoughtDownPayment;
                                         GameObject.GetInstance()
                                             .HumanAirline.addAirliner(pType, airliner, order.Homebase);
+
+                                       
                                     }
                                 }
                                 if (contractedOrder)
@@ -453,11 +458,14 @@
 
                         airliner.addAirlinerClass(tClass);
                     }
+
+                    airliner.EngineType = order.Engine;
+             
                 }
             }
 
             int totalAmount = this.Orders.Orders.Sum(o => o.Amount);
-            double price = this.Orders.Orders.Sum(o => o.Type.Price * o.Amount);
+            double price = this.Orders.Orders.Sum(o => o.getOrderPrice());
 
             double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)))
                                 * ((100 - discount) / 100);

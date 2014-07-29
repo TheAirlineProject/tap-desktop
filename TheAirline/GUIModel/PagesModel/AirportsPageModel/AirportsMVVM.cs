@@ -37,6 +37,8 @@
             this.NumberOfRoutes = AirportHelpers.GetAirportRoutes(this.Airport).Count;
             this.LongestRunway = this.Airport.Runways.Count == 0 ? 0 : this.Airport.Runways.Max(r => r.Length);
             this.HasCargoTerminal = this.Airport.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo);
+            this.HasHelipad = this.Airport.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad);
+            this.HasFreeGates = this.Airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Model.AirlinerModel.RouteModel.Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0;
         }
 
         #endregion
@@ -51,7 +53,11 @@
 
         public Boolean HasCargoTerminal { get; set; }
 
+        public Boolean HasHelipad { get; set; }
+
         public Airport Airport { get; set; }
+
+        public Boolean HasFreeGates { get; set; }
 
         public Boolean IsHuman
         {

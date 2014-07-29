@@ -343,7 +343,7 @@
         {
             if (this.Profile.MajorDestionations.ContainsKey(destination))
             {
-                this.Profile.MajorDestionations[destination] = pax;
+                this.Profile.MajorDestionations[destination] += pax;
             }
             else
             {

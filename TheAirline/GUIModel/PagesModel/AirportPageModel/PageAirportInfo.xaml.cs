@@ -35,6 +35,7 @@
 
             this.InitializeComponent();
 
+            rbTerminalType.IsChecked = true;
             /*
             CollectionView viewDemands = (CollectionView)CollectionViewSource.GetDefaultView(lvDemand.ItemsSource);
             viewDemands.GroupDescriptions.Clear();

@@ -1943,13 +1943,13 @@
   </country>
   <country uid="292" shortname="VNT" region="112" flag="Vanutau" tailformat="V6-\\s3">
     <translations>
-      <en-US name="Vanutau" />
-      <de-DE name="Vanutau" />
-      <en-GB name="Vanutau" />
-      <nl-NL name="Vanutau" />
-      <zh-CN name="Vanutau" />
-      <da-DK name="Vanutau" />
-      <es-ES name="Vanutau" />
+      <en-US name="Vanuatu" />
+      <de-DE name="Vanuatu" />
+      <en-GB name="Vanuatu" />
+      <nl-NL name="Vanuatu" />
+      <zh-CN name="Vanuatu" />
+      <da-DK name="Vanuatu" />
+      <es-ES name="Vanuatu" />
     </translations>
   </country>
    <country uid="293" shortname="RWA" region="101" flag="Rwanda" tailformat="9XR-\\s2">

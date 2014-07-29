@@ -236,6 +236,9 @@
                                     <DataTrigger Binding="{Binding AirlineAirlines.Count}" Value="0">
                                         <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                                     </DataTrigger>
+                                    <DataTrigger Binding="{Binding AirlineAirlines.Count}" Value="1">
+                                        <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                    </DataTrigger>
                                     <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
                                         <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                                     </DataTrigger>

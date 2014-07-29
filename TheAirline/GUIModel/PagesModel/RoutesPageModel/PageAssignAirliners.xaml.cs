@@ -6,10 +6,11 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
-
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
+    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.PassengerModel;
     using TheAirline.Model.PilotModel;
@@ -73,7 +74,106 @@
                 airlinerItem.Visibility = Visibility.Collapsed;
             }
         }
+        private void btnReplaceAirliner_Click(object sender, RoutedEventArgs e)
+        {
+            var airliner = (FleetAirlinerMVVM)((Button)sender).Tag;
 
+            var cbAirliners = new ComboBox();
+            cbAirliners.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
+            cbAirliners.SelectedValuePath = "Name";
+            cbAirliners.DisplayMemberPath = "Name";
+            cbAirliners.HorizontalAlignment = HorizontalAlignment.Left;
+            cbAirliners.Width = 200;
+
+            double maxDistance = airliner.Airliner.Routes.Max(r=>r.getDistance());
+
+            long requiredRunway = airliner.Airliner.Routes.Select(r => r.Destination1).Min(a => a.getMaxRunwayLength());
+            requiredRunway = Math.Min(requiredRunway,airliner.Airliner.Routes.Select(r=>r.Destination2).Min(a=>a.getMaxRunwayLength()));
+
+            List<FleetAirliner> airliners =
+                GameObject.GetInstance()
+                    .HumanAirline.Fleet.FindAll(
+                        a =>
+                            a != airliner.Airliner && a.Status == FleetAirliner.AirlinerStatus.Stopped && a.Routes.Count == 0
+                            && a.Airliner.MinRunwaylength <= requiredRunway && a.Airliner.Range >= maxDistance);
+
+            foreach (FleetAirliner fAirliner in airliners)
+            {
+                cbAirliners.Items.Add(fAirliner);
+            }
+
+            cbAirliners.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp(
+                Translator.GetInstance().GetString("PageAssignAirliners", "1004"),
+                cbAirliners) == PopUpSingleElement.ButtonSelected.OK && cbAirliners.SelectedItem != null)
+            {
+                
+                var transferAirliner = (FleetAirliner)cbAirliners.SelectedItem;
+                FleetAirlinerMVVM fAirlinerMVVM = this.Airliners.First(a => a.Airliner == transferAirliner);
+
+                foreach (Route route in airliner.Airliner.Routes)
+                {
+                    foreach (
+                        RouteTimeTableEntry entry in
+                            route.TimeTable.Entries.FindAll(en => en.Airliner == airliner.Airliner))
+                    {
+                        entry.Airliner = transferAirliner;
+
+                    }
+
+                    if (!transferAirliner.Routes.Contains(route))
+                    {
+                        transferAirliner.addRoute(route);
+                        fAirlinerMVVM.Routes.Add(route);
+                        
+              
+                    }
+                }
+                airliner.Airliner.Routes.Clear();
+                airliner.HasRoute = false;
+
+                while (airliner.Routes.Count > 0)
+                    airliner.Routes.Remove(airliner.Routes[0]);
+
+                int missingPilots =transferAirliner.Airliner.Type.CockpitCrew - transferAirliner.NumberOfPilots;
+
+                List<Pilot> pilots =
+                                 Pilots.GetUnassignedPilots(
+                                     p =>
+                                         p.Profile.Town.Country == airliner.Airliner.Airliner.Airline.Profile.Country
+                                         && p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
+
+                if (pilots.Count == 0)
+                {
+                    pilots =
+                        Pilots.GetUnassignedPilots(
+                            p =>
+                                p.Profile.Town.Country.Region
+                                == airliner.Airliner.Airliner.Airline.Profile.Country.Region
+                                && p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
+                }
+
+                while (pilots.Count < missingPilots)
+                {
+                    GeneralHelpers.CreatePilots(4, airliner.Airliner.Airliner.Type.AirlinerFamily);
+                    pilots =
+                        Pilots.GetUnassignedPilots(
+                            p => p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
+                }
+
+
+                for (int i = 0; i < missingPilots; i++)
+                {
+                    pilots[i].Airliner = transferAirliner;
+                    transferAirliner.addPilot(pilots[i]);
+                }
+
+           
+                fAirlinerMVVM.HasRoute = true;
+            }
+
+        }
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             var airliner = (FleetAirlinerMVVM)((Button)sender).Tag;

@@ -41,7 +41,7 @@
             this.Airports = new ObservableCollection<Airport>();
             this.RouteInformationText = "";
             this.ConnectingRoutes = new ObservableCollection<Route>();
-            this.Classes = new List<MVVMRouteClass>();
+            this.Classes = new ObservableCollection<MVVMRouteClass>();
 
             foreach (AirlinerClass.ClassType type in AirlinerClass.GetAirlinerTypes())
             {
@@ -78,7 +78,7 @@
                 0,
                 AirlinerType.BodyType.Single_Aisle,
                 AirlinerType.TypeRange.Regional,
-                AirlinerType.EngineType.Jet,
+                AirlinerType.TypeOfEngine.Jet,
                 new Period<DateTime>(DateTime.Now, DateTime.Now),
                 0,
                 false);
@@ -111,7 +111,7 @@
 
         public ObservableCollection<Airport> Airports { get; set; }
 
-        public List<MVVMRouteClass> Classes { get; set; }
+        public ObservableCollection<MVVMRouteClass> Classes { get; set; }
 
         public ObservableCollection<Route> ConnectingRoutes { get; set; }
 
@@ -257,13 +257,13 @@
 
                 foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                 {
-                    MVVMRouteClass rClass = this.Classes.Find(c => c.Type == classConfiguration.Type);
+                    MVVMRouteClass rClass = this.Classes.FirstOrDefault(c => c.Type == classConfiguration.Type);
 
                     if (rClass != null)
                     {
                         foreach (RouteFacility facility in classConfiguration.getFacilities())
                         {
-                            MVVMRouteFacility rFacility = rClass.Facilities.Find(f => f.Type == facility.Type);
+                            MVVMRouteFacility rFacility = rClass.Facilities.FirstOrDefault(f => f.Type == facility.Type);
 
                             if (rFacility != null)
                             {
@@ -463,7 +463,6 @@
                     //passenger route
                     if (this.RouteType == Route.RouteType.Passenger)
                     {
-                        //Vis på showroute
                         route = new PassengerRoute(id.ToString(), destination1, destination2, startDate, 0);
 
                         foreach (MVVMRouteClass rac in this.Classes)
@@ -482,6 +481,23 @@
                     {
                         double cargoPrice = Convert.ToDouble(this.txtCargoPrice.Text);
                         route = new CargoRoute(id.ToString(), destination1, destination2, startDate, cargoPrice);
+                    }
+                    else if (this.RouteType == Route.RouteType.Helicopter)
+                    {
+                        route = new HelicopterRoute(id.ToString(), destination1, destination2, startDate, 0);
+
+                        foreach (MVVMRouteClass rac in this.Classes)
+                        {
+                            ((HelicopterRoute)route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
+
+                            foreach (MVVMRouteFacility facility in rac.Facilities)
+                            {
+                                ((HelicopterRoute)route).getRouteAirlinerClass(rac.Type)
+                                    .addFacility(facility.SelectedFacility);
+                            }
+                        }
+
+              
                     }
                     else if (this.RouteType == Route.RouteType.Mixed)
                     {
@@ -527,7 +543,6 @@
         {
             string type = ((RadioButton)sender).Tag.ToString();
             this.RouteType = (Route.RouteType)Enum.Parse(typeof(Route.RouteType), type, true);
-
           
             while (this.Airports.Count > 0)
             {
@@ -547,10 +562,33 @@
                     this.Airports.Add(airport);
                 }
             }
+            else if (this.RouteType == Route.RouteType.Helicopter)
+            {
+                 var airports = GameObject.GetInstance()
+                    .HumanAirline.Airports.Where(a=>a.Runways.Exists(r=>r.Type == Runway.RunwayType.Helipad) && a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c=>c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
+                        a => a == GameObject.GetInstance().HumanAirline.Airports[0])
+                    .ThenBy(a => a.Profile.Country.Name)
+                    .ThenBy(a => a.Profile.Name);
+
+                foreach (Airport airport in airports)
+                {
+                    this.Airports.Add(airport);
+                }
+
+                while (this.Classes.Count > 0)
+                {
+                    this.Classes.RemoveAt(this.Classes.Count - 1);
+                }
+
+               
+                this.Classes.Add(new MVVMRouteClass(AirlinerClass.ClassType.Economy_Class,RouteAirlinerClass.SeatingType.Reserved_Seating,1));
+               
+               
+            }
             else
             {
                 var airports = GameObject.GetInstance()
-                      .HumanAirline.Airports.Where(a => a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
+                      .HumanAirline.Airports.Where(a => a.Runways.Exists(r=>r.Type == Runway.RunwayType.Regular) && a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
                           a => a == GameObject.GetInstance().HumanAirline.Airports[0])
                       .ThenBy(a => a.Profile.Country.Name)
                       .ThenBy(a => a.Profile.Name);
@@ -559,13 +597,35 @@
                 {
                     this.Airports.Add(airport);
                 }
+
+                while (this.Classes.Count > 0)
+                {
+                    this.Classes.RemoveAt(this.Classes.Count - 1);
+                }
+
+                foreach (AirlinerClass.ClassType cType in AirlinerClass.GetAirlinerTypes())
+                {
+                    if ((int)cType <= GameObject.GetInstance().GameTime.Year)
+                    {
+                        var rClass = new MVVMRouteClass(cType, RouteAirlinerClass.SeatingType.Reserved_Seating, 1);
+
+                        this.Classes.Add(rClass);
+                    }
+                }
             }
 
-
-
-
+            //sets the selected items for the facilities
+            foreach (MVVMRouteClass rClass in this.Classes)
+            {
+                foreach (MVVMRouteFacility rFacility in rClass.Facilities)
+                {
+                    rFacility.SelectedFacility = rFacility.Facilities.OrderBy(f => f.ServiceLevel).FirstOrDefault();
+                }
+            }
+            
         }
 
         #endregion
     }
+   
 }

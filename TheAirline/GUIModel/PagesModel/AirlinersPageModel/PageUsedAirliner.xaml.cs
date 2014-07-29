@@ -24,7 +24,7 @@
         {
             this.Airliner = airliner;
 
-            long minRunway = this.Airliner.Type.MinRunwaylength;
+            long minRunway = this.Airliner.MinRunwaylength;
 
             List<Airport> homebases = AirlineHelpers.GetHomebases(GameObject.GetInstance().HumanAirline, minRunway);
 

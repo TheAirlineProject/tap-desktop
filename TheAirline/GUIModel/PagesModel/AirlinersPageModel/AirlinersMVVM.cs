@@ -339,6 +339,7 @@
 
         private Airport _homebase;
 
+        private EngineType _engine;
         #endregion
 
         #region Constructors and Destructors
@@ -351,7 +352,7 @@
             this._classes = new List<AirlinerClass>();
             this.Homebases = new List<Airport>();
 
-            if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
+            if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger || this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
             {
                 var eClass = new AirlinerClass(
                     AirlinerClass.ClassType.Economy_Class,
@@ -359,6 +360,7 @@
                 eClass.createBasicFacilities(null);
                 this.Classes.Add(eClass);
             }
+     
 
             long minRunway = this.Type.MinRunwaylength;
 
@@ -370,6 +372,10 @@
             {
                 this.Homebases.Add(homebase);
             }
+
+            this.Engine = EngineTypes.GetStandardEngineType(this.Type, GameObject.GetInstance().GameTime.Year);
+
+            this.ForConfig = this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger || this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Mixed || EngineTypes.GetEngineTypes(type,GameObject.GetInstance().GameTime.Year).Count > 0;
         }
 
         #endregion
@@ -409,7 +415,18 @@
                 this.Order.orderUpdated();
             }
         }
-
+        public EngineType Engine
+        {
+            get
+            {
+                return this._engine;
+            }
+            set
+            {
+                this._engine = value;
+                this.Order.orderUpdated();
+            }
+        }
         public Airport Homebase
         {
             get
@@ -422,6 +439,8 @@
                 this.NotifyPropertyChanged("Homebase");
             }
         }
+
+        public Boolean ForConfig { get; set; }
 
         public List<Airport> Homebases { get; set; }
 
@@ -445,7 +464,19 @@
                 }
             }
 
-            return Convert.ToInt64(this.Type.Price * this.Amount + classesPrice);
+            double enginePrice;
+
+            if (this.Engine == null)
+                enginePrice = 0;
+            else
+            {
+                double currentEnginePrice = this.Engine.Price;
+                double standardEnginePrice = EngineTypes.GetStandardEngineType(this.Type).Price;
+
+                enginePrice = currentEnginePrice - standardEnginePrice;
+            }
+
+            return Convert.ToInt64((this.Type.Price + classesPrice + enginePrice) * this.Amount);
         }
 
         #endregion

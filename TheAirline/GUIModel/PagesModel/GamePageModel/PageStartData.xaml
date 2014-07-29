@@ -44,6 +44,7 @@
                     </WrapPanel>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
+         
             <g:QuickInfoValue
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1008'}">
                 <g:QuickInfoValue.Value>

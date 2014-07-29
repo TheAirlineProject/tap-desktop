@@ -831,6 +831,7 @@
   </airport>
   <!--Japan (RJ**)-->
    <airport name="Hiroshima Airport" icao="RJOA" iata="HIJ" type="Long_Haul_International" season="All_Year">
+     <period from="01.01.1993 00:00:00" to="12.31.2199 00:00:00" />
     <town town="Hiroshima" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="034°26'09''N" />
@@ -858,20 +859,7 @@
       <runway name="18/36" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Misawa Air Base" icao="RJSM" iata="MSJ" type="Domestic" season="All_Year">
-    <town town="Misawa" country="171" GMT="09:00:00" DST="09:00:00" />
-    <coordinates>
-      <latitude value="040°42'11''N" />
-      <longitude value="141°22'04''E" />
-    </coordinates>
-    <size value="Small" pax="40" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="10/28" length="3048" surface="Asphalt" />
-    </runways>
-  </airport>
+
     <airport name="Matsuyama Airport" icao="RJOM" iata="MYJ" type="Short_Haul_International" season="All_Year">
     <town town="Matsuyama" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
@@ -992,7 +980,7 @@
   </airport>
   <airport name="Chūbu Centrair International Airport" icao="RJGG" iata="NGO" type="Long_Haul_International"
            season="All_Year">
-    <town town="Tokoname City" country="171" GMT="09:00:00" DST="09:00:00" />
+    <town town="Nagoya" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="034°51'30''N" />
       <longitude value="136°48'19''E" />
@@ -1587,7 +1575,7 @@
     </runways>
   </airport>
   <airport name="Okhotsk Monbetsu Airport" icao="RJEB" iata="MBE" type="Regional" season="All_Year">
-    <town town="Okhotsk" country="171" GMT="09:00:00" DST="09:00:00" />
+    <town town="Monbetsu" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="44°18'15''N" />
       <longitude value="143°24'15''E" />
@@ -1923,6 +1911,7 @@
     </runways>
   </airport>
   <airport name="Hiroshima-Nishi Airport" icao="RJBH" iata="HIW" type="Regional" season="All_Year">
+  <period from="09.15.1961 00:00:00" to="01.01.1993 00:00:00" />
     <town town="Hiroshima" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="34°22'01''N" />
@@ -4497,6 +4486,22 @@
       <runway name="13/31" length="3390" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Hong Kong-Macau Ferry Terminal" icao="VHST" iata="HHP" type="Regional" season="All_Year">
+    <town town="Hong Kong" country="176" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="022°17'21''N" />
+      <longitude value="114°9'7''E" />
+    </coordinates>
+    <size value="Smallest" pax="13" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="H1" length="16" surface="Asphalt" type="Helipad" />
+      <runway name="H2" length="16" surface="Asphalt" type="Helipad" />
+    </runways>
+  </airport>
+  
   <!--Thailand (VT**)-->
     <airport name="Samui Airport" icao="VTSM" iata="USM" type="Short_Haul_International" season="All_Year">
     <town town="Na Thon (Ko Samui Island)" country="175" GMT="07:00:00" DST="07:00:00" />

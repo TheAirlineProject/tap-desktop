@@ -145,7 +145,8 @@
             {
                 Setup.SetupMainGame(startData.Opponents, startData.NumberOfOpponents);
             }
-
+            var heliports = Airports.GetAirports(a => a.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad));
+           
             if (startData.MajorAirports)
             {
                 List<Airport> majorAirports =
@@ -173,6 +174,7 @@
                 }
 
                 majorAirports.AddRange(usedAirports);
+                majorAirports.AddRange(heliports);
 
                 Airports.Clear();
 
@@ -2749,7 +2751,7 @@
                 airliner.CurrentFlight.Entry.Destination.Airport,
                 airliner.CurrentPosition);
             double expenses = AirportHelpers.GetFuelPrice(airliner.CurrentPosition) * fdistance
-                              * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Type.FuelConsumption
+                              * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.FuelConsumption
                               + AirportHelpers.GetLandingFee(airliner.CurrentPosition, airliner.Airliner);
 
             servicePrice += expenses;
@@ -2983,7 +2985,7 @@
                 double adistance = airliner.CurrentFlight.DistanceToDestination;
                     //airliner.CurrentPosition.GetDistanceTo(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
 
-                double speed = airliner.Airliner.Type.CruisingSpeed;
+                double speed = airliner.Airliner.CruisingSpeed;
 
                 /* Leaving it out until we get a position implemented agian
                 Weather currentWeather = GetAirlinerWeather(airliner);
@@ -3046,7 +3048,7 @@
             {
                 double adistance = airliner.CurrentFlight.DistanceToDestination;
 
-                double speed = airliner.Airliner.Type.CruisingSpeed;
+                double speed = airliner.Airliner.CruisingSpeed;
 
                 /* leaving it out until we get position working agian
                 if (airliner.CurrentFlight != null)

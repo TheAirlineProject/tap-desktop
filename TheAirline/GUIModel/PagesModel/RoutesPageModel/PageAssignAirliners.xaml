@@ -102,7 +102,7 @@
                                 <DataTemplate>
                                     <ListBox Style="{StaticResource VerticalListBoxStyle}"
                                              ItemTemplate="{DynamicResource RouteItem}"
-                                             ItemsSource="{Binding Airliner.Routes}" />
+                                             ItemsSource="{Binding Routes}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -143,6 +143,24 @@
                                                 </Style>
                                             </Button.Style>
                                             <Image Source="/Data/images/stop.png" Height="16" Width="16"
+                                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                                        </Button>
+                                        <Button VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0"
+                                                Click="btnReplaceAirliner_Click" Background="Transparent">
+                                            <Button.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Status}" Value="Started">
+                                                            <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding HasRoute}" Value="False">
+                                                            <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                            <Image Source="/Data/images/moveairliner.png" Height="16" Width="16"
                                                    RenderOptions.BitmapScalingMode="HighQuality" />
                                         </Button>
                                     </WrapPanel>

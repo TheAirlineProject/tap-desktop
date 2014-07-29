@@ -199,45 +199,51 @@
 
         public static void CheckForExtendRunway(Airport airport)
         {
-            int minYearsBetweenExpansions = 5;
+            Boolean isOnlyHeliport = !airport.Runways.Exists(r => r.Type == Runway.RunwayType.Regular);
 
-            long maxRunwayLenght = (from r in airport.Runways select r.Length).Max();
-            long longestRequiredRunwayLenght =
-                AirlinerTypes.GetTypes(
-                    a =>
-                        a.Produced.From <= GameObject.GetInstance().GameTime
-                        && a.Produced.To >= GameObject.GetInstance().GameTime).Max(a => a.MinRunwaylength);
-
-            List<Route> airportRoutes = GetAirportRoutes(airport);
-            IEnumerable<FleetAirliner> routeAirliners = airportRoutes.SelectMany(r => r.getAirliners());
-
-            long longestRunwayInUse = routeAirliners.Count() > 0
-                ? routeAirliners.Max(a => a.Airliner.Type.MinRunwaylength)
-                : 0;
-
-            if (maxRunwayLenght < longestRequiredRunwayLenght / 2 && maxRunwayLenght < longestRunwayInUse * 3 / 4
-                && GameObject.GetInstance().GameTime.AddYears(-minYearsBetweenExpansions) > airport.LastExpansionDate)
+            if (!isOnlyHeliport)
             {
-                List<string> runwayNames =
-                    (from r in Airports.GetAllAirports().SelectMany(a => a.Runways) select r.Name).Distinct().ToList();
+                int minYearsBetweenExpansions = 5;
 
-                foreach (Runway r in airport.Runways)
+                long maxRunwayLenght = (from r in airport.Runways select r.Length).Max();
+                long longestRequiredRunwayLenght =
+                    AirlinerTypes.GetTypes(
+                        a =>
+                            a.Produced.From <= GameObject.GetInstance().GameTime
+                            && a.Produced.To >= GameObject.GetInstance().GameTime).Max(a => a.MinRunwaylength);
+
+                List<Route> airportRoutes = GetAirportRoutes(airport);
+                IEnumerable<FleetAirliner> routeAirliners = airportRoutes.SelectMany(r => r.getAirliners());
+
+                long longestRunwayInUse = routeAirliners.Count() > 0
+                    ? routeAirliners.Max(a => a.Airliner.MinRunwaylength)
+                    : 0;
+
+                if (maxRunwayLenght < longestRequiredRunwayLenght / 2 && maxRunwayLenght < longestRunwayInUse * 3 / 4
+                    && GameObject.GetInstance().GameTime.AddYears(-minYearsBetweenExpansions) > airport.LastExpansionDate)
                 {
-                    runwayNames.Remove(r.Name);
+                    List<string> runwayNames =
+                        (from r in Airports.GetAllAirports().SelectMany(a => a.Runways) select r.Name).Distinct().ToList();
+
+                    foreach (Runway r in airport.Runways)
+                    {
+                        runwayNames.Remove(r.Name);
+                    }
+
+                    Runway.SurfaceType surface = airport.Runways[0].Surface;
+                    long lenght = Math.Min(longestRequiredRunwayLenght * 3 / 4, longestRunwayInUse * 2);
+
+                    var runway = new Runway(
+                        runwayNames[rnd.Next(runwayNames.Count)],
+                        lenght,
+                        Runway.RunwayType.Regular,
+                        surface,
+                        GameObject.GetInstance().GameTime.AddDays(90),
+                        false);
+                    airport.Runways.Add(runway);
+
+                    airport.LastExpansionDate = GameObject.GetInstance().GameTime;
                 }
-
-                Runway.SurfaceType surface = airport.Runways[0].Surface;
-                long lenght = Math.Min(longestRequiredRunwayLenght * 3 / 4, longestRunwayInUse * 2);
-
-                var runway = new Runway(
-                    runwayNames[rnd.Next(runwayNames.Count)],
-                    lenght,
-                    surface,
-                    GameObject.GetInstance().GameTime.AddDays(90),
-                    false);
-                airport.Runways.Add(runway);
-
-                airport.LastExpansionDate = GameObject.GetInstance().GameTime;
             }
         }
 
@@ -705,7 +711,7 @@
             }
             if (expansion.Type == AirportExpansion.ExpansionType.New_runway)
             {
-                Runway runway = new Runway(expansion.Name, expansion.Length, expansion.Surface, expansion.Date, true);
+                Runway runway = new Runway(expansion.Name, expansion.Length,Runway.RunwayType.Regular, expansion.Surface, expansion.Date, true);
                 airport.Runways.Add(runway);
 
                 if (expansion.NotifyOnChange && !onStartUp)
@@ -837,6 +843,7 @@
             return false;
             //airport.Weather[0].WindSpeed == Weather.eWindSpeed.Hurricane || airport.Weather[0].WindSpeed == Weather.eWindSpeed.Violent_Storm;
         }
+       
         public static Boolean HasFreeGates(Airport airport, Airline airline)
         {
             Terminal.TerminalType type = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
@@ -940,8 +947,10 @@
 
             for (int i = 0; i < gates; i++)
             {
-                Gate gate = airport.Terminals.getGates().Where(g => g.Airline == null).First();
-                gate.Airline = airline;
+                Gate gate = airport.Terminals.getGates().Where(g => g.Airline == null).FirstOrDefault();
+
+                if (gate != null)
+                    gate.Airline = airline;
             }
         }
 

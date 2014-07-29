@@ -6,8 +6,8 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
-
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
@@ -54,11 +54,18 @@
 
             Airport airport = demand.Destination;
 
+            Route.RouteType airlineFocus = GameObject.GetInstance().HumanAirline.AirlineRouteFocus;
+
+            Boolean hasCargo = 
+                airport.getAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Cargo,true)
+                .TypeLevel > 0;
+
             Boolean hasCheckin =
                 airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn)
                     .TypeLevel > 0;
 
-            int gates = Math.Min(2, airport.Terminals.NumberOfFreeGates);
+            int paxGates = Math.Min(2, airport.Terminals.getFreeGates(Terminal.TerminalType.Passenger));
+            int cargoGates = Math.Min(2,airport.Terminals.getFreeGates(Terminal.TerminalType.Cargo));
 
             //WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"), gates, airport.Profile.Name), WPFMessageBoxButtons.YesNo);
             object o = PopUpAirportContract.ShowPopUp(airport);
@@ -67,21 +74,56 @@
             {
                 var contractType = (AirportContract.ContractType)o;
 
-                if (!hasCheckin && contractType == AirportContract.ContractType.Full)
-                {
-                    AirportFacility checkinFacility =
-                        AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn)
-                            .Find(f => f.TypeLevel == 1);
+                Terminal.TerminalType terminalType;
 
-                    airport.addAirportFacility(
-                        GameObject.GetInstance().HumanAirline,
-                        checkinFacility,
-                        GameObject.GetInstance().GameTime);
-                    AirlineHelpers.AddAirlineInvoice(
-                        GameObject.GetInstance().HumanAirline,
-                        GameObject.GetInstance().GameTime,
-                        Invoice.InvoiceType.Purchases,
-                        -checkinFacility.Price);
+                int gates;
+
+                if (airlineFocus == Route.RouteType.Cargo)
+                {
+                    if (!hasCargo && contractType == AirportContract.ContractType.Full)
+                    {
+                        AirportFacility cargoFacility =
+                            AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo)
+                                .Find(f => f.TypeLevel == 1);
+
+                        airport.addAirportFacility(
+                            GameObject.GetInstance().HumanAirline,
+                            cargoFacility,
+                            GameObject.GetInstance().GameTime);
+                        AirlineHelpers.AddAirlineInvoice(
+                            GameObject.GetInstance().HumanAirline,
+                            GameObject.GetInstance().GameTime,
+                            Invoice.InvoiceType.Purchases,
+                            -cargoFacility.Price);
+                    }
+
+                    terminalType = Terminal.TerminalType.Cargo;
+                    gates = cargoGates;
+                }
+                else
+                {
+
+                    if (!hasCheckin && contractType == AirportContract.ContractType.Full)
+                    {
+                        AirportFacility checkinFacility =
+                            AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn)
+                                .Find(f => f.TypeLevel == 1);
+
+                        airport.addAirportFacility(
+                            GameObject.GetInstance().HumanAirline,
+                            checkinFacility,
+                            GameObject.GetInstance().GameTime);
+                        AirlineHelpers.AddAirlineInvoice(
+                            GameObject.GetInstance().HumanAirline,
+                            GameObject.GetInstance().GameTime,
+                            Invoice.InvoiceType.Purchases,
+                            -checkinFacility.Price);
+                    }
+
+                    terminalType = Terminal.TerminalType.Passenger;
+                    gates = paxGates;
+
+                
                 }
 
                 double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport, contractType, gates, 2);
@@ -90,7 +132,7 @@
                     GameObject.GetInstance().HumanAirline,
                     airport,
                     contractType,
-                    Terminal.TerminalType.Passenger,
+                    terminalType,
                     GameObject.GetInstance().GameTime,
                     gates,
                     2,

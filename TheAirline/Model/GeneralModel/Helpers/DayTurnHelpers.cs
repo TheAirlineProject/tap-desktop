@@ -203,6 +203,7 @@
                         var classes = new List<AirlinerClass>(airliner.Airliner.Classes);
                         foreach (AirlinerClass aClass in classes)
                         {
+                            var rac = ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type);
                             airliner.CurrentFlight.Classes.Add(
                                 new FlightAirlinerClass(
                                     ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass

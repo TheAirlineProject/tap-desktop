@@ -14,13 +14,14 @@
     {
         #region Constructors and Destructors
 
-        public Runway(string name, long length, SurfaceType surface, DateTime builtDate, Boolean standard)
+        public Runway(string name, long length, RunwayType type, SurfaceType surface, DateTime builtDate, Boolean standard)
         {
             this.Name = name;
             this.Length = length;
             this.Surface = surface;
             this.BuiltDate = builtDate;
             this.Standard = standard;
+            this.Type = type;
         }
 
         private Runway(SerializationInfo info, StreamingContext ctxt)
@@ -78,12 +79,19 @@
                     }
                 }
             }
+            if (version == 1)
+                this.Type = RunwayType.Regular;
         }
 
         #endregion
 
         #region Enums
+        public enum RunwayType
+        {
+            Regular,
 
+            Helipad
+        }
         public enum SurfaceType
         {
             Asphalt,
@@ -104,11 +112,14 @@
 
             Paved,
 
+            Steel,
+
             Unpaved,
 
-            Sand
-        }
+            Sand,
 
+            PSP
+        }
         #endregion
 
         #region Public Properties
@@ -128,13 +139,16 @@
         [Versioning("surface")]
         public SurfaceType Surface { get; set; }
 
+        [Versioning("type",Version=2)]
+        public RunwayType Type { get; set; }
+
         #endregion
 
         #region Public Methods and Operators
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 

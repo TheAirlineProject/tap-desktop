@@ -311,6 +311,8 @@
                 pax = pax * Math.Pow((1 - (currentPaxValue.InflationBeforeYear / 100)), yearDiff);
             }
 
+           
+
             return pax;
         }
 

@@ -236,11 +236,11 @@
                     double totalJets =
                         Convert.ToDouble(
                             GameObject.GetInstance()
-                                .MainAirline.Fleet.Count(f => f.Airliner.Type.Engine == AirlinerType.EngineType.Jet))
+                                .MainAirline.Fleet.Count(f => f.Airliner.Type.Engine == AirlinerType.TypeOfEngine.Jet))
                         + Convert.ToDouble(
                             GameObject.GetInstance()
                                 .MainAirline.Subsidiaries.Sum(
-                                    s => s.Fleet.Count(f => f.Airliner.Type.Engine == AirlinerType.EngineType.Jet)));
+                                    s => s.Fleet.Count(f => f.Airliner.Type.Engine == AirlinerType.TypeOfEngine.Jet)));
 
                     double jetRation = totalJets / totalFleet;
 

@@ -339,6 +339,15 @@
 
         public ObservableCollection<AirportTerminalMVVM> BuildingTerminals { get; set; }
 
+        public Boolean IsHeliport 
+        {
+            get
+            {
+                return !this.Airport.Runways.Exists(r=>r.Type == Runway.RunwayType.Regular);
+            }
+            private set { ;} 
+        }
+
         public Boolean CanBuildHub
         {
             get
@@ -725,6 +734,8 @@
             this.Type = type;
             this.Contracted =
                 this.Destination.AirlineContracts.Exists(c => c.Airline == GameObject.GetInstance().HumanAirline);
+            this.HasFreeGates = this.Destination.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0;
+
         }
 
         #endregion
@@ -762,6 +773,8 @@
                 this.NotifyPropertyChanged("Contracted");
             }
         }
+
+        public Boolean HasFreeGates { get; set; }
 
         public Airport Destination { get; set; }
 

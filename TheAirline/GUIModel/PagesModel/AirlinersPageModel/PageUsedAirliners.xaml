@@ -115,11 +115,11 @@
                     <filter:SortableGridViewColumn
                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1002'}"
                         CanFilter="True" FilterValues="{Binding RangeRanges,ElementName=pageUsedAirliners}"
-                        SortPropertyName="Airliner.Type.Range" Width="125">
+                        SortPropertyName="Airliner.Range" Width="125">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
-                                    Text="{Binding Airliner.Type.Range,Converter={StaticResource DistanceToUnitConverter}}"
+                                    Text="{Binding Airliner.Range,Converter={StaticResource DistanceToUnitConverter}}"
                                     VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -127,11 +127,11 @@
                     <filter:SortableGridViewColumn
                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1003'}"
                         CanFilter="True" FilterValues="{Binding SpeedRanges,ElementName=pageUsedAirliners}"
-                        SortPropertyName="Airliner.Type.CruisingSpeed" Width="125">
+                        SortPropertyName="Airliner.CruisingSpeed" Width="125">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
-                                    Text="{Binding Airliner.Type.CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}"
+                                    Text="{Binding Airliner.CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}"
                                     VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -139,22 +139,22 @@
                     <filter:SortableGridViewColumn
                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1004'}"
                         CanFilter="True" FilterValues="{Binding RunwayRanges,ElementName=pageUsedAirliners}"
-                        SortPropertyName="Airliner.Type.MinRunwaylength" Width="125">
+                        SortPropertyName="Airliner.MinRunwaylength" Width="125">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
-                                    Text="{Binding Airliner.Type.MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                                    Text="{Binding Airliner.MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}"
                                     VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn
                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1005'}"
-                        CanFilter="False" SortPropertyName="Airliner.Type.FuelConsumption" Width="100">
+                        CanFilter="False" SortPropertyName="Airliner.FuelConsumption" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
-                                    Text="{Binding Airliner.Type.FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}"
+                                    Text="{Binding Airliner.FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}"
                                     VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

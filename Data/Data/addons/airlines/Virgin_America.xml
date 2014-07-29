@@ -3,6 +3,7 @@
 <airline>
   <profile name="Virgin America" iata="VX" color="Red" country="122" CEO="C. David Cush" mentality="Aggressive"
            market="Domestic" preferedairport="SFO">
-  </profile>
+  <narrative narrative="Virgin America, Inc. is a United States-based airline that began service on August 8, 2007. The airline's stated aim is to provide low-fare, high-quality service for 'long-haul point-to-point service between major metropolitan cities on the Eastern and West Coast seaboards'."/>
+</profile>
   <info real="True" from="2004" to="2199"></info>
 </airline>

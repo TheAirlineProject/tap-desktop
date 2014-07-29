@@ -30,7 +30,7 @@
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Cargo">
+                                <DataTrigger Binding="{Binding ForConfig}" Value="False">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>

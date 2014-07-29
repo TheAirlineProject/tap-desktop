@@ -257,6 +257,12 @@
                     type.Type,
                     GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(),
                     deliveryDate);
+
+                EngineType engine = EngineTypes.GetStandardEngineType(type.Type,GameObject.GetInstance().GameTime.Year);
+
+                if (engine != null)
+                    airliner.EngineType = engine;
+
                 Airliners.AddAirliner(airliner);
 
                 var pType = FleetAirliner.PurchasedType.Bought;
@@ -273,6 +279,7 @@
                         aClass.setFacility(GameObject.GetInstance().HumanAirline, facility);
                     }
                 }
+         
             }
 
             int totalAmount = this.SelectedAirliners.Count;

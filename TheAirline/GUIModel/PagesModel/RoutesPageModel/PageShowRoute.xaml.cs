@@ -32,16 +32,30 @@
             this.Route = new HumanRouteMVVM(route);
             this.DataContext = this.Route;
 
-            foreach (AirlinerClass.ClassType type in AirlinerClass.GetAirlinerTypes())
+            if (this.Route.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter)
             {
-                if (this.Route.Route is PassengerRoute)
-                {
-                    RouteAirlinerClass rClass = ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(type);
-                    var mClass = new MVVMRouteClass(type, rClass.Seating, rClass.FarePrice);
+                
+                 RouteAirlinerClass rClass = ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
+                 var mClass = new MVVMRouteClass(AirlinerClass.ClassType.Economy_Class, rClass.Seating, rClass.FarePrice);
+                
+                 this.Classes.Add(mClass);
 
-                    this.Classes.Add(mClass);
+             
+            }
+            if (this.Route.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Passenger || this.Route.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Mixed)
+            {
+                 foreach (AirlinerClass.ClassType cType in AirlinerClass.GetAirlinerTypes())
+                {
+                    if ((int)cType <= GameObject.GetInstance().GameTime.Year)
+                    {
+                          RouteAirlinerClass rClass = ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(cType);
+                          var mClass = new MVVMRouteClass(cType, rClass.Seating, rClass.FarePrice);
+
+                          this.Classes.Add(mClass);
+                    }
                 }
             }
+          
 
             this.InitializeComponent();
 

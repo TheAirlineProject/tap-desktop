@@ -60,5 +60,8 @@
      <airlinerimage image="MD80" types="MD-81 (DC-9-81),MD-82 (DC-9-82),MD-83 (DC-9-83),MD-87 (DC-9-87),MD-88 (DC-9-88)"></airlinerimage>
       <airlinerimage image="DHC7" types="DHC-7-100"></airlinerimage>
       <airlinerimage image="YK40" types="Yak-40"></airlinerimage>
-
+      <airlinerimage image="A139" types="AgustaWestland AW139"></airlinerimage>
+      <airlinerimage image="A189" types="AgustaWestland AW189"></airlinerimage>
+            <airlinerimage image="S76" types="Sikorsky S-76"></airlinerimage>
+      <airlinerimage image="S92" types="Sikorsky S-92"></airlinerimage>
 </airlinerimages>

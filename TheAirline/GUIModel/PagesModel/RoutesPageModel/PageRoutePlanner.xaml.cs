@@ -64,11 +64,11 @@
                 (Route.RouteType)
                     Enum.Parse(typeof(Route.RouteType), this.Airliner.Airliner.Type.TypeAirliner.ToString(), true);
             ;
-
+            
             foreach (
                 Route route in
                     this.Airliner.Airliner.Airline.Routes.Where(
-                        r => r.getDistance() <= this.Airliner.Airliner.Type.Range && r.Type == routeType))
+                        r => r.getDistance() <= this.Airliner.Airliner.Range && r.Type == routeType))
             {
                 this.Routes.Add(route);
             }
@@ -87,7 +87,7 @@
             foreach (
                 Route route in
                     this.Airliner.Airliner.Airline.Routes.Where(
-                        r => r.getDistance() <= this.Airliner.Airliner.Type.Range && r.Type == routeType))
+                        r => r.getDistance() <= this.Airliner.Airliner.Range && r.Type == routeType))
             {
                 this.AllRoutes.Add(new RoutePlannerItemMVVM(route, this.Airliner.Airliner.Type));
             }
@@ -716,9 +716,9 @@
             cbAirliners.HorizontalAlignment = HorizontalAlignment.Left;
             cbAirliners.Width = 200;
 
-            long maxDistance = this.Airliner.Airliner.Type.Range;
+            long maxDistance = this.Airliner.Airliner.Range;
 
-            long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
+            long requiredRunway = this.Airliner.Airliner.MinRunwaylength;
 
             List<FleetAirliner> airliners =
                 GameObject.GetInstance()
@@ -1125,9 +1125,9 @@
 
         private void setCanTransferSchedule()
         {
-            long maxDistance = this.Airliner.Airliner.Type.Range;
+            long maxDistance = this.Airliner.Airliner.Range;
 
-            long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
+            long requiredRunway = this.Airliner.Airliner.MinRunwaylength;
 
             this.CanTransferSchedule =
                 GameObject.GetInstance()

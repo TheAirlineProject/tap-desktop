@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
   <airliner manufacturer="Aerospatiale" name="Aerospatiale-BAC Concorde" price="36813010">
@@ -15,17 +15,17 @@
     <capacity passengers="26" cockpitcrew="2" cabincrew="1" maxclasses="1" />
     <produced from="1964" to="1976" rate="8" />
   </airliner>
-  <airliner manufacturer="Aerospatiale" name="SA365 Dauphin 2" price="2646870">
+  <airliner type="Helicopter" manufacturer="Aerospatiale" name="SA365 Dauphin 2" price="2646870">
     <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
     <specs wingspan="2.7" length="13.37" range="790" speed="268" fuelcapacity="1135" consumption="0.131"
-           runwaylengthrequired="33" />
+           runwaylengthrequired="10" />
     <capacity passengers="11" cockpitcrew="2" cabincrew="0" maxclasses="1" />
     <produced from="1978" to="2018" rate="24" />
   </airliner>
-  <airliner manufacturer="Aerospatiale" name="EC120 Colibri" price="1277330">
+  <airliner type="Helicopter" manufacturer="Aerospatiale" name="EC120 Colibri" price="1277330">
     <type body="Helicopter" rangetype="Short_Range" engine="Turboprop" />
     <specs wingspan="2.5" length="9.6" range="710" speed="250" fuelcapacity="346" consumption="0.122"
-           runwaylengthrequired="33" />
+           runwaylengthrequired="10" />
     <capacity passengers="4" cockpitcrew="1" cabincrew="0" maxclasses="1" />
     <produced from="1995" to="2020" rate="40" />
   </airliner>

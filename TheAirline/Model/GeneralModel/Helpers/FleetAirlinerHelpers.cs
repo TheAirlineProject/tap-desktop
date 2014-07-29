@@ -368,7 +368,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double windSecondHalf = ((int)dest.Weather[0].WindSpeed) * GetWindInfluence(airliner, dest.Weather[0]);
 
-            int speed = Convert.ToInt32(((airliner.Airliner.Type.CruisingSpeed + windFirstHalf) + (airliner.Airliner.Type.CruisingSpeed + windSecondHalf)) / 2);
+            int speed = Convert.ToInt32(((airliner.Airliner.CruisingSpeed + windFirstHalf) + (airliner.Airliner.CruisingSpeed + windSecondHalf)) / 2);
 
             return speed;
 
@@ -416,16 +416,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 
                 int pax = airliner.CurrentFlight.getTotalPassengers();
                 
-                double basePrice = fuelPrice * distance* ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity * airliner.Airliner.Type.FuelConsumption*0.55;
-                double paxPrice = fuelPrice * distance * airliner.Airliner.Type.FuelConsumption*airliner.CurrentFlight.getTotalPassengers() * 0.45;
+                double basePrice = fuelPrice * distance* ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity * airliner.Airliner.FuelConsumption*0.55;
+                double paxPrice = fuelPrice * distance * airliner.Airliner.FuelConsumption*airliner.CurrentFlight.getTotalPassengers() * 0.45;
                 double seatsPrice = airliner.CurrentFlight.Classes.Sum(c=>(airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses-1) * c.Passengers);
                 return basePrice + paxPrice + seatsPrice;
 
              }
             else
             {
-                double basePrice = fuelPrice * distance* ((AirlinerCargoType)airliner.Airliner.Type).CargoSize * airliner.Airliner.Type.FuelConsumption * 0.55;
-                double cargoPrice = fuelPrice * airliner.Airliner.Type.FuelConsumption* airliner.CurrentFlight.Cargo * distance * 0.45;
+                double basePrice = fuelPrice * distance* ((AirlinerCargoType)airliner.Airliner.Type).CargoSize * airliner.Airliner.FuelConsumption * 0.55;
+                double cargoPrice = fuelPrice * airliner.Airliner.FuelConsumption* airliner.CurrentFlight.Cargo * distance * 0.45;
 
                 return basePrice + cargoPrice;
             }
@@ -441,9 +441,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             DateTime builtDate = GameObject.GetInstance().GameTime.AddDays(AirlinerHelpers.GetCargoConvertingDays(oldType));
 
             AirlinerCargoType newType = new AirlinerCargoType(oldType.Manufacturer,oldType.Name + "F",oldType.AirlinerFamily,oldType.CockpitCrew,cargoSize,oldType.CruisingSpeed,oldType.Range,oldType.Wingspan,oldType.Length,oldType.Weight, oldType.FuelConsumption,oldType.Price,oldType.MinRunwaylength,oldType.FuelCapacity,oldType.Body,oldType.RangeType,oldType.Engine,oldType.Produced,oldType.ProductionRate,false,false);
-            
+        
             airliner.Airliner.Type = newType;
             airliner.Airliner.BuiltDate = builtDate;
+  
         }
     
         //does the maintenance of a given type, sends the invoice, updates the last/next maintenance, and improves the aircraft's damage

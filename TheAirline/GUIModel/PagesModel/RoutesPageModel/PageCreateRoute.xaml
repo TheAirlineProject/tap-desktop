@@ -61,6 +61,9 @@
                             <RadioButton GroupName="RouteType"
                                          Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1018'}"
                                          Margin="5 0 0 0" Tag="Mixed" Checked="rbRouteType_Checked" />
+                            <RadioButton GroupName="RouteType"
+                                         Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1020'}"
+                                         Margin="5 0 0 0" Tag="Helicopter" Checked="rbRouteType_Checked" />
                         </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
@@ -148,12 +151,23 @@
                 </h:QuickInfoValue>
                 <h:QuickInfoValue
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1004'}">
+                    <h:QuickInfoValue.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=pageCreateRoute, Path=RouteType}" Value="Helicopter">
+                                    <Setter Property="h:QuickInfoValue.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                           
+                            </Style.Triggers>
+                        </Style>
+                    </h:QuickInfoValue.Style>
                     <h:QuickInfoValue.Value>
                         <WrapPanel>
                             <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}"
                                       ItemTemplate="{StaticResource AirportCountryCodeItem}" Width="300"
                                       Name="cbStopover1"
                                       ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}">
+                             
                                 <ComboBox.GroupStyle>
                                     <GroupStyle>
                                         <GroupStyle.HeaderTemplate>
@@ -294,6 +308,10 @@
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ElementName=pageCreateRoute, Path=RouteType}"
                                          Value="Passenger">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=pageCreateRoute, Path=RouteType}"
+                                         Value="Helicopter">
                                 <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>

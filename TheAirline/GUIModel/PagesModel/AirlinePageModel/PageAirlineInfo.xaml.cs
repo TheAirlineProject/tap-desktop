@@ -39,6 +39,7 @@
             this.DataContext = this.Airline;
             this.AirlineScores = new ObservableCollection<AirlineScoreMVVM>();
         
+          
             this.AirlineScores.Add(
                new AirlineScoreMVVM(
                    Translator.GetInstance().GetString("PageAirlineRatings", "1012"),
@@ -50,7 +51,7 @@
             this.AirlineScores.Add(
                 new AirlineScoreMVVM(
                     Translator.GetInstance().GetString("PageAirlineRatings", "1015"),
-                    (int)(StatisticsHelpers.GetAirlineFillAverage(this.Airline.Airline) * 100)));
+                    Math.Max(0,(int)(StatisticsHelpers.GetAirlineFillAverage(this.Airline.Airline) * 100))));
 
             this.InitializeComponent();
 

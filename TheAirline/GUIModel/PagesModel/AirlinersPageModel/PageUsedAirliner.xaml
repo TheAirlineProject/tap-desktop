@@ -68,21 +68,9 @@
 
             <Border Style="{StaticResource RoundedBorderStyle}">
                 <StackPanel>
-                    <ContentControl Content="{Binding Type}" VerticalAlignment="Bottom"
-                                    ContentTemplate="{StaticResource AirlinerTypeSpecificationItem}" />
-                    <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                        <TextBlock
-                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1004'}"
-                            Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                        <ContentControl Content="{Binding Registered}" VerticalAlignment="Bottom"
-                                        ContentTemplate="{StaticResource CountryLongFlagItem}" />
-                    </WrapPanel>
-                    <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                        <TextBlock
-                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1009'}"
-                            Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                        <TextBlock Text="{Binding BuiltDate.Year}" VerticalAlignment="Bottom" />
-                    </WrapPanel>
+                    <ContentControl Content="{Binding}" VerticalAlignment="Bottom"
+                                    ContentTemplate="{StaticResource AirlinerSpecificationItem}" />
+                  
                 </StackPanel>
             </Border>
             <StackPanel>
@@ -107,7 +95,9 @@
             <Border Style="{StaticResource RoundedBorderStyle}">
                 <StackPanel>
                     <ContentControl Content="{Binding}" VerticalAlignment="Bottom"
-                                    ContentTemplate="{StaticResource PriceInformationItem}" />
+                             ContentTemplate="{StaticResource PriceInformationItem}" />
+                  
+                  
                     <WrapPanel>
                         <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1007'}"

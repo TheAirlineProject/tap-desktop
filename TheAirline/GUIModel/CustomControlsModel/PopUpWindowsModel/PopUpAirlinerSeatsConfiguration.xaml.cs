@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel;
 
@@ -25,6 +26,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     {
         public ObservableCollection<AirlinerClassMVVM> Classes { get; set; }
         public ObservableCollection<AirlinerClass.ClassType> FreeClassTypes { get; set; }
+        public List<EngineType> Engines { get; set; }
+        public EngineType SelectedEngine { get; set; }
+        public Boolean CanSetSeats { get; set; }
         private Boolean _canAddNewClass;
         public Boolean CanAddNewClass
         {
@@ -32,21 +36,28 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             set { _canAddNewClass = value; NotifyPropertyChanged("CanAddNewClass"); }
         }
         public AirlinerType Type { get; set; }
-
-        public static object ShowPopUp(AirlinerType type, List<AirlinerClass> classes)
+        
+        public static object ShowPopUp(AirlinerType type, List<AirlinerClass> classes, EngineType engine)
         {
-            PopUpWindow window = new PopUpAirlinerSeatsConfiguration(type, classes);
+            PopUpWindow window = new PopUpAirlinerSeatsConfiguration(type, classes,engine);
             window.ShowDialog();
             
             return window.Selected;
 
 
         }
-        public PopUpAirlinerSeatsConfiguration(AirlinerType type, List<AirlinerClass> classes)
+        public PopUpAirlinerSeatsConfiguration(AirlinerType type, List<AirlinerClass> classes, EngineType engine)
         {
             this.FreeClassTypes = new ObservableCollection<AirlinerClass.ClassType>();
             this.Classes = new ObservableCollection<AirlinerClassMVVM>();
             this.Type = type;
+            this.Engines = new List<EngineType>();
+
+            foreach (EngineType e in EngineTypes.GetEngineTypes(type, GameObject.GetInstance().GameTime.Year).OrderBy(t=>t.Price))
+                this.Engines.Add(e);
+
+            if (this.Engines.Count > 0)
+                this.SelectedEngine = engine;
 
             AirlinerClass economyClass = classes.Find(c => c.Type == AirlinerClass.ClassType.Economy_Class);
 
@@ -72,7 +83,23 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             }
 
+            this.Loaded += PopUpAirlinerSeatsConfiguration_Loaded;
+
             InitializeComponent();
+        }
+
+        private void PopUpAirlinerSeatsConfiguration_Loaded(object sender, RoutedEventArgs e)
+        {
+            var tab_main = UIHelpers.FindChild<TabControl>(this, "tcMenu");
+
+            if (tab_main != null && (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter || this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo))
+            {
+                TabItem infoItem =
+                    tab_main.Items.Cast<TabItem>().Where(item => item.Tag.ToString() == "Engine").FirstOrDefault();
+
+                tab_main.SelectedItem = infoItem;
+
+            }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -174,7 +201,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 classes.Add(aClass);
             }
 
-            this.Selected = classes;
+            AirlinerConfigurationObject aco = new AirlinerConfigurationObject();
+            aco.Classes = classes;
+            aco.Engine = this.SelectedEngine;
+
+
+            this.Selected = aco;
             this.Close();
         }
 
@@ -209,6 +241,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
           
         }
 
+    }
+    public class AirlinerConfigurationObject
+    {
+        public List<AirlinerClass> Classes { get; set; }
+        public EngineType Engine { get; set; }
     }
     public class AirlinerClassFacilityMVVM : INotifyPropertyChanged
     {
