@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Lublin">
+  <months>
+    <month month="1" precipitation="23">
+      <temp min="-6" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="26">
+      <temp min="-6" max="0" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="27">
+      <temp min="-2" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="42">
+      <temp min="3" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="51">
+      <temp min="8" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="67">
+      <temp min="11" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="72">
+      <temp min="13" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="64">
+      <temp min="12" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="55">
+      <temp min="8" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="40">
+      <temp min="4" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="37">
+      <temp min="0" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="34">
+      <temp min="-4" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

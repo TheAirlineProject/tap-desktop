@@ -292,11 +292,16 @@
 
         #region Constructors and Destructors
 
-        public MVVMRouteFacility(RouteFacility.FacilityType type)
+        public MVVMRouteFacility(RouteFacility.FacilityType type, List<RouteFacility> facilities)
         {
             this.Facilities = new ObservableCollection<RouteFacility>();
 
             this.Type = type;
+
+            foreach (RouteFacility facility in facilities)
+                this.Facilities.Add(facility);
+
+            this.SelectedFacility = this.Facilities.OrderBy(f => f.ServiceLevel).First();
         }
 
         #endregion
@@ -349,6 +354,8 @@
 
         private double _fareprice;
 
+        private Boolean _isuseable;
+
         #endregion
 
         //public int CabinCrew { get; set; }
@@ -365,18 +372,22 @@
 
             foreach (RouteFacility.FacilityType facType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
             {
+                
                 if (GameObject.GetInstance().GameTime.Year >= (int)facType)
                 {
-                    var facility = new MVVMRouteFacility(facType);
-
+                    var facs = new List<RouteFacility>();
                     foreach (RouteFacility fac in RouteFacilities.GetFacilities(facType))
                     {
-                        facility.Facilities.Add(fac);
+                        facs.Add(fac);
                     }
+
+                    var facility = new MVVMRouteFacility(facType,facs);
 
                     this.Facilities.Add(facility);
                 }
             }
+
+         
         }
 
         #endregion
@@ -401,6 +412,19 @@
             {
                 this._fareprice = value;
                 this.NotifyPropertyChanged("FarePrice");
+            }
+        }
+
+        public Boolean IsUseable
+        {
+            get
+            {
+                return this._isuseable;
+            }
+            set
+            {
+                this._isuseable = value;
+                this.NotifyPropertyChanged("IsUseable");
             }
         }
 

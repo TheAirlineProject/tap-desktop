@@ -8404,7 +8404,7 @@
     </runways>
   </airport>
   <airport name="Oktyabrskiy Airport" icao="UWUK" iata="OKT" type="Domestic" season="All_Year">
-    <town town="Kzyl-Yar" country="149" GMT="05:00:00" DST="04:00:00" />
+    <town town="Oktyabrskiy" country="149" GMT="05:00:00" DST="04:00:00" />
     <coordinates>
       <latitude value="054°26'23''N" />
       <longitude value="053°23'17''E" />

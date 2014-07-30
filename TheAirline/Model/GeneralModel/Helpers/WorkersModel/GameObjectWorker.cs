@@ -159,26 +159,34 @@
         {
             while (!this.IsPaused && !this.Worker.CancellationPending)
             {
-                this.IsFinish = false;
-
-                var sw = new Stopwatch();
-
-                sw.Start();
-                GameObjectHelpers.SimulateTurn();
-                sw.Stop();
-
-                long waittime = (int)Settings.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
-
-                /*
-                if ((this.Worker.CancellationPending == true))
+                try
                 {
-                    e.Cancel = true;
-                
-                }*/
+                    this.IsFinish = false;
 
-                if (waittime > 0)
+                    var sw = new Stopwatch();
+
+                    sw.Start();
+                    GameObjectHelpers.SimulateTurn();
+                    sw.Stop();
+
+                    long waittime = (int)Settings.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
+                  
+                    if (waittime > 0)
+                    {
+                        Thread.Sleep((int)waittime);
+                    }
+                }
+                catch (Exception ex)
                 {
-                    Thread.Sleep((int)waittime);
+                    System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairline.log");
+                    file.WriteLine("{0}: {1} {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.StackTrace);
+                    file.WriteLine("---------GAME INFORMATION----------");
+                    file.Write("Gametime: {0}, human airline: {1}", GameObject.GetInstance().GameTime.ToShortDateString(), GameObject.GetInstance().HumanAirline.Profile.Name);
+                    file.Close();
+
+                    this.IsError = true;
+
+                   
                 }
             }
 
@@ -211,7 +219,7 @@
 
                 this.IsError = true;
 
-                this.Worker.RunWorkerAsync();
+         
             }
 
             this.IsFinish = true;

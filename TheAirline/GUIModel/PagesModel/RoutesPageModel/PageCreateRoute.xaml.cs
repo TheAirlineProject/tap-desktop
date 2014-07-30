@@ -465,7 +465,7 @@
                     {
                         route = new PassengerRoute(id.ToString(), destination1, destination2, startDate, 0);
 
-                        foreach (MVVMRouteClass rac in this.Classes)
+                        foreach (MVVMRouteClass rac in this.Classes.Where(c=>c.IsUseable))
                         {
                             ((PassengerRoute)route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
 
@@ -486,7 +486,7 @@
                     {
                         route = new HelicopterRoute(id.ToString(), destination1, destination2, startDate, 0);
 
-                        foreach (MVVMRouteClass rac in this.Classes)
+                        foreach (MVVMRouteClass rac in this.Classes.Where(c=>c.IsUseable))
                         {
                             ((HelicopterRoute)route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
 
@@ -505,7 +505,7 @@
 
                         route = new CombiRoute(id.ToString(), destination1, destination2, startDate, 0, cargoPrice);
 
-                        foreach (MVVMRouteClass rac in this.Classes)
+                        foreach (MVVMRouteClass rac in this.Classes.Where(c=>c.IsUseable))
                         {
                             ((PassengerRoute)route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
 
@@ -574,15 +574,10 @@
                 {
                     this.Airports.Add(airport);
                 }
-
-                while (this.Classes.Count > 0)
-                {
-                    this.Classes.RemoveAt(this.Classes.Count - 1);
-                }
-
-               
-                this.Classes.Add(new MVVMRouteClass(AirlinerClass.ClassType.Economy_Class,RouteAirlinerClass.SeatingType.Reserved_Seating,1));
-               
+                
+                foreach (MVVMRouteClass rc in this.Classes)
+                    rc.IsUseable = rc.Type == AirlinerClass.ClassType.Economy_Class;
+                 
                
             }
             else
@@ -598,22 +593,12 @@
                     this.Airports.Add(airport);
                 }
 
-                while (this.Classes.Count > 0)
-                {
-                    this.Classes.RemoveAt(this.Classes.Count - 1);
-                }
-
-                foreach (AirlinerClass.ClassType cType in AirlinerClass.GetAirlinerTypes())
-                {
-                    if ((int)cType <= GameObject.GetInstance().GameTime.Year)
-                    {
-                        var rClass = new MVVMRouteClass(cType, RouteAirlinerClass.SeatingType.Reserved_Seating, 1);
-
-                        this.Classes.Add(rClass);
-                    }
-                }
+                foreach (MVVMRouteClass rc in this.Classes)
+                    rc.IsUseable = true;
+           
+                
             }
-
+            /*
             //sets the selected items for the facilities
             foreach (MVVMRouteClass rClass in this.Classes)
             {
@@ -621,7 +606,7 @@
                 {
                     rFacility.SelectedFacility = rFacility.Facilities.OrderBy(f => f.ServiceLevel).FirstOrDefault();
                 }
-            }
+            }*/
             
         }
 

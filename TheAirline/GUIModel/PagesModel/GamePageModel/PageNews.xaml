@@ -195,7 +195,7 @@
                             <TextBlock Text="{Binding Subject}" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="16" />
                             <Separator />
                             <!--   <TextBlock TextWrapping="Wrap" Text="{Binding Body,Converter={StaticResource NewsTextConverter}}" VerticalAlignment="Bottom"></TextBlock>-->
-                            <ContentControl Content="{Binding Body,Converter={StaticResource NewsTextConverter}}"
+                           <ContentControl Content="{Binding Body,Converter={StaticResource NewsTextConverter}}"
                                         VerticalAlignment="Bottom" />
                             <WrapPanel Margin="0 10 0 0">
                                 <WrapPanel.Style>

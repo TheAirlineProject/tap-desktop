@@ -242,7 +242,6 @@
         {
             return GetEngineTypes(type).FindAll(t=>t.Produced.From<= year && t.Produced.To >= year);
         }
-        //Activator
         public static List<EngineType> GetEngineTypes(AirlinerType type)
         {
             List<EngineType> ttypes = new List<EngineType>();

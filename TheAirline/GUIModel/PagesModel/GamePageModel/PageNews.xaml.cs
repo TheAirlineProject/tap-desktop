@@ -148,9 +148,7 @@
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string text = value.ToString();
-
-            text = text.Replace("\n", Environment.NewLine);
-
+       
             var txtBlock = new TextBlock();
             txtBlock.TextWrapping = TextWrapping.Wrap;
 
@@ -177,7 +175,21 @@
                 }
                 else
                 {
-                    txtBlock.Inlines.Add(subText);
+                    string[] newLines = subText.Split(new string[]{"\\n"},StringSplitOptions.RemoveEmptyEntries);
+
+                    if (newLines.Count() > 0)
+                    {
+                        for (int i = 0; i < newLines.Count(); i++)
+                        {
+                            txtBlock.Inlines.Add(newLines[i]);
+
+                            if (i < newLines.Count() - 1)
+                                txtBlock.Inlines.Add(new LineBreak());
+                        }
+                       
+                    }
+                    else
+                        txtBlock.Inlines.Add(subText);
                 }
             }
 

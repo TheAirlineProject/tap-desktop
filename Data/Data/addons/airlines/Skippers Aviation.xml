@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <airline>
-  <profile name="Skippers Aviation" iata="JW" color="DarkBlue" country="116" CEO="SJ Quinlivan" mentality="Moderate" market="Local" preferedairport="PER">
+  <profile name="Skippers Aviation" iata="JW" color="DarkBlue" country="116" CEO="SJ Quinlivan" mentality="Moderate" market="Domestic" preferedairport="PER">
     <narrative narrative=" Skippers Aviation was founded in 1990 and operates out of Perth in Western Australia. They bill themselves as Western Australia's Truly Regional Airline. All 7 of their scheduled service is to Western Australian airports. It also operates service to 15 mines and has 100 flights a week on a regular basis to these mines. It's fleet has 27 planes. Six EMB 120ER's, six Dash 8 300's, four Dash 8 100's, two Fokker 100's, five Fairchild Metroliners, and four Cessna 441 Conquest II's. " /></profile>
   <info real="True" from="1990" to="2199" />
 </airline>

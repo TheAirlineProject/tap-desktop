@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <airline>
-  <profile name="Capital Airlines" iata="CA" logo="CA2" color="Red" country="122" CEO="Clifford A. Ball" mentality="Aggressive" market="Local" preferedairport="DCA">
+  <profile name="Capital Airlines" iata="CA" logo="CA2" color="Red" country="122" CEO="Clifford A. Ball" mentality="Aggressive" market="Domestic" preferedairport="DCA">
     <narrative narrative="  Capital Airlines existed from 1948-1961 when it became part of United Airlines. It's roots started in Pennsylvania Central Airlines based in Pittsburgh. After it was changed to Capitol Airlines in 1948 it made its based at Washington D.C's National Airport but kept a hub at Pittsburgh from its predecessor also. In 1961 it served 50 airports in 17 states. It operated DC-3's,DC-4's,DC-6's, Vickers Viscounts and 720's and Constellation's. They were the fifth biggest U.S airline by passenger count and somtimes by passnger miles in the 50's after the Big Four, American, United, TWA and Eastern.  " /></profile>
   <info real="True" from="1948" to="1961" />
 </airline>

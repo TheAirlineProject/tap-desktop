@@ -21,7 +21,18 @@
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="ClassItem">
-            <Border Style="{StaticResource RoundedBorderStyle}">
+            <Border>
+                <Border.Style>
+                    <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}">
+                        <Style.Triggers>
+                            <DataTrigger
+                                                Binding="{Binding IsUseable}"
+                                                Value="False">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
                 <StackPanel Width="300">
                     <TextBlock HorizontalAlignment="Center"
                                Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}"

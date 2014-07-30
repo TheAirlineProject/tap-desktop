@@ -2835,7 +2835,7 @@
     </runways>
   </airport>
     <airport name="Aktobe Airport" icao="UATT" iata="AKX" type="Domestic" season="All_Year">
-    <town town="Aktyuinsk" country="236" GMT="05:00:00" DST="05:00:00" />
+    <town town="Aktobe" country="236" GMT="05:00:00" DST="05:00:00" />
     <coordinates>
       <latitude value="050°14'44''N" />
       <longitude value="057°12'24''E" />
@@ -2975,8 +2975,8 @@
       <runway name="10/28" length="2800" surface="Concrete" />
     </runways>
   </airport>
-    <airport name="Dzhezkazgan Airport" icao="UAKD" iata="DZN" type="Domestic" season="All_Year">
-    <town town="Dzhezkazgan" country="236" GMT="06:00:00" DST="06:00:00" />
+    <airport name="Zhezkazgan Airport" icao="UAKD" iata="DZN" type="Domestic" season="All_Year">
+    <town town="Zhezkazgan" country="236" GMT="06:00:00" DST="06:00:00" />
     <coordinates>
       <latitude value="047°46'14''N" />
       <longitude value="067°40'24''E" />
@@ -2989,6 +2989,20 @@
       <runway name="04/22" length="2600" surface="Concrete" />
     </runways>
   </airport>
+  <airport name="Semey Airport" icao="UASS" iata="PLX" type="Domestic" season="All_Year">
+<town town="Semey" country="236" GMT="06:00:00" DST="06:00:00" />
+<coordinates>
+<latitude value="050°21'05''N" />
+<longitude value="080°14'04''E" />
+</coordinates>
+<size value="Very_small" pax="300" />
+<terminals>
+<terminal name="Terminal A" gates="5" />
+</terminals>
+<runways>
+<runway name="08/26" length="3096" surface="Concrete" />
+</runways>
+</airport> 
     <airport name="Kokshetau Airport" icao="UACK" iata="KOV" type="Domestic" season="All_Year">
     <town town="Kokshetau" country="236" GMT="06:00:00" DST="06:00:00" />
     <coordinates>

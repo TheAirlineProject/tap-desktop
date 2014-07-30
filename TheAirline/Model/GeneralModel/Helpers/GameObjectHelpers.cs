@@ -522,7 +522,6 @@
                 {
                     DoYearlyUpdate();
                 }
-
                 Parallel.ForEach(
                     Airlines.GetAllAirlines(),
                     airline =>

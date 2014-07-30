@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <airline>
-  <profile name="Solaseed Air" iata="LQ" logo="LQ" color="Green" country="171" CEO="&#xD;&#xA;&#xD;&#xA;Yori Tachibana&#xD;&#xA;" mentality="Moderate" market="Local" preferedairport="KMI">
+  <profile name="Solaseed Air" iata="LQ" logo="LQ" color="Green" country="171" CEO="Yori Tachibana" mentality="Moderate" market="Domestic" preferedairport="KMI">
     <narrative narrative="Solaseed Air was founded in 2002 as Skynet Asia Airways and changed it's name in 2011. It's base is Miyazaki on the island of Kyushu. They serve 6 destinations under their own name and 5 under the All Nippon Airways brand. They hope to expand outside of Japan soon. They have 15 planes, 10 737-800's, and 5 737-400's. There are 2 737-800's on order as of May 2014." />
   </profile>
   <info real="True" from="2002" to="2199"></info>

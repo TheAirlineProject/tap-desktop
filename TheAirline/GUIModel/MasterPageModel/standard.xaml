@@ -218,6 +218,7 @@
     </DataTemplate>
     <DataTemplate x:Key="FooterContent">
         <TextBlock
+           
             Text="{Binding Source={x:Static p:Settings.Default},
                                Path=Version,StringFormat={}The Airline Project {0}}"
             FontWeight="Bold" VerticalAlignment="Bottom" />
