@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Crescent City, CA">
+  <months>
+    <month month="1" precipitation="258">
+      <temp min="4" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="233">
+      <temp min="5" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="234">
+      <temp min="5" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="130">
+      <temp min="6" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="80">
+      <temp min="8" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="40">
+      <temp min="9" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="10">
+      <temp min="10" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="19">
+      <temp min="10" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="42">
+      <temp min="9" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="116">
+      <temp min="7" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="250">
+      <temp min="5" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="285">
+      <temp min="4" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

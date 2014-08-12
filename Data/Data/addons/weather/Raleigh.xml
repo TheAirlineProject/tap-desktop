@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<weather type="town" value="Raleigh, NC">
+<weather type="town" value="Raleigh/Durham, NC">
   <months>
     <month month="1" precipitation="89">
       <temp min="-1" max="10" />

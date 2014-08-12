@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Nantong">
+  <months>
+    <month month="1" precipitation="44">
+      <temp min="0" max="7" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="2" precipitation="49">
+      <temp min="1" max="8" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="3" precipitation="81">
+      <temp min="4" max="12" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="4" precipitation="73">
+      <temp min="10" max="19" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="5" precipitation="93">
+      <temp min="15" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="197">
+      <temp min="20" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="165">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="130">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="103">
+      <temp min="20" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="56">
+      <temp min="14" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="48">
+      <temp min="8" max="16" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="28">
+      <temp min="2" max="10" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

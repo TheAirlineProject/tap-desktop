@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Kemerovo">
+  <months>
+    <month month="1" precipitation="28">
+      <temp min="-22" max="-12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="19">
+      <temp min="-20" max="-9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="19">
+      <temp min="-13" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="26">
+      <temp min="-3" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="40">
+      <temp min="4" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="68">
+      <temp min="10" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="72">
+      <temp min="13" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="62">
+      <temp min="10" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="41">
+      <temp min="4" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="45">
+      <temp min="-2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="44">
+      <temp min="-11" max="-3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="41">
+      <temp min="-19" max="-10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

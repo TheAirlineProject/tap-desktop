@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Komatsu">
+  <months>
+    <month month="1" precipitation="269">
+      <temp min="1" max="7" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="180">
+      <temp min="0" max="8" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="172">
+      <temp min="3" max="12" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="145">
+      <temp min="8" max="18" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="157">
+      <temp min="13" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="190">
+      <temp min="18" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="213">
+      <temp min="22" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="154">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="236">
+      <temp min="19" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="180">
+      <temp min="13" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="267">
+      <temp min="7" max="16" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="279">
+      <temp min="3" max="11" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

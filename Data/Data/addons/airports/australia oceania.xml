@@ -1,4 +1,4 @@
-﻿<!--must be placed in \data\addons\airports-->
+<!--must be placed in \data\addons\airports-->
 <airports>
   <!--South Pacific (N***)-->
   <!--Kiribati, Tuvalu (NG**)-->
@@ -119,6 +119,21 @@
     </runways>
   </airport>
   <!--Northern Marianas Islands-->
+  <airport name="Francisco C. Ada Saipan International Airport" icao="PGSN" iata="SPN" type="Short_Haul_International"
+           season="All_Year">
+    <town town="Saipan Island, MP" country="122" GMT="10:00:00" DST="10:00:00" />
+    <coordinates>
+      <latitude value="015°07'08''N" />
+      <longitude value="145°43'44''E" />
+    </coordinates>
+    <size value="Small" pax="882" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="2652" surface="Asphalt" />
+    </runways>
+  </airport>
    <airport name="Rota International Airport" icao="PGRO" iata="ROP" type="Domestic" season="All_Year">
     <town town="Rota Island, MP" country="122" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
@@ -1323,22 +1338,7 @@
   </airport>
  
   <!--United States (Guam) (PG**)-->
-  <airport name="Francisco C. Ada Saipan International Airport" icao="PGSN" iata="SPN" type="Short_Haul_International"
-           season="All_Year">
-    <town town="Saipan Island, GU" country="122" GMT="10:00:00" DST="10:00:00" />
-    <coordinates>
-      <latitude value="015°07'08''N" />
-      <longitude value="145°43'44''E" />
-    </coordinates>
-    <size value="Small" pax="882" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="4" />
-    </terminals>
-    <runways>
-      <runway name="7/25" length="2652" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Antonio B. Won Pat International Airport" icao="PGUM" iata="GUM" type="Long_Haul_International"
+   <airport name="Antonio B. Won Pat International Airport" icao="PGUM" iata="GUM" type="Long_Haul_International"
            season="All_Year">
     <town town="Hagåtña, GU" country="122" GMT="10:00:00" DST="10:00:00" />
     <coordinates>

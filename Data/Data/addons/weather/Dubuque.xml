@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Dubuque, IA">
+  <months>
+    <month month="1" precipitation="33">
+      <temp min="-13" max="-4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="33">
+      <temp min="-10" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="71">
+      <temp min="-4" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="99">
+      <temp min="3" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="107">
+      <temp min="9" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="102">
+      <temp min="14" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="107">
+      <temp min="17" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="117">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="104">
+      <temp min="11" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="71">
+      <temp min="4" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="69">
+      <temp min="-3" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="48">
+      <temp min="-9" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

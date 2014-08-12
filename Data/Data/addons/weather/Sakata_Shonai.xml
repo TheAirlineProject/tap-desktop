@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Sakata/Shonai">
+  <months>
+    <month month="1" precipitation="168">
+      <temp min="-1" max="5" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="114">
+      <temp min="-1" max="5" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="107">
+      <temp min="1" max="9" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="102">
+      <temp min="5" max="15" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="121">
+      <temp min="11" max="20" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="121">
+      <temp min="16" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="209">
+      <temp min="20" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="179">
+      <temp min="21" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="162">
+      <temp min="17" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="181">
+      <temp min="11" max="20" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="225">
+      <temp min="5" max="13" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="204">
+      <temp min="1" max="8" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

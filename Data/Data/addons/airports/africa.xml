@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+
 
 <!--must be placed in \data\addons\airports-->
 <airports>
@@ -2926,7 +2926,7 @@
     </runways>
   </airport>
   <!--Morroco (GM**)-->
-  <airport name="Mohammed V International Airport" icao="GMMN" iata="CMN" type="Long_Haul_International"
+   <airport name="Mohammed V International Airport" icao="GMMN" iata="CMN" type="Long_Haul_International"
            season="All_Year">
     <town town="Casablanca" country="133" GMT="00:00:00" DST="00:00:00" />
     <coordinates>
@@ -3001,8 +3001,8 @@
       <runway name="04/22" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Saniat Rmel Airport" icao="GMTN" iata="TTU" type="Short_Haul_International" season="All_Year">
-    <town town="Saniat" country="133" GMT="00:00:00" DST="01:00:00" />
+    <airport name="Sania Ramel Airport" icao="GMTN" iata="TTU" type="Short_Haul_International" season="All_Year">
+    <town town="Tetouan" country="133" GMT="00:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="035°35'39''N" />
       <longitude value="005°19'12''W" />
@@ -3120,7 +3120,7 @@
       <latitude value="034°03'05''N" />
       <longitude value="006°45'05''W" />
     </coordinates>
-    <size value="Very_small" pax="351" />
+    <size value="Very_small" pax="352" />
     <terminals>
       <terminal name="Terminal A" gates="19" />
     </terminals>
@@ -3128,7 +3128,7 @@
       <runway name="04/22" length="3500" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Ibn Batouta Airport" icao="GMTT" iata="TNG" type="Long_Haul_International" season="All_Year">
+    <airport name="Ibn Battouta Airport" icao="GMTT" iata="TNG" type="Long_Haul_International" season="All_Year">
     <town town="Tangier" country="133" GMT="00:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="035°43'36''N" />

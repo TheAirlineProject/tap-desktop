@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Neftekamsk">
+  <months>
+    <month month="1" precipitation="23">
+      <temp min="-17" max="-9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="17">
+      <temp min="-17" max="-8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="16">
+      <temp min="-11" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="12">
+      <temp min="-2" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="44">
+      <temp min="5" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="49">
+      <temp min="10" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="41">
+      <temp min="12" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="49">
+      <temp min="15" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="37">
+      <temp min="9" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="46">
+      <temp min="0" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="30">
+      <temp min="-9" max="-3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="23">
+      <temp min="-16" max="-8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

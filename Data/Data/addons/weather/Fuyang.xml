@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Fuyang">
+  <months>
+    <month month="1" precipitation="27">
+      <temp min="-2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="33">
+      <temp min="0" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="57">
+      <temp min="4" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="57">
+      <temp min="11" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="82">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="162">
+      <temp min="21" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="189">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="96">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="87">
+      <temp min="18" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="64">
+      <temp min="12" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="40">
+      <temp min="5" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="18">
+      <temp min="0" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

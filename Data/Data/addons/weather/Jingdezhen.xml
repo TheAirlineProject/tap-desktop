@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Jingdezhen">
+  <months>
+    <month month="1" precipitation="82">
+      <temp min="2" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="121">
+      <temp min="4" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="193">
+      <temp min="7" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="234">
+      <temp min="13" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="246">
+      <temp min="18" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="325">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="215">
+      <temp min="24" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="137">
+      <temp min="24" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="80">
+      <temp min="20" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="85">
+      <temp min="15" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="62">
+      <temp min="8" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="46">
+      <temp min="3" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

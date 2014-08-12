@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Astrakhan">
+  <months>
+    <month month="1" precipitation="16">
+      <temp min="-7" max="0" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="12">
+      <temp min="-7" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="16">
+      <temp min="-2" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="23">
+      <temp min="6" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="28">
+      <temp min="12" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="25">
+      <temp min="17" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="24">
+      <temp min="19" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="21">
+      <temp min="18" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="17">
+      <temp min="12" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="18">
+      <temp min="6" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="18">
+      <temp min="0" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="16">
+      <temp min="-5" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

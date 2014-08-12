@@ -163,7 +163,7 @@
 
     <capacity passengers="180" cockpitcrew="2" cabincrew="3" maxclasses="2" />
 
-    <produced from="1988" to="2199" rate="220" />
+    <produced from="1988" to="1989" rate="20" />
 
   </airliner>
 

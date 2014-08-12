@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Waco, TX">
+  <months>
+    <month month="1" precipitation="54">
+      <temp min="2" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="67">
+      <temp min="4" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="80">
+      <temp min="8" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="68">
+      <temp min="12" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="109">
+      <temp min="18" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="87">
+      <temp min="21" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="46">
+      <temp min="23" max="36" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="52">
+      <temp min="23" max="36" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="77">
+      <temp min="19" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="99">
+      <temp min="14" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="72">
+      <temp min="8" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="70">
+      <temp min="3" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

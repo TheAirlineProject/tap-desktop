@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Wichita Falls, TX">
+  <months>
+    <month month="1" precipitation="29">
+      <temp min="-1" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="44">
+      <temp min="1" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="56">
+      <temp min="5" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="66">
+      <temp min="9" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="96">
+      <temp min="15" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="105">
+      <temp min="20" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="40">
+      <temp min="22" max="36" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="64">
+      <temp min="22" max="36" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="71">
+      <temp min="17" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="79">
+      <temp min="11" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="42">
+      <temp min="4" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="41">
+      <temp min="-1" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

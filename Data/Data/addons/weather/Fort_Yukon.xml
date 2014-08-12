@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Fort Yukon, AK">
+  <months>
+    <month month="1" precipitation="12">
+      <temp min="-33" max="-24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="9">
+      <temp min="-31" max="-20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="7">
+      <temp min="-24" max="-10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="5">
+      <temp min="-13" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="8">
+      <temp min="0" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="19">
+      <temp min="9" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="21">
+      <temp min="10" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="27">
+      <temp min="7" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="20">
+      <temp min="0" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="15">
+      <temp min="-11" max="-2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="11">
+      <temp min="-26" max="-17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="13">
+      <temp min="-32" max="-22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

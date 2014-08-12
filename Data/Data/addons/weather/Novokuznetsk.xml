@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Novokuznetsk">
+  <months>
+    <month month="1" precipitation="31">
+      <temp min="-20" max="-11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="22">
+      <temp min="-17" max="-7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="20">
+      <temp min="-11" max="0" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="30">
+      <temp min="-3" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="43">
+      <temp min="5" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="66">
+      <temp min="10" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="74">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="62">
+      <temp min="10" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="41">
+      <temp min="4" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="34">
+      <temp min="-2" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="35">
+      <temp min="-11" max="-3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="34">
+      <temp min="-17" max="-9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

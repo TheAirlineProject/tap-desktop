@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Hibbing, MN">
+  <months>
+    <month month="1" precipitation="16">
+      <temp min="-21" max="-8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="12">
+      <temp min="-18" max="-4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="24">
+      <temp min="-11" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="42">
+      <temp min="-3" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="65">
+      <temp min="2" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="106">
+      <temp min="11" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="111">
+      <temp min="11" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="80">
+      <temp min="9" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="78">
+      <temp min="4" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="63">
+      <temp min="-1" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="30">
+      <temp min="-8" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="18">
+      <temp min="-17" max="-6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Panama City Beach, FL">
+  <months>
+    <month month="1" precipitation="86">
+      <temp min="8" max="17" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="128">
+      <temp min="9" max="19" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="130">
+      <temp min="12" max="22" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="70">
+      <temp min="15" max="25" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="38">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="134">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="171">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="220">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="122">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="84">
+      <temp min="17" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="71">
+      <temp min="12" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="89">
+      <temp min="8" max="19" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

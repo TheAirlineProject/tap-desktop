@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Chelyabinsk">
+  <months>
+    <month month="1" precipitation="17">
+      <temp min="-19" max="-10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="16">
+      <temp min="-19" max="-8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="19">
+      <temp min="-9" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="27">
+      <temp min="0" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="47">
+      <temp min="8" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="55">
+      <temp min="13" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="87">
+      <temp min="14" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="44">
+      <temp min="13" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="41">
+      <temp min="7" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="30">
+      <temp min="1" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="26">
+      <temp min="-6" max="0" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="21">
+      <temp min="-15" max="-7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Sarasota, FL">
+  <months>
+    <month month="1" precipitation="75">
+      <temp min="11" max="22" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="68">
+      <temp min="12" max="23" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="85">
+      <temp min="14" max="25" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="47">
+      <temp min="16" max="28" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="72">
+      <temp min="18" max="31" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="188">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="221">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="240">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="184">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="73">
+      <temp min="18" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="60">
+      <temp min="15" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="62">
+      <temp min="12" max="23" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

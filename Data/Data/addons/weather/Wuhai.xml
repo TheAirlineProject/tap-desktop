@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Wuhai">
+  <months>
+    <month month="1" precipitation="0">
+      <temp min="-13" max="-2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="0">
+      <temp min="-10" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="3">
+      <temp min="-4" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="6">
+      <temp min="3" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="9">
+      <temp min="8" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="15">
+      <temp min="12" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="33">
+      <temp min="15" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="30">
+      <temp min="14" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="12">
+      <temp min="9" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="6">
+      <temp min="3" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="0">
+      <temp min="-4" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="0">
+      <temp min="-11" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

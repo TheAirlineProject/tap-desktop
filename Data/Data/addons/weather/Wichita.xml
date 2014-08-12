@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Wichita, KS">
+  <months>
+    <month month="1" precipitation="21">
+      <temp min="-6" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="30">
+      <temp min="-4" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="68">
+      <temp min="1" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="66">
+      <temp min="7" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="116">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="132">
+      <temp min="18" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="84">
+      <temp min="21" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="94">
+      <temp min="20" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="80">
+      <temp min="15" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="71">
+      <temp min="8" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="36">
+      <temp min="1" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="31">
+      <temp min="-5" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

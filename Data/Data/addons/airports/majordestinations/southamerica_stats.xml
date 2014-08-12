@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+
 
 <majordestinations>
   <majordestination airport="BOG">
@@ -19,7 +19,7 @@
       <destination airport="LIM" pax="340" />
       <destination airport="UIO" pax="290" />
       <destination airport="FLL" pax="227" />
-      <destination airport="MEX" pax="223" />
+      <destination airport="MEX" pax="501" cargo="77" />
       <destination airport="CCS" pax="222" />
       <destination airport="CDG" pax="168" />
       <destination airport="IAH" pax="158" />
@@ -34,6 +34,39 @@
       <destination airport="GYE" pax="71" />
       <destination airport="EWR" pax="68" />
       <destination airport="YYZ" pax="67" />
+    </destinations>
+  </majordestination>
+  <majordestination airport="CCS">
+    <destinations>
+      <destination airport="DFW" pax="13" cargo="2" />
+    </destinations>
+  </majordestination>
+  <majordestination airport="EZE">
+    <destinations>
+      <destination airport="DFW" pax="140" cargo="22" />
+      <destination airport="MEX" pax="139" cargo="21" />
+    </destinations>
+  </majordestination>
+  <majordestination airport="GIG">
+    <destinations>
+      <destination airport="DFW" pax="1" />
+          </destinations>
+  </majordestination>
+  <majordestination airport="GRU">
+    <destinations>
+      <destination airport="DFW" pax="154" cargo="24" />
+      <destination airport="MEX" pax="324" cargo="50" />
+    </destinations>
+  </majordestination>
+  <majordestination airport="LIM">
+    <destinations>
+      <destination airport="MEX" pax="369" cargo="57" />
+    </destinations>
+  </majordestination>
+  <majordestination airport="SCL">
+    <destinations>
+      <destination airport="DFW" pax="114" cargo="18" />
+      <destination airport="MEX" pax="188" cargo="29" />
     </destinations>
   </majordestination>
 </majordestinations>

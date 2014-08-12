@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Lanai City, HI">
+  <months>
+    <month month="1" precipitation="128">
+      <temp min="15" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="103">
+      <temp min="15" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="73">
+      <temp min="15" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="66">
+      <temp min="16" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="55">
+      <temp min="16" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="41">
+      <temp min="18" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="42">
+      <temp min="18" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="36">
+      <temp min="19" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="53">
+      <temp min="19" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="64">
+      <temp min="18" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="80">
+      <temp min="17" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="112">
+      <temp min="16" max="23" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

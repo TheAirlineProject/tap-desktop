@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Owensboro, KY">
+  <months>
+    <month month="1" precipitation="80">
+      <temp min="-5" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="94">
+      <temp min="-3" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="122">
+      <temp min="2" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="121">
+      <temp min="7" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="115">
+      <temp min="12" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="95">
+      <temp min="17" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="97">
+      <temp min="19" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="91">
+      <temp min="18" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="90">
+      <temp min="14" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="74">
+      <temp min="7" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="107">
+      <temp min="3" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="99">
+      <temp min="-2" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

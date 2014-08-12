@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Cold Bay, AK">
+  <months>
+    <month month="1" precipitation="72">
+      <temp min="-5" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="58">
+      <temp min="-5" max="0" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="53">
+      <temp min="-4" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="50">
+      <temp min="-2" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="58">
+      <temp min="1" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="53">
+      <temp min="5" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="64">
+      <temp min="8" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="82">
+      <temp min="8" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="112">
+      <temp min="6" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="110">
+      <temp min="1" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="106">
+      <temp min="-1" max="4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="93">
+      <temp min="-3" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

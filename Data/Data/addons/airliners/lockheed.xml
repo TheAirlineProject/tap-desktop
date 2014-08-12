@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
   <airliner manufacturer="Lockheed" name="Lockeed L-1011-1" price="16628530"> <!--21800000-->
@@ -28,5 +28,12 @@
            runwaylengthrequired="1330" />
     <capacity passengers="98" cockpitcrew="3" cabincrew="2" maxclasses="1" />
     <produced from="1959" to="1961" rate="42" />
+  </airliner>
+    <airliner type="Cargo" manufacturer="Lockheed" name="Lockheed L‑100‑30" price="17512740"> <!--59600000-->
+    <type body="Wide_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="40.4" length="34.35" range="2470" speed="570" fuelcapacity="35132" consumption="0.067"
+           runwaylengthrequired="1650" />
+    <capacity cockpitcrew="2" cargo="23" />
+    <produced from="1964" to="1992" rate="17" />
   </airliner>
 </airliners>

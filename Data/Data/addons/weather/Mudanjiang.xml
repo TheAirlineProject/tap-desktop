@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Mudanjiang">
+  <months>
+    <month month="1" precipitation="5">
+      <temp min="-23" max="-10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="6">
+      <temp min="-19" max="-5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="11">
+      <temp min="-9" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="26">
+      <temp min="0" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="54">
+      <temp min="7" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="91">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="121">
+      <temp min="17" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="109">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="60">
+      <temp min="8" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="35">
+      <temp min="0" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="13">
+      <temp min="-10" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="8">
+      <temp min="-19" max="-8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

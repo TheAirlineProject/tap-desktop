@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Grand Junction, CO">
+  <months>
+    <month month="1" precipitation="15">
+      <temp min="-8" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="14">
+      <temp min="-5" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="23">
+      <temp min="0" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="23">
+      <temp min="3" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="22">
+      <temp min="8" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="12">
+      <temp min="13" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="16">
+      <temp min="17" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="24">
+      <temp min="16" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="30">
+      <temp min="11" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="27">
+      <temp min="4" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="19">
+      <temp min="-2" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="15">
+      <temp min="-8" max="4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>
