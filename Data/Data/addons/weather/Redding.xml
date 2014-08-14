@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Redding, CA">
+  <months>
+    <month month="1" precipitation="154">
+      <temp min="2" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="113">
+      <temp min="4" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="111">
+      <temp min="5" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="53">
+      <temp min="8" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="32">
+      <temp min="11" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="14">
+      <temp min="16" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="4">
+      <temp min="18" max="37" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="12">
+      <temp min="17" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="23">
+      <temp min="15" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="57">
+      <temp min="9" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="132">
+      <temp min="5" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="140">
+      <temp min="2" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

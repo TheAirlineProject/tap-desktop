@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="San Angelo, TX">
+  <months>
+    <month month="1" precipitation="21">
+      <temp min="0" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="30">
+      <temp min="2" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="25">
+      <temp min="6" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="41">
+      <temp min="10" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="79">
+      <temp min="16" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="64">
+      <temp min="20" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="28">
+      <temp min="21" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="52">
+      <temp min="21" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="75">
+      <temp min="17" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="65">
+      <temp min="11" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="28">
+      <temp min="5" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="24">
+      <temp min="1" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

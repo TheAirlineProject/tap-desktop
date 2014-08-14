@@ -89,7 +89,23 @@
     </DataTemplate>
     <DataTemplate x:Key="LeftContent">
         <StackPanel>
+            <Button Background="#3772A1" Width="32" Click="btnEvent_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding GameObject.Contracts.Count,Source={StaticResource gameObject}}"
+                                             Value="0">
+                                <Setter Property="Button.Visibility" Value="Hidden" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/data/images/event.png"/>
+
+            </Button>
+           
             <WrapPanel HorizontalAlignment="Center">
+               
                 <Button Background="#3772A1" Width="32" Click="btnBack_Click"
                         ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3006'}">
                     <Button.Style>

@@ -436,6 +436,7 @@
                 LoadHolidays();
                 LoadHistoricEvents();
                 LoadRandomEvents();
+                LoadSpecialContracts();
                 LoadWeatherAverages();
 
                 CreateAdvertisementTypes();
@@ -660,6 +661,7 @@
         {
             AdvertisementTypes.Clear();
             TimeZones.Clear();
+            SpecialContractTypes.Clear();
             TemporaryCountries.Clear();
             Airports.Clear();
             AirportFacilities.Clear();
@@ -3433,7 +3435,134 @@
                 Manufacturers.AddManufacturer(new Manufacturer(name, shortname, country, isReal));
             }
         }
+        /*loads the special contracts*/
+        public static void LoadSpecialContracts()
+        {
+            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\contracts");
 
+            foreach (FileInfo file in dir.GetFiles("*.xml"))
+            {
+                LoadSpecialContract(file.FullName);
+            }
+        }
+        /*loads a special contract*/
+        public static void LoadSpecialContract(string file)
+        {
+            var doc = new XmlDocument();
+            doc.Load(file);
+            XmlElement root = doc.DocumentElement;
+            XmlNodeList contractsList = root.SelectNodes("//contract");
+
+            foreach (XmlElement element in contractsList)
+            {
+                string name = element.Attributes["name"].Value;
+                string text = element.Attributes["text"].Value;
+
+                XmlElement infoElement = (XmlElement)element.SelectSingleNode("information");
+
+                long payment = Convert.ToInt64(infoElement.Attributes["payment"].Value);
+                Boolean asbonus = Convert.ToBoolean(infoElement.Attributes["bonus"].Value);
+                long penalty = Convert.ToInt64(infoElement.Attributes["penalty"].Value);
+                Boolean isfixeddate = !infoElement.HasAttribute("frequency"); 
+
+                SpecialContractType scType = new SpecialContractType(name,text,payment,asbonus,penalty,isfixeddate);
+
+                if (isfixeddate)
+                {
+                     DateTime fromdate= Convert.ToDateTime(
+                    infoElement.Attributes["from"].Value,
+                    new CultureInfo("en-US", false));
+
+                    DateTime todate = Convert.ToDateTime(
+                     infoElement.Attributes["to"].Value,
+                     new CultureInfo("en-US", false));
+
+                    scType.Period = new Period<DateTime>(fromdate, todate);
+                }
+                else
+                {
+                    int frequency = Convert.ToInt32(infoElement.Attributes["frequency"].Value);
+
+                    scType.Frequency = frequency;
+                }
+
+                XmlNodeList routesList = element.SelectNodes("routes/route");
+
+                foreach (XmlElement routeElement in routesList)
+                {
+                    // public SpecialContractRoute(Airport destination1, Airport destination2, long passengers,Boolean bothways)
+                    Airport departure = Airports.GetAirport(routeElement.Attributes["departure"].Value);
+                    Airport destination = Airports.GetAirport(routeElement.Attributes["destination"].Value);
+                    Boolean bothways = Convert.ToBoolean(routeElement.Attributes["bothways"].Value);
+                    long passengers = Convert.ToInt64(routeElement.Attributes["passengers"].Value);
+
+                    Route.RouteType routetype = Route.RouteType.Passenger;
+
+                    if (routeElement.HasAttribute("type"))
+                        routetype = (Route.RouteType)
+                        Enum.Parse(typeof(Route.RouteType), routeElement.Attributes["type"].Value);
+
+                    SpecialContractRoute scRoute = new SpecialContractRoute(departure, destination, passengers,routetype, bothways);
+                    scType.Routes.Add(scRoute);
+
+                }
+
+                XmlNodeList parametersList = element.SelectNodes("parameters/parameter");
+
+                foreach (XmlElement parameterElement in parametersList)
+                {
+                    if (parameterElement.HasAttribute("departure"))
+                    {
+                        ContractRequirement parameter = new ContractRequirement(ContractRequirement.RequirementType.Destination);
+                        
+                        Airport departure = Airports.GetAirport(parameterElement.Attributes["departure"].Value);
+
+                        parameter.Departure = departure;
+
+                        string destinationText = parameterElement.Attributes["destination"].Value;
+
+                        if (destinationText == "any")
+                        {
+                            foreach (SpecialContractRoute scroute in scType.Routes.Where(r => r.Departure == departure))
+                            {
+                                ContractRequirement tparameter = new ContractRequirement(ContractRequirement.RequirementType.Destination);
+                                tparameter.Departure = departure;
+                                tparameter.Destination = scroute.Destination;
+
+                                scType.Requirements.Add(tparameter);
+                        
+                            }
+                        }
+                        else
+                        {
+
+                            parameter.Destination = Airports.GetAirport(destinationText);
+
+                            scType.Requirements.Add(parameter);
+                        }
+                    }
+                    else
+                    {
+                        ContractRequirement parameter = new ContractRequirement(ContractRequirement.RequirementType.ClassType);
+
+                        var type =
+                    (AirlinerClass.ClassType)
+                        Enum.Parse(typeof(AirlinerClass.ClassType), parameterElement.Attributes["classtype"].Value);
+
+                        int seats = Convert.ToInt32(parameterElement.Attributes["minseats"].Value);
+
+                        parameter.ClassType = type;
+                        parameter.MinSeats = seats;
+
+                        scType.Requirements.Add(parameter);
+
+                    }
+                }
+
+                SpecialContractTypes.AddType(scType);
+              
+            }
+        }
         //loads the random events
         private static void LoadRandomEvents()
         {
@@ -3685,7 +3814,7 @@
 
                 foreach (XmlElement aiElement in aiNodeList)
                 {
-                    Airline aiAirline = Airlines.GetAirline(aiElement.Attributes["name"].Value);
+                    Airline aiAirline = Airlines.GetAirline(aiElement.Attributes["name"].Value, startYear);
                     Airport aiHomebase = Airports.GetAirport(aiElement.Attributes["homeBase"].Value);
 
                     var scenarioAirline = new ScenarioAirline(aiAirline, aiHomebase);
@@ -4253,7 +4382,8 @@
                 if (airline.IsHuman)
                 {
                     GameObject.GetInstance().HumanMoney = airline.Money;
-                }
+
+                 }
 
                 airline.StartMoney = airline.Money;
                 airline.Fees = new AirlineFees();

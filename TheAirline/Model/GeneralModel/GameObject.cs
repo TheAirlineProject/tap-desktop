@@ -3,14 +3,14 @@
 namespace TheAirline.Model.GeneralModel
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Reflection;
-    using System.Runtime.Serialization;
-
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.GeneralModel.ScenarioModel;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel.ScenarioModel;
 
     [Serializable]
     //the class for the game object
@@ -52,6 +52,7 @@ namespace TheAirline.Model.GeneralModel
             this.PagePerformanceCounterEnabled = false;
             this.FinancePageEnabled = false;
             this.DayRoundEnabled = true;
+            this.Contracts = new ObservableCollection<SpecialContractType>();
         }
 
         private GameObject(SerializationInfo info, StreamingContext ctxt)
@@ -109,6 +110,8 @@ namespace TheAirline.Model.GeneralModel
                     }
                 }
             }
+            if (version == 1)
+                this.Contracts = new ObservableCollection<SpecialContractType>();
         }
 
         #endregion
@@ -158,6 +161,8 @@ namespace TheAirline.Model.GeneralModel
                 this.NotifyPropertyChanged("GameTime");
             }
         }
+        [Versioning("contracts",Version=2)]
+        public ObservableCollection<SpecialContractType> Contracts { get; set; }
 
         //public DateTime GameTime { get; set; }
 
@@ -242,7 +247,7 @@ namespace TheAirline.Model.GeneralModel
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 

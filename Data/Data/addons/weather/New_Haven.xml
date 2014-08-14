@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="New Haven, CT">
+  <months>
+    <month month="1" precipitation="81 ">
+      <temp min="-6" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="73">
+      <temp min="-4" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="109">
+      <temp min="-1" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="113">
+      <temp min="4" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="106">
+      <temp min="9" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="102">
+      <temp min="15" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="102">
+      <temp min="18" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="100">
+      <temp min="18" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="111">
+      <temp min="13" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="108">
+      <temp min="7" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="100">
+      <temp min="2" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="92">
+      <temp min="-2" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

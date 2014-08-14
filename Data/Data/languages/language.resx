@@ -5187,4 +5187,49 @@ Good luck.</value>
   <data name="PopUpAirlinerSeatsConfiguration_1012_name" xml:space="preserve">
     <value>Price</value>
   </data>
+  <data name="News_1016_message" xml:space="preserve">
+    <value>You failed to fulfil your contract {0}. It will cost you a penalty fee of {1}</value>
+  </data>
+  <data name="News_1016_name" xml:space="preserve">
+    <value>Failed contract</value>
+  </data>
+  <data name="News_1017_message" xml:space="preserve">
+    <value>Congrats! You have fulfilled the contract {0} and you will be paid a bonus of {1}</value>
+  </data>
+  <data name="News_1017_name" xml:space="preserve">
+    <value>Successful contract</value>
+  </data>
+  <data name="PageAssignAirliners_1005_name" xml:space="preserve">
+    <value>Special Contracts</value>
+  </data>
+  <data name="PageAssignAirliners_1006_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PageAssignAirliners_1007_name" xml:space="preserve">
+    <value>Airline</value>
+  </data>
+  <data name="PageAssignAirliners_1008_name" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="PopUpSpecialContracts_1000_name" xml:space="preserve">
+    <value>Special Contracts</value>
+  </data>
+  <data name="PopUpSpecialContracts_1001_name" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="PopUpSpecialContracts_1002_name" xml:space="preserve">
+    <value>Penalty</value>
+  </data>
+  <data name="PageCreateRoute_1021_name" xml:space="preserve">
+    <value>Add Route to Contract</value>
+  </data>
+  <data name="PageAssignAirliners_1009_name" xml:space="preserve">
+    <value>To Date</value>
+  </data>
+  <data name="PageRoutePlanner_1027_name" xml:space="preserve">
+    <value>Use as Charter</value>
+  </data>
+  <data name="PageRoutePlanner_1028_name" xml:space="preserve">
+    <value>Charter Route</value>
+  </data>
 </root>

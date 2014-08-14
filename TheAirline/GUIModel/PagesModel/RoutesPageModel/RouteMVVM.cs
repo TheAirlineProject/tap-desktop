@@ -121,7 +121,19 @@
 
         #endregion
     }
-
+    //the mvvm object for a special contract
+    public class SpecialContractMVVM
+    {
+        public SpecialContract Contract { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public SpecialContractMVVM(SpecialContract contract, DateTime startdate, DateTime enddate)
+        {
+            this.Contract = contract;
+            this.StartDate = startdate;
+            this.EndDate = enddate;
+        }
+    }
     //the mvvm object for an airliner
     public class FleetAirlinerMVVM : INotifyPropertyChanged
     {
@@ -141,6 +153,9 @@
             this.Status = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
                 ? StatusMVVM.Stopped
                 : StatusMVVM.Started;
+            
+            if (this.Airliner.Status == FleetAirliner.AirlinerStatus.On_charter)
+                this.Status = StatusMVVM.Charter;
 
             this.Routes = new ObservableCollection<Route>();
 
@@ -164,7 +179,9 @@
         {
             Stopped,
 
-            Started
+            Started,
+
+            Charter
         }
 
         #endregion

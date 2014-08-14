@@ -112,6 +112,13 @@
 
             this.setCanTransferSchedule();
 
+            this.SpecialContractRoutes = new List<Route>();
+
+            var humanSpecialRoutes = GameObject.GetInstance().HumanAirline.SpecialContracts.Where(s => !s.Type.IsFixedDate).SelectMany(s => s.Routes.Where(r=>!r.HasAirliner));
+
+            foreach (Route sRoute in humanSpecialRoutes)
+                this.SpecialContractRoutes.Add(sRoute);
+
             this.Loaded += this.PageRoutePlanner_Loaded;
 
             this.InitializeComponent();
@@ -145,6 +152,7 @@
                 this.NotifyPropertyChanged("CanTransferSchedule");
             }
         }
+        public List<Route> SpecialContractRoutes { get; set; }
 
         public ObservableCollection<RouteTimeTableEntry> Entries { get; set; }
 
@@ -664,7 +672,25 @@
                 Configurations.AddConfiguration(configuration);
             }
         }
+        private void btnSaveContract_Click(Object sender, RoutedEventArgs e)
+        {
+            Route route = (Route)cbSpecialRoute.SelectedItem;
 
+            RouteTimeTable rtt = new RouteTimeTable(route);
+
+            RouteTimeTableEntry entry = new RouteTimeTableEntry(rtt, DayOfWeek.Wednesday, new TimeSpan(12, 0, 0), new RouteEntryDestination(route.Destination2, "Charter"));
+            entry.Airliner = this.Airliner;
+            rtt.addEntry(entry);
+
+            route.TimeTable = rtt;
+
+            this.Airliner.addRoute(route);
+            this.Airliner.Status = FleetAirliner.AirlinerStatus.On_charter;
+
+            
+
+       
+        }
         private void btnSave_Click(Object sender, RoutedEventArgs e)
         {
             var oldEntries =
@@ -694,6 +720,7 @@
                 }
             }
 
+            this.Airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
  
         }
 

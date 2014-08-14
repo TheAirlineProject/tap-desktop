@@ -74,7 +74,29 @@
                 ChangePaxDemand(a, factor);
             }
         }
+        //changes the demand between two airports
+        public static void ChangePaxDemand(Airport airport1, Airport airport2, int value)
+        {
+            DestinationDemand destPax = airport1.getDestinationPassengersObject(airport2);
 
+            if (destPax != null)
+            {
+                destPax.Rate += Convert.ToUInt16(value);
+
+                if (destPax.Rate < 0)
+                    destPax.Rate = 0;
+            }
+            else
+            {
+                if (value > 0)
+                {
+                    airport1.addDestinationPassengersRate(airport2, Convert.ToUInt16(value));
+                }
+            }
+
+           
+            
+        }
         //changes the demand for an airport with a factor
         public static void ChangePaxDemand(Airport airport, double factor)
         {

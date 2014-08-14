@@ -1726,6 +1726,42 @@
                         FleetAirlinerHelpers.DoMaintenance(airliner);
                         FleetAirlinerHelpers.RestoreMaintRoutes(airliner);
                     }
+                
+                }
+
+                //checks for special contracts
+                var sContracts = new List<SpecialContract>(a.SpecialContracts.Where(s=>s.Date<=GameObject.GetInstance().GameTime));
+
+                foreach (SpecialContract sc in sContracts)
+                {
+                    
+                    if (sc.Date.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() && sc.Type.IsFixedDate)
+                    {
+                        foreach (SpecialContractRoute route in sc.Type.Routes)
+                        {
+                            PassengerHelpers.ChangePaxDemand(route.Departure,route.Destination,(int)route.PassengersPerDay);
+
+                            if (route.BothWays)
+                                PassengerHelpers.ChangePaxDemand(route.Destination,route.Departure,(int)route.PassengersPerDay);
+
+                        }
+                    }
+                    if (AirlineHelpers.CheckSpecialContract(sc))
+                    {
+                        a.SpecialContracts.Remove(sc);
+
+                        if (sc.Type.IsFixedDate)
+                        {
+                            foreach (SpecialContractRoute route in sc.Type.Routes)
+                            {
+                                PassengerHelpers.ChangePaxDemand(route.Departure, route.Destination, -(int)route.PassengersPerDay);
+
+                                if (route.BothWays)
+                                    PassengerHelpers.ChangePaxDemand(route.Destination, route.Departure, -(int)route.PassengersPerDay);
+
+                            }
+                        }
+                    }
                 }
             }
 
@@ -1736,6 +1772,79 @@
                // GameObject.GetInstance().HumanAirline.OverallScore +=
                  //   StatisticsHelpers.GetWeeklyScore(GameObject.GetInstance().HumanAirline);
             }
+            //checks for new special contract types
+            var randomSpecialContracts = SpecialContractTypes.GetRandomTypes();
+            var fixedSpecialContracts = SpecialContractTypes.GetTypes().FindAll(s=>s.IsFixedDate && GameObject.GetInstance().GameTime.ToShortDateString() == s.Period.From.AddMonths(-1).ToShortDateString());
+            
+            var existingContracts = new List<SpecialContractType>(GameObject.GetInstance().Contracts);
+
+            foreach (SpecialContractType sct in existingContracts)
+            {
+                if (sct.LastDate.AddMonths(1).ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString())
+                    GameObject.GetInstance().Contracts.Remove(sct);
+                else
+                {
+                    Boolean taken = false;
+                    int i=0;
+
+                    while (!taken && i<Airlines.GetAirlines(a=>!a.IsHuman).Count)
+                    {
+                        Airline airline = Airlines.GetAirlines(a=>!a.IsHuman)[i];
+                        taken = AIHelpers.WillTakeSpecialContract(airline,sct); 
+
+                        if (taken)
+                        {
+                            DateTime startdate;
+
+                            if (sct.IsFixedDate)
+                                startdate = sct.Period.From;
+                            else
+                                startdate = GameObject.GetInstance().GameTime;
+
+                            SpecialContract sc = new SpecialContract(sct,startdate,airline);
+                            airline.SpecialContracts.Add(sc);
+
+                            GameObject.GetInstance().Contracts.Remove(sct);
+                        }
+
+                        i++;
+                    }
+
+                }
+            }
+
+            foreach (SpecialContractType sct in fixedSpecialContracts)
+            {
+                if (sct.LastDate == DateTime.MinValue)
+                    sct.LastDate = GameObject.GetInstance().GameTime;
+
+                GameObject.GetInstance().Contracts.Add(sct);
+            }
+
+            foreach (SpecialContractType sct in randomSpecialContracts)
+            {
+                if (sct.LastDate == DateTime.MinValue)
+                    sct.LastDate = GameObject.GetInstance().GameTime;
+                
+                int monthsSinceLast = MathHelpers.GetAgeMonths(sct.LastDate);
+
+                int monthsFrequency = 12 / sct.Frequency;
+
+                //mf = 12, ms = 1 => procent = lille, mf = 6, ms = 6 => procent = medium, mf = 1, ms = 12 => procent = høj
+
+                int value = 100 - (monthsSinceLast - monthsFrequency);
+
+                Boolean createContract = !GameObject.GetInstance().Contracts.Contains(sct) && rnd.Next(value) == 0;
+
+                if (createContract)
+                {
+                    sct.LastDate = GameObject.GetInstance().GameTime;
+
+                    GameObject.GetInstance().Contracts.Add(sct); 
+                }
+            }
+            
+           
         }
 
         private static void DoMonthlyUpdate()

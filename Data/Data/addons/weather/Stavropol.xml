@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Stavropol">
+  <months>
+    <month month="1" precipitation="29">
+      <temp min="-5" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="28">
+      <temp min="-6" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="34">
+      <temp min="-1" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="44">
+      <temp min="5" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="66">
+      <temp min="10" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="80">
+      <temp min="15" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="58">
+      <temp min="17" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="43">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="47">
+      <temp min="12" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="49">
+      <temp min="6" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="45">
+      <temp min="0" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="33">
+      <temp min="-3" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

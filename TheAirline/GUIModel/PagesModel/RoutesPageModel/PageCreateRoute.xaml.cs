@@ -42,6 +42,7 @@
             this.RouteInformationText = "";
             this.ConnectingRoutes = new ObservableCollection<Route>();
             this.Classes = new ObservableCollection<MVVMRouteClass>();
+            this.Contracts = new ObservableCollection<SpecialContract>();
 
             foreach (AirlinerClass.ClassType type in AirlinerClass.GetAirlinerTypes())
             {
@@ -114,6 +115,8 @@
         public ObservableCollection<MVVMRouteClass> Classes { get; set; }
 
         public ObservableCollection<Route> ConnectingRoutes { get; set; }
+
+        public ObservableCollection<SpecialContract> Contracts { get; set; }
 
         public List<AirlinerType> HumanAircrafts { get; set; }
 
@@ -292,6 +295,10 @@
         {
             this.cbStopover2.SelectedItem = null;
         }
+        private void btnContract_Click(object sender, RoutedEventArgs e)
+        {
+            this.cbContract.SelectedItem = null;
+        }
 
         private void cbAircraft_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -309,11 +316,38 @@
                 };
             }
         }
+        private void cbStopover1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            while (this.Contracts.Count > 0)
+                this.Contracts.Remove(this.Contracts[0]);
 
+            if (cbStopover1.SelectedItem == null)
+            {
+                if (cbDestination1.SelectedItem != null && cbDestination2.SelectedItem != null)
+                {
+                    var destination1 = (Airport)this.cbDestination1.SelectedItem;
+                    var destination2 = (Airport)this.cbDestination2.SelectedItem;
+
+                    var humanContracts = GameObject.GetInstance().HumanAirline.SpecialContracts.Where(s => s.Type.Routes.Exists(r => (r.Departure == destination1 && r.Destination == destination2) || (r.Departure == destination2 && r.Destination == destination1 && r.BothWays)));
+
+                    foreach (SpecialContract sc in humanContracts)
+                    {
+                        int routesCount = sc.Routes.Count(r => r.Destination1 == destination1 && r.Destination2 == destination2 && r.Type == this.RouteType);
+                        int contractRoutesCount = sc.Type.Routes.Count(r => r.RouteType == this.RouteType && ((r.Departure == destination1 && r.Destination == destination2) || (r.Departure == destination2 && r.Destination == destination1 && r.BothWays)));
+
+                        if (contractRoutesCount > routesCount)
+                            this.Contracts.Add(sc);
+                    }
+                }
+            }
+        }
         private void cbDestination_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (this.cbDestination1 != null && this.cbDestination2 != null && this.txtDistance != null)
             {
+                while (this.Contracts.Count > 0)
+                    this.Contracts.Remove(this.Contracts[0]);
+
                 var destination1 = (Airport)this.cbDestination1.SelectedItem;
                 var destination2 = (Airport)this.cbDestination2.SelectedItem;
 
@@ -397,6 +431,23 @@
                                     destination2.Profile.Name);
                         }
                     }
+
+                    if (cbStopover1.SelectedItem == null)
+                    {
+                        var humanContracts = GameObject.GetInstance().HumanAirline.SpecialContracts.Where(s => s.Type.Routes.Exists(r => (r.Departure == destination1 && r.Destination == destination2) || (r.Departure == destination2 && r.Destination == destination1 && r.BothWays)));
+
+                        foreach (SpecialContract sc in humanContracts)
+                        {
+                            int routesCount = sc.Routes.Count(r => r.Destination1 == destination1 && r.Destination2 == destination2 && r.Type == this.RouteType);
+                            int contractRoutesCount = sc.Type.Routes.Count(r => r.RouteType == this.RouteType && ((r.Departure == destination1 && r.Destination == destination2) || (r.Departure == destination2 && r.Destination == destination1 && r.BothWays)));
+
+                            if (contractRoutesCount > routesCount)
+                                this.Contracts.Add(sc);
+                        }
+                    }
+                   
+
+
                 }
             }
         }
@@ -422,6 +473,12 @@
 
         private Boolean createRoute()
         {
+            SpecialContract contract = null;
+
+            if (this.Contracts.Count > 0 && this.cbContract.SelectedItem != null)
+            {
+                contract = (SpecialContract)this.cbContract.SelectedItem;
+            }
             Route route = null;
             var destination1 = (Airport)this.cbDestination1.SelectedItem;
             var destination2 = (Airport)this.cbDestination2.SelectedItem;
@@ -465,7 +522,7 @@
                     {
                         route = new PassengerRoute(id.ToString(), destination1, destination2, startDate, 0);
 
-                        foreach (MVVMRouteClass rac in this.Classes.Where(c=>c.IsUseable))
+                        foreach (MVVMRouteClass rac in this.Classes.Where(c => c.IsUseable))
                         {
                             ((PassengerRoute)route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
 
@@ -486,7 +543,7 @@
                     {
                         route = new HelicopterRoute(id.ToString(), destination1, destination2, startDate, 0);
 
-                        foreach (MVVMRouteClass rac in this.Classes.Where(c=>c.IsUseable))
+                        foreach (MVVMRouteClass rac in this.Classes.Where(c => c.IsUseable))
                         {
                             ((HelicopterRoute)route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
 
@@ -497,7 +554,7 @@
                             }
                         }
 
-              
+
                     }
                     else if (this.RouteType == Route.RouteType.Mixed)
                     {
@@ -505,7 +562,7 @@
 
                         route = new CombiRoute(id.ToString(), destination1, destination2, startDate, 0, cargoPrice);
 
-                        foreach (MVVMRouteClass rac in this.Classes.Where(c=>c.IsUseable))
+                        foreach (MVVMRouteClass rac in this.Classes.Where(c => c.IsUseable))
                         {
                             ((PassengerRoute)route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
 
@@ -522,6 +579,9 @@
                     route.Season = season;
 
                     GameObject.GetInstance().HumanAirline.addRoute(route);
+
+                    if (contract != null)
+                        contract.Routes.Add(route);
 
                     return true;
                 }
@@ -543,7 +603,7 @@
         {
             string type = ((RadioButton)sender).Tag.ToString();
             this.RouteType = (Route.RouteType)Enum.Parse(typeof(Route.RouteType), type, true);
-          
+
             while (this.Airports.Count > 0)
             {
                 this.Airports.RemoveAt(this.Airports.Count - 1);
@@ -552,7 +612,7 @@
             if (this.RouteType == Route.RouteType.Cargo)
             {
                 var airports = GameObject.GetInstance()
-                    .HumanAirline.Airports.Where(a=>a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c=>c.TerminalType == Terminal.TerminalType.Cargo)).OrderByDescending(
+                    .HumanAirline.Airports.Where(a => a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Cargo)).OrderByDescending(
                         a => a == GameObject.GetInstance().HumanAirline.Airports[0])
                     .ThenBy(a => a.Profile.Country.Name)
                     .ThenBy(a => a.Profile.Name);
@@ -564,26 +624,26 @@
             }
             else if (this.RouteType == Route.RouteType.Helicopter)
             {
-                 var airports = GameObject.GetInstance()
-                    .HumanAirline.Airports.Where(a=>a.Runways.Exists(r=>r.Type == Runway.RunwayType.Helipad) && a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c=>c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
-                        a => a == GameObject.GetInstance().HumanAirline.Airports[0])
-                    .ThenBy(a => a.Profile.Country.Name)
-                    .ThenBy(a => a.Profile.Name);
+                var airports = GameObject.GetInstance()
+                   .HumanAirline.Airports.Where(a => a.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad) && a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
+                       a => a == GameObject.GetInstance().HumanAirline.Airports[0])
+                   .ThenBy(a => a.Profile.Country.Name)
+                   .ThenBy(a => a.Profile.Name);
 
                 foreach (Airport airport in airports)
                 {
                     this.Airports.Add(airport);
                 }
-                
+
                 foreach (MVVMRouteClass rc in this.Classes)
                     rc.IsUseable = rc.Type == AirlinerClass.ClassType.Economy_Class;
-                 
-               
+
+
             }
             else
             {
                 var airports = GameObject.GetInstance()
-                      .HumanAirline.Airports.Where(a => a.Runways.Exists(r=>r.Type == Runway.RunwayType.Regular) && a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
+                      .HumanAirline.Airports.Where(a => a.Runways.Exists(r => r.Type == Runway.RunwayType.Regular) && a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
                           a => a == GameObject.GetInstance().HumanAirline.Airports[0])
                       .ThenBy(a => a.Profile.Country.Name)
                       .ThenBy(a => a.Profile.Name);
@@ -595,8 +655,8 @@
 
                 foreach (MVVMRouteClass rc in this.Classes)
                     rc.IsUseable = true;
-           
-                
+
+
             }
             /*
             //sets the selected items for the facilities
@@ -607,10 +667,12 @@
                     rFacility.SelectedFacility = rFacility.Facilities.OrderBy(f => f.ServiceLevel).FirstOrDefault();
                 }
             }*/
-            
+
         }
 
         #endregion
+
+      
     }
-   
+
 }

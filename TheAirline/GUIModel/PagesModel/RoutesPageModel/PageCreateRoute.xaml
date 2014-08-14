@@ -79,7 +79,7 @@
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
                 <h:QuickInfoValue
-                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1002'}">
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1002'}" VerticalAlignment="Bottom">
                     <h:QuickInfoValue.Value>
                         <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}"
                                   ItemTemplate="{StaticResource AirportCountryCodeItem}"
@@ -176,7 +176,7 @@
                         <WrapPanel>
                             <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}"
                                       ItemTemplate="{StaticResource AirportCountryCodeItem}" Width="300"
-                                      Name="cbStopover1"
+                                      Name="cbStopover1" SelectionChanged="cbStopover1_SelectionChanged"
                                       ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}">
                              
                                 <ComboBox.GroupStyle>
@@ -256,6 +256,38 @@
                             <RadioButton GroupName="SeasonType"
                                          Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1016'}"
                                          Name="rbSeasonWinter" Margin="5 0 0 0" />
+                        </WrapPanel>
+                    </h:QuickInfoValue.Value>
+                </h:QuickInfoValue>
+                <h:QuickInfoValue
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1021'}">
+                    <h:QuickInfoValue.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=pageCreateRoute, Path=Contracts.Count}"
+                                             Value="0">
+                                    <Setter Property="h:QuickInfoValue.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </h:QuickInfoValue.Style>
+                    <h:QuickInfoValue.Value>
+                        <WrapPanel>
+                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" VerticalAlignment="Bottom"
+                                      Width="300"
+                                      Name="cbContract"
+                                      ItemsSource="{Binding Path=Contracts,ElementName=pageCreateRoute}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                               
+                            </ComboBox>
+                            <Button Margin="5 0 0 0" Height="16" Click="btnContract_Click" VerticalAlignment="Bottom"
+                                    Background="Transparent">
+                                <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                            </Button>
                         </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>

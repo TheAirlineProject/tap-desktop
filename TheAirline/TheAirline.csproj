@@ -234,6 +234,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpSpecialContracts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\CustomControlsModel\SplashControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -608,6 +612,9 @@
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpSingleElement.xaml.cs">
       <DependentUpon>PopUpSingleElement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpSpecialContracts.xaml.cs">
+      <DependentUpon>PopUpSpecialContracts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpWindow.cs" />
     <Compile Include="GUIModel\CustomControlsModel\Block.xaml.cs">
       <DependentUpon>Block.xaml</DependentUpon>
@@ -885,6 +892,8 @@
     <Compile Include="Model\AirlinerModel\AirlinerScheduleConfiguration.cs" />
     <Compile Include="Model\AirlinerModel\EngineType.cs" />
     <Compile Include="Model\AirportModel\AirportExpansion.cs" />
+    <Compile Include="Model\GeneralModel\SpecialContract.cs" />
+    <Compile Include="Model\GeneralModel\SpecialContractType.cs" />
     <Compile Include="Model\RouteModel\CombiRoute.cs" />
     <Compile Include="Model\AirportModel\AirportContract.cs" />
     <Compile Include="Model\AirlineModel\Alliance.cs" />
@@ -1138,6 +1147,7 @@
     <Resource Include="Data\images\Wind.png" />
     <Resource Include="Data\images\MoveAirliner.png" />
     <Resource Include="Data\images\Cargo1.png" />
+    <Resource Include="Data\images\event.png" />
     <Content Include="TheAirline.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

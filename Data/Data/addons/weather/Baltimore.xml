@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<weather type="town" value="Baltimore">
+<weather type="town" value="Baltimore, MD">
   <months>
     <month month="1" precipitation="78">
       <temp min="-1" max="7" />

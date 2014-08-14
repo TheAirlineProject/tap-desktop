@@ -24,6 +24,20 @@
 
         public PageAssignAirliners()
         {
+            this.Contracts = new List<SpecialContractMVVM>();
+
+            foreach (SpecialContract sc in
+                GameObject.GetInstance().HumanAirline.SpecialContracts)
+            {
+                DateTime startdate = sc.Date;
+                DateTime enddate = sc.Date; 
+
+                if (sc.Type.IsFixedDate)
+                    enddate = sc.Type.Period.To;
+                
+                this.Contracts.Add(new SpecialContractMVVM(sc,startdate,enddate));
+            }
+
             this.Restrictions =
                 FlightRestrictions.GetRestrictions()
                     .FindAll(
@@ -52,6 +66,8 @@
         public List<FleetAirlinerMVVM> Airliners { get; set; }
 
         public List<FlightRestriction> Restrictions { get; set; }
+
+        public List<SpecialContractMVVM> Contracts { get; set; }
 
         #endregion
 

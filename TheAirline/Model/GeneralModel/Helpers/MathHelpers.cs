@@ -150,6 +150,11 @@
 
             return years;
         }
+        //returns the age in months
+        public static int GetAgeMonths(DateTime date)
+        {
+            return ((GameObject.GetInstance().GameTime.Year - date.Year) * 12) + GameObject.GetInstance().GameTime.Month - date.Month;
+        }
 
         //moves a object by substracting the speed from the distance
 

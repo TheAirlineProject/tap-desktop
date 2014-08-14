@@ -474,11 +474,15 @@
 
             score += this.Cooperations.Where(c => c.Airline == airline).Sum(c => c.Type.ServiceLevel * 9);
 
+            List<AirlineAirportFacility> facilities = new List<AirlineAirportFacility>();
+
             lock (this.Facilities)
             {
-                score += this.Facilities.Where(f => f.Airline == airline).Sum(f => f.Facility.ServiceLevel * 10);
+                foreach (AirlineAirportFacility aaf in this.Facilities)
+                    facilities.Add(aaf);
             }
-
+             score += facilities.Where(f => f.Airline == airline).Sum(f => f.Facility.ServiceLevel * 10);
+            
             IEnumerable<Route> airportRoutes =
                 airline.Routes.Where(r => r.Destination1 == this || r.Destination2 == this);
             score += 7 * airportRoutes.Count();

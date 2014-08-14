@@ -66,6 +66,7 @@
             this.GameScores = new Dictionary<DateTime, int>();
             this.InsuranceClaims = new List<InsuranceClaim>();
             this.InsurancePolicies = new List<AirlineInsurance>();
+            this.SpecialContracts = new List<SpecialContract>();
 
             this.createStandardAdvertisement();
 
@@ -145,6 +146,8 @@
                         new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
                     this.createStandardAdvertisement();
                 }
+                if (version < 5)
+                    this.SpecialContracts = new List<SpecialContract>();
 
                 if (this.Invoices == null)
                 {
@@ -377,6 +380,9 @@
         [Versioning("routes")]
         public List<Route> _Routes { get; set; }
 
+        [Versioning("scontracts",Version=5)]
+        public List<SpecialContract> SpecialContracts { get; set; }
+
         public double DailyOperatingBalance
         {
             get
@@ -425,7 +431,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 4);
+            info.AddValue("version", 5);
 
             Type myType = this.GetType();
 
@@ -1132,7 +1138,10 @@
         {
             return airlines.Find(a => a.Profile.IATACode == iata);
         }
-
+        public static Airline GetAirline(string iata, int year)
+        {
+            return airlines.Find(a => a.Profile.IATACode == iata && a.Profile.Founded <= year && a.Profile.Folded >= year);
+        }
         //returns all airlines
 
         //returns all airlines for a specific region

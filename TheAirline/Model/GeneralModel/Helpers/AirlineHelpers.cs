@@ -11,12 +11,80 @@ using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.PilotModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.PassengerModel;
+using TheAirline.GUIModel.HelpersModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
     //the class for some general airline helpers
     public class AirlineHelpers
     {
+        //checks for a special contract returns true if not successed or overdue
+        public static Boolean CheckSpecialContract(SpecialContract sc)
+        {
+            Boolean isOk = true;
+
+            foreach (ContractRequirement cr in sc.Type.Requirements)
+            {
+                foreach (SpecialContractRoute scr in sc.Type.Routes)
+                {
+                    var routes = sc.Routes.Where(r=>r.HasAirliner && ((r.Destination1 == scr.Departure && r.Destination2 == scr.Destination) || (scr.BothWays && r.Destination2 == scr.Departure && r.Destination1 == scr.Destination)));
+                    if (cr.Type == ContractRequirement.RequirementType.ClassType)
+                    {
+                        if (routes.FirstOrDefault(r=>((PassengerRoute)r).getRouteAirlinerClass(cr.ClassType) != null) == null)
+                            isOk = false;
+                    }
+                    else if (cr.Type == ContractRequirement.RequirementType.Destination)
+                    {
+                        if (routes.Count() == 0)
+                            isOk = false; 
+                    }
+                }
+            }
+
+            if (!isOk)
+            {
+                if (sc.Airline.IsHuman)
+                {
+                    GameObject.GetInstance()
+                               .NewsBox.addNews(
+                                   new News(
+                                       News.NewsType.Flight_News,
+                                       GameObject.GetInstance().GameTime,
+                                       Translator.GetInstance().GetString("News", "1016"),
+                                       string.Format(
+                                           Translator.GetInstance().GetString("News", "1016", "message"),
+                                           sc.Type.Name,
+                                           new ValueCurrencyConverter().Convert(sc.Type.Penalty))));
+                }
+
+                AirlineHelpers.AddAirlineInvoice(sc.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -sc.Type.Penalty);
+            }
+
+            Boolean overdue = sc.Type.IsFixedDate ? GameObject.GetInstance().GameTime > sc.Type.Period.To : GameObject.GetInstance().GameTime >= sc.Date;
+
+            if (isOk && overdue)
+            {
+                if (sc.Airline.IsHuman)
+                {
+                    GameObject.GetInstance()
+                               .NewsBox.addNews(
+                                   new News(
+                                       News.NewsType.Flight_News,
+                                       GameObject.GetInstance().GameTime,
+                                       Translator.GetInstance().GetString("News", "1017"),
+                                       string.Format(
+                                           Translator.GetInstance().GetString("News", "1017", "message"),
+                                           sc.Type.Name,
+                                           new ValueCurrencyConverter().Convert(sc.Type.Payment))));
+                }
+
+                AirlineHelpers.AddAirlineInvoice(sc.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, sc.Type.Payment);
+
+                return true;
+            }
+
+            return !isOk;
+        }
         //clears the statistics for all routes for all airlines
         public static void ClearRoutesStatistics()
         {

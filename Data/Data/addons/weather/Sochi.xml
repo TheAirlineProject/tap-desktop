@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Sochi">
+  <months>
+    <month month="1" precipitation="184">
+      <temp min="2" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="135">
+      <temp min="2" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="121">
+      <temp min="4" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="120">
+      <temp min="8" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="110">
+      <temp min="12" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="104">
+      <temp min="16" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="128">
+      <temp min="20" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="121">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="127">
+      <temp min="16" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="167">
+      <temp min="12" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="201">
+      <temp min="7" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="185">
+      <temp min="4" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

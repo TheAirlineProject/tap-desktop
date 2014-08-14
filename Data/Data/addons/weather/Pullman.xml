@@ -1,0 +1,53 @@
+
+<weather type="town" value="Pullman, WA">
+  <months>
+    <month month="1" precipitation="63">
+      <temp min="-4" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="53">
+      <temp min="-3" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="51">
+      <temp min="-1" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="44">
+      <temp min="2" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="45">
+      <temp min="6" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="33">
+      <temp min="8" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="20">
+      <temp min="10" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="23">
+      <temp min="10" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="22">
+      <temp min="7" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="38">
+      <temp min="3" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="72">
+      <temp min="-1" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="71">
+      <temp min="-4" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

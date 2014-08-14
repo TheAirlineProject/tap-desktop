@@ -23,6 +23,10 @@
         #endregion
 
         #region Public Methods and Operators
+        public static Boolean WillTakeSpecialContract(Airline airline, SpecialContractType contract)
+        {
+            return false;
+        }
 
         public static Boolean CanJoinAlliance(Airline airline, Alliance alliance)
         {

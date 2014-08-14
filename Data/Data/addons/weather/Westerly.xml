@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Westerly, RI">
+  <months>
+    <month month="1" precipitation="100">
+      <temp min="-6" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="77">
+      <temp min="-5" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="126">
+      <temp min="-2" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="110">
+      <temp min="3" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="100">
+      <temp min="9" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="96">
+      <temp min="14" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="73">
+      <temp min="17" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="106">
+      <temp min="17" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="119">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="106">
+      <temp min="7" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="109">
+      <temp min="2" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="106">
+      <temp min="-3" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

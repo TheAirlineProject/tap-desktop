@@ -15,6 +15,7 @@
     using TheAirline.GUIModel.PagesModel.RoutesPageModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
 
     public partial class standardEvents
     {
@@ -68,6 +69,11 @@
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateBack();
+        }
+        private void btnEvent_Click(object sender, RoutedEventArgs e)
+        {
+            PopUpSpecialContracts.ShowPopUp();
+ 
         }
 
         private void btnCalendar_Click(object sender, RoutedEventArgs e)

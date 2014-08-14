@@ -116,6 +116,8 @@
 
             On_service,
 
+            On_charter,
+
             Resting,
 
             To_homebase,

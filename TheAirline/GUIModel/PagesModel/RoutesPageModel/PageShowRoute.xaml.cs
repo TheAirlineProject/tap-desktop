@@ -110,6 +110,13 @@
 
             if (result == WPFMessageBoxResult.Yes)
             {
+                var contract = GameObject.GetInstance().HumanAirline.SpecialContracts.Find(s => s.Routes.Contains(this.Route.Route));
+
+                if (contract != null)
+                {
+                    contract.Routes.Remove(this.Route.Route);
+                }
+
                 GameObject.GetInstance().HumanAirline.removeRoute(this.Route.Route);
 
                 if (this.Route.Route.HasAirliner)

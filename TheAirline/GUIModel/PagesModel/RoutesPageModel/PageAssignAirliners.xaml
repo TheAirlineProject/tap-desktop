@@ -41,8 +41,74 @@
 
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <StackPanel>
             <StackPanel>
+            <StackPanel>
+                    <StackPanel.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Contracts.Count,ElementName=pageAssignAirliners}"
+                                         Value="0">
+                                    <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1005'}"
+                    Style="{StaticResource SmallHeaderStyle}" />
+                    <ListView util:GridViewSort.AutoSort="True" VerticalAlignment="Stretch"
+                      Background="Transparent" BorderThickness="0"
+                      ItemsSource="{Binding Path=Contracts,ElementName=pageAssignAirliners}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn util:GridViewSort.PropertyName="Contract.Type.Name"
+                                        Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1006'}"
+                                        Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Contract.Type.Name}" ToolTipService.ShowDuration="30000">
+                                                <TextBlock.ToolTip>
+                                                    <TextBlock Text="{Binding Contract.Type.Text}" VerticalAlignment="Bottom" TextWrapping="Wrap" MaxWidth="400"></TextBlock>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                           
+
+                            <GridViewColumn util:GridViewSort.PropertyName="Contract.Airline.Profile.Name"
+                                        Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1007'}"
+                                        Width="200">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl Content="{Binding Contract.Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom"></ContentControl>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn util:GridViewSort.PropertyName="StartDate"
+                                        Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1008'}"
+                                        Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding StartDate,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            <GridViewColumn util:GridViewSort.PropertyName="EndDate"
+                                        Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1009'}"
+                                        Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock VerticalAlignment="Bottom" Text="{Binding EndDate,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+               
+                <StackPanel Margin="0 10 0 0">
                 <StackPanel.Style>
                     <Style>
                         <Style.Triggers>
@@ -118,6 +184,9 @@
                                                         <DataTrigger Binding="{Binding Status}" Value="Started">
                                                             <Setter Property="Button.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Status}" Value="Charter">
+                                                            <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
                                                         <DataTrigger Binding="{Binding HasRoute}" Value="False">
                                                             <Setter Property="Button.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
@@ -133,6 +202,9 @@
                                                 <Style>
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding Status}" Value="Stopped">
+                                                            <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Status}" Value="Charter">
                                                             <Setter Property="Button.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding HasRoute}" Value="False">
@@ -153,6 +225,9 @@
                                                         <DataTrigger Binding="{Binding Status}" Value="Started">
                                                             <Setter Property="Button.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Status}" Value="Charter">
+                                                            <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
                                                         <DataTrigger Binding="{Binding HasRoute}" Value="False">
                                                             <Setter Property="Button.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
@@ -163,6 +238,21 @@
                                             <Image Source="/Data/images/moveairliner.png" Height="16" Width="16"
                                                    RenderOptions.BitmapScalingMode="HighQuality" />
                                         </Button>
+                                        <TextBlock Text="Charter" FontWeight="Bold" VerticalAlignment="Bottom">
+                                            <TextBlock.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Status}" Value="Started">
+                                                            <Setter Property="TextBlock.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Status}" Value="Stopped">
+                                                            <Setter Property="TextBlock.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                                </TextBlock.Style>
+                                        
+                                        </TextBlock>
                                     </WrapPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

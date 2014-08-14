@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Cherepovets">
+  <months>
+    <month month="1" precipitation="44">
+      <temp min="-13" max="-6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="33">
+      <temp min="-14" max="-5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="32">
+      <temp min="-9" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="18">
+      <temp min="-2" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="35">
+      <temp min="3" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="43">
+      <temp min="8" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="44">
+      <temp min="11" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="59">
+      <temp min="8" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="35">
+      <temp min="4" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="51">
+      <temp min="0" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="39">
+      <temp min="-7" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="37">
+      <temp min="-11" max="-4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Arcata/Eureka, CA">
+  <months>
+    <month month="1" precipitation="218">
+      <temp min="6" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="160">
+      <temp min="6" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="135">
+      <temp min="6" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="64">
+      <temp min="7" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="58">
+      <temp min="9" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="23">
+      <temp min="11" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="3">
+      <temp min="11" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="5">
+      <temp min="11" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="20">
+      <temp min="11" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="89">
+      <temp min="9" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="124">
+      <temp min="7" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="170">
+      <temp min="6" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

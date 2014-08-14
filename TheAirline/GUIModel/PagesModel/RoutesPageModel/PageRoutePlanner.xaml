@@ -23,24 +23,100 @@
         </DataTemplate>
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <Grid>
+        <StackPanel>
+            <StackPanel>
+            <StackPanel.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SpecialContractRoutes.Count,ElementName=pageRoutePlanner}"
+                                                     Value="0">
+                            <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+
+   
+
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1027'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="200"></TextBlock>
+                <RadioButton GroupName="Charter"
+                                 Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 106'}" Name="rbCharter"
+                                 />
+                <RadioButton GroupName="Charter"
+                                 Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 107'}"
+                                 Margin="5 0 0 0" IsChecked="True"  />
+
+            </WrapPanel>
+            <StackPanel>
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsChecked,ElementName=rbCharter}"
+                                                     Value="False">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1028'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="200"></TextBlock>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="500"
+                                      Name="cbSpecialRoute" IsSynchronizedWithCurrentItem="True"
+                                      ItemsSource="{Binding SpecialContractRoutes,ElementName=pageRoutePlanner}" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                        <ContentControl Content="{Binding Destination1}"
+                                                    ContentTemplate="{StaticResource AirportCountryItem}" VerticalAlignment="Bottom"/>
+                                    <TextBlock VerticalAlignment="Bottom" Text=" - "></TextBlock>
+                                        <ContentControl Content="{Binding Destination2}"
+                                                    ContentTemplate="{StaticResource AirportCountryItem}" VerticalAlignment="Bottom" />
+
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel Margin="0 10 0 0">
+                    <Button
+                        Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 200'}"
+                        Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnSaveContract_Click" />
+                </WrapPanel>
+            </StackPanel>
+            </StackPanel>
+            <Grid>
+                <Grid.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsChecked,ElementName=rbCharter}"
+                                                     Value="True">
+                                <Setter Property="Grid.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                           
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
-                <WrapPanel>
-                    <RadioButton GroupName="SeasonType"
+                    <WrapPanel>
+                        <RadioButton GroupName="SeasonType"
                                  Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1014'}"
-                                 Checked="rbSeason_Checked" Tag="AllYear" IsChecked="True" />
-                    <RadioButton GroupName="SeasonType"
+                                     Checked="rbSeason_Checked" Tag="AllYear" IsChecked="True"
+                                  />
+                        <RadioButton GroupName="SeasonType"
                                  Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1015'}"
                                  Checked="rbSeason_Checked" Tag="Summer" Margin="5 0 0 0" />
-                    <RadioButton GroupName="SeasonType"
+                        <RadioButton GroupName="SeasonType"
                                  Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1016'}"
                                  Checked="rbSeason_Checked" Tag="Winter" Margin="5 0 0 0" />
-                </WrapPanel>
-                <!--
+                    </WrapPanel>
+
+
+                    <!--
                 <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Entries,ElementName=pageRoutePlanner}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -231,10 +307,10 @@
                                         <TextBlock
                                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1009'}"
                                             HorizontalAlignment="Center" FontWeight="Bold" Margin="0 5 0 0" />
-                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <Border BorderBrush="Black" BorderThickness="1" Width="100">
                                             <t:DateTimeUpDown Name="tpTime" Format="ShortTime" Value="12:00"
                                                               Background="Transparent" BorderBrush="Black"
-                                                              BorderThickness="0" Foreground="White"
+                                                              BorderThickness="0" Foreground="White" 
                                                               VerticalAlignment="Bottom" />
                                         </Border>
                                     </StackPanel>
@@ -263,7 +339,7 @@
                                         <TextBlock
                                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1011'}"
                                             HorizontalAlignment="Center" FontWeight="Bold" Margin="0 5 0 0" />
-                                        <WrapPanel>
+                                        <WrapPanel HorizontalAlignment="Center">
                                             <TextBlock
                                                 Text="{Binding Airliner.Airliner.Airline.Profile.IATACode,ElementName=pageRoutePlanner}"
                                                 VerticalAlignment="Bottom" />
@@ -567,6 +643,6 @@
                 </Expander>
             </StackPanel>
         </Grid>
-
+        </StackPanel>
     </ScrollViewer>
 </Page>

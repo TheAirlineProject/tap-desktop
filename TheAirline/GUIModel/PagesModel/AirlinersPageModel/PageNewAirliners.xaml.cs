@@ -151,7 +151,7 @@
                     cbHomebase.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
                     cbHomebase.ItemTemplate = Application.Current.Resources["AirportCountryItem"] as DataTemplate;
                     cbHomebase.HorizontalAlignment = HorizontalAlignment.Left;
-                    cbHomebase.Width = 200;
+                    cbHomebase.Width = 400;
 
                     long minRunway = this.SelectedAirliners.Max(a => a.Type.MinRunwaylength);
 

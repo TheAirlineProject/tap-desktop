@@ -669,7 +669,7 @@
                     AirportFacility.FacilityType.Service).Facility.TypeLevel > 0;
 
             double gatesPercent =
-                Convert.ToDouble(this.Contracts.Count(c => c.Airline == GameObject.GetInstance().HumanAirline))
+                Convert.ToDouble(this.Contracts.Where(c => c.Airline == GameObject.GetInstance().HumanAirline).Sum(c=>c.NumberOfGates))
                 / Convert.ToDouble(this.Airport.Terminals.NumberOfGates);
 
            return gatesPercent > 0.2 && this.Hubs.Count == 0 && hasServiceCenter;
