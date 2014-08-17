@@ -7,6 +7,7 @@
     <c:ValueCurrencyConverter x:Key="ValueCurrencyConverter" />
     <c:ValueIsMinusConverter x:Key="ValueIsMinusConverter" />
     <c:ListBoxItemStyleSelectorTransparent x:Key="ListBoxItemStyleSelector" />
+    <c:ListBoxItemStyleSelectorTotalTransparent x:Key="ListBoxItemStyleSelectorTransparent"/>
     <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter" />
     <c:AirportCodeConverter x:Key="AirportCodeConverter" />
     <c:SpeedToUnitConverter x:Key="SpeedToUnitConverter" />

@@ -8,6 +8,7 @@
     using System.Windows.Documents;
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
@@ -213,15 +214,20 @@
                     WPFMessageBoxButtons.Ok);
             }
         }
+        private void btnInfo_Click(object sender, RoutedEventArgs e)
+        {
+            SpecialContractMVVM contract = (SpecialContractMVVM)((Button)sender).Tag;
 
+            PopUpShowSpecialContract.ShowPopUp(contract.Contract);
+            
+        }
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
             var airliner = (FleetAirlinerMVVM)((Button)sender).Tag;
 
             airliner.setStatus(FleetAirliner.AirlinerStatus.Stopped);
         }
-
-        private void hlAirliner_Click(object sender, RoutedEventArgs e)
+       private void hlAirliner_Click(object sender, RoutedEventArgs e)
         {
             var airliner = (FleetAirlinerMVVM)((Hyperlink)sender).Tag;
 

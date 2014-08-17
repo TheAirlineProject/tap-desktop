@@ -51,6 +51,8 @@
 
         public int Year { get; set; }
 
+        public List<Country> SelectedCountries { get; set; }
+
         #endregion
     }
 }

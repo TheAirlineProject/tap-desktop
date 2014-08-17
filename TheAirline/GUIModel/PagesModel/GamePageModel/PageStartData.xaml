@@ -44,7 +44,33 @@
                     </WrapPanel>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
-         
+            <g:QuickInfoValue
+                Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1031'}">
+                <g:QuickInfoValue.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=cbMajorAirports, Path=IsChecked}"
+                                         Value="False">
+                                <Setter Property="g:QuickInfoValue.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </g:QuickInfoValue.Style>
+                <g:QuickInfoValue.Value>
+                    <WrapPanel>
+                        <RadioButton GroupName="Countries" Name="cbSelectFull"
+                                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 106'}"
+                                     Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"/>
+                        <RadioButton GroupName="Countries"
+                                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 107'}"
+                                     Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                                     Margin="5 0 0 0"
+                                     IsChecked="True"/>
+                    </WrapPanel>
+
+
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
             <g:QuickInfoValue
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1008'}">
                 <g:QuickInfoValue.Value>

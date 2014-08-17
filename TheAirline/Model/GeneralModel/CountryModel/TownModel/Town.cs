@@ -195,13 +195,17 @@
             {
                 string town = name.Split(',')[0].Trim();
                 string state = name.Split(',')[1].Trim();
-
+                           
                 if (
                     Airports.GetAirport(
                         a =>
                             a.Profile.Town.Name == town && a.Profile.Town.State != null
                             && a.Profile.Town.State.ShortName == state) == null)
                 {
+                    if (Airports.GetAirport(a => a.Profile.Town.Name == town && a.Profile.Country.Uid == state) != null)
+                    {
+                        return Airports.GetAirport(a => a.Profile.Town.Name == town && a.Profile.Country.Uid == state).Profile.Town;
+                    }
                     return null;
                 }
 

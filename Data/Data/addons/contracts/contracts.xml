@@ -26,15 +26,5 @@
         <parameter classtype="First_Class" minseats="22"></parameter>
       </parameters>
   </contract>
-  <contract name="Invasion from Los Angeles" text="The Invasion from Los Angeles (LAX) has begun in New York (JFK).">
-    <information from="02.02.2014" to="03.03.2014" payment="7000000" bonus="True" penalty="8000000"></information>
-      <routes>
-        <route departure="LAX" destination="JFK" bothways="False" passengers="8000"/>
-      </routes>
-      <parameters>
-        <parameter classtype="Business_Class" minseats="48"></parameter><!--minimum 48 business class seats-->
-        <parameter classtype="First_Class" minseats="22"></parameter>
-      </parameters>
-  </contract>
-    
+  
 </contracts>

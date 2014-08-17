@@ -26,6 +26,7 @@
         private void btnCredits_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageCredits());
+            //PageNavigator.NavigateTo(new PageSelectAirports());
         }
 
         private void btnExitGame_Click(object sender, RoutedEventArgs e)

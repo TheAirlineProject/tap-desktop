@@ -79,7 +79,7 @@
         {
             DestinationDemand destPax = airport1.getDestinationPassengersObject(airport2);
 
-            if (destPax != null)
+            if (destPax != null && value > 0)
             {
                 destPax.Rate += Convert.ToUInt16(value);
 
@@ -3007,10 +3007,12 @@
                 return 0;
             }
 
-            double basicPrice = GetPassengerPrice(currentRoute.Destination1, currentRoute.Destination2, type);
-            double routePrice = ((PassengerRoute)currentRoute).getFarePrice(type);
+            //double basicPrice = GetPassengerPrice(currentRoute.Destination1, currentRoute.Destination2, type);
+            //double routePrice = ((PassengerRoute)currentRoute).getFarePrice(type);
 
-            double priceDiff = basicPrice / routePrice;
+            //double priceDiff = basicPrice / routePrice;
+
+            double routeScoreFactor = RouteHelpers.GetRouteTotalScore(currentRoute) / 5;
 
             double demand = airportCurrent.getDestinationPassengersRate(airportDestination, type);
 
@@ -3025,6 +3027,7 @@
                                      * GetHolidayFactor(airportCurrent);
 
             passengerDemand *= GameObject.GetInstance().Difficulty.PassengersLevel;
+            passengerDemand *= routeScoreFactor;
 
             if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Global && distance > 3000
                 && airportCurrent.Profile.Country != airportDestination.Profile.Country)
@@ -3161,7 +3164,7 @@
 
             double reputationPercent = reputation / 100;
 
-            double routePriceDiff = priceDiff < 0.75 ? priceDiff : 1;
+            double routePriceDiff = 1;// priceDiff < 0.75 ? priceDiff : 1;
 
             routePriceDiff *= GameObject.GetInstance().Difficulty.PriceLevel;
 

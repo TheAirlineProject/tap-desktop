@@ -222,6 +222,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpShowSpecialContract.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpSingleElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -454,6 +458,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageSelectAirports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageSelectLanguage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -608,6 +616,9 @@
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpNewAirlinerHomebase.cs" />
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpShowConnectingRoutes.xaml.cs">
       <DependentUpon>PopUpShowConnectingRoutes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpShowSpecialContract.xaml.cs">
+      <DependentUpon>PopUpShowSpecialContract.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpSingleElement.xaml.cs">
       <DependentUpon>PopUpSingleElement.xaml</DependentUpon>
@@ -797,6 +808,9 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageNews.xaml.cs">
       <DependentUpon>PageNews.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectAirports.xaml.cs">
+      <DependentUpon>PageSelectAirports.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectLanguage.xaml.cs">
       <DependentUpon>PageSelectLanguage.xaml</DependentUpon>
     </Compile>
@@ -892,6 +906,7 @@
     <Compile Include="Model\AirlinerModel\AirlinerScheduleConfiguration.cs" />
     <Compile Include="Model\AirlinerModel\EngineType.cs" />
     <Compile Include="Model\AirportModel\AirportExpansion.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\RouteHelpers.cs" />
     <Compile Include="Model\GeneralModel\SpecialContract.cs" />
     <Compile Include="Model\GeneralModel\SpecialContractType.cs" />
     <Compile Include="Model\RouteModel\CombiRoute.cs" />
@@ -1148,6 +1163,14 @@
     <Resource Include="Data\images\MoveAirliner.png" />
     <Resource Include="Data\images\Cargo1.png" />
     <Resource Include="Data\images\event.png" />
+    <Resource Include="Data\images\Plane-feedback.png" />
+    <Resource Include="Data\images\price.png" />
+    <Resource Include="Data\images\Seats.png" />
+    <Resource Include="Data\images\TV.png" />
+    <Resource Include="Data\images\wifi.png" />
+    <Resource Include="Data\images\number.png" />
+    <Resource Include="Data\images\age.png" />
+    <Resource Include="Data\images\Luggage.png" />
     <Content Include="TheAirline.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

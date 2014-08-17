@@ -61,9 +61,19 @@
                       ItemsSource="{Binding Path=Contracts,ElementName=pageAssignAirliners}">
                         <ListView.View>
                             <GridView>
+                            <GridViewColumn Width="30">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Height="16" Click="btnInfo_Click" Tag="{Binding}" VerticalAlignment="Bottom"
+                                    Background="Transparent">
+                                            <Image Source="/data/images/info.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                                 <GridViewColumn util:GridViewSort.PropertyName="Contract.Type.Name"
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1006'}"
-                                        Width="100">
+                                        Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock VerticalAlignment="Bottom" Text="{Binding Contract.Type.Name}" ToolTipService.ShowDuration="30000">

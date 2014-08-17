@@ -86,7 +86,11 @@
             this.StartData.LocalCurrency = this.cbLocalCurrency.IsChecked.Value
                                            && this.StartData.HomeCountry.HasLocalCurrency;
 
-            if (!this.StartData.RandomOpponents)
+            if (this.StartData.SelectedCountries != null)
+            {
+                PageNavigator.NavigateTo(new PageSelectAirports(this.StartData));
+            }
+            else if (!this.StartData.RandomOpponents)
             {
                 PageNavigator.NavigateTo(new PageSelectOpponents(this.StartData));
             }

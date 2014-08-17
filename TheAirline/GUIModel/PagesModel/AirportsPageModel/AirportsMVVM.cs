@@ -5,7 +5,7 @@
     using System.Globalization;
     using System.Linq;
     using System.Windows.Data;
-
+    using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
@@ -161,5 +161,28 @@
         }
 
         #endregion
+    }
+    //the converter for the airport distance converter
+    public class AirportDistanceConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] != null && values[1] != null)
+            {
+                var humanAirport = (Airport)values[0];
+                var airport = (AirportMVVM)values[1];
+
+                if (humanAirport != null && airport != null)
+                {
+                    return new DistanceToUnitConverter().Convert(MathHelpers.GetDistance(humanAirport, airport.Airport));
+                }
+            }
+            return 0;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

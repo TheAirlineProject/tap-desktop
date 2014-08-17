@@ -4,13 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.AirportsPageModel"
       xmlns:filter="clr-namespace:TheAirline.GUIModel.CustomControlsModel.FilterableListView"
       mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300"
       Name="pageShowAirports"
       Title="PageShowAirports">
-
-    <Grid>
+    <Page.Resources>
+        <local:AirportDistanceConverter x:Key="airportDistanceConverter"></local:AirportDistanceConverter>
+    </Page.Resources>
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -51,6 +54,21 @@
                           SelectedValuePath="Name" VerticalAlignment="Bottom"
                           ItemsSource="{Binding HumanAircrafts,ElementName=pageShowAirports}" />
             </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1015'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" 
+                          Width="250" VerticalAlignment="Bottom" Name="cbAirportDistance" IsSynchronizedWithCurrentItem="True"
+                          ItemsSource="{Binding HumanAirports,ElementName=pageShowAirports}" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <ContentControl Content="{Binding}" ContentTemplate="{StaticResource AirportCountryItem}" VerticalAlignment="Bottom"></ContentControl>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                
+            </WrapPanel>
         </StackPanel>
         <filter:FilterableListView x:Name="AirportsList" Grid.Row="1"
                                    ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -61,7 +79,7 @@
            
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                      <VirtualizingStackPanel>
+                    <VirtualizingStackPanel>
                     </VirtualizingStackPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
@@ -183,6 +201,23 @@
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom"
                                            Text="{Binding Airport.Profile.Size,Converter={StaticResource TextUnderscoreConverter}}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn
+                        Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1016'}"
+                        CanFilter="False" SortPropertyName="Airport.Profile.Name" Width="100">
+                         <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Bottom">
+                                    <TextBlock.Text>
+                                        <MultiBinding
+                                         Converter="{StaticResource airportDistanceConverter}">
+                                            <Binding Path="SelectedItem" ElementName="cbAirportDistance" />
+                                            <Binding Path="." />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>

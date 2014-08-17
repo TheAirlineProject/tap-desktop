@@ -60,6 +60,8 @@
             this.InitializeComponent();
 
             this.Loaded += this.PageShowRoute_Loaded;
+
+
         }
 
         #endregion
@@ -71,6 +73,11 @@
         #endregion
 
         #region Methods
+
+        private void tcMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.Route.setFeedback();
+        }
 
         private void PageShowRoute_Loaded(object sender, RoutedEventArgs e)
         {
@@ -182,5 +189,8 @@
         }
 
         #endregion
+
+     
     }
+
 }

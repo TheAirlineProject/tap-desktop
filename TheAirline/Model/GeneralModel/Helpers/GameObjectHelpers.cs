@@ -173,6 +173,22 @@
                     }
                 }
 
+                if (startData.SelectedCountries != null)
+                {
+                    foreach (Country country in startData.SelectedCountries)
+                    {
+                        List<Airport> countryAirports =
+                    Airports.GetAllAirports(
+                        a => (new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country) == country &&
+                            (a.Profile.Size == GeneralHelpers.Size.Smallest || a.Profile.Size == GeneralHelpers.Size.Very_small
+                            || a.Profile.Size == GeneralHelpers.Size.Smallest));
+
+                        foreach (Airport cairport in countryAirports)
+                            if (!majorAirports.Contains(cairport))
+                                majorAirports.Add(cairport);
+                    }
+                }
+
                 majorAirports.AddRange(usedAirports);
                 majorAirports.AddRange(heliports);
 

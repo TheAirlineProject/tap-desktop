@@ -47,6 +47,8 @@
 
         public List<AirlinerType> HumanAircrafts { get; set; }
 
+        public ObservableCollection<Airport> HumanAirports { get; set; }
+
         public List<FilterValue> OperatingRanges { get; set; }
 
         public List<FilterValue> RoutesRanges { get; set; }
@@ -167,6 +169,9 @@
                     gate.Airline = GameObject.GetInstance().HumanAirline;
                 }
 
+                if (!this.HumanAirports.Contains(airport.Airport))
+                    this.HumanAirports.Add(airport.Airport);
+
                 airport.IsHuman = true;
             }
         }
@@ -245,9 +250,15 @@
 
             PageNavigator.NavigateTo(new PageAirport(airport));
         }
-
+      
+       
         private void createPage(List<Airport> airports)
         {
+            this.HumanAirports = new ObservableCollection<Airport>();
+
+            foreach (Airport hAirport in GameObject.GetInstance().HumanAirline.Airports)
+                this.HumanAirports.Add(hAirport);
+
             this.AllAirlines = new List<Airline>();
             this.SelectedAirports = new ObservableCollection<AirportMVVM>();
             this.RoutesRanges = new List<FilterValue>

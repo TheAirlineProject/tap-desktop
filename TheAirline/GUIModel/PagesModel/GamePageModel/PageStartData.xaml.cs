@@ -68,6 +68,7 @@
                 new PageAirlineData(
                     new StartDataObject
                     {
+                        SelectedCountries = (this.cbSelectFull.IsChecked.Value ? new List<Country>() : null),
                         MajorAirports = this.cbMajorAirports.IsChecked.Value,
                         IsPaused = this.cbPaused.IsChecked.Value,
                         Focus = (Airline.AirlineFocus)this.cbFocus.SelectedItem,

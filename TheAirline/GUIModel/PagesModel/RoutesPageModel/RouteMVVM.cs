@@ -9,10 +9,12 @@
     using System.Globalization;
     using System.Linq;
     using System.Windows.Data;
+    using System.Windows.Media;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.CountryModel;
+    using TheAirline.Model.GeneralModel.Helpers;
     using TheAirline.Model.GeneralModel.InvoicesModel;
     using TheAirline.Model.GeneralModel.StatisticsModel;
 
@@ -30,7 +32,7 @@
                                              || this.Route.Type == Route.RouteType.Mixed || this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter;
 
             this.IsEditable = true;
-                // !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
+            // !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
 
             this.Invoices = new List<MonthlyInvoice>();
 
@@ -44,8 +46,100 @@
             this.Legs.AddRange(this.Route.Stopovers.SelectMany(s => s.Legs));
 
             this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
-        }
 
+            setFeedback();
+        }
+        //sets the feedback values
+        public void setFeedback()
+        {
+            this.FeedbackTypes = new Dictionary<string, List<string>>();
+
+            this.FeedbackTypes.Add("plane", new List<string>() { "1000", "1001", "1002" });
+            this.FeedbackTypes.Add("age", new List<string>() { "1003", "1004", "1005" });
+            this.FeedbackTypes.Add("food", new List<string>() { "1006", "1005", "1008" });
+            this.FeedbackTypes.Add("seats", new List<string>() { "1009", "1010", "1011" });
+            this.FeedbackTypes.Add("inflight", new List<string>() { "1012", "1013", "1014" });
+            this.FeedbackTypes.Add("wifi", new List<string>() { "1015", "1016", "1017" });
+            this.FeedbackTypes.Add("price", new List<string>() { "1018", "1019", "1020" });
+            this.FeedbackTypes.Add("score", new List<string>() { "1021", "1022", "1023" });
+            this.FeedbackTypes.Add("luggage",new List<string>() {"1024","1025","1026"});
+            
+            this.Feedbacks = new List<RouteFeedbackMVVM>();
+
+            if (this.Route.HasAirliner && this.Route.Type == Route.RouteType.Passenger)
+            {
+                double routeScore = RouteHelpers.GetRouteTotalScore(this.Route);
+                double priceScore = RouteHelpers.GetRoutePriceScore(this.Route);
+                double planeTypeScore = RouteHelpers.GetRoutePlaneTypeScore(this.Route);
+                double ageScore = RouteHelpers.GetPlaneAgeScore(this.Route);
+                double foodScore = RouteHelpers.GetRouteMealScore(this.Route);
+                double seatsScore = RouteHelpers.GetRouteSeatsScore(this.Route);
+                double inflightScore = RouteHelpers.GetRouteInflightScore(this.Route);
+                double luggageScore = RouteHelpers.GetRouteLuggageScore(this.Route);
+
+                string priceText = priceScore < 4 ? "High" : ((priceScore >= 4 && priceScore < 7) ? "Medium" : "Low");
+                string bagText = luggageScore >= 7 ? "Free Checked Bag" : "Checked Bag Fee";
+
+                RouteFacility wifiFacility = ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(RouteFacility.FacilityType.WiFi);
+                RouteFacility foodFacility = ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(RouteFacility.FacilityType.Food);
+                AirlinerFacility seats = this.Route.getAirliners()[0].Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Seat);
+                AirlinerFacility videoFacility = this.Route.getAirliners()[0].Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Video);
+
+                this.Feedbacks.Add(new RouteFeedbackMVVM(this.Route.getAirliners()[0].Airliner.Type.Name, "plane-feedback.png", planeTypeScore, getFeedbackText("plane", planeTypeScore)));
+                this.Feedbacks.Add(new RouteFeedbackMVVM(string.Format("{0} year(s) old", this.Route.getAirliners()[0].Airliner.Age), "age.png", ageScore, getFeedbackText("age", ageScore)));
+                this.Feedbacks.Add(new RouteFeedbackMVVM(foodFacility.Name, "food.png", foodScore, getFeedbackText("food", foodScore)));
+                this.Feedbacks.Add(new RouteFeedbackMVVM(seats.Name, "seats.png", seatsScore, getFeedbackText("seats", seatsScore)));
+                this.Feedbacks.Add(new RouteFeedbackMVVM(videoFacility.Name, "tv.png", inflightScore, getFeedbackText("inflight", inflightScore)));
+                this.Feedbacks.Add(new RouteFeedbackMVVM(bagText,"luggage.png",luggageScore,getFeedbackText("luggage",luggageScore)));
+
+                if ((int)RouteFacility.FacilityType.WiFi <= GameObject.GetInstance().GameTime.Year)
+                {
+                    double wifiScore = RouteHelpers.GetRouteWifiScore(this.Route);
+                    this.Feedbacks.Add(new RouteFeedbackMVVM(wifiFacility.Name, "wifi.png", wifiScore, getFeedbackText("wifi", wifiScore)));
+                }
+
+
+                this.Feedbacks.Add(new RouteFeedbackMVVM(priceText, "price.png", priceScore, getFeedbackText("price", priceScore)));
+                this.Feedbacks.Add(new RouteFeedbackMVVM(String.Format("{0:0.0}", routeScore), "number.png", routeScore, getFeedbackText("score", routeScore)));
+            }
+            else
+            {
+                string nodataString = Translator.GetInstance().GetString("RouteFeedback", "1100");
+                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "plane-feedback.png", 5, nodataString));
+                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "age.png", 5, nodataString));
+                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "food.png", 5, nodataString));
+                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "seats.png", 5, nodataString));
+                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "tv.png", 5, nodataString));
+                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "luggage.png", 5, nodataString));
+
+
+                if ((int)RouteFacility.FacilityType.WiFi <= GameObject.GetInstance().GameTime.Year)
+                {
+                    this.Feedbacks.Add(new RouteFeedbackMVVM("-", "wifi.png", 5, nodataString));
+                }
+
+                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "price.png", 5, nodataString));
+                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "number.png", 5, nodataString));
+            }
+
+
+        }
+        private string getFeedbackText(string type, double score)
+        {
+            int index = 0;
+
+            if (score < 4)
+                index = 0;
+            if (score >= 4 && score < 7)
+                index = 1;
+            if (score >= 7)
+                index = 2;
+
+            string uid = this.FeedbackTypes[type][index];
+
+            return Translator.GetInstance().GetString("RouteFeedback", uid);
+
+        }
         #endregion
 
         #region Public Properties
@@ -63,6 +157,10 @@
         public Boolean ShowCargoInformation { get; set; }
 
         public Boolean ShowPassengersInformation { get; set; }
+
+        public List<RouteFeedbackMVVM> Feedbacks { get; set; }
+
+        public Dictionary<string, List<string>> FeedbackTypes;
 
         #endregion
     }
@@ -121,6 +219,21 @@
 
         #endregion
     }
+    //the mvvm object for a route feedback
+    public class RouteFeedbackMVVM
+    {
+        public string Text { get; set; }
+        public string Image { get; set; }
+        public double Value { get; set; }
+        public string Feedback { get; set; }
+        public RouteFeedbackMVVM(string text, string image, double value, string feedback)
+        {
+            this.Text = text;
+            this.Image = "/Data/images/" + image;
+            this.Value = value;
+            this.Feedback = feedback;
+        }
+    }
     //the mvvm object for a special contract
     public class SpecialContractMVVM
     {
@@ -153,7 +266,7 @@
             this.Status = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
                 ? StatusMVVM.Stopped
                 : StatusMVVM.Started;
-            
+
             if (this.Airliner.Status == FleetAirliner.AirlinerStatus.On_charter)
                 this.Status = StatusMVVM.Charter;
 
@@ -190,7 +303,7 @@
 
         public FleetAirliner Airliner { get; set; }
 
-        public Boolean HasRoute 
+        public Boolean HasRoute
         {
             get
             {
@@ -198,8 +311,8 @@
             }
             set
             {
-               this._hasroute = value ;
-               this.NotifyPropertyChanged("HasRoute");
+                this._hasroute = value;
+                this.NotifyPropertyChanged("HasRoute");
             }
         }
 
@@ -389,7 +502,7 @@
 
             foreach (RouteFacility.FacilityType facType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
             {
-                
+
                 if (GameObject.GetInstance().GameTime.Year >= (int)facType)
                 {
                     var facs = new List<RouteFacility>();
@@ -398,13 +511,13 @@
                         facs.Add(fac);
                     }
 
-                    var facility = new MVVMRouteFacility(facType,facs);
+                    var facility = new MVVMRouteFacility(facType, facs);
 
                     this.Facilities.Add(facility);
                 }
             }
 
-         
+
         }
 
         #endregion
@@ -551,5 +664,26 @@
 
         #endregion
     }
-   
+    //the conver for the feedback color
+    public class FeedbackColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double score = Double.Parse(value.ToString());
+
+            if (score < 4)
+                return Brushes.DarkRed;
+            if (score >= 4 && score < 7)
+                return new SolidColorBrush(Color.FromRgb(58, 66, 89));
+            if (score >= 7)
+                return new SolidColorBrush(Color.FromRgb(0, 74, 127));
+
+            return Brushes.Black;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

@@ -856,4 +856,53 @@
 
         #endregion
     }
+    public class ListBoxItemStyleSelectorTotalTransparent : StyleSelector
+    {
+        #region Public Methods and Operators
+
+        public override Style SelectStyle(object item, DependencyObject container)
+        {
+            var trigger = new Trigger();
+            trigger.Property = UIElement.IsFocusedProperty;
+            trigger.Value = false;
+
+            var st = new Style();
+            st.TargetType = typeof(ListBoxItem);
+
+            var marginSetter = new Setter();
+            marginSetter.Property = FrameworkElement.MarginProperty;
+            marginSetter.Value = new Thickness(0, 2, 0, 2);
+
+            var backGroundSetter = new Setter();
+            backGroundSetter.Property = Control.BackgroundProperty;
+
+            var focusVisualSetter = new Setter();
+            focusVisualSetter.Property = FrameworkElement.FocusVisualStyleProperty;
+            focusVisualSetter.Value = null;
+
+            var listBox = ItemsControl.ItemsControlFromItemContainer(container) as ListBox;
+            int index = listBox.ItemContainerGenerator.IndexFromContainer(container);
+
+            Brush brush = Brushes.Transparent;// new SolidColorBrush(Colors.Transparent);
+         
+            backGroundSetter.Value = brush;
+
+            st.Resources.Add(SystemColors.HighlightBrushKey, brush);
+            st.Resources.Add(SystemColors.ControlBrushKey, brush);
+            st.Resources.Add(SystemColors.InactiveSelectionHighlightBrushKey, brush);
+
+           
+            trigger.Setters.Add(backGroundSetter);
+
+            st.Triggers.Add(trigger);
+
+            st.Setters.Add(backGroundSetter);
+            st.Setters.Add(focusVisualSetter);
+            st.Setters.Add(marginSetter);
+
+            return st;
+        }
+
+        #endregion
+    }
 }
