@@ -3853,7 +3853,7 @@ Good luck.</value>
     <value>Yearly Payment</value>
   </data>
   <data name="PageAirportInfo_1029_name" xml:space="preserve">
-    <value>Destination Demand</value>
+    <value>Domestic</value>
   </data>
   <data name="PageAirportInfo_1030_name" xml:space="preserve">
     <value>Destination</value>
@@ -5345,5 +5345,29 @@ Good luck.</value>
   </data>
   <data name="RouteFeedback_1100_name" xml:space="preserve">
     <value>There is no data yet!</value>
+  </data>
+  <data name="PageAirportDemand_1002_name" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="PageAirportInfo_1057_name" xml:space="preserve">
+    <value>International</value>
+  </data>
+  <data name="PageAirportDemand_1003_name" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="PageAirportDemand_1004_name" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="PageAirportDemand_1005_name" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="PageAirportDemand_1006_name" xml:space="preserve">
+    <value>Airline Gates Share</value>
+  </data>
+  <data name="PageAirportDemand_1007_name" xml:space="preserve">
+    <value>Airport Demand</value>
+  </data>
+  <data name="PageAirportDemand_1008_name" xml:space="preserve">
+    <value>Airline Routes</value>
   </data>
 </root>

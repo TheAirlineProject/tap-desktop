@@ -3,13 +3,16 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+       xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart" 
+      Name="pageAirportDemand"
       mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PageAirportDemand">
-    <Grid>
+     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="0">
             <TextBlock FontWeight="Bold"
@@ -18,85 +21,273 @@
             <TextBox Margin="5 0 0 0" Text="" VerticalAlignment="Bottom" Width="150"
                      TextChanged="txtSearch_TextChanged" />
         </WrapPanel>
-        <ScrollViewer Margin="0 10 0 0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
-                      Grid.Row="1">
-            <StackPanel>
-                <TextBlock
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+           <!--
+                        <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1029'}"
-                    VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
-                <ListView x:Name="lvDemand" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0"
-                          ItemsSource="{Binding Demands}">
-                    <ListView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.HeaderTemplate>
-                                <DataTemplate>
-                                    <TextBlock Style="{StaticResource SmallHeaderStyle}" Text="{Binding Name}" />
-                                </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
-                    </ListView.GroupStyle>
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Width="20" VerticalAlignment="Bottom" Tag="{Binding}"
+                    VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />-->
+                        <ListView x:Name="lvDemandDomestic" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" Grid.Column="0"
+                          ItemsSource="{Binding DomesticDemands}">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel>
+                                    </VirtualizingStackPanel>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <Button Width="20" VerticalAlignment="Bottom" Tag="{Binding}" Margin="0 0 5 0"
                                                 Background="Transparent" Click="btnDemandContract_Click">
-                                            <Image Source="/data/images/add.png"
+                                                        <Image Source="/data/images/add.png" 
                                                    RenderOptions.BitmapScalingMode="HighQuality" />
-                                            <Button.Style>
-                                                <Style TargetType="Button">
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Contracted}" Value="True">
-                                                            <Setter Property="Button.Visibility" Value="Collapsed" />
-                                                        </DataTrigger>
-                                                        <DataTrigger
+                                                        <Button.Style>
+                                                            <Style TargetType="Button">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Contracted}" Value="True">
+                                                                        <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                                        <Setter Property="Button.Margin" Value="0 0 0 0"></Setter>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger
                                                             Binding="{Binding HasFreeGates}"
                                                             Value="False">
-                                                            <Setter Property="Button.Visibility" Value="Collapsed" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-                                        </Button>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn
+                                                                        <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                                        <Setter Property="Button.Margin" Value="0 0 0 0"></Setter>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Button.Style>
+                                                    </Button>
+                                                    <Button Width="20" VerticalAlignment="Bottom" Tag="{Binding}"
+                                                Background="Transparent" Click="btnDemandInfo_Click">
+                                                        <Button.Style>
+                                                            <Style>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Contracted}" Value="True">
+                                                                        <Setter Property="Button.Margin" Value="0 0 0 0" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger
+                                                            Binding="{Binding HasFreeGates}"
+                                                            Value="False">
+                                                                        <Setter Property="Button.Margin" Value="0 0 0 0" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Button.Style>
+                                                        <Image Source="/data/images/info.png" 
+                                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                                                    </Button>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
                                 Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1030'}"
                                 Width="300">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ContentControl VerticalAlignment="Bottom" Content="{Binding Destination}"
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ContentControl VerticalAlignment="Bottom" Content="{Binding Destination}"
                                                         ContentTemplate="{StaticResource AirportCountryLink}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
                                 Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1031'}"
                                 Width="75">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Margin="5 0 0 0" Text="{Binding Passengers}"
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Margin="5 0 0 0" Text="{Binding Passengers}"
                                                    VerticalAlignment="Bottom" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
                                 Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1032'}"
                                 Width="75">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Cargo}" VerticalAlignment="Bottom" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Cargo}" VerticalAlignment="Bottom" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </StackPanel>
-        </ScrollViewer>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
 
-    </Grid>
+    
+             <!--           <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1057'}"
+                    VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />-->
+                        <ListView x:Name="lvDemandIntl" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" Grid.Column="1"
+                          ItemsSource="{Binding IntlDemands}">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel>
+                                    </VirtualizingStackPanel>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <Button Width="20" VerticalAlignment="Bottom" Tag="{Binding}"  Margin="0 0 5 0"
+                                                Background="Transparent" Click="btnDemandContract_Click">
+                                                        <Image Source="/data/images/add.png"
+                                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                                                        <Button.Style>
+                                                            <Style TargetType="Button">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Contracted}" Value="True">
+                                                                        <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                                        <Setter Property="Button.Margin" Value="0 0 0 0"></Setter>
+
+                                                                    </DataTrigger>
+                                                                    <DataTrigger
+                                                            Binding="{Binding HasFreeGates}"
+                                                            Value="False">
+                                                                        <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                                        <Setter Property="Button.Margin" Value="0 0 0 0"></Setter>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Button.Style>
+                                                    </Button>
+                                                    <Button Width="20" VerticalAlignment="Bottom" Tag="{Binding}" 
+                                                Background="Transparent" Click="btnDemandInfo_Click">
+
+                                                        <Image Source="/data/images/info.png" 
+                                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                                                    </Button>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
+                                Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1030'}"
+                                Width="300">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ContentControl VerticalAlignment="Bottom" Content="{Binding Destination}"
+                                                        ContentTemplate="{StaticResource AirportCountryLink}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
+                                Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1031'}"
+                                Width="75">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Margin="5 0 0 0" Text="{Binding Passengers}"
+                                                   VerticalAlignment="Bottom" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
+                                Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1032'}"
+                                Width="75">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Cargo}" VerticalAlignment="Bottom" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                  </Grid>
+
+        <StackPanel Grid.Row="2">
+            <StackPanel.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedAirport,ElementName=pageAirportDemand}" Value="{x:Null}">
+                            <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <Separator></Separator>
+            <TextBlock Text="{Binding SelectedAirport.Destination.Profile.Name,ElementName=pageAirportDemand}" FontSize="12" TextDecorations="Underline" FontWeight="Bold"></TextBlock>
+            
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportDemand 1003'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}"
+                                                Content="{Binding SelectedAirport.Destination.Profile.Country,ElementName=pageAirportDemand}"></ContentControl>
+                <TextBlock Text="{Binding SelectedAirport.Destination.Profile.Type}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportDemand 1004'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding SelectedAirport.Destination.Profile.Type,ElementName=pageAirportDemand,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportDemand 1005'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding SelectedAirport.Destination.Profile.Size,ElementName=pageAirportDemand,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportDemand 1002'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding SelectedAirport.Distance,ElementName=pageAirportDemand,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+
+            </WrapPanel>
+            <WrapPanel>
+            <chart:PieChart Name="pcGates" HorizontalAlignment="Left"
+        Style="{StaticResource MinimalChartStyle}" 
+        ChartTitle="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportDemand 1006'}" Foreground="White" ChartTitleStyle="{StaticResource ChartTitleStyle}"
+                            Palette="{StaticResource CustomColors}">
+                <chart:PieChart.Series>
+                    <chart:ChartSeries
+                SeriesTitle="Gates"
+                DisplayMember="Key"
+                ValueMember="Value"
+                ItemsSource="{Binding}" />
+                </chart:PieChart.Series>
+            </chart:PieChart>
+                <chart:ClusteredColumnChart  Width="300" Height="300" SeriesSource="{Binding}"
+                                            Palette="{StaticResource CustomColors}" ChartTitleStyle="{StaticResource ChartTitleStyle}" Background="Transparent" ChartTitle="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportDemand 1007'}" Margin="10 0 0 0" Foreground="White" Name="cccDemand">
+                    <chart:ClusteredColumnChart.SeriesTemplate>
+                        <DataTemplate>
+                            <chart:ChartSeries
+			                                SeriesTitle="{Binding Path=DisplayName}"
+                                            DisplayMember="Key"
+                                            ValueMember="Value"
+                                            ItemsSource="{Binding Path=Items}" />
+                        </DataTemplate>
+                    </chart:ClusteredColumnChart.SeriesTemplate>
+                </chart:ClusteredColumnChart>
+                <chart:PieChart Name="pcRoutes" HorizontalAlignment="Left"
+        Style="{StaticResource MinimalChartStyle}" 
+        ChartTitle="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportDemand 1008'}" Foreground="White" ChartTitleStyle="{StaticResource ChartTitleStyle}" Margin="10 0 0 0"
+                            Palette="{StaticResource CustomColors}">
+                    <chart:PieChart.Series>
+                        <chart:ChartSeries
+                SeriesTitle="Gates"
+                DisplayMember="Key"
+                ValueMember="Value"
+                ItemsSource="{Binding}" />
+                    </chart:PieChart.Series>
+                </chart:PieChart>
+            </WrapPanel>
+        </StackPanel>
+        </Grid>
+
 </Page>

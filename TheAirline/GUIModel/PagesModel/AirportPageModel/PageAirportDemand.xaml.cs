@@ -1,12 +1,17 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
     using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+    using TheAirline.GUIModel.HelpersModel;
+    using TheAirline.Model.AirlineModel;
+    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
@@ -15,8 +20,40 @@
     /// <summary>
     ///     Interaction logic for PageAirportDemand.xaml
     /// </summary>
-    public partial class PageAirportDemand : Page
+    public partial class PageAirportDemand : Page, INotifyPropertyChanged
     {
+       
+        private DemandMVVM _selectedairport;
+        public DemandMVVM SelectedAirport
+        {
+            get
+            {
+                return this._selectedairport;
+            }
+            set
+            {
+                this._selectedairport = value;
+                this.NotifyPropertyChanged("SelectedAirport");
+            }
+        }
+     
+        #region Public Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+        #region Methods
+
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        #endregion
         #region Fields
 
         private AirportMVVM Airport;
@@ -27,27 +64,84 @@
 
         public PageAirportDemand(AirportMVVM airport)
         {
+           
+
             this.Airport = airport;
             this.DataContext = this.Airport;
 
             this.InitializeComponent();
 
-            var viewDemands = (CollectionView)CollectionViewSource.GetDefaultView(this.lvDemand.ItemsSource);
-            viewDemands.GroupDescriptions.Clear();
-
-            viewDemands.GroupDescriptions.Add(new PropertyGroupDescription("Type"));
-
+            var viewDemandsIntl = (CollectionView)CollectionViewSource.GetDefaultView(this.lvDemandIntl.ItemsSource);
+          
             var sortTypeDescription = new SortDescription("Type", ListSortDirection.Ascending);
-            viewDemands.SortDescriptions.Add(sortTypeDescription);
+            viewDemandsIntl.SortDescriptions.Add(sortTypeDescription);
 
             var sortPassengersDescription = new SortDescription("Passengers", ListSortDirection.Descending);
-            viewDemands.SortDescriptions.Add(sortPassengersDescription);
+            viewDemandsIntl.SortDescriptions.Add(sortPassengersDescription);
+
+            var viewDemandsDomestic = (CollectionView)CollectionViewSource.GetDefaultView(this.lvDemandDomestic.ItemsSource);
+
+            var sortTypeDomesticDescription = new SortDescription("Type", ListSortDirection.Ascending);
+            viewDemandsDomestic.SortDescriptions.Add(sortTypeDomesticDescription);
+
+            var sortPassengersDomesticDescription = new SortDescription("Passengers", ListSortDirection.Descending);
+            viewDemandsDomestic.SortDescriptions.Add(sortPassengersDomesticDescription);
+
+
+         
+
         }
 
         #endregion
 
         #region Methods
+        private void btnDemandInfo_Click(object sender, RoutedEventArgs e)
+        {
+            //Scroll, info, infoicon rykkes
+            var airport = (DemandMVVM)((Button)sender).Tag;
 
+            this.SelectedAirport = airport;
+
+            this.pcGates.DataContext = this.SelectedAirport.GatesPercent;
+
+            var demands = new List<KeyValuePair<string,int>>();
+
+            demands.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1031"), this.SelectedAirport.Passengers));
+            demands.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1032"), this.SelectedAirport.Cargo));
+
+            var demands2 = new List<KeyValuePair<string, int>>();
+
+            demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1031"), this.SelectedAirport.Destination.getDestinationPassengersRate(this.Airport.Airport, AirlinerClass.ClassType.Economy_Class)));
+            demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1032"), this.SelectedAirport.Destination.getDestinationCargoRate(this.Airport.Airport)));
+
+            var demandSeries = new List<SeriesData>();
+
+            string displayName1 = string.Format("{0}-{1}", new AirportCodeConverter().Convert(this.Airport.Airport).ToString(), new AirportCodeConverter().Convert(this.SelectedAirport.Destination));
+            string displayName2 = string.Format("{1}-{0}", new AirportCodeConverter().Convert(this.Airport.Airport).ToString(), new AirportCodeConverter().Convert(this.SelectedAirport.Destination));
+
+            demandSeries.Add(new SeriesData() { DisplayName = displayName1, Items = demands });
+            demandSeries.Add(new SeriesData() { DisplayName = displayName2, Items = demands2 });
+         
+            this.cccDemand.DataContext = demandSeries;
+
+            var routes =  new List<KeyValuePair<string,int>>();
+
+             var airlines = this.SelectedAirport.Destination.AirlineContracts.Select(a=>a.Airline).Distinct();
+
+            foreach (Airline airline in airlines)
+            {
+                int airlineRoutes = airline.Routes.Count(r=>r.Destination1 == this.SelectedAirport.Destination || r.Destination2 == this.SelectedAirport.Destination);
+
+                routes.Add(new KeyValuePair<string,int>(airline.Profile.Name,airlineRoutes));
+            }
+
+            if (routes.Count == 0)
+                routes.Add(new KeyValuePair<string, int>("None", 0));
+
+            this.pcRoutes.DataContext = routes;
+
+       
+        }
         private void btnDemandContract_Click(object sender, RoutedEventArgs e)
         {
             var demand = (DemandMVVM)((Button)sender).Tag;
@@ -155,7 +249,7 @@
         {
             string searchText = ((TextBox)e.Source).Text.ToUpper();
 
-            var source = this.lvDemand.Items as ICollectionView;
+            var source = this.lvDemandDomestic.Items as ICollectionView;
             source.Filter = o =>
             {
                 if (o != null)

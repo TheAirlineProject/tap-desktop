@@ -206,7 +206,7 @@
                     </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn
                         Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1016'}"
-                        CanFilter="False" SortPropertyName="Airport.Profile.Name" Width="100">
+                        CanFilter="False" SortPropertyName="Distance" Width="100">
                          <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom">

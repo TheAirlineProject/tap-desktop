@@ -21,6 +21,7 @@
         <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
 
     </Style>
+   
     <!--radiobutton-->
     <Style x:Key="RadioButtonLeftSideText" TargetType="{x:Type RadioButton}">
         <Setter Property="Template">
@@ -1640,13 +1641,41 @@ and change the color of the selected bullet into a darker gray for better highli
         </StackPanel>
     </DataTemplate>
 
-
+    <!--charts-->
     <Style x:Key="MinimalChartStyle" TargetType="metroChart:ChartBase">
         
         <Setter Property="Height" Value="300"/>
+        <Setter Property="Width" Value="300"></Setter>
         <Setter Property="Background" Value="Transparent" />
         
         
     </Style>
-
+    <Style TargetType="metroChart:ChartTitle" x:Key="ChartTitleStyle">
+        <Setter Property="FontSize" Value="16"></Setter>
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="metroChart:ChartTitle">
+                    <StackPanel Margin="0 0 0 5">
+                        <TextBlock Text="{TemplateBinding Property=Title}"></TextBlock>
+                     </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <metroChart:ResourceDictionaryCollection x:Key="CustomColors">
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="Brush1" Color="#FF5B9BD5" />
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="Brush2" Color="#FFED7D31" />
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="Brush3" Color="#FFA5A5A5" />
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="Brush4" Color="#FFFFC000" />
+        </ResourceDictionary>
+        <!-- add more values with a different key -->
+    </metroChart:ResourceDictionaryCollection>
 </ResourceDictionary>

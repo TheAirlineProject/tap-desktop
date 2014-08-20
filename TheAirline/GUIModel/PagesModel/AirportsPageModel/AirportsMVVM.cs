@@ -24,6 +24,8 @@
 
         private int _numberOfRoutes;
 
+        private double _distance;
+
         #endregion
 
         #region Constructors and Destructors
@@ -58,6 +60,19 @@
         public Airport Airport { get; set; }
 
         public Boolean HasFreeGates { get; set; }
+
+        public double Distance 
+        {
+            get
+            {
+                return this._distance;
+            }
+            set
+            {
+                this._distance = value;
+                this.NotifyPropertyChanged("Distance");
+            }
+        }
 
         public Boolean IsHuman
         {
@@ -174,6 +189,8 @@
 
                 if (humanAirport != null && airport != null)
                 {
+                    airport.Distance = MathHelpers.GetDistance(humanAirport, airport.Airport);
+
                     return new DistanceToUnitConverter().Convert(MathHelpers.GetDistance(humanAirport, airport.Airport));
                 }
             }

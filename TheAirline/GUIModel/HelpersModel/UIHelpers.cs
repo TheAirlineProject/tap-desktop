@@ -54,7 +54,14 @@
 
         #endregion
     }
+    public class SeriesData
+    {
+        public string DisplayName { get; set; }
 
+        public string Description { get; set; }
+
+        public List<KeyValuePair<string, int>> Items { get; set; }
+    }
     //the class for some UI helpers
     public class UIHelpers
     {

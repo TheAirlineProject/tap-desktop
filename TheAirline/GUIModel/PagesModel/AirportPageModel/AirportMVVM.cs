@@ -94,7 +94,8 @@
 
             this.FreePaxGates = this.Airport.Terminals.AirportTerminals.Where(t => t.Type == Terminal.TerminalType.Passenger).Sum(t => t.getFreeGates());
 
-            this.Demands = new List<DemandMVVM>();
+            this.DomesticDemands = new List<DemandMVVM>();
+            this.IntlDemands = new List<DemandMVVM>();
 
             IOrderedEnumerable<Airport> demands =
                 this.Airport.getDestinationDemands()
@@ -115,24 +116,22 @@
 
             foreach (Airport destination in internationalDemand)
             {
-                this.Demands.Add(
+                this.IntlDemands.Add(
                     new DemandMVVM(
                         destination,
                         this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),
                         (int)this.Airport.Profile.Pax,
-                        this.Airport.getDestinationCargoRate(destination),
-                        DemandMVVM.DestinationType.International));
+                        this.Airport.getDestinationCargoRate(destination),MathHelpers.GetDistance(destination,this.Airport)));
             }
 
             foreach (Airport destination in domesticDemand)
             {
-                this.Demands.Add(
+                this.DomesticDemands.Add(
                     new DemandMVVM(
                         destination,
                         this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),
                         (int)this.Airport.Profile.Pax,
-                        this.Airport.getDestinationCargoRate(destination),
-                        DemandMVVM.DestinationType.Domestic));
+                        this.Airport.getDestinationCargoRate(destination), MathHelpers.GetDistance(destination,this.Airport)));
             }
 
             this.AirportFacilities =
@@ -380,7 +379,9 @@
 
         public HourlyWeather CurrentWeather { get; set; }
 
-        public List<DemandMVVM> Demands { get; set; }
+        public List<DemandMVVM> DomesticDemands { get; set; }
+
+        public List<DemandMVVM> IntlDemands { get; set; }
 
         public List<DestinationFlightsMVVM> Flights { get; set; }
 
@@ -725,17 +726,31 @@
 
         #region Constructors and Destructors
 
-        public DemandMVVM(Airport destination, int passengers, int totalpax, int cargo, DestinationType type)
+        public DemandMVVM(Airport destination, int passengers, int totalpax, int cargo, double distance)
         {
             this.Cargo = cargo;
             this.Passengers = passengers;
             this.TotalPax = totalpax;
             this.Destination = destination;
-            this.Type = type;
-            this.Contracted =
+           this.Contracted =
                 this.Destination.AirlineContracts.Exists(c => c.Airline == GameObject.GetInstance().HumanAirline);
             this.HasFreeGates = this.Destination.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0;
+            this.Distance = distance;
 
+            this.GatesPercent = new List<KeyValuePair<string, int>>();
+
+            var airlines = this.Destination.AirlineContracts.Select(a=>a.Airline).Distinct();
+
+            foreach (Airline airline in airlines)
+            {
+                int airlineGates = this.Destination.AirlineContracts.Where(a=>a.Airline == airline).Sum(c=>c.NumberOfGates);
+            
+                this.GatesPercent.Add(new KeyValuePair<string,int>(airline.Profile.Name, airlineGates));
+            }
+
+            this.GatesPercent.Add(new KeyValuePair<string,int>("Free", this.Destination.Terminals.getFreeGates()));
+
+            this.Type = "";
         }
 
         #endregion
@@ -746,20 +761,15 @@
 
         #endregion
 
-        #region Enums
-
-        public enum DestinationType
-        {
-            Domestic,
-
-            International
-        }
-
-        #endregion
-
+       
         #region Public Properties
+        public List<KeyValuePair<string,int>> GatesPercent { get; set; }
+
+        public double Distance { get; set; }
 
         public int Cargo { get; set; }
+
+        public object Type { get; set; }
 
         public Boolean Contracted
         {
@@ -781,8 +791,6 @@
         public int Passengers { get; set; }
 
         public int TotalPax { get; set; }
-
-        public DestinationType Type { get; set; }
 
         #endregion
 

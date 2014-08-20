@@ -1784,7 +1784,10 @@
                         }
                         airline.addRoute(route);
 
-                        fAirliner.addRoute(route);
+                        if (fAirliner != null)
+                        {
+                            fAirliner.addRoute(route);
+                        }
 
                         AirportFacility checkinFacility =
                             AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn)
