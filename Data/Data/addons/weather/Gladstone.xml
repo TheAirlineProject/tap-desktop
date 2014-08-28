@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Gladstone, QLD">
+  <months>
+    <month month="1" precipitation="143">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="143">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="83">
+      <temp min="21" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="46">
+      <temp min="19" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="61">
+      <temp min="17" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="39">
+      <temp min="14" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="35">
+      <temp min="13" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="32">
+      <temp min="14" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="27">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="62">
+      <temp min="18" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="74">
+      <temp min="20" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="129">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

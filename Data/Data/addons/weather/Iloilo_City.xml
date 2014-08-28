@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Iloilo City">
+  <months>
+    <month month="1" precipitation="40">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="19">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="27">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="48">
+      <temp min="24" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="118">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="255">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="313">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="364">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="267">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="264">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="175">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="64">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

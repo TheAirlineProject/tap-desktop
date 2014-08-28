@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Belém">
+  <months>
+    <month month="1" precipitation="367">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="418">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="436">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="360">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="304">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="140">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="152">
+      <temp min="21" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="131">
+      <temp min="21" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="141">
+      <temp min="21" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="116">
+      <temp min="21" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="112">
+      <temp min="22" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="216">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

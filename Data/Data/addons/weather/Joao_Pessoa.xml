@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="João Pessoa">
+  <months>
+    <month month="1" precipitation="76">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="108">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="252">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="350">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="307">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="346">
+      <temp min="21" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="346">
+      <temp min="21" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="184">
+      <temp min="20" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="87">
+      <temp min="21" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="35">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="25">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="29">
+      <temp min="24" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

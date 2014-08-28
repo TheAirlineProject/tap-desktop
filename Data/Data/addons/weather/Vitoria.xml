@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Vitória">
+  <months>
+    <month month="1" precipitation="77">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="54">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="87">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="72">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="46">
+      <temp min="21" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="43">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="46">
+      <temp min="19" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="45">
+      <temp min="19" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="51">
+      <temp min="20" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="76">
+      <temp min="22" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="143">
+      <temp min="23" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="175">
+      <temp min="24" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

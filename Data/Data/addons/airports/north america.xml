@@ -1,4 +1,4 @@
-
+﻿
 <!--must be placed in \data\addons\airports-->
 <airports>
   <!--Canada (C***)-->
@@ -5245,7 +5245,7 @@ season="All_Year">
     </runways>
   </airport>
     <airport name="Ixtapa Zihuatanejo International Airport" icao="MMZH" iata="ZIH" type="Short_Haul_International" season="All_Year">
-    <town town="Ixtapa" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Ixtapa/Zihuatanejo" country="157" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="017°36'05''N" />
       <longitude value="101°27'39''W" />
@@ -5435,21 +5435,6 @@ season="All_Year">
       <runway name="14/32" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Nuevo Casa Grandes Municipal  Airport" icao="MMCG" iata="NCG" type="Domestic" season="All_Year">
-    <town town="Nuevo Casas Grandes" country="157" GMT="-07:00:00" DST="-06:00:00" />
-    <coordinates>
-      <latitude value="031°38'11''N" />
-      <longitude value="106°25'43''W" />
-    </coordinates>
-    <size value="Smallest" pax="699" />
-    <terminals>
-      <terminal name="Terminal A" gates="12" />
-         </terminals>
-    <runways>
-      <runway name="03/21" length="2700" surface="Asphalt" />
-<runway name="14/32" length="1750" surface="Asphalt" />
-    </runways>
-  </airport>
   <airport name="Lic. Gustavo Díaz Ordaz International Airport" icao="MMPR" iata="PVR" type="Long_Haul_International"
            season="Winter">
     <town town="Puerto Vallarta" country="157" GMT="-05:00:00" DST="-06:00:00" />
@@ -5526,7 +5511,7 @@ season="All_Year">
     <runways />
   </airport> -->
   <airport name="Del Bajío International Airport" icao="MMLO" iata="BJX" type="Regional" season="All_Year">
-    <town town="Silao" country="157" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Leon/Guanajuato" country="157" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="020°59'36''N" />
       <longitude value="101°28'51''W" />

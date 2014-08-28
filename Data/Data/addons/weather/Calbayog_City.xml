@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Calbayog City">
+  <months>
+    <month month="1" precipitation="186">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="198">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="155">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="106">
+      <temp min="24" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="167">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="191">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="203">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="183">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="230">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="246">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="258">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="318">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<weather type="town" value="Perth">
+
+<weather type="town" value="Perth, WA">
   <months>
     <month month="1" precipitation="10">
       <temp min="18" max="31" />

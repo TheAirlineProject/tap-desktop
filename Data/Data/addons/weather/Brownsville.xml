@@ -3,11 +3,11 @@
 <weather type="town" value="Brownsville, TX">
   <months>
     <month month="1" precipitation="32">
-      <temp min="11" max="21" />
+      <temp min="11" max="22" />
       <wind min="Calm" max="Violent_Storm" />
     </month>
     <month month="2" precipitation="27">
-      <temp min="12" max="13" />
+      <temp min="12" max="24" />
       <wind min="Calm" max="Violent_Storm" />
     </month>
     <month month="3" precipitation="31">

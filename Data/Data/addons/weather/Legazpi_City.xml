@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Legazpi City">
+  <months>
+    <month month="1" precipitation="297">
+      <temp min="22" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="196">
+      <temp min="22" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="193">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="151">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="181">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="241">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="239">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="178">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="216">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="264">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="485">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="459">
+      <temp min="23" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

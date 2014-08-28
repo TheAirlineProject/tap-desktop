@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Teresina">
+  <months>
+    <month month="1" precipitation="147">
+      <temp min="24" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="149">
+      <temp min="23" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="201">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="161">
+      <temp min="24" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="82">
+      <temp min="24" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="21">
+      <temp min="23" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="15">
+      <temp min="23" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="4">
+      <temp min="23" max="36" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="8">
+      <temp min="24" max="37" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="21">
+      <temp min="24" max="38" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="39">
+      <temp min="25" max="37" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="88">
+      <temp min="24" max="36" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

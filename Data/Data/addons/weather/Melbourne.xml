@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<weather type="town" value="Melbourne">
+
+<weather type="town" value="Melbourne, VIC">
   <months>
     <month month="1" precipitation="48">
       <temp min="14" max="26" />

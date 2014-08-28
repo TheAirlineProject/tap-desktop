@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Reynosa">
+  <months>
+    <month month="1" precipitation="15">
+      <temp min="10" max="22" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="13">
+      <temp min="12" max="25" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="7">
+      <temp min="15" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="25">
+      <temp min="17" max="32" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="73">
+      <temp min="21" max="35" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="100">
+      <temp min="22" max="37" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="24">
+      <temp min="23" max="37" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="67">
+      <temp min="23" max="37" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="73">
+      <temp min="21" max="35" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="27">
+      <temp min="18" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="12">
+      <temp min="14" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="17">
+      <temp min="11" max="23" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

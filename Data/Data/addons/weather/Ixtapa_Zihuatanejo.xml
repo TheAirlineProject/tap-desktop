@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Ixtapa/Zihuatanejo">
+  <months>
+    <month month="1" precipitation="3">
+      <temp min="7" max="26" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="3">
+      <temp min="9" max="28" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="3">
+      <temp min="11" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="12">
+      <temp min="13" max="30" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="51">
+      <temp min="14" max="30" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="99">
+      <temp min="15" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="102">
+      <temp min="15" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="69">
+      <temp min="14" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="99">
+      <temp min="14" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="36">
+      <temp min="11" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="9">
+      <temp min="9" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="3">
+      <temp min="8" max="25" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

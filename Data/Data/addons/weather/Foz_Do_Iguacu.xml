@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Foz Do Iguaçu">
+  <months>
+    <month month="1" precipitation="188">
+      <temp min="19" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="191">
+      <temp min="20" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="184">
+      <temp min="18" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="146">
+      <temp min="15" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="136">
+      <temp min="12" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="137">
+      <temp min="10" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="90">
+      <temp min="9" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="111">
+      <temp min="11" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="142">
+      <temp min="13" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="232">
+      <temp min="15" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="150">
+      <temp min="16" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="172">
+      <temp min="18" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Florianópolis">
+  <months>
+    <month month="1" precipitation="176">
+      <temp min="21" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="198">
+      <temp min="22" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="186">
+      <temp min="20" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="97">
+      <temp min="18" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="97">
+      <temp min="15" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="75">
+      <temp min="13" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="95">
+      <temp min="13" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="93">
+      <temp min="14" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="127">
+      <temp min="15" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="126">
+      <temp min="17" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="129">
+      <temp min="18" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="146">
+      <temp min="20" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

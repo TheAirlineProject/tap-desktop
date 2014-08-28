@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Muscat">
+  <months>
+    <month month="1" precipitation="13">
+      <temp min="15" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="25">
+      <temp min="17" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="16">
+      <temp min="19" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="17">
+      <temp min="22" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="7">
+      <temp min="27" max="38" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="1">
+      <temp min="30" max="41" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="0">
+      <temp min="29" max="39" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="1">
+      <temp min="28" max="36" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="0">
+      <temp min="25" max="36" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="1">
+      <temp min="25" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="7">
+      <temp min="20" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="13">
+      <temp min="17" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

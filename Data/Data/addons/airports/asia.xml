@@ -2689,7 +2689,7 @@
     </runways>
   </airport>
   <airport name="Bacolod-Silay International Airport" icao="RPVB" iata="BCD" type="Domestic" season="All_Year">
-    <town town="Silay City" country="131" GMT="08:00:00" DST="08:00:00" />
+    <town town="Bacolod City" country="131" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="010°46'35''N" />
       <longitude value="123°00'55''E" />
