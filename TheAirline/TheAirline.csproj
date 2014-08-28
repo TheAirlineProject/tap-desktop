@@ -907,6 +907,7 @@
     <Compile Include="Model\AirlinerModel\EngineType.cs" />
     <Compile Include="Model\AirportModel\AirportExpansion.cs" />
     <Compile Include="Model\GeneralModel\Helpers\RouteHelpers.cs" />
+    <Compile Include="Model\GeneralModel\OperatingData.cs" />
     <Compile Include="Model\GeneralModel\SpecialContract.cs" />
     <Compile Include="Model\GeneralModel\SpecialContractType.cs" />
     <Compile Include="Model\RouteModel\CombiRoute.cs" />

@@ -33,6 +33,8 @@
 
         public Boolean MajorAirports { get; set; }
 
+        public Boolean InternationalAirports { get; set; }
+
         public int NumberOfOpponents { get; set; }
 
         public List<Airline> Opponents { get; set; }

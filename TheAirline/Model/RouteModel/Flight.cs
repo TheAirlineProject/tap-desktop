@@ -204,7 +204,10 @@
         //returns the cargo price
         public double getCargoPrice()
         {
-            return ((CargoRoute)this.Entry.TimeTable.Route).PricePerUnit;
+            if (this.Entry.TimeTable.Route is CargoRoute)
+                return ((CargoRoute)this.Entry.TimeTable.Route).PricePerUnit;
+            else
+                return ((CombiRoute)this.Entry.TimeTable.Route).PricePerUnit;
         }
 
         public Airport getDepartureAirport()

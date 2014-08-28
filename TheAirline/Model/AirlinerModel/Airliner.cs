@@ -119,6 +119,8 @@
 
             if (version == 1)
                 this.EngineType = null;
+            if (version < 3)
+                this.FlownHours = new TimeSpan();
 
         }
 
@@ -182,6 +184,9 @@
 
         [Versioning("condition")]
         public double Condition { get; set; }
+
+        [Versioning("flownhours")]
+        public TimeSpan FlownHours { get; set; }
 
         [Versioning("flown")]
         public double Flown { get; set; }
@@ -283,7 +288,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 2);
+            info.AddValue("version", 3);
 
             Type myType = this.GetType();
 

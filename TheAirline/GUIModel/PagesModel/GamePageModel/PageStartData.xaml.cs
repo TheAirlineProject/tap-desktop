@@ -22,7 +22,7 @@
         public PageStartData()
         {
             this.InitializeComponent();
-
+            
             var continentAll = new Continent("100", "All continents");
 
             this.cbContinent.Items.Add(continentAll);
@@ -70,6 +70,7 @@
                     {
                         SelectedCountries = (this.cbSelectFull.IsChecked.Value ? new List<Country>() : null),
                         MajorAirports = this.cbMajorAirports.IsChecked.Value,
+                        InternationalAirports = !this.cbAllAirports.IsChecked.Value && !this.cbMajorAirports.IsChecked.Value,
                         IsPaused = this.cbPaused.IsChecked.Value,
                         Focus = (Airline.AirlineFocus)this.cbFocus.SelectedItem,
                         SameRegion = this.cbSameRegion.IsChecked.Value,

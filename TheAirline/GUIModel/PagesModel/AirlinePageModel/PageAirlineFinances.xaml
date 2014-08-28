@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.AirlinePageModel"
-      xmlns:metroChart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
+      xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
       xmlns:generalModel="clr-namespace:TheAirline.Model.GeneralModel"
       mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300"
@@ -26,29 +26,23 @@
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1017'}"
                         Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom" />
-                    <TextBlock Margin="10 0 0 0"
-                        Text="{Binding GameObject.HumanAirline.DailyOperatingBalance,Source={StaticResource gameObject},Converter={StaticResource ValueCurrencyConverter}}"
-                        Foreground="{Binding GameObject.HumanAirline.DailyOperatingBalance,Source={StaticResource gameObject},Converter={StaticResource ValueIsMinusConverter}}"
-                        HorizontalAlignment="Center" FontWeight="Bold" />
+                   
                 </WrapPanel>
                 <StackPanel>
 
-                    <metroChart:ClusteredBarChart
-                        DataContext="{Binding Source={StaticResource gameObject}}"
-                        ChartTitle="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1018'}"
-                        ChartSubTitle="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1019'}">
-                        
-                        <metroChart:ClusteredBarChart.Series>
-                            <metroChart:ChartSeries
-                                
-                                SeriesTitle="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1019'}"
-                                DisplayMember="Key"
-                                ValueMember="Value"
-                                ItemsSource="{Binding Path=GameObject.HumanAirline.DailyOperatingBalance}"
-                                ></metroChart:ChartSeries>
-                        </metroChart:ClusteredBarChart.Series>
-                    </metroChart:ClusteredBarChart>
-                    
+                    <chart:ClusteredColumnChart  Width="600" Height="400" SeriesSource="{Binding}"
+                                            Palette="{StaticResource CustomColors}" ChartTitleStyle="{StaticResource ChartTitleStyle}" Background="Transparent" ChartTitle="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1021'}" Margin="10 0 0 0" Foreground="White" Name="cccDOR">
+                        <chart:ClusteredColumnChart.SeriesTemplate>
+                            <DataTemplate>
+                                <chart:ChartSeries
+			                                SeriesTitle="{Binding Path=DisplayName}"
+                                            DisplayMember="Key"
+                                            ValueMember="Value"
+                                            ItemsSource="{Binding Path=Items}" />
+                            </DataTemplate>
+                        </chart:ClusteredColumnChart.SeriesTemplate>
+                    </chart:ClusteredColumnChart>
+
                 </StackPanel>
             </StackPanel>
         </Border>

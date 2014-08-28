@@ -434,7 +434,11 @@
             double aMile = 1.609344;
             return km / aMile;
         }
-
+        public static double MilesToKM(double miles)
+        {
+            double aMile = 1.609344;
+            return miles * aMile;
+        }
         public static double LKMToMPG(double kml)
         {
             double aMPG = 2.35;
@@ -469,12 +473,12 @@
             double aFeet = 3.2808399;
             return meter * aFeet;
         }
-
-        public static double MilesToKM(double miles)
+        public static double FeetToMeter(double feet)
         {
-            double aMile = 1.609344;
-            return miles * aMile;
+            double aFeet = 3.2808399;
+            return feet / aFeet;
         }
+      
 
         public static void MoveObject(FleetAirliner airliner, double speed)
         {

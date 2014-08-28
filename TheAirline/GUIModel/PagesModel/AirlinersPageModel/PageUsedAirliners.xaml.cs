@@ -28,27 +28,28 @@
 
         public PageUsedAirliners()
         {
+            Boolean isMetric = AppSettings.GetInstance().getLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Metric;
             this.Loaded += this.PageUsedAirliners_Loaded;
             this.Unloaded += this.PageUsedAirliners_Unloaded;
-
+      
             this.RangeRanges = new List<FilterValue>
                                {
-                                   new FilterValue("<1500", 0, 1499),
-                                   new FilterValue("1500-2999", 1500, 2999),
-                                   new FilterValue("3000-5999", 3000, 5999),
-                                   new FilterValue("6000+", 6000, int.MaxValue)
+                                   new FilterValue("<1500", 0, isMetric ? 1499 : (int)MathHelpers.MilesToKM(1499)),
+                                   new FilterValue("1500-2999", isMetric ? 1500 : (int)MathHelpers.MilesToKM(1500), isMetric ? 2999 : (int)MathHelpers.MilesToKM(2999)),
+                                   new FilterValue("3000-5999", isMetric ? 3000 : (int)MathHelpers.MilesToKM(3000), isMetric ? 5999 : (int)MathHelpers.MilesToKM(5999)),
+                                   new FilterValue("6000+", isMetric ? 600 : (int)MathHelpers.MilesToKM(6000), int.MaxValue)
                                };
             this.SpeedRanges = new List<FilterValue>
                                {
-                                   new FilterValue("<400", 0, 399),
-                                   new FilterValue("400-599", 400, 599),
-                                   new FilterValue("600+", 600, int.MaxValue)
+                                   new FilterValue("<400",  0,isMetric ? 399 : (int)MathHelpers.MilesToKM(399)),
+                                   new FilterValue("400-599", isMetric ? 400 : (int)MathHelpers.MilesToKM(400), isMetric ? 599 : (int)MathHelpers.MilesToKM(599)),
+                                   new FilterValue("600+", isMetric ? 600 : (int)MathHelpers.MilesToKM(600), int.MaxValue)
                                };
             this.RunwayRanges = new List<FilterValue>
                                 {
-                                    new FilterValue("<5000", 0, 4999),
-                                    new FilterValue("5000-7999", 5000, 7999),
-                                    new FilterValue("8000+", 8000, int.MaxValue)
+                                    new FilterValue("<5000", 0, isMetric ? 4999 : (int)MathHelpers.FeetToMeter(4999)),
+                                    new FilterValue("5000-7999", isMetric ? 5000 : (int)MathHelpers.FeetToMeter(5000), isMetric ? 7999 : (int)MathHelpers.FeetToMeter(7999)),
+                                    new FilterValue("8000+", isMetric ? 8000 : (int)MathHelpers.FeetToMeter(8000), int.MaxValue)
                                 };
             this.CapacityRanges = new List<FilterValue>
                                   {

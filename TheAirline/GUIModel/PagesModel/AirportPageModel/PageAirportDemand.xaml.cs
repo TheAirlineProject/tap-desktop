@@ -97,10 +97,19 @@
         #region Methods
         private void btnDemandInfo_Click(object sender, RoutedEventArgs e)
         {
-            //Scroll, info, infoicon rykkes
             var airport = (DemandMVVM)((Button)sender).Tag;
 
             this.SelectedAirport = airport;
+
+            var demandPercent = new List<KeyValuePair<string, int>>();
+
+            int intlDemand = this.Airport.IntlDemands.Sum(d => d.Passengers) + this.Airport.IntlDemands.Sum(d => d.Cargo);
+            int domesticDemand = this.Airport.DomesticDemands.Sum(d => d.Passengers) + this.Airport.DomesticDemands.Sum(d => d.Cargo);
+
+            demandPercent.Add(new KeyValuePair<string,int>(Translator.GetInstance().GetString("PageAirportInfo", "1029"),domesticDemand));
+            demandPercent.Add(new KeyValuePair<string,int>(Translator.GetInstance().GetString("PageAirportInfo", "1057"),intlDemand));
+
+            this.pcDemand.DataContext = demandPercent;
 
             this.pcGates.DataContext = this.SelectedAirport.GatesPercent;
 

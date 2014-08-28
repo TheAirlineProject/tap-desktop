@@ -128,7 +128,7 @@
             if (minFlightTime.Hours < 12 && minFlightTime.Days < 1 && isDaily)
             {
                 var flightTime = new TimeSpan(startTime.Hours, startTime.Minutes, startTime.Seconds);
-                    //new TimeSpan(startHour, 0, 0).Add(new TimeSpan(0, startMinutes / 2, 0));
+                //new TimeSpan(startHour, 0, 0).Add(new TimeSpan(0, startMinutes / 2, 0));
 
                 for (int i = 0; i < numberOfFlights; i++)
                 {
@@ -674,15 +674,15 @@
 
         public static List<Airport> GetDestinationAirports(Airline airline, Airport airport)
         {
-      
+
             IEnumerable<long> airliners = from a in Airliners.GetAirlinersForSale() select a.Range;
             double maxDistance = airliners.Count() == 0 ? 5000 : airliners.Max();
 
             double minDistance = (from a in Airports.GetAirports(a => a != airport)
-                select
-                    MathHelpers.GetDistance(
-                        a.Profile.Coordinates.convertToGeoCoordinate(),
-                        airport.Profile.Coordinates.convertToGeoCoordinate())).Min();
+                                  select
+                                      MathHelpers.GetDistance(
+                                          a.Profile.Coordinates.convertToGeoCoordinate(),
+                                          airport.Profile.Coordinates.convertToGeoCoordinate())).Min();
 
             List<Airport> airports =
                 Airports.GetAirports(
@@ -775,27 +775,27 @@
             {
                 airports =
                     (from a in
-                        Airports.GetAirports(
-                            a =>
-                                IsRouteInCorrectArea(airport, a)
-                                && MathHelpers.GetDistance(
-                                    a.Profile.Coordinates.convertToGeoCoordinate(),
-                                    airport.Profile.Coordinates.convertToGeoCoordinate()) < 5000
-                                && MathHelpers.GetDistance(
-                                    a.Profile.Coordinates.convertToGeoCoordinate(),
-                                    airport.Profile.Coordinates.convertToGeoCoordinate()) >= Route.MinRouteDistance)
-                        orderby a.Profile.Size descending
-                        select a).ToList();
+                         Airports.GetAirports(
+                             a =>
+                                 IsRouteInCorrectArea(airport, a)
+                                 && MathHelpers.GetDistance(
+                                     a.Profile.Coordinates.convertToGeoCoordinate(),
+                                     airport.Profile.Coordinates.convertToGeoCoordinate()) < 5000
+                                 && MathHelpers.GetDistance(
+                                     a.Profile.Coordinates.convertToGeoCoordinate(),
+                                     airport.Profile.Coordinates.convertToGeoCoordinate()) >= Route.MinRouteDistance)
+                     orderby a.Profile.Size descending
+                     select a).ToList();
             }
 
             return (from a in airports
-                where
-                    routes.Find(r => r.Destination1 == a || r.Destination2 == a) == null
-                    && (a.Terminals.getFreeGates(terminaltype) > 0 || AirportHelpers.HasFreeGates(a, airline,terminaltype))
-                orderby
-                    ((int)airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class))
-                    + ((int)a.getDestinationPassengersRate(airport, AirlinerClass.ClassType.Economy_Class)) descending
-                select a).ToList();
+                    where
+                        routes.Find(r => r.Destination1 == a || r.Destination2 == a) == null
+                        && (a.Terminals.getFreeGates(terminaltype) > 0 || AirportHelpers.HasFreeGates(a, airline, terminaltype))
+                    orderby
+                        ((int)airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class))
+                        + ((int)a.getDestinationPassengersRate(airport, AirlinerClass.ClassType.Economy_Class)) descending
+                    select a).ToList();
         }
 
         public static T GetRandomItem<T>(Dictionary<T, int> list)
@@ -873,7 +873,7 @@
 
             if (homebase.Terminals.getNumberOfGates(airliner.Airliner.Airline) == 0)
             {
-                AirportHelpers.RentGates(homebase, airliner.Airliner.Airline, AirportContract.ContractType.Full,airliner.Airliner.Airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger);
+                AirportHelpers.RentGates(homebase, airliner.Airliner.Airline, AirportContract.ContractType.Full, airliner.Airliner.Airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger);
                 AirportFacility checkinFacility =
                     AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
@@ -1019,21 +1019,25 @@
                             .Find(f => f.TypeLevel == 1);
                     double price = facility.Price;
 
-                    if (airport.Profile.Country != airline.Profile.Country)
+                    if (!airport.isBuildingFacility(airline, AirportFacility.FacilityType.TicketOffice))
                     {
-                        price = price * 1.25;
+
+                        if (airport.Profile.Country != airline.Profile.Country)
+                        {
+                            price = price * 1.25;
+                        }
+
+                        AirlineHelpers.AddAirlineInvoice(
+                            airline,
+                            GameObject.GetInstance().GameTime,
+                            Invoice.InvoiceType.Purchases,
+                            -price);
+
+                        airport.addAirportFacility(
+                            airline,
+                            facility,
+                            GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
                     }
-
-                    AirlineHelpers.AddAirlineInvoice(
-                        airline,
-                        GameObject.GetInstance().GameTime,
-                        Invoice.InvoiceType.Purchases,
-                        -price);
-
-                    airport.addAirportFacility(
-                        airline,
-                        facility,
-                        GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
                 }
             }
         }
@@ -1056,7 +1060,7 @@
                         //creates a new alliance for the airline
                         CreateNewAlliance(airline);
                     }
-                        //joins an existing alliance
+                    //joins an existing alliance
                     else
                     {
                         if (alliance.IsHumanAlliance)
@@ -1878,9 +1882,9 @@
         private static Alliance GetAirlineAlliance(Airline airline)
         {
             Alliance bestAlliance = (from a in Alliances.GetAlliances()
-                where !a.Members.ToList().Exists(m => m.Airline == airline)
-                orderby GetAirlineAllianceScore(airline, a, true) descending
-                select a).FirstOrDefault();
+                                     where !a.Members.ToList().Exists(m => m.Airline == airline)
+                                     orderby GetAirlineAllianceScore(airline, a, true) descending
+                                     select a).FirstOrDefault();
 
             if (bestAlliance != null && GetAirlineAllianceScore(airline, bestAlliance, true) > 50)
             {
@@ -1914,9 +1918,9 @@
         private static Airline GetAllianceAirline(Alliance alliance)
         {
             Airline bestAirline = (from a in Airlines.GetAllAirlines()
-                where !alliance.Members.ToList().Exists(m => m.Airline == a) && a.Alliances.Count == 0
-                orderby GetAirlineAllianceScore(a, alliance, false) descending
-                select a).FirstOrDefault();
+                                   where !alliance.Members.ToList().Exists(m => m.Airline == a) && a.Alliances.Count == 0
+                                   orderby GetAirlineAllianceScore(a, alliance, false) descending
+                                   select a).FirstOrDefault();
 
             if (GetAirlineAllianceScore(bestAirline, alliance, false) > 50)
             {
@@ -1983,24 +1987,24 @@
                 homeAirports = AirlineHelpers.GetHomebases(airline);
             }
             homeAirports.AddRange(airline.getHubs());
-        
+
             Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
-            Airport airport = homeAirports.Find(a => AirportHelpers.HasFreeGates(a, airline,terminaltype));
+            Airport airport = homeAirports.Find(a => AirportHelpers.HasFreeGates(a, airline, terminaltype));
 
             if (airport == null)
             {
                 airport = homeAirports.Find(a => a.Terminals.getFreeGates(terminaltype) > 0);
                 if (airport != null)
                 {
-                    AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service,terminaltype);
+                    AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service, terminaltype);
                 }
                 else
                 {
                     airport = GetServiceAirport(airline);
                     if (airport != null)
                     {
-                        AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service,terminaltype);
+                        AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service, terminaltype);
                     }
                 }
             }
@@ -2024,27 +2028,30 @@
 
                 if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.Service).Facility.TypeLevel
                     == 0 && !airport.hasContractType(airline, AirportContract.ContractType.Full_Service))
-                {
-                    airport.addAirportFacility(
-                        airline,
-                        facility,
-                        GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
 
-                    double price = facility.Price;
-
-                    if (airport.Profile.Country != airline.Profile.Country)
+                    if (!airport.isBuildingFacility(airline, AirportFacility.FacilityType.Service))
                     {
-                        price = price * 1.25;
-                    }
+                        airport.addAirportFacility(
+                            airline,
+                            facility,
+                            GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
 
-                    AirlineHelpers.AddAirlineInvoice(
-                        airline,
-                        GameObject.GetInstance().GameTime,
-                        Invoice.InvoiceType.Purchases,
-                        -price);
-                }
+                        double price = facility.Price;
+
+                        if (airport.Profile.Country != airline.Profile.Country)
+                        {
+                            price = price * 1.25;
+                        }
+
+                        AirlineHelpers.AddAirlineInvoice(
+                            airline,
+                            GameObject.GetInstance().GameTime,
+                            Invoice.InvoiceType.Purchases,
+                            -price);
+                    }
                 return airport;
             }
+
 
             return null;
         }
@@ -2215,14 +2222,14 @@
                 {
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter);
-       
+
                 }
 
                 if (airline.AirlineRouteFocus == Route.RouteType.Passenger)
                 {
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter);
-        
+
                 }
                 if (airline.AirlineRouteFocus == Route.RouteType.Helicopter)
                 {

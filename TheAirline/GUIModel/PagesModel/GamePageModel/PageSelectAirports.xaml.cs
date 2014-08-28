@@ -95,18 +95,36 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         private void setNumberOfAirports()
         {
             int count = 0;
-            int majorAirports = Airports.GetAllAirports(a =>
-                            a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Large
-                            || a.Profile.Size == GeneralHelpers.Size.Very_large
-                            || a.Profile.Size == GeneralHelpers.Size.Medium).Count;
 
-            foreach (Country country in this.SelectedCountries)
+            if (this.StartData.MajorAirports)
             {
-                count += Airports.GetAllAirports(a => (new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country) == country && (a.Profile.Size == GeneralHelpers.Size.Small || a.Profile.Size == GeneralHelpers.Size.Smallest
-                            || a.Profile.Size == GeneralHelpers.Size.Very_small)).Count;
-            }
+                int majorAirports = Airports.GetAllAirports(a =>
+                                a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Large
+                                || a.Profile.Size == GeneralHelpers.Size.Very_large
+                                || a.Profile.Size == GeneralHelpers.Size.Medium).Count;
 
-            this.NumberOfAirports = count + majorAirports;
+                foreach (Country country in this.SelectedCountries)
+                {
+                    count += Airports.GetAllAirports(a => (new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country) == country && (a.Profile.Size == GeneralHelpers.Size.Small || a.Profile.Size == GeneralHelpers.Size.Smallest
+                                || a.Profile.Size == GeneralHelpers.Size.Very_small)).Count;
+                }
+
+                this.NumberOfAirports = count + majorAirports;
+            }
+            if (this.StartData.InternationalAirports)
+            {
+                int intlAirports = Airports.GetAllAirports(a =>
+                               a.Profile.Type == AirportProfile.AirportType.Long_Haul_International 
+                               || a.Profile.Type == AirportProfile.AirportType.Short_Haul_International).Count;
+
+                foreach (Country country in this.SelectedCountries)
+                {
+                    count += Airports.GetAllAirports(a => (new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country) == country && (a.Profile.Type == AirportProfile.AirportType.Regional
+                        || a.Profile.Type == AirportProfile.AirportType.Domestic)).Count;
+                }
+
+                this.NumberOfAirports = count + intlAirports;
+            }
         }
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {

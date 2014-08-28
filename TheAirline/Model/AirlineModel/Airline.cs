@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
@@ -21,11 +20,10 @@
 
     [Serializable]
     //the class for an airline
-    public class Airline : ISerializable, INotifyPropertyChanged
+    public class Airline : ISerializable
     {
-        private long dailyOperatingBalance;
-
-        private ObservableCollection<KeyValuePair<DateTime, double>> dailyOperatingBalanceHistory;
+      
+        private List<KeyValuePair<DateTime,KeyValuePair<double, double>>> dailyOperatingBalanceHistory;
 
         #region Constructors and Destructors
 
@@ -383,30 +381,17 @@
         [Versioning("scontracts",Version=5)]
         public List<SpecialContract> SpecialContracts { get; set; }
 
-        public double DailyOperatingBalance
-        {
-            get
-            {
-
-                return this.DailyOperatingBalanceHistory.Any()
-                    ? this.DailyOperatingBalanceHistory.OrderByDescending(dobh => dobh.Key).FirstOrDefault().Value
-                    : 0;
-            }
-        }
+      
 
         [Versioning("dailyoperatingbalancehistory")]
-        public ObservableCollection<KeyValuePair<DateTime, double>> DailyOperatingBalanceHistory
+        public List<KeyValuePair<DateTime, KeyValuePair<double,double>>> DailyOperatingBalanceHistory
         {
             get
             {
                 if (this.dailyOperatingBalanceHistory == null)
                 {
-                    this.dailyOperatingBalanceHistory = new ObservableCollection<KeyValuePair<DateTime, double>>();
+                    this.dailyOperatingBalanceHistory = new List<KeyValuePair<DateTime, KeyValuePair<double,double>>>();
 
-                    this.dailyOperatingBalanceHistory.CollectionChanged += delegate
-                    {
-                        OnPropertyChanged("DailyOperatingBalance");
-                    };
                 }
 
                 return this.dailyOperatingBalanceHistory;
@@ -417,10 +402,7 @@
                 {
                     this.dailyOperatingBalanceHistory = value;
 
-                    this.dailyOperatingBalanceHistory.CollectionChanged += delegate
-                    {
-                        OnPropertyChanged("DailyOperatingBalance");
-                    };
+                   
                 }
             }
         }
@@ -1027,9 +1009,9 @@
             this.Invoices.addInvoice(invoice);
         }
 
-        public void setInvoice(Invoice.InvoiceType type, int year, int month, double amount)
+        public void setInvoice(Invoice.InvoiceType type, int year, int month,int day, double amount)
         {
-            this.Invoices.addInvoice(type, year, month, amount);
+            this.Invoices.addInvoice(type, year, month,day, amount);
         }
 
         public void storeBudget(AirlineBudget budget)
@@ -1091,16 +1073,7 @@
                          || (r.Destination2.Profile.IATACode == airport.Profile.IATACode)) && r.HasAirliner);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+      
     }
 
     //the list of airlines

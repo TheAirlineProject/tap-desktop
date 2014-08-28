@@ -335,6 +335,12 @@
                 dest.Profile.Coordinates.convertToGeoCoordinate(),
                 dept.Profile.Coordinates.convertToGeoCoordinate());
 
+            airliner.Data.addOperatingValue(new OperatingValue("Tickets", GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, ticketsIncome));
+            airliner.Data.addOperatingValue(new OperatingValue("In-flight Services", GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, feesIncome));
+
+            airliner.Data.addOperatingValue(new OperatingValue("Fuel Expenses", GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, -fuelExpenses));
+          
+
             double expenses = fuelExpenses + AirportHelpers.GetLandingFee(dest,airliner.Airliner) + tax;
 
             if (double.IsNaN(expenses))

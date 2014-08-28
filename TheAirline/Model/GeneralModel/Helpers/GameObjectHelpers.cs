@@ -146,7 +146,55 @@
                 Setup.SetupMainGame(startData.Opponents, startData.NumberOfOpponents);
             }
             var heliports = Airports.GetAirports(a => a.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad));
-           
+
+            if (startData.InternationalAirports)
+            {
+                List<Airport> intlAirports = Airports.GetAllAirports(a => a.Profile.Type == AirportProfile.AirportType.Long_Haul_International 
+                    || a.Profile.Type == AirportProfile.AirportType.Short_Haul_International);
+
+                int minAirportsPerRegion = 5;
+                foreach (Region airportRegion in Regions.GetRegions())
+                {
+                    IEnumerable<Airport> usedAirports = Airlines.GetAllAirlines().SelectMany(a => a.Airports);
+
+                    int countRegionAirports = intlAirports.Count(a => a.Profile.Country.Region == airportRegion);
+                    if (countRegionAirports < minAirportsPerRegion)
+                    {
+                        IEnumerable<Airport> regionAirports =
+                            Airports.GetAirports(airportRegion)
+                                .Where(a => !intlAirports.Contains(a))
+                                .OrderByDescending(a => a.Profile.Size)
+                                .Take(minAirportsPerRegion - countRegionAirports);
+
+                        intlAirports.AddRange(regionAirports);
+                    }
+
+                    if (startData.SelectedCountries != null)
+                    {
+                        foreach (Country country in startData.SelectedCountries)
+                        {
+                            List<Airport> countryAirports =
+                        Airports.GetAllAirports(
+                            a => (new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country) == country &&
+                                (a.Profile.Type == AirportProfile.AirportType.Regional || a.Profile.Type == AirportProfile.AirportType.Domestic));
+
+                            foreach (Airport cairport in countryAirports)
+                                if (!intlAirports.Contains(cairport))
+                                    intlAirports.Add(cairport);
+                        }
+                    }
+
+                    intlAirports.AddRange(usedAirports);
+                    intlAirports.AddRange(heliports);
+
+                    Airports.Clear();
+
+                    foreach (Airport majorAirport in intlAirports.Distinct())
+                    {
+                        Airports.AddAirport(majorAirport);
+                    }
+                }
+            }
             if (startData.MajorAirports)
             {
                 List<Airport> majorAirports =
@@ -378,6 +426,11 @@
                 ticketsIncome = 0;
             }
 
+            airliner.Data.addOperatingValue(new OperatingValue("Tickets", GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month, ticketsIncome));
+            airliner.Data.addOperatingValue(new OperatingValue("In-flight Services", GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, feesIncome));
+
+            airliner.Data.addOperatingValue(new OperatingValue("Fuel Expenses", GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, -fuelExpenses));
+          
             FleetAirlinerHelpers.SetFlightStats(airliner);
 
             long airportIncome = Convert.ToInt64(AirportHelpers.GetLandingFee(dest, airliner.Airliner));
@@ -552,14 +605,16 @@
               
                         DayTurnHelpers.SimulateAirlineFlights(airline);
 
+                        double income = airline.Invoices.MonthlyInvoices.Where(i => i.Day == GameObject.GetInstance().GameTime.Day && i.Month == GameObject.GetInstance().GameTime.Month && i.Year == GameObject.GetInstance().GameTime.Year && i.Amount > 0).Sum(i=>i.Amount);
+                        double expenses = airline.Invoices.MonthlyInvoices.Where(i => i.Day == GameObject.GetInstance().GameTime.Day && i.Month == GameObject.GetInstance().GameTime.Month && i.Year == GameObject.GetInstance().GameTime.Year && i.Amount < 0).Sum(i => i.Amount);
+                        
                         airline.DailyOperatingBalanceHistory.Add(
-                            new KeyValuePair<DateTime, double>(
+                            new KeyValuePair<DateTime, KeyValuePair<double,double>>(
                                 GameObject.GetInstance().GameTime,
-                                airline.Money - balance));
+                                new KeyValuePair<double,double>(Math.Abs(income),Math.Abs(expenses))));
 
                     });
 
-                // Console.WriteLine("{0} airlines: {1} airliners: {2} routes: {3} flights: {4} airports: {5} total time per round: {6} ms.", GameObject.GetInstance().GameTime.ToShortDateString(), Airlines.GetAllAirlines().Count, Airlines.GetAllAirlines().Sum(a => a.Fleet.Count), Airlines.GetAllAirlines().Sum(a => a.Routes.Count), Airlines.GetAllAirlines().Sum(a => a.Routes.Sum(r => r.TimeTable.Entries.Count)), Airports.GetAllAirports().Count, sw.ElapsedMilliseconds);
                 sw.Stop();
             }
             else
@@ -2305,6 +2360,12 @@
                         GameObject.GetInstance().GameTime,
                         Invoice.InvoiceType.Wages,
                         -salary);
+
+                    if (pilot.Airliner != null)
+                    {
+                        pilot.Airliner.Data.addOperatingValue(new OperatingValue("Salary", GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, -salary));
+    
+                    }
                 }
 
                 foreach (Instructor instructor in airline.FlightSchools.SelectMany(f => f.Instructors))
@@ -2357,6 +2418,9 @@
                         GameObject.GetInstance().GameTime,
                         Invoice.InvoiceType.Rents,
                         -airliner.Airliner.LeasingPrice);
+
+                    airliner.Data.addOperatingValue(new OperatingValue("Leasing Expenses", GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, -airliner.Airliner.LeasingPrice));
+    
                 }
 
                 foreach (Airport airport in airline.Airports)

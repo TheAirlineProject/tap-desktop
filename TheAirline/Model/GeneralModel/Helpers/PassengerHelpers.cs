@@ -315,6 +315,7 @@
 
         public static void CreateDestinationPassengers(Airport airport, Airport dAirport)
         {
+            //short_haul, long_haul, demand both ways
             Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
 
             double estimatedPassengerLevel = 0;
@@ -2911,7 +2912,12 @@
 
             double distance = MathHelpers.GetDistance(airportCurrent, airportDestination);
 
-            double capacity = ((AirlinerCargoType)airliner.Airliner.Type).CargoSize;
+            double capacity = 0;
+            
+            if (airliner.Airliner.Type is AirlinerCargoType)
+                capacity = ((AirlinerCargoType)airliner.Airliner.Type).CargoSize;
+            if (airliner.Airliner.Type is AirlinerCombiType)
+                capacity = ((AirlinerCombiType)airliner.Airliner.Type).CargoSize;
 
             double demand = airportCurrent.getDestinationCargoRate(airportDestination)
                             * (destinationFacilityFactor / 100);
@@ -2955,7 +2961,7 @@
             {
                 totalCapacity =
                     routes.Where(r => r.HasAirliner)
-                        .Sum(r => r.getAirliners().Max(a => ((AirlinerCargoType)a.Airliner.Type).CargoSize));
+                    .Sum(r => r.getAirliners().Max(a => a.Airliner.Type is AirlinerCombiType ? ((AirlinerCombiType)a.Airliner.Type).CargoSize : ((AirlinerCargoType)a.Airliner.Type).CargoSize));
                     //SelectMany(r => r.Stopovers.Where(s=>s.Legs.Count >0))).Sum(s=>s.;//a => a.Routes.SelectMany(r=>r.Stopovers.SelectMany(s=>s.Legs.Where(l=>r.HasAirliner && (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent))).Sum(r=>r.getAirliners().Max(a=>a.Airliner.getTotalSeatCapacity()));
             }
             else

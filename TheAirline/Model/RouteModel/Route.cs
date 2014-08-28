@@ -437,9 +437,9 @@
             this.Stopovers.Remove(this.Stopovers.Find(s => s.Stopover == stopover));
         }
 
-        public void setRouteInvoice(Invoice.InvoiceType type, int year, int month, double amount)
+        public void setRouteInvoice(Invoice.InvoiceType type, int year, int month,int day, double amount)
         {
-            this.Invoices.addInvoice(type, year, month, amount);
+            this.Invoices.addInvoice(type, year, month,day, amount);
         }
 
         #endregion

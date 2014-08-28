@@ -126,6 +126,9 @@
                                  && !this.Airliner.HasRoute
                                  && this.Airliner.Purchased == FleetAirliner.PurchasedType.Bought
                                  && this.Airliner.Airliner.Type.IsConvertable;
+
+            
+    
         }
 
         #endregion

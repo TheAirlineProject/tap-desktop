@@ -1207,7 +1207,7 @@ and change the color of the selected bullet into a darker gray for better highli
                             <ContentPresenter Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               VerticalAlignment="Bottom" Margin="{TemplateBinding Padding}" />
-                            <Image Source="/data/images/tickgrey.png" Width="20"
+                            <Image Source="/data/images/tickgrey.png" Width="20" Margin="10 0 0 0"
                                    RenderOptions.BitmapScalingMode="HighQuality" Name="tick" VerticalAlignment="Bottom" />
                         </WrapPanel>
                     </Border>
@@ -1516,7 +1516,7 @@ and change the color of the selected bullet into a darker gray for better highli
                                     <WrapPanel>
                                         <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}"
                                                   VerticalAlignment="Bottom" />
-                                        <TextBlock Text="{Binding ItemView}" VerticalAlignment="Bottom"
+                                        <TextBlock Text="{Binding ItemView,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"
                                                    Margin="5 0 0 0" />
                                     </WrapPanel>
                                 </DataTemplate>
@@ -1563,7 +1563,7 @@ and change the color of the selected bullet into a darker gray for better highli
                                     <WrapPanel>
                                         <RadioButton IsChecked="{Binding IsChecked,Mode=TwoWay}"
                                                      VerticalAlignment="Center" GroupName="Item" />
-                                        <TextBlock Text="{Binding ItemView}" VerticalAlignment="Bottom"
+                                        <TextBlock Text="{Binding ItemView,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"
                                                    Margin="5 0 0 0" />
                                     </WrapPanel>
                                 </DataTemplate>

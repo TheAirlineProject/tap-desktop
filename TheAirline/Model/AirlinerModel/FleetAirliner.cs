@@ -45,6 +45,8 @@
             this.Pilots = new List<Pilot>();
             this.InsurancePolicies = new List<AirlinerInsurance>();
             this.MaintenanceHistory = new Dictionary<Invoice, string>();
+
+            this.Data = new OperatingData();
         }
 
         private FleetAirliner(SerializationInfo info, StreamingContext ctxt)
@@ -102,6 +104,8 @@
                     }
                 }
             }
+            if (version == 1)
+                this.Data = new OperatingData();
         }
 
         #endregion
@@ -167,6 +171,9 @@
 
         [Versioning("groundedto")]
         public DateTime GroundedToDate { get; set; }
+
+        [Versioning("data",Version=2)]
+        public OperatingData Data { get; set; }
 
         public Boolean HasRoute
         {
@@ -250,8 +257,8 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
-
+            info.AddValue("version", 2);
+            
             Type myType = this.GetType();
 
             IEnumerable<FieldInfo> fields =

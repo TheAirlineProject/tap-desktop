@@ -34,11 +34,15 @@
                 <g:QuickInfoValue.Value>
                     <WrapPanel>
                         <RadioButton GroupName="MajorAirports" Name="cbMajorAirports"
-                                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 106'}"
+                                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1034'}"
                                      Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
                                      IsChecked="True" />
+                        <RadioButton GroupName="MajorAirports" Name="cbAllAirports"
+                                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1033'}"
+                                     Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                                     Margin="5 0 0 0" />
                         <RadioButton GroupName="MajorAirports"
-                                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 107'}"
+                                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1032'}"
                                      Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
                                      Margin="5 0 0 0" />
                     </WrapPanel>
@@ -49,8 +53,8 @@
                 <g:QuickInfoValue.Style>
                     <Style>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=cbMajorAirports, Path=IsChecked}"
-                                         Value="False">
+                            <DataTrigger Binding="{Binding ElementName=cbAllAirports, Path=IsChecked}"
+                                         Value="True">
                                 <Setter Property="g:QuickInfoValue.Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>

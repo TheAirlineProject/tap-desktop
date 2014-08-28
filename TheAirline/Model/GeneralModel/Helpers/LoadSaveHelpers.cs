@@ -2166,7 +2166,7 @@
                     airlineInvoiceNode.Attributes["amount"].Value,
                     new CultureInfo("de-DE", false));
 
-                airline.setInvoice(type, invoiceYear, invoiceMonth, invoiceAmount);
+                airline.setInvoice(type, invoiceYear, invoiceMonth,1, invoiceAmount);
             }
 
             // chs, 2011-13-10 added for loading of airline advertisements
@@ -2659,7 +2659,7 @@
                     routeInvoiceNode.Attributes["amount"].Value,
                     new CultureInfo("de-DE", false));
 
-                route.setRouteInvoice(type, invoiceYear, invoiceMonth, invoiceAmount);
+                route.setRouteInvoice(type, invoiceYear, invoiceMonth, 1,invoiceAmount);
             }
 
             return route;

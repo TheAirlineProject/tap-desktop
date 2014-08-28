@@ -8,7 +8,15 @@
       mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PagePilots">
-    <filter:FilterableListView x:Name="lvAirliners" ItemsSource="{Binding AllPilots,ElementName=pagePilots}"
+    <Page.Resources>
+        <DataTemplate x:Key="pilotAirlinerItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Airliner.Type.Name,StringFormat='({0})'}" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <filter:FilterableListView x:Name="lvAirliners" ItemsSource="{Binding AllPilots,ElementName=pagePilots}"
                                ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                FilterButtonActiveStyle="{StaticResource filterButtonActive}"
                                FilterButtonInactiveStyle="{StaticResource filterButtonInactive}"

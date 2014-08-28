@@ -1,18 +1,18 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Documents;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.PilotModel;
+    using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.PilotModel;
 
     /// <summary>
     ///     Interaction logic for PagePilots.xaml
@@ -75,17 +75,16 @@
                 this.AllPilots.Remove(pilot);
 
                 IEnumerable<FleetAirliner> fleetMissingPilots =
-                    GameObject.GetInstance().HumanAirline.Fleet.Where(f => f.Pilots.Count < f.Airliner.Type.CockpitCrew);
-
+                    GameObject.GetInstance().HumanAirline.Fleet.Where(f => f.Pilots.Count < f.Airliner.Type.CockpitCrew && pilot.Aircrafts.Exists(a=>f.Airliner.Type.AirlinerFamily == a));
+                
                 if (fleetMissingPilots.Count() > 0)
                 {
                     var cbAirliners = new ComboBox();
                     cbAirliners.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
                     cbAirliners.Width = 200;
                     cbAirliners.HorizontalAlignment = HorizontalAlignment.Left;
-                    cbAirliners.DisplayMemberPath = "Name";
-                    cbAirliners.SelectedValuePath = "Name";
-
+                    cbAirliners.ItemTemplate = this.Resources["pilotAirlinerItem"] as DataTemplate;
+                  
                     foreach (FleetAirliner airliner in fleetMissingPilots)
                     {
                         cbAirliners.Items.Add(airliner);
@@ -133,4 +132,5 @@
 
         #endregion
     }
+   
 }

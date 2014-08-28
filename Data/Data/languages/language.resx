@@ -4432,7 +4432,7 @@ Good luck.</value>
     <value>Selecting more than 50 opponents will make the game unstable</value>
   </data>
   <data name="PageNewGame_1028_name" xml:space="preserve">
-    <value>Use Only Major Airports</value>
+    <value>Select Airports</value>
   </data>
   <data name="PageFleetAirlinerInformation_1012_name" xml:space="preserve">
     <value>Pilots</value>
@@ -5369,5 +5369,41 @@ Good luck.</value>
   </data>
   <data name="PageAirportDemand_1008_name" xml:space="preserve">
     <value>Airline Routes</value>
+  </data>
+  <data name="PageAirlineFinances_1021_name" xml:space="preserve">
+    <value>Last 5 Days</value>
+  </data>
+  <data name="MessageBox_3004_message" xml:space="preserve">
+    <value>You are not having the correct license to fly this route</value>
+  </data>
+  <data name="MessageBox_3004_name" xml:space="preserve">
+    <value>Airline license</value>
+  </data>
+  <data name="PageCreateRoute_1022_name" xml:space="preserve">
+    <value>Show Only Hubs</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1006_name" xml:space="preserve">
+    <value>Incomes</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1007_name" xml:space="preserve">
+    <value>Expenses</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1008_name" xml:space="preserve">
+    <value>Weekly Utilization</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1009_name" xml:space="preserve">
+    <value>Airliner Condition</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1010_name" xml:space="preserve">
+    <value>In Air Percent</value>
+  </data>
+  <data name="PageNewGame_1032_name" xml:space="preserve">
+    <value>International Airports</value>
+  </data>
+  <data name="PageNewGame_1033_name" xml:space="preserve">
+    <value>All Airports</value>
+  </data>
+  <data name="PageNewGame_1034_name" xml:space="preserve">
+    <value>Major Airports </value>
   </data>
 </root>

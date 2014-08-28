@@ -135,33 +135,43 @@
         //adds an invoice to the invoices
         public void addInvoice(Invoice invoice)
         {
-            this.addInvoice(invoice.Type, invoice.Date.Year, invoice.Date.Month, invoice.Amount);
+            this.addInvoice(invoice.Type, invoice.Date.Year, invoice.Date.Month, invoice.Date.Day, invoice.Amount);
         }
 
-        public void addInvoice(Invoice.InvoiceType type, int year, int month, double amount)
+        public void addInvoice(Invoice.InvoiceType type, int year, int month,int day, double amount)
         {
             lock (this.MonthlyInvoices)
             {
-                if (this.contains(type, year, month))
+                if (this.contains(type, year, month,day))
                 {
                     MonthlyInvoice mInvoice =
-                        this.MonthlyInvoices.Find(m => m.Month == month && m.Year == year && m.Type == type);
+                        this.MonthlyInvoices.Find(m => m.Month == month && m.Year == year && m.Type == type && m.Day == day);
                     mInvoice.Amount += amount;
                 }
                 else
                 {
-                    var mInvoice = new MonthlyInvoice(type, year, month, amount);
+                    var mInvoice = new MonthlyInvoice(type, year, month,day, amount);
                     this.MonthlyInvoices.Add(mInvoice);
                 }
             }
         }
-
         public Boolean contains(Invoice.InvoiceType type, int year, int month)
         {
             Boolean contains;
             lock (this.MonthlyInvoices)
             {
-                contains = this.MonthlyInvoices.Exists(m => m.Month == month && m.Year == year && m.Type == type);
+                contains = this.MonthlyInvoices.Exists(m => m.Month == month && m.Year == year &&  m.Type == type);
+            }
+
+            return contains;
+        }
+
+        public Boolean contains(Invoice.InvoiceType type, int year, int month, int day)
+        {
+            Boolean contains;
+            lock (this.MonthlyInvoices)
+            {
+                contains = this.MonthlyInvoices.Exists(m => m.Month == month && m.Year == year && m.Day == day && m.Type == type);
             }
 
             return contains;

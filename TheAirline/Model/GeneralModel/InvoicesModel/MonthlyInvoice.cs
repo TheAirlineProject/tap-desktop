@@ -12,16 +12,17 @@
     {
         #region Constructors and Destructors
 
-        public MonthlyInvoice(Invoice.InvoiceType type, int year, int month, double amount)
+        public MonthlyInvoice(Invoice.InvoiceType type, int year, int month, int day, double amount)
         {
             this.Type = type;
             this.Year = year;
             this.Month = month;
             this.Amount = amount;
+            this.Day = day;
         }
 
-        public MonthlyInvoice(Invoice.InvoiceType type, int year, int month)
-            : this(type, year, month, 0)
+        public MonthlyInvoice(Invoice.InvoiceType type, int year, int month, int day)
+            : this(type, year, month,day, 0)
         {
         }
 
@@ -80,6 +81,9 @@
                     }
                 }
             }
+
+            if (version == 1)
+                this.Day = 1;
         }
 
         #endregion
@@ -98,13 +102,16 @@
         [Versioning("year")]
         public int Year { get; set; }
 
+        [Versioning("day",Version=2)]
+        public int Day { get; set; }
+
         #endregion
 
         #region Public Methods and Operators
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 

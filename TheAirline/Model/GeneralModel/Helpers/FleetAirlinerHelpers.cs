@@ -272,7 +272,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //sets the flights stats for an airliner
         public static void SetFlightStats(FleetAirliner airliner)
         {
-            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),airliner.Airliner.Type));
+            TimeSpan flightTime = MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),airliner.Airliner.Type);
+            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(flightTime);
+
+            airliner.Airliner.FlownHours = airliner.Airliner.FlownHours.Add(flightTime);
 
             Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
             Airport dept = airliner.CurrentFlight.Entry.DepartureAirport;
@@ -302,7 +305,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double routeDepartures = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Arrivals"));
                 airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"), (int)(routePassengers / routeDepartures));
 
-                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Capacity"),(int)((AirlinerCargoType)airliner.Airliner.Type).CargoSize);
+                double cargocapacity = 0;
+
+                if (airliner.Airliner.Type is AirlinerCargoType)
+                    cargocapacity = ((AirlinerCargoType)airliner.Airliner.Type).CargoSize;
+
+                if (airliner.Airliner.Type is AirlinerCombiType)
+                    cargocapacity = ((AirlinerCombiType)airliner.Airliner.Type).CargoSize;
+
+                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Capacity"),(int)cargocapacity);
 
                 double airlinerCargo = airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Cargo"));
                 double airlinerDepartures = airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
@@ -353,7 +364,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double airlinePassengers = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"));
                 double airlineDepartures = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
                 airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinePassengers / airlineDepartures));
-
+                
                 //the statistics for destination airport
                 dept.addPassengerDestinationStatistics(dest, airliner.CurrentFlight.getTotalPassengers());
             }
@@ -379,8 +390,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double direction = MathHelpers.GetDirection(airliner.CurrentFlight.getDepartureAirport().Profile.Coordinates.convertToGeoCoordinate(), airliner.CurrentFlight.getNextDestination().Profile.Coordinates.convertToGeoCoordinate());
 
             Weather.WindDirection windDirection = MathHelpers.GetWindDirectionFromDirection(direction);
-
-            //W+E = 0+4= 5, N+S=2+6 - = Abs(Count/2) -> Head, Abs(0) -> Tail -> if ends/starts with same => tail, indexof +-1 -> tail, (4+(indexof))+-1 -> head 
 
             int windDirectionLenght = Enum.GetValues(typeof(Weather.WindDirection)).Length;
             int indexCurrentPosition = Array.IndexOf(Enum.GetValues(typeof(Weather.WindDirection)), windDirection);

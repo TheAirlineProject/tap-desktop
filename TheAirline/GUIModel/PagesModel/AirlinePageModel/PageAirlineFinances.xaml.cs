@@ -1,10 +1,11 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+    using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
 
@@ -21,6 +22,32 @@
             this.DataContext = this.Airline;
 
             this.InitializeComponent();
+
+            var incomes = new List<KeyValuePair<string, int>>();
+            var expenses = new List<KeyValuePair<string, int>>();
+
+            int count = 0;
+
+            while (count < this.Airline.Airline.DailyOperatingBalanceHistory.Count && count < 5)
+            {
+                KeyValuePair<DateTime,KeyValuePair<double,double>> value = this.Airline.Airline.DailyOperatingBalanceHistory[this.Airline.Airline.DailyOperatingBalanceHistory.Count -count -1];
+
+                incomes.Add(new KeyValuePair<string, int>(value.Key.ToShortDateString(), (int)value.Value.Key));
+                expenses.Add(new KeyValuePair<string, int>(value.Key.ToShortDateString(), (int)value.Value.Value));
+
+                count++;
+            }
+
+
+            var demandSeries = new List<SeriesData>();
+
+            string displayName1 = "Income";
+            string displayName2 = "Expenses";
+
+            demandSeries.Add(new SeriesData() { DisplayName = displayName1, Items = incomes });
+            demandSeries.Add(new SeriesData() { DisplayName = displayName2, Items = expenses });
+
+            this.cccDOR.DataContext = demandSeries;
         }
 
         #endregion

@@ -286,6 +286,18 @@
                 ItemsSource="{Binding}" />
                     </chart:PieChart.Series>
                 </chart:PieChart>
+                <chart:PieChart Name="pcDemand" HorizontalAlignment="Left"
+        Style="{StaticResource MinimalChartStyle}" 
+        ChartTitle="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportDemand 1007'}" Foreground="White" ChartTitleStyle="{StaticResource ChartTitleStyle}" Margin="10 0 0 0"
+                            Palette="{StaticResource CustomColors}">
+                    <chart:PieChart.Series>
+                        <chart:ChartSeries
+                SeriesTitle="Gates"
+                DisplayMember="Key"
+                ValueMember="Value"
+                ItemsSource="{Binding}" />
+                    </chart:PieChart.Series>
+                </chart:PieChart>
             </WrapPanel>
         </StackPanel>
         </Grid>

@@ -38,7 +38,7 @@
 
             foreach (Invoice.InvoiceType type in this.Route.getRouteInvoiceTypes())
             {
-                this.Invoices.Add(new MonthlyInvoice(type, 1950, 1, this.Route.getRouteInvoiceAmount(type)));
+                this.Invoices.Add(new MonthlyInvoice(type, 1950, 1,1, this.Route.getRouteInvoiceAmount(type)));
             }
 
             this.Legs = new List<Route>();

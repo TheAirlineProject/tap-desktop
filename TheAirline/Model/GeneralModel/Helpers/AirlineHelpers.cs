@@ -921,9 +921,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     else if (routeOkStatus == RouteOkStatus.Missing_Cargo)
                         throw new Exception("3003");
                     else if (routeOkStatus == RouteOkStatus.Restrictions)
-                        throw new Exception("3004");
-                    else if (routeOkStatus == RouteOkStatus.MissingLicense)
                         throw new Exception("3005");
+                    else if (routeOkStatus == RouteOkStatus.MissingLicense)
+                        throw new Exception("3004");
                     throw new Exception("3000");
 
                 }
