@@ -29,7 +29,6 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             PopUpWindow window = new PopUpShowConnectingRoutes(airport1,airport2); ;
             window.ShowDialog();
 
-
         }
         public PopUpShowConnectingRoutes(Airport destination1, Airport destination2)
         {

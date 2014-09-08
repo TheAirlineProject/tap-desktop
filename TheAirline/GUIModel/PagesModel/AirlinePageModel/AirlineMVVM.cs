@@ -1,4 +1,4 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
+namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
     using System;
     using System.Collections.Generic;
@@ -1322,7 +1322,7 @@
 
         #region Constructors and Destructors
 
-        public LoanMVVM(Loan loan, Airline airline)
+
         {
             this.Loan = loan;
             this.PaymentLeft = loan.PaymentLeft;
