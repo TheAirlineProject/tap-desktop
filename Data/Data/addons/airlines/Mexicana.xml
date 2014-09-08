@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Mexicana" iata="MX" logo="MX2" color="DarkGreen" country="157" CEO="Gerardo Badin" mentality="Aggressive" market="Global" preferedairport="MEX">
+    <narrative narrative=" Mexicana was the oldest airline in Mexico having been founded in 1921 at it's demise in 2010. This also made it one of the longest running single branded airlines in the world, after KLM and Qantas. It's main base was Mexico City and they also had hubs at Cancun and Guadalajara. At the time of their shut down they had 68 planes. 26 A320's, 25 A319's, 10 A318's, 4 767's, and 2 A330's. They served 48 destinations from North America,Central America, the Caribbean,South Ameica and Europe. They also ran MexicanaClick, a domestic carrier that served 27 Mexican cities and Cuba with 17  717's, and 8 Fokker 100's.  And also MexicanaLink which had only been founded a year before the end that served 16 destinations with 15 CRJ-200's. " /></profile>
+  <info real="True" from="1921" to="2010" />
+</airline>

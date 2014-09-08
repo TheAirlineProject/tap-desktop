@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<airline>
-  <profile name="Cyprus Airways" iata="CY" color="Gold" country="154" CEO="Stavros Stavrou" mentality="Safe" market="Regional" preferedairport="LCA">
-    <narrative narrative="Cyprus Airways is the national airline of Cyprus, operating out of Larnaca since 1947. They operate flights to European and Asian destinations on a fleet of 11 Airbus A320s." />
-  </profile>
-</airline>

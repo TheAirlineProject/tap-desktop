@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Dunedin">
+  <months>
+    <month month="1" precipitation="73">
+      <temp min="11" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="68">
+      <temp min="11" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="64">
+      <temp min="10" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="51">
+      <temp min="8" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="65">
+      <temp min="6" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="58">
+      <temp min="4" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="57">
+      <temp min="3" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="56">
+      <temp min="4" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="48">
+      <temp min="6" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="62">
+      <temp min="7" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="56">
+      <temp min="8" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="80">
+      <temp min="10" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

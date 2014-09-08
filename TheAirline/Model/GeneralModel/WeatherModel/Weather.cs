@@ -1,42 +1,34 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text;
-
-namespace TheAirline.Model.GeneralModel.WeatherModel
+﻿namespace TheAirline.Model.GeneralModel.WeatherModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+
     [Serializable]
     //the class for the weather for a specific date
     public class Weather : ISerializable
     {
-        public const int Sunset = 20;
+        #region Constants
+
         public const int Sunrise = 6;
-        //public enum eWindSpeed { Calm = 0,Light_Air=4, Light_Breeze = 8,Gentle_Breeze=12, Moderate_Breeze = 15,Fresh_Breeze=27,Strong_Breeze=45,Near_Gale=52, Gale = 60, Strong_Gale=72, Storm = 90,Violent_Storm=102, Hurricane=114  }
-        public enum eWindSpeed { Calm, Light_Air, Light_Breeze, Gentle_Breeze, Moderate_Breeze, Fresh_Breeze, Strong_Breeze, Near_Gale, Gale, Strong_Gale, Storm, Violent_Storm, Hurricane }
-        [Versioning("windspeed")]
-        public eWindSpeed WindSpeed { get; set; }
-        public enum WindDirection { E, NE, N, NW, W, SW, S, SE }
-        [Versioning("direction")]
-        public WindDirection Direction { get; set; }
-        public enum Precipitation { None, Fog, Isolated_rain, Light_rain, Heavy_rain, Thunderstorms, Isolated_thunderstorms, Isolated_snow, Light_snow, Heavy_snow, Mixed_rain_and_snow, Sleet, Freezing_rain }
-        [Versioning("precip")]
-        public Precipitation Precip { get; set; }
-        public enum CloudCover {Clear, Partly_Cloudy, Mostly_Cloudy, Overcast}
-        [Versioning("cover")]
-        public CloudCover Cover { get; set; }
-        [Versioning("date")]
-        public DateTime Date { get; set; }  
-        public enum Season { All_Year, Winter, Summer }
-        [Versioning("temperatures")]
-        public HourlyWeather[] Temperatures { get; set; }
-        [Versioning("high")]
-        public double TemperatureHigh { get; set; }
-        [Versioning("low")]
-        public double TemperatureLow { get; set; }
-        public Weather(DateTime date, eWindSpeed windspeed, WindDirection direction, CloudCover cover,Precipitation precip, HourlyWeather[] temperatures,double temperatureLow, double temperatureHigh)
+
+        public const int Sunset = 20;
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        public Weather(
+            DateTime date,
+            eWindSpeed windspeed,
+            WindDirection direction,
+            CloudCover cover,
+            Precipitation precip,
+            HourlyWeather[] temperatures,
+            double temperatureLow,
+            double temperatureHigh)
         {
             this.Date = date;
             this.WindSpeed = windspeed;
@@ -47,76 +39,235 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
             this.TemperatureLow = temperatureLow;
             this.TemperatureHigh = temperatureHigh;
         }
-             private Weather(SerializationInfo info, StreamingContext ctxt)
+
+        private Weather(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
-            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                this.GetType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (SerializationEntry entry in info)
             {
-                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
-
+                MemberInfo prop =
+                    propsAndFields.FirstOrDefault(
+                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
+                    {
                         ((FieldInfo)prop).SetValue(this, entry.Value);
+                    }
                     else
+                    {
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
                 }
             }
 
-            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+            IEnumerable<MemberInfo> notSetProps =
+                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
+                    {
                         ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
                     else
+                    {
                         ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
-
+                    }
                 }
-
             }
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        #endregion
+
+        //public enum eWindSpeed { Calm = 0,Light_Air=4, Light_Breeze = 8,Gentle_Breeze=12, Moderate_Breeze = 15,Fresh_Breeze=27,Strong_Breeze=45,Near_Gale=52, Gale = 60, Strong_Gale=72, Storm = 90,Violent_Storm=102, Hurricane=114  }
+
+        #region Enums
+
+        public enum CloudCover
+        {
+            Clear,
+
+            Partly_Cloudy,
+
+            Mostly_Cloudy,
+
+            Overcast
+        }
+
+        public enum Precipitation
+        {
+            None,
+
+            Fog,
+
+            Isolated_rain,
+
+            Light_rain,
+
+            Heavy_rain,
+
+            Thunderstorms,
+
+            Isolated_thunderstorms,
+
+            Isolated_snow,
+
+            Light_snow,
+
+            Heavy_snow,
+
+            Mixed_rain_and_snow,
+
+            Sleet,
+
+            Freezing_rain
+        }
+
+        public enum Season
+        {
+            All_Year,
+
+            Winter,
+
+            Summer
+        }
+
+        public enum WindDirection
+        {
+            E,
+
+            NE,
+
+            N,
+
+            NW,
+
+            W,
+
+            SW,
+
+            S,
+
+            SE
+        }
+
+        public enum eWindSpeed
+        {
+            Calm,
+
+            Light_Air,
+
+            Light_Breeze,
+
+            Gentle_Breeze,
+
+            Moderate_Breeze,
+
+            Fresh_Breeze,
+
+            Strong_Breeze,
+
+            Near_Gale,
+
+            Gale,
+
+            Strong_Gale,
+
+            Storm,
+
+            Violent_Storm,
+
+            Hurricane
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        [Versioning("cover")]
+        public CloudCover Cover { get; set; }
+
+        [Versioning("date")]
+        public DateTime Date { get; set; }
+
+        [Versioning("direction")]
+        public WindDirection Direction { get; set; }
+
+        [Versioning("precip")]
+        public Precipitation Precip { get; set; }
+
+        [Versioning("high")]
+        public double TemperatureHigh { get; set; }
+
+        [Versioning("low")]
+        public double TemperatureLow { get; set; }
+
+        [Versioning("temperatures")]
+        public HourlyWeather[] Temperatures { get; set; }
+
+        [Versioning("windspeed")]
+        public eWindSpeed WindSpeed { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
             Type myType = this.GetType();
 
-            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
 
                 if (member is FieldInfo)
+                {
                     propValue = ((FieldInfo)member).GetValue(this);
+                }
                 else
+                {
                     propValue = ((PropertyInfo)member).GetValue(this, null);
+                }
 
-                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
-
-
         }
+
+        #endregion
     }
-    
 }

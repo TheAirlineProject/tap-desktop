@@ -1,0 +1,9 @@
+﻿<airline>
+  <profile name="Malta Air Charter" iata="R5" color="DarkRed" country="132" CEO="Louis Grech" mentality="Moderate"
+           market="Regional" preferedairport="GZM" routefocus="Helicopter">
+    <narrative
+      narrative="The airline was established in 1970, although it did not start operations until 1990 due to the many problems it faced. It operates mainly helicopter services between the Maltese Islands." />
+  </profile>
+  <info real="True" from="1990" to="2004" />
+  
+</airline>

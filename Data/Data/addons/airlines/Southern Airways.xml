@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Southern Airways" iata="SO" logo="SO" color="Purple" country="122" CEO="Frank Hulse" mentality="Aggressive" market="Regional" preferedairport="ATL">
+    <narrative narrative=" Southern Airways made its home at Atlanta and lasted from 1944 until 1979 when it merged with North Central Airlines to make Republic Airlines, who would go on to being bought by Northwest in 1986. Throughout it's life it served 86 destinations, and was serving 64 at the time of the merger. Most of these were in the Southern U.S. The only international destination ever served was the Caymen Islands. They had 47 planes, mostly DC-9s in 1979. " /></profile>
+  <info real="True" from="1944" to="1979" />
+</airline>

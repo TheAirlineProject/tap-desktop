@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="New York, NY">
+  <months>
+    <month month="1" precipitation="80">
+      <temp min="-3" max="4" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="67">
+      <temp min="-2" max="6" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="105">
+      <temp min="2" max="10" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="105">
+      <temp min="7" max="16" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="89">
+      <temp min="12" max="20" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="99">
+      <temp min="17" max="26" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="7" precipitation="83">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="8" precipitation="111">
+      <temp min="20" max="28" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="9" precipitation="96">
+      <temp min="17" max="25" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="10" precipitation="108">
+      <temp min="10" max="18" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="11" precipitation="75">
+      <temp min="5" max="12" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="12" precipitation="89">
+      <temp min="0" max="7" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

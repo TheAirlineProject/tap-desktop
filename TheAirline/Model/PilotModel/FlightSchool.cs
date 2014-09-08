@@ -1,35 +1,28 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text;
-using TheAirline.Model.AirportModel;
-using TheAirline.Model.GeneralModel;
-
-namespace TheAirline.Model.PilotModel
+﻿namespace TheAirline.Model.PilotModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+
+    using TheAirline.Model.AirportModel;
+    using TheAirline.Model.GeneralModel;
+
     //the class for a flight school
     [Serializable]
     public class FlightSchool : ISerializable
     {
-        public const int MaxNumberOfStudentsPerInstructor = 2;
+        #region Constants
+
         public const int MaxNumberOfInstructors = 15;
-        [Versioning("name")]
-        public string Name { get; set; }
-        [Versioning("airport")]
-        public Airport Airport { get; set; }
-        [Versioning("id")]
-        public string ID { get; set; }
-        public int NumberOfInstructors { get { return this.Instructors.Count; } set { ;} }
-        public int NumberOfStudents { get { return this.Students.Count; } set { ;} }
-       [Versioning("students")]
-        public List<PilotStudent> Students { get; set; }
-        [Versioning("instructors")]
-        public List<Instructor> Instructors { get; set; }
-        [Versioning("aircrafts")]
-        public List<TrainingAircraft> TrainingAircrafts { get; set; }
+
+        public const int MaxNumberOfStudentsPerInstructor = 2;
+
+        #endregion
+
+        #region Constructors and Destructors
+
         public FlightSchool(Airport airport)
         {
             Guid id = Guid.NewGuid();
@@ -40,106 +33,188 @@ namespace TheAirline.Model.PilotModel
             this.Instructors = new List<Instructor>();
             this.TrainingAircrafts = new List<TrainingAircraft>();
             this.ID = id.ToString();
-         }
-        //adds a training aircraft to the flight school
-        public void addTrainingAircraft(TrainingAircraft aircraft)
-        {
-            this.TrainingAircrafts.Add(aircraft);
         }
-        //removes an aircraft from the flight school
-        public void removeTrainingAircraft(TrainingAircraft aircraft)
-        {
-            this.TrainingAircrafts.Remove(aircraft);
-        }
-        //adds an instructor to the flight school
-        public void addInstructor(Instructor instructor)
-        {
-            this.Instructors.Add(instructor);
-        }
-        //removes an instructor from the flight school
-        public void removeInstructor(Instructor instructor)
-        {
-            this.Instructors.Remove(instructor);
-        }
-        //adds a student to the flight school
-        public void addStudent(PilotStudent student)
-        {
-            this.Students.Add(student);
-        }
-        //removes a student from the flight school
-        public void removeStudent(PilotStudent student)
-        {
-            this.Students.Remove(student);
-        }
-           private FlightSchool(SerializationInfo info, StreamingContext ctxt)
+
+        private FlightSchool(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
-            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                this.GetType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (SerializationEntry entry in info)
             {
-                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
-
+                MemberInfo prop =
+                    propsAndFields.FirstOrDefault(
+                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
+                    {
                         ((FieldInfo)prop).SetValue(this, entry.Value);
+                    }
                     else
+                    {
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
                 }
             }
 
-            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+            IEnumerable<MemberInfo> notSetProps =
+                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
+                    {
                         ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
                     else
+                    {
                         ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
-
+                    }
                 }
-
             }
-
+            this.Students.RemoveAll(s => s == null);
+      
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        #endregion
+
+        #region Public Properties
+
+        [Versioning("airport")]
+        public Airport Airport { get; set; }
+
+        [Versioning("id")]
+        public string ID { get; set; }
+
+        [Versioning("instructors")]
+        public List<Instructor> Instructors { get; set; }
+
+        [Versioning("name")]
+        public string Name { get; set; }
+
+        public int NumberOfInstructors
+        {
+            get
+            {
+                return this.Instructors.Count;
+            }
+            set
+            {
+                ;
+            }
+        }
+
+        public int NumberOfStudents
+        {
+            get
+            {
+                return this.Students.Count;
+            }
+            set
+            {
+                ;
+            }
+        }
+
+        [Versioning("students")]
+        public List<PilotStudent> Students { get; set; }
+
+        [Versioning("aircrafts")]
+        public List<TrainingAircraft> TrainingAircrafts { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
             Type myType = this.GetType();
 
-            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
 
                 if (member is FieldInfo)
+                {
                     propValue = ((FieldInfo)member).GetValue(this);
+                }
                 else
+                {
                     propValue = ((PropertyInfo)member).GetValue(this, null);
+                }
 
-                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
-
         }
+
+        //adds an instructor to the flight school
+        public void addInstructor(Instructor instructor)
+        {
+            this.Instructors.Add(instructor);
+        }
+
+        //removes an instructor from the flight school
+
+        //adds a student to the flight school
+        public void addStudent(PilotStudent student)
+        {
+            this.Students.Add(student);
+        }
+
+        public void addTrainingAircraft(TrainingAircraft aircraft)
+        {
+            this.TrainingAircrafts.Add(aircraft);
+        }
+
+        public void removeInstructor(Instructor instructor)
+        {
+            this.Instructors.Remove(instructor);
+        }
+
+        //removes a student from the flight school
+        public void removeStudent(PilotStudent student)
+        {
+            this.Students.Remove(student);
+        }
+
+        public void removeTrainingAircraft(TrainingAircraft aircraft)
+        {
+            this.TrainingAircrafts.Remove(aircraft);
+        }
+
+        #endregion
     }
 }

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Singapore">
+  <months>
+    <month month="1" precipitation="243">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="160">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="186">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="179">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="171">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="162">
+      <temp min="25" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="159">
+      <temp min="25" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="175">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="169">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="194">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="257">
+      <temp min="24" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="287">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

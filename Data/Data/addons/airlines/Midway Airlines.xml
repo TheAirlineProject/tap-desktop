@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Midway Airlines" iata="ML" logo="ML" color="Silver" country="122" CEO="David R. Hinson" mentality="Aggressive" market="Regional" preferedairport="MDW">
+    <narrative narrative=" The first Midway Airlines operated from 1976-1991 out of Chicago Midway Airport. Their would be another from 1993-2003 but would be unrelated to this Midway. They served 40 destinations, 2 of these being in Canada and 3 in the Caribbean and the rest in the U.S. They had 64 DC-9's of several variations, 16 MD-80 types, and 16 737-200's. It had 3 subisidiaries, Midwest Metrolink, Express and Connection. It went bankrupt in 1991 and found no buyers.  " /></profile>
+  <info real="True" from="1976" to="1991" />
+</airline>

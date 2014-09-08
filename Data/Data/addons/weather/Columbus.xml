@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Columbus, OH">
+  <months>
+    <month month="1" precipitation="69">
+      <temp min="-6" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="57">
+      <temp min="-4" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="77">
+      <temp min="0" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="86">
+      <temp min="5" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="106">
+      <temp min="11" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="102">
+      <temp min="16" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="123">
+      <temp min="18" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="84">
+      <temp min="17" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="72">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="66">
+      <temp min="7" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="81">
+      <temp min="2" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="75">
+      <temp min="-3" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

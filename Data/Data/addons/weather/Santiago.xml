@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Santiago">
+  <months>
+    <month month="1" precipitation="0">
+      <temp min="13" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="1">
+      <temp min="12" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="3">
+      <temp min="11" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="10">
+      <temp min="8" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="42">
+      <temp min="6" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="70">
+      <temp min="4" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="87">
+      <temp min="4" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="52">
+      <temp min="5" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="22">
+      <temp min="6" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="13">
+      <temp min="8" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="9">
+      <temp min="10" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="2">
+      <temp min="12" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

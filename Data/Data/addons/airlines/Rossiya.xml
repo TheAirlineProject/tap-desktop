@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Rossiya" iata="FV" color="Blue" country="149" CEO="Sergey Belov" mentality="Aggressive" market="Global" preferedairport="LED">
+    <narrative narrative="Founded in 1992  Rossiya merged with Pulkovo Airlines in 2006, an airline based at Pulkovo Airport in St. Petersburg. This is where Rossiya makes its base today.
+    It is 75% owned by Aerflot and is the operator of the Russian presidential aircraft fleet. The fleet consists of 29 planes for use in commercial flight and 36 that are used by the government. They fly to 
+    97 destinations throughout Europe and Asia and two in Africa." />
+  </profile>
+  <info real="True" from="1992" to="2199" />
+</airline>

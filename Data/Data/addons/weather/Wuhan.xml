@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Wuhan">
+  <months>
+    <month month="1" precipitation="43">
+      <temp min="0" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="59">
+      <temp min="2" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="95">
+      <temp min="7" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="131">
+      <temp min="13" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="164">
+      <temp min="18" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="225">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="190">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="112">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="80">
+      <temp min="20" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="92">
+      <temp min="14" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="52">
+      <temp min="8" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="26">
+      <temp min="2" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

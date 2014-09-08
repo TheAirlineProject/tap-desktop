@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Changsha">
+  <months>
+    <month month="1" precipitation="66">
+      <temp min="2" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="95">
+      <temp min="3" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="129">
+      <temp min="8" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="207">
+      <temp min="14" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="179">
+      <temp min="18" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="202">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="93">
+      <temp min="25" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="107">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="57">
+      <temp min="20" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="84">
+      <temp min="15" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="71">
+      <temp min="9" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="41">
+      <temp min="3" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

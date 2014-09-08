@@ -1,45 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using TheAirline.Model.GeneralModel;
-
-namespace TheAirline.Model.AirlinerModel
+﻿namespace TheAirline.Model.AirlinerModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+
+    using TheAirline.Model.GeneralModel;
+
     //the class for an engine type 
     [Serializable]
     public class EngineType : ISerializable
     {
-        public enum TypeOfEngine { Jet, Turboprop }
-        public enum NoiseLevel { High, Medium, Low }
-         [Versioning("noise")]
-        public NoiseLevel Noise { get; set; }
-         [Versioning("engine")]
-        public TypeOfEngine Engine { get; set; }
-         [Versioning("model")]
-        public string Model { get; set; }
-         [Versioning("manufacturer")]
-        public string Manufacturer { get; set; }
-         [Versioning("produced")]
-        public Period<int> Produced { get; set; }
-         [Versioning("speed")]
-        public int MaxSpeed { get; set; }
-         [Versioning("runway")]
-        public double RunwayModifier { get; set; }
-         [Versioning("range")]
-        public double RangeModifier { get; set; }
-         [Versioning("consumptation")]
-        public double ConsumptationModifier { get; set; }
-         [Versioning("ceiling")]
-        public int Ceiling { get; set; }
-         [Versioning("price")]
-        public long Price { get; set; }
-         [Versioning("types")]
-        public List<AirlinerType> Types { get; set; }
-        public EngineType(string model, string manufacturer, TypeOfEngine engine, NoiseLevel noise, double consumptation, long price, int maxspeed, int ceiling, double runway, double range, Period<int> produced)
+        #region Constructors and Destructors
+
+        public EngineType(
+            string model,
+            Manufacturer manufacturer,
+            TypeOfEngine engine,
+            NoiseLevel noise,
+            double consumptation,
+            long price,
+            int maxspeed,
+            int ceiling,
+            double runway,
+            double range,
+            Period<int> produced)
         {
             this.Model = model;
             this.Manufacturer = manufacturer;
@@ -52,103 +38,248 @@ namespace TheAirline.Model.AirlinerModel
             this.RangeModifier = range;
             this.Produced = produced;
             this.Types = new List<AirlinerType>();
+            this.Noise = noise;
         }
-        //adds an airliner type which fits this engine
-        public void addAirlinerType(AirlinerType type)
-        {
-            this.Types.Add(type);
-        }
-              private EngineType(SerializationInfo info, StreamingContext ctxt)
+
+        private EngineType(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
-            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                this.GetType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (SerializationEntry entry in info)
             {
-                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
-
+                MemberInfo prop =
+                    propsAndFields.FirstOrDefault(
+                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
+                    {
                         ((FieldInfo)prop).SetValue(this, entry.Value);
+                    }
                     else
+                    {
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
                 }
             }
 
-            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+            IEnumerable<MemberInfo> notSetProps =
+                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
+                    {
                         ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
                     else
+                    {
                         ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
-
+                    }
                 }
-
             }
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        #endregion
+
+        #region Enums
+
+        public enum NoiseLevel
+        {
+            Very_high,
+            
+            High,
+
+            Medium,
+
+            Low,
+
+            Very_low
+        }
+
+        public enum TypeOfEngine
+        {
+            Jet,
+
+            Turboprop
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        [Versioning("ceiling")]
+        public int Ceiling { get; set; }
+
+        [Versioning("consumptation")]
+        public double ConsumptationModifier { get; set; }
+
+        [Versioning("engine")]
+        public TypeOfEngine Engine { get; set; }
+
+        [Versioning("manufacturer")]
+        public Manufacturer Manufacturer { get; set; }
+
+        [Versioning("speed")]
+        public int MaxSpeed { get; set; }
+
+        [Versioning("model")]
+        public string Model { get; set; }
+
+        [Versioning("noise")]
+        public NoiseLevel Noise { get; set; }
+
+        [Versioning("price")]
+        public long Price { get; set; }
+
+        [Versioning("produced")]
+        public Period<int> Produced { get; set; }
+
+        [Versioning("range")]
+        public double RangeModifier { get; set; }
+
+        [Versioning("runway")]
+        public double RunwayModifier { get; set; }
+
+        [Versioning("types")]
+        public List<AirlinerType> Types { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
             Type myType = this.GetType();
 
-            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
 
                 if (member is FieldInfo)
+                {
                     propValue = ((FieldInfo)member).GetValue(this);
+                }
                 else
+                {
                     propValue = ((PropertyInfo)member).GetValue(this, null);
+                }
 
-                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
-
-
         }
-    
 
+        public void addAirlinerType(AirlinerType type)
+        {
+            this.Types.Add(type);
+        }
+
+        #endregion
     }
+
     //the list of engine types
     public class EngineTypes
     {
+        #region Static Fields
+
         private static List<EngineType> types = new List<EngineType>();
+
+        #endregion
+
         //adds an engine type to the list
+
+        #region Public Methods and Operators
+        public static void Clear()
+        {
+            types = new List<EngineType>();
+        }
         public static void AddEngineType(EngineType type)
         {
             types.Add(type);
         }
+
         //returns the list of engine types
         public static List<EngineType> GetEngineTypes()
         {
             return types;
         }
+
         //returns the list of engine types for an airliner type
+        public static List<EngineType> GetEngineTypes(AirlinerType type, int year)
+        {
+            return GetEngineTypes(type).FindAll(t=>t.Produced.From<= year && t.Produced.To >= year);
+        }
         public static List<EngineType> GetEngineTypes(AirlinerType type)
         {
-            return types.FindAll(t => t.Types.Contains(type));
+            List<EngineType> ttypes = new List<EngineType>();
+
+            foreach (EngineType t in types)
+            {
+                foreach (AirlinerType at in t.Types)
+                    if (at.Name == type.Name)
+                        ttypes.Add(t);
+            }
+
+            return ttypes;
         }
+        //returns the standard engine for an airliner type
+        public static EngineType GetStandardEngineType(AirlinerType type, int year)
+        {
+            var allTypes = GetEngineTypes(type, year);
+
+            if (allTypes.Count > 0)
+            {
+                return allTypes.OrderBy(t => t.Price).First();
+
+            }
+
+            return null;
+        }
+        public static EngineType GetStandardEngineType(AirlinerType type)
+        {
+            var allTypes = GetEngineTypes(type);
+
+            if (allTypes.Count > 0)
+            {
+                return allTypes.OrderBy(t => t.Price).First();
+
+            }
+
+            return null;
+        }
+        #endregion
     }
 }

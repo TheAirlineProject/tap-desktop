@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Shreveport, LA">
+  <months>
+    <month month="1" precipitation="107">
+      <temp min="2" max="14" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="121">
+      <temp min="4" max="16" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="105">
+      <temp min="8" max="21" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="106">
+      <temp min="12" max="25" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="125">
+      <temp min="17" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="137">
+      <temp min="21" max="32" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="7" precipitation="93">
+      <temp min="23" max="34" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="8" precipitation="69">
+      <temp min="22" max="35" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="9" precipitation="80">
+      <temp min="19" max="31" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="10" precipitation="126">
+      <temp min="13" max="26" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="11" precipitation="115">
+      <temp min="7" max="20" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="12" precipitation="121">
+      <temp min="3" max="15" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

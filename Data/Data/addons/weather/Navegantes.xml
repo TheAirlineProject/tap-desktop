@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Navegantes">
+  <months>
+    <month month="1" precipitation="205">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="216">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="138">
+      <temp min="21" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="83">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="81">
+      <temp min="15" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="92">
+      <temp min="14" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="83">
+      <temp min="13" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="73">
+      <temp min="14" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="106">
+      <temp min="15" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="129">
+      <temp min="17" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="103">
+      <temp min="19" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="149">
+      <temp min="21" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

@@ -32,8 +32,7 @@ namespace TheAirline
         {
 
             InitializeComponent();
-
-
+          
             Setup.SetupGame();
 
             if (Settings.GetInstance().Mode == Settings.ScreenMode.Fullscreen)

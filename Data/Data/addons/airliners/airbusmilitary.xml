@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airliners>
+  <airliner manufacturer="Airbus Military" name="CASA C212 Aviocar" price="703850"> <!--12800000-->
+    <type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="20.28" length="16.20" range="1811" speed="370" fuelcapacity="1728" consumption="0.045"
+           runwaylengthrequired="770" />
+    <capacity passengers="26" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1971" to="2199" rate="50" />
+  </airliner>
+
+  <airliner manufacturer="Airbus Military" name="IPTN CN235" price="903850"> <!--12800000-->
+    <type body="Single_Aisle" rangetype="Medium_Range" engine="Turboprop" />
+    <specs wingspan="25.81" length="21.40" range="4355" speed="450" fuelcapacity="5728" consumption="0.045"
+           runwaylengthrequired="982" />
+    <capacity passengers="51" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1983" to="2199" rate="50" />
+  </airliner>
+
+  <airliner type="Cargo" manufacturer="Airbus Military" name="A400M Atlas" price="26542470"> <!--2099000-->
+    <type body="Wide_Body" rangetype="Long_Range" engine="Turboprop" />
+    <specs wingspan="42.40" length="45.10" range="6390" speed="780" fuelcapacity="153950" consumption="0.055"
+           runwaylengthrequired="980" />
+    <capacity cockpitcrew="4" cargo="721" />
+    <produced from="2011" to="2199" rate="23" />
+  </airliner>
+</airliners>

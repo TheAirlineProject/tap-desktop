@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Georgian Airways" iata="A9" color="Red" country="233" CEO="Georg Okujava " mentality="Safe" market="Global" preferedairport="TBS">
+    <narrative narrative=" Georgian Airways if the flag carrier of the Republic of Georgia and was founded in 1994. It's main hub is Tbilisi Airport. It serves 14 destinations in Asia and Europe. As of 2012 they had 7 planes, 3 737's, 3 CRJ200LR's, 1 CRJ100ER and a Bombardier Challenger 850 for government use." /></profile>
+  <info real="True" from="1994" to="2199" />
+</airline>

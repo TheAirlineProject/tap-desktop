@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<engines>
+<!--A300--><!--Complete-->
+  <engine manufacturer="GE" model="CF6-50" >
+	  <specs type="Jet" noise="High" consumptionModifier="1" price="2950500" />
+	  <performance maxspeed="847" ceiling="10060" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Airbus A300B1" />
+	  <produced from="1972" to="1974" />
+  </engine>
+  <engine manufacturer="GE" model="CF6-50" >
+	  <specs type="Jet" noise="High" consumptionModifier="1" price="2950500" />
+	  <performance maxspeed="833" ceiling="10060" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Airbus A300B2" />
+	  <produced from="1972" to="1985" />
+  </engine>
+  <engine manufacturer="GE" model="CF6-50" >
+	  <specs type="Jet" noise="High" consumptionModifier="1" price="2950500" />
+	  <performance maxspeed="847" ceiling="10060" runwaylengthrequiredModifier=".95" rangeModifier=".95" />
+	  <aircraft models="Airbus A300B4" />
+	  <produced from="1972" to="1985" />
+  </engine>
+  <engine manufacturer="Pratt &amp; Whitney" model="JT9D" >
+	  <specs type="Jet" noise="High" consumptionModifier=".95" price="3404450" />
+	  <performance maxspeed="810" ceiling="10670" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Airbus A300B4" />
+	  <produced from="1979" to="1985" />
+  </engine>
+  <engine manufacturer="GE" model="CF6-80" >
+	  <specs type="Jet" noise="Medium" consumptionModifier="1" price="3500000" />
+	  <performance maxspeed="833" ceiling="10970" runwaylengthrequiredModifier=".95" rangeModifier=".95" />
+	  <aircraft models="Airbus A300-600, Airbus A300C4-620, Airbus A300-600F, Airbus A300-600R" />
+	  <produced from="1982" to="2006" />
+  </engine>
+  <engine manufacturer="Pratt &amp; Whitney" model="PW4000" >
+	  <specs type="Jet" noise="Medium" consumptionModifier=".95" price="4000000" />
+	  <performance maxspeed="815" ceiling="11580" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Airbus A300-600, Airbus A300C4-620, Airbus A300-600F, Airbus A300-600R" />
+	  <produced from="1982" to="2006" />
+  </engine>
+  <!--A310--><!--Complete-->
+  <engine manufacturer="GE" model="CF6-80" >
+	  <specs type="Jet" noise="Medium" consumptionModifier=".97" price="3500000" />
+	  <performance maxspeed="890" ceiling="12500" runwaylengthrequiredModifier="1.05" rangeModifier=".98" />
+	  <aircraft models="Airbus A310-200, Airbus A310-300" />
+	  <produced from="1983" to="2007" />
+  </engine>
+  <engine manufacturer="Pratt &amp; Whitney" model="JT9D" >
+	  <specs type="Jet" noise="High" consumptionModifier="1.02" price="3404450" />
+	  <performance maxspeed="901" ceiling="11900" runwaylengthrequiredModifier="1" rangeModifier=".98" />
+	  <aircraft models="Airbus A310-200" />
+	  <produced from="1983" to="2007" />
+  </engine>
+   <engine manufacturer="Pratt &amp; Whitney" model="PW4000" >
+	  <specs type="Jet" noise="Medium" consumptionModifier=".99" price="4000000" />
+	  <performance maxspeed="901" ceiling="12200" runwaylengthrequiredModifier=".98" rangeModifier="1" />
+	  <aircraft models="Airbus A310-300" />
+	  <produced from="1985" to="2007" />
+  </engine>
+
+<!--A320 family--><!--Need numbers-->
+<!--A318--> <!--Complete-->
+  <engine manufacturer="CFM International" model="CFM56" >
+	  <specs type="Jet" noise="Low" consumptionModifier=".98" price="2000000" />
+	  <performance maxspeed="850" ceiling="11900" runwaylengthrequiredModifier="1" rangeModifier="1.02" />
+	  <aircraft models="Airbus A318-100" />
+	  <produced from="2002" to="2018" />
+  </engine>
+  <engine manufacturer="Pratt &amp; Whitney" model="PW6000" >
+	  <specs type="Jet" noise="Low" consumptionModifier="1.02" price="1800000" />
+	  <performance maxspeed="871" ceiling="11200" runwaylengthrequiredModifier=".95" rangeModifier=".98" />
+	  <aircraft models="Airbus A318-100" />
+	  <produced from="2005" to="2018" />
+  </engine>
+<!--A319--> <!--Complete-->
+  <engine manufacturer="CFM International" model="CFM56" >
+	  <specs type="Jet" noise="Low" consumptionModifier="1" price="2000000" />
+	  <performance maxspeed="828" ceiling="11900" runwaylengthrequiredModifier=".95" rangeModifier=".95" />
+	  <aircraft models="Airbus A319-100" />
+	  <produced from="1994" to="2014" />
+  </engine>
+  <engine manufacturer="IAE-Engines" model="V2500" >
+	  <specs type="Jet" noise="Low" consumptionModifier=".95" price="2200000" />
+	  <performance maxspeed="795" ceiling="11300" runwaylengthrequiredModifier="1.02" rangeModifier="1" />
+	  <aircraft models="Airbus A319-100" />
+	  <produced from="1994" to="2014" />
+  </engine>   
+<!--A319neo--> <!--Complete-->
+  <engine manufacturer="CFM International" model="LEAP-1A" >
+	  <specs type="Jet" noise="Very_low" consumptionModifier="1" price="1750000" />
+	  <performance maxspeed="828" ceiling="11900" runwaylengthrequiredModifier=".95" rangeModifier=".95" />
+	  <aircraft models="Airbus A319neo" />
+	  <produced from="2015" to="2199" />
+  </engine>
+  <engine manufacturer="Pratt &amp; Whitney" model="PW1000" >
+	  <specs type="Jet" noise="Very_low" consumptionModifier="1" price="2000000" />
+	  <performance maxspeed="795" ceiling="11300" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Airbus A319neo" />
+	  <produced from="2015" to="2199" />
+  </engine>   
+<!--A320--> <!--Complete-->
+  <engine manufacturer="CFM International" model="CFM56" >
+	  <specs type="Jet" noise="Low" consumptionModifier="1" price="2000000" />
+	  <performance maxspeed="828" ceiling="11900" runwaylengthrequiredModifier=".95" rangeModifier=".95" />
+	  <aircraft models="Airbus A320-100,Airbus A320-200" />
+	  <produced from="1988" to="2199" />
+  </engine>
+  <engine manufacturer="IAE-Engines" model="V2500" >
+	  <specs type="Jet" noise="Low" consumptionModifier=".95" price="2200000" />
+	  <performance maxspeed="795" ceiling="11300" runwaylengthrequiredModifier="1.02" rangeModifier="1" />
+	  <aircraft models="Airbus A320-100,Airbus A320-200" />
+	  <produced from="1989" to="2199" />
+  </engine>  
+<!--A320neo--> <!--Complete-->
+  <engine manufacturer="CFM International" model="LEAP-1A" >
+	  <specs type="Jet" noise="Very_low" consumptionModifier="1" price="1750000" />
+	  <performance maxspeed="828" ceiling="11900" runwaylengthrequiredModifier=".9" rangeModifier=".95" />
+	  <aircraft models="Airbus A320neo" />
+	  <produced from="2014" to="2199" />
+  </engine>
+  <engine manufacturer="Pratt &amp; Whitney" model="PW1000" >
+	  <specs type="Jet" noise="Very_low" consumptionModifier="1" price="2000000" />
+	  <performance maxspeed="795" ceiling="11300" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Airbus A320neo" />
+	  <produced from="2014" to="2199" />
+  </engine> 
+<!--A321--> <!--Complete-->
+  <engine manufacturer="CFM International" model="CFM56" >
+	  <specs type="Jet" noise="High" consumptionModifier=".97" price="2000000" />
+	  <performance maxspeed="828" ceiling="11900" runwaylengthrequiredModifier=".94" rangeModifier="1" />
+	  <aircraft models="Airbus A321-100" />
+	  <produced from="1994" to="2199" />
+  </engine> 
+  <engine manufacturer="IAE-Engines" model="V2500" >
+	  <specs type="Jet" noise="High" consumptionModifier=".95" price="2200000" />
+	  <performance maxspeed="795" ceiling="11300" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Airbus A321-100" />
+	  <produced from="1994" to="2199" />
+  </engine> 
+  <engine manufacturer="CFM International" model="CFM56" >
+	  <specs type="Jet" noise="High" consumptionModifier="1" price="2000000" />
+	  <performance maxspeed="795" ceiling="11900" runwaylengthrequiredModifier=".97" rangeModifier=".95" />
+	  <aircraft models="Airbus A321-200" />
+	  <produced from="1996" to="2199" />
+  </engine> 
+  <engine manufacturer="IAE-Engines" model="V2500" >
+	  <specs type="Jet" noise="High" consumptionModifier=".95" price="2200000" />
+	  <performance maxspeed="800" ceiling="11300" runwaylengthrequiredModifier="1.02" rangeModifier="1" />
+	  <aircraft models="Airbus A321-200" />
+	  <produced from="1996" to="2199" />
+  </engine> 
+<!--A321neo--> <!--Complete-->
+  <engine manufacturer="CFM International" model="LEAP-1A" >
+	  <specs type="Jet" noise="Very_low" consumptionModifier="1" price="1750000" />
+	  <performance maxspeed="828" ceiling="11900" runwaylengthrequiredModifier=".92" rangeModifier="1" />
+	  <aircraft models="Airbus A321neo" />
+	  <produced from="2017" to="2199" />
+  </engine>
+  <engine manufacturer="Pratt &amp; Whitney" model="PW1000" >
+	  <specs type="Jet" noise="Very_low" consumptionModifier="1" price="2000000" />
+	  <performance maxspeed="800" ceiling="11300" runwaylengthrequiredModifier="1" rangeModifier=".96" />
+	  <aircraft models="Airbus A321neo" />
+	  <produced from="2017" to="2199" />
+  </engine>   
+  
+<!--A330--> <!--Complete-->
+  <engine manufacturer="GE" model="CF6-80" >
+	  <specs type="Jet" noise="Medium" consumptionModifier=".97" price="3500000" />
+	  <performance maxspeed="845" ceiling="12000" runwaylengthrequiredModifier=".95" rangeModifier=".97" />
+	  <aircraft models="Airbus A330-200, Airbus A330-300" />
+	  <produced from="1993" to="2018" />
+  </engine>
+  <engine manufacturer="Pratt &amp; Whitney" model="PW4000" >
+	  <specs type="Jet" noise="Medium" consumptionModifier="1" price="4000000" />
+	  <performance maxspeed="871" ceiling="12527" runwaylengthrequiredModifier=".9" rangeModifier=".95" />
+	  <aircraft models="Airbus A330-200, Airbus A330-300, Airbus A330-200F" />
+	  <produced from="1994" to="2018" />
+  </engine>
+  <engine manufacturer="Rolls-Royce" model="Trent 700" >
+	  <specs type="Jet" noise="Medium" consumptionModifier=".95" price="3750000" />
+	  <performance maxspeed="835" ceiling="12000" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Airbus A330-200, Airbus A330-300, Airbus A330-200F" />
+	  <produced from="1994" to="2018" />
+  </engine>
+  
+<!--A340--><!--Complete-->
+  <engine manufacturer="CFM International" model="CFM56" >
+	  <specs type="Jet" noise="Medium" consumptionModifier="1" price="4000000" />
+	  <performance maxspeed="913" ceiling="12500" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Airbus A340-200, Airbus A340-300" />
+	  <produced from="1993" to="2011" />
+  </engine>  
+  <engine manufacturer="Rolls-Royce" model="Trent 500" >
+	  <specs type="Jet" noise="Medium" consumptionModifier="1" price="3950000" />
+	  <performance maxspeed="913" ceiling="12500" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Airbus A340-500, Airbus A340-600" />
+	  <produced from="2002" to="2011" />
+  </engine>
+<!--A350--><!--Complete-->
+  <engine manufacturer="Rolls-Royce" model="Trent XWB" >
+	  <specs type="Jet" noise="Medium" consumptionModifier=".95" price="6250000" />
+	  <performance maxspeed="835" ceiling="12000" runwaylengthrequiredModifier=".95" rangeModifier="1" />
+	  <aircraft models="Airbus A350-800, Airbus A350-900, Airbus A350-1000" />
+	  <produced from="2013" to="2033" />
+  </engine>
+<!--A380--> <!--Complete-->
+  <engine manufacturer="Rolls-Royce" model="Trent 900" >
+	  <specs type="Jet" noise="Medium" consumptionModifier=".98" price="7900000" />
+	  <performance maxspeed="900" ceiling="12500" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Airbus A380-800" />
+	  <produced from="2007" to="2025" />
+  </engine>
+  <engine manufacturer="Engine Alliance" model="GP7000" >
+	  <specs type="Jet" noise="Medium" consumptionModifier="1" price="7600000" />
+	  <performance maxspeed="945" ceiling="13136" runwaylengthrequiredModifier=".95" rangeModifier=".98" />
+	  <aircraft models="Airbus A380-800" />
+	  <produced from="2007" to="2025" />
+  </engine>
+  </engines> 
+  

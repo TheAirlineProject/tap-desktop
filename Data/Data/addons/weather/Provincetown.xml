@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Provincetown, MA">
+  <months>
+    <month month="1" precipitation="97">
+      <temp min="-5" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="82">
+      <temp min="-5" max="4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="98">
+      <temp min="-2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="90">
+      <temp min="2" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="83">
+      <temp min="8" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="79">
+      <temp min="13" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="62">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="86">
+      <temp min="16" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="88">
+      <temp min="13" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="94">
+      <temp min="7" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="114">
+      <temp min="3" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="106">
+      <temp min="-2" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

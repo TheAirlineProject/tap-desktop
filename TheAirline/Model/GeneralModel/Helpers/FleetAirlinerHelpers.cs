@@ -272,7 +272,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //sets the flights stats for an airliner
         public static void SetFlightStats(FleetAirliner airliner)
         {
-            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),airliner.Airliner.Type));
+            TimeSpan flightTime = MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),airliner.Airliner.Type);
+            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(flightTime);
+
+            airliner.Airliner.FlownHours = airliner.Airliner.FlownHours.Add(flightTime);
 
             Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
             Airport dept = airliner.CurrentFlight.Entry.DepartureAirport;
@@ -302,7 +305,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double routeDepartures = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Arrivals"));
                 airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"), (int)(routePassengers / routeDepartures));
 
-                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Capacity"),(int)((AirlinerCargoType)airliner.Airliner.Type).CargoSize);
+                double cargocapacity = 0;
+
+                if (airliner.Airliner.Type is AirlinerCargoType)
+                    cargocapacity = ((AirlinerCargoType)airliner.Airliner.Type).CargoSize;
+
+                if (airliner.Airliner.Type is AirlinerCombiType)
+                    cargocapacity = ((AirlinerCombiType)airliner.Airliner.Type).CargoSize;
+
+                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Capacity"),(int)cargocapacity);
 
                 double airlinerCargo = airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Cargo"));
                 double airlinerDepartures = airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
@@ -353,7 +364,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double airlinePassengers = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"));
                 double airlineDepartures = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
                 airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinePassengers / airlineDepartures));
-
+                
                 //the statistics for destination airport
                 dept.addPassengerDestinationStatistics(dest, airliner.CurrentFlight.getTotalPassengers());
             }
@@ -368,7 +379,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double windSecondHalf = ((int)dest.Weather[0].WindSpeed) * GetWindInfluence(airliner, dest.Weather[0]);
 
-            int speed = Convert.ToInt32(((airliner.Airliner.Type.CruisingSpeed + windFirstHalf) + (airliner.Airliner.Type.CruisingSpeed + windSecondHalf)) / 2);
+            int speed = Convert.ToInt32(((airliner.Airliner.CruisingSpeed + windFirstHalf) + (airliner.Airliner.CruisingSpeed + windSecondHalf)) / 2);
 
             return speed;
 
@@ -379,8 +390,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double direction = MathHelpers.GetDirection(airliner.CurrentFlight.getDepartureAirport().Profile.Coordinates.convertToGeoCoordinate(), airliner.CurrentFlight.getNextDestination().Profile.Coordinates.convertToGeoCoordinate());
 
             Weather.WindDirection windDirection = MathHelpers.GetWindDirectionFromDirection(direction);
-
-            //W+E = 0+4= 5, N+S=2+6 - = Abs(Count/2) -> Head, Abs(0) -> Tail -> if ends/starts with same => tail, indexof +-1 -> tail, (4+(indexof))+-1 -> head 
 
             int windDirectionLenght = Enum.GetValues(typeof(Weather.WindDirection)).Length;
             int indexCurrentPosition = Array.IndexOf(Enum.GetValues(typeof(Weather.WindDirection)), windDirection);
@@ -407,22 +416,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the fuel expenses for an airliner
         public static double GetFuelExpenses(FleetAirliner airliner, double distance)
         {
-             
+            Airport departureAirport = airliner.CurrentFlight.getDepartureAirport();
+
+            double fuelPrice = AirportHelpers.GetFuelPrice(departureAirport);
+
             if (airliner.CurrentFlight.isPassengerFlight())
             {
-                double fuelPrice = GameObject.GetInstance().FuelPrice;
+                
                 int pax = airliner.CurrentFlight.getTotalPassengers();
                 
-                double basePrice = GameObject.GetInstance().FuelPrice * distance* ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity * airliner.Airliner.Type.FuelConsumption*0.55;
-                double paxPrice = GameObject.GetInstance().FuelPrice * distance * airliner.Airliner.Type.FuelConsumption*airliner.CurrentFlight.getTotalPassengers() * 0.45;
+                double basePrice = fuelPrice * distance* ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity * airliner.Airliner.FuelConsumption*0.55;
+                double paxPrice = fuelPrice * distance * airliner.Airliner.FuelConsumption*airliner.CurrentFlight.getTotalPassengers() * 0.45;
                 double seatsPrice = airliner.CurrentFlight.Classes.Sum(c=>(airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses-1) * c.Passengers);
                 return basePrice + paxPrice + seatsPrice;
 
              }
             else
             {
-                double basePrice = GameObject.GetInstance().FuelPrice * distance* ((AirlinerCargoType)airliner.Airliner.Type).CargoSize * airliner.Airliner.Type.FuelConsumption * 0.55;
-                double cargoPrice = GameObject.GetInstance().FuelPrice * airliner.Airliner.Type.FuelConsumption* airliner.CurrentFlight.Cargo * distance * 0.45;
+                double basePrice = fuelPrice * distance* ((AirlinerCargoType)airliner.Airliner.Type).CargoSize * airliner.Airliner.FuelConsumption * 0.55;
+                double cargoPrice = fuelPrice * airliner.Airliner.FuelConsumption* airliner.CurrentFlight.Cargo * distance * 0.45;
 
                 return basePrice + cargoPrice;
             }
@@ -437,10 +449,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double cargoSize = AirlinerHelpers.GetPassengerCargoSize(oldType);
             DateTime builtDate = GameObject.GetInstance().GameTime.AddDays(AirlinerHelpers.GetCargoConvertingDays(oldType));
 
-            AirlinerCargoType newType = new AirlinerCargoType(oldType.Manufacturer,oldType.Name + "F",oldType.AirlinerFamily,oldType.CockpitCrew,cargoSize,oldType.CruisingSpeed,oldType.Range,oldType.Wingspan,oldType.Length,oldType.FuelConsumption,oldType.Price,oldType.MinRunwaylength,oldType.FuelCapacity,oldType.Body,oldType.RangeType,oldType.Engine,oldType.Produced,oldType.ProductionRate,false,false);
-            
+            AirlinerCargoType newType = new AirlinerCargoType(oldType.Manufacturer,oldType.Name + "F",oldType.AirlinerFamily,oldType.CockpitCrew,cargoSize,oldType.CruisingSpeed,oldType.Range,oldType.Wingspan,oldType.Length,oldType.Weight, oldType.FuelConsumption,oldType.Price,oldType.MinRunwaylength,oldType.FuelCapacity,oldType.Body,oldType.RangeType,oldType.Engine,oldType.Produced,oldType.ProductionRate,false,false);
+        
             airliner.Airliner.Type = newType;
             airliner.Airliner.BuiltDate = builtDate;
+  
         }
     
         //does the maintenance of a given type, sends the invoice, updates the last/next maintenance, and improves the aircraft's damage

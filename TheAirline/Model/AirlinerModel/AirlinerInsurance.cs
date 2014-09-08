@@ -1,133 +1,211 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheAirline.Model.AirportModel;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.StatisticsModel;
-using TheAirline.Model.GeneralModel.InvoicesModel;
-using TheAirline.Model.AirlineModel.SubsidiaryModel;
-using TheAirline.Model.PilotModel;
-using TheAirline.Model.AirlineModel;
-using System.Reflection;
-using System.Runtime.Serialization;
-
-
-namespace TheAirline.Model.AirlinerModel
+﻿namespace TheAirline.Model.AirlinerModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+
+    using TheAirline.Model.GeneralModel;
+
     [Serializable]
     public class AirlinerInsurance : ISerializable
     {
-        public enum InsuranceType { Liability, Ground_Parked, Ground_Taxi,Combined_Ground, In_Flight, Full_Coverage }
-        public enum InsuranceScope { Airport, Domestic, Hub, Global }
-        public enum PaymentTerms { Annual, Biannual, Quarterly, Monthly }
-        [Versioning("instype")]
-        public InsuranceType InsType { get; set; }
-        [Versioning("insscope")]
-        public InsuranceScope InsScope { get; set; }
-        [Versioning("insterms")]
-        public PaymentTerms insTerms { get; set; }
-        [Versioning("insuredamount")]
-        public int InsuredAmount { get; set; }
-        [Versioning("deductible")]
-        public double Deductible { get; set; }
-        [Versioning("termlength")]
-        public int TermLength { get; set; }
-        [Versioning("paymentamount")]
-        public double PaymentAmount { get; set; }
-        [Versioning("cancellation")]
-        public int CancellationFee { get; set; }
-        [Versioning("policyindex")]
-        public string PolicyIndex { get; set; }
-        [Versioning("insuranceeffective")]
-        public DateTime InsuranceEffective { get; set; }
-         [Versioning("insuranceexpires")]
-        public DateTime InsuranceExpires { get; set; }
-          [Versioning("nextpaymentdue")]
-       public DateTime NextPaymentDue { get; set; }
-          [Versioning("remainingpayments")]
-          public int RemainingPayments { get; set; }
-        public AirlinerInsurance(InsuranceType insType, InsuranceScope insScope, PaymentTerms paymentTerms, int insAmount)
+        #region Constructors and Destructors
+
+        public AirlinerInsurance(
+            InsuranceType insType,
+            InsuranceScope insScope,
+            PaymentTerms paymentTerms,
+            int insAmount)
         {
             this.Deductible = 0;
             this.TermLength = 0;
             this.CancellationFee = 0;
             this.InsuredAmount = insAmount;
         }
-         private AirlinerInsurance(SerializationInfo info, StreamingContext ctxt)
+
+        private AirlinerInsurance(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
-            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                this.GetType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (SerializationEntry entry in info)
             {
-                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
-
+                MemberInfo prop =
+                    propsAndFields.FirstOrDefault(
+                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
+                    {
                         ((FieldInfo)prop).SetValue(this, entry.Value);
+                    }
                     else
+                    {
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
                 }
             }
 
-            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+            IEnumerable<MemberInfo> notSetProps =
+                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
+                    {
                         ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
                     else
+                    {
                         ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
-
+                    }
                 }
-
             }
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        #endregion
+
+        #region Enums
+
+        public enum InsuranceScope
+        {
+            Airport,
+
+            Domestic,
+
+            Hub,
+
+            Global
+        }
+
+        public enum InsuranceType
+        {
+            Liability,
+
+            Ground_Parked,
+
+            Ground_Taxi,
+
+            Combined_Ground,
+
+            In_Flight,
+
+            Full_Coverage
+        }
+
+        public enum PaymentTerms
+        {
+            Annual,
+
+            Biannual,
+
+            Quarterly,
+
+            Monthly
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        [Versioning("cancellation")]
+        public int CancellationFee { get; set; }
+
+        [Versioning("deductible")]
+        public double Deductible { get; set; }
+
+        [Versioning("insscope")]
+        public InsuranceScope InsScope { get; set; }
+
+        [Versioning("instype")]
+        public InsuranceType InsType { get; set; }
+
+        [Versioning("insuranceeffective")]
+        public DateTime InsuranceEffective { get; set; }
+
+        [Versioning("insuranceexpires")]
+        public DateTime InsuranceExpires { get; set; }
+
+        [Versioning("insuredamount")]
+        public int InsuredAmount { get; set; }
+
+        [Versioning("nextpaymentdue")]
+        public DateTime NextPaymentDue { get; set; }
+
+        [Versioning("paymentamount")]
+        public double PaymentAmount { get; set; }
+
+        [Versioning("policyindex")]
+        public string PolicyIndex { get; set; }
+
+        [Versioning("remainingpayments")]
+        public int RemainingPayments { get; set; }
+
+        [Versioning("termlength")]
+        public int TermLength { get; set; }
+
+        [Versioning("insterms")]
+        public PaymentTerms insTerms { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
             Type myType = this.GetType();
 
-            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
 
                 if (member is FieldInfo)
+                {
                     propValue = ((FieldInfo)member).GetValue(this);
+                }
                 else
+                {
                     propValue = ((PropertyInfo)member).GetValue(this, null);
+                }
 
-                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
-
         }
 
-
-     
+        #endregion
     }
 }

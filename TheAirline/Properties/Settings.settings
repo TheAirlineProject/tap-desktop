@@ -2,8 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TheAirline.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Version" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">0.4.0 Pre-Alpha</Value>
+    <Setting Name="Version" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0.4.1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

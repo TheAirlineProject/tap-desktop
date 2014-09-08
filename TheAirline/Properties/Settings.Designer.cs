@@ -23,12 +23,15 @@ namespace TheAirline.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.4.0 Pre-Alpha")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.4.1")]
         public string Version {
             get {
                 return ((string)(this["Version"]));
+            }
+            set {
+                this["Version"] = value;
             }
         }
     }

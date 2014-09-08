@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Regina, SK">
+  <months>
+    <month month="1" precipitation="15">
+      <temp min="-22" max="-11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="12">
+      <temp min="-17" max="-7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="19">
+      <temp min="-10" max="0" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="24">
+      <temp min="-2" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="53">
+      <temp min="5" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="75">
+      <temp min="10" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="64">
+      <temp min="12" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="43">
+      <temp min="11" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="33">
+      <temp min="5" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="22">
+      <temp min="-2" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="13">
+      <temp min="-11" max="0" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="16">
+      <temp min="-19" max="-8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

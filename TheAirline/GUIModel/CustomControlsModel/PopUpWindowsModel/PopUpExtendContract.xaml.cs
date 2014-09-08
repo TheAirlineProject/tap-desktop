@@ -56,7 +56,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             this.ExpireDate = this.Contract.ExpireDate;
             this.NumberOfGates = this.Contract.NumberOfGates;
 
-            this.HasFreeGates = this.Contract.Airport.Terminals.getFreeGates() > 0;
+            this.HasFreeGates = this.Contract.Airport.Terminals.getFreeGates(this.Contract.TerminalType) > 0;
 
             InitializeComponent();
         }
@@ -85,7 +85,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             int diffGates = this.NumberOfGates - this.Contract.NumberOfGates;
 
           
-            this.HasFreeGates = this.Contract.Airport.Terminals.getFreeGates() - diffGates > 0;
+            this.HasFreeGates = this.Contract.Airport.Terminals.getFreeGates(this.Contract.TerminalType) - diffGates > 0;
 
           
         }

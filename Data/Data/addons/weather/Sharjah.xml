@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Sharjah">
+  <months>
+    <month month="1" precipitation="10">
+      <temp min="12" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="35">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="33">
+      <temp min="15" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="8">
+      <temp min="18" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="1">
+      <temp min="22" max="39" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="0">
+      <temp min="25" max="41" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="0">
+      <temp min="28" max="42" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="0">
+      <temp min="28" max="42" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="0">
+      <temp min="24" max="40" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="0">
+      <temp min="21" max="36" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="5">
+      <temp min="16" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="16">
+      <temp min="14" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

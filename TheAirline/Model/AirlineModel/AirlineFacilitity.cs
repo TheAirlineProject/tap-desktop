@@ -1,39 +1,30 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.PilotModel;
-
-namespace TheAirline.Model.AirlineModel
+﻿namespace TheAirline.Model.AirlineModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+
+    using TheAirline.Model.GeneralModel;
+    using TheAirline.Model.PilotModel;
+
     //the class for an airlines facilities
     [Serializable]
     public class AirlineFacility : ISerializable
     {
+        #region Constructors and Destructors
 
-        
-        public static string Section { get; set; }
-        [Versioning("uid")]
-        public string Uid { get; set; }
-        [Versioning("price")]
-        public double APrice {get;set;}
-        public double Price { get { return GeneralHelpers.GetInflationPrice(this.APrice); } set { this.APrice = value; } }
-        [Versioning("monthlycost")]
-        public double AMonthlyCost { get; set; }
-        public double MonthlyCost { get { return GeneralHelpers.GetInflationPrice(this.AMonthlyCost); } set { this.AMonthlyCost = value; } }
-        [Versioning("luxury")]
-        public int LuxuryLevel { get; set; } //for business customers
-        [Versioning("service")]
-        public int ServiceLevel { get; set; } //for repairing airliners 
-        [Versioning("fromyear")]
-        public int FromYear { get; set; }
-        public AirlineFacility(string section, string uid, double price, double monthlyCost,int fromYear, int serviceLevel, int luxuryLevel)
+        public AirlineFacility(
+            string section,
+            string uid,
+            double price,
+            double monthlyCost,
+            int fromYear,
+            int serviceLevel,
+            int luxuryLevel)
         {
-            AirlineFacility.Section = section;
+            Section = section;
             this.Uid = uid;
             this.FromYear = fromYear;
             this.MonthlyCost = monthlyCost;
@@ -41,115 +32,219 @@ namespace TheAirline.Model.AirlineModel
             this.LuxuryLevel = luxuryLevel;
             this.ServiceLevel = serviceLevel;
         }
-        public virtual string Name
-        {
-            get { return Translator.GetInstance().GetString(AirlineFacility.Section, this.Uid); }
-        }
 
-        public virtual string Shortname
-        {
-            get { return Translator.GetInstance().GetString(AirlineFacility.Section, this.Uid, "shortname"); }
-        }
         public AirlineFacility(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
-            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                this.GetType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (SerializationEntry entry in info)
             {
-                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+                MemberInfo prop =
+                    propsAndFields.FirstOrDefault(
+                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
+                    {
                         ((FieldInfo)prop).SetValue(this, entry.Value);
+                    }
                     else
+                    {
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
                 }
             }
 
-            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+            IEnumerable<MemberInfo> notSetProps =
+                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
+                    {
                         ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
                     else
+                    {
                         ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
-
+                    }
                 }
-
             }
-
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        #endregion
+
+        #region Public Properties
+
+        public static string Section { get; set; }
+
+        [Versioning("monthlycost")]
+        public double AMonthlyCost { get; set; }
+
+        [Versioning("price")]
+        public double APrice { get; set; }
+
+        //for repairing airliners 
+
+        [Versioning("fromyear")]
+        public int FromYear { get; set; }
+
+        [Versioning("luxury")]
+        public int LuxuryLevel { get; set; }
+
+        public double MonthlyCost
+        {
+            get
+            {
+                return GeneralHelpers.GetInflationPrice(this.AMonthlyCost);
+            }
+            set
+            {
+                this.AMonthlyCost = value;
+            }
+        }
+
+        public virtual string Name
+        {
+            get
+            {
+                return Translator.GetInstance().GetString(Section, this.Uid);
+            }
+        }
+
+        public double Price
+        {
+            get
+            {
+                return GeneralHelpers.GetInflationPrice(this.APrice);
+            }
+            set
+            {
+                this.APrice = value;
+            }
+        }
+
+        [Versioning("service")]
+        public int ServiceLevel { get; set; }
+
+        public virtual string Shortname
+        {
+            get
+            {
+                return Translator.GetInstance().GetString(Section, this.Uid, "shortname");
+            }
+        }
+
+        [Versioning("uid")]
+        public string Uid { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (!(this is PilotTrainingFacility))
+            {
                 info.AddValue("version", 1);
+            }
 
             Type myType = this.GetType();
 
-            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
 
                 if (member is FieldInfo)
+                {
                     propValue = ((FieldInfo)member).GetValue(this);
+                }
                 else
+                {
                     propValue = ((PropertyInfo)member).GetValue(this, null);
+                }
 
-                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
-
-
-
         }
+
+        #endregion
     }
+
     //the collection of facilities
     public class AirlineFacilities
     {
+        #region Static Fields
+
         private static List<AirlineFacility> facilities = new List<AirlineFacility>();
-         //clears the list
-        public static void Clear()
-        {
-            facilities = new List<AirlineFacility>();
-        }
+
+        #endregion
+
+        //clears the list
+
         //adds a new facility to the collection
+
+        #region Public Methods and Operators
+
         public static void AddFacility(AirlineFacility facility)
         {
             facilities.Add(facility);
         }
-        //returns a facility
-        public static AirlineFacility GetFacility(string uid)
+
+        public static void Clear()
         {
-            return facilities.Find(f => f.Uid == uid);
+            facilities = new List<AirlineFacility>();
         }
+
+        //returns a facility
+
         //returns the list of facilities
         public static List<AirlineFacility> GetFacilities()
         {
             return facilities;
         }
+
         public static List<AirlineFacility> GetFacilities(Predicate<AirlineFacility> match)
         {
             return facilities.FindAll(match);
         }
+
+        public static AirlineFacility GetFacility(string uid)
+        {
+            return facilities.Find(f => f.Uid == uid);
+        }
+
+        #endregion
     }
 }

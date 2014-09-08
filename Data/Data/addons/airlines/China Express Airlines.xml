@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="China Express Airlines" iata="G5" color="Blue" country="148" CEO="Li Xiaoming" mentality="Moderate" market="Domestic" preferedairport="CKG">
+<narrative narrative="China Express makes it's base in Guiyang but its hub is in Chongqing. Founded in 2006 it has a fleet of ten CRJ's. Five CRJ-200's and five CRJ-900s."/>
+</profile>
+<info real="True" from="2006" to="2199"></info>
+</airline>

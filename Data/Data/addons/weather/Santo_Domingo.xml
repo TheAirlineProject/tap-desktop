@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Santo Domingo">
+  <months>
+    <month month="1" precipitation="63">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="57">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="54">
+      <temp min="20" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="72">
+      <temp min="21" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="188">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="140">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="145">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="177">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="181">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="187">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="100">
+      <temp min="21" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="84">
+      <temp min="20" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

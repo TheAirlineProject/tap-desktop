@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TheAirline;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.GeneralModel.StatisticsModel;
-using TheAirline.Model.GeneralModel.Helpers;
-
-namespace TheAirline.Model.StatisticsModel
+﻿namespace TheAirline.Model.StatisticsModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using TheAirline.Model.AirlineModel;
+    using TheAirline.Model.GeneralModel.Helpers;
+
     public class Ratings
     {
         //calculates customer happiness as a function of average ticket price, crowding on flights, and on-time % - for an airline
+
+        #region Public Methods and Operators
+
         public static double GetCustomerHappiness(Airline airline)
         {
             int negInt = -1;
-            Dictionary<Airline, Double> fillAverages = StatisticsHelpers.GetFillAverages(); 
+            Dictionary<Airline, Double> fillAverages = StatisticsHelpers.GetFillAverages();
             Dictionary<Airline, Double> onTimePercent = StatisticsHelpers.GetTotalOnTime();
             Dictionary<Airline, Double> ticketPPD = StatisticsHelpers.GetTotalPPD();
             IDictionary<Airline, Double> scaleAvgFill = StatisticsHelpers.GetRatingScale(fillAverages);
@@ -25,39 +24,17 @@ namespace TheAirline.Model.StatisticsModel
             IDictionary<Airline, Double> scalePPD = StatisticsHelpers.GetRatingScale(ticketPPD);
             IDictionary<Airline, Double> scaleLuxury = StatisticsHelpers.GetRatingScale(GetAirlinesLuxuryLevels());
 
-            double airlineAvgFill = scaleAvgFill[airline]; 
+            double airlineAvgFill = scaleAvgFill[airline];
             double airlineOTP = scaleOnTimeP[airline];
             double airlinePPD = scalePPD[airline];
             double airlineLuxury = scaleLuxury[airline];
 
-            return ((airlinePPD * negInt + 100) * 0.4) + (airlineAvgFill * 0.2) + (airlineOTP * 0.2) + (airlineLuxury * 0.2);
+            return ((airlinePPD * negInt + 100) * 0.4) + (airlineAvgFill * 0.2) + (airlineOTP * 0.2)
+                   + (airlineLuxury * 0.2);
         }
-        //returns all airline luxury levels
-        private static Dictionary<Airline, Double> GetAirlinesLuxuryLevels()
-        {
-            Dictionary<Airline, Double> values = new Dictionary<Airline, Double>();
-            foreach (Airline airline in Airlines.GetAllAirlines())
-            {
-                values.Add(airline, GetAirlineLuxuryLevel(airline));
-            }
 
-            return values;
-        }
-        //calculates the value of facilities for an airline for use in happiness
-        private static double GetAirlineLuxuryLevel(Airline airline)
-        {
-            int luxuryLevel = 0;
-       
-            if (airline.Alliances.Count > 0)
-            {
-               luxuryLevel = airline.Alliances.SelectMany(a => a.Members).Select(m => m.Airline).Max(m => airline.Facilities.Sum(f => f.LuxuryLevel));
-            }
-            else
-            {
-                luxuryLevel = airline.Facilities.Sum(f => f.LuxuryLevel);
-            }
-            return luxuryLevel;
-        }
+        //returns all airline luxury levels
+
         //calculates employee happiness as a function of wages, discounts, and free pilots (relative to workload)
         public static double GetEmployeeHappiness(Airline airline)
         {
@@ -74,6 +51,40 @@ namespace TheAirline.Model.StatisticsModel
 
             return (airlineWages * 0.7) + (airlineUnassignedPilots * 0.2) + (airlineDiscounts * 0.1);
         }
-        
+
+        #endregion
+
+        #region Methods
+
+        private static double GetAirlineLuxuryLevel(Airline airline)
+        {
+            int luxuryLevel = 0;
+
+            if (airline.Alliances.Count > 0)
+            {
+                luxuryLevel =
+                    airline.Alliances.SelectMany(a => a.Members)
+                        .Select(m => m.Airline)
+                        .Max(m => airline.Facilities.Sum(f => f.LuxuryLevel));
+            }
+            else
+            {
+                luxuryLevel = airline.Facilities.Sum(f => f.LuxuryLevel);
+            }
+            return luxuryLevel;
+        }
+
+        private static Dictionary<Airline, Double> GetAirlinesLuxuryLevels()
+        {
+            var values = new Dictionary<Airline, Double>();
+            foreach (Airline airline in Airlines.GetAllAirlines())
+            {
+                values.Add(airline, GetAirlineLuxuryLevel(airline));
+            }
+
+            return values;
+        }
+
+        #endregion
     }
 }

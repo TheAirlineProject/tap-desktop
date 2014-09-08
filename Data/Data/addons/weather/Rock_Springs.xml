@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Rock Springs, WY">
+  <months>
+    <month month="1" precipitation="16">
+      <temp min="-12" max="-2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="13">
+      <temp min="-10" max="0" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="20">
+      <temp min="-5" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="26">
+      <temp min="-2" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="35">
+      <temp min="3" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="17">
+      <temp min="7" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="24">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="15">
+      <temp min="10" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="22">
+      <temp min="5" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="22">
+      <temp min="0" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="16">
+      <temp min="-7" max="4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="16">
+      <temp min="-11" max="-2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

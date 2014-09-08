@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Bulgaria" iata="FB" color="Green" country="185" CEO="Yanko Georgiev" mentality="Moderate"
+           market="Regional" preferedairport="SOF">
+    <narrative
+      narrative="The airline was established in 2002 as a successor to the insolvent Balkan Bulgarian Airlines. By order of the Minister of Transport and Communications it was declared the national flag carrier in November 2002, starting operations on the 4th of December, 2002. The name and initial logo were determined by a public competition" />
+  </profile>
+  <info real="True" from="2002" to="2199"></info>
+  <startdata>
+    <airliners>
+      <airliner type="Airbus A319-100" early="0" late="3"></airliner>
+      <airliner type="Airbus A320-200" early="0" late="3"></airliner>
+      <airliner type="Embraer E-190" early="4" late="0"></airliner>
+      <airliner type="Boeing 737-500" early="5" late="0"></airliner>
+      <airliner type="ATR 42-300" early="3" late="0"></airliner>
+      <airliner type="Boeing 737-300" early="5" late="0"></airliner>
+    </airliners>
+  </startdata>
+</airline>

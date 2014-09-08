@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Cozumel">
+  <months>
+    <month month="1" precipitation="81">
+      <temp min="19" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="60">
+      <temp min="19" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="32">
+      <temp min="20" max="31" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="45">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="111">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="192">
+      <temp min="24" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="116">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="142">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="240">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="243">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="123">
+      <temp min="21" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="107">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Tapachula">
+  <months>
+    <month month="1" precipitation="7">
+      <temp min="18" max="34" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="6">
+      <temp min="18" max="35" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="22">
+      <temp min="19" max="35" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="81">
+      <temp min="21" max="36" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="245">
+      <temp min="21" max="34" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="363">
+      <temp min="20" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="310">
+      <temp min="20" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="330">
+      <temp min="20" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="432">
+      <temp min="20" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="294">
+      <temp min="20" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="71">
+      <temp min="19" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="9">
+      <temp min="18" max="33" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

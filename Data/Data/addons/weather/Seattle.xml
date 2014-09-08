@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Seattle, WA">
+  <months>
+    <month month="1" precipitation="141">
+      <temp min="3" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="89">
+      <temp min="3" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="95">
+      <temp min="4" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="69">
+      <temp min="6" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="49">
+      <temp min="8" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="40">
+      <temp min="11" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="18">
+      <temp min="13" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="22">
+      <temp min="13" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="37">
+      <temp min="11" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="88">
+      <temp min="8" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="167">
+      <temp min="4" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="136">
+      <temp min="2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

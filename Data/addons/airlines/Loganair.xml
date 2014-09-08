@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<airline>
-  <profile name="Loganair" iata="LM" color="Maroon" country="130" CEO="Scott Grier" mentality="Safe" market="Regional" preferedairport="GLA">
-  </profile>
-  <info real="True" from="1962" to="2199" />
-</airline>

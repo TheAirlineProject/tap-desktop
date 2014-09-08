@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airliners>
+  <airliner manufacturer="DH" name="DH 114 Heron" price="75149">
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="21.8" length="14.79" range="1473" speed="295" fuelcapacity="1190" consumption="0.061"
+           runwaylengthrequired="1182" />
+    <capacity passengers="14" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1950" to="1963" rate="8" />
+  </airliner>
+  <airliner manufacturer="DH" name="DH 104 Dove" price="71440">
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="17.4" length="11.96" range="1415" speed="370" fuelcapacity="979" consumption="0.065"
+           runwaylengthrequired="1182" />
+    <capacity passengers="8" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1946" to="1967" rate="7" />
+  </airliner>
+  <airliner manufacturer="DH" name="DH 106 Comet 1A" price="343210">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="34.98" length="28.61" range="2850" speed="725" fuelcapacity="1826" consumption="0.078"
+           runwaylengthrequired="2182" />
+    <capacity passengers="44" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1952" to="1971" rate="5" />
+  </airliner>
+  <airliner manufacturer="DH" name="DH 106 Comet 4C" price="381110">
+    <type body="Narrow_Body" rangetype="Long_Range" engine="Jet" />
+    <specs wingspan="34.98" length="35.97" range="6900" speed="805" fuelcapacity="2765" consumption="0.076"
+           runwaylengthrequired="2782" />
+    <capacity passengers="119" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1958" to="1991" rate="8" />
+  </airliner>
+  <airliner manufacturer="DH" name="DHC-7-100" price="6000000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="28.35" length="24.58" weight="20000" range="1852" speed="436" fuelcapacity="3200" consumption="0.02343"
+  runwaylengthrequired="366" />
+    <capacity passengers="54" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1975" to="1988" rate="9" />
+  </airliner>
+</airliners>

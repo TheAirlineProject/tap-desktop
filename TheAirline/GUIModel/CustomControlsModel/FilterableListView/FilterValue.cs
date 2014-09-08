@@ -29,4 +29,5 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
             return this.Text;
         }
     }
+    
 }

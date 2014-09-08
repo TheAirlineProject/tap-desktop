@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airlinerimages>
+  <airlinerimage image="A300" types="Airbus A300B1,Airbus A300B2,Airbus A300B4,Airbus A300-600"></airlinerimage>
+  <airlinerimage image="A310" types="Airbus A310-200,Airbus A310-300"></airlinerimage>
+  <airlinerimage image="A318" types="Airbus A318-100"></airlinerimage>
+  <airlinerimage image="A319" types="Airbus A319-100,Airbus A319neo"></airlinerimage>
+  <airlinerimage image="A320" types="Airbus A320-100,Airbus A320-200,Airbus A320neo"></airlinerimage>
+  <airlinerimage image="A321" types="Airbus A321-100,Airbus A321-200,Airbus A321neo"></airlinerimage>
+  <airlinerimage image="A330" types="Airbus A330-200,Airbus A330-200F,Airbus A330-300"></airlinerimage>
+   <airlinerimage image="A333" types="Airbus A330-300"></airlinerimage>
+  <airlinerimage image="A340" types="Airbus A340-300,Airbus A340-500"></airlinerimage>
+   <airlinerimage image="A342" types="Airbus A340-200,Airbus A340-600"></airlinerimage>
+   <airlinerimage image="A380" types="Airbus A380-800"></airlinerimage>
+    <airlinerimage image="B712" types="Boeing 717-200"></airlinerimage>
+    <airlinerimage image="B727" types="Boeing 727-100,Boeing 727-100C,Boeing 727-200,Boeing 727-200 Adv."></airlinerimage>
+<airlinerimage image="B732" types="Boeing 737-200,Boeing 737-200 Adv.,Boeing 737-200C"></airlinerimage>
+<airlinerimage image="B733" types="Boeing 737-300"></airlinerimage>
+<airlinerimage image="B734" types="Boeing 737-400,Boeing 737-400M"></airlinerimage>
+<airlinerimage image="B735" types="Boeing 737-500"></airlinerimage>
+<airlinerimage image="B736" types="Boeing 737-600"></airlinerimage>
+<airlinerimage image="B737" types="Boeing 737-700,Boeing 737-700C"></airlinerimage>
+<airlinerimage image="B738" types="Boeing 737-800"></airlinerimage>
+    <airlinerimage image="B739" types="Boeing 737-900,Boeing 737-900ER"></airlinerimage>
+  <airlinerimage image="B737"
+                 types="Boeing 737-100,Boeing 737 MAX 7,Boeing 737 MAX 8,Boeing 737 MAX 9">
+  </airlinerimage>
+  <airlinerimage image="B747"
+                 types="Boeing 747-200B,Boeing 747-200B,Boeing 747-300,Boeing 747-8F,Boeing 747-8I">
+  </airlinerimage>
+  <airlinerimage image="B741" types="Boeing 747-100"></airlinerimage>
+  <airlinerimage image="B744" types="Boeing 747-400,Boeing 747-400F,Boeing 747-400ER,Boeing 747-400M,Boeing 747-400ERF"></airlinerimage>
+  <airlinerimage image="B753" types="Boeing 757-300"></airlinerimage>
+  <airlinerimage image="B757" types="Boeing 757-200,Boeing 757-200PF"></airlinerimage>
+  <airlinerimage image="B763" types="Boeing 767-300,Boeing 767-300F,Boeing 767-300ER"></airlinerimage>
+   <airlinerimage image="B764" types="Boeing 767-400ER"></airlinerimage>  
+  <airlinerimage image="B767"
+                 types="Boeing 767-200,Boeing 767-200ER">
+  </airlinerimage>
+     <airlinerimage image="B773" types="Boeing 777-300,Boeing 777F,Boeing 777-300ER"></airlinerimage>  
+  <airlinerimage image="B777"
+                 types="Boeing 777-200,Boeing 777-200ER,Boeing 777-200LR">
+  </airlinerimage>
+  <airlinerimage image="B787" types="Boeing 787-8,Boeing 787-9"></airlinerimage>
+  <airlinerimage image="CRJ2" types="Bombardier CRJ200"></airlinerimage>
+  <airlinerimage image="CRJ7" types="Bombardier CRJ700"></airlinerimage>
+  <airlinerimage image="CRJ9" types="Bombardier CRJ900"></airlinerimage>
+  <airlinerimage image="E145" types="Embraer ERJ145 LR"></airlinerimage>
+  <airlinerimage image="E170" types="Embraer E-170"></airlinerimage>
+  <airlinerimage image="E190" types="Embraer E-190"></airlinerimage>
+  <airlinerimage image="AT42" types="ATR 42-300,ATR 42-500"></airlinerimage>
+  <airlinerimage image="AT72" types="ATR 72-500,ATR 72-200,ATR 72-210"></airlinerimage>
+    <airlinerimage image="RJ1H" types="Avro RJ100 Avroliner"></airlinerimage>
+  <airlinerimage image="D228" types="Dornier 228-212"></airlinerimage>
+  <airlinerimage image="D328" types="Dornier 328-110"></airlinerimage>
+    <airlinerimage image="F100" types="Fokker 100"></airlinerimage>
+  <airlinerimage image="F50" types="Fokker 50"></airlinerimage>
+      <airlinerimage image="DC10" types="MD DC-10-10,MD DC-10-10F,MD DC-10-15"></airlinerimage>
+    <airlinerimage image="MD11" types="MD-11,MD-11ER,MD-11F"></airlinerimage>
+     <airlinerimage image="MD80" types="MD-81 (DC-9-81),MD-82 (DC-9-82),MD-83 (DC-9-83),MD-87 (DC-9-87),MD-88 (DC-9-88)"></airlinerimage>
+      <airlinerimage image="DHC7" types="DHC-7-100"></airlinerimage>
+      <airlinerimage image="YK40" types="Yak-40"></airlinerimage>
+      <airlinerimage image="A139" types="AgustaWestland AW139"></airlinerimage>
+      <airlinerimage image="A189" types="AgustaWestland AW189"></airlinerimage>
+            <airlinerimage image="S76" types="Sikorsky S-76"></airlinerimage>
+      <airlinerimage image="S92" types="Sikorsky S-92"></airlinerimage>
+</airlinerimages>

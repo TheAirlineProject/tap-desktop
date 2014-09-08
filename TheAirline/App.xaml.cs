@@ -8,7 +8,6 @@ using System.Windows.Markup;
 using System.Resources;
 using System.Globalization;
 using TheAirline.Model.GeneralModel;
-using System.Diagnostics;
 
 /*!
  * /brief Namespace of the project

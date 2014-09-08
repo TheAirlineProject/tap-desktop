@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Mahan Air" iata="W5" color="Green" country="177" CEO="Hamid Arabnejad" mentality="Aggressive" market="Global" preferedairport="IKA">
+  <narrative narrative="Founded in 1991 as Iran's first private airline, Mahan Air is named agter the city of Mahan. However it's two main bases are Tehran's two airports. They serve 52 destinations globally and have a fleet of 56 planes of various types." />
+  </profile>
+  <info real="True" from="1991" to="2199"></info>
+</airline>

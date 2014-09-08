@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="TUIfly" iata="X3" color="Black" country="1002" CEO="Dr. Michael Frenzel" mentality="Safe"
+           market="Global" preferedairport="FRA">
+           <narrative
+      narrative="TUIfly is a low cost airline based at Hannover Airport in Langenhagen, Lower Saxony, Germany. The airline offers both charter and scheduled flights. About 60% of all seats are sold directly, 30% as a part of a TUI holiday package and 10% by other agencies." />
+  </profile>
+  <info real="True" from="2007" to="2199" />
+</airline>

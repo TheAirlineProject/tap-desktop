@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Manhattan, KS">
+  <months>
+    <month month="1" precipitation="17">
+      <temp min="-8" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="28">
+      <temp min="-6" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="63">
+      <temp min="-1" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="82">
+      <temp min="5" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="128">
+      <temp min="12" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="145">
+      <temp min="17" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="116">
+      <temp min="20" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="105">
+      <temp min="19" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="87">
+      <temp min="13" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="66">
+      <temp min="6" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="43">
+      <temp min="-1" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="27">
+      <temp min="-7" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

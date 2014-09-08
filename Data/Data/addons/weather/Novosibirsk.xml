@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Novosibirsk">
+  <months>
+    <month month="1" precipitation="26">
+      <temp min="-21" max="-12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="15">
+      <temp min="-20" max="-9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="17">
+      <temp min="-13" max="-2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="28">
+      <temp min="-2" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="34">
+      <temp min="5" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="50">
+      <temp min="11" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="72">
+      <temp min="14" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="49">
+      <temp min="11" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="42">
+      <temp min="5" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="46">
+      <temp min="-1" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="38">
+      <temp min="-10" max="-3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="11">
+      <temp min="-18" max="-10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="San Juan, PR">
+  <months>
+    <month month="1" precipitation="77">
+      <temp min="22" max="28" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="58">
+      <temp min="22" max="28" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="54">
+      <temp min="22" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="94">
+      <temp min="23" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="134">
+      <temp min="24" max="30" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="89">
+      <temp min="25" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="106">
+      <temp min="25" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="133">
+      <temp min="25" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="142">
+      <temp min="25" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="129">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="157">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="116">
+      <temp min="22" max="28" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

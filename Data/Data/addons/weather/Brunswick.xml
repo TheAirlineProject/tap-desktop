@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Brunswick, GA">
+  <months>
+    <month month="1" precipitation="94">
+      <temp min="5" max="17" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="95">
+      <temp min="7" max="19" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="103">
+      <temp min="11" max="22" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="68">
+      <temp min="13" max="26" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="60">
+      <temp min="18" max="30" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="145">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="127">
+      <temp min="23" max="34" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="176">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="156">
+      <temp min="21" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="114">
+      <temp min="16" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="54">
+      <temp min="11" max="23" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="68">
+      <temp min="7" max="18" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

@@ -1,55 +1,75 @@
 ﻿<Page x:Class="TheAirline.GUIModel.PagesModel.GamePageModel.PageSelectOpponents"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:c="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
       xmlns:m="clr-namespace:TheAirline.GUIModel.MasterPageModel"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       Name="pageSelectOpponents"
       d:DesignHeight="300" d:DesignWidth="300"
-	Title="PageSelectOpponents">
+      Title="PageSelectOpponents">
 
     <Page.Resources>
         <DataTemplate x:Key="SelectOpponentsContent">
-               <Grid HorizontalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0" Width="350">
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0" Width="400">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                         <StackPanel>
-                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSelectOpponents 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                           <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding SelectedAirlines,ElementName=pageSelectOpponents}" >
+                            <TextBlock
+                                Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSelectOpponents 1000'}"
+                                VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
+                            <ListBox Background="Transparent" BorderThickness="0"
+                                     ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                                     ItemsSource="{Binding SelectedAirlines,ElementName=pageSelectOpponents}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <WrapPanel>
-                                            <ContentControl ContentTemplate="{StaticResource AirlineItem}" Content="{Binding}" VerticalAlignment="Bottom" Width="300"></ContentControl>
-                                            <Image VerticalAlignment="Bottom" Tag="{Binding}" MouseDown="imgDeselect_MouseDown" Width="20" Source="/data/images/tick.png"></Image>
+                                            <ContentControl ContentTemplate="{StaticResource AirlineCountryItem}"
+                                                            Content="{Binding}" VerticalAlignment="Bottom" Width="250" />
+                                            <TextBlock Text="{Binding AirlineRouteFocus}" Width="100" VerticalAlignment="Bottom"></TextBlock>
+
+                                            <Image VerticalAlignment="Bottom" Tag="{Binding}"
+                                                   MouseDown="imgDeselect_MouseDown" Width="20"
+                                                   Source="/data/images/tick.png" />
                                         </WrapPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
                             <WrapPanel Margin="0 10 0 0">
-                                <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 201'}" Width="NaN" Click="btnCreateGame_Click"></Button>
+                                <Button Style="{DynamicResource StandardButtonStyle}"
+                                        Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 201'}"
+                                        Width="NaN" Click="btnCreateGame_Click" />
                             </WrapPanel>
-                            <c:SplashControl Visibility="Collapsed" Text="Creating...." HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="scCreating"></c:SplashControl>
+                            <c:SplashControl Visibility="Collapsed" Text="Creating...." HorizontalAlignment="Center"
+                                             VerticalAlignment="Center" x:Name="scCreating" />
 
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
-                    <Border Style="{StaticResource RoundedBorderStyle}" Margin="5 0 0 0" Grid.Column="1" Width="350">
+                <Border Style="{StaticResource RoundedBorderStyle}" Margin="5 0 0 0" Grid.Column="1" Width="400">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
                         <StackPanel>
-                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSelectOpponents 1001'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                            <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"  ItemsSource="{Binding Opponents,ElementName=pageSelectOpponents}" >
+                            <TextBlock
+                                Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSelectOpponents 1001'}"
+                                VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
+                            <ListBox Background="Transparent" BorderThickness="0"
+                                     ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                                     ItemsSource="{Binding Opponents,ElementName=pageSelectOpponents}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <WrapPanel>
-                                            <ContentControl ContentTemplate="{StaticResource AirlineItem}" Content="{Binding}" VerticalAlignment="Bottom" Width="300"></ContentControl>
-                                            <Image VerticalAlignment="Bottom" Tag="{Binding}" MouseDown="imgSelect_MouseDown" Width="20" Source="/data/images/tickgrey.png"></Image>
+                                            <ContentControl ContentTemplate="{StaticResource AirlineCountryItem}"
+                                                            Content="{Binding}" VerticalAlignment="Bottom" Width="250" />
+                                            <TextBlock Text="{Binding AirlineRouteFocus}" Width="100" VerticalAlignment="Bottom"></TextBlock>
+                                            <Image VerticalAlignment="Bottom" Tag="{Binding}"
+                                                   MouseDown="imgSelect_MouseDown" Width="20"
+                                                   Source="/data/images/tickgrey.png" />
                                         </WrapPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
@@ -58,41 +78,42 @@
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
-                       
-                </Grid>
-    <!--        </ScrollViewer>-->
-                
-        </DataTemplate>
-        <DataTemplate x:Key="QuickLinksContent">
+
+            </Grid>
+            <!--        </ScrollViewer>-->
 
         </DataTemplate>
+        <DataTemplate x:Key="QuickLinksContent" />
         <DataTemplate x:Key="HeaderContent">
             <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <Image                                  
-                               Source="/data/images/logo_banner.png"
-                               RenderOptions.BitmapScalingMode="HighQuality"
-                               HorizontalAlignment="Left"
-                              Margin="0 0 20 0" Opacity="2"
-                VerticalAlignment="Center"
-                              Height="32"/>
-                <TextBlock   Text="The Airline Project" Style="{StaticResource HeaderStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                <Image                                  
-                               Source="/data/images/logo_banner.png"
-                               RenderOptions.BitmapScalingMode="HighQuality"
-                               HorizontalAlignment="Left"
-                  
-                    
-                              Margin="20 0 0 0" Opacity="2"
-                VerticalAlignment="Center"
-                              Height="32"/>
+                <Image
+                    Source="/data/images/logo_banner.png"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    HorizontalAlignment="Left"
+                    Margin="0 0 20 0" Opacity="2"
+                    VerticalAlignment="Center"
+                    Height="32" />
+                <TextBlock Text="The Airline Project" Style="{StaticResource HeaderStyle}" VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
+                <Image
+                    Source="/data/images/logo_banner.png"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    HorizontalAlignment="Left"
+
+
+                    Margin="20 0 0 0" Opacity="2"
+                    VerticalAlignment="Center"
+                    Height="32" />
 
             </WrapPanel>
         </DataTemplate>
-        <DataTemplate x:Key="NoLeftContent"></DataTemplate>
-        <DataTemplate x:Key="NewGameContentMenu">
-
-        </DataTemplate>
+        <DataTemplate x:Key="NoLeftContent" />
+        <DataTemplate x:Key="NewGameContentMenu" />
     </Page.Resources>
-    <m:StandardMasterPage Style="{StaticResource StandardPage}" HeaderContentArea="{StaticResource HeaderContent}" LeftContentArea="{StaticResource NoLeftContent}"  MainContentArea="{StaticResource SelectOpponentsContent}" RightContentArea="{StaticResource QuickLinksContent}" MainContentMenuArea="{StaticResource NewGameContentMenu}"/>
+    <m:StandardMasterPage Style="{StaticResource StandardPage}" HeaderContentArea="{StaticResource HeaderContent}"
+                          LeftContentArea="{StaticResource NoLeftContent}"
+                          MainContentArea="{StaticResource SelectOpponentsContent}"
+                          RightContentArea="{StaticResource QuickLinksContent}"
+                          MainContentMenuArea="{StaticResource NewGameContentMenu}" />
 
 </Page>

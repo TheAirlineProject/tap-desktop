@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<airline>
-  <profile name="Air Wales" iata="6G" color="Red" country="130" CEO="Roy Thomas" mentality="Aggressive" market="Local" preferedairport="CWL">
-  <narrative narrative="Air Wales is a small local airline based out of Cardiff, Wales, in operation from 1997 to 2006. They flew to 13 destinations on a fleet of 5 ATR-42-300s." />
-  </profile>
-  <info real="True" from="1997" to="2006"/>
-</airline>

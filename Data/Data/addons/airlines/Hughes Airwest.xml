@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Hughes Airwest" iata="RW" color="Yellow" country="122" CEO="Howard Hughes" mentality="Aggressive" market="Regional" preferedairport="SFO">
+    <narrative narrative="Hughes Airwest was formed as simpley Airwest in 1968 when three airlines merged. Pacific Air Lines of San Francisco, Bonanza Air Lines of Phoenix, and West Coast Airlines of Seatte. After being called Airwest for two years it was bought in 1970 by former TWA owner and business mogul Howard Hughes and renamed Hughes Airwest. They were based at SFO. In 1971 it came out with a new livery that was mostly yellow, and many started calling them flying bananas, the airline itself then started using the slogan Top Banana in the West. In 1980 they were bought by Republic Airlines who were just founded in 1979 after the merge of two other airlines. They would go on to merge with Northwest in 1986. They operated at 37 domestic cities at the time of their sale, most being on the west coast, and three in Mexico and two in Canada. At their height it was 57 destinations. They had DC-9s, 727's, and Fairchild F-27's. 48 planes in 1980." /></profile>
+  <info real="True" from="1968" to="1980" />
+</airline>

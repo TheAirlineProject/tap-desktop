@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Kish Air" iata="Y9" color="Yellow" country="177" CEO="Mohammad Khalajzadeh" mentality="Moderate" market="Global" preferedairport="THR">
+    <narrative narrative=" Kish Air is an Iranian airline based at Tehran's Mehrabad Airport and at Kish, an Iranian island in the Persian Gulf that is a tourist destination, for which the airline takes its name. It was founded in 1989. They serve 19 domestic airports, and 7 others around the Middle East including Turkey and 2 in the UAE.They have 12 planes, 5 MD-82's, 4 MD-83's, and 3 Fokker 100's.  " /></profile>
+  <info real="True" from="1989" to="2199" />
+</airline>

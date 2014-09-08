@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="StarFlyer" iata="7G" logo="7G" color="Black" country="171" CEO="Shin'ichi Yonehara " mentality="Safe" market="Regional" preferedairport="KKJ">
+    <narrative narrative="StarFlyer is a Japanese airline based at Kitakyushu Airport. They were founded in 2002 but did not begin flying until 2006 upon the open of the new Kitakyushu Airport. They currenty fly 5 routes all in Japan and have 10 A320's. However they used to fly to Busan,South Korea but suspended service to their starting March 30th,2014. They took a big hit after the 2011 earthquake that resulted in massive cancellations, which included 7 of thier 29 pilots who were foreigners refusing to return to Japan following the disaster. It has codeshares with ANA and is owned at least 18% by them also. They currently have 601 employees." /></profile>
+  <info real="True" from="2005" to="2199" />
+</airline>

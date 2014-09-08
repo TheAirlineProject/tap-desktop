@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Omaha, NE">
+  <months>
+    <month month="1" precipitation="19">
+      <temp min="-10" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="22">
+      <temp min="-8" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="50">
+      <temp min="-2" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="75">
+      <temp min="4" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="121">
+      <temp min="10" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="106">
+      <temp min="16" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="97">
+      <temp min="19" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="97">
+      <temp min="18" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="69">
+      <temp min="12" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="55">
+      <temp min="5" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="42">
+      <temp min="-2" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="26">
+      <temp min="-8" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

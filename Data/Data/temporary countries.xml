@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<countries>
+  <country uid="1001" shortname="DDR" region="113" flag="East Germany" tailformat="DDR-\\s3" type="ManyToOne">
+    <translations>
+      <en-US name="East Germany" />
+      <de-DE name="East Germany" />
+      <en-GB name="East Germany" />
+      <nl-NL name="Oost-Duitsland" />
+      <zh-CN name="东德" />
+      <da-DK name="Østtyskland" />
+      <es-ES name="Alemania Oriental" />
+    </translations>
+    <period start="01.01.1949 00:00:00" end="03.10.1990 00:00:00">
+    </period>
+    <history before="163" after="163">
+    </history>
+  </country>
+  <country uid="1002" shortname="DEU" region="116" flag="Germany" tailformat="D-\\s4" type="ManyToOne">
+    <translations>
+      <en-US name="West Germany" />
+      <de-DE name="West Germany" />
+      <en-GB name="West Germany" />
+      <nl-NL name="West-Duitsland" />
+      <zh-CN name="西德" />
+      <da-DK name="Vesttyskland" />
+      <es-ES name="Alemania Occidental" />
+    </translations>
+    <period start="01.01.1949 00:00:00" end="03.10.1990 00:00:00">
+    </period>
+    <history before="163" after="163">
+    </history>
+  </country>
+  <country uid="1003" shortname="CSK" region="113" flag="Czech Republic" tailformat="OK-\\s3" type="OneToMany">
+    <translations>
+      <en-US name="Czechoslovakia" />
+      <de-DE name="Czechoslovakia" />
+      <en-GB name="Czechoslovakia" />
+      <nl-NL name="Tsjechoslowakije" />
+      <zh-CN name="捷克斯洛伐克" />
+      <da-DK name="Tjekkoslovakiet" />
+      <es-ES name="Checoeslovaquia" />
+    </translations>
+    <period start="10.28.1918 00:00:00" end="01.01.1993 00:00:00">
+    </period>
+    <history>
+      <tempcountries>
+        <tempcountry id="166" start="10.28.1918 00:00:00" end="01.01.1993 00:00:00">
+        </tempcountry>
+        <tempcountry id="231" start="10.28.1918 00:00:00" end="01.01.1993 00:00:00">
+        </tempcountry>
+      </tempcountries>
+    </history>
+  </country>
+  <country uid="1004" shortname="SUN" region="113" flag="Soviet Union" tailformat="EW-\\d5" type="OneToMany">
+    <currency format="руб." rate="30.83" />
+    <translations>
+      <en-US name="Soviet Union" />
+      <de-DE name="Sowjetunion" />
+      <en-GB name="Soviet Union" />
+      <nl-NL name="Sovjetunie" />
+      <zh-CN name="苏联" />
+      <da-DK name="Sovjetunionen" />
+      <es-ES name="Unión Soviética" />
+    </translations>
+    <period start="12.30.1922 00:00:00" end="12.25.1991 00:00:00">
+    </period>
+    <history>
+      <tempcountries>
+        <tempcountry id="102" start="08.05.1940 00:00:00" end="08.21.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="103" start="06.21.1940 00:00:00" end="03.11.1990 00:00:00">
+        </tempcountry>
+        <tempcountry id="117" start="06.16.1940 00:00:00" end="08.20.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="134" start="12.30.1922 00:00:00" end="08.24.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="149" start="12.30.1922 00:00:00" end="12.25.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="217" start="12.30.1922 00:00:00" end="12.25.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="232" start="12.30.1922 00:00:00" end="08.27.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="233" start="12.30.1922 00:00:00" end="12.25.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="234" start="12.30.1922 00:00:00" end="12.21.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="235" start="12.30.1922 00:00:00" end="10.18.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="236" start="12.05.1936 00:00:00" end="12.25.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="237" start="10.27.1924 00:00:00" end="12.25.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="238" start="10.27.1924 00:00:00" end="12.25.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="239" start="12.05.1936 00:00:00" end="12.25.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="240" start="10.27.1924 00:00:00" end="12.25.1991 00:00:00">
+        </tempcountry>
+      </tempcountries>
+    </history>
+  </country>
+  <country uid="1005" shortname="YUG" region="115" flag="Yugoslavia" tailformat="YU-\\s3" type="OneToMany">
+    <translations>
+      <en-US name="Yugoslavia" />
+      <de-DE name="Yugoslavia" />
+      <en-GB name="Yugoslavia" />
+      <nl-NL name="Joegoslavië" />
+      <zh-CN name="南斯拉夫" />
+      <da-DK name="Jugoslavien" />
+      <es-ES name="Yugoslavia" />
+    </translations>
+    <period start="12.04.1918 00:00:00" end="08.28.1992 00:00:00">
+    </period>
+    <history>
+      <tempcountries>
+        <tempcountry id="104" start="12.04.1918 00:00:00" end="08.28.1992 00:00:00">
+        </tempcountry>
+        <tempcountry id="105" start="12.04.1918 00:00:00" end="06.25.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="120" start="12.04.1918 00:00:00" end="10.08.1991 00:00:00">
+        </tempcountry>
+        <tempcountry id="248" start="12.04.1918 00:00:00" end="03.01.1992 00:00:00">
+        </tempcountry>
+        <tempcountry id="249" start="12.04.1918 00:00:00" end="08.28.1992 00:00:00">
+        </tempcountry>
+      </tempcountries>
+    </history>
+  </country>
+  <country uid="1006" shortname="SCG" region="115" flag="Serbia &amp; Montenegro" tailformat="YU-\\s3" type="OneToMany">
+    <translations>
+      <en-US name="Serbia &amp; Montenegro" />
+      <de-DE name="Serbia &amp; Montenegro" />
+      <en-GB name="Serbia &amp; Montenegro" />
+      <nl-NL name="Servië &amp;amp; Montenegro" />
+      <zh-CN name="塞尔维亚黑山" />
+      <da-DK name="Serbien og Montenegro" />
+      <es-ES name="Serbia y Montenegro" />
+    </translations>
+    <period start="08.28.1992 00:00:00" end="06.05.2006 00:00:00">
+    </period>
+    <history>
+      <tempcountries>
+        <tempcountry id="104" start="08.28.1992 00:00:00" end="06.05.2006 00:00:00">
+        </tempcountry>
+        <tempcountry id="249" start="08.28.1992 00:00:00" end="06.05.2006 00:00:00">
+        </tempcountry>
+      </tempcountries>
+    </history>
+  </country>
+  <country uid="1007" shortname="VDR" region="109" flag="Vietnam" tailformat="VN-\\s4" type="ManyToOne">
+    <translations>
+      <en-US name="North Vietnam" />
+      <de-DE name="North Vietnam" />
+      <en-GB name="North Vietnam" />
+      <nl-NL name="Noord-Viëtnam" />
+      <zh-CN name="越南民主共和国" />
+      <da-DK name="Nordvietnam" />
+      <es-ES name="Vietnam del Norte" />
+    </translations>
+    <period start="09.02.1945 00:00:00" end="07.02.1976 00:00:00">
+    </period>
+    <history before="170" after="170">
+    </history>
+  </country>
+  <country uid="1008" shortname="VNM" region="109" flag="South Vietnam" tailformat="VN-\\s4" type="ManyToOne">
+    <translations>
+      <en-US name="South Vietnam" />
+      <de-DE name="South Vietnam" />
+      <en-GB name="South Vietnam" />
+      <nl-NL name="Zuid-Viëtnam" />
+      <zh-CN name="越南共和国" />
+      <da-DK name="Sydvietnam" />
+      <es-ES name="Vietnam del Sur" />
+    </translations>
+    <period start="09.02.1945 00:00:00" end="07.02.1976 00:00:00">
+    </period>
+    <history before="170" after="170">
+    </history>
+  </country>
+  <country uid="1009" shortname="ANT" region="117" flag="Antilles" tailformat="PJ-\\s3" type="OneToMany">
+    <territoryof uid="179" />
+    <translations>
+      <en-US name="Netherlands Antilles" />
+      <de-DE name="Netherlands Antilles" />
+      <en-GB name="Netherlands Antilles" />
+      <nl-NL name="Nederlandse Antillen" />
+      <zh-CN name="荷属安的列斯" />
+      <da-DK name="Nederlandske Antiller" />
+      <es-ES name="Antillas Holandesas" />
+    </translations>
+    <period start="12.15.1954 00:00:00" end="10.10.2010 00:00:00">
+    </period>
+    <history>
+      <tempcountries>
+        <tempcountry id="109" start="12.15.1954 00:00:00" end="10.10.2010 00:00:00">
+        </tempcountry>
+        <tempcountry id="244" start="12.15.1954 00:00:00" end="01.01.1986 00:00:00">
+        </tempcountry>
+        <tempcountry id="245" start="12.15.1954 00:00:00" end="10.10.2010 00:00:00">
+        </tempcountry>
+        <tempcountry id="246" start="12.15.1954 00:00:00" end="10.10.2010 00:00:00">
+        </tempcountry>
+      </tempcountries>
+    </history>
+  </country>
+  <country uid="1010" shortname="LBY" region="103" flag="Libya" tailformat="5A-\\s3" type="ManyToOne">
+    <translations>
+      <en-US name="Libya" />
+      <de-DE name="Libyen" />
+      <en-GB name="Libya" />
+      <nl-NL name="Libië" />
+      <zh-CN name="利比亚" />
+      <da-DK name="Libyen" />
+      <es-ES name="Libia" />
+    </translations>
+    <period start="01.01.1949 00:00:00" end="02.27.2011 00:00:00">
+    </period>
+    <history before="125" after="125">
+    </history>
+  </country>
+</countries>

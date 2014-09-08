@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Nationair" iata="NX" logo="NXA" color="DarkRed" country="113" CEO="Robert Obadia" mentality="Aggressive"
+           market="Global" preferedairport="YUL">
+            <narrative
+      narrative="Nolisair is a Canadian company, the parent company of Nationair, a Canadian airline, and of Technair, an aircraft maintenance company. The company was owned by Robert Obadia. The headquarters is located in the Nationair Building on the property of Montréal-Mirabel International Airport ." />
+  </profile>
+     <info real="True" from="1986" to="1993"></info>
+</airline>

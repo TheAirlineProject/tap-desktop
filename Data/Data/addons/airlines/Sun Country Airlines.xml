@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Sun Country Airlines" iata="SY" color="Black" country="122" CEO="Jim Olsen" mentality="Safe"
+           market="Global" preferedairport="MSP">
+            <narrative
+      narrative="Sun Country Airlines is an American airline headquartered in the Minneapolis–Saint Paul suburb of Mendota Heights, Minnesota. Sun Country uses nearby Minneapolis–Saint Paul International Airport (MSP) as its main hub and flies scheduled and charter flights from Terminal 2-Humphrey." />
+  </profile>
+  <info real="True" from="1982" to="2199" />
+</airline>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Seoul">
+  <months>
+    <month month="1" precipitation="21">
+      <temp min="-6" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="25">
+      <temp min="-3" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="47">
+      <temp min="2" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="65">
+      <temp min="8" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="106">
+      <temp min="13" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="133">
+      <temp min="18" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="395">
+      <temp min="22" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="364">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="169">
+      <temp min="17" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="52">
+      <temp min="10" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="53">
+      <temp min="3" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="22">
+      <temp min="-3" max="4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

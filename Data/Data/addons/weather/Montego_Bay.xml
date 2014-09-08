@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Montego Bay">
+  <months>
+    <month month="1" precipitation="81">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="74">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="80">
+      <temp min="21" max="30" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="153">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="255">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="204">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="169">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="209">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="229">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="261">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="140">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="87">
+      <temp min="21" max="30" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<airline>
-  <profile name="Etihad Airways" iata="EY" color="Gold" country="156" CEO="Hamed bin Zayed Al Nahyan" mentality="Aggressive" market="Global" preferedairport="AUH">
-  </profile>
-  <info real="True" from="2003" to="2199" />
-</airline>

@@ -1,92 +1,106 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.Helpers;
-
-namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
+﻿namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Controls;
+
+    using TheAirline.Model.AirlineModel;
+    using TheAirline.Model.GeneralModel.Helpers;
+
     /// <summary>
-    /// Interaction logic for PageAirlineInsurance.xaml
+    ///     Interaction logic for PageAirlineInsurance.xaml
     /// </summary>
     public partial class PageAirlineInsurance : Page
     {
-        public AirlineMVVM Airline { get; set; }
+        #region Constructors and Destructors
+
         public PageAirlineInsurance(AirlineMVVM airline)
         {
             this.Airline = airline;
             this.DataContext = this.Airline;
-        
-            InitializeComponent();
 
-            this.Loaded += PageAirlineInsurance_Loaded;
+            this.InitializeComponent();
 
-      
+            this.Loaded += this.PageAirlineInsurance_Loaded;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        public AirlineMVVM Airline { get; set; }
+
+        #endregion
+
+        #region Methods
 
         private void PageAirlineInsurance_Loaded(object sender, RoutedEventArgs e)
         {
-            setValues();
+            this.setValues();
         }
+
         //sets the values
-        private void setValues()
-        {
-            cbType.Items.Clear();
-            foreach (AirlineInsurance.InsuranceType type in Enum.GetValues(typeof(AirlineInsurance.InsuranceType)))
-                cbType.Items.Add(type);
-            cbType.SelectedIndex = 0;
 
-            cbTerms.Items.Clear();
-            foreach (AirlineInsurance.PaymentTerms term in Enum.GetValues(typeof(AirlineInsurance.PaymentTerms)))
-                cbTerms.Items.Add(term);
-            cbTerms.SelectedIndex = 0;
-
-            cbScope.Items.Clear();
-            foreach (AirlineInsurance.InsuranceScope scope in Enum.GetValues(typeof(AirlineInsurance.InsuranceScope)))
-                cbScope.Items.Add(scope);
-            cbScope.SelectedIndex = 0;
-
-             cbLength.Items.Clear();
-            for (int i = 0; i < 20; i++)
-                cbLength.Items.Add(i + 1);
-            cbLength.SelectedIndex = 0;
-
-            foreach (AirlineAdvertisementMVVM advertisement in this.Airline.Advertisements)
-                advertisement.SelectedType = this.Airline.Airline.getAirlineAdvertisement(advertisement.Type);
-
-        }
-        private void btnSetAdvertisement_Click(object sender, RoutedEventArgs e)
-        {
-            
-            this.Airline.saveAdvertisements();
-        
-        
-        }
         private void btnCreateInsurance_Click(object sender, RoutedEventArgs e)
         {
-            AirlineInsurance.InsuranceType type = (AirlineInsurance.InsuranceType)cbType.SelectedItem;
-            AirlineInsurance.InsuranceScope scope = (AirlineInsurance.InsuranceScope)cbScope.SelectedItem;
-            AirlineInsurance.PaymentTerms terms = (AirlineInsurance.PaymentTerms)cbTerms.SelectedItem;
-            Boolean allAirliners = cbAllAirliners.IsChecked.Value;
-            int lenght = Convert.ToInt16(cbLength.SelectedItem);
-            int amount = Convert.ToInt32(slAmount.Value);
+            var type = (AirlineInsurance.InsuranceType)this.cbType.SelectedItem;
+            var scope = (AirlineInsurance.InsuranceScope)this.cbScope.SelectedItem;
+            var terms = (AirlineInsurance.PaymentTerms)this.cbTerms.SelectedItem;
+            Boolean allAirliners = this.cbAllAirliners.IsChecked.Value;
+            int lenght = Convert.ToInt16(this.cbLength.SelectedItem);
+            int amount = Convert.ToInt32(this.slAmount.Value);
 
-            AirlineInsurance insurance = AirlineInsuranceHelpers.CreatePolicy(this.Airline.Airline, type, scope, terms, allAirliners, lenght, amount);
+            AirlineInsurance insurance = AirlineInsuranceHelpers.CreatePolicy(
+                this.Airline.Airline,
+                type,
+                scope,
+                terms,
+                allAirliners,
+                lenght,
+                amount);
+        }
 
-          }
-      
+        private void btnSetAdvertisement_Click(object sender, RoutedEventArgs e)
+        {
+            this.Airline.saveAdvertisements();
+        }
+
+        private void setValues()
+        {
+            this.cbType.Items.Clear();
+            foreach (AirlineInsurance.InsuranceType type in Enum.GetValues(typeof(AirlineInsurance.InsuranceType)))
+            {
+                this.cbType.Items.Add(type);
+            }
+            this.cbType.SelectedIndex = 0;
+
+            this.cbTerms.Items.Clear();
+            foreach (AirlineInsurance.PaymentTerms term in Enum.GetValues(typeof(AirlineInsurance.PaymentTerms)))
+            {
+                this.cbTerms.Items.Add(term);
+            }
+            this.cbTerms.SelectedIndex = 0;
+
+            this.cbScope.Items.Clear();
+            foreach (AirlineInsurance.InsuranceScope scope in Enum.GetValues(typeof(AirlineInsurance.InsuranceScope)))
+            {
+                this.cbScope.Items.Add(scope);
+            }
+            this.cbScope.SelectedIndex = 0;
+
+            this.cbLength.Items.Clear();
+            for (int i = 0; i < 20; i++)
+            {
+                this.cbLength.Items.Add(i + 1);
+            }
+            this.cbLength.SelectedIndex = 0;
+
+            foreach (AirlineAdvertisementMVVM advertisement in this.Airline.Advertisements)
+            {
+                advertisement.SelectedType = this.Airline.Airline.getAirlineAdvertisement(advertisement.Type);
+            }
+        }
+
+        #endregion
     }
 }

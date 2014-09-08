@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Cleveland, OH">
+  <months>
+    <month month="1" precipitation="69">
+      <temp min="-6" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="59">
+      <temp min="-5" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="74">
+      <temp min="-2" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="89">
+      <temp min="4" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="93">
+      <temp min="9" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="87">
+      <temp min="15" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="88">
+      <temp min="17" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="89">
+      <temp min="17" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="97">
+      <temp min="13" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="78">
+      <temp min="7" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="92">
+      <temp min="2" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="79">
+      <temp min="-4" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

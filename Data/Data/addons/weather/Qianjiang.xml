@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Qianjiang">
+  <months>
+    <month month="1" precipitation="43">
+      <temp min="1" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="56">
+      <temp min="3" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="77">
+      <temp min="7" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="114">
+      <temp min="13" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="137">
+      <temp min="18" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="149">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="215">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="133">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="71">
+      <temp min="20" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="73">
+      <temp min="14" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="59">
+      <temp min="8" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="29">
+      <temp min="3" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

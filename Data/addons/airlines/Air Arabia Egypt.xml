@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-  <profile name="Air Arabia Egypt" iata="E5" color="Black" country="155" CEO="Jaan Albrecht" mentality="Safe" market="Global" preferedairport="ALY"></profile>
-  <info real="True" from="2009" to="2199" />
-</airline>

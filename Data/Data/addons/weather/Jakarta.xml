@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Jakarta">
+  <months>
+    <month month="1" precipitation="390">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="310">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="100">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="258">
+      <temp min="25" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="139">
+      <temp min="25" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="83">
+      <temp min="25" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="31">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="34">
+      <temp min="24" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="30">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="33">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="175">
+      <temp min="25" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="123">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

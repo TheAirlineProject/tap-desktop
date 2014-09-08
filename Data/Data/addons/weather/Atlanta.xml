@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Atlanta, GA">
+  <months>
+    <month month="1" precipitation="107">
+      <temp min="1" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="119">
+      <temp min="3" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="122">
+      <temp min="7" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="85">
+      <temp min="11" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="93">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="100">
+      <temp min="20" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="134">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="99">
+      <temp min="21" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="114">
+      <temp min="18" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="87">
+      <temp min="12" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="104">
+      <temp min="7" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="99">
+      <temp min="2" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

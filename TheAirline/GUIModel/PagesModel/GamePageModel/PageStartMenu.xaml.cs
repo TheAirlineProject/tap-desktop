@@ -1,47 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-using TheAirline.GUIModel.HelpersModel;
-using TheAirline.GUIModel.PagesModel.OptionsPageModel;
-using TheAirline.Model.GeneralModel;
-
-namespace TheAirline.GUIModel.PagesModel.GamePageModel
+﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
+    using System.Windows;
+    using System.Windows.Controls;
+
+    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+    using TheAirline.GUIModel.HelpersModel;
+    using TheAirline.Model.GeneralModel;
+
     /// <summary>
-    /// Interaction logic for PageStartMenu.xaml
+    ///     Interaction logic for PageStartMenu.xaml
     /// </summary>
     public partial class PageStartMenu : Page
     {
+        #region Constructors and Destructors
+
         public PageStartMenu()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
-        private void btnNewGame_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+        #region Methods
+
+        private void btnCredits_Click(object sender, RoutedEventArgs e)
         {
-            PageNavigator.NavigateTo(new PageNewGame());
+            PageNavigator.NavigateTo(new PageCredits());
+            //PageNavigator.NavigateTo(new PageSelectAirports());
         }
 
-       
         private void btnExitGame_Click(object sender, RoutedEventArgs e)
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1003"), Translator.GetInstance().GetString("MessageBox", "1003", "message"), WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+                Translator.GetInstance().GetString("MessageBox", "1003"),
+                Translator.GetInstance().GetString("MessageBox", "1003", "message"),
+                WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
+            {
                 PageNavigator.MainWindow.Close();
+            }
         }
+
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
             /*
@@ -57,17 +57,20 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
              FrameworkElementFactory ff= template.VisualTree;
              ComboBox cb = UIHelpers.FindChild<ComboBox>(o, "cbTest");
             */
-             
-            
+
             PageNavigator.NavigateTo(new PageMMLoadGame());
         }
+
+        private void btnNewGame_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageNewGame());
+        }
+
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageSettings());
         }
-        private void btnCredits_Click(object sender, RoutedEventArgs e)
-        {
-            PageNavigator.NavigateTo(new PageCredits());
-        }
+
+        #endregion
     }
 }

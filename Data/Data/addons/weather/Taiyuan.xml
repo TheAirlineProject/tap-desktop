@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Taiyuan">
+  <months>
+    <month month="1" precipitation="3">
+      <temp min="-12" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="5">
+      <temp min="-8" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="13">
+      <temp min="-2" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="20">
+      <temp min="5" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="33">
+      <temp min="10" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="56">
+      <temp min="15" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="102">
+      <temp min="18" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="107">
+      <temp min="17" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="52">
+      <temp min="11" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="26">
+      <temp min="4" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="11">
+      <temp min="-3" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="3">
+      <temp min="-9" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

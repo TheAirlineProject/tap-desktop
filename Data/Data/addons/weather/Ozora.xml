@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Ōzora">
+  <months>
+    <month month="1" precipitation="64">
+      <temp min="-10" max="-2" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="45">
+      <temp min="-10" max="-2" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="52">
+      <temp min="-6" max="2" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="63">
+      <temp min="0" max="9" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="67">
+      <temp min="5" max="15" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="60">
+      <temp min="9" max="18" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="86">
+      <temp min="14" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="123">
+      <temp min="16" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="130">
+      <temp min="12" max="21" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="75">
+      <temp min="6" max="15" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="69">
+      <temp min="0" max="8" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="68">
+      <temp min="-7" max="1" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

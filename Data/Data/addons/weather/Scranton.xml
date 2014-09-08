@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Scranton, PA">
+  <months>
+    <month month="1" precipitation="60">
+      <temp min="-8" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="52">
+      <temp min="-7" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="65">
+      <temp min="-3" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="85">
+      <temp min="3" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="89">
+      <temp min="8" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="102">
+      <temp min="13" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="96">
+      <temp min="16" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="87">
+      <temp min="15" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="103">
+      <temp min="11" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="85">
+      <temp min="5" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="80">
+      <temp min="0" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="68">
+      <temp min="-5" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

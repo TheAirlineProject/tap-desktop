@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Melbourne, FL">
+  <months>
+    <month month="1" precipitation="56">
+      <temp min="10" max="22" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="61">
+      <temp min="12" max="23" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="82">
+      <temp min="14" max="25" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="52">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="80">
+      <temp min="20" max="30" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="163">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="146">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="182">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="179">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="124">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="74">
+      <temp min="16" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="60">
+      <temp min="12" max="23" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

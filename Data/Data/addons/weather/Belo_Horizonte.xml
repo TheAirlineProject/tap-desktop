@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Belo Horizonte">
+  <months>
+    <month month="1" precipitation="297">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="188">
+      <temp min="19" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="164">
+      <temp min="19" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="61">
+      <temp min="17" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="28">
+      <temp min="15" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="14">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="16">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="14">
+      <temp min="14" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="41">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="123">
+      <temp min="17" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="228">
+      <temp min="18" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="319">
+      <temp min="18" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

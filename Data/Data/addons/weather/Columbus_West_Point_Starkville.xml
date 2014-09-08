@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Columbus/W Point/Starkville, MS">
+  <months>
+    <month month="1" precipitation="145">
+      <temp min="1" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="123">
+      <temp min="3" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="154">
+      <temp min="6" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="143">
+      <temp min="10" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="124">
+      <temp min="15" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="102">
+      <temp min="19" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="111">
+      <temp min="22" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="85">
+      <temp min="21" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="88">
+      <temp min="17" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="85">
+      <temp min="11" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="118">
+      <temp min="6" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="130">
+      <temp min="2" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

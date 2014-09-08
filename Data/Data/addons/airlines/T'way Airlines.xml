@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="T'way Airlines" iata="TW" logo="TW2" color="Red" country="165" CEO="Chul-Ho Hahm" mentality="Aggressive" market="Regional" preferedairport="ICN">
+    <narrative narrative="T'way Airlines is a South Korean low cost airline based at Incheon Airport and has a base at Gimpo Airport also. It was founded in 2010 and commenced operation just a month later after it's founding in September 2010. It achieved a profit in 2013 at just three years into it's life. They serve 9 regular destinations, international destinations include Bangkok,Fukuoka,Saga,Sapporo,and Taipei. It also offers 9 charters destinations to Chinese cities. They have 7 737-800's 5 of which are leased as of May 2014. " /></profile>
+  <info real="True" from="2010" to="2199" />
+</airline>

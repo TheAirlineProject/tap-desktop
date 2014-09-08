@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Balkan Bulgarian Airlines" iata="LZ" logo="LZ2" color="DarkGreen" country="185" CEO="Hristo Todorov" mentality="Aggressive" market="Global" preferedairport="SOF">
+    <narrative narrative="Balkan Bulgarian Airlines was the flag carrier of Bulgaria from 1947 to 2002. It went bankrupt in 2002 and was replaced by Bulgaria Air as Bulgaria's flag carrier. Throughout it's life it served 32 European airports, 13 in Africa, 7 in Asia, 10 in the Middle East, and one each in North America and South America. Pretty much all the planes it ever used were Soviet/Russian built but near the end they had a few 737's also. Their fleet totaled somewhere between 250-300 planes throughout it's life and they had 40-50 planes near the end. " /></profile>
+  <info real="True" from="1947" to="2002" />
+</airline>

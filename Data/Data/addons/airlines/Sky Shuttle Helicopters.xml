@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Sky Shuttle Helicopters" iata="3E" color="LightBlue" country="148" CEO="Cheyenne Chan" mentality="Moderate"
+           market="Local" preferedairport="SZX" routefocus="Helicopter">
+    <narrative
+      narrative="Sky Shuttle Helicopters Limited is a helicopter service operator based in Macau. Formerly known as Helicopters Hong Kong Limited and before that as East Asia Helicopters, it operates helicopter routes between Macau, Hong Kong and Shenzhen." />
+  </profile>
+  <info real="True" from="1998" to="2199" />
+  
+</airline>

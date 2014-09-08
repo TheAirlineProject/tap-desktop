@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Townsville, QLD">
+  <months>
+    <month month="1" precipitation="276">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="307">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="191">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="67">
+      <temp min="20" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="32">
+      <temp min="17" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="21">
+      <temp min="14" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="14">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="16">
+      <temp min="14" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="11">
+      <temp min="17" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="25">
+      <temp min="20" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="60">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="132">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

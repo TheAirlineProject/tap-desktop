@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Thai Airways" iata="TG" color="DarkMagenta" country="175" CEO="Ampon Kittiampon"
+           mentality="Aggressive" market="Global " preferedairport="BKK">
+            <narrative
+      narrative="THAI Airways has its origins in 1960 as a joint venture between Scandinavian Airlines System (SAS), which held a 30 percent share of the new company valued at 2 million baht, and Thailand's domestic carrier, Thai Airways Company. The purpose of the joint venture was to create an international wing for the domestic carrier Thai Airways Company." />
+  </profile>
+  <info real="True" from="1960" to="2199" />
+</airline>

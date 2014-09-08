@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Sioux City, IA">
+  <months>
+    <month month="1" precipitation="16">
+      <temp min="-12" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="17">
+      <temp min="-10" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="51">
+      <temp min="-4" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="75">
+      <temp min="2" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="95">
+      <temp min="9" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="99">
+      <temp min="15" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="87">
+      <temp min="17" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="82">
+      <temp min="16" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="75">
+      <temp min="10" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="54">
+      <temp min="3" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="33">
+      <temp min="-4" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="20">
+      <temp min="-11" max="0" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

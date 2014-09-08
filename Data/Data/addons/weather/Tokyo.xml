@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Tokyo">
+  <months>
+    <month month="1" precipitation="45">
+      <temp min="2" max="10" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="60">
+      <temp min="3" max="11" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="100">
+      <temp min="5" max="13" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="125">
+      <temp min="11" max="19" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="138">
+      <temp min="15" max="23" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="185">
+      <temp min="19" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="126">
+      <temp min="23" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="148">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="180">
+      <temp min="21" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="164">
+      <temp min="15" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="89">
+      <temp min="10" max="17" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="46">
+      <temp min="5" max="12" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Mexicali">
+  <months>
+    <month month="1" precipitation="11">
+      <temp min="6" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="8">
+      <temp min="8" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="6">
+      <temp min="10" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="2">
+      <temp min="13" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="0">
+      <temp min="17" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="0">
+      <temp min="21" max="40" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="4">
+      <temp min="25" max="43" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="10">
+      <temp min="26" max="42" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="9">
+      <temp min="22" max="39" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="9">
+      <temp min="16" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="5">
+      <temp min="10" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="11">
+      <temp min="6" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

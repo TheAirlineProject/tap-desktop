@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Macapá">
+  <months>
+    <month month="1" precipitation="300">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="347">
+      <temp min="23" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="407">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="384">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="352">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="220">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="185">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="98">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="43">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="36">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="58">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="143">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

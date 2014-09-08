@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Laredo, TX">
+  <months>
+    <month month="1" precipitation="23">
+      <temp min="8" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="25">
+      <temp min="10" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="28">
+      <temp min="14" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="36">
+      <temp min="18" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="63">
+      <temp min="22" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="57">
+      <temp min="24" max="37" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="51">
+      <temp min="25" max="37" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="48">
+      <temp min="25" max="38" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="74">
+      <temp min="22" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="56">
+      <temp min="18" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="30">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="22">
+      <temp min="8" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

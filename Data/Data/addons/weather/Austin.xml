@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Austin, TX">
+  <months>
+    <month month="1" precipitation="56">
+      <temp min="5" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="51">
+      <temp min="7" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="70">
+      <temp min="11" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="53">
+      <temp min="15" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="112">
+      <temp min="19" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="110">
+      <temp min="22" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="48">
+      <temp min="24" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="60">
+      <temp min="24" max="36" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="76">
+      <temp min="21" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="99">
+      <temp min="16" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="75">
+      <temp min="10" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="61">
+      <temp min="6" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

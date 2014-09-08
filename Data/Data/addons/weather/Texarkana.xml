@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Texarkana, AR">
+  <months>
+    <month month="1" precipitation="136">
+      <temp min="3" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="120">
+      <temp min="4" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="123">
+      <temp min="8" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="133">
+      <temp min="12" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="119">
+      <temp min="17" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="146">
+      <temp min="21" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="96">
+      <temp min="22" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="89">
+      <temp min="22" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="93">
+      <temp min="19" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="100">
+      <temp min="12" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="115">
+      <temp min="7" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="132">
+      <temp min="3" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

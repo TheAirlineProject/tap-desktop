@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="TAME" iata="EQ" color="LightBlue" country="210" CEO="Rafael Farías" mentality="Moderate"
+           market="Regional" preferedairport="CUE">
+    <narrative
+      narrative="TAME (TAME EP Linea Aerea del Ecuador), is the flag carrier and the largest airline of Ecuador, with its headquarters located in Quito, Pichincha. Its largest hub is Mariscal Sucre International Airport." />
+  </profile>
+  <info real="True" from="1962" to="2199"></info>
+</airline>

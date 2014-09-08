@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="TransAsia Airways" iata="GE" color="Purple" country="172" CEO="Andrew Stephen" mentality="Aggressive" market="Regional" preferedairport="TPE">
+    <narrative narrative="Founded in 1951 TransAsia Airways calls both of Taipei,Taiwan's airport home. They serve 33 destinations throughout Asia. Their fleet of 23 planes consists of various Airbus types and 
+    ATR 42's and 72's." />
+  </profile>
+  <info real="True" from="1951" to="2199" />
+</airline>

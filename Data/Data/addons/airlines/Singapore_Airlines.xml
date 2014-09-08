@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Singapore Airlines" iata="SQ" color="Indigo" country="174" CEO="Wu Junpeng" mentality="Aggressive"
+           market="Global" preferedairport="SIN">
+            <narrative
+      narrative="Singapore Airlines began with the incorporation of Malayan Airways Limited (MAL) on 1 May 1947, by the Ocean Steamship Company of Liverpool, the Straits Steamship Company of Singapore and Imperial Airways. The airline's first flight was a chartered flight from the British Straits Settlement of Singapore to Kuala Lumpur on 2 April 1947 using an Airspeed Consul twin-engined aircraft." />
+  </profile>
+   <info real="True" from="1946" to="2199"></info>
+</airline>

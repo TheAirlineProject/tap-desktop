@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Fort Myers, FL">
+  <months>
+    <month month="1" precipitation="48">
+      <temp min="12" max="24" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="54">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="72">
+      <temp min="15" max="27" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="51">
+      <temp min="17" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="69">
+      <temp min="20" max="32" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="261">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="232">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="259">
+      <temp min="24" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="217">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="68">
+      <temp min="20" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="49">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="43">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

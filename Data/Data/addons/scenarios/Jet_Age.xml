@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<scenario name="Jet Age" startYear="1963" startCash="17500000" difficulty="Normal" endYear="1970">
+  <intro
+    text="As the world ushers in the jet age, airlines are rushing to be the first to utilize the faster and more economic mode of transportation. Your job as CEO of Continental Airlines is to convert their fleet of Douglas turboprop aircraft to a profitable fleet of jets. By 1970, your fleet must be 90% jets and you must continue to turn a profit every year." />
+  <success
+    text="Congratulations! You have successfully converted the prop-driven Continental fleet to modern jet airliners!" />
+  <start airline="CO" homeBase="MDW">
+    <destinations>
+      <destination airport="EWR" />
+      <destination airport="CLE" />
+      <destination airport="IAH" />
+      <destination airport="BWI" />
+      <destination airport="BOS" />
+      <destination airport="LHR" />
+      <destination airport="CDG" />
+      <destination airport="MIA" />
+      <destination airport="LAX" />
+      <destination airport="ATL" />
+      <destination airport="MEX" />
+      <destination airport="YUL" />
+      <destination airport="YYZ" />
+      <destination airport="SFO" />
+      <destination airport="NRT" />
+      <destination airport="FRA" />
+      <destination airport="CPH" />
+      <destination airport="DTW" />
+      <destination airport="LAS" />
+      <destination airport="PHX" />
+    </destinations>
+    <fleet>
+      <aircraft name="Douglas DC-3" quantity="16" />
+      <aircraft name="Douglas DC-6B" quantity="7" />
+    </fleet>
+    <AI>
+      <airline name="UA" homeBase="IAH">
+        <route departure="IAH" destination="LAX" airliner="Boeing 707-120B" quantity="2" />
+        <route departure="IAH" destination="MDW" airliner="Douglas DC-6B" quantity="2" />
+        <route departure="IAH" destination="MIA" airliner="Douglas DC-6B" quantity="1" />
+        <route departure="IAH" destination="LGA" airliner="Boeing 707-120B" quantity="1" />
+        <route departure="IAH" destination="EWR" airliner="Boeing 707-120B" quantity="1" />
+        <route departure="IAH" destination="MCI" airliner="Douglas DC-6B" quantity="1" />
+        <route departure="IAH" destination="DAL" airliner="Douglas DC-3" quantity="2" />
+      </airline>
+      <airline name="PA" homeBase="JFK">
+        <route departure="JFK" destination="BWI" airliner="Douglas DC-7" quantity="1" />
+        <route departure="JFK" destination="PHL" airliner="Douglas DC-7" quantity="1" />
+        <route departure="JFK" destination="BOS" airliner="Douglas DC-3" quantity="1" />
+        <route departure="JFK" destination="CLE" airliner="Boeing 707-120B" quantity="1" />
+        <route departure="JFK" destination="MDW" airliner="Boeing 707-120B" quantity="1" />
+        <route departure="JFK" destination="ATL" airliner="Boeing 727-100" quantity="1" />
+        <route departure="JFK" destination="MIA" airliner="Boeing 727-100" quantity="1" />
+        <route departure="JFK" destination="DAL" airliner="Boeing 727-100" quantity="1" />
+        <route departure="JFK" destination="YYZ" airliner="Boeing 727-100" quantity="1" />
+        <route departure="JFK" destination="YUL" airliner="Boeing 727-100" quantity="1" />
+      </airline>
+    </AI>
+  </start>
+  <modifiers>
+    <paxDemand country="122" change="20" length="5" />
+    <paxDemand airport="JFK" change="10" length="6" />
+    <paxDemand airport="IAH" change="10" length="7" />
+    <price engine="Jet" value="1.2" />
+  </modifiers>
+  <parameters>
+    <failure id="1" type="Cash" value="0" for="0.25"
+             text="You have failed the scenario because your cash balance was negative for 3 consecutive months." />
+    <failure id="2" type="Safety" value="20" for="1"
+             text="You have failed the scenario by not maintaining satisfactory safety standards." />
+    <failure id="3" type="Security" value="20" for="1"
+             text="You have failed the scenario by not maintaining adequate security standards." />
+    <failure id="4" type="Fleet" value="22" at="7"
+             text="You have failed the scenario because the size of your fleet shrunk by the end of the time frame." />
+    <failure id="5" type="Domestic" value="12" at="7"
+             text="You have failed the scenario because the board feels you did not maintain an adequate domestic presence." />
+    <failure id="6" type="Intl" value="2" at="7"
+             text="You have failed the scenario because the board feels you did not establish an international presence with the coming of the jet age." />
+    <failure id="7" type="PaxGrowth" value="0" for="1"
+             text="You have failed the scenario because you failed to maintain positive growth from year to year." />
+    <failure id="8" type="Crime" value="Major" at="99"
+             text="You have failed the scenario because a major crime occurred." />
+    <failure id="9" type="JetRation" value="0.89" at="7"
+             text="You have failed the scenario because less the 90% of your fleet were jets by the end of your 7 year term!" />
+  </parameters>
+</scenario>

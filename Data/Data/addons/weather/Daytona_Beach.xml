@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Daytona Beach, FL">
+  <months>
+    <month month="1" precipitation="70">
+      <temp min="8" max="20" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="70">
+      <temp min="10" max="22" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="108">
+      <temp min="12" max="24" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="55">
+      <temp min="15" max="26" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="80">
+      <temp min="18" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="148">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="148">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="163">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="177">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="114">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="68">
+      <temp min="14" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="67">
+      <temp min="10" max="21" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

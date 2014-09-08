@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air Astana" iata="KC" color="Blue" country="236" CEO="Nurzhan Baidauletov" mentality="Moderate" market="Regional" preferedairport="ALA">
+    <narrative narrative="Air Astana is the principal airline and the flag carrier of the Republic of Kazakhstan, based in Almaty, Kazakhstan. It operates scheduled domestic and international services on 63 routes from its main hub, Almaty International Airport, and from its 2 secondary hubs, Astana International Airport and Atyrau Airport. 
+    It is a joint venture between Kazakhstan's sovereign wealth fund Samruk-Kazyna (51%), and BAE Systems PLC (49%)." />
+  </profile>
+  <info real="True" from="2002" to="2199" />
+</airline>

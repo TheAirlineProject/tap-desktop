@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-<profile name="Darwin Airline" iata="F7" color="DarkBlue" country="164" CEO="Maurizio Merlo" mentality="Moderate" market="Regional" preferedairport="LUG">
-<narrative narrative="Darwin Airline is a regional airline with its head office on the grounds of Lugano Airport in Agno, Switzerland, near Lugano. It operates scheduled domestic services and international services to Italy, France, Spain, United Kingdom, Germany, Croatia, Netherlands, Switzerland, Serbia and Bosnia and Herzegovina. Its main bases are Lugano Airport and Geneva Airport."/>
-</profile>
-<info real="True" from="2003" to="2199"></info>
-</airline>

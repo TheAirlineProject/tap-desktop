@@ -1,0 +1,36 @@
+﻿<window:PopUpWindow x:Class="TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpShowSpecialContract"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Name="popUpShowSpecialContract"
+          xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
+        Title="{Binding ContractName,ElementName=popUpShowSpecialContract}" Height="400" Width="700" WindowStartupLocation="CenterScreen" Background="#004A7F">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpShowSpecialContract 1001'}" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+            <ListBox ItemsSource="{Binding Requirements,ElementName=popUpShowSpecialContract}" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" BorderThickness="0" Background="Transparent" VerticalAlignment="Bottom">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock
+                    Text="{Binding Text}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Requirement}" VerticalAlignment="Bottom"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpShowSpecialContract 1000'}" Margin="0 10 0 0" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+            <ListBox ItemsSource="{Binding Routes,ElementName=popUpShowSpecialContract}" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" BorderThickness="0" Background="Transparent" VerticalAlignment="Bottom">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="{Binding Departure.Profile.Name}" VerticalAlignment="Bottom"/>
+                            <TextBlock Text=" - " VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding Destination.Profile.Name}" VerticalAlignment="Bottom"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </ScrollViewer>
+</window:PopUpWindow>

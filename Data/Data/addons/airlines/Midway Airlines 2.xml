@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Midway Airlines" iata="JI" logo="JI" color="Yellow" country="122" CEO="Robert R. Ferguson" mentality="Aggressive" market="Regional" preferedairport="RDU">
+    <narrative narrative=" Midway Airlines of 1993-2003, unrelated to the Midway Airlines that had gone out of business in 1991, was based at Raleigh-Durham in North Carolina. Formed by Jet Express, a carrier that fed TWA and USAir. American had just closed a hub at RDU and Jet Express took advantage of this. They served 33 destinations, all but Cancun,Mexico being in the U.S. And also had 33 planes too, CRJ's, Fokker 100's, 737-700's, and A320's.  They went bankrupt like the Midwest Airlines before them. " /></profile>
+  <info real="True" from="1993" to="2003" />
+</airline>

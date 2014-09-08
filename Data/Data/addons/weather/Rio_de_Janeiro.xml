@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Rio de Janeiro">
+  <months>
+    <month month="1" precipitation="114">
+      <temp min="23" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="105">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="103">
+      <temp min="23" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="137">
+      <temp min="22" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="86">
+      <temp min="20" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="80">
+      <temp min="19" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="56">
+      <temp min="18" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="51">
+      <temp min="19" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="87">
+      <temp min="19" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="88">
+      <temp min="20" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="96">
+      <temp min="21" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="169">
+      <temp min="22" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

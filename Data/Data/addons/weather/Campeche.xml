@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Campeche">
+  <months>
+    <month month="1" precipitation="26">
+      <temp min="18" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="16">
+      <temp min="18" max="31" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="13">
+      <temp min="20" max="33" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="13">
+      <temp min="22" max="35" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="53">
+      <temp min="23" max="36" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="159">
+      <temp min="23" max="35" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="180">
+      <temp min="23" max="35" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="187">
+      <temp min="22" max="34" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="203">
+      <temp min="23" max="34" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="119">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="41">
+      <temp min="20" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="25">
+      <temp min="18" max="30" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

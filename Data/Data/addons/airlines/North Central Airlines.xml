@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="North Central Airlines" iata="NC" logo="NC2" color="Purple" country="122" CEO="Francis Higgins" mentality="Aggressive" market="Regional" preferedairport="MSP">
+    <narrative narrative=" North Central airlines was founded in 1939 as Wisconsin Central Airlines. After using Wisconsin as thier hub 12-13 years they moved to Minneapolis in 1952 and changed their name and it remained their main base. They also had hubs at Chicago-O' Hare,Detroit and Milwaukee. In 1979 they merged with Southern Airways to form Republic Airlines, which used North Central's Herman the Duck logo and mascot also. Republic would be bought by Northewst in 1986 giving Northwest a large hub at Minneapolis. They served 92 destionations, including a few in Canada, and most of them being in the northern U.S and Midwest. Most of their fleet of 50 planes in 1979 were DC-9's.  " /></profile>
+  <info real="True" from="1939" to="1979" />
+</airline>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air Macau" iata="NX" color="Blue" country="148" CEO="Songyan Zhu" mentality="Moderate" market="Regional" preferedairport="MFM">
+    <narrative narrative="Air Macau is the flag airline of Macau, a special administrative republic of China. It is also based at Macau's airport and was found in 1994 a year before Macau's airport opened.
+    They serve 23 destinations all of which are in Asia and have 15 planes. These planes are all part of the Airbus A320 family." />
+  </profile>
+  <info real="True" from="1994" to="2199" />
+</airline>

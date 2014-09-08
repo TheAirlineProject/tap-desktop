@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Asiana Cargo" iata="OZ" logo="OZ3" color="Gray" country="165" CEO="Kim Soo-Cheon " mentality="Moderate" market="Global" preferedairport="ICN" routefocus="Cargo"><narrative narrative="Asiana Cargo is the freight division of Asiana Airlines based at Incheon Aiport in the Seoul area. They serve 27 cargo routes worldwide. They have 10 747-400F's and a 767-300F as of May 2014. " />
+   </profile>
+   <prefereds aircrafts="Boeing 747-400F,Boeing 767-300F"></prefereds>
+    <info real="True" from="1988" to="2199" />
+</airline>

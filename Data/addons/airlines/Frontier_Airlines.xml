@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-<profile name="Frontier Airlines" iata="F9" color="ForestGreen" country="122" CEO="David Siegel" mentality="Aggressive" market="Regional" preferedairport="DEN">
-  <narrative narrative="Frontier Airlines is a US budget airline operating out of Denver since 1994. They operate flights to over 70 destinations on a fleet of 70 consisting of Airbus A320 and Embraer E-190s." />
-</profile>
-</airline> 

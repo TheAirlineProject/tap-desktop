@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<airliners>
+
+
+  <airliner manufacturer="IAe" name="C212 Aviocar" price="703850"> <!--12800000-->
+
+    <type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop" />
+
+    <specs wingspan="20.28" length="16.20" range="1811" speed="370" fuelcapacity="1728" consumption="0.045"
+           runwaylengthrequired="770" />
+
+    <capacity passengers="26" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+
+    <produced from="1971" to="2199" rate="50" />
+
+  </airliner>
+
+  <airliner manufacturer="IAe" name="N250-50" price="803850"> <!--12800000-->
+
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+
+    <specs wingspan="28" length="26.30" range="1480" speed="556" fuelcapacity="2728" consumption="0.065"
+           runwaylengthrequired="982" />
+
+    <capacity passengers="50" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+
+    <produced from="1995" to="2199" rate="10" />
+
+  </airliner>
+
+  <airliner manufacturer="IAe" name="N250-100" price="908620"> <!--12800000-->
+
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+
+    <specs wingspan="28" length="26.30" range="1480" speed="556" fuelcapacity="2728" consumption="0.065"
+           runwaylengthrequired="982" />
+
+    <capacity passengers="70" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+
+    <produced from="1995" to="2199" rate="10" />
+
+  </airliner>
+
+  <airliner manufacturer="IAe" name="N219" price="2736730"> <!--12800000-->
+
+    <type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop" />
+
+    <specs wingspan="20.28" length="16.20" range="1111" speed="395" fuelcapacity="1728" consumption="0.035"
+           runwaylengthrequired="465" />
+
+    <capacity passengers="19" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+
+    <produced from="2014" to="2199" rate="50" />
+
+  </airliner>
+
+
+</airliners>

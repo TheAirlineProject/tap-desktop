@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Meridiana" iata="IG" color="Red" country="141" CEO="Roberto Scarmella" mentality="Aggressive" market="Global" preferedairport="OLB">
+    <narrative narrative="Merdiana was founded by Aga Khan Prince Karim al-Hussayni in 1963 as Alisarda, to promote tourism to the Italian island of Sardinia. He is still the President. Meridiana became its name when it merged with Universair, a Spanish airline, in 1991. In 2010 it merged with Eurofly and became the second largest airline in Italy. Meridiana also aquired Air Italy in 2013. It's current hub is at Olbia on the island of Sardinia and operating bases at several Italian airports. They serve 57 destinations globally and have 27 planes. Ten MD-82's,seven A320's,seven 737's,and three 767's as of 2014." /></profile>
+  <info real="True" from="1963" to="2199" />
+</airline>

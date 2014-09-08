@@ -1,14 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                     x:Class="TheAirline.GUIModel.MasterPageModel.standardStylesEvents"
-                    xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel" 
+                    x:Class="TheAirline.GUIModel.MasterPageModel.standardStylesEvents"
+                    xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:c="clr-namespace:TheAirline.GUIModel.CustomControlsModel.FilterableListView"
-                                   xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
-                      xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero">
+                    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+                    xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+                    xmlns:metroChart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart">
     <!--brushes-->
-    <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#004A7F"></SolidColorBrush>
-    <SolidColorBrush x:Key="BackgroundTransparentBrush" Color="#004A7F" Opacity="0.95"></SolidColorBrush>
-    <SolidColorBrush x:Key="BorderBrush" Opacity="0.25" Color="Black"></SolidColorBrush>
+    <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#004A7F" />
+    <SolidColorBrush x:Key="BackgroundTransparentBrush" Color="#004A7F" Opacity="0.95" />
+    <SolidColorBrush x:Key="BorderBrush" Opacity="0.25" Color="Black" />
     <!--hyperlinks-->
     <Style TargetType="{x:Type Hyperlink}">
         <Style.Triggers>
@@ -20,6 +21,7 @@
         <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
 
     </Style>
+   
     <!--radiobutton-->
     <Style x:Key="RadioButtonLeftSideText" TargetType="{x:Type RadioButton}">
         <Setter Property="Template">
@@ -28,36 +30,37 @@
                     <BulletDecorator Background="Transparent" Cursor="Hand">
                         <BulletDecorator.Bullet>
                             <Grid Height="16" Width="16">
-                                 <Border Name="RadioOuter" Background="Transparent" BorderBrush="Black" BorderThickness="2" CornerRadius="8" Padding="2 2 2 2" />
-                                <Path 
-                                Width="10" Height="10" 
-                                Visibility="Hidden"
+                                <Border Name="RadioOuter" Background="Transparent" BorderBrush="Black"
+                                        BorderThickness="2" CornerRadius="8" Padding="2 2 2 2" />
+                                <Path
+                                    Width="10" Height="10"
+                                    Visibility="Hidden"
                                     Name="TickMark"
-                                SnapsToDevicePixels="False" 
-                                Stroke="#9BCF0E"
-                                StrokeThickness="2"
-                                Data="M 0 5 L 3 10 10 0" 
+                                    SnapsToDevicePixels="False"
+                                    Stroke="#9BCF0E"
+                                    StrokeThickness="2"
+                                    Data="M 0 5 L 3 10 10 0"
                                     StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" />
                             </Grid>
                         </BulletDecorator.Bullet>
 
                         <!--Text element-->
-                        <TextBlock Margin="3,1,0,0" Name="TxtContent" >
-       <ContentPresenter />
+                        <TextBlock Margin="3,1,0,0" Name="TxtContent">
+                            <ContentPresenter />
                         </TextBlock>
                     </BulletDecorator>
 
                     <!--If item is checked, trigger the visibility of the mark-->
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter TargetName="RadioOuter" Property="Background" Value="DarkGray"></Setter>
-                            <Setter TargetName="TxtContent" Property="FontStyle" Value="Italic"></Setter>
+                            <Setter TargetName="RadioOuter" Property="Background" Value="DarkGray" />
+                            <Setter TargetName="TxtContent" Property="FontStyle" Value="Italic" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="true">
 
                             <!--If item is checked, trigger the visibility of the mark
 and change the color of the selected bullet into a darker gray for better highlighting-->
-                            <Setter TargetName="TickMark" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="TickMark" Property="Visibility" Value="Visible" />
                             <Setter TargetName="RadioOuter" Property="BorderBrush" Value="Black" />
 
                         </Trigger>
@@ -69,95 +72,104 @@ and change the color of the selected bullet into a darker gray for better highli
     </Style>
     <!--textboxes-->
     <Style TargetType="{x:Type TextBox}">
-        <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="BorderThickness" Value="1"></Setter>
-        <Setter Property="BorderBrush" Value="Black"></Setter>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="Black" />
     </Style>
     <Style x:Key="NumericTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-        <Setter Property="TextAlignment" Value="Right"></Setter>
-        <EventSetter Event="PreviewTextInput" Handler="NumericTextBox_Input"></EventSetter>
-        <EventSetter Event="PreviewKeyDown" Handler="NumericTextBox_CheckSpace"></EventSetter>
+        <Setter Property="TextAlignment" Value="Right" />
+        <EventSetter Event="PreviewTextInput" Handler="NumericTextBox_Input" />
+        <EventSetter Event="PreviewKeyDown" Handler="NumericTextBox_CheckSpace" />
     </Style>
     <!--buttons-->
     <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
 
-        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
-        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
         <!--   <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="FontWeight" Value="Bold"></Setter>
-        <Setter Property="BorderThickness" Value="3"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="2,0,2,1"/>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="2,0,2,1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <ControlTemplate.Resources>
                         <Storyboard x:Key="ShowShine">
-                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                         <Storyboard x:Key="HideShine">
-                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Border CornerRadius="5,5,5,5" BorderThickness="1,1,1,1" RenderTransformOrigin="0.5,0.5" x:Name="border" BorderBrush="#FFFFFFFF">
+                    <Border CornerRadius="5,5,5,5" BorderThickness="1,1,1,1" RenderTransformOrigin="0.5,0.5"
+                            x:Name="border" BorderBrush="#FFFFFFFF">
                         <Border.RenderTransform>
                             <TransformGroup>
-                                <ScaleTransform ScaleX="1" ScaleY="1"/>
-                                <SkewTransform AngleX="0" AngleY="0"/>
-                                <RotateTransform Angle="0"/>
-                                <TranslateTransform X="0" Y="0"/>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                                <SkewTransform AngleX="0" AngleY="0" />
+                                <RotateTransform Angle="0" />
+                                <TranslateTransform X="0" Y="0" />
                             </TransformGroup>
                         </Border.RenderTransform>
                         <Border Background="{TemplateBinding Background}" CornerRadius="5,5,5,5" x:Name="border1">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="0.5*"/>
-                                    <RowDefinition Height="0.5*"/>
+                                    <RowDefinition Height="0.5*" />
+                                    <RowDefinition Height="0.5*" />
                                 </Grid.RowDefinitions>
                                 <Border Grid.Row="0" CornerRadius="5,5,0,0">
                                     <Border.Background>
                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#00FFFFFF" Offset="0"/>
-                                            <GradientStop Color="#7EFFFFFF" Offset="1"/>
+                                            <GradientStop Color="#00FFFFFF" Offset="0" />
+                                            <GradientStop Color="#7EFFFFFF" Offset="1" />
                                         </LinearGradientBrush>
                                     </Border.Background>
                                 </Border>
-                                <Border Grid.Row="1" Opacity="0" x:Name="Shine" Width="Auto" Height="Auto" CornerRadius="0,0,5,5" Margin="1,0,-1,0" Background="{TemplateBinding BorderBrush}"/>
-                                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"  Grid.RowSpan="2" HorizontalAlignment="Center" x:Name="contentPresenter"/>
+                                <Border Grid.Row="1" Opacity="0" x:Name="Shine" Width="Auto" Height="Auto"
+                                        CornerRadius="0,0,5,5" Margin="1,0,-1,0"
+                                        Background="{TemplateBinding BorderBrush}" />
+                                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"
+                                                  Grid.RowSpan="2" HorizontalAlignment="Center"
+                                                  x:Name="contentPresenter" />
                             </Grid>
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" TargetName="border1" Value="0.5"/>
-                            <Setter Property="Opacity" TargetName="border" Value="1"/>
-                            <Setter Property="Opacity" TargetName="contentPresenter" Value="0.5"/>
+                            <Setter Property="Opacity" TargetName="border1" Value="0.5" />
+                            <Setter Property="Opacity" TargetName="border" Value="1" />
+                            <Setter Property="Opacity" TargetName="contentPresenter" Value="0.5" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="RenderTransform" TargetName="border">
                                 <Setter.Value>
                                     <TransformGroup>
-                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
-                                        <SkewTransform AngleX="0" AngleY="0"/>
-                                        <RotateTransform Angle="0"/>
-                                        <TranslateTransform X="0" Y="0"/>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9" />
+                                        <SkewTransform AngleX="0" AngleY="0" />
+                                        <RotateTransform Angle="0" />
+                                        <TranslateTransform X="0" Y="0" />
                                     </TransformGroup>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.ExitActions>
-                                <BeginStoryboard Storyboard="{StaticResource HideShine}" x:Name="HideShine_BeginStoryboard"/>
+                                <BeginStoryboard Storyboard="{StaticResource HideShine}"
+                                                 x:Name="HideShine_BeginStoryboard" />
                             </Trigger.ExitActions>
                             <Trigger.EnterActions>
-                                <BeginStoryboard x:Name="ShowShine_BeginStoryboard" Storyboard="{StaticResource ShowShine}"/>
+                                <BeginStoryboard x:Name="ShowShine_BeginStoryboard"
+                                                 Storyboard="{StaticResource ShowShine}" />
                             </Trigger.EnterActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -167,122 +179,118 @@ and change the color of the selected bullet into a darker gray for better highli
     </Style>
     <!--textblocks-->
     <Style TargetType="{x:Type TextBlock}">
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="FontFamily" Value="Calibri"></Setter>
-       
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="Calibri" />
+
     </Style>
     <Style x:Key="HeaderStyle" TargetType="{x:Type TextBlock}">
-        <Setter Property="FontWeight" Value="Bold"></Setter>
-        <Setter Property="FontSize" Value="32"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="FontFamily" Value="Calibri"></Setter>
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="Calibri" />
     </Style>
     <Style TargetType="{x:Type TextBlock}" x:Key="SmallHeaderStyle">
-        <Setter Property="FontWeight" Value="Bold"></Setter>
-        <Setter Property="FontFamily" Value="Calibri"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-        <Setter Property="Background" Value="#004A7F"></Setter>
-        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="#004A7F" />
+        <Setter Property="FontSize" Value="14" />
     </Style>
     <!--expander-->
-    <ControlTemplate x:Key="ExpanderButton" 
-             TargetType="{x:Type ToggleButton}">
+    <ControlTemplate x:Key="ExpanderButton"
+                     TargetType="{x:Type ToggleButton}">
         <Border x:Name="ExpanderButtonBorder"
-            Background="{TemplateBinding Background}"
-            BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            Padding="{TemplateBinding Padding}"
-            >
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Padding="{TemplateBinding Padding}">
             <Grid Background="#004A7F">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Rectangle Fill="Transparent"
-                       Grid.ColumnSpan="2"/>
+                           Grid.ColumnSpan="2" />
                 <Ellipse Name="Circle"
-                 Grid.Column="0"
-                 Stroke="DarkGray"
-                 Width="20"
-                 Height="20"
-                 HorizontalAlignment="Center"
-                 VerticalAlignment="Center"
-                 />
+                         Grid.Column="0"
+                         Stroke="DarkGray"
+                         Width="20"
+                         Height="20"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center" />
                 <Path x:Name="Sign"
-              Grid.Column="0"
-              Data="M 0,5 H 10 M 5,0 V 10 Z"
-              Stroke="#FF666666"
-              Width="10"
-              Height="10"
-              StrokeThickness="2"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center"
-              RenderTransformOrigin="0.5,0.5"
-              >
+                      Grid.Column="0"
+                      Data="M 0,5 H 10 M 5,0 V 10 Z"
+                      Stroke="#FF666666"
+                      Width="10"
+                      Height="10"
+                      StrokeThickness="2"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      RenderTransformOrigin="0.5,0.5">
                     <Path.RenderTransform>
-                        <RotateTransform Angle="0"/>
+                        <RotateTransform Angle="0" />
                     </Path.RenderTransform>
                 </Path>
                 <ContentPresenter x:Name="HeaderContent" Margin="4 0 0 0" Grid.Column="1"
-                          VerticalAlignment="Bottom"
-                                                  ContentSource="Content" TextBlock.FontWeight="Bold" TextBlock.FontFamily="Calibri"/>
+                                  VerticalAlignment="Bottom"
+                                  ContentSource="Content" TextBlock.FontWeight="Bold" TextBlock.FontFamily="Calibri" />
 
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
             <!--Change the sign to minus when toggled-->
             <Trigger Property="IsChecked"
-                 Value="True">
-                <Setter Property="Data" 
-               TargetName="Sign" Value="M 0,5 H 10 Z"/>
+                     Value="True">
+                <Setter Property="Data"
+                        TargetName="Sign" Value="M 0,5 H 10 Z" />
             </Trigger>
 
             <!-- MouseOver, Pressed behaviours-->
             <Trigger Property="IsMouseOver"
-                         Value="true">
+                     Value="true">
                 <Setter Property="Stroke"
-                            Value="#FF3C7FB1"
-                            TargetName="Circle"/>
+                        Value="#FF3C7FB1"
+                        TargetName="Circle" />
                 <Setter Property="Stroke"
-                            Value="#222"
-                            TargetName="Sign"/>
+                        Value="#222"
+                        TargetName="Sign" />
             </Trigger>
             <Trigger Property="IsPressed"
-                         Value="true">
+                     Value="true">
                 <Setter Property="Stroke"
-                            Value="#FF526C7B"
-                            TargetName="Circle"/>
+                        Value="#FF526C7B"
+                        TargetName="Circle" />
                 <Setter Property="StrokeThickness"
-                            Value="1.5"
-                            TargetName="Circle"/>
+                        Value="1.5"
+                        TargetName="Circle" />
                 <Setter Property="Stroke"
-                            Value="#FF003366"
-                            TargetName="Sign"/>
+                        Value="#FF003366"
+                        TargetName="Sign" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-     <Style TargetType="{x:Type Expander}" x:Key="ExpanderStyle">
+    <Style TargetType="{x:Type Expander}" x:Key="ExpanderStyle">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
                     <DockPanel>
-                        <ToggleButton x:Name="ExpanderButton" 
-                              DockPanel.Dock="Top"
-                              Template="{StaticResource ExpanderButton}"
-                              Content="{TemplateBinding Header}"
-                              IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
-                              OverridesDefaultStyle="True"
-                              Padding="1.5,0">
-                        </ToggleButton>
+                        <ToggleButton x:Name="ExpanderButton"
+                                      DockPanel.Dock="Top"
+                                      Template="{StaticResource ExpanderButton}"
+                                      Content="{TemplateBinding Header}"
+                                      IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                                      OverridesDefaultStyle="True"
+                                      Padding="1.5,0" />
                         <ContentPresenter x:Name="ExpanderContent"
-                                  Grid.Row="1" 
-                                  Visibility="Collapsed"
-                                  DockPanel.Dock="Bottom"/>
+                                          Grid.Row="1"
+                                          Visibility="Collapsed"
+                                          DockPanel.Dock="Bottom" />
                     </DockPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsExpanded" Value="True">
-                            <Setter TargetName="ExpanderContent" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="ExpanderContent" Property="Visibility" Value="Visible" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -292,25 +300,25 @@ and change the color of the selected bullet into a darker gray for better highli
     </Style>
     <!--tabs-->
     <Style TargetType="{x:Type TabItem}">
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
                     <Grid>
-                        <Border 
-            Name="Border"
-            Margin="0,0,-4,0" 
-            Background="#004A7F"
-            BorderBrush="Black" 
-            BorderThickness="1,1,1,1" 
-            CornerRadius="2,12,0,0" >
+                        <Border
+                            Name="Border"
+                            Margin="0,0,-4,0"
+                            Background="#004A7F"
+                            BorderBrush="Black"
+                            BorderThickness="1,1,1,1"
+                            CornerRadius="2,12,0,0">
                             <ContentPresenter x:Name="ContentSite"
-              VerticalAlignment="Center"
-              HorizontalAlignment="Center"
-              ContentSource="Header"
-              Margin="12,2,12,2"
-              RecognizesAccessKey="True"/>
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"
+                                              ContentSource="Header"
+                                              Margin="12,2,12,2"
+                                              RecognizesAccessKey="True" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -329,21 +337,21 @@ and change the color of the selected bullet into a darker gray for better highli
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="FontStyle" Value="Italic"></Setter>
+                <Setter Property="FontStyle" Value="Italic" />
             </Trigger>
         </Style.Triggers>
     </Style>
-   
+
     <!--borders-->
 
     <Style TargetType="Border" x:Key="RoundedBorderStyle">
-        <Setter Property="BorderThickness" Value="2"></Setter>
-        <Setter Property="BorderBrush" Value="Black"></Setter>
-        <Setter Property="CornerRadius" Value="10"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-        <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
-        <Setter Property="Background" Value="{DynamicResource BorderBrush}"/>
-        <Setter Property="Padding" Value="2 2 2 2"></Setter>
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="Padding" Value="2 2 2 2" />
     </Style>
     <!--buttons-->
     <Style x:Key="ButtonFocusVisual">
@@ -351,93 +359,103 @@ and change the color of the selected bullet into a darker gray for better highli
             <Setter.Value>
                 <ControlTemplate>
                     <Border>
-                        <Rectangle SnapsToDevicePixels="true" Margin="4" Stroke="Black" StrokeDashArray="1 2" StrokeThickness="1"/>
+                        <Rectangle SnapsToDevicePixels="true" Margin="4" Stroke="Black" StrokeDashArray="1 2"
+                                   StrokeThickness="1" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
     <Style x:Key="MenuButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
-        <Setter Property="Background" Value="#3772A1"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
+        <Setter Property="Background" Value="#3772A1" />
         <!--   <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="FontWeight" Value="Bold"></Setter>
-        <Setter Property="FontSize" Value="14"></Setter>
-        <Setter Property="FontFamily" Value="Calibri"></Setter>
-        <Setter Property="BorderThickness" Value="3"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="2,0,2,1"/>
-        <Setter Property="Height" Value="40"></Setter>
-        <Setter Property="Width" Value="150"></Setter>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="2,0,2,1" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Width" Value="150" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <ControlTemplate.Resources>
                         <Storyboard x:Key="ShowShine">
-                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                         <Storyboard x:Key="HideShine">
-                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Border CornerRadius="5,5,5,5" BorderThickness="1,1,1,1" RenderTransformOrigin="0.5,0.5" x:Name="border" BorderBrush="#FFFFFFFF">
+                    <Border CornerRadius="5,5,5,5" BorderThickness="1,1,1,1" RenderTransformOrigin="0.5,0.5"
+                            x:Name="border" BorderBrush="#FFFFFFFF">
                         <Border.RenderTransform>
                             <TransformGroup>
-                                <ScaleTransform ScaleX="1" ScaleY="1"/>
-                                <SkewTransform AngleX="0" AngleY="0"/>
-                                <RotateTransform Angle="0"/>
-                                <TranslateTransform X="0" Y="0"/>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                                <SkewTransform AngleX="0" AngleY="0" />
+                                <RotateTransform Angle="0" />
+                                <TranslateTransform X="0" Y="0" />
                             </TransformGroup>
                         </Border.RenderTransform>
                         <Border Background="{TemplateBinding Background}" CornerRadius="5,5,5,5" x:Name="border1">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="0.5*"/>
-                                    <RowDefinition Height="0.5*"/>
+                                    <RowDefinition Height="0.5*" />
+                                    <RowDefinition Height="0.5*" />
                                 </Grid.RowDefinitions>
                                 <Border Grid.Row="0" CornerRadius="5,5,0,0">
                                     <Border.Background>
                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#00FFFFFF" Offset="0"/>
-                                            <GradientStop Color="#7EFFFFFF" Offset="1"/>
+                                            <GradientStop Color="#00FFFFFF" Offset="0" />
+                                            <GradientStop Color="#7EFFFFFF" Offset="1" />
                                         </LinearGradientBrush>
                                     </Border.Background>
                                 </Border>
-                                <Border Grid.Row="1" Opacity="0" x:Name="Shine" Width="Auto" Height="Auto" CornerRadius="0,0,5,5" Margin="1,0,-1,0" Background="{TemplateBinding BorderBrush}"/>
-                                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"  Grid.RowSpan="2" HorizontalAlignment="Center" x:Name="contentPresenter"/>
+                                <Border Grid.Row="1" Opacity="0" x:Name="Shine" Width="Auto" Height="Auto"
+                                        CornerRadius="0,0,5,5" Margin="1,0,-1,0"
+                                        Background="{TemplateBinding BorderBrush}" />
+                                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"
+                                                  Grid.RowSpan="2" HorizontalAlignment="Center"
+                                                  x:Name="contentPresenter" />
                             </Grid>
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" TargetName="border1" Value="0.5"/>
-                            <Setter Property="Opacity" TargetName="border" Value="1"/>
-                            <Setter Property="Opacity" TargetName="contentPresenter" Value="0.5"/>
+                            <Setter Property="Opacity" TargetName="border1" Value="0.5" />
+                            <Setter Property="Opacity" TargetName="border" Value="1" />
+                            <Setter Property="Opacity" TargetName="contentPresenter" Value="0.5" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="RenderTransform" TargetName="border">
                                 <Setter.Value>
                                     <TransformGroup>
-                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
-                                        <SkewTransform AngleX="0" AngleY="0"/>
-                                        <RotateTransform Angle="0"/>
-                                        <TranslateTransform X="0" Y="0"/>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9" />
+                                        <SkewTransform AngleX="0" AngleY="0" />
+                                        <RotateTransform Angle="0" />
+                                        <TranslateTransform X="0" Y="0" />
                                     </TransformGroup>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.ExitActions>
-                                <BeginStoryboard Storyboard="{StaticResource HideShine}" x:Name="HideShine_BeginStoryboard"/>
+                                <BeginStoryboard Storyboard="{StaticResource HideShine}"
+                                                 x:Name="HideShine_BeginStoryboard" />
                             </Trigger.ExitActions>
                             <Trigger.EnterActions>
-                                <BeginStoryboard x:Name="ShowShine_BeginStoryboard" Storyboard="{StaticResource ShowShine}"/>
+                                <BeginStoryboard x:Name="ShowShine_BeginStoryboard"
+                                                 Storyboard="{StaticResource ShowShine}" />
                             </Trigger.EnterActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -446,82 +464,91 @@ and change the color of the selected bullet into a darker gray for better highli
         </Setter>
     </Style>
     <Style x:Key="StandardButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
-        <Setter Property="Background" Value="#085084"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Width" Value="NaN"></Setter>
-        <Setter Property="Height" Value="NaN"></Setter>
-        <Setter Property="BorderThickness" Value="3"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="2,0,2,1"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
+        <Setter Property="Background" Value="#085084" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Width" Value="NaN" />
+        <Setter Property="Height" Value="NaN" />
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="2,0,2,1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <ControlTemplate.Resources>
                         <Storyboard x:Key="ShowShine">
-                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                         <Storyboard x:Key="HideShine">
-                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Shine"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Border CornerRadius="5,5,5,5" BorderThickness="1,1,1,1" RenderTransformOrigin="0.5,0.5" x:Name="border" BorderBrush="#FFFFFFFF">
+                    <Border CornerRadius="5,5,5,5" BorderThickness="1,1,1,1" RenderTransformOrigin="0.5,0.5"
+                            x:Name="border" BorderBrush="#FFFFFFFF">
                         <Border.RenderTransform>
                             <TransformGroup>
-                                <ScaleTransform ScaleX="1" ScaleY="1"/>
-                                <SkewTransform AngleX="0" AngleY="0"/>
-                                <RotateTransform Angle="0"/>
-                                <TranslateTransform X="0" Y="0"/>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                                <SkewTransform AngleX="0" AngleY="0" />
+                                <RotateTransform Angle="0" />
+                                <TranslateTransform X="0" Y="0" />
                             </TransformGroup>
                         </Border.RenderTransform>
                         <Border Background="{TemplateBinding Background}" CornerRadius="5,5,5,5" x:Name="border1">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="0.5*"/>
-                                    <RowDefinition Height="0.5*"/>
+                                    <RowDefinition Height="0.5*" />
+                                    <RowDefinition Height="0.5*" />
                                 </Grid.RowDefinitions>
                                 <Border Grid.Row="0" CornerRadius="5,5,0,0">
                                     <Border.Background>
                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="#00FFFFFF" Offset="0"/>
-                                            <GradientStop Color="#7EFFFFFF" Offset="1"/>
+                                            <GradientStop Color="#00FFFFFF" Offset="0" />
+                                            <GradientStop Color="#7EFFFFFF" Offset="1" />
                                         </LinearGradientBrush>
                                     </Border.Background>
                                 </Border>
-                                <Border Grid.Row="1" Opacity="0" x:Name="Shine" Width="Auto" Height="Auto" CornerRadius="0,0,5,5" Margin="1,0,-1,0" Background="{TemplateBinding BorderBrush}"/>
-                                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"  Grid.RowSpan="2" HorizontalAlignment="Center" x:Name="contentPresenter"/>
+                                <Border Grid.Row="1" Opacity="0" x:Name="Shine" Width="Auto" Height="Auto"
+                                        CornerRadius="0,0,5,5" Margin="1,0,-1,0"
+                                        Background="{TemplateBinding BorderBrush}" />
+                                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"
+                                                  Grid.RowSpan="2" HorizontalAlignment="Center"
+                                                  x:Name="contentPresenter" />
                             </Grid>
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" TargetName="border1" Value="0.5"/>
-                            <Setter Property="Opacity" TargetName="border" Value="1"/>
-                            <Setter Property="Opacity" TargetName="contentPresenter" Value="0.5"/>
+                            <Setter Property="Opacity" TargetName="border1" Value="0.5" />
+                            <Setter Property="Opacity" TargetName="border" Value="1" />
+                            <Setter Property="Opacity" TargetName="contentPresenter" Value="0.5" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="RenderTransform" TargetName="border">
                                 <Setter.Value>
                                     <TransformGroup>
-                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
-                                        <SkewTransform AngleX="0" AngleY="0"/>
-                                        <RotateTransform Angle="0"/>
-                                        <TranslateTransform X="0" Y="0"/>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9" />
+                                        <SkewTransform AngleX="0" AngleY="0" />
+                                        <RotateTransform Angle="0" />
+                                        <TranslateTransform X="0" Y="0" />
                                     </TransformGroup>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.ExitActions>
-                                <BeginStoryboard Storyboard="{StaticResource HideShine}" x:Name="HideShine_BeginStoryboard"/>
+                                <BeginStoryboard Storyboard="{StaticResource HideShine}"
+                                                 x:Name="HideShine_BeginStoryboard" />
                             </Trigger.ExitActions>
                             <Trigger.EnterActions>
-                                <BeginStoryboard x:Name="ShowShine_BeginStoryboard" Storyboard="{StaticResource ShowShine}"/>
+                                <BeginStoryboard x:Name="ShowShine_BeginStoryboard"
+                                                 Storyboard="{StaticResource ShowShine}" />
                             </Trigger.EnterActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -530,45 +557,46 @@ and change the color of the selected bullet into a darker gray for better highli
         </Setter>
     </Style>
     <Style x:Key="StartMenuButtonStyle" TargetType="Button">
-        <Setter Property="SnapsToDevicePixels" Value="true"/>
-        <Setter Property="OverridesDefaultStyle" Value="true"/>
-        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
-        <Setter Property="MinHeight" Value="25"/>
-        <Setter Property="MinWidth" Value="200"/>
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
+        <Setter Property="MinHeight" Value="25" />
+        <Setter Property="MinWidth" Value="200" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="Border" Style="{StaticResource RoundedBorderStyle}">
                         <WrapPanel>
-                            <Image Source="/data/images/plane.png" Width="100" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                            <ContentPresenter x:Name="Presenter" 
-            Margin="5 0 5 0"
-            TextBlock.FontWeight="Bold"
-                                            
-                                TextBlock.FontSize="20"
-            VerticalAlignment="Bottom"
-            RecognizesAccessKey="True"/>
+                            <Image Source="/data/images/plane.png" Width="100"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                            <ContentPresenter x:Name="Presenter"
+                                              Margin="5 0 5 0"
+                                              TextBlock.FontWeight="Bold"
+
+                                              TextBlock.FontSize="20"
+                                              VerticalAlignment="Bottom"
+                                              RecognizesAccessKey="True" />
                         </WrapPanel>
                     </Border>
                     <ControlTemplate.Triggers>
-                       
+
                         <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="Border" Property="Background"  >
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="#004A7F" Opacity="0.5"/>
-                                    </Setter.Value>
-                                   </Setter>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="true">
-                            <Setter TargetName="Border" Property="Background" Value="#004A7F"></Setter>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter TargetName="Border" Property="Background" >
+                            <Setter TargetName="Border" Property="Background">
                                 <Setter.Value>
-                                    <SolidColorBrush Color="LightGray" Opacity="0.5"/>
+                                    <SolidColorBrush Color="#004A7F" Opacity="0.5" />
                                 </Setter.Value>
                             </Setter>
-                            <Setter TargetName="Presenter" Property="TextBlock.FontStyle" Value="Italic"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="#004A7F" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Border" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="LightGray" Opacity="0.5" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="Presenter" Property="TextBlock.FontStyle" Value="Italic" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -586,116 +614,115 @@ and change the color of the selected bullet into a darker gray for better highli
                 <ColumnDefinition Width="20" />
             </Grid.ColumnDefinitions>
             <Border
-      x:Name="Border" 
-      Grid.ColumnSpan="2"
-      CornerRadius="2"
-      Background="Transparent"
-      BorderBrush="Black"
-      BorderThickness="1" />
-            <Border 
-      Grid.Column="0"
-      CornerRadius="2,0,0,2" 
-      Margin="1" 
-      Background="Transparent" 
-      BorderBrush="Black"
-      BorderThickness="0,0,1,0" />
-            <Path 
-      x:Name="Arrow"
-      Grid.Column="1"     
-      Fill="Black"
-      HorizontalAlignment="Center"
-      VerticalAlignment="Center"
-      Data="M 0 0 L 4 4 L 8 0 Z"/>
+                x:Name="Border"
+                Grid.ColumnSpan="2"
+                CornerRadius="2"
+                Background="Transparent"
+                BorderBrush="Black"
+                BorderThickness="1" />
+            <Border
+                Grid.Column="0"
+                CornerRadius="2,0,0,2"
+                Margin="1"
+                Background="Transparent"
+                BorderBrush="Black"
+                BorderThickness="0,0,1,0" />
+            <Path
+                x:Name="Arrow"
+                Grid.Column="1"
+                Fill="Black"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Data="M 0 0 L 4 4 L 8 0 Z" />
         </Grid>
 
     </ControlTemplate>
     <Style TargetType="ComboBoxItem">
-        <Setter Property="Background" Value="{StaticResource BackgroundTransparentBrush}"></Setter>
+        <Setter Property="Background" Value="{StaticResource BackgroundTransparentBrush}" />
     </Style>
-    <SolidColorBrush x:Key="ComboBoxBackgroundBrush" Color="Black" Opacity="0.6"></SolidColorBrush>
-        
+    <SolidColorBrush x:Key="ComboBoxBackgroundBrush" Color="Black" Opacity="0.6" />
+
     <Style x:Key="ComboBoxTransparentStyle" TargetType="ComboBox">
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
                     <Grid>
-                        <ToggleButton 
-            Name="ToggleButton" 
-          Template="{StaticResource ComboBoxToggleButton}" 
-         
-            Grid.Column="2" 
-            Focusable="false"
-            IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
-            ClickMode="Press">
-                        </ToggleButton>
+                        <ToggleButton
+                            Name="ToggleButton"
+                            Template="{StaticResource ComboBoxToggleButton}"
+
+                            Grid.Column="2"
+                            Focusable="false"
+                            IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                            ClickMode="Press" />
                         <ContentPresenter
-            Name="ContentSite"
-            IsHitTestVisible="False" 
-            Content="{TemplateBinding SelectionBoxItem}"
-            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-            Margin="3,3,23,3"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Left" />
+                            Name="ContentSite"
+                            IsHitTestVisible="False"
+                            Content="{TemplateBinding SelectionBoxItem}"
+                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                            Margin="3,3,23,3"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left" />
                         <TextBox x:Name="PART_EditableTextBox"
-            Style="{x:Null}" 
-            Template="{StaticResource ComboBoxTextBox}" 
-          
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Center" 
-            Margin="3,3,23,3"
-            Focusable="True" 
-            Background="Transparent"
-            Visibility="Hidden"
-            IsReadOnly="{TemplateBinding IsReadOnly}"/>
-                        <Popup 
-            Name="Popup"
-            Placement="Bottom"
-                            
-            IsOpen="{TemplateBinding IsDropDownOpen}"
-            AllowsTransparency="True" 
-             
-            Focusable="False"
-            PopupAnimation="Slide">
-                            <Grid 
-              Name="DropDown"
-              SnapsToDevicePixels="True"                
-              MinWidth="{TemplateBinding ActualWidth}"
-              MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                <Border 
-                x:Name="DropDownBorder"
-                Background="{StaticResource ComboBoxBackgroundBrush}" 
-                BorderThickness="1"
-                BorderBrush="Black"/>
+                                 Style="{x:Null}"
+                                 Template="{StaticResource ComboBoxTextBox}"
+
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Center"
+                                 Margin="3,3,23,3"
+                                 Focusable="True"
+                                 Background="Transparent"
+                                 Visibility="Hidden"
+                                 IsReadOnly="{TemplateBinding IsReadOnly}" />
+                        <Popup
+                            Name="Popup"
+                            Placement="Bottom"
+
+                            IsOpen="{TemplateBinding IsDropDownOpen}"
+                            AllowsTransparency="True"
+
+                            Focusable="False"
+                            PopupAnimation="Slide">
+                            <Grid
+                                Name="DropDown"
+                                SnapsToDevicePixels="True"
+                                MinWidth="{TemplateBinding ActualWidth}"
+                                MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <Border
+                                    x:Name="DropDownBorder"
+                                    Background="{StaticResource ComboBoxBackgroundBrush}"
+                                    BorderThickness="1"
+                                    BorderBrush="Black" />
                                 <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
-                               <!--     <VirtualizingStackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"></VirtualizingStackPanel>
+                                    <!--     <VirtualizingStackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"></VirtualizingStackPanel>
                     -->
-                                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"></ItemsPresenter>
-                                        <!-- <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />-->
+                                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    <!-- <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />-->
                                 </ScrollViewer>
                             </Grid>
                         </Popup>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="HasItems" Value="false">
-                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground" Value="DarkGray"/>
+                            <Setter Property="Foreground" Value="DarkGray" />
                         </Trigger>
                         <Trigger Property="IsGrouping" Value="true">
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
                         </Trigger>
                         <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="true">
-                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="4"/>
-                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0"/>
+                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="4" />
+                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0" />
                         </Trigger>
                         <Trigger Property="IsEditable"
-               Value="true">
-                            <Setter Property="IsTabStop" Value="false"/>
-                            <Setter TargetName="PART_EditableTextBox" Property="Visibility"  Value="Visible"/>
-                            <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                                 Value="true">
+                            <Setter Property="IsTabStop" Value="false" />
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden" />
                         </Trigger>
 
                     </ControlTemplate.Triggers>
@@ -706,22 +733,25 @@ and change the color of the selected bullet into a darker gray for better highli
     </Style>
     <!--tooltips-->
     <Style x:Key="{x:Type ToolTip}"
-       TargetType="ToolTip">
-        <Setter Property="ToolTipService.ShowDuration" Value="60000"></Setter>
+           TargetType="ToolTip">
+        <Setter Property="ToolTipService.ShowDuration" Value="60000" />
         <Setter Property="OverridesDefaultStyle"
-          Value="true" />
+                Value="true" />
         <Setter Property="HasDropShadow"
-          Value="True" />
+                Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToolTip">
-                    <Border Background="#2A4861" Name="Border"
-                BorderThickness="1"
-                Width="{TemplateBinding Width}"
-                Height="{TemplateBinding Height}">
+                    <Border Name="Border"
+                            BorderThickness="1"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}">
+                        <Border.Background>
+                            <SolidColorBrush Color="#2A4861" Opacity="0.6"/>
+                        </Border.Background>
                         <ContentPresenter Margin="4"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top" />
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top" />
 
                     </Border>
                 </ControlTemplate>
@@ -730,14 +760,15 @@ and change the color of the selected bullet into a darker gray for better highli
     </Style>
     <!--scroll viewer-->
     <Style x:Key="ScrollBarPageButton" TargetType="{x:Type RepeatButton}">
-        <Setter Property="OverridesDefaultStyle" Value="true"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Focusable" Value="false"/>
-        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="IsTabStop" Value="false" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
-                    <Rectangle Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                    <Rectangle Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}"
+                               Width="{TemplateBinding Width}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -783,27 +814,31 @@ and change the color of the selected bullet into a darker gray for better highli
         </Setter>
     </Style>
     <Style x:Key="ScrollBarStyle" TargetType="{x:Type ScrollBar}">
-        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
-        <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-        <Setter Property="Width" Value="10"/>
-        <Setter Property="MinWidth" Value="10"/>
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+        <Setter Property="Width" Value="10" />
+        <Setter Property="MinWidth" Value="10" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
                     <Grid x:Name="Bg" SnapsToDevicePixels="true" Background="#7FBFBFBF">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="0.00001*"/>
+                            <RowDefinition Height="0.00001*" />
                         </Grid.RowDefinitions>
-                        <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="1">
+                        <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}"
+                               Grid.Row="1">
                             <Track.DecreaseRepeatButton>
-                                <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource ScrollBarPageButton}"/>
+                                <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}"
+                                              Style="{StaticResource ScrollBarPageButton}" />
                             </Track.DecreaseRepeatButton>
                             <Track.IncreaseRepeatButton>
-                                <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource ScrollBarPageButton}"/>
+                                <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}"
+                                              Style="{StaticResource ScrollBarPageButton}" />
                             </Track.IncreaseRepeatButton>
                             <Track.Thumb>
-                                <Thumb Style="{DynamicResource VerticalThumb}" Microsoft_Windows_Themes:ScrollChrome.ScrollGlyph="VerticalGripper" Width="8"/>
+                                <Thumb Style="{DynamicResource VerticalThumb}"
+                                       Microsoft_Windows_Themes:ScrollChrome.ScrollGlyph="VerticalGripper" Width="8" />
                             </Track.Thumb>
                         </Track>
                     </Grid>
@@ -812,26 +847,29 @@ and change the color of the selected bullet into a darker gray for better highli
         </Setter>
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Horizontal">
-                <Setter Property="Width" Value="Auto"/>
-                <Setter Property="MinWidth" Value="0"/>
-                <Setter Property="Height" Value="10"/>
-                <Setter Property="MinHeight" Value="10"/>
+                <Setter Property="Width" Value="Auto" />
+                <Setter Property="MinWidth" Value="0" />
+                <Setter Property="Height" Value="10" />
+                <Setter Property="MinHeight" Value="10" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ScrollBar}">
                             <Grid x:Name="Bg" SnapsToDevicePixels="true" Background="#7FA7A7A7">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.00001*"/>
+                                    <ColumnDefinition Width="0.00001*" />
                                 </Grid.ColumnDefinitions>
                                 <Track x:Name="PART_Track" Grid.Column="1" IsEnabled="{TemplateBinding IsMouseOver}">
                                     <Track.DecreaseRepeatButton>
-                                        <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}" Style="{StaticResource ScrollBarPageButton}"/>
+                                        <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}"
+                                                      Style="{StaticResource ScrollBarPageButton}" />
                                     </Track.DecreaseRepeatButton>
                                     <Track.IncreaseRepeatButton>
-                                        <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}" Style="{StaticResource ScrollBarPageButton}"/>
+                                        <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}"
+                                                      Style="{StaticResource ScrollBarPageButton}" />
                                     </Track.IncreaseRepeatButton>
                                     <Track.Thumb>
-                                        <Thumb Microsoft_Windows_Themes:ScrollChrome.ScrollGlyph="HorizontalGripper" Style="{DynamicResource HorizontalThumb}" Height="8"/>
+                                        <Thumb Microsoft_Windows_Themes:ScrollChrome.ScrollGlyph="HorizontalGripper"
+                                               Style="{DynamicResource HorizontalThumb}" Height="8" />
                                     </Track.Thumb>
                                 </Track>
                             </Grid>
@@ -842,23 +880,23 @@ and change the color of the selected bullet into a darker gray for better highli
         </Style.Triggers>
     </Style>
     <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="OverridesDefaultStyle" Value="true"/>
-        <Setter Property="IsTabStop" Value="false"/>
-        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Focusable" Value="false" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Border CornerRadius="3"
-                        Background="#AFC7D8"
-                        BorderBrush="#A7B4BC"
-                        BorderThickness="0" />
+                            Background="#AFC7D8"
+                            BorderBrush="#A7B4BC"
+                            BorderThickness="0" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
     <Style TargetType="{x:Type ScrollViewer}">
-        <EventSetter Event="PreviewMouseWheel" Handler="ScrollViewer_PreviewMouseWheel"></EventSetter>
+        <EventSetter Event="PreviewMouseWheel" Handler="ScrollViewer_PreviewMouseWheel" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
@@ -869,27 +907,27 @@ and change the color of the selected bullet into a darker gray for better highli
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <ScrollContentPresenter Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                        <ScrollContentPresenter Grid.ColumnSpan="2" Grid.RowSpan="2" />
                         <ScrollBar
-    Style="{StaticResource ScrollBarStyle}"
-    Name="PART_VerticalScrollBar"
-    Grid.Column="1"
-    Value="{TemplateBinding VerticalOffset}"
-    Maximum="{TemplateBinding ScrollableHeight}"
-    ViewportSize="{TemplateBinding ViewportHeight}"
-    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
+                            Style="{StaticResource ScrollBarStyle}"
+                            Name="PART_VerticalScrollBar"
+                            Grid.Column="1"
+                            Value="{TemplateBinding VerticalOffset}"
+                            Maximum="{TemplateBinding ScrollableHeight}"
+                            ViewportSize="{TemplateBinding ViewportHeight}"
+                            Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
                         <ScrollBar
-    Style="{StaticResource ScrollBarStyle}"
-    Name="PART_HorizontalScrollBar"
-    Orientation="Horizontal"
-    Grid.Row="1"
-    Value="{TemplateBinding HorizontalOffset}"
-    Maximum="{TemplateBinding ScrollableWidth}"
-    ViewportSize="{TemplateBinding ViewportWidth}"
-    Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
+                            Style="{StaticResource ScrollBarStyle}"
+                            Name="PART_HorizontalScrollBar"
+                            Orientation="Horizontal"
+                            Grid.Row="1"
+                            Value="{TemplateBinding HorizontalOffset}"
+                            Maximum="{TemplateBinding ScrollableWidth}"
+                            ViewportSize="{TemplateBinding ViewportWidth}"
+                            Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -898,51 +936,51 @@ and change the color of the selected bullet into a darker gray for better highli
 
     <!--grid & list views-->
     <Style x:Key="GridViewColumnHeaderGripper" TargetType="Thumb">
-        <Setter Property="Width" Value="18"/>
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Width" Value="18" />
+        <Setter Property="Background" Value="White" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Border Padding="{TemplateBinding Padding}" Background="Transparent">
                         <Rectangle HorizontalAlignment="Center" Width="3"
-                                Fill="{TemplateBinding Background}"/>
+                                   Fill="{TemplateBinding Background}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
     <Style TargetType="GridViewColumnHeader">
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="FontWeight" Value="Bold"></Setter>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GridViewColumnHeader">
                     <Grid>
                         <Border Name="HeaderBorder"
-                                    BorderThickness="0"
-                                    BorderBrush="{DynamicResource HeaderBackgroundBrush}"
-                                    Background="#FF043C64"
-                                    Padding="2,0,2,0">
+                                BorderThickness="0"
+                                BorderBrush="{DynamicResource HeaderBackgroundBrush}"
+                                Background="#FF043C64"
+                                Padding="2,0,2,0">
                             <ContentPresenter Name="HeaderContent"
-                                   
-                                       Margin="0,0,0,1"
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      RecognizesAccessKey="True"
-                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+
+                                              Margin="0,0,0,1"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Border>
                         <Thumb x:Name="PART_HeaderGripper"
-                                    HorizontalAlignment="Right"
-                                    Margin="0,0,-9,0"
-                                   Visibility="Hidden"
-                                    Style="{StaticResource GridViewColumnHeaderGripper}"/>
+                               HorizontalAlignment="Right"
+                               Margin="0,0,-9,0"
+                               Visibility="Hidden"
+                               Style="{StaticResource GridViewColumnHeaderGripper}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="HeaderContent" Property="Cursor" Value="Hand"/>
+                            <Setter TargetName="HeaderContent" Property="Cursor" Value="Hand" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -951,27 +989,29 @@ and change the color of the selected bullet into a darker gray for better highli
         </Setter>
 
 
-
     </Style>
-    <Style  TargetType="{x:Type ListViewItem}">
+    <Style TargetType="{x:Type ListViewItem}">
         <Setter Property="Background">
             <Setter.Value>
-                <SolidColorBrush Color="Black" Opacity="0.45"></SolidColorBrush>
+                <SolidColorBrush Color="Black" Opacity="0.45" />
             </Setter.Value>
         </Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="Padding" Value="1,0,0,0"/>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Padding" Value="1,0,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
 
-            <Border Background="{TemplateBinding Background}" x:Name="Bd" SnapsToDevicePixels="True" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
-                
-                        <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    <Border Background="{TemplateBinding Background}" x:Name="Bd" SnapsToDevicePixels="True"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+
+                        <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -979,17 +1019,17 @@ and change the color of the selected bullet into a darker gray for better highli
         </Setter>
     </Style>
     <Style TargetType="ListBox" x:Key="HorizontalListBoxStyle">
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"></Setter>
-        <Setter Property="BorderThickness" Value="0"></Setter>
-        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="Margin" Value="0 0 10 0"></Setter>
+                    <Setter Property="Margin" Value="0 0 10 0" />
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                <ContentPresenter/>
+                                <ContentPresenter />
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
@@ -999,23 +1039,23 @@ and change the color of the selected bullet into a darker gray for better highli
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel IsItemsHost="True"/>
+                    <StackPanel IsItemsHost="True" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
     </Style>
     <Style TargetType="ListBox" x:Key="VerticalListBoxStyle">
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"></Setter>
-        <Setter Property="BorderThickness" Value="0"></Setter>
-        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="Margin" Value="0 0 10 0"></Setter>
+                    <Setter Property="Margin" Value="0 0 10 0" />
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                <ContentPresenter/>
+                                <ContentPresenter />
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
@@ -1025,30 +1065,31 @@ and change the color of the selected bullet into a darker gray for better highli
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True"/>
+                    <WrapPanel IsItemsHost="True" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
     </Style>
     <Style TargetType="ListView">
         <Style.Resources>
-            <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle}"></Style>
+            <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle}" />
         </Style.Resources>
-        <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
-        <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling"/>
-        <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
+        <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
+        <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling" />
+        <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False" />
 
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <VirtualizingStackPanel/>
+                    <VirtualizingStackPanel />
                     <!--<WrapPanel IsItemsHost="True"/>-->
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="GridViewHeaderRightAlign" BasedOn="{StaticResource {x:Type GridViewColumnHeader}}" TargetType="{x:Type GridViewColumnHeader}">
-        <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+    <Style x:Key="GridViewHeaderRightAlign" BasedOn="{StaticResource {x:Type GridViewColumnHeader}}"
+           TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
     </Style>
     <!--checkboxes-->
     <Style TargetType="CheckBox" x:Key="CheckBoxNormalStyle">
@@ -1056,39 +1097,39 @@ and change the color of the selected bullet into a darker gray for better highli
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="BorderBrush" Value="LightGray" />
-        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CheckBox">
                     <BulletDecorator Background="Transparent">
                         <BulletDecorator.Bullet>
                             <Border x:Name="Border"
-                                          Width="15"
-                                          Height="15"
-                                          Background="{TemplateBinding Background}"
-                                          BorderBrush="{TemplateBinding BorderBrush}"
-                                          BorderThickness="1"
-                                          ClipToBounds="True">
+                                    Width="15"
+                                    Height="15"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="1"
+                                    ClipToBounds="True">
                                 <Border.Effect>
                                     <DropShadowEffect BlurRadius="5" ShadowDepth="2" />
                                 </Border.Effect>
                                 <Path x:Name="CheckMark"
-                                          Width="8"
-                                            Height="8"
-                                           HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Data="M 0 0 L 8 8 M 0 8 L 8 0"
-                                            Stretch="Fill"
-                                            Stroke="LightGray"
-                                            StrokeEndLineCap="Round"
-                                          StrokeStartLineCap="Round"
-                                            StrokeThickness="2" />
+                                      Width="8"
+                                      Height="8"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Data="M 0 0 L 8 8 M 0 8 L 8 0"
+                                      Stretch="Fill"
+                                      Stroke="LightGray"
+                                      StrokeEndLineCap="Round"
+                                      StrokeStartLineCap="Round"
+                                      StrokeThickness="2" />
                             </Border>
                         </BulletDecorator.Bullet>
                         <ContentPresenter Margin="4,0,0,0"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Center"
-                                                RecognizesAccessKey="True" />
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True" />
                     </BulletDecorator>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="false">
@@ -1101,7 +1142,7 @@ and change the color of the selected bullet into a darker gray for better highli
                             <Setter Property="BorderBrush" Value="Gray" />
                             <Setter TargetName="CheckMark" Property="Stroke" Value="Gray" />
                         </Trigger>
-                       
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -1114,15 +1155,16 @@ and change the color of the selected bullet into a darker gray for better highli
                     <BulletDecorator Background="Transparent" Cursor="Hand">
                         <BulletDecorator.Bullet>
                             <Grid Height="16" Width="16">
-                                <Border Name="RadioOuter" Background="Transparent" BorderBrush="Black" BorderThickness="1" CornerRadius="2" />
-                                <Path 
-                                Width="11" Height="11" 
-                                Visibility="Hidden"
+                                <Border Name="RadioOuter" Background="Transparent" BorderBrush="Black"
+                                        BorderThickness="1" CornerRadius="2" />
+                                <Path
+                                    Width="11" Height="11"
+                                    Visibility="Hidden"
                                     Name="TickMark"
-                                SnapsToDevicePixels="False" 
-                                Stroke="#9BCF0E"
-                                StrokeThickness="2"
-                                Data="M 0 5 L 3 10 10 0" 
+                                    SnapsToDevicePixels="False"
+                                    Stroke="#9BCF0E"
+                                    StrokeThickness="2"
+                                    Data="M 0 5 L 3 10 10 0"
                                     StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" />
 
                             </Grid>
@@ -1130,7 +1172,7 @@ and change the color of the selected bullet into a darker gray for better highli
 
                         <!--Text element-->
                         <TextBlock Margin="3,1,0,0">
-       <ContentPresenter />
+                            <ContentPresenter />
                         </TextBlock>
                     </BulletDecorator>
 
@@ -1140,7 +1182,7 @@ and change the color of the selected bullet into a darker gray for better highli
 
                             <!--If item is checked, trigger the visibility of the mark
 and change the color of the selected bullet into a darker gray for better highlighting-->
-                            <Setter TargetName="TickMark" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="TickMark" Property="Visibility" Value="Visible" />
                             <Setter TargetName="RadioOuter" Property="BorderBrush" Value="Black" />
 
                         </Trigger>
@@ -1151,30 +1193,34 @@ and change the color of the selected bullet into a darker gray for better highli
         </Setter>
     </Style>
     <Style TargetType="{x:Type CheckBox}">
-        <Setter Property="TextBlock.FontWeight" Value="Bold"></Setter>
+        <Setter Property="TextBlock.FontWeight" Value="Bold" />
     </Style>
-       <Style x:Key="ImageCheckBoxStyle" TargetType="{x:Type CheckBox}">
-        <Setter Property="SnapsToDevicePixels" Value="true"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
+    <Style x:Key="ImageCheckBoxStyle" TargetType="{x:Type CheckBox}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
                     <Border>
                         <WrapPanel>
-                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" VerticalAlignment="Bottom" Margin="{TemplateBinding Padding}"  />
-                            <Image Source="/data/images/tickgrey.png" Width="20" RenderOptions.BitmapScalingMode="HighQuality" Name="tick" VerticalAlignment="Bottom"></Image>
+                            <ContentPresenter Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              VerticalAlignment="Bottom" Margin="{TemplateBinding Padding}" />
+                            <Image Source="/data/images/tickgrey.png" Width="20" Margin="10 0 0 0"
+                                   RenderOptions.BitmapScalingMode="HighQuality" Name="tick" VerticalAlignment="Bottom" />
                         </WrapPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="tick" Property="Source" Value="/data/images/tick.png"></Setter>
+                            <Setter TargetName="tick" Property="Source" Value="/data/images/tick.png" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Cursor" Value="Hand"></Setter>                            
+                            <Setter Property="Cursor" Value="Hand" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1182,35 +1228,37 @@ and change the color of the selected bullet into a darker gray for better highli
         </Setter>
     </Style>
     <Style x:Key="CalendarPickerStyle" TargetType="{x:Type Calendar}">
-        <Setter Property="Background" Value="{StaticResource HeaderBackgroundBrush}"></Setter>
+        <Setter Property="Background" Value="{StaticResource HeaderBackgroundBrush}" />
     </Style>
     <Style TargetType="{x:Type DatePickerTextBox}">
-         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="IsReadOnly" Value="True"></Setter>
+        <Setter Property="Focusable" Value="False"></Setter>
     </Style>
     <!--FilterableListView-->
     <Style TargetType="c:FilterableListView">
-            <Style.Resources>
-                <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle}"></Style>
-            </Style.Resources>
-            <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
-            <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling"/>
-            <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
+        <Style.Resources>
+            <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle}" />
+        </Style.Resources>
+        <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
+        <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling" />
+        <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False" />
 
-            <Setter Property="ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel/>
-                        <!--<WrapPanel IsItemsHost="True"/>-->
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
-       </Style>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                    <!--<WrapPanel IsItemsHost="True"/>-->
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <LinearGradientBrush x:Key="HeadingBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Color="#828487" Offset="0"/>
-        <GradientStop Color="#7E8083" Offset="0.5"/>
-        <GradientStop Color="#555A5E" Offset="0.9"/>
-        <GradientStop Color="#FFFFFF" Offset="1"/>
+        <GradientStop Color="#828487" Offset="0" />
+        <GradientStop Color="#7E8083" Offset="0.5" />
+        <GradientStop Color="#555A5E" Offset="0.9" />
+        <GradientStop Color="#FFFFFF" Offset="1" />
     </LinearGradientBrush>
 
     <!-- Create stylised filter buttons -->
@@ -1221,29 +1269,31 @@ and change the color of the selected bullet into a darker gray for better highli
                 <ControlTemplate TargetType="Button">
                     <Grid Width="18" Height="18">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
                         <Ellipse Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="2.5">
                             <Ellipse.Fill>
-                                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.0" RadiusX="0.7" RadiusY="0.5" >
+                                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.0" RadiusX="0.7"
+                                                     RadiusY="0.5">
                                     <RadialGradientBrush.GradientStops>
-                                        <GradientStop Color="DarkGray" Offset="0"/>
-                                        <GradientStop Color="Gray" Offset="1"/>
+                                        <GradientStop Color="DarkGray" Offset="0" />
+                                        <GradientStop Color="Gray" Offset="1" />
                                     </RadialGradientBrush.GradientStops>
                                 </RadialGradientBrush>
                             </Ellipse.Fill>
                         </Ellipse>
                         <Ellipse Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="2.5">
                             <Ellipse.Fill>
-                                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,1.0" RadiusX="0.7" RadiusY="0.5" >
+                                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,1.0" RadiusX="0.7"
+                                                     RadiusY="0.5">
                                     <RadialGradientBrush.GradientStops>
-                                        <GradientStop Color="DarkGray" Offset="0"/>
-                                        <GradientStop Color="Transparent" Offset="1"/>
+                                        <GradientStop Color="DarkGray" Offset="0" />
+                                        <GradientStop Color="Transparent" Offset="1" />
                                     </RadialGradientBrush.GradientStops>
                                 </RadialGradientBrush>
                             </Ellipse.Fill>
@@ -1251,16 +1301,16 @@ and change the color of the selected bullet into a darker gray for better highli
                         <Ellipse Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="1.5">
                             <Ellipse.Stroke>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="Black" Offset="0"/>
-                                    <GradientStop Color="LightGray" Offset="1"/>
+                                    <GradientStop Color="Black" Offset="0" />
+                                    <GradientStop Color="LightGray" Offset="1" />
                                 </LinearGradientBrush>
                             </Ellipse.Stroke>
                         </Ellipse>
-                        <Path  Grid.RowSpan="1" Grid.ColumnSpan="1"
+                        <Path Grid.RowSpan="1" Grid.ColumnSpan="1"
                               Fill="Black"
                               HorizontalAlignment="Center"
                               VerticalAlignment="Center"
-                              Data="M 0 1 L 4 5 L 8 1 Z"/>
+                              Data="M 0 1 L 4 5 L 8 1 Z" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -1273,29 +1323,31 @@ and change the color of the selected bullet into a darker gray for better highli
                 <ControlTemplate TargetType="Button">
                     <Grid Width="18" Height="18">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
                         <Ellipse Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="2.5">
                             <Ellipse.Fill>
-                                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.0" RadiusX="0.7" RadiusY="0.5" >
+                                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.0" RadiusX="0.7"
+                                                     RadiusY="0.5">
                                     <RadialGradientBrush.GradientStops>
-                                        <GradientStop Color="White" Offset="0"/>
-                                        <GradientStop Color="LightGray" Offset="1"/>
+                                        <GradientStop Color="White" Offset="0" />
+                                        <GradientStop Color="LightGray" Offset="1" />
                                     </RadialGradientBrush.GradientStops>
                                 </RadialGradientBrush>
                             </Ellipse.Fill>
                         </Ellipse>
                         <Ellipse Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="2.5">
                             <Ellipse.Fill>
-                                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,1.0" RadiusX="0.7" RadiusY="0.5" >
+                                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,1.0" RadiusX="0.7"
+                                                     RadiusY="0.5">
                                     <RadialGradientBrush.GradientStops>
-                                        <GradientStop Color="White" Offset="0"/>
-                                        <GradientStop Color="Transparent" Offset="1"/>
+                                        <GradientStop Color="White" Offset="0" />
+                                        <GradientStop Color="Transparent" Offset="1" />
                                     </RadialGradientBrush.GradientStops>
                                 </RadialGradientBrush>
                             </Ellipse.Fill>
@@ -1303,16 +1355,16 @@ and change the color of the selected bullet into a darker gray for better highli
                         <Ellipse Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="1.5">
                             <Ellipse.Stroke>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="Black" Offset="0"/>
-                                    <GradientStop Color="LightGray" Offset="1"/>
+                                    <GradientStop Color="Black" Offset="0" />
+                                    <GradientStop Color="LightGray" Offset="1" />
                                 </LinearGradientBrush>
                             </Ellipse.Stroke>
                         </Ellipse>
-                        <Path  Grid.RowSpan="1" Grid.ColumnSpan="1"
+                        <Path Grid.RowSpan="1" Grid.ColumnSpan="1"
                               Fill="Black"
                               HorizontalAlignment="Center"
                               VerticalAlignment="Center"
-                              Data="M 0 0 L 4 4 L 8 0 Z"/>
+                              Data="M 0 0 L 4 4 L 8 0 Z" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -1320,37 +1372,37 @@ and change the color of the selected bullet into a darker gray for better highli
     </Style>
 
     <Style x:Key="ColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="FontWeight" Value="Bold"></Setter>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GridViewColumnHeader">
                     <Grid>
                         <Border Name="HeaderBorder"
-                                    BorderThickness="0"
-                                    BorderBrush="{DynamicResource HeaderBackgroundBrush}"
-                                    Background="#FF043C64"
-                                    Padding="2,0,2,0">
+                                BorderThickness="0"
+                                BorderBrush="{DynamicResource HeaderBackgroundBrush}"
+                                Background="#FF043C64"
+                                Padding="2,0,2,0">
                             <ContentPresenter Name="HeaderContent"
-                                   
-                                       Margin="0,0,0,1"
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      RecognizesAccessKey="True"
-                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+
+                                              Margin="0,0,0,1"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Border>
                         <Thumb x:Name="PART_HeaderGripper"
-                                    HorizontalAlignment="Right"
-                                    Margin="0,0,-9,0"
-                                   Visibility="Hidden"
-                                    Style="{StaticResource GridViewColumnHeaderGripper}"/>
+                               HorizontalAlignment="Right"
+                               Margin="0,0,-9,0"
+                               Visibility="Hidden"
+                               Style="{StaticResource GridViewColumnHeaderGripper}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="HeaderContent" Property="Cursor" Value="Hand"/>
+                            <Setter TargetName="HeaderContent" Property="Cursor" Value="Hand" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1361,32 +1413,35 @@ and change the color of the selected bullet into a darker gray for better highli
     </Style>
 
     <!-- style the conatiner which renders each individual cell within the sortable grid -->
-    <Style TargetType="{x:Type ListViewItem}" x:Key="ListViewItemStyle" >
+    <Style TargetType="{x:Type ListViewItem}" x:Key="ListViewItemStyle">
         <Setter Property="Background">
             <Setter.Value>
-                <SolidColorBrush Color="Black" Opacity="0.45"></SolidColorBrush>
+                <SolidColorBrush Color="Black" Opacity="0.45" />
             </Setter.Value>
         </Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="Padding" Value="1,0,0,0"/>
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Padding" Value="1,0,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
 
-                    <Border Background="{TemplateBinding Background}" x:Name="Bd" SnapsToDevicePixels="True" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                    <Border Background="{TemplateBinding Background}" x:Name="Bd" SnapsToDevicePixels="True"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
 
-                        <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    <Style  x:Key="ListItemRolloverHighlight" TargetType="{x:Type ListViewItem}">
+    <Style x:Key="ListItemRolloverHighlight" TargetType="{x:Type ListViewItem}">
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Background" Value="LightGray" />
@@ -1396,42 +1451,42 @@ and change the color of the selected bullet into a darker gray for better highli
 
     <!-- Create a stylised filter button -->
     <DataTemplate x:Key="filterButtonInactiveTemplate">
-        <Path Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+        <Path Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z" />
     </DataTemplate>
 
     <!-- Create a stylised filter button -->
     <DataTemplate x:Key="filterButtonActiveTemplate">
-        <Path Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+        <Path Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z" />
     </DataTemplate>
 
     <Style x:Key="HeaderTemplateArrowUp" TargetType="{x:Type Label}">
-        <Setter Property="Margin" Value="5,0"/>
+        <Setter Property="Margin" Value="5,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Label">
-                    <Path x:Name="arrow" StrokeThickness = "1" Fill = "White" Data = "M 5,10 L 15,10 L 10,5 L 5,10"/>
+                    <Path x:Name="arrow" StrokeThickness="1" Fill="White" Data="M 5,10 L 15,10 L 10,5 L 5,10" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="HeaderTemplateArrowDown" TargetType="{x:Type Label}">
-        <Setter Property="Margin" Value="5,0"/>
+        <Setter Property="Margin" Value="5,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Label">
-                    <Path x:Name="arrow" StrokeThickness = "1" Fill = "White" Data = "M 5,5 L 10,10 L 15,5 L 5,5"/>
+                    <Path x:Name="arrow" StrokeThickness="1" Fill="White" Data="M 5,5 L 10,10 L 15,5 L 5,5" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="HeaderTemplateTransparent" TargetType="{x:Type Label}">
-        <Setter Property="Margin" Value="5,0"/>
+        <Setter Property="Margin" Value="5,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Label">
-                    <Path x:Name="arrow" StrokeThickness = "1" Fill = "Transparent" Data = "M 5,10 L 15,10 L 10,5 L 5,10"/>
+                    <Path x:Name="arrow" StrokeThickness="1" Fill="Transparent" Data="M 5,10 L 15,10 L 10,5 L 5,10" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1439,10 +1494,15 @@ and change the color of the selected bullet into a darker gray for better highli
     <DataTemplate x:Key="RegularFilteredPopUp">
         <StackPanel>
             <StackPanel.Background>
-                <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                <SolidColorBrush Color="Black" Opacity="0.6" />
             </StackPanel.Background>
-            <ListView x:Name="filterList" ItemsSource="{Binding}"                               
-                               BorderThickness="1" Background="Transparent">
+            <ListView x:Name="filterList" ItemsSource="{Binding}"
+                      BorderThickness="1" Background="Transparent">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel MaxHeight="400" Orientation="Vertical"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <ListView.View>
                     <GridView>
                         <!-- hide the column header -->
@@ -1456,9 +1516,10 @@ and change the color of the selected bullet into a darker gray for better highli
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}" VerticalAlignment="Bottom"></CheckBox>
-                                        <TextBlock Text="{Binding ItemView}" VerticalAlignment="Bottom" Margin="5 0 0 0">
-                                        </TextBlock>
+                                        <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}"
+                                                  VerticalAlignment="Bottom" />
+                                        <TextBlock Text="{Binding ItemView,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"
+                                                   Margin="5 0 0 0" />
                                     </WrapPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -1467,19 +1528,29 @@ and change the color of the selected bullet into a darker gray for better highli
                 </ListView.View>
             </ListView>
             <WrapPanel HorizontalAlignment="Right" Margin="0 5 0 0">
-                <Button Content="Apply" Tag="{Binding ElementName=filterList}" x:Name="btnOk" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
-                <Button Content="Cancel" VerticalAlignment="Bottom" Margin="5 0 0 0" Tag="{Binding ElementName=filterList}" Name="btnCancel"  Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
+                <Button Content="Apply" Tag="{Binding ElementName=filterList}" x:Name="btnOk"
+                        VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Width="NaN"
+                        Height="NaN" />
+                <Button Content="Cancel" VerticalAlignment="Bottom" Margin="5 0 0 0"
+                        Tag="{Binding ElementName=filterList}" Name="btnCancel"
+                        Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN" />
             </WrapPanel>
         </StackPanel>
     </DataTemplate>
     <DataTemplate x:Key="FixedFilteredPopUp">
         <StackPanel>
             <StackPanel.Background>
-                <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                <SolidColorBrush Color="Black" Opacity="0.6" />
             </StackPanel.Background>
-            <ListView x:Name="filterList" ItemsSource="{Binding}"                               
-                               BorderThickness="1" Background="Transparent">
+            <ListView x:Name="filterList" ItemsSource="{Binding}"
+                      BorderThickness="1" Background="Transparent">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel MaxHeight="400" Orientation="Vertical"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <ListView.View>
+                    
                     <GridView>
                         <!-- hide the column header -->
                         <GridView.ColumnHeaderContainerStyle>
@@ -1492,9 +1563,10 @@ and change the color of the selected bullet into a darker gray for better highli
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <RadioButton IsChecked="{Binding IsChecked,Mode=TwoWay}" VerticalAlignment="Center" GroupName="Item"></RadioButton>
-                                        <TextBlock Text="{Binding ItemView}" VerticalAlignment="Bottom" Margin="5 0 0 0">
-                                        </TextBlock>
+                                        <RadioButton IsChecked="{Binding IsChecked,Mode=TwoWay}"
+                                                     VerticalAlignment="Center" GroupName="Item" />
+                                        <TextBlock Text="{Binding ItemView,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"
+                                                   Margin="5 0 0 0" />
                                     </WrapPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -1503,24 +1575,28 @@ and change the color of the selected bullet into a darker gray for better highli
                 </ListView.View>
             </ListView>
             <WrapPanel HorizontalAlignment="Right" Margin="0 5 0 0">
-                <Button Content="Apply" Tag="{Binding ElementName=filterList}" x:Name="btnOk" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
-                <Button Content="Cancel" VerticalAlignment="Bottom" Margin="5 0 0 0" Tag="{Binding ElementName=filterList}" Name="btnCancel"  Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
+                <Button Content="Apply" Tag="{Binding ElementName=filterList}" x:Name="btnOk"
+                        VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Width="NaN"
+                        Height="NaN" />
+                <Button Content="Cancel" VerticalAlignment="Bottom" Margin="5 0 0 0"
+                        Tag="{Binding ElementName=filterList}" Name="btnCancel"
+                        Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN" />
             </WrapPanel>
         </StackPanel>
     </DataTemplate>
-    <DataTemplate x:Key="FilterGridHeaderTemplate" >
+    <DataTemplate x:Key="FilterGridHeaderTemplate">
         <StackPanel Orientation="Horizontal">
             <!-- render the header text -->
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding}"/>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding}" />
             <!-- add a lael which is used to display the sort indicator -->
-            <Label Name="sortIndicator" VerticalAlignment="Center" Style="{StaticResource HeaderTemplateTransparent}"/>
+            <Label Name="sortIndicator" VerticalAlignment="Center" Style="{StaticResource HeaderTemplateTransparent}" />
             <!-- Add a filter button and popup  -->
-            <Button  ContentTemplate="{StaticResource filterButtonInactiveTemplate}" Name="filterButton"           
-                    Command="{x:Static c:FilterableListView.ShowFilter}">
-
-            </Button>
-            <Popup StaysOpen="false" Name="filterPopup" Placement="Bottom" PlacementTarget="{Binding ElementName=filterButton}" AllowsTransparency="True">
-                <ContentControl Name="ccPopUp" Content="{Binding}" ContentTemplate="{StaticResource RegularFilteredPopUp}"></ContentControl>
+            <Button ContentTemplate="{StaticResource filterButtonInactiveTemplate}" Name="filterButton"
+                    Command="{x:Static c:FilterableListView.ShowFilter}" />
+            <Popup StaysOpen="false" Name="filterPopup" Placement="Bottom"
+                   PlacementTarget="{Binding ElementName=filterButton}" AllowsTransparency="True">
+                <ContentControl Name="ccPopUp" Content="{Binding}"
+                                ContentTemplate="{StaticResource RegularFilteredPopUp}" />
                 <!--
                 <StackPanel>
                     <StackPanel.Background>
@@ -1560,10 +1636,48 @@ and change the color of the selected bullet into a darker gray for better highli
         </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="SortableGridHeaderTemplate" >
+    <DataTemplate x:Key="SortableGridHeaderTemplate">
         <StackPanel Orientation="Horizontal">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding}"/>
-            <Label Name="sortIndicator" VerticalAlignment="Center" Style="{StaticResource HeaderTemplateTransparent}"/>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding}" />
+            <Label Name="sortIndicator" VerticalAlignment="Center" Style="{StaticResource HeaderTemplateTransparent}" />
         </StackPanel>
     </DataTemplate>
+
+    <!--charts-->
+    <Style x:Key="MinimalChartStyle" TargetType="metroChart:ChartBase">
+        
+        <Setter Property="Height" Value="300"/>
+        <Setter Property="Width" Value="300"></Setter>
+        <Setter Property="Background" Value="Transparent" />
+        
+        
+    </Style>
+    <Style TargetType="metroChart:ChartTitle" x:Key="ChartTitleStyle">
+        <Setter Property="FontSize" Value="16"></Setter>
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="metroChart:ChartTitle">
+                    <StackPanel Margin="0 0 0 5">
+                        <TextBlock Text="{TemplateBinding Property=Title}"></TextBlock>
+                     </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <metroChart:ResourceDictionaryCollection x:Key="CustomColors">
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="Brush1" Color="#FF5B9BD5" />
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="Brush2" Color="#FFED7D31" />
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="Brush3" Color="#FFA5A5A5" />
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="Brush4" Color="#FFFFC000" />
+        </ResourceDictionary>
+        <!-- add more values with a different key -->
+    </metroChart:ResourceDictionaryCollection>
 </ResourceDictionary>

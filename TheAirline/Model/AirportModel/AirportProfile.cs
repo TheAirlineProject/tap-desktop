@@ -1,68 +1,42 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Device.Location;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.CountryModel.TownModel;
-using TheAirline.Model.GeneralModel.Helpers;
-using TheAirline.Model.GeneralModel.WeatherModel;
-using System.Reflection;
-
-namespace TheAirline.Model.AirportModel
+﻿namespace TheAirline.Model.AirportModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+
+    using TheAirline.Model.GeneralModel;
+    using TheAirline.Model.GeneralModel.CountryModel.TownModel;
+    using TheAirline.Model.GeneralModel.Helpers;
+    using TheAirline.Model.GeneralModel.WeatherModel;
+
     [Serializable]
     //the class for a profile for an airport
     public class AirportProfile : ISerializable
     {
-        public enum AirportType { Long_Haul_International, Regional, Domestic, Short_Haul_International }
-        [Versioning("type")]
-        public AirportType Type { get; set; }
-        //public enum AirportSize { Smallest, Very_small, Small, Medium, Large, Very_large, Largest }
-        public GeneralHelpers.Size Size { get { return getCurrentSize(); } private set { ;} }
-        [Versioning("cargo")]
-        public GeneralHelpers.Size Cargo { get; set; }
-        [Versioning("season")]
-        public Weather.Season Season { get; set; }
-        [Versioning("name")]
-        public string Name { get; set; }
-        [Versioning("iata")]
-        public string IATACode { get; set; }
-        [Versioning("icao")]
-        public string ICAOCode { get; set; }
-        [Versioning("town")]
-        public Town Town { get; set; }
-        
-        public Country Country { get { return this.Town.Country; } private set { ;} }
-        [Versioning("coordinates")]
-        public Coordinates Coordinates { get; set; }
-        [Versioning("logo")]
-        public string Logo { get; set; }
-        // chs, 2012-23-01 added for airport maps
-        [Versioning("map")]
-        public string Map { get; set; }
-        [Versioning("gmt")]
-        public TimeSpan OffsetGMT { get; set; }
-        [Versioning("dst")]
-        public TimeSpan OffsetDST { get; set; }
-        public GameTimeZone TimeZone { get { return getTimeZone(); } set { ;} }
-        [Versioning("period")]
-        public Period<DateTime> Period { get; set; }
-        [Versioning("id")]
-        public string ID { get; set; }
-        public double Pax { get { return getCurrentPaxValue(); } private set { ;} }
-        [Versioning("paxvalues")]
-        public List<PaxValue> PaxValues { get; set; }
-        [Versioning("cargovolume")]
-        public double CargoVolume { get; set; }
-        [Versioning("majordestinations")]
-        public Dictionary<string, int> MajorDestionations { get; set; }
-        public AirportProfile(string name, string code, string icaocode, AirportType type, Period<DateTime> period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size cargo, double cargovolume, Weather.Season season)
+        private string logo;
+
+        #region Constructors and Destructors
+
+        public AirportProfile(
+            string name,
+            string code,
+            string icaocode,
+            AirportType type,
+            Period<DateTime> period,
+            Town town,
+            TimeSpan offsetGMT,
+            TimeSpan offsetDST,
+            Coordinates coordinates,
+            GeneralHelpers.Size cargo,
+            double cargovolume,
+            Weather.Season season)
         {
             this.PaxValues = new List<PaxValue>();
 
+            this.Expansions = new List<AirportExpansion>();
             this.Name = name;
             this.Period = period;
             this.IATACode = code;
@@ -77,36 +51,249 @@ namespace TheAirline.Model.AirportModel
             this.OffsetDST = offsetDST;
             this.OffsetGMT = offsetGMT;
             this.Season = season;
-            this.ID = string.Format("{0:00}-{1:00}-{2:00}-{3:00}-{4:00}-{5:00}", char.ConvertToUtf32(this.IATACode, 0), char.ConvertToUtf32(this.IATACode, 1), char.ConvertToUtf32(this.IATACode, 2), name.Length, char.ConvertToUtf32(this.Name, this.Name.Length / 2), (int)this.Cargo);
-
-
+            this.ID = string.Format(
+                "{0:00}-{1:00}-{2:00}-{3:00}-{4:00}-{5:00}",
+                char.ConvertToUtf32(this.IATACode, 0),
+                char.ConvertToUtf32(this.IATACode, 1),
+                char.ConvertToUtf32(this.IATACode, 2),
+                name.Length,
+                char.ConvertToUtf32(this.Name, this.Name.Length / 2),
+                (int)this.Cargo);
         }
-        //returns the time zone for the airport
-        private GameTimeZone getTimeZone()
+
+        private AirportProfile(SerializationInfo info, StreamingContext ctxt)
         {
-            GameTimeZone zone = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == this.OffsetDST; });
+            int version = info.GetInt16("version");
 
-            return zone;
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties()
+                        .Where(
+                            p =>
+                                p.GetCustomAttribute(typeof(Versioning)) != null
+                                && ((Versioning)p.GetCustomAttribute(typeof(Versioning))).AutoGenerated));
+
+            foreach (SerializationEntry entry in info)
+            {
+                PropertyInfo prop =
+                    props.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+
+                if (prop != null)
+                {
+                    prop.SetValue(this, entry.Value);
+                }
+            }
+
+            IEnumerable<PropertyInfo> notSetProps =
+                props.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+
+            foreach (PropertyInfo prop in notSetProps)
+            {
+                var ver = (Versioning)prop.GetCustomAttribute(typeof(Versioning));
+
+                if (ver.AutoGenerated)
+                {
+                    prop.SetValue(this, ver.DefaultValue);
+                }
+            }
+
+            if (version == 1)
+                this.Expansions = new List<AirportExpansion>();
         }
+
+        #endregion
+
+        #region Enums
+
+        public enum AirportType
+        {
+            Long_Haul_International,
+
+            Regional,
+
+            Domestic,
+
+            Short_Haul_International
+        }
+
+        #endregion
+
+        #region Public Properties
+        [Versioning("expansions")]
+        public List<AirportExpansion> Expansions { get; set; }
+
+        [Versioning("cargo")]
+        public GeneralHelpers.Size Cargo { get; set; }
+
+        [Versioning("cargovolume")]
+        public double CargoVolume { get; set; }
+
+        [Versioning("coordinates")]
+        public Coordinates Coordinates { get; set; }
+
+        public Country Country
+        {
+            get
+            {
+                return this.Town.Country;
+            }
+            private set
+            {
+                ;
+            }
+        }
+
+        [Versioning("iata")]
+        public string IATACode { get; set; }
+
+        [Versioning("icao")]
+        public string ICAOCode { get; set; }
+
+        [Versioning("id")]
+        public string ID { get; set; }
+
+        [Versioning("logo")]
+        public string Logo
+        {
+            get
+            {
+                if (!File.Exists(this.logo))
+                {
+                    Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + this.IATACode + ".png";
+                }
+                return this.logo;
+            }
+            set
+            {
+                this.logo = value;
+            }
+        }
+
+        [Versioning("majordestinations")]
+        public Dictionary<string, int> MajorDestionations { get; set; }
+
+        // chs, 2012-23-01 added for airport maps
+        [Versioning("map")]
+        public string Map { get; set; }
+
+        [Versioning("name")]
+        public string Name { get; set; }
+
+        [Versioning("dst")]
+        public TimeSpan OffsetDST { get; set; }
+
+        [Versioning("gmt")]
+        public TimeSpan OffsetGMT { get; set; }
+
+        public double Pax
+        {
+            get
+            {
+                return this.getCurrentPaxValue();
+            }
+            private set
+            {
+                ;
+            }
+        }
+
+        [Versioning("paxvalues")]
+        public List<PaxValue> PaxValues { get; set; }
+
+        [Versioning("period")]
+        public Period<DateTime> Period { get; set; }
+
+        [Versioning("season")]
+        public Weather.Season Season { get; set; }
+
+        public GeneralHelpers.Size Size
+        {
+            get
+            {
+                return this.getCurrentSize();
+            }
+            private set
+            {
+                ;
+            }
+        }
+
+        public GameTimeZone TimeZone
+        {
+            get
+            {
+                return this.getTimeZone();
+            }
+            set
+            {
+                ;
+            }
+        }
+
+        [Versioning("town")]
+        public Town Town { get; set; }
+
+        [Versioning("type")]
+        public AirportType Type { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("version", 2);
+
+            Type myType = this.GetType();
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties().Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+
+            foreach (PropertyInfo prop in props)
+            {
+                object propValue = prop.GetValue(this, null);
+
+                var att = (Versioning)prop.GetCustomAttribute(typeof(Versioning));
+
+                if (prop.PropertyType.IsSerializable)
+                {
+                    info.AddValue(att.Name, propValue);
+                }
+                else
+                {
+                    Console.WriteLine(prop.Name + " is not serialized");
+                }
+            }
+        }
+
         //sets the pax value
         public void setPaxValue(double pax)
         {
-
             PaxValue paxValue = this.PaxValues[0];
 
             this.PaxValues = new List<PaxValue>();
 
-            PaxValue tPaxValue = new PaxValue(this.Period.From.Year, this.Period.To.Year, paxValue.Size, pax);
+            var tPaxValue = new PaxValue(this.Period.From.Year, this.Period.To.Year, paxValue.Size, pax);
 
             this.PaxValues.Add(tPaxValue);
         }
+        //adds an expansion to the airport
+        public void addExpansion(AirportExpansion expansion)
+        {
+            this.Expansions.Add(expansion);
+        }
+        #endregion
+
         //returns the current pax value
+
+        #region Methods
+
         private double getCurrentPaxValue()
         {
-
             int currentYear = GameObject.GetInstance().GameTime.Year;
 
-            PaxValue currentPaxValue = getCurrentPaxValueObject();
+            PaxValue currentPaxValue = this.getCurrentPaxValueObject();
 
             double pax = currentPaxValue.Pax;
 
@@ -124,95 +311,45 @@ namespace TheAirline.Model.AirportModel
                 pax = pax * Math.Pow((1 - (currentPaxValue.InflationBeforeYear / 100)), yearDiff);
             }
 
-
+           
 
             return pax;
         }
-        //return the current size (pax) of the airport
-        private GeneralHelpers.Size getCurrentSize()
-        {
 
-            return AirportHelpers.ConvertAirportPaxToSize(getCurrentPaxValue());
-        }
+        //return the current size (pax) of the airport
+
         //returns the current pax value object
         private PaxValue getCurrentPaxValueObject()
         {
-
             int currentYear = GameObject.GetInstance().GameTime.Year;
 
             PaxValue currentPaxValue = this.PaxValues.Find(p => p.FromYear <= currentYear && p.ToYear >= currentYear);
 
             return currentPaxValue == null ? this.PaxValues[0] : currentPaxValue;
         }
-           private AirportProfile(SerializationInfo info, StreamingContext ctxt)
+
+        private GeneralHelpers.Size getCurrentSize()
         {
-            int version = info.GetInt16("version");
-
-            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties().Where(p => p.GetCustomAttribute(typeof(Versioning)) != null && ((Versioning)p.GetCustomAttribute(typeof(Versioning))).AutoGenerated));
-
-            foreach (SerializationEntry entry in info)
-            {
-                PropertyInfo prop = props.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
-
-
-                if (prop != null)
-                    prop.SetValue(this, entry.Value);
-            }
-
-            var notSetProps = props.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
-
-            foreach (PropertyInfo prop in notSetProps)
-            {
-                Versioning ver = (Versioning)prop.GetCustomAttribute(typeof(Versioning));
-
-                if (ver.AutoGenerated)
-                    prop.SetValue(this, ver.DefaultValue);
-
-            }
-
-
-
-
+            return AirportHelpers.ConvertAirportPaxToSize(this.getCurrentPaxValue());
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        private GameTimeZone getTimeZone()
         {
-            info.AddValue("version", 1);
+            GameTimeZone zone =
+                TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == this.OffsetDST; });
 
-            Type myType = this.GetType();
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties().Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
-
-            foreach (PropertyInfo prop in props)
-            {
-                object propValue = prop.GetValue(this, null);
-
-                Versioning att = (Versioning)prop.GetCustomAttribute(typeof(Versioning));
-
-                if (prop.PropertyType.IsSerializable)
-                    info.AddValue(att.Name, propValue);
-                else
-                    Console.WriteLine(prop.Name + " is not serialized");
-            }
-
+            return zone;
         }
 
+        #endregion
     }
+
     [Serializable]
     //the class for a pax value
     public class PaxValue : ISerializable
     {
-        [Versioning("pax")]
-        public double Pax { get; set; }
-        [Versioning("from")]
-        public int FromYear { get; set; }
-        [Versioning("to")]
-        public int ToYear { get; set; }
-        [Versioning("inflationbefore")]
-        public double InflationBeforeYear { get; set; }
-        [Versioning("inflationafter")]
-        public double InflationAfterYear { get; set; }
-        [Versioning("size")]
-        public GeneralHelpers.Size Size { get; set; }
+        #region Constructors and Destructors
+
         public PaxValue(int fromYear, int toYear, GeneralHelpers.Size size, double pax)
         {
             this.Pax = pax;
@@ -220,78 +357,126 @@ namespace TheAirline.Model.AirportModel
             this.ToYear = toYear;
             this.Size = size;
         }
-           private PaxValue(SerializationInfo info, StreamingContext ctxt)
+
+        private PaxValue(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
-            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                this.GetType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (SerializationEntry entry in info)
             {
-                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
-
+                MemberInfo prop =
+                    propsAndFields.FirstOrDefault(
+                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
+                    {
                         ((FieldInfo)prop).SetValue(this, entry.Value);
+                    }
                     else
+                    {
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
                 }
             }
 
-            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+            IEnumerable<MemberInfo> notSetProps =
+                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
+                    {
                         ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
                     else
+                    {
                         ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
-
+                    }
                 }
-
             }
-
-
-
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        #endregion
+
+        #region Public Properties
+
+        [Versioning("from")]
+        public int FromYear { get; set; }
+
+        [Versioning("inflationafter")]
+        public double InflationAfterYear { get; set; }
+
+        [Versioning("inflationbefore")]
+        public double InflationBeforeYear { get; set; }
+
+        [Versioning("pax")]
+        public double Pax { get; set; }
+
+        [Versioning("size")]
+        public GeneralHelpers.Size Size { get; set; }
+
+        [Versioning("to")]
+        public int ToYear { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
             Type myType = this.GetType();
 
-            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
 
                 if (member is FieldInfo)
+                {
                     propValue = ((FieldInfo)member).GetValue(this);
+                }
                 else
+                {
                     propValue = ((PropertyInfo)member).GetValue(this, null);
+                }
 
-                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
-
-
         }
+
+        #endregion
     }
 }

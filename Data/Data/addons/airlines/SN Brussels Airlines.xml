@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="SN Brussels Airlines" iata="SN" logo="SN3" color="DarkBlue" country="107" CEO="Neil Burrows" mentality="Aggressive" market="Global" preferedairport="BRU">
+    <narrative narrative=" SN Brussels Airlines was the flag carrier of Belgium from 2002 to 2006 after the previous flag carrier Sabena went out of business. In 2006 they would merge with Virgin Express to form Brussels Airlines. They served 90 destinations in Europe and Africa and 1 in Asia. And had 38 planes. Pretty much all the planes would be transferred to the new airline." /></profile>
+  <info real="True" from="2002" to="2006" />
+</airline>

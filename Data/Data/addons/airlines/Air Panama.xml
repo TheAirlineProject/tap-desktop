@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air Panama" iata="7P" logo="7P" color="Red" country="191" CEO="George Novey" mentality="Moderate" market="Global" preferedairport="PAC">
+    <narrative narrative="Air Panama is the second largest airline of Panama and operates out of Panama City's second smaller airport of Albrook &quot;Marcos A. Gelabert&quot; Airport, and is the only airline operating their. They serve 20 domestic destinations and 1 in Costa Rica and one soon starting in Columbia. They have 21 planes, including 2 F-27's used as freighters. " />
+  </profile>
+  <info real="True" from="1980" to="2199"></info>
+</airline>

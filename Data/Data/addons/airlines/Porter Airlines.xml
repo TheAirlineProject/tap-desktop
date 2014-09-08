@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Porter Airlines" iata="PD" logo="PD2" color="Black" country="113" CEO="Robert Deluce" mentality="Aggressive" market="Regional" preferedairport="YTZ">
+    <narrative narrative="Porter Airlines was founded in 2006 and are a regional airline based at Toronto's Billy Bishop Airport, located on one of the Toronto Island's in the Toronto Harbour of Lake Ontario. Their fleet as of 2014 consists of 26 Dash 8 Q400's. But they also have 12 Bombardier CS100's with an option for 18 more on order. Their 20 destinations include 14 Canadian cities and 6 in the U.S. Four of their destinations are currently only seasonal." />
+  </profile>
+  <info real="True" from="2006" to="2199" />
+</airline>

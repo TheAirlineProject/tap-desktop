@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Anchorage, AK">
+  <months>
+    <month month="1" precipitation="19">
+      <temp min="-12" max="-5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="19">
+      <temp min="-10" max="-3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="15">
+      <temp min="-7" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="12">
+      <temp min="-2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="19">
+      <temp min="4" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="24">
+      <temp min="8" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="47">
+      <temp min="11" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="82">
+      <temp min="10" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="76">
+      <temp min="5" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="52">
+      <temp min="-2" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="30">
+      <temp min="-9" max="-2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="28">
+      <temp min="-10" max="-4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

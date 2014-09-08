@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-  <profile name="Our Airline" iata="ON" color="Blue" country="291" CEO="Geoff Bowmaker" mentality="Moderate" market="Regional" preferedairport="INU">
-    <narrative narrative="Our Airline (formerly known as Air Nauru) is the national airline of the Republic of Nauru. It operates scheduled international services to other Pacific islands and Australia. Its main base is Nauru International Airport." />
-  </profile>
-  <info real="True" from="1970" to="2199"></info>
-</airline>

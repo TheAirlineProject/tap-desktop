@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Uruapan">
+  <months>
+    <month month="1" precipitation="45">
+      <temp min="9" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="11">
+      <temp min="9" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="6">
+      <temp min="10" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="9">
+      <temp min="12" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="32">
+      <temp min="14" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="271">
+      <temp min="15" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="326">
+      <temp min="14" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="338">
+      <temp min="14" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="299">
+      <temp min="14" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="138">
+      <temp min="13" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="32">
+      <temp min="11" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="14">
+      <temp min="10" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

@@ -1,60 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using TheAirline.GUIModel.HelpersModel;
-
-namespace TheAirline.GUIModel.PagesModel.GamePageModel
+﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
+    using System.Windows;
+    using System.Windows.Controls;
+
+    using TheAirline.GUIModel.HelpersModel;
+
     /// <summary>
-    /// Interaction logic for PageNewGame.xaml
+    ///     Interaction logic for PageNewGame.xaml
     /// </summary>
     public partial class PageNewGame : Page
     {
+        #region Constructors and Destructors
+
         public PageNewGame()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            this.Loaded += PageNewGame_Loaded;
+            this.Loaded += this.PageNewGame_Loaded;
         }
+
+        #endregion
+
+        #region Methods
 
         private void PageNewGame_Loaded(object sender, RoutedEventArgs e)
         {
-            Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
+            var frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
 
-            frmContent.Navigate(new PageStartData() { Tag = this });
+            frmContent.Navigate(new PageStartData { Tag = this });
         }
 
         private void tcMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TabControl control = (TabControl)sender;
+            var control = (TabControl)sender;
 
             string selection = ((TabItem)control.SelectedItem).Tag.ToString();
 
-            Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
-            
+            var frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
+
             if (selection == "New" && frmContent != null)
-                frmContent.Navigate(new PageStartData() { Tag = this });
+            {
+                frmContent.Navigate(new PageStartData { Tag = this });
+            }
 
             if (selection == "Airline" && frmContent != null)
+            {
                 frmContent.Navigate(new PageNewAirline());
+            }
 
             if (selection == "Difficulty" && frmContent != null)
-                frmContent.Navigate(new PageCreateDifficulty() { Tag = this });
+            {
+                frmContent.Navigate(new PageCreateDifficulty { Tag = this });
+            }
 
             if (selection == "Scenario" && frmContent != null)
-                frmContent.Navigate(new PageShowScenario() { Tag = this });
+            {
+                frmContent.Navigate(new PageShowScenario { Tag = this });
+            }
         }
+
+        #endregion
     }
 }

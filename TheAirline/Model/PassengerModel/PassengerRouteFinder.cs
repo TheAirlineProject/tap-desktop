@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TheAirline.Model.AirportModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.Helpers;
-
-namespace TheAirline.Model.PassengerModel
+﻿namespace TheAirline.Model.PassengerModel
 {
+    using System.Collections.Generic;
+
+    using TheAirline.Model.AirlinerModel.RouteModel;
+    using TheAirline.Model.AirportModel;
+    using TheAirline.Model.GeneralModel.Helpers;
+
     //the route finder for the passengers
     public class PassengerRouteFinder
     {
-        public List<Airport> Nodes { get; set; }
-        public List<Airport> Basis { get; set; }
-        public Dictionary<string, double> Dist { get; set; }
-        public Dictionary<string, Airport> Previous { get; set; }
+        #region Constructors and Destructors
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="nodes">All airports</param>
         public PassengerRouteFinder(List<Airport> nodes)
@@ -28,7 +22,7 @@ namespace TheAirline.Model.PassengerModel
             this.Dist = new Dictionary<string, double>();
             this.Previous = new Dictionary<string, Airport>();
 
-            foreach (Airport n in Nodes)
+            foreach (Airport n in this.Nodes)
             {
                 this.Previous.Add(n.Profile.IATACode, null);
                 this.Basis.Add(n);
@@ -36,29 +30,44 @@ namespace TheAirline.Model.PassengerModel
             }
         }
 
+        #endregion
+
+        #region Public Properties
+
+        public List<Airport> Basis { get; set; }
+
+        public Dictionary<string, double> Dist { get; set; }
+
+        public List<Airport> Nodes { get; set; }
+
+        public Dictionary<string, Airport> Previous { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
         /// <summary>
-        /// Calculates the distance from
-        /// the start airport to all other airports
+        ///     Calculates the distance from
+        ///     the start airport to all other airports
         /// </summary>
         /// <param name="start">Startknoten</param>
         public void calculateDistance(Airport start)
         {
             this.Dist[start.Profile.IATACode] = 0;
 
-            while (Basis.Count > 0)
+            while (this.Basis.Count > 0)
             {
-                Airport u = getNodeWithSmallestDistance();
+                Airport u = this.getNodeWithSmallestDistance();
                 if (u == null)
                 {
                     this.Basis.Clear();
                 }
                 else
                 {
-                    foreach (Airport v in getNeighbors(u))
+                    foreach (Airport v in this.getNeighbors(u))
                     {
-                        double alt = Dist[u.Profile.IATACode] +
-                                getDistanceBetween(u, v);
-                        if (alt < Dist[v.Profile.IATACode])
+                        double alt = this.Dist[u.Profile.IATACode] + this.getDistanceBetween(u, v);
+                        if (alt < this.Dist[v.Profile.IATACode])
                         {
                             this.Dist[v.Profile.IATACode] = alt;
                             this.Previous[v.Profile.IATACode] = u;
@@ -70,28 +79,7 @@ namespace TheAirline.Model.PassengerModel
         }
 
         /// <summary>
-        /// Gets the path to an airport
-        /// </summary>
-        /// <param name="d">Destination<n/param>
-        /// <returns></returns>
-        public List<Airport> getPathTo(Airport d)
-        {
-            List<Airport> path = new List<Airport>();
-
-            path.Insert(0, d);
-
-
-            while ((this.Previous.Count != 0) && (this.Previous[d.Profile.IATACode] != null))
-            {
-                d = this.Previous[d.Profile.IATACode];
-                path.Insert(0, d);
-            }
-
-            return path;
-        }
-
-        /// <summary>
-        /// Returns the airport with the smallest distance
+        ///     Returns the airport with the smallest distance
         /// </summary>
         /// <returns></returns>
         public Airport getNodeWithSmallestDistance()
@@ -112,13 +100,54 @@ namespace TheAirline.Model.PassengerModel
         }
 
         /// <summary>
-        /// Returns all airports with a route from the an airport
+        ///     Gets the path to an airport
+        /// </summary>
+        /// <param name="d">
+        ///     Destination
+        ///     <n/ param>
+        ///         <returns></returns>
+        public List<Airport> getPathTo(Airport d)
+        {
+            var path = new List<Airport>();
+
+            path.Insert(0, d);
+
+            while ((this.Previous.Count != 0) && (this.Previous[d.Profile.IATACode] != null))
+            {
+                d = this.Previous[d.Profile.IATACode];
+                path.Insert(0, d);
+            }
+
+            return path;
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        ///     Returns the distance between two airports
+        /// </summary>
+        /// <param name="o">Start airport</param>
+        /// <param name="d">Destination airport</param>
+        /// <returns></returns>
+        private double getDistanceBetween(Airport o, Airport d)
+        {
+            if (AirportHelpers.GetAirportRoutes(o).Find(r => r.Destination1 == d || r.Destination2 == d) != null)
+            {
+                return 1;
+            }
+            return 0;
+        }
+
+        /// <summary>
+        ///     Returns all airports with a route from the an airport
         /// </summary>
         /// <param name="n">Airport</param>
         /// <returns></returns>
         private List<Airport> getNeighbors(Airport n)
         {
-            List<Airport> neighbors = new List<Airport>();
+            var neighbors = new List<Airport>();
 
             foreach (Route route in AirportHelpers.GetAirportRoutes(n))
             {
@@ -132,21 +161,6 @@ namespace TheAirline.Model.PassengerModel
             return neighbors;
         }
 
-        /// <summary>
-        /// Returns the distance between two airports
-        /// </summary>
-        /// <param name="o">Start airport</param>
-        /// <param name="d">Destination airport</param>
-        /// <returns></returns>
-        private double getDistanceBetween(Airport o, Airport d)
-        {
-            if (AirportHelpers.GetAirportRoutes(o).Find(r => r.Destination1 == d || r.Destination2 == d) != null)
-                return 1;
-            else
-                return 0;
-
-        }
-
-
+        #endregion
     }
 }

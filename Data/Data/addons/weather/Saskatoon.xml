@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Saskatoon, SK">
+  <months>
+    <month month="1" precipitation="15">
+      <temp min="-22" max="-12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="10">
+      <temp min="-18" max="-8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="15">
+      <temp min="-11" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="24">
+      <temp min="-2" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="50">
+      <temp min="5" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="61">
+      <temp min="9" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="60">
+      <temp min="11" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="39">
+      <temp min="10" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="31">
+      <temp min="4" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="17">
+      <temp min="-2" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="13">
+      <temp min="-11" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="16">
+      <temp min="-19" max="-9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

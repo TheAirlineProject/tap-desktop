@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Vancouver, BC">
+  <months>
+    <month month="1" precipitation="179">
+      <temp min="3" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="184">
+      <temp min="3" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="156">
+      <temp min="5" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="118">
+      <temp min="6" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="87">
+      <temp min="9" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="70">
+      <temp min="12" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="53">
+      <temp min="14" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="51">
+      <temp min="14" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="73">
+      <temp min="12" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="148">
+      <temp min="8" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="239">
+      <temp min="5" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="231">
+      <temp min="3" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

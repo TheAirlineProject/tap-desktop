@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="airBaltic" iata="BT" color="Dark Blue" country="102" CEO="Martin Gauss" mentality="Aggressive" market="Global" preferedairport="RIX">
+  <narrative narrative="airBaltic is the flag carrier of Latvia, operating out of Latvia's main airport and capital of Riga. They serve 60 destinations mostly in Europe. Their fleet of 25 planes include thirteen 737's of the 300 and 500 type, two 757's and twelve Dash 8 Q400NG's. They are owned by the government of Latvia." />
+  </profile>
+  <info real="True" from="1995" to="2199" />
+</airline>

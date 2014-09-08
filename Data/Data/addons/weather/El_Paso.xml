@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="El Paso, TX">
+  <months>
+    <month month="1" precipitation="10">
+      <temp min="0" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="12">
+      <temp min="3" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="7">
+      <temp min="6" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="6">
+      <temp min="10" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="12">
+      <temp min="16" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="24">
+      <temp min="20" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="39">
+      <temp min="22" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="51">
+      <temp min="21" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="38">
+      <temp min="17" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="16">
+      <temp min="11" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="12">
+      <temp min="5" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="20">
+      <temp min="0" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

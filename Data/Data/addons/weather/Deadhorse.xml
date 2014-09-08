@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Deadhorse, AK">
+  <months>
+    <month month="1" precipitation="4">
+      <temp min="-31" max="-23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="3">
+      <temp min="-31" max="-24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="4">
+      <temp min="-31" max="-22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="3">
+      <temp min="-22" max="-13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="2">
+      <temp min="-9" max="-2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="9">
+      <temp min="0" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="18">
+      <temp min="3" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="24">
+      <temp min="2" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="17">
+      <temp min="-2" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="10">
+      <temp min="-11" max="-6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="4">
+      <temp min="-22" max="-15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="5">
+      <temp min="-27" max="-20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

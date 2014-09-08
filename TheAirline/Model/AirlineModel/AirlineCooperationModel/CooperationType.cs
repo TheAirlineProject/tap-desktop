@@ -1,40 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using TheAirline.Model.GeneralModel;
-
-namespace TheAirline.Model.AirlineModel.AirlineCooperationModel
+﻿namespace TheAirline.Model.AirlineModel.AirlineCooperationModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+
+    using TheAirline.Model.GeneralModel;
+
     //the class for a type of airline cooperation
     [Serializable]
     public class CooperationType : ISerializable
     {
-        public static string Section { get; set; }
-         [Versioning("airportsize")]
-        public GeneralHelpers.Size AirportSizeRequired { get; set; }
-        [Versioning("uid")]
-        public string Uid { get; set; }
-         [Versioning("from")]
-        public int FromYear { get; set; }
-         [Versioning("monthlyprice")]
+        #region Fields
+
+        [Versioning("incomeperpax")]
+        private double AIncomePerPax;
+
+        [Versioning("monthlyprice")]
         private double AMonthlyPrice;
-        public double MonthlyPrice { get { return GeneralHelpers.GetInflationPrice(this.AMonthlyPrice); } set { this.AMonthlyPrice = value; } }
+
         [Versioning("price")]
         private double APrice;
-        public double Price { get { return GeneralHelpers.GetInflationPrice(this.APrice); } set { this.APrice = value; } }
-        [Versioning("servicelevel")]
-        public int ServiceLevel { get; set; }
-        //the expected income for a hotel per pax
-         [Versioning("incomeperpax")]
-        private double AIncomePerPax;
-        public double IncomePerPax { get { return GeneralHelpers.GetInflationPrice(this.AIncomePerPax); } set { this.AIncomePerPax = value; } }
-           public CooperationType(string section, string uid,GeneralHelpers.Size airportsizerequired,  int fromyear, double price,double monthlyprice, int servicelevel, double incomeperpax)
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        public CooperationType(
+            string section,
+            string uid,
+            GeneralHelpers.Size airportsizerequired,
+            int fromyear,
+            double price,
+            double monthlyprice,
+            int servicelevel,
+            double incomeperpax)
         {
-            CooperationType.Section = section;
+            Section = section;
             this.AirportSizeRequired = airportsizerequired;
             this.Price = price;
             this.MonthlyPrice = monthlyprice;
@@ -43,101 +46,208 @@ namespace TheAirline.Model.AirlineModel.AirlineCooperationModel
             this.ServiceLevel = servicelevel;
             this.IncomePerPax = incomeperpax;
         }
-        public string Name
-        {
-            get { return Translator.GetInstance().GetString(CooperationType.Section, this.Uid); }
-        }
-          private CooperationType(SerializationInfo info, StreamingContext ctxt)
+
+        private CooperationType(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
-            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                this.GetType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (SerializationEntry entry in info)
             {
-                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
-
+                MemberInfo prop =
+                    propsAndFields.FirstOrDefault(
+                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
+                    {
                         ((FieldInfo)prop).SetValue(this, entry.Value);
+                    }
                     else
+                    {
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
                 }
             }
 
-            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+            IEnumerable<MemberInfo> notSetProps =
+                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
+                    {
                         ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
                     else
+                    {
                         ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
-
+                    }
                 }
             }
         }
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+
+        #endregion
+
+        #region Public Properties
+
+        public static string Section { get; set; }
+
+        [Versioning("airportsize")]
+        public GeneralHelpers.Size AirportSizeRequired { get; set; }
+
+        [Versioning("from")]
+        public int FromYear { get; set; }
+
+        public double IncomePerPax
+        {
+            get
+            {
+                return GeneralHelpers.GetInflationPrice(this.AIncomePerPax);
+            }
+            set
+            {
+                this.AIncomePerPax = value;
+            }
+        }
+
+        public double MonthlyPrice
+        {
+            get
+            {
+                return GeneralHelpers.GetInflationPrice(this.AMonthlyPrice);
+            }
+            set
+            {
+                this.AMonthlyPrice = value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return Translator.GetInstance().GetString(Section, this.Uid);
+            }
+        }
+
+        public double Price
+        {
+            get
+            {
+                return GeneralHelpers.GetInflationPrice(this.APrice);
+            }
+            set
+            {
+                this.APrice = value;
+            }
+        }
+
+        [Versioning("servicelevel")]
+        public int ServiceLevel { get; set; }
+
+        [Versioning("uid")]
+        public string Uid { get; set; }
+
+        #endregion
+
+        //the expected income for a hotel per pax
+
+        #region Public Methods and Operators
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 1);
 
             Type myType = this.GetType();
 
-            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
 
                 if (member is FieldInfo)
+                {
                     propValue = ((FieldInfo)member).GetValue(this);
+                }
                 else
+                {
                     propValue = ((PropertyInfo)member).GetValue(this, null);
+                }
 
-                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
-
         }
+
+        #endregion
     }
+
     //the list of types
     public class CooperationTypes
     {
-        private static List<CooperationType> types = new List<CooperationType>();
+        #region Static Fields
+
+        private static readonly List<CooperationType> types = new List<CooperationType>();
+
+        #endregion
+
         //adds a type to the list
+
+        #region Public Methods and Operators
+
         public static void AddCooperationType(CooperationType type)
         {
             types.Add(type);
         }
+
         //returns the cooperation type with a specific uid
-        public static CooperationType GetCooperationType(string uid)
-        {
-            return types.Find(t => t.Uid == uid);
-        }
+
         //clears the list of types
         public static void Clear()
         {
             types.Clear();
         }
+
+        public static CooperationType GetCooperationType(string uid)
+        {
+            return types.Find(t => t.Uid == uid);
+        }
+
         //returns all types
         public static List<CooperationType> GetCooperationTypes()
         {
             return types;
         }
+
+        #endregion
     }
 }

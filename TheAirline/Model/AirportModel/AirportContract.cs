@@ -1,47 +1,33 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.AirportModel;
-using TheAirline.Model.GeneralModel;
-
-namespace TheAirline.Model.AirportModel
+﻿namespace TheAirline.Model.AirportModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+
+    using TheAirline.Model.AirlineModel;
+    using TheAirline.Model.GeneralModel;
+
     [Serializable]
     //the class for a contract at an airport for an airline
     public class AirportContract : ISerializable
     {
-        public enum ContractType { Full, Full_Service, Medium_Service, Low_Service }
-        [Versioning("type",Version=2)]
-        public ContractType Type { get; set; }
-        [Versioning("airline")]
-        public Airline Airline { get; set; }
-        [Versioning("airport")]
-        public Airport Airport { get; set; }
-        [Versioning("date")]
-        public DateTime ContractDate { get; set; }
-        [Versioning("length")]
-        public int Length { get; set; }
-        [Versioning("yearlypayment")]
-        public double YearlyPayment { get; set; }
-        [Versioning("gates")]
-        public int NumberOfGates { get; set; }
-        [Versioning("isexclusive")]
-        public Boolean IsExclusiveDeal { get; set; }
-        public int MonthsLeft { get { return getMonthsLeft();} set { ;} }
-        [Versioning("terminal")]
-        public Terminal Terminal { get; set; }
-        [Versioning("expire")]
-        public DateTime ExpireDate { get; set; }
-        [Versioning("payfull")]
-        public Boolean PayFull { get; set; }
-        [Versioning("renew")]
-        public Boolean AutoRenew { get; set; }
-        public AirportContract(Airline airline, Airport airport, ContractType type, DateTime date, int numberOfGates, int length, double yearlyPayment,Boolean autorenew, Boolean payFull = false, Boolean isExclusiveDeal = false, Terminal terminal = null)
+        #region Constructors and Destructors
+
+        public AirportContract(
+            Airline airline,
+            Airport airport,
+            ContractType type,
+            Terminal.TerminalType terminaltype,
+            DateTime date,
+            int numberOfGates,
+            int length,
+            double yearlyPayment,
+            Boolean autorenew,
+            Boolean payFull = false,
+            Boolean isExclusiveDeal = false,
+            Terminal terminal = null)
         {
             this.Type = type;
             this.PayFull = payFull;
@@ -55,55 +41,65 @@ namespace TheAirline.Model.AirportModel
             this.Terminal = terminal;
             this.ExpireDate = this.ContractDate.AddYears(this.Length);
             this.AutoRenew = autorenew;
+            this.TerminalType = terminaltype;
+        }
 
-        }
-        //returns the number of months left for the contract
-        public int getMonthsLeft()
-        {
-            return MathHelpers.GetMonthsBetween(GameObject.GetInstance().GameTime, this.ContractDate.AddYears(this.Length));
-        }
-           private AirportContract(SerializationInfo info, StreamingContext ctxt)
+        private AirportContract(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
-            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                this.GetType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (SerializationEntry entry in info)
             {
-                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
-
-              
+                MemberInfo prop =
+                    propsAndFields.FirstOrDefault(
+                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
-                   
-                    
                     if (prop is FieldInfo)
+                    {
                         ((FieldInfo)prop).SetValue(this, entry.Value);
+                    }
                     else
+                    {
                         ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
                 }
+
+           
             }
 
-            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+            IEnumerable<MemberInfo> notSetProps =
+                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
+                    {
                         ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
                     else
+                    {
                         ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
-
+                    }
                 }
-
             }
 
             if (version == 1)
@@ -114,35 +110,127 @@ namespace TheAirline.Model.AirportModel
             {
                 this.AutoRenew = true;
             }
-
+            if (version < 4)
+                this.TerminalType = AirportModel.Terminal.TerminalType.Passenger;
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        #endregion
+
+        #region Enums
+
+        public enum ContractType
         {
-            info.AddValue("version", 3);
+            Full,
+
+            Full_Service,
+
+            Medium_Service,
+
+            Low_Service
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        [Versioning("airline")]
+        public Airline Airline { get; set; }
+
+        [Versioning("airport")]
+        public Airport Airport { get; set; }
+
+        [Versioning("renew",Version=3)]
+        public Boolean AutoRenew { get; set; }
+
+        [Versioning("date")]
+        public DateTime ContractDate { get; set; }
+
+        [Versioning("expire")]
+        public DateTime ExpireDate { get; set; }
+
+        [Versioning("isexclusive")]
+        public Boolean IsExclusiveDeal { get; set; }
+
+        [Versioning("terminaltype",Version=4)]
+        public Terminal.TerminalType TerminalType { get; set; }
+
+        [Versioning("length")]
+        public int Length { get; set; }
+
+        public int MonthsLeft
+        {
+            get
+            {
+                return this.getMonthsLeft();
+            }
+            set
+            {
+                ;
+            }
+        }
+
+        [Versioning("gates")]
+        public int NumberOfGates { get; set; }
+
+        [Versioning("payfull")]
+        public Boolean PayFull { get; set; }
+
+        [Versioning("terminal")]
+        public Terminal Terminal { get; set; }
+
+        [Versioning("type", Version = 2)]
+        public ContractType Type { get; set; }
+
+        [Versioning("yearlypayment")]
+        public double YearlyPayment { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("version", 4);
 
             Type myType = this.GetType();
 
-            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+            IEnumerable<FieldInfo> fields =
+                myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
 
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
 
-            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
 
                 if (member is FieldInfo)
+                {
                     propValue = ((FieldInfo)member).GetValue(this);
+                }
                 else
+                {
                     propValue = ((PropertyInfo)member).GetValue(this, null);
+                }
 
-                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
-
         }
+
+        public int getMonthsLeft()
+        {
+            return MathHelpers.GetMonthsBetween(
+                GameObject.GetInstance().GameTime,
+                this.ContractDate.AddYears(this.Length));
+        }
+
+        #endregion
     }
 }

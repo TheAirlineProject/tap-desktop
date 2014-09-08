@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="TACV Cabo Verde Airlines" iata="VR" color="Red" country="285" CEO="Wayne Pearce" mentality="Moderate"
+           market="Regional" preferedairport="SID">
+    <narrative
+      narrative="TACV Cabo Verde Airlines is a scheduled and charter, passenger and cargo airline based in Praia, Cape Verde. It is the national flag carrier of Cape Verde, operating inter-island services and flights to Europe, North America, South America and the West African mainland." />
+  </profile>
+  <info real="True" from="1958" to="2199"></info>
+</airline>

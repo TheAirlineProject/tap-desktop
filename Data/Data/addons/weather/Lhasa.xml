@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Lhasa">
+  <months>
+    <month month="1" precipitation="1">
+      <temp min="-9" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="1">
+      <temp min="-6" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="3">
+      <temp min="-2" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="6">
+      <temp min="1" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="28">
+      <temp min="5" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="71">
+      <temp min="10" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="117">
+      <temp min="10" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="121">
+      <temp min="9" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="68">
+      <temp min="7" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="9">
+      <temp min="2" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="1">
+      <temp min="-4" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="1">
+      <temp min="-8" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>
