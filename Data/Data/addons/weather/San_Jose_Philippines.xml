@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="San Jose">
+  <months>
+    <month month="1" precipitation="19">
+      <temp min="23" max="23" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="13">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="7">
+      <temp min="24" max="34" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="36">
+      <temp min="25" max="35" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="183">
+      <temp min="25" max="34" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="284">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="397">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="438">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="363">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="252">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="109">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="66">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

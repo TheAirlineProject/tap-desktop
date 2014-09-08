@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Poza Rica">
+  <months>
+    <month month="1" precipitation="39">
+      <temp min="11" max="23" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="66">
+      <temp min="13" max="25" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="48">
+      <temp min="15" max="28" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="93">
+      <temp min="18" max="30" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="120">
+      <temp min="21" max="32" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="153">
+      <temp min="21" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="303">
+      <temp min="20" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="177">
+      <temp min="20" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="300">
+      <temp min="19" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="114">
+      <temp min="17" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="78">
+      <temp min="14" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="81">
+      <temp min="13" max="24" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

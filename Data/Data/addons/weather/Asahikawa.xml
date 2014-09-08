@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Asahikawa">
+  <months>
+    <month month="1" precipitation="74">
+      <temp min="-13" max="-4" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="52">
+      <temp min="-13" max="-2" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="54">
+      <temp min="-8" max="2" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="56">
+      <temp min="0" max="11" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="65">
+      <temp min="6" max="18" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="64">
+      <temp min="11" max="23" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="99">
+      <temp min="16" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="138">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="136">
+      <temp min="11" max="21" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="118">
+      <temp min="4" max="14" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="121">
+      <temp min="-2" max="6" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="99">
+      <temp min="-8" max="-1" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

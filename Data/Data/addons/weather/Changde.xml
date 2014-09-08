@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Changde">
+  <months>
+    <month month="1" precipitation="60">
+      <temp min="2" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="67">
+      <temp min="3" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="115">
+      <temp min="7" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="170">
+      <temp min="13" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="163">
+      <temp min="18" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="209">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="152">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="130">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="73">
+      <temp min="20" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="81">
+      <temp min="15" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="65">
+      <temp min="9" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="39">
+      <temp min="4" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Newman, WA">
+  <months>
+    <month month="1" precipitation="57">
+      <temp min="25" max="40" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="79">
+      <temp min="24" max="37" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="42">
+      <temp min="22" max="36" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="18">
+      <temp min="18" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="19">
+      <temp min="13" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="15">
+      <temp min="9" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="15">
+      <temp min="8" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="8">
+      <temp min="10" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="3">
+      <temp min="13" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="5">
+      <temp min="18" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="11">
+      <temp min="21" max="38" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="37">
+      <temp min="24" max="39" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

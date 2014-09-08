@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Shizuoka">
+  <months>
+    <month month="1" precipitation="72">
+      <temp min="1" max="12" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="102">
+      <temp min="2" max="12" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="213">
+      <temp min="5" max="15" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="237">
+      <temp min="10" max="19" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="222">
+      <temp min="14" max="23" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="283">
+      <temp min="18" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="280">
+      <temp min="22" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="245">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="304">
+      <temp min="20" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="172">
+      <temp min="14" max="23" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="133">
+      <temp min="9" max="19" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="60">
+      <temp min="3" max="14" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

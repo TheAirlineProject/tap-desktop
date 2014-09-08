@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Wanzhou">
+  <months>
+    <month month="1" precipitation="16">
+      <temp min="4" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="17">
+      <temp min="6" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="43">
+      <temp min="9" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="102">
+      <temp min="14" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="171">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="211">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="200">
+      <temp min="24" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="147">
+      <temp min="24" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="154">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="105">
+      <temp min="16" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="46">
+      <temp min="11" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="19">
+      <temp min="6" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Niigata">
+  <months>
+    <month month="1" precipitation="180">
+      <temp min="0" max="6" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="128">
+      <temp min="-1" max="6" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="105">
+      <temp min="2" max="9" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="94">
+      <temp min="7" max="16" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="103">
+      <temp min="12" max="21" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="128">
+      <temp min="17" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="178">
+      <temp min="21" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="143">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="163">
+      <temp min="18" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="149">
+      <temp min="12" max="20" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="201">
+      <temp min="6" max="14" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="204">
+      <temp min="2" max="9" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

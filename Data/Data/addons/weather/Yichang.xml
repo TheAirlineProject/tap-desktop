@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Yichang">
+  <months>
+    <month month="1" precipitation="23">
+      <temp min="2" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="31">
+      <temp min="3" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="58">
+      <temp min="7" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="86">
+      <temp min="13" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="130">
+      <temp min="18" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="148">
+      <temp min="21" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="216">
+      <temp min="24" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="174">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="123">
+      <temp min="20" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="85">
+      <temp min="14" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="47">
+      <temp min="9" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="18">
+      <temp min="4" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

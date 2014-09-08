@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Aracaju">
+  <months>
+    <month month="1" precipitation="42">
+      <temp min="21" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="78">
+      <temp min="23" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="93">
+      <temp min="22" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="177">
+      <temp min="21" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="174">
+      <temp min="21" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="162">
+      <temp min="20" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="147">
+      <temp min="19" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="87">
+      <temp min="20" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="69">
+      <temp min="21" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="45">
+      <temp min="20" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="33">
+      <temp min="21" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="33">
+      <temp min="21" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

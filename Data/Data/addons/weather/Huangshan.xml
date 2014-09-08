@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Huangshan">
+  <months>
+    <month month="1" precipitation="79">
+      <temp min="-6" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="112">
+      <temp min="-4" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="183">
+      <temp min="-1" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="233">
+      <temp min="5" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="273">
+      <temp min="9" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="459">
+      <temp min="13" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="335">
+      <temp min="16" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="305">
+      <temp min="15" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="180">
+      <temp min="11" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="112">
+      <temp min="7" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="83">
+      <temp min="1" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="51">
+      <temp min="-3" max="4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

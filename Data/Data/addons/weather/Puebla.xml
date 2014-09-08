@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Puebla">
+  <months>
+    <month month="1" precipitation="12">
+      <temp min="5" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="7">
+      <temp min="6" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="10">
+      <temp min="8" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="29">
+      <temp min="10" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="84">
+      <temp min="11" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="195">
+      <temp min="12" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="157">
+      <temp min="11" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="168">
+      <temp min="11" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="198">
+      <temp min="11" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="80">
+      <temp min="10" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="18">
+      <temp min="7" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="5">
+      <temp min="5" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

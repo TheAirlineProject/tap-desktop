@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Kashgar">
+  <months>
+    <month month="1" precipitation="2">
+      <temp min="-10" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="6">
+      <temp min="-6" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="7">
+      <temp min="1" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="5">
+      <temp min="8" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="9">
+      <temp min="13" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="8">
+      <temp min="16" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="9">
+      <temp min="18" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="8">
+      <temp min="17" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="5">
+      <temp min="12" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="3">
+      <temp min="4" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="2">
+      <temp min="-2" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="2">
+      <temp min="-8" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

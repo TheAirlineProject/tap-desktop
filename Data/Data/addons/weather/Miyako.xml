@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Miyako">
+  <months>
+    <month month="1" precipitation="63">
+      <temp min="-5" max="5" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="70">
+      <temp min="-5" max="5" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="84">
+      <temp min="-2" max="8" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="94">
+      <temp min="3" max="14" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="102">
+      <temp min="8" max="19" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="120">
+      <temp min="12" max="21" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="135">
+      <temp min="17" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="159">
+      <temp min="19" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="211">
+      <temp min="15" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="148">
+      <temp min="8" max="19" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="83">
+      <temp min="2" max="14" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="61">
+      <temp min="-2" max="8" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>
