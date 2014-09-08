@@ -522,6 +522,9 @@
     <runways>
       <runway name="06/24" length="1831" surface="Asphalt" />
       <runway name="16/34" length="1463" surface="Asphalt" />
+    <runway name="H1" length="20" surface="Asphalt" type="Helipad" />
+     <runway name="H2" length="20" surface="Asphalt" type="Helipad" />
+     <runway name="H3" length="20" surface="Asphalt" type="Helipad" />
     </runways>
   </airport>
   <airport name="Augusta Regional At Bush Field" icao="KAGS" iata="AGS" type="Regional" season="All_Year">
@@ -650,7 +653,6 @@
       <runway name="17/35" length="1526" surface="Concrete" />
     </runways>
   </airport>
-
   <airport name="Austin-Bergstrom International Airport" icao="KAUS" iata="AUS" type="Short_Haul_International"
            season="All_Year">
     <period from="05.22.1999 00:00:00" to="12.31.2199 00:00:00" />
@@ -3537,6 +3539,10 @@ season="All_Year">
       <runway name="01/19" length="1525" surface="Asphalt" />
       <runway name="14/32" length="1559" surface="Asphalt" />
     </runways>
+         <expansions>
+     <expansion type="Runway_Length" name="14/32" length="1829" date="11.01.2014 00:00:00" notify="True"></expansion>
+      <expansion type="Runway_Length" name="01/19" length="1586" date="11.01.2014 00:00:00" notify="True"></expansion>
+   </expansions>
   </airport>
     <airport name="Arcata Airport" icao="KACV" iata="ACV" type="Domestic" season="All_Year">
     <town town="Arcata/Eureka, CA" country="122" GMT="-07:00:00" DST="-08:00:00" />
@@ -3731,6 +3737,21 @@ season="All_Year">
 </terminals>
 <runways>
 <runway name="16/34" length="2014" surface="Asphalt" />
+</runways>
+</airport> 
+    <airport name="St George Municipal Airport" icao="KSGU" iata="SGU" type="Domestic" season="All_Year"> 
+    <period from="01.13.2011 00:00:00" to="01.01.2199 00:00:00" />
+<town town="St George, UT" country="122" GMT="-06:00:00" DST="-07:00:00" />
+<coordinates>
+<latitude value="037°02'11''N" />
+<longitude value="113°30'37''W" />
+</coordinates>
+<size value="Smallest" pax="75" />
+<terminals>
+<terminal name="Terminal A" gates="2" />
+</terminals>
+<runways>
+<runway name="01/19" length="2835" surface="Asphalt" />
 </runways>
 </airport> 
       <airport name="Wendover Airport" icao="KENV" iata="ENV" type="Domestic" season="All_Year">
@@ -4873,7 +4894,7 @@ season="All_Year">
       <latitude value="016°45'22''N" />
       <longitude value="099°45'06''W" />
     </coordinates>
-    <size value="Small" pax="736" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="617" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="11" />
     </terminals>
@@ -4902,7 +4923,7 @@ season="All_Year">
       <latitude value="020°30'54''N" />
       <longitude value="086°55'44''W" />
     </coordinates>
-    <size value="Very_small" pax="441" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="449" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="6" />
     </terminals>
@@ -4917,7 +4938,7 @@ season="All_Year">
       <latitude value="020°31'18''N" />
       <longitude value="103°18'40''W" />
     </coordinates>
-    <size value="Medium" pax="7201" cargo="Large" cargovolume="128" />
+    <size value="Medium" pax="8104" cargo="Large" cargovolume="128" />
     <terminals>
       <terminal name="Terminal" gates="14" />
     </terminals>
@@ -4933,7 +4954,7 @@ season="All_Year">
       <latitude value="019°26'10''N" />
       <longitude value="099°04'19''W" />
     </coordinates>
-    <size value="Very_large" pax="26368" cargo="Very_large" cargovolume="412" />
+    <size value="Very_large" pax="31532" cargo="Very_large" cargovolume="412" />
     <terminals>
       <terminal name="Terminal 1" gates="53" />
       <terminal name="Terminal 2" gates="40" />
@@ -4950,7 +4971,7 @@ season="All_Year">
       <latitude value="025°46'42''N" />
       <longitude value="100°06'24''W" />
     </coordinates>
-    <size value="Medium" pax="5380" cargo="Medium" cargovolume="45" />
+    <size value="Medium" pax="6417" cargo="Medium" cargovolume="45" />
     <terminals>
       <terminal name="Terminal A" gates="20" />
       <terminal name="Terminal B" gates="8" />
@@ -5231,7 +5252,7 @@ season="All_Year">
     </runways>
   </airport>
     <airport name="Ixtapa Zihuatanejo International Airport" icao="MMZH" iata="ZIH" type="Short_Haul_International" season="All_Year">
-    <town town="Ixtapa" country="157" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Ixtapa/Zihuatanejo" country="157" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="017°36'05''N" />
       <longitude value="101°27'39''W" />
@@ -5421,21 +5442,6 @@ season="All_Year">
       <runway name="14/32" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Nuevo Casa Grandes Municipal  Airport" icao="MMCG" iata="NCG" type="Domestic" season="All_Year">
-    <town town="Nuevo Casas Grandes" country="157" GMT="-07:00:00" DST="-06:00:00" />
-    <coordinates>
-      <latitude value="031°38'11''N" />
-      <longitude value="106°25'43''W" />
-    </coordinates>
-    <size value="Smallest" pax="699" />
-    <terminals>
-      <terminal name="Terminal A" gates="12" />
-         </terminals>
-    <runways>
-      <runway name="03/21" length="2700" surface="Asphalt" />
-<runway name="14/32" length="1750" surface="Asphalt" />
-    </runways>
-  </airport>
   <airport name="Lic. Gustavo Díaz Ordaz International Airport" icao="MMPR" iata="PVR" type="Long_Haul_International"
            season="Winter">
     <town town="Puerto Vallarta" country="157" GMT="-05:00:00" DST="-06:00:00" />
@@ -5443,7 +5449,7 @@ season="All_Year">
       <latitude value="020°40'48''N" />
       <longitude value="105°15'15''W" />
     </coordinates>
-    <size value="Medium" pax="2535" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="2591" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="15" />
     </terminals>
@@ -5457,7 +5463,7 @@ season="All_Year">
       <latitude value="021°02'11''N" />
       <longitude value="086°52'37''W" />
     </coordinates>
-    <size value="Large" pax="13022" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="15962" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="7" />
       <terminal name="Terminal 2" gates="22" />
@@ -5475,7 +5481,7 @@ season="All_Year">
       <latitude value="032°32'27''N" />
       <longitude value="116°58'12''W" />
     </coordinates>
-    <size value="Medium" pax="3500" cargo="Very_small" cargovolume="15" />
+    <size value="Medium" pax="4255" cargo="Very_small" cargovolume="15" />
     <terminals>
       <terminal name="Terminal A" gates="23" />
     </terminals>
@@ -5490,7 +5496,7 @@ season="All_Year">
       <latitude value="021°42'20''N" />
       <longitude value="102°19'04''W" />
     </coordinates>
-    <size value="Very_small" pax="328" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="456" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -5512,7 +5518,7 @@ season="All_Year">
     <runways />
   </airport> -->
   <airport name="Del Bajío International Airport" icao="MMLO" iata="BJX" type="Regional" season="All_Year">
-    <town town="Silao" country="157" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Leon/Guanajuato" country="157" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="020°59'36''N" />
       <longitude value="101°28'51''W" />
@@ -5531,7 +5537,7 @@ season="All_Year">
       <latitude value="031°38'09''N" />
       <longitude value="106°25'44''W" />
     </coordinates>
-    <size value="Small" pax="673" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="702" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -5546,7 +5552,7 @@ season="All_Year">
       <latitude value="019°16'37''N" />
       <longitude value="103°34'37''W" />
     </coordinates>
-    <size value="Smallest" pax="61" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="108" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -5561,7 +5567,7 @@ season="All_Year">
       <latitude value="018°39'13''N" />
       <longitude value="091°47'56''W" />
     </coordinates>
-    <size value="Small" pax="516" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="602" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -5576,7 +5582,7 @@ season="All_Year">
       <latitude value="019°49'00''N" />
       <longitude value="090°30'01''W" />
     </coordinates>
-    <size value="Smallest" pax="113" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="166" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -5590,7 +5596,7 @@ season="All_Year">
       <latitude value="018°30'16''N" />
       <longitude value="088°19'36''W" />
     </coordinates>
-    <size value="Smallest" pax="129" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="151" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -5619,7 +5625,7 @@ season="All_Year">
       <latitude value="024°45'52''N" />
       <longitude value="107°28'29''W" />
     </coordinates>
-    <size value="Small" pax="1070" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1010" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="7" />
     </terminals>
@@ -5634,7 +5640,7 @@ season="All_Year">
       <latitude value="028°42'10''N" />
       <longitude value="105°57'53''W" />
     </coordinates>
-    <size value="Small" pax="782" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="885" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="7" />
     </terminals>
@@ -5650,7 +5656,7 @@ season="All_Year">
       <latitude value="018°50'05''N" />
       <longitude value="099°15'40''W" />
     </coordinates>
-    <size value="Smallest" pax="35" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="50" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -5665,7 +5671,7 @@ season="All_Year">
       <latitude value="023°42'11''N" />
       <longitude value="098°57'23''W" />
     </coordinates>
-    <size value="Smallest" pax="88" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="86" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -5674,7 +5680,6 @@ season="All_Year">
       <runway name="17/35" length="1420" surface="Asphalt" />
     </runways>
   </airport>
- 
   <airport name="Chichen Itza International Airport" icao="MMCT" iata="CZA" type="Domestic" season="All_Year">
     <town town="Chichen Itza" country="157" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
@@ -5696,7 +5701,7 @@ season="All_Year">
       <latitude value="024°07'27''N" />
       <longitude value="104°31'40''W" />
     </coordinates>
-    <size value="Very_small" pax="227" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="235" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -5725,7 +5730,7 @@ season="All_Year">
       <latitude value="027°58'08''N" />
       <longitude value="110°55'30''W" />
     </coordinates>
-    <size value="Smallest" pax="49" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="43" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -5740,7 +5745,7 @@ season="All_Year">
       <latitude value="029°05'45''N" />
       <longitude value="111°02'52''W" />
     </coordinates>
-    <size value="Small" pax="1200" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1276" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
@@ -5756,7 +5761,7 @@ season="All_Year">
       <latitude value="015°46'31''N" />
       <longitude value="096°15'45''W" />
     </coordinates>
-    <size value="Very_small" pax="459" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="484" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -5770,7 +5775,7 @@ season="All_Year">
       <latitude value="019°28'30''N" />
       <longitude value="096°47'51''W" />
     </coordinates>
-    <size value="Smallest" pax="9" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -5785,7 +5790,7 @@ season="All_Year">
       <latitude value="024°04'21''N" />
       <longitude value="110°21'43''W" />
     </coordinates>
-    <size value="Small" pax="546" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="600" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="7" />
     </terminals>
@@ -5799,7 +5804,7 @@ season="All_Year">
       <latitude value="025°41'06''N" />
       <longitude value="109°04'51''W" />
     </coordinates>
-    <size value="Very_small" pax="205" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="196" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -5813,7 +5818,7 @@ season="All_Year">
       <latitude value="026°57'20''N" />
       <longitude value="101°28'12''W" />
     </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="1" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -5828,7 +5833,7 @@ season="All_Year">
       <latitude value="025°59'21''N" />
       <longitude value="111°20'52''W" />
     </coordinates>
-    <size value="Smallest" pax="37" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="40" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -5842,7 +5847,7 @@ season="All_Year">
       <latitude value="018°00'06''N" />
       <longitude value="102°13'15''W" />
     </coordinates>
-    <size value="Smallest" pax="19" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="25" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -7627,6 +7632,7 @@ season="All_Year">
     <runways>
       <runway name="13L/31R" length="2049" surface="Asphalt" />
       <runway name="13R/31L" length="916" surface="Asphalt" />
+          <runway name="H1" length="20" surface="Concrete" type="Helipad" />
     </runways>
   </airport>
     <airport name="Inyokern Airport" icao="KIYK" iata="IYK" type="Domestic" season="All_Year">
@@ -7646,7 +7652,7 @@ season="All_Year">
     </runways>
   </airport>
     <airport name="Imperial County Airport" icao="KIPL" iata="IPL" type="Domestic" season="All_Year">
-    <town town="Imperial, CA" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Imperial/El Centro, CA" country="122" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="032°50'03''N" />
       <longitude value="115°34'44''W" />
@@ -7674,7 +7680,7 @@ season="All_Year">
       <runway name="06/24" length="1493" surface="Asphalt" />
     </runways>
   </airport>  
-   <airport name="Stockton Metropilitan Airport" icao="KSCK" iata="SCK" type="Domestic" season="All_Year">
+   <airport name="Stockton Metropolitan Airport" icao="KSCK" iata="SCK" type="Domestic" season="All_Year">
     <town town="Stockton, CA" country="122" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="037°53'39''N" />
@@ -7687,6 +7693,7 @@ season="All_Year">
     <runways>
       <runway name="11L/29R" length="3246" surface="Asphalt" />
       <runway name="11R/29L" length="1356" surface="Asphalt" />
+       <runway name="H1" length="21" surface="Concrete" type="Helipad" />
     </runways>
   </airport>
   <airport name="Page Municipal Airport" icao="KPGA" iata="PGA" type="Domestic" season="All_Year">

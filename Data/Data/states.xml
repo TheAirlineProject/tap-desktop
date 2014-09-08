@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <states>
+<!--Australia-->
+	<state country="116" name="Queensland" shortname="QLD"  flag="Australia - Queensland"></state>
+ <state country="116" name="New South Wales" shortname="NSW"  flag="Australia - New_South_Wales"></state>
+	<state country="116" name="South Australia" shortname="SA"  flag="Australia - South_Australia"></state>
+	<state country="116" name="Western Australia" shortname="WA"  flag="Australia - Western_Australia"></state>
+	<state country="116" name="Northern Territory" shortname="NT"  flag="Australia - Northern_Territory"></state>
+	<state country="116" name="Tasmania" shortname="TAS"  flag="Australia - Tasmania"></state>
+	<state country="116" name="Australian Capital Territory" shortname="ACT"  flag="Australia - 	Australian_Capital_Territory"></state>
 	<!--Canada-->
 	<state country="113" name="Alberta" shortname="AB"  flag="Canada - Alberta"></state>
 	<state country="113" name="Yukon" shortname="YT"  flag="Canada - Yukon"></state>

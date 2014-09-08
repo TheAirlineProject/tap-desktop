@@ -58,6 +58,13 @@
         {
             PopUpMap.ShowPopUp(this.Airline.Airline.Routes);
         }
+        private void btnCallBackAirliner_Click(object sender, RoutedEventArgs e)
+        {
+            var airliner = (FleetAirliner)((Button)sender).Tag;
+
+            this.Airline.CallbackAirliner(airliner);
+
+        }
         private void btnMoveAirliner_Click(object sender, RoutedEventArgs e)
         {
             var airliner = (FleetAirliner)((Button)sender).Tag;

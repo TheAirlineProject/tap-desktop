@@ -1,6 +1,6 @@
 
 
-<weather type="town" value="Imperial, CA">
+<weather type="town" value="Imperial/El Centro, CA">
   <months>
     <month month="1" precipitation="13">
       <temp min="2" max="19" />

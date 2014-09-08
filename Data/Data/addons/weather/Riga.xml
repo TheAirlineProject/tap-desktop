@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+
 
 <weather type="town" value="Riga">
   <months>
@@ -7,7 +7,7 @@
       <wind min="Calm" max="Near_Gale" />
     </month>
     <month month="2" precipitation="27">
-      <temp min="-8" max="-2" />
+      <temp min="-8" max="-1" />
       <wind min="Calm" max="Near_Gale" />
     </month>
     <month month="3" precipitation="28">
@@ -26,7 +26,7 @@
       <temp min="10" max="20" />
       <wind min="Calm" max="Near_Gale" />
     </month>
-    <month month="7" precipitation="73">
+    <month month="7" precipitation="74">
       <temp min="12" max="22" />
       <wind min="Calm" max="Near_Gale" />
     </month>
@@ -35,19 +35,19 @@
       <wind min="Calm" max="Near_Gale" />
     </month>
     <month month="9" precipitation="79">
-      <temp min="8" max="16" />
+      <temp min="8" max="17" />
       <wind min="Calm" max="Near_Gale" />
     </month>
     <month month="10" precipitation="60">
-      <temp min="4" max="10" />
+      <temp min="4" max="11" />
       <wind min="Calm" max="Near_Gale" />
     </month>
-    <month month="11" precipitation="58">
+    <month month="11" precipitation="57">
       <temp min="-1" max="4" />
       <wind min="Calm" max="Near_Gale" />
     </month>
     <month month="12" precipitation="46">
-      <temp min="-4" max="0" />
+      <temp min="-5" max="1" />
       <wind min="Calm" max="Near_Gale" />
     </month>
   </months>

@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
+    using TheAirline.GUIModel.PagesModel.AirlinePageModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
@@ -188,7 +188,22 @@
                 }
             }
         }
+        private void btnOutlease_Click(object sender, RoutedEventArgs e)
+        {
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2016"),
+                    string.Format(
+                        Translator.GetInstance().GetString("MessageBox", "2016", "message"),
+                        new ValueCurrencyConverter().Convert(this.Airliner.Airliner.Name)),
+                    WPFMessageBoxButtons.YesNo);
 
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                this.Airliner.Airliner.Airliner.Status = Model.AirlinerModel.Airliner.StatusTypes.Leasing;
+
+                PageNavigator.NavigateTo(new PageAirline(this.Airliner.Airliner.Airliner.Airline));
+            }
+        }
         private void btnConvert_Click(object sender, RoutedEventArgs e)
         {
             double price =

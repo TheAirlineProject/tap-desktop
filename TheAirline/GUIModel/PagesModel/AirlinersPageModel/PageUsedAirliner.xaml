@@ -122,6 +122,10 @@
                                              Value="{x:Null}">
                                     <Setter Property="Button.IsEnabled" Value="False" />
                                 </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}"
+                                             Value="Leasing">
+                                    <Setter Property="Button.Visibility" Value="Collapsed" />
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>

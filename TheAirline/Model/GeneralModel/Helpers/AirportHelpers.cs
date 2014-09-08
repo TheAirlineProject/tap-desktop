@@ -728,6 +728,28 @@
                                  new AirportCodeConverter().Convert(airport))));
                 }
             }
+            if (expansion.Type == AirportExpansion.ExpansionType.Runway_Length)
+            {
+                Runway runway = airport.Runways.FirstOrDefault(r => r.Name == expansion.Name);
+
+                if (runway != null)
+                {
+                    if (expansion.NotifyOnChange && !onStartUp)
+                    {
+                        GameObject.GetInstance()
+                         .NewsBox.addNews(
+                             new News(
+                                 News.NewsType.Airport_News,
+                                 GameObject.GetInstance().GameTime,
+                                 "New Terminal",
+                                 string.Format(
+                                     "[LI airport={0}]({1}) has changed the length of the runway {2} to {3}",
+                                     airport.Profile.IATACode,
+                                     new AirportCodeConverter().Convert(airport),
+                                   expansion.Name,new SmallDistanceToUnitConverter().Convert(expansion.Length,null,null,null))));
+                    }
+                }
+            }
             if (expansion.Type == AirportExpansion.ExpansionType.New_terminal)
             {
                 Terminal terminal = new Terminal(airport, expansion.Name, expansion.Gates, expansion.Date,expansion.TerminalType);

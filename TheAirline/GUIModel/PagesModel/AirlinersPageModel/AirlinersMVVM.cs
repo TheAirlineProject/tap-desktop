@@ -88,6 +88,7 @@
         {
             this.Airliner = airliner;
             this.IsSelected = false;
+     
         }
 
         #endregion
@@ -102,6 +103,7 @@
 
         public Airliner Airliner { get; set; }
 
+      
         public Boolean IsSelected
         {
             get

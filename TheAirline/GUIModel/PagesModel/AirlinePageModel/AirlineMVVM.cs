@@ -64,13 +64,23 @@
             this.DeliveredFleet = new ObservableCollection<FleetAirliner>();
             foreach (
                 FleetAirliner airliner in
-                    this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime))
+                    this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && a.Airliner.Status == Airliner.StatusTypes.Normal))
             {
                 this.DeliveredFleet.Add(airliner);
             }
 
             this.OrderedFleet = this.Airline.Fleet.FindAll(
                 a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
+
+            this.OutleasedFleet = new ObservableCollection<FleetAirliner>();
+
+            foreach (
+             FleetAirliner airliner in
+                 this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && a.Airliner.Status == Airliner.StatusTypes.Leasing))
+            {
+                this.OutleasedFleet.Add(airliner);
+            }
+
             this.Finances = new ObservableCollection<AirlineFinanceMVVM>();
             this.LoanRate = GeneralHelpers.GetAirlineLoanRate(this.Airline);
             this.FleetStatus = new ObservableCollection<KeyValuePair<string, int>>();
@@ -378,6 +388,7 @@
                 this.NotifyPropertyChanged("NeededPilots");
             }
         }
+        public ObservableCollection<FleetAirliner> OutleasedFleet { get; set; }
 
         public List<FleetAirliner> OrderedFleet { get; set; }
 
@@ -460,7 +471,14 @@
 
             this.setValues();
         }
+        //calls back an airliner for leasing
+        public void CallbackAirliner(FleetAirliner airliner)
+        {
+            airliner.Airliner.Status = Airliner.StatusTypes.Normal;
 
+            this.DeliveredFleet.Add(airliner);
+            this.OutleasedFleet.Remove(airliner);
+        }
         //adds a subsidiary airline
         public void addSubsidiaryAirline(SubsidiaryAirline airline)
         {
@@ -1549,6 +1567,28 @@
                 Boolean hasSubsidiary = airliner.Airliner.Airline.Subsidiaries.Count > 0 || airliner.Airliner.Airline.IsSubsidiary;
 
                 return airliner.Status == FleetAirliner.AirlinerStatus.Stopped && airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline && hasSubsidiary;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter if an airliner can be called back from outleasing
+    public class AirlinerCallBackConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                FleetAirliner airliner = (FleetAirliner)value;
+
+                return airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline && airliner.Airliner.Airline == airliner.Airliner.Owner;
             }
             catch
             {

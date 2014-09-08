@@ -139,16 +139,17 @@
 
             foreach (Airline airline in airlines)
             {
-                int airlineRoutes = airline.Routes.Count(r=>r.Destination1 == this.SelectedAirport.Destination || r.Destination2 == this.SelectedAirport.Destination);
+                int airlineSeats = airline.Routes.Where(r=>r.Destination1 == this.SelectedAirport.Destination || r.Destination2 == this.SelectedAirport.Destination).Sum(r=>r.TimeTable.Entries.Sum(en=>en.Airliner.Airliner.getTotalSeatCapacity()));
 
-                routes.Add(new KeyValuePair<string,int>(airline.Profile.Name,airlineRoutes));
+                routes.Add(new KeyValuePair<string,int>(airline.Profile.Name,airlineSeats / 7));
             }
 
             if (routes.Count == 0)
                 routes.Add(new KeyValuePair<string, int>("None", 0));
 
-            this.pcRoutes.DataContext = routes;
+            this.pcSeats.DataContext = routes;
 
+        
        
         }
         private void btnDemandContract_Click(object sender, RoutedEventArgs e)

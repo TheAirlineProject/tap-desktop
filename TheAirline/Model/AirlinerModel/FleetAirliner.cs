@@ -47,6 +47,9 @@
             this.MaintenanceHistory = new Dictionary<Invoice, string>();
 
             this.Data = new OperatingData();
+
+            if (this.Purchased == PurchasedType.Bought || this.Purchased == PurchasedType.BoughtDownPayment)
+                this.Airliner.Owner = this.Airliner.Airline;
         }
 
         private FleetAirliner(SerializationInfo info, StreamingContext ctxt)
@@ -106,6 +109,7 @@
             }
             if (version == 1)
                 this.Data = new OperatingData();
+           
         }
 
         #endregion
@@ -251,13 +255,13 @@
         [Versioning("status")]
         public AirlinerStatus Status { get; set; }
 
-        #endregion
+         #endregion
 
         #region Public Methods and Operators
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 2);
+            info.AddValue("version", 3);
             
             Type myType = this.GetType();
 

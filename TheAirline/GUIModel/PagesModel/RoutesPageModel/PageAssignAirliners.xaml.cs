@@ -50,7 +50,7 @@
             foreach (
                 FleetAirliner airliner in
                     GameObject.GetInstance()
-                        .HumanAirline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime))
+                        .HumanAirline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && a.Airliner.Status == Airliner.StatusTypes.Normal))
             {
                 this.Airliners.Add(new FleetAirlinerMVVM(airliner));
             }
@@ -111,7 +111,7 @@
                 GameObject.GetInstance()
                     .HumanAirline.Fleet.FindAll(
                         a =>
-                            a != airliner.Airliner && a.Status == FleetAirliner.AirlinerStatus.Stopped && a.Routes.Count == 0
+                            a != airliner.Airliner && a.Status == FleetAirliner.AirlinerStatus.Stopped && a.Airliner.Status == Airliner.StatusTypes.Normal && a.Routes.Count == 0
                             && a.Airliner.MinRunwaylength <= requiredRunway && a.Airliner.Range >= maxDistance);
 
             foreach (FleetAirliner fAirliner in airliners)

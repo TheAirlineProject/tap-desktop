@@ -90,6 +90,8 @@
                     }
                 }
             }
+            this.Students.RemoveAll(s => s == null);
+      
         }
 
         #endregion

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Re-deregulation of the Turkish Domestic Flights" startYear="2003" startCash="10000000" difficulty="Hard" endYear="2014">
+  <intro text="Until the liberalization in 1983, the flag carrier of Turkey, THY, acted as the only airline company for both domestic and international flights. The amendment in 1983 allowed the entry of private sector into the market. However, particularly after THY entered the privatization process, private airline companies were confronted with bureaucratic obstacles in their entry to domestic flights market. In addition, the DGCA took a decision in 1996, and made it more difficult for private airline companies to enter into the market. As a result, THY maintained its monopoly in domestic flights until 2003, and thus, domestic flights transport did not make any progress. Binali Yıldırım, the Minister of Transport in the government of Justice and Development Party, made a radical change on this state policy. In October 2003, he abolished the decision taken in 1996, and hence, allowed competition in domestic flights and removed the barriers that inhibited private airline companies from entering into the market. (Article by Yrd. Doç. Dr. Ender GEREDE - 2010) You will have 10 years to grow to a fleet of at least 15 aircraft, serving at least 40 domestic destinations..." />
+  <success text="Congratulations! You may just have a job." />
+  <start airline="8Q" homeBase="IST">
+    <destinations>
+      <destination airport="AYT" />
+      <destination airport="ESB" />
+      <destination airport="ADB" />
+      <destination airport="DLM" />
+      <destination airport="ADA" />
+      <destination airport="TZX" />
+      <destination airport="BJV" />
+    </destinations>
+    <fleet>
+      <aircraft name="Airbus A300B4" quantity="1" />
+      <aircraft name="Airbus A320-200" quantity="2" />
+      <aircraft name="MD-83 (DC-9-83)" quantity="4" />
+    </fleet>
+    <AI>
+      <airline name="TK" homeBase="IST">
+        <route departure="IST" destination="AYT" airliner="Boeing 737-800" quantity="2" />
+        <route departure="IST" destination="ESB" airliner="Boeing 737-800" quantity="3" />
+        <route departure="IST" destination="ADB" airliner="Boeing 737-400" quantity="1" />
+        <route departure="ADB" destination="ESB" airliner="Boeing 737-400" quantity="2" />
+        <route departure="ESB" destination="AYT" airliner="Boeing 737-400" quantity="1" />
+        <route departure="IST" destination="ADA" airliner="Boeing 737-800" quantity="2" />
+      </airline>
+      <airline name="KK" homeBase="IST">
+        <route departure="IST" destination="AYT" airliner="Airbus A321-200" quantity="2" />
+        <route departure="IST" destination="BJV" airliner="Airbus A320-200" quantity="2" />
+        <route departure="IST" destination="ADB" airliner="Airbus A320-200" quantity="3" />
+        <route departure="ADB" destination="ADA" airliner="Airbus A320-200" quantity="2" />
+        <route departure="IST" destination="TZX" airliner="Boeing 717-200" quantity="4" />
+      </airline>
+      <airline name="PC" homeBase="SAW">
+        <route departure="SAW" destination="AYT" airliner="Boeing 737-800" quantity="2" />
+        <route departure="SAW" destination="ADB" airliner="Boeing 737-800" quantity="2" />
+        <route departure="SAW" destination="ADA" airliner="Boeing 737-800" quantity="3" />
+        <route departure="SAW" destination="TZX" airliner="Boeing 737-900" quantity="2" />
+        <route departure="SAW" destination="DLM" airliner="Boeing 777-300" quantity="2" />
+        <route departure="SAW" destination="ADA" airliner="Boeing 777-300" quantity="2" />
+        <route departure="SAW" destination="DLM" airliner="Boeing 777-300" quantity="2" />
+      </airline>
+    </AI>
+  </start>
+  <modifiers>
+    <!--country/airport is modified by change(%) for length(years)-->
+    <paxDemand country="122" change="-20" length="1" />
+    <paxDemand airport="IST" change="-25" length="2" />
+    <paxDemand airport="ESB" change="-25" length="2" />
+    <paxDemand airport="ADB" change="-25" length="2" />
+  </modifiers>
+  <parameters>
+    <!--all values are less than. For is if that value is true for that amount of years. At is if it is true at n years into the scenario-->
+    <!--example: failure if fleet is less than 49 at 5 years into the scenario or if cash is less than zero for 0.25 years (3 months)-->
+    <failure id="1" type="Cash" value="0" for="0.25" text="You have failed the scenario because you didn't maintain a positive balance, maybe you aren't the right CEO for this company!" />
+    <failure id="2" type="Safety" value="20" for="1" text="You have failed the scenario because you didn't maintain a satisfactory safety rating for an entire year!" />
+    <failure id="3" type="Security" value="30" for="1" text="You have failed the scenario because you didn't maintain a satisfactory security rating for an entire year!" />
+    <failure id="4" type="Fleet" value="15" at="10" text="You have failed the scenario because you didn't successfully build your fleet to at least 50 aircraft within 5 years!" />
+    <failure id="5" type="Domestic" value="40" at="10" text="You have failed the scenario because you didn't successfully set up 25 domestic destinations within 11 years!" />
+    <failure id="8" type="Crime" value="Major" at="0" text="You have failed the scenario because you didn't prevent a major crime from happening!" />
+  </parameters>
+</scenario>

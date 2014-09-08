@@ -180,7 +180,7 @@
                         <TextBlock VerticalAlignment="Bottom" Width="200"
                                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1016'}"
                                    FontWeight="Bold" />
-                        <DatePicker Foreground="White" CalendarStyle="{StaticResource CalendarPickerStyle}"
+                        <DatePicker Foreground="White" CalendarStyle="{StaticResource CalendarPickerStyle}" Focusable="False"
                                     x:Name="dpDeliveryDate"
                                     DisplayDateStart="{Binding Orders.DeliveryDate,ElementName=pageManufacturer}"
                                     DisplayDate="{Binding Orders.DeliveryDate,ElementName=pageManufacturer}"

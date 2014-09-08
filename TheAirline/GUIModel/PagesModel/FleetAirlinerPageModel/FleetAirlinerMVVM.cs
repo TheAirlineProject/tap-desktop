@@ -5,9 +5,9 @@
     using System.ComponentModel;
     using System.Globalization;
     using System.Windows.Data;
-
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.GUIModel.PagesModel.AirlinePageModel;
+    using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
@@ -39,6 +39,8 @@
 
         private Boolean _ismissingpilots;
 
+        private Boolean _isoutleasable;
+
         #endregion
 
         #region Constructors and Destructors
@@ -48,6 +50,7 @@
             this.Airliner = airliner;
             this.Homebase = this.Airliner.Homebase;
             this.Classes = new ObservableCollection<AirlinerClassMVVM>();
+            this.Owner = (this.Airliner.Airliner.Owner != null && this.Airliner.Airliner.Airline != this.Airliner.Airliner.Owner) ? this.Airliner.Airliner.Owner : null;
 
             AirlinerClass tClass;
 
@@ -120,12 +123,18 @@
             this.SchedDMaintenance = this.Airliner.SchedDMaintenance;
 
             this.IsBuyable = this.Airliner.Airliner.Airline.IsHuman
-                             && this.Airliner.Purchased == FleetAirliner.PurchasedType.Leased;
+                             && this.Airliner.Purchased == FleetAirliner.PurchasedType.Leased && this.Airliner.Airliner.Owner == null;
             this.IsConvertable = this.Airliner.Airliner.Airline.IsHuman
                                  && this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
                                  && !this.Airliner.HasRoute
+                                 && (this.Airliner.Airliner.Owner!=null || this.Airliner.Airliner.Airline.isHuman())
                                  && this.Airliner.Purchased == FleetAirliner.PurchasedType.Bought
                                  && this.Airliner.Airliner.Type.IsConvertable;
+
+            this.IsOutleasable = this.Airliner.Airliner.Airline.IsHuman
+                && this.Airliner.Purchased == FleetAirliner.PurchasedType.Bought
+                && this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
+                && !this.Airliner.HasRoute;
 
             
     
@@ -155,6 +164,8 @@
         }
 
         public FleetAirliner Airliner { get; set; }
+
+        public Airline Owner { get; set; }
 
         public int BMaintenanceInterval
         {
@@ -235,7 +246,18 @@
                 this.NotifyPropertyChanged("IsConvertable");
             }
         }
-
+        public Boolean IsOutleasable
+        {
+            get
+            {
+                return this._isoutleasable;
+            }
+            set
+            {
+                this._isoutleasable = value;
+                this.NotifyPropertyChanged("IsOutleasable");
+            }
+        }
         public Boolean IsMissingPilots
         {
             get

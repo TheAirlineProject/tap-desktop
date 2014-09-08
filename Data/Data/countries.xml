@@ -333,6 +333,7 @@
     </translations>
   </country>
   <country uid="131" shortname="PHL" region="109" flag="Philippines" tailformat="RPC-\\s4">
+    <currency symbol="₱" position="Left" rate="43715" from="01.03.1948 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Philippines" />
       <de-DE name="Philippinen" />
@@ -388,6 +389,7 @@
     </translations>
   </country>
   <country uid="136" shortname="SAU" region="110" flag="Saudi Arabia" tailformat="HZ-\\s3">
+    <currency symbol="SR" position="Right" rate="3.75" from="01.01.1932 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Saudi Arabia" />
       <de-DE name="Saudi-Arabien" />
@@ -539,6 +541,8 @@
     </translations>
   </country>
   <country uid="150" shortname="PRT" region="115" flag="Portugal" tailformat="CR-\\s3">
+   <currency symbol="$" position="Left" rate="151.52" from="05.22.1911 00:00:00" to="12.31.2001 00:00:00" />
+      <currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Portugal" />
       <de-DE name="Portugal" />
@@ -606,6 +610,7 @@
     </translations>
   </country>
   <country uid="156" shortname="ARE" region="110" flag="United Arab Emirates" tailformat="A6-\\s3">
+       <currency symbol="AED" position="Left" rate="3.673" from="07.01.1973 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="United Arab Emirates" />
       <de-DE name="Vereinigte Arabische Emirate" />
@@ -652,6 +657,7 @@
     </translations>
   </country>
   <country uid="160" shortname="CHL" region="120" flag="Chile" tailformat="CC-\\s3">
+       <currency symbol="$" position="Right" rate="586.76" from="09.29.1975 00:00:00" to="12.31.2199 00:00:00" />
     <translations>
       <en-US name="Chile" />
       <de-DE name="Chile" />
@@ -663,6 +669,7 @@
     </translations>
   </country>
   <country uid="161" shortname="TUR" region="110" flag="Turkey" tailformat="TC-\\s3">
+      <currency symbol="€" position="Left" rate="2.713" from="01.01.1923 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Turkey" />
       <de-DE name="Türkei" />
@@ -674,6 +681,7 @@
     </translations>
   </country>
   <country uid="162" shortname="IDN" region="109" flag="Indonesia" tailformat="PK-\\s3">
+       <currency symbol="Rp" position="Right" rate="11697.10" from="06.12.1949 00:00:00" to="12.31.2199 00:00:00" />
     <translations>
       <en-US name="Indonesia" />
       <de-DE name="Indonesien" />
@@ -722,6 +730,7 @@
     </translations>
   </country>
   <country uid="166" shortname="CZE" region="113" flag="Czech Republic" tailformat="OK-\\s3">
+  <currency symbol="Kč" position="Right" rate="21.31" from="01.01.1993 00:00:00" to="01.01.2002 00:00:00" />
     <translations>
       <en-US name="Czech Republic" />
       <de-DE name="Tschechische Republik" />
@@ -733,6 +742,8 @@
     </translations>
   </country>
   <country uid="167" shortname="FIN" region="114" flag="Finland" tailformat="OH-\\s3">
+     <currency symbol="mk" position="Left" rate="2.43" from="01.01.1860 00:00:00" to="01.01.2002 00:00:00" />
+    <currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Finland" />
       <de-DE name="Finnland" />
@@ -744,6 +755,7 @@
     </translations>
   </country>
   <country uid="168" shortname="SWE" region="114" flag="Sweden" tailformat="SE-\\s3">
+    <currency symbol="kr." position="Right" rate="6.97" from="01.01.1873 00:00:00" to="12.31.2199 00:00:00" />
     <translations>
       <en-US name="Sweden" />
       <de-DE name="Schweden" />
@@ -791,6 +803,7 @@
     </translations>
   </country>
   <country uid="172" shortname="TWN" region="107" flag="Taiwan" tailformat="B-\\d5">
+   <currency symbol="NT$" position="Left" rate="29.88" from="06.15.1949 00:00:00" to="12.31.2199 00:00:00" />
     <translations>
       <en-US name="Taiwan" />
       <de-DE name="Taiwan" />
@@ -802,6 +815,7 @@
     </translations>
   </country>
   <country uid="173" shortname="MYS" region="109" flag="Malaysia" tailformat="9M-\\s3">
+   <currency symbol="RM" position="Right" rate="3.152" from="06.12.1967 00:00:00" to="12.31.2199 00:00:00" />
     <translations>
       <en-US name="Malaysia" />
       <de-DE name="Malaysia" />
@@ -813,7 +827,8 @@
     </translations>
   </country>
   <country uid="174" shortname="SGP" region="109" flag="Singapore" tailformat="9V-\\s3">
-    <translations>
+  <currency symbol="$" position="Left" rate="1.2503" from="04.07.1967 00:00:00" to="12.31.2199 00:00:00" />
+       <translations>
       <en-US name="Singapore" />
       <de-DE name="Singapur" />
       <en-GB name="Singapore" />
@@ -824,6 +839,7 @@
     </translations>
   </country>
   <country uid="175" shortname="THA" region="109" flag="Thailand" tailformat="HS-\\s3">
+  <currency symbol="฿" position="Left" rate="31.955" from="01.01.1897 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Thailand" />
       <de-DE name="Thailand" />
@@ -847,6 +863,7 @@
     </translations>
   </country>
   <country uid="177" shortname="IRN" region="108" flag="Iran" tailformat="EP-\\d3">
+       <currency symbol="ریال" position="Right" rate="26588.58" from="06.12.1932 00:00:00" to="12.31.2199 00:00:00" />
     <translations>
       <en-US name="Iran" />
       <de-DE name="Iran" />
@@ -882,6 +899,7 @@
     </translations>
   </country>
   <country uid="180" shortname="QAT" region="110" flag="Qatar" tailformat="A7-\\s3">
+       <currency symbol="QR" position="Left" rate="3.64" from="01.01.1966 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Qatar" />
       <de-DE name="Katar" />
@@ -893,6 +911,7 @@
     </translations>
   </country>
   <country uid="182" shortname="PER" region="120" flag="Peru" tailformat="OB-\\s4">
+     <currency symbol="S/" position="Left" rate="2.875" from="07.01.1991 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Peru" />
       <de-DE name="Peru" />
@@ -1082,6 +1101,7 @@
     </translations>
   </country>
   <country uid="199" shortname="JAM" region="117" flag="Jamaica" tailformat="6Y-\s3">
+    <currency symbol="J$" position="Left" rate="112.49" from="01.01.1969 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Jamaica" />
       <de-DE name="Jamaika" />
@@ -1093,6 +1113,7 @@
     </translations>
   </country>
   <country uid="202" shortname="PAK" region="108" flag="Pakistan" tailformat="AP-\s3">
+     <currency symbol="Rs" position="Left" rate="101.08" from="06.12.1947 00:00:00" to="12.31.2199 00:00:00" />
     <translations>
       <en-US name="Pakistan" />
       <de-DE name="Pakistan" />
@@ -1137,6 +1158,7 @@
     </translations>
   </country>
   <country uid="207" shortname="DOM" region="117" flag="Dominican Republic" tailformat="HI-\\d3\\s2">
+   <currency symbol="RD$" position="Right" rate="43.463" from="01.01.1844 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Dominican Republic" />
       <de-DE name="Dominikanische Republik" />
@@ -1357,6 +1379,7 @@
     </translations>
   </country>
   <country uid="231" shortname="SVK" region="113" flag="Slovakia" tailformat="OM-\\s3">
+   <currency symbol="€" position="Left" rate="0.76" from="01.01.2009 00:00:00" to="01.01.2199 00:00:00" />
     <translations>
       <en-US name="Slovakia" />
       <de-DE name="Slovakia" />
@@ -1412,6 +1435,7 @@
     </translations>
   </country>
   <country uid="236" shortname="KAZ" region="106" flag="Kazakhstan" tailformat="UP-\\s3\\d2">
+   <currency symbol="₸" position="Right" rate="0.0055" from="11.15.1993 00:00:00" to="01.01.2199 00:00:00"/>
     <translations>
       <en-US name="Kazakhstan" />
       <de-DE name="Kazakhstan" />
@@ -1467,6 +1491,7 @@
     </translations>
   </country>
   <country uid="241" shortname="MNG" region="107" flag="Mongolia" tailformat="JU-\\d4">
+   <currency symbol="₮" position="Right" rate="1.810" from="4.1.1928 00:00:00" to="01.01.2199 00:00:00"/>
     <translations>
       <en-US name="Mongolia" />
       <de-DE name="Mongolia" />
@@ -1777,7 +1802,8 @@
     </translations>
   </country>
   <country uid="277" shortname="BRN" region="109" flag="Brunei" tailformat="V8-\\s3">
-    <translations>
+   <currency symbol="$" position="Left" rate="1.2503" from="04.07.1967 00:00:00" to="12.31.2199 00:00:00" />
+     <translations>
       <en-US name="Brunei" />
       <de-DE name="Brunei" />
       <en-GB name="Brunei" />

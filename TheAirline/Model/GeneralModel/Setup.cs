@@ -2709,6 +2709,14 @@
 
                             expansion.Name = expansionName;
                         }
+                        if (expansionType == AirportExpansion.ExpansionType.Runway_Length)
+                        {
+                            string expansionName = expansionNode.Attributes["name"].Value;
+                            long length = Convert.ToInt64(expansionNode.Attributes["length"].Value);
+
+                            expansion.Name = expansionName;
+                            expansion.Length = length;
+                        }
                         if (expansionType == AirportExpansion.ExpansionType.New_runway)
                         {
                             string expansionName = expansionNode.Attributes["name"].Value;

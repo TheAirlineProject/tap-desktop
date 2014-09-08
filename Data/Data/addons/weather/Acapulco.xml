@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Acapulco">
+  <months>
+    <month month="1" precipitation="15">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="3">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="2">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="3">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="27">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="266">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="245">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="287">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="304">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="140">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="21">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="11">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

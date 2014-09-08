@@ -135,6 +135,22 @@
                 <ContentControl Content="{Binding Airliner.Airliner.Registered}" VerticalAlignment="Bottom"
                                 ContentTemplate="{StaticResource CountryLongFlagItem}" />
             </WrapPanel>
+            <WrapPanel>
+                <WrapPanel.Style>
+                    <Style TargetType="WrapPanel" BasedOn="{StaticResource WrapPanelStyle}">
+                        <Style.Triggers>
+                        <DataTrigger Binding="{Binding Owner}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </WrapPanel.Style>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1015'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                <ContentControl Content="{Binding Owner}" VerticalAlignment="Bottom"
+                                ContentTemplate="{StaticResource AirlineLink}" />
+            </WrapPanel>
             <WrapPanel Margin="0 5 0 0">
 
                 <Button
@@ -157,6 +173,19 @@
                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsConvertable}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button
+                    Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 206'}"
+                    Click="btnOutlease_Click" Margin="5 0 0 0" VerticalAlignment="Bottom">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsOutleasable}" Value="False">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>

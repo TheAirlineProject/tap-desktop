@@ -116,6 +116,9 @@
             {
                 AirportHelpers.CreateAirportWeather(this);
             }
+
+    
+           
         }
 
         #endregion
@@ -241,6 +244,10 @@
 
                 info.AddValue(att.Name, propValue);
             }
+            
+            
+      
+            
         }
 
         public void addAirlineContract(AirportContract contract)
@@ -454,7 +461,7 @@
             }
             return facility.Facility;
         }
-
+      
         //adds an airline airport contract to the airport
 
         //returns the contracts for an airline
@@ -483,12 +490,11 @@
 
             score += this.Cooperations.Where(c => c.Airline == airline).Sum(c => c.Type.ServiceLevel * 9);
 
-            List<AirlineAirportFacility> facilities = new List<AirlineAirportFacility>();
-
+            List<AirlineAirportFacility> facilities;
+            
             lock (this.Facilities)
             {
-                foreach (AirlineAirportFacility aaf in this.Facilities)
-                    facilities.Add(aaf);
+                facilities = new List<AirlineAirportFacility>(this.Facilities);
             }
              score += facilities.Where(f => f.Airline == airline).Sum(f => f.Facility.ServiceLevel * 10);
             

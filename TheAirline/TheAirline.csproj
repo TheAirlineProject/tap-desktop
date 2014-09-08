@@ -314,6 +314,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageLeasingAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageManufacturer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -692,6 +696,9 @@
     </Compile>
     <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageAirlinersHumanFleet.xaml.cs">
       <DependentUpon>PageAirlinersHumanFleet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageLeasingAirliners.xaml.cs">
+      <DependentUpon>PageLeasingAirliners.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageManufacturer.xaml.cs">
       <DependentUpon>PageManufacturer.xaml</DependentUpon>

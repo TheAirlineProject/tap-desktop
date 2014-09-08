@@ -13,6 +13,9 @@
     [Serializable]
     public class Airliner : ISerializable
     {
+         #region Enums
+        public enum StatusTypes {Normal,Leasing}
+        #endregion
         #region Fields
 
         private readonly Random rnd = new Random();
@@ -30,8 +33,10 @@
             this.TailNumber = tailNumber;
             this.Flown = 0;
             this.Condition = this.rnd.Next(90, 100);
-            this.Classes = new List<AirlinerClass>();
+            this.Status = StatusTypes.Normal;
 
+            this.Classes = new List<AirlinerClass>();
+           
             if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
             {
                 var aClass = new AirlinerClass(
@@ -121,6 +126,13 @@
                 this.EngineType = null;
             if (version < 3)
                 this.FlownHours = new TimeSpan();
+            if (version < 4)
+                this.Status = StatusTypes.Normal;
+            if (version < 5)
+            {
+                this.Owner = this.Airline;
+            }
+
 
         }
 
@@ -276,19 +288,25 @@
             }
 
         }
+         [Versioning("status",Version=4)]
+        public StatusTypes Status { get; set; }
         [Versioning("tailnumber")]
         public string TailNumber { get; set; }
 
         [Versioning("type")]
         public AirlinerType Type { get; set; }
 
+        [Versioning("owner", Version = 4)]
+        public Airline Owner { get; set; }
+
+      
         #endregion
 
         #region Public Methods and Operators
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 3);
+            info.AddValue("version", 5);
 
             Type myType = this.GetType();
 
@@ -504,9 +522,14 @@
         //returns the list of airliners for sale
         public static List<Airliner> GetAirlinersForSale()
         {
-            return airliners.FindAll((delegate(Airliner airliner) { return airliner.Airline == null; }));
+            return airliners.FindAll(a => a.Airline == null && a.Status == Airliner.StatusTypes.Normal);
+  
         }
-
+        //returns the list of airliners for leasing
+        public static List<Airliner> GetAirlinersForLeasing()
+        {
+            return airliners.FindAll(a => a.Status == Airliner.StatusTypes.Leasing);
+        }
         //returns the list of airliners for sale
         public static List<Airliner> GetAirlinersForSale(Predicate<Airliner> match)
         {

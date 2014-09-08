@@ -52,6 +52,9 @@
                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirliners 2000'}"
                     Tag="Used" />
                 <TabItem
+                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirliners 2004'}"
+                    Tag="Leasing" />
+                <TabItem
                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirliners 2002'}"
                     Tag="New" />
                 <TabItem

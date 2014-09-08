@@ -208,6 +208,7 @@
                 rClassConfiguration.Facilities = new List<RouteFacility>();
             }
 
+        
             Setup.SetupLoadedGame();
             //Maybe this helps? But i doubt this is the best way
             Action action = () =>
@@ -219,8 +220,10 @@
 
                 //Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
                 swPax.Stop();
-            };
-            
+
+              };
+
+           
             //create some pilots for the game
             int pilotsPool = 100 * Airlines.GetAllAirlines().Count;
             GeneralHelpers.CreatePilots(pilotsPool);

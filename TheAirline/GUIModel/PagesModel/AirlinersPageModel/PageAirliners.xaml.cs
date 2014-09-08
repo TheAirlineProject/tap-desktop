@@ -88,6 +88,10 @@
             {
                 frmContent.Navigate(new PageNewAirliners { Tag = this });
             }
+            if (selection == "Leasing" && frmContent != null)
+            {
+                frmContent.Navigate(new PageLeasingAirliners { Tag = this });
+            }
 
             if (selection == "Fleet" && frmContent != null)
             {

@@ -440,7 +440,7 @@
                 destination2.Profile.Coordinates.convertToGeoCoordinate());
 
             AirlinerType.TypeRange rangeType = GeneralHelpers.ConvertDistanceToRangeType(distance);
-
+        
             List<Airliner> airliners;
 
             if (airlineAircrafts.Count > 0)
@@ -449,12 +449,19 @@
                 {
                     if (doLeasing)
                     {
-                        airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
-                                .FindAll(
-                                    a =>
-                                        a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                        airliners = Airliners.GetAirlinersForLeasing().FindAll(a=>a.Type is AirlinerCargoType
+                            && a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
                                         && airlineAircrafts.Contains(a.Type));
+
+                        if (airliners.Count == 0)
+                        {
+                            airliners =
+                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
+                                    .FindAll(
+                                        a =>
+                                            a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                                            && airlineAircrafts.Contains(a.Type));
+                        }
                     }
                     else
                     {
@@ -492,11 +499,21 @@
                     if (doLeasing)
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
-                                .FindAll(
-                                    a =>
-                                        a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
-                                        && airlineAircrafts.Contains(a.Type));
+                           Airliners.GetAirlinersForLeasing()
+                               .FindAll(
+                                   a => a.Type is AirlinerPassengerType
+                                       &&  a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                                       && airlineAircrafts.Contains(a.Type));
+
+                        if (airliners.Count == 0)
+                        {
+                            airliners =
+                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
+                                    .FindAll(
+                                        a =>
+                                            a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                                            && airlineAircrafts.Contains(a.Type));
+                        }
                     }
                     else
                     {
@@ -515,11 +532,19 @@
                 {
                     if (doLeasing)
                     {
-                        airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
+                        airliners = Airliners.GetAirlinersForLeasing()
                                 .FindAll(
-                                    a =>
-                                        a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range);
+                                    a => a.Type is AirlinerCargoType
+                                        && a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range);
+
+                        if (airliners.Count == 0)
+                        {
+                            airliners =
+                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
+                                    .FindAll(
+                                        a =>
+                                            a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range);
+                        }
                     }
                     else
                     {
@@ -556,10 +581,19 @@
                     if (doLeasing)
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
+                            Airliners.GetAirlinersForSale()
                                 .FindAll(
-                                    a =>
-                                        a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range);
+                                    a =>a.Type is AirlinerPassengerType
+                                        && a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range);
+
+                        if (airliners.Count == 0)
+                        {
+                            airliners =
+                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
+                                    .FindAll(
+                                        a =>
+                                            a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range);
+                        }
                     }
                     else
                     {
@@ -1147,10 +1181,22 @@
                         airline.Fleet.FindAll(
                             a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute));
                 int max = fleet.Count;
-                if (max > 0)
+
+                Boolean outlease = max > 0 && rnd.Next(1000 / max) == 0;
+
+                if (outlease)
                 {
-                    CreateNewRoute(airline);
+                    var sFleet = fleet.OrderBy(f => f.Airliner.BuiltDate.Year);
+                    sFleet.ToList()[0].Airliner.Status = Airliner.StatusTypes.Leasing;
                 }
+               
+                fleet =
+                    new List<FleetAirliner>(
+                        airline.Fleet.FindAll(
+                            a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute));
+             
+                if (fleet.Count > 0)
+                        CreateNewRoute(airline);
             }
         }
 
@@ -1523,7 +1569,7 @@
                         destination,
                         doLeasing,
                         airline.AirlineRouteFocus);
-
+                    
                     fAirliner = GetFleetAirliner(airline, airport, destination);
 
                     if (airliner.HasValue || fAirliner != null)
@@ -1737,6 +1783,10 @@
                                             GameObject.GetInstance().GameTime,
                                             Invoice.InvoiceType.Rents,
                                             -airliner.Value.Key.LeasingPrice * 2);
+
+                                        if (airliner.Value.Key.Owner != null && airliner.Value.Key.Owner.IsHuman)
+                                            NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1004"), airline.Profile.Name,airliner.Value.Key.TailNumber)));
+
                                     }
                                     else
                                     {

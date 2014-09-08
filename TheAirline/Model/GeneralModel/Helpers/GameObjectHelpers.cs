@@ -2408,7 +2408,7 @@
                         Invoice.InvoiceType.Airline_Expenses,
                         -facility.MonthlyCost);
                 }
-
+              
                 foreach (FleetAirliner airliner in
                     airline.Fleet.FindAll(
                         (delegate(FleetAirliner a) { return a.Purchased == FleetAirliner.PurchasedType.Leased; })))
@@ -2418,6 +2418,15 @@
                         GameObject.GetInstance().GameTime,
                         Invoice.InvoiceType.Rents,
                         -airliner.Airliner.LeasingPrice);
+
+                    if (airliner.Airliner.Owner != null)
+                    {
+                        AirlineHelpers.AddAirlineInvoice(
+                       airliner.Airliner.Owner,
+                       GameObject.GetInstance().GameTime,
+                       Invoice.InvoiceType.Rents,
+                       airliner.Airliner.LeasingPrice);
+                    }
 
                     airliner.Data.addOperatingValue(new OperatingValue("Leasing Expenses", GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, -airliner.Airliner.LeasingPrice));
     

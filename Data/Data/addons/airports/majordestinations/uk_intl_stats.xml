@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+
+
 <majordestinations>
   <majordestination airport="LOS">
     <destinations>
@@ -227,7 +228,7 @@
       <destination airport="AUH" pax="24" />
       <destination airport="DXB" pax="59" />
       <destination airport="ATL" pax="8" />
-      <destination airport="ORD" pax="8" />
+      <destination airport="ORD" pax="17" cargo="3"/>
       <destination airport="LAS" pax="7" />
       <destination airport="JFK" pax="8" />
       <destination airport="EWR" pax="8" />
@@ -687,7 +688,7 @@
       <destination airport="LUX" pax="9" />
       <destination airport="KUL" pax="40" />
       <destination airport="MLA" pax="16" />
-      <destination airport="MEX" pax="7" />
+      <destination airport="MEX" pax="174" cargo="27" />
       <destination airport="AMS" pax="121" />
       <destination airport="ABV" pax="11" />
       <destination airport="LOS" pax="40" />
@@ -732,9 +733,9 @@
       <destination airport="ATL" pax="34" />
       <destination airport="BWI" pax="8" />
       <destination airport="BOS" pax="67" />
-      <destination airport="ORD" pax="77" />
-      <destination airport="DFW" pax="42" />
-      <destination airport="DEN" pax="9" />
+      <destination airport="ORD" pax="2290" cargo="352" />
+      <destination airport="DFW" pax="1477" cargo="227" />
+      <destination airport="DEN" pax="24" cargo="4" />
       <destination airport="DTW" pax="10" />
       <destination airport="IAH" pax="42" />
       <destination airport="LAS" pax="17" />
@@ -743,11 +744,13 @@
       <destination airport="JFK" pax="217" />
       <destination airport="EWR" pax="87" />
       <destination airport="PHL" pax="29" />
-      <destination airport="PHX" pax="12" />
-      <destination airport="RDU" pax="9" />
+      <destination airport="PHX" pax="351" cargo="50" />
+      <destination airport="SEA" pax="390" cargo="60" />
+     
+ <destination airport="RDU" pax="9" />
       <destination airport="SAN" pax="12" />
       <destination airport="SFO" pax="65" />
-      <destination airport="SEA" pax="390" />
+      <destination airport="SEA" pax="13" />
       <destination airport="IAD" pax="68" />
       <destination airport="TAS" pax="1" />
       <destination airport="LUN" pax="2" />

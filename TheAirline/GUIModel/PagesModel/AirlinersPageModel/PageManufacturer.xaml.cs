@@ -138,8 +138,7 @@
             }
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
-
-            DateTime deliveryDate = this.dpDeliveryDate.SelectedDate.HasValue
+             DateTime deliveryDate = this.dpDeliveryDate.SelectedDate.HasValue
                 ? this.dpDeliveryDate.SelectedDate.Value
                 : this.Orders.DeliveryDate;
 

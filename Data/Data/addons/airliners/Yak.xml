@@ -7,4 +7,18 @@
     <capacity passengers="32" cockpitcrew="3" cabincrew="1" maxclasses="1" />
     <produced from="1967" to="1981" rate="73" />
   </airliner>
+  <airliner manufacturer="Yak" name="Yak-42D" price="5000000">
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <specs wingspan="34.88" length="36.38" weight="57500" range="4000" speed="740" fuelcapacity="18500" consumption="0.08"
+  runwaylengthrequired="2000" />
+    <capacity passengers="120" cockpitcrew="2" cabincrew="3" maxclasses="2" />
+    <produced from="1987" to="2003" rate="9" />
+  </airliner>
+<airliner manufacturer="Yak" name="Yak-42" price="4000000">
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <specs wingspan="34.88" length="36.38" weight="53500" range="2000" speed="740" fuelcapacity="15795" consumption="0.13"
+  runwaylengthrequired="1800" />
+    <capacity passengers="120" cockpitcrew="2" cabincrew="3" maxclasses="2" />
+    <produced from="1981" to="1987" rate="9" />
+  </airliner>
 </airliners>

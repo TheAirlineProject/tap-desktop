@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
+  <airliner manufacturer="Cessna" name="Cessna 402C" price="220000"> <!--1700000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="13.45" length="11.09" range="2360" speed="230" fuelcapacity="806" consumption="0.097"
+           runwaylengthrequired="1100" />
+    <capacity passengers="9" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1978" to="1985" rate="81" />
+  </airliner>
   <airliner manufacturer="Cessna" name="Cessna 206" price="71010"> <!--557500-->
     <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
     <specs wingspan="10.97" length="8.61" range="1352" speed="263" fuelcapacity="1250" consumption="0.049"

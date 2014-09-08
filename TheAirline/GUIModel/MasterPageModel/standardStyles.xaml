@@ -1233,6 +1233,8 @@ and change the color of the selected bullet into a darker gray for better highli
     <Style TargetType="{x:Type DatePickerTextBox}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="White" />
+        <Setter Property="IsReadOnly" Value="True"></Setter>
+        <Setter Property="Focusable" Value="False"></Setter>
     </Style>
     <!--FilterableListView-->
     <Style TargetType="c:FilterableListView">

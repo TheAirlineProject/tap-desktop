@@ -100,10 +100,17 @@
 
             int airlines = Airlines.GetNumberOfAirlines();
 
-            number = (airlines * number) / 5;
+            number = (airlines * number) / 10;
             for (int i = 0; i < number; i++)
             {
                 Airliners.AddAirliner(CreateAirliner(0));
+            }
+
+            int airlinersForLease = number / 20;
+
+            for (int i = 0; i < airlinersForLease; i++)
+            {
+                Airliners.AddAirliner(CreateLeasingAirliner());
             }
         }
 
@@ -349,6 +356,16 @@
         #endregion
 
         #region Methods
+        private static Airliner CreateLeasingAirliner()
+        {
+            int years = rnd.Next(0, 4);
+
+            Airliner airliner = CreateAirlinerFromYear(GameObject.GetInstance().GameTime.AddYears(-years).Year);
+
+            airliner.Status = Airliner.StatusTypes.Leasing;
+
+            return airliner;
+        }
 
         private static Airliner CreateAirliner(double minRange)
         {
@@ -358,8 +375,8 @@
                 AirlinerTypes.GetTypes(
                     delegate(AirlinerType t)
                     {
-                        return t.Range >= minRange && t.Produced.From.Year < GameObject.GetInstance().GameTime.Year
-                               && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30);
+                        return t.Range >= minRange && t.Produced.From.Year < GameObject.GetInstance().GameTime.AddYears(-5).Year
+                               && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-35);
                     });
 
             int typeNumber = rnd.Next(types.Count);
@@ -369,8 +386,8 @@
             Country country = Countries.GetCountries()[countryNumber];
 
             int builtYear = rnd.Next(
-                Math.Max(type.Produced.From.Year, GameObject.GetInstance().GameTime.Year - 30),
-                Math.Min(GameObject.GetInstance().GameTime.Year - 1, type.Produced.To.Year));
+                Math.Max(type.Produced.From.Year, GameObject.GetInstance().GameTime.Year - 35),
+                Math.Min(GameObject.GetInstance().GameTime.Year - 5, type.Produced.To.Year));
 
             var airliner = new Airliner(
                 id.ToString(),

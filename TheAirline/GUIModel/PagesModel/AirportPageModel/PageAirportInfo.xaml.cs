@@ -263,8 +263,10 @@
                         Gate gate =
                             this.Airport.Airport.Terminals.getGates()
                                 .Where(g => g.Airline == GameObject.GetInstance().HumanAirline)
-                                .First();
-                        gate.Airline = null;
+                                .FirstOrDefault();
+
+                        if (gate != null)
+                            gate.Airline = null;
                     }
                 }
             }
