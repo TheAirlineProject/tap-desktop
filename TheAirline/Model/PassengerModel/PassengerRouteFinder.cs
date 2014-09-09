@@ -1,11 +1,10 @@
-﻿namespace TheAirline.Model.PassengerModel
+﻿using System.Collections.Generic;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel.Helpers;
+
+namespace TheAirline.Model.PassengerModel
 {
-    using System.Collections.Generic;
-
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.AirportModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-
     //the route finder for the passengers
     public class PassengerRouteFinder
     {
@@ -17,16 +16,16 @@
         /// <param name="nodes">All airports</param>
         public PassengerRouteFinder(List<Airport> nodes)
         {
-            this.Nodes = nodes;
-            this.Basis = new List<Airport>();
-            this.Dist = new Dictionary<string, double>();
-            this.Previous = new Dictionary<string, Airport>();
+            Nodes = nodes;
+            Basis = new List<Airport>();
+            Dist = new Dictionary<string, double>();
+            Previous = new Dictionary<string, Airport>();
 
-            foreach (Airport n in this.Nodes)
+            foreach (Airport n in Nodes)
             {
-                this.Previous.Add(n.Profile.IATACode, null);
-                this.Basis.Add(n);
-                this.Dist.Add(n.Profile.IATACode, double.MaxValue);
+                Previous.Add(n.Profile.IATACode, null);
+                Basis.Add(n);
+                Dist.Add(n.Profile.IATACode, double.MaxValue);
             }
         }
 
@@ -51,29 +50,29 @@
         ///     the start airport to all other airports
         /// </summary>
         /// <param name="start">Startknoten</param>
-        public void calculateDistance(Airport start)
+        public void CalculateDistance(Airport start)
         {
-            this.Dist[start.Profile.IATACode] = 0;
+            Dist[start.Profile.IATACode] = 0;
 
-            while (this.Basis.Count > 0)
+            while (Basis.Count > 0)
             {
-                Airport u = this.getNodeWithSmallestDistance();
+                Airport u = GetNodeWithSmallestDistance();
                 if (u == null)
                 {
-                    this.Basis.Clear();
+                    Basis.Clear();
                 }
                 else
                 {
-                    foreach (Airport v in this.getNeighbors(u))
+                    foreach (Airport v in GetNeighbors(u))
                     {
-                        double alt = this.Dist[u.Profile.IATACode] + this.getDistanceBetween(u, v);
-                        if (alt < this.Dist[v.Profile.IATACode])
+                        double alt = Dist[u.Profile.IATACode] + getDistanceBetween(u, v);
+                        if (alt < Dist[v.Profile.IATACode])
                         {
-                            this.Dist[v.Profile.IATACode] = alt;
-                            this.Previous[v.Profile.IATACode] = u;
+                            Dist[v.Profile.IATACode] = alt;
+                            Previous[v.Profile.IATACode] = u;
                         }
                     }
-                    this.Basis.Remove(u);
+                    Basis.Remove(u);
                 }
             }
         }
@@ -82,16 +81,16 @@
         ///     Returns the airport with the smallest distance
         /// </summary>
         /// <returns></returns>
-        public Airport getNodeWithSmallestDistance()
+        public Airport GetNodeWithSmallestDistance()
         {
             double distance = double.MaxValue;
             Airport smallest = null;
 
-            foreach (Airport n in this.Basis)
+            foreach (Airport n in Basis)
             {
-                if (this.Dist[n.Profile.IATACode] < distance)
+                if (Dist[n.Profile.IATACode] < distance)
                 {
-                    distance = this.Dist[n.Profile.IATACode];
+                    distance = Dist[n.Profile.IATACode];
                     smallest = n;
                 }
             }
@@ -106,15 +105,15 @@
         ///     Destination
         ///     <n/ param>
         ///         <returns></returns>
-        public List<Airport> getPathTo(Airport d)
+        public List<Airport> GetPathTo(Airport d)
         {
             var path = new List<Airport>();
 
             path.Insert(0, d);
 
-            while ((this.Previous.Count != 0) && (this.Previous[d.Profile.IATACode] != null))
+            while ((Previous.Count != 0) && (Previous[d.Profile.IATACode] != null))
             {
-                d = this.Previous[d.Profile.IATACode];
+                d = Previous[d.Profile.IATACode];
                 path.Insert(0, d);
             }
 
@@ -145,14 +144,14 @@
         /// </summary>
         /// <param name="n">Airport</param>
         /// <returns></returns>
-        private List<Airport> getNeighbors(Airport n)
+        private List<Airport> GetNeighbors(Airport n)
         {
             var neighbors = new List<Airport>();
 
             foreach (Route route in AirportHelpers.GetAirportRoutes(n))
             {
                 Airport destination = route.Destination1 == n ? route.Destination2 : route.Destination1;
-                if (this.Basis.Contains(n))
+                if (Basis.Contains(n))
                 {
                     neighbors.Add(destination);
                 }
