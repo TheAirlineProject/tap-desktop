@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airliners>
+  <airliner manufacturer="Avic" name="Xi'an Y-7" price="463350"> <!--6900000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="29.6" length="24.21" range="1500" speed="423" fuelcapacity="5400" consumption="0.080" runwaylengthrequired="978"/>
+    <capacity passengers="45" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="1970" to="2006" rate="72"/>
+  </airliner>
+  <airliner manufacturer="Avic" name="Xi'an MA60" price="1063350"> <!--6900000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="29.2" length="24.71" range="1600" speed="430" fuelcapacity="5415" consumption="0.071" runwaylengthrequired="998"/>
+    <capacity passengers="60" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="2000" to="2199" rate="27"/>
+  </airliner>
+   <airliner manufacturer="Avic" name="Xi'an MA600" price="1363350"> <!--6900000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="29.2" length="24.71" range="1430" speed="514" fuelcapacity="5415" consumption="0.071" runwaylengthrequired="1170"/>
+    <capacity passengers="60" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="2008" to="2199" rate="4"/>
+  </airliner>
+
+</airliners>
