@@ -167,14 +167,14 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                         foreach (Instructor instructor in fs.Instructors)
                         {
                             instructor.FlightSchool = nFlightSchool;
-                            nFlightSchool.addInstructor(instructor);
+                            nFlightSchool.AddInstructor(instructor);
                         }
 
                         var aircrafts = new List<TrainingAircraft>(fs.TrainingAircrafts);
                         foreach (TrainingAircraft aircraft in aircrafts)
                         {
                             aircraft.FlightSchool = nFlightSchool;
-                            nFlightSchool.addTrainingAircraft(aircraft);
+                            nFlightSchool.AddTrainingAircraft(aircraft);
                         }
 
                         ICollectionView view = CollectionViewSource.GetDefaultView(this.lvFlightSchools.ItemsSource);
@@ -224,7 +224,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
             {
                 var flightSchool = (FlightSchool)cbFlightSchools.SelectedItem;
 
-                flightSchool.addInstructor(instructor);
+                flightSchool.AddInstructor(instructor);
                 instructor.FlightSchool = flightSchool;
 
                 this.AllInstructors.Remove(instructor);

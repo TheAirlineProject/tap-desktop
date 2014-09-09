@@ -595,7 +595,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                 .Where(f => f.ID == id)
                                 .FirstOrDefault();
                     instructor.FlightSchool = fs;
-                    fs.addInstructor(instructor);
+                    fs.AddInstructor(instructor);
                 }
 
                 XmlNodeList studentsList = instructorNode.SelectNodes("students/student");
@@ -606,7 +606,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         instructor.FlightSchool.Students.Find(
                             s => s.Profile.Name == studentNode.Attributes["name"].Value);
                     student.Instructor = instructor;
-                    instructor.addStudent(student);
+                    instructor.AddStudent(student);
                 }
 
                 Instructors.AddInstructor(instructor);
@@ -2197,7 +2197,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         aircraftNode.Attributes["date"].Value,
                         new CultureInfo("de-DE", false));
 
-                    fs.addTrainingAircraft(new TrainingAircraft(aircraftType, aircraftDate, fs));
+                    fs.AddTrainingAircraft(new TrainingAircraft(aircraftType, aircraftDate, fs));
                 }
 
                 XmlNodeList studentsList = flightschoolNode.SelectNodes("students/student");
@@ -2214,7 +2214,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         studentNode.Attributes["startdate"].Value,
                         new CultureInfo("de-DE", false));
 
-                    fs.addStudent(
+                    fs.AddStudent(
                         new PilotStudent(
                             new PilotProfile(firstname, lastname, birthdate, town),
                             startdate,

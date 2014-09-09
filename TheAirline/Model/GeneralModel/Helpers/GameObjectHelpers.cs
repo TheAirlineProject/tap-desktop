@@ -1671,11 +1671,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     if (student.AirlinerFamily != "")
                     {
-                        pilot.addAirlinerFamily(student.AirlinerFamily);
+                        pilot.AddAirlinerFamily(student.AirlinerFamily);
                     }
 
-                    student.Instructor.removeStudent(student);
-                    student.Instructor.FlightSchool.removeStudent(student);
+                    student.Instructor.RemoveStudent(student);
+                    student.Instructor.FlightSchool.RemoveStudent(student);
                     student.Instructor = null;
 
                     airline.AddPilot(pilot);
@@ -1703,7 +1703,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (Pilot pilot in trainedPilots)
                 {
-                    pilot.addAirlinerFamily(pilot.Training.AirlinerFamily);
+                    pilot.AddAirlinerFamily(pilot.Training.AirlinerFamily);
 
                     if (airline.IsHuman)
                     {
@@ -2276,7 +2276,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             }
 
                             newInstructor.FlightSchool = instructor.FlightSchool;
-                            newInstructor.FlightSchool.addInstructor(newInstructor);
+                            newInstructor.FlightSchool.AddInstructor(newInstructor);
                             instructor.Students.Clear();
 
                             if (airline.IsHuman)
@@ -2304,10 +2304,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                         i =>
                                         i.Students.Count < FlightSchool.MaxNumberOfStudentsPerInstructor
                                         && i != instructor);
-                                newInstructor.addStudent(student);
+                                newInstructor.AddStudent(student);
                                 student.Instructor = newInstructor;
 
-                                instructor.removeStudent(student);
+                                instructor.RemoveStudent(student);
                             }
 
                             if (airline.IsHuman)
@@ -2340,7 +2340,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         }
                     }
 
-                    instructor.FlightSchool.removeInstructor(instructor);
+                    instructor.FlightSchool.RemoveInstructor(instructor);
                     instructor.FlightSchool = null;
 
                     Instructors.RemoveInstructor(instructor);

@@ -135,7 +135,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 Translator.GetInstance().GetString("PanelFlightSchool", "1005"),
                 cbInstructor) == PopUpSingleElement.ButtonSelected.OK && cbInstructor.SelectedItem != null)
             {
-                student.Instructor.removeStudent(student);
+                student.Instructor.RemoveStudent(student);
                 student.Instructor = (Instructor)cbInstructor.SelectedItem;
 
                 ICollectionView view = CollectionViewSource.GetDefaultView(this.lvStudents.ItemsSource);
@@ -186,7 +186,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
             if (result == WPFMessageBoxResult.Yes)
             {
                 this.FlightSchool.removeStudent(student);
-                student.Instructor.removeStudent(student);
+                student.Instructor.RemoveStudent(student);
                 student.Instructor = null;
 
                 this.setHireStudentsStatus();
@@ -259,7 +259,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 student.Aircraft = aircraft;
 
                 this.FlightSchool.addStudent(student);
-                instructor.addStudent(student);
+                instructor.AddStudent(student);
 
                 this.setHireStudentsStatus();
 

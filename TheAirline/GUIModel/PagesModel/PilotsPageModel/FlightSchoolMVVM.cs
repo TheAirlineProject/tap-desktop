@@ -103,14 +103,14 @@
         public void addInstructor(Instructor instructor)
         {
             this.Instructors.Add(instructor);
-            this.FlightSchool.addInstructor(instructor);
+            this.FlightSchool.AddInstructor(instructor);
             this.NumberOfInstructors = this.Instructors.Count;
         }
 
         public void addStudent(PilotStudent student)
         {
             this.Students.Add(student);
-            this.FlightSchool.addStudent(student);
+            this.FlightSchool.AddStudent(student);
             this.NumberOfStudents = this.Students.Count;
         }
 
@@ -120,20 +120,20 @@
         public void addTrainingAircraft(TrainingAircraft aircraft)
         {
             this.Aircrafts.Add(aircraft);
-            this.FlightSchool.addTrainingAircraft(aircraft);
+            this.FlightSchool.AddTrainingAircraft(aircraft);
         }
 
         public void removeInstructor(Instructor instructor)
         {
             this.Instructors.Remove(instructor);
-            this.FlightSchool.removeInstructor(instructor);
+            this.FlightSchool.RemoveInstructor(instructor);
             this.NumberOfInstructors = this.Instructors.Count;
         }
 
         public void removeStudent(PilotStudent student)
         {
             this.Students.Remove(student);
-            this.FlightSchool.removeStudent(student);
+            this.FlightSchool.RemoveStudent(student);
             this.NumberOfStudents = this.Students.Count;
         }
 
@@ -141,7 +141,7 @@
         public void removeTrainingAircraft(TrainingAircraft aircraft)
         {
             this.Aircrafts.Remove(aircraft);
-            this.FlightSchool.removeTrainingAircraft(aircraft);
+            this.FlightSchool.RemoveTrainingAircraft(aircraft);
         }
 
         #endregion

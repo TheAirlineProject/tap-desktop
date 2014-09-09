@@ -1600,25 +1600,25 @@ namespace TheAirline.Model.GeneralModel
         private static void CreatePilotRatings()
         {
             var ratingA = new PilotRating("A", 70, 3);
-            ratingA.addAircraft(TrainingAircraftTypes.GetAircraftType("Cessna 172"));
-            ratingA.addAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
+            ratingA.AddAircraft(TrainingAircraftTypes.GetAircraftType("Cessna 172"));
+            ratingA.AddAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
             PilotRatings.AddRating(ratingA);
 
             var ratingB = new PilotRating("B", 85, 4);
-            ratingB.addAircraft(TrainingAircraftTypes.GetAircraftType("Cessna 172"));
-            ratingB.addAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
+            ratingB.AddAircraft(TrainingAircraftTypes.GetAircraftType("Cessna 172"));
+            ratingB.AddAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
             PilotRatings.AddRating(ratingB);
 
             var ratingC = new PilotRating("C", 95, 5);
-            ratingC.addAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
+            ratingC.AddAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
             PilotRatings.AddRating(ratingC);
 
             var ratingD = new PilotRating("D", 120, 7);
-            ratingD.addAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
+            ratingD.AddAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
             PilotRatings.AddRating(ratingD);
 
             var ratingE = new PilotRating("E", 150, 10);
-            ratingE.addAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
+            ratingE.AddAircraft(TrainingAircraftTypes.GetAircraftType("Beechcraft King Air 350"));
             PilotRatings.AddRating(ratingE);
         }
 
