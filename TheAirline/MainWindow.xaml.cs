@@ -1,68 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TheAirline.Model.GeneralModel;
-using System.Threading;
-using System.Globalization;
-using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.Model.AirportModel;
+using TheAirline.GUIModel.PagesModel.GamePageModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
 namespace TheAirline
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-
         public MainWindow()
         {
-
             InitializeComponent();
-          
+
             Setup.SetupGame();
 
             if (Settings.GetInstance().Mode == Settings.ScreenMode.Fullscreen)
             {
-                this.WindowStyle = WindowStyle.None;
-                this.WindowState = WindowState.Maximized;
-                this.Focus();
+                WindowStyle = WindowStyle.None;
+                WindowState = WindowState.Maximized;
+                Focus();
             }
 
             PageNavigator.MainWindow = this;
 
-            this.Width = SystemParameters.PrimaryScreenWidth;
-            this.Height = SystemParameters.PrimaryScreenHeight;
+            Width = SystemParameters.PrimaryScreenWidth;
+            Height = SystemParameters.PrimaryScreenHeight;
 
             if (AppSettings.GetInstance().HasLanguage())
-                frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageStartMenu());
+                frmContent.Navigate(new PageStartMenu());
             else
-                frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageSelectLanguage());
-
-
+                frmContent.Navigate(new PageSelectLanguage());
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1003"), Translator.GetInstance().GetString("MessageBox", "1003", "message"), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1003"), Translator.GetInstance().GetString("MessageBox", "1003", "message"),
+                                                                WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
-                    this.Close();
+                    Close();
             }
             if (e.Key == Key.F8)
             {
@@ -76,20 +65,20 @@ namespace TheAirline
             }
             if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F12)
             {
-                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.GetCommonApplicationDataPath() + "\\theairline.log");
-                   
+                var file = new StreamWriter(AppSettings.GetCommonApplicationDataPath() + "\\theairline.log");
+
                 if (Airports.Count() >= 5)
                 {
                     for (int i = 0; i < 5; i++)
                     {
                         Airport airport = Airports.GetAllAirports()[i];
 
-                        file.WriteLine("Airport demand for {0} of size {1}",airport.Profile.Name,airport.Profile.Size);
+                        file.WriteLine("Airport demand for {0} of size {1}", airport.Profile.Name, airport.Profile.Size);
 
                         foreach (Airport demand in airport.GetDestinationDemands())
                         {
-                            file.WriteLine("    Demand to {0} ({2}) is {1}", demand.Profile.Name, airport.GetDestinationPassengersRate(demand, AirlinerClass.ClassType.EconomyClass),demand.Profile.Size);
-                            
+                            file.WriteLine("    Demand to {0} ({2}) is {1}", demand.Profile.Name, airport.GetDestinationPassengersRate(demand, AirlinerClass.ClassType.EconomyClass),
+                                           demand.Profile.Size);
                         }
                     }
                 }
@@ -98,13 +87,12 @@ namespace TheAirline
 
                 file.Close();
             }
-
         }
 
         //clears the navigator
-        public void clearNavigator()
+        public void ClearNavigator()
         {
-            frmContent.NavigationService.LoadCompleted += new LoadCompletedEventHandler(NavigationService_LoadCompleted);
+            frmContent.NavigationService.LoadCompleted += NavigationService_LoadCompleted;
 
             // Remove back entries
             while (frmContent.NavigationService.CanGoBack)
@@ -115,43 +103,38 @@ namespace TheAirline
         {
             frmContent.NavigationService.RemoveBackEntry();
 
-            frmContent.NavigationService.LoadCompleted -= new LoadCompletedEventHandler(NavigationService_LoadCompleted);
+            frmContent.NavigationService.LoadCompleted -= NavigationService_LoadCompleted;
         }
 
         //returns if navigator can go forward
-        public Boolean canGoForward()
+        public Boolean CanGoForward()
         {
             return frmContent.NavigationService.CanGoForward;
         }
 
         //returns if navigator can go back
-        public Boolean canGoBack()
+        public Boolean CanGoBack()
         {
             return frmContent.NavigationService.CanGoBack;
         }
 
         //navigates to a new page
-        public void navigateTo(Page page)
+        public void NavigateTo(Page page)
         {
-
             frmContent.Navigate(page);
             frmContent.NavigationService.RemoveBackEntry();
-
-
         }
 
         //moves the navigator forward
-        public void navigateForward()
+        public void NavigateForward()
         {
-
             if (frmContent.NavigationService.CanGoForward)
                 frmContent.NavigationService.GoForward();
         }
 
         //moves the navigator back
-        public void navigateBack()
+        public void NavigateBack()
         {
-
             if (frmContent.NavigationService.CanGoBack)
                 frmContent.NavigationService.GoBack();
         }

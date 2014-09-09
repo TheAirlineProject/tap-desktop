@@ -1,10 +1,10 @@
-﻿namespace TheAirline.GUIModel.HelpersModel
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Windows;
-    using System.Windows.Controls;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
 
+namespace TheAirline.GUIModel.HelpersModel
+{
     //the class for the navigator to navigate between pages
     public class PageNavigator
     {
@@ -15,10 +15,6 @@
         private static readonly List<UIElement> RefreshElements = new List<UIElement>();
 
         #endregion
-
-        //navigate to a new page
-
-        //adds an element to fresh to the list
 
         #region Public Methods and Operators
 
@@ -32,34 +28,34 @@
         //returns if navigator can go back
         public static Boolean CanGoBack()
         {
-            return MainWindow.canGoBack();
+            return MainWindow.CanGoBack();
         }
 
         //returns if navigator can go forward
         public static Boolean CanGoForward()
         {
-            return MainWindow.canGoBack();
+            return MainWindow.CanGoBack();
         }
 
         public static void ClearNavigator()
         {
-            MainWindow.clearNavigator();
+            MainWindow.ClearNavigator();
         }
 
         public static void NavigateBack()
         {
-            MainWindow.navigateBack();
+            MainWindow.NavigateBack();
         }
 
         //navigates forward
         public static void NavigateForward()
         {
-            MainWindow.navigateForward();
+            MainWindow.NavigateForward();
         }
 
         public static void NavigateTo(Page page)
         {
-            MainWindow.navigateTo(page);
+            MainWindow.NavigateTo(page);
         }
 
         public static void Refresh()
@@ -71,5 +67,9 @@
         }
 
         #endregion
+
+        //navigate to a new page
+
+        //adds an element to fresh to the list
     }
 }
