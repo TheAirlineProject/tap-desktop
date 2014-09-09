@@ -268,7 +268,7 @@
                 Airliners.AddAirliner(airliner);
 
                 var pType = FleetAirliner.PurchasedType.Bought;
-                GameObject.GetInstance().HumanAirline.addAirliner(pType, airliner, airport);
+                GameObject.GetInstance().HumanAirline.AddAirliner(pType, airliner, airport);
 
                 airliner.clearAirlinerClasses();
 

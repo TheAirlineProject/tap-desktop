@@ -179,9 +179,9 @@
                 }
                 if (failure.Type == ScenarioFailure.FailureType.FleetAge)
                 {
-                    double avgFleetAge = (GameObject.GetInstance().MainAirline.getAverageFleetAge()
+                    double avgFleetAge = (GameObject.GetInstance().MainAirline.GetAverageFleetAge()
                                           + GameObject.GetInstance()
-                                              .MainAirline.Subsidiaries.Sum(s => s.getAverageFleetAge()))
+                                              .MainAirline.Subsidiaries.Sum(s => s.GetAverageFleetAge()))
                                          / (1 + GameObject.GetInstance().MainAirline.Subsidiaries.Count);
                     failureOk = Convert.ToDouble(failure.Value) > avgFleetAge;
                 }
@@ -297,7 +297,7 @@
                 for (int i = 0; i < fleetAirliner.Value; i++)
                 {
                     GameObject.GetInstance()
-                        .HumanAirline.addAirliner(
+                        .HumanAirline.AddAirliner(
                             AirlineHelpers.CreateAirliner(GameObject.GetInstance().HumanAirline, fleetAirliner.Key));
                 }
             }
@@ -360,7 +360,7 @@
                 airline.StartMoney = airline.Money;
 
                 airline.Fees = new AirlineFees();
-                airline.addAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 150));
+                airline.AddAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 150));
             }
         }
 
@@ -453,10 +453,10 @@
                     }
                 }
 
-                airline.addRoute(route);
+                airline.AddRoute(route);
 
                 FleetAirliner fAirliner = AirlineHelpers.CreateAirliner(airline, saroute.AirlinerType);
-                airline.addAirliner(fAirliner);
+                airline.AddAirliner(fAirliner);
 
                 fAirliner.addRoute(route);
 

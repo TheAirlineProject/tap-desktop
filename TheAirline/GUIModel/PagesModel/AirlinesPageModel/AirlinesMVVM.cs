@@ -29,8 +29,8 @@
         public AirlinesMVVM(Airline airline)
         {
             this.Airline = airline;
-            this.Profit = this.Airline.getProfit();
-            this.AvgFleetAge = this.Airline.getAverageFleetAge();
+            this.Profit = this.Airline.GetProfit();
+            this.AvgFleetAge = this.Airline.GetAverageFleetAge();
 
             StatisticsType passengersType = StatisticsTypes.GetStatisticsType("Passengers");
             StatisticsType passengersAvgType = StatisticsTypes.GetStatisticsType("Passengers%");

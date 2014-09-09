@@ -97,7 +97,7 @@
 
             foreach (AirlineAdvertisementMVVM advertisement in this.Airline.Advertisements)
             {
-                advertisement.SelectedType = this.Airline.Airline.getAirlineAdvertisement(advertisement.Type);
+                advertisement.SelectedType = this.Airline.Airline.GetAirlineAdvertisement(advertisement.Type);
             }
         }
 

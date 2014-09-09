@@ -109,20 +109,20 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.UnassignedPilots = this.Pilots.Count(p => p.Pilot.Airliner == null);
             this.PilotsToRetire = this.Pilots.Count(p => p.Pilot.Profile.Age == Pilot.RetirementAge - 1);
 
-            FeeTypes.GetTypes(FeeType.eFeeType.Wage)
+            FeeTypes.GetTypes(FeeType.EFeeType.Wage)
                 .FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year)
-                .ForEach(f => this.Wages.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
-            FeeTypes.GetTypes(FeeType.eFeeType.Discount)
+                .ForEach(f => this.Wages.Add(new AirlineFeeMVVM(f, this.Airline.Fees.GetValue(f))));
+            FeeTypes.GetTypes(FeeType.EFeeType.Discount)
                 .FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year)
-                .ForEach(f => this.Discounts.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
+                .ForEach(f => this.Discounts.Add(new AirlineFeeMVVM(f, this.Airline.Fees.GetValue(f))));
 
-            FeeTypes.GetTypes(FeeType.eFeeType.FoodDrinks)
+            FeeTypes.GetTypes(FeeType.EFeeType.FoodDrinks)
                 .FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year)
-                .ForEach(f => this.Chargers.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
+                .ForEach(f => this.Chargers.Add(new AirlineFeeMVVM(f, this.Airline.Fees.GetValue(f))));
 
-            FeeTypes.GetTypes(FeeType.eFeeType.Fee)
+            FeeTypes.GetTypes(FeeType.EFeeType.Fee)
                 .FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year)
-                .ForEach(f => this.Fees.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
+                .ForEach(f => this.Fees.Add(new AirlineFeeMVVM(f, this.Airline.Fees.GetValue(f))));
 
             this.Airline.Subsidiaries.ForEach(s => this.Subsidiaries.Add(s));
             this.Airline.InsurancePolicies.ForEach(i => this.Insurances.Add(i));
@@ -151,10 +151,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     this.Airline.Airports.OrderByDescending(a => this.Airline.Airports[0] == a)
                         .ThenBy(a => a.Profile.Name))
             {
-                this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.hasHub(this.Airline), this.Airline.hasRouteTo(airport), this.Airline.hasAirplaneOnRouteTo(airport)));
+                this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.hasHub(this.Airline), this.Airline.HasRouteTo(airport), this.Airline.HasAirplaneOnRouteTo(airport)));
             }
 
-            double buyingPrice = this.Airline.getValue() * 1000000 * 1.10;
+            double buyingPrice = this.Airline.GetValue() * 1000000 * 1.10;
             this.IsBuyable = !this.Airline.IsHuman && GameObject.GetInstance().HumanAirline.Money > buyingPrice;
 
             this.ActiveQuantity = new List<AirlinerQuantityMVVM>();
@@ -439,13 +439,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public void addAirlineInsurance(AirlineInsurance insurance)
         {
             this.Insurances.Add(insurance);
-            this.Airline.addInsurance(insurance);
+            this.Airline.AddInsurance(insurance);
         }
 
         public void addCodeshareAgreement(CodeshareAgreement share)
         {
             this.Codeshares.Add(share.Airline1 == this.Airline ? share.Airline2 : share.Airline1);
-            this.Airline.addCodeshareAgreement(share);
+            this.Airline.AddCodeshareAgreement(share);
 
             this.HasAlliance = this.Alliance != null || this.Codeshares.Count > 0;
         }
@@ -454,7 +454,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             facility.Type = AirlineFacilityMVVM.MVVMType.Purchased;
 
-            this.Airline.addFacility(facility.Facility);
+            this.Airline.AddFacility(facility.Facility);
 
             AirlineHelpers.AddAirlineInvoice(
                 this.Airline,
@@ -467,7 +467,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             this.Loans.Add(new LoanMVVM(loan, this.Airline));
 
-            this.Airline.addLoan(loan);
+            this.Airline.AddLoan(loan);
 
             this.setValues();
         }
@@ -508,7 +508,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             this.Facilities.Add(facility);
 
-            this.Airline.addFacility(facility.Facility);
+            this.Airline.AddFacility(facility.Facility);
 
             AirlineHelpers.AddAirlineInvoice(
                 this.Airline,
@@ -523,12 +523,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public void removeAirliner(FleetAirliner airliner)
         {
             this.DeliveredFleet.Remove(airliner);
-            this.Airline.removeAirliner(airliner);
+            this.Airline.RemoveAirliner(airliner);
         }
 
         public void removeFacility(AirlineFacilityMVVM facility)
         {
-            this.Airline.removeFacility(facility.Facility);
+            this.Airline.RemoveFacility(facility.Facility);
 
             facility.Type = AirlineFacilityMVVM.MVVMType.Available;
         }
@@ -537,7 +537,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public void removePilot(PilotMVVM pilot)
         {
             this.Pilots.Remove(pilot);
-            this.Airline.removePilot(pilot.Pilot);
+            this.Airline.RemovePilot(pilot.Pilot);
 
             this.UnassignedPilots = this.Pilots.Count(p => p.Pilot.Airliner == null);
             this.PilotsToRetire = this.Pilots.Count(p => p.Pilot.Profile.Age == Pilot.RetirementAge - 1);
@@ -554,7 +554,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         public void removeTrainingFacility(AirlineFacilityMVVM facility)
         {
-            this.Airline.removeFacility(facility.Facility);
+            this.Airline.RemoveFacility(facility.Facility);
 
             this.Facilities.Remove(facility);
 
@@ -568,18 +568,18 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Fees.Clear();
             this.Discounts.Clear();
 
-            FeeTypes.GetTypes(FeeType.eFeeType.Wage)
+            FeeTypes.GetTypes(FeeType.EFeeType.Wage)
                 .FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year)
-                .ForEach(f => this.Wages.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
-            FeeTypes.GetTypes(FeeType.eFeeType.Discount)
+                .ForEach(f => this.Wages.Add(new AirlineFeeMVVM(f, this.Airline.Fees.GetValue(f))));
+            FeeTypes.GetTypes(FeeType.EFeeType.Discount)
                 .FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year)
-                .ForEach(f => this.Discounts.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
-            FeeTypes.GetTypes(FeeType.eFeeType.Fee)
+                .ForEach(f => this.Discounts.Add(new AirlineFeeMVVM(f, this.Airline.Fees.GetValue(f))));
+            FeeTypes.GetTypes(FeeType.EFeeType.Fee)
                 .FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year)
-                .ForEach(f => this.Fees.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
-            FeeTypes.GetTypes(FeeType.eFeeType.FoodDrinks)
+                .ForEach(f => this.Fees.Add(new AirlineFeeMVVM(f, this.Airline.Fees.GetValue(f))));
+            FeeTypes.GetTypes(FeeType.EFeeType.FoodDrinks)
                 .FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year)
-                .ForEach(f => this.Chargers.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
+                .ForEach(f => this.Chargers.Add(new AirlineFeeMVVM(f, this.Airline.Fees.GetValue(f))));
         }
 
         //adds a loan
@@ -590,7 +590,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             foreach (AirlineAdvertisementMVVM advertisement in this.Advertisements)
             {
                 AdvertisementType type = advertisement.SelectedType;
-                this.Airline.setAirlineAdvertisement(type);
+                this.Airline.SetAirlineAdvertisement(type);
             }
         }
 
@@ -598,22 +598,22 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             foreach (AirlineFeeMVVM fee in this.Wages)
             {
-                this.Airline.Fees.setValue(fee.FeeType, fee.Value);
+                this.Airline.Fees.SetValue(fee.FeeType, fee.Value);
             }
 
             foreach (AirlineFeeMVVM fee in this.Fees)
             {
-                this.Airline.Fees.setValue(fee.FeeType, fee.Value);
+                this.Airline.Fees.SetValue(fee.FeeType, fee.Value);
             }
 
             foreach (AirlineFeeMVVM fee in this.Discounts)
             {
-                this.Airline.Fees.setValue(fee.FeeType, fee.Value);
+                this.Airline.Fees.SetValue(fee.FeeType, fee.Value);
             }
 
             foreach (AirlineFeeMVVM fee in this.Chargers)
             {
-                this.Airline.Fees.setValue(fee.FeeType, fee.Value);
+                this.Airline.Fees.SetValue(fee.FeeType, fee.Value);
             }
         }
 
@@ -644,9 +644,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             this.DeliveredFleet.Remove(airliner);
 
-            this.Airline.removeAirliner(airliner);
+            this.Airline.RemoveAirliner(airliner);
 
-            airline.addAirliner(airliner);
+            airline.AddAirliner(airliner);
 
             var pilots = new List<Pilot>(airliner.Pilots);
 
@@ -1125,20 +1125,20 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 GameObject.GetInstance().GameTime.Year,
                 GameObject.GetInstance().GameTime.Month,
                 1);
-            return this.Airline.getInvoicesAmount(startDate, GameObject.GetInstance().GameTime, this.InvoiceType);
+            return this.Airline.GetInvoicesAmount(startDate, GameObject.GetInstance().GameTime, this.InvoiceType);
         }
 
         //returns the total amount for the last month
         public double getLastMonthTotal()
         {
             DateTime tDate = GameObject.GetInstance().GameTime.AddMonths(-1);
-            return this.Airline.getInvoicesAmountMonth(tDate.Year, tDate.Month, this.InvoiceType);
+            return this.Airline.GetInvoicesAmountMonth(tDate.Year, tDate.Month, this.InvoiceType);
         }
 
         //returns the total amount for the year to date
         public double getYearToDateTotal()
         {
-            return this.Airline.getInvoicesAmountYear(GameObject.GetInstance().GameTime.Year, this.InvoiceType);
+            return this.Airline.GetInvoicesAmountYear(GameObject.GetInstance().GameTime.Year, this.InvoiceType);
         }
 
         #endregion
@@ -1322,7 +1322,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         #region Constructors and Destructors
 
-
+        public LoanMVVM(Loan loan, Airline airline)
         {
             this.Loan = loan;
             this.PaymentLeft = loan.PaymentLeft;

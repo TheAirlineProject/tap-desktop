@@ -166,7 +166,7 @@
             var employeeDiscounts = new Dictionary<Airline, double>();
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
-                double eDiscount = airline.Fees.getValue(FeeTypes.GetType("Employee Discount"));
+                double eDiscount = airline.Fees.GetValue(FeeTypes.GetType("Employee Discount"));
                 employeeDiscounts.Add(airline, eDiscount);
             }
             return employeeDiscounts;
@@ -177,11 +177,11 @@
             var employeeWages = new Dictionary<Airline, Double>();
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
-                double sWage = airline.Fees.getValue(FeeTypes.GetType("Support Wage"));
-                double mWage = airline.Fees.getValue(FeeTypes.GetType("Maintenance Wage"));
-                double pWage = airline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary")); // *airline.Pilots.Count();
-                double cWage = airline.Fees.getValue(FeeTypes.GetType("Cabin Wage"));
-                double iWage = airline.Fees.getValue(FeeTypes.GetType("Instructor Base Salary"));
+                double sWage = airline.Fees.GetValue(FeeTypes.GetType("Support Wage"));
+                double mWage = airline.Fees.GetValue(FeeTypes.GetType("Maintenance Wage"));
+                double pWage = airline.Fees.GetValue(FeeTypes.GetType("Pilot Base Salary")); // *airline.Pilots.Count();
+                double cWage = airline.Fees.GetValue(FeeTypes.GetType("Cabin Wage"));
+                double iWage = airline.Fees.GetValue(FeeTypes.GetType("Instructor Base Salary"));
                     // *PilotModel.FlightSchool.MaxNumberOfInstructors;
                 int cabinCrew =
                     airline.Routes.Where(r => r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed)

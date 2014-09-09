@@ -26,7 +26,7 @@
                     .ToList()
                     .GetRange(0, Math.Min(GameObject.GetInstance().HumanAirline.Airports.Count, 5));
 
-            var hubs =GameObject.GetInstance().HumanAirline.getHubs();
+            var hubs =GameObject.GetInstance().HumanAirline.GetHubs();
 
             this.HumanHubs =hubs.OrderBy(h=>h.Profile.Pax)
                 .ToList()

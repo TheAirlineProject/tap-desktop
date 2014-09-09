@@ -259,7 +259,7 @@
 
             if (!contract.Airline.Airports.Contains(this))
             {
-                contract.Airline.addAirport(this);
+                contract.Airline.AddAirport(this);
             }
         }
 
@@ -882,7 +882,7 @@
 
             if (!this.AirlineContracts.Exists(c => c.Airline == contract.Airline))
             {
-                contract.Airline.removeAirport(this);
+                contract.Airline.RemoveAirport(this);
             }
         }
 

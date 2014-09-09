@@ -88,7 +88,7 @@
         public static List<double> getInvoiceList()
         {
             var invoices = new List<double>();
-            foreach (MonthlyInvoice invoice in GameObject.GetInstance().HumanAirline.getInvoices().MonthlyInvoices)
+            foreach (MonthlyInvoice invoice in GameObject.GetInstance().HumanAirline.GetInvoices().MonthlyInvoices)
             {
                 invoices.Add(invoice.Amount);
             }

@@ -122,10 +122,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airline.IsHuman && GameObject.GetInstance().HumanAirline == airline)
             {
                 GameObject.GetInstance().addHumanMoney(amount);
-                GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(date, type, amount), false);
+                GameObject.GetInstance().HumanAirline.AddInvoice(new Invoice(date, type, amount), false);
             }
             else
-                airline.addInvoice(new Invoice(date, type, amount));
+                airline.AddInvoice(new Invoice(date, type, amount));
         }
         //buys an airliner to an airline
         public static FleetAirliner BuyAirliner(Airline airline, Airliner airliner, Airport airport)
@@ -157,7 +157,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             FleetAirliner fAirliner = new FleetAirliner(leased ? FleetAirliner.PurchasedType.Leased : FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airport);
 
-            airline.addAirliner(fAirliner);
+            airline.AddAirliner(fAirliner);
 
             return fAirliner;
         }
@@ -181,7 +181,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     Airliners.AddAirliner(airliner);
 
                     FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.Bought;
-                    airline.addAirliner(pType, airliner, airport);
+                    airline.AddAirliner(pType, airliner, airport);
 
                     airliner.clearAirlinerClasses();
 
@@ -297,11 +297,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static Boolean AcceptCodesharing(Airline airline, Airline asker, CodeshareAgreement.CodeshareType type)
         {
 
-            double coeff = type == CodeshareAgreement.CodeshareType.One_Way ? 0.25 : 0.40;
+            double coeff = type == CodeshareAgreement.CodeshareType.OneWay ? 0.25 : 0.40;
 
             IEnumerable<Country> sameCountries = asker.Airports.Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
             IEnumerable<Airport> sameDestinations = asker.Airports.Distinct().Intersect(airline.Airports);
-            IEnumerable<Country> sameCodesharingCountries = airline.getCodesharingAirlines().SelectMany(a => a.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
+            IEnumerable<Country> sameCodesharingCountries = airline.GetCodesharingAirlines().SelectMany(a => a.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
 
             double airlineDestinations = airline.Airports.Count;
             double airlineRoutes = airline.Routes.Count;
@@ -337,7 +337,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //launches a subsidiary to operate on its own
         public static void MakeSubsidiaryAirlineIndependent(SubsidiaryAirline airline)
         {
-            airline.Airline.removeSubsidiaryAirline(airline);
+            airline.Airline.RemoveSubsidiaryAirline(airline);
 
             airline.Airline = null;
 
@@ -351,7 +351,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             AddAirlineInvoice(airline.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, airline.Money);
 
-            airline.Airline.removeSubsidiaryAirline(airline);
+            airline.Airline.RemoveSubsidiaryAirline(airline);
             Airlines.RemoveAirline(airline);
 
             var fleet = airline.Fleet;
@@ -359,7 +359,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             for (int f = 0; f < fleet.Count; f++)
             {
                 fleet[f].Airliner.Airline = airline.Airline;
-                airline.Airline.addAirliner(fleet[f]);
+                airline.Airline.AddAirliner(fleet[f]);
 
             }
 
@@ -376,7 +376,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (!airline.Airline.Airports.Contains(airports[i]))
                 {
-                    airline.Airline.addAirport(airports[i]);
+                    airline.Airline.AddAirport(airports[i]);
                 }
 
                 foreach (AirportFacility facility in airports[i].getCurrentAirportFacilities(airline))
@@ -412,7 +412,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             sAirline.Fees = new AirlineFees();
 
-            airline.addSubsidiaryAirline(sAirline);
+            airline.AddSubsidiaryAirline(sAirline);
 
             if (!AirportHelpers.HasFreeGates(airportHomeBase, sAirline,terminaltype) && airportHomeBase.Terminals.getFreeGates(terminaltype) > 1)
             {
@@ -440,7 +440,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             foreach (AirlinePolicy policy in airline.Policies)
-                sAirline.addAirlinePolicy(policy);
+                sAirline.AddAirlinePolicy(policy);
 
             Airlines.AddAirline(sAirline);
 
@@ -485,7 +485,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (pilot != null)
                 {
-                    airliner.Airliner.Airline.addPilot(pilot);
+                    airliner.Airliner.Airline.AddPilot(pilot);
 
                     pilot.Airliner = airliner;
                     airliner.addPilot(pilot);
@@ -544,9 +544,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double score = 0;
 
             if (forReputation)
-                score = 0.3 * (1 + (int)airline.getReputation());
+                score = 0.3 * (1 + (int)airline.GetReputation());
             else
-                score = 0.005 * (1 + (int)airline.getValue());
+                score = 0.005 * (1 + (int)airline.GetValue());
 
             double discountFactor = (Convert.ToDouble(length) / 20) + (score);
             double discount = Math.Pow(discountFactor, 5);
@@ -565,9 +565,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
       
             Boolean airlineHub = airport.getHubs().Exists(h => h.Airline == airline);
 
-            int airlineValue = (int)airline.getAirlineValue() + 1;
+            int airlineValue = (int)airline.GetAirlineValue() + 1;
 
-            int totalAirlineHubs = airline.getHubs().Count;// 'Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
+            int totalAirlineHubs = airline.GetHubs().Count;// 'Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
             double airlineGatesPercent = Convert.ToDouble(airport.Terminals.getNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.getNumberOfGates(terminaltype)) * 100;
 
             switch (type.Type)
@@ -628,7 +628,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the max loan sum for an airline
         public static double GetMaxLoanAmount(Airline airline)
         {
-            return airline.getValue() * 500000;
+            return airline.GetValue() * 500000;
         }
         //returns if an airline can apply for a loan
         public static Boolean CanApplyForLoan(Airline airline, Loan loan)
@@ -647,10 +647,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Boolean continentsOk = true;//< continent1 == continentAirline || continent2 == continentAirline;
             Boolean isInUnion = Unions.GetUnions(airport1.Profile.Country, GameObject.GetInstance().GameTime).Intersect(Unions.GetUnions(airport2.Profile.Country, GameObject.GetInstance().GameTime)).Any();
 
-            if (airline.License == Airline.AirlineLicense.Long_Haul && continentsOk)
+            if (airline.License == Airline.AirlineLicense.LongHaul && continentsOk)
                 return true;
 
-            if (airline.License == Airline.AirlineLicense.Short_Haul && (MathHelpers.GetDistance(airport1, airport2) < 2000 || isInUnion) && continentsOk)
+            if (airline.License == Airline.AirlineLicense.ShortHaul && (MathHelpers.GetDistance(airport1, airport2) < 2000 || isInUnion) && continentsOk)
                 return true;
 
             if (airline.License == Airline.AirlineLicense.Domestic && airport1.Profile.Country == airport2.Profile.Country && continentsOk)
@@ -664,14 +664,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the monthly payroll for an airline
         public static double GetMonthlyPayroll(Airline airline)
         {
-            double instructorFee = airline.FlightSchools.Sum(f => f.NumberOfInstructors) * airline.Fees.getValue(FeeTypes.GetType("Instructor Base Salary"));
+            double instructorFee = airline.FlightSchools.Sum(f => f.NumberOfInstructors) * airline.Fees.GetValue(FeeTypes.GetType("Instructor Base Salary"));
 
-            double cockpitCrewFee = airline.Pilots.Count * airline.Fees.getValue(FeeTypes.GetType("Cockpit Wage"));
+            double cockpitCrewFee = airline.Pilots.Count * airline.Fees.GetValue(FeeTypes.GetType("Cockpit Wage"));
 
-            double cabinCrewFee = airline.Routes.Where(r => r.Type == Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getTotalCabinCrew()) * airline.Fees.getValue(FeeTypes.GetType("Cabin Wage"));
+            double cabinCrewFee = airline.Routes.Where(r => r.Type == Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getTotalCabinCrew()) * airline.Fees.GetValue(FeeTypes.GetType("Cabin Wage"));
 
-            double serviceCrewFee = airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees) * airline.Fees.getValue(FeeTypes.GetType("Support Wage"));
-            double maintenanceCrewFee = airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees) * airline.Fees.getValue(FeeTypes.GetType("Maintenance Wage"));
+            double serviceCrewFee = airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees) * airline.Fees.GetValue(FeeTypes.GetType("Support Wage"));
+            double maintenanceCrewFee = airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees) * airline.Fees.GetValue(FeeTypes.GetType("Maintenance Wage"));
 
             return instructorFee + cockpitCrewFee + cabinCrewFee + serviceCrewFee + maintenanceCrewFee;
 
@@ -701,14 +701,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Random rnd = new Random();
 
             double price = 0;
-            Airline.AirlineValue value = airline.getAirlineValue();
+            Airline.AirlineValue value = airline.GetAirlineValue();
 
             switch (value)
             {
                 case Airline.AirlineValue.Low:
                     price = 15 + (rnd.NextDouble() * 10);
                     break;
-                case Airline.AirlineValue.Very_low:
+                case Airline.AirlineValue.VeryLow:
                     price = 5 + (rnd.NextDouble() * 10);
                     break;
                 case Airline.AirlineValue.Normal:
@@ -717,7 +717,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 case Airline.AirlineValue.High:
                     price = 40 + (rnd.NextDouble() * 10);
                     break;
-                case Airline.AirlineValue.Very_high:
+                case Airline.AirlineValue.VeryHigh:
                     price = 55 + (rnd.NextDouble() * 10);
                     break;
             }
@@ -791,22 +791,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
             while (airlineFrom.Alliances.Count > 0)
             {
                 Alliance alliance = airlineFrom.Alliances[0];
-                alliance.removeMember(airlineFrom);
-                alliance.addMember(new AllianceMember(airlineTo, GameObject.GetInstance().GameTime));
+                alliance.RemoveMember(airlineFrom);
+                alliance.AddMember(new AllianceMember(airlineTo, GameObject.GetInstance().GameTime));
             }
             while (airlineFrom.Facilities.Count > 0)
             {
                 AirlineFacility airlineFacility = airlineFrom.Facilities[0];
-                airlineFrom.removeFacility(airlineFacility);
-                airlineTo.addFacility(airlineFacility);
+                airlineFrom.RemoveFacility(airlineFacility);
+                airlineTo.AddFacility(airlineFacility);
             }
 
 
-            while (airlineFrom.getFleetSize() > 0)
+            while (airlineFrom.GetFleetSize() > 0)
             {
                 FleetAirliner airliner = airlineFrom.Fleet[0];
-                airlineFrom.removeAirliner(airliner);
-                airlineTo.addAirliner(airliner);
+                airlineFrom.RemoveAirliner(airliner);
+                airlineTo.AddAirliner(airliner);
                 airliner.Airliner.Airline = airlineTo;
             }
 
@@ -815,16 +815,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Route route = airlineFrom.Routes[0];
                 route.Airline = airlineTo;
 
-                airlineFrom.removeRoute(route);
-                airlineTo.addRoute(route);
+                airlineFrom.RemoveRoute(route);
+                airlineTo.AddRoute(route);
             }
             while (airlineFrom.Pilots.Count > 0)
             {
                 Pilot pilot = airlineFrom.Pilots[0];
-                airlineFrom.removePilot(pilot);
+                airlineFrom.RemovePilot(pilot);
 
                 pilot.Airline = airlineTo;
-                airlineTo.addPilot(pilot);
+                airlineTo.AddPilot(pilot);
             }
             while (airlineFrom.Airports.Count > 0)
             {
@@ -973,7 +973,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the salary for a pilot at an airline
         public static double GetPilotSalary(Airline airline, Pilot pilot)
         {
-            double pilotBasePrice = airline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));//GeneralHelpers.GetInflationPrice(133.53);<
+            double pilotBasePrice = airline.Fees.GetValue(FeeTypes.GetType("Pilot Base Salary"));//GeneralHelpers.GetInflationPrice(133.53);<
 
             double pilotExperienceFee = pilot.Aircrafts.Count * GeneralHelpers.GetInflationPrice(20.3);
 
@@ -990,7 +990,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             #region Method Setup
             Random rnd = new Random();
             double modifier = GetRatingModifier(airline);
-            double hub = airline.getHubs().Count() * 0.1;
+            double hub = airline.GetHubs().Count() * 0.1;
             AirlineInsurance policy = new AirlineInsurance(type, scope, terms, amount);
             policy.InsuranceEffective = GameObject.GetInstance().GameTime;
             policy.InsuranceExpires = GameObject.GetInstance().GameTime.AddYears(length);
@@ -1039,7 +1039,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             #region Public Liability
             switch (type)
             {
-                case AirlineInsurance.InsuranceType.Public_Liability:
+                case AirlineInsurance.InsuranceType.PublicLiability:
                     switch (scope)
                     {
                         case AirlineInsurance.InsuranceScope.Airport:
@@ -1084,7 +1084,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             #endregion
                 #region Passenger Liability
 
-                case AirlineInsurance.InsuranceType.Passenger_Liability:
+                case AirlineInsurance.InsuranceType.PassengerLiability:
                     switch (scope)
                     {
                         case AirlineInsurance.InsuranceScope.Airport:
@@ -1126,7 +1126,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
                 #endregion
                 #region Combined Single Limit
-                case AirlineInsurance.InsuranceType.Combined_Single_Limit:
+                case AirlineInsurance.InsuranceType.CombinedSingleLimit:
                     switch (scope)
                     {
                         case AirlineInsurance.InsuranceScope.Airport:
@@ -1168,7 +1168,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
                 #endregion
                 #region Full Coverage
-                case AirlineInsurance.InsuranceType.Full_Coverage:
+                case AirlineInsurance.InsuranceType.FullCoverage:
                     switch (scope)
                     {
                         case AirlineInsurance.InsuranceScope.Airport:
@@ -1246,7 +1246,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 if (policy.InsuranceExpires < date)
                 {
-                    airline.removeInsurance(policy);
+                    airline.RemoveInsurance(policy);
                 }
             }
         }

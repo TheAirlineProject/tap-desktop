@@ -583,7 +583,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             #region Method Setup
             Random rnd = new Random();
-            double hub = airline.getHubs().Count() * 0.1;
+            double hub = airline.GetHubs().Count() * 0.1;
             AirlinerInsurance policy = new AirlinerInsurance(type, scope, terms, amount);
             policy.InsuranceEffective = GameObject.GetInstance().GameTime;
             policy.InsuranceExpires = GameObject.GetInstance().GameTime.AddYears(length);

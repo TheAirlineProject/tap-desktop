@@ -352,7 +352,7 @@
                             }
 
                             GameObject.GetInstance()
-                                .HumanAirline.addAirliner(
+                                .HumanAirline.AddAirliner(
                                     FleetAirliner.PurchasedType.Leased,
                                     airliner.Airliner,
                                     airport);

@@ -107,7 +107,7 @@
         {
             AirlinesMVVM airline = this.SelectedAirline;
 
-            double buyingPrice = airline.Airline.getValue() * 100000 * 1.10;
+            double buyingPrice = airline.Airline.GetValue() * 100000 * 1.10;
 
             WPFMessageBoxResult result = WPFMessageBox.Show(
                 Translator.GetInstance().GetString("MessageBox", "2113"),
@@ -135,8 +135,8 @@
                         subAirline.Profile.CEO = GameObject.GetInstance().HumanAirline.Profile.CEO;
 
                         subAirline.Airline = GameObject.GetInstance().HumanAirline;
-                        airline.Airline.removeSubsidiaryAirline(subAirline);
-                        GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(subAirline);
+                        airline.Airline.RemoveSubsidiaryAirline(subAirline);
+                        GameObject.GetInstance().HumanAirline.AddSubsidiaryAirline(subAirline);
                     }
                 }
                 else
@@ -147,7 +147,7 @@
 
                         subAirline.Airline = null;
 
-                        airline.Airline.removeSubsidiaryAirline(subAirline);
+                        airline.Airline.RemoveSubsidiaryAirline(subAirline);
                     }
                 }
                 if (airline.Airline.License > GameObject.GetInstance().HumanAirline.License)
@@ -173,7 +173,7 @@
         {
             AirlinesMVVM airline = this.SelectedAirline;
 
-            double buyingPrice = airline.Airline.getValue() * 100000 * 1.10;
+            double buyingPrice = airline.Airline.GetValue() * 100000 * 1.10;
 
             WPFMessageBoxResult result = WPFMessageBox.Show(
                 Translator.GetInstance().GetString("MessageBox", "2113"),
@@ -195,7 +195,7 @@
 
                     subAirline.Airline = null;
 
-                    airline.Airline.removeSubsidiaryAirline(subAirline);
+                    airline.Airline.RemoveSubsidiaryAirline(subAirline);
                 }
 
                 if (airline.Airline.License > GameObject.GetInstance().HumanAirline.License)
@@ -213,7 +213,7 @@
 
                 AirlineHelpers.SwitchAirline(airline.Airline, sAirline);
 
-                GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(sAirline);
+                GameObject.GetInstance().HumanAirline.AddSubsidiaryAirline(sAirline);
 
                 AirlineHelpers.AddAirlineInvoice(
                     GameObject.GetInstance().HumanAirline,
@@ -229,7 +229,7 @@
 
                 foreach (AirlinePolicy policy in airline.Airline.Policies)
                 {
-                    sAirline.addAirlinePolicy(policy);
+                    sAirline.AddAirlinePolicy(policy);
                 }
 
                 sAirline.Money = airline.Airline.Money;

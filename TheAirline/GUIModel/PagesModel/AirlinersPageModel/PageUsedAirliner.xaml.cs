@@ -222,7 +222,7 @@
                         }
 
                         GameObject.GetInstance()
-                            .HumanAirline.addAirliner(FleetAirliner.PurchasedType.Leased, this.Airliner, airport);
+                            .HumanAirline.AddAirliner(FleetAirliner.PurchasedType.Leased, this.Airliner, airport);
 
                         AirlineHelpers.AddAirlineInvoice(
                             GameObject.GetInstance().HumanAirline,

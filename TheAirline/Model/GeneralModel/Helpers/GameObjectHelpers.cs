@@ -352,13 +352,13 @@
                 }
 
                 FeeType employeeDiscountType = FeeTypes.GetType("Employee Discount");
-                double employeesDiscount = airliner.Airliner.Airline.Fees.getValue(employeeDiscountType);
+                double employeesDiscount = airliner.Airliner.Airline.Fees.GetValue(employeeDiscountType);
 
                 double totalDiscount = ticketsIncome * (employeeDiscountType.Percentage / 100.0)
                                        * (employeesDiscount / 100.0);
                 ticketsIncome = ticketsIncome - totalDiscount;
 
-                foreach (FeeType feeType in FeeTypes.GetTypes(FeeType.eFeeType.Fee))
+                foreach (FeeType feeType in FeeTypes.GetTypes(FeeType.EFeeType.Fee))
                 {
                     if (GameObject.GetInstance().GameTime.Year >= feeType.FromYear)
                     {
@@ -370,7 +370,7 @@
 
                             double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
 
-                            feesIncome += fac.Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+                            feesIncome += fac.Passengers * value * airliner.Airliner.Airline.Fees.GetValue(feeType);
                         }
                     }
                 }
@@ -395,7 +395,7 @@
 
                             double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
 
-                            mealExpenses -= fac.Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+                            mealExpenses -= fac.Passengers * value * airliner.Airliner.Airline.Fees.GetValue(feeType);
                         }
                     }
                 }
@@ -440,7 +440,7 @@
 
             IEnumerable<CodeshareAgreement> agreements =
                 airline.Codeshares.Where(
-                    c => c.Airline1 == airline || c.Type == CodeshareAgreement.CodeshareType.Both_Ways);
+                    c => c.Airline1 == airline || c.Type == CodeshareAgreement.CodeshareType.BothWays);
 
             foreach (CodeshareAgreement agreement in agreements)
             {
@@ -492,7 +492,7 @@
                 int cabinCrew = ((AirlinerPassengerType)airliner.Airliner.Type).CabinCrew;
 
                 wages = cabinCrew * flighttime.TotalHours
-                        * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cabin Wage"));
+                        * airliner.Airliner.Airline.Fees.GetValue(FeeTypes.GetType("Cabin Wage"));
                     // +(airliner.CurrentFlight.Entry.TimeTable.Route.getTotalCabinCrew() * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cabin kilometer rate")) * fdistance) + (airliner.Airliner.Type.CockpitCrew * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cockpit kilometer rate")) * fdistance);
                 //wages
                 AirlineHelpers.AddAirlineInvoice(
@@ -1468,7 +1468,7 @@
                                             fAirliner.removeRoute(routeToDelete);
                                         }
 
-                                        contract.Airline.removeRoute(routeToDelete);
+                                        contract.Airline.RemoveRoute(routeToDelete);
 
                                         currentRoute++;
 
@@ -1590,7 +1590,7 @@
                         }
                         else
                         {
-                            airline.removeAirliner(airliner);
+                            airline.RemoveAirliner(airliner);
 
                             if (airline.IsHuman)
                             {
@@ -1677,7 +1677,7 @@
                     student.Instructor.FlightSchool.removeStudent(student);
                     student.Instructor = null;
 
-                    airline.addPilot(pilot);
+                    airline.AddPilot(pilot);
 
                     if (airline.IsHuman)
                     {
@@ -1749,7 +1749,7 @@
 
                     AirlineHelpers.SwitchAirline(merger.Airline2, merger.Airline1);
 
-                    merger.Airline1.addSubsidiaryAirline(sAirline);
+                    merger.Airline1.AddSubsidiaryAirline(sAirline);
 
                     Airlines.RemoveAirline(merger.Airline2);
 
@@ -2050,7 +2050,7 @@
             IEnumerable<CodeshareAgreement> agreements =
                 Airlines.GetAllAirlines()
                     .SelectMany(a => a.Codeshares)
-                    .Where(c => c.Type == CodeshareAgreement.CodeshareType.One_Way);
+                    .Where(c => c.Type == CodeshareAgreement.CodeshareType.OneWay);
 
             foreach (CodeshareAgreement agreement in agreements)
             {
@@ -2134,7 +2134,7 @@
                                         p => p.Aircrafts.Contains(pilot.Airliner.Airliner.Type.AirlinerFamily))[0];
                             }
 
-                            airline.addPilot(newPilot);
+                            airline.AddPilot(newPilot);
 
                             newPilot.Airliner = pilot.Airliner;
                             newPilot.Airliner.addPilot(newPilot);
@@ -2224,7 +2224,7 @@
 
                                     Pilot newPilot = pilots.First();
 
-                                    pilot.Airliner.Airliner.Airline.addPilot(newPilot);
+                                    pilot.Airliner.Airliner.Airline.AddPilot(newPilot);
                                     newPilot.Airliner = pilot.Airliner;
                                     newPilot.Airliner.addPilot(newPilot);
                                 }
@@ -2247,7 +2247,7 @@
                                             pilot.Profile.Name)));
                         }
                     }
-                    airline.removePilot(pilot);
+                    airline.RemovePilot(pilot);
                     pilot.Airline = null;
                     Pilots.RemovePilot(pilot);
                 }
@@ -2371,7 +2371,7 @@
                 foreach (Instructor instructor in airline.FlightSchools.SelectMany(f => f.Instructors))
                 {
                     double salary = instructor.Rating.CostIndex
-                                    * airline.Fees.getValue(FeeTypes.GetType("Instructor Base Salary"));
+                                    * airline.Fees.GetValue(FeeTypes.GetType("Instructor Base Salary"));
                     AirlineHelpers.AddAirlineInvoice(
                         airline,
                         GameObject.GetInstance().GameTime,
@@ -2500,12 +2500,12 @@
 
                         if (facility.EmployeeType == AirportFacility.EmployeeTypes.Maintenance)
                         {
-                            wage = airline.Fees.getValue(FeeTypes.GetType("Maintenance Wage"));
+                            wage = airline.Fees.GetValue(FeeTypes.GetType("Maintenance Wage"));
                         }
 
                         if (facility.EmployeeType == AirportFacility.EmployeeTypes.Support)
                         {
-                            wage = airline.Fees.getValue(FeeTypes.GetType("Support Wage"));
+                            wage = airline.Fees.GetValue(FeeTypes.GetType("Support Wage"));
                         }
 
                         double facilityWage = employees * wage * (40 * 4.33);
@@ -2578,7 +2578,7 @@
                     }
                 }
                 //passenger demand
-                int advertisementFactor = airline.getAirlineAdvertisements().Sum(a => a.ReputationLevel);
+                int advertisementFactor = airline.GetAirlineAdvertisements().Sum(a => a.ReputationLevel);
 
                 foreach (Route route in airline.Routes)
                 {
@@ -2614,11 +2614,11 @@
                             airline,
                             GameObject.GetInstance().GameTime,
                             Invoice.InvoiceType.Airline_Expenses,
-                            -airline.getAirlineAdvertisement(type).Price);
+                            -airline.GetAirlineAdvertisement(type).Price);
 
                         if (airline.Reputation < 100)
                         {
-                            airline.Reputation += airline.getAirlineAdvertisement(type).ReputationLevel;
+                            airline.Reputation += airline.GetAirlineAdvertisement(type).ReputationLevel;
                         }
                     }
                 }
@@ -2733,7 +2733,7 @@
 
                 foreach (FeeType feeType in FeeTypes.GetTypes())
                 {
-                    airline.Fees.setValue(feeType, airline.Fees.getValue(feeType) * yearlyRaise);
+                    airline.Fees.SetValue(feeType, airline.Fees.GetValue(feeType) * yearlyRaise);
                 }
             }
 
@@ -2980,7 +2980,7 @@
 
             //cancelled/delay
             if (delayedMinutes.Value
-                >= Convert.ToInt16(airliner.Airliner.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue))
+                >= Convert.ToInt16(airliner.Airliner.Airline.GetAirlinePolicy("Cancellation Minutes").PolicyValue))
             {
                 if (airliner.Airliner.Airline.IsHuman)
                 {

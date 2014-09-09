@@ -104,7 +104,7 @@
 
                 var fs = new FlightSchool(airport);
 
-                GameObject.GetInstance().HumanAirline.addFlightSchool(fs);
+                GameObject.GetInstance().HumanAirline.AddFlightSchool(fs);
                 this.FlightSchools.Add(fs);
 
                 AirlineHelpers.AddAirlineInvoice(
@@ -131,7 +131,7 @@
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                GameObject.GetInstance().HumanAirline.removeFlightSchool(fs);
+                GameObject.GetInstance().HumanAirline.RemoveFlightSchool(fs);
                 this.FlightSchools.Remove(fs);
 
                 if (GameObject.GetInstance().HumanAirline.FlightSchools.Count > 0)

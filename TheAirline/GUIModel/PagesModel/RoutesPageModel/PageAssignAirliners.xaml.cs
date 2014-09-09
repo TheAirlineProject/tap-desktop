@@ -341,7 +341,7 @@
 
                             Pilot pilot = pilots.First();
 
-                            airliner.Airliner.Airliner.Airline.addPilot(pilot);
+                            airliner.Airliner.Airliner.Airline.AddPilot(pilot);
                             pilot.Airliner = airliner.Airliner;
                             airliner.Airliner.addPilot(pilot);
                         }

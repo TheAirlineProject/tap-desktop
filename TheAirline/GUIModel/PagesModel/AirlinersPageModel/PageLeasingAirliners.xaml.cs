@@ -214,7 +214,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                             }
 
                             GameObject.GetInstance()
-                                .HumanAirline.addAirliner(
+                                .HumanAirline.AddAirliner(
                                     FleetAirliner.PurchasedType.Leased,
                                     airliner.Airliner,
                                     airport);

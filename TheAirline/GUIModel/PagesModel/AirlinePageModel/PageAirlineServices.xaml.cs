@@ -88,7 +88,7 @@
             }
 
             this.cbCancellationPolicy.SelectedItem =
-                this.Airline.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue;
+                this.Airline.Airline.GetAirlinePolicy("Cancellation Minutes").PolicyValue;
         }
 
         #endregion
@@ -266,7 +266,7 @@
 
             var cancellationMinutes = (int)this.cbCancellationPolicy.SelectedItem;
 
-            GameObject.GetInstance().HumanAirline.setAirlinePolicy("Cancellation Minutes", cancellationMinutes);
+            GameObject.GetInstance().HumanAirline.SetAirlinePolicy("Cancellation Minutes", cancellationMinutes);
         }
 
         private void btnSaveConfiguration_Click(object sender, RoutedEventArgs e)
@@ -341,7 +341,7 @@
             this.Airline.resetFees();
 
             this.cbCancellationPolicy.SelectedItem =
-                this.Airline.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue;
+                this.Airline.Airline.GetAirlinePolicy("Cancellation Minutes").PolicyValue;
         }
 
         private void updateClassFacilities()

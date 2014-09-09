@@ -3595,8 +3595,8 @@
                     airliner.Airliner.Airline.Codeshares.Where(
                         a =>
                             (a.Airline2 == airliner.Airliner.Airline
-                             && a.Type == CodeshareAgreement.CodeshareType.One_Way)
-                            || a.Type == CodeshareAgreement.CodeshareType.Both_Ways);
+                             && a.Type == CodeshareAgreement.CodeshareType.OneWay)
+                            || a.Type == CodeshareAgreement.CodeshareType.BothWays);
 
                 IEnumerable<Route> codesharingRoutesFromDestination =
                     codeshares.Select(a => a.Airline1 == airliner.Airliner.Airline ? a.Airline2 : a.Airline1)

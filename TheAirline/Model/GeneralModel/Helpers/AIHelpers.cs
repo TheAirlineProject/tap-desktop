@@ -68,7 +68,7 @@
 
         public static Boolean CanRemoveFromAlliance(Airline remover, Airline toremove, Alliance alliance)
         {
-            return remover.getValue() > toremove.getValue() * 0.9;
+            return remover.GetValue() > toremove.GetValue() * 0.9;
         }
 
         public static RouteTimeTable CreateAirlinerRouteTimeTable(
@@ -313,8 +313,8 @@
 
             int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
 
-            string flightCode1 = airliner.Airliner.Airline.getNextFlightCode(0);
-            string flightCode2 = airliner.Airliner.Airline.getNextFlightCode(1);
+            string flightCode1 = airliner.Airliner.Airline.GetNextFlightCode(0);
+            string flightCode2 = airliner.Airliner.Airline.GetNextFlightCode(1);
 
             route.TimeTable = CreateAirlinerRouteTimeTable(route, airliner, flightsPerDay, flightCode1, flightCode2);
         }
@@ -335,8 +335,8 @@
 
             foreach (FleetAirliner airliner in airliners)
             {
-                string flightCode1 = airliner.Airliner.Airline.getNextFlightCode(0);
-                string flightCode2 = airliner.Airliner.Airline.getNextFlightCode(1);
+                string flightCode1 = airliner.Airliner.Airline.GetNextFlightCode(0);
+                string flightCode2 = airliner.Airliner.Airline.GetNextFlightCode(1);
 
                 CreateAirlinerRouteTimeTable(
                     route,
@@ -368,8 +368,8 @@
 
             int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
 
-            string flightCode1 = airliner.Airliner.Airline.getNextFlightCode(0);
-            string flightCode2 = airliner.Airliner.Airline.getNextFlightCode(1);
+            string flightCode1 = airliner.Airliner.Airline.GetNextFlightCode(0);
+            string flightCode2 = airliner.Airliner.Airline.GetNextFlightCode(1);
 
             route.TimeTable = CreateAirlinerRouteTimeTable(route, airliner, flightsPerDay, flightCode1, flightCode2);
         }
@@ -1099,7 +1099,7 @@
                     {
                         if (alliance.IsHumanAlliance)
                         {
-                            alliance.addPendingMember(
+                            alliance.AddPendingMember(
                                 new PendingAllianceMember(
                                     GameObject.GetInstance().GameTime,
                                     alliance,
@@ -1120,7 +1120,7 @@
                         {
                             if (CanJoinAlliance(airline, alliance))
                             {
-                                alliance.addMember(new AllianceMember(airline, GameObject.GetInstance().GameTime));
+                                alliance.AddMember(new AllianceMember(airline, GameObject.GetInstance().GameTime));
                                 GameObject.GetInstance()
                                     .NewsBox.addNews(
                                         new News(
@@ -1219,7 +1219,7 @@
         //checks for etablishing a new hub
         private static void CheckForNewHub(Airline airline)
         {
-            int hubs = airline.getHubs().Count;
+            int hubs = airline.GetHubs().Count;
 
             int newHubInterval = 0;
             switch (airline.Mentality)
@@ -1373,7 +1373,7 @@
                             }
                             if (route.FillingDegree < 0.2)
                             {
-                                airline.removeRoute(route);
+                                airline.RemoveRoute(route);
 
                                 if (route.HasAirliner)
                                 {
@@ -1406,7 +1406,7 @@
                             }
                             if (route.FillingDegree <= 0.45)
                             {
-                                airline.removeRoute(route);
+                                airline.RemoveRoute(route);
 
                                 if (route.HasAirliner)
                                 {
@@ -1432,7 +1432,7 @@
                 }
                 if (route.Banned)
                 {
-                    airline.removeRoute(route);
+                    airline.RemoveRoute(route);
 
                     if (route.HasAirliner)
                     {
@@ -1466,8 +1466,8 @@
 
             int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
 
-            string flightCode1 = airliner.Airliner.Airline.getNextFlightCode(0);
-            string flightCode2 = airliner.Airliner.Airline.getNextFlightCode(1);
+            string flightCode1 = airliner.Airliner.Airline.GetNextFlightCode(0);
+            string flightCode2 = airliner.Airliner.Airline.GetNextFlightCode(1);
 
             route.TimeTable = CreateBusinessRouteTimeTable(route, airliner, flightsPerDay, flightCode1, flightCode2);
         }
@@ -1483,7 +1483,7 @@
             if (headquarter != null)
             {
                 var alliance = new Alliance(GameObject.GetInstance().GameTime, name, headquarter);
-                alliance.addMember(new AllianceMember(airline, GameObject.GetInstance().GameTime));
+                alliance.AddMember(new AllianceMember(airline, GameObject.GetInstance().GameTime));
 
                 Alliances.AddAlliance(alliance);
 
@@ -1581,7 +1581,7 @@
 
                         if (!airline.Airports.Contains(destination))
                         {
-                            airline.addAirport(destination);
+                            airline.AddAirport(destination);
                         }
 
                         Guid id = Guid.NewGuid();
@@ -1767,7 +1767,7 @@
 
                                     double payment = loan.getMonthlyPayment();
 
-                                    airline.addLoan(loan);
+                                    airline.AddLoan(loan);
                                     AirlineHelpers.AddAirlineInvoice(
                                         airline,
                                         loan.Date,
@@ -1836,7 +1836,7 @@
 
                             route.LastUpdated = GameObject.GetInstance().GameTime;
                         }
-                        airline.addRoute(route);
+                        airline.AddRoute(route);
 
                         if (fAirliner != null)
                         {
@@ -2036,7 +2036,7 @@
             {
                 homeAirports = AirlineHelpers.GetHomebases(airline);
             }
-            homeAirports.AddRange(airline.getHubs());
+            homeAirports.AddRange(airline.GetHubs());
 
             Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
@@ -2114,7 +2114,7 @@
             {
                 if (bestFitAirline == GameObject.GetInstance().HumanAirline)
                 {
-                    alliance.addPendingMember(
+                    alliance.AddPendingMember(
                         new PendingAllianceMember(
                             GameObject.GetInstance().GameTime,
                             alliance,
@@ -2145,7 +2145,7 @@
                                         "[LI airline={0}] has joined {1}",
                                         bestFitAirline.Profile.IATACode,
                                         alliance.Name)));
-                        alliance.addMember(new AllianceMember(bestFitAirline, GameObject.GetInstance().GameTime));
+                        alliance.AddMember(new AllianceMember(bestFitAirline, GameObject.GetInstance().GameTime));
                     }
                 }
             }
@@ -2178,7 +2178,7 @@
                 Boolean acceptInvitation = AirlineHelpers.AcceptCodesharing(
                     bestAirline,
                     airline,
-                    CodeshareAgreement.CodeshareType.Both_Ways);
+                    CodeshareAgreement.CodeshareType.BothWays);
 
                 if (acceptInvitation)
                 {
@@ -2187,7 +2187,7 @@
                         var agreement = new CodeshareAgreement(
                             bestAirline,
                             airline,
-                            CodeshareAgreement.CodeshareType.Both_Ways);
+                            CodeshareAgreement.CodeshareType.BothWays);
 
                         var news = new News(
                             News.NewsType.Alliance_News,
@@ -2207,9 +2207,9 @@
                         var agreement = new CodeshareAgreement(
                             bestAirline,
                             airline,
-                            CodeshareAgreement.CodeshareType.Both_Ways);
-                        bestAirline.addCodeshareAgreement(agreement);
-                        airline.addCodeshareAgreement(agreement);
+                            CodeshareAgreement.CodeshareType.BothWays);
+                        bestAirline.AddCodeshareAgreement(agreement);
+                        airline.AddCodeshareAgreement(agreement);
 
                         GameObject.GetInstance()
                             .NewsBox.addNews(
@@ -2319,8 +2319,8 @@
         {
             var agreement = (CodeshareAgreement)o;
 
-            agreement.Airline1.addCodeshareAgreement(agreement);
-            agreement.Airline2.addCodeshareAgreement(agreement);
+            agreement.Airline1.AddCodeshareAgreement(agreement);
+            agreement.Airline2.AddCodeshareAgreement(agreement);
         }
 
         #endregion

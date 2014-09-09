@@ -455,17 +455,17 @@
 
             string flightcode1 = this.Airliner.Airliner.Airline.Profile.IATACode + this.txtFlightNumber.Text;
 
-            int indexOf = this.Airliner.Airliner.Airline.getFlightCodes().IndexOf(flightcode1);
+            int indexOf = this.Airliner.Airliner.Airline.GetFlightCodes().IndexOf(flightcode1);
 
             string flightcode2;
 
-            if (indexOf == this.Airliner.Airliner.Airline.getFlightCodes().Count)
+            if (indexOf == this.Airliner.Airliner.Airline.GetFlightCodes().Count)
             {
                 flightcode2 = "";
             }
             else
             {
-                flightcode2 = this.Airliner.Airliner.Airline.getFlightCodes()[indexOf + 1];
+                flightcode2 = this.Airliner.Airliner.Airline.GetFlightCodes()[indexOf + 1];
             }
 
             if (opsType == OpsType.Business)
@@ -1173,7 +1173,7 @@
 
             while (number == "" || this.Entries.FirstOrDefault(e => e.Destination.FlightCode == number) != null)
             {
-                number = GameObject.GetInstance().HumanAirline.getNextFlightCode(i);
+                number = GameObject.GetInstance().HumanAirline.GetNextFlightCode(i);
 
                 i++;
             }

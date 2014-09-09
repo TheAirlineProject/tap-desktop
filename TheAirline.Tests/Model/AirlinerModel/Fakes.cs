@@ -17,7 +17,7 @@
                 new AirlineProfile("test Airline", "TS", "Red", "TestName testSurname", true, 2000, 2199),
                 Airline.AirlineMentality.Moderate,
                 Airline.AirlineFocus.Global,
-                Airline.AirlineLicense.Long_Haul,
+                Airline.AirlineLicense.LongHaul,
                 Route.RouteType.Passenger);
         }
 

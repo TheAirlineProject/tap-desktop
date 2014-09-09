@@ -284,10 +284,10 @@
 
         public static double GetAirlineLoanRate(Airline airline)
         {
-            var value = (double)airline.getAirlineValue();
+            var value = (double)airline.GetAirlineValue();
 
             return (GameObject.GetInstance().Difficulty.LoanLevel + 0.5)
-                   * ((double)Airline.AirlineValue.Very_high + 1 - value);
+                   * ((double)Airline.AirlineValue.VeryHigh + 1 - value);
         }
 
         public static double GetAirlinerOrderDiscount(int orders)

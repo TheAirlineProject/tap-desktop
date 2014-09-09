@@ -628,11 +628,11 @@
                 }
             }
 
-            airlineFrom.removeAirport(this.Airport);
+            airlineFrom.RemoveAirport(this.Airport);
 
             if (!airlineTo.Airports.Contains(this.Airport))
             {
-                airlineTo.addAirport(this.Airport);
+                airlineTo.AddAirport(this.Airport);
             }
         }
 

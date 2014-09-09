@@ -140,7 +140,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
                 Model.AirlineModel.Airline.AirlineLicense.Domestic,
                 focus);
 
-            subAirline.addAirport(airport);
+            subAirline.AddAirport(airport);
             subAirline.Profile.Logos.Clear();
             subAirline.Profile.AddLogo(new AirlineLogo(this.logoPath));
             subAirline.Money = this.slMoney.Value;

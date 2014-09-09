@@ -44,7 +44,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
         }
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            this.Selected = rbBothWays.IsChecked.Value ? CodeshareAgreement.CodeshareType.Both_Ways : CodeshareAgreement.CodeshareType.One_Way;
+            this.Selected = rbBothWays.IsChecked.Value ? CodeshareAgreement.CodeshareType.BothWays : CodeshareAgreement.CodeshareType.OneWay;
             this.Close();
         }
 

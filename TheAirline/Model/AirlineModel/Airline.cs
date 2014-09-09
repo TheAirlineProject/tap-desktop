@@ -1,29 +1,25 @@
-﻿namespace TheAirline.Model.AirlineModel
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.InvoicesModel;
+using TheAirline.Model.GeneralModel.StatisticsModel;
+using TheAirline.Model.PilotModel;
+
+namespace TheAirline.Model.AirlineModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Reflection;
-    using System.Runtime.CompilerServices;
-    using System.Runtime.Serialization;
-
-    using TheAirline.Model.AirlineModel.SubsidiaryModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.AirportModel;
-    using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.InvoicesModel;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
-    using TheAirline.Model.PilotModel;
-
     [Serializable]
     //the class for an airline
     public class Airline : ISerializable
     {
-      
-        private List<KeyValuePair<DateTime,KeyValuePair<double, double>>> dailyOperatingBalanceHistory;
+        private List<KeyValuePair<DateTime, KeyValuePair<double, double>>> _dailyOperatingBalanceHistory;
 
         #region Constructors and Destructors
 
@@ -34,43 +30,43 @@
             AirlineLicense license,
             Route.RouteType routeFocus)
         {
-            this.Scores = new AirlineScores();
-            this.Shares = new List<AirlineShare>();
-            this.Airports = new List<Airport>();
-            this.Fleet = new List<FleetAirliner>();
-            this.Routes = new List<Route>();
-            this.FutureAirlines = new List<FutureSubsidiaryAirline>();
-            this.Subsidiaries = new List<SubsidiaryAirline>();
-            this.Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
-            this.Codeshares = new List<CodeshareAgreement>();
-            this.Statistics = new GeneralStatistics();
-            this.Facilities = new List<AirlineFacility>();
-            this.Invoices = new Invoices();
-            this.Budget = new AirlineBudget();
-            this.BudgetHistory = new Dictionary<DateTime, AirlineBudget>();
-            this.TestBudget = new Dictionary<DateTime, AirlineBudget>();
-            this.Profile = profile;
-            this.AirlineRouteFocus = routeFocus;
-            this.Loans = new List<Loan>();
-            this.Reputation = 50;
-            this.Alliances = new List<Alliance>();
-            this.Mentality = mentality;
-            this.MarketFocus = marketFocus;
-            this.License = license;
-            this.Policies = new List<AirlinePolicy>();
-            this.EventLog = new List<RandomEvent>();
-            this.Ratings = new AirlineRatings();
-            this.OverallScore = this.CountedScores = 0;
-            this.GameScores = new Dictionary<DateTime, int>();
-            this.InsuranceClaims = new List<InsuranceClaim>();
-            this.InsurancePolicies = new List<AirlineInsurance>();
-            this.SpecialContracts = new List<SpecialContract>();
+            Scores = new AirlineScores();
+            Shares = new List<AirlineShare>();
+            Airports = new List<Airport>();
+            Fleet = new List<FleetAirliner>();
+            Routes = new List<Route>();
+            FutureAirlines = new List<FutureSubsidiaryAirline>();
+            Subsidiaries = new List<SubsidiaryAirline>();
+            Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
+            Codeshares = new List<CodeshareAgreement>();
+            Statistics = new GeneralStatistics();
+            Facilities = new List<AirlineFacility>();
+            Invoices = new Invoices();
+            Budget = new AirlineBudget();
+            BudgetHistory = new Dictionary<DateTime, AirlineBudget>();
+            TestBudget = new Dictionary<DateTime, AirlineBudget>();
+            Profile = profile;
+            AirlineRouteFocus = routeFocus;
+            Loans = new List<Loan>();
+            Reputation = 50;
+            Alliances = new List<Alliance>();
+            Mentality = mentality;
+            MarketFocus = marketFocus;
+            License = license;
+            Policies = new List<AirlinePolicy>();
+            EventLog = new List<RandomEvent>();
+            Ratings = new AirlineRatings();
+            OverallScore = CountedScores = 0;
+            GameScores = new Dictionary<DateTime, int>();
+            InsuranceClaims = new List<InsuranceClaim>();
+            InsurancePolicies = new List<AirlineInsurance>();
+            SpecialContracts = new List<SpecialContract>();
 
-            this.createStandardAdvertisement();
+            CreateStandardAdvertisement();
 
-            this.Pilots = new List<Pilot>();
-            this.FlightSchools = new List<FlightSchool>();
-            this.Budget = new AirlineBudget();
+            Pilots = new List<Pilot>();
+            FlightSchools = new List<FlightSchool>();
+            Budget = new AirlineBudget();
         }
 
         protected Airline(SerializationInfo info, StreamingContext ctxt)
@@ -80,15 +76,15 @@
                 int version = info.GetInt16("version");
 
                 IEnumerable<FieldInfo> fields =
-                    this.GetType()
+                    GetType()
                         .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+                        .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null);
 
                 IList<PropertyInfo> props =
                     new List<PropertyInfo>(
-                        this.GetType()
+                        GetType()
                             .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                            .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+                            .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null));
 
                 IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
@@ -96,42 +92,42 @@
                 {
                     MemberInfo prop =
                         propsAndFields.FirstOrDefault(
-                            p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+                            p => ((Versioning) p.GetCustomAttribute(typeof (Versioning))).Name == entry.Name);
 
                     if (prop != null)
                     {
                         if (prop is FieldInfo)
                         {
-                            ((FieldInfo)prop).SetValue(this, entry.Value);
+                            ((FieldInfo) prop).SetValue(this, entry.Value);
                         }
                         else
                         {
-                            ((PropertyInfo)prop).SetValue(this, entry.Value);
+                            ((PropertyInfo) prop).SetValue(this, entry.Value);
                         }
                     }
                 }
 
                 IEnumerable<MemberInfo> notSetProps =
-                    propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+                    propsAndFields.Where(p => ((Versioning) p.GetCustomAttribute(typeof (Versioning))).Version > version);
 
                 foreach (MemberInfo notSet in notSetProps)
                 {
-                    var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                    var ver = (Versioning) notSet.GetCustomAttribute(typeof (Versioning));
 
                     if (ver.AutoGenerated)
                     {
                         if (notSet is FieldInfo)
                         {
-                            ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                            ((FieldInfo) notSet).SetValue(this, ver.DefaultValue);
                         }
                         else
                         {
-                            ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
+                            ((PropertyInfo) notSet).SetValue(this, ver.DefaultValue);
                         }
                     }
                 }
 
-                this.Shares = new List<AirlineShare>();
+                Shares = new List<AirlineShare>();
 
                 if (version == 1)
                 {
@@ -139,17 +135,17 @@
                 }
                 if (version < 4)
                 {
-                    this.Routes = new List<Route>();
-                    this.Advertisements =
+                    Routes = new List<Route>();
+                    Advertisements =
                         new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
-                    this.createStandardAdvertisement();
+                    CreateStandardAdvertisement();
                 }
                 if (version < 5)
-                    this.SpecialContracts = new List<SpecialContract>();
+                    SpecialContracts = new List<SpecialContract>();
 
-                if (this.Invoices == null)
+                if (Invoices == null)
                 {
-                    this.Invoices = new Invoices();
+                    Invoices = new Invoices();
                 }
             }
             catch (Exception e)
@@ -179,9 +175,9 @@
 
             Regional,
 
-            Short_Haul,
+            ShortHaul,
 
-            Long_Haul
+            LongHaul
         }
 
         public enum AirlineMentality
@@ -195,7 +191,7 @@
 
         public enum AirlineValue
         {
-            Very_low,
+            VeryLow,
 
             Low,
 
@@ -203,7 +199,7 @@
 
             High,
 
-            Very_high
+            VeryHigh
         }
 
         #endregion
@@ -244,14 +240,7 @@
 
         public List<FleetAirliner> DeliveredFleet
         {
-            get
-            {
-                return this.getDeliveredFleet();
-            }
-            set
-            {
-                ;
-            }
+            get { return GetDeliveredFleet(); }
         }
 
         [Versioning("eventlists")]
@@ -292,26 +281,12 @@
 
         public Boolean IsHuman
         {
-            get
-            {
-                return this.isHuman();
-            }
-            set
-            {
-                ;
-            }
+            get { return isHuman(); }
         }
 
         public Boolean IsSubsidiary
         {
-            get
-            {
-                return this.isSubsidiaryAirline();
-            }
-            set
-            {
-                ;
-            }
+            get { return IsSubsidiaryAirline(); }
         }
 
         [Versioning("license")]
@@ -349,14 +324,8 @@
 
         public List<Route> Routes
         {
-            get
-            {
-                return this.getRoutes();
-            }
-            set
-            {
-                this._Routes = value;
-            }
+            get { return GetRoutes(); }
+            set { _Routes = value; }
         }
 
         [Versioning("scores")]
@@ -378,31 +347,27 @@
         [Versioning("routes")]
         public List<Route> _Routes { get; set; }
 
-        [Versioning("scontracts",Version=5)]
+        [Versioning("scontracts", Version = 5)]
         public List<SpecialContract> SpecialContracts { get; set; }
 
-      
 
         [Versioning("dailyoperatingbalancehistory")]
-        public List<KeyValuePair<DateTime, KeyValuePair<double,double>>> DailyOperatingBalanceHistory
+        public List<KeyValuePair<DateTime, KeyValuePair<double, double>>> DailyOperatingBalanceHistory
         {
             get
             {
-                if (this.dailyOperatingBalanceHistory == null)
+                if (_dailyOperatingBalanceHistory == null)
                 {
-                    this.dailyOperatingBalanceHistory = new List<KeyValuePair<DateTime, KeyValuePair<double,double>>>();
-
+                    _dailyOperatingBalanceHistory = new List<KeyValuePair<DateTime, KeyValuePair<double, double>>>();
                 }
 
-                return this.dailyOperatingBalanceHistory;
+                return _dailyOperatingBalanceHistory;
             }
             protected set
             {
                 if (value != null)
                 {
-                    this.dailyOperatingBalanceHistory = value;
-
-                   
+                    _dailyOperatingBalanceHistory = value;
                 }
             }
         }
@@ -415,16 +380,16 @@
         {
             info.AddValue("version", 5);
 
-            Type myType = this.GetType();
+            Type myType = GetType();
 
             IEnumerable<FieldInfo> fields =
                 myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+                      .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null);
 
             IList<PropertyInfo> props =
                 new List<PropertyInfo>(
                     myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+                          .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null));
 
             IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
@@ -434,126 +399,126 @@
 
                 if (member is FieldInfo)
                 {
-                    propValue = ((FieldInfo)member).GetValue(this);
+                    propValue = ((FieldInfo) member).GetValue(this);
                 }
                 else
                 {
-                    propValue = ((PropertyInfo)member).GetValue(this, null);
+                    propValue = ((PropertyInfo) member).GetValue(this, null);
                 }
 
-                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning) member.GetCustomAttribute(typeof (Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
         }
 
-        public void addAirlinePolicy(AirlinePolicy policy)
+        public void AddAirlinePolicy(AirlinePolicy policy)
         {
-            this.Policies.Add(policy);
+            Policies.Add(policy);
         }
 
         //adds an airliner to the airlines fleet
-        public void addAirliner(FleetAirliner.PurchasedType type, Airliner airliner, Airport homeBase)
+        public void AddAirliner(FleetAirliner.PurchasedType type, Airliner airliner, Airport homeBase)
         {
-            this.addAirliner(new FleetAirliner(type, GameObject.GetInstance().GameTime, this, airliner, homeBase));
+            AddAirliner(new FleetAirliner(type, GameObject.GetInstance().GameTime, this, airliner, homeBase));
         }
 
         //adds a fleet airliner to the airlines fleet
-        public void addAirliner(FleetAirliner airliner)
+        public void AddAirliner(FleetAirliner airliner)
         {
-            lock (this.Fleet)
+            lock (Fleet)
             {
-                this.Fleet.Add(airliner);
+                Fleet.Add(airliner);
             }
         }
 
         //remove a fleet airliner from the airlines fleet
 
         //adds an airport to the airline
-        public void addAirport(Airport airport)
+        public void AddAirport(Airport airport)
         {
-            lock (this.Airports)
+            lock (Airports)
             {
                 if (airport != null)
                 {
-                    this.Airports.Add(airport);
+                    Airports.Add(airport);
                 }
             }
         }
 
-        public void addAlliance(Alliance alliance)
+        public void AddAlliance(Alliance alliance)
         {
-            this.Alliances.Add(alliance);
+            Alliances.Add(alliance);
         }
 
-        public void addCodeshareAgreement(CodeshareAgreement share)
+        public void AddCodeshareAgreement(CodeshareAgreement share)
         {
-            this.Codeshares.Add(share);
+            Codeshares.Add(share);
         }
 
         //removes an airport from the airline
 
         //adds a facility to the airline
-        public void addFacility(AirlineFacility facility)
+        public void AddFacility(AirlineFacility facility)
         {
-            this.Facilities.Add(facility);
+            Facilities.Add(facility);
         }
 
-        public void addFlightSchool(FlightSchool school)
+        public void AddFlightSchool(FlightSchool school)
         {
-            this.FlightSchools.Add(school);
+            FlightSchools.Add(school);
         }
 
-        public void addInsurance(AirlineInsurance insurance)
+        public void AddInsurance(AirlineInsurance insurance)
         {
-            this.InsurancePolicies.Add(insurance);
+            InsurancePolicies.Add(insurance);
         }
 
         //removes a facility from the airline
 
         //adds an invoice for the airline - both incoming and expends - if updateMoney == true the money is updated as well
-        public void addInvoice(Invoice invoice, Boolean updateMoney = true)
+        public void AddInvoice(Invoice invoice, Boolean updateMoney = true)
         {
-            this.Invoices.addInvoice(invoice);
+            Invoices.addInvoice(invoice);
 
             if (updateMoney)
             {
-                this.Money += invoice.Amount;
+                Money += invoice.Amount;
             }
         }
 
         //returns the reputation for the airline
 
         //adds a loan to the airline
-        public void addLoan(Loan loan)
+        public void AddLoan(Loan loan)
         {
-            lock (this.Loans)
+            lock (Loans)
             {
-                this.Loans.Add(loan);
+                Loans.Add(loan);
             }
         }
 
-        public void addPilot(Pilot pilot)
+        public void AddPilot(Pilot pilot)
         {
             if (pilot == null)
             {
                 throw new NullReferenceException("Pilot is null at Airline.cs/addPilot");
             }
 
-            lock (this.Pilots)
+            lock (Pilots)
             {
-                this.Pilots.Add(pilot);
+                Pilots.Add(pilot);
                 pilot.Airline = this;
             }
         }
 
-        public void addRoute(Route route)
+        public void AddRoute(Route route)
         {
-            var routes = new List<Route>(this.Routes);
+            var routes = new List<Route>(Routes);
 
-            lock (this._Routes)
+            lock (_Routes)
             {
-                this._Routes.Add(route);
+                _Routes.Add(route);
                 route.Airline = this;
             }
             /*
@@ -563,53 +528,53 @@
          */
         }
 
-        public void addSubsidiaryAirline(SubsidiaryAirline subsidiary)
+        public void AddSubsidiaryAirline(SubsidiaryAirline subsidiary)
         {
-            this.Subsidiaries.Add(subsidiary);
+            Subsidiaries.Add(subsidiary);
         }
 
         //removes a loan 
 
         //returns the advertisement for the airline for a specific type
-        public AdvertisementType getAirlineAdvertisement(AdvertisementType.AirlineAdvertisementType type)
+        public AdvertisementType GetAirlineAdvertisement(AdvertisementType.AirlineAdvertisementType type)
         {
-            return this.Advertisements[type];
+            return Advertisements[type];
         }
 
-        public List<AdvertisementType> getAirlineAdvertisements()
+        public List<AdvertisementType> GetAirlineAdvertisements()
         {
-            return this.Advertisements.Values.ToList();
+            return Advertisements.Values.ToList();
         }
 
-        public AirlinePolicy getAirlinePolicy(string name)
+        public AirlinePolicy GetAirlinePolicy(string name)
         {
-            return this.Policies.Find(p => p.Name == name);
+            return Policies.Find(p => p.Name == name);
         }
 
-        public AirlineValue getAirlineValue()
+        public AirlineValue GetAirlineValue()
         {
-            double value = GeneralHelpers.GetInflationPrice(this.getValue() * 1000000);
-            double startMoney = GeneralHelpers.GetInflationPrice(this.StartMoney);
+            double value = GeneralHelpers.GetInflationPrice(GetValue()*1000000);
+            double startMoney = GeneralHelpers.GetInflationPrice(StartMoney);
 
             if (value <= startMoney)
             {
-                return AirlineValue.Very_low;
+                return AirlineValue.VeryLow;
             }
-            if (value > startMoney && value < startMoney * 3)
+            if (value > startMoney && value < startMoney*3)
             {
                 return AirlineValue.Low;
             }
-            if (value >= startMoney * 3 && value < startMoney * 9)
+            if (value >= startMoney*3 && value < startMoney*9)
             {
                 return AirlineValue.Normal;
             }
-            if (value >= startMoney * 9 && value < startMoney * 18)
+            if (value >= startMoney*9 && value < startMoney*18)
             {
                 return AirlineValue.High;
             }
-            if (value >= startMoney * 18)
+            if (value >= startMoney*18)
             {
-                return AirlineValue.Very_high;
+                return AirlineValue.VeryHigh;
             }
 
             return AirlineValue.Normal;
@@ -620,11 +585,11 @@
         /*! returns the average age for the fleet
          */
 
-        public double getAverageFleetAge()
+        public double GetAverageFleetAge()
         {
-            if (this.Fleet.Count > 0)
+            if (Fleet.Count > 0)
             {
-                return this.Fleet.Average(f => f.Airliner.Age);
+                return Fleet.Average(f => f.Airliner.Age);
             }
             return 0;
         }
@@ -632,41 +597,41 @@
         //returns total current value of fleet
 
         //returns the average value of an airliner in the fleet
-        public long getAvgFleetValue()
+        public long GetAvgFleetValue()
         {
-            return this.getFleetValue() / this.Fleet.Count();
+            return GetFleetValue()/Fleet.Count();
         }
 
-        public List<Airline> getCodesharingAirlines()
+        public List<Airline> GetCodesharingAirlines()
         {
-            return this.Codeshares.Select(c => c.Airline1 == this ? c.Airline2 : c.Airline1).ToList();
+            return Codeshares.Select(c => c.Airline1 == this ? c.Airline2 : c.Airline1).ToList();
         }
 
-        public double getFleetSize()
+        public double GetFleetSize()
         {
-            return this.Fleet.Count;
+            return Fleet.Count;
         }
 
-        public long getFleetValue()
+        public long GetFleetValue()
         {
             long fleetValue = 0;
-            foreach (FleetAirliner airliner in this.Fleet)
+            foreach (FleetAirliner airliner in Fleet)
             {
-                fleetValue += this.getValue();
+                fleetValue += GetValue();
             }
             return fleetValue;
         }
 
-        public List<string> getFlightCodes()
+        public List<string> GetFlightCodes()
         {
             var codes = new List<string>();
 
             IEnumerable<string> rCodes =
-                this.Routes.SelectMany(r => r.TimeTable.Entries).Select(e => e.Destination.FlightCode).Distinct();
+                Routes.SelectMany(r => r.TimeTable.Entries).Select(e => e.Destination.FlightCode).Distinct();
 
             for (int i = 0; i < 1000; i++)
             {
-                string code = string.Format("{0}{1:0000}", this.Profile.IATACode, i);
+                string code = string.Format("{0}{1:0000}", Profile.IATACode, i);
 
                 if (!rCodes.Contains(code))
                 {
@@ -696,19 +661,19 @@
          */
         }
 
-        public List<Airport> getHubs()
+        public List<Airport> GetHubs()
         {
             var hubs = new List<Airport>();
-            lock (this.Airports)
+            lock (Airports)
             {
-                hubs = (from a in this.Airports where a.getHubs().Exists(h => h.Airline == this) select a).ToList();
+                hubs = (from a in Airports where a.getHubs().Exists(h => h.Airline == this) select a).ToList();
             }
             return hubs;
         }
 
-        public Invoices getInvoices()
+        public Invoices GetInvoices()
         {
-            return this.Invoices;
+            return Invoices;
         }
 
         /*
@@ -726,7 +691,7 @@
         }
        */
         //returns the amount of all the invoices in a specific period of a specific type
-        public double getInvoicesAmount(DateTime startTime, DateTime endTime, Invoice.InvoiceType type)
+        public double GetInvoicesAmount(DateTime startTime, DateTime endTime, Invoice.InvoiceType type)
         {
             int startYear = startTime.Year;
             int endYear = endTime.Year;
@@ -734,7 +699,7 @@
             int startMonth = startTime.Month;
             int endMonth = endTime.Month;
 
-            int totalMonths = (endMonth - startMonth) + 12 * (endYear - startYear) + 1;
+            int totalMonths = (endMonth - startMonth) + 12*(endYear - startYear) + 1;
 
             double totalAmount = 0;
 
@@ -744,11 +709,11 @@
             {
                 if (type == Invoice.InvoiceType.Total)
                 {
-                    totalAmount += this.Invoices.getAmount(date.Year, date.Month);
+                    totalAmount += Invoices.getAmount(date.Year, date.Month);
                 }
                 else
                 {
-                    totalAmount += this.Invoices.getAmount(type, date.Year, date.Month);
+                    totalAmount += Invoices.getAmount(type, date.Year, date.Month);
                 }
 
                 date = date.AddMonths(1);
@@ -757,102 +722,102 @@
             return totalAmount;
         }
 
-        public double getInvoicesAmountMonth(int year, int month, Invoice.InvoiceType type)
+        public double GetInvoicesAmountMonth(int year, int month, Invoice.InvoiceType type)
         {
             if (type == Invoice.InvoiceType.Total)
             {
-                return this.Invoices.getAmount(year, month);
+                return Invoices.getAmount(year, month);
             }
-            return this.Invoices.getAmount(type, year, month);
+            return Invoices.getAmount(type, year, month);
         }
 
-        public double getInvoicesAmountYear(int year, Invoice.InvoiceType type)
+        public double GetInvoicesAmountYear(int year, Invoice.InvoiceType type)
         {
             if (type == Invoice.InvoiceType.Total)
             {
-                return this.Invoices.getYearlyAmount(year);
+                return Invoices.getYearlyAmount(year);
             }
-            return this.Invoices.getYearlyAmount(type, year);
+            return Invoices.getYearlyAmount(type, year);
         }
 
-        public string getNextFlightCode(int n)
+        public string GetNextFlightCode(int n)
         {
-            return this.getFlightCodes()[n];
+            return GetFlightCodes()[n];
         }
 
-        public int getNumberOfEmployees()
+        public int GetNumberOfEmployees()
         {
-            int instructors = this.FlightSchools.Sum(f => f.NumberOfInstructors);
+            int instructors = FlightSchools.Sum(f => f.NumberOfInstructors);
 
-            int cockpitCrew = this.Pilots.Count;
+            int cockpitCrew = Pilots.Count;
             int cabinCrew =
-                this.Routes.Where(r => r.Type == Route.RouteType.Passenger)
-                    .Sum(r => ((PassengerRoute)r).getTotalCabinCrew());
+                Routes.Where(r => r.Type == Route.RouteType.Passenger)
+                      .Sum(r => ((PassengerRoute) r).getTotalCabinCrew());
 
             int serviceCrew =
-                this.Airports.SelectMany(a => a.getCurrentAirportFacilities(this))
-                    .Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support)
-                    .Sum(a => a.NumberOfEmployees);
+                Airports.SelectMany(a => a.getCurrentAirportFacilities(this))
+                        .Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support)
+                        .Sum(a => a.NumberOfEmployees);
             int maintenanceCrew =
-                this.Airports.SelectMany(a => a.getCurrentAirportFacilities(this))
-                    .Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance)
-                    .Sum(a => a.NumberOfEmployees);
+                Airports.SelectMany(a => a.getCurrentAirportFacilities(this))
+                        .Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance)
+                        .Sum(a => a.NumberOfEmployees);
 
             return cockpitCrew + cabinCrew + serviceCrew + maintenanceCrew + instructors;
         }
 
-        public double getProfit()
+        public double GetProfit()
         {
-            return this.Money - this.StartMoney;
+            return Money - StartMoney;
         }
 
-        public AirlineValue getReputation()
+        public AirlineValue GetReputation()
         {
             //0-100 with 0-10 as very_low, 11-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 
-            if (this.Reputation < 11)
+            if (Reputation < 11)
             {
-                return AirlineValue.Very_low;
+                return AirlineValue.VeryLow;
             }
-            if (this.Reputation > 10 && this.Reputation < 31)
+            if (Reputation > 10 && Reputation < 31)
             {
                 return AirlineValue.Low;
             }
-            if (this.Reputation > 30 && this.Reputation < 71)
+            if (Reputation > 30 && Reputation < 71)
             {
                 return AirlineValue.Normal;
             }
-            if (this.Reputation > 70 && this.Reputation < 91)
+            if (Reputation > 70 && Reputation < 91)
             {
                 return AirlineValue.High;
             }
-            if (this.Reputation > 90)
+            if (Reputation > 90)
             {
-                return AirlineValue.Very_high;
+                return AirlineValue.VeryHigh;
             }
             return AirlineValue.Normal;
         }
 
         //returns the value of the airline in "money"
-        public long getValue()
+        public long GetValue()
         {
             double value = 0;
-            value += this.Money;
+            value += Money;
 
             var fleet =
-                new List<FleetAirliner>(this.Fleet.FindAll(f => f.Purchased != FleetAirliner.PurchasedType.Leased));
+                new List<FleetAirliner>(Fleet.FindAll(f => f.Purchased != FleetAirliner.PurchasedType.Leased));
 
             foreach (FleetAirliner airliner in fleet)
             {
                 value += airliner.Airliner.getPrice();
             }
 
-            var facilities = new List<AirlineFacility>(this.Facilities);
+            var facilities = new List<AirlineFacility>(Facilities);
             foreach (AirlineFacility facility in facilities)
             {
                 value += facility.Price;
             }
 
-            var airports = new List<Airport>(this.Airports);
+            var airports = new List<Airport>(Airports);
             foreach (Airport airport in airports)
             {
                 var aFacilities = new List<AirlineAirportFacility>(airport.getAirportFacilities(this));
@@ -862,21 +827,21 @@
                 }
             }
 
-            lock (this.Loans)
+            lock (Loans)
             {
-                var loans = new List<Loan>(this.Loans);
+                var loans = new List<Loan>(Loans);
                 foreach (Loan loan in loans)
                 {
                     value -= loan.PaymentLeft;
                 }
             }
-            var subs = new List<SubsidiaryAirline>(this.Subsidiaries);
+            var subs = new List<SubsidiaryAirline>(Subsidiaries);
             foreach (SubsidiaryAirline subAirline in subs)
             {
-                value += subAirline.getValue();
+                value += subAirline.GetValue();
             }
 
-            value = value / 1000000;
+            value = value/1000000;
 
             if (double.IsNaN(value))
             {
@@ -893,32 +858,32 @@
             return this == GameObject.GetInstance().HumanAirline || this == GameObject.GetInstance().MainAirline;
         }
 
-        public virtual Boolean isSubsidiaryAirline()
+        public virtual Boolean IsSubsidiaryAirline()
         {
             return false;
         }
 
-        public void removeAirliner(FleetAirliner airliner)
+        public void RemoveAirliner(FleetAirliner airliner)
         {
-            this.Fleet.Remove(airliner);
+            Fleet.Remove(airliner);
 
             airliner.Airliner.Airline = null;
         }
 
-        public void removeAirport(Airport airport)
+        public void RemoveAirport(Airport airport)
         {
-            this.Airports.Remove(airport);
+            Airports.Remove(airport);
 
             airport.Cooperations.RemoveAll(r => r.Airline == this);
         }
 
-        public void removeAlliance(Alliance alliance)
+        public void RemoveAlliance(Alliance alliance)
         {
-            lock (this.Alliances)
+            lock (Alliances)
             {
-                if (this.Alliances.Contains(alliance))
+                if (Alliances.Contains(alliance))
                 {
-                    this.Alliances.Remove(alliance);
+                    Alliances.Remove(alliance);
                 }
             }
         }
@@ -926,19 +891,19 @@
         //adds a subsidiary airline to the airline
 
         //removes a code share agreement from the airline
-        public void removeCodeshareAgreement(CodeshareAgreement share)
+        public void RemoveCodeshareAgreement(CodeshareAgreement share)
         {
-            this.Codeshares.Remove(share);
+            Codeshares.Remove(share);
         }
 
-        public void removeFacility(AirlineFacility facility)
+        public void RemoveFacility(AirlineFacility facility)
         {
-            this.Facilities.Remove(facility);
+            Facilities.Remove(facility);
         }
 
-        public void removeFlightSchool(FlightSchool school)
+        public void RemoveFlightSchool(FlightSchool school)
         {
-            this.FlightSchools.Remove(school);
+            FlightSchools.Remove(school);
 
             foreach (Instructor instructor in school.Instructors)
             {
@@ -946,19 +911,19 @@
             }
         }
 
-        public void removeInsurance(AirlineInsurance insurance)
+        public void RemoveInsurance(AirlineInsurance insurance)
         {
-            this.InsurancePolicies.Remove(insurance);
+            InsurancePolicies.Remove(insurance);
         }
 
-        public void removeLoan(Loan loan)
+        public void RemoveLoan(Loan loan)
         {
-            this.Loans.Remove(loan);
+            Loans.Remove(loan);
         }
 
-        public void removePilot(Pilot pilot)
+        public void RemovePilot(Pilot pilot)
         {
-            this.Pilots.Remove(pilot);
+            Pilots.Remove(pilot);
             pilot.Airline = null;
 
             if (pilot.Airliner != null)
@@ -967,11 +932,11 @@
             }
         }
 
-        public void removeRoute(Route route)
+        public void RemoveRoute(Route route)
         {
-            lock (this._Routes)
+            lock (_Routes)
             {
-                this._Routes.Remove(route);
+                _Routes.Remove(route);
 
                 /*
                 foreach (string flightCode in route.TimeTable.Entries.Select(e => e.Destination.FlightCode).Distinct())
@@ -979,73 +944,73 @@
             }
         }
 
-        public void removeSubsidiaryAirline(SubsidiaryAirline subsidiary)
+        public void RemoveSubsidiaryAirline(SubsidiaryAirline subsidiary)
         {
-            this.Subsidiaries.Remove(subsidiary);
+            Subsidiaries.Remove(subsidiary);
         }
 
-        public void setAirlineAdvertisement(AdvertisementType type)
+        public void SetAirlineAdvertisement(AdvertisementType type)
         {
-            if (!this.Advertisements.ContainsKey(type.Type))
+            if (!Advertisements.ContainsKey(type.Type))
             {
-                this.Advertisements.Add(type.Type, type);
+                Advertisements.Add(type.Type, type);
             }
             else
             {
-                this.Advertisements[type.Type] = type;
+                Advertisements[type.Type] = type;
             }
         }
 
         //adds a policy to the airline
 
         //sets the policy for the airline
-        public void setAirlinePolicy(string name, object value)
+        public void SetAirlinePolicy(string name, object value)
         {
-            this.Policies.Find(p => p.Name == name).PolicyValue = value;
+            Policies.Find(p => p.Name == name).PolicyValue = value;
         }
 
-        public void setInvoice(Invoice invoice)
+        public void SetInvoice(Invoice invoice)
         {
-            this.Invoices.addInvoice(invoice);
+            Invoices.addInvoice(invoice);
         }
 
-        public void setInvoice(Invoice.InvoiceType type, int year, int month,int day, double amount)
+        public void SetInvoice(Invoice.InvoiceType type, int year, int month, int day, double amount)
         {
-            this.Invoices.addInvoice(type, year, month,day, amount);
+            Invoices.addInvoice(type, year, month, day, amount);
         }
 
-        public void storeBudget(AirlineBudget budget)
+        public void StoreBudget(AirlineBudget budget)
         {
-            this.BudgetHistory.Add(GameObject.GetInstance().GameTime, budget);
+            BudgetHistory.Add(GameObject.GetInstance().GameTime, budget);
         }
 
         #endregion
 
         #region Methods
 
-        private void createStandardAdvertisement()
+        private void CreateStandardAdvertisement()
         {
             foreach (
                 AdvertisementType.AirlineAdvertisementType type in
-                    Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
+                    Enum.GetValues(typeof (AdvertisementType.AirlineAdvertisementType)))
             {
-                this.setAirlineAdvertisement(AdvertisementTypes.GetBasicType(type));
+                SetAirlineAdvertisement(AdvertisementTypes.GetBasicType(type));
             }
         }
 
-        private List<FleetAirliner> getDeliveredFleet()
+        private List<FleetAirliner> GetDeliveredFleet()
         {
             return
-                this.Fleet.FindAll(
+                Fleet.FindAll(
                     (delegate(FleetAirliner a) { return a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime; }));
         }
 
-        private List<Route> getRoutes()
+        private List<Route> GetRoutes()
         {
             var routes = new List<Route>();
-            lock (this._Routes)
+            lock (_Routes)
             {
-                routes = new List<Route>(this._Routes);
+                routes = new List<Route>(_Routes);
             }
 
             return routes;
@@ -1054,26 +1019,24 @@
         #endregion
 
         //returns a policy for the airline
-        public bool hasRouteTo(Airport airport)
+        public bool HasRouteTo(Airport airport)
         {
             return
                 Routes.Any(
                     r =>
-                        ((r.Destination1.Profile.IATACode == airport.Profile.IATACode)
-                         || (r.Destination2.Profile.IATACode == airport.Profile.IATACode)));
+                    ((r.Destination1.Profile.IATACode == airport.Profile.IATACode)
+                     || (r.Destination2.Profile.IATACode == airport.Profile.IATACode)));
         }
 
         //returns a policy for the airline
-        public bool hasAirplaneOnRouteTo(Airport airport)
+        public bool HasAirplaneOnRouteTo(Airport airport)
         {
             return
                 Routes.Any(
                     r =>
-                        ((r.Destination1.Profile.IATACode == airport.Profile.IATACode)
-                         || (r.Destination2.Profile.IATACode == airport.Profile.IATACode)) && r.HasAirliner);
+                    ((r.Destination1.Profile.IATACode == airport.Profile.IATACode)
+                     || (r.Destination2.Profile.IATACode == airport.Profile.IATACode)) && r.HasAirliner);
         }
-
-      
     }
 
     //the list of airlines
@@ -1081,13 +1044,9 @@
     {
         #region Static Fields
 
-        private static List<Airline> airlines = new List<Airline>();
+        private static readonly List<Airline> airlines = new List<Airline>();
 
         #endregion
-
-        //clears the list
-
-        //adds an airline to the collection
 
         #region Public Methods and Operators
 
@@ -1098,7 +1057,7 @@
 
         public static void Clear()
         {
-            airlines = new List<Airline>();
+            airlines.Clear();
         }
 
         public static Boolean ContainsAirline(Airline airline)
@@ -1111,10 +1070,12 @@
         {
             return airlines.Find(a => a.Profile.IATACode == iata);
         }
+
         public static Airline GetAirline(string iata, int year)
         {
             return airlines.Find(a => a.Profile.IATACode == iata && a.Profile.Founded <= year && a.Profile.Folded >= year);
         }
+
         //returns all airlines
 
         //returns all airlines for a specific region
@@ -1161,7 +1122,12 @@
         {
             airlines.RemoveAll(match);
         }
-         #endregion
+
+        #endregion
+
+        //clears the list
+
+        //adds an airline to the collection
 
         //returns if the list of airlines contains an airline
     }

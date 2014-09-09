@@ -60,7 +60,7 @@
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                GameObject.GetInstance().HumanAirline.addPilot(this.Pilot);
+                GameObject.GetInstance().HumanAirline.AddPilot(this.Pilot);
             }
 
             var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");

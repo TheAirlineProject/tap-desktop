@@ -80,8 +80,8 @@
             {
                 this.AllCodesharings.Remove(agreement);
 
-                agreement.Agreement.Airline1.removeCodeshareAgreement(agreement.Agreement);
-                agreement.Agreement.Airline2.removeCodeshareAgreement(agreement.Agreement);
+                agreement.Agreement.Airline1.RemoveCodeshareAgreement(agreement.Agreement);
+                agreement.Agreement.Airline2.RemoveCodeshareAgreement(agreement.Agreement);
             }
         }
 

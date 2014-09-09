@@ -70,7 +70,7 @@ using TheAirline.Model.PilotModel;
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                GameObject.GetInstance().HumanAirline.addPilot(pilot);
+                GameObject.GetInstance().HumanAirline.AddPilot(pilot);
 
                 this.AllPilots.Remove(pilot);
 

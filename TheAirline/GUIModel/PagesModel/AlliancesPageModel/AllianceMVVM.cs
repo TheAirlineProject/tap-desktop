@@ -207,7 +207,7 @@
         public void addMember(AllianceMember member)
         {
             this.Members.Add(new AllianceMemberMVVM(member, this.Alliance.IsHumanAlliance));
-            this.Alliance.addMember(member);
+            this.Alliance.AddMember(member);
 
             this.setValues();
         }
@@ -216,7 +216,7 @@
         public void removeMember(AllianceMemberMVVM member)
         {
             this.Members.Remove(member);
-            this.Alliance.removeMember(member.Member);
+            this.Alliance.RemoveMember(member.Member);
 
             this.setValues();
         }
@@ -232,7 +232,7 @@
         public void removePendingMember(PendingAllianceMember pending)
         {
             this.PendingMembers.Remove(pending);
-            this.Alliance.removePendingMember(pending);
+            this.Alliance.RemovePendingMember(pending);
         }
 
         #endregion

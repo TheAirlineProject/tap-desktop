@@ -35,7 +35,7 @@
                     .HumanAirline.Codeshares.Where(
                         c =>
                             c.Airline2 == GameObject.GetInstance().HumanAirline
-                            || c.Type == CodeshareAgreement.CodeshareType.Both_Ways)
+                            || c.Type == CodeshareAgreement.CodeshareType.BothWays)
                     .Select(c => c.Airline1 == GameObject.GetInstance().HumanAirline ? c.Airline2 : c.Airline1)
                     .SelectMany(a => a.Routes);
 

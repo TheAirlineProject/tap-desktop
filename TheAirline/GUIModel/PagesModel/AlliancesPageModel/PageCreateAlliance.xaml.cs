@@ -62,7 +62,7 @@
                 this.txtName.Text.Trim(),
                 (Airport)this.cbHeadquarter.SelectedItem);
             alliance.Logo = this.logoPath;
-            alliance.addMember(
+            alliance.AddMember(
                 new AllianceMember(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime));
 
             Alliances.AddAlliance(alliance);

@@ -146,7 +146,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         /*returns the luggage score for the route*/
         public static double GetRouteLuggageScore(Route route)
         {
-           double bagFee = GameObject.GetInstance().HumanAirline.Fees.getValue(FeeTypes.GetType("1 Bag"));
+           double bagFee = GameObject.GetInstance().HumanAirline.Fees.GetValue(FeeTypes.GetType("1 Bag"));
 
            if (bagFee == 0)
                return 8;

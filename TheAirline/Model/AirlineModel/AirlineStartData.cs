@@ -1,11 +1,10 @@
-﻿namespace TheAirline.Model.AirlineModel
+﻿using System.Collections.Generic;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.GeneralModel;
+
+namespace TheAirline.Model.AirlineModel
 {
-    using System.Collections.Generic;
-
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.GeneralModel;
-
     //the start data for an airline
     public class AirlineStartData
     {
@@ -13,10 +12,10 @@
 
         public AirlineStartData(Airline airline)
         {
-            this.Airline = airline;
-            this.Routes = new List<StartDataRoute>();
-            this.Airliners = new List<StartDataAirliners>();
-            this.OriginRoutes = new List<StartDataRoutes>();
+            Airline = airline;
+            Routes = new List<StartDataRoute>();
+            Airliners = new List<StartDataAirliners>();
+            OriginRoutes = new List<StartDataRoutes>();
         }
 
         #endregion
@@ -35,21 +34,21 @@
 
         #region Public Methods and Operators
 
-        public void addAirliners(StartDataAirliners airliners)
+        public void AddAirliners(StartDataAirliners airliners)
         {
-            this.Airliners.Add(airliners);
+            Airliners.Add(airliners);
         }
 
         //adds origin routes to the list
-        public void addOriginRoutes(StartDataRoutes route)
+        public void AddOriginRoutes(StartDataRoutes route)
         {
-            this.OriginRoutes.Add(route);
+            OriginRoutes.Add(route);
         }
 
         //adds a route to the list
-        public void addRoute(StartDataRoute route)
+        public void AddRoute(StartDataRoute route)
         {
-            this.Routes.Add(route);
+            Routes.Add(route);
         }
 
         #endregion
@@ -64,9 +63,9 @@
 
         public StartDataAirliners(string type, int airlinersEarly, int airlinersLate)
         {
-            this.Type = type;
-            this.AirlinersEarly = airlinersEarly;
-            this.AirlinersLate = airlinersLate;
+            Type = type;
+            AirlinersEarly = airlinersEarly;
+            AirlinersLate = airlinersLate;
         }
 
         #endregion
@@ -93,11 +92,11 @@
             GeneralHelpers.Size minimumsize,
             Route.RouteType routetype)
         {
-            this.Countries = new List<Country>();
-            this.Origin = origin;
-            this.Destinations = destinations;
-            this.MinimumSize = minimumsize;
-            this.RouteType = routetype;
+            Countries = new List<Country>();
+            Origin = origin;
+            Destinations = destinations;
+            MinimumSize = minimumsize;
+            RouteType = routetype;
         }
 
         #endregion
@@ -116,16 +115,16 @@
 
         #endregion
 
-        //adds a country to the routes
-
         #region Public Methods and Operators
 
-        public void addCountry(Country country)
+        public void AddCountry(Country country)
         {
-            this.Countries.Add(country);
+            Countries.Add(country);
         }
 
         #endregion
+
+        //adds a country to the routes
     }
 
     //the route for the start data
@@ -140,11 +139,11 @@
             int closed,
             Route.RouteType routetype)
         {
-            this.Opened = opened;
-            this.Closed = closed;
-            this.Destination1 = destination1;
-            this.Destination2 = destination2;
-            this.RouteType = routetype;
+            Opened = opened;
+            Closed = closed;
+            Destination1 = destination1;
+            Destination2 = destination2;
+            RouteType = routetype;
         }
 
         #endregion
@@ -171,25 +170,25 @@
     {
         #region Static Fields
 
-        private static readonly List<AirlineStartData> startData = new List<AirlineStartData>();
+        private static readonly List<AirlineStartData> StartData = new List<AirlineStartData>();
 
         #endregion
-
-        //adds start data to the list
 
         #region Public Methods and Operators
 
         public static void AddStartData(AirlineStartData data)
         {
-            startData.Add(data);
+            StartData.Add(data);
         }
 
         //returns the start data for an airline
         public static AirlineStartData GetAirlineStartData(Airline airline)
         {
-            return startData.Find(s => s.Airline == airline);
+            return StartData.Find(s => s.Airline == airline);
         }
 
         #endregion
+
+        //adds start data to the list
     }
 }

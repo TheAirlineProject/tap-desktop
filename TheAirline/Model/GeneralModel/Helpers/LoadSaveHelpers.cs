@@ -664,7 +664,7 @@
                         pilotNode.Attributes["airlinesigned"].Value,
                         new CultureInfo("de-DE", false));
 
-                    pilotAirline.addPilot(pilot);
+                    pilotAirline.AddPilot(pilot);
                     pilot.AirlineSignedDate = airlinesigneddate;
 
                     if (pilotNode.Attributes["airliner"].Value != "-")
@@ -692,7 +692,7 @@
                 foreach (FleetAirliner airliner in Airlines.GetAllAirlines().SelectMany(a => a.Fleet))
                 {
                     Pilot pilot = Pilots.GetPilots()[rnd.Next(Pilots.GetNumberOfPilots())];
-                    airliner.Airliner.Airline.addPilot(pilot);
+                    airliner.Airliner.Airline.AddPilot(pilot);
                     pilot.Airliner = airliner;
                     airliner.addPilot(pilot);
                 }
@@ -723,7 +723,7 @@
 
                     if (allianceMember != null)
                     {
-                        alliance.addMember(new AllianceMember(allianceMember, joinedDate));
+                        alliance.AddMember(new AllianceMember(allianceMember, joinedDate));
                     }
                 }
 
@@ -739,7 +739,7 @@
                         (PendingAllianceMember.AcceptType)
                             Enum.Parse(typeof(PendingAllianceMember.AcceptType), pendingNode.Attributes["type"].Value);
 
-                    alliance.addPendingMember(
+                    alliance.AddPendingMember(
                         new PendingAllianceMember(pendingDate, alliance, pendingAirline, pendingType));
                 }
 
@@ -1211,7 +1211,7 @@
                 airlineNode.AppendChild(airlineStatsNode);
 
                 XmlElement invoicesNode = xmlDoc.CreateElement("invoices");
-                foreach (MonthlyInvoice invoice in airline.getInvoices().MonthlyInvoices)
+                foreach (MonthlyInvoice invoice in airline.GetInvoices().MonthlyInvoices)
                 {
                     XmlElement invoiceNode = xmlDoc.CreateElement("invoice");
                     invoiceNode.SetAttribute("type", invoice.Type.ToString());
@@ -1231,7 +1231,7 @@
                 {
                     XmlElement advertisementNode = xmlDoc.CreateElement("advertisement");
                     advertisementNode.SetAttribute("type", type.ToString());
-                    advertisementNode.SetAttribute("name", airline.getAirlineAdvertisement(type).Name);
+                    advertisementNode.SetAttribute("name", airline.GetAirlineAdvertisement(type).Name);
 
                     advertisementsNodes.AppendChild(advertisementNode);
                 }
@@ -1245,7 +1245,7 @@
                     feeNode.SetAttribute("type", feetype.Name);
                     feeNode.SetAttribute(
                         "value",
-                        airline.Fees.getValue(feetype).ToString(new CultureInfo("de-DE", false)));
+                        airline.Fees.GetValue(feetype).ToString(new CultureInfo("de-DE", false)));
 
                     feesNode.AppendChild(feeNode);
                 }
@@ -2016,7 +2016,7 @@
                     license,
                     routefocus);
                 airline.Profile.Country = airlineCountry;
-                parent.addSubsidiaryAirline((SubsidiaryAirline)airline);
+                parent.AddSubsidiaryAirline((SubsidiaryAirline)airline);
             }
             else
             {
@@ -2097,7 +2097,7 @@
             {
                 string airlineFacility = airlineFacilityNode.Attributes["uid"].Value;
 
-                airline.addFacility(AirlineFacilities.GetFacility(airlineFacility));
+                airline.AddFacility(AirlineFacilities.GetFacility(airlineFacility));
             }
 
             XmlNodeList airlinePoliciesList = airlineNode.SelectNodes("policies/policy");
@@ -2110,11 +2110,11 @@
                 int number;
                 if (int.TryParse(policyValue.ToString(), out number))
                 {
-                    airline.addAirlinePolicy(new AirlinePolicy(policyName, number));
+                    airline.AddAirlinePolicy(new AirlinePolicy(policyName, number));
                 }
                 else
                 {
-                    airline.addAirlinePolicy(new AirlinePolicy(policyName, policyValue));
+                    airline.AddAirlinePolicy(new AirlinePolicy(policyName, policyValue));
                 }
             }
 
@@ -2138,7 +2138,7 @@
                 var loan = new Loan(date, amount, length, rate);
                 loan.PaymentLeft = payment;
 
-                airline.addLoan(loan);
+                airline.AddLoan(loan);
             }
 
             XmlNodeList airlineStatList = airlineNode.SelectNodes("stats/stat");
@@ -2166,7 +2166,7 @@
                     airlineInvoiceNode.Attributes["amount"].Value,
                     new CultureInfo("de-DE", false));
 
-                airline.setInvoice(type, invoiceYear, invoiceMonth,1, invoiceAmount);
+                airline.SetInvoice(type, invoiceYear, invoiceMonth,1, invoiceAmount);
             }
 
             // chs, 2011-13-10 added for loading of airline advertisements
@@ -2181,7 +2181,7 @@
                             advertisementNode.Attributes["type"].Value);
                 string advertisementName = advertisementNode.Attributes["name"].Value;
 
-                airline.setAirlineAdvertisement(AdvertisementTypes.GetType(type, advertisementName));
+                airline.SetAirlineAdvertisement(AdvertisementTypes.GetType(type, advertisementName));
             }
             // chs, 2011-17-10 added for loading of fees
             var fees = new AirlineFees();
@@ -2192,7 +2192,7 @@
                 string feeType = feeNode.Attributes["type"].Value;
                 double feeValue = Convert.ToDouble(feeNode.Attributes["value"].Value, new CultureInfo("de-DE", false));
 
-                fees.setValue(FeeTypes.GetType(feeType), feeValue);
+                fees.SetValue(FeeTypes.GetType(feeType), feeValue);
             }
 
             airline.Fees = fees;
@@ -2243,7 +2243,7 @@
                             ""));
                 }
 
-                airline.addFlightSchool(fs);
+                airline.AddFlightSchool(fs);
             }
 
             XmlNodeList airlineFleetList = airlineNode.SelectNodes("fleet/airliner");
@@ -2317,13 +2317,13 @@
                         statValue);
                 }
 
-                airline.addAirliner(fAirliner);
+                airline.AddAirliner(fAirliner);
             }
             XmlNodeList routeList = airlineNode.SelectNodes("routes/route");
 
             foreach (XmlElement routeNode in routeList)
             {
-                airline.addRoute(LoadRoute(routeNode, airline));
+                airline.AddRoute(LoadRoute(routeNode, airline));
             }
 
             XmlNodeList flightNodes = airlineNode.SelectNodes("flights/flight");

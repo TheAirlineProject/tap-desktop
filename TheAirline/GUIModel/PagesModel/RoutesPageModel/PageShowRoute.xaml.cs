@@ -124,7 +124,7 @@
                     contract.Routes.Remove(this.Route.Route);
                 }
 
-                GameObject.GetInstance().HumanAirline.removeRoute(this.Route.Route);
+                GameObject.GetInstance().HumanAirline.RemoveRoute(this.Route.Route);
 
                 if (this.Route.Route.HasAirliner)
                 {

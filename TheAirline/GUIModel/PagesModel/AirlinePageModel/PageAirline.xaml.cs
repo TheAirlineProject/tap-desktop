@@ -206,7 +206,7 @@
                             this.Airline.Airline.Profile.Name,
                             alliance.Name),
                         WPFMessageBoxButtons.Ok);
-                    alliance.addMember(new AllianceMember(this.Airline.Airline, GameObject.GetInstance().GameTime));
+                    alliance.AddMember(new AllianceMember(this.Airline.Airline, GameObject.GetInstance().GameTime));
 
                     this.Airline.Alliance = alliance;
 
@@ -251,7 +251,7 @@
                         type);
 
                     this.Airline.addCodeshareAgreement(agreement);
-                    GameObject.GetInstance().HumanAirline.addCodeshareAgreement(agreement);
+                    GameObject.GetInstance().HumanAirline.AddCodeshareAgreement(agreement);
                 }
                 else
                 {

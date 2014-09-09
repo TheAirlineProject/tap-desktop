@@ -257,7 +257,7 @@
 
                                         var pType = FleetAirliner.PurchasedType.BoughtDownPayment;
                                         GameObject.GetInstance()
-                                            .HumanAirline.addAirliner(pType, airliner, order.Homebase);
+                                            .HumanAirline.AddAirliner(pType, airliner, order.Homebase);
 
                                        
                                     }
@@ -441,7 +441,7 @@
                     Model.AirlinerModel.Airliners.AddAirliner(airliner);
 
                     var pType = FleetAirliner.PurchasedType.Bought;
-                    GameObject.GetInstance().HumanAirline.addAirliner(pType, airliner, order.Homebase);
+                    GameObject.GetInstance().HumanAirline.AddAirliner(pType, airliner, order.Homebase);
 
                     airliner.clearAirlinerClasses();
 
