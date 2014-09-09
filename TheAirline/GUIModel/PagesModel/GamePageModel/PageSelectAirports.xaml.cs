@@ -114,8 +114,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             if (this.StartData.InternationalAirports)
             {
                 int intlAirports = Airports.GetAllAirports(a =>
-                               a.Profile.Type == AirportProfile.AirportType.Long_Haul_International 
-                               || a.Profile.Type == AirportProfile.AirportType.Short_Haul_International).Count;
+                               a.Profile.Type == AirportProfile.AirportType.LongHaulInternational 
+                               || a.Profile.Type == AirportProfile.AirportType.ShortHaulInternational).Count;
 
                 foreach (Country country in this.SelectedCountries)
                 {

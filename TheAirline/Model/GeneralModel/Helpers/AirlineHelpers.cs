@@ -216,12 +216,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
 
             //contract
-            List<AirportContract> oldContracts = oldAirport.getAirlineContracts(airline);
+            List<AirportContract> oldContracts = oldAirport.GetAirlineContracts(airline);
 
             foreach (AirportContract oldContract in oldContracts)
             {
 
-                oldAirport.removeAirlineContract(oldContract);
+                oldAirport.RemoveAirlineContract(oldContract);
 
                 oldContract.Airport = newAirport;
 
@@ -230,10 +230,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 for (int i = 0; i < oldContract.NumberOfGates; i++)
                 {
-                    Gate newGate = newAirport.Terminals.getGates().Where(g => g.Airline == null).First();
+                    Gate newGate = newAirport.Terminals.GetGates().Where(g => g.Airline == null).First();
                     newGate.Airline = airline;
 
-                    Gate oldGate = oldAirport.Terminals.getGates().Where(g => g.Airline == airline).First();
+                    Gate oldGate = oldAirport.Terminals.GetGates().Where(g => g.Airline == airline).First();
                     oldGate.Airline = null;
                 }
 
@@ -261,19 +261,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             //facilities
-            foreach (AirportFacility facility in oldAirport.getCurrentAirportFacilities(airline))
+            foreach (AirportFacility facility in oldAirport.GetCurrentAirportFacilities(airline))
             {
-                newAirport.addAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
+                newAirport.AddAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
             }
 
-            oldAirport.clearFacilities(airline);
+            oldAirport.ClearFacilities(airline);
 
             foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
             {
 
                 AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
 
-                oldAirport.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
+                oldAirport.AddAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
             }
         }
 
@@ -367,7 +367,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             for (int i = 0; i < airports.Count; i++)
             {
-                var contracts = airports[i].getAirlineContracts(airline);
+                var contracts = airports[i].GetAirlineContracts(airline);
 
                 for (int j = 0; j < contracts.Count; j++)
                 {
@@ -379,20 +379,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airline.Airline.AddAirport(airports[i]);
                 }
 
-                foreach (AirportFacility facility in airports[i].getCurrentAirportFacilities(airline))
+                foreach (AirportFacility facility in airports[i].GetCurrentAirportFacilities(airline))
                 {
-                    if (airports[i].getAirlineAirportFacility(airline.Airline, facility.Type).Facility.TypeLevel < facility.TypeLevel)
-                        airports[i].addAirportFacility(airline.Airline, facility, GameObject.GetInstance().GameTime);
+                    if (airports[i].GetAirlineAirportFacility(airline.Airline, facility.Type).Facility.TypeLevel < facility.TypeLevel)
+                        airports[i].AddAirportFacility(airline.Airline, facility, GameObject.GetInstance().GameTime);
                 }
 
-                airports[i].clearFacilities(airline);
+                airports[i].ClearFacilities(airline);
 
 
             }
             //moves the terminals from the subsidiary to the parent airline
             foreach (Airport airport in airline.Airports)
             {
-                var terminals = airport.Terminals.getTerminals().Where(t => t.Airline == airline);
+                var terminals = airport.Terminals.GetTerminals().Where(t => t.Airline == airline);
 
                 foreach (Terminal terminal in terminals)
                     terminal.Airline = airline.Airline;
@@ -425,7 +425,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
 
-                        airport.addAirportFacility(sAirline, noneFacility, GameObject.GetInstance().GameTime);
+                        airport.AddAirportFacility(sAirline, noneFacility, GameObject.GetInstance().GameTime);
                     }
 
                 }
@@ -434,8 +434,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
                 AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
-                airportHomeBase.addAirportFacility(sAirline, serviceFacility, GameObject.GetInstance().GameTime);
-                airportHomeBase.addAirportFacility(sAirline, checkinFacility, GameObject.GetInstance().GameTime);
+                airportHomeBase.AddAirportFacility(sAirline, serviceFacility, GameObject.GetInstance().GameTime);
+                airportHomeBase.AddAirportFacility(sAirline, checkinFacility, GameObject.GetInstance().GameTime);
 
             }
 
@@ -563,23 +563,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == AirlinerModel.RouteModel.Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
       
-            Boolean airlineHub = airport.getHubs().Exists(h => h.Airline == airline);
+            Boolean airlineHub = airport.GetHubs().Exists(h => h.Airline == airline);
 
             int airlineValue = (int)airline.GetAirlineValue() + 1;
 
             int totalAirlineHubs = airline.GetHubs().Count;// 'Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
-            double airlineGatesPercent = Convert.ToDouble(airport.Terminals.getNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.getNumberOfGates(terminaltype)) * 100;
+            double airlineGatesPercent = Convert.ToDouble(airport.Terminals.GetNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.GetNumberOfGates(terminaltype)) * 100;
 
             switch (type.Type)
             {
-                case HubType.TypeOfHub.Focus_city:
+                case HubType.TypeOfHub.FocusCity:
                     return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type);
-                case HubType.TypeOfHub.Regional_hub:
-                    return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type) && (airport.Profile.Size == GeneralHelpers.Size.Large || airport.Profile.Size == GeneralHelpers.Size.Medium) && airport.getHubs().Count < 7;
-                case HubType.TypeOfHub.Fortress_hub:
+                case HubType.TypeOfHub.RegionalHub:
+                    return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type) && (airport.Profile.Size == GeneralHelpers.Size.Large || airport.Profile.Size == GeneralHelpers.Size.Medium) && airport.GetHubs().Count < 7;
+                case HubType.TypeOfHub.FortressHub:
                     return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type) && (airport.Profile.Size > GeneralHelpers.Size.Medium) && airlineGatesPercent > 70 && (totalAirlineHubs < airlineValue);
                 case HubType.TypeOfHub.Hub:
-                    return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type) && (!airlineHub) && (airlineGatesPercent > 20) && (totalAirlineHubs < airlineValue) && (airport.getHubs(HubType.TypeOfHub.Hub).Count < (int)airport.Profile.Size);
+                    return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type) && (!airlineHub) && (airlineGatesPercent > 20) && (totalAirlineHubs < airlineValue) && (airport.GetHubs(HubType.TypeOfHub.Hub).Count < (int)airport.Profile.Size);
             }
 
             return false;
@@ -591,7 +591,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
 
             //var curentFacility = 
-            return airline.Airports.FindAll(a => (a.hasContractType(airline, AirportContract.ContractType.Full_Service) || airline.Fleet.Count(ar => ar.Homebase == a) < a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).ServiceLevel));
+            return airline.Airports.FindAll(a => (a.HasContractType(airline, AirportContract.ContractType.FullService) || airline.Fleet.Count(ar => ar.Homebase == a) < a.GetCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).ServiceLevel));
 
         }
         public static List<Airport> GetHomebases(Airline airline, AirlinerType type)
@@ -600,7 +600,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static List<Airport> GetHomebases(Airline airline, long minrunway)
         {
-            return GetHomebases(airline).Where(h => h.getMaxRunwayLength() >= minrunway).ToList();
+            return GetHomebases(airline).Where(h => h.GetMaxRunwayLength() >= minrunway).ToList();
         }
         //update the damage scores for an airline
         public static void UpdateMaintList(Airline airline)
@@ -670,8 +670,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double cabinCrewFee = airline.Routes.Where(r => r.Type == Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getTotalCabinCrew()) * airline.Fees.GetValue(FeeTypes.GetType("Cabin Wage"));
 
-            double serviceCrewFee = airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees) * airline.Fees.GetValue(FeeTypes.GetType("Support Wage"));
-            double maintenanceCrewFee = airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees) * airline.Fees.GetValue(FeeTypes.GetType("Maintenance Wage"));
+            double serviceCrewFee = airline.Airports.SelectMany(a => a.GetCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees) * airline.Fees.GetValue(FeeTypes.GetType("Support Wage"));
+            double maintenanceCrewFee = airline.Airports.SelectMany(a => a.GetCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees) * airline.Fees.GetValue(FeeTypes.GetType("Maintenance Wage"));
 
             return instructorFee + cockpitCrewFee + cabinCrewFee + serviceCrewFee + maintenanceCrewFee;
 
@@ -829,16 +829,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
             while (airlineFrom.Airports.Count > 0)
             {
                 Airport airport = airlineFrom.Airports[0];
-                airport.Terminals.switchAirline(airlineFrom, airlineTo);
+                airport.Terminals.SwitchAirline(airlineFrom, airlineTo);
 
-                foreach (AirportFacility facility in airport.getCurrentAirportFacilities(airlineFrom))
+                foreach (AirportFacility facility in airport.GetCurrentAirportFacilities(airlineFrom))
                 {
-                    if (facility.TypeLevel > airport.getCurrentAirportFacility(airlineTo, facility.Type).TypeLevel)
-                        airport.addAirportFacility(airlineTo, facility, GameObject.GetInstance().GameTime);
+                    if (facility.TypeLevel > airport.GetCurrentAirportFacility(airlineTo, facility.Type).TypeLevel)
+                        airport.AddAirportFacility(airlineTo, facility, GameObject.GetInstance().GameTime);
 
                     AirportFacility noneFacility = AirportFacilities.GetFacilities(facility.Type).Find(f => f.TypeLevel == 0);
 
-                    airport.addAirportFacility(airlineFrom, noneFacility, GameObject.GetInstance().GameTime);
+                    airport.AddAirportFacility(airlineFrom, noneFacility, GameObject.GetInstance().GameTime);
 
                 }
             }

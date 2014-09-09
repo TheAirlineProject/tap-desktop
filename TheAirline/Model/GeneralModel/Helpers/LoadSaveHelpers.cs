@@ -449,7 +449,7 @@
                     Airline airline = Airlines.GetAirline(airportStatNode.Attributes["airline"].Value);
                     string statType = airportStatNode.Attributes["type"].Value;
                     int statValue = Convert.ToInt32(airportStatNode.Attributes["value"].Value);
-                    airport.Statistics.setStatisticsValue(
+                    airport.Statistics.SetStatisticsValue(
                         year,
                         airline,
                         StatisticsTypes.GetStatisticsType(statType),
@@ -457,7 +457,7 @@
                 }
 
                 XmlNodeList airportFacilitiesList = airportNode.SelectNodes("facilities/facility");
-                airport.clearFacilities();
+                airport.ClearFacilities();
 
                 foreach (XmlElement airportFacilityNode in airportFacilitiesList)
                 {
@@ -468,9 +468,9 @@
                         airportFacilityNode.Attributes["finished"].Value,
                         new CultureInfo("de-DE", false));
 
-                    airport.addAirportFacility(airline, airportFacility, finishedDate);
+                    airport.AddAirportFacility(airline, airportFacility, finishedDate);
                 }
-                airport.Terminals.clear();
+                airport.Terminals.Clear();
 
                 XmlNodeList terminalsList = airportNode.SelectNodes("terminals/terminal");
 
@@ -484,7 +484,7 @@
                     int gates = Convert.ToInt32(terminalNode.Attributes["totalgates"].Value);
 
                     var terminal = new Terminal(airport, owner, terminalName, gates, deliveryDate,Terminal.TerminalType.Passenger);
-                    terminal.Gates.clear();
+                    terminal.Gates.Clear();
 
                     XmlNodeList airportGatesList = terminalNode.SelectNodes("gates/gate");
 
@@ -495,12 +495,12 @@
                             new CultureInfo("de-DE", false));
                         var gate = new Gate(gateDeliveryDate);
 
-                        terminal.Gates.addGate(gate);
+                        terminal.Gates.AddGate(gate);
                     }
 
-                    airport.addTerminal(terminal);
+                    airport.AddTerminal(terminal);
                 }
-                airport.clearAirlineContracts();
+                airport.ClearAirlineContracts();
 
                 XmlNodeList contractsList = airportNode.SelectNodes("contracts/contract");
 
@@ -548,7 +548,7 @@
 
                 if (targetAirport != null)
                 {
-                    targetAirport.clearDestinationPassengers();
+                    targetAirport.ClearDestinationPassengers();
 
                     XmlNodeList destinationsList = airportDestinationElement.SelectNodes("destinations/destination");
 
@@ -565,17 +565,17 @@
                                 ushort rate = ushort.Parse(destinationElement.Attributes["rate"].Value);
                                 long destPassengers = Convert.ToInt64(destinationElement.Attributes["passengers"].Value);
 
-                                targetAirport.addPassengerDestinationStatistics(destAirport, destPassengers);
-                                targetAirport.addDestinationPassengersRate(
+                                targetAirport.AddPassengerDestinationStatistics(destAirport, destPassengers);
+                                targetAirport.AddDestinationPassengersRate(
                                     new DestinationDemand(destAirport.Profile.IATACode, rate));
 
                                 if (destinationElement.HasAttribute("cargo"))
                                 {
-                                    targetAirport.addDestinationCargoRate(
+                                    targetAirport.AddDestinationCargoRate(
                                         new DestinationDemand(
                                             destAirport.Profile.IATACode,
                                             ushort.Parse(destinationElement.Attributes["cargo"].Value)));
-                                    targetAirport.addCargoDestinationStatistics(
+                                    targetAirport.AddCargoDestinationStatistics(
                                         destAirport,
                                         Convert.ToDouble(
                                             destinationElement.Attributes["cargostats"].Value,
@@ -1492,7 +1492,7 @@
                 airportNode.AppendChild(airportRunwaysNode);
 
                 XmlElement airportHubsNode = xmlDoc.CreateElement("hubs");
-                foreach (Hub hub in airport.getHubs(HubType.TypeOfHub.Hub))
+                foreach (Hub hub in airport.GetHubs(HubType.TypeOfHub.Hub))
                 {
                     XmlElement airportHubNode = xmlDoc.CreateElement("hub");
                     airportHubNode.SetAttribute("airline", hub.Airline.Profile.IATACode);
@@ -1546,9 +1546,9 @@
                 {
                     foreach (StatisticsType type in StatisticsTypes.GetStatisticsTypes())
                     {
-                        foreach (int year in airport.Statistics.getYears())
+                        foreach (int year in airport.Statistics.GetYears())
                         {
-                            double value = airport.Statistics.getStatisticsValue(year, airline, type);
+                            double value = airport.Statistics.GetStatisticsValue(year, airline, type);
 
                             if (value > 0)
                             {
@@ -1570,7 +1570,7 @@
                 XmlElement airportFacilitiesNode = xmlDoc.CreateElement("facilities");
                 foreach (Airline airline in Airlines.GetAllAirlines())
                 {
-                    foreach (AirlineAirportFacility facility in airport.getAirportFacilities(airline))
+                    foreach (AirlineAirportFacility facility in airport.GetAirportFacilities(airline))
                     {
                         XmlElement airportFacilityNode = xmlDoc.CreateElement("facility");
                         airportFacilityNode.SetAttribute("airline", airline.Profile.IATACode);
@@ -1583,7 +1583,7 @@
                     }
                 }
 
-                foreach (AirlineAirportFacility facility in airport.getAirportFacilities().Where(f => f.Airline == null)
+                foreach (AirlineAirportFacility facility in airport.GetAirportFacilities().Where(f => f.Airline == null)
                     )
                 {
                     XmlElement airportFacilityNode = xmlDoc.CreateElement("facility");
@@ -1599,7 +1599,7 @@
 
                 // chs, 2011-02-11 added for saving the terminals
                 XmlElement terminalsNode = xmlDoc.CreateElement("terminals");
-                foreach (Terminal terminal in airport.Terminals.getTerminals())
+                foreach (Terminal terminal in airport.Terminals.GetTerminals())
                 {
                     XmlElement terminalNode = xmlDoc.CreateElement("terminal");
                     terminalNode.SetAttribute("delivery", terminal.DeliveryDate.ToString(new CultureInfo("de-DE")));
@@ -1607,9 +1607,9 @@
                         "owner",
                         terminal.Airline == null ? "airport" : terminal.Airline.Profile.IATACode);
                     terminalNode.SetAttribute("name", terminal.Name);
-                    terminalNode.SetAttribute("totalgates", terminal.Gates.getGates().Count.ToString());
+                    terminalNode.SetAttribute("totalgates", terminal.Gates.GetGates().Count.ToString());
                     XmlElement gatesNode = xmlDoc.CreateElement("gates");
-                    foreach (Gate gate in terminal.Gates.getGates())
+                    foreach (Gate gate in terminal.Gates.GetGates())
                     {
                         XmlElement gateNode = xmlDoc.CreateElement("gate");
                         gateNode.SetAttribute("delivery", gate.DeliveryDate.ToString(new CultureInfo("de-DE")));
@@ -1668,23 +1668,23 @@
                 foreach (Airport dest in destAirports)
                 {
                     if (dest != airport
-                        && (airport.hasDestinationPassengersRate(dest)
-                            || airport.hasDestinationPassengerStatistics(dest)
-                            || airport.hasDestinationCargStatistics(dest)))
+                        && (airport.HasDestinationPassengersRate(dest)
+                            || airport.HasDestinationPassengerStatistics(dest)
+                            || airport.HasDestinationCargStatistics(dest)))
                     {
                         XmlElement destinationNode = xmlDoc.CreateElement("destination");
                         destinationNode.SetAttribute("id", dest.Profile.IATACode);
                         destinationNode.SetAttribute(
                             "rate",
-                            airport.getDestinationPassengersRate(dest, AirlinerClass.ClassType.EconomyClass).ToString());
+                            airport.GetDestinationPassengersRate(dest, AirlinerClass.ClassType.EconomyClass).ToString());
                         destinationNode.SetAttribute(
                             "passengers",
-                            airport.getDestinationPassengerStatistics(dest).ToString());
+                            airport.GetDestinationPassengerStatistics(dest).ToString());
 
-                        destinationNode.SetAttribute("cargo", airport.getDestinationCargoRate(dest).ToString());
+                        destinationNode.SetAttribute("cargo", airport.GetDestinationCargoRate(dest).ToString());
                         destinationNode.SetAttribute(
                             "cargostats",
-                            airport.getDestinationCargoStatistics(dest).ToString());
+                            airport.GetDestinationCargoStatistics(dest).ToString());
 
                         destinationsNode.AppendChild(destinationNode);
                     }

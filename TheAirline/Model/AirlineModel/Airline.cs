@@ -666,7 +666,7 @@ namespace TheAirline.Model.AirlineModel
             var hubs = new List<Airport>();
             lock (Airports)
             {
-                hubs = (from a in Airports where a.getHubs().Exists(h => h.Airline == this) select a).ToList();
+                hubs = (from a in Airports where a.GetHubs().Exists(h => h.Airline == this) select a).ToList();
             }
             return hubs;
         }
@@ -755,11 +755,11 @@ namespace TheAirline.Model.AirlineModel
                       .Sum(r => ((PassengerRoute) r).getTotalCabinCrew());
 
             int serviceCrew =
-                Airports.SelectMany(a => a.getCurrentAirportFacilities(this))
+                Airports.SelectMany(a => a.GetCurrentAirportFacilities(this))
                         .Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support)
                         .Sum(a => a.NumberOfEmployees);
             int maintenanceCrew =
-                Airports.SelectMany(a => a.getCurrentAirportFacilities(this))
+                Airports.SelectMany(a => a.GetCurrentAirportFacilities(this))
                         .Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance)
                         .Sum(a => a.NumberOfEmployees);
 
@@ -820,7 +820,7 @@ namespace TheAirline.Model.AirlineModel
             var airports = new List<Airport>(Airports);
             foreach (Airport airport in airports)
             {
-                var aFacilities = new List<AirlineAirportFacility>(airport.getAirportFacilities(this));
+                var aFacilities = new List<AirlineAirportFacility>(airport.GetAirportFacilities(this));
                 foreach (AirlineAirportFacility facility in aFacilities)
                 {
                     value += facility.Facility.Price;

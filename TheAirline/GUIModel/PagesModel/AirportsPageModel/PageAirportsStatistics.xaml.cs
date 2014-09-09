@@ -24,7 +24,7 @@
             IOrderedEnumerable<Airport> airports =
                 Airports.GetAllActiveAirports()
                     .OrderByDescending(
-                        a => a.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, statType));
+                        a => a.Statistics.GetTotalValue(GameObject.GetInstance().GameTime.Year, statType));
 
             foreach (Airport airport in airports.Take(20))
             {

@@ -257,7 +257,7 @@
                             .Where(
                                 a =>
                                     Airlines.GetAllAirlines().Exists(al => al.Airports.Contains(a))
-                                    || a.hasAirlineFacility());
+                                    || a.HasAirlineFacility());
                     so.airportsList.AddRange(airportsInUse);
 
                     foreach (Airport airport in Airports.GetAirports(a => !airportsInUse.Contains(a)))
@@ -341,8 +341,8 @@
             //Clearing stats because there is no need for saving those.
             if (name != "autosave")
             {
-                Airports.GetAllAirports().ForEach(a => a.clearDestinationPassengerStatistics());
-                Airports.GetAllAirports().ForEach(a => a.clearDestinationCargoStatistics());
+                Airports.GetAllAirports().ForEach(a => a.ClearDestinationPassengerStatistics());
+                Airports.GetAllAirports().ForEach(a => a.ClearDestinationCargoStatistics());
                 AirlineHelpers.ClearRoutesStatistics();
                 AirlineHelpers.ClearAirlinesStatistics();
                 AirportHelpers.ClearAirportStatistics();

@@ -77,11 +77,11 @@
             Route.RouteType airlineFocus = GameObject.GetInstance().HumanAirline.AirlineRouteFocus;
 
             Boolean hasCargo =
-                airport.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Cargo, true)
+                airport.Airport.GetAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Cargo, true)
                 .TypeLevel > 0;
             
             Boolean hasCheckin =
-                airport.Airport.getAirportFacility(
+                airport.Airport.GetAirportFacility(
                     GameObject.GetInstance().HumanAirline,
                     AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
 
@@ -108,7 +108,7 @@
                             AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo)
                                 .Find(f => f.TypeLevel == 1);
 
-                        airport.Airport.addAirportFacility(
+                        airport.Airport.AddAirportFacility(
                             GameObject.GetInstance().HumanAirline,
                             cargoFacility,
                             GameObject.GetInstance().GameTime);
@@ -131,7 +131,7 @@
                             AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn)
                                 .Find(f => f.TypeLevel == 1);
 
-                        airport.Airport.addAirportFacility(
+                        airport.Airport.AddAirportFacility(
                             GameObject.GetInstance().HumanAirline,
                             checkinFacility,
                             GameObject.GetInstance().GameTime);
@@ -165,7 +165,7 @@
 
                 for (int i = 0; i < gates; i++)
                 {
-                    Gate gate = airport.Airport.Terminals.getGates().Where(g => g.Airline == null).First();
+                    Gate gate = airport.Airport.Terminals.GetGates().Where(g => g.Airline == null).First();
                     gate.Airline = GameObject.GetInstance().HumanAirline;
                 }
 
@@ -186,7 +186,7 @@
                 source.Filter = o =>
                 {
                     var a = o as AirportMVVM;
-                    return a != null && a.Airport.getMaxRunwayLength() >= type.MinRunwaylength
+                    return a != null && a.Airport.GetMaxRunwayLength() >= type.MinRunwaylength
                            || type.Manufacturer.Name == "Dummy";
                 };
             }

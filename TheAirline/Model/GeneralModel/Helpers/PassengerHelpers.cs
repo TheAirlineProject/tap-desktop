@@ -77,7 +77,7 @@
         //changes the demand between two airports
         public static void ChangePaxDemand(Airport airport1, Airport airport2, int value)
         {
-            DestinationDemand destPax = airport1.getDestinationPassengersObject(airport2);
+            DestinationDemand destPax = airport1.GetDestinationPassengersObject(airport2);
 
             if (destPax != null && value > 0)
             {
@@ -90,7 +90,7 @@
             {
                 if (value > 0)
                 {
-                    airport1.addDestinationPassengersRate(airport2, Convert.ToUInt16(value));
+                    airport1.AddDestinationPassengersRate(airport2, Convert.ToUInt16(value));
                 }
             }
 
@@ -102,7 +102,7 @@
         {
             double value = (100 + factor) / 100;
             //factor 0.5 - 2;
-            foreach (DestinationDemand destPax in airport.getDestinationsPassengers())
+            foreach (DestinationDemand destPax in airport.GetDestinationsPassengers())
             {
                 if (destPax.Rate > 0)
                 {
@@ -148,7 +148,7 @@
                 //    dAirport =>
                 foreach (var dAirport in Airports.GetAllAirports())
                 {
-                    airport.Statics.addDistance(dAirport, MathHelpers.GetDistance(airport, dAirport));
+                    airport.Statics.AddDistance(dAirport, MathHelpers.GetDistance(airport, dAirport));
 
                     if (airport != dAirport && airport.Profile.Town != dAirport.Profile.Town
                         && MathHelpers.GetDistance(airport, dAirport) > 50)
@@ -158,7 +158,7 @@
                         CreateDestinationCargo(airport, dAirport);
                     }
                 } //);
-                if (airport.getDestinationPassengersSum() == 0)
+                if (airport.GetDestinationPassengersSum() == 0)
                 {
                     List<Airport> subAirports =
                         Airports.GetAllAirports(a => a.Profile.Country == airport.Profile.Country)
@@ -211,7 +211,7 @@
 
             if (volume >= 1)
             {
-                airport.addDestinationCargoRate(new DestinationDemand(dAirport.Profile.IATACode, (ushort)volume));
+                airport.AddDestinationCargoRate(new DestinationDemand(dAirport.Profile.IATACode, (ushort)volume));
             }
         }
 
@@ -228,7 +228,7 @@
                 CargoFactors.Add(GeneralHelpers.Size.Smallest, 0.23);
             }
 
-            List<Airport> airports = Airports.GetAllAirports(a => a.Statics.getDestinationPassengersSum() == 0);
+            List<Airport> airports = Airports.GetAllAirports(a => a.Statics.GetDestinationPassengersSum() == 0);
             int count = airports.Count;
 
             //var airports = Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
@@ -246,7 +246,7 @@
                             if (airports[i].Profile.Town != airports[j].Profile.Town
                                 && MathHelpers.GetDistance(airports[i], airports[j]) > 50)
                             {
-                                airports[j].Statics.addDistance(
+                                airports[j].Statics.AddDistance(
                                     airports[i],
                                     MathHelpers.GetDistance(airports[j], airports[i]));
 
@@ -258,7 +258,7 @@
                             }
                         });
 
-                    if (airports[i].getDestinationPassengersSum() == 0)
+                    if (airports[i].GetDestinationPassengersSum() == 0)
                     {
                         List<Airport> subAirports =
                             airports.FindAll(a => a.Profile.Country == airports[i].Profile.Country)
@@ -295,7 +295,7 @@
             {
                 CreateDestinationPassengers(airport, dAirport);
             } //);
-            if (airport.getDestinationsPassengers().Sum(d => d.Rate) == 0)
+            if (airport.GetDestinationsPassengers().Sum(d => d.Rate) == 0)
             {
                 List<Airport> subAirports =
                     airports.FindAll(a => a.Profile.Country == airport.Profile.Country).DefaultIfEmpty().ToList();
@@ -2877,7 +2877,7 @@
 
             if (rate > 0)
             {
-                airport.addDestinationPassengersRate(new DestinationDemand(dAirport.Profile.IATACode, rate));
+                airport.AddDestinationPassengersRate(new DestinationDemand(dAirport.Profile.IATACode, rate));
                 //DatabaseObject.GetInstance().addToTransaction(airport, dAirport, classType, rate);
             }
         }
@@ -2905,7 +2905,7 @@
         public static double GetFlightCargo(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner)
         {
             double destinationFacilityFactor =
-                airportDestination.getAirportFacility(
+                airportDestination.GetAirportFacility(
                     GameObject.GetInstance().HumanAirline,
                     AirportFacility.FacilityType.Cargo,
                     true).ServiceLevel;
@@ -2919,7 +2919,7 @@
             if (airliner.Airliner.Type is AirlinerCombiType)
                 capacity = ((AirlinerCombiType)airliner.Airliner.Type).CargoSize;
 
-            double demand = airportCurrent.getDestinationCargoRate(airportDestination)
+            double demand = airportCurrent.GetDestinationCargoRate(airportDestination)
                             * (destinationFacilityFactor / 100);
 
             double cargoDemand = demand * 1000;
@@ -3020,7 +3020,7 @@
 
             double routeScoreFactor = RouteHelpers.GetRouteTotalScore(currentRoute) / 5;
 
-            double demand = airportCurrent.getDestinationPassengersRate(airportDestination, type);
+            double demand = airportCurrent.GetDestinationPassengersRate(airportDestination, type);
 
             double passengerDemand = (demand
                                       + GetFlightConnectionPassengers(
@@ -3057,20 +3057,20 @@
                 passengerDemand = passengerDemand * (115 / 100);
             }
 
-            Hub hub = airportDestination.getHubs().Find(h => h.Airline == airliner.Airliner.Airline);
+            Hub hub = airportDestination.GetHubs().Find(h => h.Airline == airliner.Airliner.Airline);
 
             if (hub != null)
             {
                 switch (hub.Type.Type)
                 {
-                    case HubType.TypeOfHub.Focus_city:
+                    case HubType.TypeOfHub.FocusCity:
                         if (airportDestination.Profile.Country == airportCurrent.Profile.Country)
                         {
                             passengerDemand = passengerDemand * 1.15;
                         }
                         break;
 
-                    case HubType.TypeOfHub.Regional_hub:
+                    case HubType.TypeOfHub.RegionalHub:
                         if (airportDestination.Profile.Country.Region == airportCurrent.Profile.Country.Region)
                         {
                             passengerDemand = passengerDemand * 1.20;
@@ -3081,7 +3081,7 @@
                         passengerDemand = passengerDemand * 1.20;
                         break;
 
-                    case HubType.TypeOfHub.Fortress_hub:
+                    case HubType.TypeOfHub.FortressHub:
                         passengerDemand = passengerDemand * 1.30;
                         break;
                 }
@@ -3158,7 +3158,7 @@
 
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
-                airlineScores.Add(airline, airportCurrent.getAirlineReputation(airline));
+                airlineScores.Add(airline, airportCurrent.GetAirlineReputation(airline));
             }
 
             double reputation = StatisticsHelpers.GetRatingScale(airlineScores)[airliner.Airliner.Airline];
@@ -3458,14 +3458,14 @@
             {
                 foreach (Airport lAirport in largestAirports)
                 {
-                    airport.addDestinationPassengersRate(
+                    airport.AddDestinationPassengersRate(
                         new DestinationDemand(lAirport.Profile.IATACode, (ushort)rnd.Next(1, maxValue)));
                 }
             }
             else
             {
                 subAirports = subAirports.OrderByDescending(a => a.Profile.Size).ToList();
-                airport.addDestinationPassengersRate(
+                airport.AddDestinationPassengersRate(
                     new DestinationDemand(subAirports[0].Profile.IATACode, (ushort)rnd.Next(1, maxValue)));
             }
         }
@@ -3543,7 +3543,7 @@
 
                 if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
                 {
-                    double demand = airportCurrent.getDestinationPassengersRate(tDest, type);
+                    double demand = airportCurrent.GetDestinationPassengersRate(tDest, type);
                     demandDestination += (demand * 0.25);
                 }
             }
@@ -3560,7 +3560,7 @@
 
                 if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
                 {
-                    double demand = tDest.getDestinationPassengersRate(airportDestination, type);
+                    double demand = tDest.GetDestinationPassengersRate(airportDestination, type);
                     demandOrigin += (demand * 0.25);
                 }
             }
@@ -3631,7 +3631,7 @@
 
                     if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
                     {
-                        double demand = airportCurrent.getDestinationPassengersRate(tDest, type);
+                        double demand = airportCurrent.GetDestinationPassengersRate(tDest, type);
                         demandDestination += demand;
                     }
                 }
@@ -3648,7 +3648,7 @@
 
                     if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
                     {
-                        double demand = tDest.getDestinationPassengersRate(airportDestination, type);
+                        double demand = tDest.GetDestinationPassengersRate(airportDestination, type);
                         demandOrigin += demand;
                     }
                 }
@@ -3697,7 +3697,7 @@
                 {
                     double distance = MathHelpers.GetDistance(airportCurrent, airport);
 
-                    double airportDemand = airport.getDestinationPassengersRate(airportDestination, type);
+                    double airportDemand = airport.GetDestinationPassengersRate(airportDestination, type);
 
                     if (distance < 150)
                     {

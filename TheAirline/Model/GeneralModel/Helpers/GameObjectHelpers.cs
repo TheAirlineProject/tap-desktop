@@ -96,11 +96,11 @@
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service)
                     .Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
 
-            airport.addAirportFacility(
+            airport.AddAirportFacility(
                 GameObject.GetInstance().HumanAirline,
                 facility,
                 GameObject.GetInstance().GameTime);
-            airport.addAirportFacility(
+            airport.AddAirportFacility(
                 GameObject.GetInstance().HumanAirline,
                 checkinFacility,
                 GameObject.GetInstance().GameTime);
@@ -149,8 +149,8 @@
 
             if (startData.InternationalAirports)
             {
-                List<Airport> intlAirports = Airports.GetAllAirports(a => a.Profile.Type == AirportProfile.AirportType.Long_Haul_International 
-                    || a.Profile.Type == AirportProfile.AirportType.Short_Haul_International);
+                List<Airport> intlAirports = Airports.GetAllAirports(a => a.Profile.Type == AirportProfile.AirportType.LongHaulInternational 
+                    || a.Profile.Type == AirportProfile.AirportType.ShortHaulInternational);
 
                 int minAirportsPerRegion = 5;
                 foreach (Region airportRegion in Regions.GetRegions())
@@ -697,8 +697,8 @@
 
         private static void ClearAllUsedStats()
         {
-            Airports.GetAllAirports().ForEach(a => a.clearDestinationPassengerStatistics());
-            Airports.GetAllAirports().ForEach(a => a.clearDestinationCargoStatistics());
+            Airports.GetAllAirports().ForEach(a => a.ClearDestinationPassengerStatistics());
+            Airports.GetAllAirports().ForEach(a => a.ClearDestinationCargoStatistics());
             AirlineHelpers.ClearRoutesStatistics();
             AirlineHelpers.ClearAirlinesStatistics();
             AirportHelpers.ClearAirportStatistics();
@@ -744,7 +744,7 @@
             if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
             {
                 largestDestination =
-                    homeAirport.getDestinationDemands()
+                    homeAirport.GetDestinationDemands()
                         .Where(
                             a =>
                                 a != null && GeneralHelpers.IsAirportActive(a)
@@ -752,13 +752,13 @@
                                     r =>
                                         (r.Destination1 == homeAirport && r.Destination2 == a)
                                         || (r.Destination2 == homeAirport && r.Destination1 == a)))
-                        .OrderByDescending(a => homeAirport.getDestinationCargoRate(a))
+                        .OrderByDescending(a => homeAirport.GetDestinationCargoRate(a))
                         .FirstOrDefault();
             }
             else
             {
                 largestDestination =
-                    homeAirport.getDestinationDemands()
+                    homeAirport.GetDestinationDemands()
                         .Where(
                             a =>
                                 a != null && GeneralHelpers.IsAirportActive(a)
@@ -767,7 +767,7 @@
                                         (r.Destination1 == homeAirport && r.Destination2 == a)
                                         || (r.Destination2 == homeAirport && r.Destination1 == a)))
                         .OrderByDescending(
-                            a => homeAirport.getDestinationPassengersRate(a, AirlinerClass.ClassType.EconomyClass))
+                            a => homeAirport.GetDestinationPassengersRate(a, AirlinerClass.ClassType.EconomyClass))
                         .FirstOrDefault();
             }
 
@@ -839,8 +839,8 @@
             }
 
             //Clearing stats as an RAM work-a-round
-            Airports.GetAllAirports().ForEach(a => a.clearDestinationPassengerStatistics());
-            Airports.GetAllAirports().ForEach(a => a.clearDestinationCargoStatistics());
+            Airports.GetAllAirports().ForEach(a => a.ClearDestinationPassengerStatistics());
+            Airports.GetAllAirports().ForEach(a => a.ClearDestinationCargoStatistics());
 
             List<Airline> humanAirlines = Airlines.GetAirlines(a => a.IsHuman);
 
@@ -1084,7 +1084,7 @@
             }
             //checks for airport facilities for the human airline
             IEnumerable<AirlineAirportFacility> humanAirportFacilities =
-                (from f in humanAirlines.SelectMany(ai => ai.Airports.SelectMany(a => a.getAirportFacilities(ai)))
+                (from f in humanAirlines.SelectMany(ai => ai.Airports.SelectMany(a => a.GetAirportFacilities(ai)))
                     where f.FinishedDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()
                     select f);
 
@@ -1222,7 +1222,7 @@
                                     GameObject.GetInstance().GameTime.AddDays(airport.Weather.Length - 1).DayOfWeek)));
                 }
                 // chs, 2011-01-11 changed for delivery of terminals
-                foreach (Terminal terminal in airport.Terminals.getTerminals())
+                foreach (Terminal terminal in airport.Terminals.GetTerminals())
                 {
                     if (terminal.DeliveryDate.Year == GameObject.GetInstance().GameTime.Year
                         && terminal.DeliveryDate.Month == GameObject.GetInstance().GameTime.Month
@@ -1259,7 +1259,7 @@
 
                         if (terminal.Airline != null)
                         {
-                            var oldContracts = new List<AirportContract>(airport.getAirlineContracts(terminal.Airline)).Where(c=>c.TerminalType == terminal.Type);
+                            var oldContracts = new List<AirportContract>(airport.GetAirlineContracts(terminal.Airline)).Where(c=>c.TerminalType == terminal.Type);
 
                             if (oldContracts.Count() > 0)
                             {
@@ -1290,12 +1290,12 @@
 
                                 foreach (AirportContract oldContract in oldContracts)
                                 {
-                                    airport.removeAirlineContract(oldContract);
+                                    airport.RemoveAirlineContract(oldContract);
 
                                     for (int i = 0; i < oldContract.NumberOfGates; i++)
                                     {
                                         Gate oldGate =
-                                            airport.Terminals.getGates()
+                                            airport.Terminals.GetGates()
                                                 .Where(g => g.Airline == terminal.Airline)
                                                 .First();
                                         oldGate.Airline = null;
@@ -1323,7 +1323,7 @@
                                     false));
 
                             if (
-                                terminal.Airport.getAirportFacility(
+                                terminal.Airport.GetAirportFacility(
                                     terminal.Airline,
                                     AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                             {
@@ -1331,7 +1331,7 @@
                                     AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn)
                                         .Find(f => f.TypeLevel == 1);
 
-                                terminal.Airport.addAirportFacility(
+                                terminal.Airport.AddAirportFacility(
                                     terminal.Airline,
                                     checkinFacility,
                                     GameObject.GetInstance().GameTime);
@@ -1342,7 +1342,7 @@
                     else
                     {
                         int numberOfNewGates =
-                            terminal.Gates.getGates()
+                            terminal.Gates.GetGates()
                                 .Count(
                                     g =>
                                         g.DeliveryDate.ToShortDateString()
@@ -1379,7 +1379,7 @@
 
                                 for (int i = 0; i < numberOfNewGates; i++)
                                 {
-                                    Gate newGate = airport.Terminals.getGates().Where(g => g.Airline == null).First();
+                                    Gate newGate = airport.Terminals.GetGates().Where(g => g.Airline == null).First();
                                     newGate.Airline = terminalContract.Airline;
                                 }
                             }
@@ -1420,7 +1420,7 @@
                             for (int i = 0; i < contract.NumberOfGates; i++)
                             {
                                 Gate gate =
-                                    airport.Terminals.getGates().Where(g => g.Airline == contract.Airline).First();
+                                    airport.Terminals.GetGates().Where(g => g.Airline == contract.Airline).First();
                                 gate.Airline = null;
                             }
 
@@ -1494,7 +1494,7 @@
                                                     contract.Airport.Profile.Country.Name)));
                                 }
 
-                                airport.removeAirlineContract(contract);
+                                airport.RemoveAirlineContract(contract);
                             }
                             else
                             {
@@ -1507,7 +1507,7 @@
                                 }
                                 else
                                 {
-                                    airport.removeAirlineContract(contract);
+                                    airport.RemoveAirlineContract(contract);
                                 }
                             }
                         }
@@ -2004,7 +2004,7 @@
                     Airports.GetAirports(
                         a =>
                             a.Profile.Town == airport.Profile.Town && airport != a
-                            && a.Terminals.getNumberOfGates(GameObject.GetInstance().MainAirline) > 0).Count;
+                            && a.Terminals.GetNumberOfGates(GameObject.GetInstance().MainAirline) > 0).Count;
 
                 if (count == 1)
                 {
@@ -2012,7 +2012,7 @@
                         Airports.GetAirports(
                             a =>
                                 a.Profile.Town == airport.Profile.Town && airport != a
-                                && a.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0).First();
+                                && a.Terminals.GetNumberOfGates(GameObject.GetInstance().HumanAirline) > 0).First();
                     GameObject.GetInstance()
                         .NewsBox.addNews(
                             new News(
@@ -2434,7 +2434,7 @@
 
                 foreach (Airport airport in airline.Airports)
                 {
-                    var contracts = new List<AirportContract>(airport.getAirlineContracts(airline));
+                    var contracts = new List<AirportContract>(airport.GetAirlineContracts(airline));
 
                     double contractPrice = contracts.Sum(c => c.YearlyPayment) / 12;
 
@@ -2480,13 +2480,13 @@
                             }
                             else
                             {
-                                airport.removeAirlineContract(contract);
+                                airport.RemoveAirlineContract(contract);
                             }
                         }
                     }
 
                     //wages
-                    foreach (AirportFacility facility in airport.getCurrentAirportFacilities(airline))
+                    foreach (AirportFacility facility in airport.GetCurrentAirportFacilities(airline))
                     {
                         double wage = 0;
                         int employees = facility.NumberOfEmployees;
@@ -2526,14 +2526,14 @@
                                 .Select(m => m.Airline)
                                 .Max(
                                     m =>
-                                        airport.getAirlineAirportFacility(m, AirportFacility.FacilityType.TicketOffice)
+                                        airport.GetAirlineAirportFacility(m, AirportFacility.FacilityType.TicketOffice)
                                             .Facility.ServiceLevel);
                         Boolean hasTicketOffice =
                             airline.Alliances.SelectMany(a => a.Members)
                                 .Select(m => m.Airline)
                                 .Where(
                                     m =>
-                                        airport.getAirlineAirportFacility(m, AirportFacility.FacilityType.TicketOffice)
+                                        airport.GetAirlineAirportFacility(m, AirportFacility.FacilityType.TicketOffice)
                                             .Facility.TypeLevel > 0) != null;
 
                         //If there is an service level update the routes
@@ -2545,7 +2545,7 @@
                                 Airport destination = airport == route.Destination1
                                     ? route.Destination2
                                     : route.Destination1;
-                                airport.addDestinationPassengersRate(destination, (ushort)highest);
+                                airport.AddDestinationPassengersRate(destination, (ushort)highest);
                             }
                         }
                     }
@@ -2555,10 +2555,10 @@
                     else
                     {
                         if (
-                            airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice)
+                            airport.GetAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice)
                                 .Facility.TypeLevel > 0
-                            || airport.hasContractType(airline, AirportContract.ContractType.Full_Service)
-                            || airport.hasContractType(airline, AirportContract.ContractType.Medium_Service))
+                            || airport.HasContractType(airline, AirportContract.ContractType.FullService)
+                            || airport.HasContractType(airline, AirportContract.ContractType.MediumService))
                         {
                             foreach (Route route in
                                 airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport))
@@ -2567,10 +2567,10 @@
                                     ? route.Destination2
                                     : route.Destination1;
 
-                                airport.addDestinationPassengersRate(
+                                airport.AddDestinationPassengersRate(
                                     destination,
                                     (ushort)
-                                        airport.getAirlineAirportFacility(
+                                        airport.GetAirlineAirportFacility(
                                             airline,
                                             AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel);
                             }
@@ -2582,10 +2582,10 @@
 
                 foreach (Route route in airline.Routes)
                 {
-                    route.Destination1.addDestinationPassengersRate(
+                    route.Destination1.AddDestinationPassengersRate(
                         route.Destination2,
                         (ushort)(5 * advertisementFactor));
-                    route.Destination2.addDestinationPassengersRate(
+                    route.Destination2.AddDestinationPassengersRate(
                         route.Destination1,
                         (ushort)(5 * advertisementFactor));
                 }
@@ -2648,7 +2648,7 @@
             //Parallel.ForEach(
             //    Airports.GetAllAirports(a => a.Terminals.getInusePercent() > 90),
             //    airport => { AirportHelpers.CheckForExtendGates(airport); });
-            foreach (var airport in Airports.GetAllAirports(a => a.Terminals.getInusePercent(Terminal.TerminalType.Passenger) > 90))
+            foreach (var airport in Airports.GetAllAirports(a => a.Terminals.GetInusePercent(Terminal.TerminalType.Passenger) > 90))
             {
                 AirportHelpers.CheckForExtendGates(airport);
             }
@@ -2743,7 +2743,7 @@
             //    airport =>
             foreach (var airport in Airports.GetAllActiveAirports())
             {
-                foreach (DestinationDemand destPax in airport.getDestinationsPassengers())
+                foreach (DestinationDemand destPax in airport.GetDestinationsPassengers())
                 {
                     destPax.Rate = (ushort)(destPax.Rate * MathHelpers.GetRandomDoubleNumber(0.97, 1.05));
                 }

@@ -104,8 +104,8 @@
 
             double maxDistance = airliner.Airliner.Routes.Max(r=>r.getDistance());
 
-            long requiredRunway = airliner.Airliner.Routes.Select(r => r.Destination1).Min(a => a.getMaxRunwayLength());
-            requiredRunway = Math.Min(requiredRunway,airliner.Airliner.Routes.Select(r=>r.Destination2).Min(a=>a.getMaxRunwayLength()));
+            long requiredRunway = airliner.Airliner.Routes.Select(r => r.Destination1).Min(a => a.GetMaxRunwayLength());
+            requiredRunway = Math.Min(requiredRunway,airliner.Airliner.Routes.Select(r=>r.Destination2).Min(a=>a.GetMaxRunwayLength()));
 
             List<FleetAirliner> airliners =
                 GameObject.GetInstance()

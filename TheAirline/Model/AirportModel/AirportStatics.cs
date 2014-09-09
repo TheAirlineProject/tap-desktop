@@ -1,23 +1,22 @@
-﻿namespace TheAirline.Model.AirportModel
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.PassengerModel;
+
+namespace TheAirline.Model.AirportModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.PassengerModel;
-
     //some static values for an airport
     public class AirportStatics
     {
         #region Fields
 
-        private readonly Dictionary<Airport, double> AirportDistances;
+        private readonly Dictionary<Airport, double> _airportDistances;
 
-        private readonly List<DestinationDemand> CargoDemand;
+        private readonly List<DestinationDemand> _cargoDemand;
 
-        private readonly List<DestinationDemand> PassengerDemand;
+        private readonly List<DestinationDemand> _passengerDemand;
 
         #endregion
 
@@ -25,10 +24,10 @@
 
         public AirportStatics(Airport airport)
         {
-            this.AirportDistances = new Dictionary<Airport, double>();
-            this.PassengerDemand = new List<DestinationDemand>();
-            this.CargoDemand = new List<DestinationDemand>();
-            this.Airport = airport;
+            _airportDistances = new Dictionary<Airport, double>();
+            _passengerDemand = new List<DestinationDemand>();
+            _cargoDemand = new List<DestinationDemand>();
+            Airport = airport;
         }
 
         #endregion
@@ -39,58 +38,54 @@
 
         #endregion
 
-        //adds passenger demand to the airport
-
-        //adds cargo demand to the airport
-
         #region Public Methods and Operators
 
-        public void addCargoDemand(DestinationDemand demand)
+        public void AddCargoDemand(DestinationDemand demand)
         {
-            lock (this.CargoDemand) this.CargoDemand.Add(demand);
+            lock (_cargoDemand) _cargoDemand.Add(demand);
         }
 
         //adds a distance to the airport
-        public void addDistance(Airport airport, double distance)
+        public void AddDistance(Airport airport, double distance)
         {
-            lock (this.AirportDistances)
+            lock (_airportDistances)
             {
-                if (!this.AirportDistances.ContainsKey(airport))
+                if (!_airportDistances.ContainsKey(airport))
                 {
-                    this.AirportDistances.Add(airport, distance);
+                    _airportDistances.Add(airport, distance);
                 }
             }
         }
 
-        public void addPassengerDemand(DestinationDemand demand)
+        public void AddPassengerDemand(DestinationDemand demand)
         {
-            lock (this.PassengerDemand) this.PassengerDemand.Add(demand);
+            lock (_passengerDemand) _passengerDemand.Add(demand);
         }
 
-        public List<Airport> getAirportsWithin(double range)
+        public List<Airport> GetAirportsWithin(double range)
         {
             List<Airport> airports;
-            lock (this.AirportDistances)
+            lock (_airportDistances)
             {
-                if (this.AirportDistances.Count == 0)
+                if (_airportDistances.Count == 0)
                 {
                     foreach (Airport airport in Airports.GetAllAirports())
                     {
-                        this.addDistance(airport, MathHelpers.GetDistance(this.Airport, airport));
+                        AddDistance(airport, MathHelpers.GetDistance(Airport, airport));
                     }
                 }
-                airports = new List<Airport>(from a in this.AirportDistances where a.Value <= range select a.Key);
+                airports = new List<Airport>(from a in _airportDistances where a.Value <= range select a.Key);
             }
 
             return airports;
         }
 
-        public List<DestinationDemand> getDemands()
+        public List<DestinationDemand> GetDemands()
         {
             var demands = new List<DestinationDemand>();
 
-            demands.AddRange(this.CargoDemand);
-            demands.AddRange(this.PassengerDemand);
+            demands.AddRange(_cargoDemand);
+            demands.AddRange(_passengerDemand);
 
             return demands;
         }
@@ -98,9 +93,9 @@
         //returns if the airport have passenger demand to another airport
 
         //returns the destination cargo for a specific destination
-        public ushort getDestinationCargoRate(Airport destination)
+        public ushort GetDestinationCargoRate(Airport destination)
         {
-            DestinationDemand cargo = this.CargoDemand.Find(a => a.Destination == destination.Profile.IATACode);
+            DestinationDemand cargo = _cargoDemand.Find(a => a.Destination == destination.Profile.IATACode);
 
             if (cargo == null)
             {
@@ -110,11 +105,11 @@
         }
 
         //returns the destination passengers for a specific destination for a class
-        public ushort getDestinationPassengersRate(Airport destination, AirlinerClass.ClassType type)
+        public ushort GetDestinationPassengersRate(Airport destination, AirlinerClass.ClassType type)
         {
-            DestinationDemand pax = this.PassengerDemand.Find(a => a.Destination == destination.Profile.IATACode);
+            DestinationDemand pax = _passengerDemand.Find(a => a.Destination == destination.Profile.IATACode);
 
-            Array values = Enum.GetValues(typeof(AirlinerClass.ClassType));
+            Array values = Enum.GetValues(typeof (AirlinerClass.ClassType));
 
             int classFactor = 0;
 
@@ -133,15 +128,15 @@
             {
                 return 0;
             }
-            return (ushort)(pax.Rate / classFactor);
+            return (ushort) (pax.Rate/classFactor);
         }
 
-        public int getDestinationPassengersSum()
+        public int GetDestinationPassengersSum()
         {
             int sum = 0;
-            lock (this.PassengerDemand)
+            lock (_passengerDemand)
             {
-                sum = this.PassengerDemand.Sum(p => p.Rate);
+                sum = _passengerDemand.Sum(p => p.Rate);
             }
             return sum;
         }
@@ -149,14 +144,14 @@
         //returns all demands
 
         //returns the distance for an airport
-        public double getDistance(Airport airport)
+        public double GetDistance(Airport airport)
         {
             double distance;
-            lock (this.AirportDistances)
+            lock (_airportDistances)
             {
-                if (this.AirportDistances.ContainsKey(airport))
+                if (_airportDistances.ContainsKey(airport))
                 {
-                    distance = this.AirportDistances[airport];
+                    distance = _airportDistances[airport];
                 }
                 else
                 {
@@ -167,17 +162,21 @@
             return distance;
         }
 
-        public Boolean hasDestinationCargoRate(Airport destination)
+        public Boolean HasDestinationCargoRate(Airport destination)
         {
-            return this.CargoDemand.Exists(a => a.Destination == destination.Profile.IATACode);
+            return _cargoDemand.Exists(a => a.Destination == destination.Profile.IATACode);
         }
 
-        public Boolean hasDestinationPassengersRate(Airport destination)
+        public Boolean HasDestinationPassengersRate(Airport destination)
         {
-            return this.PassengerDemand.Exists(a => a.Destination == destination.Profile.IATACode);
+            return _passengerDemand.Exists(a => a.Destination == destination.Profile.IATACode);
         }
 
         #endregion
+
+        //adds passenger demand to the airport
+
+        //adds cargo demand to the airport
 
         //returns all airports within a range
     }

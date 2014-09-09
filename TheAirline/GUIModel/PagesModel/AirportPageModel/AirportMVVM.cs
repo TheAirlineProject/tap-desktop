@@ -41,8 +41,8 @@
         {
             this.Airport = airport;
 
-            this.TerminalGatePrice = this.Airport.getTerminalGatePrice();
-            this.TerminalPrice = this.Airport.getTerminalPrice();
+            this.TerminalGatePrice = this.Airport.GetTerminalGatePrice();
+            this.TerminalPrice = this.Airport.GetTerminalPrice();
             this.LandingFee = GeneralHelpers.GetInflationPrice(this.Airport.LandingFee);
             this.FuelPrice = AirportHelpers.GetFuelPrice(this.Airport);
 
@@ -53,7 +53,7 @@
             this.Terminals = new ObservableCollection<AirportTerminalMVVM>();
             this.BuildingTerminals = new ObservableCollection<AirportTerminalMVVM>();
 
-            foreach (Terminal terminal in this.Airport.Terminals.getTerminals())
+            foreach (Terminal terminal in this.Airport.Terminals.GetTerminals())
             {
                 Boolean isSellable = terminal.Airline != null
                                      && terminal.Airline == GameObject.GetInstance().HumanAirline;
@@ -90,18 +90,18 @@
 
             this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
 
-            this.FreeCargoGates = this.Airport.Terminals.AirportTerminals.Where(t=>t.Type == Terminal.TerminalType.Cargo).Sum(t=>t.getFreeGates());
+            this.FreeCargoGates = this.Airport.Terminals.AirportTerminals.Where(t=>t.Type == Terminal.TerminalType.Cargo).Sum(t=>t.GetFreeGates());
 
-            this.FreePaxGates = this.Airport.Terminals.AirportTerminals.Where(t => t.Type == Terminal.TerminalType.Passenger).Sum(t => t.getFreeGates());
+            this.FreePaxGates = this.Airport.Terminals.AirportTerminals.Where(t => t.Type == Terminal.TerminalType.Passenger).Sum(t => t.GetFreeGates());
 
             this.DomesticDemands = new List<DemandMVVM>();
             this.IntlDemands = new List<DemandMVVM>();
 
             IOrderedEnumerable<Airport> demands =
-                this.Airport.getDestinationDemands()
+                this.Airport.GetDestinationDemands()
                     .Where(a => a != null && GeneralHelpers.IsAirportActive(a))
                     .OrderByDescending(
-                        a => this.Airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.EconomyClass));
+                        a => this.Airport.GetDestinationPassengersRate(a, AirlinerClass.ClassType.EconomyClass));
 
             IEnumerable<Airport> internationalDemand =
                 demands.Where(
@@ -119,9 +119,9 @@
                 this.IntlDemands.Add(
                     new DemandMVVM(
                         destination,
-                        this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.EconomyClass),
+                        this.Airport.GetDestinationPassengersRate(destination, AirlinerClass.ClassType.EconomyClass),
                         (int)this.Airport.Profile.Pax,
-                        this.Airport.getDestinationCargoRate(destination),MathHelpers.GetDistance(destination,this.Airport)));
+                        this.Airport.GetDestinationCargoRate(destination),MathHelpers.GetDistance(destination,this.Airport)));
             }
 
             foreach (Airport destination in domesticDemand)
@@ -129,13 +129,13 @@
                 this.DomesticDemands.Add(
                     new DemandMVVM(
                         destination,
-                        this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.EconomyClass),
+                        this.Airport.GetDestinationPassengersRate(destination, AirlinerClass.ClassType.EconomyClass),
                         (int)this.Airport.Profile.Pax,
-                        this.Airport.getDestinationCargoRate(destination), MathHelpers.GetDistance(destination,this.Airport)));
+                        this.Airport.GetDestinationCargoRate(destination), MathHelpers.GetDistance(destination,this.Airport)));
             }
 
             this.AirportFacilities =
-                this.Airport.getAirportFacilities()
+                this.Airport.GetAirportFacilities()
                     .FindAll(f => f.Airline == null && f.Facility.TypeLevel != 0)
                     .Select(f => f.Facility)
                     .Distinct()
@@ -145,7 +145,7 @@
             this.BuildingAirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
 
             foreach (
-                AirlineAirportFacility facility in this.Airport.getAirportFacilities().FindAll(f => f.Airline != null))
+                AirlineAirportFacility facility in this.Airport.GetAirportFacilities().FindAll(f => f.Airline != null))
             {
                 if (facility.Facility.TypeLevel != 0)
                 {
@@ -155,7 +155,7 @@
 
                     if (airlineFacility.IsDelivered)
                     {
-                        if (facility == this.Airport.getAirlineAirportFacility(facility.Airline, facility.Facility.Type))
+                        if (facility == this.Airport.GetAirlineAirportFacility(facility.Airline, facility.Facility.Type))
                         {
                             this.AirlineFacilities.Add(airlineFacility);
                         }
@@ -175,15 +175,15 @@
                 StatisticsType passengersAvgType = StatisticsTypes.GetStatisticsType("Passengers%");
                 StatisticsType arrivalsType = StatisticsTypes.GetStatisticsType("Arrivals");
 
-                double passengers = this.Airport.Statistics.getStatisticsValue(
+                double passengers = this.Airport.Statistics.GetStatisticsValue(
                     GameObject.GetInstance().GameTime.Year,
                     airline,
                     passengersType);
-                double passengersAvg = this.Airport.Statistics.getStatisticsValue(
+                double passengersAvg = this.Airport.Statistics.GetStatisticsValue(
                     GameObject.GetInstance().GameTime.Year,
                     airline,
                     passengersAvgType);
-                double arrivals = this.Airport.Statistics.getStatisticsValue(
+                double arrivals = this.Airport.Statistics.GetStatisticsValue(
                     GameObject.GetInstance().GameTime.Year,
                     airline,
                     arrivalsType);
@@ -197,10 +197,10 @@
             this.Traffic = new List<AirportTrafficMVVM>();
 
             IOrderedEnumerable<Airport> passengerDestinations = from a in Airports.GetAllActiveAirports()
-                orderby this.Airport.getDestinationPassengerStatistics(a) descending
+                orderby this.Airport.GetDestinationPassengerStatistics(a) descending
                 select a;
             IOrderedEnumerable<Airport> cargoDestinations = from a in Airports.GetAllActiveAirports()
-                orderby this.Airport.getDestinationCargoStatistics(a) descending
+                orderby this.Airport.GetDestinationCargoStatistics(a) descending
                 select a;
 
             foreach (Airport a in passengerDestinations.Take(20))
@@ -208,7 +208,7 @@
                 this.Traffic.Add(
                     new AirportTrafficMVVM(
                         a,
-                        this.Airport.getDestinationPassengerStatistics(a),
+                        this.Airport.GetDestinationPassengerStatistics(a),
                         AirportTrafficMVVM.TrafficType.Passengers));
             }
 
@@ -217,7 +217,7 @@
                 this.Traffic.Add(
                     new AirportTrafficMVVM(
                         a,
-                        Convert.ToInt64(this.Airport.getDestinationCargoStatistics(a)),
+                        Convert.ToInt64(this.Airport.GetDestinationCargoStatistics(a)),
                         AirportTrafficMVVM.TrafficType.Cargo));
             }
 
@@ -285,7 +285,7 @@
 
             this.Hubs = new ObservableCollection<Hub>();
 
-            foreach (Hub hub in this.Airport.getHubs())
+            foreach (Hub hub in this.Airport.GetHubs())
             {
                 this.Hubs.Add(hub);
             }
@@ -305,7 +305,7 @@
 
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
-                airlineScores.Add(airline, this.Airport.getAirlineReputation(airline));
+                airlineScores.Add(airline, this.Airport.GetAirlineReputation(airline));
             }
 
             foreach (var score in StatisticsHelpers.GetRatingScale(airlineScores))
@@ -467,14 +467,14 @@
 
             foreach (AirportTerminalMVVM terminal in this.Terminals)
             {
-                terminal.FreeGates = terminal.Terminal.getFreeGates();
+                terminal.FreeGates = terminal.Terminal.GetFreeGates();
             }
 
             this.CanMakeCooperation = GameObject.GetInstance().HumanAirline.Airports.Exists(a => a == this.Airport);
 
-            this.FreeCargoGates = this.Airport.Terminals.AirportTerminals.Where(t => t.Type == Terminal.TerminalType.Cargo).Sum(t => t.getFreeGates());
+            this.FreeCargoGates = this.Airport.Terminals.AirportTerminals.Where(t => t.Type == Terminal.TerminalType.Cargo).Sum(t => t.GetFreeGates());
 
-            this.FreePaxGates = this.Airport.Terminals.AirportTerminals.Where(t => t.Type == Terminal.TerminalType.Passenger).Sum(t => t.getFreeGates());
+            this.FreePaxGates = this.Airport.Terminals.AirportTerminals.Where(t => t.Type == Terminal.TerminalType.Passenger).Sum(t => t.GetFreeGates());
 
         }
 
@@ -485,7 +485,7 @@
                 this.Airport,
                 facility,
                 GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
-            this.Airport.addAirportFacility(nextFacility);
+            this.Airport.AddAirportFacility(nextFacility);
 
             /*
             AirlineAirportFacilityMVVM currentFacility = this.AirlineFacilities.Where(f => f.Facility.Facility.Type == facility.Type).FirstOrDefault();
@@ -501,7 +501,7 @@
             this.BuildingAirlineFacilities.Clear();
 
             foreach (
-                AirlineAirportFacility tFacility in this.Airport.getAirportFacilities().FindAll(f => f.Airline != null))
+                AirlineAirportFacility tFacility in this.Airport.GetAirportFacilities().FindAll(f => f.Airline != null))
             {
                 if (tFacility.Facility.TypeLevel != 0)
                 {
@@ -527,7 +527,7 @@
         public void addCooperation(Cooperation cooperation)
         {
             this.Cooperations.Add(cooperation);
-            this.Airport.addCooperation(cooperation);
+            this.Airport.AddCooperation(cooperation);
 
             AirlineHelpers.AddAirlineInvoice(
                 cooperation.Airline,
@@ -539,14 +539,14 @@
         public void addHub(Hub hub)
         {
             this.Hubs.Add(hub);
-            this.Airport.addHub(hub);
+            this.Airport.AddHub(hub);
 
             this.CanBuildHub = this.canBuildHub();
         }
 
         public void addTerminal(Terminal terminal)
         {
-            this.Airport.addTerminal(terminal);
+            this.Airport.AddTerminal(terminal);
 
             this.BuildingTerminals.Add(
                 new AirportTerminalMVVM(
@@ -557,7 +557,7 @@
 
         public void removeAirlineContract(ContractMVVM contract)
         {
-            this.Airport.removeAirlineContract(contract.Contract);
+            this.Airport.RemoveAirlineContract(contract.Contract);
 
             this.Contracts.Remove(contract);
 
@@ -565,7 +565,7 @@
 
             foreach (AirportTerminalMVVM terminal in this.Terminals)
             {
-                terminal.FreeGates = terminal.Terminal.getFreeGates();
+                terminal.FreeGates = terminal.Terminal.GetFreeGates();
             }
 
             this.CanMakeCooperation = GameObject.GetInstance().HumanAirline.Airports.Exists(a => a == this.Airport);
@@ -574,12 +574,12 @@
         //removes an airline facility from the airport
         public void removeAirlineFacility(AirlineAirportFacilityMVVM facility)
         {
-            this.Airport.removeFacility(facility.Facility.Airline, facility.Facility.Facility);
+            this.Airport.RemoveFacility(facility.Facility.Airline, facility.Facility.Facility);
 
             this.AirlineFacilities.Remove(facility);
 
             if (
-                this.Airport.getAirlineAirportFacility(facility.Facility.Airline, facility.Facility.Facility.Type)
+                this.Airport.GetAirlineAirportFacility(facility.Facility.Airline, facility.Facility.Facility.Type)
                     .Facility.TypeLevel > 0)
             {
                 Alliance alliance = facility.Facility.Airline.Alliances.Count == 0
@@ -588,7 +588,7 @@
 
                 var airlineFacility =
                     new AirlineAirportFacilityMVVM(
-                        this.Airport.getAirlineAirportFacility(
+                        this.Airport.GetAirlineAirportFacility(
                             facility.Facility.Airline,
                             facility.Facility.Facility.Type),
                         alliance);
@@ -607,13 +607,13 @@
         public void removeCooperation(Cooperation cooperation)
         {
             this.Cooperations.Remove(cooperation);
-            this.Airport.removeCooperation(cooperation);
+            this.Airport.RemoveCooperation(cooperation);
         }
 
         public void removeHub(Hub hub)
         {
             this.Hubs.Remove(hub);
-            this.Airport.removeHub(hub);
+            this.Airport.RemoveHub(hub);
 
             this.CanBuildHub = this.canBuildHub();
         }
@@ -633,7 +633,7 @@
         }
         public void removeTerminal(AirportTerminalMVVM terminal)
         {
-            this.Airport.removeTerminal(terminal.Terminal);
+            this.Airport.RemoveTerminal(terminal.Terminal);
 
             this.Terminals.Remove(terminal);
 
@@ -665,7 +665,7 @@
         private Boolean canBuildHub()
         {
             Boolean hasServiceCenter =
-                this.Airport.getAirlineAirportFacility(
+                this.Airport.GetAirlineAirportFacility(
                     GameObject.GetInstance().HumanAirline,
                     AirportFacility.FacilityType.Service).Facility.TypeLevel > 0;
 
@@ -989,7 +989,7 @@
             this.Name = this.Terminal.Name;
             this.Airline = this.Terminal.Airline;
             this.Gates = this.Terminal.Gates.NumberOfGates;
-            this.FreeGates = this.Terminal.getFreeGates();
+            this.FreeGates = this.Terminal.GetFreeGates();
             this.IsBuyable = isBuyable;
             this.DeliveryDate = this.Terminal.DeliveryDate;
             this.IsSellable = isSellable;
@@ -998,7 +998,7 @@
 
             int gatenumber = 1;
 
-            foreach (Gate gate in this.Terminal.Gates.getGates())
+            foreach (Gate gate in this.Terminal.Gates.GetGates())
             {
                 this.AllGates.Add(new AirportGateMVVM(gatenumber, gate.Airline));
 
@@ -1086,7 +1086,7 @@
 
         public void purchaseTerminal(Airline airline)
         {
-            this.Terminal.purchaseTerminal(airline);
+            this.Terminal.PurchaseTerminal(airline);
             this.Airline = airline;
 
             this.IsBuyable = false;
@@ -1265,7 +1265,7 @@
             int gates = System.Convert.ToInt16(values[0]);
             var airport = (Airport)values[1];
 
-            double price = gates * airport.getTerminalGatePrice() + airport.getTerminalPrice();
+            double price = gates * airport.GetTerminalGatePrice() + airport.GetTerminalPrice();
 
             return new ValueCurrencyConverter().Convert(price);
         }
@@ -1288,10 +1288,10 @@
             var type = (AirportFacility.FacilityType)values[0];
             var airport = (Airport)values[1];
 
-            AirportFacility currentFacility = airport.getCurrentAirportFacility(
+            AirportFacility currentFacility = airport.GetCurrentAirportFacility(
                 GameObject.GetInstance().HumanAirline,
                 type);
-            AirportFacility buildingFacility = airport.getAirlineBuildingFacility(
+            AirportFacility buildingFacility = airport.GetAirlineBuildingFacility(
                 GameObject.GetInstance().HumanAirline,
                 type);
 

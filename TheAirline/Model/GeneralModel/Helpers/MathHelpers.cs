@@ -190,13 +190,13 @@
                 airport2.Statics = new AirportStatics(airport2);
             }
 
-            if (airport1.Statics.getDistance(airport2) == 0 && airport2.Statics.getDistance(airport1) == 0)
+            if (airport1.Statics.GetDistance(airport2) == 0 && airport2.Statics.GetDistance(airport1) == 0)
             {
                 return
                     airport1.Profile.Coordinates.convertToGeoCoordinate()
                         .GetDistanceTo(airport2.Profile.Coordinates.convertToGeoCoordinate()) / 1000;
             }
-            return Math.Max(airport1.Statics.getDistance(airport2), airport2.Statics.getDistance(airport1));
+            return Math.Max(airport1.Statics.GetDistance(airport2), airport2.Statics.GetDistance(airport1));
         }
 
         //gets the distance in kilometers between two coordinates

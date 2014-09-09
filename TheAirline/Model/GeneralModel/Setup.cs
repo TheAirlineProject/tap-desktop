@@ -791,28 +791,28 @@
 
                     if (dest1 != null && dest2 != null)
                     {
-                        if (dest1.getAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0
-                            && dest1.getAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0
+                        if (dest1.GetAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0
+                            && dest1.GetAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0
                             && airline.AirlineRouteFocus == Route.RouteType.Cargo)
                         {
-                            dest1.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
+                            dest1.AddAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
                         }
 
-                        if (dest2.getAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0
-                            && dest2.getAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0
+                        if (dest2.GetAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0
+                            && dest2.GetAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0
                             && airline.AirlineRouteFocus == Route.RouteType.Cargo)
                         {
-                            dest2.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
+                            dest2.AddAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
                         }
                         
                         if (!AirportHelpers.HasFreeGates(dest1, airline,terminaltype))
                         {
-                            AirportHelpers.RentGates(dest1, airline, AirportContract.ContractType.Low_Service,terminaltype);
+                            AirportHelpers.RentGates(dest1, airline, AirportContract.ContractType.LowService,terminaltype);
                         }
 
                         if (!AirportHelpers.HasFreeGates(dest2, airline,terminaltype))
                         {
-                            AirportHelpers.RentGates(dest2, airline, AirportContract.ContractType.Low_Service,terminaltype);
+                            AirportHelpers.RentGates(dest2, airline, AirportContract.ContractType.LowService,terminaltype);
                         }
 
                         Guid id = Guid.NewGuid();
@@ -1029,7 +1029,7 @@
 
                             if (!AirportHelpers.HasFreeGates(origin, airline,terminalType))
                             {
-                                AirportHelpers.RentGates(origin, airline, AirportContract.ContractType.Low_Service,terminalType);
+                                AirportHelpers.RentGates(origin, airline, AirportContract.ContractType.LowService,terminalType);
                             }
 
                             Airport destination = GetStartDataRoutesDestination(routes);
@@ -1039,7 +1039,7 @@
 
                             if (!AirportHelpers.HasFreeGates(destination, airline,terminalType))
                             {
-                                AirportHelpers.RentGates(destination, airline, AirportContract.ContractType.Low_Service,terminalType);
+                                AirportHelpers.RentGates(destination, airline, AirportContract.ContractType.LowService,terminalType);
                             }
 
                             Guid id = Guid.NewGuid();
@@ -1154,12 +1154,12 @@
             AirportFacility cargoTerminal =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f => f.TypeLevel > 0);
 
-            airportHomeBase.addAirportFacility(airline, serviceFacility, GameObject.GetInstance().GameTime);
-            airportHomeBase.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+            airportHomeBase.AddAirportFacility(airline, serviceFacility, GameObject.GetInstance().GameTime);
+            airportHomeBase.AddAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
             if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
             {
-                airportHomeBase.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
+                airportHomeBase.AddAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
             }
 
             AirlineStartData startData = AirlineStartDatas.GetAirlineStartData(airline);
@@ -1223,7 +1223,7 @@
                             0,
                             true));
 
-                    AirportHelpers.RentGates(airportDestination, airline, AirportContract.ContractType.Low_Service);
+                    AirportHelpers.RentGates(airportDestination, airline, AirportContract.ContractType.LowService);
                     //airportDestination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
                     Guid id = Guid.NewGuid();
@@ -1294,7 +1294,7 @@
                             GameObject.GetInstance().GameTime,
                             PassengerHelpers.GetCargoPrice(airportDestination, airline.Airports[0]));
 
-                        airportDestination.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
+                        airportDestination.AddAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
                     }
                     if (leaseAircraft)
                     {
@@ -1600,9 +1600,9 @@
         private static void CreateHubTypes()
         {
             HubTypes.AddHubType(new HubType("Hub", 50000, HubType.TypeOfHub.Hub));
-            HubTypes.AddHubType(new HubType("Regional hub", 40000, HubType.TypeOfHub.Regional_hub));
-            HubTypes.AddHubType(new HubType("Focus city", 25000, HubType.TypeOfHub.Focus_city));
-            HubTypes.AddHubType(new HubType("Fortress hub", 75000, HubType.TypeOfHub.Fortress_hub));
+            HubTypes.AddHubType(new HubType("Regional hub", 40000, HubType.TypeOfHub.RegionalHub));
+            HubTypes.AddHubType(new HubType("Focus city", 25000, HubType.TypeOfHub.FocusCity));
+            HubTypes.AddHubType(new HubType("Fortress hub", 75000, HubType.TypeOfHub.FortressHub));
         }
 
         private static void CreatePilotRatings()
@@ -2659,7 +2659,7 @@
                         else
                             terminalType = Terminal.TerminalType.Passenger;
 
-                        airport.Terminals.addTerminal(
+                        airport.Terminals.AddTerminal(
                             new Terminal(airport, null, terminalName, terminalGates, new DateTime(1950, 1, 1),terminalType));
                     }
 
@@ -2709,7 +2709,7 @@
 
                             expansion.Name = expansionName;
                         }
-                        if (expansionType == AirportExpansion.ExpansionType.Runway_Length)
+                        if (expansionType == AirportExpansion.ExpansionType.RunwayLength)
                         {
                             string expansionName = expansionNode.Attributes["name"].Value;
                             long length = Convert.ToInt64(expansionNode.Attributes["length"].Value);
@@ -2717,7 +2717,7 @@
                             expansion.Name = expansionName;
                             expansion.Length = length;
                         }
-                        if (expansionType == AirportExpansion.ExpansionType.New_runway)
+                        if (expansionType == AirportExpansion.ExpansionType.NewRunway)
                         {
                             string expansionName = expansionNode.Attributes["name"].Value;
                             long length = Convert.ToInt64(expansionNode.Attributes["length"].Value);
@@ -2731,7 +2731,7 @@
                             expansion.Surface = surface;
                         }
              
-                        if (expansionType == AirportExpansion.ExpansionType.New_terminal)
+                        if (expansionType == AirportExpansion.ExpansionType.NewTerminal)
                         {
                             string expansionName = expansionNode.Attributes["name"].Value;
                             int gates = Convert.ToInt16(expansionNode.Attributes["gates"].Value);
@@ -2749,7 +2749,7 @@
                             expansion.Gates = gates;
                             expansion.TerminalType = terminalType;
                         }
-                        if (expansionType == AirportExpansion.ExpansionType.Extra_gates)
+                        if (expansionType == AirportExpansion.ExpansionType.ExtraGates)
                         {
                             string expansionName = expansionNode.Attributes["name"].Value;
                             int gates = Convert.ToInt16(expansionNode.Attributes["gates"].Value);
@@ -2757,7 +2757,7 @@
                             expansion.Name = expansionName;
                             expansion.Gates = gates;
                         }
-                        if (expansionType == AirportExpansion.ExpansionType.Close_terminal)
+                        if (expansionType == AirportExpansion.ExpansionType.CloseTerminal)
                         {
                             string expansionName = expansionNode.Attributes["name"].Value;
                             int gates = Convert.ToInt16(expansionNode.Attributes["gates"].Value);
@@ -2765,7 +2765,7 @@
                             expansion.Name = expansionName;
                             expansion.Gates = gates;
                         }
-                        airport.Profile.addExpansion(expansion); 
+                        airport.Profile.AddExpansion(expansion); 
 
                        
                     }
@@ -3362,7 +3362,7 @@
 
                 if (majorPax > 0)
                 {
-                    airport.Profile.setPaxValue(Math.Max(airport.Profile.Pax,majorPax));
+                    airport.Profile.SetPaxValue(Math.Max(airport.Profile.Pax,majorPax));
                 }
 
             }
@@ -3391,7 +3391,7 @@
                         string destination = destinationElement.Attributes["airport"].Value;
                         int pax = Convert.ToInt32(destinationElement.Attributes["pax"].Value);
 
-                        airport.addMajorDestination(destination, pax);
+                        airport.AddMajorDestination(destination, pax);
                     }
 
                 }
@@ -4341,7 +4341,7 @@
                                 AirportFacilities.GetFacilities(type)
                                     .Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
 
-                            airport.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
+                            airport.AddAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
                         }
                     }
                     if (airport.Profile.Size == GeneralHelpers.Size.Largest
@@ -4365,11 +4365,11 @@
                             AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo)
                                 .Find(f => f.TypeLevel > 0);
 
-                        airport.addAirportFacility(null, cargoTerminal, GameObject.GetInstance().GameTime);
+                        airport.AddAirportFacility(null, cargoTerminal, GameObject.GetInstance().GameTime);
 
                         if (!airport.Terminals.AirportTerminals.Exists(t=>t.Type == Terminal.TerminalType.Cargo))
                         {
-                            airport.Terminals.addTerminal(new Terminal(airport,"Cargo Terminal",((int)airport.Profile.Cargo) + 5,GameObject.GetInstance().GameTime,Terminal.TerminalType.Cargo));
+                            airport.Terminals.AddTerminal(new Terminal(airport,"Cargo Terminal",((int)airport.Profile.Cargo) + 5,GameObject.GetInstance().GameTime,Terminal.TerminalType.Cargo));
                         }
 
                     }

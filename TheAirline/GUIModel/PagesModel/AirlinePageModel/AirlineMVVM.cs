@@ -151,7 +151,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     this.Airline.Airports.OrderByDescending(a => this.Airline.Airports[0] == a)
                         .ThenBy(a => a.Profile.Name))
             {
-                this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.hasHub(this.Airline), this.Airline.HasRouteTo(airport), this.Airline.HasAirplaneOnRouteTo(airport)));
+                this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.HasHub(this.Airline), this.Airline.HasRouteTo(airport), this.Airline.HasAirplaneOnRouteTo(airport)));
             }
 
             double buyingPrice = this.Airline.GetValue() * 1000000 * 1.10;
@@ -671,17 +671,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 this.Airline.Routes.Where(r => r.Type == Route.RouteType.Passenger)
                     .Sum(r => ((PassengerRoute)r).getTotalCabinCrew());
             this.SupportCrew =
-                this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline))
+                this.Airline.Airports.SelectMany(a => a.GetCurrentAirportFacilities(this.Airline))
                     .Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support)
                     .Sum(a => a.NumberOfEmployees);
             this.MaintenanceCrew =
-                this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline))
+                this.Airline.Airports.SelectMany(a => a.GetCurrentAirportFacilities(this.Airline))
                     .Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance)
                     .Sum(a => a.NumberOfEmployees);
 
             this.MaintenanceCrew +=
                 this.Airline.Airports.Where(
-                    a => a.getCurrentAirportFacility(this.Airline, AirportFacility.FacilityType.Service).TypeLevel > 0)
+                    a => a.GetCurrentAirportFacility(this.Airline, AirportFacility.FacilityType.Service).TypeLevel > 0)
                     .Sum(a => this.Airline.Fleet.Count(f => f.Homebase == a));
             this.NeededPilots = this.DeliveredFleet.Sum(f => f.Airliner.Type.CockpitCrew - f.Pilots.Count);
 

@@ -180,13 +180,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                         GameObject.GetInstance()
                             .HumanAirline.Airports.FindAll(
                                 a =>
-                                    (a.hasContractType(
+                                    (a.HasContractType(
                                         GameObject.GetInstance().HumanAirline,
-                                        AirportContract.ContractType.Full_Service)
-                                     || a.getCurrentAirportFacility(
+                                        AirportContract.ContractType.FullService)
+                                     || a.GetCurrentAirportFacility(
                                          GameObject.GetInstance().HumanAirline,
                                          AirportFacility.FacilityType.Service).TypeLevel > 0)
-                                    && a.getMaxRunwayLength() >= minRunway);
+                                    && a.GetMaxRunwayLength() >= minRunway);
                     foreach (Airport airport in homebases)
                     {
                         cbHomebase.Items.Add(airport);
@@ -275,10 +275,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                     GameObject.GetInstance()
                         .HumanAirline.Airports.FindAll(
                             ai =>
-                                ai.getCurrentAirportFacility(
+                                ai.GetCurrentAirportFacility(
                                     GameObject.GetInstance().HumanAirline,
                                     AirportFacility.FacilityType.Service).TypeLevel > 0
-                                && ai.getMaxRunwayLength() >= a.Airliner.Type.MinRunwaylength)
+                                && ai.GetMaxRunwayLength() >= a.Airliner.Type.MinRunwaylength)
                         .Count > 0;
 
                 return isPossible;

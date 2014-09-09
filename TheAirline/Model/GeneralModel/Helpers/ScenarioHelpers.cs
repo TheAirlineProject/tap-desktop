@@ -202,7 +202,7 @@
                         GameObject.GetInstance()
                             .MainAirline.Airports.FindAll(
                                 a =>
-                                    a.getCurrentAirportFacility(
+                                    a.GetCurrentAirportFacility(
                                         GameObject.GetInstance().MainAirline,
                                         AirportFacility.FacilityType.Service).TypeLevel > 0)
                             .Count;
@@ -212,7 +212,7 @@
                                 s =>
                                     s.Airports.Count(
                                         a =>
-                                            a.getCurrentAirportFacility(s, AirportFacility.FacilityType.Service)
+                                            a.GetCurrentAirportFacility(s, AirportFacility.FacilityType.Service)
                                                 .TypeLevel > 0));
 
                     failureOk = homeBases <= Convert.ToInt32(failure.Value);
@@ -317,8 +317,8 @@
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service)
                     .Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
 
-            airline.Homebase.addAirportFacility(airline.Airline, facility, GameObject.GetInstance().GameTime);
-            airline.Homebase.addAirportFacility(airline.Airline, checkinFacility, GameObject.GetInstance().GameTime);
+            airline.Homebase.AddAirportFacility(airline.Airline, facility, GameObject.GetInstance().GameTime);
+            airline.Homebase.AddAirportFacility(airline.Airline, checkinFacility, GameObject.GetInstance().GameTime);
 
             foreach (ScenarioAirlineRoute saroute in airline.Routes)
             {
@@ -342,7 +342,7 @@
                                 AirportFacilities.GetFacilities(type)
                                     .Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
 
-                            airport.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
+                            airport.AddAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
                         }
                     }
                     AirportHelpers.CreateAirportWeather(airport);
@@ -400,8 +400,8 @@
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service)
                     .Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
 
-            airport.addAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
-            airport.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+            airport.AddAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
+            airport.AddAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
         }
 
         private static void SetupScenarioPassengerDemand(Scenario scenario)

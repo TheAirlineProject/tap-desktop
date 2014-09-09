@@ -44,7 +44,7 @@
         }
         public static void AddAirlineContract(AirportContract contract)
         {
-            contract.Airport.addAirlineContract(contract);
+            contract.Airport.AddAirlineContract(contract);
 
             AirportFacility checkinFacility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn)
@@ -61,59 +61,59 @@
             AirportFacility cargoTerminal =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f => f.TypeLevel > 0);
 
-            if (contract.Type == AirportContract.ContractType.Full_Service)
+            if (contract.Type == AirportContract.ContractType.FullService)
             {
                 if (
-                    contract.Airport.getAirlineAirportFacility(null, AirportFacility.FacilityType.Cargo)
+                    contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.Cargo)
                         .Facility.TypeLevel < cargoTerminal.TypeLevel)
                 {
-                    contract.Airport.addAirportFacility(null, cargoTerminal, GameObject.GetInstance().GameTime);
+                    contract.Airport.AddAirportFacility(null, cargoTerminal, GameObject.GetInstance().GameTime);
                 }
 
                 if (
-                    contract.Airport.getAirlineAirportFacility(null, AirportFacility.FacilityType.CheckIn)
+                    contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.CheckIn)
                         .Facility.TypeLevel < checkinFacility.TypeLevel)
                 {
-                    contract.Airport.addAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
+                    contract.Airport.AddAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
                 }
 
                 if (
-                    contract.Airport.getAirlineAirportFacility(null, AirportFacility.FacilityType.TicketOffice)
+                    contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.TicketOffice)
                         .Facility.TypeLevel < ticketFacility.TypeLevel)
                 {
-                    contract.Airport.addAirportFacility(null, ticketFacility, GameObject.GetInstance().GameTime);
+                    contract.Airport.AddAirportFacility(null, ticketFacility, GameObject.GetInstance().GameTime);
                 }
 
                 if (
-                    contract.Airport.getAirlineAirportFacility(null, AirportFacility.FacilityType.Service)
+                    contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.Service)
                         .Facility.TypeLevel < serviceFacility.TypeLevel)
                 {
-                    contract.Airport.addAirportFacility(null, serviceFacility, GameObject.GetInstance().GameTime);
+                    contract.Airport.AddAirportFacility(null, serviceFacility, GameObject.GetInstance().GameTime);
                 }
             }
-            if (contract.Type == AirportContract.ContractType.Medium_Service)
+            if (contract.Type == AirportContract.ContractType.MediumService)
             {
                 if (
-                    contract.Airport.getAirlineAirportFacility(null, AirportFacility.FacilityType.CheckIn)
+                    contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.CheckIn)
                         .Facility.TypeLevel < checkinFacility.TypeLevel)
                 {
-                    contract.Airport.addAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
+                    contract.Airport.AddAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
                 }
 
                 if (
-                    contract.Airport.getAirlineAirportFacility(null, AirportFacility.FacilityType.TicketOffice)
+                    contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.TicketOffice)
                         .Facility.TypeLevel < ticketFacility.TypeLevel)
                 {
-                    contract.Airport.addAirportFacility(null, ticketFacility, GameObject.GetInstance().GameTime);
+                    contract.Airport.AddAirportFacility(null, ticketFacility, GameObject.GetInstance().GameTime);
                 }
             }
-            if (contract.Type == AirportContract.ContractType.Low_Service)
+            if (contract.Type == AirportContract.ContractType.LowService)
             {
                 if (
-                    contract.Airport.getAirlineAirportFacility(null, AirportFacility.FacilityType.CheckIn)
+                    contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.CheckIn)
                         .Facility.TypeLevel < checkinFacility.TypeLevel)
                 {
-                    contract.Airport.addAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
+                    contract.Airport.AddAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
                 }
             }
         }
@@ -138,7 +138,7 @@
         {
             int minYearsBetweenExpansions = 5;
 
-            if (airport.Terminals.getOrdereredGates() == 0
+            if (airport.Terminals.GetOrdereredGates() == 0
                 && GameObject.GetInstance().GameTime.AddYears(-minYearsBetweenExpansions) > airport.LastExpansionDate)
             {
                 Terminal minTerminal = airport.Terminals.AirportTerminals.OrderBy(t => t.Gates.NumberOfGates).First();
@@ -150,8 +150,8 @@
                     int numberOfGates = Math.Max(5, minTerminal.Gates.NumberOfGates);
                     int daysToBuild = numberOfGates * 10 + (newTerminal ? 60 : 0);
 
-                    long price = numberOfGates * airport.getTerminalGatePrice()
-                                 + (newTerminal ? airport.getTerminalPrice() : 0);
+                    long price = numberOfGates * airport.GetTerminalGatePrice()
+                                 + (newTerminal ? airport.GetTerminalPrice() : 0);
                     price = price / 3 * 4;
 
                     if (airport.Income > price)
@@ -161,7 +161,7 @@
                             var gate = new Gate(GameObject.GetInstance().GameTime.AddDays(daysToBuild));
                             gate.Airline = minTerminal.Airline;
 
-                            minTerminal.Gates.addGate(gate);
+                            minTerminal.Gates.AddGate(gate);
                         }
 
                         airport.Income -= price;
@@ -171,12 +171,12 @@
                 //build new terminal
                 else
                 {
-                    int numberOfGates = airport.Terminals.getTerminals()[0].Gates.NumberOfDeliveredGates;
+                    int numberOfGates = airport.Terminals.GetTerminals()[0].Gates.NumberOfDeliveredGates;
 
                     int daysToBuild = numberOfGates * 10 + (newTerminal ? 60 : 0);
 
-                    long price = numberOfGates * airport.getTerminalGatePrice()
-                                 + (newTerminal ? airport.getTerminalPrice() : 0);
+                    long price = numberOfGates * airport.GetTerminalGatePrice()
+                                 + (newTerminal ? airport.GetTerminalPrice() : 0);
                     price = price / 3 * 4;
 
                     if (airport.Income > price)
@@ -189,7 +189,7 @@
                             GameObject.GetInstance().GameTime.AddDays(daysToBuild),
                             Terminal.TerminalType.Passenger);
 
-                        airport.addTerminal(terminal);
+                        airport.AddTerminal(terminal);
                         airport.Income -= price;
                         airport.LastExpansionDate = GameObject.GetInstance().GameTime;
                     }
@@ -525,7 +525,7 @@
 
         public static List<Airport> GetAirportsNearAirport(Airport airport, double distance)
         {
-            return airport.Statics.getAirportsWithin(distance);
+            return airport.Statics.GetAirportsWithin(distance);
         }
 
         public static double GetHubPrice(Airport airport, HubType type)
@@ -709,7 +709,7 @@
                 airport.Profile.Name = expansion.Name;
 
             }
-            if (expansion.Type == AirportExpansion.ExpansionType.New_runway)
+            if (expansion.Type == AirportExpansion.ExpansionType.NewRunway)
             {
                 Runway runway = new Runway(expansion.Name, expansion.Length,Runway.RunwayType.Regular, expansion.Surface, expansion.Date, true);
                 airport.Runways.Add(runway);
@@ -728,7 +728,7 @@
                                  new AirportCodeConverter().Convert(airport))));
                 }
             }
-            if (expansion.Type == AirportExpansion.ExpansionType.Runway_Length)
+            if (expansion.Type == AirportExpansion.ExpansionType.RunwayLength)
             {
                 Runway runway = airport.Runways.FirstOrDefault(r => r.Name == expansion.Name);
 
@@ -750,10 +750,10 @@
                     }
                 }
             }
-            if (expansion.Type == AirportExpansion.ExpansionType.New_terminal)
+            if (expansion.Type == AirportExpansion.ExpansionType.NewTerminal)
             {
                 Terminal terminal = new Terminal(airport, expansion.Name, expansion.Gates, expansion.Date,expansion.TerminalType);
-                airport.addTerminal(terminal);
+                airport.AddTerminal(terminal);
 
                 if (expansion.NotifyOnChange && !onStartUp)
                 {
@@ -770,14 +770,14 @@
                                expansion.Gates)));
                 }
             }
-            if (expansion.Type == AirportExpansion.ExpansionType.Extra_gates)
+            if (expansion.Type == AirportExpansion.ExpansionType.ExtraGates)
             {
                 Terminal terminal = airport.Terminals.AirportTerminals.FirstOrDefault(t => t.Name == expansion.Name);
 
                 if (terminal != null)
                 {
                     for (int i = 0; i < expansion.Gates; i++)
-                        terminal.Gates.addGate(new Gate(expansion.Date));
+                        terminal.Gates.AddGate(new Gate(expansion.Date));
 
                     if (expansion.NotifyOnChange && !onStartUp)
                     {
@@ -796,13 +796,13 @@
                     }
                 }
             }
-            if (expansion.Type == AirportExpansion.ExpansionType.Close_terminal)
+            if (expansion.Type == AirportExpansion.ExpansionType.CloseTerminal)
             {
                 Terminal terminal = airport.Terminals.AirportTerminals.FirstOrDefault(t => t.Name == expansion.Name);
 
                 if (terminal != null)
                 {
-                    airport.removeTerminal(terminal);
+                    airport.RemoveTerminal(terminal);
 
                     if (expansion.NotifyOnChange && !onStartUp)
                     {
@@ -837,22 +837,22 @@
 
             if (type == AirportContract.ContractType.Full)
             {
-                basePrice = airport.getGatePrice() * 12;
+                basePrice = airport.GetGatePrice() * 12;
             }
 
-            if (type == AirportContract.ContractType.Low_Service)
+            if (type == AirportContract.ContractType.LowService)
             {
-                basePrice = airport.getGatePrice() * 13;
+                basePrice = airport.GetGatePrice() * 13;
             }
 
-            if (type == AirportContract.ContractType.Medium_Service)
+            if (type == AirportContract.ContractType.MediumService)
             {
-                basePrice = airport.getGatePrice() * 17;
+                basePrice = airport.GetGatePrice() * 17;
             }
 
-            if (type == AirportContract.ContractType.Full_Service)
+            if (type == AirportContract.ContractType.FullService)
             {
-                basePrice = airport.getGatePrice() * 20;
+                basePrice = airport.GetGatePrice() * 20;
             }
 
             double lengthFactor = 100 - length;
@@ -875,14 +875,14 @@
         public static Boolean HasFreeGates(Airport airport, Airline airline, Terminal.TerminalType type)
         {
 
-            List<AirportContract> contracts = airport.getAirlineContracts(airline).Where(c=>c.TerminalType == type).ToList();
+            List<AirportContract> contracts = airport.GetAirlineContracts(airline).Where(c=>c.TerminalType == type).ToList();
 
             if (contracts.Count == 0)
             {
                 return false;
             }
 
-            return airport.Terminals.getFreeSlotsPercent(airline,type) > 90;
+            return airport.Terminals.GetFreeSlotsPercent(airline,type) > 90;
         }
 
         public static Boolean HasRoute(Airport airport1, Airport airport2)
@@ -905,11 +905,11 @@
 
         public static void ReallocateAirport(Airport airportOld, Airport airportNew)
         {
-            if (airportNew.getMajorDestinations().Count == 0)
+            if (airportNew.GetMajorDestinations().Count == 0)
             {
-                foreach (DestinationDemand paxDemand in airportOld.getDestinationsPassengers())
+                foreach (DestinationDemand paxDemand in airportOld.GetDestinationsPassengers())
                 {
-                    airportNew.addDestinationPassengersRate(paxDemand);
+                    airportNew.AddDestinationPassengersRate(paxDemand);
                 }
             }
         }
@@ -969,7 +969,7 @@
 
             for (int i = 0; i < gates; i++)
             {
-                Gate gate = airport.Terminals.getGates().Where(g => g.Airline == null).FirstOrDefault();
+                Gate gate = airport.Terminals.GetGates().Where(g => g.Airline == null).FirstOrDefault();
 
                 if (gate != null)
                     gate.Airline = airline;

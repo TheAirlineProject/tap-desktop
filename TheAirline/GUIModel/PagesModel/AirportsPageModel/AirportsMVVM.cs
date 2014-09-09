@@ -167,7 +167,7 @@
             var airport = (Airport)value;
             StatisticsType statType = StatisticsTypes.GetStatisticsType("Passengers");
 
-            return airport.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, statType);
+            return airport.Statistics.GetTotalValue(GameObject.GetInstance().GameTime.Year, statType);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

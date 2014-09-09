@@ -35,10 +35,10 @@
                 GameObject.GetInstance()
                     .HumanAirline.Routes.OrderByDescending(
                         r =>
-                            r.Destination1.getDestinationPassengersRate(
+                            r.Destination1.GetDestinationPassengersRate(
                                 r.Destination2,
                                 AirlinerClass.ClassType.EconomyClass)
-                            + r.Destination2.getDestinationPassengersRate(
+                            + r.Destination2.GetDestinationPassengersRate(
                                 r.Destination1,
                                 AirlinerClass.ClassType.EconomyClass));
             this.RequestedRoutes = requestedRoutes.Take(Math.Min(5, requestedRoutes.Count())).ToList();

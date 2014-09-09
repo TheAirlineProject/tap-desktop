@@ -23,7 +23,7 @@
             IEnumerable<Airport> airports =
                 this.Airliner.Airliner.Airliner.Airline.Airports.Where(
                     a =>
-                        a.getAirlineAirportFacility(
+                        a.GetAirlineAirportFacility(
                             GameObject.GetInstance().HumanAirline,
                             AirportFacility.FacilityType.Service).Facility.TypeLevel > 1);
 

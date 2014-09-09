@@ -95,7 +95,7 @@
             var facility = this.cbFacility.SelectedItem as AirportFacility;
 
             AirportFacility buildingFacility =
-                this.Airport.Airport.getAirlineBuildingFacility(GameObject.GetInstance().HumanAirline, facility.Type);
+                this.Airport.Airport.GetAirlineBuildingFacility(GameObject.GetInstance().HumanAirline, facility.Type);
 
             if (facility.Price > GameObject.GetInstance().HumanAirline.Money)
             {
@@ -203,7 +203,7 @@
             var facility = (AirlineAirportFacilityMVVM)((Button)sender).Tag;
 
             Boolean hasHub =
-                this.Airport.Airport.getHubs().Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
+                this.Airport.Airport.GetHubs().Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
             Boolean hasCargoRoute =
                 GameObject.GetInstance()
@@ -211,10 +211,10 @@
                         r =>
                             (r.Destination1 == this.Airport.Airport || r.Destination2 == this.Airport.Airport)
                             && r.Type == Route.RouteType.Cargo);
-            Boolean airportHasCargoTerminal = this.Airport.Airport.getCurrentAirportFacility(
+            Boolean airportHasCargoTerminal = this.Airport.Airport.GetCurrentAirportFacility(
                 null,
                 AirportFacility.FacilityType.Cargo) != null
-                                              && this.Airport.Airport.getCurrentAirportFacility(
+                                              && this.Airport.Airport.GetCurrentAirportFacility(
                                                   null,
                                                   AirportFacility.FacilityType.Cargo).TypeLevel > 0;
 
@@ -228,14 +228,14 @@
             Boolean isMinimumServiceFacility = facility.Facility.Facility.TypeLevel == 1
                                                && facility.Facility.Facility.Type
                                                == AirportFacility.FacilityType.Service
-                                               && this.Airport.Airport.hasAsHomebase(
+                                               && this.Airport.Airport.HasAsHomebase(
                                                    GameObject.GetInstance().HumanAirline)
                                                && (contract == null
-                                                   || contract.Type != AirportContract.ContractType.Full_Service);
+                                                   || contract.Type != AirportContract.ContractType.FullService);
             Boolean isMinimumHubFacility = facility.Facility.Facility.Type == AirportFacility.FacilityType.Service
                                            && hasHub && facility.Facility.Facility == Hub.MinimumServiceFacility
                                            && (contract == null || contract.Type == AirportContract.ContractType.Full
-                                               || contract.Type != AirportContract.ContractType.Medium_Service);
+                                               || contract.Type != AirportContract.ContractType.MediumService);
             Boolean isMinimumCheckinFacility = facility.Facility.Facility.Type == AirportFacility.FacilityType.CheckIn
                                                && facility.Facility.Facility.TypeLevel == 1 && contract != null
                                                && contract.Type == AirportContract.ContractType.Full;

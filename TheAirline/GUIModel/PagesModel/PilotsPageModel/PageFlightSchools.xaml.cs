@@ -81,7 +81,7 @@
                 GameObject.GetInstance()
                     .HumanAirline.Airports.FindAll(
                         a =>
-                            a.getCurrentAirportFacility(
+                            a.GetCurrentAirportFacility(
                                 GameObject.GetInstance().HumanAirline,
                                 AirportFacility.FacilityType.Service).TypeLevel > 0);
             homeAirports.AddRange(GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.IsHub)); //hubs

@@ -120,8 +120,8 @@
 
             var demands2 = new List<KeyValuePair<string, int>>();
 
-            demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1031"), this.SelectedAirport.Destination.getDestinationPassengersRate(this.Airport.Airport, AirlinerClass.ClassType.EconomyClass)));
-            demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1032"), this.SelectedAirport.Destination.getDestinationCargoRate(this.Airport.Airport)));
+            demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1031"), this.SelectedAirport.Destination.GetDestinationPassengersRate(this.Airport.Airport, AirlinerClass.ClassType.EconomyClass)));
+            demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1032"), this.SelectedAirport.Destination.GetDestinationCargoRate(this.Airport.Airport)));
 
             var demandSeries = new List<SeriesData>();
 
@@ -161,11 +161,11 @@
             Route.RouteType airlineFocus = GameObject.GetInstance().HumanAirline.AirlineRouteFocus;
 
             Boolean hasCargo = 
-                airport.getAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Cargo,true)
+                airport.GetAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Cargo,true)
                 .TypeLevel > 0;
 
             Boolean hasCheckin =
-                airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn)
+                airport.GetAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn)
                     .TypeLevel > 0;
 
             int paxGates = Math.Min(2, airport.Terminals.getFreeGates(Terminal.TerminalType.Passenger));
@@ -190,7 +190,7 @@
                             AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo)
                                 .Find(f => f.TypeLevel == 1);
 
-                        airport.addAirportFacility(
+                        airport.AddAirportFacility(
                             GameObject.GetInstance().HumanAirline,
                             cargoFacility,
                             GameObject.GetInstance().GameTime);
@@ -213,7 +213,7 @@
                             AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn)
                                 .Find(f => f.TypeLevel == 1);
 
-                        airport.addAirportFacility(
+                        airport.AddAirportFacility(
                             GameObject.GetInstance().HumanAirline,
                             checkinFacility,
                             GameObject.GetInstance().GameTime);
@@ -247,7 +247,7 @@
 
                 for (int i = 0; i < gates; i++)
                 {
-                    Gate gate = airport.Terminals.getGates().Where(g => g.Airline == null).First();
+                    Gate gate = airport.Terminals.GetGates().Where(g => g.Airline == null).First();
                     gate.Airline = GameObject.GetInstance().HumanAirline;
                 }
 

@@ -46,7 +46,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             cbAirport.IsSynchronizedWithCurrentItem = true;
             cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-            List<Airport> airports = this.Airliner.Airliner.Airline.Airports.FindAll(a => (a.getCurrentAirportFacility(this.Airliner.Airliner.Airline, AirportFacility.FacilityType.Service).TypeLevel > 0 || a.hasContractType(this.Airliner.Airliner.Airline,AirportContract.ContractType.Full_Service)) && a.Profile.Period.From <= GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime);
+            List<Airport> airports = this.Airliner.Airliner.Airline.Airports.FindAll(a => (a.GetCurrentAirportFacility(this.Airliner.Airliner.Airline, AirportFacility.FacilityType.Service).TypeLevel > 0 || a.HasContractType(this.Airliner.Airliner.Airline,AirportContract.ContractType.FullService)) && a.Profile.Period.From <= GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime);
             
             if (airports.Count == 0)
                 airports = this.Airliner.Airliner.Airline.Airports.FindAll(a => a.Profile.Period.From <= GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime);
@@ -92,10 +92,10 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             Airport airport = (Airport)cbAirport.SelectedItem;
             this.Selected = airport;
 
-            if (((Airport)this.Selected).getCurrentAirportFacility(this.Airliner.Airliner.Airline, AirportFacility.FacilityType.Service).TypeLevel == 0)
+            if (((Airport)this.Selected).GetCurrentAirportFacility(this.Airliner.Airliner.Airline, AirportFacility.FacilityType.Service).TypeLevel == 0)
             {
                 AirportFacility facility = Hub.MinimumServiceFacility;
-                airport.addAirportFacility(this.Airliner.Airliner.Airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
+                airport.AddAirportFacility(this.Airliner.Airliner.Airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
 
                 double price = facility.Price;
 

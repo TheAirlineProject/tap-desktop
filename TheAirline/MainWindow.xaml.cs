@@ -86,9 +86,9 @@ namespace TheAirline
 
                         file.WriteLine("Airport demand for {0} of size {1}",airport.Profile.Name,airport.Profile.Size);
 
-                        foreach (Airport demand in airport.getDestinationDemands())
+                        foreach (Airport demand in airport.GetDestinationDemands())
                         {
-                            file.WriteLine("    Demand to {0} ({2}) is {1}", demand.Profile.Name, airport.getDestinationPassengersRate(demand, AirlinerClass.ClassType.EconomyClass),demand.Profile.Size);
+                            file.WriteLine("    Demand to {0} ({2}) is {1}", demand.Profile.Name, airport.GetDestinationPassengersRate(demand, AirlinerClass.ClassType.EconomyClass),demand.Profile.Size);
                             
                         }
                     }

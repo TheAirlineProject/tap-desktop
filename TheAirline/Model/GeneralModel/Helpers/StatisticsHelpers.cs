@@ -187,11 +187,11 @@
                     airline.Routes.Where(r => r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed)
                         .Sum(r => ((PassengerRoute)r).getTotalCabinCrew());
                 int serviceCrew =
-                    airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline))
+                    airline.Airports.SelectMany(a => a.GetCurrentAirportFacilities(airline))
                         .Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support)
                         .Sum(a => a.NumberOfEmployees);
                 int maintenanceCrew =
-                    airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline))
+                    airline.Airports.SelectMany(a => a.GetCurrentAirportFacilities(airline))
                         .Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance)
                         .Sum(a => a.NumberOfEmployees);
                 double averageWage = ((sWage * serviceCrew) + (mWage * maintenanceCrew) + pWage + iWage

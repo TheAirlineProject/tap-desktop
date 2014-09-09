@@ -64,7 +64,7 @@
             }
 
             this.MostGates =
-                airports.OrderByDescending(a => a.getAirlineContracts(this.Airline.Airline).Sum(c => c.NumberOfGates))
+                airports.OrderByDescending(a => a.GetAirlineContracts(this.Airline.Airline).Sum(c => c.NumberOfGates))
                     .Take(Math.Min(5, airports.Count))
                     .ToList();
             this.MostUsedAircrafts = new List<AirlineFleetSizeMVVM>();

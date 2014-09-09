@@ -114,8 +114,8 @@
         {
             var terminal = (AirportTerminalMVVM)((Button)sender).Tag;
 
-            long price = terminal.Gates * this.Airport.Airport.getTerminalGatePrice()
-                         + this.Airport.Airport.getTerminalPrice();
+            long price = terminal.Gates * this.Airport.Airport.GetTerminalGatePrice()
+                         + this.Airport.Airport.GetTerminalPrice();
 
             if (price > GameObject.GetInstance().HumanAirline.Money)
             {
@@ -261,7 +261,7 @@
                     for (int i = 0; i < contract.NumberOfGates; i++)
                     {
                         Gate gate =
-                            this.Airport.Airport.Terminals.getGates()
+                            this.Airport.Airport.Terminals.GetGates()
                                 .Where(g => g.Airline == GameObject.GetInstance().HumanAirline)
                                 .FirstOrDefault();
 
@@ -295,13 +295,13 @@
 
             int totalRentedGates = this.Airport.Airport.AirlineContracts.Sum(c => c.NumberOfGates);
 
-            Boolean isTerminalFree = this.Airport.Airport.Terminals.getNumberOfGates(terminal.Terminal.Type) - terminal.Gates
+            Boolean isTerminalFree = this.Airport.Airport.Terminals.GetNumberOfGates(terminal.Terminal.Type) - terminal.Gates
                                      >= totalRentedGates; 
             if (isTerminalFree)
             {
                 // chs, 2011-31-10 changed for the possibility of having delivered and non-delivered terminals
-                long price = (terminal.Gates * this.Airport.Airport.getTerminalGatePrice()
-                       + this.Airport.Airport.getTerminalPrice()) / 2;
+                long price = (terminal.Gates * this.Airport.Airport.GetTerminalGatePrice()
+                       + this.Airport.Airport.GetTerminalPrice()) / 2;
 
                 //string strRemove;
                 if (terminal.DeliveryDate > GameObject.GetInstance().GameTime)
@@ -367,7 +367,7 @@
             int length = Convert.ToInt16(this.slContractLenght.Value);
 
             Boolean hasCheckin =
-                this.Airport.Airport.getAirportFacility(
+                this.Airport.Airport.GetAirportFacility(
                     GameObject.GetInstance().HumanAirline,
                     AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
             var contractType = (AirportContract.ContractType)this.cbContractType.SelectedItem;
@@ -399,7 +399,7 @@
                 AirportFacility checkinFacility =
                     AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
-                this.Airport.Airport.addAirportFacility(
+                this.Airport.Airport.AddAirportFacility(
                     GameObject.GetInstance().HumanAirline,
                     checkinFacility,
                     GameObject.GetInstance().GameTime);
@@ -424,7 +424,7 @@
 
             for (int i = 0; i < gates; i++)
             {
-                Gate gate = this.Airport.Airport.Terminals.getGates().Where(g => g.Airline == null).First();
+                Gate gate = this.Airport.Airport.Terminals.GetGates().Where(g => g.Airline == null).First();
                 gate.Airline = GameObject.GetInstance().HumanAirline;
             }
 
