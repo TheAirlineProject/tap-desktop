@@ -1,4 +1,5 @@
 ﻿using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
@@ -19,7 +20,6 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     using TheAirline.GUIModel.CustomControlsModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
@@ -70,7 +70,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (
                 Route route in
                     this.Airliner.Airliner.Airline.Routes.Where(
-                        r => r.getDistance() <= this.Airliner.Airliner.Range && r.Type == routeType))
+                        r => r.GetDistance() <= this.Airliner.Airliner.Range && r.Type == routeType))
             {
                 this.Routes.Add(route);
             }
@@ -89,7 +89,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (
                 Route route in
                     this.Airliner.Airliner.Airline.Routes.Where(
-                        r => r.getDistance() <= this.Airliner.Airliner.Range && r.Type == routeType))
+                        r => r.GetDistance() <= this.Airliner.Airliner.Range && r.Type == routeType))
             {
                 this.AllRoutes.Add(new RoutePlannerItemMVVM(route, this.Airliner.Airliner.Type));
             }
@@ -246,7 +246,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 newEntry.StartTime,
                 oEntry.Destination);
             nEntry.Airliner = this.Airliner;
-            rt.addEntry(nEntry);
+            rt.AddEntry(nEntry);
 
             var tEntries = new List<RouteTimeTableEntry>(this.Entries);
             tEntries.Remove(oEntry);
@@ -342,7 +342,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 foreach (RouteTimeTableEntry entry in e.NewItems)
                 {
                     var sTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, 0);
-                    TimeSpan eTime = sTime.Add(entry.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type));
+                    TimeSpan eTime = sTime.Add(entry.TimeTable.Route.GetFlightTime(this.Airliner.Airliner.Type));
 
                     var g2 = new Guid(entry.TimeTable.Route.Id);
 
@@ -386,7 +386,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 foreach (RouteTimeTableEntry entry in e.OldItems)
                 {
                     var sTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, 0);
-                    TimeSpan eTime = sTime.Add(entry.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type));
+                    TimeSpan eTime = sTime.Add(entry.TimeTable.Route.GetFlightTime(this.Airliner.Airliner.Type));
 
                     string text = string.Format(
                         "{0}-{1}",
@@ -420,7 +420,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     new RouteEntryDestination(airport, flightCode));
                 entry.Airliner = this.Airliner;
 
-                rt.addEntry(entry);
+                rt.AddEntry(entry);
             }
 
             if (!TimeTableHelpers.IsRoutePlannerTimeTableValid(rt, this.Airliner, this.Entries.ToList()))
@@ -474,7 +474,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             {
                 var flightsPerDay =
                     (int)
-                        (route.getFlightTime(this.Airliner.Airliner.Type)
+                        (route.GetFlightTime(this.Airliner.Airliner.Type)
                             .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner))
                             .TotalMinutes / 2 / maxBusinessRouteTime);
                 rt = AIHelpers.CreateBusinessRouteTimeTable(
@@ -682,7 +682,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             RouteTimeTableEntry entry = new RouteTimeTableEntry(rtt, DayOfWeek.Wednesday, new TimeSpan(12, 0, 0), new RouteEntryDestination(route.Destination2, "Charter"));
             entry.Airliner = this.Airliner;
-            rtt.addEntry(entry);
+            rtt.AddEntry(entry);
 
             route.TimeTable = rtt;
 
@@ -704,7 +704,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             foreach (RouteTimeTableEntry entry in newEntries)
             {
-                entry.TimeTable.Route.TimeTable.addEntry(entry);
+                entry.TimeTable.Route.TimeTable.AddEntry(entry);
 
                 if (!this.Airliner.Routes.Contains(entry.TimeTable.Route))
                 {
@@ -714,7 +714,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             foreach (RouteTimeTableEntry entry in deleteEntries)
             {
-                entry.TimeTable.removeEntry(entry);
+                entry.TimeTable.RemoveEntry(entry);
           
                 if (entry.TimeTable.Entries.Count(en => en.Airliner == this.Airliner) == 0 || entry.TimeTable.Entries.Count == 0)
                 {
@@ -754,7 +754,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     .HumanAirline.Fleet.FindAll(
                         a =>
                             a != this.Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped
-                            && a.Routes.Max(r => r.getDistance()) <= maxDistance);
+                            && a.Routes.Max(r => r.GetDistance()) <= maxDistance);
 
             foreach (FleetAirliner airliner in airliners)
             {
@@ -810,7 +810,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             if (route != null && this.cbDelayMinutes != null && this.cbSchedule != null && this.cbIntervalType != null)
             {
-                TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
+                TimeSpan routeFlightTime = route.GetFlightTime(this.Airliner.Airliner.Type);
 
                 var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
 
@@ -874,7 +874,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 OpsType opsType = this.cbSchedule == null ? OpsType.Regular : (OpsType)this.cbSchedule.SelectedItem;
                 var intervalType = (IntervalType)this.cbIntervalType.SelectedItem;
 
-                TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
+                TimeSpan routeFlightTime = route.GetFlightTime(this.Airliner.Airliner.Type);
 
                 var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
 
@@ -924,7 +924,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                     int latestStartTime = 22;
 
-                    TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
+                    TimeSpan routeFlightTime = route.GetFlightTime(this.Airliner.Airliner.Type);
 
                     var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
 
@@ -1000,7 +1000,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             if (route != null && this.cbDelayMinutes != null && this.cbSchedule != null && this.cbIntervalType != null)
             {
-                TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
+                TimeSpan routeFlightTime = route.GetFlightTime(this.Airliner.Airliner.Type);
 
                 var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
 
@@ -1048,7 +1048,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                     int latestStartTime = 22;
 
-                    TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
+                    TimeSpan routeFlightTime = route.GetFlightTime(this.Airliner.Airliner.Type);
 
                     var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
 
@@ -1163,7 +1163,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     .HumanAirline.Fleet.FindAll(
                         a =>
                             a != this.Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped
-                            && a.Routes.Max(r => r.getDistance()) <= maxDistance)
+                            && a.Routes.Max(r => r.GetDistance()) <= maxDistance)
                     .Count > 0;
         }
 

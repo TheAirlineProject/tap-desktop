@@ -6,11 +6,11 @@ using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.PassengerModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -83,7 +83,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int startHour = 6;
             int endHour = 22;
 
-            TimeSpan routeFlightTime = route.getFlightTime(airliner.Airliner.Type);
+            TimeSpan routeFlightTime = route.GetFlightTime(airliner.Airliner.Type);
 
             TimeSpan minFlightTime = routeFlightTime.Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
 
@@ -123,7 +123,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             var delayTime = new TimeSpan(0, delayMinutes, 0);
             var timeTable = new RouteTimeTable(route);
 
-            TimeSpan routeFlightTime = route.getFlightTime(airliner.Airliner.Type);
+            TimeSpan routeFlightTime = route.GetFlightTime(airliner.Airliner.Type);
 
             TimeSpan minFlightTime = routeFlightTime.Add(delayTime);
 
@@ -134,11 +134,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 for (int i = 0; i < numberOfFlights; i++)
                 {
-                    timeTable.addDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
+                    timeTable.AddDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
 
                     flightTime = flightTime.Add(minFlightTime);
 
-                    timeTable.addDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
+                    timeTable.AddDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
 
                     flightTime = flightTime.Add(minFlightTime);
                 }
@@ -159,7 +159,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             route.Destination1,
                             day,
                             new TimeSpan(12, 0, 0).Add(new TimeSpan(0, outTime, 0)));
-                        timeTable.addEntry(
+                        timeTable.AddEntry(
                             new RouteTimeTableEntry(
                                 timeTable,
                                 day,
@@ -180,7 +180,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             day,
                             new TimeSpan(12, 0, 0).Add(new TimeSpan(0, homeTime, 0)));
 
-                        timeTable.addEntry(
+                        timeTable.AddEntry(
                             new RouteTimeTableEntry(
                                 timeTable,
                                 day,
@@ -199,7 +199,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         var flightTime = new TimeSpan(startTime.Hours, startTime.Minutes, startTime.Seconds);
 
-                        timeTable.addEntry(
+                        timeTable.AddEntry(
                             new RouteTimeTableEntry(
                                 timeTable,
                                 day,
@@ -208,7 +208,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         flightTime = flightTime.Add(minFlightTime);
 
-                        timeTable.addEntry(
+                        timeTable.AddEntry(
                             new RouteTimeTableEntry(
                                 timeTable,
                                 day,
@@ -266,11 +266,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             for (int i = 0; i < flightsPerDay; i++)
             {
-                timeTable.addWeekDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
+                timeTable.AddWeekDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
 
                 flightTime = flightTime.Add(minFlightTime);
 
-                timeTable.addWeekDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
+                timeTable.AddWeekDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
 
                 flightTime = flightTime.Add(minFlightTime);
             }
@@ -279,11 +279,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             flightTime = new TimeSpan(startHour, 0, 0).Add(new TimeSpan(0, startMinutes/2, 0));
             for (int i = 0; i < flightsPerDay; i++)
             {
-                timeTable.addWeekDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
+                timeTable.AddWeekDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
 
                 flightTime = flightTime.Add(minFlightTime);
 
-                timeTable.addWeekDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
+                timeTable.AddWeekDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
 
                 flightTime = flightTime.Add(minFlightTime);
             }
@@ -323,8 +323,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static Boolean CreateRouteTimeTable(Route route, List<FleetAirliner> airliners)
         {
-            var totalFlightTime = new TimeSpan(airliners.Sum(a => route.getFlightTime(a.Airliner.Type).Ticks));
-            var maxFlightTime = new TimeSpan(airliners.Max(a => route.getFlightTime(a.Airliner.Type)).Ticks);
+            var totalFlightTime = new TimeSpan(airliners.Sum(a => route.GetFlightTime(a.Airliner.Type).Ticks));
+            var maxFlightTime = new TimeSpan(airliners.Max(a => route.GetFlightTime(a.Airliner.Type)).Ticks);
 
             int maxHours = 22 - 6 - (int) Math.Ceiling(maxFlightTime.TotalMinutes); //from 06.00 to 22.00
 
@@ -350,7 +350,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     flightCode1,
                     flightCode2);
 
-                startTime = startTime.Add(route.getFlightTime(airliner.Airliner.Type));
+                startTime = startTime.Add(route.GetFlightTime(airliner.Airliner.Type));
             }
 
             return true;
@@ -966,20 +966,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 double avgServiceLevel =
                     sameRoutes.Where(r => r is PassengerRoute)
-                              .Average(r => ((PassengerRoute) r).getServiceLevel(AirlinerClass.ClassType.EconomyClass));
+                              .Average(r => ((PassengerRoute) r).GetServiceLevel(AirlinerClass.ClassType.EconomyClass));
 
                 RouteClassesConfiguration configuration = GetRouteConfiguration(route);
 
                 Array types = Enum.GetValues(typeof (RouteFacility.FacilityType));
 
                 int ct = 0;
-                while (avgServiceLevel > route.getServiceLevel(AirlinerClass.ClassType.EconomyClass)
+                while (avgServiceLevel > route.GetServiceLevel(AirlinerClass.ClassType.EconomyClass)
                        && ct < types.Length)
                 {
                     var type = (RouteFacility.FacilityType) types.GetValue(ct);
 
                     RouteFacility currentFacility =
-                        route.getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).getFacility(type);
+                        route.GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(type);
 
                     List<RouteFacility> facilities =
                         RouteFacilities.GetFacilities(type).OrderBy(f => f.ServiceLevel).ToList();
@@ -988,8 +988,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     if (index + 1 < facilities.Count)
                     {
-                        route.getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass)
-                             .addFacility(facilities[index + 1]);
+                        route.GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass)
+                             .AddFacility(facilities[index + 1]);
                     }
 
                     ct++;
@@ -998,16 +998,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
             else
             {
                 Array types = Enum.GetValues(typeof (RouteFacility.FacilityType));
-                double currentServiceLevel = route.getServiceLevel(AirlinerClass.ClassType.EconomyClass);
+                double currentServiceLevel = route.GetServiceLevel(AirlinerClass.ClassType.EconomyClass);
 
                 int ct = 0;
-                while (currentServiceLevel + 50 > route.getServiceLevel(AirlinerClass.ClassType.EconomyClass)
+                while (currentServiceLevel + 50 > route.GetServiceLevel(AirlinerClass.ClassType.EconomyClass)
                        && ct < types.Length)
                 {
                     var type = (RouteFacility.FacilityType) types.GetValue(ct);
 
                     RouteFacility currentFacility =
-                        route.getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).getFacility(type);
+                        route.GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(type);
 
                     List<RouteFacility> facilities =
                         RouteFacilities.GetFacilities(type).OrderBy(f => f.ServiceLevel).ToList();
@@ -1016,8 +1016,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     if (index + 1 < facilities.Count)
                     {
-                        route.getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass)
-                             .addFacility(facilities[index + 1]);
+                        route.GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass)
+                             .AddFacility(facilities[index + 1]);
                     }
 
                     ct++;
@@ -1351,7 +1351,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 if (route.HasAirliner)
                 {
-                    double balance = route.getBalance(route.LastUpdated, GameObject.GetInstance().GameTime);
+                    double balance = route.GetBalance(route.LastUpdated, GameObject.GetInstance().GameTime);
 
                     Route.RouteType routeType = route.Type;
 
@@ -1377,7 +1377,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                                 if (route.HasAirliner)
                                 {
-                                    route.getAirliners().ForEach(a => a.RemoveRoute(route));
+                                    route.GetAirliners().ForEach(a => a.RemoveRoute(route));
                                 }
 
                                 if (airline.Routes.Count == 0)
@@ -1410,7 +1410,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                                 if (route.HasAirliner)
                                 {
-                                    route.getAirliners().ForEach(a => a.RemoveRoute(route));
+                                    route.GetAirliners().ForEach(a => a.RemoveRoute(route));
                                 }
 
                                 if (airline.Routes.Count == 0)
@@ -1436,7 +1436,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     if (route.HasAirliner)
                     {
-                        route.getAirliners().ForEach(a => a.RemoveRoute(route));
+                        route.GetAirliners().ForEach(a => a.RemoveRoute(route));
                     }
 
                     if (airline.Routes.Count == 0)
@@ -1459,7 +1459,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void CreateBusinessRouteTimeTable(Route route, FleetAirliner airliner)
         {
             TimeSpan minFlightTime =
-                route.getFlightTime(airliner.Airliner.Type)
+                route.GetFlightTime(airliner.Airliner.Type)
                      .Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
 
             int maxHours = 10 - 6; //from 06:00 to 10:00 and from 18:00 to 22:00
@@ -1601,19 +1601,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             RouteClassesConfiguration configuration = GetRouteConfiguration((PassengerRoute) route);
 
-                            foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                            foreach (RouteClassConfiguration classConfiguration in configuration.GetClasses())
                             {
-                                ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
+                                ((PassengerRoute) route).GetRouteAirlinerClass(classConfiguration.Type).FarePrice = price
                                                                                                                     *GeneralHelpers
                                                                                                                          .ClassToPriceFactor
                                                                                                                          (
                                                                                                                              classConfiguration
                                                                                                                                  .Type);
 
-                                foreach (RouteFacility facility in classConfiguration.getFacilities())
+                                foreach (RouteFacility facility in classConfiguration.GetFacilities())
                                 {
-                                    ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type)
-                                                            .addFacility(facility);
+                                    ((PassengerRoute) route).GetRouteAirlinerClass(classConfiguration.Type)
+                                                            .AddFacility(facility);
                                 }
                             }
                         }
@@ -1630,19 +1630,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             RouteClassesConfiguration configuration = GetRouteConfiguration((PassengerRoute) route);
 
-                            foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                            foreach (RouteClassConfiguration classConfiguration in configuration.GetClasses())
                             {
-                                ((HelicopterRoute) route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
+                                ((HelicopterRoute) route).GetRouteAirlinerClass(classConfiguration.Type).FarePrice = price
                                                                                                                      *GeneralHelpers
                                                                                                                           .ClassToPriceFactor
                                                                                                                           (
                                                                                                                               classConfiguration
                                                                                                                                   .Type);
 
-                                foreach (RouteFacility facility in classConfiguration.getFacilities())
+                                foreach (RouteFacility facility in classConfiguration.GetFacilities())
                                 {
-                                    ((HelicopterRoute) route).getRouteAirlinerClass(classConfiguration.Type)
-                                                             .addFacility(facility);
+                                    ((HelicopterRoute) route).GetRouteAirlinerClass(classConfiguration.Type)
+                                                             .AddFacility(facility);
                                 }
                             }
                         }

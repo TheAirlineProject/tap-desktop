@@ -4,9 +4,9 @@ using System.Device.Location;
 using System.Globalization;
 using System.Security.Cryptography;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {

@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
+﻿using TheAirline.Model.RouteModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +15,6 @@
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
     using TheAirline.Model.PilotModel;
@@ -236,9 +237,9 @@
 
                 var configuration = (RouteClassesConfiguration)cbConfigurations.SelectedItem;
 
-                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                foreach (RouteClassConfiguration classConfiguration in configuration.GetClasses())
                 {
-                    foreach (RouteFacility facility in classConfiguration.getFacilities())
+                    foreach (RouteFacility facility in classConfiguration.GetFacilities())
                     {
                         AirlineClassMVVM aClass =
                             this.Classes.Where(c => c.Type == classConfiguration.Type).FirstOrDefault();
@@ -294,10 +295,10 @@
 
                     foreach (AirlineClassFacilityMVVM facility in type.Facilities)
                     {
-                        classConfiguration.addFacility(facility.SelectedFacility);
+                        classConfiguration.AddFacility(facility.SelectedFacility);
                     }
 
-                    configuration.addClass(classConfiguration);
+                    configuration.AddClass(classConfiguration);
                 }
 
                 Configurations.AddConfiguration(configuration);

@@ -1,4 +1,5 @@
 ﻿using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
@@ -13,7 +14,6 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.PassengerModel;
     using TheAirline.Model.PilotModel;
@@ -104,7 +104,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             cbAirliners.HorizontalAlignment = HorizontalAlignment.Left;
             cbAirliners.Width = 200;
 
-            double maxDistance = airliner.Airliner.Routes.Max(r=>r.getDistance());
+            double maxDistance = airliner.Airliner.Routes.Max(r=>r.GetDistance());
 
             long requiredRunway = airliner.Airliner.Routes.Select(r => r.Destination1).Min(a => a.GetMaxRunwayLength());
             requiredRunway = Math.Min(requiredRunway,airliner.Airliner.Routes.Select(r=>r.Destination2).Min(a=>a.GetMaxRunwayLength()));

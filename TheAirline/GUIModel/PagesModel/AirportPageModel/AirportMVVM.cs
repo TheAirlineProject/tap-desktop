@@ -1,4 +1,5 @@
 ﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
@@ -14,7 +15,6 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlineModel.AirlineCooperationModel;
     using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
@@ -226,7 +226,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Flights = new List<DestinationFlightsMVVM>();
 
             IEnumerable<Route> airportRoutes =
-                AirportHelpers.GetAirportRoutes(this.Airport).Where(r => r.getAirliners().Count > 0);
+                AirportHelpers.GetAirportRoutes(this.Airport).Where(r => r.GetAirliners().Count > 0);
 
             foreach (Route airportRoute in airportRoutes)
             {
@@ -240,9 +240,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                     DestinationFlightsMVVM flight =
                         this.Flights.First(f => f.Airline == airportRoute.Airline && f.Airport == destination);
 
-                    flight.Flights += airportRoute.TimeTable.getEntries(destination).Count;
+                    flight.Flights += airportRoute.TimeTable.GetEntries(destination).Count;
 
-                    foreach (AirlinerType aircraft in airportRoute.getAirliners().Select(a => a.Airliner.Type))
+                    foreach (AirlinerType aircraft in airportRoute.GetAirliners().Select(a => a.Airliner.Type))
                     {
                         if (!flight.Aircrafts.Contains(aircraft))
                         {
@@ -257,8 +257,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                             destination,
                             airportRoute.Airline,
                             distance,
-                            airportRoute.getAirliners().Select(a => a.Airliner.Type).ToList(),
-                            airportRoute.TimeTable.getEntries(destination).Count));
+                            airportRoute.GetAirliners().Select(a => a.Airliner.Type).ToList(),
+                            airportRoute.TimeTable.GetEntries(destination).Count));
                 }
             }
             /*

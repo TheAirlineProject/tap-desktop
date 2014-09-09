@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -65,7 +65,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the delay time because of the weather for an airliner
         public static int GetAirlinerWeatherDelay(FleetAirliner airliner)
         {
-            Airport departureAirport = airliner.CurrentFlight.getDepartureAirport();
+            Airport departureAirport = airliner.CurrentFlight.GetDepartureAirport();
 
             int windFactor = 0;
 
@@ -174,22 +174,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     foreach (RouteAirlinerClass aClass in ((PassengerRoute) mainroute).Classes)
                     {
                         //routeLegTwo.getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
-                        routeLegTwo.getRouteAirlinerClass(aClass.Type).FarePrice = PassengerHelpers.GetPassengerPrice(dest1, stopover)*GeneralHelpers.ClassToPriceFactor(aClass.Type);
+                        routeLegTwo.GetRouteAirlinerClass(aClass.Type).FarePrice = PassengerHelpers.GetPassengerPrice(dest1, stopover)*GeneralHelpers.ClassToPriceFactor(aClass.Type);
 
-                        foreach (RouteFacility facility in aClass.getFacilities())
-                            routeLegTwo.getRouteAirlinerClass(aClass.Type).addFacility(facility);
+                        foreach (RouteFacility facility in aClass.GetFacilities())
+                            routeLegTwo.GetRouteAirlinerClass(aClass.Type).AddFacility(facility);
 
-                        routeLegTwo.getRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
+                        routeLegTwo.GetRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
                     }
 
 
-                    stopoverRoute.addLeg(routeLegTwo);
+                    stopoverRoute.AddLeg(routeLegTwo);
                 }
                 if (mainroute.Type == Route.RouteType.Cargo || mainroute.Type == Route.RouteType.Mixed)
                 {
                     var routeLegTwo = new CargoRoute(id.ToString(), dest1, stopover, GameObject.GetInstance().GameTime, ((CargoRoute) mainroute).PricePerUnit);
 
-                    stopoverRoute.addLeg(routeLegTwo);
+                    stopoverRoute.AddLeg(routeLegTwo);
                 }
             }
 
@@ -203,22 +203,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     //routeLegOne.getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
 
-                    routeLegOne.getRouteAirlinerClass(aClass.Type).FarePrice = PassengerHelpers.GetPassengerPrice(stopover, dest2)*GeneralHelpers.ClassToPriceFactor(aClass.Type);
+                    routeLegOne.GetRouteAirlinerClass(aClass.Type).FarePrice = PassengerHelpers.GetPassengerPrice(stopover, dest2)*GeneralHelpers.ClassToPriceFactor(aClass.Type);
 
 
-                    foreach (RouteFacility facility in aClass.getFacilities())
-                        routeLegOne.getRouteAirlinerClass(aClass.Type).addFacility(facility);
+                    foreach (RouteFacility facility in aClass.GetFacilities())
+                        routeLegOne.GetRouteAirlinerClass(aClass.Type).AddFacility(facility);
 
-                    routeLegOne.getRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
+                    routeLegOne.GetRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
                 }
 
-                stopoverRoute.addLeg(routeLegOne);
+                stopoverRoute.AddLeg(routeLegOne);
             }
             if (mainroute.Type == Route.RouteType.Cargo || mainroute.Type == Route.RouteType.Mixed)
             {
                 var routeLegOne = new CargoRoute(id.ToString(), stopover, dest2, GameObject.GetInstance().GameTime, ((CargoRoute) mainroute).PricePerUnit);
 
-                stopoverRoute.addLeg(routeLegOne);
+                stopoverRoute.AddLeg(routeLegOne);
             }
 
 
@@ -231,11 +231,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 if (stopover2 != null)
                 {
-                    route.addStopover(CreateStopoverRoute(route.Destination1, stopover1, stopover2, route, false, route.Type));
-                    route.addStopover(CreateStopoverRoute(stopover1, stopover2, route.Destination2, route, true, route.Type));
+                    route.AddStopover(CreateStopoverRoute(route.Destination1, stopover1, stopover2, route, false, route.Type));
+                    route.AddStopover(CreateStopoverRoute(stopover1, stopover2, route.Destination2, route, true, route.Type));
                 }
                 else
-                    route.addStopover(CreateStopoverRoute(route.Destination1, stopover1, route.Destination2, route, false, route.Type));
+                    route.AddStopover(CreateStopoverRoute(route.Destination1, stopover1, route.Destination2, route, false, route.Type));
             }
 
             /*
@@ -297,14 +297,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                           airliner.Airliner.Airline.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Cancellations")));
             airliner.Airliner.Airline.Statistics.SetStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Cancellation%"), cancellationPercent*100);
 
-            Boolean isOnTime = landingTime.Subtract(airliner.CurrentFlight.getScheduledLandingTime()).Minutes < 15;
+            Boolean isOnTime = landingTime.Subtract(airliner.CurrentFlight.GetScheduledLandingTime()).Minutes < 15;
 
             if (isOnTime)
                 airliner.Airliner.Airline.Statistics.AddStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time"), 1);
 
             airliner.Airliner.Airline.Statistics.AddStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"), 1);
             dest.Statistics.AddStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Arrivals"), 1);
-            airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"), 1);
+            airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.AddStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"), 1);
             airliner.Statistics.AddStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"), 1);
 
             double onTimePercent = airliner.Airliner.Airline.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time"))/
@@ -312,12 +312,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airliner.Airliner.Airline.Statistics.SetStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time%"), onTimePercent*100);
 
 
-            if (airliner.CurrentFlight.isCargoFlight())
+            if (airliner.CurrentFlight.IsCargoFlight())
             {
-                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"), (int) airliner.CurrentFlight.Cargo);
-                double routePassengers = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
-                double routeDepartures = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Arrivals"));
-                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"), (int) (routePassengers/routeDepartures));
+                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.AddStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"), (int) airliner.CurrentFlight.Cargo);
+                double routePassengers = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.GetStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
+                double routeDepartures = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.GetStatisticsValue(StatisticsTypes.GetStatisticsType("Arrivals"));
+                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.SetStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"), (int) (routePassengers/routeDepartures));
 
                 double cargocapacity = 0;
 
@@ -327,7 +327,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (airliner.Airliner.Type is AirlinerCombiType)
                     cargocapacity = ((AirlinerCombiType) airliner.Airliner.Type).CargoSize;
 
-                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Capacity"), (int) cargocapacity);
+                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.AddStatisticsValue(StatisticsTypes.GetStatisticsType("Capacity"), (int) cargocapacity);
 
                 double airlinerCargo = airliner.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Cargo"));
                 double airlinerDepartures = airliner.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
@@ -347,19 +347,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 dept.AddCargoDestinationStatistics(dest, airliner.CurrentFlight.Cargo);
             }
-            if (airliner.CurrentFlight.isPassengerFlight())
+            if (airliner.CurrentFlight.IsPassengerFlight())
             {
                 foreach (FlightAirlinerClass fac in airliner.CurrentFlight.Classes)
                 {
-                    RouteAirlinerClass raClass = ((PassengerRoute) airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(fac.AirlinerClass.Type);
+                    RouteAirlinerClass raClass = ((PassengerRoute) airliner.CurrentFlight.Entry.TimeTable.Route).GetRouteAirlinerClass(fac.AirlinerClass.Type);
 
-                    airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"),
-                                                                                               airliner.CurrentFlight.getFlightAirlinerClass(raClass.Type).Passengers);
-                    double routePassengers = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"));
-                    double routeDepartures = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Arrivals"));
-                    airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.setStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"), (int) (routePassengers/routeDepartures));
+                    airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.AddStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"),
+                                                                                               airliner.CurrentFlight.GetFlightAirlinerClass(raClass.Type).Passengers);
+                    double routePassengers = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.GetStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"));
+                    double routeDepartures = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.GetStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Arrivals"));
+                    airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.SetStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"), (int) (routePassengers/routeDepartures));
 
-                    airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Capacity"),
+                    airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.AddStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Capacity"),
                                                                                                airliner.Airliner.GetAirlinerClass(raClass.Type).SeatingCapacity);
                 }
 
@@ -369,10 +369,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
                 airliner.Airliner.Airline.Statistics.AddStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"),
-                                                                        airliner.CurrentFlight.getTotalPassengers());
-                airliner.Statistics.AddStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getTotalPassengers());
+                                                                        airliner.CurrentFlight.GetTotalPassengers());
+                airliner.Statistics.AddStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.GetTotalPassengers());
                 dest.Statistics.AddStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Passengers"),
-                                                   airliner.CurrentFlight.getTotalPassengers());
+                                                   airliner.CurrentFlight.GetTotalPassengers());
 
 
                 double destPassengers = dest.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Passengers"));
@@ -386,7 +386,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                                                         (int) (airlinePassengers/airlineDepartures));
 
                 //the statistics for destination airport
-                dept.AddPassengerDestinationStatistics(dest, airliner.CurrentFlight.getTotalPassengers());
+                dept.AddPassengerDestinationStatistics(dest, airliner.CurrentFlight.GetTotalPassengers());
             }
         }
 
@@ -394,7 +394,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static int GetCruisingSpeed(FleetAirliner airliner)
         {
             Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
-            Airport dept = airliner.CurrentFlight.getDepartureAirport();
+            Airport dept = airliner.CurrentFlight.GetDepartureAirport();
 
             double windFirstHalf = ((int) dept.Weather[0].WindSpeed)*GetWindInfluence(airliner, dept.Weather[0]);
 
@@ -408,8 +408,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns if the wind is tail (1), head (-1), or from side (0)
         private static int GetWindInfluence(FleetAirliner airliner, Weather currentWeather)
         {
-            double direction = MathHelpers.GetDirection(airliner.CurrentFlight.getDepartureAirport().Profile.Coordinates.ConvertToGeoCoordinate(),
-                                                        airliner.CurrentFlight.getNextDestination().Profile.Coordinates.ConvertToGeoCoordinate());
+            double direction = MathHelpers.GetDirection(airliner.CurrentFlight.GetDepartureAirport().Profile.Coordinates.ConvertToGeoCoordinate(),
+                                                        airliner.CurrentFlight.GetNextDestination().Profile.Coordinates.ConvertToGeoCoordinate());
 
             Weather.WindDirection windDirection = MathHelpers.GetWindDirectionFromDirection(direction);
 
@@ -441,16 +441,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the fuel expenses for an airliner
         public static double GetFuelExpenses(FleetAirliner airliner, double distance)
         {
-            Airport departureAirport = airliner.CurrentFlight.getDepartureAirport();
+            Airport departureAirport = airliner.CurrentFlight.GetDepartureAirport();
 
             double fuelPrice = AirportHelpers.GetFuelPrice(departureAirport);
 
-            if (airliner.CurrentFlight.isPassengerFlight())
+            if (airliner.CurrentFlight.IsPassengerFlight())
             {
-                int pax = airliner.CurrentFlight.getTotalPassengers();
+                int pax = airliner.CurrentFlight.GetTotalPassengers();
 
                 double basePrice = fuelPrice*distance*((AirlinerPassengerType) airliner.Airliner.Type).MaxSeatingCapacity*airliner.Airliner.FuelConsumption*0.55;
-                double paxPrice = fuelPrice*distance*airliner.Airliner.FuelConsumption*airliner.CurrentFlight.getTotalPassengers()*0.45;
+                double paxPrice = fuelPrice*distance*airliner.Airliner.FuelConsumption*airliner.CurrentFlight.GetTotalPassengers()*0.45;
                 double seatsPrice =
                     airliner.CurrentFlight.Classes.Sum(c => (airliner.Airliner.GetAirlinerClass(c.AirlinerClass.Type).GetFacility(AirlinerFacility.FacilityType.Seat).SeatUses - 1)*c.Passengers);
                 return basePrice + paxPrice + seatsPrice;

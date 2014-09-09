@@ -5,12 +5,12 @@ using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.PilotModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -33,7 +33,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             ((r.Destination1 == scr.Departure && r.Destination2 == scr.Destination) || (scr.BothWays && r.Destination2 == scr.Departure && r.Destination1 == scr.Destination)));
                     if (cr.Type == ContractRequirement.RequirementType.ClassType)
                     {
-                        if (routes.FirstOrDefault(r => ((PassengerRoute) r).getRouteAirlinerClass(cr.ClassType) != null) == null)
+                        if (routes.FirstOrDefault(r => ((PassengerRoute) r).GetRouteAirlinerClass(cr.ClassType) != null) == null)
                             isOk = false;
                     }
                     else if (cr.Type == ContractRequirement.RequirementType.Destination)
@@ -95,7 +95,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             IEnumerable<Route> routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes);
 
             foreach (Route route in routes)
-                route.Statistics.clear();
+                route.Statistics.Clear();
         }
 
         //clears the statistics for all airlines
@@ -250,7 +250,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (RouteTimeTableEntry entry in entries)
                     entry.Destination.Airport = newAirport;
 
-                foreach (FleetAirliner airliner in route.getAirliners())
+                foreach (FleetAirliner airliner in route.GetAirliners())
                 {
                     if (airliner.Homebase == oldAirport)
                         airliner.Homebase = newAirport;
@@ -675,7 +675,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double cockpitCrewFee = airline.Pilots.Count*airline.Fees.GetValue(FeeTypes.GetType("Cockpit Wage"));
 
-            double cabinCrewFee = airline.Routes.Where(r => r.Type == Route.RouteType.Passenger).Sum(r => ((PassengerRoute) r).getTotalCabinCrew())*
+            double cabinCrewFee = airline.Routes.Where(r => r.Type == Route.RouteType.Passenger).Sum(r => ((PassengerRoute) r).GetTotalCabinCrew())*
                                   airline.Fees.GetValue(FeeTypes.GetType("Cabin Wage"));
 
             double serviceCrewFee =

@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
+﻿using TheAirline.Model.RouteModel;
+
+namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
     using System;
     using System.Collections;
@@ -11,7 +13,6 @@
     using System.Windows.Data;
     using System.Windows.Media;
     using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.CountryModel;
     using TheAirline.Model.GeneralModel.Helpers;
@@ -29,16 +30,16 @@
             this.ShowCargoInformation = this.Route.Type == Route.RouteType.Cargo
                                         || this.Route.Type == Route.RouteType.Mixed;
             this.ShowPassengersInformation = this.Route.Type == Route.RouteType.Passenger
-                                             || this.Route.Type == Route.RouteType.Mixed || this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter;
+                                             || this.Route.Type == Route.RouteType.Mixed || this.Route.Type == Route.RouteType.Helicopter;
 
             this.IsEditable = true;
             // !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
 
             this.Invoices = new List<MonthlyInvoice>();
 
-            foreach (Invoice.InvoiceType type in this.Route.getRouteInvoiceTypes())
+            foreach (Invoice.InvoiceType type in this.Route.GetRouteInvoiceTypes())
             {
-                this.Invoices.Add(new MonthlyInvoice(type, 1950, 1,1, this.Route.getRouteInvoiceAmount(type)));
+                this.Invoices.Add(new MonthlyInvoice(type, 1950, 1,1, this.Route.GetRouteInvoiceAmount(type)));
             }
 
             this.Legs = new List<Route>();
@@ -80,13 +81,13 @@
                 string priceText = priceScore < 4 ? "High" : ((priceScore >= 4 && priceScore < 7) ? "Medium" : "Low");
                 string bagText = luggageScore >= 7 ? "Free Checked Bag" : "Checked Bag Fee";
 
-                RouteFacility wifiFacility = ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).getFacility(RouteFacility.FacilityType.WiFi);
-                RouteFacility foodFacility = ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).getFacility(RouteFacility.FacilityType.Food);
-                AirlinerFacility seats = this.Route.getAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Seat);
-                AirlinerFacility videoFacility = this.Route.getAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Video);
+                RouteFacility wifiFacility = ((PassengerRoute)this.Route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(RouteFacility.FacilityType.WiFi);
+                RouteFacility foodFacility = ((PassengerRoute)this.Route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(RouteFacility.FacilityType.Food);
+                AirlinerFacility seats = this.Route.GetAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Seat);
+                AirlinerFacility videoFacility = this.Route.GetAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Video);
 
-                this.Feedbacks.Add(new RouteFeedbackMVVM(this.Route.getAirliners()[0].Airliner.Type.Name, "plane-feedback.png", planeTypeScore, getFeedbackText("plane", planeTypeScore)));
-                this.Feedbacks.Add(new RouteFeedbackMVVM(string.Format("{0} year(s) old", this.Route.getAirliners()[0].Airliner.Age), "age.png", ageScore, getFeedbackText("age", ageScore)));
+                this.Feedbacks.Add(new RouteFeedbackMVVM(this.Route.GetAirliners()[0].Airliner.Type.Name, "plane-feedback.png", planeTypeScore, getFeedbackText("plane", planeTypeScore)));
+                this.Feedbacks.Add(new RouteFeedbackMVVM(string.Format("{0} year(s) old", this.Route.GetAirliners()[0].Airliner.Age), "age.png", ageScore, getFeedbackText("age", ageScore)));
                 this.Feedbacks.Add(new RouteFeedbackMVVM(foodFacility.Name, "food.png", foodScore, getFeedbackText("food", foodScore)));
                 this.Feedbacks.Add(new RouteFeedbackMVVM(seats.Name, "seats.png", seatsScore, getFeedbackText("seats", seatsScore)));
                 this.Feedbacks.Add(new RouteFeedbackMVVM(videoFacility.Name, "tv.png", inflightScore, getFeedbackText("inflight", inflightScore)));
@@ -177,22 +178,22 @@
             this.Balance = this.Route.Balance;
             this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
 
-            if (route.Type == Route.RouteType.Passenger || route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter)
+            if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Helicopter)
             {
                 RouteAirlinerClass raClass =
-                    ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass);
+                    ((PassengerRoute)route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass);
 
-                this.Total = route.Statistics.getStatisticsValue(
+                this.Total = route.Statistics.GetStatisticsValue(
                     raClass,
                     StatisticsTypes.GetStatisticsType("Passengers"));
-                this.Average = route.Statistics.getStatisticsValue(
+                this.Average = route.Statistics.GetStatisticsValue(
                     raClass,
                     StatisticsTypes.GetStatisticsType("Passengers%"));
             }
             if (route.Type == Route.RouteType.Cargo)
             {
-                this.Total = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
-                this.Average = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
+                this.Total = route.Statistics.GetStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
+                this.Average = route.Statistics.GetStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
             }
 
             if (this.Average < 0)
@@ -370,7 +371,7 @@
 
             this.Route = route;
 
-            double pax = this.Route.Statistics.getStatisticsValue(stat);
+            double pax = this.Route.Statistics.GetStatisticsValue(stat);
 
             this.IncomePerPax = this.Route.Balance / pax;
         }
@@ -591,12 +592,12 @@
             if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Helicopter)
             {
                 RouteAirlinerClass raClass =
-                    ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass);
+                    ((PassengerRoute)route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass);
 
-                double passengers = route.Statistics.getStatisticsValue(
+                double passengers = route.Statistics.GetStatisticsValue(
                     raClass,
                     StatisticsTypes.GetStatisticsType("Passengers"));
-                double avgPassengers = route.Statistics.getStatisticsValue(
+                double avgPassengers = route.Statistics.GetStatisticsValue(
                     raClass,
                     StatisticsTypes.GetStatisticsType("Passengers%"));
 
@@ -605,8 +606,8 @@
             }
             if (route.Type == Route.RouteType.Cargo)
             {
-                double cargo = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
-                double avgCargo = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
+                double cargo = route.Statistics.GetStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
+                double avgCargo = route.Statistics.GetStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
 
                 stats.Add(new KeyValuePair<string, object>("Total Cargo", cargo));
                 stats.Add(new KeyValuePair<string, object>("Average Cargo", Math.Max(0, avgCargo)));

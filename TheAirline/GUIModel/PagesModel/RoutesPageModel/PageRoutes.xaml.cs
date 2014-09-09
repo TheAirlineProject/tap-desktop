@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
+﻿using TheAirline.Model.RouteModel;
+
+namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +10,6 @@
 
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
 
     /// <summary>
@@ -47,14 +48,14 @@
                 GameObject.GetInstance()
                     .HumanAirline.Routes.OrderByDescending(
                         r =>
-                            r.getBalance(
+                            r.GetBalance(
                                 new DateTime(GameObject.GetInstance().GameTime.Year, 1, 1),
                                 GameObject.GetInstance().GameTime));
 
             double yearToDateProfit =
                 yearToDateRoutes.Sum(
                     r =>
-                        r.getBalance(
+                        r.GetBalance(
                             new DateTime(GameObject.GetInstance().GameTime.Year, 1, 1),
                             GameObject.GetInstance().GameTime));
 
@@ -74,9 +75,9 @@
 
             IOrderedEnumerable<Route> lastMonthProfitRoutes =
                 GameObject.GetInstance()
-                    .HumanAirline.Routes.OrderByDescending(r => r.getBalance(lastMonthStartDate, lastMonthEndDate));
+                    .HumanAirline.Routes.OrderByDescending(r => r.GetBalance(lastMonthStartDate, lastMonthEndDate));
 
-            double lastMonthProfit = lastMonthProfitRoutes.Sum(r => r.getBalance(lastMonthStartDate, lastMonthEndDate));
+            double lastMonthProfit = lastMonthProfitRoutes.Sum(r => r.GetBalance(lastMonthStartDate, lastMonthEndDate));
 
             this.LastMonthProfitRoutes = new List<RouteProfitMVVM>();
             foreach (Route route in lastMonthProfitRoutes.Take(Math.Min(5, lastMonthProfitRoutes.Count())))

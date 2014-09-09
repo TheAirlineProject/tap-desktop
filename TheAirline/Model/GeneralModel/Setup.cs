@@ -9,7 +9,6 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
@@ -22,6 +21,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.PilotModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -912,15 +912,15 @@ namespace TheAirline.Model.GeneralModel
                                     RouteClassesConfiguration configuration =
                                         AIHelpers.GetRouteConfiguration((PassengerRoute) route);
 
-                                    foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                                    foreach (RouteClassConfiguration classConfiguration in configuration.GetClasses())
                                     {
-                                        ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type).FarePrice =
+                                        ((PassengerRoute) route).GetRouteAirlinerClass(classConfiguration.Type).FarePrice =
                                             price*GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
 
-                                        foreach (RouteFacility rFacility in classConfiguration.getFacilities())
+                                        foreach (RouteFacility rFacility in classConfiguration.GetFacilities())
                                         {
-                                            ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type)
-                                                                    .addFacility(rFacility);
+                                            ((PassengerRoute) route).GetRouteAirlinerClass(classConfiguration.Type)
+                                                                    .AddFacility(rFacility);
                                         }
                                     }
 
@@ -1107,15 +1107,15 @@ namespace TheAirline.Model.GeneralModel
                                         RouteClassesConfiguration configuration =
                                             AIHelpers.GetRouteConfiguration((PassengerRoute) route);
 
-                                        foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                                        foreach (RouteClassConfiguration classConfiguration in configuration.GetClasses())
                                         {
-                                            ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type).FarePrice
+                                            ((PassengerRoute) route).GetRouteAirlinerClass(classConfiguration.Type).FarePrice
                                                 = price*GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
 
-                                            foreach (RouteFacility rFacility in classConfiguration.getFacilities())
+                                            foreach (RouteFacility rFacility in classConfiguration.GetFacilities())
                                             {
-                                                ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type)
-                                                                        .addFacility(rFacility);
+                                                ((PassengerRoute) route).GetRouteAirlinerClass(classConfiguration.Type)
+                                                                        .AddFacility(rFacility);
                                             }
                                         }
 
@@ -1234,19 +1234,19 @@ namespace TheAirline.Model.GeneralModel
 
                         RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration((PassengerRoute) route);
 
-                        foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                        foreach (RouteClassConfiguration classConfiguration in configuration.GetClasses())
                         {
-                            ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
+                            ((PassengerRoute) route).GetRouteAirlinerClass(classConfiguration.Type).FarePrice = price
                                                                                                                 *GeneralHelpers
                                                                                                                      .ClassToPriceFactor
                                                                                                                      (
                                                                                                                          classConfiguration
                                                                                                                              .Type);
 
-                            foreach (RouteFacility rFacility in classConfiguration.getFacilities())
+                            foreach (RouteFacility rFacility in classConfiguration.GetFacilities())
                             {
-                                ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type)
-                                                        .addFacility(rFacility);
+                                ((PassengerRoute) route).GetRouteAirlinerClass(classConfiguration.Type)
+                                                        .AddFacility(rFacility);
                             }
                         }
                     }
@@ -1261,19 +1261,19 @@ namespace TheAirline.Model.GeneralModel
 
                         RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration((HelicopterRoute) route);
 
-                        foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                        foreach (RouteClassConfiguration classConfiguration in configuration.GetClasses())
                         {
-                            ((HelicopterRoute) route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
+                            ((HelicopterRoute) route).GetRouteAirlinerClass(classConfiguration.Type).FarePrice = price
                                                                                                                  *GeneralHelpers
                                                                                                                       .ClassToPriceFactor
                                                                                                                       (
                                                                                                                           classConfiguration
                                                                                                                               .Type);
 
-                            foreach (RouteFacility rFacility in classConfiguration.getFacilities())
+                            foreach (RouteFacility rFacility in classConfiguration.GetFacilities())
                             {
-                                ((HelicopterRoute) route).getRouteAirlinerClass(classConfiguration.Type)
-                                                         .addFacility(rFacility);
+                                ((HelicopterRoute) route).GetRouteAirlinerClass(classConfiguration.Type)
+                                                         .AddFacility(rFacility);
                             }
                         }
                     }
@@ -1496,7 +1496,7 @@ namespace TheAirline.Model.GeneralModel
             RouteFacilities.AddFacility(
                 new RouteFacility(
                     "109",
-                    RouteFacility.FacilityType.Alcoholic_Drinks,
+                    RouteFacility.FacilityType.AlcoholicDrinks,
                     "None",
                     0,
                     RouteFacility.ExpenseType.Fixed,
@@ -1505,7 +1505,7 @@ namespace TheAirline.Model.GeneralModel
             RouteFacilities.AddFacility(
                 new RouteFacility(
                     "110",
-                    RouteFacility.FacilityType.Alcoholic_Drinks,
+                    RouteFacility.FacilityType.AlcoholicDrinks,
                     "Buyable",
                     40,
                     RouteFacility.ExpenseType.Random,
@@ -1514,7 +1514,7 @@ namespace TheAirline.Model.GeneralModel
             RouteFacilities.AddFacility(
                 new RouteFacility(
                     "111",
-                    RouteFacility.FacilityType.Alcoholic_Drinks,
+                    RouteFacility.FacilityType.AlcoholicDrinks,
                     "Free",
                     100,
                     RouteFacility.ExpenseType.Fixed,
@@ -3723,9 +3723,9 @@ namespace TheAirline.Model.GeneralModel
                     string value = classElement.Attributes[facilityType.ToString()].Value;
                     RouteFacility facility = RouteFacilities.GetFacility(value);
 
-                    classConfiguration.addFacility(facility);
+                    classConfiguration.AddFacility(facility);
                 }
-                configuration.addClass(classConfiguration);
+                configuration.AddClass(classConfiguration);
             }
 
             return configuration;

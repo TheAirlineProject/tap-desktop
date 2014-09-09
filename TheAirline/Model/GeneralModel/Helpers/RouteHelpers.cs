@@ -2,7 +2,7 @@
 using System.Linq;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -16,7 +16,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             double basePrice = PassengerHelpers.GetPassengerPrice(route.Destination1, route.Destination2);
 
-            double price = ((PassengerRoute) route).getFarePrice(AirlinerClass.ClassType.EconomyClass);
+            double price = ((PassengerRoute) route).GetFarePrice(AirlinerClass.ClassType.EconomyClass);
 
             double priceFactor = price/basePrice;
 
@@ -29,9 +29,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static double GetRouteSeatsScore(Route route)
         {
-            TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, route.getAirliners()[0].Airliner.Type);
+            TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, route.GetAirliners()[0].Airliner.Type);
 
-            AirlinerFacility seats = route.getAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Seat);
+            AirlinerFacility seats = route.GetAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Seat);
 
             IOrderedEnumerable<AirlinerFacility> seatfacilities =
                 AirlinerFacilities.GetFacilities(AirlinerFacility.FacilityType.Seat).Where(f => f.FromYear >= GameObject.GetInstance().GameTime.Year).OrderBy(f => f.ServiceLevel);
@@ -64,9 +64,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static double GetRouteMealScore(Route route)
         {
-            TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, route.getAirliners()[0].Airliner.Type);
+            TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, route.GetAirliners()[0].Airliner.Type);
 
-            RouteFacility food = ((PassengerRoute) route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).getFacility(RouteFacility.FacilityType.Food);
+            RouteFacility food = ((PassengerRoute) route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(RouteFacility.FacilityType.Food);
 
             double foodlevel;
 
@@ -106,9 +106,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static double GetRoutePlaneTypeScore(Route route)
         {
-            TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, route.getAirliners()[0].Airliner.Type);
+            TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, route.GetAirliners()[0].Airliner.Type);
 
-            AirlinerType airlinertype = route.getAirliners()[0].Airliner.Type;
+            AirlinerType airlinertype = route.GetAirliners()[0].Airliner.Type;
 
             int oldTypeFactor = airlinertype.Produced.To < GameObject.GetInstance().GameTime ? 1 : 0;
 
@@ -140,7 +140,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static double GetPlaneAgeScore(Route route)
         {
-            FleetAirliner airliner = route.getAirliners()[0];
+            FleetAirliner airliner = route.GetAirliners()[0];
 
             int age = airliner.Airliner.Age;
 
@@ -183,9 +183,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static double GetRouteInflightScore(Route route)
         {
-            TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, route.getAirliners()[0].Airliner.Type);
+            TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, route.GetAirliners()[0].Airliner.Type);
 
-            AirlinerFacility inflight = route.getAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Video);
+            AirlinerFacility inflight = route.GetAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Video);
 
             IOrderedEnumerable<AirlinerFacility> videofacilities =
                 AirlinerFacilities.GetFacilities(AirlinerFacility.FacilityType.Video).Where(f => f.FromYear >= GameObject.GetInstance().GameTime.Year).OrderBy(f => f.ServiceLevel);
@@ -218,7 +218,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static double GetRouteWifiScore(Route route)
         {
-            RouteFacility wifi = ((PassengerRoute) route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).getFacility(RouteFacility.FacilityType.WiFi);
+            RouteFacility wifi = ((PassengerRoute) route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(RouteFacility.FacilityType.WiFi);
 
             if (wifi.Name == "None")
                 return 3;

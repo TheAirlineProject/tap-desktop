@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel;
@@ -13,6 +12,7 @@ using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.PilotModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.AirlineModel
 {
@@ -753,7 +753,7 @@ namespace TheAirline.Model.AirlineModel
             int cockpitCrew = Pilots.Count;
             int cabinCrew =
                 Routes.Where(r => r.Type == Route.RouteType.Passenger)
-                      .Sum(r => ((PassengerRoute) r).getTotalCabinCrew());
+                      .Sum(r => ((PassengerRoute) r).GetTotalCabinCrew());
 
             int serviceCrew =
                 Airports.SelectMany(a => a.GetCurrentAirportFacilities(this))

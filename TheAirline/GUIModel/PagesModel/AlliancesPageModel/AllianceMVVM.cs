@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
+﻿using TheAirline.Model.RouteModel;
+
+namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +9,6 @@
     using System.Linq;
 
     using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.StatisticsModel;
 

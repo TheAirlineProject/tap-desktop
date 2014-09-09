@@ -19,9 +19,9 @@ using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {

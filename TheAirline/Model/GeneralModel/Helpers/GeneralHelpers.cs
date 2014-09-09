@@ -8,12 +8,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using TheAirline.Model.PilotModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -323,13 +323,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             var entries = new List<RouteTimeTableEntry>();
             foreach (Route route in AirportHelpers.GetAirportRoutes(airport))
             {
-                if (route.HasAirliner && route.getCurrentAirliner() != null)
+                if (route.HasAirliner && route.GetCurrentAirliner() != null)
                 {
-                    RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null
-                                                    ? route.TimeTable.getNextEntry(
+                    RouteTimeTableEntry entry = route.GetCurrentAirliner().CurrentFlight == null
+                                                    ? route.TimeTable.GetNextEntry(
                                                         GameObject.GetInstance().GameTime,
                                                         (airport == route.Destination1 ? route.Destination2 : route.Destination1))
-                                                    : route.getCurrentAirliner().CurrentFlight.Entry;
+                                                    : route.GetCurrentAirliner().CurrentFlight.Entry;
 
                     for (int i = 0; i < route.TimeTable.Entries.Count; i++)
                     {
@@ -337,7 +337,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             entries.Add(entry);
                         }
-                        entry = route.TimeTable.getNextEntry(entry);
+                        entry = route.TimeTable.GetNextEntry(entry);
                     }
                 }
             }
@@ -370,11 +370,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             var entries = new List<RouteTimeTableEntry>();
             foreach (Route route in AirportHelpers.GetAirportRoutes(airport))
             {
-                if (route.HasAirliner && route.getCurrentAirliner() != null)
+                if (route.HasAirliner && route.GetCurrentAirliner() != null)
                 {
-                    RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null
-                                                    ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airport)
-                                                    : route.getCurrentAirliner().CurrentFlight.Entry;
+                    RouteTimeTableEntry entry = route.GetCurrentAirliner().CurrentFlight == null
+                                                    ? route.TimeTable.GetNextEntry(GameObject.GetInstance().GameTime, airport)
+                                                    : route.GetCurrentAirliner().CurrentFlight.Entry;
 
                     if (!entry.Destination.Airport.Profile.Coordinates.Equals(airport.Profile.Coordinates))
                     {
@@ -383,7 +383,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     while (entries.Count < 4)
                     {
-                        entry = route.TimeTable.getNextEntry(entry);
+                        entry = route.TimeTable.GetNextEntry(entry);
                         if (entry.Destination.Airport != airport)
                         {
                             entries.Add(entry);
@@ -403,11 +403,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 if (route.HasAirliner && (route.Destination1 == tAirport || route.Destination2 == tAirport))
                 {
-                    RouteTimeTableEntry entry = route.getCurrentAirliner() == null
-                                                || route.getCurrentAirliner().CurrentFlight == null
-                                                || route.getCurrentAirliner().CurrentFlight.Entry == null
-                                                    ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime)
-                                                    : route.getCurrentAirliner().CurrentFlight.Entry;
+                    RouteTimeTableEntry entry = route.GetCurrentAirliner() == null
+                                                || route.GetCurrentAirliner().CurrentFlight == null
+                                                || route.GetCurrentAirliner().CurrentFlight.Entry == null
+                                                    ? route.TimeTable.GetNextEntry(GameObject.GetInstance().GameTime)
+                                                    : route.GetCurrentAirliner().CurrentFlight.Entry;
 
                     for (int i = 0; i < route.TimeTable.Entries.Count; i++)
                     {
@@ -421,7 +421,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             entries.Add(entry);
                         }
 
-                        entry = route.TimeTable.getNextEntry(entry);
+                        entry = route.TimeTable.GetNextEntry(entry);
                     }
                 }
             }

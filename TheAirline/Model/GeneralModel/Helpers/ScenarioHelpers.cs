@@ -6,11 +6,11 @@ using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.Model.GeneralModel.ScenarioModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -438,15 +438,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration(route);
 
-                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                foreach (RouteClassConfiguration classConfiguration in configuration.GetClasses())
                 {
-                    route.getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
+                    route.GetRouteAirlinerClass(classConfiguration.Type).FarePrice = price
                                                                                      *GeneralHelpers.ClassToPriceFactor
                                                                                           (classConfiguration.Type);
 
-                    foreach (RouteFacility rfacility in classConfiguration.getFacilities())
+                    foreach (RouteFacility rfacility in classConfiguration.GetFacilities())
                     {
-                        route.getRouteAirlinerClass(classConfiguration.Type).addFacility(rfacility);
+                        route.GetRouteAirlinerClass(classConfiguration.Type).AddFacility(rfacility);
                     }
                 }
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -33,7 +33,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 entry.Time.Minutes,
                 entry.Time.Seconds);
             TimeSpan entryLandingTime =
-                entryTakeoffTime.Add(entry.TimeTable.Route.getFlightTime(entry.Airliner.Airliner.Type));
+                entryTakeoffTime.Add(entry.TimeTable.Route.GetFlightTime(entry.Airliner.Airliner.Type));
 
             if (entryLandingTime.Days > 6)
             {
@@ -226,7 +226,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Boolean withSlots)
         {
             TimeSpan flightTime =
-                entry.TimeTable.Route.getFlightTime(airliner.Airliner.Type)
+                entry.TimeTable.Route.GetFlightTime(airliner.Airliner.Type)
                      .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
 
             var startTime = new TimeSpan((int) entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
@@ -264,7 +264,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 var eStartTime = new TimeSpan((int) e.Day, e.Time.Hours, e.Time.Minutes, e.Time.Seconds);
 
                 TimeSpan eFlightTime =
-                    e.TimeTable.Route.getFlightTime(airliner.Airliner.Type)
+                    e.TimeTable.Route.GetFlightTime(airliner.Airliner.Type)
                      .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
 
                 TimeSpan eEndTime = eStartTime.Add(eFlightTime);
@@ -328,10 +328,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                           : Math.Abs(prevDate.Subtract(currentDate).TotalMinutes);
 
                 if (timeFromPrev
-                    > previousEntry.TimeTable.Route.getFlightTime(airliner.Airliner.Type).TotalMinutes
+                    > previousEntry.TimeTable.Route.GetFlightTime(airliner.Airliner.Type).TotalMinutes
                       + flightTimePrevious.TotalMinutes
                     && timeToNext
-                    > entry.TimeTable.Route.getFlightTime(airliner.Airliner.Type).TotalMinutes
+                    > entry.TimeTable.Route.GetFlightTime(airliner.Airliner.Type).TotalMinutes
                     + flightTimeNext.TotalMinutes)
                 {
                     return true;

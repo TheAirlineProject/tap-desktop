@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
+﻿using TheAirline.Model.RouteModel;
+
+namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
     using System;
     using System.Linq;
@@ -6,7 +8,6 @@
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel.StatisticsModel;
     using TheAirline.Model.GeneralModel;
 
@@ -68,7 +69,7 @@
             this.cccDOR.DataContext = demandSeries;
             
             //useability
-              double totalRouteTime = this.Airliner.Airliner.HasRoute ? this.Airliner.Airliner.Routes.SelectMany(r=>r.TimeTable.Entries.Where(e=>e.Airliner == this.Airliner.Airliner)).Sum(e=>e.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Airliner.Type).TotalMinutes) : 0;
+              double totalRouteTime = this.Airliner.Airliner.HasRoute ? this.Airliner.Airliner.Routes.SelectMany(r=>r.TimeTable.Entries.Where(e=>e.Airliner == this.Airliner.Airliner)).Sum(e=>e.TimeTable.Route.GetFlightTime(this.Airliner.Airliner.Airliner.Type).TotalMinutes) : 0;
             double weekMinutes = new TimeSpan(7,0,0,0).TotalMinutes;
 
             List<Route> routes = this.Airliner.Airliner.Routes;

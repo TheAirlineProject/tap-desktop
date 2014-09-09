@@ -4,10 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using TheAirline.Model.AirlineModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.AirportModel
 {

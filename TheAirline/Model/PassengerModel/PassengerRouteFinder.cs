@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.PassengerModel
 {

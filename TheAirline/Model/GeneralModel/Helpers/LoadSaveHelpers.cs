@@ -12,7 +12,6 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
@@ -22,6 +21,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.PilotModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -794,12 +794,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             string facilityName = classElement.Attributes[facType.ToString()].Value;
 
-                            classConf.addFacility(
+                            classConf.AddFacility(
                                 RouteFacilities.GetFacilities(facType).Find(f => f.Name == facilityName));
                         }
                     }
 
-                    classesConfiguration.addClass(classConf);
+                    classesConfiguration.AddClass(classConf);
                 }
 
                 Configurations.AddConfiguration(classesConfiguration);
@@ -1344,7 +1344,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                 "currentflight",
                                 ((StopoverFlight) airliner.CurrentFlight).CurrentFlight.ToString());
 
-                            if (airliner.CurrentFlight.isPassengerFlight())
+                            if (airliner.CurrentFlight.IsPassengerFlight())
                             {
                                 XmlElement stopoverClassesNode = xmlDoc.CreateElement("classes");
 
@@ -1376,7 +1376,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                                 stopoverNode.AppendChild(stopoverClassesNode);
                             }
-                            if (airliner.CurrentFlight.isCargoFlight())
+                            if (airliner.CurrentFlight.IsCargoFlight())
                             {
                                 XmlElement stopoverCargosNode = xmlDoc.CreateElement("cargos");
 
@@ -1400,7 +1400,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             flightNode.AppendChild(stopoverNode);
                         }
 
-                        if (airliner.CurrentFlight.isPassengerFlight())
+                        if (airliner.CurrentFlight.IsPassengerFlight())
                         {
                             XmlElement flightClassesNode = xmlDoc.CreateElement("flightclasses");
                             foreach (FlightAirlinerClass aClass in airliner.CurrentFlight.Classes)
@@ -1414,7 +1414,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             flightNode.AppendChild(flightClassesNode);
                         }
 
-                        if (airliner.CurrentFlight.isCargoFlight())
+                        if (airliner.CurrentFlight.IsCargoFlight())
                         {
                             XmlElement flightCargoNode = xmlDoc.CreateElement("flightcargo");
                             flightCargoNode.SetAttribute(
@@ -1814,12 +1814,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 XmlElement classesNode = xmlDoc.CreateElement("classes");
 
-                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                foreach (RouteClassConfiguration classConfiguration in configuration.GetClasses())
                 {
                     XmlElement classNode = xmlDoc.CreateElement("class");
                     classNode.SetAttribute("type", classConfiguration.Type.ToString());
 
-                    foreach (RouteFacility aFac in classConfiguration.getFacilities())
+                    foreach (RouteFacility aFac in classConfiguration.GetFacilities())
                     {
                         classNode.SetAttribute(aFac.Type.ToString(), aFac.Name);
                     }
@@ -2340,7 +2340,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             currentFlight.FlightTime = flightTime;
                             currentFlight.Classes.Clear();
 
-                            if (currentFlight.isPassengerFlight())
+                            if (currentFlight.IsPassengerFlight())
                             {
                                 XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
 
@@ -2356,11 +2356,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                                     currentFlight.Classes.Add(
                                         new FlightAirlinerClass(
-                                            ((PassengerRoute) route).getRouteAirlinerClass(airlinerClassType),
+                                            ((PassengerRoute) route).GetRouteAirlinerClass(airlinerClassType),
                                             flightPassengers));
                                 }
                             }
-                            if (currentFlight.isCargoFlight())
+                            if (currentFlight.IsCargoFlight())
                             {
                                 var flightCargoNode = (XmlElement) flightNode.SelectSingleNode("flightcargo");
                                 double flightCargo = Convert.ToDouble(
@@ -2403,7 +2403,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                                         stopoverFlightClasses.Add(
                                             new FlightAirlinerClass(
-                                                ((PassengerRoute) route).getRouteAirlinerClass(stopoverAirlinerClassType),
+                                                ((PassengerRoute) route).GetRouteAirlinerClass(stopoverAirlinerClassType),
                                                 stopoverFlightPassengers));
                                     }
 
@@ -2522,10 +2522,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (XmlElement legNode in legsList)
                 {
-                    stopoverRoute.addLeg(LoadRoute((XmlElement) legNode.SelectSingleNode("route"), airline, routetype));
+                    stopoverRoute.AddLeg(LoadRoute((XmlElement) legNode.SelectSingleNode("route"), airline, routetype));
                 }
 
-                route.addStopover(stopoverRoute);
+                route.AddStopover(stopoverRoute);
             }
 
             if (routetype == Route.RouteType.Passenger || routetype == Route.RouteType.Mixed)
@@ -2550,7 +2550,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     var rClass = new RouteAirlinerClass(
                         airlinerClassType,
-                        RouteAirlinerClass.SeatingType.Reserved_Seating,
+                        RouteAirlinerClass.SeatingType.ReservedSeating,
                         fareprice);
                     rClass.Seating = seatingType;
 
@@ -2560,11 +2560,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             RouteFacility facility =
                                 RouteFacilities.GetFacility(routeClassNode.Attributes[ftype.ToString()].Value);
-                            rClass.addFacility(facility);
+                            rClass.AddFacility(facility);
                         }
                     }
 
-                    ((PassengerRoute) route).addRouteAirlinerClass(rClass);
+                    ((PassengerRoute) route).AddRouteAirlinerClass(rClass);
                 }
             }
             if (routetype == Route.RouteType.Mixed || routetype == Route.RouteType.Cargo)
@@ -2619,7 +2619,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airliner.Routes.Add(route);
                 }
 
-                timeTable.addEntry(entry);
+                timeTable.AddEntry(entry);
             }
             route.TimeTable = timeTable;
 
@@ -2636,7 +2636,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     routeInvoiceNode.Attributes["amount"].Value,
                     new CultureInfo("de-DE", false));
 
-                route.setRouteInvoice(type, invoiceYear, invoiceMonth, 1, invoiceAmount);
+                route.SetRouteInvoice(type, invoiceYear, invoiceMonth, 1, invoiceAmount);
             }
 
             return route;
@@ -2684,7 +2684,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     routeClassNode.SetAttribute("type", aClass.Type.ToString());
                     routeClassNode.SetAttribute("fareprice", aClass.FarePrice.ToString(new CultureInfo("de-DE", false)));
 
-                    foreach (RouteFacility facility in aClass.getFacilities())
+                    foreach (RouteFacility facility in aClass.GetFacilities())
                     {
                         routeClassNode.SetAttribute(facility.Type.ToString(), facility.Uid);
                     }
@@ -2728,7 +2728,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             routeNode.AppendChild(timetableNode);
 
             XmlElement routeInvoicesNode = xmlDoc.CreateElement("invoices");
-            foreach (MonthlyInvoice invoice in route.getInvoices().MonthlyInvoices)
+            foreach (MonthlyInvoice invoice in route.GetInvoices().MonthlyInvoices)
             {
                 XmlElement routeInvoiceNode = xmlDoc.CreateElement("invoice");
                 routeInvoiceNode.SetAttribute("type", invoice.Type.ToString());

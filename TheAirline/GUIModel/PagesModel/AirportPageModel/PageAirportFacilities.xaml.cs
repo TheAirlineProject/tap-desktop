@@ -1,4 +1,5 @@
 ﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
@@ -14,7 +15,6 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel.AirlineCooperationModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;

@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
+﻿using TheAirline.Model.RouteModel;
+
+namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
     using System;
     using System.Collections.ObjectModel;
@@ -9,7 +11,6 @@
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
 
     /// <summary>
@@ -32,23 +33,23 @@
             this.Route = new HumanRouteMVVM(route);
             this.DataContext = this.Route;
 
-            if (this.Route.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter)
+            if (this.Route.Route.Type == Model.RouteModel.Route.RouteType.Helicopter)
             {
                 
-                 RouteAirlinerClass rClass = ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass);
+                 RouteAirlinerClass rClass = ((PassengerRoute)this.Route.Route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass);
                  var mClass = new MVVMRouteClass(AirlinerClass.ClassType.EconomyClass, rClass.Seating, rClass.FarePrice);
                 
                  this.Classes.Add(mClass);
 
              
             }
-            if (this.Route.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Passenger || this.Route.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Mixed)
+            if (this.Route.Route.Type == Model.RouteModel.Route.RouteType.Passenger || this.Route.Route.Type == Model.RouteModel.Route.RouteType.Mixed)
             {
                  foreach (AirlinerClass.ClassType cType in AirlinerClass.GetAirlinerTypes())
                 {
                     if ((int)cType <= GameObject.GetInstance().GameTime.Year)
                     {
-                          RouteAirlinerClass rClass = ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(cType);
+                          RouteAirlinerClass rClass = ((PassengerRoute)this.Route.Route).GetRouteAirlinerClass(cType);
                           var mClass = new MVVMRouteClass(cType, rClass.Seating, rClass.FarePrice);
 
                           this.Classes.Add(mClass);
@@ -128,7 +129,7 @@
 
                 if (this.Route.Route.HasAirliner)
                 {
-                    this.Route.Route.getAirliners().ForEach(a => a.RemoveRoute(this.Route.Route));
+                    this.Route.Route.GetAirliners().ForEach(a => a.RemoveRoute(this.Route.Route));
                 }
 
                 var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
@@ -150,14 +151,14 @@
             {
                 foreach (MVVMRouteClass rac in this.Classes)
                 {
-                    ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
+                    ((PassengerRoute)this.Route.Route).GetRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
 
-                    ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(rac.Type).Facilities.Clear();
+                    ((PassengerRoute)this.Route.Route).GetRouteAirlinerClass(rac.Type).Facilities.Clear();
 
                     foreach (MVVMRouteFacility facility in rac.Facilities)
                     {
-                        ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(rac.Type)
-                            .addFacility(facility.SelectedFacility);
+                        ((PassengerRoute)this.Route.Route).GetRouteAirlinerClass(rac.Type)
+                            .AddFacility(facility.SelectedFacility);
                     }
                 }
             }
@@ -172,14 +173,14 @@
             {
                 foreach (MVVMRouteClass rac in this.Classes)
                 {
-                    ((CombiRoute)this.Route.Route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
+                    ((CombiRoute)this.Route.Route).GetRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
 
-                    ((CombiRoute)this.Route.Route).getRouteAirlinerClass(rac.Type).Facilities.Clear();
+                    ((CombiRoute)this.Route.Route).GetRouteAirlinerClass(rac.Type).Facilities.Clear();
 
                     foreach (MVVMRouteFacility facility in rac.Facilities)
                     {
-                        ((CombiRoute)this.Route.Route).getRouteAirlinerClass(rac.Type)
-                            .addFacility(facility.SelectedFacility);
+                        ((CombiRoute)this.Route.Route).GetRouteAirlinerClass(rac.Type)
+                            .AddFacility(facility.SelectedFacility);
                     }
                 }
 

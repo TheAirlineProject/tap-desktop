@@ -1,4 +1,5 @@
 ﻿using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
@@ -8,7 +9,6 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     using System.Windows.Media;
 
     using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
 
@@ -51,7 +51,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             this.Brush = brush;
             this.FlightTime = MathHelpers.GetFlightTime(this.Route.Destination1, this.Route.Destination2, type);
 
-            this.Airliners = this.Route.getAirliners().Count;
+            this.Airliners = this.Route.GetAirliners().Count;
         }
 
         #endregion

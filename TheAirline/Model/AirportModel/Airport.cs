@@ -7,12 +7,12 @@ using System.Runtime.Serialization;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using TheAirline.Model.PassengerModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.AirportModel
 {
@@ -478,7 +478,7 @@ namespace TheAirline.Model.AirportModel
             score += 7*airportRoutes.Count();
             score += 6
                      *airportRoutes.Where(r => r.Type == Route.RouteType.Passenger)
-                                   .Sum(r => ((PassengerRoute) r).getServiceLevel(AirlinerClass.ClassType.EconomyClass));
+                                   .Sum(r => ((PassengerRoute) r).GetServiceLevel(AirlinerClass.ClassType.EconomyClass));
 
             score +=
                 airline.Alliances.Sum(

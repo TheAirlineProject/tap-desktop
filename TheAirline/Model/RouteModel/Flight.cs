@@ -1,16 +1,15 @@
-﻿using TheAirline.Model.GeneralModel.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
-namespace TheAirline.Model.AirlinerModel.RouteModel
+namespace TheAirline.Model.RouteModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Runtime.Serialization;
-
-    using TheAirline.Model.AirportModel;
-    using TheAirline.Model.GeneralModel;
-
     /*! Flight.
   * This is used for a actually flight.
   * The class needs parameter for the time table entry which the flight flights after
@@ -23,39 +22,39 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
         public Flight(RouteTimeTableEntry entry)
         {
-            this.Entry = entry;
+            Entry = entry;
 
-            if (this.Entry.TimeTable.Route.Type == Route.RouteType.Passenger
-                || this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed || this.Entry.TimeTable.Route.Type == Route.RouteType.Helicopter)
+            if (Entry.TimeTable.Route.Type == Route.RouteType.Passenger
+                || Entry.TimeTable.Route.Type == Route.RouteType.Mixed || Entry.TimeTable.Route.Type == Route.RouteType.Helicopter)
             {
-                this.Classes = new List<FlightAirlinerClass>();
+                Classes = new List<FlightAirlinerClass>();
 
-                if (this.Entry != null)
+                if (Entry != null)
                 {
-                    this.Airliner = this.Entry.Airliner;
-                    this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry);
-                    this.ScheduledFlightTime = this.FlightTime;
+                    Airliner = Entry.Airliner;
+                    FlightTime = MathHelpers.ConvertEntryToDate(Entry);
+                    ScheduledFlightTime = FlightTime;
                 }
 
-                this.IsOnTime = true;
+                IsOnTime = true;
             }
-            if (this.Entry.TimeTable.Route.Type == Route.RouteType.Cargo
-                || this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed)
+            if (Entry.TimeTable.Route.Type == Route.RouteType.Cargo
+                || Entry.TimeTable.Route.Type == Route.RouteType.Mixed)
             {
-                if (this.Entry != null)
+                if (Entry != null)
                 {
-                    this.Airliner = this.Entry.Airliner;
-                    this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry);
-                    this.ScheduledFlightTime = this.FlightTime;
+                    Airliner = Entry.Airliner;
+                    FlightTime = MathHelpers.ConvertEntryToDate(Entry);
+                    ScheduledFlightTime = FlightTime;
                 }
 
-                this.IsOnTime = true;
+                IsOnTime = true;
             }
 
-            this.DistanceToDestination =
+            DistanceToDestination =
                 MathHelpers.GetDistance(
-                    this.Entry.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
-                    this.Entry.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate());
+                    Entry.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                    Entry.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate());
         }
 
         protected Flight(SerializationInfo info, StreamingContext ctxt)
@@ -63,15 +62,15 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             int version = info.GetInt16("version");
 
             IEnumerable<FieldInfo> fields =
-                this.GetType()
+                GetType()
                     .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+                    .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null);
 
             IList<PropertyInfo> props =
                 new List<PropertyInfo>(
-                    this.GetType()
+                    GetType()
                         .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+                        .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null));
 
             IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
@@ -79,37 +78,37 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             {
                 MemberInfo prop =
                     propsAndFields.FirstOrDefault(
-                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+                        p => ((Versioning) p.GetCustomAttribute(typeof (Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
                     {
-                        ((FieldInfo)prop).SetValue(this, entry.Value);
+                        ((FieldInfo) prop).SetValue(this, entry.Value);
                     }
                     else
                     {
-                        ((PropertyInfo)prop).SetValue(this, entry.Value);
+                        ((PropertyInfo) prop).SetValue(this, entry.Value);
                     }
                 }
             }
 
             IEnumerable<MemberInfo> notSetProps =
-                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+                propsAndFields.Where(p => ((Versioning) p.GetCustomAttribute(typeof (Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning) notSet.GetCustomAttribute(typeof (Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
                     {
-                        ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                        ((FieldInfo) notSet).SetValue(this, ver.DefaultValue);
                     }
                     else
                     {
-                        ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
+                        ((PropertyInfo) notSet).SetValue(this, ver.DefaultValue);
                     }
                 }
             }
@@ -136,14 +135,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
         public DateTime ExpectedLanding
         {
-            get
-            {
-                return this.getExpectedLandingTime();
-            }
-            set
-            {
-                ;
-            }
+            get { return GetExpectedLandingTime(); }
         }
 
         [Versioning("flighttime")]
@@ -163,16 +155,16 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             info.AddValue("version", 1);
 
-            Type myType = this.GetType();
+            Type myType = GetType();
 
             IEnumerable<FieldInfo> fields =
                 myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+                      .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null);
 
             IList<PropertyInfo> props =
                 new List<PropertyInfo>(
                     myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+                          .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null));
 
             IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
@@ -182,82 +174,82 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                 if (member is FieldInfo)
                 {
-                    propValue = ((FieldInfo)member).GetValue(this);
+                    propValue = ((FieldInfo) member).GetValue(this);
                 }
                 else
                 {
-                    propValue = ((PropertyInfo)member).GetValue(this, null);
+                    propValue = ((PropertyInfo) member).GetValue(this, null);
                 }
 
-                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning) member.GetCustomAttribute(typeof (Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
         }
 
         //adds some delay minutes to the flight
-        public virtual void addDelayMinutes(int minutes)
+        public virtual void AddDelayMinutes(int minutes)
         {
-            this.FlightTime = this.FlightTime.AddMinutes(minutes);
+            FlightTime = FlightTime.AddMinutes(minutes);
         }
 
         //returns the scheduled expected landing time
 
         //returns the cargo price
-        public double getCargoPrice()
+        public double GetCargoPrice()
         {
-            if (this.Entry.TimeTable.Route is CargoRoute)
-                return ((CargoRoute)this.Entry.TimeTable.Route).PricePerUnit;
+            if (Entry.TimeTable.Route is CargoRoute)
+                return ((CargoRoute) Entry.TimeTable.Route).PricePerUnit;
             else
-                return ((CombiRoute)this.Entry.TimeTable.Route).PricePerUnit;
+                return ((CombiRoute) Entry.TimeTable.Route).PricePerUnit;
         }
 
-        public Airport getDepartureAirport()
+        public Airport GetDepartureAirport()
         {
-            return this.getNextDestination();
+            return GetNextDestination();
         }
 
-        public DateTime getExpectedLandingTime()
+        public DateTime GetExpectedLandingTime()
         {
             return
-                this.FlightTime.Add(
+                FlightTime.Add(
                     MathHelpers.GetFlightTime(
-                        this.Entry.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate(),
-                        this.Entry.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
-                        this.Airliner.Airliner.Type));
+                        Entry.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                        Entry.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                        Airliner.Airliner.Type));
         }
 
         //returns the total number of passengers
 
         //returns the flight airliner class for a specific class type
-        public FlightAirlinerClass getFlightAirlinerClass(AirlinerClass.ClassType type)
+        public FlightAirlinerClass GetFlightAirlinerClass(AirlinerClass.ClassType type)
         {
-            return this.Classes.Find(c => c.AirlinerClass.Type == type);
+            return Classes.Find(c => c.AirlinerClass.Type == type);
         }
 
         //returns the next destination
-        public Airport getNextDestination()
+        public Airport GetNextDestination()
         {
-            return this.Entry.Destination.Airport == this.Entry.TimeTable.Route.Destination1
-                ? this.Entry.TimeTable.Route.Destination2
-                : this.Entry.TimeTable.Route.Destination1;
+            return Entry.Destination.Airport == Entry.TimeTable.Route.Destination1
+                       ? Entry.TimeTable.Route.Destination2
+                       : Entry.TimeTable.Route.Destination1;
         }
 
-        public DateTime getScheduledLandingTime()
+        public DateTime GetScheduledLandingTime()
         {
             return
-                this.ScheduledFlightTime.Add(
+                ScheduledFlightTime.Add(
                     MathHelpers.GetFlightTime(
-                        this.Entry.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate(),
-                        this.Entry.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
-                        this.Airliner.Airliner.Type));
+                        Entry.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                        Entry.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                        Airliner.Airliner.Type));
         }
 
-        public int getTotalPassengers()
+        public int GetTotalPassengers()
         {
             int passengers = 0;
 
-            foreach (FlightAirlinerClass aClass in this.Classes)
+            foreach (FlightAirlinerClass aClass in Classes)
             {
                 passengers += aClass.Passengers;
             }
@@ -273,17 +265,17 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the departure location
 
         //returns if it is a cargo flight
-        public Boolean isCargoFlight()
+        public Boolean IsCargoFlight()
         {
-            return this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed
-                   || this.Entry.TimeTable.Route.Type == Route.RouteType.Cargo;
+            return Entry.TimeTable.Route.Type == Route.RouteType.Mixed
+                   || Entry.TimeTable.Route.Type == Route.RouteType.Cargo;
         }
 
-        public Boolean isPassengerFlight()
+        public Boolean IsPassengerFlight()
         {
-            return this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed
-                   || this.Entry.TimeTable.Route.Type == Route.RouteType.Passenger
-                   || this.Entry.TimeTable.Route.Type == Route.RouteType.Helicopter;
+            return Entry.TimeTable.Route.Type == Route.RouteType.Mixed
+                   || Entry.TimeTable.Route.Type == Route.RouteType.Passenger
+                   || Entry.TimeTable.Route.Type == Route.RouteType.Helicopter;
         }
 
         #endregion

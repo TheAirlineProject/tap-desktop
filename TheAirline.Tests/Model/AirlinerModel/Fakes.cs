@@ -1,10 +1,11 @@
-﻿namespace TheAirline.Tests.Model.AirlinerModel
+﻿using TheAirline.Model.RouteModel;
+
+namespace TheAirline.Tests.Model.AirlinerModel
 {
     using System;
 
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
 
     internal static class Fakes

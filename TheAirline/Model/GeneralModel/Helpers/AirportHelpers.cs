@@ -4,11 +4,11 @@ using System.Linq;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using TheAirline.Model.PassengerModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -219,7 +219,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         && a.Produced.To >= GameObject.GetInstance().GameTime).Max(a => a.MinRunwaylength);
 
                 List<Route> airportRoutes = GetAirportRoutes(airport);
-                IEnumerable<FleetAirliner> routeAirliners = airportRoutes.SelectMany(r => r.getAirliners());
+                IEnumerable<FleetAirliner> routeAirliners = airportRoutes.SelectMany(r => r.GetAirliners());
 
                 long longestRunwayInUse = routeAirliners.Count() > 0
                                               ? routeAirliners.Max(a => a.Airliner.MinRunwaylength)
@@ -604,7 +604,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     entry.Time.Minutes,
                     entry.Time.Seconds);
                 TimeSpan entryLandingTime =
-                    entryTakeoffTime.Add(entry.TimeTable.Route.getFlightTime(entry.Airliner.Airliner.Type));
+                    entryTakeoffTime.Add(entry.TimeTable.Route.GetFlightTime(entry.Airliner.Airliner.Type));
 
                 if (entryLandingTime.Days > 6)
                 {

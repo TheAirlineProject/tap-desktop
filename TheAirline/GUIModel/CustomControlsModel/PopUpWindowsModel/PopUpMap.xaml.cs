@@ -16,13 +16,13 @@ using System.Windows.Shapes;
 using System.Xml;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlineModel;
 using System.ComponentModel;
 using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {

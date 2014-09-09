@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using TheAirline.Model.PassengerModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -2888,7 +2888,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the cargo for a flight
         public static double GetFlightCargo(FleetAirliner airliner)
         {
-            Airport airportCurrent = airliner.CurrentFlight.getDepartureAirport();
+            Airport airportCurrent = airliner.CurrentFlight.GetDepartureAirport();
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
 
             return GetFlightCargo(airportCurrent, airportDestination, airliner);
@@ -2953,7 +2953,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 totalCapacity =
                     routes.Where(r => r.HasAirliner)
-                          .Sum(r => r.getAirliners().Max(a => a.Airliner.Type is AirlinerCombiType ? ((AirlinerCombiType) a.Airliner.Type).CargoSize : ((AirlinerCargoType) a.Airliner.Type).CargoSize));
+                          .Sum(r => r.GetAirliners().Max(a => a.Airliner.Type is AirlinerCombiType ? ((AirlinerCombiType) a.Airliner.Type).CargoSize : ((AirlinerCargoType) a.Airliner.Type).CargoSize));
                 //SelectMany(r => r.Stopovers.Where(s=>s.Legs.Count >0))).Sum(s=>s.;//a => a.Routes.SelectMany(r=>r.Stopovers.SelectMany(s=>s.Legs.Where(l=>r.HasAirliner && (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent))).Sum(r=>r.getAirliners().Max(a=>a.Airliner.getTotalSeatCapacity()));
             }
             else
@@ -2965,7 +2965,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double capacityPercent = cargoDemand > totalCapacity ? 1 : cargoDemand/totalCapacity;
 
             double basicCargoPrice = GetCargoPrice(airportCurrent, airportDestination);
-            double cargoPrice = airliner.CurrentFlight.getCargoPrice();
+            double cargoPrice = airliner.CurrentFlight.GetCargoPrice();
 
             double priceDiff = basicCargoPrice/cargoPrice;
 
@@ -3116,7 +3116,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 totalCapacity =
                     routes.Where(r => r.HasAirliner)
-                          .Sum(r => r.getAirliners().Max(a => a.Airliner.GetTotalSeatCapacity()));
+                          .Sum(r => r.GetAirliners().Max(a => a.Airliner.GetTotalSeatCapacity()));
                 //SelectMany(r => r.Stopovers.Where(s=>s.Legs.Count >0))).Sum(s=>s.;//a => a.Routes.SelectMany(r=>r.Stopovers.SelectMany(s=>s.Legs.Where(l=>r.HasAirliner && (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent))).Sum(r=>r.getAirliners().Max(a=>a.Airliner.getTotalSeatCapacity()));
             }
             else
@@ -3131,8 +3131,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (Route route in routes)
             {
-                double level = ((PassengerRoute) route).getServiceLevel(type)
-                               /((PassengerRoute) route).getFarePrice(type);
+                double level = ((PassengerRoute) route).GetServiceLevel(type)
+                               /((PassengerRoute) route).GetFarePrice(type);
 
                 rations.Add(route, level);
             }
@@ -3186,7 +3186,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the number of passengers for a flight
         public static int GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
-            Airport airportCurrent = airliner.CurrentFlight.getDepartureAirport();
+            Airport airportCurrent = airliner.CurrentFlight.GetDepartureAirport();
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
 
             return GetFlightPassengers(airportCurrent, airportDestination, airliner, type);
@@ -3531,7 +3531,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(airportCurrent, tDest);
 
-                if (route.getDistance() + legDistance < totalDistance*3 && directRoutes < 2)
+                if (route.GetDistance() + legDistance < totalDistance*3 && directRoutes < 2)
                 {
                     double demand = airportCurrent.GetDestinationPassengersRate(tDest, type);
                     demandDestination += (demand*0.25);
@@ -3548,7 +3548,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(tDest, airportDestination);
 
-                if (route.getDistance() + legDistance < totalDistance*3 && directRoutes < 2)
+                if (route.GetDistance() + legDistance < totalDistance*3 && directRoutes < 2)
                 {
                     double demand = tDest.GetDestinationPassengersRate(airportDestination, type);
                     demandOrigin += (demand*0.25);
@@ -3619,7 +3619,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(airportCurrent, tDest);
 
-                    if (route.getDistance() + legDistance < totalDistance*3 && directRoutes < 2)
+                    if (route.GetDistance() + legDistance < totalDistance*3 && directRoutes < 2)
                     {
                         double demand = airportCurrent.GetDestinationPassengersRate(tDest, type);
                         demandDestination += demand;
@@ -3636,7 +3636,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(tDest, airportDestination);
 
-                    if (route.getDistance() + legDistance < totalDistance*3 && directRoutes < 2)
+                    if (route.GetDistance() + legDistance < totalDistance*3 && directRoutes < 2)
                     {
                         double demand = tDest.GetDestinationPassengersRate(airportDestination, type);
                         demandOrigin += demand;

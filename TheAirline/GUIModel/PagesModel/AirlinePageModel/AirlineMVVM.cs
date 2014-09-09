@@ -1,4 +1,5 @@
 using TheAirline.Model.GeneralModel.InvoicesModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
@@ -19,7 +20,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     using TheAirline.Model.AirlineModel.AirlineCooperationModel;
     using TheAirline.Model.AirlineModel.SubsidiaryModel;
     using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
@@ -671,7 +671,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             this.CabinCrew =
                 this.Airline.Routes.Where(r => r.Type == Route.RouteType.Passenger)
-                    .Sum(r => ((PassengerRoute)r).getTotalCabinCrew());
+                    .Sum(r => ((PassengerRoute)r).GetTotalCabinCrew());
             this.SupportCrew =
                 this.Airline.Airports.SelectMany(a => a.GetCurrentAirportFacilities(this.Airline))
                     .Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support)
@@ -1435,7 +1435,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             if (this.Route.Type == Route.RouteType.Passenger)
             {
                 this.PriceIndex =
-                    ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).FarePrice;
+                    ((PassengerRoute)this.Route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).FarePrice;
             }
             else if (this.Route.Type == Route.RouteType.Cargo)
             {
@@ -1444,13 +1444,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             else if (this.Route.Type == Route.RouteType.Mixed)
             {
                 this.PriceIndex =
-                    ((CombiRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).FarePrice
+                    ((CombiRoute)this.Route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).FarePrice
                     + ((CombiRoute)this.Route).PricePerUnit;
             }
-            else if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter)
+            else if (this.Route.Type == Route.RouteType.Helicopter)
             {
                 this.PriceIndex =
-                ((HelicopterRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).FarePrice;
+                ((HelicopterRoute)this.Route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).FarePrice;
 
             }
         }

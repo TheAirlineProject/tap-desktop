@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
+﻿using TheAirline.Model.RouteModel;
+
+namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -8,7 +10,6 @@
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
 
     /// <summary>

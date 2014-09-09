@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using TheAirline.Model.AirlineModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.GeneralModel
 {
