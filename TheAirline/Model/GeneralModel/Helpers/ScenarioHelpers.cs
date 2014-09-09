@@ -458,11 +458,11 @@
                 FleetAirliner fAirliner = AirlineHelpers.CreateAirliner(airline, saroute.AirlinerType);
                 airline.AddAirliner(fAirliner);
 
-                fAirliner.addRoute(route);
+                fAirliner.AddRoute(route);
 
                 AIHelpers.CreateRouteTimeTable(route, fAirliner);
 
-                fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                fAirliner.Status = FleetAirliner.AirlinerStatus.ToRouteStart;
                 AirlineHelpers.HireAirlinerPilots(fAirliner);
 
                 route.LastUpdated = GameObject.GetInstance().GameTime;

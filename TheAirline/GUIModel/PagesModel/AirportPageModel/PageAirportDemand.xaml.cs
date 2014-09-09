@@ -120,7 +120,7 @@
 
             var demands2 = new List<KeyValuePair<string, int>>();
 
-            demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1031"), this.SelectedAirport.Destination.getDestinationPassengersRate(this.Airport.Airport, AirlinerClass.ClassType.Economy_Class)));
+            demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1031"), this.SelectedAirport.Destination.getDestinationPassengersRate(this.Airport.Airport, AirlinerClass.ClassType.EconomyClass)));
             demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1032"), this.SelectedAirport.Destination.getDestinationCargoRate(this.Airport.Airport)));
 
             var demandSeries = new List<SeriesData>();
@@ -139,7 +139,7 @@
 
             foreach (Airline airline in airlines)
             {
-                int airlineSeats = airline.Routes.Where(r=>r.Destination1 == this.SelectedAirport.Destination || r.Destination2 == this.SelectedAirport.Destination).Sum(r=>r.TimeTable.Entries.Sum(en=>en.Airliner.Airliner.getTotalSeatCapacity()));
+                int airlineSeats = airline.Routes.Where(r=>r.Destination1 == this.SelectedAirport.Destination || r.Destination2 == this.SelectedAirport.Destination).Sum(r=>r.TimeTable.Entries.Sum(en=>en.Airliner.Airliner.GetTotalSeatCapacity()));
 
                 routes.Add(new KeyValuePair<string,int>(airline.Profile.Name,airlineSeats / 7));
             }

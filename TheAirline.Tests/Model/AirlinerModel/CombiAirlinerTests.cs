@@ -28,7 +28,7 @@
         [TestMethod]
         public void EconomyClassAndCargo()
         {
-            this.combiAirliner.addAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 98));
+            this.combiAirliner.AddAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.EconomyClass, 98));
 
             const string Expected = "0F | 0C | 98Y | 40 t";
             string actual = this.combiAirliner.CabinConfiguration;

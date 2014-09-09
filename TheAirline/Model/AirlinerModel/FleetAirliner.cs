@@ -1,17 +1,16 @@
-﻿namespace TheAirline.Model.AirlinerModel
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.PilotModel;
+
+namespace TheAirline.Model.AirlinerModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Runtime.Serialization;
-
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.AirportModel;
-    using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.PilotModel;
-
     [Serializable]
     public class FleetAirliner : ISerializable
     {
@@ -24,32 +23,32 @@
             Airliner airliner,
             Airport homebase)
         {
-            this.Airliner = airliner;
-            this.Purchased = purchased;
-            this.PurchasedDate = purchasedDate;
-            this.Airliner.Airline = airline;
-            this.Homebase = homebase;
-            this.Name = airliner.TailNumber;
-            this.Statistics = new AirlinerStatistics(this);
-            this.LastCMaintenance = this.Airliner.BuiltDate;
-            this.LastAMaintenance = this.Airliner.BuiltDate;
-            this.LastBMaintenance = this.Airliner.BuiltDate;
-            this.LastDMaintenance = this.Airliner.BuiltDate;
-            this.Status = AirlinerStatus.Stopped;
-            this.MaintRoutes = new List<Route>();
+            Airliner = airliner;
+            Purchased = purchased;
+            PurchasedDate = purchasedDate;
+            Airliner.Airline = airline;
+            Homebase = homebase;
+            Name = airliner.TailNumber;
+            Statistics = new AirlinerStatistics(this);
+            LastCMaintenance = Airliner.BuiltDate;
+            LastAMaintenance = Airliner.BuiltDate;
+            LastBMaintenance = Airliner.BuiltDate;
+            LastDMaintenance = Airliner.BuiltDate;
+            Status = AirlinerStatus.Stopped;
+            MaintRoutes = new List<Route>();
 
-            this.CurrentPosition = this.Homebase;
-                //new GeoCoordinate(this.Homebase.Profile.Coordinates.Latitude,this.Homebase.Profile.Coordinates.Longitude);
+            CurrentPosition = Homebase;
+            //new GeoCoordinate(this.Homebase.Profile.Coordinates.Latitude,this.Homebase.Profile.Coordinates.Longitude);
 
-            this.Routes = new List<Route>();
-            this.Pilots = new List<Pilot>();
-            this.InsurancePolicies = new List<AirlinerInsurance>();
-            this.MaintenanceHistory = new Dictionary<Invoice, string>();
+            Routes = new List<Route>();
+            Pilots = new List<Pilot>();
+            InsurancePolicies = new List<AirlinerInsurance>();
+            MaintenanceHistory = new Dictionary<Invoice, string>();
 
-            this.Data = new OperatingData();
+            Data = new OperatingData();
 
-            if (this.Purchased == PurchasedType.Bought || this.Purchased == PurchasedType.BoughtDownPayment)
-                this.Airliner.Owner = this.Airliner.Airline;
+            if (Purchased == PurchasedType.Bought || Purchased == PurchasedType.BoughtDownPayment)
+                Airliner.Owner = Airliner.Airline;
         }
 
         private FleetAirliner(SerializationInfo info, StreamingContext ctxt)
@@ -57,15 +56,15 @@
             int version = info.GetInt16("version");
 
             IEnumerable<FieldInfo> fields =
-                this.GetType()
+                GetType()
                     .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+                    .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null);
 
             IList<PropertyInfo> props =
                 new List<PropertyInfo>(
-                    this.GetType()
+                    GetType()
                         .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+                        .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null));
 
             IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
@@ -73,43 +72,42 @@
             {
                 MemberInfo prop =
                     propsAndFields.FirstOrDefault(
-                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+                        p => ((Versioning) p.GetCustomAttribute(typeof (Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
                     {
-                        ((FieldInfo)prop).SetValue(this, entry.Value);
+                        ((FieldInfo) prop).SetValue(this, entry.Value);
                     }
                     else
                     {
-                        ((PropertyInfo)prop).SetValue(this, entry.Value);
+                        ((PropertyInfo) prop).SetValue(this, entry.Value);
                     }
                 }
             }
 
             IEnumerable<MemberInfo> notSetProps =
-                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+                propsAndFields.Where(p => ((Versioning) p.GetCustomAttribute(typeof (Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning) notSet.GetCustomAttribute(typeof (Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
                     {
-                        ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                        ((FieldInfo) notSet).SetValue(this, ver.DefaultValue);
                     }
                     else
                     {
-                        ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
+                        ((PropertyInfo) notSet).SetValue(this, ver.DefaultValue);
                     }
                 }
             }
             if (version == 1)
-                this.Data = new OperatingData();
-           
+                Data = new OperatingData();
         }
 
         #endregion
@@ -120,17 +118,17 @@
         {
             Stopped,
 
-            On_route,
+            OnRoute,
 
-            On_service,
+            OnService,
 
-            On_charter,
+            OnCharter,
 
             Resting,
 
-            To_homebase,
+            ToHomebase,
 
-            To_route_start
+            ToRouteStart
         }
 
         public enum PurchasedType
@@ -176,15 +174,12 @@
         [Versioning("groundedto")]
         public DateTime GroundedToDate { get; set; }
 
-        [Versioning("data",Version=2)]
+        [Versioning("data", Version = 2)]
         public OperatingData Data { get; set; }
 
         public Boolean HasRoute
         {
-            get
-            {
-                return this.Routes.Count > 0;
-            }
+            get { return Routes.Count > 0; }
         }
 
         [Versioning("homebase")]
@@ -216,10 +211,7 @@
 
         public int NumberOfPilots
         {
-            get
-            {
-                return this.Pilots.Count;
-            }
+            get { return Pilots.Count; }
         }
 
         [Versioning("oosdate")]
@@ -255,24 +247,24 @@
         [Versioning("status")]
         public AirlinerStatus Status { get; set; }
 
-         #endregion
+        #endregion
 
         #region Public Methods and Operators
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 3);
-            
-            Type myType = this.GetType();
+
+            Type myType = GetType();
 
             IEnumerable<FieldInfo> fields =
                 myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+                      .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null);
 
             IList<PropertyInfo> props =
                 new List<PropertyInfo>(
                     myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+                          .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null));
 
             IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
@@ -282,25 +274,25 @@
 
                 if (member is FieldInfo)
                 {
-                    propValue = ((FieldInfo)member).GetValue(this);
+                    propValue = ((FieldInfo) member).GetValue(this);
                 }
                 else
                 {
-                    propValue = ((PropertyInfo)member).GetValue(this, null);
+                    propValue = ((PropertyInfo) member).GetValue(this, null);
                 }
 
-                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning) member.GetCustomAttribute(typeof (Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
         }
 
         //adds a pilot to the airliner
-        public void addPilot(Pilot pilot)
+        public void AddPilot(Pilot pilot)
         {
-            lock (this.Pilots)
+            lock (Pilots)
             {
-                this.Pilots.Add(pilot);
+                Pilots.Add(pilot);
                 pilot.Airliner = this;
             }
         }
@@ -308,24 +300,24 @@
         //removes a pilot from the airliner
 
         //adds a route to the airliner
-        public void addRoute(Route route)
+        public void AddRoute(Route route)
         {
-            this.Routes.Add(route);
+            Routes.Add(route);
         }
 
-        public void removePilot(Pilot pilot)
+        public void RemovePilot(Pilot pilot)
         {
-            lock (this.Pilots)
+            lock (Pilots)
             {
-                this.Pilots.Remove(pilot);
+                Pilots.Remove(pilot);
                 pilot.Airliner = null;
             }
         }
 
         //removes a route from the airliner
-        public void removeRoute(Route route)
+        public void RemoveRoute(Route route)
         {
-            this.Routes.Remove(route);
+            Routes.Remove(route);
             route.TimeTable.Entries.RemoveAll(e => e.Airliner == this);
         }
 

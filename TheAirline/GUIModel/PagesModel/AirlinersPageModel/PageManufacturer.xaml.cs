@@ -159,7 +159,7 @@
                     }
                     else
                     {
-                        double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
+                        double terminationFee = GameObject.GetInstance().HumanAirline.Contract.GetTerminationFee();
                         WPFMessageBoxResult result =
                             WPFMessageBox.Show(
                                 Translator.GetInstance().GetString("MessageBox", "2010"),
@@ -236,19 +236,19 @@
                                                 .HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(),
                                             deliveryDate);
 
-                                        airliner.clearAirlinerClasses();
+                                        airliner.ClearAirlinerClasses();
 
                                         foreach (AirlinerClass aClass in order.Classes)
                                         {
                                             var tClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
                                             tClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
 
-                                            foreach (AirlinerFacility facility in aClass.getFacilities())
+                                            foreach (AirlinerFacility facility in aClass.GetFacilities())
                                             {
-                                                tClass.setFacility(GameObject.GetInstance().HumanAirline, facility);
+                                                tClass.SetFacility(GameObject.GetInstance().HumanAirline, facility);
                                             }
 
-                                            airliner.addAirlinerClass(tClass);
+                                            airliner.AddAirlinerClass(tClass);
                                         }
 
                                         airliner.EngineType = order.Engine;
@@ -353,7 +353,7 @@
             Boolean newContract = true;
             if (GameObject.GetInstance().HumanAirline.Contract != null)
             {
-                double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
+                double terminationFee = GameObject.GetInstance().HumanAirline.Contract.GetTerminationFee();
                 WPFMessageBoxResult result = WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2010"),
                     string.Format(
@@ -443,19 +443,19 @@
                     var pType = FleetAirliner.PurchasedType.Bought;
                     GameObject.GetInstance().HumanAirline.AddAirliner(pType, airliner, order.Homebase);
 
-                    airliner.clearAirlinerClasses();
+                    airliner.ClearAirlinerClasses();
 
                     foreach (AirlinerClass aClass in order.Classes)
                     {
                         var tClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
                         tClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
 
-                        foreach (AirlinerFacility facility in aClass.getFacilities())
+                        foreach (AirlinerFacility facility in aClass.GetFacilities())
                         {
-                            tClass.setFacility(GameObject.GetInstance().HumanAirline, facility);
+                            tClass.SetFacility(GameObject.GetInstance().HumanAirline, facility);
                         }
 
-                        airliner.addAirlinerClass(tClass);
+                        airliner.AddAirlinerClass(tClass);
                     }
 
                     airliner.EngineType = order.Engine;

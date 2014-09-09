@@ -808,7 +808,7 @@ namespace TheAirline.Model.AirlineModel
 
             foreach (FleetAirliner airliner in fleet)
             {
-                value += airliner.Airliner.getPrice();
+                value += airliner.Airliner.GetPrice();
             }
 
             var facilities = new List<AirlineFacility>(Facilities);
@@ -928,7 +928,7 @@ namespace TheAirline.Model.AirlineModel
 
             if (pilot.Airliner != null)
             {
-                pilot.Airliner.removePilot(pilot);
+                pilot.Airliner.RemovePilot(pilot);
             }
         }
 

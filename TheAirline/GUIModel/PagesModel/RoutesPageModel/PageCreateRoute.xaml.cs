@@ -77,7 +77,7 @@
                 0,
                 0,
                 0,
-                AirlinerType.BodyType.Single_Aisle,
+                AirlinerType.BodyType.SingleAisle,
                 AirlinerType.TypeRange.Regional,
                 AirlinerType.TypeOfEngine.Jet,
                 new Period<DateTime>(DateTime.Now, DateTime.Now),
@@ -636,7 +636,7 @@
                 }
 
                 foreach (MVVMRouteClass rc in this.Classes)
-                    rc.IsUseable = rc.Type == AirlinerClass.ClassType.Economy_Class;
+                    rc.IsUseable = rc.Type == AirlinerClass.ClassType.EconomyClass;
 
 
             }

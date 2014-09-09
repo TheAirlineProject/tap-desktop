@@ -101,7 +101,7 @@
                 this.Airport.getDestinationDemands()
                     .Where(a => a != null && GeneralHelpers.IsAirportActive(a))
                     .OrderByDescending(
-                        a => this.Airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class));
+                        a => this.Airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.EconomyClass));
 
             IEnumerable<Airport> internationalDemand =
                 demands.Where(
@@ -119,7 +119,7 @@
                 this.IntlDemands.Add(
                     new DemandMVVM(
                         destination,
-                        this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),
+                        this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.EconomyClass),
                         (int)this.Airport.Profile.Pax,
                         this.Airport.getDestinationCargoRate(destination),MathHelpers.GetDistance(destination,this.Airport)));
             }
@@ -129,7 +129,7 @@
                 this.DomesticDemands.Add(
                     new DemandMVVM(
                         destination,
-                        this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),
+                        this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.EconomyClass),
                         (int)this.Airport.Profile.Pax,
                         this.Airport.getDestinationCargoRate(destination), MathHelpers.GetDistance(destination,this.Airport)));
             }

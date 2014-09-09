@@ -68,7 +68,7 @@
                 if (result == WPFMessageBoxResult.Yes)
                 {
                     pilot.Pilot.Airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
-                    pilot.Pilot.Airliner.removePilot(pilot.Pilot);
+                    pilot.Pilot.Airliner.RemovePilot(pilot.Pilot);
 
                     this.Airline.removePilot(pilot);
                 }

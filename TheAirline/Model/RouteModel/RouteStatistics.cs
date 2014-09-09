@@ -146,7 +146,7 @@
         public void addStatisticsValue(StatisticsType type, int value)
         {
             var aClass = new RouteAirlinerClass(
-                AirlinerClass.ClassType.Economy_Class,
+                AirlinerClass.ClassType.EconomyClass,
                 RouteAirlinerClass.SeatingType.Free_Seating,
                 0);
 
@@ -175,7 +175,7 @@
         public long getStatisticsValue(StatisticsType type)
         {
             var aClass = new RouteAirlinerClass(
-                AirlinerClass.ClassType.Economy_Class,
+                AirlinerClass.ClassType.EconomyClass,
                 RouteAirlinerClass.SeatingType.Free_Seating,
                 0);
 
@@ -215,7 +215,7 @@
         public void setStatisticsValue(StatisticsType type, int value)
         {
             var aClass = new RouteAirlinerClass(
-                AirlinerClass.ClassType.Economy_Class,
+                AirlinerClass.ClassType.EconomyClass,
                 RouteAirlinerClass.SeatingType.Free_Seating,
                 0);
 

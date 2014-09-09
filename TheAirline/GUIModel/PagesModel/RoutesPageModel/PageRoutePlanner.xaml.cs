@@ -667,7 +667,7 @@
                 var configuration = new AirlinerScheduleConfiguration(name, this.Airliner.Airliner.Type);
 
                 foreach (RouteTimeTableEntry entry in this.Entries)
-                    configuration.addEntry(entry);
+                    configuration.AddEntry(entry);
 
                 Configurations.AddConfiguration(configuration);
             }
@@ -684,8 +684,8 @@
 
             route.TimeTable = rtt;
 
-            this.Airliner.addRoute(route);
-            this.Airliner.Status = FleetAirliner.AirlinerStatus.On_charter;
+            this.Airliner.AddRoute(route);
+            this.Airliner.Status = FleetAirliner.AirlinerStatus.OnCharter;
 
             
 
@@ -706,7 +706,7 @@
 
                 if (!this.Airliner.Routes.Contains(entry.TimeTable.Route))
                 {
-                    this.Airliner.addRoute(entry.TimeTable.Route);
+                    this.Airliner.AddRoute(entry.TimeTable.Route);
                 }
             }
 
@@ -716,7 +716,7 @@
           
                 if (entry.TimeTable.Entries.Count(en => en.Airliner == this.Airliner) == 0 || entry.TimeTable.Entries.Count == 0)
                 {
-                    this.Airliner.removeRoute(entry.TimeTable.Route);
+                    this.Airliner.RemoveRoute(entry.TimeTable.Route);
                 }
             }
 
@@ -782,7 +782,7 @@
 
                     if (!this.Airliner.Routes.Contains(route))
                     {
-                        this.Airliner.addRoute(route);
+                        this.Airliner.AddRoute(route);
                         this.Routes.Add(route);
                     }
                 }

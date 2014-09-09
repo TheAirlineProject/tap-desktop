@@ -66,15 +66,15 @@
 
         public static int ClassToPriceFactor(AirlinerClass.ClassType type)
         {
-            if (type == AirlinerClass.ClassType.Business_Class)
+            if (type == AirlinerClass.ClassType.BusinessClass)
             {
                 return 3;
             }
-            if (type == AirlinerClass.ClassType.Economy_Class)
+            if (type == AirlinerClass.ClassType.EconomyClass)
             {
                 return 1;
             }
-            if (type == AirlinerClass.ClassType.First_Class)
+            if (type == AirlinerClass.ClassType.FirstClass)
             {
                 return 6;
             }
@@ -89,18 +89,18 @@
             }
             if (distance >= 2000 && distance < 3500)
             {
-                return AirlinerType.TypeRange.Short_Range;
+                return AirlinerType.TypeRange.ShortRange;
             }
             if (distance >= 3500 && distance < 9000)
             {
-                return AirlinerType.TypeRange.Medium_Range;
+                return AirlinerType.TypeRange.MediumRange;
             }
             if (distance >= 9000)
             {
-                return AirlinerType.TypeRange.Long_Range;
+                return AirlinerType.TypeRange.LongRange;
             }
 
-            return AirlinerType.TypeRange.Medium_Range;
+            return AirlinerType.TypeRange.MediumRange;
         }
 
         public static void CreateBigImageCanvas()

@@ -3124,7 +3124,7 @@
             {
                 totalCapacity =
                     routes.Where(r => r.HasAirliner)
-                        .Sum(r => r.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity()));
+                        .Sum(r => r.getAirliners().Max(a => a.Airliner.GetTotalSeatCapacity()));
                     //SelectMany(r => r.Stopovers.Where(s=>s.Legs.Count >0))).Sum(s=>s.;//a => a.Routes.SelectMany(r=>r.Stopovers.SelectMany(s=>s.Legs.Where(l=>r.HasAirliner && (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent))).Sum(r=>r.getAirliners().Max(a=>a.Airliner.getTotalSeatCapacity()));
             }
             else
@@ -3179,8 +3179,8 @@
             var pax =
                 (int)
                     Math.Min(
-                        airliner.Airliner.getAirlinerClass(type).SeatingCapacity,
-                        (airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent
+                        airliner.Airliner.GetAirlinerClass(type).SeatingCapacity,
+                        (airliner.Airliner.GetAirlinerClass(type).SeatingCapacity * routeRatioPercent
                          * reputationPercent * capacityPercent * routePriceDiff * randomPax));
 
             if (pax < 0)
@@ -3278,7 +3278,7 @@
                 }
             }
 
-            return Math.Min(airliner.Airliner.getCargoCapacity(), cargo);
+            return Math.Min(airliner.Airliner.GetCargoCapacity(), cargo);
         }
 
         public static int GetStopoverFlightPassengers(
@@ -3314,7 +3314,7 @@
                 passengers = 0;
             }
 
-            return Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, passengers);
+            return Math.Min(airliner.Airliner.GetAirlinerClass(type).SeatingCapacity, passengers);
         }
 
         //returns the number of passengers for a flight on a stopover route
@@ -3374,7 +3374,7 @@
                 passengers = 0;
             }
 
-            return Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, passengers);
+            return Math.Min(airliner.Airliner.GetAirlinerClass(type).SeatingCapacity, passengers);
         }
 
         public static void SetCargoSize()

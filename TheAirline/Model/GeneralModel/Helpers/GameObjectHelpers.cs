@@ -690,7 +690,7 @@
 
             if (sinceLastService > serviceCheck)
             {
-                airliner.Status = FleetAirliner.AirlinerStatus.On_service;
+                airliner.Status = FleetAirliner.AirlinerStatus.OnService;
                 airliner.CurrentFlight.Entry.Destination = new RouteEntryDestination(airliner.Homebase, "Service", null);
             }
         }
@@ -767,7 +767,7 @@
                                         (r.Destination1 == homeAirport && r.Destination2 == a)
                                         || (r.Destination2 == homeAirport && r.Destination1 == a)))
                         .OrderByDescending(
-                            a => homeAirport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class))
+                            a => homeAirport.getDestinationPassengersRate(a, AirlinerClass.ClassType.EconomyClass))
                         .FirstOrDefault();
             }
 
@@ -1465,7 +1465,7 @@
                                         foreach (FleetAirliner fAirliner in routeToDelete.getAirliners())
                                         {
                                             fAirliner.Status = FleetAirliner.AirlinerStatus.Stopped;
-                                            fAirliner.removeRoute(routeToDelete);
+                                            fAirliner.RemoveRoute(routeToDelete);
                                         }
 
                                         contract.Airline.RemoveRoute(routeToDelete);
@@ -1616,7 +1616,7 @@
 
                     if (missingAirliners > 0)
                     {
-                        double missingFee = (airline.Contract.getTerminationFee() / (airline.Contract.Length * 2))
+                        double missingFee = (airline.Contract.GetTerminationFee() / (airline.Contract.Length * 2))
                                             * missingAirliners;
                         AirlineHelpers.AddAirlineInvoice(
                             airline,
@@ -2137,9 +2137,9 @@
                             airline.AddPilot(newPilot);
 
                             newPilot.Airliner = pilot.Airliner;
-                            newPilot.Airliner.addPilot(newPilot);
+                            newPilot.Airliner.AddPilot(newPilot);
 
-                            pilot.Airliner.removePilot(pilot);
+                            pilot.Airliner.RemovePilot(pilot);
                             pilot.Airliner = null;
                         }
                     }
@@ -2193,7 +2193,7 @@
                                         GameObject.GetInstance().HumanAirline.Pilots.Find(p => p.Airliner == null);
 
                                     newPilot.Airliner = pilot.Airliner;
-                                    newPilot.Airliner.addPilot(newPilot);
+                                    newPilot.Airliner.AddPilot(newPilot);
                                 }
                                 else
                                 {
@@ -2226,11 +2226,11 @@
 
                                     pilot.Airliner.Airliner.Airline.AddPilot(newPilot);
                                     newPilot.Airliner = pilot.Airliner;
-                                    newPilot.Airliner.addPilot(newPilot);
+                                    newPilot.Airliner.AddPilot(newPilot);
                                 }
                             }
                         }
-                        pilot.Airliner.removePilot(pilot);
+                        pilot.Airliner.RemovePilot(pilot);
                     }
                     else
                     {
@@ -2728,7 +2728,7 @@
                         airline,
                         GameObject.GetInstance().GameTime,
                         Invoice.InvoiceType.Maintenances,
-                        -airliner.Airliner.Type.getMaintenance());
+                        -airliner.Airliner.Type.GetMaintenance());
                 }
 
                 foreach (FeeType feeType in FeeTypes.GetTypes())
@@ -2907,7 +2907,7 @@
                 }
             }
 
-            airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+            airliner.Status = FleetAirliner.AirlinerStatus.ToRouteStart;
 
             if (airliner.CurrentFlight is StopoverFlight && !((StopoverFlight)airliner.CurrentFlight).IsLastTrip)
             {
@@ -2931,7 +2931,7 @@
                 }
                 else
                 {
-                    airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
+                    airliner.Status = FleetAirliner.AirlinerStatus.ToHomebase;
                 }
             }
         }
@@ -2942,7 +2942,7 @@
 
             airliner.CurrentPosition = airliner.CurrentFlight.Entry.Destination.Airport;
                 // new GeoCoordinate(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
-            airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+            airliner.Status = FleetAirliner.AirlinerStatus.ToRouteStart;
 
             double fdistance = MathHelpers.GetDistance(
                 airliner.CurrentFlight.Entry.Destination.Airport,
@@ -3073,7 +3073,7 @@
                 }
                 else
                 {
-                    airliner.Status = FleetAirliner.AirlinerStatus.On_route;
+                    airliner.Status = FleetAirliner.AirlinerStatus.OnRoute;
 
                     if (airliner.CurrentFlight.Entry.MainEntry == null)
                     {
@@ -3097,7 +3097,7 @@
                     }
                     else
                     {
-                        airliner.Status = FleetAirliner.AirlinerStatus.On_route;
+                        airliner.Status = FleetAirliner.AirlinerStatus.OnRoute;
                     }
                 }
             }
@@ -3108,7 +3108,7 @@
             airliner.CurrentPosition = airliner.CurrentFlight.Entry.Destination.Airport;
                 //new GeoCoordinate(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
             Airport airport = airliner.CurrentPosition;
-            airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
+            airliner.Status = FleetAirliner.AirlinerStatus.ToHomebase;
 
             if (
                 !airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Equals(
@@ -3134,16 +3134,16 @@
             {
                 switch (airliner.Status)
                 {
-                    case FleetAirliner.AirlinerStatus.On_route:
+                    case FleetAirliner.AirlinerStatus.OnRoute:
                         UpdateOnRouteAirliner(airliner);
                         break;
-                    case FleetAirliner.AirlinerStatus.On_service:
+                    case FleetAirliner.AirlinerStatus.OnService:
                         UpdateOnRouteAirliner(airliner);
                         break;
-                    case FleetAirliner.AirlinerStatus.To_homebase:
+                    case FleetAirliner.AirlinerStatus.ToHomebase:
                         UpdateOnRouteAirliner(airliner);
                         break;
-                    case FleetAirliner.AirlinerStatus.To_route_start:
+                    case FleetAirliner.AirlinerStatus.ToRouteStart:
                         UpdateToRouteStartAirliner(airliner);
                         break;
 
@@ -3202,15 +3202,15 @@
 
                 if (airliner.CurrentFlight.DistanceToDestination < 5)
                 {
-                    if (airliner.Status == FleetAirliner.AirlinerStatus.On_route)
+                    if (airliner.Status == FleetAirliner.AirlinerStatus.OnRoute)
                     {
                         SimulateLanding(airliner);
                     }
-                    else if (airliner.Status == FleetAirliner.AirlinerStatus.On_service)
+                    else if (airliner.Status == FleetAirliner.AirlinerStatus.OnService)
                     {
                         SimulateService(airliner);
                     }
-                    else if (airliner.Status == FleetAirliner.AirlinerStatus.To_homebase)
+                    else if (airliner.Status == FleetAirliner.AirlinerStatus.ToHomebase)
                     {
                         SimulateToHomebase(airliner);
                     }
@@ -3220,7 +3220,7 @@
             }
             else
             {
-                airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                airliner.Status = FleetAirliner.AirlinerStatus.ToRouteStart;
             }
         }
 
@@ -3233,7 +3233,7 @@
 
                 if (route == null)
                 {
-                    airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
+                    airliner.Status = FleetAirliner.AirlinerStatus.ToHomebase;
                 }
                 else
                 {
@@ -3271,7 +3271,7 @@
             }
             else
             {
-                airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
+                airliner.Status = FleetAirliner.AirlinerStatus.ToHomebase;
             }
         }
 

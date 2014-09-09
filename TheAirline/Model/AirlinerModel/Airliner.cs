@@ -1,24 +1,30 @@
-﻿namespace TheAirline.Model.AirlinerModel
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel;
+
+namespace TheAirline.Model.AirlinerModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Runtime.Serialization;
-
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.GeneralModel;
-
     //the class for an airliner
     [Serializable]
     public class Airliner : ISerializable
     {
-         #region Enums
-        public enum StatusTypes {Normal,Leasing}
+        #region Enums
+
+        public enum StatusTypes
+        {
+            Normal,
+            Leasing
+        }
+
         #endregion
+
         #region Fields
 
-        private readonly Random rnd = new Random();
+        private readonly Random _rnd = new Random();
 
         #endregion
 
@@ -26,31 +32,31 @@
 
         public Airliner(string id, AirlinerType type, string tailNumber, DateTime builtDate)
         {
-            this.ID = id;
-            this.BuiltDate = new DateTime(builtDate.Year, builtDate.Month, builtDate.Day);
-            this.Type = type;
-            this.LastServiceCheck = 0;
-            this.TailNumber = tailNumber;
-            this.Flown = 0;
-            this.Condition = this.rnd.Next(90, 100);
-            this.Status = StatusTypes.Normal;
+            ID = id;
+            BuiltDate = new DateTime(builtDate.Year, builtDate.Month, builtDate.Day);
+            Type = type;
+            LastServiceCheck = 0;
+            TailNumber = tailNumber;
+            Flown = 0;
+            Condition = _rnd.Next(90, 100);
+            Status = StatusTypes.Normal;
 
-            this.Classes = new List<AirlinerClass>();
-           
-            if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
+            Classes = new List<AirlinerClass>();
+
+            if (Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
             {
                 var aClass = new AirlinerClass(
-                    AirlinerClass.ClassType.Economy_Class,
-                    ((AirlinerPassengerType)this.Type).MaxSeatingCapacity);
-                aClass.createBasicFacilities(this.Airline);
-                this.Classes.Add(aClass);
+                    AirlinerClass.ClassType.EconomyClass,
+                    ((AirlinerPassengerType) Type).MaxSeatingCapacity);
+                aClass.CreateBasicFacilities(Airline);
+                Classes.Add(aClass);
             }
 
-            if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
+            if (Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
             {
-                var aClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 0);
-                aClass.createBasicFacilities(this.Airline);
-                this.Classes.Add(aClass);
+                var aClass = new AirlinerClass(AirlinerClass.ClassType.EconomyClass, 0);
+                aClass.CreateBasicFacilities(Airline);
+                Classes.Add(aClass);
             }
         }
 
@@ -59,15 +65,15 @@
             int version = info.GetInt16("version");
 
             IEnumerable<FieldInfo> fields =
-                this.GetType()
+                GetType()
                     .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+                    .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null);
 
             IList<PropertyInfo> props =
                 new List<PropertyInfo>(
-                    this.GetType()
+                    GetType()
                         .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+                        .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null));
 
             IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
@@ -75,65 +81,63 @@
             {
                 MemberInfo prop =
                     propsAndFields.FirstOrDefault(
-                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+                        p => ((Versioning) p.GetCustomAttribute(typeof (Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
                     {
-                        ((FieldInfo)prop).SetValue(this, entry.Value);
+                        ((FieldInfo) prop).SetValue(this, entry.Value);
                     }
                     else
                     {
-                        ((PropertyInfo)prop).SetValue(this, entry.Value);
+                        ((PropertyInfo) prop).SetValue(this, entry.Value);
                     }
                 }
             }
 
             IEnumerable<MemberInfo> notSetProps =
-                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+                propsAndFields.Where(p => ((Versioning) p.GetCustomAttribute(typeof (Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning) notSet.GetCustomAttribute(typeof (Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
                     {
-                        ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                        ((FieldInfo) notSet).SetValue(this, ver.DefaultValue);
                     }
                     else
                     {
-                        ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
+                        ((PropertyInfo) notSet).SetValue(this, ver.DefaultValue);
                     }
                 }
             }
 
-            this.Classes.RemoveAll(c => c == null);
+            Classes.RemoveAll(c => c == null);
 
             var doubleClasses =
                 new List<AirlinerClass.ClassType>(
-                    this.Classes.Where(c => this.Classes.Count(cc => cc.Type == c.Type) > 1).Select(c => c.Type));
+                    Classes.Where(c => Classes.Count(cc => cc.Type == c.Type) > 1).Select(c => c.Type));
 
             foreach (AirlinerClass.ClassType doubleClassType in doubleClasses)
             {
-                AirlinerClass dClass = this.Classes.Last(c => c.Type == doubleClassType);
-                this.Classes.Remove(dClass);
+                AirlinerClass dClass = Classes.Last(c => c.Type == doubleClassType);
+                Classes.Remove(dClass);
             }
 
             if (version == 1)
-                this.EngineType = null;
+                EngineType = null;
             if (version < 3)
-                this.FlownHours = new TimeSpan();
+                FlownHours = new TimeSpan();
             if (version < 4)
-                this.Status = StatusTypes.Normal;
+                Status = StatusTypes.Normal;
             if (version < 5)
             {
-                this.Owner = this.Airline;
+                Owner = Airline;
             }
-
-
         }
 
         #endregion
@@ -142,14 +146,9 @@
 
         public int Age
         {
-            get
-            {
-                return this.getAge();
-            }
-            private set
-            {
-            }
+            get { return GetAge(); }
         }
+
         [Versioning("airline")]
         public Airline Airline { get; set; }
 
@@ -166,32 +165,27 @@
         {
             get
             {
-                if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
+                if (Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
                 {
                     return string.Format(
                         "{0}F | {1}C | {2}Y",
-                        this.GetSeatingCapacity(AirlinerClass.ClassType.First_Class),
-                        this.GetSeatingCapacity(AirlinerClass.ClassType.Business_Class),
-                        this.GetSeatingCapacity(AirlinerClass.ClassType.Economy_Class));
+                        GetSeatingCapacity(AirlinerClass.ClassType.FirstClass),
+                        GetSeatingCapacity(AirlinerClass.ClassType.BusinessClass),
+                        GetSeatingCapacity(AirlinerClass.ClassType.EconomyClass));
                 }
 
-                if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
+                if (Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
                 {
-                    return string.Format("{0} t", this.getCargoCapacity());
+                    return string.Format("{0} t", GetCargoCapacity());
                 }
 
                 return string.Format(
                     "{0}F | {1}C | {2}Y | {3} t",
-                    this.GetSeatingCapacity(AirlinerClass.ClassType.First_Class),
-                    this.GetSeatingCapacity(AirlinerClass.ClassType.Business_Class),
-                    this.GetSeatingCapacity(AirlinerClass.ClassType.Economy_Class),
-                    this.getCargoCapacity());
+                    GetSeatingCapacity(AirlinerClass.ClassType.FirstClass),
+                    GetSeatingCapacity(AirlinerClass.ClassType.BusinessClass),
+                    GetSeatingCapacity(AirlinerClass.ClassType.EconomyClass),
+                    GetCargoCapacity());
             }
-        }
-
-        private int GetSeatingCapacity(AirlinerClass.ClassType classType)
-        {
-            return this.Classes.Exists(x => x.Type == classType) ? this.Classes.Find(x => x.Type == classType).SeatingCapacity : 0;
         }
 
         [Versioning("condition")]
@@ -212,84 +206,72 @@
         //distance flown by the airliner
 
         [Versioning("lastservice")]
-        public double LastServiceCheck { get; set; } //the km were the airliner was last at service
+        public double LastServiceCheck { get; set; }
+
+        //the km were the airliner was last at service
 
         public long LeasingPrice
         {
-            get
-            {
-                return this.getLeasingPrice();
-            }
-            private set
-            {
-            }
+            get { return GetLeasingPrice(); }
         }
 
         public long Price
         {
-            get
-            {
-                return this.getPrice();
-            }
-            private set
-            {
-            }
+            get { return GetPrice(); }
         }
 
         public Country Registered
         {
-            get
-            {
-                return Countries.GetCountryFromTailNumber(this.TailNumber);
-            }
-            private set
-            {
-                ;
-            }
+            get { return Countries.GetCountryFromTailNumber(TailNumber); }
         }
+
         public double FuelConsumption
         {
             get
             {
-                if (this.EngineType == null)
-                    return this.Type.FuelConsumption;
+                if (EngineType == null)
+                    return Type.FuelConsumption;
                 else
-                    return this.Type.FuelConsumption * this.EngineType.ConsumptationModifier;
+                    return Type.FuelConsumption*EngineType.ConsumptationModifier;
             }
         }
+
         public double CruisingSpeed
         {
             get
             {
-                if (this.EngineType == null)
-                    return this.Type.CruisingSpeed;
+                if (EngineType == null)
+                    return Type.CruisingSpeed;
                 else
-                    return Math.Min(this.Type.CruisingSpeed, this.EngineType.MaxSpeed);
+                    return Math.Min(Type.CruisingSpeed, EngineType.MaxSpeed);
             }
         }
+
         public long MinRunwaylength
         {
             get
             {
-                if (this.EngineType == null)
-                    return this.Type.MinRunwaylength;
+                if (EngineType == null)
+                    return Type.MinRunwaylength;
                 else
-                    return Convert.ToInt64(this.Type.MinRunwaylength * this.EngineType.RunwayModifier);
+                    return Convert.ToInt64(Type.MinRunwaylength*EngineType.RunwayModifier);
             }
         }
+
         public long Range
         {
             get
             {
-                if (this.EngineType == null)
-                    return this.Type.Range;
+                if (EngineType == null)
+                    return Type.Range;
                 else
-                    return Convert.ToInt64(this.Type.Range * this.EngineType.RangeModifier);
+                    return Convert.ToInt64(Type.Range*EngineType.RangeModifier);
             }
-
         }
-         [Versioning("status",Version=4)]
+
+        [Versioning("status", Version = 4)]
         public StatusTypes Status { get; set; }
+
         [Versioning("tailnumber")]
         public string TailNumber { get; set; }
 
@@ -299,7 +281,11 @@
         [Versioning("owner", Version = 4)]
         public Airline Owner { get; set; }
 
-      
+        private int GetSeatingCapacity(AirlinerClass.ClassType classType)
+        {
+            return Classes.Exists(x => x.Type == classType) ? Classes.Find(x => x.Type == classType).SeatingCapacity : 0;
+        }
+
         #endregion
 
         #region Public Methods and Operators
@@ -308,16 +294,16 @@
         {
             info.AddValue("version", 5);
 
-            Type myType = this.GetType();
+            Type myType = GetType();
 
             IEnumerable<FieldInfo> fields =
                 myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+                      .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null);
 
             IList<PropertyInfo> props =
                 new List<PropertyInfo>(
                     myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+                          .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null));
 
             IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
@@ -327,34 +313,34 @@
 
                 if (member is FieldInfo)
                 {
-                    propValue = ((FieldInfo)member).GetValue(this);
+                    propValue = ((FieldInfo) member).GetValue(this);
                 }
                 else
                 {
-                    propValue = ((PropertyInfo)member).GetValue(this, null);
+                    propValue = ((PropertyInfo) member).GetValue(this, null);
                 }
 
-                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning) member.GetCustomAttribute(typeof (Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
         }
 
         //adds a new airliner class to the airliner
-        public void addAirlinerClass(AirlinerClass airlinerClass)
+        public void AddAirlinerClass(AirlinerClass airlinerClass)
         {
             if (airlinerClass != null)
             {
-                if (this.Classes.Exists(c => c.Type == airlinerClass.Type))
+                if (Classes.Exists(c => c.Type == airlinerClass.Type))
                 {
                     Classes[Classes.FindIndex(c => c.Type == airlinerClass.Type)] = airlinerClass;
                 }
                 else
                 {
-                    this.Classes.Add(airlinerClass);
-                    if (airlinerClass.getFacilities().Count == 0)
+                    Classes.Add(airlinerClass);
+                    if (airlinerClass.GetFacilities().Count == 0)
                     {
-                        airlinerClass.createBasicFacilities(this.Airline);
+                        airlinerClass.CreateBasicFacilities(Airline);
                     }
                 }
             }
@@ -363,69 +349,69 @@
         //removes an airliner class from the airliner
 
         //clear the list of airliner classes
-        public void clearAirlinerClasses()
+        public void ClearAirlinerClasses()
         {
-            this.Classes.Clear();
+            Classes.Clear();
         }
 
-        public int getAge()
+        public int GetAge()
         {
-            return MathHelpers.CalculateAge(this.BuiltDate, GameObject.GetInstance().GameTime);
+            return MathHelpers.CalculateAge(BuiltDate, GameObject.GetInstance().GameTime);
         }
 
         //returns the total amount of seat capacity
 
         //returns the airliner class for the airliner
-        public AirlinerClass getAirlinerClass(AirlinerClass.ClassType type)
+        public AirlinerClass GetAirlinerClass(AirlinerClass.ClassType type)
         {
-            if (this.Classes.Exists(c => c.Type == type))
+            if (Classes.Exists(c => c.Type == type))
             {
-                return this.Classes.Find(c => c.Type == type);
+                return Classes.Find(c => c.Type == type);
             }
-            return this.Classes[0];
+            return Classes[0];
         }
 
-        public double getCargoCapacity()
+        public double GetCargoCapacity()
         {
-            if (this.Type is AirlinerCargoType)
+            if (Type is AirlinerCargoType)
             {
-                return ((AirlinerCargoType)this.Type).CargoSize;
+                return ((AirlinerCargoType) Type).CargoSize;
             }
 
-            if (this.Type is AirlinerCombiType)
+            if (Type is AirlinerCombiType)
             {
-                return ((AirlinerCombiType)this.Type).CargoSize;
+                return ((AirlinerCombiType) Type).CargoSize;
             }
 
             return 0;
         }
 
-        public long getLeasingPrice()
+        public long GetLeasingPrice()
         {
-            double months = 12 * 15;
+            double months = 12*15;
             double rate = 1.30;
 
-            double leasingPrice = (this.getPrice() * rate / months);
+            double leasingPrice = (GetPrice()*rate/months);
             return Convert.ToInt64(leasingPrice);
         }
 
-        public long getPrice()
+        public long GetPrice()
         {
-            double basePrice = this.Type.Price;
+            double basePrice = Type.Price;
 
             double facilityPrice = 0;
 
-            var classes = new List<AirlinerClass>(this.Classes);
+            var classes = new List<AirlinerClass>(Classes);
 
             foreach (AirlinerClass aClass in classes)
             {
-                AirlinerFacility audioFacility = aClass.getFacility(AirlinerFacility.FacilityType.Audio);
-                AirlinerFacility videoFacility = aClass.getFacility(AirlinerFacility.FacilityType.Video);
-                AirlinerFacility seatFacility = aClass.getFacility(AirlinerFacility.FacilityType.Seat);
+                AirlinerFacility audioFacility = aClass.GetFacility(AirlinerFacility.FacilityType.Audio);
+                AirlinerFacility videoFacility = aClass.GetFacility(AirlinerFacility.FacilityType.Video);
+                AirlinerFacility seatFacility = aClass.GetFacility(AirlinerFacility.FacilityType.Seat);
 
-                double audioPrice = audioFacility.PricePerSeat * audioFacility.PercentOfSeats * aClass.SeatingCapacity;
-                double videoPrice = videoFacility.PricePerSeat * videoFacility.PercentOfSeats * aClass.SeatingCapacity;
-                double seatPrice = seatFacility.PricePerSeat * seatFacility.PercentOfSeats * aClass.SeatingCapacity;
+                double audioPrice = audioFacility.PricePerSeat*audioFacility.PercentOfSeats*aClass.SeatingCapacity;
+                double videoPrice = videoFacility.PricePerSeat*videoFacility.PercentOfSeats*aClass.SeatingCapacity;
+                double seatPrice = seatFacility.PricePerSeat*seatFacility.PercentOfSeats*aClass.SeatingCapacity;
 
                 facilityPrice += audioPrice + videoPrice + seatPrice;
             }
@@ -434,28 +420,28 @@
 
             double diffEnginePrice;
 
-            if (this.EngineType == null)
+            if (EngineType == null)
                 diffEnginePrice = 0;
             else
             {
-                double enginePrice = this.EngineType.Price;
-                double standardEnginePrice = EngineTypes.GetStandardEngineType(this.Type).Price;
+                double enginePrice = EngineType.Price;
+                double standardEnginePrice = EngineTypes.GetStandardEngineType(Type).Price;
 
                 diffEnginePrice = enginePrice - standardEnginePrice;
             }
 
             basePrice += diffEnginePrice;
 
-            int age = this.getAge();
-            double devaluationPercent = 1 - (0.02 * age);
+            int age = GetAge();
+            double devaluationPercent = 1 - (0.02*age);
 
-            return Convert.ToInt64(basePrice * devaluationPercent * (this.Condition / 100));
+            return Convert.ToInt64(basePrice*devaluationPercent*(Condition/100));
         }
 
-        public int getTotalSeatCapacity()
+        public int GetTotalSeatCapacity()
         {
             int capacity = 0;
-            foreach (AirlinerClass aClass in this.Classes)
+            foreach (AirlinerClass aClass in Classes)
             {
                 capacity += aClass.SeatingCapacity;
             }
@@ -463,18 +449,18 @@
             return capacity;
         }
 
-        public long getValue()
+        public long GetValue()
         {
-            if (this.getAge() < 25)
+            if (GetAge() < 25)
             {
-                return this.getPrice() * (1 - (long)this.getAge() * (3 / 100));
+                return GetPrice()*(1 - (long) GetAge()*(3/100));
             }
-            return this.getPrice() * (20 / 100);
+            return GetPrice()*(20/100);
         }
 
-        public void removeAirlinerClass(AirlinerClass airlinerClass)
+        public void RemoveAirlinerClass(AirlinerClass airlinerClass)
         {
-            this.Classes.Remove(airlinerClass);
+            Classes.Remove(airlinerClass);
         }
 
         #endregion
@@ -488,10 +474,6 @@
         private static List<Airliner> airliners = new List<Airliner>();
 
         #endregion
-
-        //clears the list
-
-        //adds an airliner to the list
 
         #region Public Methods and Operators
 
@@ -523,13 +505,14 @@
         public static List<Airliner> GetAirlinersForSale()
         {
             return airliners.FindAll(a => a.Airline == null && a.Status == Airliner.StatusTypes.Normal);
-  
         }
+
         //returns the list of airliners for leasing
         public static List<Airliner> GetAirlinersForLeasing()
         {
             return airliners.FindAll(a => a.Status == Airliner.StatusTypes.Leasing);
         }
+
         //returns the list of airliners for sale
         public static List<Airliner> GetAirlinersForSale(Predicate<Airliner> match)
         {
@@ -548,5 +531,9 @@
         }
 
         #endregion
+
+        //clears the list
+
+        //adds an airliner to the list
     }
 }

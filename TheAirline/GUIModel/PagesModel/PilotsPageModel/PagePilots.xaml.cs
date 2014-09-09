@@ -98,7 +98,7 @@ using TheAirline.Model.PilotModel;
                     {
                         var airliner = (FleetAirliner)cbAirliners.SelectedItem;
 
-                        airliner.addPilot(pilot);
+                        airliner.AddPilot(pilot);
                     }
                 }
             }

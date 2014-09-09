@@ -132,7 +132,7 @@
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
 
-            double totalPrice = this.SelectedAirliners.Sum(a => a.Airliner.getPrice());
+            double totalPrice = this.SelectedAirliners.Sum(a => a.Airliner.GetPrice());
 
             if (GameObject.GetInstance().HumanAirline.Contract != null)
             {
@@ -147,7 +147,7 @@
                 }
                 else
                 {
-                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
+                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.GetTerminationFee();
                     WPFMessageBoxResult result =
                         WPFMessageBox.Show(
                             Translator.GetInstance().GetString("MessageBox", "2010"),
@@ -258,7 +258,7 @@
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
 
-            double totalLeasingPrice = this.SelectedAirliners.Sum(a => a.Airliner.getLeasingPrice() * 2);
+            double totalLeasingPrice = this.SelectedAirliners.Sum(a => a.Airliner.GetLeasingPrice() * 2);
 
             if (GameObject.GetInstance().HumanAirline.Contract != null)
             {
@@ -272,7 +272,7 @@
                 }
                 else
                 {
-                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
+                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.GetTerminationFee();
                     WPFMessageBoxResult result =
                         WPFMessageBox.Show(
                             Translator.GetInstance().GetString("MessageBox", "2010"),

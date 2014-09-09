@@ -80,10 +80,10 @@
                 string priceText = priceScore < 4 ? "High" : ((priceScore >= 4 && priceScore < 7) ? "Medium" : "Low");
                 string bagText = luggageScore >= 7 ? "Free Checked Bag" : "Checked Bag Fee";
 
-                RouteFacility wifiFacility = ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(RouteFacility.FacilityType.WiFi);
-                RouteFacility foodFacility = ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(RouteFacility.FacilityType.Food);
-                AirlinerFacility seats = this.Route.getAirliners()[0].Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Seat);
-                AirlinerFacility videoFacility = this.Route.getAirliners()[0].Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Video);
+                RouteFacility wifiFacility = ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).getFacility(RouteFacility.FacilityType.WiFi);
+                RouteFacility foodFacility = ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).getFacility(RouteFacility.FacilityType.Food);
+                AirlinerFacility seats = this.Route.getAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Seat);
+                AirlinerFacility videoFacility = this.Route.getAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Video);
 
                 this.Feedbacks.Add(new RouteFeedbackMVVM(this.Route.getAirliners()[0].Airliner.Type.Name, "plane-feedback.png", planeTypeScore, getFeedbackText("plane", planeTypeScore)));
                 this.Feedbacks.Add(new RouteFeedbackMVVM(string.Format("{0} year(s) old", this.Route.getAirliners()[0].Airliner.Age), "age.png", ageScore, getFeedbackText("age", ageScore)));
@@ -180,7 +180,7 @@
             if (route.Type == Route.RouteType.Passenger || route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter)
             {
                 RouteAirlinerClass raClass =
-                    ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
+                    ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass);
 
                 this.Total = route.Statistics.getStatisticsValue(
                     raClass,
@@ -267,7 +267,7 @@
                 ? StatusMVVM.Stopped
                 : StatusMVVM.Started;
 
-            if (this.Airliner.Status == FleetAirliner.AirlinerStatus.On_charter)
+            if (this.Airliner.Status == FleetAirliner.AirlinerStatus.OnCharter)
                 this.Status = StatusMVVM.Charter;
 
             this.Routes = new ObservableCollection<Route>();
@@ -591,7 +591,7 @@
             if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Helicopter)
             {
                 RouteAirlinerClass raClass =
-                    ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
+                    ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass);
 
                 double passengers = route.Statistics.getStatisticsValue(
                     raClass,

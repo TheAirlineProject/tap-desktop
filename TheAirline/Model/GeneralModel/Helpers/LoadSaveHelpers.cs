@@ -235,7 +235,7 @@
                         var airliner = new Airliner(id, type, tailnumber, built);
                         airliner.Condition = damaged;
                         airliner.Flown = flown;
-                        airliner.clearAirlinerClasses();
+                        airliner.ClearAirlinerClasses();
 
                         XmlNodeList airlinerClassList = airlinerNode.SelectNodes("classes/class");
 
@@ -263,10 +263,10 @@
                                 AirlinerFacility aFacility = AirlinerFacilities.GetFacility(
                                     airlinerFacilityType,
                                     airlinerClassFacilityNode.Attributes["uid"].Value);
-                                aClass.forceSetFacility(aFacility);
+                                aClass.ForceSetFacility(aFacility);
                             }
 
-                            airliner.addAirlinerClass(aClass);
+                            airliner.AddAirlinerClass(aClass);
                         }
 
                         Airliners.AddAirliner(airliner);
@@ -675,7 +675,7 @@
                         if (airliner != null)
                         {
                             pilot.Airliner = airliner;
-                            airliner.addPilot(pilot);
+                            airliner.AddPilot(pilot);
                         }
                     }
                 }
@@ -694,7 +694,7 @@
                     Pilot pilot = Pilots.GetPilots()[rnd.Next(Pilots.GetNumberOfPilots())];
                     airliner.Airliner.Airline.AddPilot(pilot);
                     pilot.Airliner = airliner;
-                    airliner.addPilot(pilot);
+                    airliner.AddPilot(pilot);
                 }
             }
 
@@ -776,10 +776,10 @@
                     {
                         string facUid = classElement.Attributes[facType.ToString()].Value;
 
-                        classConf.addFacility(AirlinerFacilities.GetFacility(facType, facUid));
+                        classConf.AddFacility(AirlinerFacilities.GetFacility(facType, facUid));
                     }
 
-                    configuration.addClassConfiguration(classConf);
+                    configuration.AddClassConfiguration(classConf);
                 }
                 Configurations.AddConfiguration(configuration);
             }
@@ -1066,7 +1066,7 @@
                         AirlinerFacility.FacilityType facilityType in
                             Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
                     {
-                        AirlinerFacility acFacility = aClass.getFacility(facilityType);
+                        AirlinerFacility acFacility = aClass.GetFacility(facilityType);
 
                         XmlElement airlinerClassFacilityNode = xmlDoc.CreateElement("facility");
                         airlinerClassFacilityNode.SetAttribute("type", acFacility.Type.ToString());
@@ -1676,7 +1676,7 @@
                         destinationNode.SetAttribute("id", dest.Profile.IATACode);
                         destinationNode.SetAttribute(
                             "rate",
-                            airport.getDestinationPassengersRate(dest, AirlinerClass.ClassType.Economy_Class).ToString());
+                            airport.getDestinationPassengersRate(dest, AirlinerClass.ClassType.EconomyClass).ToString());
                         destinationNode.SetAttribute(
                             "passengers",
                             airport.getDestinationPassengerStatistics(dest).ToString());
@@ -2475,7 +2475,7 @@
                                         new RouteEntryDestination(airliner.Homebase, "Service", null),
                                         null));
 
-                            airliner.Status = FleetAirliner.AirlinerStatus.On_service;
+                            airliner.Status = FleetAirliner.AirlinerStatus.OnService;
                         }
                     }
                     else

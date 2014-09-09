@@ -126,17 +126,17 @@
             {
                 foreach (FleetAirliner airliner in this.Airliners)
                 {
-                    airliner.Airliner.clearAirlinerClasses();
+                    airliner.Airliner.ClearAirlinerClasses();
 
                     foreach (AirlinerClassMVVM aClass in this.Classes)
                     {
                         var newClass = new AirlinerClass(aClass.Type, aClass.Seating);
 
-                        airliner.Airliner.addAirlinerClass(newClass);
+                        airliner.Airliner.AddAirlinerClass(newClass);
 
                         foreach (AirlinerFacilityMVVM facility in aClass.Facilities)
                         {
-                            newClass.forceSetFacility(facility.SelectedFacility);
+                            newClass.ForceSetFacility(facility.SelectedFacility);
                         }
                     }
 
@@ -145,10 +145,10 @@
                     int seatingDiff = ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity - totalSeats;
 
                     AirlinerClass economyClass =
-                        airliner.Airliner.Classes.Find(c => c.Type == AirlinerClass.ClassType.Economy_Class);
+                        airliner.Airliner.Classes.Find(c => c.Type == AirlinerClass.ClassType.EconomyClass);
                     economyClass.RegularSeatingCapacity += seatingDiff;
 
-                    AirlinerFacility seatingFacility = economyClass.getFacility(AirlinerFacility.FacilityType.Seat);
+                    AirlinerFacility seatingFacility = economyClass.GetFacility(AirlinerFacility.FacilityType.Seat);
 
                     var extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
 
@@ -171,7 +171,7 @@
                     Configurations.GetConfigurations(Configuration.ConfigurationType.Airliner)
                         .Where(
                             a =>
-                                ((AirlinerConfiguration)a).MinimumSeats <= this.Airliner.Airliner.getTotalSeatCapacity()
+                                ((AirlinerConfiguration)a).MinimumSeats <= this.Airliner.Airliner.GetTotalSeatCapacity()
                                 && ((AirlinerConfiguration)a).Classes.Count
                                 <= ((AirlinerPassengerType)this.Airliner.Airliner.Type).MaxAirlinerClasses))
             {
@@ -197,7 +197,7 @@
                         aClass.RegularSeatingCapacity,
                         aClass.RegularSeatingCapacity);
 
-                    foreach (AirlinerFacility facility in aClass.getFacilities())
+                    foreach (AirlinerFacility facility in aClass.GetFacilities())
                     {
                         tClass.Facilities.First(f => f.Type == facility.Type).SelectedFacility = facility;
                     }
@@ -218,7 +218,7 @@
                                   - configuration.MinimumSeats;
 
                 AirlinerClassMVVM economyClass = this.Classes.First(
-                    c => c.Type == AirlinerClass.ClassType.Economy_Class);
+                    c => c.Type == AirlinerClass.ClassType.EconomyClass);
 
                 economyClass.RegularSeatingCapacity += seatingDiff;
 
@@ -248,7 +248,7 @@
                 string name = txtName.Text.Trim();
                 var configuration = new AirlinerConfiguration(
                     name,
-                    this.getMinimumAirliner().Airliner.getTotalSeatCapacity(),
+                    this.getMinimumAirliner().Airliner.GetTotalSeatCapacity(),
                     false);
 
                 foreach (AirlinerClassMVVM type in this.Classes)
@@ -260,10 +260,10 @@
 
                     foreach (AirlinerFacilityMVVM facility in type.Facilities)
                     {
-                        classConfiguration.addFacility(facility.SelectedFacility);
+                        classConfiguration.AddFacility(facility.SelectedFacility);
                     }
 
-                    configuration.addClassConfiguration(classConfiguration);
+                    configuration.AddClassConfiguration(classConfiguration);
                 }
 
                 Configurations.AddConfiguration(configuration);

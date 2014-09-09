@@ -21,7 +21,7 @@
         [TestMethod]
         public void ReturnBusinessClassOnlyConfigurationForPassangerAircraft()
         {
-            this.passengerAirliner.addAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.Business_Class, 24));
+            this.passengerAirliner.AddAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.BusinessClass, 24));
 
             const string Expected = "0F | 24C | 0Y";
             string actual = this.passengerAirliner.CabinConfiguration;
@@ -32,7 +32,7 @@
         [TestMethod]
         public void ReturnEconomyClassOnlyConfigurationForPassangerAircraft()
         {
-            this.passengerAirliner.addAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 98));
+            this.passengerAirliner.AddAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.EconomyClass, 98));
 
             const string Expected = "0F | 0C | 98Y";
             string actual = this.passengerAirliner.CabinConfiguration;
@@ -52,7 +52,7 @@
         [TestMethod]
         public void ReturnFirstClassOnlyConfigurationForPassangerAircraft()
         {
-            this.passengerAirliner.addAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.First_Class, 12));
+            this.passengerAirliner.AddAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.FirstClass, 12));
 
             const string Expected = "12F | 0C | 0Y";
             string actual = this.passengerAirliner.CabinConfiguration;
@@ -63,9 +63,9 @@
         [TestMethod]
         public void ReturnThreeClassConfigurationForPassangerAircraft()
         {
-            this.passengerAirliner.addAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.First_Class, 12));
-            this.passengerAirliner.addAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.Business_Class, 32));
-            this.passengerAirliner.addAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 264));
+            this.passengerAirliner.AddAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.FirstClass, 12));
+            this.passengerAirliner.AddAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.BusinessClass, 32));
+            this.passengerAirliner.AddAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.EconomyClass, 264));
 
             const string Expected = "12F | 32C | 264Y";
             string actual = this.passengerAirliner.CabinConfiguration;
@@ -76,8 +76,8 @@
         [TestMethod]
         public void ReturnTwoClassConfigurationForPassangerAircraft()
         {
-            this.passengerAirliner.addAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.Business_Class, 12));
-            this.passengerAirliner.addAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 132));
+            this.passengerAirliner.AddAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.BusinessClass, 12));
+            this.passengerAirliner.AddAirlinerClass(new AirlinerClass(AirlinerClass.ClassType.EconomyClass, 132));
 
             const string Expected = "0F | 12C | 132Y";
             string actual = this.passengerAirliner.CabinConfiguration;

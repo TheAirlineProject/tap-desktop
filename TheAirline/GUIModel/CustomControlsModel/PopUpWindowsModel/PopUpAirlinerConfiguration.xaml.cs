@@ -95,7 +95,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             lblNewClass = new ContentControl();
             lblNewClass.Margin = new Thickness(0, 5, 0, 0);
             lblNewClass.ContentTemplate = this.Resources["NewClassItem"] as DataTemplate;
-            lblNewClass.Content = AirlinerClass.ClassType.First_Class;
+            lblNewClass.Content = AirlinerClass.ClassType.FirstClass;
 
             panelClasses.Children.Add(lblNewClass);
 
@@ -168,7 +168,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     FreeClasses.Add(type);
             }
             
-            AirlinerClass.ClassType nextClass = FreeClasses.Count > 0 ?  FreeClasses[0] : AirlinerClass.ClassType.Economy_Class;
+            AirlinerClass.ClassType nextClass = FreeClasses.Count > 0 ?  FreeClasses[0] : AirlinerClass.ClassType.EconomyClass;
 
             MaxSeats = maxCapacity - this.Classes.Count;
 
@@ -182,9 +182,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
               AirlinerClass aClass = new AirlinerClass(this.CurrentClass, seating);
 
-            aClass.forceSetFacility(this.Classes[0].getFacility(AirlinerFacility.FacilityType.Audio));
-            aClass.forceSetFacility(this.Classes[0].getFacility(AirlinerFacility.FacilityType.Seat));
-            aClass.forceSetFacility(this.Classes[0].getFacility(AirlinerFacility.FacilityType.Video));
+            aClass.ForceSetFacility(this.Classes[0].GetFacility(AirlinerFacility.FacilityType.Audio));
+            aClass.ForceSetFacility(this.Classes[0].GetFacility(AirlinerFacility.FacilityType.Seat));
+            aClass.ForceSetFacility(this.Classes[0].GetFacility(AirlinerFacility.FacilityType.Video));
             
             this.Classes.Add(aClass);
 

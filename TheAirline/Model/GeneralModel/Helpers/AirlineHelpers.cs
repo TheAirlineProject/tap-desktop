@@ -109,7 +109,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airline.Airports[0]);
 
-            airliner.clearAirlinerClasses();
+            airliner.ClearAirlinerClasses();
 
             AirlinerHelpers.CreateAirlinerClasses(airliner);
 
@@ -137,7 +137,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             FleetAirliner fAirliner = AddAirliner(airline, airliner, airport, false);
 
-            double price = airliner.getPrice() * ((100 - discount) / 100);
+            double price = airliner.GetPrice() * ((100 - discount) / 100);
 
             AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
 
@@ -183,17 +183,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.Bought;
                     airline.AddAirliner(pType, airliner, airport);
 
-                    airliner.clearAirlinerClasses();
+                    airliner.ClearAirlinerClasses();
 
                     foreach (AirlinerClass aClass in order.Classes)
                     {
                         AirlinerClass tClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
                         tClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
 
-                        foreach (AirlinerFacility facility in aClass.getFacilities())
-                            tClass.setFacility(airline, facility);
+                        foreach (AirlinerFacility facility in aClass.GetFacilities())
+                            tClass.SetFacility(airline, facility);
 
-                        airliner.addAirlinerClass(tClass);
+                        airliner.AddAirlinerClass(tClass);
                     }
 
 
@@ -488,7 +488,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airliner.Airliner.Airline.AddPilot(pilot);
 
                     pilot.Airliner = airliner;
-                    airliner.addPilot(pilot);
+                    airliner.AddPilot(pilot);
                 }
                 else
                     GeneralHelpers.CreatePilots(50);

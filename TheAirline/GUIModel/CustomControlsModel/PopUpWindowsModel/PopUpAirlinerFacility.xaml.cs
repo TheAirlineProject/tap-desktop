@@ -59,7 +59,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             foreach (AirlinerFacility facility in AirlinerFacilities.GetFacilities(this.Type,GameObject.GetInstance().GameTime.Year))
                 cbFacility.Items.Add(facility);
 
-            cbFacility.SelectedItem = this.AirlinerClass.getFacility(this.Type);
+            cbFacility.SelectedItem = this.AirlinerClass.GetFacility(this.Type);
 
             mainPanel.Children.Add(cbFacility);
 

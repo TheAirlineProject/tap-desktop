@@ -59,16 +59,16 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (this.Engines.Count > 0)
                 this.SelectedEngine = engine;
 
-            AirlinerClass economyClass = classes.Find(c => c.Type == AirlinerClass.ClassType.Economy_Class);
+            AirlinerClass economyClass = classes.Find(c => c.Type == AirlinerClass.ClassType.EconomyClass);
 
             foreach (AirlinerClass aClass in classes)
             {
 
-                int maxseats = aClass.Type == AirlinerClass.ClassType.Economy_Class ? aClass.SeatingCapacity : economyClass.RegularSeatingCapacity - 1;
-                AirlinerClassMVVM nClass = new AirlinerClassMVVM(aClass.Type, aClass.SeatingCapacity, maxseats, aClass.Type != AirlinerClass.ClassType.Economy_Class);
+                int maxseats = aClass.Type == AirlinerClass.ClassType.EconomyClass ? aClass.SeatingCapacity : economyClass.RegularSeatingCapacity - 1;
+                AirlinerClassMVVM nClass = new AirlinerClassMVVM(aClass.Type, aClass.SeatingCapacity, maxseats, aClass.Type != AirlinerClass.ClassType.EconomyClass);
                 this.Classes.Add(nClass);
 
-                foreach (AirlinerFacility facility in aClass.getFacilities())
+                foreach (AirlinerFacility facility in aClass.GetFacilities())
                     nClass.Facilities.Where(f => f.Type == facility.Type).First().SelectedFacility = facility;
 
             }
@@ -78,8 +78,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (this.Classes.Count < 3)
             {
                 this.FreeClassTypes.Clear();
-                this.FreeClassTypes.Add(AirlinerClass.ClassType.Business_Class);
-                this.FreeClassTypes.Add(AirlinerClass.ClassType.First_Class);
+                this.FreeClassTypes.Add(AirlinerClass.ClassType.BusinessClass);
+                this.FreeClassTypes.Add(AirlinerClass.ClassType.FirstClass);
 
             }
 
@@ -114,7 +114,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.Classes[0].MaxSeats -= seating;
           
 
-            AirlinerClass.ClassType nextType = AirlinerClass.ClassType.Economy_Class;
+            AirlinerClass.ClassType nextType = AirlinerClass.ClassType.EconomyClass;
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
@@ -132,8 +132,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (this.Classes.Count < 3)
             {
                 this.FreeClassTypes.Clear();
-                this.FreeClassTypes.Add(AirlinerClass.ClassType.Business_Class);
-                this.FreeClassTypes.Add(AirlinerClass.ClassType.First_Class);
+                this.FreeClassTypes.Add(AirlinerClass.ClassType.BusinessClass);
+                this.FreeClassTypes.Add(AirlinerClass.ClassType.FirstClass);
 
             }
             else
@@ -157,8 +157,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.FreeClassTypes.Clear();
 
-            this.FreeClassTypes.Add(AirlinerClass.ClassType.Business_Class);
-            this.FreeClassTypes.Add(AirlinerClass.ClassType.First_Class);
+            this.FreeClassTypes.Add(AirlinerClass.ClassType.BusinessClass);
+            this.FreeClassTypes.Add(AirlinerClass.ClassType.FirstClass);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -203,7 +203,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 AirlinerClass aClass = new AirlinerClass(mvvmClass.Type, mvvmClass.Seating);
 
                 foreach (AirlinerClassFacilityMVVM facility in mvvmClass.Facilities)
-                    aClass.forceSetFacility(facility.SelectedFacility);
+                    aClass.ForceSetFacility(facility.SelectedFacility);
 
                 classes.Add(aClass);
             }
@@ -230,7 +230,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
       
             AirlinerClassMVVM aClass = (AirlinerClassMVVM)((Slider)sender).Tag; 
         
-            if (aClass.Type != AirlinerClass.ClassType.Economy_Class && tab_main.SelectedIndex == 0)
+            if (aClass.Type != AirlinerClass.ClassType.EconomyClass && tab_main.SelectedIndex == 0)
             {
                 int diff = (int)(e.NewValue - e.OldValue);
 

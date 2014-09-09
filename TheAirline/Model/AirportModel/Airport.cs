@@ -503,7 +503,7 @@
             score += 7 * airportRoutes.Count();
             score += 6
                      * airportRoutes.Where(r => r.Type == Route.RouteType.Passenger)
-                         .Sum(r => ((PassengerRoute)r).getServiceLevel(AirlinerClass.ClassType.Economy_Class));
+                         .Sum(r => ((PassengerRoute)r).getServiceLevel(AirlinerClass.ClassType.EconomyClass));
 
             score +=
                 airline.Alliances.Sum(

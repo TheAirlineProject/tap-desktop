@@ -59,7 +59,7 @@
                 }
                 else
                 {
-                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
+                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.GetTerminationFee();
                     WPFMessageBoxResult result =
                         WPFMessageBox.Show(
                             Translator.GetInstance().GetString("MessageBox", "2010"),
@@ -84,7 +84,7 @@
 
             var airport = (Airport)this.cbHomebase.SelectedItem;
 
-            if (this.Airliner.getPrice() > GameObject.GetInstance().HumanAirline.Money)
+            if (this.Airliner.GetPrice() > GameObject.GetInstance().HumanAirline.Money)
             {
                 WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2006"),
@@ -159,7 +159,7 @@
                 }
                 else
                 {
-                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
+                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.GetTerminationFee();
                     WPFMessageBoxResult result =
                         WPFMessageBox.Show(
                             Translator.GetInstance().GetString("MessageBox", "2010"),
@@ -185,7 +185,7 @@
 
             var airport = (Airport)this.cbHomebase.SelectedItem;
 
-            if (this.Airliner.getLeasingPrice() * 2 > GameObject.GetInstance().HumanAirline.Money)
+            if (this.Airliner.GetLeasingPrice() * 2 > GameObject.GetInstance().HumanAirline.Money)
             {
                 WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2004"),

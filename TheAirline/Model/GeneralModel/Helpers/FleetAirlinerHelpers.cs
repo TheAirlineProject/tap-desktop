@@ -248,7 +248,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the minimum time between flights for an airliner
         public static TimeSpan GetMinTimeBetweenFlights(FleetAirliner airliner)
         {
-            return GetMinTimeBetweenFlights(airliner.Airliner.getTotalSeatCapacity());
+            return GetMinTimeBetweenFlights(airliner.Airliner.GetTotalSeatCapacity());
         }
         public static TimeSpan GetMinTimeBetweenFlights(AirlinerType type)
         {
@@ -344,7 +344,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     double routeDepartures = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Arrivals"));
                     airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.setStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(routePassengers / routeDepartures));
 
-                    airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Capacity"), airliner.Airliner.getAirlinerClass(raClass.Type).SeatingCapacity);
+                    airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Capacity"), airliner.Airliner.GetAirlinerClass(raClass.Type).SeatingCapacity);
                 }
 
                 double airlinerPassengers = airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"));
@@ -427,7 +427,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 
                 double basePrice = fuelPrice * distance* ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity * airliner.Airliner.FuelConsumption*0.55;
                 double paxPrice = fuelPrice * distance * airliner.Airliner.FuelConsumption*airliner.CurrentFlight.getTotalPassengers() * 0.45;
-                double seatsPrice = airliner.CurrentFlight.Classes.Sum(c=>(airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses-1) * c.Passengers);
+                double seatsPrice = airliner.CurrentFlight.Classes.Sum(c=>(airliner.Airliner.GetAirlinerClass(c.AirlinerClass.Type).GetFacility(AirlinerFacility.FacilityType.Seat).SeatUses-1) * c.Passengers);
                 return basePrice + paxPrice + seatsPrice;
 
              }
@@ -463,7 +463,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
            
             if (airliner.SchedAMaintenance == GameObject.GetInstance().GameTime.Date)
             {
-                double expense = (airliner.Airliner.getValue() * 0.01) + 2000;
+                double expense = (airliner.Airliner.GetValue() * 0.01) + 2000;
                 GameObject.GetInstance().addHumanMoney((long)-expense);
                 Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
                 AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
@@ -476,7 +476,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (airliner.SchedBMaintenance == GameObject.GetInstance().GameTime.Date)
             {
-                double expense = (airliner.Airliner.getValue() * 0.02) + 4500;
+                double expense = (airliner.Airliner.GetValue() * 0.02) + 4500;
                 GameObject.GetInstance().addHumanMoney((long)-expense);
                 Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
                 AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
@@ -489,7 +489,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (airliner.SchedCMaintenance == GameObject.GetInstance().GameTime.Date)
             {
-                double expense = (airliner.Airliner.getValue() * 0.025) + 156000;
+                double expense = (airliner.Airliner.GetValue() * 0.025) + 156000;
                 airliner.OOSDate = airliner.SchedCMaintenance.AddDays(airliner.Airliner.Condition + 20);
                 GameObject.GetInstance().addHumanMoney((long)-expense);
                 Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
@@ -508,7 +508,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (airliner.SchedDMaintenance == GameObject.GetInstance().GameTime.Date)
             {
-                double expense = (airliner.Airliner.getValue() * 0.03) + 1200000;
+                double expense = (airliner.Airliner.GetValue() * 0.03) + 1200000;
                 airliner.OOSDate = airliner.SchedDMaintenance.AddDays(airliner.Airliner.Condition + 50);
                 GameObject.GetInstance().addHumanMoney((long)-expense);
                 Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
@@ -588,7 +588,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             policy.InsuranceEffective = GameObject.GetInstance().GameTime;
             policy.InsuranceExpires = GameObject.GetInstance().GameTime.AddYears(length);
             policy.PolicyIndex = GameObject.GetInstance().GameTime.ToString() + airline.ToString();
-            switch (policy.insTerms)
+            switch (policy.InsTerms)
             {
                 case AirlinerInsurance.PaymentTerms.Monthly:
                     policy.RemainingPayments = length * 12;
@@ -677,7 +677,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 #endregion
                 #region Ground Parked
 
-                case AirlinerInsurance.InsuranceType.Ground_Parked:
+                case AirlinerInsurance.InsuranceType.GroundParked:
                     switch (scope)
                     {
                         case AirlinerInsurance.InsuranceScope.Airport:
@@ -719,7 +719,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
                 #endregion
                 #region Ground Taxi
-                case AirlinerInsurance.InsuranceType.Ground_Taxi:
+                case AirlinerInsurance.InsuranceType.GroundTaxi:
                     switch (scope)
                     {
                         case AirlinerInsurance.InsuranceScope.Airport:
@@ -761,7 +761,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
                 #endregion
                 #region Ground Combined
-                case AirlinerInsurance.InsuranceType.Combined_Ground:
+                case AirlinerInsurance.InsuranceType.CombinedGround:
                     switch (scope)
                     {
                         case AirlinerInsurance.InsuranceScope.Airport:
@@ -803,7 +803,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
                 #endregion
                 #region In Flight
-                case AirlinerInsurance.InsuranceType.In_Flight:
+                case AirlinerInsurance.InsuranceType.InFlight:
                     switch (scope)
                     {
                         case AirlinerInsurance.InsuranceScope.Airport:
@@ -846,7 +846,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
                 #endregion
                 #region Full Coverage
-                case AirlinerInsurance.InsuranceType.Full_Coverage:
+                case AirlinerInsurance.InsuranceType.FullCoverage:
                     switch (scope)
                     {
                         case AirlinerInsurance.InsuranceScope.Airport:
@@ -931,7 +931,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         //Invoice payment = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, policy.PaymentAmount);
                         AirlineHelpers.AddAirlineInvoice(airline,GameObject.GetInstance().GameTime,Invoice.InvoiceType.Maintenances,-policy.PaymentAmount);
                         policy.RemainingPayments--;
-                        switch (policy.insTerms)
+                        switch (policy.InsTerms)
                         {
                             case AirlinerInsurance.PaymentTerms.Monthly:
                                 policy.NextPaymentDue = GameObject.GetInstance().GameTime.AddMonths(1);

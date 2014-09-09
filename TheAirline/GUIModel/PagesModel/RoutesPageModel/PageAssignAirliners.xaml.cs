@@ -141,7 +141,7 @@
 
                     if (!transferAirliner.Routes.Contains(route))
                     {
-                        transferAirliner.addRoute(route);
+                        transferAirliner.AddRoute(route);
                         fAirlinerMVVM.Routes.Add(route);
                         
               
@@ -183,7 +183,7 @@
                 for (int i = 0; i < missingPilots; i++)
                 {
                     pilots[i].Airliner = transferAirliner;
-                    transferAirliner.addPilot(pilots[i]);
+                    transferAirliner.AddPilot(pilots[i]);
                 }
 
            
@@ -199,11 +199,11 @@
             {
                 if (GameObject.GetInstance().DayRoundEnabled)
                 {
-                    airliner.setStatus(FleetAirliner.AirlinerStatus.On_route);
+                    airliner.setStatus(FleetAirliner.AirlinerStatus.OnRoute);
                 }
                 else
                 {
-                    airliner.setStatus(FleetAirliner.AirlinerStatus.To_route_start);
+                    airliner.setStatus(FleetAirliner.AirlinerStatus.ToRouteStart);
                 }
             }
             else
@@ -272,7 +272,7 @@
                         for (int i = 0; i < missingPilots; i++)
                         {
                             unassignedPilots[i].Airliner = airliner.Airliner;
-                            airliner.Airliner.addPilot(unassignedPilots[i]);
+                            airliner.Airliner.AddPilot(unassignedPilots[i]);
                         }
 
                         if (tab_main != null)
@@ -343,7 +343,7 @@
 
                             airliner.Airliner.Airliner.Airline.AddPilot(pilot);
                             pilot.Airliner = airliner.Airliner;
-                            airliner.Airliner.addPilot(pilot);
+                            airliner.Airliner.AddPilot(pilot);
                         }
 
                         if (tab_main != null)

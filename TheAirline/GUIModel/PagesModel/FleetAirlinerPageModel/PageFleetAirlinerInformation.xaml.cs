@@ -53,7 +53,7 @@
                 foreach (AirlinerFacilityMVVM aFacility in aClass.Facilities)
                 {
                     AirlinerFacility facility =
-                        this.Airliner.Airliner.Airliner.getAirlinerClass(aClass.Type).getFacility(aFacility.Type);
+                        this.Airliner.Airliner.Airliner.GetAirlinerClass(aClass.Type).GetFacility(aFacility.Type);
                     aFacility.SelectedFacility = facility;
                 }
             }
@@ -166,7 +166,7 @@
 
         private void btnBuy_Click(object sender, RoutedEventArgs e)
         {
-            if (this.Airliner.Airliner.Airliner.getPrice() > GameObject.GetInstance().HumanAirline.Money)
+            if (this.Airliner.Airliner.Airliner.GetPrice() > GameObject.GetInstance().HumanAirline.Money)
             {
                 WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2006"),
@@ -179,7 +179,7 @@
                     Translator.GetInstance().GetString("MessageBox", "2007"),
                     string.Format(
                         Translator.GetInstance().GetString("MessageBox", "2007", "message"),
-                        new ValueCurrencyConverter().Convert(this.Airliner.Airliner.Airliner.getPrice())),
+                        new ValueCurrencyConverter().Convert(this.Airliner.Airliner.Airliner.GetPrice())),
                     WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
@@ -283,7 +283,7 @@
 
         private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            this.Airliner.Airliner.Airliner.clearAirlinerClasses();
+            this.Airliner.Airliner.Airliner.ClearAirlinerClasses();
 
             foreach (AirlinerClassMVVM aClass in this.Airliner.Classes)
             {
@@ -292,10 +292,10 @@
 
                 foreach (AirlinerFacilityMVVM aFacility in aClass.Facilities)
                 {
-                    nClass.forceSetFacility(aFacility.SelectedFacility);
+                    nClass.ForceSetFacility(aFacility.SelectedFacility);
                 }
 
-                this.Airliner.Airliner.Airliner.addAirlinerClass(nClass);
+                this.Airliner.Airliner.Airliner.AddAirlinerClass(nClass);
             }
         }
 
@@ -313,13 +313,13 @@
             foreach (AirlinerClassMVVM aClass in this.Airliner.Classes)
             {
                 aClass.RegularSeatingCapacity =
-                    this.Airliner.Airliner.Airliner.getAirlinerClass(aClass.Type).RegularSeatingCapacity;
-                aClass.Seating = this.Airliner.Airliner.Airliner.getAirlinerClass(aClass.Type).SeatingCapacity;
+                    this.Airliner.Airliner.Airliner.GetAirlinerClass(aClass.Type).RegularSeatingCapacity;
+                aClass.Seating = this.Airliner.Airliner.Airliner.GetAirlinerClass(aClass.Type).SeatingCapacity;
 
                 foreach (AirlinerFacilityMVVM aFacility in aClass.Facilities)
                 {
                     AirlinerFacility facility =
-                        this.Airliner.Airliner.Airliner.getAirlinerClass(aClass.Type).getFacility(aFacility.Type);
+                        this.Airliner.Airliner.Airliner.GetAirlinerClass(aClass.Type).GetFacility(aFacility.Type);
                     aFacility.SelectedFacility = facility;
                 }
             }
@@ -329,7 +329,7 @@
         {
             var aClass = (AirlinerClassMVVM)((Slider)sender).Tag;
 
-            if (aClass.Type != AirlinerClass.ClassType.Economy_Class && !aClass.ChangedFacility)
+            if (aClass.Type != AirlinerClass.ClassType.EconomyClass && !aClass.ChangedFacility)
             {
                 var diff = (int)(e.NewValue - e.OldValue);
 

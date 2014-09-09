@@ -34,13 +34,13 @@
         }
         public static void CreateAirlinerClasses(Airliner airliner)
         {
-            airliner.clearAirlinerClasses();
+            airliner.ClearAirlinerClasses();
 
             List<AirlinerClass> classes = GetAirlinerClasses(airliner.Type);
 
             foreach (AirlinerClass aClass in classes)
             {
-                airliner.addAirlinerClass(aClass);
+                airliner.AddAirlinerClass(aClass);
             }
         }
 
@@ -121,17 +121,17 @@
         {
             string symbol = "Y";
 
-            if (aClass.Type == AirlinerClass.ClassType.Business_Class)
+            if (aClass.Type == AirlinerClass.ClassType.BusinessClass)
             {
                 symbol = "C";
             }
 
-            if (aClass.Type == AirlinerClass.ClassType.First_Class)
+            if (aClass.Type == AirlinerClass.ClassType.FirstClass)
             {
                 symbol = "F";
             }
 
-            if (aClass.Type == AirlinerClass.ClassType.Economy_Class)
+            if (aClass.Type == AirlinerClass.ClassType.EconomyClass)
             {
                 symbol = "Y";
             }
@@ -159,7 +159,7 @@
 
                     int numOfClasses = rnd.Next(0, ((AirlinerPassengerType)type).MaxAirlinerClasses) + 1;
 
-                    if (GameObject.GetInstance().GameTime.Year >= (int)AirlinerClass.ClassType.Business_Class)
+                    if (GameObject.GetInstance().GameTime.Year >= (int)AirlinerClass.ClassType.BusinessClass)
                     {
                         if (numOfClasses == 1)
                         {
@@ -195,9 +195,9 @@
                         var airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
                         airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
 
-                        foreach (AirlinerFacility facility in aClass.getFacilities())
+                        foreach (AirlinerFacility facility in aClass.GetFacilities())
                         {
-                            airlinerClass.setFacility(null, facility);
+                            airlinerClass.SetFacility(null, facility);
                         }
 
                         foreach (
@@ -206,24 +206,24 @@
                         {
                             if (!aClass.Facilities.Exists(f => f.Type == fType))
                             {
-                                airlinerClass.setFacility(null, AirlinerFacilities.GetBasicFacility(fType));
+                                airlinerClass.SetFacility(null, AirlinerFacilities.GetBasicFacility(fType));
                             }
                         }
 
                         airlinerClass.SeatingCapacity =
                             Convert.ToInt16(
                                 Convert.ToDouble(airlinerClass.RegularSeatingCapacity)
-                                / airlinerClass.getFacility(AirlinerFacility.FacilityType.Seat).SeatUses);
+                                / airlinerClass.GetFacility(AirlinerFacility.FacilityType.Seat).SeatUses);
 
                         classes.Add(airlinerClass);
                     }
 
                     int seatingDiff = ((AirlinerPassengerType)type).MaxSeatingCapacity - configuration.MinimumSeats;
 
-                    AirlinerClass economyClass = classes.Find(c => c.Type == AirlinerClass.ClassType.Economy_Class);
+                    AirlinerClass economyClass = classes.Find(c => c.Type == AirlinerClass.ClassType.EconomyClass);
                     economyClass.RegularSeatingCapacity += seatingDiff;
 
-                    AirlinerFacility seatingFacility = economyClass.getFacility(AirlinerFacility.FacilityType.Seat);
+                    AirlinerFacility seatingFacility = economyClass.GetFacility(AirlinerFacility.FacilityType.Seat);
 
                     var extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
 
@@ -238,15 +238,15 @@
                         var airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
                         airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
 
-                        foreach (AirlinerFacility facility in aClass.getFacilities())
+                        foreach (AirlinerFacility facility in aClass.GetFacilities())
                         {
-                            airlinerClass.setFacility(null, facility);
+                            airlinerClass.SetFacility(null, facility);
                         }
 
                         airlinerClass.SeatingCapacity =
                             Convert.ToInt16(
                                 Convert.ToDouble(airlinerClass.RegularSeatingCapacity)
-                                / airlinerClass.getFacility(AirlinerFacility.FacilityType.Seat).SeatUses);
+                                / airlinerClass.GetFacility(AirlinerFacility.FacilityType.Seat).SeatUses);
 
                         classes.Add(airlinerClass);
                     }
@@ -254,12 +254,12 @@
             }
             else if (type is AirlinerCargoType)
             {
-                var cargoClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 0);
+                var cargoClass = new AirlinerClass(AirlinerClass.ClassType.EconomyClass, 0);
                 classes.Add(cargoClass);
             }
             else if (type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
             {
-                var helicopterClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 0);
+                var helicopterClass = new AirlinerClass(AirlinerClass.ClassType.EconomyClass, 0);
                 classes.Add(helicopterClass);
             }
             return classes;
@@ -278,17 +278,17 @@
         {
             double basePrice = 650000;
 
-            if (type.Body == AirlinerType.BodyType.Single_Aisle)
+            if (type.Body == AirlinerType.BodyType.SingleAisle)
             {
                 basePrice = basePrice * 1.2;
             }
 
-            if (type.Body == AirlinerType.BodyType.Narrow_Body)
+            if (type.Body == AirlinerType.BodyType.NarrowBody)
             {
                 basePrice = basePrice * 2.4;
             }
 
-            if (type.Body == AirlinerType.BodyType.Wide_Body)
+            if (type.Body == AirlinerType.BodyType.WideBody)
             {
                 basePrice = basePrice * 3.6;
             }

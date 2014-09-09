@@ -37,10 +37,10 @@
                         r =>
                             r.Destination1.getDestinationPassengersRate(
                                 r.Destination2,
-                                AirlinerClass.ClassType.Economy_Class)
+                                AirlinerClass.ClassType.EconomyClass)
                             + r.Destination2.getDestinationPassengersRate(
                                 r.Destination1,
-                                AirlinerClass.ClassType.Economy_Class));
+                                AirlinerClass.ClassType.EconomyClass));
             this.RequestedRoutes = requestedRoutes.Take(Math.Min(5, requestedRoutes.Count())).ToList();
 
             IOrderedEnumerable<Route> yearToDateRoutes =

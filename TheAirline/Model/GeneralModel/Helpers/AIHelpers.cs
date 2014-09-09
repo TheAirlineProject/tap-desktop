@@ -450,7 +450,7 @@
                     if (doLeasing)
                     {
                         airliners = Airliners.GetAirlinersForLeasing().FindAll(a=>a.Type is AirlinerCargoType
-                            && a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                            && a.LeasingPrice * 2 < airline.Money && a.GetAge() < 10 && distance < a.Range
                                         && airlineAircrafts.Contains(a.Type));
 
                         if (airliners.Count == 0)
@@ -459,7 +459,7 @@
                                 Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
                                     .FindAll(
                                         a =>
-                                            a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                                            a.LeasingPrice * 2 < airline.Money && a.GetAge() < 10 && distance < a.Range
                                             && airlineAircrafts.Contains(a.Type));
                         }
                     }
@@ -469,7 +469,7 @@
                             Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
                                 .FindAll(
                                     a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                                        a.GetPrice() < airline.Money - 1000000 && a.GetAge() < 10
                                         && distance < a.Range && airlineAircrafts.Contains(a.Type));
                     }
                 }
@@ -481,7 +481,7 @@
                             Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
                                 .FindAll(
                                     a =>
-                                        a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                                        a.LeasingPrice * 2 < airline.Money && a.GetAge() < 10 && distance < a.Range
                                         && airlineAircrafts.Contains(a.Type));
                     }
                     else
@@ -490,7 +490,7 @@
                             Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
                                 .FindAll(
                                     a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                                        a.GetPrice() < airline.Money - 1000000 && a.GetAge() < 10
                                         && distance < a.Range && airlineAircrafts.Contains(a.Type));
                     }
                 }
@@ -502,7 +502,7 @@
                            Airliners.GetAirlinersForLeasing()
                                .FindAll(
                                    a => a.Type is AirlinerPassengerType
-                                       &&  a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                                       &&  a.LeasingPrice * 2 < airline.Money && a.GetAge() < 10 && distance < a.Range
                                        && airlineAircrafts.Contains(a.Type));
 
                         if (airliners.Count == 0)
@@ -511,7 +511,7 @@
                                 Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
                                     .FindAll(
                                         a =>
-                                            a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                                            a.LeasingPrice * 2 < airline.Money && a.GetAge() < 10 && distance < a.Range
                                             && airlineAircrafts.Contains(a.Type));
                         }
                     }
@@ -521,7 +521,7 @@
                             Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
                                 .FindAll(
                                     a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                                        a.GetPrice() < airline.Money - 1000000 && a.GetAge() < 10
                                         && distance < a.Range && airlineAircrafts.Contains(a.Type));
                     }
                 }
@@ -535,7 +535,7 @@
                         airliners = Airliners.GetAirlinersForLeasing()
                                 .FindAll(
                                     a => a.Type is AirlinerCargoType
-                                        && a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range);
+                                        && a.LeasingPrice * 2 < airline.Money && a.GetAge() < 10 && distance < a.Range);
 
                         if (airliners.Count == 0)
                         {
@@ -543,7 +543,7 @@
                                 Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
                                     .FindAll(
                                         a =>
-                                            a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range);
+                                            a.LeasingPrice * 2 < airline.Money && a.GetAge() < 10 && distance < a.Range);
                         }
                     }
                     else
@@ -552,7 +552,7 @@
                             Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
                                 .FindAll(
                                     a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                                        a.GetPrice() < airline.Money - 1000000 && a.GetAge() < 10
                                         && distance < a.Range);
                     }
                 }
@@ -564,7 +564,7 @@
                             Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
                                 .FindAll(
                                     a =>
-                                        a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range);
+                                        a.LeasingPrice * 2 < airline.Money && a.GetAge() < 10 && distance < a.Range);
                     }
                     else
                     {
@@ -572,7 +572,7 @@
                             Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
                                 .FindAll(
                                     a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                                        a.GetPrice() < airline.Money - 1000000 && a.GetAge() < 10
                                         && distance < a.Range);
                     }
                 }
@@ -584,7 +584,7 @@
                             Airliners.GetAirlinersForSale()
                                 .FindAll(
                                     a =>a.Type is AirlinerPassengerType
-                                        && a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range);
+                                        && a.LeasingPrice * 2 < airline.Money && a.GetAge() < 10 && distance < a.Range);
 
                         if (airliners.Count == 0)
                         {
@@ -592,7 +592,7 @@
                                 Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
                                     .FindAll(
                                         a =>
-                                            a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range);
+                                            a.LeasingPrice * 2 < airline.Money && a.GetAge() < 10 && distance < a.Range);
                         }
                     }
                     else
@@ -601,7 +601,7 @@
                             Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
                                 .FindAll(
                                     a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                                        a.GetPrice() < airline.Money - 1000000 && a.GetAge() < 10
                                         && distance < a.Range);
                     }
                 }
@@ -626,7 +626,7 @@
                                 Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
                                     .FindAll(
                                         a =>
-                                            a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                                            a.GetPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                             && distance < a.Range && airlineAircrafts.Contains(a.Type));
                         }
                         else if (focus == Route.RouteType.Helicopter)
@@ -635,7 +635,7 @@
                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
                                    .FindAll(
                                        a =>
-                                           a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                                           a.GetPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                            && distance < a.Range && airlineAircrafts.Contains(a.Type));
                         }
                         else
@@ -644,7 +644,7 @@
                                 Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
                                     .FindAll(
                                         a =>
-                                            a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                                            a.GetPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                             && distance < a.Range && airlineAircrafts.Contains(a.Type));
                         }
                     }
@@ -656,7 +656,7 @@
                                 Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
                                     .FindAll(
                                         a =>
-                                            a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                                            a.GetPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                             && distance < a.Range);
                         }
                         else if (focus == Route.RouteType.Helicopter)
@@ -665,7 +665,7 @@
                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
                                    .FindAll(
                                        a =>
-                                           a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                                           a.GetPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                            && distance < a.Range);
                         }
                         else
@@ -674,7 +674,7 @@
                                 Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
                                     .FindAll(
                                         a =>
-                                            a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                                            a.GetPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                             && distance < a.Range);
                         }
                     }
@@ -827,8 +827,8 @@
                         routes.Find(r => r.Destination1 == a || r.Destination2 == a) == null
                         && (a.Terminals.getFreeGates(terminaltype) > 0 || AirportHelpers.HasFreeGates(a, airline, terminaltype))
                     orderby
-                        ((int)airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class))
-                        + ((int)a.getDestinationPassengersRate(airport, AirlinerClass.ClassType.Economy_Class)) descending
+                        ((int)airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.EconomyClass))
+                        + ((int)a.getDestinationPassengersRate(airport, AirlinerClass.ClassType.EconomyClass)) descending
                     select a).ToList();
         }
 
@@ -965,20 +965,20 @@
             {
                 double avgServiceLevel =
                     sameRoutes.Where(r => r is PassengerRoute)
-                        .Average(r => ((PassengerRoute)r).getServiceLevel(AirlinerClass.ClassType.Economy_Class));
+                        .Average(r => ((PassengerRoute)r).getServiceLevel(AirlinerClass.ClassType.EconomyClass));
 
                 RouteClassesConfiguration configuration = GetRouteConfiguration(route);
 
                 Array types = Enum.GetValues(typeof(RouteFacility.FacilityType));
 
                 int ct = 0;
-                while (avgServiceLevel > route.getServiceLevel(AirlinerClass.ClassType.Economy_Class)
+                while (avgServiceLevel > route.getServiceLevel(AirlinerClass.ClassType.EconomyClass)
                        && ct < types.Length)
                 {
                     var type = (RouteFacility.FacilityType)types.GetValue(ct);
 
                     RouteFacility currentFacility =
-                        route.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(type);
+                        route.getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).getFacility(type);
 
                     List<RouteFacility> facilities =
                         RouteFacilities.GetFacilities(type).OrderBy(f => f.ServiceLevel).ToList();
@@ -987,7 +987,7 @@
 
                     if (index + 1 < facilities.Count)
                     {
-                        route.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class)
+                        route.getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass)
                             .addFacility(facilities[index + 1]);
                     }
 
@@ -997,16 +997,16 @@
             else
             {
                 Array types = Enum.GetValues(typeof(RouteFacility.FacilityType));
-                double currentServiceLevel = route.getServiceLevel(AirlinerClass.ClassType.Economy_Class);
+                double currentServiceLevel = route.getServiceLevel(AirlinerClass.ClassType.EconomyClass);
 
                 int ct = 0;
-                while (currentServiceLevel + 50 > route.getServiceLevel(AirlinerClass.ClassType.Economy_Class)
+                while (currentServiceLevel + 50 > route.getServiceLevel(AirlinerClass.ClassType.EconomyClass)
                        && ct < types.Length)
                 {
                     var type = (RouteFacility.FacilityType)types.GetValue(ct);
 
                     RouteFacility currentFacility =
-                        route.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(type);
+                        route.getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).getFacility(type);
 
                     List<RouteFacility> facilities =
                         RouteFacilities.GetFacilities(type).OrderBy(f => f.ServiceLevel).ToList();
@@ -1015,7 +1015,7 @@
 
                     if (index + 1 < facilities.Count)
                     {
-                        route.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class)
+                        route.getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass)
                             .addFacility(facilities[index + 1]);
                     }
 
@@ -1377,7 +1377,7 @@
 
                                 if (route.HasAirliner)
                                 {
-                                    route.getAirliners().ForEach(a => a.removeRoute(route));
+                                    route.getAirliners().ForEach(a => a.RemoveRoute(route));
                                 }
 
                                 if (airline.Routes.Count == 0)
@@ -1410,7 +1410,7 @@
 
                                 if (route.HasAirliner)
                                 {
-                                    route.getAirliners().ForEach(a => a.removeRoute(route));
+                                    route.getAirliners().ForEach(a => a.RemoveRoute(route));
                                 }
 
                                 if (airline.Routes.Count == 0)
@@ -1436,7 +1436,7 @@
 
                     if (route.HasAirliner)
                     {
-                        route.getAirliners().ForEach(a => a.removeRoute(route));
+                        route.getAirliners().ForEach(a => a.RemoveRoute(route));
                     }
 
                     if (airline.Routes.Count == 0)
@@ -1757,7 +1757,7 @@
 
                                 if (airliner.Value.Value) //loan
                                 {
-                                    double amount = airliner.Value.Key.getPrice() - airline.Money + 20000000;
+                                    double amount = airliner.Value.Key.GetPrice() - airline.Money + 20000000;
 
                                     var loan = new Loan(
                                         GameObject.GetInstance().GameTime,
@@ -1794,7 +1794,7 @@
                                             airline,
                                             GameObject.GetInstance().GameTime,
                                             Invoice.InvoiceType.Purchases,
-                                            -airliner.Value.Key.getPrice());
+                                            -airliner.Value.Key.GetPrice());
                                     }
                                 }
 
@@ -1831,7 +1831,7 @@
                                 CreateCargoRouteTimeTable(route, fAirliner);
                             }
 
-                            fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                            fAirliner.Status = FleetAirliner.AirlinerStatus.ToRouteStart;
                             AirlineHelpers.HireAirlinerPilots(fAirliner);
 
                             route.LastUpdated = GameObject.GetInstance().GameTime;
@@ -1840,7 +1840,7 @@
 
                         if (fAirliner != null)
                         {
-                            fAirliner.addRoute(route);
+                            fAirliner.AddRoute(route);
                         }
 
                         AirportFacility checkinFacility =

@@ -120,7 +120,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
 
-            double totalLeasingPrice = this.SelectedAirliners.Sum(a => a.Airliner.getLeasingPrice() * 2);
+            double totalLeasingPrice = this.SelectedAirliners.Sum(a => a.Airliner.GetLeasingPrice() * 2);
 
             if (GameObject.GetInstance().HumanAirline.Contract != null)
             {
@@ -134,7 +134,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 }
                 else
                 {
-                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
+                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.GetTerminationFee();
                     WPFMessageBoxResult result =
                         WPFMessageBox.Show(
                             Translator.GetInstance().GetString("MessageBox", "2010"),

@@ -1433,7 +1433,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             if (this.Route.Type == Route.RouteType.Passenger)
             {
                 this.PriceIndex =
-                    ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).FarePrice;
+                    ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).FarePrice;
             }
             else if (this.Route.Type == Route.RouteType.Cargo)
             {
@@ -1442,13 +1442,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             else if (this.Route.Type == Route.RouteType.Mixed)
             {
                 this.PriceIndex =
-                    ((CombiRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).FarePrice
+                    ((CombiRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).FarePrice
                     + ((CombiRoute)this.Route).PricePerUnit;
             }
             else if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter)
             {
                 this.PriceIndex =
-                ((HelicopterRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).FarePrice;
+                ((HelicopterRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).FarePrice;
 
             }
         }

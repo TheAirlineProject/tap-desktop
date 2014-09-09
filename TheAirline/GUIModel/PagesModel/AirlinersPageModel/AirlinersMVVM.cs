@@ -357,9 +357,9 @@
             if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger || this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
             {
                 var eClass = new AirlinerClass(
-                    AirlinerClass.ClassType.Economy_Class,
+                    AirlinerClass.ClassType.EconomyClass,
                     ((AirlinerPassengerType)type).MaxSeatingCapacity);
-                eClass.createBasicFacilities(null);
+                eClass.CreateBasicFacilities(null);
                 this.Classes.Add(eClass);
             }
      

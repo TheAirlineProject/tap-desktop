@@ -864,7 +864,7 @@
                                         GameObject.GetInstance().GameTime);
                                     Airliners.AddAirliner(nAirliner);
 
-                                    nAirliner.clearAirlinerClasses();
+                                    nAirliner.ClearAirlinerClasses();
 
                                     AirlinerHelpers.CreateAirlinerClasses(nAirliner);
 
@@ -906,8 +906,8 @@
                                 airliner.Value.Key,
                                 airline.Airports[0],
                                 leaseAircraft);
-                            fAirliner.addRoute(route);
-                            fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                            fAirliner.AddRoute(route);
+                            fAirliner.Status = FleetAirliner.AirlinerStatus.ToRouteStart;
                             AirlineHelpers.HireAirlinerPilots(fAirliner);
 
                             route.LastUpdated = GameObject.GetInstance().GameTime;
@@ -1101,8 +1101,8 @@
                                     airliner.Value.Key,
                                     airline.Airports[0],
                                     leaseAircraft);
-                                fAirliner.addRoute(route);
-                                fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                                fAirliner.AddRoute(route);
+                                fAirliner.Status = FleetAirliner.AirlinerStatus.ToRouteStart;
                                 AirlineHelpers.HireAirlinerPilots(fAirliner);
 
                                 route.LastUpdated = GameObject.GetInstance().GameTime;
@@ -1310,7 +1310,7 @@
                             airline,
                             GameObject.GetInstance().GameTime,
                             Invoice.InvoiceType.Purchases,
-                            -airliner.Value.Key.getPrice());
+                            -airliner.Value.Key.GetPrice());
                     }
 
                     var fAirliner =
@@ -1320,8 +1320,8 @@
                             airline,
                             airliner.Value.Key,
                             airportHomeBase);
-                    fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
-                    fAirliner.addRoute(route);
+                    fAirliner.Status = FleetAirliner.AirlinerStatus.ToRouteStart;
+                    fAirliner.AddRoute(route);
                     AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
                     AirlineHelpers.HireAirlinerPilots(fAirliner);
 
@@ -1838,10 +1838,10 @@
                 {
                     string facUid = classElement.Attributes[facType.ToString()].Value;
 
-                    classConf.addFacility(AirlinerFacilities.GetFacility(facType, facUid));
+                    classConf.AddFacility(AirlinerFacilities.GetFacility(facType, facUid));
                 }
 
-                configuration.addClassConfiguration(classConf);
+                configuration.AddClassConfiguration(classConf);
             }
 
             return configuration;
@@ -1958,10 +1958,10 @@
                     {
                         string facUid = classElement.Attributes[facType.ToString()].Value;
 
-                        classConf.addFacility(AirlinerFacilities.GetFacility(facType, facUid));
+                        classConf.AddFacility(AirlinerFacilities.GetFacility(facType, facUid));
                     }
 
-                    configuration.addClassConfiguration(classConf);
+                    configuration.AddClassConfiguration(classConf);
                 }
 
                 Configurations.AddConfiguration(configuration);
@@ -3103,7 +3103,7 @@
 
                     if (airlinerType != null)
                     {
-                        engine.addAirlinerType(airlinerType);
+                        engine.AddAirlinerType(airlinerType);
                     }
                     else
                         Console.WriteLine("Missing airliner type for engine: " + model);

@@ -306,7 +306,7 @@
         public void addPilot(Pilot pilot)
         {
             this.Pilots.Add(pilot);
-            this.Airliner.addPilot(pilot);
+            this.Airliner.AddPilot(pilot);
 
             this.IsMissingPilots = this.Airliner.Airliner.Type.CockpitCrew > this.Pilots.Count;
         }
@@ -321,7 +321,7 @@
                 GameObject.GetInstance().HumanAirline,
                 GameObject.GetInstance().GameTime,
                 Invoice.InvoiceType.Purchases,
-                -this.Airliner.Airliner.getPrice());
+                -this.Airliner.Airliner.GetPrice());
         }
 
         //converts the airliner to a cargo airliner
@@ -338,7 +338,7 @@
         public void removePilot(Pilot pilot)
         {
             this.Pilots.Remove(pilot);
-            this.Airliner.removePilot(pilot);
+            this.Airliner.RemovePilot(pilot);
 
             this.IsMissingPilots = true;
         }
@@ -480,9 +480,9 @@
                     facility.Facilities.Add(fac);
                 }
 
-                AirlinerFacility selectedFacility = type.getFacility(facType) == null
+                AirlinerFacility selectedFacility = type.GetFacility(facType) == null
                     ? AirlinerFacilities.GetBasicFacility(facType)
-                    : type.getFacility(facType);
+                    : type.GetFacility(facType);
                 facility.SelectedFacility = selectedFacility;
 
                 this.Facilities.Add(facility);

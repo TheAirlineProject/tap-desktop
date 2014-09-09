@@ -124,7 +124,7 @@
 
                             foreach (Route route in routes)
                             {
-                                airliner.removeRoute(route);
+                                airliner.RemoveRoute(route);
                             }
                         }
 
@@ -134,7 +134,7 @@
                             this.Airline.Airline,
                             GameObject.GetInstance().GameTime,
                             Invoice.InvoiceType.Purchases,
-                            airliner.Airliner.getPrice());
+                            airliner.Airliner.GetPrice());
 
                         foreach (Pilot pilot in airliner.Pilots)
                         {
@@ -162,7 +162,7 @@
 
                             foreach (Route route in routes)
                             {
-                                airliner.removeRoute(route);
+                                airliner.RemoveRoute(route);
                             }
                         }
 

@@ -35,8 +35,8 @@
             if (this.Route.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter)
             {
                 
-                 RouteAirlinerClass rClass = ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
-                 var mClass = new MVVMRouteClass(AirlinerClass.ClassType.Economy_Class, rClass.Seating, rClass.FarePrice);
+                 RouteAirlinerClass rClass = ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass);
+                 var mClass = new MVVMRouteClass(AirlinerClass.ClassType.EconomyClass, rClass.Seating, rClass.FarePrice);
                 
                  this.Classes.Add(mClass);
 
@@ -128,7 +128,7 @@
 
                 if (this.Route.Route.HasAirliner)
                 {
-                    this.Route.Route.getAirliners().ForEach(a => a.removeRoute(this.Route.Route));
+                    this.Route.Route.getAirliners().ForEach(a => a.RemoveRoute(this.Route.Route));
                 }
 
                 var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
