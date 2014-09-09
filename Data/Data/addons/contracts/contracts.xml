@@ -22,8 +22,8 @@
         <route departure="LAX" destination="CGH" bothways="False" passengers="300"/>
       </routes>
       <parameters>
-        <parameter classtype="Business_Class" minseats="48"></parameter><!--minimum 48 business class seats-->
-        <parameter classtype="First_Class" minseats="22"></parameter>
+        <parameter classtype="BusinessClass" minseats="48"></parameter><!--minimum 48 business class seats-->
+        <parameter classtype="FirstClass" minseats="22"></parameter>
       </parameters>
   </contract>
   

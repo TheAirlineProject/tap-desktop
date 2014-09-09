@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <airliners>
   <airliner type="Helicopter" manufacturer="Sikorsky" name="Sikorsky S-92" price="4123124">
-    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <type body="Helicopter" rangetype="ShortRange" engine="Jet" />
     <specs wingspan="17.17" length="17.10" range="999" speed="280" fuelcapacity="1850" consumption="0.132"
            runwaylengthrequired="18" />
     <capacity passengers="19" cockpitcrew="2" cabincrew="0" maxclasses="1" />
     <produced from="1998" to="2028" rate="22" />
   </airliner>
   <airliner type="Helicopter" manufacturer="Sikorsky" name="Sikorsky S-76" price="1722102">
-    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <type body="Helicopter" rangetype="ShortRange" engine="Jet" />
     <specs wingspan="12.75" length="16.00" range="761" speed="287" fuelcapacity="1064" consumption="0.136"
            runwaylengthrequired="14" />
     <capacity passengers="12" cockpitcrew="2" cabincrew="0" maxclasses="1" />

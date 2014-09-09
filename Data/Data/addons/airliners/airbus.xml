@@ -4,7 +4,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A300B1" price="15915680"> <!--35500000-->
 
-    <type body="Wide_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="WideBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="44.85" length="54.08" range="3430" speed="847" fuelcapacity="62900" consumption="0.035"
            runwaylengthrequired="2500" />
@@ -16,7 +16,7 @@
   </airliner>
   <airliner manufacturer="Airbus" name="Airbus A300B2" price="16014380"> <!--35500000-->
 
-    <type body="Wide_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="WideBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="44.85" length="54.08" range="3430" speed="847" fuelcapacity="62900" consumption="0.035"
            runwaylengthrequired="2500" />
@@ -28,7 +28,7 @@
   </airliner>
   <airliner manufacturer="Airbus" name="Airbus A300B4" price="16114380"> <!--35500000-->
 
-    <type body="Wide_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="WideBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="44.85" length="54.08" range="6670" speed="829" fuelcapacity="62900" consumption="0.035"
            runwaylengthrequired="2500" />
@@ -40,7 +40,7 @@
   </airliner>
   <airliner manufacturer="Airbus" name="Airbus A300-600" price="17711740"> <!--59600000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="44.85" length="54.08" range="6850" speed="875" fuelcapacity="62000" consumption="0.034"
            runwaylengthrequired="2240" />
@@ -53,7 +53,7 @@
 
   <airliner type="Cargo" manufacturer="Airbus" name="Airbus A300C4-620" price="17512740"> <!--59600000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="44.85" length="54.08" range="6850" speed="875" fuelcapacity="62000" consumption="0.034"
            runwaylengthrequired="2240" />
@@ -65,7 +65,7 @@
   </airliner>
   <airliner type="Cargo" manufacturer="Airbus" name="Airbus A300-600F" price="17711740"> <!--59600000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="44.85" length="54.08" range="6850" speed="875" fuelcapacity="62000" consumption="0.034"
            runwaylengthrequired="2240" />
@@ -78,7 +78,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A300-600R" price="16312230"> <!--65200000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="44.85" length="54.08" range="7540" speed="829" fuelcapacity="68150" consumption="0.034"
            runwaylengthrequired="2300" />
@@ -91,7 +91,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A310-200" price="16344720"> <!--55000000-->
 
-    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="NarrowBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="43.9" length="46.66" range="6800" speed="850" fuelcapacity="55200" consumption="0.034"
            runwaylengthrequired="2150" />
@@ -104,7 +104,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A310-300" price="15845940"> <!--57600000-->
 
-    <type body="Narrow_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="NarrowBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="43.9" length="46.66" range="9600" speed="850" fuelcapacity="75470" consumption="0.034"
            runwaylengthrequired="2150" />
@@ -117,7 +117,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A318-100" image="Airbus A318" price="8900950"> <!--54100000-->
 
-    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="NarrowBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="34.10" length="31.44" range="5700" speed="828" fuelcapacity="24210" consumption="0.032"
            runwaylengthrequired="1280" />
@@ -130,7 +130,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A319-100" image="Airbus A319" price="10625120"> <!--53200000-->
 
-    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="NarrowBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="34.10" length="33.84" range="6700" speed="828" fuelcapacity="24210" consumption="0.023"
            runwaylengthrequired="1480" />
@@ -143,7 +143,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A319neo" image="Airbus A319" price="9225120"> <!--53200000-->
 
-    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="NarrowBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="34.10" length="33.84" range="7800" speed="828" fuelcapacity="24210" consumption="0.014"
            runwaylengthrequired="1480" />
@@ -156,7 +156,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A320-100" image="Airbus A320" price="11383540"> <!--45500000-->
 
-    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="NarrowBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="34.10" length="37.57" range="4800" speed="828" fuelcapacity="24210" consumption="0.028"
            runwaylengthrequired="1610" />
@@ -169,7 +169,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A320-200" image="Airbus A320" price="11530190"> <!--48300000-->
 
-    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="NarrowBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="34.10" length="37.57" range="5600" speed="828" fuelcapacity="30190" consumption="0.030"
            runwaylengthrequired="1560" />
@@ -181,7 +181,7 @@
   </airliner>
   <airliner manufacturer="Airbus" name="Airbus A320neo" image="Airbus A320" price="12120070"> <!--72200000-->
 
-    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="NarrowBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="36.50" length="37.57" range="6900" speed="828" fuelcapacity="30030" consumption="0.015"
            runwaylengthrequired="1895" />
@@ -195,7 +195,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A321-100" image="Airbus A321" price="13481130"> <!--67500000-->
 
-    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="NarrowBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="34.10" length="44.51" range="4500" speed="828" fuelcapacity="24050" consumption="0.024"
            runwaylengthrequired="1860" />
@@ -208,7 +208,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A321-200" image="Airbus A321" price="13620070"> <!--72200000-->
 
-    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="NarrowBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="34.10" length="44.51" range="5600" speed="828" fuelcapacity="30030" consumption="0.024"
            runwaylengthrequired="1895" />
@@ -220,7 +220,7 @@
   </airliner>
   <airliner manufacturer="Airbus" name="Airbus A321neo" image="Airbus A321" price="13220070"> <!--72200000-->
 
-    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="NarrowBody" rangetype="MediumRange" engine="Jet" />
 
     <specs wingspan="34.10" length="44.51" range="6760" speed="828" fuelcapacity="30030" consumption="0.019"
            runwaylengthrequired="2145" />
@@ -232,7 +232,7 @@
   </airliner>
   <airliner manufacturer="Airbus" name="Airbus A330-200" image="Airbus A330-200" price="26366440"> <!--145200000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="60.30" length="58.82" range="13430" speed="871" fuelcapacity="139090" consumption="0.027"
            runwaylengthrequired="2490" />
@@ -245,7 +245,7 @@
 
   <airliner type="Cargo" manufacturer="Airbus" name="Airbus A330-200F" image="Airbus A330-200" price="26366440"> <!--145200000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="60.30" length="58.82" range="13430" speed="871" fuelcapacity="139090" consumption="0.027"
            runwaylengthrequired="2490" />
@@ -258,7 +258,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A330-300" image="A333" price="29259040"> <!--146500000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="60.30" length="63.69" range="10830" speed="871" fuelcapacity="97530" consumption="0.020"
            runwaylengthrequired="2610" />
@@ -271,7 +271,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A340-200" price="28676770"> <!--140000000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="60.3" length="59.39" range="15000" speed="871" fuelcapacity="155040" consumption="0.025"
            runwaylengthrequired="3000" />
@@ -284,7 +284,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A340-300" price="31319130"> <!--152900000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="60.3" length="63.60" range="13700" speed="871" fuelcapacity="147850" consumption="0.025"
            runwaylengthrequired="3000" />
@@ -297,7 +297,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A340-500" price="34468580"> <!--209500000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="63.45" length="67.90" range="16060" speed="881" fuelcapacity="214810" consumption="0.036"
            runwaylengthrequired="3300" />
@@ -310,7 +310,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A340-600" price="36196120"> <!--220000000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="63.45" length="75.30" range="14350" speed="881" fuelcapacity="195880" consumption="0.026"
            runwaylengthrequired="3300" />
@@ -323,7 +323,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A350-800" price="30699010"> <!--245500000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="64.80" length="60.54" range="15700" speed="903" fuelcapacity="129000" consumption="0.022"
            runwaylengthrequired="2750" />
@@ -336,7 +336,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A350-900" price="34725520"> <!--277700000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="64.80" length="66.89" range="15000" speed="903" fuelcapacity="138000" consumption="0.022"
            runwaylengthrequired="2810" />
@@ -349,7 +349,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A350-900R" price="35555720"> <!--277700000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="64.80" length="66.89" range="19100" speed="903" fuelcapacity="138000" consumption="0.022"
            runwaylengthrequired="2810" />
@@ -362,7 +362,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A350-1000" price="35270025"> <!--320600000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="64.80" length="73.88" range="15600" speed="903" fuelcapacity="156000" consumption="0.018"
            runwaylengthrequired="2880" />
@@ -375,7 +375,7 @@
 
   <airliner manufacturer="Airbus" name="Airbus A380-800" price="49678710"> <!--347900000-->
 
-    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <type body="WideBody" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="79.75" length="72.73" range="15400" speed="945" fuelcapacity="320000" consumption="0.024"
            runwaylengthrequired="2900" />

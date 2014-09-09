@@ -4,23 +4,23 @@
   <months>
     <month month="1" precipitation="38">
       <temp min="20" max="28" />
-      <wind min="Calm" max="Violent_Storm" />
+      <wind min="Calm" max="ViolentStorm" />
     </month>
     <month month="2" precipitation="26">
       <temp min="21" max="29" />
-      <wind min="Calm" max="Violent_Storm" />
+      <wind min="Calm" max="ViolentStorm" />
     </month>
     <month month="3" precipitation="35">
       <temp min="22" max="32" />
-      <wind min="Calm" max="Violent_Storm" />
+      <wind min="Calm" max="ViolentStorm" />
     </month>
     <month month="4" precipitation="52">
       <temp min="24" max="34" />
-      <wind min="Calm" max="Violent_Storm" />
+      <wind min="Calm" max="ViolentStorm" />
     </month>
     <month month="5" precipitation="53">
       <temp min="25" max="35" />
-      <wind min="Calm" max="Violent_Storm" />
+      <wind min="Calm" max="ViolentStorm" />
     </month>
     <month month="6" precipitation="132">
       <temp min="25" max="34" />
@@ -48,7 +48,7 @@
     </month>
     <month month="12" precipitation="139">
       <temp min="21" max="28" />
-      <wind min="Calm" max="Violent_Storm" />
+      <wind min="Calm" max="ViolentStorm" />
     </month>
   </months>
 </weather>

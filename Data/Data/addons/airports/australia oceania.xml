@@ -2,7 +2,7 @@
 <airports>
   <!--South Pacific (N***)-->
   <!--Kiribati, Tuvalu (NG**)-->
-  <airport name="Bonriki International Airport" icao="NGTA" iata="TRW" type="Long_Haul_International" season="All_Year">
+  <airport name="Bonriki International Airport" icao="NGTA" iata="TRW" type="LongHaulInternational" season="AllYear">
     <town town="South Tawara" country="115" GMT="12:00:00" DST="12:00:00" />
     <coordinates>
       <latitude value="001°22'53''N" />
@@ -16,7 +16,7 @@
       <runway name="09/27" length="2011" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cassidy International Airport" icao="PLCH" iata="CXI" type="Long_Haul_International" season="All_Year">
+  <airport name="Cassidy International Airport" icao="PLCH" iata="CXI" type="LongHaulInternational" season="AllYear">
     <town town="Banana" country="115" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="001°59'10''N" />
@@ -30,7 +30,7 @@
       <runway name="08/26" length="2103" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Abaiang Airport" icao="NGAB" iata="ABF" type="Domestic" season="All_Year">
+  <airport name="Abaiang Airport" icao="NGAB" iata="ABF" type="Domestic" season="AllYear">
     <town town="Abaiang" country="115" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="001°47'54''N" />
@@ -44,7 +44,7 @@
       <runway name="05/23" length="885" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Abemama Atoll Airport" icao="NGTB" iata="AEA" type="Domestic" season="All_Year">
+  <airport name="Abemama Atoll Airport" icao="NGTB" iata="AEA" type="Domestic" season="AllYear">
     <town town="Abemama Atoll" country="115" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="000°29'26''N" />
@@ -58,7 +58,7 @@
       <runway name="02/20" length="1244" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Butaritari Atoll Airport" icao="NGTU" iata="BBG" type="Domestic" season="All_Year">
+  <airport name="Butaritari Atoll Airport" icao="NGTU" iata="BBG" type="Domestic" season="AllYear">
     <town town="Butaritari Atoll" country="115" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="003°05'08''N" />
@@ -73,7 +73,7 @@
     </runways>
   </airport>
   <!--Fiji/Tonga (NF**)-->
-  <airport name="Nadi International Airport" icao="NFFN" iata="NAN" type="Long_Haul_International" season="All_Year">
+  <airport name="Nadi International Airport" icao="NFFN" iata="NAN" type="LongHaulInternational" season="AllYear">
     <town town="Nadi" country="114" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="017°45'19''S" />
@@ -88,7 +88,7 @@
       <runway name="09/27" length="2136" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nausori International Airport" icao="NFNA" iata="SUV" type="Domestic" season="All_Year">
+  <airport name="Nausori International Airport" icao="NFNA" iata="SUV" type="Domestic" season="AllYear">
     <town town="Nausori" country="114" GMT="12:00:00" DST="12:00:00" />
     <coordinates>
       <latitude value="018°02'35''S" />
@@ -102,8 +102,8 @@
       <runway name="10/28" length="1868" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Fuaʻamotu International Airport" icao="NFTF" iata="TBU" type="Long_Haul_International"
-           season="All_Year">
+  <airport name="Fuaʻamotu International Airport" icao="NFTF" iata="TBU" type="LongHaulInternational"
+           season="AllYear">
     <town town="Nukuʻalofa" country="208" GMT="12:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="021°14'28''S" />
@@ -119,8 +119,8 @@
     </runways>
   </airport>
   <!--Northern Marianas Islands-->
-  <airport name="Francisco C. Ada Saipan International Airport" icao="PGSN" iata="SPN" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Francisco C. Ada Saipan International Airport" icao="PGSN" iata="SPN" type="ShortHaulInternational"
+           season="AllYear">
     <town town="Saipan Island, MP" country="122" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="015°07'08''N" />
@@ -134,7 +134,7 @@
       <runway name="7/25" length="2652" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Rota International Airport" icao="PGRO" iata="ROP" type="Domestic" season="All_Year">
+   <airport name="Rota International Airport" icao="PGRO" iata="ROP" type="Domestic" season="AllYear">
     <town town="Rota Island, MP" country="122" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="014°10'27''N" />
@@ -148,7 +148,7 @@
       <runway name="09/27" length="1829" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Tinian International Airport" icao="PGWT" iata="TIQ" type="Domestic" season="All_Year">
+    <airport name="Tinian International Airport" icao="PGWT" iata="TIQ" type="Domestic" season="AllYear">
     <town town="Tinian Island, MP" country="122" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="014°59'57''N" />
@@ -163,8 +163,8 @@
     </runways>
   </airport> 
   <!--Samoa, American (NS**)-->
-  <airport name="Pago Pago International Airport" icao="NSTU" iata="PPG" type="Long_Haul_International"
-           season="All_Year">
+  <airport name="Pago Pago International Airport" icao="NSTU" iata="PPG" type="LongHaulInternational"
+           season="AllYear">
     <town town="Pago Pago, AS" country="122" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="014°16'46''S" />
@@ -180,7 +180,7 @@
     </runways>
   </airport>
   <!--French Polynesia (NT**)-->
-  <airport name="Fa'a'ā International Airport" icao="NTAA" iata="PPT" type="Long_Haul_International" season="All_Year">
+  <airport name="Fa'a'ā International Airport" icao="NTAA" iata="PPT" type="LongHaulInternational" season="AllYear">
     <town town="Fa'a'ā, PF" country="140" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="017°33'24''S" />
@@ -194,7 +194,7 @@
       <runway name="04/22" length="3420" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Bora Bora Airport" icao="NTTB" iata="BOB" type="Short_Haul_International" season="All_Year">
+  <airport name="Bora Bora Airport" icao="NTTB" iata="BOB" type="ShortHaulInternational" season="AllYear">
     <town town="Motu Mute, PF" country="140" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="016°26'37''S" />
@@ -209,7 +209,7 @@
     </runways>
   </airport>
   <!--New Zealand (NZ**)-->
-  <airport name="Auckland Airport" icao="NZAA" iata="AKL" type="Long_Haul_International" season="All_Year">
+  <airport name="Auckland Airport" icao="NZAA" iata="AKL" type="LongHaulInternational" season="AllYear">
     <town town="Auckland" country="186" GMT="12:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="037°00'29''S" />
@@ -225,8 +225,8 @@
       <runway name="05R/23L" length="3635" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Christchurch International Airport" icao="NZCH" iata="CHC" type="Long_Haul_International"
-           season="All_Year">
+  <airport name="Christchurch International Airport" icao="NZCH" iata="CHC" type="LongHaulInternational"
+           season="AllYear">
     <town town="Christchurch" country="186" GMT="12:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="043°29'21''S" />
@@ -241,8 +241,8 @@
       <runway name="11/29" length="1741" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Wellington International Airport" icao="NZWN" iata="WLG" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Wellington International Airport" icao="NZWN" iata="WLG" type="ShortHaulInternational"
+           season="AllYear">
     <town town="Wellington" country="186" GMT="12:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="041°19'37''S" />
@@ -256,13 +256,13 @@
       <runway name="16/34" length="2081" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Woodbourne Airport" icao="NZWB" iata="BHE" type="Domestic" season="All_Year">
+  <airport name="Woodbourne Airport" icao="NZWB" iata="BHE" type="Domestic" season="AllYear">
     <town town="Blenheim" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="041°31'05''S" />
       <longitude value="173°52'11''E" />
     </coordinates>
-    <size value="Very_small" pax="212" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="212" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -272,7 +272,7 @@
       <runway name="10/28" length="1182" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Chatham Islands-Tuuta Airport" icao="NZCI" iata="CHT" type="Domestic" season="All_Year">
+  <airport name="Chatham Islands-Tuuta Airport" icao="NZCI" iata="CHT" type="Domestic" season="AllYear">
     <town town="Waitangi" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="043°48'36''S" />
@@ -286,7 +286,7 @@
       <runway name="05/23" length="1360" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Dunedin Airport" icao="NZDN" iata="DUD" type="Domestic" season="All_Year">
+  <airport name="Dunedin Airport" icao="NZDN" iata="DUD" type="Domestic" season="AllYear">
     <town town="Dunedin" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="045°55'41''S" />
@@ -300,7 +300,7 @@
       <runway name="03/21" length="1900" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Gisborne Airport" icao="NZGS" iata="GIS" type="Domestic" season="All_Year">
+  <airport name="Gisborne Airport" icao="NZGS" iata="GIS" type="Domestic" season="AllYear">
     <town town="Gisborne" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="038°39'47''S" />
@@ -317,7 +317,7 @@
       <runway name="14R/32L" length="1310" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Great Barrier Aerodrome" icao="NZGB" iata="GBZ" type="Domestic" season="All_Year">
+  <airport name="Great Barrier Aerodrome" icao="NZGB" iata="GBZ" type="Domestic" season="AllYear">
     <town town="Claris" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="036°14'29''S" />
@@ -331,14 +331,14 @@
       <runway name="10/28" length="930" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hamilton International Airport" icao="NZHN" iata="HLZ" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Hamilton International Airport" icao="NZHN" iata="HLZ" type="ShortHaulInternational"
+           season="AllYear">
     <town town="Hamilton" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="037°52'00''S" />
       <longitude value="175°19'55''E" />
     </coordinates>
-    <size value="Very_small" pax="362" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="362" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
@@ -349,7 +349,7 @@
       <runway name="18R/36L" length="875" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hokitika Airfield" icao="NZHK" iata="HKK" type="Domestic" season="All_Year">
+  <airport name="Hokitika Airfield" icao="NZHK" iata="HKK" type="Domestic" season="AllYear">
     <town town="Hokitika" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="042°42'48''S" />
@@ -364,13 +364,13 @@
       <runway name="13/31" length="1176" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Invercargill Airport" icao="NZNV" iata="IVC" type="Regional" season="All_Year">
+  <airport name="Invercargill Airport" icao="NZNV" iata="IVC" type="Regional" season="AllYear">
     <town town="Invercargill" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="046°24'44''S" />
       <longitude value="168°18'46''E" />
     </coordinates>
-    <size value="Very_small" pax="281" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="281" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -381,7 +381,7 @@
       <runway name="12/30" length="913" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kaikoura Airport" icao="NZKI" iata="KBZ" type="Domestic" season="All_Year">
+  <airport name="Kaikoura Airport" icao="NZKI" iata="KBZ" type="Domestic" season="AllYear">
     <town town="Kaikoura" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="042°25'29''S" />
@@ -396,7 +396,7 @@
       <runway name="05/23" length="615" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Kaitaia Airport" icao="NZKT" iata="KAT" type="Domestic" season="All_Year">
+  <airport name="Kaitaia Airport" icao="NZKT" iata="KAT" type="Domestic" season="AllYear">
     <town town="Kaitaia" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="035°04'11''S" />
@@ -411,7 +411,7 @@
       <runway name="18/36" length="1277" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kerikeri Airport" icao="NZKK" iata="KKE" type="Domestic" season="All_Year">
+  <airport name="Kerikeri Airport" icao="NZKK" iata="KKE" type="Domestic" season="AllYear">
     <town town="Kerikeri" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="035°15'46''S" />
@@ -427,7 +427,7 @@
       <runway name="15R/33L" length="1190" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hood Airport" icao="NZMS" iata="MRO" type="Domestic" season="All_Year">
+  <airport name="Hood Airport" icao="NZMS" iata="MRO" type="Domestic" season="AllYear">
     <town town="Masterton" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="040°58'23''S" />
@@ -444,7 +444,7 @@
       <runway name="10/28" length="1042" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Mount Cook Airport" icao="NZMC" iata="MON" type="Domestic" season="All_Year">
+  <airport name="Mount Cook Airport" icao="NZMC" iata="MON" type="Domestic" season="AllYear">
     <town town="Mount Cook Village" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="043°45'53''S" />
@@ -458,13 +458,13 @@
       <runway name="13/31" length="1572" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hawke's Bay Airport" icao="NZNR" iata="NPE" type="Domestic" season="All_Year">
+  <airport name="Hawke's Bay Airport" icao="NZNR" iata="NPE" type="Domestic" season="AllYear">
     <town town="Auckland" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="039°27'56''S" />
       <longitude value="176°52'11''E" />
     </coordinates>
-    <size value="Very_small" pax="432" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="432" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
@@ -475,7 +475,7 @@
       <runway name="16R/34L" length="1310" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nelson Airport" icao="NZNS" iata="NSN" type="Regional" season="All_Year">
+  <airport name="Nelson Airport" icao="NZNS" iata="NSN" type="Regional" season="AllYear">
     <town town="Nelson" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="041°17'53''S" />
@@ -492,13 +492,13 @@
       <runway name="17/35" length="600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="New Plymouth Airport" icao="NZNP" iata="NPL" type="Domestic" season="All_Year">
+  <airport name="New Plymouth Airport" icao="NZNP" iata="NPL" type="Domestic" season="AllYear">
     <town town="New Plymouth" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="039°00'30''S" />
       <longitude value="174°10'44''E" />
     </coordinates>
-    <size value="Very_small" pax="275" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="275" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -508,7 +508,7 @@
       <runway name="14/32" length="1200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Oamaru Airport" icao="NZOU" iata="OAM" type="Domestic" season="All_Year">
+  <airport name="Oamaru Airport" icao="NZOU" iata="OAM" type="Domestic" season="AllYear">
     <town town="Oamaru" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="044°58'12''S" />
@@ -524,8 +524,8 @@
       <runway name="18/36" length="1283" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Palmerston North International Airport" icao="NZPM" iata="PMR" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Palmerston North International Airport" icao="NZPM" iata="PMR" type="ShortHaulInternational"
+           season="AllYear">
     <town town="Palmerston North" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="040°19'14''S" />
@@ -540,7 +540,7 @@
       <runway name="07R/25L" length="608" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kapiti Coast Airport" icao="NZPP" iata="PPQ" type="Domestic" season="All_Year">
+  <airport name="Kapiti Coast Airport" icao="NZPP" iata="PPQ" type="Domestic" season="AllYear">
     <town town="Kapiti Coast" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="040°54'16''S" />
@@ -557,8 +557,8 @@
       <runway name="16R/34L" length="1350" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Queenstown International Airport" icao="NZQN" iata="ZQN" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Queenstown International Airport" icao="NZQN" iata="ZQN" type="ShortHaulInternational"
+           season="AllYear">
     <town town="Queenstown" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="045°01'15''S" />
@@ -574,13 +574,13 @@
       <runway name="14/32" length="944" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Rotorua Regional Airport" icao="NZRO" iata="ROT" type="Regional" season="All_Year">
+  <airport name="Rotorua Regional Airport" icao="NZRO" iata="ROT" type="Regional" season="AllYear">
     <town town="Rotorua" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="038°06'33''S" />
       <longitude value="176°19'01''E" />
     </coordinates>
-    <size value="Very_small" pax="227" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="227" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -589,7 +589,7 @@
       <runway name="18R/36L" length="1622" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ryans Creek Aerodrome" icao="NZRC" iata="SZS" type="Domestic" season="All_Year">
+  <airport name="Ryans Creek Aerodrome" icao="NZRC" iata="SZS" type="Domestic" season="AllYear">
     <town town="Oban" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="046°53'58''S" />
@@ -603,7 +603,7 @@
       <runway name="04/22" length="800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Takaka Airport" icao="NZTK" iata="KTF" type="Domestic" season="All_Year">
+  <airport name="Takaka Airport" icao="NZTK" iata="KTF" type="Domestic" season="AllYear">
     <town town="Takaka" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="040°48'47''S" />
@@ -617,7 +617,7 @@
       <runway name="36/18" length="670" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Taupo Airport" icao="NZAP" iata="TUO" type="Domestic" season="All_Year">
+  <airport name="Taupo Airport" icao="NZAP" iata="TUO" type="Domestic" season="AllYear">
     <town town="Taupo" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="038°44'22''S" />
@@ -632,7 +632,7 @@
       <runway name="17/35" length="1386" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Tauranga Airport" icao="NZTG" iata="TRG" type="Domestic" season="All_Year">
+  <airport name="Tauranga Airport" icao="NZTG" iata="TRG" type="Domestic" season="AllYear">
     <town town="Tauranga" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="037°40'18''S" />
@@ -649,7 +649,7 @@
       <runway name="16/34" length="700" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Timaru Airport" icao="NZTU" iata="TIU" type="Domestic" season="All_Year">
+  <airport name="Timaru Airport" icao="NZTU" iata="TIU" type="Domestic" season="AllYear">
     <town town="Timaru" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="044°18'10''S" />
@@ -665,7 +665,7 @@
       <runway name="11/29" length="1113" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Wanaka Airport" icao="NZWF" iata="WKA" type="Domestic" season="All_Year">
+  <airport name="Wanaka Airport" icao="NZWF" iata="WKA" type="Domestic" season="AllYear">
     <town town="Wanaka" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="044°43'19''S" />
@@ -679,7 +679,7 @@
       <runway name="11/29" length="1200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Wanganui Airport" icao="NZWU" iata="WAG" type="Domestic" season="All_Year">
+  <airport name="Wanganui Airport" icao="NZWU" iata="WAG" type="Domestic" season="AllYear">
     <town town="Wanganui" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="039°57'43''S" />
@@ -697,7 +697,7 @@
       <runway name="14/32" length="902" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Westport Airport" icao="NZWS" iata="WSZ" type="Domestic" season="All_Year">
+  <airport name="Westport Airport" icao="NZWS" iata="WSZ" type="Domestic" season="AllYear">
     <town town="Westport" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="041°44'17''S" />
@@ -711,7 +711,7 @@
       <runway name="04/22" length="1280" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Whakatane Airport" icao="NZWK" iata="WHK" type="Domestic" season="All_Year">
+  <airport name="Whakatane Airport" icao="NZWK" iata="WHK" type="Domestic" season="AllYear">
     <town town="Whakatane" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="037°55'14''S" />
@@ -726,7 +726,7 @@
       <runway name="09R/27L" length="750" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Whangarei Airport" icao="NZWR" iata="WRE" type="Domestic" season="All_Year">
+  <airport name="Whangarei Airport" icao="NZWR" iata="WRE" type="Domestic" season="AllYear">
     <town town="Whangarei" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="035°46'05''S" />
@@ -743,7 +743,7 @@
   </airport>
   <!--Eastern Pacific (P***)-->
   <!--United States (Alaska) (PA**)-->
-    <airport name="McGrath Airport" icao="PAMC" iata="MCG" type="Domestic" season="All_Year">
+    <airport name="McGrath Airport" icao="PAMC" iata="MCG" type="Domestic" season="AllYear">
     <town town="McGrath, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="062°57'10''N" />
@@ -758,7 +758,7 @@
       <runway name="16/34" length="1809" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Chevak Airport" icao="PAVA" iata="VAK" type="Domestic" season="All_Year">
+   <airport name="Chevak Airport" icao="PAVA" iata="VAK" type="Domestic" season="AllYear">
     <town town="Chevak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="061°32'27''N" />
@@ -773,7 +773,7 @@
       <runway name="18W/36W" length="610" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Kipnuk Airport" icao="PAKI" iata="KPN" type="Domestic" season="All_Year">
+    <airport name="Kipnuk Airport" icao="PAKI" iata="KPN" type="Domestic" season="AllYear">
     <town town="Kipnuk, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="059°55'58''N" />
@@ -787,7 +787,7 @@
       <runway name="15/33" length="646" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Hooper Bay Airport" icao="PAHP" iata="HPB" type="Domestic" season="All_Year">
+    <airport name="Hooper Bay Airport" icao="PAHP" iata="HPB" type="Domestic" season="AllYear">
     <town town="Hooper Bay, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="061°31'26''N" />
@@ -801,7 +801,7 @@
       <runway name="13/31" length="1006" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Quinhagak Airport" icao="PAQH" iata="KWN" type="Domestic" season="All_Year">
+    <airport name="Quinhagak Airport" icao="PAQH" iata="KWN" type="Domestic" season="AllYear">
     <town town="Quinhagak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="059°45'18''N" />
@@ -815,7 +815,7 @@
       <runway name="12/30" length="1219" surface="Gravel" />
     </runways>
   </airport>
-   <airport name="Iliamna Airport" icao="PAIL" iata="ILI" type="Domestic" season="All_Year">
+   <airport name="Iliamna Airport" icao="PAIL" iata="ILI" type="Domestic" season="AllYear">
     <town town="Iliamna, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="059°45'15''N" />
@@ -832,7 +832,7 @@
       <runway name="N/S" length="881" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Fort Yukon Airport" icao="PFYU" iata="FYU" type="Domestic" season="All_Year">
+    <airport name="Fort Yukon Airport" icao="PFYU" iata="FYU" type="Domestic" season="AllYear">
     <town town="Fort Yukon, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="066°34'17''N" />
@@ -846,7 +846,7 @@
       <runway name="04/22" length="1771" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Skagway Airport" icao="PAGY" iata="SGY" type="Domestic" season="All_Year">
+    <airport name="Skagway Airport" icao="PAGY" iata="SGY" type="Domestic" season="AllYear">
     <town town="Skagway, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="059°27'36''N" />
@@ -860,7 +860,7 @@
       <runway name="02/20" length="1082" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Haines Airport" icao="PAHN" iata="HNS" type="Domestic" season="All_Year">
+    <airport name="Haines Airport" icao="PAHN" iata="HNS" type="Domestic" season="AllYear">
     <town town="Haines, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="059°14'37''N" />
@@ -874,7 +874,7 @@
       <runway name="08/26" length="1219" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="St Mary's Airport" icao="PASM" iata="KSM" type="Domestic" season="All_Year">
+    <airport name="St Mary's Airport" icao="PASM" iata="KSM" type="Domestic" season="AllYear">
     <town town="St Mary's, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="062°03'37''N" />
@@ -889,7 +889,7 @@
       <runway name="17/35" length="1830" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Gustavus Airport" icao="PAGS" iata="GST" type="Domestic" season="All_Year">
+  <airport name="Gustavus Airport" icao="PAGS" iata="GST" type="Domestic" season="AllYear">
     <town town="Gustavus, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="058°25'31''N" />
@@ -904,7 +904,7 @@
       <runway name="11/29" length="2048" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Yakutat Airport" icao="PAYA" iata="YAK" type="Domestic" season="All_Year">
+  <airport name="Yakutat Airport" icao="PAYA" iata="YAK" type="Domestic" season="AllYear">
     <town town="Yakutat, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="059°30'11''N" />
@@ -919,7 +919,7 @@
       <runway name="11/29" length="2361" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Emmonak Airport" icao="PAEM" iata="EMK" type="Domestic" season="All_Year">
+    <airport name="Emmonak Airport" icao="PAEM" iata="EMK" type="Domestic" season="AllYear">
     <town town="Emmonak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="062°47'09''N" />
@@ -933,7 +933,7 @@
       <runway name="16/34" length="1402" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Hoonah Airport" icao="PAOH" iata="HNH" type="Domestic" season="All_Year">
+    <airport name="Hoonah Airport" icao="PAOH" iata="HNH" type="Domestic" season="AllYear">
     <town town="Hoonah, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="058°05'45''N" />
@@ -947,7 +947,7 @@
       <runway name="06/24" length="913" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Wrangell Airport" icao="PAWG" iata="WRG" type="Domestic" season="All_Year">
+    <airport name="Wrangell Airport" icao="PAWG" iata="WRG" type="Domestic" season="AllYear">
     <town town="Wrangell, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="056°29'03''N" />
@@ -961,7 +961,7 @@
       <runway name="10/28" length="1828" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Manokotak Airport" icao="PAMB" iata="KMO" type="Domestic" season="All_Year">
+    <airport name="Manokotak Airport" icao="PAMB" iata="KMO" type="Domestic" season="AllYear">
     <town town="Manokotak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="058°59'24''N" />
@@ -975,7 +975,7 @@
       <runway name="03/21" length="1006" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Unalakleet Airport" icao="PAUN" iata="UNK" type="Domestic" season="All_Year">
+    <airport name="Unalakleet Airport" icao="PAUN" iata="UNK" type="Domestic" season="AllYear">
     <town town="Unalakleet, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="063°53'18''N" />
@@ -990,7 +990,7 @@
       <runway name="15/33" length="1830" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Aniak Airport" icao="PANI" iata="ANI" type="Domestic" season="All_Year">
+    <airport name="Aniak Airport" icao="PANI" iata="ANI" type="Domestic" season="AllYear">
     <town town="Aniak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="061°34'53''N" />
@@ -1005,7 +1005,7 @@
       <runway name="10/28" length="1829" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Dillingham Airport" icao="PADL" iata="DLG" type="Domestic" season="All_Year">
+    <airport name="Dillingham Airport" icao="PADL" iata="DLG" type="Domestic" season="AllYear">
     <town town="Dillingham, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="059°02'40''N" />
@@ -1019,7 +1019,7 @@
       <runway name="01/19" length="1951" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Nome Airport" icao="PAOM" iata="OME" type="Short_Haul_International" season="All_Year">
+    <airport name="Nome Airport" icao="PAOM" iata="OME" type="ShortHaulInternational" season="AllYear">
     <town town="Nome, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="064°30'43''N" />
@@ -1034,7 +1034,7 @@
       <runway name="10/28" length="1829" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Ralph Wien Memorial Airport" icao="PAOT" iata="OTZ" type="Domestic" season="All_Year">
+    <airport name="Ralph Wien Memorial Airport" icao="PAOT" iata="OTZ" type="Domestic" season="AllYear">
     <town town="Kotzebue, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="066°53'04''N" />
@@ -1049,13 +1049,13 @@
       <runway name="17/35" length="1158" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Kenai Municipal Airport" icao="PAEN" iata="ENA" type="Domestic" season="All_Year">
+    <airport name="Kenai Municipal Airport" icao="PAEN" iata="ENA" type="Domestic" season="AllYear">
     <town town="Kenai, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="060°34'23''N" />
       <longitude value="151°14'41''W" />
     </coordinates>
-    <size value="Very_small" pax="181" />
+    <size value="Verysmall" pax="181" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -1065,13 +1065,13 @@
       <runway name="01W/19W" length="1402" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Ketchikan International Airport" icao="PAKT" iata="KTN" type="Domestic" season="All_Year">
+    <airport name="Ketchikan International Airport" icao="PAKT" iata="KTN" type="Domestic" season="AllYear">
     <town town="Ketchikan, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="055°21'20''N" />
       <longitude value="131°42'50''W" />
     </coordinates>
-    <size value="Very_small" pax="216" />
+    <size value="Verysmall" pax="216" />
     <terminals>
       <terminal name="Terminal A" gates="10" />
     </terminals>
@@ -1080,7 +1080,7 @@
       <runway name="ESE/WNW" length="2896" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Cold Bay Airport" icao="PACD" iata="CDB" type="Regional" season="All_Year">
+   <airport name="Cold Bay Airport" icao="PACD" iata="CDB" type="Regional" season="AllYear">
     <town town="Cold Bay, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="055°12'21''N" />
@@ -1095,13 +1095,13 @@
       <runway name="14/32" length="3174" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Bethel Airport" icao="PABE" iata="BET" type="Regional" season="All_Year">
+  <airport name="Bethel Airport" icao="PABE" iata="BET" type="Regional" season="AllYear">
     <town town="Bethel, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="060°46'47''N" />
       <longitude value="161°50'16''W" />
     </coordinates>
-    <size value="Very_small" pax="289" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="289" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="3" />
     </terminals>
@@ -1111,7 +1111,7 @@
       <runway name="12/30" length="567" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Wiley Post Will Rogers Memorial Airport" icao="PABR" iata="BRW" type="Regional" season="All_Year">
+  <airport name="Wiley Post Will Rogers Memorial Airport" icao="PABR" iata="BRW" type="Regional" season="AllYear">
     <town town="Barrow, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="071°17'07''N" />
@@ -1125,7 +1125,7 @@
       <runway name="6/24" length="1981" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kodiak Airport" icao="PADQ" iata="ADQ" type="Regional" season="All_Year">
+  <airport name="Kodiak Airport" icao="PADQ" iata="ADQ" type="Regional" season="AllYear">
     <town town="Kodiak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="057°45'00''N" />
@@ -1141,7 +1141,7 @@
       <runway name="18/36" length="1528" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Merle K (Mudhole) Smith Airport" icao="PACV" iata="CDV" type="Regional" season="All_Year">
+  <airport name="Merle K (Mudhole) Smith Airport" icao="PACV" iata="CDV" type="Regional" season="AllYear">
     <town town="Cordova, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="060°29'30''N" />
@@ -1156,7 +1156,7 @@
       <runway name="16/34" length="579" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Unalaska Airport" icao="PADU" iata="DUT" type="Regional" season="All_Year">
+    <airport name="Unalaska Airport" icao="PADU" iata="DUT" type="Regional" season="AllYear">
     <town town="Unalaska, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="053°54'00''N" />
@@ -1170,8 +1170,8 @@
       <runway name="12/30" length="1189" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Fairbanks International Airport" icao="PAFA" iata="FAI" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Fairbanks International Airport" icao="PAFA" iata="FAI" type="ShortHaulInternational"
+           season="AllYear">
     <town town="Fairbanks, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="064°48'54''N" />
@@ -1187,7 +1187,7 @@
       <runway name="2R/20L" length="1982" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Edward G. Pitka Sr Airport" icao="PAGA" iata="GAL" type="Regional" season="All_Year">
+  <airport name="Edward G. Pitka Sr Airport" icao="PAGA" iata="GAL" type="Regional" season="AllYear">
     <town town="Galena, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="064°44'10''N" />
@@ -1202,7 +1202,7 @@
       <runway name="7/25" length="2211" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Juneau International Airport" icao="PAJN" iata="JNU" type="Domestic" season="All_Year">
+  <airport name="Juneau International Airport" icao="PAJN" iata="JNU" type="Domestic" season="AllYear">
     <town town="Juneau, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="058°21'17''N" />
@@ -1216,7 +1216,7 @@
       <runway name="8/26" length="2578" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="King Salmon Airport" icao="PAKN" iata="AKN" type="Regional" season="All_Year">
+  <airport name="King Salmon Airport" icao="PAKN" iata="AKN" type="Regional" season="AllYear">
     <town town="King Salmon, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="058°40'36''N" />
@@ -1232,7 +1232,7 @@
       <runway name="NW/SE" length="1219" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Homer Airport" icao="PAHO" iata="HOM" type="Regional" season="All_Year">
+  <airport name="Homer Airport" icao="PAHO" iata="HOM" type="Regional" season="AllYear">
     <town town="Homer, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="059°38'44''N" />
@@ -1246,13 +1246,13 @@
       <runway name="3/21" length="2042" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Merrill Field" icao="PAMR" iata="MRI" type="Regional" season="All_Year">
+  <airport name="Merrill Field" icao="PAMR" iata="MRI" type="Regional" season="AllYear">
     <town town="Anchorage, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="061°12'48''N" />
       <longitude value="149°50'38''W" />
     </coordinates>
-    <size value="Very_small" pax="177" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="177" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="3" />
     </terminals>
@@ -1262,14 +1262,14 @@
       <runway name="16/34" length="805" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ted Stevens Anchorage International Airport" icao="PANC" iata="ANC" type="Long_Haul_International"
+  <airport name="Ted Stevens Anchorage International Airport" icao="PANC" iata="ANC" type="LongHaulInternational"
            season="Summer">
     <town town="Anchorage, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="061°10'27''N" />
       <longitude value="149°59'46''W" />
     </coordinates>
-    <size value="Medium" pax="4976" cargo="Very_large" cargovolume="2421" />
+    <size value="Medium" pax="4976" cargo="Verylarge" cargovolume="2421" />
     <terminals>
       <terminal name="Terminal" gates="10" />
     </terminals>
@@ -1280,7 +1280,7 @@
     </runways>
   </airport>
 
-  <airport name="Petersburg James A Johnson Airport" icao="PAPG" iata="PSG" type="Regional" season="All_Year">
+  <airport name="Petersburg James A Johnson Airport" icao="PAPG" iata="PSG" type="Regional" season="AllYear">
     <town town="Petersburg, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="056°48'06''N" />
@@ -1294,7 +1294,7 @@
       <runway name="4/22" length="1829" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Deadhorse Airport" icao="PASC" iata="SCC" type="Regional" season="All_Year">
+  <airport name="Deadhorse Airport" icao="PASC" iata="SCC" type="Regional" season="AllYear">
     <town town="Deadhorse, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="070°11'40''N" />
@@ -1308,7 +1308,7 @@
       <runway name="5/23" length="1981" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Sitka Rocky Gutierrez Airport" icao="PASI" iata="SIT" type="Regional" season="All_Year">
+  <airport name="Sitka Rocky Gutierrez Airport" icao="PASI" iata="SIT" type="Regional" season="AllYear">
     <town town="Sitka, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="057°02'49''N" />
@@ -1322,7 +1322,7 @@
       <runway name="11/29" length="1981" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Valdez Pioneer Field" icao="PAVD" iata="VDZ" type="Regional" season="All_Year">
+  <airport name="Valdez Pioneer Field" icao="PAVD" iata="VDZ" type="Regional" season="AllYear">
     <town town="Valdez, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="061°08'02''N" />
@@ -1338,8 +1338,8 @@
   </airport>
  
   <!--United States (Guam) (PG**)-->
-   <airport name="Antonio B. Won Pat International Airport" icao="PGUM" iata="GUM" type="Long_Haul_International"
-           season="All_Year">
+   <airport name="Antonio B. Won Pat International Airport" icao="PGUM" iata="GUM" type="LongHaulInternational"
+           season="AllYear">
     <town town="Hagåtña, GU" country="122" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="013°29'02''N" />
@@ -1355,7 +1355,7 @@
     </runways>
   </airport>
   <!--United States (Hawaii) (PH**)-->
-  <airport name="Kona International Airport" icao="PHKO" iata="KOA" type="Short_Haul_International" season="All_Year">
+  <airport name="Kona International Airport" icao="PHKO" iata="KOA" type="ShortHaulInternational" season="AllYear">
     <town town="Kona, HI" country="122" GMT="-10:00:00" DST="-10:00:00" />
     <coordinates>
       <latitude value="019°44'20''N" />
@@ -1369,7 +1369,7 @@
       <runway name="17/35" length="3353" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lihue Airport" icao="PHLI" iata="LIH" type="Short_Haul_International" season="All_Year">
+  <airport name="Lihue Airport" icao="PHLI" iata="LIH" type="ShortHaulInternational" season="AllYear">
     <town town="Kauai Island, HI" country="122" GMT="-10:00:00" DST="-10:00:00" />
     <coordinates>
       <latitude value="021°58'59''N" />
@@ -1385,13 +1385,13 @@
          <runway name="H1" length="20" surface="Asphalt" type="Helipad" />
     </runways>
   </airport>
-  <airport name="Molokai Airport" icao="PHMK" iata="MKK" type="Regional" season="All_Year">
+  <airport name="Molokai Airport" icao="PHMK" iata="MKK" type="Regional" season="AllYear">
     <town town="Kaunakakai, HI" country="122" GMT="-10:00:00" DST="-11:00:00" />
     <coordinates>
       <latitude value="021°09'10''N" />
       <longitude value="157°05'45''W" />
     </coordinates>
-    <size value="Very_small" pax="176" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="176" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="3" />
     </terminals>
@@ -1400,14 +1400,14 @@
       <runway name="17/35" length="950" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Honolulu International Airport" icao="PHNL" iata="HNL" type="Long_Haul_International"
-           season="All_Year">
+  <airport name="Honolulu International Airport" icao="PHNL" iata="HNL" type="LongHaulInternational"
+           season="AllYear">
     <town town="Honolulu, HI" country="122" GMT="-10:00:00" DST="-10:00:00" />
     <coordinates>
       <latitude value="021°18'57''N" />
       <longitude value="157°55'36''W" />
     </coordinates>
-    <size value="Very_large" pax="19291" cargo="Smallest" cargovolume="0" />
+    <size value="Verylarge" pax="19291" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Commuter Terminal" gates="18" />
       <terminal name="Interisland Terminal" gates="12" />
@@ -1420,7 +1420,7 @@
       <runway name="8R/26L" length="3658" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lanai Airport" icao="PHNY" iata="LNY" type="Regional" season="All_Year">
+  <airport name="Lanai Airport" icao="PHNY" iata="LNY" type="Regional" season="AllYear">
     <town town="Lanai City, HI" country="122" GMT="-10:00:00" DST="-11:00:00" />
     <coordinates>
       <latitude value="020°47'08''N" />
@@ -1434,7 +1434,7 @@
       <runway name="3/21" length="1524" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kahului Airport" icao="PHOG" iata="OGG" type="Short_Haul_International" season="All_Year">
+  <airport name="Kahului Airport" icao="PHOG" iata="OGG" type="ShortHaulInternational" season="AllYear">
     <town town="Kahului, HI" country="122" GMT="-10:00:00" DST="-10:00:00" />
     <coordinates>
       <latitude value="020°53'55''N" />
@@ -1450,7 +1450,7 @@
       <runway name="H1" length="38" surface="Asphalt" type="Helipad" />
     </runways>
   </airport>
-  <airport name="Hilo International Airport" icao="PHTO" iata="ITO" type="Domestic" season="All_Year">
+  <airport name="Hilo International Airport" icao="PHTO" iata="ITO" type="Domestic" season="AllYear">
     <town town="Hilo, HI" country="122" GMT="-10:00:00" DST="-10:00:00" />
     <coordinates>
       <latitude value="019°43'13''N" />
@@ -1466,7 +1466,7 @@
     </runways>
   </airport>
   <!--Australia (Y***)-->
-  <airport name="Brisbane Airport" icao="YBBN" iata="BNE" type="Long_Haul_International" season="All_Year">
+  <airport name="Brisbane Airport" icao="YBBN" iata="BNE" type="LongHaulInternational" season="AllYear">
     <town town="Brisbane, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="027°23'03''S" />
@@ -1482,10 +1482,10 @@
       <runway name="14/32" length="1700" surface="Asphalt" />
     </runways>
      <expansions>
-     <expansion type="New_runway" name="1/19" length="3300" surface="Asphalt" date="12.01.2016 00:00:00" notify="True"></expansion>
+     <expansion type="Newrunway" name="1/19" length="3300" surface="Asphalt" date="12.01.2016 00:00:00" notify="True"></expansion>
    </expansions>
   </airport>
-  <airport name="Gold Coast Airport" icao="YBCG" iata="OOL" type="Long_Haul_International" season="All_Year">
+  <airport name="Gold Coast Airport" icao="YBCG" iata="OOL" type="LongHaulInternational" season="AllYear">
     <town town="Gold Coast, QLD" country="116" GMT="10:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="028°09'52''S" />
@@ -1500,7 +1500,7 @@
       <runway name="17/35" length="582" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cairns Airport" icao="YBCS" iata="CNS" type="Long_Haul_International" season="All_Year">
+  <airport name="Cairns Airport" icao="YBCS" iata="CNS" type="LongHaulInternational" season="AllYear">
     <town town="Cairns, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="016°53'09''S" />
@@ -1515,7 +1515,7 @@
       <runway name="15/33" length="3156" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hobart International Airport" icao="YMHB" iata="HBA" type="Domestic" season="All_Year">
+  <airport name="Hobart International Airport" icao="YMHB" iata="HBA" type="Domestic" season="AllYear">
     <town town="Hobart, TAS" country="116" GMT="10:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="042°50'12''S" />
@@ -1529,14 +1529,14 @@
       <runway name="12/30" length="2251" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Melbourne International Airport" icao="YMML" iata="MEL" type="Long_Haul_International"
-           season="All_Year">
+  <airport name="Melbourne International Airport" icao="YMML" iata="MEL" type="LongHaulInternational"
+           season="AllYear">
     <town town="Melbourne, VIC" country="116" GMT="10:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="037°40'24''S" />
       <longitude value="144°50'36''E" />
     </coordinates>
-    <size value="Very_large" pax="28060" cargo="Smallest" cargovolume="0" />
+    <size value="Verylarge" pax="28060" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="16" />
       <terminal name="Terminal 2" gates="20" />
@@ -1547,7 +1547,7 @@
       <runway name="16/34" length="3657" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Adelaide Airport" icao="YPAD" iata="ADL" type="Long_Haul_International" season="All_Year">
+  <airport name="Adelaide Airport" icao="YPAD" iata="ADL" type="LongHaulInternational" season="AllYear">
     <town town="Adelaide, SA" country="116" GMT="09:30:00" DST="10:30:00" />
     <coordinates>
       <latitude value="034°56'42''S" />
@@ -1562,7 +1562,7 @@
       <runway name="12/30" length="1652" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Perth Airport" icao="YPPH" iata="PER" type="Long_Haul_International" season="All_Year">
+  <airport name="Perth Airport" icao="YPPH" iata="PER" type="LongHaulInternational" season="AllYear">
     <town town="Perth, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="031°56'25''S" />
@@ -1579,7 +1579,7 @@
       <runway name="06/24" length="2163" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Townsville Airport" icao="YTBL" iata="TSV" type="Domestic" season="All_Year">
+  <airport name="Townsville Airport" icao="YTBL" iata="TSV" type="Domestic" season="AllYear">
     <town town="Townsville, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="019°15'12''S" />
@@ -1594,7 +1594,7 @@
       <runway name="07/25" length="1100" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Canberra International Airport" icao="YSCB" iata="CBR" type="Domestic" season="All_Year">
+  <airport name="Canberra International Airport" icao="YSCB" iata="CBR" type="Domestic" season="AllYear">
     <town town="Canberra, ACT" country="116" GMT="10:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="035°18'25''S" />
@@ -1609,14 +1609,14 @@
       <runway name="17/35" length="3283" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Sydney (Kingsford Smith) Airport" icao="YSSY" iata="SYD" type="Long_Haul_International"
-           season="All_Year">
+  <airport name="Sydney (Kingsford Smith) Airport" icao="YSSY" iata="SYD" type="LongHaulInternational"
+           season="AllYear">
     <town town="Sydney, NSW" country="116" GMT="10:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="033°56'46''S" />
       <longitude value="151°10'38''E" />
     </coordinates>
-    <size value="Very_large" pax="36920" cargo="Largest" cargovolume="444" />
+    <size value="Verylarge" pax="36920" cargo="Largest" cargovolume="444" />
     <terminals>
       <terminal name="Terminal 1" gates="30" />
       <terminal name="Terminal 2" gates="15" />
@@ -1628,7 +1628,7 @@
       <runway name="16R/34L" length="3968" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Albury Airport" icao="YMAY" iata="ABX" type="Domestic" season="All_Year">
+  <airport name="Albury Airport" icao="YMAY" iata="ABX" type="Domestic" season="AllYear">
     <town town="Albury, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="036°04'04''S" />
@@ -1642,13 +1642,13 @@
       <runway name="07/25" length="1900" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Ballina Byron Gateway Airport" icao="YBNA" iata="BNK" type="Domestic" season="All_Year">
+    <airport name="Ballina Byron Gateway Airport" icao="YBNA" iata="BNK" type="Domestic" season="AllYear">
     <town town="Ballina, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="028°50'02''S" />
       <longitude value="153°33'43''E" />
     </coordinates>
-    <size value="Very_small" pax="291" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="291" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
@@ -1656,7 +1656,7 @@
       <runway name="06/24" length="1900" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Bathurst Airport" icao="YBTH" iata="BHS" type="Domestic" season="All_Year">
+  <airport name="Bathurst Airport" icao="YBTH" iata="BHS" type="Domestic" season="AllYear">
     <town town="Bathurst, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="033°24'36''S" />
@@ -1672,7 +1672,7 @@
       <runway name="08/26" length="1315" surface="Gravel" />
           </runways>
   </airport>
-  <airport name="Bourke Airport" icao="YBKE" iata="BRK" type="Domestic" season="All_Year">
+  <airport name="Bourke Airport" icao="YBKE" iata="BRK" type="Domestic" season="AllYear">
     <town town="Bourke, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="030°02'21''S" />
@@ -1687,7 +1687,7 @@
       <runway name="18/36" length="1000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Broken Hill Airport" icao="YBHI" iata="BHQ" type="Domestic" season="All_Year">
+  <airport name="Broken Hill Airport" icao="YBHI" iata="BHQ" type="Domestic" season="AllYear">
     <town town="Broken Hill, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="032°00'05''S" />
@@ -1702,7 +1702,7 @@
       <runway name="14/32" length="1000" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Cobar Airport" icao="YCBA" iata="CAZ" type="Domestic" season="All_Year">
+  <airport name="Cobar Airport" icao="YCBA" iata="CAZ" type="Domestic" season="AllYear">
     <town town="Cobar, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="031°32'17''S" />
@@ -1717,13 +1717,13 @@
       <runway name="17/35" length="1221" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Coffs Harbour Airport" icao="YCFS" iata="CFS" type="Domestic" season="All_Year">
+  <airport name="Coffs Harbour Airport" icao="YCFS" iata="CFS" type="Domestic" season="AllYear">
     <town town="Coffs Harbour, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="030°19'12''S" />
       <longitude value="153°07'00''E" />
     </coordinates>
-    <size value="Very_small" pax="341" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="341" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="7" />
     </terminals>
@@ -1732,7 +1732,7 @@
       <runway name="10/28" length="849" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cooma Snowy Mountains Airport" icao="YCOM" iata="OOM" type="Domestic" season="All_Year">
+  <airport name="Cooma Snowy Mountains Airport" icao="YCOM" iata="OOM" type="Domestic" season="AllYear">
     <town town="Cooma, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="036°18'02''S" />
@@ -1747,7 +1747,7 @@
       <runway name="18/36" length="2120" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Coonamble Airport" icao="YCNM" iata="CNB" type="Domestic" season="All_Year">
+  <airport name="Coonamble Airport" icao="YCNM" iata="CNB" type="Domestic" season="AllYear">
     <town town="Coonamble, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="030°58'59''S" />
@@ -1762,13 +1762,13 @@
       <runway name="12/30" length="580" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Dubbo City Regional Airport" icao="YSDU" iata="DBO" type="Domestic" season="All_Year">
+  <airport name="Dubbo City Regional Airport" icao="YSDU" iata="DBO" type="Domestic" season="AllYear">
     <town town="Dubbo, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="032°13'00''S" />
       <longitude value="148°34'30''E" />
     </coordinates>
-    <size value="Very_small" pax="177" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="177" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -1777,7 +1777,7 @@
       <runway name="11/29" length="1067" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Clarence Valley Regional Airport" icao="YGFN" iata="GFN" type="Domestic" season="All_Year">
+  <airport name="Clarence Valley Regional Airport" icao="YGFN" iata="GFN" type="Domestic" season="AllYear">
     <town town="Grafton, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="029°45'36''S" />
@@ -1791,7 +1791,7 @@
       <runway name="18/36" length="1709" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Griffith Airport" icao="YGTH" iata="GFF" type="Domestic" season="All_Year">
+  <airport name="Griffith Airport" icao="YGTH" iata="GFF" type="Domestic" season="AllYear">
     <town town="Griffith, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="034°15'06''S" />
@@ -1806,7 +1806,7 @@
       <runway name="18/36" length="600" surface="Clay" />
     </runways>
   </airport>
-   <airport name="Inverell Airport" icao="YIVL" iata="IVR" type="Domestic" season="All_Year">
+   <airport name="Inverell Airport" icao="YIVL" iata="IVR" type="Domestic" season="AllYear">
     <town town="Inverell, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="029°53'17''S" />
@@ -1821,7 +1821,7 @@
       <runway name="16/34" length="2114" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lightning Ridge Airport" icao="YLRD" iata="LHG" type="Domestic" season="All_Year">
+  <airport name="Lightning Ridge Airport" icao="YLRD" iata="LHG" type="Domestic" season="AllYear">
     <town town="Lightning Ridge, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="029°27'24''S" />
@@ -1836,7 +1836,7 @@
       <runway name="10/28" length="1406" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lismore Airport" icao="YLIS" iata="LSY" type="Domestic" season="All_Year">
+  <airport name="Lismore Airport" icao="YLIS" iata="LSY" type="Domestic" season="AllYear">
     <town town="Lismore, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="028°49'41''S" />
@@ -1850,7 +1850,7 @@
       <runway name="15/33" length="1647" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lord Howe Island Airport" icao="YLHI" iata="LDH" type="Domestic" season="All_Year">
+  <airport name="Lord Howe Island Airport" icao="YLHI" iata="LDH" type="Domestic" season="AllYear">
     <town town="Lord Howe Island, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="031°32'17''S" />
@@ -1864,7 +1864,7 @@
       <runway name="10/28" length="886" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Merimbula Airport" icao="YMER" iata="MIM" type="Domestic" season="All_Year">
+  <airport name="Merimbula Airport" icao="YMER" iata="MIM" type="Domestic" season="AllYear">
     <town town="Merimbula, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="036°54'31''S" />
@@ -1878,7 +1878,7 @@
       <runway name="03/21" length="1602" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Moree Airport" icao="YMOR" iata="MRZ" type="Domestic" season="All_Year">
+  <airport name="Moree Airport" icao="YMOR" iata="MRZ" type="Domestic" season="AllYear">
     <town town="Moree, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="029°29'56''S" />
@@ -1893,7 +1893,7 @@
       <runway name="05/23" length="977" surface="Gravel" />
     </runways>
   </airport>
-  <airport name="Moruya Airport" icao="YMRY" iata="MYA" type="Domestic" season="All_Year">
+  <airport name="Moruya Airport" icao="YMRY" iata="MYA" type="Domestic" season="AllYear">
     <town town="Moruya, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="035°53'52''S" />
@@ -1908,7 +1908,7 @@
       <runway name="18/36" length="1523" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Mudgee Airport" icao="YMDG" iata="DGE" type="Domestic" season="All_Year">
+  <airport name="Mudgee Airport" icao="YMDG" iata="DGE" type="Domestic" season="AllYear">
     <town town="Mudgee, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="032°33'45''S" />
@@ -1923,7 +1923,7 @@
       <runway name="16/34" length="1705" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Narrabri Airport" icao="YNBR" iata="NAA" type="Domestic" season="All_Year">
+  <airport name="Narrabri Airport" icao="YNBR" iata="NAA" type="Domestic" season="AllYear">
     <town town="Narrabri, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="030°19'09''S" />
@@ -1938,7 +1938,7 @@
       <runway name="18/36" length="1524" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Narrandera Airport" icao="YNAR" iata="NRA" type="Domestic" season="All_Year">
+  <airport name="Narrandera Airport" icao="YNAR" iata="NRA" type="Domestic" season="AllYear">
     <town town="Narrandera, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="034°42'07''S" />
@@ -1953,7 +1953,7 @@
       <runway name="14/32" length="1616" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Williamtown Airport" icao="YWLM" iata="NTL" type="Regional" season="All_Year">
+  <airport name="Williamtown Airport" icao="YWLM" iata="NTL" type="Regional" season="AllYear">
     <town town="Newcastle, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="032°47'42''S" />
@@ -1967,7 +1967,7 @@
       <runway name="12/30" length="2438" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Orange Airport" icao="YORG" iata="OAG" type="Domestic" season="All_Year">
+  <airport name="Orange Airport" icao="YORG" iata="OAG" type="Domestic" season="AllYear">
     <town town="Orange, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="033°22'54''S" />
@@ -1982,7 +1982,7 @@
       <runway name="11/29" length="1676" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Parkes Airport" icao="YPKS" iata="PKE" type="Domestic" season="All_Year">
+  <airport name="Parkes Airport" icao="YPKS" iata="PKE" type="Domestic" season="AllYear">
     <town town="Parkes, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="033°07'53''S" />
@@ -1997,13 +1997,13 @@
       <runway name="11/29" length="1623" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Port Macquarie Airport" icao="YPMQ" iata="PQQ" type="Domestic" season="All_Year">
+  <airport name="Port Macquarie Airport" icao="YPMQ" iata="PQQ" type="Domestic" season="AllYear">
     <town town="Port Macquarie, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="031°26'09''S" />
       <longitude value="152°51'48''E" />
     </coordinates>
-    <size value="Very_small" pax="219" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="219" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
@@ -2012,13 +2012,13 @@
       <runway name="10/28" length="696" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Tamworth Airport" icao="YSTW" iata="TMW" type="Domestic" season="All_Year">
+  <airport name="Tamworth Airport" icao="YSTW" iata="TMW" type="Domestic" season="AllYear">
     <town town="Tamworth, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="031°05'02''S" />
       <longitude value="150°50'58''E" />
     </coordinates>
-    <size value="Very_small" pax="157" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="157" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -2029,7 +2029,7 @@
       <runway name="18/36" length="1020" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Taree Airport" icao="YTRE" iata="TRO" type="Domestic" season="All_Year">
+  <airport name="Taree Airport" icao="YTRE" iata="TRO" type="Domestic" season="AllYear">
     <town town="Taree, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="031°53'18''S" />
@@ -2044,13 +2044,13 @@
       <runway name="12/30" length="564" surface="Clay" />
     </runways>
   </airport>
-  <airport name="Wagga Wagga City Airport" icao="YSWG" iata="WGA" type="Domestic" season="All_Year">
+  <airport name="Wagga Wagga City Airport" icao="YSWG" iata="WGA" type="Domestic" season="AllYear">
     <town town="Wagga Wagga, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="035°09'55''S" />
       <longitude value="147°27'59''E" />
     </coordinates>
-    <size value="Very_small" pax="214" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="214" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -2059,7 +2059,7 @@
       <runway name="12/30" length="894" surface="Clay" />
     </runways>
   </airport>
-  <airport name="Armidale Airport" icao="YARM" iata="ARM" type="Domestic" season="All_Year">
+  <airport name="Armidale Airport" icao="YARM" iata="ARM" type="Domestic" season="AllYear">
     <town town="Armidale, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="030°31'42''S" />
@@ -2074,7 +2074,7 @@
       <runway name="09/27" length="1116" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Illawarra Regional Airport" icao="YWOL" iata="WOL" type="Domestic" season="All_Year">
+  <airport name="Illawarra Regional Airport" icao="YWOL" iata="WOL" type="Domestic" season="AllYear">
     <town town="Wollongong, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="034°33'39''S" />
@@ -2089,7 +2089,7 @@
       <runway name="16/34" length="1819" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Alice Springs Airport" icao="YBAS" iata="ASP" type="Regional" season="All_Year">
+  <airport name="Alice Springs Airport" icao="YBAS" iata="ASP" type="Regional" season="AllYear">
     <town town="Alice Springs, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="023°48'25''S" />
@@ -2104,7 +2104,7 @@
       <runway name="17/35" length="1133" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Darwin International Airport" icao="YPDN" iata="DRW" type="Long_Haul_International" season="All_Year">
+  <airport name="Darwin International Airport" icao="YPDN" iata="DRW" type="LongHaulInternational" season="AllYear">
     <town town="Darwin, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="012°24'52''S" />
@@ -2119,7 +2119,7 @@
       <runway name="18/36" length="1524" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Bathurst Island Airport" icao="YBTI" iata="BRT" type="Domestic" season="All_Year">
+  <airport name="Bathurst Island Airport" icao="YBTI" iata="BRT" type="Domestic" season="AllYear">
     <town town="Bathurst Island, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="011°46'09''S" />
@@ -2133,7 +2133,7 @@
       <runway name="15/33" length="1470" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Elcho Island Airport" icao="YELD" iata="ELC" type="Domestic" season="All_Year">
+  <airport name="Elcho Island Airport" icao="YELD" iata="ELC" type="Domestic" season="AllYear">
     <town town="Elcho Island, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="012°01'12''S" />
@@ -2147,7 +2147,7 @@
       <runway name="10/28" length="1440" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lake Evella Airport" icao="YLEV" iata="LEL" type="Domestic" season="All_Year">
+  <airport name="Lake Evella Airport" icao="YLEV" iata="LEL" type="Domestic" season="AllYear">
     <town town="Gapuwiyak, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="012°29'56''S" />
@@ -2161,7 +2161,7 @@
       <runway name="08/26" length="1065" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Groote Eylandt Airport" icao="YGTE" iata="GTE" type="Domestic" season="All_Year">
+  <airport name="Groote Eylandt Airport" icao="YGTE" iata="GTE" type="Domestic" season="AllYear">
     <town town="Groote Eylandt, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="013°58'30''S" />
@@ -2175,7 +2175,7 @@
       <runway name="10/28" length="1901" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kalkgurung Airport" icao="YKKG" iata="KFG" type="Domestic" season="All_Year">
+  <airport name="Kalkgurung Airport" icao="YKKG" iata="KFG" type="Domestic" season="AllYear">
     <town town="Daguragu, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="017°25'54''S" />
@@ -2190,7 +2190,7 @@
       <runway name="13/31" length="926" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hooker Creek Airport" icao="YHOO" iata="HOK" type="Domestic" season="All_Year">
+  <airport name="Hooker Creek Airport" icao="YHOO" iata="HOK" type="Domestic" season="AllYear">
     <town town="Lajamanu, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="018°20'12''S" />
@@ -2204,7 +2204,7 @@
       <runway name="10/28" length="1560" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Maningrida Airport" icao="YMGD" iata="MNG" type="Domestic" season="All_Year">
+  <airport name="Maningrida Airport" icao="YMGD" iata="MNG" type="Domestic" season="AllYear">
     <town town="Maningrida, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="012°03'21''S" />
@@ -2218,7 +2218,7 @@
       <runway name="14/32" length="1530" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Milingimbi Airport" icao="YMGB" iata="MGT" type="Domestic" season="All_Year">
+  <airport name="Milingimbi Airport" icao="YMGB" iata="MGT" type="Domestic" season="AllYear">
     <town town="Milingimbi Island, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="012°05'39''S" />
@@ -2232,7 +2232,7 @@
       <runway name="11/29" length="1410" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Gove Airport" icao="YPGV" iata="GOV" type="Domestic" season="All_Year">
+  <airport name="Gove Airport" icao="YPGV" iata="GOV" type="Domestic" season="AllYear">
     <town town="Nhulunbuy, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="012°16'12''S" />
@@ -2246,7 +2246,7 @@
       <runway name="13/31" length="2208" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ramingining Airport" icao="YRNG" iata="RAM" type="Domestic" season="All_Year">
+  <airport name="Ramingining Airport" icao="YRNG" iata="RAM" type="Domestic" season="AllYear">
     <town town="Ramingining, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="012°21'23''S" />
@@ -2260,7 +2260,7 @@
       <runway name="09/27" length="1471" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Tennant Creek Airport" icao="YTNK" iata="TCA" type="Domestic" season="All_Year">
+  <airport name="Tennant Creek Airport" icao="YTNK" iata="TCA" type="Domestic" season="AllYear">
     <town town="Tennant Creek, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="019°38'03''S" />
@@ -2275,13 +2275,13 @@
       <runway name="11/29" length="1057" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ayers Rock Connellan Airport" icao="YAYE" iata="AYQ" type="Domestic" season="All_Year">
+  <airport name="Ayers Rock Connellan Airport" icao="YAYE" iata="AYQ" type="Domestic" season="AllYear">
     <town town="Ayers Rock, NT" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="025°11'10''S" />
       <longitude value="130°58'32''E" />
     </coordinates>
-    <size value="Very_small" pax="309" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="309" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="7" />
     </terminals>
@@ -2289,7 +2289,7 @@
       <runway name="13/31" length="2599" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cocos (Keeling) Islands Airport" icao="YPCC" iata="CCK" type="Regional" season="All_Year">
+  <airport name="Cocos (Keeling) Islands Airport" icao="YPCC" iata="CCK" type="Regional" season="AllYear">
     <town town="Cocos Islands" country="116" GMT="07:00:00" DST="07:00:00" />
     <coordinates>
       <latitude value="012°11'19''S" />
@@ -2303,7 +2303,7 @@
       <runway name="15/33" length="2441" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Christmas Island Airport" icao="YPXM" iata="XCH" type="Regional" season="All_Year">
+   <airport name="Christmas Island Airport" icao="YPXM" iata="XCH" type="Regional" season="AllYear">
     <town town="Christmas Island" country="116" GMT="07:00:00" DST="07:00:00" />
     <coordinates>
       <latitude value="010°27'02''S" />
@@ -2317,7 +2317,7 @@
       <runway name="18/36" length="2103" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Northern Peninsula Airport" icao="YNPE" iata="ABM" type="Domestic" season="All_Year">
+  <airport name="Northern Peninsula Airport" icao="YNPE" iata="ABM" type="Domestic" season="AllYear">
     <town town="Bamaga, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="010°57'03''S" />
@@ -2331,7 +2331,7 @@
       <runway name="13/31" length="1834" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Barcaldine Airport" icao="YBAR" iata="BCI" type="Domestic" season="All_Year">
+  <airport name="Barcaldine Airport" icao="YBAR" iata="BCI" type="Domestic" season="AllYear">
     <town town="Barcaldine, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="023°33'55''S" />
@@ -2346,7 +2346,7 @@
       <runway name="14/32" length="1115" surface="Clay" />
     </runways>
   </airport>
-  <airport name="Bedourie Airport" icao="YBIE" iata="BEU" type="Domestic" season="All_Year">
+  <airport name="Bedourie Airport" icao="YBIE" iata="BEU" type="Domestic" season="AllYear">
     <town town="Bedourie, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="024°20'45''S" />
@@ -2360,7 +2360,7 @@
       <runway name="14/32" length="1500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Birdsville Airport" icao="YBDV" iata="BVI" type="Domestic" season="All_Year">
+  <airport name="Birdsville Airport" icao="YBDV" iata="BVI" type="Domestic" season="AllYear">
     <town town="Birdsville, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="025°53'50''S" />
@@ -2375,7 +2375,7 @@
       <runway name="14/32" length="1732" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Blackall Airport" icao="YBCK" iata="BKQ" type="Domestic" season="All_Year">
+  <airport name="Blackall Airport" icao="YBCK" iata="BKQ" type="Domestic" season="AllYear">
     <town town="Blackall, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="024°25'40''S" />
@@ -2390,7 +2390,7 @@
       <runway name="12/30" length="1603" surface="Clay" />
     </runways>
   </airport>
-    <airport name="Boigu Island Airport" icao="YBOI" iata="GIC" type="Domestic" season="All_Year">
+    <airport name="Boigu Island Airport" icao="YBOI" iata="GIC" type="Domestic" season="AllYear">
     <town town="Boigu Island, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="009°13'58''S" />
@@ -2404,7 +2404,7 @@
       <runway name="09/27" length="1163" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Boulia Airport" icao="YBOU" iata="BQL" type="Domestic" season="All_Year">
+  <airport name="Boulia Airport" icao="YBOU" iata="BQL" type="Domestic" season="AllYear">
     <town town="Boulia, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="022°54'47''S" />
@@ -2418,7 +2418,7 @@
       <runway name="14/32" length="1801" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Bundaberg Airport" icao="YBUD" iata="BDB" type="Domestic" season="All_Year">
+  <airport name="Bundaberg Airport" icao="YBUD" iata="BDB" type="Domestic" season="AllYear">
     <town town="Bundaberg, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="024°54'14''S" />
@@ -2433,7 +2433,7 @@
       <runway name="14/32" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Burketown Airport" icao="YBKT" iata="BUC" type="Domestic" season="All_Year">
+  <airport name="Burketown Airport" icao="YBKT" iata="BUC" type="Domestic" season="AllYear">
     <town town="Burketown, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="017°44'54''S" />
@@ -2448,7 +2448,7 @@
       <runway name="14/32" length="757" surface="Clay" />
     </runways>
   </airport>
-  <airport name="Charleville Airport" icao="YBCV" iata="CTL" type="Domestic" season="All_Year">
+  <airport name="Charleville Airport" icao="YBCV" iata="CTL" type="Domestic" season="AllYear">
     <town town="Charleville, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="026°24'24''S" />
@@ -2463,7 +2463,7 @@
       <runway name="18/36" length="1067" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Cloncurry Airport" icao="YCCY" iata="CNJ" type="Domestic" season="All_Year">
+   <airport name="Cloncurry Airport" icao="YCCY" iata="CNJ" type="Domestic" season="AllYear">
     <town town="Cloncurry, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="020°40'07''S" />
@@ -2478,7 +2478,7 @@
       <runway name="12/30" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cooktown Airport" icao="YCKN" iata="CTN" type="Domestic" season="All_Year">
+  <airport name="Cooktown Airport" icao="YCKN" iata="CTN" type="Domestic" season="AllYear">
     <town town="Cooktown, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="015°26'41''S" />
@@ -2492,7 +2492,7 @@
       <runway name="11/29" length="1627" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cunnamulla Airport" icao="YCMU" iata="CMA" type="Domestic" season="All_Year">
+  <airport name="Cunnamulla Airport" icao="YCMU" iata="CMA" type="Domestic" season="AllYear">
     <town town="Cunnamulla, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="028°01'48''S" />
@@ -2507,7 +2507,7 @@
       <runway name="12/30" length="1733" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Doomadgee Airport" icao="YDMG" iata="DMD" type="Domestic" season="All_Year">
+  <airport name="Doomadgee Airport" icao="YDMG" iata="DMD" type="Domestic" season="AllYear">
     <town town="Doomadgee, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="017°56'25''S" />
@@ -2521,13 +2521,13 @@
       <runway name="12/30" length="1656" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Emerald Airport" icao="YEML" iata="EMD" type="Regional" season="All_Year">
+  <airport name="Emerald Airport" icao="YEML" iata="EMD" type="Regional" season="AllYear">
     <town town="Emerald, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="023°34'03''S" />
       <longitude value="148°10'45''E" />
     </coordinates>
-    <size value="Very_small" pax="166" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="166" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="11" />
     </terminals>
@@ -2536,13 +2536,13 @@
       <runway name="15/33" length="926" surface="Gravel" />
     </runways>
   </airport>
-  <airport name="Gladstone Airport" icao="YGLA" iata="GLT" type="Regional" season="All_Year">
+  <airport name="Gladstone Airport" icao="YGLA" iata="GLT" type="Regional" season="AllYear">
     <town town="Gladstone, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="023°52'11''S" />
       <longitude value="151°13'22''E" />
     </coordinates>
-    <size value="Very_small" pax="240" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="240" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="9" />
     </terminals>
@@ -2550,13 +2550,13 @@
       <runway name="10/28" length="1920" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Mount Isa Airport" icao="YBMA" iata="ISA" type="Regional" season="All_Year">
+   <airport name="Mount Isa Airport" icao="YBMA" iata="ISA" type="Regional" season="AllYear">
     <town town="Mount Isa, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="020°39'50''S" />
       <longitude value="139°29'19''E" />
     </coordinates>
-    <size value="Very_small" pax="218" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="218" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="7" />
     </terminals>
@@ -2564,13 +2564,13 @@
       <runway name="16/34" length="2560" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Great Barrier Reef Airport" icao="YBHM" iata="HTI" type="Regional" season="All_Year">
+   <airport name="Great Barrier Reef Airport" icao="YBHM" iata="HTI" type="Regional" season="AllYear">
     <town town="Hamilton Island, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="020°21'29''S" />
       <longitude value="148°57'06''E" />
     </coordinates>
-    <size value="Very_small" pax="458" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="458" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="10" />
     </terminals>
@@ -2578,13 +2578,13 @@
       <runway name="14/32" length="1764" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hervey Bay Airport" icao="YHBA" iata="HVB" type="Domestic" season="All_Year">
+  <airport name="Hervey Bay Airport" icao="YHBA" iata="HVB" type="Domestic" season="AllYear">
     <town town="Hervey Bay, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="025°19'08''S" />
       <longitude value="152°52'48''E" />
     </coordinates>
-    <size value="Very_small" pax="159" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="159" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -2592,7 +2592,7 @@
       <runway name="11/29" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Horn Island Airport" icao="YHID" iata="HID" type="Domestic" season="All_Year">
+  <airport name="Horn Island Airport" icao="YHID" iata="HID" type="Domestic" season="AllYear">
     <town town="Horn Island, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="010°35'11''S" />
@@ -2607,7 +2607,7 @@
       <runway name="14/32" length="1235" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Moranbah Airport" icao="YMRB" iata="MOV" type="Domestic" season="All_Year">
+  <airport name="Moranbah Airport" icao="YMRB" iata="MOV" type="Domestic" season="AllYear">
     <town town="Moranbah, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="022°03'28''S" />
@@ -2621,7 +2621,7 @@
       <runway name="16/34" length="1524" surface="Asphalt" />
         </runways>
   </airport>
-  <airport name="Hughenden Airport" icao="YHUG" iata="HGD" type="Domestic" season="All_Year">
+  <airport name="Hughenden Airport" icao="YHUG" iata="HGD" type="Domestic" season="AllYear">
     <town town="Hughenden, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="020°48'54''S" />
@@ -2636,7 +2636,7 @@
       <runway name="12/30" length="1644" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Julia Creek Airport" icao="YJLC" iata="JCK" type="Domestic" season="All_Year">
+  <airport name="Julia Creek Airport" icao="YJLC" iata="JCK" type="Domestic" season="AllYear">
     <town town="Julia Creek, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="020°40'05''S" />
@@ -2650,7 +2650,7 @@
       <runway name="10/28" length="1402" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Karumba Airport" icao="YKMB" iata="KRB" type="Domestic" season="All_Year">
+  <airport name="Karumba Airport" icao="YKMB" iata="KRB" type="Domestic" season="AllYear">
     <town town="Karumba, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="017°27'24''S" />
@@ -2664,7 +2664,7 @@
       <runway name="03/21" length="1378" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kowanyama Airport" icao="YKOW" iata="KWM" type="Domestic" season="All_Year">
+  <airport name="Kowanyama Airport" icao="YKOW" iata="KWM" type="Domestic" season="AllYear">
     <town town="Kowanyama, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="015°29'08''S" />
@@ -2678,7 +2678,7 @@
       <runway name="12/30" length="1380" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kubin Airport" icao="YKUB" iata="KUG" type="Domestic" season="All_Year">
+  <airport name="Kubin Airport" icao="YKUB" iata="KUG" type="Domestic" season="AllYear">
     <town town="Kubin, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="010°13'30''S" />
@@ -2692,7 +2692,7 @@
       <runway name="11/29" length="1000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lockhart River Airport" icao="YLHR" iata="IRG" type="Domestic" season="All_Year">
+  <airport name="Lockhart River Airport" icao="YLHR" iata="IRG" type="Domestic" season="AllYear">
     <town town="Lockhart River, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="012°47'12''S" />
@@ -2706,7 +2706,7 @@
       <runway name="12/30" length="1499" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Longreach Airport" icao="YLRE" iata="LRE" type="Domestic" season="All_Year">
+  <airport name="Longreach Airport" icao="YLRE" iata="LRE" type="Domestic" season="AllYear">
     <town town="Longreach, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="023°26'03''S" />
@@ -2720,7 +2720,7 @@
       <runway name="04/22" length="1936" surface="Asphalt" />
       </runways>
   </airport>
-  <airport name="Mackay Airport" icao="YBMK" iata="MKY" type="Domestic" season="All_Year">
+  <airport name="Mackay Airport" icao="YBMK" iata="MKY" type="Domestic" season="AllYear">
     <town town="Mackay, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="021°10'18''S" />
@@ -2735,7 +2735,7 @@
       <runway name="14/32" length="1981" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Sunshine Coast Airport" icao="YBMC" iata="MCY" type="Regional" season="All_Year">
+  <airport name="Sunshine Coast Airport" icao="YBMC" iata="MCY" type="Regional" season="AllYear">
     <town town="Sunshine Coast, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="026°36'12''S" />
@@ -2750,7 +2750,7 @@
       <runway name="18/36" length="1797" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Mornington Island Airport" icao="YMTI" iata="ONG" type="Domestic" season="All_Year">
+   <airport name="Mornington Island Airport" icao="YMTI" iata="ONG" type="Domestic" season="AllYear">
     <town town="Mornington Island, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="016°39'45''S" />
@@ -2765,7 +2765,7 @@
       <runway name="12/30" length="756" surface="Gravel" />
     </runways>
   </airport>
-  <airport name="Normanton Airport" icao="YNTN" iata="NTN" type="Domestic" season="All_Year">
+  <airport name="Normanton Airport" icao="YNTN" iata="NTN" type="Domestic" season="AllYear">
     <town town="Normanton, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="017°41'00''S" />
@@ -2779,7 +2779,7 @@
       <runway name="14/32" length="1676" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Palm Island Airport" icao="YPAM" iata="PMK" type="Domestic" season="All_Year">
+  <airport name="Palm Island Airport" icao="YPAM" iata="PMK" type="Domestic" season="AllYear">
     <town town="Palm Island, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="018°45'19''S" />
@@ -2793,7 +2793,7 @@
       <runway name="14/32" length="1137" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Edward River Airport" icao="YPMP" iata="EDR" type="Domestic" season="All_Year">
+  <airport name="Edward River Airport" icao="YPMP" iata="EDR" type="Domestic" season="AllYear">
     <town town="Pormpuraaw, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="014°53'48''S" />
@@ -2807,7 +2807,7 @@
       <runway name="14/32" length="1360" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Aurukun Airport" icao="YAUR" iata="AUU" type="Domestic" season="All_Year">
+  <airport name="Aurukun Airport" icao="YAUR" iata="AUU" type="Domestic" season="AllYear">
     <town town="Aurukun, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="013°21'14''S" />
@@ -2821,7 +2821,7 @@
       <runway name="16/34" length="1260" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Proserpine Whitsunday Coast Airport" icao="YBPN" iata="PPP" type="Domestic" season="All_Year">
+  <airport name="Proserpine Whitsunday Coast Airport" icao="YBPN" iata="PPP" type="Domestic" season="AllYear">
     <town town="Proserpine, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="020°29'42''S" />
@@ -2836,7 +2836,7 @@
       <runway name="11/29" length="2073" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Quilpie Airport" icao="YQLP" iata="ULP" type="Domestic" season="All_Year">
+  <airport name="Quilpie Airport" icao="YQLP" iata="ULP" type="Domestic" season="AllYear">
     <town town="Quilpie, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="026°36'31''S" />
@@ -2851,7 +2851,7 @@
       <runway name="18/36" length="1070" surface="Clay" />
     </runways>
   </airport>
-  <airport name="Richmond Airport" icao="YRMD" iata="RCM" type="Domestic" season="All_Year">
+  <airport name="Richmond Airport" icao="YRMD" iata="RCM" type="Domestic" season="AllYear">
     <town town="Richmond, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="020°42'06''S" />
@@ -2865,7 +2865,7 @@
       <runway name="09/27" length="1524" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Rockhampton Airport" icao="YBRK" iata="ROK" type="Regional" season="All_Year">
+  <airport name="Rockhampton Airport" icao="YBRK" iata="ROK" type="Regional" season="AllYear">
     <town town="Rockhampton, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="023°22'54''S" />
@@ -2880,7 +2880,7 @@
       <runway name="15/33" length="2568" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Roma Airport" icao="YROM" iata="RMA" type="Domestic" season="All_Year">
+  <airport name="Roma Airport" icao="YROM" iata="RMA" type="Domestic" season="AllYear">
     <town town="Roma, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="026°32'42''S" />
@@ -2895,7 +2895,7 @@
       <runway name="18/36" length="1504" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="St George Airport" icao="YSGE" iata="SGO" type="Domestic" season="All_Year">
+  <airport name="St George Airport" icao="YSGE" iata="SGO" type="Domestic" season="AllYear">
     <town town="St George, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="028°03'00''S" />
@@ -2909,7 +2909,7 @@
       <runway name="11/29" length="1520" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Thangool Airport" icao="YTNG" iata="THG" type="Domestic" season="All_Year">
+    <airport name="Thangool Airport" icao="YTNG" iata="THG" type="Domestic" season="AllYear">
     <town town="Thangool/Biloela, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="024°29'38''S" />
@@ -2924,7 +2924,7 @@
       <runway name="14/32" length="794" surface="Clay" />
     </runways>
   </airport>
-  <airport name="Thargomindah Airport" icao="YTGM" iata="XTG" type="Domestic" season="All_Year">
+  <airport name="Thargomindah Airport" icao="YTGM" iata="XTG" type="Domestic" season="AllYear">
     <town town="Thargomindah, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="027°59'11''S" />
@@ -2939,13 +2939,13 @@
       <runway name="13/31" length="1463" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Toowoomba Airport" icao="YTWB" iata="TWB" type="Domestic" season="All_Year">
+  <airport name="Toowoomba Airport" icao="YTWB" iata="TWB" type="Domestic" season="AllYear">
     <town town="Toowoomba, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="027°32'29''S" />
       <longitude value="151°54'45''E" />
     </coordinates>
-    <size value="Very_small" pax="10" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="10" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="6" />
     </terminals>
@@ -2954,7 +2954,7 @@
       <runway name="11/29" length="1341" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Weipa Airport" icao="YBWP" iata="WEI" type="Domestic" season="All_Year">
+  <airport name="Weipa Airport" icao="YBWP" iata="WEI" type="Domestic" season="AllYear">
     <town town="Weipa, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="012°40'43''S" />
@@ -2968,7 +2968,7 @@
       <runway name="12/30" length="1645" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Windorah Airport" icao="YWDH" iata="WNR" type="Domestic" season="All_Year">
+  <airport name="Windorah Airport" icao="YWDH" iata="WNR" type="Domestic" season="AllYear">
     <town town="Windorah, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="025°24'47''S" />
@@ -2982,7 +2982,7 @@
       <runway name="04/22" length="1374" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Winton Airport" icao="YWTN" iata="WIN" type="Domestic" season="All_Year">
+  <airport name="Winton Airport" icao="YWTN" iata="WIN" type="Domestic" season="AllYear">
     <town town="Winton, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="022°21'48''S" />
@@ -2997,7 +2997,7 @@
       <runway name="14/32" length="1402" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ceduna Airport" icao="YCDU" iata="CED" type="Domestic" season="All_Year">
+  <airport name="Ceduna Airport" icao="YCDU" iata="CED" type="Domestic" season="AllYear">
     <town town="Ceduna, SA" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="032°07'50''S" />
@@ -3012,7 +3012,7 @@
       <runway name="17/35" length="1014" surface="Gravel" />
     </runways>
   </airport>
-  <airport name="Coober Pedy Airport" icao="YCBP" iata="CPD" type="Domestic" season="All_Year">
+  <airport name="Coober Pedy Airport" icao="YCBP" iata="CPD" type="Domestic" season="AllYear">
     <town town="Coober Pedy, SA" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="029°02'24''S" />
@@ -3027,7 +3027,7 @@
       <runway name="14/32" length="829" surface="Dirt" />
     </runways>
   </airport>
-  <airport name="Kingscote Airport" icao="YKSC" iata="KGC" type="Domestic" season="All_Year">
+  <airport name="Kingscote Airport" icao="YKSC" iata="KGC" type="Domestic" season="AllYear">
     <town town="Kingscote, SA" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="035°42'50''S" />
@@ -3043,7 +3043,7 @@
       <runway name="15/33" length="1164" surface="Gravel" />
     </runways>
   </airport>
-  <airport name="Mount Gambier Airport" icao="YMTG" iata="MGB" type="Domestic" season="All_Year">
+  <airport name="Mount Gambier Airport" icao="YMTG" iata="MGB" type="Domestic" season="AllYear">
     <town town="Mount Gambier, SA" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="037°44'44''S" />
@@ -3059,7 +3059,7 @@
       <runway name="18/36" length="1524" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Olympic Dam Airport" icao="YOLD" iata="OLP" type="Domestic" season="All_Year">
+   <airport name="Olympic Dam Airport" icao="YOLD" iata="OLP" type="Domestic" season="AllYear">
     <town town="Olympic Dam, SA" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="030°29'06''S" />
@@ -3073,7 +3073,7 @@
       <runway name="06/24" length="1591" surface="Asphalt" />
        </runways>
   </airport>
-  <airport name="Port Augusta Airport" icao="YPAG" iata="PUG" type="Domestic" season="All_Year">
+  <airport name="Port Augusta Airport" icao="YPAG" iata="PUG" type="Domestic" season="AllYear">
     <town town="Port Augusta, SA" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="032°30'24''S" />
@@ -3087,7 +3087,7 @@
       <runway name="15/33" length="1650" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Port Lincoln Airport" icao="YPLC" iata="PLO" type="Regional" season="All_Year">
+  <airport name="Port Lincoln Airport" icao="YPLC" iata="PLO" type="Regional" season="AllYear">
     <town town="Port Lincoln, SA" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="034°36'19''S" />
@@ -3103,7 +3103,7 @@
       <runway name="15/33" length="1450" surface="Gravel" />
     </runways>
   </airport>
-  <airport name="Whyalla Airport" icao="YWHA" iata="WYA" type="Domestic" season="All_Year">
+  <airport name="Whyalla Airport" icao="YWHA" iata="WYA" type="Domestic" season="AllYear">
     <town town="Whyalla, SA" country="116" GMT="09:30:00" DST="09:30:00" />
     <coordinates>
       <latitude value="033°03'32''S" />
@@ -3118,7 +3118,7 @@
       <runway name="17/35" length="1686" surface="Concrete" />
     </runways>
   </airport>
-    <airport name="Norfolk Island Airport" icao="YSNF" iata="NLK" type="Regional" season="All_Year">
+    <airport name="Norfolk Island Airport" icao="YSNF" iata="NLK" type="Regional" season="AllYear">
     <town town="Norfolk Island" country="116" GMT="11:30:00" DST="11:30:00" />
     <coordinates>
       <latitude value="029°02'33''S" />
@@ -3133,7 +3133,7 @@
       <runway name="04/22" length="1435" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Devonport Airport" icao="YDPO" iata="DPO" type="Regional" season="All_Year">
+  <airport name="Devonport Airport" icao="YDPO" iata="DPO" type="Regional" season="AllYear">
     <town town="Devonport, TAS" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="041°10'11''S" />
@@ -3148,7 +3148,7 @@
       <runway name="14/32" length="880" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Flinders Island Airport" icao="YFLI" iata="FLS" type="Regional" season="All_Year">
+  <airport name="Flinders Island Airport" icao="YFLI" iata="FLS" type="Regional" season="AllYear">
     <town town="Flinders Island, TAS" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="040°05'30''S" />
@@ -3163,7 +3163,7 @@
       <runway name="14/32" length="1720" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="King Island Airport" icao="YKII" iata="KNS" type="Domestic" season="All_Year">
+  <airport name="King Island Airport" icao="YKII" iata="KNS" type="Domestic" season="AllYear">
     <town town="King Island, TAS" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="039°52'38''S" />
@@ -3179,7 +3179,7 @@
       <runway name="17/35" length="1105" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Launceston Airport" icao="YMLT" iata="LST" type="Short_Haul_International" season="All_Year">
+  <airport name="Launceston Airport" icao="YMLT" iata="LST" type="ShortHaulInternational" season="AllYear">
     <town town="Launceston, TAS" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="041°32'43''S" />
@@ -3195,7 +3195,7 @@
       <runway name="18/36" length="690" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Burnie Wynyard Airport" icao="YWYY" iata="BWT" type="Domestic" season="All_Year">
+  <airport name="Burnie Wynyard Airport" icao="YWYY" iata="BWT" type="Domestic" season="AllYear">
     <town town="Burnie, TAS" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="040°59'56''S" />
@@ -3210,7 +3210,7 @@
       <runway name="09/27" length="1650" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Avalon Airport" icao="YMAV" iata="AVV" type="Regional" season="All_Year">
+  <airport name="Avalon Airport" icao="YMAV" iata="AVV" type="Regional" season="AllYear">
     <town town="Melbourne, VIC" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="038°02'21''S" />
@@ -3224,7 +3224,7 @@
       <runway name="18/36" length="3048" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hamilton Airport" icao="YHML" iata="HLT" type="Domestic" season="All_Year">
+  <airport name="Hamilton Airport" icao="YHML" iata="HLT" type="Domestic" season="AllYear">
     <town town="Hamilton, VIC" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="037°38'56''S" />
@@ -3239,7 +3239,7 @@
       <runway name="17/35" length="1404" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Melbourne Essendon Airport" icao="YMEN" iata="MEB" type="Domestic" season="All_Year">
+  <airport name="Melbourne Essendon Airport" icao="YMEN" iata="MEB" type="Domestic" season="AllYear">
     <town town="Melbourne, VIC" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="037°43'41''S" />
@@ -3254,7 +3254,7 @@
       <runway name="17/35" length="1504" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Melbourne Moorabbin Airport" icao="YMMB" iata="MBW" type="Domestic" season="All_Year">
+  <airport name="Melbourne Moorabbin Airport" icao="YMMB" iata="MBW" type="Domestic" season="AllYear">
     <town town="Melbourne, VIC" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="037°58'32''S" />
@@ -3272,13 +3272,13 @@
       <runway name="17R/35L" length="1240" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Mildura Airport" icao="YMIA" iata="MQL" type="Regional" season="All_Year">
+  <airport name="Mildura Airport" icao="YMIA" iata="MQL" type="Regional" season="AllYear">
     <town town="Mildura, VIC" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="034°13'45''S" />
       <longitude value="142°05'09''E" />
     </coordinates>
-    <size value="Very_small" pax="207" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="207" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
@@ -3287,7 +3287,7 @@
       <runway name="18/36" length="1139" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Portland Airport" icao="YPOD" iata="PTJ" type="Domestic" season="All_Year">
+  <airport name="Portland Airport" icao="YPOD" iata="PTJ" type="Domestic" season="AllYear">
     <town town="Portland, VIC" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="038°19'05''S" />
@@ -3302,7 +3302,7 @@
       <runway name="17/35" length="1180" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Albany Airport" icao="YABA" iata="ALH" type="Domestic" season="All_Year">
+  <airport name="Albany Airport" icao="YABA" iata="ALH" type="Domestic" season="AllYear">
     <town town="Albany, WA" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="034°56'35''S" />
@@ -3317,13 +3317,13 @@
       <runway name="14/32" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Broome International Airport" icao="YBRM" iata="BME" type="Short_Haul_International" season="All_Year">
+  <airport name="Broome International Airport" icao="YBRM" iata="BME" type="ShortHaulInternational" season="AllYear">
     <town town="Broome, WA" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="017°56'59''S" />
       <longitude value="122°13'40''E" />
     </coordinates>
-    <size value="Very_small" pax="314" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="314" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="6" />
     </terminals>
@@ -3331,7 +3331,7 @@
       <runway name="10/28" length="2368" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Carnarvon Airport" icao="YCAR" iata="CVQ" type="Domestic" season="All_Year">
+  <airport name="Carnarvon Airport" icao="YCAR" iata="CVQ" type="Domestic" season="AllYear">
     <town town="Carnarvon, WA" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="024°52'50''S" />
@@ -3346,7 +3346,7 @@
       <runway name="18/36" length="1140" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Learmonth Airport" icao="YPLM" iata="LEA" type="Domestic" season="All_Year">
+    <airport name="Learmonth Airport" icao="YPLM" iata="LEA" type="Domestic" season="AllYear">
     <town town="Exmouth, WA" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="022°14'08''S" />
@@ -3360,7 +3360,7 @@
       <runway name="18/36" length="3047" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Esperance Airport" icao="YESP" iata="EPR" type="Domestic" season="All_Year">
+   <airport name="Esperance Airport" icao="YESP" iata="EPR" type="Domestic" season="AllYear">
     <town town="Esperance, WA" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="033°41'04''S" />
@@ -3375,7 +3375,7 @@
       <runway name="03/21" length="1178" surface="Gravel" />
     </runways>
   </airport>
-  <airport name="Geraldton Airport" icao="YGEL" iata="GET" type="Domestic" season="All_Year">
+  <airport name="Geraldton Airport" icao="YGEL" iata="GET" type="Domestic" season="AllYear">
     <town town="Geraldton, WA" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="028°47'46''S" />
@@ -3391,7 +3391,7 @@
       <runway name="14/32" length="844" surface="Gravel" />
     </runways>
   </airport>
-  <airport name="RAAF Base Curtin" icao="YCIN" iata="DCN" type="Domestic" season="All_Year">
+  <airport name="RAAF Base Curtin" icao="YCIN" iata="DCN" type="Domestic" season="AllYear">
     <town town="Derby, WA" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="017°34'53''S" />
@@ -3405,7 +3405,7 @@
       <runway name="11/29" length="3049" surface="Asphalt" />
       </runways>
   </airport>
-  <airport name="Kalbarri Airport" icao="YKBR" iata="KAX" type="Domestic" season="All_Year">
+  <airport name="Kalbarri Airport" icao="YKBR" iata="KAX" type="Domestic" season="AllYear">
     <town town="Kalbarri, WA" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="027°41'30''S" />
@@ -3419,13 +3419,13 @@
       <runway name="18/36" length="1599" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kalgoorlie Boulder Airport" icao="YPKG" iata="KGI" type="Regional" season="All_Year">
+  <airport name="Kalgoorlie Boulder Airport" icao="YPKG" iata="KGI" type="Regional" season="AllYear">
     <town town="Kalgoorlie, WA" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="030°47'21''S" />
       <longitude value="121°27'43''E" />
     </coordinates>
-    <size value="Very_small" pax="260" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="260" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
@@ -3434,7 +3434,7 @@
       <runway name="18/36" length="1200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Karratha Airport" icao="YPKA" iata="KTA" type="Short_Haul_International" season="All_Year">
+  <airport name="Karratha Airport" icao="YPKA" iata="KTA" type="ShortHaulInternational" season="AllYear">
     <town town="Karratha, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="020°42'44''S" />
@@ -3448,7 +3448,7 @@
       <runway name="08/26" length="2280" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kununurra Airport" icao="YPKU" iata="KNX" type="Domestic" season="All_Year">
+  <airport name="Kununurra Airport" icao="YPKU" iata="KNX" type="Domestic" season="AllYear">
     <town town="Kununurra, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="015°46'41''S" />
@@ -3462,7 +3462,7 @@
       <runway name="12/30" length="1829" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Laverton Airport" icao="YLTN" iata="LVO" type="Domestic" season="All_Year">
+  <airport name="Laverton Airport" icao="YLTN" iata="LVO" type="Domestic" season="AllYear">
     <town town="Laverton, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="028°36'48''S" />
@@ -3477,7 +3477,7 @@
       <runway name="16/34" length="919" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Leinster Airport" icao="YLST" iata="LER" type="Domestic" season="All_Year">
+  <airport name="Leinster Airport" icao="YLST" iata="LER" type="Domestic" season="AllYear">
     <town town="Leinster, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="027°50'35''S" />
@@ -3491,7 +3491,7 @@
       <runway name="10/28" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Leonora Airport" icao="YLEO" iata="LNO" type="Domestic" season="All_Year">
+  <airport name="Leonora Airport" icao="YLEO" iata="LNO" type="Domestic" season="AllYear">
     <town town="Leonora, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="028°52'41''S" />
@@ -3506,7 +3506,7 @@
       <runway name="12/30" length="1140" surface="Gravel" />
     </runways>
   </airport>
-  <airport name="Meekatharra Airport" icao="YMEK" iata="MKR" type="Domestic" season="All_Year">
+  <airport name="Meekatharra Airport" icao="YMEK" iata="MKR" type="Domestic" season="AllYear">
     <town town="Meekatharra, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="026°36'42''S" />
@@ -3521,7 +3521,7 @@
       <runway name="15/33" length="1065" surface="Clay" />
     </runways>
   </airport>
-  <airport name="Mount Magnet Airport" icao="YMOG" iata="MMG" type="Domestic" season="All_Year">
+  <airport name="Mount Magnet Airport" icao="YMOG" iata="MMG" type="Domestic" season="AllYear">
     <town town="Mount Magnet, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="028°06'57''S" />
@@ -3536,13 +3536,13 @@
       <runway name="16/34" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Newman Airport" icao="YNWN" iata="ZNE" type="Regional" season="All_Year">
+  <airport name="Newman Airport" icao="YNWN" iata="ZNE" type="Regional" season="AllYear">
     <town town="Newman, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="023°25'04''S" />
       <longitude value="119°48'10''E" />
     </coordinates>
-    <size value="Very_small" pax="432" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="432" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -3550,13 +3550,13 @@
       <runway name="05/23" length="2072" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Paraburdoo Airport" icao="YPBO" iata="PBO" type="Regional" season="All_Year">
+  <airport name="Paraburdoo Airport" icao="YPBO" iata="PBO" type="Regional" season="AllYear">
     <town town="Paraburdoo, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="023°10'17''S" />
       <longitude value="117°44'44''E" />
     </coordinates>
-    <size value="Very_small" pax="205" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="205" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
@@ -3564,14 +3564,14 @@
       <runway name="06/24" length="2132" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Port Hedland International Airport" icao="YPPD" iata="PHE" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Port Hedland International Airport" icao="YPPD" iata="PHE" type="ShortHaulInternational"
+           season="AllYear">
     <town town="Port Hedland, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="020°22'40''S" />
       <longitude value="118°37'35''E" />
     </coordinates>
-    <size value="Very_small" pax="368" cargo="Smallest" cargovolume="0" />
+    <size value="Verysmall" pax="368" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="7" />
     </terminals>
@@ -3580,7 +3580,7 @@
       <runway name="18/36" length="1000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ravensthorpe Airport" icao="YNRV" iata="RVT" type="Domestic" season="All_Year">
+  <airport name="Ravensthorpe Airport" icao="YNRV" iata="RVT" type="Domestic" season="AllYear">
     <town town="Ravensthorpe, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="033°47'50''S" />
@@ -3595,7 +3595,7 @@
       <runway name="14/32" length="1200" surface="Gravel" />
     </runways>
   </airport>
-  <airport name="Wiluna Airport" icao="YWLU" iata="WUN" type="Domestic" season="All_Year">
+  <airport name="Wiluna Airport" icao="YWLU" iata="WUN" type="Domestic" season="AllYear">
     <town town="Wiluna, WA" country="116" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="026°37'48''S" />
@@ -3611,8 +3611,8 @@
     </runways>
   </airport>
   <!--some random oceania airport-->
-  <airport name="Roman Tmetuchl International Airport" icao="PTRO" iata="ROR" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Roman Tmetuchl International Airport" icao="PTRO" iata="ROR" type="ShortHaulInternational"
+           season="AllYear">
     <town town="Airai" country="288" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="007°22'03''N" />
@@ -3626,7 +3626,7 @@
       <runway name="09/27" length="2195" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Honiara International Airport" icao="AGGH" iata="HIR" type="Regional" season="All_Year">
+  <airport name="Honiara International Airport" icao="AGGH" iata="HIR" type="Regional" season="AllYear">
     <town town="Honiara" country="289" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="009°25'40''S" />
@@ -3640,8 +3640,8 @@
       <runway name="06/24" length="2200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Marshall Islands International Airport" icao="PKMJ" iata="MAJ" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Marshall Islands International Airport" icao="PKMJ" iata="MAJ" type="ShortHaulInternational"
+           season="AllYear">
     <town town="Majuro Atoll" country="287" GMT="12:00:00" DST="12:00:00" />
     <coordinates>
       <latitude value="007°03'53''N" />
@@ -3655,7 +3655,7 @@
       <runway name="07/25" length="2407" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Chuuk International Airport" icao="PTKK" iata="TKK" type="Regional" season="All_Year">
+  <airport name="Chuuk International Airport" icao="PTKK" iata="TKK" type="Regional" season="AllYear">
     <town town="Weno Island" country="290" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="007°27'42''N" />
@@ -3669,7 +3669,7 @@
       <runway name="04/22" length="1831" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Yap International Airport" icao="PTYA" iata="YAP" type="Regional" season="All_Year">
+  <airport name="Yap International Airport" icao="PTYA" iata="YAP" type="Regional" season="AllYear">
     <town town="Yap Island" country="290" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="009°29'56''N" />
@@ -3683,7 +3683,7 @@
       <runway name="07/25" length="1829" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Pohnpei International Airport" icao="PTPN" iata="PNI" type="Regional" season="All_Year">
+  <airport name="Pohnpei International Airport" icao="PTPN" iata="PNI" type="Regional" season="AllYear">
     <town town="Pohnpei Island" country="290" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="006°59'06''N" />
@@ -3697,7 +3697,7 @@
       <runway name="09/27" length="1829" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kosrae International Airport" icao="PTSA" iata="KSA" type="Regional" season="All_Year">
+  <airport name="Kosrae International Airport" icao="PTSA" iata="KSA" type="Regional" season="AllYear">
     <town town="Okat" country="290" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="005°21'25''N" />
@@ -3711,7 +3711,7 @@
       <runway name="05/23" length="1753" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nauru International Airport" icao="ANYN" iata="INU" type="Regional" season="All_Year">
+  <airport name="Nauru International Airport" icao="ANYN" iata="INU" type="Regional" season="AllYear">
     <town town="Yaren District" country="291" GMT="12:00:00" DST="12:00:00" />
     <coordinates>
       <latitude value="000°32'50''S" />
@@ -3725,7 +3725,7 @@
       <runway name="12/30" length="2150" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Port Moresby Jacksons International Airport" icao="AYPY" iata="POM" type="Domestic" season="All_Year">
+  <airport name="Port Moresby Jacksons International Airport" icao="AYPY" iata="POM" type="Domestic" season="AllYear">
     <town town="Port Moresby" country="280" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="009°26'36''S" />
@@ -3739,7 +3739,7 @@
       <runway name="14L/32R" length="2750" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Wewak International Airport" icao="AYWK" iata="WWK" type="Regional" season="All_Year">
+  <airport name="Wewak International Airport" icao="AYWK" iata="WWK" type="Regional" season="AllYear">
     <town town="Wewak" country="280" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="003°35'01''S" />
@@ -3753,7 +3753,7 @@
       <runway name="10/28" length="1595" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lae Nadzab Airport" icao="AYNZ" iata="LAE" type="Regional" season="All_Year">
+  <airport name="Lae Nadzab Airport" icao="AYNZ" iata="LAE" type="Regional" season="AllYear">
     <town town="Nadzab" country="280" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="006°34'11''S" />
@@ -3767,8 +3767,8 @@
       <runway name="09/27" length="2440" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Bauerfield International Airport" icao="NVVV" iata="VLI" type="Long_Haul_International"
-           season="All_Year">
+  <airport name="Bauerfield International Airport" icao="NVVV" iata="VLI" type="LongHaulInternational"
+           season="AllYear">
     <town town="Port Vila" country="292" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="017°41'57''S" />

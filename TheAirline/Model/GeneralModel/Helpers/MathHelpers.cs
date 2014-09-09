@@ -18,6 +18,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         #endregion
 
+        private const double Mile = 1.609344;
+
         #region Public Methods and Operators
 
         public static int CalculateAge(DateTime startDate, DateTime endDate)
@@ -115,10 +117,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double m = Convert.ToDouble(minutes)/60;
             double s = Convert.ToDouble(seconds)/3600;
 
-            if (degrees < 0)
-                return -(d + m + s);
-            else
-                return d + m + s;
+            return degrees < 0 ? -(d + m + s) : d + m + s;
 
             //return Convert.ToDouble(degrees) + (Convert.ToDouble(minutes) / 60) + (Convert.ToDouble(seconds) / 3600);
         }
@@ -130,7 +129,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static double GallonsToLtr(double gallons)
         {
-            double aGallon = 0.264172051;
+            const double aGallon = 0.264172051;
 
             return gallons*aGallon;
         }
@@ -431,19 +430,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //converts km to miles
         public static double KMToMiles(double km)
         {
-            double aMile = 1.609344;
-            return km/aMile;
+            return km/Mile;
         }
 
         public static double MilesToKM(double miles)
         {
-            double aMile = 1.609344;
-            return miles*aMile;
+            return miles*Mile;
         }
 
         public static double LKMToMPG(double kml)
         {
-            double aMPG = 2.35;
+            const double aMPG = 2.35;
 
             return kml*aMPG;
         }
@@ -455,7 +452,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static double LtrToGallons(double ltr)
         {
-            double aGallon = 0.264172051;
+            const double aGallon = 0.264172051;
 
             return ltr/aGallon;
         }
@@ -463,7 +460,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //converts kg to pound
         public static double KgToPound(double kg)
         {
-            double perpound = 0.45359237;
+            const double perpound = 0.45359237;
 
             return kg/perpound;
         }
@@ -473,20 +470,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //converts meter to feet
         public static double MeterToFeet(double meter)
         {
-            double aFeet = 3.2808399;
+            const double aFeet = 3.2808399;
             return meter*aFeet;
         }
 
         public static double FeetToMeter(double feet)
         {
-            double aFeet = 3.2808399;
+            const double aFeet = 3.2808399;
             return feet/aFeet;
         }
 
 
         public static void MoveObject(FleetAirliner airliner, double speed)
         {
-            double distanceToDestination;
             double distance = airliner.CurrentFlight.DistanceToDestination;
             double timepermove = Settings.GetInstance().MinutesPerTurn;
 
@@ -500,7 +496,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 speed = speed/2;
             }
 
-            distanceToDestination = distance - speed;
+            double distanceToDestination = distance - speed;
             if (distanceToDestination < 0)
             {
                 distanceToDestination = 0;
@@ -547,7 +543,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
     {
         #region Static Fields
 
-        private static RandomNumberGenerator r;
+        private static RandomNumberGenerator _r;
 
         #endregion
 
@@ -555,7 +551,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public Randomizer()
         {
-            r = Create();
+            _r = Create();
         }
 
         #endregion
@@ -565,17 +561,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
         /// <summary>
         ///     Fills the elements of a specified array of bytes with random numbers.
         /// </summary>
-        /// <param name=” buffer”>An array of bytes to contain random numbers.</param>
+        /// <param name="buffer">An array of bytes to contain random numbers.</param>
         public override void GetBytes(byte[] buffer)
         {
-            r.GetBytes(buffer);
+            _r.GetBytes(buffer);
         }
 
         /// <summary>
         ///     Returns a random number within the specified range.
         /// </summary>
-        /// <param name=” minValue”>The inclusive lower bound of the random number returned.</param>
-        /// <param name=” maxValue”>
+        /// <param name="minValue">The inclusive lower bound of the random number returned.</param>
+        /// <param name="maxValue">
         ///     The exclusive upper bound of the random number returned. maxValue must be greater than or equal
         ///     to minValue.
         /// </param>
@@ -595,7 +591,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         /// <summary>
         ///     Returns a nonnegative random number less than the specified maximum
         /// </summary>
-        /// <param name=” maxValue”>
+        /// <param name="maxValue">
         ///     The inclusive upper bound of the random number returned. maxValue must be greater than or equal
         ///     0
         /// </param>
@@ -610,7 +606,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public double NextDouble()
         {
             var b = new byte[4];
-            r.GetBytes(b);
+            _r.GetBytes(b);
             return (double) BitConverter.ToUInt32(b, 0)/UInt32.MaxValue;
         }
 

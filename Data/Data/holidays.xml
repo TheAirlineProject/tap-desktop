@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <holidays>
-  <holiday uid="101" name="New Years Day (Multinational)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="101" name="New Years Day (Multinational)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="New Years Day" />
       <de-DE name="New Years Day" />
@@ -42,7 +42,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="102" name="Martin Luther King, Jr. Day (USA)" type="Non_Fixed_Date" holidaytype="Normal">
+  <holiday uid="102" name="Martin Luther King, Jr. Day (USA)" type="NonFixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Martin Luther King, Jr. Day" />
       <de-DE name="Martin Luther King, Jr. Day" />
@@ -57,7 +57,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="103" name="Washington's Birthday (USA)" type="Non_Fixed_Date" holidaytype="Normal">
+  <holiday uid="103" name="Washington's Birthday (USA)" type="NonFixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Washington's Birthday" />
       <de-DE name="Washington's Birthday" />
@@ -72,7 +72,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="104" name="Memorial Day (USA)" type="Non_Fixed_Date" holidaytype="Both">
+  <holiday uid="104" name="Memorial Day (USA)" type="NonFixedDate" holidaytype="Both">
     <translations>
       <en-US name="Memorial Day" />
       <de-DE name="Memorial Day" />
@@ -87,7 +87,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="105" name="Independence Day (USA)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="105" name="Independence Day (USA)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Independence Day" />
       <de-DE name="Independence Day" />
@@ -102,7 +102,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="106" name="Labor Day (Multinational)" type="Non_Fixed_Date" holidaytype="Normal">
+  <holiday uid="106" name="Labor Day (Multinational)" type="NonFixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Labor Day" />
       <de-DE name="Labor Day" />
@@ -119,7 +119,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="107" name="Columbus Day (USA)" type="Non_Fixed_Date" holidaytype="Normal">
+  <holiday uid="107" name="Columbus Day (USA)" type="NonFixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Columbus Day" />
       <de-DE name="Columbus Day" />
@@ -134,7 +134,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="108" name="Veterans Day (Multinational)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="108" name="Veterans Day (Multinational)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Veterans Day" />
       <de-DE name="Veterans Day" />
@@ -151,7 +151,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="109" name="Thanksgiving (USA)" type="Non_Fixed_Date" holidaytype="Both">
+  <holiday uid="109" name="Thanksgiving (USA)" type="NonFixedDate" holidaytype="Both">
     <translations>
       <en-US name="Thanksgiving" />
       <de-DE name="Thanksgiving" />
@@ -166,7 +166,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="110" name="Christmas (Multinational)" type="Fixed_Date" holidaytype="Both">
+  <holiday uid="110" name="Christmas (Multinational)" type="FixedDate" holidaytype="Both">
     <translations>
       <en-US name="Christmas" />
       <de-DE name="Christmas" />
@@ -241,7 +241,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="111" name="Spring Break (USA)" type="Fixed_Month" holidaytype="Travel">
+  <holiday uid="111" name="Spring Break (USA)" type="FixedMonth" holidaytype="Travel">
     <translations>
       <en-US name="Spring Break" />
       <de-DE name="Spring Break" />
@@ -256,7 +256,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="112" name="Fall Vacation (DEN)" type="Fixed_Week" holidaytype="Travel">
+  <holiday uid="112" name="Fall Vacation (DEN)" type="FixedWeek" holidaytype="Travel">
     <translations>
       <en-US name="Danish Fall Vacation" />
       <de-DE name="Danish Fall Vacation" />
@@ -271,7 +271,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="113" name="Australia Day (AUS)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="113" name="Australia Day (AUS)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Australia Day" />
       <de-DE name="Australia Day" />
@@ -286,7 +286,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="114" name="Anzac Day (AUS)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="114" name="Anzac Day (AUS)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Anzac Day" />
       <de-DE name="Anzac Day" />
@@ -305,7 +305,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="115" name="Boxing Day (Multinational)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="115" name="Boxing Day (Multinational)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Boxing Day" />
       <de-DE name="Boxing Day" />
@@ -330,7 +330,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="116" name="Canada Day (CAN)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="116" name="Canada Day (CAN)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Canada Day" />
       <de-DE name="Canada Day" />
@@ -345,7 +345,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="117" name="Victoria Day (CAN)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="117" name="Victoria Day (CAN)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Victoria Day" />
       <de-DE name="Victoria Day" />
@@ -360,7 +360,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="118" name="Thanksgiving (CAN)" type="Non_Fixed_Date" holidaytype="Both">
+  <holiday uid="118" name="Thanksgiving (CAN)" type="NonFixedDate" holidaytype="Both">
     <translations>
       <en-US name="Thanksgiving" />
       <de-DE name="Thanksgiving" />
@@ -375,7 +375,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="119" name="Labour Day (ESP)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="119" name="Labour Day (ESP)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Labour Day" />
       <de-DE name="Labour Day" />
@@ -390,7 +390,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="120" name="Assumption Day (Multinational)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="120" name="Assumption Day (Multinational)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Assumption" />
       <de-DE name="Assumption" />
@@ -409,7 +409,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="121" name="Fiesta Nacional de España (ESP)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="121" name="Fiesta Nacional de España (ESP)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Fiesta Nacional de España" />
       <de-DE name="Fiesta Nacional de España" />
@@ -424,7 +424,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="122" name="All Saints Day (Multinational)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="122" name="All Saints Day (Multinational)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="All Saints Day" />
       <de-DE name="All Saints Day" />
@@ -443,7 +443,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="123" name="Constitution Day (ESP)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="123" name="Constitution Day (ESP)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Constitution Day" />
       <de-DE name="Constitution Day" />
@@ -458,7 +458,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="124" name="Immaculate Conception (Multinational)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="124" name="Immaculate Conception (Multinational)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Immaculate Conception" />
       <de-DE name="Immaculate Conception" />
@@ -475,7 +475,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="125" name="Second Day of Christmas (DEN)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="125" name="Second Day of Christmas (DEN)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Second Day of Christmas" />
       <de-DE name="Second Day of Christmas" />
@@ -490,7 +490,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="126" name="German Unity Day (GER)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="126" name="German Unity Day (GER)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="German Unity Day" />
       <de-DE name="Tag der Deutschen Einheit" />
@@ -505,7 +505,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="127" name="May Day (Multinational)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="127" name="May Day (Multinational)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="May Day" />
       <de-DE name="Erster Mai" />
@@ -522,7 +522,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="128" name="Victory In Europe Day (Multinational)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="128" name="Victory In Europe Day (Multinational)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Victory In Europe Day" />
       <de-DE name="Victory In Europe Day" />
@@ -537,7 +537,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="129" name="Bastille Day (FRA)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="129" name="Bastille Day (FRA)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Bastille Day" />
       <de-DE name="Bastille Day" />
@@ -552,7 +552,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="130" name="Freedom Day (POR)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="130" name="Freedom Day (POR)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Freedom Day" />
       <de-DE name="Freedom Day" />
@@ -567,7 +567,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="131" name="Labor Day (POR)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="131" name="Labor Day (POR)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Labor Day" />
       <de-DE name="Labor Day" />
@@ -582,7 +582,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="132" name="Portugal Day (POR)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="132" name="Portugal Day (POR)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Portugal Day" />
       <de-DE name="Portugal Day" />
@@ -597,7 +597,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="133" name="Republic Day (POR)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="133" name="Republic Day (POR)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Republic Day" />
       <de-DE name="Republic Day" />
@@ -612,7 +612,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="134" name="Restoration of Independence (POR)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="134" name="Restoration of Independence (POR)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Restoration of Independence" />
       <de-DE name="Restoration of Independence" />
@@ -627,7 +627,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="135" name="National Day (PRC)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="135" name="National Day (PRC)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="National Day (PRC)" />
       <de-DE name="National Day (PRC)" />
@@ -644,7 +644,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="136" name="Chinese New Year" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="136" name="Chinese New Year" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Chinese New Year" />
       <de-DE name="Chinesisches Neujahrsfest" />
@@ -665,7 +665,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="137" name="Mid-Autumn Festival" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="137" name="Mid-Autumn Festival" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Mid-Autumn Festival" />
       <de-DE name="Mondfest" />
@@ -686,7 +686,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="138" name="Duanwu Festival" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="138" name="Duanwu Festival" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Duanwu Festival" />
       <de-DE name="Drachenbootfest" />
@@ -707,7 +707,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="139" name="Qingming Festival" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="139" name="Qingming Festival" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Qingming Festival" />
       <de-DE name="Qinging Fest" />
@@ -728,7 +728,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="140" name="Foundation Day (Japan)" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="140" name="Foundation Day (Japan)" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Foundation Day" />
       <de-DE name="Foundation Day" />
@@ -743,7 +743,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="141" name="Vernal Equinox Day" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="141" name="Vernal Equinox Day" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Vernal Equinox Day" />
       <de-DE name="Vernal Equinox Day" />
@@ -758,7 +758,7 @@
       </observer>
     </observers>
   </holiday>
-  <holiday uid="142" name="Greenery Day" type="Fixed_Date" holidaytype="Normal">
+  <holiday uid="142" name="Greenery Day" type="FixedDate" holidaytype="Normal">
     <translations>
       <en-US name="Greenery Day" />
       <de-DE name="Greenery Day" />

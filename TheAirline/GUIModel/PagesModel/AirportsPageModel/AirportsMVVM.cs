@@ -42,7 +42,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             this.LongestRunway = this.Airport.Runways.Count == 0 ? 0 : this.Airport.Runways.Max(r => r.Length);
             this.HasCargoTerminal = this.Airport.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo);
             this.HasHelipad = this.Airport.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad);
-            this.HasFreeGates = this.Airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0;
+            this.HasFreeGates = this.Airport.Terminals.GetFreeGates(GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0;
         }
 
         #endregion

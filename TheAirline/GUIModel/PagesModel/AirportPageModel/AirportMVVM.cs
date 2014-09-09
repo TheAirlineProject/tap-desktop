@@ -736,7 +736,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Destination = destination;
            this.Contracted =
                 this.Destination.AirlineContracts.Exists(c => c.Airline == GameObject.GetInstance().HumanAirline);
-            this.HasFreeGates = this.Destination.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0;
+            this.HasFreeGates = this.Destination.Terminals.GetFreeGates(GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0;
             this.Distance = distance;
 
             this.GatesPercent = new List<KeyValuePair<string, int>>();
@@ -750,7 +750,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 this.GatesPercent.Add(new KeyValuePair<string,int>(airline.Profile.Name, airlineGates));
             }
 
-            this.GatesPercent.Add(new KeyValuePair<string,int>("Free", this.Destination.Terminals.getFreeGates()));
+            this.GatesPercent.Add(new KeyValuePair<string,int>("Free", this.Destination.Terminals.GetFreeGates()));
 
             this.Type = "";
         }

@@ -5,7 +5,7 @@
 
   <airliner manufacturer="IAe" name="C212 Aviocar" price="703850"> <!--12800000-->
 
-    <type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop" />
+    <type body="SingleAisle" rangetype="ShortRange" engine="Turboprop" />
 
     <specs wingspan="20.28" length="16.20" range="1811" speed="370" fuelcapacity="1728" consumption="0.045"
            runwaylengthrequired="770" />
@@ -18,7 +18,7 @@
 
   <airliner manufacturer="IAe" name="N250-50" price="803850"> <!--12800000-->
 
-    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <type body="NarrowBody" rangetype="Regional" engine="Turboprop" />
 
     <specs wingspan="28" length="26.30" range="1480" speed="556" fuelcapacity="2728" consumption="0.065"
            runwaylengthrequired="982" />
@@ -31,7 +31,7 @@
 
   <airliner manufacturer="IAe" name="N250-100" price="908620"> <!--12800000-->
 
-    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <type body="NarrowBody" rangetype="Regional" engine="Turboprop" />
 
     <specs wingspan="28" length="26.30" range="1480" speed="556" fuelcapacity="2728" consumption="0.065"
            runwaylengthrequired="982" />
@@ -44,7 +44,7 @@
 
   <airliner manufacturer="IAe" name="N219" price="2736730"> <!--12800000-->
 
-    <type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop" />
+    <type body="SingleAisle" rangetype="ShortRange" engine="Turboprop" />
 
     <specs wingspan="20.28" length="16.20" range="1111" speed="395" fuelcapacity="1728" consumption="0.035"
            runwaylengthrequired="465" />

@@ -913,6 +913,7 @@
     <Compile Include="Model\AirlinerModel\AirlinerScheduleConfiguration.cs" />
     <Compile Include="Model\AirlinerModel\EngineType.cs" />
     <Compile Include="Model\AirportModel\AirportExpansion.cs" />
+    <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\GeneralModel\Helpers\RouteHelpers.cs" />
     <Compile Include="Model\GeneralModel\OperatingData.cs" />
     <Compile Include="Model\GeneralModel\SpecialContract.cs" />

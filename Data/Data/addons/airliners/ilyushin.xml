@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <airliners>
 <airliner type="Passenger" manufacturer="Ilyushin" name="Il-18V" price="1700000"> <!--59600000-->
-<type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop"/>
+<type body="NarrowBody" rangetype="MediumRange" engine="Turboprop"/>
 <specs wingspan="37.4" length="35.9" range="4270" speed="600" fuelcapacity="30000" consumption="0.091" runwaylengthrequired="3280"/>
 <capacity passengers="100" cockpitcrew="3" cabincrew="2" maxclasses="1"/>
 <produced from="1959" to="1965" rate="30"/>
 </airliner>
 <airliner type="Passenger" manufacturer="Ilyushin" name="Il-18D" price="1800000"> <!--59600000-->
-<type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop"/>
+<type body="NarrowBody" rangetype="MediumRange" engine="Turboprop"/>
 <specs wingspan="37.4" length="35.9" range="5300" speed="625" fuelcapacity="30000" consumption="0.063" runwaylengthrequired="3280"/>
 <capacity passengers="90" cockpitcrew="3" cabincrew="2" maxclasses="1"/>
 <produced from="1965" to="1978" rate="30"/>
 </airliner>
 <airliner type="Passenger" manufacturer="Ilyushin" name="Il-18E" price="1800000"> <!--59600000-->
-<type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop"/>
+<type body="NarrowBody" rangetype="MediumRange" engine="Turboprop"/>
 <specs wingspan="37.4" length="35.9" range="4400" speed="625" fuelcapacity="30000" consumption="0.056" runwaylengthrequired="3280"/>
 <capacity passengers="120" cockpitcrew="3" cabincrew="2" maxclasses="1"/>
 <produced from="1965" to="1978" rate="30"/>
 </airliner>
 <airliner type="Passenger" manufacturer="Ilyushin" name="Il-62" price="4500000"> <!--59600000-->
-<type body="Narrow_Body" rangetype="Long_Range" engine="Jet"/>
+<type body="NarrowBody" rangetype="LongRange" engine="Jet"/>
 <specs wingspan="43.2" length="53.12" range="6700" speed="850" fuelcapacity="105300" consumption="0.084" runwaylengthrequired="3280"/>
 <capacity passengers="186" cockpitcrew="5" cabincrew="5" maxclasses="2"/>
 <produced from="1966" to="1973" rate="30"/>
 </airliner>
 <airliner manufacturer="Ilyushin" name="Il-62M" price="25000000">
-     <type body="Single_Aisle" rangetype="Long_Range" engine="Jet" />
+     <type body="SingleAisle" rangetype="LongRange" engine="Jet" />
 
     <specs wingspan="43.20" length="53.12" weight="165000" range="10000" speed="486" fuelcapacity="105300" consumption="0.049"
            runwaylengthrequired="2500" />
@@ -36,40 +36,40 @@
 
   </airliner>
 <airliner type="Passenger" manufacturer="Ilyushin" name="Il-62M" price="4800000"> <!--59600000-->
-<type body="Narrow_Body" rangetype="Long_Range" engine="Jet"/>
+<type body="NarrowBody" rangetype="LongRange" engine="Jet"/>
 <specs wingspan="43.2" length="53.12" range="7800" speed="850" fuelcapacity="110000" consumption="0.081" runwaylengthrequired="3280"/>
 <capacity passengers="174" cockpitcrew="5" cabincrew="5" maxclasses="2"/>
 <produced from="1973" to="2004" rate="30"/>
 </airliner>
 <airliner type="Cargo" manufacturer="Ilyushin" name="Il-76" price="25572740"> <!--59600000-->
-<type body="Wide_Body" rangetype="Medium_Range" engine="Jet"/>
+<type body="WideBody" rangetype="MediumRange" engine="Jet"/>
 <specs wingspan="50.5" length="46.59" range="4300" speed="900" fuelcapacity="80200" consumption="0.044" runwaylengthrequired="2470"/>
 <capacity cockpitcrew="5" cargo="577"/>
 <produced from="1971" to="2199" rate="17"/>
 </airliner>
 <airliner type="Cargo" manufacturer="Ilyushin" name="Il-76TD" price="26572740"> <!--59600000-->
-<type body="Wide_Body" rangetype="Medium_Range" engine="Jet"/>
+<type body="WideBody" rangetype="MediumRange" engine="Jet"/>
 <specs wingspan="50.5" length="46.59" range="5600" speed="900" fuelcapacity="80200" consumption="0.044" runwaylengthrequired="2470"/>
 <capacity cockpitcrew="5" cargo="577"/>
 <produced from="1974" to="2199" rate="17"/>
 </airliner>
 <airliner manufacturer="Ilyushin" name="Il-86" price="3322540">
 <!--59600000-->
-<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
+<type body="WideBody" rangetype="LongRange" engine="Jet"/>
 <specs wingspan="48.06" length="60.21" range="5000" speed="875" fuelcapacity="32750" consumption="0.049" runwaylengthrequired="2450"/>
 <capacity passengers="350" cockpitcrew="3" cabincrew="11" maxclasses="3"/>
 <produced from="1980" to="2011" rate="54"/>
 </airliner>
 <airliner manufacturer="Ilyushin" name="Il-96-300" price="3103600">
 <!--59600000-->
-<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
+<type body="WideBody" rangetype="LongRange" engine="Jet"/>
 <specs wingspan="60.11" length="55.3" range="13500" speed="875" fuelcapacity="40332" consumption="0.039" runwaylengthrequired="2340"/>
 <capacity passengers="300" cockpitcrew="3" cabincrew="11" maxclasses="3"/>
 <produced from="1992" to="2199" rate="10"/>
 </airliner>
 <airliner manufacturer="Ilyushin" name="Il-114" price="17244510">
 <!--59600000-->
-<type body="Single_Aisle" rangetype="Regional" engine="Turboprop"/>
+<type body="SingleAisle" rangetype="Regional" engine="Turboprop"/>
 <specs wingspan="30" length="26.87" range="1400" speed="500" fuelcapacity="8220" consumption="0.039" runwaylengthrequired="879"/>
 <capacity passengers="64" cockpitcrew="2" cabincrew="1" maxclasses="3"/>
 <produced from="1992" to="2011" rate="5"/>

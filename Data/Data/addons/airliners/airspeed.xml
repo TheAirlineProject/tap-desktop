@@ -5,7 +5,7 @@
 
   <airliner manufacturer="Airspeed" name="Ambassador" price="903850"> <!--12800000-->
 
-    <type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop" />
+    <type body="SingleAisle" rangetype="ShortRange" engine="Turboprop" />
 
     <specs wingspan="35.05" length="24.99" range="550" speed="260" fuelcapacity="3466" consumption="0.077"
            runwaylengthrequired="1211" />

@@ -87,8 +87,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
                     GameObject.GetInstance().HumanAirline,
                     AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
 
-            int paxGates = Math.Min(2, airport.Airport.Terminals.getFreeGates(Terminal.TerminalType.Passenger));
-            int cargoGates = Math.Min(2,airport.Airport.Terminals.getFreeGates(Terminal.TerminalType.Cargo));
+            int paxGates = Math.Min(2, airport.Airport.Terminals.GetFreeGates(Terminal.TerminalType.Passenger));
+            int cargoGates = Math.Min(2,airport.Airport.Terminals.GetFreeGates(Terminal.TerminalType.Cargo));
 
             //WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"),gates, airport.Airport.Profile.Name), WPFMessageBoxButtons.YesNo);
 

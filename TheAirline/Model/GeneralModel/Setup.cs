@@ -466,15 +466,15 @@ namespace TheAirline.Model.GeneralModel
             IEnumerable<Airport> noRunways = Airports.GetAllAirports().Where(a => a.Runways.Count == 0);
 
             foreach (Airport airport in noRunways)
-                Console.WriteLine("{0}, {1} in {2} has no runways", airport.Profile.Name, airport.Profile.IATACode, airport.Profile.Country.Name);
+                Console.WriteLine(@"{0}, {1} in {2} has no runways", airport.Profile.Name, airport.Profile.IATACode, airport.Profile.Country.Name);
 
-            Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
-            Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
+            Console.WriteLine(@"Airports: " + Airports.GetAllAirports().Count);
+            Console.WriteLine(@"Airlines: " + Airlines.GetAllAirlines().Count);
 
             Airport lbb = Airports.GetAirport("LBB");
             Airport dfw = Airports.GetAirport("DFW");
 
-            Console.WriteLine("Distance: " + MathHelpers.GetDistance(lbb, dfw));
+            Console.WriteLine(@"Distance: " + MathHelpers.GetDistance(lbb, dfw));
 
             /*
             System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
@@ -1013,7 +1013,7 @@ namespace TheAirline.Model.GeneralModel
                             Terminal.TerminalType terminalType = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
                             for (int i = 0;
-                                 i < Math.Min(routes.Destinations/startDataFactor, origin.Terminals.getFreeGates(terminalType));
+                                 i < Math.Min(routes.Destinations/startDataFactor, origin.Terminals.GetFreeGates(terminalType));
                                  i++)
                             {
                                 //if (origin.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
@@ -1682,17 +1682,17 @@ namespace TheAirline.Model.GeneralModel
             Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
             if (airline.Profile.PreferedAirport != null
                 && GeneralHelpers.IsAirportActive(airline.Profile.PreferedAirport)
-                && airline.Profile.PreferedAirport.Terminals.getFreeGates(terminaltype) > 1)
+                && airline.Profile.PreferedAirport.Terminals.GetFreeGates(terminaltype) > 1)
             {
                 return airline.Profile.PreferedAirport;
             }
             List<Airport> airports =
-                Airports.GetAirports(airline.Profile.Country).FindAll(a => a.Terminals.getFreeGates(terminaltype) > 1);
+                Airports.GetAirports(airline.Profile.Country).FindAll(a => a.Terminals.GetFreeGates(terminaltype) > 1);
 
             if (airports.Count < 4)
             {
                 airports =
-                    Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.getFreeGates(terminaltype) > 1);
+                    Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.GetFreeGates(terminaltype) > 1);
             }
 
             var list = new Dictionary<Airport, int>();
@@ -1720,7 +1720,7 @@ namespace TheAirline.Model.GeneralModel
                         routes.Countries.Contains(a.Profile.Country)
                         && MathHelpers.GetDistance(Airports.GetAirport(routes.Origin), a) < maxRange
                         && a != Airports.GetAirport(routes.Origin)
-                        && ((int) a.Profile.Cargo) >= ((int) routes.MinimumSize) && a.Terminals.getFreeGates(Terminal.TerminalType.Cargo) > 0);
+                        && ((int) a.Profile.Cargo) >= ((int) routes.MinimumSize) && a.Terminals.GetFreeGates(Terminal.TerminalType.Cargo) > 0);
             }
 
             if (routes.RouteType == Route.RouteType.Passenger || routes.RouteType == Route.RouteType.Mixed)
@@ -1731,7 +1731,7 @@ namespace TheAirline.Model.GeneralModel
                         routes.Countries.Contains(a.Profile.Country)
                         && MathHelpers.GetDistance(Airports.GetAirport(routes.Origin), a) < maxRange
                         && a != Airports.GetAirport(routes.Origin)
-                        && ((int) a.Profile.Size) >= ((int) routes.MinimumSize) && a.Terminals.getFreeGates(Terminal.TerminalType.Passenger) > 0);
+                        && ((int) a.Profile.Size) >= ((int) routes.MinimumSize) && a.Terminals.GetFreeGates(Terminal.TerminalType.Passenger) > 0);
             }
 
             return airports[rnd.Next(airports.Count)];
@@ -2442,7 +2442,6 @@ namespace TheAirline.Model.GeneralModel
                         new[] {'°', '\''},
                         StringSplitOptions.RemoveEmptyEntries);
                     string[] longitude =
-                        longitude =
                         longitudeElement.Attributes["value"].Value.Split(
                             new[] {'°', '\''},
                             StringSplitOptions.RemoveEmptyEntries);

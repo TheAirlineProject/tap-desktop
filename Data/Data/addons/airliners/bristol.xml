@@ -2,7 +2,7 @@
 
 <airliners>
   <airliner manufacturer="Bristol" name="Bristol Britannia 310" price="1000000">
-    <type body="Narrow_Body" rangetype="Long_Range" engine="Turboprop" />
+    <type body="NarrowBody" rangetype="LongRange" engine="Turboprop" />
     <specs wingspan="43.36" length="37.88" range="7129" speed="575" fuelcapacity="40232" consumption="0.041"
            runwaylengthrequired="2010" />
     <capacity passengers="139" cockpitcrew="3" cabincrew="3" maxclasses="1" />

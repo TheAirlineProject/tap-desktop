@@ -927,7 +927,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static Boolean RentGates(Airport airport, Airline airline, AirportContract.ContractType type, Terminal.TerminalType terminaltype)
         {
-            int maxGates = airport.Terminals.getFreeGates(terminaltype);
+            int maxGates = airport.Terminals.GetFreeGates(terminaltype);
 
             int gatesToRent = Math.Min(maxGates, (int) (airline.Mentality) + 2);
 

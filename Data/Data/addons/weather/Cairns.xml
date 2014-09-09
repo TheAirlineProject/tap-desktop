@@ -24,19 +24,19 @@
     </month>
     <month month="6" precipitation="45">
       <temp min="18" max="26" />
-      <wind min="Calm" max="Near_Gale" />
+      <wind min="Calm" max="NearGale" />
     </month>
     <month month="7" precipitation="29">
       <temp min="17" max="26" />
-      <wind min="Calm" max="Near_Gale" />
+      <wind min="Calm" max="NearGale" />
     </month>
     <month month="8" precipitation="27">
       <temp min="17" max="27" />
-      <wind min="Calm" max="Near_Gale" />
+      <wind min="Calm" max="NearGale" />
     </month>
     <month month="9" precipitation="34">
       <temp min="18" max="28" />
-      <wind min="Calm" max="Near_Gale" />
+      <wind min="Calm" max="NearGale" />
     </month>
     <month month="10" precipitation="47">
       <temp min="20" max="30" />
