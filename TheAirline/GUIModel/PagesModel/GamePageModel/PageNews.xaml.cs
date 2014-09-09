@@ -29,7 +29,7 @@
         {
             this.AllNews = new ObservableCollection<NewsMVVM>();
 
-            foreach (News news in GameObject.GetInstance().NewsBox.getNews().OrderByDescending(n => n.Date).ToList())
+            foreach (News news in GameObject.GetInstance().NewsBox.GetNews().OrderByDescending(n => n.Date).ToList())
             {
                 this.AllNews.Add(new NewsMVVM(news));
             }
@@ -60,7 +60,7 @@
             foreach (NewsMVVM news in this.SelectedNewsList)
             {
                 this.AllNews.Remove(news);
-                GameObject.GetInstance().NewsBox.removeNews(news.News);
+                GameObject.GetInstance().NewsBox.RemoveNews(news.News);
             }
         }
 
@@ -89,7 +89,7 @@
             NewsMVVM newsMVVM = this.AllNews.First(n => n.News == news);
             this.AllNews.Remove(newsMVVM);
 
-            GameObject.GetInstance().NewsBox.removeNews(news);
+            GameObject.GetInstance().NewsBox.RemoveNews(news);
         }
 
         private void btnSelectAll_Click(object sender, RoutedEventArgs e)
@@ -108,14 +108,14 @@
         {
             var news = (News)((Button)sender).Tag;
 
-            news.executeNews();
+            news.ExecuteNews();
 
             this.SelectedNews.SelectedNews = null;
 
             NewsMVVM newsMVVM = this.AllNews.First(n => n.News == news);
             this.AllNews.Remove(newsMVVM);
 
-            GameObject.GetInstance().NewsBox.removeNews(news);
+            GameObject.GetInstance().NewsBox.RemoveNews(news);
         }
 
         private void cbNews_Checked(object sender, RoutedEventArgs e)

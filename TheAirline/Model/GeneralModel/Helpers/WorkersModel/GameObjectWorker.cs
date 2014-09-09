@@ -1,23 +1,23 @@
-﻿namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
-{
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Threading;
+﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
 
+namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
+{
     //the worker class for updating game object (non-graphics)
     public class GameObjectWorker : INotifyPropertyChanged
     {
         #region Static Fields
 
-        private static GameObjectWorker Instance;
+        private static GameObjectWorker _instance;
 
         #endregion
 
         #region Fields
 
-        private readonly BackgroundWorker Worker;
+        private readonly BackgroundWorker _worker;
 
         private Boolean _isPaused;
 
@@ -27,16 +27,16 @@
 
         private GameObjectWorker()
         {
-            this.Worker = new BackgroundWorker();
+            _worker = new BackgroundWorker();
 
-            this.Worker.WorkerReportsProgress = true;
-            this.Worker.WorkerSupportsCancellation = true;
-            this.Worker.DoWork += this.bw_DoWork;
+            _worker.WorkerReportsProgress = true;
+            _worker.WorkerSupportsCancellation = true;
+            _worker.DoWork += bw_DoWork;
             //bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             //this.Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-            this.IsPaused = false;
-            this.IsFinish = false;
-            this.IsError = false;
+            IsPaused = false;
+            IsFinish = false;
+            IsError = false;
         }
 
         #endregion
@@ -55,88 +55,83 @@
 
         public Boolean IsPaused
         {
-            get
-            {
-                return this._isPaused;
-            }
+            get { return _isPaused; }
             set
             {
-                this._isPaused = value;
-                this.NotifyPropertyChanged("IsPaused");
+                _isPaused = value;
+                NotifyPropertyChanged("IsPaused");
             }
         }
 
         #endregion
 
-        //returns the instance
-
         #region Public Methods and Operators
 
         public static GameObjectWorker GetInstance()
         {
-            if (Instance == null)
+            if (_instance == null)
             {
-                Instance = new GameObjectWorker();
+                _instance = new GameObjectWorker();
             }
 
-            return Instance;
+            return _instance;
         }
 
         //cancels the worker
-        public void cancel()
+        public void Cancel()
         {
-            this.Worker.CancelAsync();
+            _worker.CancelAsync();
 
-            while (this.Worker.IsBusy && !this.IsFinish)
+            while (_worker.IsBusy && !IsFinish)
             {
             }
         }
 
-        public Boolean isBusy()
+        public Boolean IsBusy()
         {
-            return this.Worker.IsBusy;
+            return _worker.IsBusy;
         }
 
         public Boolean isPaused()
         {
-            return this.IsPaused;
+            return IsPaused;
         }
 
         //pause the worker
-        public void pause()
+        public void Pause()
         {
-            this.cancel();
+            Cancel();
 
-            this.IsPaused = true;
+            IsPaused = true;
         }
 
         //restarts the worker
-        public void restart()
+        public void Restart()
         {
-            this.start();
+            Start();
 
-            this.IsPaused = false;
+            IsPaused = false;
         }
 
         //starts the worker
-        public void start()
+        public void Start()
         {
-            if (!this.Worker.IsBusy)
+            if (!_worker.IsBusy)
             {
-                this.IsPaused = false;
+                IsPaused = false;
 
-                this.Worker.RunWorkerAsync();
+                _worker.RunWorkerAsync();
             }
         }
 
         //starts the worker paused
-        public void startPaused()
+        public void StartPaused()
         {
-            if (!this.Worker.IsBusy)
+            if (!_worker.IsBusy)
             {
-                this.IsPaused = true;
+                IsPaused = true;
 
-                this.Worker.RunWorkerAsync();
+                _worker.RunWorkerAsync();
             }
         }
 
@@ -146,7 +141,7 @@
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -157,11 +152,11 @@
 
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            while (!this.IsPaused && !this.Worker.CancellationPending)
+            while (!IsPaused && !_worker.CancellationPending)
             {
                 try
                 {
-                    this.IsFinish = false;
+                    IsFinish = false;
 
                     var sw = new Stopwatch();
 
@@ -169,63 +164,61 @@
                     GameObjectHelpers.SimulateTurn();
                     sw.Stop();
 
-                    long waittime = (int)Settings.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
-                  
+                    long waittime = (int) Settings.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
+
                     if (waittime > 0)
                     {
-                        Thread.Sleep((int)waittime);
+                        Thread.Sleep((int) waittime);
                     }
                 }
                 catch (Exception ex)
                 {
-                    System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairline.log");
+                    var file = new StreamWriter(AppSettings.GetCommonApplicationDataPath() + "\\theairline.log");
                     file.WriteLine("{0}: {1} {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.StackTrace);
                     file.WriteLine(ex.ToString());
                     file.WriteLine("---------GAME INFORMATION----------");
                     file.Write("Gametime: {0}, human airline: {1}", GameObject.GetInstance().GameTime.ToShortDateString(), GameObject.GetInstance().HumanAirline.Profile.Name);
                     file.Close();
-                  
-                    this.IsError = true;
 
-                   
+                    IsError = true;
                 }
             }
 
-            this.IsFinish = true;
+            IsFinish = true;
         }
 
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (this.Worker.CancellationPending)
+            if (_worker.CancellationPending)
             {
-                Console.WriteLine("Canceled!");
+                Console.WriteLine(@"Canceled!");
 
-                this.IsFinish = true;
+                IsFinish = true;
             }
 
             else if (!(e.Error == null))
             {
                 //this.Cancelled = true;
 
-                Console.WriteLine("Error: " + e.Error.Message);
+                Console.WriteLine(@"Error: " + e.Error.Message);
 
                 var l_CurrentStack = new StackTrace(true);
 
-                var file = new StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairlinepause.log");
+                var file = new StreamWriter(AppSettings.GetCommonApplicationDataPath() + "\\theairlinepause.log");
                 file.WriteLine(l_CurrentStack.ToString());
                 file.WriteLine("------------ERROR MESSAGE--------------");
                 file.WriteLine(e.Error.Message);
                 file.WriteLine(e.Error.StackTrace);
                 file.Close();
 
-                this.IsError = true;
-
-         
+                IsError = true;
             }
 
-            this.IsFinish = true;
+            IsFinish = true;
         }
 
         #endregion
+
+        //returns the instance
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
+﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -282,7 +284,7 @@
                 Airline.AirlineLicense.Domestic,
                 Route.RouteType.Passenger);
             dummyAirline.Profile.AddLogo(
-                new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
+                new AirlineLogo(AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\default.png"));
 
             this.AllAirlines.Add(dummyAirline);
 

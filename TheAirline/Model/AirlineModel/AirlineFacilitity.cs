@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.AirlineModel

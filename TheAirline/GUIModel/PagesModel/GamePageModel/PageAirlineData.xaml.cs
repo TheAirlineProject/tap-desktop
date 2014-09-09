@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
+﻿using TheAirline.Model.GeneralModel.CountryModel;
+
+namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     using System;
     using System.Collections.Generic;
@@ -50,7 +52,7 @@
                         (airline.Profile.Country.Region == this.StartData.Region
                          || (this.StartData.Region.Uid == "100" && this.StartData.Continent.Uid == "100")
                          || (this.StartData.Region.Uid == "100"
-                             && this.StartData.Continent.hasRegion(airline.Profile.Country.Region)))
+                             && this.StartData.Continent.HasRegion(airline.Profile.Country.Region)))
                         && airline.Profile.Founded <= this.StartData.Year
                         && airline.Profile.Folded > this.StartData.Year).OrderBy(a => a.Profile.Name).ToList();
 
@@ -116,7 +118,7 @@
 
         private void btnLoadAirline_Click(object sender, RoutedEventArgs e)
         {
-            string directory = AppSettings.getCommonApplicationDataPath() + "\\custom airlines";
+            string directory = AppSettings.GetCommonApplicationDataPath() + "\\custom airlines";
 
             var dlg = new OpenFileDialog();
 
@@ -142,7 +144,7 @@
                 else
                 {
                     airline.Profile.AddLogo(
-                        new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
+                        new AirlineLogo(AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\default.png"));
                 }
 
                 if (Airlines.GetAirline(airline.Profile.IATACode) != null)
@@ -158,7 +160,7 @@
                             (a.Profile.Country.Region == this.StartData.Region
                              || (this.StartData.Region.Uid == "100" && this.StartData.Continent.Uid == "100")
                              || (this.StartData.Region.Uid == "100"
-                                 && this.StartData.Continent.hasRegion(a.Profile.Country.Region)))
+                                 && this.StartData.Continent.HasRegion(a.Profile.Country.Region)))
                             && a.Profile.Founded <= this.StartData.Year && a.Profile.Folded > this.StartData.Year)
                         .OrderBy(a => a.Profile.Name)
                         .ToList();

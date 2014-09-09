@@ -1,24 +1,22 @@
-﻿namespace TheAirline.Model.GeneralModel
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Windows.Controls;
+using System.Windows.Markup;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel.CountryModel.TownModel;
+using TheAirline.Model.GeneralModel.HolidaysModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
+using TheAirline.Model.PilotModel;
+
+namespace TheAirline.Model.GeneralModel.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Windows.Controls;
-    using System.Windows.Markup;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.AirportModel;
-    using TheAirline.Model.GeneralModel.CountryModel.TownModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.HolidaysModel;
-    using TheAirline.Model.GeneralModel.WeatherModel;
-    using TheAirline.Model.PilotModel;
-
     //class for some general helpers
     public class GeneralHelpers
     {
@@ -47,7 +45,7 @@
         {
             Smallest,
 
-            Very_small,
+            VerySmall,
 
             Small,
 
@@ -55,7 +53,7 @@
 
             Large,
 
-            Very_large,
+            VeryLarge,
 
             Largest
         }
@@ -121,11 +119,11 @@
                     imgMap.Height = imageSize;
                     imgMap.Source =
                         new BitmapImage(
-                            new Uri(AppSettings.getDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
+                            new Uri(AppSettings.GetDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
                     RenderOptions.SetBitmapScalingMode(imgMap, BitmapScalingMode.HighQuality);
 
-                    Canvas.SetTop(imgMap, y * imageSize);
-                    Canvas.SetLeft(imgMap, x * imageSize);
+                    Canvas.SetTop(imgMap, y*imageSize);
+                    Canvas.SetLeft(imgMap, x*imageSize);
 
                     panelMap.Children.Add(imgMap);
                 }
@@ -143,7 +141,7 @@
             {
                 foreach (Holiday holiday in Holidays.GetHolidays())
                 {
-                    if (holiday.Type == Holiday.HolidayType.Fixed_Date)
+                    if (holiday.Type == Holiday.HolidayType.FixedDate)
                     {
                         HolidayYear.AddHoliday(
                             new HolidayYearEvent(
@@ -151,7 +149,7 @@
                                 holiday,
                                 1));
                     }
-                    if (holiday.Type == Holiday.HolidayType.Fixed_Month)
+                    if (holiday.Type == Holiday.HolidayType.FixedMonth)
                     {
                         var eHoliday = new HolidayYearEvent(
                             new DateTime(startYear, holiday.Month, 1),
@@ -159,12 +157,12 @@
                             DateTime.DaysInMonth(startYear, holiday.Month));
                         HolidayYear.AddHoliday(eHoliday);
                     }
-                    if (holiday.Type == Holiday.HolidayType.Fixed_Week)
+                    if (holiday.Type == Holiday.HolidayType.FixedWeek)
                     {
                         HolidayYear.AddHoliday(
                             new HolidayYearEvent(MathHelpers.GetFirstDateOfWeek(startYear, holiday.Week), holiday, 7));
                     }
-                    if (holiday.Type == Holiday.HolidayType.Non_Fixed_Date)
+                    if (holiday.Type == Holiday.HolidayType.NonFixedDate)
                     {
                         HolidayYear.AddHoliday(
                             new HolidayYearEvent(
@@ -189,8 +187,8 @@
                         GameObject.GetInstance().GameTime.AddYears(-Pilot.RetirementAge),
                         GameObject.GetInstance().GameTime.AddYears(-23));
                 var profile = new PilotProfile(
-                    Names.GetInstance().getRandomFirstName(town.Country),
-                    Names.GetInstance().getRandomLastName(town.Country),
+                    Names.GetInstance().GetRandomFirstName(town.Country),
+                    Names.GetInstance().GetRandomLastName(town.Country),
                     birthdate,
                     town);
 
@@ -223,8 +221,8 @@
                         GameObject.GetInstance().GameTime.AddYears(-23));
 
                 var profile = new PilotProfile(
-                    Names.GetInstance().getRandomFirstName(town.Country),
-                    Names.GetInstance().getRandomLastName(town.Country),
+                    Names.GetInstance().GetRandomFirstName(town.Country),
+                    Names.GetInstance().GetRandomLastName(town.Country),
                     birthdate,
                     town);
 
@@ -261,8 +259,8 @@
                         GameObject.GetInstance().GameTime.AddYears(-23));
 
                 var profile = new PilotProfile(
-                    Names.GetInstance().getRandomFirstName(town.Country),
-                    Names.GetInstance().getRandomLastName(town.Country),
+                    Names.GetInstance().GetRandomFirstName(town.Country),
+                    Names.GetInstance().GetRandomLastName(town.Country),
                     birthdate,
                     town);
 
@@ -284,17 +282,17 @@
 
         public static double GetAirlineLoanRate(Airline airline)
         {
-            var value = (double)airline.GetAirlineValue();
+            var value = (double) airline.GetAirlineValue();
 
             return (GameObject.GetInstance().Difficulty.LoanLevel + 0.5)
-                   * ((double)Airline.AirlineValue.VeryHigh + 1 - value);
+                   *((double) Airline.AirlineValue.VeryHigh + 1 - value);
         }
 
         public static double GetAirlinerOrderDiscount(int orders)
         {
             if (orders > 2)
             {
-                return ((orders - 2) * 0.5) / 100;
+                return ((orders - 2)*0.5)/100;
             }
             return 0;
         }
@@ -316,10 +314,7 @@
                 }
             }
             entries.Sort(
-                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2)
-                {
-                    return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2));
-                });
+                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
             return entries;
         }
 
@@ -331,10 +326,10 @@
                 if (route.HasAirliner && route.getCurrentAirliner() != null)
                 {
                     RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null
-                        ? route.TimeTable.getNextEntry(
-                            GameObject.GetInstance().GameTime,
-                            (airport == route.Destination1 ? route.Destination2 : route.Destination1))
-                        : route.getCurrentAirliner().CurrentFlight.Entry;
+                                                    ? route.TimeTable.getNextEntry(
+                                                        GameObject.GetInstance().GameTime,
+                                                        (airport == route.Destination1 ? route.Destination2 : route.Destination1))
+                                                    : route.getCurrentAirliner().CurrentFlight.Entry;
 
                     for (int i = 0; i < route.TimeTable.Entries.Count; i++)
                     {
@@ -347,10 +342,7 @@
                 }
             }
             entries.Sort(
-                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2)
-                {
-                    return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2));
-                });
+                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
             return entries.GetRange(0, Math.Min(entries.Count, count));
         }
 
@@ -369,10 +361,7 @@
                 }
             }
             entries.Sort(
-                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2)
-                {
-                    return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2));
-                });
+                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
             return entries;
         }
 
@@ -384,8 +373,8 @@
                 if (route.HasAirliner && route.getCurrentAirliner() != null)
                 {
                     RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null
-                        ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airport)
-                        : route.getCurrentAirliner().CurrentFlight.Entry;
+                                                    ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airport)
+                                                    : route.getCurrentAirliner().CurrentFlight.Entry;
 
                     if (!entry.Destination.Airport.Profile.Coordinates.Equals(airport.Profile.Coordinates))
                     {
@@ -403,10 +392,7 @@
                 }
             }
             entries.Sort(
-                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2)
-                {
-                    return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2));
-                });
+                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
             return entries.GetRange(0, Math.Min(entries.Count, count));
         }
 
@@ -420,8 +406,8 @@
                     RouteTimeTableEntry entry = route.getCurrentAirliner() == null
                                                 || route.getCurrentAirliner().CurrentFlight == null
                                                 || route.getCurrentAirliner().CurrentFlight.Entry == null
-                        ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime)
-                        : route.getCurrentAirliner().CurrentFlight.Entry;
+                                                    ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime)
+                                                    : route.getCurrentAirliner().CurrentFlight.Entry;
 
                     for (int i = 0; i < route.TimeTable.Entries.Count; i++)
                     {
@@ -440,10 +426,7 @@
                 }
             }
             entries.Sort(
-                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2)
-                {
-                    return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2));
-                });
+                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
             return entries;
         }
 
@@ -455,9 +438,9 @@
             Inflation baseInflation = Inflations.GetInflation(Inflations.BaseYear);
             Inflation currentInflation = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year);
 
-            double modifier = currentInflation.Modifier / baseInflation.Modifier;
+            double modifier = currentInflation.Modifier/baseInflation.Modifier;
 
-            double newPrice = price * modifier;
+            double newPrice = price*modifier;
 
             return newPrice;
         }
@@ -469,10 +452,10 @@
             IEnumerable<string> airlinerFamilies =
                 AirlinerTypes.GetTypes(
                     t =>
-                        t.Produced.From.Year <= GameObject.GetInstance().GameTime.Year
-                        && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30))
-                    .Select(a => a.AirlinerFamily)
-                    .Distinct();
+                    t.Produced.From.Year <= GameObject.GetInstance().GameTime.Year
+                    && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30))
+                             .Select(a => a.AirlinerFamily)
+                             .Distinct();
 
             var rnd = new Random();
             var families = new List<string>();
@@ -510,8 +493,8 @@
         {
             PilotRating instructorRanking = instructor.Rating;
             int aircraftCoeff = instructor.FlightSchool.TrainingAircrafts.Exists(a => a.Type.MaxNumberOfStudents > 5)
-                ? 10
-                : 0;
+                                    ? 10
+                                    : 0;
 
             int instructorRankingIndex = PilotRatings.GetRatings().IndexOf(instructorRanking);
             var rankings = new Dictionary<PilotRating, int>();
@@ -560,8 +543,8 @@
         {
             PilotRating instructorRanking = instructor.Rating;
             int aircraftCoeff = instructor.FlightSchool.TrainingAircrafts.Exists(a => a.Type.MaxNumberOfStudents > 5)
-                ? 10
-                : 0;
+                                    ? 10
+                                    : 0;
 
             int instructorRankingIndex = PilotRatings.GetRatings().IndexOf(instructorRanking);
             var rankings = new Dictionary<PilotRating, int>();
@@ -627,8 +610,8 @@
         {
             Type type = enumVal.GetType();
             MemberInfo[] memInfo = type.GetMember(enumVal.ToString());
-            object[] attributes = memInfo[0].GetCustomAttributes(typeof(T), false);
-            return (T)attributes[0];
+            object[] attributes = memInfo[0].GetCustomAttributes(typeof (T), false);
+            return (T) attributes[0];
         }
 
         #endregion
@@ -641,8 +624,8 @@
 
         public GameKeyValuePair(T key, S value)
         {
-            this.Key = key;
-            this.Value = value;
+            Key = key;
+            Value = value;
         }
 
         #endregion

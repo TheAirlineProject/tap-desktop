@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {

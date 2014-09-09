@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
+﻿using TheAirline.Model.GeneralModel.CountryModel;
+
+namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -44,7 +46,7 @@
 
         public PageRoutePlanner(FleetAirliner airliner)
         {
-            this.ShowSeason = Weather.Season.All_Year;
+            this.ShowSeason = Weather.Season.AllYear;
 
             this.Airliner = airliner;
             this.Entries = new ObservableCollection<RouteTimeTableEntry>();
@@ -1144,7 +1146,7 @@
 
             if (season == "AllYear")
             {
-                this.ShowSeason = Weather.Season.All_Year;
+                this.ShowSeason = Weather.Season.AllYear;
             }
 
             this.setViewEntries();

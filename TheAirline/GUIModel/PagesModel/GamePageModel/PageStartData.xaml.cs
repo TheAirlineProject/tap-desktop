@@ -162,7 +162,7 @@
                     Airlines.GetAirlines(
                         airline =>
                             (airline.Profile.Country.Region == region || (region.Uid == "100" && continent.Uid == "100")
-                             || (region.Uid == "100" && continent.hasRegion(airline.Profile.Country.Region)))
+                             || (region.Uid == "100" && continent.HasRegion(airline.Profile.Country.Region)))
                             && airline.Profile.Founded <= year && airline.Profile.Folded > year);
 
                 this.cbOpponents.Items.Clear();

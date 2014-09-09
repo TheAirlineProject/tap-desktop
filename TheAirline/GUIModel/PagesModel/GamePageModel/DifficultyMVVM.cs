@@ -136,14 +136,14 @@
         {
             this.IsRead = true;
             this.News.IsRead = true;
-            GameObject.GetInstance().NewsBox.HasUnreadNews = GameObject.GetInstance().NewsBox.getUnreadNews().Count > 0;
+            GameObject.GetInstance().NewsBox.HasUnreadNews = GameObject.GetInstance().NewsBox.GetUnreadNews().Count > 0;
         }
 
         public void markAsUnRead()
         {
             this.IsRead = false;
             this.News.IsRead = false;
-            GameObject.GetInstance().NewsBox.HasUnreadNews = GameObject.GetInstance().NewsBox.getUnreadNews().Count > 0;
+            GameObject.GetInstance().NewsBox.HasUnreadNews = GameObject.GetInstance().NewsBox.GetUnreadNews().Count > 0;
         }
 
         #endregion

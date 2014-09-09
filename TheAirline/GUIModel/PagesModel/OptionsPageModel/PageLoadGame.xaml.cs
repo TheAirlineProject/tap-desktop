@@ -61,9 +61,9 @@
 
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
-            GameObjectWorker.GetInstance().cancel();
+            GameObjectWorker.GetInstance().Cancel();
 
-            while (GameObjectWorker.GetInstance().isBusy())
+            while (GameObjectWorker.GetInstance().IsBusy())
             {
             }
 
@@ -94,7 +94,7 @@
 
                         Setup.SetupMergers();
 
-                        GameObjectWorker.GetInstance().pause();
+                        GameObjectWorker.GetInstance().Pause();
 
                         PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
                     };

@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
+﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -27,7 +29,7 @@
             this.AllTypes = new List<AirlinerTypeMVVM>();
             this.SelectedAirliners = new ObservableCollection<AirlinerTypeMVVM>();
 
-            Boolean isMetric = AppSettings.GetInstance().getLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Metric;
+            Boolean isMetric = AppSettings.GetInstance().GetLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Metric;
          
             this.RangeRanges = new List<FilterValue>
                                {
@@ -257,7 +259,7 @@
                 var airliner = new Airliner(
                     id.ToString(),
                     type.Type,
-                    GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(),
+                    GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.GetNextTailNumber(),
                     deliveryDate);
 
                 EngineType engine = EngineTypes.GetStandardEngineType(type.Type,GameObject.GetInstance().GameTime.Year);

@@ -268,7 +268,7 @@
                 this.Members.Sum(
                     m =>
                         (int)
-                            m.Member.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, stat));
+                            m.Member.Airline.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year, stat));
         }
 
         #endregion

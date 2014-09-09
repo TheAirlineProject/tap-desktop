@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
+﻿using TheAirline.Model.GeneralModel.Helpers;
+
+namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -50,7 +52,7 @@
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                AppSettings.GetInstance().setLanguage((Language)this.cbLanguage.SelectedItem);
+                AppSettings.GetInstance().SetLanguage((Language)this.cbLanguage.SelectedItem);
 
                 Settings.GetInstance().AirportCodeDisplay = this.rbIATA.IsChecked.Value
                     ? Settings.AirportCode.IATA

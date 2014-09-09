@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
+﻿using TheAirline.Model.GeneralModel.CountryModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
     using System;
     using System.Collections;
@@ -102,7 +104,7 @@
 
             if (text == "112")
             {
-                GameObject.GetInstance().addHumanMoney(10000000);
+                GameObject.GetInstance().AddHumanMoney(10000000);
             }
 
             IEnumerable<Airport> airports =

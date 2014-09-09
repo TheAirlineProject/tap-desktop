@@ -54,7 +54,7 @@
             }
 
             var cbLanguage = UIHelpers.FindChild<ComboBox>(this, "cbLanguage");
-            cbLanguage.SelectedItem = AppSettings.GetInstance().getLanguage();
+            cbLanguage.SelectedItem = AppSettings.GetInstance().GetLanguage();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -82,10 +82,10 @@
             }
 
             var cbLanguage = UIHelpers.FindChild<ComboBox>(this, "cbLanguage");
-            AppSettings.GetInstance().setLanguage((Language)cbLanguage.SelectedItem);
+            AppSettings.GetInstance().SetLanguage((Language)cbLanguage.SelectedItem);
 
-            var file = new StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\game.settings");
-            file.WriteLine(AppSettings.GetInstance().getLanguage().Name);
+            var file = new StreamWriter(AppSettings.GetCommonApplicationDataPath() + "\\game.settings");
+            file.WriteLine(AppSettings.GetInstance().GetLanguage().Name);
             file.WriteLine(Settings.GetInstance().Mode);
             file.Close();
 
@@ -104,7 +104,7 @@
             }
 
             var cbLanguage = UIHelpers.FindChild<ComboBox>(this, "cbLanguage");
-            cbLanguage.SelectedItem = AppSettings.GetInstance().getLanguage();
+            cbLanguage.SelectedItem = AppSettings.GetInstance().GetLanguage();
         }
 
         #endregion

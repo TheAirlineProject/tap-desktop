@@ -1,25 +1,22 @@
-﻿namespace TheAirline.Model.GeneralModel.Helpers
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.PagesModel.AirlinePageModel;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+using TheAirline.Model.GeneralModel.ScenarioModel;
+using TheAirline.Model.GeneralModel.StatisticsModel;
+
+namespace TheAirline.Model.GeneralModel.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.AirportModel;
-    using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
-    using TheAirline.Model.GeneralModel.ScenarioModel;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
-
     //the helpers class for scenarios
     public class ScenarioHelpers
     {
-        //sets up a scenario
-
         #region Public Methods and Operators
 
         public static void SetupScenario(Scenario scenario)
@@ -35,7 +32,7 @@
             GameObject.GetInstance().FuelPrice =
                 Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice;
 
-            GameObject.GetInstance().setHumanAirline(airline);
+            GameObject.GetInstance().SetHumanAirline(airline);
             GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
             //GameObject.GetInstance().HumanAirline.Money = scenario.StartCash;
 
@@ -49,11 +46,11 @@
 
             AirlinerHelpers.CreateStartUpAirliners();
 
-            int pilotsPool = 100 * Airlines.GetAllAirlines().Count;
+            int pilotsPool = 100*Airlines.GetAllAirlines().Count;
 
             GeneralHelpers.CreatePilots(pilotsPool);
 
-            int instructorsPool = 75 * Airlines.GetAllAirlines().Count;
+            int instructorsPool = 75*Airlines.GetAllAirlines().Count;
 
             GeneralHelpers.CreateInstructors(instructorsPool);
 
@@ -64,7 +61,7 @@
             PassengerHelpers.CreateAirlineDestinationDemand();
 
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
-            GameObjectWorker.GetInstance().start();
+            GameObjectWorker.GetInstance().Start();
 
             PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
 
@@ -73,22 +70,22 @@
             // GameObject.GetInstance().HumanAirline.Money = 1000000000;
 
             GameObject.GetInstance()
-                .NewsBox.addNews(
-                    new News(
-                        News.NewsType.Standard_News,
-                        GameObject.GetInstance().GameTime,
-                        Translator.GetInstance().GetString("News", "1001"),
-                        string.Format(
-                            Translator.GetInstance().GetString("News", "1001", "message"),
-                            GameObject.GetInstance().HumanAirline.Profile.CEO,
-                            GameObject.GetInstance().HumanAirline.Profile.IATACode)));
+                      .NewsBox.AddNews(
+                          new News(
+                              News.NewsType.StandardNews,
+                              GameObject.GetInstance().GameTime,
+                              Translator.GetInstance().GetString("News", "1001"),
+                              string.Format(
+                                  Translator.GetInstance().GetString("News", "1001", "message"),
+                                  GameObject.GetInstance().HumanAirline.Profile.CEO,
+                                  GameObject.GetInstance().HumanAirline.Profile.IATACode)));
 
             Action<object> action = (object obj) =>
-            {
-                PassengerHelpers.CreateDestinationDemand();
+                {
+                    PassengerHelpers.CreateDestinationDemand();
 
-                SetupScenarioPassengerDemand(scenario);
-            };
+                    SetupScenarioPassengerDemand(scenario);
+                };
 
             Task t2 = Task.Factory.StartNew(action, "passengers");
         }
@@ -122,14 +119,14 @@
                 {
                     int domesticDestinations =
                         GameObject.GetInstance()
-                            .MainAirline.Airports.FindAll(
-                                a => a.Profile.Country == GameObject.GetInstance().MainAirline.Profile.Country)
-                            .Count;
+                                  .MainAirline.Airports.FindAll(
+                                      a => a.Profile.Country == GameObject.GetInstance().MainAirline.Profile.Country)
+                                  .Count;
 
                     domesticDestinations +=
                         GameObject.GetInstance()
-                            .MainAirline.Subsidiaries.Sum(
-                                s => s.Airports.Count(a => a.Profile.Country == s.Profile.Country));
+                                  .MainAirline.Subsidiaries.Sum(
+                                      s => s.Airports.Count(a => a.Profile.Country == s.Profile.Country));
 
                     failureOk = domesticDestinations > Convert.ToInt32(failure.Value);
                 }
@@ -137,14 +134,14 @@
                 {
                     int intlDestinations =
                         GameObject.GetInstance()
-                            .MainAirline.Airports.FindAll(
-                                a => a.Profile.Country != GameObject.GetInstance().MainAirline.Profile.Country)
-                            .Count;
+                                  .MainAirline.Airports.FindAll(
+                                      a => a.Profile.Country != GameObject.GetInstance().MainAirline.Profile.Country)
+                                  .Count;
 
                     intlDestinations +=
                         GameObject.GetInstance()
-                            .MainAirline.Subsidiaries.Sum(
-                                s => s.Airports.Count(a => a.Profile.Country != s.Profile.Country));
+                                  .MainAirline.Subsidiaries.Sum(
+                                      s => s.Airports.Count(a => a.Profile.Country != s.Profile.Country));
 
                     failureOk = intlDestinations > Convert.ToInt32(failure.Value);
                 }
@@ -152,28 +149,28 @@
                 {
                     double paxLastYear =
                         GameObject.GetInstance()
-                            .MainAirline.Statistics.getStatisticsValue(
-                                GameObject.GetInstance().GameTime.Year - 2,
-                                StatisticsTypes.GetStatisticsType("Passengers"))
+                                  .MainAirline.Statistics.GetStatisticsValue(
+                                      GameObject.GetInstance().GameTime.Year - 2,
+                                      StatisticsTypes.GetStatisticsType("Passengers"))
                         + GameObject.GetInstance()
-                            .MainAirline.Subsidiaries.Sum(
-                                s =>
-                                    s.Statistics.getStatisticsValue(
-                                        GameObject.GetInstance().GameTime.Year - 2,
-                                        StatisticsTypes.GetStatisticsType("Passengers")));
+                                    .MainAirline.Subsidiaries.Sum(
+                                        s =>
+                                        s.Statistics.GetStatisticsValue(
+                                            GameObject.GetInstance().GameTime.Year - 2,
+                                            StatisticsTypes.GetStatisticsType("Passengers")));
                     double paxCurrentYear =
                         GameObject.GetInstance()
-                            .MainAirline.Statistics.getStatisticsValue(
-                                GameObject.GetInstance().GameTime.Year - 1,
-                                StatisticsTypes.GetStatisticsType("Passengers"))
+                                  .MainAirline.Statistics.GetStatisticsValue(
+                                      GameObject.GetInstance().GameTime.Year - 1,
+                                      StatisticsTypes.GetStatisticsType("Passengers"))
                         + GameObject.GetInstance()
-                            .MainAirline.Subsidiaries.Sum(
-                                s =>
-                                    s.Statistics.getStatisticsValue(
-                                        GameObject.GetInstance().GameTime.Year - 1,
-                                        StatisticsTypes.GetStatisticsType("Passengers")));
+                                    .MainAirline.Subsidiaries.Sum(
+                                        s =>
+                                        s.Statistics.GetStatisticsValue(
+                                            GameObject.GetInstance().GameTime.Year - 1,
+                                            StatisticsTypes.GetStatisticsType("Passengers")));
 
-                    double change = (paxCurrentYear - paxLastYear) / paxLastYear * 100;
+                    double change = (paxCurrentYear - paxLastYear)/paxLastYear*100;
 
                     failureOk = change > Convert.ToDouble(failure.Value);
                 }
@@ -181,39 +178,39 @@
                 {
                     double avgFleetAge = (GameObject.GetInstance().MainAirline.GetAverageFleetAge()
                                           + GameObject.GetInstance()
-                                              .MainAirline.Subsidiaries.Sum(s => s.GetAverageFleetAge()))
-                                         / (1 + GameObject.GetInstance().MainAirline.Subsidiaries.Count);
+                                                      .MainAirline.Subsidiaries.Sum(s => s.GetAverageFleetAge()))
+                                         /(1 + GameObject.GetInstance().MainAirline.Subsidiaries.Count);
                     failureOk = Convert.ToDouble(failure.Value) > avgFleetAge;
                 }
                 if (failure.Type == ScenarioFailure.FailureType.Pax)
                 {
                     double totalPassengers =
                         GameObject.GetInstance()
-                            .MainAirline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers"))
+                                  .MainAirline.Statistics.GetStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers"))
                         + GameObject.GetInstance()
-                            .MainAirline.Subsidiaries.Sum(
-                                s => s.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")));
+                                    .MainAirline.Subsidiaries.Sum(
+                                        s => s.Statistics.GetStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")));
 
-                    failureOk = Convert.ToDouble(failure.Value) * 1000 < totalPassengers;
+                    failureOk = Convert.ToDouble(failure.Value)*1000 < totalPassengers;
                 }
                 if (failure.Type == ScenarioFailure.FailureType.Bases)
                 {
                     int homeBases =
                         GameObject.GetInstance()
-                            .MainAirline.Airports.FindAll(
-                                a =>
-                                    a.GetCurrentAirportFacility(
-                                        GameObject.GetInstance().MainAirline,
-                                        AirportFacility.FacilityType.Service).TypeLevel > 0)
-                            .Count;
+                                  .MainAirline.Airports.FindAll(
+                                      a =>
+                                      a.GetCurrentAirportFacility(
+                                          GameObject.GetInstance().MainAirline,
+                                          AirportFacility.FacilityType.Service).TypeLevel > 0)
+                                  .Count;
                     homeBases +=
                         GameObject.GetInstance()
-                            .MainAirline.Subsidiaries.Sum(
-                                s =>
-                                    s.Airports.Count(
-                                        a =>
-                                            a.GetCurrentAirportFacility(s, AirportFacility.FacilityType.Service)
-                                                .TypeLevel > 0));
+                                  .MainAirline.Subsidiaries.Sum(
+                                      s =>
+                                      s.Airports.Count(
+                                          a =>
+                                          a.GetCurrentAirportFacility(s, AirportFacility.FacilityType.Service)
+                                           .TypeLevel > 0));
 
                     failureOk = homeBases <= Convert.ToInt32(failure.Value);
                 }
@@ -223,7 +220,7 @@
                                   + GameObject.GetInstance().MainAirline.Money;
                     debt +=
                         GameObject.GetInstance()
-                            .MainAirline.Subsidiaries.Sum(s => s.Loans.Sum(l => l.PaymentLeft) + s.Money);
+                                  .MainAirline.Subsidiaries.Sum(s => s.Loans.Sum(l => l.PaymentLeft) + s.Money);
 
                     failureOk = debt <= Convert.ToDouble(failure.Value);
                 }
@@ -236,13 +233,13 @@
                     double totalJets =
                         Convert.ToDouble(
                             GameObject.GetInstance()
-                                .MainAirline.Fleet.Count(f => f.Airliner.Type.Engine == AirlinerType.TypeOfEngine.Jet))
+                                      .MainAirline.Fleet.Count(f => f.Airliner.Type.Engine == AirlinerType.TypeOfEngine.Jet))
                         + Convert.ToDouble(
                             GameObject.GetInstance()
-                                .MainAirline.Subsidiaries.Sum(
-                                    s => s.Fleet.Count(f => f.Airliner.Type.Engine == AirlinerType.TypeOfEngine.Jet)));
+                                      .MainAirline.Subsidiaries.Sum(
+                                          s => s.Fleet.Count(f => f.Airliner.Type.Engine == AirlinerType.TypeOfEngine.Jet)));
 
-                    double jetRation = totalJets / totalFleet;
+                    double jetRation = totalJets/totalFleet;
 
                     failureOk = jetRation >= Convert.ToDouble(failure.Value);
                 }
@@ -297,8 +294,8 @@
                 for (int i = 0; i < fleetAirliner.Value; i++)
                 {
                     GameObject.GetInstance()
-                        .HumanAirline.AddAirliner(
-                            AirlineHelpers.CreateAirliner(GameObject.GetInstance().HumanAirline, fleetAirliner.Key));
+                              .HumanAirline.AddAirliner(
+                                  AirlineHelpers.CreateAirliner(GameObject.GetInstance().HumanAirline, fleetAirliner.Key));
                 }
             }
             foreach (ScenarioAirlineRoute route in scenario.Routes)
@@ -309,13 +306,14 @@
 
         private static void SetupOpponentAirline(ScenarioAirline airline)
         {
-            AirportHelpers.RentGates(airline.Homebase, airline.Airline, AirportContract.ContractType.Full,airline.Airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger);
+            AirportHelpers.RentGates(airline.Homebase, airline.Airline, AirportContract.ContractType.Full,
+                                     airline.Airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger);
 
             AirportFacility checkinFacility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
             AirportFacility facility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service)
-                    .Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
+                                 .Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
 
             airline.Homebase.AddAirportFacility(airline.Airline, facility, GameObject.GetInstance().GameTime);
             airline.Homebase.AddAirportFacility(airline.Airline, checkinFacility, GameObject.GetInstance().GameTime);
@@ -332,21 +330,21 @@
             Parallel.ForEach(
                 Airports.GetAllAirports(),
                 airport =>
-                {
-                    foreach (Airline airline in Airlines.GetAllAirlines())
                     {
-                        foreach (
-                            AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
+                        foreach (Airline airline in Airlines.GetAllAirlines())
                         {
-                            AirportFacility noneFacility =
-                                AirportFacilities.GetFacilities(type)
-                                    .Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
+                            foreach (
+                                AirportFacility.FacilityType type in Enum.GetValues(typeof (AirportFacility.FacilityType)))
+                            {
+                                AirportFacility noneFacility =
+                                    AirportFacilities.GetFacilities(type)
+                                                     .Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
 
-                            airport.AddAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
+                                airport.AddAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
+                            }
                         }
-                    }
-                    AirportHelpers.CreateAirportWeather(airport);
-                });
+                        AirportHelpers.CreateAirportWeather(airport);
+                    });
 
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
@@ -385,7 +383,6 @@
 
         private static void SetupScenarioAirport(Airline airline, Airport airport, int quantity = 2)
         {
-       
             for (int i = 0; i < quantity; i++)
             {
                 if (!AirportHelpers.HasFreeGates(airport, airline))
@@ -398,7 +395,7 @@
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
             AirportFacility facility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service)
-                    .Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
+                                 .Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
 
             airport.AddAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
             airport.AddAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
@@ -444,8 +441,8 @@
                 foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                 {
                     route.getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
-                                                                                     * GeneralHelpers.ClassToPriceFactor
-                                                                                         (classConfiguration.Type);
+                                                                                     *GeneralHelpers.ClassToPriceFactor
+                                                                                          (classConfiguration.Type);
 
                     foreach (RouteFacility rfacility in classConfiguration.getFacilities())
                     {
@@ -474,7 +471,7 @@
         //adds another month for where the scenario parameter has not been fulfilled and returns if failing scenario
         private static Boolean UpdateFailureValue(ScenarioObject scenario, ScenarioFailure failure)
         {
-            ScenarioFailureObject failureObject = scenario.getScenarioFailure(failure);
+            ScenarioFailureObject failureObject = scenario.GetScenarioFailure(failure);
             int monthsSinceLastFailure = MathHelpers.GetMonthsBetween(
                 failureObject.LastFailureTime,
                 GameObject.GetInstance().GameTime);
@@ -514,6 +511,8 @@
         }
 
         #endregion
+
+        //sets up a scenario
 
         //ends a scenario
     }

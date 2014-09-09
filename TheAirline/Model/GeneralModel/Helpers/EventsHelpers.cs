@@ -1,18 +1,13 @@
-﻿namespace TheAirline.Model.GeneralModel.Helpers
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using TheAirline.Model.AirlineModel;
+
+namespace TheAirline.Model.GeneralModel.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using TheAirline.Model.AirlineModel;
-
     //the helpers class for events
     public class EventsHelpers
     {
-        //returns a list of proportions of events based on current ratings
-
-        //generates x number of events for each event type for the current year. Should be called only from OnNewYear
-
         #region Public Methods and Operators
 
         public static void GenerateEvents(Airline airline)
@@ -49,11 +44,11 @@
 
             //gets the event proportions and multiplies them by total # events to get events per type
             List<double> probs = GetEventProportions(airline);
-            custEvents = eFreq * probs[0];
-            empEvents = eFreq * probs[1];
-            secEvents = eFreq * probs[2];
-            safEvents = eFreq * probs[3];
-            maintEvents = eFreq * probs[4];
+            custEvents = eFreq*probs[0];
+            empEvents = eFreq*probs[1];
+            secEvents = eFreq*probs[2];
+            safEvents = eFreq*probs[3];
+            maintEvents = eFreq*probs[4];
             polEvents = eFreq - custEvents - empEvents - secEvents - maintEvents;
             eventOccurences.Add(RandomEvent.EventType.Customer, custEvents);
             eventOccurences.Add(RandomEvent.EventType.Employee, empEvents);
@@ -86,11 +81,11 @@
             ratings.Add(100 - airline.Ratings.SafetyRating);
             ratings.Add(100 - airline.Ratings.MaintenanceRating);
             ratings.Add(500 - ratings.Sum());
-            double pCHR = ratings[0] / ratings[5];
-            double pEHR = ratings[1] / ratings[5];
-            double pSCR = ratings[2] / ratings[5];
-            double pSFR = ratings[3] / ratings[5];
-            double pMTR = ratings[4] / ratings[5];
+            double pCHR = ratings[0]/ratings[5];
+            double pEHR = ratings[1]/ratings[5];
+            double pSCR = ratings[2]/ratings[5];
+            double pSFR = ratings[3]/ratings[5];
+            double pMTR = ratings[4]/ratings[5];
             ratings.Clear();
             var pRatings = new List<double>();
             pRatings.Add(pCHR);
@@ -102,5 +97,9 @@
         }
 
         #endregion
+
+        //returns a list of proportions of events based on current ratings
+
+        //generates x number of events for each event type for the current year. Should be called only from OnNewYear
     }
 }

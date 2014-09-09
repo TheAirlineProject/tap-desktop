@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.InvoicesModel;
 
 namespace TheAirline.Model.AirlinerModel
 {

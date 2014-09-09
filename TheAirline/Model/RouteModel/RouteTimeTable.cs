@@ -1,4 +1,6 @@
-﻿namespace TheAirline.Model.AirlinerModel.RouteModel
+﻿using TheAirline.Model.GeneralModel.Helpers;
+
+namespace TheAirline.Model.AirlinerModel.RouteModel
 {
     using System;
     using System.Collections.Generic;
@@ -194,7 +196,7 @@
                     this.Entries.FindAll(
                         e =>
                             e.Day == day
-                            && (e.TimeTable.Route.Season == Weather.Season.All_Year
+                            && (e.TimeTable.Route.Season == Weather.Season.AllYear
                                 || e.TimeTable.Route.Season == season));
             }
             return this.Entries.FindAll(e => e.Day == day);

@@ -242,8 +242,8 @@
 
             this.DistanceToDestination =
                 MathHelpers.GetDistance(
-                    entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),
-                    entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate());
+                    entry.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                    entry.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate());
 
             this.CurrentFlight++;
         }

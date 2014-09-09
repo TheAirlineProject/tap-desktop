@@ -1,15 +1,15 @@
-﻿namespace TheAirline.Model.GeneralModel
-{
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Reflection;
-    using System.Resources;
-    using System.Runtime.Caching;
-    using System.Threading;
-    using System.Xml;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Resources;
+using System.Runtime.Caching;
+using System.Threading;
+using System.Xml;
 
+namespace TheAirline.Model.GeneralModel
+{
     // this is just a comment to test all my settings and make sure they are correct
     // ps, pjank42 if you see this, don't forget to commit this file!
     /*! Translator class.
@@ -39,23 +39,23 @@
     {
         #region Constants
 
-        private const string CACHE_KEY = "Translator";
+        private const string CacheKey = "Translator";
 
-        private const string CONFIG_FILENAME = "XmlFile";
+        private const string ConfigFilename = "XmlFile";
 
-        private const string XML_ROOTNODE = "Translator/Region";
+        private const string XMLRootnode = "Translator/Region";
 
         #endregion
 
         #region Static Fields
 
-        private static MemoryCache stCache;
+        private static MemoryCache _stCache;
 
         #endregion
 
         #region Fields
 
-        private Hashtable regions = new Hashtable();
+        private readonly Hashtable _regions = new Hashtable();
 
         #endregion
 
@@ -82,10 +82,7 @@
         /// </summary>
         public static string SourceFile
         {
-            get
-            {
-                return AppSettings.getDataPath() + "\\Languages.xml";
-            }
+            get { return AppSettings.GetDataPath() + "\\Languages.xml"; }
         }
 
         #endregion
@@ -99,24 +96,24 @@
         public static Translator GetInstance()
         {
             // Erstelle Cache-Objekt wenn noch keins existiert
-            if (null == stCache)
+            if (null == _stCache)
             {
-                stCache = new MemoryCache(CACHE_KEY);
+                _stCache = new MemoryCache(CacheKey);
             }
 
             // Prüfe ob Cache leer ist
-            if (stCache.GetCount() == 0)
+            if (_stCache.GetCount() == 0)
             {
                 // Erstelle Translator-Instanz und lade Strings
                 var st = new Translator();
                 st.LoadStrings();
 
                 // Cache neu füllen
-                stCache.Add(CACHE_KEY, st, new CacheItemPolicy());
+                _stCache.Add(CacheKey, st, new CacheItemPolicy());
             }
 
             // Gebe Translator-Objekt aus Cache zurück
-            return (Translator)stCache[CACHE_KEY];
+            return (Translator) _stCache[CacheKey];
         }
 
         public static void Init()
@@ -151,34 +148,34 @@
             }
             else
             {
-                string culture = AppSettings.GetInstance().getLanguage().CultureInfo;
+                string culture = AppSettings.GetInstance().GetLanguage().CultureInfo;
 
                 // Lese Text mit den gegebenen Parametern region, key und language
                 try
                 {
                     // Prüfen ob Regions vorhanden sind
-                    if (this.regions.Count > 0)
+                    if (_regions.Count > 0)
                     {
                         //  Prüfen ob angeforderte Region vorhanden ist
-                        if (this.regions[region] != null)
+                        if (_regions[region] != null)
                         {
-                            if (((Hashtable)this.regions[region])[uid] != null)
+                            if (((Hashtable) _regions[region])[uid] != null)
                             {
                                 // Prüfen ob gewählte Sprache vorhanden ist;
                                 // ansonsten wird die Default-Sprache verwendet
                                 //                        if (((Dictionary<string, string>)((Hashtable)regions[region])[key]).ContainsKey(language.ToString()))
-                                if (((Hashtable)((Hashtable)this.regions[region])[uid]).ContainsKey(culture))
+                                if (((Hashtable) ((Hashtable) _regions[region])[uid]).ContainsKey(culture))
                                 {
                                     text =
                                         ((Dictionary<string, string>)
-                                            (((Hashtable)((Hashtable)this.regions[region])[uid])[culture]))[attribute];
+                                         (((Hashtable) ((Hashtable) _regions[region])[uid])[culture]))[attribute];
                                 }
                                 else
                                 {
                                     text =
                                         ((Dictionary<string, string>)
-                                            (((Hashtable)((Hashtable)this.regions[region])[uid])[DefaultLanguage]))[
-                                                attribute];
+                                         (((Hashtable) ((Hashtable) _regions[region])[uid])[DefaultLanguage]))[
+                                             attribute];
                                 }
 
                                 return text;
@@ -186,19 +183,19 @@
                             else
                             {
                                 // we try it in the "General" region
-                                if (((Hashtable)((Hashtable)this.regions["General"])[uid]).ContainsKey(culture))
+                                if (((Hashtable) ((Hashtable) _regions["General"])[uid]).ContainsKey(culture))
                                 {
                                     text =
                                         ((Dictionary<string, string>)
-                                            (((Hashtable)((Hashtable)this.regions["General"])[uid])[culture]))[attribute
+                                         (((Hashtable) ((Hashtable) _regions["General"])[uid])[culture]))[attribute
                                             ];
                                 }
                                 else
                                 {
                                     text =
                                         ((Dictionary<string, string>)
-                                            (((Hashtable)((Hashtable)this.regions["General"])[uid])[DefaultLanguage]))[
-                                                attribute];
+                                         (((Hashtable) ((Hashtable) _regions["General"])[uid])[DefaultLanguage]))[
+                                             attribute];
                                 }
 
                                 return text;
@@ -222,7 +219,7 @@
                 {
                     throw new Exception(
                         "Folgende Parameter ergaben kein Ergebnis im aktuellen Objekt:" + "Region: " + region + " "
-                        + "Key: " + uid + " " + "Language: " + Thread.CurrentThread.CurrentUICulture.ToString()
+                        + "Key: " + uid + " " + "Language: " + Thread.CurrentThread.CurrentUICulture
                         + "Fehlermeldung: " + ex.Message);
                 }
             }
@@ -234,10 +231,10 @@
         public void LoadStrings()
         {
             // Regions-Hashtable leeren
-            this.regions.Clear();
+            _regions.Clear();
 
             // XML-File laden
-            XmlDocument xDoc = this.LoadSourceFile(SourceFile);
+            XmlDocument xDoc = LoadSourceFile(SourceFile);
 
             // XML-Daten lesen
             try
@@ -253,7 +250,7 @@
                             language.Attributes["culture"].Value,
                             Convert.ToBoolean(language.Attributes["isEnabled"].Value));
                         // chs, 2011-10-11 changed to display flag together with language
-                        read.ImageFile = AppSettings.getDataPath() + @"\graphics\flags\"
+                        read.ImageFile = AppSettings.GetDataPath() + @"\graphics\flags\"
                                          + language.Attributes["flag"].Value;
                         if (language.Attributes["UnitSystem"].Value == Language.UnitSystem.Metric.ToString())
                         {
@@ -268,7 +265,7 @@
                         {
                             foreach (XmlNode conversion in language.ChildNodes)
                             {
-                                read.addWord(
+                                read.AddWord(
                                     conversion.Attributes["original"].Value,
                                     conversion.Attributes["translated"].Value);
                             }
@@ -329,23 +326,23 @@
 		}
 */
 
-        public void addTranslation(String region, string uid, XmlNode node)
+        public void AddTranslation(String region, string uid, XmlNode node)
         {
             Hashtable strs = null;
             // try to get the existing Hashtable for the region. If no exist, create one 
-            if (this.regions[region] != null)
+            if (_regions[region] != null)
             {
-                strs = ((Hashtable)this.regions[region]);
+                strs = ((Hashtable) _regions[region]);
             }
             else
             {
                 // crerate a new Hashtable for the region and add it to the cache
                 strs = new Hashtable();
-                this.regions.Add(region, strs);
+                _regions.Add(region, strs);
             }
 
             // if an entry for this uid already exist, return directely
-            if (((Hashtable)this.regions[region])[uid] != null)
+            if (((Hashtable) _regions[region])[uid] != null)
             {
                 return;
             }

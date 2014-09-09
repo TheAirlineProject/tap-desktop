@@ -1,29 +1,26 @@
-﻿namespace TheAirline.Model.GeneralModel.Helpers
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+
+namespace TheAirline.Model.GeneralModel.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Linq;
-    using System.Runtime.Serialization.Formatters.Binary;
-    using System.Threading.Tasks;
-
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.AirportModel;
-    using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
-
     //the helper class for loading and saving using serialization
     public class SerializedLoadSaveHelpers
     {
-        //deletes a saved game
-
         #region Public Methods and Operators
 
         public static void DeleteSavedGame(string name)
         {
-            string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
+            string fileName = AppSettings.GetCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
 
             File.Delete(fileName);
         }
@@ -33,7 +30,7 @@
         //loads a game 
         public static void LoadGame(string file)
         {
-            string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + file + ".sav";
+            string fileName = AppSettings.GetCommonApplicationDataPath() + "\\saves\\" + file + ".sav";
 
             var deserializedSaveObject = FileSerializer.Deserialize<SaveObject>(fileName);
 
@@ -58,183 +55,182 @@
             //Parrarel for loading the game
             Parallel.Invoke(
                 () =>
-                {
-                    Airlines.Clear();
-
-                    foreach (Airline airline in deserializedSaveObject.airlinesList)
                     {
-                        Airlines.AddAirline(airline);
-                    }
-                },
-                () =>
-                {
-                    Setup.LoadAirports();
-                    
-                    List<Airport> airports = Airports.GetAllAirports();
+                        Airlines.Clear();
 
-                    Airports.Clear();
-
-                    foreach (Airport airport in deserializedSaveObject.airportsList)
-                    {
-                        airport.Statics = new AirportStatics(airport);
-                        Airports.AddAirport(airport);
-                    }
-
-                    foreach (string iata in deserializedSaveObject.airportsfromstringList)
-                    {
-                        Airport airport = airports.FirstOrDefault(a => a.Profile.IATACode == iata);
-
-                        if (airport != null)
+                        foreach (Airline airline in deserializedSaveObject.airlinesList)
                         {
+                            Airlines.AddAirline(airline);
+                        }
+                    },
+                () =>
+                    {
+                        Setup.LoadAirports();
+
+                        List<Airport> airports = Airports.GetAllAirports();
+
+                        Airports.Clear();
+
+                        foreach (Airport airport in deserializedSaveObject.airportsList)
+                        {
+                            airport.Statics = new AirportStatics(airport);
                             Airports.AddAirport(airport);
                         }
-                    }
-                },
-                () =>
-                {
-                    Airliners.Clear();
 
-                    foreach (Airliner airliner in deserializedSaveObject.airlinersList)
-                    {
-                        Airliners.AddAirliner(airliner);
-                    }
-                },
-                () =>
-                {
-                    CalendarItems.Clear();
-
-                    foreach (CalendarItem item in deserializedSaveObject.calendaritemsList)
-                    {
-                        CalendarItems.AddCalendarItem(item);
-                    }
-                },
-                () =>
-                {
-                    Configurations.Clear();
-
-                    foreach (Configuration configuration in deserializedSaveObject.configurationList)
-                    {
-                        Configurations.AddConfiguration(configuration);
-                    }
-                },
-                () =>
-                {
-                    RandomEvents.Clear();
-
-                    foreach (RandomEvent e in deserializedSaveObject.eventsList)
-                    {
-                        RandomEvents.AddEvent(e);
-                    }
-                },
-                () =>
-                {
-                    Alliances.Clear();
-
-                    foreach (Alliance alliance in deserializedSaveObject.allianceList)
-                    {
-                        Alliances.AddAlliance(alliance);
-                    }
-                },
-                () =>
-                {
-                    AirportFacilities.Clear();
-
-                    foreach (AirportFacility facility in deserializedSaveObject.Airportfacilitieslist)
-                    {
-                        AirportFacilities.AddFacility(facility);
-                    }
-                },
-                () =>
-                {
-                    FeeTypes.Clear();
-
-                    foreach (FeeType type in deserializedSaveObject.feeTypeslist)
-                    {
-                        FeeTypes.AddType(type);
-                    }
-                },
-                () =>
-                {
-                    AdvertisementTypes.Clear();
-
-                    foreach (AdvertisementType addtype in deserializedSaveObject.advertisementTypeslist)
-                    {
-                        AdvertisementTypes.AddAdvertisementType(addtype);
-                    }
-                },
-                () =>
-                {
-                    AirlinerFacilities.Clear();
-
-                    foreach (AirlinerFacility airlinerfas in deserializedSaveObject.airlinerfacilitieslist)
-                    {
-                        AirlinerFacilities.AddFacility(airlinerfas);
-                    }
-                },
-                () =>
-                {
-                    RouteFacilities.Clear();
-
-                    foreach (RouteFacility routefas in deserializedSaveObject.routefacilitieslist)
-                    {
-                        RouteFacilities.AddFacility(routefas);
-                    }
-                },
-                () =>
-                {
-                    GameObject.SetInstance(deserializedSaveObject.instance);
-                    Settings.SetInstance(deserializedSaveObject.settings);
-                },
-                () =>
-                {
-                    if (deserializedSaveObject.airlinefacilitieslist != null)
-                    {
-                        AirlineFacilities.Clear();
-
-                        foreach (AirlineFacility airlinefac in deserializedSaveObject.airlinefacilitieslist)
+                        foreach (string iata in deserializedSaveObject.airportsfromstringList)
                         {
-                            AirlineFacilities.AddFacility(airlinefac);
+                            Airport airport = airports.FirstOrDefault(a => a.Profile.IATACode == iata);
+
+                            if (airport != null)
+                            {
+                                Airports.AddAirport(airport);
+                            }
                         }
-                    }
-                }); //close parallel.invoke
+                    },
+                () =>
+                    {
+                        Airliners.Clear();
+
+                        foreach (Airliner airliner in deserializedSaveObject.airlinersList)
+                        {
+                            Airliners.AddAirliner(airliner);
+                        }
+                    },
+                () =>
+                    {
+                        CalendarItems.Clear();
+
+                        foreach (CalendarItem item in deserializedSaveObject.calendaritemsList)
+                        {
+                            CalendarItems.AddCalendarItem(item);
+                        }
+                    },
+                () =>
+                    {
+                        Configurations.Clear();
+
+                        foreach (Configuration configuration in deserializedSaveObject.configurationList)
+                        {
+                            Configurations.AddConfiguration(configuration);
+                        }
+                    },
+                () =>
+                    {
+                        RandomEvents.Clear();
+
+                        foreach (RandomEvent e in deserializedSaveObject.eventsList)
+                        {
+                            RandomEvents.AddEvent(e);
+                        }
+                    },
+                () =>
+                    {
+                        Alliances.Clear();
+
+                        foreach (Alliance alliance in deserializedSaveObject.allianceList)
+                        {
+                            Alliances.AddAlliance(alliance);
+                        }
+                    },
+                () =>
+                    {
+                        AirportFacilities.Clear();
+
+                        foreach (AirportFacility facility in deserializedSaveObject.Airportfacilitieslist)
+                        {
+                            AirportFacilities.AddFacility(facility);
+                        }
+                    },
+                () =>
+                    {
+                        FeeTypes.Clear();
+
+                        foreach (FeeType type in deserializedSaveObject.feeTypeslist)
+                        {
+                            FeeTypes.AddType(type);
+                        }
+                    },
+                () =>
+                    {
+                        AdvertisementTypes.Clear();
+
+                        foreach (AdvertisementType addtype in deserializedSaveObject.advertisementTypeslist)
+                        {
+                            AdvertisementTypes.AddAdvertisementType(addtype);
+                        }
+                    },
+                () =>
+                    {
+                        AirlinerFacilities.Clear();
+
+                        foreach (AirlinerFacility airlinerfas in deserializedSaveObject.airlinerfacilitieslist)
+                        {
+                            AirlinerFacilities.AddFacility(airlinerfas);
+                        }
+                    },
+                () =>
+                    {
+                        RouteFacilities.Clear();
+
+                        foreach (RouteFacility routefas in deserializedSaveObject.routefacilitieslist)
+                        {
+                            RouteFacilities.AddFacility(routefas);
+                        }
+                    },
+                () =>
+                    {
+                        GameObject.SetInstance(deserializedSaveObject.instance);
+                        Settings.SetInstance(deserializedSaveObject.settings);
+                    },
+                () =>
+                    {
+                        if (deserializedSaveObject.airlinefacilitieslist != null)
+                        {
+                            AirlineFacilities.Clear();
+
+                            foreach (AirlineFacility airlinefac in deserializedSaveObject.airlinefacilitieslist)
+                            {
+                                AirlineFacilities.AddFacility(airlinefac);
+                            }
+                        }
+                    }); //close parallel.invoke
 
             //for 0.3.9.2 and the issue with no saved facilities on a route classes
             IEnumerable<RouteClassConfiguration> emptyRouteClassesFacilities =
                 Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses)
-                    .SelectMany(c => ((RouteClassesConfiguration)c).Classes.Where(cl => cl.Facilities == null));
+                              .SelectMany(c => ((RouteClassesConfiguration) c).Classes.Where(cl => cl.Facilities == null));
 
             foreach (RouteClassConfiguration rClassConfiguration in emptyRouteClassesFacilities)
             {
                 rClassConfiguration.Facilities = new List<RouteFacility>();
             }
 
-        
+
             Setup.SetupLoadedGame();
             //Maybe this helps? But i doubt this is the best way
             Action action = () =>
-            {
-                var swPax = new Stopwatch();
-                swPax.Start();
+                {
+                    var swPax = new Stopwatch();
+                    swPax.Start();
 
-                PassengerHelpers.CreateDestinationDemand();
+                    PassengerHelpers.CreateDestinationDemand();
 
-                //Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
-                swPax.Stop();
+                    //Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
+                    swPax.Stop();
+                };
 
-              };
 
-           
             //create some pilots for the game
-            int pilotsPool = 100 * Airlines.GetAllAirlines().Count;
+            int pilotsPool = 100*Airlines.GetAllAirlines().Count;
             GeneralHelpers.CreatePilots(pilotsPool);
-            int instructorsPool = 75 * Airlines.GetAllAirlines().Count;
+            int instructorsPool = 75*Airlines.GetAllAirlines().Count;
             GeneralHelpers.CreateInstructors(instructorsPool);
 
             //creates some airliners for the game
             AirlinerHelpers.CreateStartUpAirliners();
 
             //Start the game paused
-            GameObjectWorker.GetInstance().startPaused();
+            GameObjectWorker.GetInstance().StartPaused();
 
             //Task is needed this unlocks the game agian.
             Task.Factory.StartNew(action);
@@ -248,90 +244,90 @@
             var so = new SaveObject();
             Parallel.Invoke(
                 () =>
-                {
-                    so.airportsList = new List<Airport>();
-                    so.airportsfromstringList = new List<string>();
-
-                    IEnumerable<Airport> airportsInUse =
-                        Airports.GetAllAirports()
-                            .Where(
-                                a =>
-                                    Airlines.GetAllAirlines().Exists(al => al.Airports.Contains(a))
-                                    || a.HasAirlineFacility());
-                    so.airportsList.AddRange(airportsInUse);
-
-                    foreach (Airport airport in Airports.GetAirports(a => !airportsInUse.Contains(a)))
                     {
-                        so.airportsfromstringList.Add(airport.Profile.IATACode);
-                    }
-                },
-                () =>
-                {
-                    so.airlinesList = new List<Airline>();
-                    so.airlinesList.AddRange(Airlines.GetAllAirlines());
-                },
-                () =>
-                {
-                    so.airlinersList = new List<Airliner>();
-                    so.airlinersList.AddRange(Airliners.GetAllAirliners().Where(a => a.Airline != null));
-                },
-                () =>
-                {
-                    so.calendaritemsList = new List<CalendarItem>();
-                    so.calendaritemsList.AddRange(CalendarItems.GetCalendarItems());
-                },
-                () =>
-                {
-                    so.configurationList = new List<Configuration>();
-                    so.configurationList.AddRange(Configurations.GetConfigurations());
-                },
-                () =>
-                {
-                    so.eventsList = new List<RandomEvent>();
-                    so.eventsList.AddRange(RandomEvents.GetEvents());
-                },
-                () =>
-                {
-                    so.allianceList = new List<Alliance>();
-                    so.allianceList.AddRange(Alliances.GetAlliances());
-                },
-                () =>
-                {
-                    so.Airportfacilitieslist = new List<AirportFacility>();
-                    so.Airportfacilitieslist.AddRange(AirportFacilities.GetFacilities());
-                },
-                () =>
-                {
-                    so.feeTypeslist = new List<FeeType>();
-                    so.feeTypeslist.AddRange(FeeTypes.GetTypes());
-                },
-                () =>
-                {
-                    so.advertisementTypeslist = new List<AdvertisementType>();
-                    so.advertisementTypeslist.AddRange(AdvertisementTypes.GetTypes());
-                },
-                () =>
-                {
-                    so.airlinerfacilitieslist = new List<AirlinerFacility>();
-                    so.airlinerfacilitieslist.AddRange(AirlinerFacilities.GetAllFacilities());
-                },
-                () =>
-                {
-                    so.routefacilitieslist = new List<RouteFacility>();
-                    so.routefacilitieslist.AddRange(RouteFacilities.GetAllFacilities());
-                },
-                () =>
-                {
-                    so.instance = GameObject.GetInstance();
-                    so.settings = Settings.GetInstance();
-                },
-                () =>
-                {
-                    so.airlinefacilitieslist = new List<AirlineFacility>();
-                    so.airlinefacilitieslist.AddRange(AirlineFacilities.GetFacilities());
-                });
+                        so.airportsList = new List<Airport>();
+                        so.airportsfromstringList = new List<string>();
 
-            string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
+                        IEnumerable<Airport> airportsInUse =
+                            Airports.GetAllAirports()
+                                    .Where(
+                                        a =>
+                                        Airlines.GetAllAirlines().Exists(al => al.Airports.Contains(a))
+                                        || a.HasAirlineFacility());
+                        so.airportsList.AddRange(airportsInUse);
+
+                        foreach (Airport airport in Airports.GetAirports(a => !airportsInUse.Contains(a)))
+                        {
+                            so.airportsfromstringList.Add(airport.Profile.IATACode);
+                        }
+                    },
+                () =>
+                    {
+                        so.airlinesList = new List<Airline>();
+                        so.airlinesList.AddRange(Airlines.GetAllAirlines());
+                    },
+                () =>
+                    {
+                        so.airlinersList = new List<Airliner>();
+                        so.airlinersList.AddRange(Airliners.GetAllAirliners().Where(a => a.Airline != null));
+                    },
+                () =>
+                    {
+                        so.calendaritemsList = new List<CalendarItem>();
+                        so.calendaritemsList.AddRange(CalendarItems.GetCalendarItems());
+                    },
+                () =>
+                    {
+                        so.configurationList = new List<Configuration>();
+                        so.configurationList.AddRange(Configurations.GetConfigurations());
+                    },
+                () =>
+                    {
+                        so.eventsList = new List<RandomEvent>();
+                        so.eventsList.AddRange(RandomEvents.GetEvents());
+                    },
+                () =>
+                    {
+                        so.allianceList = new List<Alliance>();
+                        so.allianceList.AddRange(Alliances.GetAlliances());
+                    },
+                () =>
+                    {
+                        so.Airportfacilitieslist = new List<AirportFacility>();
+                        so.Airportfacilitieslist.AddRange(AirportFacilities.GetFacilities());
+                    },
+                () =>
+                    {
+                        so.feeTypeslist = new List<FeeType>();
+                        so.feeTypeslist.AddRange(FeeTypes.GetTypes());
+                    },
+                () =>
+                    {
+                        so.advertisementTypeslist = new List<AdvertisementType>();
+                        so.advertisementTypeslist.AddRange(AdvertisementTypes.GetTypes());
+                    },
+                () =>
+                    {
+                        so.airlinerfacilitieslist = new List<AirlinerFacility>();
+                        so.airlinerfacilitieslist.AddRange(AirlinerFacilities.GetAllFacilities());
+                    },
+                () =>
+                    {
+                        so.routefacilitieslist = new List<RouteFacility>();
+                        so.routefacilitieslist.AddRange(RouteFacilities.GetAllFacilities());
+                    },
+                () =>
+                    {
+                        so.instance = GameObject.GetInstance();
+                        so.settings = Settings.GetInstance();
+                    },
+                () =>
+                    {
+                        so.airlinefacilitieslist = new List<AirlineFacility>();
+                        so.airlinefacilitieslist.AddRange(AirlineFacilities.GetFacilities());
+                    });
+
+            string fileName = AppSettings.GetCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
 
             FileSerializer.Serialize(fileName, so);
 
@@ -420,12 +416,14 @@
 
         public static Boolean SaveGameExists(string name)
         {
-            string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
+            string fileName = AppSettings.GetCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
 
             return File.Exists(fileName);
         }
 
         #endregion
+
+        //deletes a saved game
     }
 
     [Serializable]
@@ -504,7 +502,7 @@
 
                 var bFormatter = new BinaryFormatter();
 
-                objectToSerialize = (T)bFormatter.Deserialize(stream);
+                objectToSerialize = (T) bFormatter.Deserialize(stream);
             }
 
             catch (Exception err)

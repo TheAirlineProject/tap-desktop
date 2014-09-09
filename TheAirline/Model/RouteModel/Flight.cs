@@ -1,4 +1,6 @@
-﻿namespace TheAirline.Model.AirlinerModel.RouteModel
+﻿using TheAirline.Model.GeneralModel.Helpers;
+
+namespace TheAirline.Model.AirlinerModel.RouteModel
 {
     using System;
     using System.Collections.Generic;
@@ -52,8 +54,8 @@
 
             this.DistanceToDestination =
                 MathHelpers.GetDistance(
-                    this.Entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),
-                    this.Entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate());
+                    this.Entry.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                    this.Entry.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate());
         }
 
         protected Flight(SerializationInfo info, StreamingContext ctxt)
@@ -220,8 +222,8 @@
             return
                 this.FlightTime.Add(
                     MathHelpers.GetFlightTime(
-                        this.Entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(),
-                        this.Entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),
+                        this.Entry.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                        this.Entry.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
                         this.Airliner.Airliner.Type));
         }
 
@@ -246,8 +248,8 @@
             return
                 this.ScheduledFlightTime.Add(
                     MathHelpers.GetFlightTime(
-                        this.Entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(),
-                        this.Entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),
+                        this.Entry.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                        this.Entry.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
                         this.Airliner.Airliner.Type));
         }
 

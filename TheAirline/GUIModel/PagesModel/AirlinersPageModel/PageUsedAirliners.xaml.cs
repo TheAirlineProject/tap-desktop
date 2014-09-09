@@ -1,4 +1,7 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
+﻿using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
     using System;
     using System.Collections;
@@ -28,7 +31,7 @@
 
         public PageUsedAirliners()
         {
-            Boolean isMetric = AppSettings.GetInstance().getLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Metric;
+            Boolean isMetric = AppSettings.GetInstance().GetLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Metric;
             this.Loaded += this.PageUsedAirliners_Loaded;
             this.Unloaded += this.PageUsedAirliners_Unloaded;
       
@@ -348,7 +351,7 @@
                             {
                                 airliner.Airliner.TailNumber =
                                     GameObject.GetInstance()
-                                        .HumanAirline.Profile.Country.TailNumbers.getNextTailNumber();
+                                        .HumanAirline.Profile.Country.TailNumbers.GetNextTailNumber();
                             }
 
                             GameObject.GetInstance()

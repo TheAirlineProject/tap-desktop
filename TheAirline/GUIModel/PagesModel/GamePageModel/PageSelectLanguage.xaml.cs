@@ -35,7 +35,7 @@
         private void Language_Click(object sender, RoutedEventArgs e)
         {
             var language = (Language)((Hyperlink)sender).Tag;
-            AppSettings.GetInstance().setLanguage(language);
+            AppSettings.GetInstance().SetLanguage(language);
 
             PageNavigator.NavigateTo(new PageStartMenu());
         }

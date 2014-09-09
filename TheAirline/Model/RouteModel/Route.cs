@@ -39,7 +39,7 @@
             this.Banned = false;
             this.Stopovers = new List<StopoverRoute>();
 
-            this.Season = Weather.Season.All_Year;
+            this.Season = Weather.Season.AllYear;
         }
 
         protected Route(SerializationInfo info, StreamingContext ctxt)
@@ -264,7 +264,7 @@
 
         public void addRouteInvoice(Invoice invoice)
         {
-            this.Invoices.addInvoice(invoice);
+            this.Invoices.AddInvoice(invoice);
         }
 
         //adds a stop over to the route
@@ -334,8 +334,8 @@
                 return this.Stopovers.SelectMany(s => s.Legs).Max(l => l.getDistance());
             }
             return
-                this.Destination1.Profile.Coordinates.convertToGeoCoordinate()
-                    .GetDistanceTo(this.Destination2.Profile.Coordinates.convertToGeoCoordinate()) / 1000;
+                this.Destination1.Profile.Coordinates.ConvertToGeoCoordinate()
+                    .GetDistanceTo(this.Destination2.Profile.Coordinates.ConvertToGeoCoordinate()) / 1000;
         }
 
         public abstract double getFillingDegree();
@@ -372,11 +372,11 @@
 
             if (type == Invoice.InvoiceType.Total)
             {
-                amount += this.Invoices.getAmount();
+                amount += this.Invoices.GetAmount();
             }
             else
             {
-                amount += this.Invoices.getAmount(type);
+                amount += this.Invoices.GetAmount(type);
             }
 
             return amount;
@@ -401,11 +401,11 @@
             {
                 if (type == Invoice.InvoiceType.Total)
                 {
-                    totalAmount += this.Invoices.getAmount(date.Year, date.Month);
+                    totalAmount += this.Invoices.GetAmount(date.Year, date.Month);
                 }
                 else
                 {
-                    totalAmount += this.Invoices.getAmount(type, date.Year, date.Month);
+                    totalAmount += this.Invoices.GetAmount(type, date.Year, date.Month);
                 }
 
                 date = date.AddMonths(1);
@@ -420,11 +420,11 @@
             var types = new List<Invoice.InvoiceType>();
 
             types.Add(Invoice.InvoiceType.Tickets);
-            types.Add(Invoice.InvoiceType.OnFlight_Income);
+            types.Add(Invoice.InvoiceType.OnFlightIncome);
             types.Add(Invoice.InvoiceType.Fees);
 
             types.Add(Invoice.InvoiceType.Maintenances);
-            types.Add(Invoice.InvoiceType.Flight_Expenses);
+            types.Add(Invoice.InvoiceType.FlightExpenses);
             types.Add(Invoice.InvoiceType.Wages);
 
             types.Add(Invoice.InvoiceType.Total);
@@ -439,7 +439,7 @@
 
         public void setRouteInvoice(Invoice.InvoiceType type, int year, int month,int day, double amount)
         {
-            this.Invoices.addInvoice(type, year, month,day, amount);
+            this.Invoices.AddInvoice(type, year, month,day, amount);
         }
 
         #endregion

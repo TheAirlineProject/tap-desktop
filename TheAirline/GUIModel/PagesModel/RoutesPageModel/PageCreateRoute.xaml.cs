@@ -490,7 +490,7 @@
                 ? this.dpStartDate.SelectedDate.Value
                 : GameObject.GetInstance().GameTime;
 
-            Weather.Season season = this.rbSeasonAll.IsChecked.Value ? Weather.Season.All_Year : Weather.Season.Winter;
+            Weather.Season season = this.rbSeasonAll.IsChecked.Value ? Weather.Season.AllYear : Weather.Season.Winter;
             season = this.rbSeasonSummer.IsChecked.Value ? Weather.Season.Summer : season;
             season = this.rbSeasonWinter.IsChecked.Value ? Weather.Season.Winter : season;
 

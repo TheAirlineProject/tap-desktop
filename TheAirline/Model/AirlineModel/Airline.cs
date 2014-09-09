@@ -8,6 +8,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
@@ -479,7 +480,7 @@ namespace TheAirline.Model.AirlineModel
         //adds an invoice for the airline - both incoming and expends - if updateMoney == true the money is updated as well
         public void AddInvoice(Invoice invoice, Boolean updateMoney = true)
         {
-            Invoices.addInvoice(invoice);
+            Invoices.AddInvoice(invoice);
 
             if (updateMoney)
             {
@@ -709,11 +710,11 @@ namespace TheAirline.Model.AirlineModel
             {
                 if (type == Invoice.InvoiceType.Total)
                 {
-                    totalAmount += Invoices.getAmount(date.Year, date.Month);
+                    totalAmount += Invoices.GetAmount(date.Year, date.Month);
                 }
                 else
                 {
-                    totalAmount += Invoices.getAmount(type, date.Year, date.Month);
+                    totalAmount += Invoices.GetAmount(type, date.Year, date.Month);
                 }
 
                 date = date.AddMonths(1);
@@ -726,18 +727,18 @@ namespace TheAirline.Model.AirlineModel
         {
             if (type == Invoice.InvoiceType.Total)
             {
-                return Invoices.getAmount(year, month);
+                return Invoices.GetAmount(year, month);
             }
-            return Invoices.getAmount(type, year, month);
+            return Invoices.GetAmount(type, year, month);
         }
 
         public double GetInvoicesAmountYear(int year, Invoice.InvoiceType type)
         {
             if (type == Invoice.InvoiceType.Total)
             {
-                return Invoices.getYearlyAmount(year);
+                return Invoices.GetYearlyAmount(year);
             }
-            return Invoices.getYearlyAmount(type, year);
+            return Invoices.GetYearlyAmount(type, year);
         }
 
         public string GetNextFlightCode(int n)
@@ -971,12 +972,12 @@ namespace TheAirline.Model.AirlineModel
 
         public void SetInvoice(Invoice invoice)
         {
-            Invoices.addInvoice(invoice);
+            Invoices.AddInvoice(invoice);
         }
 
         public void SetInvoice(Invoice.InvoiceType type, int year, int month, int day, double amount)
         {
-            Invoices.addInvoice(type, year, month, day, amount);
+            Invoices.AddInvoice(type, year, month, day, amount);
         }
 
         public void StoreBudget(AirlineBudget budget)

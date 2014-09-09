@@ -1,21 +1,20 @@
-﻿namespace TheAirline.Model.GeneralModel
+﻿using System;
+using System.Collections.Generic;
+using System.Device.Location;
+using System.Globalization;
+using System.Security.Cryptography;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
+
+namespace TheAirline.Model.GeneralModel.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Device.Location;
-    using System.Globalization;
-    using System.Security.Cryptography;
-
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.AirportModel;
-    using TheAirline.Model.GeneralModel.WeatherModel;
-
     public class MathHelpers
     {
         #region Static Fields
 
-        private static readonly Randomizer rnd = new Randomizer();
+        private static readonly Randomizer Rnd = new Randomizer();
 
         #endregion
 
@@ -38,7 +37,7 @@
 
         public static double CelsiusToFahrenheit(double celsius)
         {
-            return celsius * 1.8 + 32;
+            return celsius*1.8 + 32;
         }
 
         public static DateTime ConvertDateTimeToLoalTime(DateTime time, GameTimeZone timeZone)
@@ -73,9 +72,9 @@
         //converts a route time table entry to datetime with a max minutes before moving a week ahead
         public static DateTime ConvertEntryToDate(RouteTimeTableEntry entry, int maxMinutes)
         {
-            var currentDay = (int)GameObject.GetInstance().GameTime.DayOfWeek;
+            var currentDay = (int) GameObject.GetInstance().GameTime.DayOfWeek;
 
-            int entryDay = (int)entry.Day + entry.Time.Days;
+            int entryDay = (int) entry.Day + entry.Time.Days;
 
             if (currentDay > entryDay)
             {
@@ -113,8 +112,8 @@
         public static double DMStoDeg(int degrees, int minutes, int seconds)
         {
             double d = Convert.ToDouble(Math.Abs(degrees));
-            double m = Convert.ToDouble(minutes) / 60;
-            double s = Convert.ToDouble(seconds) / 3600;
+            double m = Convert.ToDouble(minutes)/60;
+            double s = Convert.ToDouble(seconds)/3600;
 
             if (degrees < 0)
                 return -(d + m + s);
@@ -126,14 +125,14 @@
 
         public static double DegreeToRadian(double angle)
         {
-            return Math.PI * angle / 180.0;
+            return Math.PI*angle/180.0;
         }
 
         public static double GallonsToLtr(double gallons)
         {
             double aGallon = 0.264172051;
 
-            return gallons * aGallon;
+            return gallons*aGallon;
         }
 
         //returns the age 
@@ -150,10 +149,11 @@
 
             return years;
         }
+
         //returns the age in months
         public static int GetAgeMonths(DateTime date)
         {
-            return ((GameObject.GetInstance().GameTime.Year - date.Year) * 12) + GameObject.GetInstance().GameTime.Month - date.Month;
+            return ((GameObject.GetInstance().GameTime.Year - date.Year)*12) + GameObject.GetInstance().GameTime.Month - date.Month;
         }
 
         //moves a object by substracting the speed from the distance
@@ -167,12 +167,12 @@
 
             double longitudeDifference = DegreeToRadian(coordinates2.Longitude - coordinates1.Longitude);
 
-            double y = Math.Sin(longitudeDifference) * Math.Cos(latitude2);
+            double y = Math.Sin(longitudeDifference)*Math.Cos(latitude2);
 
-            double x = Math.Cos(latitude1) * Math.Sin(latitude2)
-                       - Math.Sin(latitude1) * Math.Cos(latitude2) * Math.Cos(longitudeDifference);
+            double x = Math.Cos(latitude1)*Math.Sin(latitude2)
+                       - Math.Sin(latitude1)*Math.Cos(latitude2)*Math.Cos(longitudeDifference);
 
-            return (RadianToDegree(Math.Atan2(y, x)) + 360) % 360;
+            return (RadianToDegree(Math.Atan2(y, x)) + 360)%360;
         }
 
         //retuns the wind direction from a direction
@@ -193,8 +193,8 @@
             if (airport1.Statics.GetDistance(airport2) == 0 && airport2.Statics.GetDistance(airport1) == 0)
             {
                 return
-                    airport1.Profile.Coordinates.convertToGeoCoordinate()
-                        .GetDistanceTo(airport2.Profile.Coordinates.convertToGeoCoordinate()) / 1000;
+                    airport1.Profile.Coordinates.ConvertToGeoCoordinate()
+                            .GetDistanceTo(airport2.Profile.Coordinates.ConvertToGeoCoordinate())/1000;
             }
             return Math.Max(airport1.Statics.GetDistance(airport2), airport2.Statics.GetDistance(airport1));
         }
@@ -202,7 +202,7 @@
         //gets the distance in kilometers between two coordinates
         public static double GetDistance(GeoCoordinate c1, GeoCoordinate c2)
         {
-            return c1.GetDistanceTo(c2) / 1000;
+            return c1.GetDistanceTo(c2)/1000;
         }
 
         public static DateTime GetFirstDateOfWeek(int year, int weekOfYear)
@@ -220,7 +220,7 @@
                 weekNum -= 1;
             }
 
-            DateTime result = firstThursday.AddDays(weekNum * 7);
+            DateTime result = firstThursday.AddDays(weekNum*7);
             return result.AddDays(-3);
         }
 
@@ -236,11 +236,11 @@
 
             double dist = GetDistance(coordinate1, coordinate2);
 
-            double dtime = dist / speed;
+            double dtime = dist/speed;
 
             int hours = Convert.ToInt16(Math.Floor(dtime));
 
-            double dMinutes = (dtime - hours) * 60;
+            double dMinutes = (dtime - hours)*60;
 
             int minutes = Convert.ToInt16(Math.Floor(dMinutes));
 
@@ -262,11 +262,11 @@
 
             double speed = type.CruisingSpeed;
 
-            double dtime = dist / speed;
+            double dtime = dist/speed;
 
             int hours = Convert.ToInt16(Math.Floor(dtime));
 
-            double dMinutes = (dtime - hours) * 60;
+            double dMinutes = (dtime - hours)*60;
 
             int minutes = Convert.ToInt16(Math.Floor(dMinutes));
 
@@ -279,21 +279,21 @@
         public static TimeSpan GetFlightTime(Airport airport1, Airport airport2, AirlinerType type)
         {
             return GetFlightTime(
-                airport1.Profile.Coordinates.convertToGeoCoordinate(),
-                airport2.Profile.Coordinates.convertToGeoCoordinate(),
+                airport1.Profile.Coordinates.ConvertToGeoCoordinate(),
+                airport2.Profile.Coordinates.ConvertToGeoCoordinate(),
                 type);
         }
 
         public static double GetMonthlyPayment(double amount, double rate, int length)
         {
-            double pRate = 1 + rate / 100;
+            double pRate = 1 + rate/100;
 
-            return amount * pRate / length;
+            return amount*pRate/length;
         }
 
         public static int GetMonthsBetween(DateTime date1, DateTime date2)
         {
-            return ((date2.Year - date1.Year) * 12) + date2.Month - date1.Month;
+            return ((date2.Year - date1.Year)*12) + date2.Month - date1.Month;
         }
 
         public static DateTime GetNthWeekdayOfMonth(int year, int month, DayOfWeek day, int number)
@@ -307,7 +307,7 @@
                 diffDays = 7 + diffDays;
             }
 
-            tDate = tDate.AddDays(diffDays).AddDays(7 * (number - 1));
+            tDate = tDate.AddDays(diffDays).AddDays(7*(number - 1));
 
             return tDate;
         }
@@ -316,26 +316,26 @@
         {
             TimeSpan range = maxDate - minDate;
 
-            var randTimeSpan = new TimeSpan((long)(rnd.NextDouble() * range.Ticks));
+            var randTimeSpan = new TimeSpan((long) (Rnd.NextDouble()*range.Ticks));
 
             return minDate + randTimeSpan;
         }
 
         public static double GetRandomDoubleNumber(double minimum, double maximum)
         {
-            return rnd.NextDouble() * (maximum - minimum) + minimum;
+            return Rnd.NextDouble()*(maximum - minimum) + minimum;
         }
 
         public static int GetRandomInt(int min, int max)
         {
-            return rnd.Next(min, max);
+            return Rnd.Next(min, max);
         }
 
         public static GeoCoordinate GetRoutePoint(GeoCoordinate c1, GeoCoordinate c2, double distance)
         {
             double tc = DegreeToRadian(GetDirection(c1, c2));
             const double radiusEarthKilometres = 6371.01;
-            double distRatio = distance / radiusEarthKilometres;
+            double distRatio = distance/radiusEarthKilometres;
             double distRatioSine = Math.Sin(distRatio);
             double distRatioCosine = Math.Cos(distRatio);
 
@@ -346,12 +346,12 @@
             double startLatSin = Math.Sin(startLatRad);
 
             double endLatRads = Math.Asin(
-                (startLatSin * distRatioCosine) + (startLatCos * distRatioSine * Math.Cos(tc)));
+                (startLatSin*distRatioCosine) + (startLatCos*distRatioSine*Math.Cos(tc)));
 
             double endLonRads = startLonRad
                                 + Math.Atan2(
-                                    Math.Sin(tc) * distRatioSine * startLatCos,
-                                    distRatioCosine - startLatSin * Math.Sin(endLatRads));
+                                    Math.Sin(tc)*distRatioSine*startLatCos,
+                                    distRatioCosine - startLatSin*Math.Sin(endLatRads));
 
             double lat = RadianToDegree(endLatRads);
             double lon = RadianToDegree(endLonRads);
@@ -432,53 +432,57 @@
         public static double KMToMiles(double km)
         {
             double aMile = 1.609344;
-            return km / aMile;
+            return km/aMile;
         }
+
         public static double MilesToKM(double miles)
         {
             double aMile = 1.609344;
-            return miles * aMile;
+            return miles*aMile;
         }
+
         public static double LKMToMPG(double kml)
         {
             double aMPG = 2.35;
 
-            return kml * aMPG;
+            return kml*aMPG;
         }
 
         public static double LSeatKMToGSeatM(double lsk)
         {
-            return lsk / LtrToGallons(1) / KMToMiles(1);
+            return lsk/LtrToGallons(1)/KMToMiles(1);
         }
 
         public static double LtrToGallons(double ltr)
         {
             double aGallon = 0.264172051;
 
-            return ltr / aGallon;
+            return ltr/aGallon;
         }
+
         //converts kg to pound
         public static double KgToPound(double kg)
         {
-         
-            var perpound = 0.45359237;
+            double perpound = 0.45359237;
 
-            return kg / perpound;
+            return kg/perpound;
         }
+
         //converts miles to km
 
         //converts meter to feet
         public static double MeterToFeet(double meter)
         {
             double aFeet = 3.2808399;
-            return meter * aFeet;
+            return meter*aFeet;
         }
+
         public static double FeetToMeter(double feet)
         {
             double aFeet = 3.2808399;
-            return feet / aFeet;
+            return feet/aFeet;
         }
-      
+
 
         public static void MoveObject(FleetAirliner airliner, double speed)
         {
@@ -489,11 +493,11 @@
             //Making sure that if the game time is not an hour, the plane is not moving an hour forward.
             if (timepermove == 15)
             {
-                speed = speed / 4;
+                speed = speed/4;
             }
             else if (timepermove == 30)
             {
-                speed = speed / 2;
+                speed = speed/2;
             }
 
             distanceToDestination = distance - speed;
@@ -510,7 +514,7 @@
         //converts a radian to angle
         public static double RadianToDegree(double radian)
         {
-            return radian * (180.0 / Math.PI);
+            return radian*(180.0/Math.PI);
         }
 
         public static List<T> Shuffle<T>(List<T> list)
@@ -519,7 +523,7 @@
             while (n > 1)
             {
                 n--;
-                int k = rnd.Next(n + 1);
+                int k = Rnd.Next(n + 1);
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
@@ -530,7 +534,7 @@
 
         public static double ToDegree(double val)
         {
-            return val * 180 / Math.PI;
+            return val*180/Math.PI;
         }
 
         #endregion
@@ -577,7 +581,7 @@
         /// </param>
         public int Next(int minValue, int maxValue)
         {
-            return (int)Math.Round(this.NextDouble() * (maxValue - minValue - 1)) + minValue;
+            return (int) Math.Round(NextDouble()*(maxValue - minValue - 1)) + minValue;
         }
 
         /// <summary>
@@ -585,7 +589,7 @@
         /// </summary>
         public int Next()
         {
-            return this.Next(0, Int32.MaxValue);
+            return Next(0, Int32.MaxValue);
         }
 
         /// <summary>
@@ -597,7 +601,7 @@
         /// </param>
         public int Next(int maxValue)
         {
-            return this.Next(0, maxValue);
+            return Next(0, maxValue);
         }
 
         /// <summary>
@@ -607,7 +611,7 @@
         {
             var b = new byte[4];
             r.GetBytes(b);
-            return (double)BitConverter.ToUInt32(b, 0) / UInt32.MaxValue;
+            return (double) BitConverter.ToUInt32(b, 0)/UInt32.MaxValue;
         }
 
         #endregion

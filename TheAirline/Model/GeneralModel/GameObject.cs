@@ -1,8 +1,6 @@
-﻿ //locked for verison 0.3.6t2 (this serves no purpose whatsoever)
+﻿//locked for verison 0.3.6t2 (this serves no purpose whatsoever)
 
-namespace TheAirline.Model.GeneralModel
-{
-    using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,8 +8,12 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.ScenarioModel;
 
+namespace TheAirline.Model.GeneralModel
+{
     [Serializable]
     //the class for the game object
     public class GameObject : INotifyPropertyChanged, ISerializable
@@ -24,17 +26,15 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
 
         #region Static Fields
 
-        private static GameObject GameInstance;
+        private static GameObject _gameInstance;
 
         #endregion
 
         #region Fields
 
-        [Versioning("gametime")]
-        private DateTime _gameTime;
+        [Versioning("gametime")] private DateTime _gameTime;
 
-        [Versioning("humanmoney")]
-        private double _humanMoney;
+        [Versioning("humanmoney")] private double _humanMoney;
 
         #endregion
 
@@ -43,16 +43,16 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
         private GameObject()
         {
             //this.PassengerDemandFactor = 100;
-            this.GameTime = new DateTime(2007, 12, 31, 10, 0, 0);
-            this.TimeZone =
+            GameTime = new DateTime(2007, 12, 31, 10, 0, 0);
+            TimeZone =
                 TimeZones.GetTimeZones()
-                    .Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == new TimeSpan(0, 0, 0); });
-            this.Difficulty = DifficultyLevels.GetDifficultyLevel("Easy");
-            this.NewsBox = new NewsBox();
-            this.PagePerformanceCounterEnabled = false;
-            this.FinancePageEnabled = false;
-            this.DayRoundEnabled = true;
-            this.Contracts = new ObservableCollection<SpecialContractType>();
+                         .Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == new TimeSpan(0, 0, 0); });
+            Difficulty = DifficultyLevels.GetDifficultyLevel("Easy");
+            NewsBox = new NewsBox();
+            PagePerformanceCounterEnabled = false;
+            FinancePageEnabled = false;
+            DayRoundEnabled = true;
+            Contracts = new ObservableCollection<SpecialContractType>();
         }
 
         private GameObject(SerializationInfo info, StreamingContext ctxt)
@@ -60,15 +60,15 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
             int version = info.GetInt16("version");
 
             IEnumerable<FieldInfo> fields =
-                this.GetType()
+                GetType()
                     .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+                    .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null);
 
             IList<PropertyInfo> props =
                 new List<PropertyInfo>(
-                    this.GetType()
+                    GetType()
                         .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+                        .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null));
 
             IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
@@ -76,42 +76,42 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
             {
                 MemberInfo prop =
                     propsAndFields.FirstOrDefault(
-                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+                        p => ((Versioning) p.GetCustomAttribute(typeof (Versioning))).Name == entry.Name);
 
                 if (prop != null)
                 {
                     if (prop is FieldInfo)
                     {
-                        ((FieldInfo)prop).SetValue(this, entry.Value);
+                        ((FieldInfo) prop).SetValue(this, entry.Value);
                     }
                     else
                     {
-                        ((PropertyInfo)prop).SetValue(this, entry.Value);
+                        ((PropertyInfo) prop).SetValue(this, entry.Value);
                     }
                 }
             }
 
             IEnumerable<MemberInfo> notSetProps =
-                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+                propsAndFields.Where(p => ((Versioning) p.GetCustomAttribute(typeof (Versioning))).Version > version);
 
             foreach (MemberInfo notSet in notSetProps)
             {
-                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+                var ver = (Versioning) notSet.GetCustomAttribute(typeof (Versioning));
 
                 if (ver.AutoGenerated)
                 {
                     if (notSet is FieldInfo)
                     {
-                        ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                        ((FieldInfo) notSet).SetValue(this, ver.DefaultValue);
                     }
                     else
                     {
-                        ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
+                        ((PropertyInfo) notSet).SetValue(this, ver.DefaultValue);
                     }
                 }
             }
             if (version == 1)
-                this.Contracts = new ObservableCollection<SpecialContractType>();
+                Contracts = new ObservableCollection<SpecialContractType>();
         }
 
         #endregion
@@ -149,19 +149,18 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
             }
         }
         */
+
         public DateTime GameTime
         {
-            get
-            {
-                return this._gameTime;
-            }
+            get { return _gameTime; }
             set
             {
-                this._gameTime = value;
-                this.NotifyPropertyChanged("GameTime");
+                _gameTime = value;
+                NotifyPropertyChanged("GameTime");
             }
         }
-        [Versioning("contracts",Version=2)]
+
+        [Versioning("contracts", Version = 2)]
         public ObservableCollection<SpecialContractType> Contracts { get; set; }
 
         //public DateTime GameTime { get; set; }
@@ -171,14 +170,11 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
 
         public double HumanMoney
         {
-            get
-            {
-                return this._humanMoney;
-            }
+            get { return _humanMoney; }
             set
             {
-                this._humanMoney = value;
-                this.NotifyPropertyChanged("HumanMoney");
+                _humanMoney = value;
+                NotifyPropertyChanged("HumanMoney");
             }
         }
 
@@ -201,14 +197,7 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
 
         public long StartMoney
         {
-            get
-            {
-                return this.getStartMoney();
-            }
-            set
-            {
-                ;
-            }
+            get { return GetStartMoney(); }
         }
 
         [Versioning("timezone")]
@@ -219,46 +208,22 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
 
         #endregion
 
-        //returns the game instance
-
         #region Public Methods and Operators
-
-        public static GameObject GetInstance()
-        {
-            if (GameInstance == null)
-            {
-                GameInstance = new GameObject();
-            }
-            return GameInstance;
-        }
-
-        //sets the instance to an instance
-
-        //restarts the instance
-        public static void RestartInstance()
-        {
-            GameInstance = new GameObject();
-        }
-
-        public static void SetInstance(GameObject instance)
-        {
-            GameInstance = instance;
-        }
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("version", 2);
 
-            Type myType = this.GetType();
+            Type myType = GetType();
 
             IEnumerable<FieldInfo> fields =
                 myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+                      .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null);
 
             IList<PropertyInfo> props =
                 new List<PropertyInfo>(
                     myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+                          .Where(p => p.GetCustomAttribute(typeof (Versioning)) != null));
 
             IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
 
@@ -268,29 +233,51 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
 
                 if (member is FieldInfo)
                 {
-                    propValue = ((FieldInfo)member).GetValue(this);
+                    propValue = ((FieldInfo) member).GetValue(this);
                 }
                 else
                 {
-                    propValue = ((PropertyInfo)member).GetValue(this, null);
+                    propValue = ((PropertyInfo) member).GetValue(this, null);
                 }
 
-                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+                var att = (Versioning) member.GetCustomAttribute(typeof (Versioning));
 
                 info.AddValue(att.Name, propValue);
             }
         }
 
-        public void addHumanMoney(double value)
+        public static GameObject GetInstance()
         {
-            this.HumanMoney += value;
-            this.HumanAirline.Money += value;
+            if (_gameInstance == null)
+            {
+                _gameInstance = new GameObject();
+            }
+            return _gameInstance;
         }
 
-        public void setHumanAirline(Airline airline)
+        //sets the instance to an instance
+
+        //restarts the instance
+        public static void RestartInstance()
         {
-            this.HumanAirline = airline;
-            this.HumanMoney = airline.Money;
+            _gameInstance = new GameObject();
+        }
+
+        public static void SetInstance(GameObject instance)
+        {
+            _gameInstance = instance;
+        }
+
+        public void AddHumanMoney(double value)
+        {
+            HumanMoney += value;
+            HumanAirline.Money += value;
+        }
+
+        public void SetHumanAirline(Airline airline)
+        {
+            HumanAirline = airline;
+            HumanMoney = airline.Money;
         }
 
         #endregion
@@ -299,22 +286,24 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 
-        private long getStartMoney()
+        private long GetStartMoney()
         {
             double baseStartMoney = 7500000;
 
-            baseStartMoney *= this.Difficulty.MoneyLevel;
+            baseStartMoney *= Difficulty.MoneyLevel;
 
             return Convert.ToInt64(GeneralHelpers.GetInflationPrice(baseStartMoney));
         }
 
         #endregion
+
+        //returns the game instance
     }
 }

@@ -28,7 +28,7 @@
                         a =>
                             a.Members.Sum(
                                 m =>
-                                    m.Airline.Statistics.getStatisticsValue(
+                                    m.Airline.Statistics.GetStatisticsValue(
                                         GameObject.GetInstance().GameTime.Year - 1,
                                         StatisticsTypes.GetStatisticsType("Passengers"))))
                     .ToList();

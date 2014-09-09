@@ -1,23 +1,18 @@
-﻿namespace TheAirline.Model.GeneralModel.Helpers
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
+
+namespace TheAirline.Model.GeneralModel.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlinerModel;
-
     public class BudgetHelpers
     {
         #region Fields
 
-        private long money = (long)GameObject.GetInstance().HumanAirline.Money;
+        private long _money = (long) GameObject.GetInstance().HumanAirline.Money;
 
         #endregion
-
-        //gets the total value of all aircraft in fleet combined
-
-        //gets the average value of an aircraft in the fleet
 
         #region Public Methods and Operators
 
@@ -27,7 +22,7 @@
             {
                 return 0;
             }
-            return GetFleetValue() / GameObject.GetInstance().HumanAirline.Fleet.Count();
+            return GetFleetValue()/GameObject.GetInstance().HumanAirline.Fleet.Count();
         }
 
         public static long GetAvgSubValue(Airline airline)
@@ -38,7 +33,7 @@
             }
 
             return GetTotalSubValues(GameObject.GetInstance().HumanAirline)
-                   / GameObject.GetInstance().HumanAirline.Subsidiaries.Count();
+                   /GameObject.GetInstance().HumanAirline.Subsidiaries.Count();
         }
 
         //returns the remaining budget amount based on the current month
@@ -48,7 +43,7 @@
         {
             Airline humanAirline = GameObject.GetInstance().HumanAirline;
 
-            long endYearCash = money - GetRemainingBudget() - (humanAirline.Budget.TotalBudget * 15 / 100);
+            long endYearCash = money - GetRemainingBudget() - (humanAirline.Budget.TotalBudget*15/100);
             return endYearCash;
         }
 
@@ -69,8 +64,8 @@
             {
                 AirlineBudget oldBudget =
                     (from d in humanAirline.TestBudget
-                        where (d.Key.Month == date.Month) && (d.Key.Year == (date.Year - n))
-                        select d.Value).FirstOrDefault();
+                     where (d.Key.Month == date.Month) && (d.Key.Year == (date.Year - n))
+                     select d.Value).FirstOrDefault();
                 return oldBudget;
             }
             return humanAirline.Budget;
@@ -78,8 +73,8 @@
 
         public static long GetRemainingBudget()
         {
-            return (1 - GameObject.GetInstance().GameTime.Month / 12)
-                   * GameObject.GetInstance().HumanAirline.Budget.TotalBudget;
+            return (1 - GameObject.GetInstance().GameTime.Month/12)
+                   *GameObject.GetInstance().HumanAirline.Budget.TotalBudget;
         }
 
         public static IDictionary<DateTime, AirlineBudget> GetTestBudget(Airline airline)
@@ -136,7 +131,7 @@
             long value = 0;
             foreach (Airline subsidiary in airline.Subsidiaries)
             {
-                int airportValue = 10000 * (int)StatisticsHelpers.getWorldAirportsServed();
+                int airportValue = 10000*(int) StatisticsHelpers.getWorldAirportsServed();
                 value += (GetFleetValue() + airportValue);
             }
 
@@ -147,24 +142,24 @@
         public static long SetDefaults(Airline humanAirline)
         {
             humanAirline.Budget.MarketingBudget =
-                humanAirline.Budget.CSBudget = humanAirline.Budget.SecurityBudget = (long)(humanAirline.Money * 0.05);
-            humanAirline.Budget.MaintenanceBudget = (long)(humanAirline.Money * 0.1);
+                humanAirline.Budget.CSBudget = humanAirline.Budget.SecurityBudget = (long) (humanAirline.Money*0.05);
+            humanAirline.Budget.MaintenanceBudget = (long) (humanAirline.Money*0.1);
             humanAirline.Budget.PrintBudget =
                 humanAirline.Budget.TelevisionBudget =
-                    humanAirline.Budget.RadioBudget =
-                        humanAirline.Budget.InternetBudget = (humanAirline.Budget.MarketingBudget / 4);
+                humanAirline.Budget.RadioBudget =
+                humanAirline.Budget.InternetBudget = (humanAirline.Budget.MarketingBudget/4);
             humanAirline.Budget.OverhaulBudget =
                 humanAirline.Budget.PartsBudget =
-                    humanAirline.Budget.RemoteBudget =
-                        humanAirline.Budget.EnginesBudget = humanAirline.Budget.MaintenanceBudget / 4;
+                humanAirline.Budget.RemoteBudget =
+                humanAirline.Budget.EnginesBudget = humanAirline.Budget.MaintenanceBudget/4;
             humanAirline.Budget.ITBudget =
                 humanAirline.Budget.EquipmentBudget =
-                    humanAirline.Budget.AirportBudget =
-                        humanAirline.Budget.InFlightBudget = humanAirline.Budget.SecurityBudget / 4;
+                humanAirline.Budget.AirportBudget =
+                humanAirline.Budget.InFlightBudget = humanAirline.Budget.SecurityBudget/4;
             humanAirline.Budget.PRBudget =
                 humanAirline.Budget.PromoBudget =
-                    humanAirline.Budget.CompBudget =
-                        humanAirline.Budget.ServCenterBudget = humanAirline.Budget.CSBudget / 4;
+                humanAirline.Budget.CompBudget =
+                humanAirline.Budget.ServCenterBudget = humanAirline.Budget.CSBudget/4;
             return humanAirline.Budget.MarketingBudget + humanAirline.Budget.MaintenanceBudget
                    + humanAirline.Budget.SecurityBudget + humanAirline.Budget.CSBudget;
         }
@@ -177,7 +172,7 @@
             if (userMarketingBudget > budget.MarketingBudget)
             {
                 budget.RadioBudget =
-                    budget.TelevisionBudget = budget.PrintBudget = budget.InternetBudget = budget.MarketingBudget / 4;
+                    budget.TelevisionBudget = budget.PrintBudget = budget.InternetBudget = budget.MarketingBudget/4;
             }
 
             long userMaintBudget = budget.PartsBudget + budget.EnginesBudget + budget.OverhaulBudget
@@ -185,13 +180,13 @@
             if (userMaintBudget > budget.MaintenanceBudget)
             {
                 budget.PartsBudget =
-                    budget.EnginesBudget = budget.OverhaulBudget = budget.RemoteBudget = budget.MaintenanceBudget / 4;
+                    budget.EnginesBudget = budget.OverhaulBudget = budget.RemoteBudget = budget.MaintenanceBudget/4;
             }
 
             long userCSBudget = budget.ServCenterBudget + budget.CompBudget + budget.PromoBudget + budget.PRBudget;
             if (userCSBudget > budget.CSBudget)
             {
-                budget.ServCenterBudget = budget.CompBudget = budget.PromoBudget = budget.PRBudget = budget.CSBudget / 4;
+                budget.ServCenterBudget = budget.CompBudget = budget.PromoBudget = budget.PRBudget = budget.CSBudget/4;
             }
 
             long userSecurityBudget = budget.AirportBudget + budget.EquipmentBudget + budget.InFlightBudget
@@ -199,11 +194,15 @@
             if (userSecurityBudget > budget.SecurityBudget)
             {
                 budget.AirportBudget =
-                    budget.EquipmentBudget = budget.InFlightBudget = budget.ITBudget = budget.SecurityBudget / 4;
+                    budget.EquipmentBudget = budget.InFlightBudget = budget.ITBudget = budget.SecurityBudget/4;
             }
         }
 
         #endregion
+
+        //gets the total value of all aircraft in fleet combined
+
+        //gets the average value of an aircraft in the fleet
 
         //returns the budget from 1 year ago
     }

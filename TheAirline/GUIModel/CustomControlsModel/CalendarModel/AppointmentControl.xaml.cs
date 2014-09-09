@@ -56,17 +56,17 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
                     brush = new SolidColorBrush(Colors.DarkBlue);
                     brush.Opacity = 0.5;
                 }
-                if (item.Type == CalendarItem.ItemType.Airliner_Order)
+                if (item.Type == CalendarItem.ItemType.AirlinerOrder)
                 {
                     brush = new SolidColorBrush(Colors.DarkRed);
                     brush.Opacity = 0.5;
                 }
-                if (item.Type == CalendarItem.ItemType.Airport_Opening)
+                if (item.Type == CalendarItem.ItemType.AirportOpening)
                 {
                     brush = new SolidColorBrush(Colors.DarkGreen);
                     brush.Opacity = 0.5;
                 }
-                if (item.Type == CalendarItem.ItemType.Airport_Closing)
+                if (item.Type == CalendarItem.ItemType.AirportClosing)
                 {
                     brush = new SolidColorBrush(Colors.Orange);
                     brush.Opacity = 0.5;

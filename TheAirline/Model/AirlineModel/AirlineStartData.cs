@@ -2,6 +2,8 @@
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.Model.AirlineModel
 {

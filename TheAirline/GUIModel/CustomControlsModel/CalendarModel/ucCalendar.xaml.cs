@@ -15,6 +15,7 @@ using System.ComponentModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.AirlinerModel;
 
@@ -180,7 +181,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
             
             if (airliners.Count > 0)
             {
-                items.Add(new CalendarItem(CalendarItem.ItemType.Airliner_Order, date, "Delivery of airliners", string.Join("\r\n", from a in airliners select a.Name)));    
+                items.Add(new CalendarItem(CalendarItem.ItemType.AirlinerOrder, date, "Delivery of airliners", string.Join("\r\n", from a in airliners select a.Name)));    
             }
 
             foreach (CalendarItem item in CalendarItems.GetCalendarItems(date))

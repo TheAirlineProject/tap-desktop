@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirportPageModel
+﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -223,7 +225,7 @@
                     this.Airport.Airport,
                     GameObject.GetInstance().HumanAirline,
                     contracts,
-                    Weather.Season.All_Year))
+                    Weather.Season.AllYear))
             {
                 WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2224"),

@@ -90,7 +90,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 
         private void PopUpCreateSubsidiary_Loaded(object sender, RoutedEventArgs e)
         {
-            this.logoPath = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png";
+            this.logoPath = AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\default.png";
             this.imgLogo.Source = new BitmapImage(new Uri(this.logoPath, UriKind.RelativeOrAbsolute));
 
         }
@@ -100,7 +100,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 
             dlg.DefaultExt = ".png";
             dlg.Filter = "Images (.png)|*.png";
-            dlg.InitialDirectory = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\";
+            dlg.InitialDirectory = AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\";
 
             bool? result = dlg.ShowDialog();
 

@@ -1,4 +1,7 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
+﻿using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.GeneralModel.Helpers;
+
+namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
     using System;
     using System.Collections.Generic;

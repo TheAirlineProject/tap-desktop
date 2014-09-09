@@ -22,6 +22,7 @@ using TheAirline.Model.AirlineModel;
 using System.ComponentModel;
 using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -88,7 +89,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             : this(ImageSize)
         {
 
-            showMap(airliner.HasRoute ? airliner.CurrentPosition.Profile.Coordinates.convertToGeoCoordinate() : airliner.Homebase.Profile.Coordinates.convertToGeoCoordinate(), false);
+            showMap(airliner.HasRoute ? airliner.CurrentPosition.Profile.Coordinates.ConvertToGeoCoordinate() : airliner.Homebase.Profile.Coordinates.ConvertToGeoCoordinate(), false);
 
         }
         public PopUpMap(List<Airport> airports)
@@ -292,10 +293,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 case GeneralHelpers.Size.Smallest:
                     color= Colors.Gray;
                     break;
-                case GeneralHelpers.Size.Very_large:
+                case GeneralHelpers.Size.VeryLarge:
                     color= Colors.Yellow;
                     break;
-                case GeneralHelpers.Size.Very_small:
+                case GeneralHelpers.Size.VerySmall:
                     color=Colors.Violet;
                     break;
               
@@ -317,7 +318,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         //shows an airport
         private void showAirport(Airport airport, Panel panelMap, int zoom, Point margin)
         {
-            Point pos = UIHelpers.WorldToTilePos(airport.Profile.Coordinates.convertToGeoCoordinate(), zoom);
+            Point pos = UIHelpers.WorldToTilePos(airport.Profile.Coordinates.ConvertToGeoCoordinate(), zoom);
 
             Point p = new Point(pos.X * ImageSize - margin.X * ImageSize, pos.Y * ImageSize - margin.Y * ImageSize);
 
@@ -334,14 +335,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
             else
             {
-                Point pos = UIHelpers.WorldToTilePos(route.Destination1.Profile.Coordinates.convertToGeoCoordinate(), zoom);
+                Point pos = UIHelpers.WorldToTilePos(route.Destination1.Profile.Coordinates.ConvertToGeoCoordinate(), zoom);
 
                 Point p = new Point(pos.X * ImageSize - margin.X * ImageSize, pos.Y * ImageSize - margin.Y * ImageSize);
 
                 if (p.X < panelMap.Width)
                     panelMap.Children.Add(createPin(p, route.Destination1));
 
-                pos = UIHelpers.WorldToTilePos(route.Destination2.Profile.Coordinates.convertToGeoCoordinate(), zoom);
+                pos = UIHelpers.WorldToTilePos(route.Destination2.Profile.Coordinates.ConvertToGeoCoordinate(), zoom);
 
                 p = new Point(pos.X * ImageSize - margin.X * ImageSize, pos.Y * ImageSize - margin.Y * ImageSize);
 
@@ -365,7 +366,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
            double distance = MathHelpers.GetDistance(a1, a2);
 
-           GeoCoordinate c1 = a1.Profile.Coordinates.convertToGeoCoordinate();
+           GeoCoordinate c1 = a1.Profile.Coordinates.ConvertToGeoCoordinate();
 
           int i = 0;
 
@@ -379,7 +380,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
           while (i < distance)
           {
-              GeoCoordinate c3 = MathHelpers.GetRoutePoint(c1, a2.Profile.Coordinates.convertToGeoCoordinate(), d);
+              GeoCoordinate c3 = MathHelpers.GetRoutePoint(c1, a2.Profile.Coordinates.ConvertToGeoCoordinate(), d);
 
               Point pos1 = UIHelpers.WorldToTilePos(c1, zoom);
               Point pos2 = UIHelpers.WorldToTilePos(c3, zoom);
@@ -427,7 +428,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         public PopUpMap(Airport airport)
             : this(ImageSize)
         {
-            showMap(airport.Profile.Coordinates.convertToGeoCoordinate(), true);
+            showMap(airport.Profile.Coordinates.ConvertToGeoCoordinate(), true);
         }
         //shows the map for a list of routes with specific coordinates in focus
         private void showMap(List<Route> routes, int zoom, GeoCoordinate focused)
@@ -461,7 +462,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     Image imgMap = new Image();
                     imgMap.Width = ImageSize;
                     imgMap.Height = ImageSize;
-                    imgMap.Source = new BitmapImage(new Uri(AppSettings.getDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
+                    imgMap.Source = new BitmapImage(new Uri(AppSettings.GetDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
                     RenderOptions.SetBitmapScalingMode(imgMap, BitmapScalingMode.HighQuality);
 
                     Canvas.SetTop(imgMap, y * ImageSize);
@@ -527,7 +528,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     Image imgMap = new Image();
                     imgMap.Width = ImageSize;
                     imgMap.Height = ImageSize;
-                    imgMap.Source = new BitmapImage(new Uri(AppSettings.getDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
+                    imgMap.Source = new BitmapImage(new Uri(AppSettings.GetDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
                     RenderOptions.SetBitmapScalingMode(imgMap, BitmapScalingMode.HighQuality);
 
                     Canvas.SetTop(imgMap, y * ImageSize);

@@ -1,3 +1,5 @@
+using TheAirline.Model.GeneralModel.InvoicesModel;
+
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
     using System;
@@ -1045,14 +1047,14 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             int year = GameObject.GetInstance().GameTime.Year;
 
-            return this.Airline.Statistics.getStatisticsValue(year, this.Type);
+            return this.Airline.Statistics.GetStatisticsValue(year, this.Type);
         }
 
         private double getLastYear()
         {
             int year = GameObject.GetInstance().GameTime.Year - 1;
 
-            return this.Airline.Statistics.getStatisticsValue(year, this.Type);
+            return this.Airline.Statistics.GetStatisticsValue(year, this.Type);
         }
 
         #endregion

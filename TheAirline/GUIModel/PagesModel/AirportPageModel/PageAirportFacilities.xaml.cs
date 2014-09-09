@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirportPageModel
+﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
     using System;
     using System.Collections.Generic;

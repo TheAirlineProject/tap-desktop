@@ -147,7 +147,7 @@
                     return string.Format("{0:C}", value);
                 }
                 CountryCurrency currency =
-                    GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
+                    GameObject.GetInstance().CurrencyCountry.GetCurrency(GameObject.GetInstance().GameTime);
 
                 if (currency == null)
                 {
@@ -363,13 +363,13 @@
                 {
                     return country;
                 }
-                if (tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime, country) == null)
+                if (tempCountry.GetCurrentCountry(GameObject.GetInstance().GameTime, country) == null)
                 {
                     return country;
                 }
-                return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime, country);
+                return tempCountry.GetCurrentCountry(GameObject.GetInstance().GameTime, country);
             }
-            return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime, country);
+            return ((TemporaryCountry)country).GetCurrentCountry(GameObject.GetInstance().GameTime, country);
             //return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;
         }
 
@@ -424,7 +424,7 @@
             
             var weight = (double)value;
 
-            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+            if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
                 return string.Format("{0:0} kg", weight);
             }
@@ -453,7 +453,7 @@
         {
             var cargo = (double)value;
 
-            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+            if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
                 return string.Format("{0:0} m3", cargo);
             }
@@ -482,7 +482,7 @@
         {
             double v = Double.Parse(value.ToString());
 
-            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+            if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
                 return string.Format("{0:#,0} {1}", v, new StringToLanguageConverter().Convert("km."));
             }
@@ -509,7 +509,7 @@
         {
             double v = Double.Parse(value.ToString());
 
-            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+            if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
                 return v + " m.";
             }
@@ -533,7 +533,7 @@
         {
             double v = Double.Parse(value.ToString());
 
-            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+            if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
                 return string.Format("{0:#,0} {1}", v, new StringToLanguageConverter().Convert("km/t"));
             }
@@ -560,7 +560,7 @@
         {
             double v = Double.Parse(value.ToString());
 
-            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Imperial)
+            if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Imperial)
             {
                 v = MathHelpers.LtrToGallons(v);
             }
@@ -627,7 +627,7 @@
             var text = (String)value;
             try
             {
-                return AppSettings.GetInstance().getLanguage().convert(text);
+                return AppSettings.GetInstance().GetLanguage().Convert(text);
             }
             catch
             {
@@ -657,7 +657,7 @@
         {
             double v = Double.Parse(value.ToString());
 
-            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+            if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
                 return string.Format("{0:0.00} {1}", v, new StringToLanguageConverter().Convert("l/seat/km"));
             }

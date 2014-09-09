@@ -1,30 +1,30 @@
-﻿namespace TheAirline.Model.GeneralModel
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Xml;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.GeneralModel.CountryModel.TownModel;
+using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.HistoricEventModel;
+using TheAirline.Model.GeneralModel.HolidaysModel;
+using TheAirline.Model.GeneralModel.InvoicesModel;
+using TheAirline.Model.GeneralModel.ScenarioModel;
+using TheAirline.Model.GeneralModel.StatisticsModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
+using TheAirline.Model.PassengerModel;
+using TheAirline.Model.PilotModel;
+
+namespace TheAirline.Model.GeneralModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Xml;
-
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlineModel.AirlineCooperationModel;
-    using TheAirline.Model.AirlineModel.SubsidiaryModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.AirportModel;
-    using TheAirline.Model.GeneralModel.CountryModel;
-    using TheAirline.Model.GeneralModel.CountryModel.TownModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.HistoricEventModel;
-    using TheAirline.Model.GeneralModel.HolidaysModel;
-    using TheAirline.Model.GeneralModel.ScenarioModel;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
-    using TheAirline.Model.GeneralModel.WeatherModel;
-    using TheAirline.Model.PassengerModel;
-    using TheAirline.Model.PilotModel;
-
     /*! Setup class.
      * This class is used for configuring the games environment.
      * The class needs no instantiation, because all methods are declared static.
@@ -32,10 +32,6 @@
 
     public class Setup
     {
-        /*! private static variable rnd.
-         * holds a random number.
-         */
-
         #region Static Fields
 
         private static readonly Random rnd = new Random();
@@ -50,7 +46,7 @@
             doc.Load(path);
             XmlElement root = doc.DocumentElement;
 
-            var profileElement = (XmlElement)root.SelectSingleNode("profile");
+            var profileElement = (XmlElement) root.SelectSingleNode("profile");
 
             string name = profileElement.Attributes["name"].Value;
             string iata = profileElement.Attributes["iata"].Value;
@@ -71,20 +67,20 @@
             string ceo = profileElement.Attributes["CEO"].Value;
             var mentality =
                 (Airline.AirlineMentality)
-                    Enum.Parse(typeof(Airline.AirlineMentality), profileElement.Attributes["mentality"].Value);
+                Enum.Parse(typeof (Airline.AirlineMentality), profileElement.Attributes["mentality"].Value);
             var market =
                 (Airline.AirlineFocus)
-                    Enum.Parse(typeof(Airline.AirlineFocus), profileElement.Attributes["market"].Value);
+                Enum.Parse(typeof (Airline.AirlineFocus), profileElement.Attributes["market"].Value);
 
             var routeFocus = Route.RouteType.Passenger;
 
             if (profileElement.HasAttribute("routefocus"))
             {
                 routeFocus =
-                    (Route.RouteType)Enum.Parse(typeof(Route.RouteType), profileElement.Attributes["routefocus"].Value);
+                    (Route.RouteType) Enum.Parse(typeof (Route.RouteType), profileElement.Attributes["routefocus"].Value);
             }
 
-            var narrativeElement = (XmlElement)profileElement.SelectSingleNode("narrative");
+            var narrativeElement = (XmlElement) profileElement.SelectSingleNode("narrative");
 
             string narrative = "";
             if (narrativeElement != null)
@@ -96,7 +92,7 @@
             int founded = 1950;
             int folded = 2199;
 
-            var infoElement = (XmlElement)root.SelectSingleNode("info");
+            var infoElement = (XmlElement) root.SelectSingleNode("info");
             if (infoElement != null)
             {
                 isReal = Convert.ToBoolean(infoElement.Attributes["real"].Value);
@@ -133,7 +129,7 @@
             airline.Profile.Country = airline.Profile.Countries[0];
             airline.Profile.LogoName = logoImage;
 
-            var preferedsElement = (XmlElement)root.SelectSingleNode("prefereds");
+            var preferedsElement = (XmlElement) root.SelectSingleNode("prefereds");
 
             if (preferedsElement != null)
             {
@@ -151,9 +147,9 @@
                 {
                     var primarypurchasing =
                         (AirlineProfile.PreferedPurchasing)
-                            Enum.Parse(
-                                typeof(AirlineProfile.PreferedPurchasing),
-                                preferedsElement.Attributes["primarypurchasing"].Value);
+                        Enum.Parse(
+                            typeof (AirlineProfile.PreferedPurchasing),
+                            preferedsElement.Attributes["primarypurchasing"].Value);
                     airline.Profile.PrimaryPurchasing = primarypurchasing;
                 }
             }
@@ -164,7 +160,7 @@
             {
                 int logoFromYear = Convert.ToInt16(logoElement.Attributes["from"].Value);
                 int logoToYear = Convert.ToInt16(logoElement.Attributes["to"].Value);
-                string logoPath = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\multilogos\\"
+                string logoPath = AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\multilogos\\"
                                   + logoElement.Attributes["path"].Value + ".png";
 
                 airline.Profile.AddLogo(new AirlineLogo(logoFromYear, logoToYear, logoPath));
@@ -186,14 +182,14 @@
                     Airport subAirport = Airports.GetAirport(subsidiaryElement.Attributes["homebase"].Value);
                     var subMentality =
                         (Airline.AirlineMentality)
-                            Enum.Parse(
-                                typeof(Airline.AirlineMentality),
-                                subsidiaryElement.Attributes["mentality"].Value);
+                        Enum.Parse(
+                            typeof (Airline.AirlineMentality),
+                            subsidiaryElement.Attributes["mentality"].Value);
                     var subMarket =
                         (Airline.AirlineFocus)
-                            Enum.Parse(typeof(Airline.AirlineFocus), subsidiaryElement.Attributes["market"].Value);
+                        Enum.Parse(typeof (Airline.AirlineFocus), subsidiaryElement.Attributes["market"].Value);
 
-                    string subLogo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\"
+                    string subLogo = AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\"
                                      + subsidiaryElement.Attributes["logo"].Value + ".png";
 
                     var airlineRouteFocus = Route.RouteType.Passenger;
@@ -202,7 +198,7 @@
                     {
                         airlineRouteFocus =
                             (Route.RouteType)
-                                Enum.Parse(typeof(Route.RouteType), subsidiaryElement.Attributes["routefocus"].Value);
+                            Enum.Parse(typeof (Route.RouteType), subsidiaryElement.Attributes["routefocus"].Value);
                     }
 
                     airline.FutureAirlines.Add(
@@ -217,7 +213,7 @@
                 }
             }
 
-            var startDataElement = (XmlElement)root.SelectSingleNode("startdata");
+            var startDataElement = (XmlElement) root.SelectSingleNode("startdata");
             if (startDataElement != null)
             {
                 var startData = new AirlineStartData(airline);
@@ -236,7 +232,7 @@
                     {
                         routetype =
                             (Route.RouteType)
-                                Enum.Parse(typeof(Route.RouteType), routeElement.Attributes["routetype"].Value);
+                            Enum.Parse(typeof (Route.RouteType), routeElement.Attributes["routetype"].Value);
                     }
 
                     var sdr = new StartDataRoute(dest1, dest2, opened, closed, routetype);
@@ -268,7 +264,7 @@
                     int destinations = Convert.ToInt16(routeElement.Attributes["destinations"].Value);
                     var minimumsize =
                         (GeneralHelpers.Size)
-                            Enum.Parse(typeof(GeneralHelpers.Size), routeElement.Attributes["minimumsize"].Value);
+                        Enum.Parse(typeof (GeneralHelpers.Size), routeElement.Attributes["minimumsize"].Value);
 
                     Route.RouteType routetype = airline.AirlineRouteFocus;
 
@@ -276,7 +272,7 @@
                     {
                         routetype =
                             (Route.RouteType)
-                                Enum.Parse(typeof(Route.RouteType), routeElement.Attributes["routetype"].Value);
+                            Enum.Parse(typeof (Route.RouteType), routeElement.Attributes["routetype"].Value);
                     }
 
                     var routes = new StartDataRoutes(origin, destinations, minimumsize, routetype);
@@ -306,7 +302,7 @@
             //LoadAirports(AppSettings.getDataPath() + "\\airports.xml");
             try
             {
-                var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airports");
+                var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\addons\\airports");
 
                 foreach (FileInfo file in dir.GetFiles("*.xml"))
                 {
@@ -316,7 +312,7 @@
             catch (Exception e)
             {
                 var file = new StreamWriter(
-                    AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log",
+                    AppSettings.GetCommonApplicationDataPath() + "\\theairlinestartup.log",
                     true);
                 file.WriteLine("Airport failing");
                 file.WriteLine(e.ToString());
@@ -325,15 +321,15 @@
             }
             Airports.LargestAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Largest).Count;
             Airports.VeryLargeAirports =
-                Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Very_large).Count;
+                Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.VeryLarge).Count;
             Airports.LargeAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Large).Count;
             Airports.MediumAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Medium).Count;
             Airports.SmallAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Small).Count;
             Airports.VerySmallAirports =
-                Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Very_small).Count;
+                Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.VerySmall).Count;
             Airports.SmallestAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Smallest).Count;
 
-            foreach (GeneralHelpers.Size size in Enum.GetValues(typeof(GeneralHelpers.Size)))
+            foreach (GeneralHelpers.Size size in Enum.GetValues(typeof (GeneralHelpers.Size)))
             {
                 if (!Airports.CargoAirportsSizes.ContainsKey(size))
                 {
@@ -357,9 +353,9 @@
                 int activeMembers =
                     alliance.Members.Count(
                         m =>
-                            Airlines.ContainsAirline(m.Airline) && !m.Airline.IsHuman
-                            && m.JoinedDate <= GameObject.GetInstance().GameTime
-                            && m.ExitedDate > GameObject.GetInstance().GameTime);
+                        Airlines.ContainsAirline(m.Airline) && !m.Airline.IsHuman
+                        && m.JoinedDate <= GameObject.GetInstance().GameTime
+                        && m.ExitedDate > GameObject.GetInstance().GameTime);
 
                 if (activeMembers > 1)
                 {
@@ -369,9 +365,9 @@
                         AllianceMember member in
                             members.Where(
                                 m =>
-                                    !Airlines.GetAllAirlines().Contains(m.Airline)
-                                    || m.JoinedDate > GameObject.GetInstance().GameTime
-                                    || GameObject.GetInstance().GameTime > m.ExitedDate))
+                                !Airlines.GetAllAirlines().Contains(m.Airline)
+                                || m.JoinedDate > GameObject.GetInstance().GameTime
+                                || GameObject.GetInstance().GameTime > m.ExitedDate))
                     {
                         alliance.RemoveMember(member);
                     }
@@ -456,7 +452,7 @@
             catch (Exception e)
             {
                 var file = new StreamWriter(
-                    AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log",
+                    AppSettings.GetCommonApplicationDataPath() + "\\theairlinestartup.log",
                     true);
                 file.WriteLine("Game start failing");
                 file.WriteLine(e.ToString());
@@ -466,8 +462,8 @@
                 string s = e.ToString();
             }
 
-         
-            var noRunways = Airports.GetAllAirports().Where(a => a.Runways.Count == 0);
+
+            IEnumerable<Airport> noRunways = Airports.GetAllAirports().Where(a => a.Runways.Count == 0);
 
             foreach (Airport airport in noRunways)
                 Console.WriteLine("{0}, {1} in {2} has no runways", airport.Profile.Name, airport.Profile.IATACode, airport.Profile.Country.Name);
@@ -478,7 +474,7 @@
             Airport lbb = Airports.GetAirport("LBB");
             Airport dfw = Airports.GetAirport("DFW");
 
-            Console.WriteLine("Distance: " + MathHelpers.GetDistance(lbb,dfw));
+            Console.WriteLine("Distance: " + MathHelpers.GetDistance(lbb, dfw));
 
             /*
             System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
@@ -613,7 +609,7 @@
                 new List<Airline>(
                     Airlines.GetAirlines(
                         a =>
-                            !a.IsHuman && !opponents.Contains(a) && a.Profile.Founded <= year && a.Profile.Folded > year));
+                        !a.IsHuman && !opponents.Contains(a) && a.Profile.Founded <= year && a.Profile.Folded > year));
 
             airlines = MathHelpers.Shuffle(airlines);
 
@@ -650,10 +646,6 @@
         }
 
         #endregion
-
-        /*! private static method ClearLists().
-         * Resets game´s environment.
-         */
 
         #region Methods
 
@@ -750,15 +742,15 @@
                     logoName = airline.Profile.LogoName;
                 }
 
-                if (File.Exists(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + logoName + ".png"))
+                if (File.Exists(AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\" + logoName + ".png"))
                 {
                     airline.Profile.AddLogo(
-                        new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + logoName + ".png"));
+                        new AirlineLogo(AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\" + logoName + ".png"));
                 }
                 else
                 {
                     airline.Profile.AddLogo(
-                        new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
+                        new AirlineLogo(AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\default.png"));
                 }
             }
         }
@@ -776,323 +768,128 @@
             List<StartDataRoute> startroutes =
                 startData.Routes.FindAll(
                     r =>
-                        r.Opened <= GameObject.GetInstance().GameTime.Year
-                        && r.Closed >= GameObject.GetInstance().GameTime.Year);
+                    r.Opened <= GameObject.GetInstance().GameTime.Year
+                    && r.Closed >= GameObject.GetInstance().GameTime.Year);
 
             Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
             //creates the routes
-            List<StartDataRoute> sRoutes = startroutes.GetRange(0, startroutes.Count / startDataFactor);
+            List<StartDataRoute> sRoutes = startroutes.GetRange(0, startroutes.Count/startDataFactor);
             Parallel.ForEach(
                 sRoutes,
                 startRoute =>
-                {
-                    Airport dest1 = Airports.GetAirport(startRoute.Destination1);
-                    Airport dest2 = Airports.GetAirport(startRoute.Destination2);
-
-                    if (dest1 != null && dest2 != null)
                     {
-                        if (dest1.GetAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0
-                            && dest1.GetAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0
-                            && airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                        Airport dest1 = Airports.GetAirport(startRoute.Destination1);
+                        Airport dest2 = Airports.GetAirport(startRoute.Destination2);
+
+                        if (dest1 != null && dest2 != null)
                         {
-                            dest1.AddAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
-                        }
-
-                        if (dest2.GetAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0
-                            && dest2.GetAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0
-                            && airline.AirlineRouteFocus == Route.RouteType.Cargo)
-                        {
-                            dest2.AddAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
-                        }
-                        
-                        if (!AirportHelpers.HasFreeGates(dest1, airline,terminaltype))
-                        {
-                            AirportHelpers.RentGates(dest1, airline, AirportContract.ContractType.LowService,terminaltype);
-                        }
-
-                        if (!AirportHelpers.HasFreeGates(dest2, airline,terminaltype))
-                        {
-                            AirportHelpers.RentGates(dest2, airline, AirportContract.ContractType.LowService,terminaltype);
-                        }
-
-                        Guid id = Guid.NewGuid();
-
-                        Route route = null;
-
-                        double price = PassengerHelpers.GetPassengerPrice(dest1, dest2);
-
-                        if (startRoute.RouteType == Route.RouteType.Mixed
-                            || startRoute.RouteType == Route.RouteType.Passenger)
-                        {
-                            route = new PassengerRoute(
-                                id.ToString(),
-                                dest1,
-                                dest2,
-                                GameObject.GetInstance().GameTime,
-                                price);
-                        }
-
-                        if (startRoute.RouteType == Route.RouteType.Cargo)
-                        {
-                            route = new CargoRoute(
-                                id.ToString(),
-                                dest1,
-                                dest2,
-                                GameObject.GetInstance().GameTime,
-                                PassengerHelpers.GetCargoPrice(dest1, dest2));
-                        }
-
-                        KeyValuePair<Airliner, Boolean>? airliner = null;
-                        if (startRoute.Type != null)
-                        {
-                            double distance = MathHelpers.GetDistance(dest1, dest2);
-
-                            if (startRoute.Type.Range > distance)
+                            if (dest1.GetAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0
+                                && dest1.GetAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0
+                                && airline.AirlineRouteFocus == Route.RouteType.Cargo)
                             {
-                                airliner =
-                                    new KeyValuePair<Airliner, bool>(
-                                        Airliners.GetAirlinersForSale(a => a.Type == startRoute.Type).FirstOrDefault(),
-                                        true);
-
-                                if (airliner.Value.Key == null)
-                                {
-                                    id = Guid.NewGuid();
-                                    var nAirliner = new Airliner(
-                                        id.ToString(),
-                                        startRoute.Type,
-                                        airline.Profile.Country.TailNumbers.getNextTailNumber(),
-                                        GameObject.GetInstance().GameTime);
-                                    Airliners.AddAirliner(nAirliner);
-
-                                    nAirliner.ClearAirlinerClasses();
-
-                                    AirlinerHelpers.CreateAirlinerClasses(nAirliner);
-
-                                    airliner = new KeyValuePair<Airliner, bool>(nAirliner, true);
-                                }
-                            }
-                        }
-
-                        Boolean leaseAircraft = airline.Profile.PrimaryPurchasing
-                                                == AirlineProfile.PreferedPurchasing.Leasing;
-
-                        if (airliner == null)
-                        {
-                            airliner = AIHelpers.GetAirlinerForRoute(
-                                airline,
-                                dest2,
-                                dest1,
-                                leaseAircraft,
-                                startRoute.RouteType,
-                                true);
-
-                            if (airliner == null
-                                && airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Random)
-                            {
-                                AIHelpers.GetAirlinerForRoute(
-                                    airline,
-                                    dest2,
-                                    dest1,
-                                    true,
-                                    startRoute.RouteType,
-                                    true);
-                            }
-                        }
-
-                        if (airliner != null)
-                        {
-                            FleetAirliner fAirliner = AirlineHelpers.AddAirliner(
-                                airline,
-                                airliner.Value.Key,
-                                airline.Airports[0],
-                                leaseAircraft);
-                            fAirliner.AddRoute(route);
-                            fAirliner.Status = FleetAirliner.AirlinerStatus.ToRouteStart;
-                            AirlineHelpers.HireAirlinerPilots(fAirliner);
-
-                            route.LastUpdated = GameObject.GetInstance().GameTime;
-
-                            if (startRoute.RouteType == Route.RouteType.Mixed
-                                || startRoute.RouteType == Route.RouteType.Passenger)
-                            {
-                                AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
-
-                                RouteClassesConfiguration configuration =
-                                    AIHelpers.GetRouteConfiguration((PassengerRoute)route);
-
-                                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
-                                {
-                                    ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).FarePrice =
-                                        price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
-
-                                    foreach (RouteFacility rFacility in classConfiguration.getFacilities())
-                                    {
-                                        ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type)
-                                            .addFacility(rFacility);
-                                    }
-                                }
-
-                                AIHelpers.CreateRouteTimeTable(route, fAirliner);
-                            }
-                            if (startRoute.RouteType == Route.RouteType.Cargo)
-                            {
-                                AIHelpers.CreateCargoRouteTimeTable(route, fAirliner);
-                            }
-                        }
-                        airline.AddRoute(route);
-                    }
-                });
-            //adds the airliners
-            Parallel.ForEach(
-                startData.Airliners,
-                airliners =>
-                {
-                    AirlinerType type = AirlinerTypes.GetType(airliners.Type);//B747-200
-
-                    int totalSpan = 2010 - 1960;
-                    int yearSpan = GameObject.GetInstance().GameTime.Year - 1960;
-                    double valueSpan = Convert.ToDouble(airliners.AirlinersLate - airliners.AirlinersEarly);
-                    double span = valueSpan / Convert.ToDouble(totalSpan);
-
-                    int numbers = Math.Max(1, Convert.ToInt16(span * yearSpan) / startDataFactor);
-
-                    if (type == null)
-                    {
-                        string tAirline = airline.Profile.Name;
-                        string typeNull = airliners.Type;
-
-                        Console.WriteLine(tAirline + " " + typeNull);
-                    }
-                    if (type != null && type.Produced.From <= GameObject.GetInstance().GameTime)
-                    {
-                        for (int i = 0; i < Math.Max(numbers, airliners.AirlinersEarly); i++)
-                        {
-                            Guid id = Guid.NewGuid();
-
-                            int countryNumber = rnd.Next(Countries.GetCountries().Count() - 1);
-                            Country country = Countries.GetCountries()[countryNumber];
-
-                            int builtYear = rnd.Next(
-                                type.Produced.From.Year,
-                                Math.Min(GameObject.GetInstance().GameTime.Year - 1, type.Produced.To.Year));
-
-                            var airliner = new Airliner(
-                                id.ToString(),
-                                type,
-                                country.TailNumbers.getNextTailNumber(),
-                                new DateTime(builtYear, 1, 1));
-
-                            int age = MathHelpers.CalculateAge(airliner.BuiltDate, GameObject.GetInstance().GameTime);
-
-                            long kmPerYear = rnd.Next(100000, 1000000);
-                            long km = kmPerYear * age;
-
-                            airliner.Flown = km;
-
-                            airliner.EngineType = EngineTypes.GetStandardEngineType(airliner.Type, airliner.BuiltDate.Year);
-
-                            Airliners.AddAirliner(airliner);
-
-                            Boolean leaseAircraft = airline.Profile.PrimaryPurchasing
-                                                    == AirlineProfile.PreferedPurchasing.Leasing;
-
-                            FleetAirliner fAirliner = AirlineHelpers.AddAirliner(
-                                airline,
-                                airliner,
-                                airline.Airports[0],
-                                leaseAircraft);
-                            fAirliner.Status = FleetAirliner.AirlinerStatus.Stopped;
-                            AirlineHelpers.HireAirlinerPilots(fAirliner);
-
-                            AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
-                        }
-                    }
-                });
-
-            //the origin routes
-            Parallel.ForEach(
-                startData.OriginRoutes,
-                routes =>
-                {
-                    Airport origin = Airports.GetAirport(routes.Origin);
-
-                    if (origin != null)
-                    {
-                        Terminal.TerminalType terminalType = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
-                           
-                        for (int i = 0;
-                            i < Math.Min(routes.Destinations / startDataFactor, origin.Terminals.getFreeGates(terminalType));
-                            i++)
-                        {
-                            //if (origin.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
-                            //origin.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
-
-                            if (!AirportHelpers.HasFreeGates(origin, airline,terminalType))
-                            {
-                                AirportHelpers.RentGates(origin, airline, AirportContract.ContractType.LowService,terminalType);
+                                dest1.AddAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
                             }
 
-                            Airport destination = GetStartDataRoutesDestination(routes);
-
-                            //if (destination.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
-                            //destination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
-
-                            if (!AirportHelpers.HasFreeGates(destination, airline,terminalType))
+                            if (dest2.GetAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0
+                                && dest2.GetAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0
+                                && airline.AirlineRouteFocus == Route.RouteType.Cargo)
                             {
-                                AirportHelpers.RentGates(destination, airline, AirportContract.ContractType.LowService,terminalType);
+                                dest2.AddAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
+                            }
+
+                            if (!AirportHelpers.HasFreeGates(dest1, airline, terminaltype))
+                            {
+                                AirportHelpers.RentGates(dest1, airline, AirportContract.ContractType.LowService, terminaltype);
+                            }
+
+                            if (!AirportHelpers.HasFreeGates(dest2, airline, terminaltype))
+                            {
+                                AirportHelpers.RentGates(dest2, airline, AirportContract.ContractType.LowService, terminaltype);
                             }
 
                             Guid id = Guid.NewGuid();
 
                             Route route = null;
 
-                            double price = PassengerHelpers.GetPassengerPrice(origin, destination);
+                            double price = PassengerHelpers.GetPassengerPrice(dest1, dest2);
 
-                            if (routes.RouteType == Route.RouteType.Mixed
-                                || routes.RouteType == Route.RouteType.Passenger)
+                            if (startRoute.RouteType == Route.RouteType.Mixed
+                                || startRoute.RouteType == Route.RouteType.Passenger)
                             {
                                 route = new PassengerRoute(
                                     id.ToString(),
-                                    origin,
-                                    destination,
+                                    dest1,
+                                    dest2,
                                     GameObject.GetInstance().GameTime,
                                     price);
                             }
 
-                            if (routes.RouteType == Route.RouteType.Cargo)
+                            if (startRoute.RouteType == Route.RouteType.Cargo)
                             {
                                 route = new CargoRoute(
                                     id.ToString(),
-                                    origin,
-                                    destination,
+                                    dest1,
+                                    dest2,
                                     GameObject.GetInstance().GameTime,
-                                    PassengerHelpers.GetCargoPrice(origin, destination));
+                                    PassengerHelpers.GetCargoPrice(dest1, dest2));
+                            }
+
+                            KeyValuePair<Airliner, Boolean>? airliner = null;
+                            if (startRoute.Type != null)
+                            {
+                                double distance = MathHelpers.GetDistance(dest1, dest2);
+
+                                if (startRoute.Type.Range > distance)
+                                {
+                                    airliner =
+                                        new KeyValuePair<Airliner, bool>(
+                                            Airliners.GetAirlinersForSale(a => a.Type == startRoute.Type).FirstOrDefault(),
+                                            true);
+
+                                    if (airliner.Value.Key == null)
+                                    {
+                                        id = Guid.NewGuid();
+                                        var nAirliner = new Airliner(
+                                            id.ToString(),
+                                            startRoute.Type,
+                                            airline.Profile.Country.TailNumbers.GetNextTailNumber(),
+                                            GameObject.GetInstance().GameTime);
+                                        Airliners.AddAirliner(nAirliner);
+
+                                        nAirliner.ClearAirlinerClasses();
+
+                                        AirlinerHelpers.CreateAirlinerClasses(nAirliner);
+
+                                        airliner = new KeyValuePair<Airliner, bool>(nAirliner, true);
+                                    }
+                                }
                             }
 
                             Boolean leaseAircraft = airline.Profile.PrimaryPurchasing
                                                     == AirlineProfile.PreferedPurchasing.Leasing;
 
-                            KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(
-                                airline,
-                                origin,
-                                destination,
-                                leaseAircraft,
-                                routes.RouteType,
-                                true);
-
-                            if (airliner == null
-                                && airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Random)
+                            if (airliner == null)
                             {
                                 airliner = AIHelpers.GetAirlinerForRoute(
                                     airline,
-                                    origin,
-                                    destination,
-                                    true,
-                                    routes.RouteType,
+                                    dest2,
+                                    dest1,
+                                    leaseAircraft,
+                                    startRoute.RouteType,
                                     true);
-                            }
 
-                            double distance = MathHelpers.GetDistance(origin, destination);
+                                if (airliner == null
+                                    && airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Random)
+                                {
+                                    AIHelpers.GetAirlinerForRoute(
+                                        airline,
+                                        dest2,
+                                        dest1,
+                                        true,
+                                        startRoute.RouteType,
+                                        true);
+                                }
+                            }
 
                             if (airliner != null)
                             {
@@ -1107,38 +904,233 @@
 
                                 route.LastUpdated = GameObject.GetInstance().GameTime;
 
-                                if (routes.RouteType == Route.RouteType.Passenger
-                                    || routes.RouteType == Route.RouteType.Mixed)
+                                if (startRoute.RouteType == Route.RouteType.Mixed
+                                    || startRoute.RouteType == Route.RouteType.Passenger)
                                 {
                                     AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
 
                                     RouteClassesConfiguration configuration =
-                                        AIHelpers.GetRouteConfiguration((PassengerRoute)route);
+                                        AIHelpers.GetRouteConfiguration((PassengerRoute) route);
 
                                     foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                                     {
-                                        ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).FarePrice
-                                            = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
+                                        ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type).FarePrice =
+                                            price*GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
 
                                         foreach (RouteFacility rFacility in classConfiguration.getFacilities())
                                         {
-                                            ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type)
-                                                .addFacility(rFacility);
+                                            ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type)
+                                                                    .addFacility(rFacility);
                                         }
                                     }
 
                                     AIHelpers.CreateRouteTimeTable(route, fAirliner);
                                 }
-                                if (routes.RouteType == Route.RouteType.Cargo)
+                                if (startRoute.RouteType == Route.RouteType.Cargo)
                                 {
                                     AIHelpers.CreateCargoRouteTimeTable(route, fAirliner);
                                 }
+                            }
+                            airline.AddRoute(route);
+                        }
+                    });
+            //adds the airliners
+            Parallel.ForEach(
+                startData.Airliners,
+                airliners =>
+                    {
+                        AirlinerType type = AirlinerTypes.GetType(airliners.Type); //B747-200
 
-                                airline.AddRoute(route);
+                        int totalSpan = 2010 - 1960;
+                        int yearSpan = GameObject.GetInstance().GameTime.Year - 1960;
+                        double valueSpan = Convert.ToDouble(airliners.AirlinersLate - airliners.AirlinersEarly);
+                        double span = valueSpan/Convert.ToDouble(totalSpan);
+
+                        int numbers = Math.Max(1, Convert.ToInt16(span*yearSpan)/startDataFactor);
+
+                        if (type == null)
+                        {
+                            string tAirline = airline.Profile.Name;
+                            string typeNull = airliners.Type;
+
+                            Console.WriteLine(tAirline + " " + typeNull);
+                        }
+                        if (type != null && type.Produced.From <= GameObject.GetInstance().GameTime)
+                        {
+                            for (int i = 0; i < Math.Max(numbers, airliners.AirlinersEarly); i++)
+                            {
+                                Guid id = Guid.NewGuid();
+
+                                int countryNumber = rnd.Next(Countries.GetCountries().Count() - 1);
+                                Country country = Countries.GetCountries()[countryNumber];
+
+                                int builtYear = rnd.Next(
+                                    type.Produced.From.Year,
+                                    Math.Min(GameObject.GetInstance().GameTime.Year - 1, type.Produced.To.Year));
+
+                                var airliner = new Airliner(
+                                    id.ToString(),
+                                    type,
+                                    country.TailNumbers.GetNextTailNumber(),
+                                    new DateTime(builtYear, 1, 1));
+
+                                int age = MathHelpers.CalculateAge(airliner.BuiltDate, GameObject.GetInstance().GameTime);
+
+                                long kmPerYear = rnd.Next(100000, 1000000);
+                                long km = kmPerYear*age;
+
+                                airliner.Flown = km;
+
+                                airliner.EngineType = EngineTypes.GetStandardEngineType(airliner.Type, airliner.BuiltDate.Year);
+
+                                Airliners.AddAirliner(airliner);
+
+                                Boolean leaseAircraft = airline.Profile.PrimaryPurchasing
+                                                        == AirlineProfile.PreferedPurchasing.Leasing;
+
+                                FleetAirliner fAirliner = AirlineHelpers.AddAirliner(
+                                    airline,
+                                    airliner,
+                                    airline.Airports[0],
+                                    leaseAircraft);
+                                fAirliner.Status = FleetAirliner.AirlinerStatus.Stopped;
+                                AirlineHelpers.HireAirlinerPilots(fAirliner);
+
+                                AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
                             }
                         }
-                    }
-                });
+                    });
+
+            //the origin routes
+            Parallel.ForEach(
+                startData.OriginRoutes,
+                routes =>
+                    {
+                        Airport origin = Airports.GetAirport(routes.Origin);
+
+                        if (origin != null)
+                        {
+                            Terminal.TerminalType terminalType = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+
+                            for (int i = 0;
+                                 i < Math.Min(routes.Destinations/startDataFactor, origin.Terminals.getFreeGates(terminalType));
+                                 i++)
+                            {
+                                //if (origin.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                                //origin.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+
+                                if (!AirportHelpers.HasFreeGates(origin, airline, terminalType))
+                                {
+                                    AirportHelpers.RentGates(origin, airline, AirportContract.ContractType.LowService, terminalType);
+                                }
+
+                                Airport destination = GetStartDataRoutesDestination(routes);
+
+                                //if (destination.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                                //destination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+
+                                if (!AirportHelpers.HasFreeGates(destination, airline, terminalType))
+                                {
+                                    AirportHelpers.RentGates(destination, airline, AirportContract.ContractType.LowService, terminalType);
+                                }
+
+                                Guid id = Guid.NewGuid();
+
+                                Route route = null;
+
+                                double price = PassengerHelpers.GetPassengerPrice(origin, destination);
+
+                                if (routes.RouteType == Route.RouteType.Mixed
+                                    || routes.RouteType == Route.RouteType.Passenger)
+                                {
+                                    route = new PassengerRoute(
+                                        id.ToString(),
+                                        origin,
+                                        destination,
+                                        GameObject.GetInstance().GameTime,
+                                        price);
+                                }
+
+                                if (routes.RouteType == Route.RouteType.Cargo)
+                                {
+                                    route = new CargoRoute(
+                                        id.ToString(),
+                                        origin,
+                                        destination,
+                                        GameObject.GetInstance().GameTime,
+                                        PassengerHelpers.GetCargoPrice(origin, destination));
+                                }
+
+                                Boolean leaseAircraft = airline.Profile.PrimaryPurchasing
+                                                        == AirlineProfile.PreferedPurchasing.Leasing;
+
+                                KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(
+                                    airline,
+                                    origin,
+                                    destination,
+                                    leaseAircraft,
+                                    routes.RouteType,
+                                    true);
+
+                                if (airliner == null
+                                    && airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Random)
+                                {
+                                    airliner = AIHelpers.GetAirlinerForRoute(
+                                        airline,
+                                        origin,
+                                        destination,
+                                        true,
+                                        routes.RouteType,
+                                        true);
+                                }
+
+                                double distance = MathHelpers.GetDistance(origin, destination);
+
+                                if (airliner != null)
+                                {
+                                    FleetAirliner fAirliner = AirlineHelpers.AddAirliner(
+                                        airline,
+                                        airliner.Value.Key,
+                                        airline.Airports[0],
+                                        leaseAircraft);
+                                    fAirliner.AddRoute(route);
+                                    fAirliner.Status = FleetAirliner.AirlinerStatus.ToRouteStart;
+                                    AirlineHelpers.HireAirlinerPilots(fAirliner);
+
+                                    route.LastUpdated = GameObject.GetInstance().GameTime;
+
+                                    if (routes.RouteType == Route.RouteType.Passenger
+                                        || routes.RouteType == Route.RouteType.Mixed)
+                                    {
+                                        AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
+
+                                        RouteClassesConfiguration configuration =
+                                            AIHelpers.GetRouteConfiguration((PassengerRoute) route);
+
+                                        foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                                        {
+                                            ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type).FarePrice
+                                                = price*GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
+
+                                            foreach (RouteFacility rFacility in classConfiguration.getFacilities())
+                                            {
+                                                ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type)
+                                                                        .addFacility(rFacility);
+                                            }
+                                        }
+
+                                        AIHelpers.CreateRouteTimeTable(route, fAirliner);
+                                    }
+                                    if (routes.RouteType == Route.RouteType.Cargo)
+                                    {
+                                        AIHelpers.CreateCargoRouteTimeTable(route, fAirliner);
+                                    }
+
+                                    airline.AddRoute(route);
+                                }
+                            }
+                        }
+                    });
         }
 
         private static void CreateComputerRoutes(Airline airline)
@@ -1180,8 +1172,8 @@
                     airportDestinations =
                         Airports.GetAirports(
                             a =>
-                                a.Profile.Country.Region == airportHomeBase.Profile.Country.Region
-                                && a != airportHomeBase);
+                            a.Profile.Country.Region == airportHomeBase.Profile.Country.Region
+                            && a != airportHomeBase);
                 }
 
                 KeyValuePair<Airliner, Boolean>? airliner = null;
@@ -1240,48 +1232,48 @@
                             GameObject.GetInstance().GameTime,
                             price);
 
-                        RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration((PassengerRoute)route);
+                        RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration((PassengerRoute) route);
 
                         foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                         {
-                            ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
-                                                                                                               * GeneralHelpers
-                                                                                                                   .ClassToPriceFactor
-                                                                                                                   (
-                                                                                                                       classConfiguration
-                                                                                                                           .Type);
+                            ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
+                                                                                                                *GeneralHelpers
+                                                                                                                     .ClassToPriceFactor
+                                                                                                                     (
+                                                                                                                         classConfiguration
+                                                                                                                             .Type);
 
                             foreach (RouteFacility rFacility in classConfiguration.getFacilities())
                             {
-                                ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type)
-                                    .addFacility(rFacility);
+                                ((PassengerRoute) route).getRouteAirlinerClass(classConfiguration.Type)
+                                                        .addFacility(rFacility);
                             }
                         }
                     }
                     if (airline.AirlineRouteFocus == Route.RouteType.Helicopter)
                     {
                         route = new HelicopterRoute(
-                          id.ToString(),
-                          airportDestination,
-                          airline.Airports[0],
-                          GameObject.GetInstance().GameTime,
-                          price);
+                            id.ToString(),
+                            airportDestination,
+                            airline.Airports[0],
+                            GameObject.GetInstance().GameTime,
+                            price);
 
-                        RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration((HelicopterRoute)route);
+                        RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration((HelicopterRoute) route);
 
                         foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                         {
-                            ((HelicopterRoute)route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
-                                                                                                               * GeneralHelpers
-                                                                                                                   .ClassToPriceFactor
-                                                                                                                   (
-                                                                                                                       classConfiguration
-                                                                                                                           .Type);
+                            ((HelicopterRoute) route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
+                                                                                                                 *GeneralHelpers
+                                                                                                                      .ClassToPriceFactor
+                                                                                                                      (
+                                                                                                                          classConfiguration
+                                                                                                                              .Type);
 
                             foreach (RouteFacility rFacility in classConfiguration.getFacilities())
                             {
-                                ((HelicopterRoute)route).getRouteAirlinerClass(classConfiguration.Type)
-                                    .addFacility(rFacility);
+                                ((HelicopterRoute) route).getRouteAirlinerClass(classConfiguration.Type)
+                                                         .addFacility(rFacility);
                             }
                         }
                     }
@@ -1302,7 +1294,7 @@
                             airline,
                             GameObject.GetInstance().GameTime,
                             Invoice.InvoiceType.Rents,
-                            -airliner.Value.Key.LeasingPrice * 2);
+                            -airliner.Value.Key.LeasingPrice*2);
                     }
                     else
                     {
@@ -1351,41 +1343,41 @@
         private static void CreateContinents()
         {
             var africa = new Continent("101", "Africa");
-            africa.addRegion(Regions.GetRegion("101"));
-            africa.addRegion(Regions.GetRegion("102"));
-            africa.addRegion(Regions.GetRegion("103"));
-            africa.addRegion(Regions.GetRegion("104"));
-            africa.addRegion(Regions.GetRegion("105"));
+            africa.AddRegion(Regions.GetRegion("101"));
+            africa.AddRegion(Regions.GetRegion("102"));
+            africa.AddRegion(Regions.GetRegion("103"));
+            africa.AddRegion(Regions.GetRegion("104"));
+            africa.AddRegion(Regions.GetRegion("105"));
             Continents.AddContinent(africa);
 
             var asia = new Continent("102", "Asia");
-            asia.addRegion(Regions.GetRegion("106"));
-            asia.addRegion(Regions.GetRegion("107"));
-            asia.addRegion(Regions.GetRegion("108"));
-            asia.addRegion(Regions.GetRegion("109"));
-            asia.addRegion(Regions.GetRegion("110"));
+            asia.AddRegion(Regions.GetRegion("106"));
+            asia.AddRegion(Regions.GetRegion("107"));
+            asia.AddRegion(Regions.GetRegion("108"));
+            asia.AddRegion(Regions.GetRegion("109"));
+            asia.AddRegion(Regions.GetRegion("110"));
             Continents.AddContinent(asia);
 
             var australia = new Continent("103", "Australia and Oceania");
-            australia.addRegion(Regions.GetRegion("111"));
-            australia.addRegion(Regions.GetRegion("112"));
+            australia.AddRegion(Regions.GetRegion("111"));
+            australia.AddRegion(Regions.GetRegion("112"));
             Continents.AddContinent(australia);
 
             var europe = new Continent("104", "Europe");
-            europe.addRegion(Regions.GetRegion("113"));
-            europe.addRegion(Regions.GetRegion("114"));
-            europe.addRegion(Regions.GetRegion("115"));
-            europe.addRegion(Regions.GetRegion("116"));
+            europe.AddRegion(Regions.GetRegion("113"));
+            europe.AddRegion(Regions.GetRegion("114"));
+            europe.AddRegion(Regions.GetRegion("115"));
+            europe.AddRegion(Regions.GetRegion("116"));
             Continents.AddContinent(europe);
 
             var northAmerica = new Continent("105", "North America");
-            northAmerica.addRegion(Regions.GetRegion("117"));
-            northAmerica.addRegion(Regions.GetRegion("118"));
-            northAmerica.addRegion(Regions.GetRegion("119"));
+            northAmerica.AddRegion(Regions.GetRegion("117"));
+            northAmerica.AddRegion(Regions.GetRegion("118"));
+            northAmerica.AddRegion(Regions.GetRegion("119"));
             Continents.AddContinent(northAmerica);
 
             var southAmerica = new Continent("106", "South America");
-            southAmerica.addRegion(Regions.GetRegion("120"));
+            southAmerica.AddRegion(Regions.GetRegion("120"));
             Continents.AddContinent(southAmerica);
         }
 
@@ -1632,11 +1624,11 @@
 
         private static void CreatePilots()
         {
-            int pilotsPool = 100 * Airlines.GetAllAirlines().Count;
+            int pilotsPool = 100*Airlines.GetAllAirlines().Count;
 
             GeneralHelpers.CreatePilots(pilotsPool);
 
-            int instructorsPool = 75 * Airlines.GetAllAirlines().Count;
+            int instructorsPool = 75*Airlines.GetAllAirlines().Count;
 
             GeneralHelpers.CreateInstructors(instructorsPool);
         }
@@ -1705,7 +1697,7 @@
 
             var list = new Dictionary<Airport, int>();
             airports.ForEach(
-                a => list.Add(a, ((int)a.Profile.Size) * (AirportHelpers.GetAirportsNearAirport(a, 1000).Count) + 1));
+                a => list.Add(a, ((int) a.Profile.Size)*(AirportHelpers.GetAirportsNearAirport(a, 1000).Count) + 1));
 
             return AIHelpers.GetRandomItem(list);
         }
@@ -1715,8 +1707,8 @@
             double maxRange =
                 (AirlinerTypes.GetTypes(
                     t =>
-                        t.Produced.From <= GameObject.GetInstance().GameTime
-                        && t.Produced.To > GameObject.GetInstance().GameTime).Max(t => t.Range)) * 0.8;
+                    t.Produced.From <= GameObject.GetInstance().GameTime
+                    && t.Produced.To > GameObject.GetInstance().GameTime).Max(t => t.Range))*0.8;
 
             var airports = new List<Airport>();
 
@@ -1725,10 +1717,10 @@
                 airports =
                     Airports.GetAirports(
                         a =>
-                            routes.Countries.Contains(a.Profile.Country)
-                            && MathHelpers.GetDistance(Airports.GetAirport(routes.Origin), a) < maxRange
-                            && a != Airports.GetAirport(routes.Origin)
-                            && ((int)a.Profile.Cargo) >= ((int)routes.MinimumSize) && a.Terminals.getFreeGates(Terminal.TerminalType.Cargo) > 0);
+                        routes.Countries.Contains(a.Profile.Country)
+                        && MathHelpers.GetDistance(Airports.GetAirport(routes.Origin), a) < maxRange
+                        && a != Airports.GetAirport(routes.Origin)
+                        && ((int) a.Profile.Cargo) >= ((int) routes.MinimumSize) && a.Terminals.getFreeGates(Terminal.TerminalType.Cargo) > 0);
             }
 
             if (routes.RouteType == Route.RouteType.Passenger || routes.RouteType == Route.RouteType.Mixed)
@@ -1736,10 +1728,10 @@
                 airports =
                     Airports.GetAirports(
                         a =>
-                            routes.Countries.Contains(a.Profile.Country)
-                            && MathHelpers.GetDistance(Airports.GetAirport(routes.Origin), a) < maxRange
-                            && a != Airports.GetAirport(routes.Origin)
-                            && ((int)a.Profile.Size) >= ((int)routes.MinimumSize) && a.Terminals.getFreeGates(Terminal.TerminalType.Passenger) > 0);
+                        routes.Countries.Contains(a.Profile.Country)
+                        && MathHelpers.GetDistance(Airports.GetAirport(routes.Origin), a) < maxRange
+                        && a != Airports.GetAirport(routes.Origin)
+                        && ((int) a.Profile.Size) >= ((int) routes.MinimumSize) && a.Terminals.getFreeGates(Terminal.TerminalType.Passenger) > 0);
             }
 
             return airports[rnd.Next(airports.Count)];
@@ -1754,7 +1746,7 @@
         private static void LoadAirlineFacilities()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\airlinefacilities.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\airlinefacilities.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList facilitiesList = root.SelectNodes("//airlinefacility");
@@ -1767,7 +1759,7 @@
                 double monthlycost = XmlConvert.ToDouble(element.Attributes["monthlycost"].Value);
                 int fromyear = XmlConvert.ToInt16(element.Attributes["fromyear"].Value);
 
-                var levelElement = (XmlElement)element.SelectSingleNode("level");
+                var levelElement = (XmlElement) element.SelectSingleNode("level");
                 int service = Convert.ToInt32(levelElement.Attributes["service"].Value);
                 int luxury = Convert.ToInt32(levelElement.Attributes["luxury"].Value);
 
@@ -1777,10 +1769,10 @@
                 if (element.SelectSingleNode("translations") != null)
                 {
                     Translator.GetInstance()
-                        .addTranslation(
-                            root.Name,
-                            element.Attributes["uid"].Value,
-                            element.SelectSingleNode("translations"));
+                              .AddTranslation(
+                                  root.Name,
+                                  element.Attributes["uid"].Value,
+                                  element.SelectSingleNode("translations"));
                 }
             }
         }
@@ -1788,7 +1780,7 @@
         private static void LoadAirlineMergers()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\addons\\airlines\\mergers\\mergers.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\addons\\airlines\\mergers\\mergers.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList mergersList = root.SelectNodes("//merger");
@@ -1800,7 +1792,7 @@
                 Airline airline2 = Airlines.GetAirline(element.Attributes["airline2"].Value);
                 var mergerType =
                     (AirlineMerger.MergerType)
-                        Enum.Parse(typeof(AirlineMerger.MergerType), element.Attributes["type"].Value);
+                    Enum.Parse(typeof (AirlineMerger.MergerType), element.Attributes["type"].Value);
                 DateTime mergerDate = DateTime.Parse(element.Attributes["date"].Value, new CultureInfo("en-US", false));
 
                 var merger = new AirlineMerger(mergerName, airline1, airline2, mergerDate, mergerType);
@@ -1831,10 +1823,10 @@
                 int regularseating = Convert.ToInt16(classElement.Attributes["regularseating"].Value);
                 var classType =
                     (AirlinerClass.ClassType)
-                        Enum.Parse(typeof(AirlinerClass.ClassType), classElement.Attributes["type"].Value);
+                    Enum.Parse(typeof (AirlinerClass.ClassType), classElement.Attributes["type"].Value);
 
                 var classConf = new AirlinerClassConfiguration(classType, seating, regularseating);
-                foreach (AirlinerFacility.FacilityType facType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
+                foreach (AirlinerFacility.FacilityType facType in Enum.GetValues(typeof (AirlinerFacility.FacilityType)))
                 {
                     string facUid = classElement.Attributes[facType.ToString()].Value;
 
@@ -1850,7 +1842,7 @@
         public static void LoadAirlinerFacilities()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\airlinerfacilities.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\airlinerfacilities.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList facilitiesList = root.SelectNodes("//airlinerfacility");
@@ -1860,13 +1852,13 @@
                 string uid = element.Attributes["uid"].Value;
                 var type =
                     (AirlinerFacility.FacilityType)
-                        Enum.Parse(typeof(AirlinerFacility.FacilityType), element.Attributes["type"].Value);
+                    Enum.Parse(typeof (AirlinerFacility.FacilityType), element.Attributes["type"].Value);
                 int fromyear = Convert.ToInt16(element.Attributes["fromyear"].Value);
 
-                var levelElement = (XmlElement)element.SelectSingleNode("level");
+                var levelElement = (XmlElement) element.SelectSingleNode("level");
                 int service = Convert.ToInt32(levelElement.Attributes["service"].Value);
 
-                var seatsElement = (XmlElement)element.SelectSingleNode("seats");
+                var seatsElement = (XmlElement) element.SelectSingleNode("seats");
                 double seatsPercent = XmlConvert.ToDouble(seatsElement.Attributes["percent"].Value);
                 double seatsPrice = XmlConvert.ToDouble(seatsElement.Attributes["price"].Value);
                 double seatuse = XmlConvert.ToDouble(seatsElement.Attributes["uses"].Value);
@@ -1877,17 +1869,17 @@
                 if (element.SelectSingleNode("translations") != null)
                 {
                     Translator.GetInstance()
-                        .addTranslation(
-                            root.Name,
-                            element.Attributes["uid"].Value,
-                            element.SelectSingleNode("translations"));
+                              .AddTranslation(
+                                  root.Name,
+                                  element.Attributes["uid"].Value,
+                                  element.SelectSingleNode("translations"));
                 }
             }
         }
 
         private static void LoadAirlinerImages()
         {
-            string file = AppSettings.getDataPath() + "\\graphics\\airlinerimages\\images.xml";
+            string file = AppSettings.GetDataPath() + "\\graphics\\airlinerimages\\images.xml";
 
             var doc = new XmlDocument();
             doc.Load(file);
@@ -1899,7 +1891,7 @@
             {
                 string imageFile = string.Format(
                     "{0}\\graphics\\airlinerimages\\{1}.png",
-                    AppSettings.getDataPath(),
+                    AppSettings.GetDataPath(),
                     image.Attributes["image"].Value);
 
                 string[] types = image.Attributes["types"].Value.Split(',');
@@ -1950,11 +1942,11 @@
                     int seating = Convert.ToInt16(classElement.Attributes["seating"].Value);
                     var classType =
                         (AirlinerClass.ClassType)
-                            Enum.Parse(typeof(AirlinerClass.ClassType), classElement.Attributes["type"].Value);
+                        Enum.Parse(typeof (AirlinerClass.ClassType), classElement.Attributes["type"].Value);
 
                     var classConf = new AirlinerClassConfiguration(classType, seating, seating);
                     foreach (
-                        AirlinerFacility.FacilityType facType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
+                        AirlinerFacility.FacilityType facType in Enum.GetValues(typeof (AirlinerFacility.FacilityType)))
                     {
                         string facUid = classElement.Attributes[facType.ToString()].Value;
 
@@ -1972,7 +1964,7 @@
         {
             try
             {
-                var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airliners\\configurations");
+                var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\addons\\airliners\\configurations");
 
                 foreach (FileInfo file in dir.GetFiles("*.xml"))
                 {
@@ -1995,7 +1987,7 @@
         {
             try
             {
-                var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airliners");
+                var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\addons\\airliners");
 
                 foreach (FileInfo file in dir.GetFiles("*.xml"))
                 {
@@ -2010,7 +2002,7 @@
 
         private static void LoadAirliners(string file)
         {
-            string dir = AppSettings.getDataPath() + "\\graphics\\airlinerimages\\";
+            string dir = AppSettings.GetDataPath() + "\\graphics\\airlinerimages\\";
             string id = "";
             try
             {
@@ -2023,9 +2015,9 @@
                 foreach (XmlElement airliner in airlinersList)
                 {
                     AirlinerType.TypeOfAirliner airlinerType = airliner.HasAttribute("type")
-                        ? (AirlinerType.TypeOfAirliner)
-                            Enum.Parse(typeof(AirlinerType.TypeOfAirliner), airliner.Attributes["type"].Value)
-                        : AirlinerType.TypeOfAirliner.Passenger;
+                                                                   ? (AirlinerType.TypeOfAirliner)
+                                                                     Enum.Parse(typeof (AirlinerType.TypeOfAirliner), airliner.Attributes["type"].Value)
+                                                                   : AirlinerType.TypeOfAirliner.Passenger;
 
                     string manufacturerName = airliner.Attributes["manufacturer"].Value;
                     Manufacturer manufacturer = Manufacturers.GetManufacturer(manufacturerName);
@@ -2040,9 +2032,9 @@
                     }
                     else
                     {
-                        if (name.LastIndexOfAny(new[] { ' ', '-' }) > 0)
+                        if (name.LastIndexOfAny(new[] {' ', '-'}) > 0)
                         {
-                            family = name.Substring(0, name.LastIndexOfAny(new[] { ' ', '-' }));
+                            family = name.Substring(0, name.LastIndexOfAny(new[] {' ', '-'}));
                         }
                         else
                         {
@@ -2074,20 +2066,20 @@
 
                     id = name;
 
-                    var typeElement = (XmlElement)airliner.SelectSingleNode("type");
+                    var typeElement = (XmlElement) airliner.SelectSingleNode("type");
                     var body =
                         (AirlinerType.BodyType)
-                            Enum.Parse(typeof(AirlinerType.BodyType), typeElement.Attributes["body"].Value);
+                        Enum.Parse(typeof (AirlinerType.BodyType), typeElement.Attributes["body"].Value);
 
-                    
+
                     var rangeType =
                         (AirlinerType.TypeRange)
-                            Enum.Parse(typeof(AirlinerType.TypeRange), typeElement.Attributes["rangetype"].Value);
+                        Enum.Parse(typeof (AirlinerType.TypeRange), typeElement.Attributes["rangetype"].Value);
                     var engine =
                         (AirlinerType.TypeOfEngine)
-                            Enum.Parse(typeof(AirlinerType.TypeOfEngine), typeElement.Attributes["engine"].Value);
+                        Enum.Parse(typeof (AirlinerType.TypeOfEngine), typeElement.Attributes["engine"].Value);
 
-                    var specsElement = (XmlElement)airliner.SelectSingleNode("specs");
+                    var specsElement = (XmlElement) airliner.SelectSingleNode("specs");
                     double wingspan = XmlConvert.ToDouble(specsElement.Attributes["wingspan"].Value);
                     double length = XmlConvert.ToDouble(specsElement.Attributes["length"].Value);
                     long range = Convert.ToInt64(specsElement.Attributes["range"].Value);
@@ -2102,16 +2094,16 @@
                     if (specsElement.HasAttribute("weight"))
                         weight = Convert.ToDouble(specsElement.Attributes["weight"].Value);
                     else
-                        weight = AirlinerHelpers.GetCalculatedWeight(wingspan,length,fuelcapacity);
-                
-                    var capacityElement = (XmlElement)airliner.SelectSingleNode("capacity");
+                        weight = AirlinerHelpers.GetCalculatedWeight(wingspan, length, fuelcapacity);
 
-                    var producedElement = (XmlElement)airliner.SelectSingleNode("produced");
+                    var capacityElement = (XmlElement) airliner.SelectSingleNode("capacity");
+
+                    var producedElement = (XmlElement) airliner.SelectSingleNode("produced");
                     int fromYear = Convert.ToInt16(producedElement.Attributes["from"].Value);
                     int toYear = Convert.ToInt16(producedElement.Attributes["to"].Value);
                     int prodRate = producedElement.HasAttribute("rate")
-                        ? Convert.ToInt16(producedElement.Attributes["rate"].Value)
-                        : 10;
+                                       ? Convert.ToInt16(producedElement.Attributes["rate"].Value)
+                                       : 10;
 
                     var from = new DateTime(fromYear, 1, 2);
                     var to = new DateTime(toYear, 12, 31);
@@ -2247,13 +2239,11 @@
 
                     //if (airliner.HasAttribute("image") && airliner.Attributes["image"].Value.Length > 1)
                     //type.Image = dir + airliner.Attributes["image"].Value + ".png";
-                    
+
                     if (type != null)
                     {
-                        
                         AirlinerTypes.AddType(type);
                     }
-
                 }
             }
             catch (Exception e)
@@ -2268,14 +2258,14 @@
             string f = "";
             try
             {
-                var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airlines");
+                var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\addons\\airlines");
 
                 foreach (FileInfo file in dir.GetFiles("*.xml"))
                 {
                     f = file.Name;
                     LoadAirline(file.FullName);
                 }
-                GameObject.GetInstance().setHumanAirline(Airlines.GetAllAirlines()[0]);
+                GameObject.GetInstance().SetHumanAirline(Airlines.GetAllAirlines()[0]);
                 GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
 
                 CreateAirlineLogos();
@@ -2283,7 +2273,7 @@
             catch (Exception e)
             {
                 var file = new StreamWriter(
-                    AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log",
+                    AppSettings.GetCommonApplicationDataPath() + "\\theairlinestartup.log",
                     true);
                 file.WriteLine("Airlines failing: " + f);
                 file.WriteLine(e.ToString());
@@ -2292,13 +2282,12 @@
 
                 string s = e.ToString();
             }
-
         }
 
         private static void LoadAirportFacilities()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\airportfacilities.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\airportfacilities.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList facilitiesList = root.SelectNodes("//airportfacility");
@@ -2310,13 +2299,13 @@
                 string shortname = element.Attributes["shortname"].Value;
                 var type =
                     (AirportFacility.FacilityType)
-                        Enum.Parse(typeof(AirportFacility.FacilityType), element.Attributes["type"].Value);
+                    Enum.Parse(typeof (AirportFacility.FacilityType), element.Attributes["type"].Value);
                 int typeLevel = Convert.ToInt16(element.Attributes["typelevel"].Value);
 
                 double price = XmlConvert.ToDouble(element.Attributes["price"].Value);
                 int buildingDays = XmlConvert.ToInt32(element.Attributes["buildingdays"].Value);
 
-                var levelElement = (XmlElement)element.SelectSingleNode("level");
+                var levelElement = (XmlElement) element.SelectSingleNode("level");
                 int service = Convert.ToInt32(levelElement.Attributes["service"].Value);
                 int luxury = Convert.ToInt32(levelElement.Attributes["luxury"].Value);
 
@@ -2333,11 +2322,11 @@
 
                 AirportFacilities.AddFacility(facility);
 
-                var employeesElement = (XmlElement)element.SelectSingleNode("employees");
+                var employeesElement = (XmlElement) element.SelectSingleNode("employees");
 
                 var employeestype =
                     (AirportFacility.EmployeeTypes)
-                        Enum.Parse(typeof(AirportFacility.EmployeeTypes), employeesElement.Attributes["type"].Value);
+                    Enum.Parse(typeof (AirportFacility.EmployeeTypes), employeesElement.Attributes["type"].Value);
                 int numberofemployees = Convert.ToInt16(employeesElement.Attributes["numberofemployees"].Value);
 
                 facility.EmployeeType = employeestype;
@@ -2346,17 +2335,17 @@
                 if (element.SelectSingleNode("translations") != null)
                 {
                     Translator.GetInstance()
-                        .addTranslation(
-                            root.Name,
-                            element.Attributes["uid"].Value,
-                            element.SelectSingleNode("translations"));
+                              .AddTranslation(
+                                  root.Name,
+                                  element.Attributes["uid"].Value,
+                                  element.SelectSingleNode("translations"));
                 }
             }
         }
 
         private static void LoadAirportLogos()
         {
-            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\graphics\\airportlogos");
+            var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\graphics\\airportlogos");
 
             foreach (FileInfo file in dir.GetFiles("*.png"))
             {
@@ -2376,7 +2365,7 @@
 
         private static void LoadAirportMaps()
         {
-            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\graphics\\airportmaps");
+            var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\graphics\\airportmaps");
 
             foreach (FileInfo file in dir.GetFiles("*.png"))
             {
@@ -2418,11 +2407,11 @@
 
                     var type =
                         (AirportProfile.AirportType)
-                            Enum.Parse(typeof(AirportProfile.AirportType), airportElement.Attributes["type"].Value);
+                        Enum.Parse(typeof (AirportProfile.AirportType), airportElement.Attributes["type"].Value);
                     var season =
-                        (Weather.Season)Enum.Parse(typeof(Weather.Season), airportElement.Attributes["season"].Value);
+                        (Weather.Season) Enum.Parse(typeof (Weather.Season), airportElement.Attributes["season"].Value);
 
-                    var periodElement = (XmlElement)airportElement.SelectSingleNode("period");
+                    var periodElement = (XmlElement) airportElement.SelectSingleNode("period");
 
                     Period<DateTime> airportPeriod;
                     if (periodElement != null)
@@ -2441,22 +2430,22 @@
                         airportPeriod = new Period<DateTime>(new DateTime(1959, 12, 31), new DateTime(2199, 12, 31));
                     }
 
-                    var townElement = (XmlElement)airportElement.SelectSingleNode("town");
+                    var townElement = (XmlElement) airportElement.SelectSingleNode("town");
                     string town = townElement.Attributes["town"].Value;
                     string country = townElement.Attributes["country"].Value;
                     TimeSpan gmt = TimeSpan.Parse(townElement.Attributes["GMT"].Value);
                     TimeSpan dst = TimeSpan.Parse(townElement.Attributes["DST"].Value);
 
-                    var latitudeElement = (XmlElement)airportElement.SelectSingleNode("coordinates/latitude");
-                    var longitudeElement = (XmlElement)airportElement.SelectSingleNode("coordinates/longitude");
+                    var latitudeElement = (XmlElement) airportElement.SelectSingleNode("coordinates/latitude");
+                    var longitudeElement = (XmlElement) airportElement.SelectSingleNode("coordinates/longitude");
                     string[] latitude = latitudeElement.Attributes["value"].Value.Split(
-                        new[] { '°', '\'' },
+                        new[] {'°', '\''},
                         StringSplitOptions.RemoveEmptyEntries);
                     string[] longitude =
                         longitude =
-                            longitudeElement.Attributes["value"].Value.Split(
-                                new[] { '°', '\'' },
-                                StringSplitOptions.RemoveEmptyEntries);
+                        longitudeElement.Attributes["value"].Value.Split(
+                            new[] {'°', '\''},
+                            StringSplitOptions.RemoveEmptyEntries);
                     var coords = new int[6];
 
                     //latitude
@@ -2507,7 +2496,7 @@
 
                     //double longitude = Coordinate.Parse(longitudeElement.Attributes["value"].Value);
 
-                    var sizeElement = (XmlElement)airportElement.SelectSingleNode("size");
+                    var sizeElement = (XmlElement) airportElement.SelectSingleNode("size");
 
                     var paxValues = new List<PaxValue>();
 
@@ -2515,10 +2504,10 @@
                     {
                         var size =
                             (GeneralHelpers.Size)
-                                Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
+                            Enum.Parse(typeof (GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
                         int pax = sizeElement.HasAttribute("pax")
-                            ? Convert.ToInt32(sizeElement.Attributes["pax"].Value)
-                            : 0;
+                                      ? Convert.ToInt32(sizeElement.Attributes["pax"].Value)
+                                      : 0;
 
                         paxValues.Add(new PaxValue(airportPeriod.From.Year, airportPeriod.To.Year, size, pax));
                     }
@@ -2532,7 +2521,7 @@
                             int toYear = Convert.ToInt16(yearElement.Attributes["to"].Value);
                             var size =
                                 (GeneralHelpers.Size)
-                                    Enum.Parse(typeof(GeneralHelpers.Size), yearElement.Attributes["value"].Value);
+                                Enum.Parse(typeof (GeneralHelpers.Size), yearElement.Attributes["value"].Value);
                             int pax = Convert.ToInt32(yearElement.Attributes["pax"].Value);
 
                             var paxValue = new PaxValue(fromYear, toYear, size, pax);
@@ -2556,23 +2545,23 @@
                         }
                     }
 
-                    var cargoSize = GeneralHelpers.Size.Very_small;
+                    var cargoSize = GeneralHelpers.Size.VerySmall;
                     double cargovolume = sizeElement.HasAttribute("cargovolume")
-                        ? Convert.ToDouble(
-                            sizeElement.Attributes["cargovolume"].Value,
-                            CultureInfo.GetCultureInfo("en-US").NumberFormat)
-                        : 0;
+                                             ? Convert.ToDouble(
+                                                 sizeElement.Attributes["cargovolume"].Value,
+                                                 CultureInfo.GetCultureInfo("en-US").NumberFormat)
+                                             : 0;
 
                     if (sizeElement.HasAttribute("cargo"))
                     {
                         cargoSize =
                             (GeneralHelpers.Size)
-                                Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["cargo"].Value);
+                            Enum.Parse(typeof (GeneralHelpers.Size), sizeElement.Attributes["cargo"].Value);
                     }
                     else
                     {
                         //calculates the cargo size
-                        var cargoSizes = (GeneralHelpers.Size[])Enum.GetValues(typeof(GeneralHelpers.Size));
+                        var cargoSizes = (GeneralHelpers.Size[]) Enum.GetValues(typeof (GeneralHelpers.Size));
 
                         int i = 0;
 
@@ -2603,7 +2592,6 @@
                     }
                     else
                     {
-
                         eTown = new Town(town, Countries.GetCountry(country));
                     }
 
@@ -2624,7 +2612,7 @@
 
                     var airport = new Airport(profile);
 
-                    var destinationsElement = (XmlElement)airportElement.SelectSingleNode("destinations");
+                    var destinationsElement = (XmlElement) airportElement.SelectSingleNode("destinations");
 
                     if (destinationsElement != null)
                     {
@@ -2654,13 +2642,13 @@
 
                         if (terminalNode.HasAttribute("type"))
                             terminalType =
-                            (Terminal.TerminalType)
-                                Enum.Parse(typeof(Terminal.TerminalType), terminalNode.Attributes["type"].Value);
+                                (Terminal.TerminalType)
+                                Enum.Parse(typeof (Terminal.TerminalType), terminalNode.Attributes["type"].Value);
                         else
                             terminalType = Terminal.TerminalType.Passenger;
 
                         airport.Terminals.AddTerminal(
-                            new Terminal(airport, null, terminalName, terminalGates, new DateTime(1950, 1, 1),terminalType));
+                            new Terminal(airport, null, terminalName, terminalGates, new DateTime(1950, 1, 1), terminalType));
                     }
 
                     XmlNodeList runwaysList = airportElement.SelectNodes("runways/runway");
@@ -2671,15 +2659,15 @@
                         long runwayLength = XmlConvert.ToInt32(runwayNode.Attributes["length"].Value);
                         var surface =
                             (Runway.SurfaceType)
-                                Enum.Parse(typeof(Runway.SurfaceType), runwayNode.Attributes["surface"].Value);
+                            Enum.Parse(typeof (Runway.SurfaceType), runwayNode.Attributes["surface"].Value);
 
-                        Runway.RunwayType runwayType = Runway.RunwayType.Regular;
-                        
+                        var runwayType = Runway.RunwayType.Regular;
+
                         if (runwayNode.HasAttribute("type"))
                         {
                             runwayType =
-                            (Runway.RunwayType)
-                                Enum.Parse(typeof(Runway.RunwayType), runwayNode.Attributes["type"].Value);
+                                (Runway.RunwayType)
+                                Enum.Parse(typeof (Runway.RunwayType), runwayNode.Attributes["type"].Value);
                         }
 
                         airport.Runways.Add(
@@ -2690,18 +2678,17 @@
 
                     foreach (XmlElement expansionNode in expansionsList)
                     {
-
-                        AirportExpansion.ExpansionType expansionType =
-                             (AirportExpansion.ExpansionType)
-                                 Enum.Parse(typeof(AirportExpansion.ExpansionType), expansionNode.Attributes["type"].Value);
+                        var expansionType =
+                            (AirportExpansion.ExpansionType)
+                            Enum.Parse(typeof (AirportExpansion.ExpansionType), expansionNode.Attributes["type"].Value);
 
                         DateTime expansionDate = Convert.ToDateTime(
-                    expansionNode.Attributes["date"].Value,
-                    new CultureInfo("en-US", false));
+                            expansionNode.Attributes["date"].Value,
+                            new CultureInfo("en-US", false));
 
                         Boolean expansionNotify = Convert.ToBoolean(expansionNode.Attributes["notify"].Value);
 
-                        AirportExpansion expansion = new AirportExpansion(expansionType, expansionDate, expansionNotify);
+                        var expansion = new AirportExpansion(expansionType, expansionDate, expansionNotify);
 
                         if (expansionType == AirportExpansion.ExpansionType.Name)
                         {
@@ -2723,14 +2710,14 @@
                             long length = Convert.ToInt64(expansionNode.Attributes["length"].Value);
 
                             var surface =
-                      (Runway.SurfaceType)
-                          Enum.Parse(typeof(Runway.SurfaceType), expansionNode.Attributes["surface"].Value);
+                                (Runway.SurfaceType)
+                                Enum.Parse(typeof (Runway.SurfaceType), expansionNode.Attributes["surface"].Value);
 
                             expansion.Name = expansionName;
                             expansion.Length = length;
                             expansion.Surface = surface;
                         }
-             
+
                         if (expansionType == AirportExpansion.ExpansionType.NewTerminal)
                         {
                             string expansionName = expansionNode.Attributes["name"].Value;
@@ -2741,7 +2728,7 @@
                             if (expansionNode.HasAttribute("terminaltype"))
                                 terminalType =
                                     (Terminal.TerminalType)
-                          Enum.Parse(typeof(Terminal.TerminalType), expansionNode.Attributes["terminaltype"].Value);
+                                    Enum.Parse(typeof (Terminal.TerminalType), expansionNode.Attributes["terminaltype"].Value);
                             else
                                 terminalType = Terminal.TerminalType.Passenger;
 
@@ -2765,9 +2752,7 @@
                             expansion.Name = expansionName;
                             expansion.Gates = gates;
                         }
-                        airport.Profile.AddExpansion(expansion); 
-
-                       
+                        airport.Profile.AddExpansion(expansion);
                     }
 
                     //30.06.14: Added for loading of landing fees
@@ -2809,7 +2794,7 @@
             try
             {
                 string allianceName = root.Attributes["name"].Value;
-                string logo = AppSettings.getDataPath() + "\\graphics\\alliancelogos\\" + root.Attributes["logo"].Value
+                string logo = AppSettings.GetDataPath() + "\\graphics\\alliancelogos\\" + root.Attributes["logo"].Value
                               + ".png";
                 DateTime formationDate = Convert.ToDateTime(
                     root.Attributes["formation"].Value,
@@ -2857,7 +2842,7 @@
 
         private static void LoadAlliances()
         {
-            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\alliances");
+            var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\addons\\alliances");
 
             foreach (FileInfo file in dir.GetFiles("*.xml"))
             {
@@ -2868,7 +2853,7 @@
         private static void LoadCooperations()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\airlinecooperations.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\airlinecooperations.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList cooperationsList = root.SelectNodes("//cooperation");
@@ -2889,7 +2874,7 @@
                     element.Attributes["incomeperpax"].Value,
                     CultureInfo.GetCultureInfo("en-US").NumberFormat);
                 var minsize =
-                    (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), element.Attributes["minsize"].Value);
+                    (GeneralHelpers.Size) Enum.Parse(typeof (GeneralHelpers.Size), element.Attributes["minsize"].Value);
 
                 var type = new CooperationType(
                     section,
@@ -2906,10 +2891,10 @@
                 if (element.SelectSingleNode("translations") != null)
                 {
                     Translator.GetInstance()
-                        .addTranslation(
-                            root.Name,
-                            element.Attributes["uid"].Value,
-                            element.SelectSingleNode("translations"));
+                              .AddTranslation(
+                                  root.Name,
+                                  element.Attributes["uid"].Value,
+                                  element.SelectSingleNode("translations"));
                 }
             }
         }
@@ -2919,13 +2904,13 @@
             var territoryElements = new List<XmlElement>();
 
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\countries.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\countries.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList countriesList = root.SelectNodes("//country");
             foreach (XmlElement element in countriesList)
             {
-                var territoryElement = (XmlElement)element.SelectSingleNode("territoryof");
+                var territoryElement = (XmlElement) element.SelectSingleNode("territoryof");
 
                 if (territoryElement != null)
                 {
@@ -2942,7 +2927,7 @@
 
                     var country = new Country(section, uid, shortname, region, tailformat);
 
-                    country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
+                    country.Flag = AppSettings.GetDataPath() + "\\graphics\\flags\\" + flag + ".png";
                     Countries.AddCountry(country);
 
                     XmlNodeList currenciesList = element.SelectNodes("currency");
@@ -2956,9 +2941,9 @@
                             CultureInfo.GetCultureInfo("en-US").NumberFormat);
                         var currencyPosition =
                             (CountryCurrency.CurrencyPosition)
-                                Enum.Parse(
-                                    typeof(CountryCurrency.CurrencyPosition),
-                                    currencyElement.Attributes["position"].Value);
+                            Enum.Parse(
+                                typeof (CountryCurrency.CurrencyPosition),
+                                currencyElement.Attributes["position"].Value);
 
                         var currencyFromDate = new DateTime(1900, 1, 1);
                         var currencyToDate = new DateTime(2199, 12, 31);
@@ -2973,7 +2958,7 @@
                             currencyToDate = Convert.ToDateTime(currencyElement.Attributes["to"].Value);
                         }
 
-                        country.addCurrency(
+                        country.AddCurrency(
                             new CountryCurrency(
                                 currencyFromDate,
                                 currencyToDate,
@@ -2985,10 +2970,10 @@
                     if (element.SelectSingleNode("translations") != null)
                     {
                         Translator.GetInstance()
-                            .addTranslation(
-                                root.Name,
-                                element.Attributes["uid"].Value,
-                                element.SelectSingleNode("translations"));
+                                  .AddTranslation(
+                                      root.Name,
+                                      element.Attributes["uid"].Value,
+                                      element.SelectSingleNode("translations"));
                     }
                 }
             }
@@ -3002,13 +2987,13 @@
                 Region region = Regions.GetRegion(element.Attributes["region"].Value);
                 string tailformat = element.Attributes["tailformat"].Value;
 
-                var territoryElement = (XmlElement)element.SelectSingleNode("territoryof");
+                var territoryElement = (XmlElement) element.SelectSingleNode("territoryof");
 
                 Country territoryOf = Countries.GetCountry(territoryElement.Attributes["uid"].Value);
 
                 Country country = new TerritoryCountry(section, uid, shortname, region, tailformat, territoryOf);
 
-                country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
+                country.Flag = AppSettings.GetDataPath() + "\\graphics\\flags\\" + flag + ".png";
                 Countries.AddCountry(country);
 
                 try
@@ -3016,10 +3001,10 @@
                     if (element.SelectSingleNode("translations") != null)
                     {
                         Translator.GetInstance()
-                            .addTranslation(
-                                root.Name,
-                                element.Attributes["uid"].Value,
-                                element.SelectSingleNode("translations"));
+                                  .AddTranslation(
+                                      root.Name,
+                                      element.Attributes["uid"].Value,
+                                      element.SelectSingleNode("translations"));
                     }
                 }
                 catch (Exception e)
@@ -3028,15 +3013,17 @@
                 }
             }
         }
+
         private static void LoadEngineTypes()
         {
-            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\engines");
+            var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\addons\\engines");
 
             foreach (FileInfo file in dir.GetFiles("*.xml"))
             {
                 LoadEngineTypes(file.FullName);
             }
         }
+
         private static void LoadEngineTypes(string file)
         {
             var doc = new XmlDocument();
@@ -3053,19 +3040,19 @@
 
                 string name = engineElement.Attributes["model"].Value;
 
-                var specsElement = (XmlElement)engineElement.SelectSingleNode("specs");
+                var specsElement = (XmlElement) engineElement.SelectSingleNode("specs");
                 var engineType =
                     (EngineType.TypeOfEngine)
-                        Enum.Parse(typeof(EngineType.TypeOfEngine), specsElement.Attributes["type"].Value);
+                    Enum.Parse(typeof (EngineType.TypeOfEngine), specsElement.Attributes["type"].Value);
                 var noiseLevel =
                     (EngineType.NoiseLevel)
-                        Enum.Parse(typeof(EngineType.NoiseLevel), specsElement.Attributes["noise"].Value);
+                    Enum.Parse(typeof (EngineType.NoiseLevel), specsElement.Attributes["noise"].Value);
                 double consumption = Convert.ToDouble(
                     specsElement.Attributes["consumptionModifier"].Value,
                     CultureInfo.GetCultureInfo("en-US").NumberFormat);
                 long price = Convert.ToInt64(specsElement.Attributes["price"].Value);
 
-                var perfElement = (XmlElement)engineElement.SelectSingleNode("performance");
+                var perfElement = (XmlElement) engineElement.SelectSingleNode("performance");
                 int speed = Convert.ToInt32(perfElement.Attributes["maxspeed"].Value);
                 int ceiling = Convert.ToInt32(perfElement.Attributes["ceiling"].Value);
                 double runway = Convert.ToDouble(
@@ -3075,11 +3062,11 @@
                     perfElement.Attributes["rangeModifier"].Value,
                     CultureInfo.GetCultureInfo("en-US").NumberFormat);
 
-                var producedElement = (XmlElement)engineElement.SelectSingleNode("produced");
+                var producedElement = (XmlElement) engineElement.SelectSingleNode("produced");
                 int from = Convert.ToInt16(producedElement.Attributes["from"].Value);
                 int to = Convert.ToInt16(producedElement.Attributes["to"].Value);
 
-                var aircraftElement = (XmlElement)engineElement.SelectSingleNode("aircraft");
+                var aircraftElement = (XmlElement) engineElement.SelectSingleNode("aircraft");
                 string modelsElement = aircraftElement.Attributes["models"].Value;
 
                 var engine = new EngineType(
@@ -3116,7 +3103,7 @@
         private static void LoadFlightRestrictions()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\flightrestrictions.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\flightrestrictions.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList restrictionsList = root.SelectNodes("//restriction");
@@ -3124,14 +3111,14 @@
             {
                 var type =
                     (FlightRestriction.RestrictionType)
-                        Enum.Parse(typeof(FlightRestriction.RestrictionType), element.Attributes["type"].Value);
+                    Enum.Parse(typeof (FlightRestriction.RestrictionType), element.Attributes["type"].Value);
 
                 DateTime startDate = Convert.ToDateTime(
                     element.Attributes["start"].Value,
                     new CultureInfo("en-US", false));
                 DateTime endDate = Convert.ToDateTime(element.Attributes["end"].Value, new CultureInfo("en-US", false));
 
-                var countriesElement = (XmlElement)element.SelectSingleNode("countries");
+                var countriesElement = (XmlElement) element.SelectSingleNode("countries");
 
                 BaseUnit from, to;
 
@@ -3175,9 +3162,9 @@
             {
                 var type =
                     (HistoricEventInfluence.InfluenceType)
-                        Enum.Parse(
-                            typeof(HistoricEventInfluence.InfluenceType),
-                            influenceElement.Attributes["type"].Value);
+                    Enum.Parse(
+                        typeof (HistoricEventInfluence.InfluenceType),
+                        influenceElement.Attributes["type"].Value);
                 double value = Convert.ToDouble(
                     influenceElement.Attributes["value"].Value,
                     CultureInfo.GetCultureInfo("en-US").NumberFormat);
@@ -3185,7 +3172,7 @@
                     influenceElement.Attributes["enddate"].Value,
                     new CultureInfo("en-US", false));
 
-                historicEvent.addInfluence(new HistoricEventInfluence(type, value, endDate));
+                historicEvent.AddInfluence(new HistoricEventInfluence(type, value, endDate));
             }
 
             HistoricEvents.AddHistoricEvent(historicEvent);
@@ -3193,7 +3180,7 @@
 
         private static void LoadHistoricEvents()
         {
-            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\historicevents");
+            var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\addons\\historicevents");
 
             foreach (FileInfo file in dir.GetFiles("*.xml"))
             {
@@ -3207,7 +3194,7 @@
             try
             {
                 var doc = new XmlDocument();
-                doc.Load(AppSettings.getDataPath() + "\\holidays.xml");
+                doc.Load(AppSettings.GetDataPath() + "\\holidays.xml");
                 XmlElement root = doc.DocumentElement;
 
                 XmlNodeList holidaysList = root.SelectNodes("//holiday");
@@ -3220,10 +3207,10 @@
                     id = name;
 
                     var type =
-                        (Holiday.HolidayType)Enum.Parse(typeof(Holiday.HolidayType), element.Attributes["type"].Value);
+                        (Holiday.HolidayType) Enum.Parse(typeof (Holiday.HolidayType), element.Attributes["type"].Value);
                     var traveltype =
                         (Holiday.TravelType)
-                            Enum.Parse(typeof(Holiday.TravelType), element.Attributes["holidaytype"].Value);
+                        Enum.Parse(typeof (Holiday.TravelType), element.Attributes["holidaytype"].Value);
 
                     var countries = new List<Country>();
 
@@ -3234,9 +3221,9 @@
                         countries.Add(Countries.GetCountry(eCountry.Attributes["country"].Value));
                     }
 
-                    var dateElement = (XmlElement)element.SelectSingleNode("observationdate");
+                    var dateElement = (XmlElement) element.SelectSingleNode("observationdate");
 
-                    if (type == Holiday.HolidayType.Fixed_Date)
+                    if (type == Holiday.HolidayType.FixedDate)
                     {
                         int month = Convert.ToInt16(dateElement.Attributes["month"].Value);
                         int day = Convert.ToInt16(dateElement.Attributes["day"].Value);
@@ -3251,7 +3238,7 @@
                             Holidays.AddHoliday(holiday);
                         }
                     }
-                    if (type == Holiday.HolidayType.Fixed_Month)
+                    if (type == Holiday.HolidayType.FixedMonth)
                     {
                         int month = Convert.ToInt16(dateElement.Attributes["month"].Value);
 
@@ -3263,7 +3250,7 @@
                             Holidays.AddHoliday(holiday);
                         }
                     }
-                    if (type == Holiday.HolidayType.Fixed_Week)
+                    if (type == Holiday.HolidayType.FixedWeek)
                     {
                         int week = Convert.ToInt16(dateElement.Attributes["week"].Value);
 
@@ -3275,11 +3262,11 @@
                             Holidays.AddHoliday(holiday);
                         }
                     }
-                    if (type == Holiday.HolidayType.Non_Fixed_Date)
+                    if (type == Holiday.HolidayType.NonFixedDate)
                     {
                         int month = Convert.ToInt16(dateElement.Attributes["month"].Value);
                         int week = Convert.ToInt16(dateElement.Attributes["week"].Value);
-                        var day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), dateElement.Attributes["dayofweek"].Value);
+                        var day = (DayOfWeek) Enum.Parse(typeof (DayOfWeek), dateElement.Attributes["dayofweek"].Value);
 
                         foreach (Country country in countries)
                         {
@@ -3295,10 +3282,10 @@
                     if (element.SelectSingleNode("translations") != null)
                     {
                         Translator.GetInstance()
-                            .addTranslation(
-                                root.Name,
-                                element.Attributes["uid"].Value,
-                                element.SelectSingleNode("translations"));
+                                  .AddTranslation(
+                                      root.Name,
+                                      element.Attributes["uid"].Value,
+                                      element.SelectSingleNode("translations"));
                     }
                 }
             }
@@ -3315,7 +3302,7 @@
         public static void LoadInflationYears()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\inflations.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\inflations.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList inflationsList = root.SelectNodes("//inflation");
@@ -3344,7 +3331,7 @@
         {
             try
             {
-                var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airports\\majordestinations");
+                var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\addons\\airports\\majordestinations");
 
                 foreach (FileInfo file in dir.GetFiles("*.xml"))
                 {
@@ -3362,9 +3349,8 @@
 
                 if (majorPax > 0)
                 {
-                    airport.Profile.SetPaxValue(Math.Max(airport.Profile.Pax,majorPax));
+                    airport.Profile.SetPaxValue(Math.Max(airport.Profile.Pax, majorPax));
                 }
-
             }
         }
 
@@ -3393,7 +3379,6 @@
 
                         airport.AddMajorDestination(destination, pax);
                     }
-
                 }
             }
             catch (Exception e)
@@ -3404,7 +3389,7 @@
 
         private static void LoadManufacturerLogos()
         {
-            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\graphics\\manufacturerlogos");
+            var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\graphics\\manufacturerlogos");
 
             foreach (FileInfo file in dir.GetFiles("*.png"))
             {
@@ -3425,7 +3410,7 @@
         private static void LoadManufacturers()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\manufacturers.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\manufacturers.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList manufacturersList = root.SelectNodes("//manufacturer");
@@ -3437,23 +3422,27 @@
                 Country country = Countries.GetCountry(manufacturer.Attributes["country"].Value);
 
                 Boolean isReal = manufacturer.HasAttribute("isreal")
-                    ? Convert.ToBoolean(manufacturer.Attributes["isreal"].Value)
-                    : true;
+                                     ? Convert.ToBoolean(manufacturer.Attributes["isreal"].Value)
+                                     : true;
 
                 Manufacturers.AddManufacturer(new Manufacturer(name, shortname, country, isReal));
             }
         }
+
         /*loads the special contracts*/
+
         public static void LoadSpecialContracts()
         {
-            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\contracts");
+            var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\addons\\contracts");
 
             foreach (FileInfo file in dir.GetFiles("*.xml"))
             {
                 LoadSpecialContract(file.FullName);
             }
         }
+
         /*loads a special contract*/
+
         public static void LoadSpecialContract(string file)
         {
             var doc = new XmlDocument();
@@ -3466,24 +3455,24 @@
                 string name = element.Attributes["name"].Value;
                 string text = element.Attributes["text"].Value;
 
-                XmlElement infoElement = (XmlElement)element.SelectSingleNode("information");
+                var infoElement = (XmlElement) element.SelectSingleNode("information");
 
                 long payment = Convert.ToInt64(infoElement.Attributes["payment"].Value);
                 Boolean asbonus = Convert.ToBoolean(infoElement.Attributes["bonus"].Value);
                 long penalty = Convert.ToInt64(infoElement.Attributes["penalty"].Value);
-                Boolean isfixeddate = !infoElement.HasAttribute("frequency"); 
+                Boolean isfixeddate = !infoElement.HasAttribute("frequency");
 
-                SpecialContractType scType = new SpecialContractType(name,text,payment,asbonus,penalty,isfixeddate);
+                var scType = new SpecialContractType(name, text, payment, asbonus, penalty, isfixeddate);
 
                 if (isfixeddate)
                 {
-                     DateTime fromdate= Convert.ToDateTime(
-                    infoElement.Attributes["from"].Value,
-                    new CultureInfo("en-US", false));
+                    DateTime fromdate = Convert.ToDateTime(
+                        infoElement.Attributes["from"].Value,
+                        new CultureInfo("en-US", false));
 
                     DateTime todate = Convert.ToDateTime(
-                     infoElement.Attributes["to"].Value,
-                     new CultureInfo("en-US", false));
+                        infoElement.Attributes["to"].Value,
+                        new CultureInfo("en-US", false));
 
                     scType.Period = new Period<DateTime>(fromdate, todate);
                 }
@@ -3504,15 +3493,14 @@
                     Boolean bothways = Convert.ToBoolean(routeElement.Attributes["bothways"].Value);
                     long passengers = Convert.ToInt64(routeElement.Attributes["passengers"].Value);
 
-                    Route.RouteType routetype = Route.RouteType.Passenger;
+                    var routetype = Route.RouteType.Passenger;
 
                     if (routeElement.HasAttribute("type"))
                         routetype = (Route.RouteType)
-                        Enum.Parse(typeof(Route.RouteType), routeElement.Attributes["type"].Value);
+                                    Enum.Parse(typeof (Route.RouteType), routeElement.Attributes["type"].Value);
 
-                    SpecialContractRoute scRoute = new SpecialContractRoute(departure, destination, passengers,routetype, bothways);
+                    var scRoute = new SpecialContractRoute(departure, destination, passengers, routetype, bothways);
                     scType.Routes.Add(scRoute);
-
                 }
 
                 XmlNodeList parametersList = element.SelectNodes("parameters/parameter");
@@ -3521,8 +3509,8 @@
                 {
                     if (parameterElement.HasAttribute("departure"))
                     {
-                        ContractRequirement parameter = new ContractRequirement(ContractRequirement.RequirementType.Destination);
-                        
+                        var parameter = new ContractRequirement(ContractRequirement.RequirementType.Destination);
+
                         Airport departure = Airports.GetAirport(parameterElement.Attributes["departure"].Value);
 
                         parameter.Departure = departure;
@@ -3533,17 +3521,15 @@
                         {
                             foreach (SpecialContractRoute scroute in scType.Routes.Where(r => r.Departure == departure))
                             {
-                                ContractRequirement tparameter = new ContractRequirement(ContractRequirement.RequirementType.Destination);
+                                var tparameter = new ContractRequirement(ContractRequirement.RequirementType.Destination);
                                 tparameter.Departure = departure;
                                 tparameter.Destination = scroute.Destination;
 
                                 scType.Requirements.Add(tparameter);
-                        
                             }
                         }
                         else
                         {
-
                             parameter.Destination = Airports.GetAirport(destinationText);
 
                             scType.Requirements.Add(parameter);
@@ -3551,11 +3537,11 @@
                     }
                     else
                     {
-                        ContractRequirement parameter = new ContractRequirement(ContractRequirement.RequirementType.ClassType);
+                        var parameter = new ContractRequirement(ContractRequirement.RequirementType.ClassType);
 
                         var type =
-                    (AirlinerClass.ClassType)
-                        Enum.Parse(typeof(AirlinerClass.ClassType), parameterElement.Attributes["classtype"].Value);
+                            (AirlinerClass.ClassType)
+                            Enum.Parse(typeof (AirlinerClass.ClassType), parameterElement.Attributes["classtype"].Value);
 
                         int seats = Convert.ToInt32(parameterElement.Attributes["minseats"].Value);
 
@@ -3563,28 +3549,27 @@
                         parameter.MinSeats = seats;
 
                         scType.Requirements.Add(parameter);
-
                     }
                 }
 
                 SpecialContractTypes.AddType(scType);
-              
             }
         }
+
         //loads the random events
         private static void LoadRandomEvents()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\addons\\events\\RandomEvents.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\addons\\events\\RandomEvents.xml");
             XmlElement root = doc.DocumentElement;
             XmlNodeList eventsList = root.SelectNodes("//event");
 
             foreach (XmlElement element in eventsList)
             {
                 string section = root.Name;
-                var effects = (XmlElement)element.SelectSingleNode("effects");
-                var demand = (XmlElement)element.SelectSingleNode("demand");
-                var valid = (XmlElement)element.SelectSingleNode("valid");
+                var effects = (XmlElement) element.SelectSingleNode("effects");
+                var demand = (XmlElement) element.SelectSingleNode("demand");
+                var valid = (XmlElement) element.SelectSingleNode("valid");
                 string uid = element.Attributes["uid"].Value;
                 var eventType = new RandomEvent.EventType();
                 string type = element.Attributes["type"].Value;
@@ -3629,13 +3614,13 @@
 
                 string name = element.Attributes["name"].Value;
                 string message = element.Attributes["text"].Value;
-                int frequency = int.Parse(element.Attributes["frequency"].Value) / 3;
+                int frequency = int.Parse(element.Attributes["frequency"].Value)/3;
                 DateTime start = valid.HasAttribute("from")
-                    ? DateTime.Parse(valid.Attributes["from"].Value)
-                    : DateTime.Now.AddYears(100);
+                                     ? DateTime.Parse(valid.Attributes["from"].Value)
+                                     : DateTime.Now.AddYears(100);
                 DateTime end = valid.HasAttribute("to")
-                    ? DateTime.Parse(valid.Attributes["to"].Value)
-                    : DateTime.Now.AddYears(100);
+                                   ? DateTime.Parse(valid.Attributes["to"].Value)
+                                   : DateTime.Now.AddYears(100);
 
                 Boolean critical = Convert.ToBoolean(element.Attributes["important"].Value);
                 // if (int.Parse(effects.Attributes["important"].Value) == 1) critical = true; else critical = false;<
@@ -3643,24 +3628,24 @@
                 int effectLength = int.Parse(effects.Attributes["duration"].Value);
 
                 int chEffect = effects.HasAttribute("customerHappiness")
-                    ? int.Parse(effects.Attributes["customerHappiness"].Value)
-                    : 0;
+                                   ? int.Parse(effects.Attributes["customerHappiness"].Value)
+                                   : 0;
                 int ehEffect = effects.HasAttribute("employeeHappiness")
-                    ? int.Parse(effects.Attributes["employeeHappiness"].Value)
-                    : 0;
+                                   ? int.Parse(effects.Attributes["employeeHappiness"].Value)
+                                   : 0;
                 int aSecurityEffect = effects.HasAttribute("airlineSecurity")
-                    ? int.Parse(effects.Attributes["airlineSecurity"].Value)
-                    : 0;
+                                          ? int.Parse(effects.Attributes["airlineSecurity"].Value)
+                                          : 0;
                 int aSafetyEffect = effects.HasAttribute("airlineSafety")
-                    ? int.Parse(effects.Attributes["airlineSafety"].Value)
-                    : 0;
+                                        ? int.Parse(effects.Attributes["airlineSafety"].Value)
+                                        : 0;
                 int damageEffect = effects.HasAttribute("aircraftDamage")
-                    ? int.Parse(effects.Attributes["aircraftDamage"].Value)
-                    : 0;
+                                       ? int.Parse(effects.Attributes["aircraftDamage"].Value)
+                                       : 0;
                 int financial = effects.HasAttribute("financial") ? int.Parse(effects.Attributes["financial"].Value) : 0;
                 double paxDemand = demand.HasAttribute("passenger")
-                    ? double.Parse(demand.Attributes["passenger"].Value)
-                    : 0;
+                                       ? double.Parse(demand.Attributes["passenger"].Value)
+                                       : 0;
                 double cargoDemand = demand.HasAttribute("cargo") ? double.Parse(demand.Attributes["cargo"].Value) : 0;
 
                 var rEvent = new RandomEvent(
@@ -3690,7 +3675,7 @@
         private static void LoadRegions()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\regions.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\regions.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList regionsList = root.SelectNodes("//region");
@@ -3700,17 +3685,17 @@
                 string uid = element.Attributes["uid"].Value;
                 double fuelindex = Convert.ToDouble(
                     element.Attributes["fuel"].Value,
-                        CultureInfo.GetCultureInfo("en-US").NumberFormat);
+                    CultureInfo.GetCultureInfo("en-US").NumberFormat);
 
-                Regions.AddRegion(new Region(section, uid,fuelindex));
+                Regions.AddRegion(new Region(section, uid, fuelindex));
 
                 if (element.SelectSingleNode("translations") != null)
                 {
                     Translator.GetInstance()
-                        .addTranslation(
-                            root.Name,
-                            element.Attributes["uid"].Value,
-                            element.SelectSingleNode("translations"));
+                              .AddTranslation(
+                                  root.Name,
+                                  element.Attributes["uid"].Value,
+                                  element.SelectSingleNode("translations"));
                 }
             }
         }
@@ -3729,11 +3714,11 @@
             {
                 var type =
                     (AirlinerClass.ClassType)
-                        Enum.Parse(typeof(AirlinerClass.ClassType), classElement.Attributes["type"].Value);
+                    Enum.Parse(typeof (AirlinerClass.ClassType), classElement.Attributes["type"].Value);
 
                 var classConfiguration = new RouteClassConfiguration(type);
 
-                foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof (RouteFacility.FacilityType)))
                 {
                     string value = classElement.Attributes[facilityType.ToString()].Value;
                     RouteFacility facility = RouteFacilities.GetFacility(value);
@@ -3763,7 +3748,7 @@
                 string description = element.SelectSingleNode("intro").Attributes["text"].Value;
                 string successText = element.SelectSingleNode("success").Attributes["text"].Value;
 
-                var startElement = (XmlElement)element.SelectSingleNode("start");
+                var startElement = (XmlElement) element.SelectSingleNode("start");
 
                 Airline startAirline = Airlines.GetAirline(startElement.Attributes["airline"].Value);
                 Airport homebase = Airports.GetAirport(startElement.Attributes["homeBase"].Value);
@@ -3772,7 +3757,7 @@
                 {
                     startAirline.License =
                         (Airline.AirlineLicense)
-                            Enum.Parse(typeof(Airline.AirlineLicense), startElement.Attributes["license"].Value);
+                        Enum.Parse(typeof (Airline.AirlineLicense), startElement.Attributes["license"].Value);
                 }
 
                 var scenario = new Scenario(
@@ -3796,7 +3781,7 @@
                         AirlinerTypes.GetType(humanRouteElement.Attributes["airliner"].Value);
                     int routeQuantity = Convert.ToInt32(humanRouteElement.Attributes["quantity"].Value);
 
-                    scenario.addRoute(
+                    scenario.AddRoute(
                         new ScenarioAirlineRoute(routeDestination1, routeDestination2, routeAirlinerType, routeQuantity));
                 }
 
@@ -3804,7 +3789,7 @@
 
                 foreach (XmlElement destinationElement in destinationsList)
                 {
-                    scenario.addDestination(Airports.GetAirport(destinationElement.Attributes["airport"].Value));
+                    scenario.AddDestination(Airports.GetAirport(destinationElement.Attributes["airport"].Value));
                 }
 
                 XmlNodeList fleetList = startElement.SelectNodes("fleet/aircraft");
@@ -3815,7 +3800,7 @@
 
                     int fleetQuantity = Convert.ToInt32(fleetElement.Attributes["quantity"].Value);
 
-                    scenario.addFleet(fleetAirlinerType, fleetQuantity);
+                    scenario.AddFleet(fleetAirlinerType, fleetQuantity);
                 }
 
                 XmlNodeList aiNodeList = startElement.SelectNodes("AI/airline");
@@ -3838,7 +3823,7 @@
                             AirlinerTypes.GetType(aiRouteElement.Attributes["airliner"].Value);
                         int routeQuantity = Convert.ToInt32(aiRouteElement.Attributes["quantity"].Value);
 
-                        scenarioAirline.addRoute(
+                        scenarioAirline.AddRoute(
                             new ScenarioAirlineRoute(
                                 aiRouteDestination1,
                                 aiRouteDestination2,
@@ -3846,7 +3831,7 @@
                                 routeQuantity));
                     }
 
-                    scenario.addOpponentAirline(scenarioAirline);
+                    scenario.AddOpponentAirline(scenarioAirline);
                 }
 
                 XmlNodeList modifiersList = element.SelectNodes("modifiers/paxDemand");
@@ -3873,7 +3858,7 @@
                     var enddate =
                         new DateTime(scenario.StartYear + Convert.ToInt32(paxElement.Attributes["length"].Value), 1, 1);
 
-                    scenario.addPassengerDemand(new ScenarioPassengerDemand(factor, enddate, country, airport));
+                    scenario.AddPassengerDemand(new ScenarioPassengerDemand(factor, enddate, country, airport));
                 }
 
                 XmlNodeList parametersList = element.SelectNodes("parameters/failure");
@@ -3883,31 +3868,31 @@
                     string id = parameterElement.Attributes["id"].Value;
                     var failureType =
                         (ScenarioFailure.FailureType)
-                            Enum.Parse(typeof(ScenarioFailure.FailureType), parameterElement.Attributes["type"].Value);
+                        Enum.Parse(typeof (ScenarioFailure.FailureType), parameterElement.Attributes["type"].Value);
                     object failureValue = parameterElement.Attributes["value"].Value;
                     double checkMonths = parameterElement.HasAttribute("at")
-                        ? 12
-                          * Convert.ToDouble(
-                              parameterElement.Attributes["at"].Value,
-                              CultureInfo.GetCultureInfo("en-US").NumberFormat)
-                        : 1;
+                                             ? 12
+                                               *Convert.ToDouble(
+                                                   parameterElement.Attributes["at"].Value,
+                                                   CultureInfo.GetCultureInfo("en-US").NumberFormat)
+                                             : 1;
                     string failureText = parameterElement.Attributes["text"].Value;
                     double monthsOfFailure = parameterElement.HasAttribute("for")
-                        ? 12
-                          * Convert.ToDouble(
-                              parameterElement.Attributes["for"].Value,
-                              CultureInfo.GetCultureInfo("en-US").NumberFormat)
-                        : 1;
+                                                 ? 12
+                                                   *Convert.ToDouble(
+                                                       parameterElement.Attributes["for"].Value,
+                                                       CultureInfo.GetCultureInfo("en-US").NumberFormat)
+                                                 : 1;
 
                     var failure = new ScenarioFailure(
                         id,
                         failureType,
-                        (int)checkMonths,
+                        (int) checkMonths,
                         failureValue,
                         failureText,
-                        (int)monthsOfFailure);
+                        (int) monthsOfFailure);
 
-                    scenario.addScenarioFailure(failure);
+                    scenario.AddScenarioFailure(failure);
                 }
             }
             catch (Exception e)
@@ -3918,7 +3903,7 @@
 
         private static void LoadScenarios()
         {
-            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\scenarios");
+            var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\addons\\scenarios");
 
             foreach (FileInfo file in dir.GetFiles("*.xml"))
             {
@@ -3929,7 +3914,7 @@
         private static void LoadStandardConfigurations()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\standardconfigurations.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\standardconfigurations.xml");
             XmlElement root = doc.DocumentElement;
 
             try
@@ -3965,7 +3950,7 @@
         private static void LoadStates()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\states.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\states.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList statesList = root.SelectNodes("//state");
@@ -3982,7 +3967,7 @@
                 }
 
                 var state = new State(country, name, shortname, overseas);
-                state.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\states\\"
+                state.Flag = AppSettings.GetDataPath() + "\\graphics\\flags\\states\\"
                              + element.Attributes["flag"].Value + ".png";
 
                 States.AddState(state);
@@ -4003,7 +3988,7 @@
         private static void LoadTemporaryCountries()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\temporary countries.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\temporary countries.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList countriesList = root.SelectNodes("//country");
@@ -4017,9 +4002,9 @@
                 string tailformat = element.Attributes["tailformat"].Value;
                 var tempType =
                     (TemporaryCountry.TemporaryType)
-                        Enum.Parse(typeof(TemporaryCountry.TemporaryType), element.Attributes["type"].Value);
+                    Enum.Parse(typeof (TemporaryCountry.TemporaryType), element.Attributes["type"].Value);
 
-                var periodElement = (XmlElement)element.SelectSingleNode("period");
+                var periodElement = (XmlElement) element.SelectSingleNode("period");
                 DateTime startDate = Convert.ToDateTime(
                     periodElement.Attributes["start"].Value,
                     new CultureInfo("en-US", false));
@@ -4032,13 +4017,13 @@
                 if (element.SelectSingleNode("translations") != null)
                 {
                     Translator.GetInstance()
-                        .addTranslation(
-                            root.Name,
-                            element.Attributes["uid"].Value,
-                            element.SelectSingleNode("translations"));
+                              .AddTranslation(
+                                  root.Name,
+                                  element.Attributes["uid"].Value,
+                                  element.SelectSingleNode("translations"));
                 }
 
-                var historyElement = (XmlElement)element.SelectSingleNode("history");
+                var historyElement = (XmlElement) element.SelectSingleNode("history");
 
                 var tCountry = new TemporaryCountry(tempType, country, startDate, endDate);
 
@@ -4068,7 +4053,7 @@
                     }
                 }
 
-                tCountry.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
+                tCountry.Flag = AppSettings.GetDataPath() + "\\graphics\\flags\\" + flag + ".png";
 
                 TemporaryCountries.AddCountry(tCountry);
             }
@@ -4080,7 +4065,7 @@
         private static void LoadUnions()
         {
             var doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\unions.xml");
+            doc.Load(AppSettings.GetDataPath() + "\\unions.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList unionsList = root.SelectNodes("//union");
@@ -4093,7 +4078,7 @@
                     string shortname = element.Attributes["shortname"].Value;
                     string flag = element.Attributes["flag"].Value;
 
-                    var periodElement = (XmlElement)element.SelectSingleNode("period");
+                    var periodElement = (XmlElement) element.SelectSingleNode("period");
                     DateTime creationDate = Convert.ToDateTime(
                         periodElement.Attributes["creation"].Value,
                         new CultureInfo("en-US", false));
@@ -4119,19 +4104,19 @@
                             uid = "";
                         }
 
-                        union.addMember(new UnionMember(country, fromDate, toDate));
+                        union.AddMember(new UnionMember(country, fromDate, toDate));
                     }
 
-                    union.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
+                    union.Flag = AppSettings.GetDataPath() + "\\graphics\\flags\\" + flag + ".png";
                     Unions.AddUnion(union);
 
                     if (element.SelectSingleNode("translations") != null)
                     {
                         Translator.GetInstance()
-                            .addTranslation(
-                                root.Name,
-                                element.Attributes["uid"].Value,
-                                element.SelectSingleNode("translations"));
+                                  .AddTranslation(
+                                      root.Name,
+                                      element.Attributes["uid"].Value,
+                                      element.SelectSingleNode("translations"));
                     }
                 }
                 catch (Exception)
@@ -4149,7 +4134,7 @@
 
         private static void LoadWeatherAverages()
         {
-            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\weather");
+            var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\addons\\weather");
 
             foreach (FileInfo file in dir.GetFiles("*.xml"))
             {
@@ -4195,7 +4180,7 @@
                 int month = Convert.ToInt16(monthElement.Attributes["month"].Value);
                 int precipitation = Convert.ToInt16(monthElement.Attributes["precipitation"].Value);
 
-                var tempElement = (XmlElement)monthElement.SelectSingleNode("temp");
+                var tempElement = (XmlElement) monthElement.SelectSingleNode("temp");
                 double minTemp = Convert.ToDouble(
                     tempElement.Attributes["min"].Value,
                     CultureInfo.GetCultureInfo("en-US").NumberFormat);
@@ -4203,11 +4188,11 @@
                     tempElement.Attributes["max"].Value,
                     CultureInfo.GetCultureInfo("en-US").NumberFormat);
 
-                var windElement = (XmlElement)monthElement.SelectSingleNode("wind");
+                var windElement = (XmlElement) monthElement.SelectSingleNode("wind");
                 var minWind =
-                    (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed), windElement.Attributes["min"].Value);
+                    (Weather.eWindSpeed) Enum.Parse(typeof (Weather.eWindSpeed), windElement.Attributes["min"].Value);
                 var maxWind =
-                    (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed), windElement.Attributes["max"].Value);
+                    (Weather.eWindSpeed) Enum.Parse(typeof (Weather.eWindSpeed), windElement.Attributes["max"].Value);
 
                 if (country != null)
                 {
@@ -4231,16 +4216,16 @@
 
         private static void ReadSettingsFile()
         {
-            if (File.Exists(AppSettings.getCommonApplicationDataPath() + "\\game.settings"))
+            if (File.Exists(AppSettings.GetCommonApplicationDataPath() + "\\game.settings"))
             {
-                var file = new StreamReader(AppSettings.getCommonApplicationDataPath() + "\\game.settings");
+                var file = new StreamReader(AppSettings.GetCommonApplicationDataPath() + "\\game.settings");
 
                 string language = file.ReadLine();
                 string screenMode = file.ReadLine();
 
-                AppSettings.GetInstance().setLanguage(Languages.GetLanguage(language));
+                AppSettings.GetInstance().SetLanguage(Languages.GetLanguage(language));
                 Settings.GetInstance().Mode =
-                    (Settings.ScreenMode)Enum.Parse(typeof(Settings.ScreenMode), screenMode, true);
+                    (Settings.ScreenMode) Enum.Parse(typeof (Settings.ScreenMode), screenMode, true);
             }
         }
 
@@ -4269,9 +4254,9 @@
                 airlines =
                     airlines.OrderByDescending(
                         a =>
-                            a.Profile.PreferedAirport == null
-                                ? Double.MaxValue
-                                : MathHelpers.GetDistance(a.Profile.PreferedAirport, humanAirport)).ToList();
+                        a.Profile.PreferedAirport == null
+                            ? Double.MaxValue
+                            : MathHelpers.GetDistance(a.Profile.PreferedAirport, humanAirport)).ToList();
             }
             else
             {
@@ -4308,10 +4293,10 @@
             IEnumerable<string> aircraftFamilies =
                 AirlinerTypes.GetTypes(
                     t =>
-                        t.Produced.From.Year < GameObject.GetInstance().GameTime.Year
-                        && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30))
-                    .Select(a => a.AirlinerFamily)
-                    .Distinct();
+                    t.Produced.From.Year < GameObject.GetInstance().GameTime.Year
+                    && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30))
+                             .Select(a => a.AirlinerFamily)
+                             .Distinct();
 
             foreach (string family in aircraftFamilies)
             {
@@ -4331,57 +4316,55 @@
             Parallel.ForEach(
                 Airports.GetAllAirports(),
                 airport =>
-                {
-                    foreach (Airline airline in Airlines.GetAllAirlines())
                     {
-                        foreach (
-                            AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
+                        foreach (Airline airline in Airlines.GetAllAirlines())
                         {
-                            AirportFacility noneFacility =
-                                AirportFacilities.GetFacilities(type)
-                                    .Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
+                            foreach (
+                                AirportFacility.FacilityType type in Enum.GetValues(typeof (AirportFacility.FacilityType)))
+                            {
+                                AirportFacility noneFacility =
+                                    AirportFacilities.GetFacilities(type)
+                                                     .Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
 
-                            airport.AddAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
+                                airport.AddAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
+                            }
                         }
-                    }
-                    if (airport.Profile.Size == GeneralHelpers.Size.Largest
-                        || airport.Profile.Size == GeneralHelpers.Size.Very_large
-                        || airport.Profile.Size == GeneralHelpers.Size.Large)
-                    {
-
-                        if (!airport.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad))
+                        if (airport.Profile.Size == GeneralHelpers.Size.Largest
+                            || airport.Profile.Size == GeneralHelpers.Size.VeryLarge
+                            || airport.Profile.Size == GeneralHelpers.Size.Large)
                         {
-                            Runway helipad = new Runway("H1", rnd.Next(17, 25), Runway.RunwayType.Helipad, Runway.SurfaceType.Concrete, GameObject.GetInstance().GameTime, true);
+                            if (!airport.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad))
+                            {
+                                var helipad = new Runway("H1", rnd.Next(17, 25), Runway.RunwayType.Helipad, Runway.SurfaceType.Concrete, GameObject.GetInstance().GameTime, true);
 
-                            airport.Runways.Add(helipad);
+                                airport.Runways.Add(helipad);
+                            }
                         }
-                    }
-                    if (airport.Profile.Cargo == GeneralHelpers.Size.Very_large
-                        || airport.Profile.Cargo == GeneralHelpers.Size.Largest
-                        || airport.Profile.Size == GeneralHelpers.Size.Largest
-                        || airport.Profile.Size == GeneralHelpers.Size.Very_large)
-                    {
-                        AirportFacility cargoTerminal =
-                            AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo)
-                                .Find(f => f.TypeLevel > 0);
-
-                        airport.AddAirportFacility(null, cargoTerminal, GameObject.GetInstance().GameTime);
-
-                        if (!airport.Terminals.AirportTerminals.Exists(t=>t.Type == Terminal.TerminalType.Cargo))
+                        if (airport.Profile.Cargo == GeneralHelpers.Size.VeryLarge
+                            || airport.Profile.Cargo == GeneralHelpers.Size.Largest
+                            || airport.Profile.Size == GeneralHelpers.Size.Largest
+                            || airport.Profile.Size == GeneralHelpers.Size.VeryLarge)
                         {
-                            airport.Terminals.AddTerminal(new Terminal(airport,"Cargo Terminal",((int)airport.Profile.Cargo) + 5,GameObject.GetInstance().GameTime,Terminal.TerminalType.Cargo));
+                            AirportFacility cargoTerminal =
+                                AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo)
+                                                 .Find(f => f.TypeLevel > 0);
+
+                            airport.AddAirportFacility(null, cargoTerminal, GameObject.GetInstance().GameTime);
+
+                            if (!airport.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo))
+                            {
+                                airport.Terminals.AddTerminal(new Terminal(airport, "Cargo Terminal", ((int) airport.Profile.Cargo) + 5, GameObject.GetInstance().GameTime, Terminal.TerminalType.Cargo));
+                            }
                         }
 
-                    }
+                        AirportHelpers.CreateAirportWeather(airport);
 
-                    AirportHelpers.CreateAirportWeather(airport);
+                        //creates the already existing expansions
+                        IEnumerable<AirportExpansion> expansions = airport.Profile.Expansions.Where(e => GameObject.GetInstance().GameTime > e.Date);
 
-                    //creates the already existing expansions
-                    var expansions = airport.Profile.Expansions.Where(e => GameObject.GetInstance().GameTime > e.Date);
-
-                    foreach (AirportExpansion expansion in expansions)
-                        AirportHelpers.SetAirportExpansion(airport, expansion, true);
-                });
+                        foreach (AirportExpansion expansion in expansions)
+                            AirportHelpers.SetAirportExpansion(airport, expansion, true);
+                    });
 
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
@@ -4390,8 +4373,7 @@
                 if (airline.IsHuman)
                 {
                     GameObject.GetInstance().HumanMoney = airline.Money;
-
-                 }
+                }
 
                 airline.StartMoney = airline.Money;
                 airline.Fees = new AirlineFees();
@@ -4438,6 +4420,14 @@
         }
 
         #endregion
+
+        /*! private static variable rnd.
+         * holds a random number.
+         */
+
+        /*! private static method ClearLists().
+         * Resets game´s environment.
+         */
 
         //sets up the airline mergers
     }

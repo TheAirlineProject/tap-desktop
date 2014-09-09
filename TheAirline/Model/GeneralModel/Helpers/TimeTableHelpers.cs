@@ -1,20 +1,16 @@
-﻿namespace TheAirline.Model.GeneralModel.Helpers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.AirportModel;
-    using TheAirline.Model.GeneralModel.WeatherModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
+namespace TheAirline.Model.GeneralModel.Helpers
+{
     //the helpers class for time tables
     public class TimeTableHelpers
     {
-        //checks if a time table is valid
-
-        //checks if an entry is in occupied slot
-
         #region Public Methods and Operators
 
         public static Boolean IsRouteEntryInOccupied(RouteTimeTableEntry entry, FleetAirliner airliner)
@@ -22,7 +18,7 @@
             List<TimeSpan> occupiedSlots1 = AirportHelpers.GetOccupiedSlotTimes(
                 entry.DepartureAirport,
                 airliner.Airliner.Airline,
-                GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime),entry.TimeTable.Route.IsCargoRoute ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger);
+                GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime), entry.TimeTable.Route.IsCargoRoute ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger);
             List<TimeSpan> occupiedSlots2 = AirportHelpers.GetOccupiedSlotTimes(
                 entry.Destination.Airport,
                 airliner.Airliner.Airline,
@@ -32,7 +28,7 @@
             var gateTimeAfter = new TimeSpan(0, 15, 0);
 
             var entryTakeoffTime = new TimeSpan(
-                (int)entry.Day,
+                (int) entry.Day,
                 entry.Time.Hours,
                 entry.Time.Minutes,
                 entry.Time.Seconds);
@@ -54,7 +50,7 @@
             var tTakeoffTime = new TimeSpan(
                 entryStartTakeoffTime.Days,
                 entryStartTakeoffTime.Hours,
-                (entryStartTakeoffTime.Minutes / 15) * 15,
+                (entryStartTakeoffTime.Minutes/15)*15,
                 0);
 
             while (tTakeoffTime < entryEndTakeoffTime)
@@ -73,7 +69,7 @@
             var tLandingTime = new TimeSpan(
                 entryStartLandingTime.Days,
                 entryStartLandingTime.Hours,
-                (entryStartLandingTime.Minutes / 15) * 15,
+                (entryStartLandingTime.Minutes/15)*15,
                 0);
 
             while (tLandingTime < entryEndLandingTime)
@@ -111,6 +107,7 @@
             }
             return true;
         }
+
         public static Boolean IsTimeTableValid(
             FleetAirliner airliner,
             List<RouteTimeTableEntry> entries,
@@ -128,6 +125,7 @@
             }
             return true;
         }
+
         public static Boolean IsTimeTableValid(
             RouteTimeTable timeTable,
             FleetAirliner airliner,
@@ -145,8 +143,6 @@
         }
 
         #endregion
-
-        //checks if an entry is valid
 
         #region Methods
 
@@ -174,7 +170,7 @@
                 }
                 day++;
 
-                if (day == (DayOfWeek)7)
+                if (day == (DayOfWeek) 7)
                 {
                     day = 0;
                 }
@@ -190,7 +186,7 @@
             FleetAirliner airliner,
             List<RouteTimeTableEntry> entries)
         {
-            var tsEntry = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
+            var tsEntry = new TimeSpan((int) entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
             DayOfWeek eDay = entry.Day;
 
             int counter = 0;
@@ -203,7 +199,7 @@
 
                 foreach (RouteTimeTableEntry dEntry in tEntries)
                 {
-                    var ts = new TimeSpan((int)eDay, dEntry.Time.Hours, dEntry.Time.Minutes, dEntry.Time.Seconds);
+                    var ts = new TimeSpan((int) eDay, dEntry.Time.Hours, dEntry.Time.Minutes, dEntry.Time.Seconds);
                     if (ts < tsEntry)
                     {
                         return dEntry;
@@ -213,9 +209,9 @@
 
                 eDay--;
 
-                if (((int)eDay) == -1)
+                if (((int) eDay) == -1)
                 {
-                    eDay = (DayOfWeek)6;
+                    eDay = (DayOfWeek) 6;
                     tsEntry = new TimeSpan(7, tsEntry.Hours, tsEntry.Minutes, tsEntry.Seconds);
                 }
             }
@@ -231,9 +227,9 @@
         {
             TimeSpan flightTime =
                 entry.TimeTable.Route.getFlightTime(airliner.Airliner.Type)
-                    .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
+                     .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
 
-            var startTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
+            var startTime = new TimeSpan((int) entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
 
             TimeSpan endTime = startTime.Add(flightTime);
             if (endTime.Days == 7)
@@ -265,11 +261,11 @@
 
             foreach (RouteTimeTableEntry e in airlinerEntries)
             {
-                var eStartTime = new TimeSpan((int)e.Day, e.Time.Hours, e.Time.Minutes, e.Time.Seconds);
+                var eStartTime = new TimeSpan((int) e.Day, e.Time.Hours, e.Time.Minutes, e.Time.Seconds);
 
                 TimeSpan eFlightTime =
                     e.TimeTable.Route.getFlightTime(airliner.Airliner.Type)
-                        .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
+                     .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
 
                 TimeSpan eEndTime = eStartTime.Add(eFlightTime);
 
@@ -291,7 +287,7 @@
                     }
                 }
             }
-            double minutesPerWeek = 7 * 24 * 60;
+            double minutesPerWeek = 7*24*60;
 
             RouteTimeTableEntry nextEntry = GetNextEntry(entry, airliner, airlinerEntries);
 
@@ -301,39 +297,39 @@
             {
                 TimeSpan flightTimeNext =
                     MathHelpers.GetFlightTime(
-                        entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),
-                        nextEntry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(),
+                        entry.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                        nextEntry.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate(),
                         airliner.Airliner.Type.CruisingSpeed)
-                        .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
+                               .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
                 TimeSpan flightTimePrevious =
                     MathHelpers.GetFlightTime(
-                        entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(),
-                        previousEntry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),
+                        entry.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                        previousEntry.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
                         airliner.Airliner.Type.CruisingSpeed)
-                        .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
+                               .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
 
                 var prevDate = new TimeSpan(
-                    (int)previousEntry.Day,
+                    (int) previousEntry.Day,
                     previousEntry.Time.Hours,
                     previousEntry.Time.Minutes,
                     previousEntry.Time.Seconds);
                 var nextDate = new TimeSpan(
-                    (int)nextEntry.Day,
+                    (int) nextEntry.Day,
                     nextEntry.Time.Hours,
                     nextEntry.Time.Minutes,
                     nextEntry.Time.Seconds);
-                var currentDate = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
+                var currentDate = new TimeSpan((int) entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
 
                 double timeToNext = currentDate.Subtract(nextDate).TotalMinutes > 0
-                    ? minutesPerWeek - currentDate.Subtract(nextDate).TotalMinutes
-                    : Math.Abs(currentDate.Subtract(nextDate).TotalMinutes);
+                                        ? minutesPerWeek - currentDate.Subtract(nextDate).TotalMinutes
+                                        : Math.Abs(currentDate.Subtract(nextDate).TotalMinutes);
                 double timeFromPrev = prevDate.Subtract(currentDate).TotalMinutes > 0
-                    ? minutesPerWeek - prevDate.Subtract(currentDate).TotalMinutes
-                    : Math.Abs(prevDate.Subtract(currentDate).TotalMinutes);
+                                          ? minutesPerWeek - prevDate.Subtract(currentDate).TotalMinutes
+                                          : Math.Abs(prevDate.Subtract(currentDate).TotalMinutes);
 
                 if (timeFromPrev
                     > previousEntry.TimeTable.Route.getFlightTime(airliner.Airliner.Type).TotalMinutes
-                    + flightTimePrevious.TotalMinutes
+                      + flightTimePrevious.TotalMinutes
                     && timeToNext
                     > entry.TimeTable.Route.getFlightTime(airliner.Airliner.Type).TotalMinutes
                     + flightTimeNext.TotalMinutes)
@@ -346,5 +342,11 @@
         }
 
         #endregion
+
+        //checks if a time table is valid
+
+        //checks if an entry is in occupied slot
+
+        //checks if an entry is valid
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
+﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
     using System.Linq;
     using System.Windows;
@@ -148,7 +150,7 @@
                         AirlineHelpers.AddAirlineInvoice(
                             this.Airline.Airline,
                             GameObject.GetInstance().GameTime,
-                            Invoice.InvoiceType.Airline_Expenses,
+                            Invoice.InvoiceType.AirlineExpenses,
                             -substitutePrice);
                         AirlineHelpers.SendForTraining(
                             GameObject.GetInstance().HumanAirline,

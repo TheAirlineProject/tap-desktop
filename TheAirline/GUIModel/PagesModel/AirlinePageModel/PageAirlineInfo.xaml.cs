@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
+﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
     using System;
     using System.Collections.Generic;
@@ -296,13 +298,13 @@
             if (transferType == "From")
             {
                 airline.Money -= amount;
-                GameObject.GetInstance().addHumanMoney(amount);
+                GameObject.GetInstance().AddHumanMoney(amount);
                 this.Airline.setMaxTransferFunds(airline);
             }
             else
             {
                 airline.Money += amount;
-                GameObject.GetInstance().addHumanMoney(-amount);
+                GameObject.GetInstance().AddHumanMoney(-amount);
                 this.Airline.setMaxTransferFunds(this.Airline.Airline);
             }
         }
@@ -329,7 +331,7 @@
                 AirlineHelpers.AddAirlineInvoice(
                     this.Airline.Airline,
                     GameObject.GetInstance().GameTime,
-                    Invoice.InvoiceType.Airline_Expenses,
+                    Invoice.InvoiceType.AirlineExpenses,
                     -upgradeLicensPrice);
             }
         }
@@ -357,7 +359,7 @@
         {
             var airline = (Airline)((Image)sender).Tag;
 
-            GameObject.GetInstance().setHumanAirline(airline);
+            GameObject.GetInstance().SetHumanAirline(airline);
             PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
         }
 

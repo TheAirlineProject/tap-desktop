@@ -32,7 +32,7 @@
 
             this.cbHeadquarter.ItemsSource = GameObject.GetInstance().HumanAirline.Airports;
 
-            this.logoPath = AppSettings.getDataPath() + "\\graphics\\alliancelogos\\default.png";
+            this.logoPath = AppSettings.GetDataPath() + "\\graphics\\alliancelogos\\default.png";
             this.imgLogo.Source = new BitmapImage(new Uri(this.logoPath, UriKind.RelativeOrAbsolute));
 
             this.Loaded += this.PageCreateAlliance_Loaded;
@@ -85,7 +85,7 @@
 
             dlg.DefaultExt = ".png";
             dlg.Filter = "Images (.png)|*.png";
-            dlg.InitialDirectory = AppSettings.getDataPath() + "\\graphics\\alliancelogos\\";
+            dlg.InitialDirectory = AppSettings.GetDataPath() + "\\graphics\\alliancelogos\\";
 
             bool? result = dlg.ShowDialog();
 

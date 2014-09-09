@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
+﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
     using System;
     using System.Collections.ObjectModel;
@@ -643,12 +645,12 @@
         {
             int year = GameObject.GetInstance().GameTime.Year;
 
-            return this.Airliner.Statistics.getStatisticsValue(year, this.Type);
+            return this.Airliner.Statistics.GetStatisticsValue(year, this.Type);
         }
 
         private double getLastYear()
         {
-            return this.Airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, this.Type);
+            return this.Airliner.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, this.Type);
         }
 
         #endregion

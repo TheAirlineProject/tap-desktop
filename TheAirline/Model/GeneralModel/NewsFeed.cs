@@ -1,8 +1,8 @@
-﻿namespace TheAirline.Model.GeneralModel
-{
-    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
+namespace TheAirline.Model.GeneralModel
+{
     //the class for a news feed
     public class NewsFeed
     {
@@ -10,8 +10,8 @@
 
         public NewsFeed(DateTime date, string text)
         {
-            this.Text = text;
-            this.Date = date;
+            Text = text;
+            Date = date;
         }
 
         #endregion
@@ -30,19 +30,17 @@
     {
         #region Static Fields
 
-        private static readonly List<NewsFeed> feeds = new List<NewsFeed>();
+        private static readonly List<NewsFeed> Feeds = new List<NewsFeed>();
 
         #endregion
-
-        //adds a news feed to the list
 
         #region Public Methods and Operators
 
         public static void AddNewsFeed(NewsFeed feed)
         {
-            lock (feeds)
+            lock (Feeds)
             {
-                feeds.Add(feed);
+                Feeds.Add(feed);
             }
         }
 
@@ -51,9 +49,9 @@
         //clears the list of news feeds
         public static void ClearNewsFeeds()
         {
-            lock (feeds)
+            lock (Feeds)
             {
-                feeds.Clear();
+                Feeds.Clear();
             }
         }
 
@@ -62,7 +60,7 @@
         {
             int count;
 
-            lock (feeds) count = feeds.Count;
+            lock (Feeds) count = Feeds.Count;
 
             return count;
         }
@@ -70,13 +68,15 @@
         public static List<NewsFeed> GetNewsFeeds()
         {
             List<NewsFeed> tFeeds;
-            lock (feeds)
+            lock (Feeds)
             {
-                tFeeds = new List<NewsFeed>(feeds);
+                tFeeds = new List<NewsFeed>(Feeds);
             }
             return tFeeds;
         }
 
         #endregion
+
+        //adds a news feed to the list
     }
 }

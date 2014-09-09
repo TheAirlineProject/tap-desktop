@@ -1,4 +1,7 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
+﻿using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -218,7 +221,7 @@
                             != GameObject.GetInstance().HumanAirline.Profile.Country.Name)
                         {
                             this.Airliner.TailNumber =
-                                GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber();
+                                GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.GetNextTailNumber();
                         }
 
                         GameObject.GetInstance()

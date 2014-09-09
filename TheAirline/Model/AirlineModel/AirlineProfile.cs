@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.Model.AirlineModel
 {
@@ -237,7 +238,7 @@ namespace TheAirline.Model.AirlineModel
 
             if (!File.Exists(ret.Path))
             {
-                ret.Path = string.Format("{0}\\graphics\\airlinelogos\\{1}.png", AppSettings.getDataPath(), LogoName);
+                ret.Path = string.Format("{0}\\graphics\\airlinelogos\\{1}.png", AppSettings.GetDataPath(), LogoName);
             }
 
             return ret.Path;

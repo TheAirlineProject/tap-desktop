@@ -1,25 +1,21 @@
-﻿namespace TheAirline.Model.GeneralModel
-{
-    using System;
-    using System.Globalization;
-    using System.IO;
-    using System.Threading;
+﻿using System;
+using System.Globalization;
+using System.IO;
+using System.Threading;
 
+namespace TheAirline.Model.GeneralModel
+{
     public class AppSettings
     {
-        /*! private static variable basePath.
-         * stores the actual defined working directory.
-         */
-
         #region Static Fields
 
-        private static readonly string basePath = Environment.CurrentDirectory;
+        private static readonly string BasePath = Environment.CurrentDirectory;
 
         /*! private static variable dataPath.
          * stores the path to the Data directory.
          */
 
-        private static readonly string dataPath = basePath + "\\data\\data";
+        private static readonly string DataPath = BasePath + "\\data\\data";
 
         /*! private static variable basePath.
          * stores the path to the Plugin directory.
@@ -27,17 +23,17 @@
          * the working directory as base path, but the location of the exe file as base
          */
 
-        private static readonly string pluginsPath = AppDomain.CurrentDomain.BaseDirectory + "plugins";
+        private static readonly string PluginsPath = AppDomain.CurrentDomain.BaseDirectory + "plugins";
 
-        private static AppSettings AppSettingsInstance;
+        private static AppSettings _appSettingsInstance;
 
         #endregion
 
         #region Fields
 
-        private Boolean IsLanguageSet;
+        private Boolean _isLanguageSet;
 
-        private Language Language;
+        private Language _language;
 
         #endregion
 
@@ -46,25 +42,23 @@
         private AppSettings()
         {
             Translator.Init();
-            this.setLanguage(Languages.GetLanguages()[0]);
+            SetLanguage(Languages.GetLanguages()[0]);
             Translator.DefaultLanguage = Thread.CurrentThread.CurrentUICulture.ToString();
 
-            this.IsLanguageSet = false;
+            _isLanguageSet = false;
         }
 
         #endregion
-
-        //returns the game instance
 
         #region Public Methods and Operators
 
         public static AppSettings GetInstance()
         {
-            if (AppSettingsInstance == null)
+            if (_appSettingsInstance == null)
             {
-                AppSettingsInstance = new AppSettings();
+                _appSettingsInstance = new AppSettings();
             }
-            return AppSettingsInstance;
+            return _appSettingsInstance;
         }
 
         // simple method for initializing the Translator
@@ -78,9 +72,9 @@
              * \return working directory path as string.
              */
 
-        public static string getBasePath()
+        public static string GetBasePath()
         {
-            return basePath;
+            return BasePath;
         }
 
         /*! public static method getDataPath.
@@ -92,21 +86,21 @@
          *  return the path to the path for saving data
          */
 
-        public static string getCommonApplicationDataPath()
+        public static string GetCommonApplicationDataPath()
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\theairlineproject\\";
 
             if (!Directory.Exists(path))
             {
-                createPaths(path);
+                CreatePaths(path);
             }
 
             return path;
         }
 
-        public static string getDataPath()
+        public static string GetDataPath()
         {
-            return dataPath;
+            return DataPath;
         }
 
         //creates all relevant paths
@@ -116,48 +110,48 @@
          * \return Plugin directory path as string.
          */
 
-        public static string getPluginPath()
+        public static string GetPluginPath()
         {
-            return pluginsPath;
+            return PluginsPath;
         }
 
-        public Language getLanguage()
+        public Language GetLanguage()
         {
-            return this.Language;
+            return _language;
         }
 
         //sets the language
 
         //returns if language has been set
-        public Boolean hasLanguage()
+        public Boolean HasLanguage()
         {
-            return this.IsLanguageSet;
+            return _isLanguageSet;
         }
 
         //sets the currency format
-        public void setCurrencyFormat(string format)
+        public void SetCurrencyFormat(string format)
         {
             Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencySymbol = format;
             Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencySymbol = format;
         }
 
-        public void setLanguage(Language language)
+        public void SetLanguage(Language language)
         {
-            this.Language = language;
+            _language = language;
 
             var ci = new CultureInfo(language.CultureInfo, true);
             //ci.NumberFormat.CurrencySymbol = "TT";
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
 
-            this.IsLanguageSet = true;
+            _isLanguageSet = true;
         }
 
         #endregion
 
         #region Methods
 
-        private static void createPaths(string path)
+        private static void CreatePaths(string path)
         {
             Directory.CreateDirectory(path);
             Directory.CreateDirectory(path + "\\saves");
@@ -165,6 +159,12 @@
         }
 
         #endregion
+
+        /*! private static variable basePath.
+         * stores the actual defined working directory.
+         */
+
+        //returns the game instance
 
         //returns the current language
     }

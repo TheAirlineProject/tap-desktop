@@ -21,7 +21,9 @@ using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.InvoicesModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
@@ -48,7 +50,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         public PageLeasingAirliners()
         {
             this.Loaded += this.PageLeasingAirliners_Loaded;
-            Boolean isMetric = AppSettings.GetInstance().getLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Metric;
+            Boolean isMetric = AppSettings.GetInstance().GetLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Metric;
            
             this.RangeRanges = new List<FilterValue>
                                {
@@ -210,7 +212,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                             {
                                 airliner.Airliner.TailNumber =
                                     GameObject.GetInstance()
-                                        .HumanAirline.Profile.Country.TailNumbers.getNextTailNumber();
+                                        .HumanAirline.Profile.Country.TailNumbers.GetNextTailNumber();
                             }
 
                             GameObject.GetInstance()

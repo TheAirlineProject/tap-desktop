@@ -460,7 +460,7 @@ namespace TheAirline.Model.AirportModel
         {
             double numberOfSlots = (22 - 6)*4*7; //from 06.00 to 22.00 each quarter each day (7 days a week) 
 
-            double usedSlots = AirportHelpers.GetOccupiedSlotTimes(Airport, airline, Weather.Season.All_Year, type).Count;
+            double usedSlots = AirportHelpers.GetOccupiedSlotTimes(Airport, airline, Weather.Season.AllYear, type).Count;
 
             double percent = ((numberOfSlots - usedSlots)/numberOfSlots)*100;
 

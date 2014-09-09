@@ -47,7 +47,7 @@ namespace TheAirline
             this.Width = SystemParameters.PrimaryScreenWidth;
             this.Height = SystemParameters.PrimaryScreenHeight;
 
-            if (AppSettings.GetInstance().hasLanguage())
+            if (AppSettings.GetInstance().HasLanguage())
                 frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageStartMenu());
             else
                 frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageSelectLanguage());
@@ -76,7 +76,7 @@ namespace TheAirline
             }
             if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F12)
             {
-                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairline.log");
+                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.GetCommonApplicationDataPath() + "\\theairline.log");
                    
                 if (Airports.Count() >= 5)
                 {

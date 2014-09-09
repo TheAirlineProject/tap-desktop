@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirportPageModel
+﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -1326,7 +1328,7 @@
         {
             double temperature = Double.Parse(value.ToString());
 
-            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+            if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
                 return string.Format("{0:0.0}°C", temperature);
             }
@@ -1351,7 +1353,7 @@
 
             var v = (double)windspeed;
 
-            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Imperial)
+            if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Imperial)
             {
                 v = MathHelpers.KMToMiles(v);
             }
@@ -1394,7 +1396,7 @@
                     weatherCondition = weather.Cover.ToString();
                 }
 
-                return AppSettings.getDataPath() + "\\graphics\\weather\\" + weatherCondition + ".png";
+                return AppSettings.GetDataPath() + "\\graphics\\weather\\" + weatherCondition + ".png";
             }
             if (value is HourlyWeather)
             {
@@ -1417,7 +1419,7 @@
                     weatherCondition += "-night";
                 }
 
-                return AppSettings.getDataPath() + "\\graphics\\weather\\" + weatherCondition + ".png";
+                return AppSettings.GetDataPath() + "\\graphics\\weather\\" + weatherCondition + ".png";
             }
 
             return "";

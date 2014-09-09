@@ -200,8 +200,8 @@
                 GetRestrictions()
                     .Find(
                         r =>
-                            (r.From == from || (r.From is Union && ((Union)r.From).isMember(from, date)))
-                            && (r.To == to || (r.To is Union && ((Union)r.To).isMember(to, date)))
+                            (r.From == from || (r.From is Union && ((Union)r.From).IsMember(from, date)))
+                            && (r.To == to || (r.To is Union && ((Union)r.To).IsMember(to, date)))
                             && (date >= r.StartDate && date <= r.EndDate) && r.Type == type);
 
             //FlightRestriction res = GetRestrictions().Find(r => r.From == from && r.To == to && r.Type == type);

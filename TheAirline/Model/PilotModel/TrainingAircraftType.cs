@@ -1,4 +1,6 @@
-﻿namespace TheAirline.Model.PilotModel
+﻿using TheAirline.Model.GeneralModel.Helpers;
+
+namespace TheAirline.Model.PilotModel
 {
     using System;
     using System.Collections.Generic;

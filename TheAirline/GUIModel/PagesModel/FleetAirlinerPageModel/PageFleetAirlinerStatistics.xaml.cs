@@ -39,7 +39,7 @@
             var incomes = new List<KeyValuePair<string, int>>();
             var expenses = new List<KeyValuePair<string, int>>();
 
-            var types = this.Airliner.Airliner.Data.getTypes();
+            var types = this.Airliner.Airliner.Data.GetTypes();
 
             int elements = types.Count > 0 ?  this.Airliner.Airliner.Data.Values.Count / types.Count : 0;
 
@@ -47,7 +47,7 @@
             {
                 foreach (string type in types)
                 {
-                    var data = this.Airliner.Airliner.Data.getOrderedValues(type)[i];
+                    var data = this.Airliner.Airliner.Data.GetOrderedValues(type)[i];
 
                     if (data.Value > 0)
                         incomes.Add(new KeyValuePair<string, int>(type, (int)data.Value));

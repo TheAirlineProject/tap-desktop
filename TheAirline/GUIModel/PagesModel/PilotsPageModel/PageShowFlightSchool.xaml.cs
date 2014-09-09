@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
+﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -99,7 +101,7 @@
                 AirlineHelpers.AddAirlineInvoice(
                     GameObject.GetInstance().HumanAirline,
                     GameObject.GetInstance().GameTime,
-                    Invoice.InvoiceType.Airline_Expenses,
+                    Invoice.InvoiceType.AirlineExpenses,
                     -price);
 
                 this.setHireStudentsStatus();
@@ -237,8 +239,8 @@
                     GameObject.GetInstance().GameTime.AddYears(-35),
                     GameObject.GetInstance().GameTime.AddYears(-23));
                 var profile = new PilotProfile(
-                    Names.GetInstance().getRandomFirstName(town.Country),
-                    Names.GetInstance().getRandomLastName(town.Country),
+                    Names.GetInstance().GetRandomFirstName(town.Country),
+                    Names.GetInstance().GetRandomLastName(town.Country),
                     birthdate,
                     town);
 
@@ -266,7 +268,7 @@
                 AirlineHelpers.AddAirlineInvoice(
                     GameObject.GetInstance().HumanAirline,
                     GameObject.GetInstance().GameTime,
-                    Invoice.InvoiceType.Airline_Expenses,
+                    Invoice.InvoiceType.AirlineExpenses,
                     -studentPrice);
             }
         }
@@ -313,7 +315,7 @@
                     AirlineHelpers.AddAirlineInvoice(
                         GameObject.GetInstance().HumanAirline,
                         GameObject.GetInstance().GameTime,
-                        Invoice.InvoiceType.Airline_Expenses,
+                        Invoice.InvoiceType.AirlineExpenses,
                         price);
                 }
             }

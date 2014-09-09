@@ -1,63 +1,69 @@
-﻿namespace TheAirline.Model.GeneralModel.Helpers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.AirportModel;
-    using TheAirline.Model.GeneralModel.WeatherModel;
-    using TheAirline.Model.PassengerModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
+using TheAirline.Model.PassengerModel;
 
+namespace TheAirline.Model.GeneralModel.Helpers
+{
     //the class for some general airport helpers
     public class AirportHelpers
     {
         #region Static Fields
 
-        private static readonly Random rnd = new Random();
+        private static readonly Random Rnd = new Random();
 
         #endregion
 
         #region Public Methods and Operators
+
         //returns the fuel price for an airport
         public static double GetFuelPrice(Airport airport)
         {
             return GetFuelPrice(airport.Profile.Country.Region);
         }
+
         public static double GetFuelPrice(Region region)
         {
-            return region.FuelIndex * GameObject.GetInstance().FuelPrice;
+            return region.FuelIndex*GameObject.GetInstance().FuelPrice;
         }
+
         //returns the standard landing fee for an airport
         public static double GetStandardLandingFee(Airport airport)
         {
             double basefee = 0.27;
 
-            return basefee * ((int)(airport.Profile.Size) + 1);
+            return basefee*((int) (airport.Profile.Size) + 1);
         }
+
         //returns the landing fee for an airliner at an airport
         public static double GetLandingFee(Airport airport, Airliner airliner)
         {
-            return (airliner.Type.Weight / 1000) * GeneralHelpers.GetInflationPrice(airport.LandingFee);
+            return (airliner.Type.Weight/1000)*GeneralHelpers.GetInflationPrice(airport.LandingFee);
         }
+
         public static void AddAirlineContract(AirportContract contract)
         {
             contract.Airport.AddAirlineContract(contract);
 
             AirportFacility checkinFacility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn)
-                    .Where(f => f.TypeLevel == 1)
-                    .First();
+                                 .Where(f => f.TypeLevel == 1)
+                                 .First();
             AirportFacility ticketFacility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.TicketOffice)
-                    .Where(f => f.TypeLevel == 1)
-                    .First();
+                                 .Where(f => f.TypeLevel == 1)
+                                 .First();
             AirportFacility serviceFacility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service)
-                    .Where(f => f.TypeLevel == 1)
-                    .First();
+                                 .Where(f => f.TypeLevel == 1)
+                                 .First();
             AirportFacility cargoTerminal =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f => f.TypeLevel > 0);
 
@@ -65,28 +71,28 @@
             {
                 if (
                     contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.Cargo)
-                        .Facility.TypeLevel < cargoTerminal.TypeLevel)
+                            .Facility.TypeLevel < cargoTerminal.TypeLevel)
                 {
                     contract.Airport.AddAirportFacility(null, cargoTerminal, GameObject.GetInstance().GameTime);
                 }
 
                 if (
                     contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.CheckIn)
-                        .Facility.TypeLevel < checkinFacility.TypeLevel)
+                            .Facility.TypeLevel < checkinFacility.TypeLevel)
                 {
                     contract.Airport.AddAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
                 }
 
                 if (
                     contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.TicketOffice)
-                        .Facility.TypeLevel < ticketFacility.TypeLevel)
+                            .Facility.TypeLevel < ticketFacility.TypeLevel)
                 {
                     contract.Airport.AddAirportFacility(null, ticketFacility, GameObject.GetInstance().GameTime);
                 }
 
                 if (
                     contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.Service)
-                        .Facility.TypeLevel < serviceFacility.TypeLevel)
+                            .Facility.TypeLevel < serviceFacility.TypeLevel)
                 {
                     contract.Airport.AddAirportFacility(null, serviceFacility, GameObject.GetInstance().GameTime);
                 }
@@ -95,14 +101,14 @@
             {
                 if (
                     contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.CheckIn)
-                        .Facility.TypeLevel < checkinFacility.TypeLevel)
+                            .Facility.TypeLevel < checkinFacility.TypeLevel)
                 {
                     contract.Airport.AddAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
                 }
 
                 if (
                     contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.TicketOffice)
-                        .Facility.TypeLevel < ticketFacility.TypeLevel)
+                            .Facility.TypeLevel < ticketFacility.TypeLevel)
                 {
                     contract.Airport.AddAirportFacility(null, ticketFacility, GameObject.GetInstance().GameTime);
                 }
@@ -111,7 +117,7 @@
             {
                 if (
                     contract.Airport.GetAirlineAirportFacility(null, AirportFacility.FacilityType.CheckIn)
-                        .Facility.TypeLevel < checkinFacility.TypeLevel)
+                            .Facility.TypeLevel < checkinFacility.TypeLevel)
                 {
                     contract.Airport.AddAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
                 }
@@ -124,7 +130,7 @@
             List<AirportContract> contracts,
             Weather.Season season)
         {
-            var routes = GetAirportRoutes(airport, airline);
+            List<Route> routes = GetAirportRoutes(airport, airline);
 
             int numberOfOccupiedSlots =
                 GetOccupiedSlotTimes(airport, airline, contracts, season)
@@ -148,11 +154,11 @@
                 if (!newTerminal)
                 {
                     int numberOfGates = Math.Max(5, minTerminal.Gates.NumberOfGates);
-                    int daysToBuild = numberOfGates * 10 + (newTerminal ? 60 : 0);
+                    int daysToBuild = numberOfGates*10 + (newTerminal ? 60 : 0);
 
-                    long price = numberOfGates * airport.GetTerminalGatePrice()
+                    long price = numberOfGates*airport.GetTerminalGatePrice()
                                  + (newTerminal ? airport.GetTerminalPrice() : 0);
-                    price = price / 3 * 4;
+                    price = price/3*4;
 
                     if (airport.Income > price)
                     {
@@ -168,16 +174,16 @@
                         airport.LastExpansionDate = GameObject.GetInstance().GameTime;
                     }
                 }
-                //build new terminal
+                    //build new terminal
                 else
                 {
                     int numberOfGates = airport.Terminals.GetTerminals()[0].Gates.NumberOfDeliveredGates;
 
-                    int daysToBuild = numberOfGates * 10 + (newTerminal ? 60 : 0);
+                    int daysToBuild = numberOfGates*10 + (newTerminal ? 60 : 0);
 
-                    long price = numberOfGates * airport.GetTerminalGatePrice()
+                    long price = numberOfGates*airport.GetTerminalGatePrice()
                                  + (newTerminal ? airport.GetTerminalPrice() : 0);
-                    price = price / 3 * 4;
+                    price = price/3*4;
 
                     if (airport.Income > price)
                     {
@@ -209,17 +215,17 @@
                 long longestRequiredRunwayLenght =
                     AirlinerTypes.GetTypes(
                         a =>
-                            a.Produced.From <= GameObject.GetInstance().GameTime
-                            && a.Produced.To >= GameObject.GetInstance().GameTime).Max(a => a.MinRunwaylength);
+                        a.Produced.From <= GameObject.GetInstance().GameTime
+                        && a.Produced.To >= GameObject.GetInstance().GameTime).Max(a => a.MinRunwaylength);
 
                 List<Route> airportRoutes = GetAirportRoutes(airport);
                 IEnumerable<FleetAirliner> routeAirliners = airportRoutes.SelectMany(r => r.getAirliners());
 
                 long longestRunwayInUse = routeAirliners.Count() > 0
-                    ? routeAirliners.Max(a => a.Airliner.MinRunwaylength)
-                    : 0;
+                                              ? routeAirliners.Max(a => a.Airliner.MinRunwaylength)
+                                              : 0;
 
-                if (maxRunwayLenght < longestRequiredRunwayLenght / 2 && maxRunwayLenght < longestRunwayInUse * 3 / 4
+                if (maxRunwayLenght < longestRequiredRunwayLenght/2 && maxRunwayLenght < longestRunwayInUse*3/4
                     && GameObject.GetInstance().GameTime.AddYears(-minYearsBetweenExpansions) > airport.LastExpansionDate)
                 {
                     List<string> runwayNames =
@@ -231,10 +237,10 @@
                     }
 
                     Runway.SurfaceType surface = airport.Runways[0].Surface;
-                    long lenght = Math.Min(longestRequiredRunwayLenght * 3 / 4, longestRunwayInUse * 2);
+                    long lenght = Math.Min(longestRequiredRunwayLenght*3/4, longestRunwayInUse*2);
 
                     var runway = new Runway(
-                        runwayNames[rnd.Next(runwayNames.Count)],
+                        runwayNames[Rnd.Next(runwayNames.Count)],
                         lenght,
                         Runway.RunwayType.Regular,
                         surface,
@@ -267,7 +273,7 @@
             yearCoeffs.Add(2000, 1.0658);
             yearCoeffs.Add(2010, 1);
 
-            int decade = (GameObject.GetInstance().GameTime.Year - 1960) / 10 * 10 + 1960;
+            int decade = (GameObject.GetInstance().GameTime.Year - 1960)/10*10 + 1960;
 
             double coeff = 1;
 
@@ -276,7 +282,7 @@
                 coeff = yearCoeffs[decade];
             }
 
-            double coeffPax = coeff * size;
+            double coeffPax = coeff*size;
 
             if (coeffPax > 32000)
             {
@@ -284,7 +290,7 @@
             }
             if (coeffPax > 16000)
             {
-                return GeneralHelpers.Size.Very_large;
+                return GeneralHelpers.Size.VeryLarge;
             }
             if (coeffPax > 9000)
             {
@@ -300,7 +306,7 @@
             }
             if (coeffPax > 160)
             {
-                return GeneralHelpers.Size.Very_small;
+                return GeneralHelpers.Size.VerySmall;
             }
 
             return GeneralHelpers.Size.Smallest;
@@ -316,15 +322,15 @@
             WeatherAverage average =
                 WeatherAverages.GetWeatherAverages(
                     w => w.Airport != null && w.Airport == airport && w.Month == GameObject.GetInstance().GameTime.Month)
-                    .FirstOrDefault();
+                               .FirstOrDefault();
 
             if (average == null)
             {
                 average =
                     WeatherAverages.GetWeatherAverages(
                         w =>
-                            w.Town != null && w.Town == airport.Profile.Town
-                            && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
+                        w.Town != null && w.Town == airport.Profile.Town
+                        && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
             }
 
             if (average == null)
@@ -332,8 +338,8 @@
                 average =
                     WeatherAverages.GetWeatherAverages(
                         w =>
-                            w.Country != null && w.Country == airport.Profile.Town.Country
-                            && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
+                        w.Country != null && w.Country == airport.Profile.Town.Country
+                        && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
             }
 
             if (average == null)
@@ -424,7 +430,7 @@
 
             double basePrice = 10000;
 
-            return GeneralHelpers.GetInflationPrice(paxDemand * basePrice);
+            return GeneralHelpers.GetInflationPrice(paxDemand*basePrice);
 
             //(initial amount, in the millions; and a montly amount probably $50,000 or so
         }
@@ -439,19 +445,19 @@
                 GetAirportRoutes(airport)
                     .SelectMany(
                         r =>
-                            r.TimeTable.Entries.FindAll(
-                                e =>
-                                    e.Airliner != null && e.Destination.Airport == airport
-                                    && e.Time.Add(
-                                        MathHelpers.GetFlightTime(
-                                            e.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),
-                                            e.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(),
-                                            e.Airliner.Airliner.Type)) >= startTime
-                                    && e.Time.Add(
-                                        MathHelpers.GetFlightTime(
-                                            e.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),
-                                            e.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(),
-                                            e.Airliner.Airliner.Type)) < endTime && e.Day == day))
+                        r.TimeTable.Entries.FindAll(
+                            e =>
+                            e.Airliner != null && e.Destination.Airport == airport
+                            && e.Time.Add(
+                                MathHelpers.GetFlightTime(
+                                    e.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                                    e.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                                    e.Airliner.Airliner.Type)) >= startTime
+                            && e.Time.Add(
+                                MathHelpers.GetFlightTime(
+                                    e.Destination.Airport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                                    e.DepartureAirport.Profile.Coordinates.ConvertToGeoCoordinate(),
+                                    e.Airliner.Airliner.Type)) < endTime && e.Day == day))
                     .ToList();
         }
 
@@ -464,8 +470,8 @@
         {
             IEnumerable<Route> routes =
                 Airlines.GetAllAirlines()
-                    .SelectMany(a => a.Routes)
-                    .Where(r => r.Destination1 == airport || r.Destination2 == airport);
+                        .SelectMany(a => a.Routes)
+                        .Where(r => r.Destination1 == airport || r.Destination2 == airport);
 
             return routes.ToList();
         }
@@ -477,14 +483,14 @@
             return
                 routes.Where(
                     r =>
-                        (r.Destination1 == airport1 && r.Destination2 == airport2)
-                        || (r.Destination1 == airport2 && r.Destination2 == airport1)).ToList();
+                    (r.Destination1 == airport1 && r.Destination2 == airport2)
+                    || (r.Destination1 == airport2 && r.Destination2 == airport1)).ToList();
         }
 
         public static double GetAirportRunwayPrice(Airport airport, long lenght)
         {
             double pricePerMeter = 0;
-            if (airport.Profile.Size == GeneralHelpers.Size.Very_large
+            if (airport.Profile.Size == GeneralHelpers.Size.VeryLarge
                 || airport.Profile.Size == GeneralHelpers.Size.Largest)
             {
                 pricePerMeter = 30000;
@@ -498,12 +504,12 @@
                 pricePerMeter = 18000;
             }
             if (airport.Profile.Size == GeneralHelpers.Size.Smallest
-                || airport.Profile.Size == GeneralHelpers.Size.Very_small)
+                || airport.Profile.Size == GeneralHelpers.Size.VerySmall)
             {
                 pricePerMeter = 12000;
             }
 
-            return pricePerMeter * lenght;
+            return pricePerMeter*lenght;
         }
 
         public static List<RouteTimeTableEntry> GetAirportTakeoffs(
@@ -516,10 +522,10 @@
                 GetAirportRoutes(airport)
                     .SelectMany(
                         r =>
-                            r.TimeTable.Entries.FindAll(
-                                e =>
-                                    e.Airliner != null && e.DepartureAirport == airport && e.Time >= startTime
-                                    && e.Time < endTime && e.Day == day))
+                        r.TimeTable.Entries.FindAll(
+                            e =>
+                            e.Airliner != null && e.DepartureAirport == airport && e.Time >= startTime
+                            && e.Time < endTime && e.Day == day))
                     .ToList();
         }
 
@@ -532,7 +538,7 @@
         {
             double price = type.Price;
 
-            price = price + 25000 * ((int)airport.Profile.Size);
+            price = price + 25000*((int) airport.Profile.Size);
             return Convert.ToInt64(GeneralHelpers.GetInflationPrice(price));
         }
 
@@ -563,8 +569,8 @@
             return
                 routes.Count(
                     r =>
-                        (r.Destination1 == airport1 && r.Destination2 == airport2)
-                        || (r.Destination1 == airport2 && r.Destination2 == airport1));
+                    (r.Destination1 == airport1 && r.Destination2 == airport2)
+                    || (r.Destination1 == airport2 && r.Destination2 == airport1));
         }
 
         //checks an airport for extending of runway
@@ -587,13 +593,13 @@
 
             var entries =
                 new List<RouteTimeTableEntry>(
-                    routes.Where(r => season == Weather.Season.All_Year || season == r.Season)
-                        .SelectMany(r => r.TimeTable.Entries));
+                    routes.Where(r => season == Weather.Season.AllYear || season == r.Season)
+                          .SelectMany(r => r.TimeTable.Entries));
 
             foreach (RouteTimeTableEntry entry in entries)
             {
                 var entryTakeoffTime = new TimeSpan(
-                    (int)entry.Day,
+                    (int) entry.Day,
                     entry.Time.Hours,
                     entry.Time.Minutes,
                     entry.Time.Seconds);
@@ -617,7 +623,7 @@
                     var tTakeoffTime = new TimeSpan(
                         entryStartTakeoffTime.Days,
                         entryStartTakeoffTime.Hours,
-                        (entryStartTakeoffTime.Minutes / 15) * 15,
+                        (entryStartTakeoffTime.Minutes/15)*15,
                         0);
 
                     while (tTakeoffTime < entryEndTakeoffTime)
@@ -638,7 +644,7 @@
                     var tLandingTime = new TimeSpan(
                         entryStartLandingTime.Days,
                         entryStartLandingTime.Hours,
-                        (entryStartLandingTime.Minutes / 15) * 15,
+                        (entryStartLandingTime.Minutes/15)*15,
                         0);
 
                     while (tLandingTime < entryEndLandingTime)
@@ -652,12 +658,12 @@
                 }
             }
 
-            var slots = (from s in occupiedSlots group s.Value by s.Value into g select new { Time = g.Key, Slots = g });
+            var slots = (from s in occupiedSlots group s.Value by s.Value into g select new {Time = g.Key, Slots = g});
 
             return slots.Where(s => s.Slots.Count() >= gates).SelectMany(s => s.Slots).ToList();
         }
 
-        public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline, Weather.Season season,Terminal.TerminalType type)
+        public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline, Weather.Season season, Terminal.TerminalType type)
         {
             return GetOccupiedSlotTimes(
                 airport,
@@ -685,47 +691,46 @@
 
             return minDistance;
         }
+
         //sets the airport expansion to an airport
         public static void SetAirportExpansion(Airport airport, AirportExpansion expansion, Boolean onStartUp = false)
         {
             if (expansion.Type == AirportExpansion.ExpansionType.Name)
             {
-
                 if (expansion.NotifyOnChange && !onStartUp)
                 {
                     GameObject.GetInstance()
-                      .NewsBox.addNews(
-                          new News(
-                              News.NewsType.Airport_News,
-                              GameObject.GetInstance().GameTime,
-                              "Airport Name Changed",
-                              string.Format(
-                                  "[LI airport={0}]({1}) has changed its name to {2}",
-                                  airport.Profile.IATACode,
-                                  new AirportCodeConverter().Convert(airport),
-                                expansion.Name)));
+                              .NewsBox.AddNews(
+                                  new News(
+                                      News.NewsType.AirportNews,
+                                      GameObject.GetInstance().GameTime,
+                                      "Airport Name Changed",
+                                      string.Format(
+                                          "[LI airport={0}]({1}) has changed its name to {2}",
+                                          airport.Profile.IATACode,
+                                          new AirportCodeConverter().Convert(airport),
+                                          expansion.Name)));
                 }
 
                 airport.Profile.Name = expansion.Name;
-
             }
             if (expansion.Type == AirportExpansion.ExpansionType.NewRunway)
             {
-                Runway runway = new Runway(expansion.Name, expansion.Length,Runway.RunwayType.Regular, expansion.Surface, expansion.Date, true);
+                var runway = new Runway(expansion.Name, expansion.Length, Runway.RunwayType.Regular, expansion.Surface, expansion.Date, true);
                 airport.Runways.Add(runway);
 
                 if (expansion.NotifyOnChange && !onStartUp)
                 {
                     GameObject.GetInstance()
-                     .NewsBox.addNews(
-                         new News(
-                             News.NewsType.Airport_News,
-                             GameObject.GetInstance().GameTime,
-                             "New Runway",
-                             string.Format(
-                                 "[LI airport={0}]({1}) has created a new runway",
-                                 airport.Profile.IATACode,
-                                 new AirportCodeConverter().Convert(airport))));
+                              .NewsBox.AddNews(
+                                  new News(
+                                      News.NewsType.AirportNews,
+                                      GameObject.GetInstance().GameTime,
+                                      "New Runway",
+                                      string.Format(
+                                          "[LI airport={0}]({1}) has created a new runway",
+                                          airport.Profile.IATACode,
+                                          new AirportCodeConverter().Convert(airport))));
                 }
             }
             if (expansion.Type == AirportExpansion.ExpansionType.RunwayLength)
@@ -737,37 +742,37 @@
                     if (expansion.NotifyOnChange && !onStartUp)
                     {
                         GameObject.GetInstance()
-                         .NewsBox.addNews(
-                             new News(
-                                 News.NewsType.Airport_News,
-                                 GameObject.GetInstance().GameTime,
-                                 "New Terminal",
-                                 string.Format(
-                                     "[LI airport={0}]({1}) has changed the length of the runway {2} to {3}",
-                                     airport.Profile.IATACode,
-                                     new AirportCodeConverter().Convert(airport),
-                                   expansion.Name,new SmallDistanceToUnitConverter().Convert(expansion.Length,null,null,null))));
+                                  .NewsBox.AddNews(
+                                      new News(
+                                          News.NewsType.AirportNews,
+                                          GameObject.GetInstance().GameTime,
+                                          "New Terminal",
+                                          string.Format(
+                                              "[LI airport={0}]({1}) has changed the length of the runway {2} to {3}",
+                                              airport.Profile.IATACode,
+                                              new AirportCodeConverter().Convert(airport),
+                                              expansion.Name, new SmallDistanceToUnitConverter().Convert(expansion.Length, null, null, null))));
                     }
                 }
             }
             if (expansion.Type == AirportExpansion.ExpansionType.NewTerminal)
             {
-                Terminal terminal = new Terminal(airport, expansion.Name, expansion.Gates, expansion.Date,expansion.TerminalType);
+                var terminal = new Terminal(airport, expansion.Name, expansion.Gates, expansion.Date, expansion.TerminalType);
                 airport.AddTerminal(terminal);
 
                 if (expansion.NotifyOnChange && !onStartUp)
                 {
                     GameObject.GetInstance()
-                     .NewsBox.addNews(
-                         new News(
-                             News.NewsType.Airport_News,
-                             GameObject.GetInstance().GameTime,
-                             "New Terminal",
-                             string.Format(
-                                 "[LI airport={0}]({1}) has created a new terminal with {2} gates",
-                                 airport.Profile.IATACode,
-                                 new AirportCodeConverter().Convert(airport),
-                               expansion.Gates)));
+                              .NewsBox.AddNews(
+                                  new News(
+                                      News.NewsType.AirportNews,
+                                      GameObject.GetInstance().GameTime,
+                                      "New Terminal",
+                                      string.Format(
+                                          "[LI airport={0}]({1}) has created a new terminal with {2} gates",
+                                          airport.Profile.IATACode,
+                                          new AirportCodeConverter().Convert(airport),
+                                          expansion.Gates)));
                 }
             }
             if (expansion.Type == AirportExpansion.ExpansionType.ExtraGates)
@@ -782,17 +787,17 @@
                     if (expansion.NotifyOnChange && !onStartUp)
                     {
                         GameObject.GetInstance()
-                         .NewsBox.addNews(
-                             new News(
-                                 News.NewsType.Airport_News,
-                                 GameObject.GetInstance().GameTime,
-                                 "New Gates at Airport",
-                                 string.Format(
-                                     "[LI airport={0}]({1}) has created {2} gates in {3}",
-                                     airport.Profile.IATACode,
-                                     new AirportCodeConverter().Convert(airport),
-                                   expansion.Gates,
-                                   expansion.Name)));
+                                  .NewsBox.AddNews(
+                                      new News(
+                                          News.NewsType.AirportNews,
+                                          GameObject.GetInstance().GameTime,
+                                          "New Gates at Airport",
+                                          string.Format(
+                                              "[LI airport={0}]({1}) has created {2} gates in {3}",
+                                              airport.Profile.IATACode,
+                                              new AirportCodeConverter().Convert(airport),
+                                              expansion.Gates,
+                                              expansion.Name)));
                     }
                 }
             }
@@ -807,23 +812,22 @@
                     if (expansion.NotifyOnChange && !onStartUp)
                     {
                         GameObject.GetInstance()
-                         .NewsBox.addNews(
-                             new News(
-                                 News.NewsType.Airport_News,
-                                 GameObject.GetInstance().GameTime,
-                                 "Closed Terminal",
-                                 string.Format(
-                                     "[LI airport={0}]({1}) has closed its terminal {2}",
-                                     airport.Profile.IATACode,
-                                     new AirportCodeConverter().Convert(airport),
-                                     expansion.Name)));
+                                  .NewsBox.AddNews(
+                                      new News(
+                                          News.NewsType.AirportNews,
+                                          GameObject.GetInstance().GameTime,
+                                          "Closed Terminal",
+                                          string.Format(
+                                              "[LI airport={0}]({1}) has closed its terminal {2}",
+                                              airport.Profile.IATACode,
+                                              new AirportCodeConverter().Convert(airport),
+                                              expansion.Name)));
                     }
                 }
             }
             //close terminal
-
-
         }
+
         //returns if an airline has enough free slots at an airport
 
         //returns the yearly payment for a number of gates
@@ -837,27 +841,27 @@
 
             if (type == AirportContract.ContractType.Full)
             {
-                basePrice = airport.GetGatePrice() * 12;
+                basePrice = airport.GetGatePrice()*12;
             }
 
             if (type == AirportContract.ContractType.LowService)
             {
-                basePrice = airport.GetGatePrice() * 13;
+                basePrice = airport.GetGatePrice()*13;
             }
 
             if (type == AirportContract.ContractType.MediumService)
             {
-                basePrice = airport.GetGatePrice() * 17;
+                basePrice = airport.GetGatePrice()*17;
             }
 
             if (type == AirportContract.ContractType.FullService)
             {
-                basePrice = airport.GetGatePrice() * 20;
+                basePrice = airport.GetGatePrice()*20;
             }
 
             double lengthFactor = 100 - length;
 
-            return gates * (basePrice * (lengthFactor / 100));
+            return gates*(basePrice*(lengthFactor/100));
         }
 
         public static Boolean HasBadWeather(Airport airport)
@@ -865,24 +869,24 @@
             return false;
             //airport.Weather[0].WindSpeed == Weather.eWindSpeed.Hurricane || airport.Weather[0].WindSpeed == Weather.eWindSpeed.Violent_Storm;
         }
-       
+
         public static Boolean HasFreeGates(Airport airport, Airline airline)
         {
             Terminal.TerminalType type = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
-            
+
             return HasFreeGates(airport, airline, type);
         }
+
         public static Boolean HasFreeGates(Airport airport, Airline airline, Terminal.TerminalType type)
         {
-
-            List<AirportContract> contracts = airport.GetAirlineContracts(airline).Where(c=>c.TerminalType == type).ToList();
+            List<AirportContract> contracts = airport.GetAirlineContracts(airline).Where(c => c.TerminalType == type).ToList();
 
             if (contracts.Count == 0)
             {
                 return false;
             }
 
-            return airport.Terminals.GetFreeSlotsPercent(airline,type) > 90;
+            return airport.Terminals.GetFreeSlotsPercent(airline, type) > 90;
         }
 
         public static Boolean HasRoute(Airport airport1, Airport airport2)
@@ -899,8 +903,8 @@
             return
                 routes.Where(
                     r =>
-                        (r.Destination1 == airport1 && r.Destination2 == airport2)
-                        || (r.Destination1 == airport2 && r.Destination2 == airport1)).Count() > 0;
+                    (r.Destination1 == airport1 && r.Destination2 == airport2)
+                    || (r.Destination1 == airport2 && r.Destination2 == airport1)).Count() > 0;
         }
 
         public static void ReallocateAirport(Airport airportOld, Airport airportNew)
@@ -913,24 +917,26 @@
                 }
             }
         }
+
         public static Boolean RentGates(Airport airport, Airline airline, AirportContract.ContractType type)
         {
             Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
             return RentGates(airport, airline, type, terminaltype);
         }
+
         public static Boolean RentGates(Airport airport, Airline airline, AirportContract.ContractType type, Terminal.TerminalType terminaltype)
         {
             int maxGates = airport.Terminals.getFreeGates(terminaltype);
 
-            int gatesToRent = Math.Min(maxGates, (int)(airline.Mentality) + 2);
+            int gatesToRent = Math.Min(maxGates, (int) (airline.Mentality) + 2);
 
             if (gatesToRent == 0)
             {
                 return false;
             }
 
-            RentGates(airport, airline, type,terminaltype, gatesToRent);
+            RentGates(airport, airline, type, terminaltype, gatesToRent);
 
             return true;
         }
@@ -989,24 +995,24 @@
                 return CreateDayWeather(date, previousWeather, average);
             }
 
-            var precipitationValues = (Weather.Precipitation[])Enum.GetValues(typeof(Weather.Precipitation));
-            var coverValues = (Weather.CloudCover[])Enum.GetValues(typeof(Weather.CloudCover));
-            var windDirectionValues = (Weather.WindDirection[])Enum.GetValues(typeof(Weather.WindDirection));
-            var windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
+            var precipitationValues = (Weather.Precipitation[]) Enum.GetValues(typeof (Weather.Precipitation));
+            var coverValues = (Weather.CloudCover[]) Enum.GetValues(typeof (Weather.CloudCover));
+            var windDirectionValues = (Weather.WindDirection[]) Enum.GetValues(typeof (Weather.WindDirection));
+            var windSpeedValues = (Weather.eWindSpeed[]) Enum.GetValues(typeof (Weather.eWindSpeed));
             Weather.WindDirection windDirection;
             Weather.eWindSpeed windSpeed;
             double temperature,
-                temperatureLow,
-                temperatureHigh,
-                temperatureSunrise,
-                temperatureSunset,
-                temperatureDayend;
+                   temperatureLow,
+                   temperatureHigh,
+                   temperatureSunrise,
+                   temperatureSunset,
+                   temperatureDayend;
 
-            windDirection = windDirectionValues[rnd.Next(windDirectionValues.Length)];
+            windDirection = windDirectionValues[Rnd.Next(windDirectionValues.Length)];
 
             if (previousWeather == null)
             {
-                windSpeed = windSpeedValues[rnd.Next(windSpeedValues.Length)];
+                windSpeed = windSpeedValues[Rnd.Next(windSpeedValues.Length)];
 
                 double maxTemp = 40;
                 double minTemp = -20;
@@ -1018,9 +1024,9 @@
                 int windIndex = windSpeedValues.ToList().IndexOf(previousWeather.WindSpeed);
                 windSpeed =
                     windSpeedValues[
-                        rnd.Next(Math.Max(0, windIndex - 2), Math.Min(windIndex + 2, windSpeedValues.Length))];
+                        Rnd.Next(Math.Max(0, windIndex - 2), Math.Min(windIndex + 2, windSpeedValues.Length))];
 
-                double previousTemperature = (previousWeather.TemperatureHigh + previousWeather.TemperatureLow) / 2;
+                double previousTemperature = (previousWeather.TemperatureHigh + previousWeather.TemperatureLow)/2;
 
                 double maxTemp = Math.Min(40, previousTemperature + 5);
                 double minTemp = Math.Max(-20, previousTemperature - 5);
@@ -1028,19 +1034,19 @@
                 temperature = MathHelpers.GetRandomDoubleNumber(minTemp, maxTemp);
             }
 
-            temperatureLow = temperature - rnd.Next(1, 10);
-            temperatureHigh = temperature + rnd.Next(1, 10);
+            temperatureLow = temperature - Rnd.Next(1, 10);
+            temperatureHigh = temperature + Rnd.Next(1, 10);
 
             double tempDiff = temperatureHigh - temperatureLow;
             temperatureSunrise = temperatureLow + MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
             temperatureSunset = temperatureHigh - MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
-            temperatureDayend = temperatureLow + rnd.Next(-2, 2);
+            temperatureDayend = temperatureLow + Rnd.Next(-2, 2);
 
-            Weather.CloudCover cover = coverValues[rnd.Next(coverValues.Length)];
+            Weather.CloudCover cover = coverValues[Rnd.Next(coverValues.Length)];
             var precip = Weather.Precipitation.None;
             if (cover == Weather.CloudCover.Overcast)
             {
-                precip = precipitationValues[rnd.Next(precipitationValues.Length)];
+                precip = precipitationValues[Rnd.Next(precipitationValues.Length)];
             }
 
             var hourlyTemperature = new HourlyWeather[24];
@@ -1059,26 +1065,26 @@
                 hourlyTemperature[0] = previousWeather.Temperatures[previousWeather.Temperatures.Length - 1];
             }
 
-            double morningSteps = (temperatureSunrise - hourlyTemperature[0].Temperature) / (Weather.Sunrise - 1);
+            double morningSteps = (temperatureSunrise - hourlyTemperature[0].Temperature)/(Weather.Sunrise - 1);
 
             for (int i = 1; i <= Weather.Sunrise; i++)
             {
                 double temp = hourlyTemperature[i - 1].Temperature + morningSteps;
-                Weather.CloudCover hourlyCover = rnd.Next(3) == 0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
+                Weather.CloudCover hourlyCover = Rnd.Next(3) == 0 ? coverValues[Rnd.Next(coverValues.Length)] : cover;
 
                 int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
                 Weather.eWindSpeed[] hourlyWindspeedValues =
-                {
-                    windSpeed, windSpeed, windSpeed,
-                    hourlyTemperature[i - 1].WindSpeed,
-                    windspeedIndex > 0
-                        ? (Weather.eWindSpeed)windspeedIndex - 1
-                        : (Weather.eWindSpeed)windspeedIndex + 1,
-                    windspeedIndex < windSpeedValues.Length - 1
-                        ? (Weather.eWindSpeed)windspeedIndex + 1
-                        : (Weather.eWindSpeed)windspeedIndex - 1
-                };
-                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[rnd.Next(hourlyWindspeedValues.Length)];
+                    {
+                        windSpeed, windSpeed, windSpeed,
+                        hourlyTemperature[i - 1].WindSpeed,
+                        windspeedIndex > 0
+                            ? (Weather.eWindSpeed) windspeedIndex - 1
+                            : (Weather.eWindSpeed) windspeedIndex + 1,
+                        windspeedIndex < windSpeedValues.Length - 1
+                            ? (Weather.eWindSpeed) windspeedIndex + 1
+                            : (Weather.eWindSpeed) windspeedIndex - 1
+                    };
+                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[Rnd.Next(hourlyWindspeedValues.Length)];
 
                 hourlyTemperature[i] = new HourlyWeather(
                     temp,
@@ -1088,11 +1094,11 @@
                     windDirection);
             }
 
-            double daySteps = (temperatureSunset - temperatureSunrise) / (Weather.Sunset - Weather.Sunrise - 1);
+            double daySteps = (temperatureSunset - temperatureSunrise)/(Weather.Sunset - Weather.Sunrise - 1);
 
             for (int i = Weather.Sunrise + 1; i < Weather.Sunset; i++)
             {
-                Weather.CloudCover hourlyCover = rnd.Next(3) == 0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
+                Weather.CloudCover hourlyCover = Rnd.Next(3) == 0 ? coverValues[Rnd.Next(coverValues.Length)] : cover;
 
                 double temp = hourlyTemperature[i - 1].Temperature + daySteps;
                 if (hourlyCover != hourlyTemperature[i - 1].Cover && hourlyCover == Weather.CloudCover.Overcast)
@@ -1107,17 +1113,17 @@
 
                 int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
                 Weather.eWindSpeed[] hourlyWindspeedValues =
-                {
-                    windSpeed, windSpeed, windSpeed,
-                    hourlyTemperature[i - 1].WindSpeed,
-                    windspeedIndex > 0
-                        ? (Weather.eWindSpeed)windspeedIndex - 1
-                        : (Weather.eWindSpeed)windspeedIndex + 1,
-                    windspeedIndex < windSpeedValues.Length - 1
-                        ? (Weather.eWindSpeed)windspeedIndex + 1
-                        : (Weather.eWindSpeed)windspeedIndex - 1
-                };
-                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[rnd.Next(hourlyWindspeedValues.Length)];
+                    {
+                        windSpeed, windSpeed, windSpeed,
+                        hourlyTemperature[i - 1].WindSpeed,
+                        windspeedIndex > 0
+                            ? (Weather.eWindSpeed) windspeedIndex - 1
+                            : (Weather.eWindSpeed) windspeedIndex + 1,
+                        windspeedIndex < windSpeedValues.Length - 1
+                            ? (Weather.eWindSpeed) windspeedIndex + 1
+                            : (Weather.eWindSpeed) windspeedIndex - 1
+                    };
+                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[Rnd.Next(hourlyWindspeedValues.Length)];
 
                 hourlyTemperature[i] = new HourlyWeather(
                     temp,
@@ -1127,26 +1133,26 @@
                     windDirection);
             }
 
-            double eveningSteps = (temperatureDayend - temperatureSunset) / (hourlyTemperature.Length - Weather.Sunset);
+            double eveningSteps = (temperatureDayend - temperatureSunset)/(hourlyTemperature.Length - Weather.Sunset);
 
             for (int i = Weather.Sunset; i < hourlyTemperature.Length; i++)
             {
                 double temp = hourlyTemperature[i - 1].Temperature + eveningSteps;
-                Weather.CloudCover hourlyCover = rnd.Next(3) == 0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
+                Weather.CloudCover hourlyCover = Rnd.Next(3) == 0 ? coverValues[Rnd.Next(coverValues.Length)] : cover;
 
                 int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
                 Weather.eWindSpeed[] hourlyWindspeedValues =
-                {
-                    windSpeed, windSpeed, windSpeed,
-                    hourlyTemperature[i - 1].WindSpeed,
-                    windspeedIndex > 0
-                        ? (Weather.eWindSpeed)windspeedIndex - 1
-                        : (Weather.eWindSpeed)windspeedIndex + 1,
-                    windspeedIndex < windSpeedValues.Length - 1
-                        ? (Weather.eWindSpeed)windspeedIndex + 1
-                        : (Weather.eWindSpeed)windspeedIndex - 1
-                };
-                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[rnd.Next(hourlyWindspeedValues.Length)];
+                    {
+                        windSpeed, windSpeed, windSpeed,
+                        hourlyTemperature[i - 1].WindSpeed,
+                        windspeedIndex > 0
+                            ? (Weather.eWindSpeed) windspeedIndex - 1
+                            : (Weather.eWindSpeed) windspeedIndex + 1,
+                        windspeedIndex < windSpeedValues.Length - 1
+                            ? (Weather.eWindSpeed) windspeedIndex + 1
+                            : (Weather.eWindSpeed) windspeedIndex - 1
+                    };
+                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[Rnd.Next(hourlyWindspeedValues.Length)];
 
                 hourlyTemperature[i] = new HourlyWeather(
                     temp,
@@ -1159,10 +1165,10 @@
             temperatureLow = hourlyTemperature.Min(t => t.Temperature);
             temperatureHigh = hourlyTemperature.Max(t => t.Temperature);
             cover =
-                (from c in hourlyTemperature group c by c.Cover into g select new { Cover = g.Key, Qty = g.Count() })
+                (from c in hourlyTemperature group c by c.Cover into g select new {Cover = g.Key, Qty = g.Count()})
                     .OrderByDescending(g => g.Qty).First().Cover;
             precip =
-                (from c in hourlyTemperature group c by c.Precip into g select new { Precip = g.Key, Qty = g.Count() })
+                (from c in hourlyTemperature group c by c.Precip into g select new {Precip = g.Key, Qty = g.Count()})
                     .OrderByDescending(g => g.Qty).First().Precip;
 
             var weather = new Weather(
@@ -1181,27 +1187,27 @@
         //creates the weather from an average
         private static Weather CreateDayWeather(DateTime date, Weather previousWeather, WeatherAverage average)
         {
-            var windDirectionValues = (Weather.WindDirection[])Enum.GetValues(typeof(Weather.WindDirection));
-            var windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
-            var coverValues = (Weather.CloudCover[])Enum.GetValues(typeof(Weather.CloudCover));
+            var windDirectionValues = (Weather.WindDirection[]) Enum.GetValues(typeof (Weather.WindDirection));
+            var windSpeedValues = (Weather.eWindSpeed[]) Enum.GetValues(typeof (Weather.eWindSpeed));
+            var coverValues = (Weather.CloudCover[]) Enum.GetValues(typeof (Weather.CloudCover));
 
-            Weather.WindDirection windDirection = windDirectionValues[rnd.Next(windDirectionValues.Length)];
+            Weather.WindDirection windDirection = windDirectionValues[Rnd.Next(windDirectionValues.Length)];
             Weather.CloudCover cover;
             var precip = Weather.Precipitation.None;
             Weather.eWindSpeed windSpeed;
             double temperature,
-                temperatureLow,
-                temperatureHigh,
-                temperatureSunrise,
-                temperatureSunset,
-                temperatureDayend;
+                   temperatureLow,
+                   temperatureHigh,
+                   temperatureSunrise,
+                   temperatureSunset,
+                   temperatureDayend;
 
             int windIndexMin = windSpeedValues.ToList().IndexOf(average.WindSpeedMin);
             int windIndexMax = windSpeedValues.ToList().IndexOf(average.WindSpeedMax);
 
             if (previousWeather == null)
             {
-                windSpeed = windSpeedValues[rnd.Next(windIndexMin, windIndexMax)];
+                windSpeed = windSpeedValues[Rnd.Next(windIndexMin, windIndexMax)];
 
                 temperatureLow = MathHelpers.GetRandomDoubleNumber(
                     average.TemperatureMin - 5,
@@ -1213,11 +1219,11 @@
             }
             else
             {
-                double previousTemperature = (previousWeather.TemperatureHigh + previousWeather.TemperatureLow) / 2;
+                double previousTemperature = (previousWeather.TemperatureHigh + previousWeather.TemperatureLow)/2;
                 int windIndex = windSpeedValues.ToList().IndexOf(previousWeather.WindSpeed);
                 windSpeed =
                     windSpeedValues[
-                        rnd.Next(Math.Max(windIndexMin, windIndex - 2), Math.Min(windIndex + 2, windIndexMax))];
+                        Rnd.Next(Math.Max(windIndexMin, windIndex - 2), Math.Min(windIndex + 2, windIndexMax))];
 
                 double minTemp = Math.Max(average.TemperatureMin, previousTemperature - 5);
                 temperatureLow = MathHelpers.GetRandomDoubleNumber(minTemp - 5, minTemp + 5);
@@ -1231,11 +1237,11 @@
             double tempDiff = temperatureHigh - temperatureLow;
             temperatureSunrise = temperatureLow + MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
             temperatureSunset = temperatureHigh - MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
-            temperatureDayend = temperatureLow + rnd.Next(-2, 2);
+            temperatureDayend = temperatureLow + Rnd.Next(-2, 2);
 
-            temperature = (temperatureLow + temperatureHigh) / 2;
+            temperature = (temperatureLow + temperatureHigh)/2;
 
-            Boolean isOvercast = rnd.Next(100) < average.Precipitation;
+            Boolean isOvercast = Rnd.Next(100) < average.Precipitation;
             if (isOvercast)
             {
                 cover = Weather.CloudCover.Overcast;
@@ -1244,11 +1250,11 @@
             else
             {
                 Weather.CloudCover[] notOvercastCovers =
-                {
-                    Weather.CloudCover.Clear, Weather.CloudCover.Mostly_Cloudy,
-                    Weather.CloudCover.Partly_Cloudy
-                };
-                cover = notOvercastCovers[rnd.Next(notOvercastCovers.Length)];
+                    {
+                        Weather.CloudCover.Clear, Weather.CloudCover.MostlyCloudy,
+                        Weather.CloudCover.PartlyCloudy
+                    };
+                cover = notOvercastCovers[Rnd.Next(notOvercastCovers.Length)];
             }
 
             var hourlyTemperature = new HourlyWeather[24];
@@ -1267,26 +1273,26 @@
                 hourlyTemperature[0] = previousWeather.Temperatures[previousWeather.Temperatures.Length - 1];
             }
 
-            double morningSteps = (temperatureSunrise - hourlyTemperature[0].Temperature) / (Weather.Sunrise - 1);
+            double morningSteps = (temperatureSunrise - hourlyTemperature[0].Temperature)/(Weather.Sunrise - 1);
 
             for (int i = 1; i <= Weather.Sunrise; i++)
             {
                 double temp = hourlyTemperature[i - 1].Temperature + morningSteps;
-                Weather.CloudCover hourlyCover = rnd.Next(3) == 0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
+                Weather.CloudCover hourlyCover = Rnd.Next(3) == 0 ? coverValues[Rnd.Next(coverValues.Length)] : cover;
 
                 int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
                 Weather.eWindSpeed[] hourlyWindspeedValues =
-                {
-                    windSpeed, windSpeed, windSpeed,
-                    hourlyTemperature[i - 1].WindSpeed,
-                    windspeedIndex > 0
-                        ? (Weather.eWindSpeed)windspeedIndex - 1
-                        : (Weather.eWindSpeed)windspeedIndex + 1,
-                    windspeedIndex < windSpeedValues.Length - 1
-                        ? (Weather.eWindSpeed)windspeedIndex + 1
-                        : (Weather.eWindSpeed)windspeedIndex - 1
-                };
-                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[rnd.Next(hourlyWindspeedValues.Length)];
+                    {
+                        windSpeed, windSpeed, windSpeed,
+                        hourlyTemperature[i - 1].WindSpeed,
+                        windspeedIndex > 0
+                            ? (Weather.eWindSpeed) windspeedIndex - 1
+                            : (Weather.eWindSpeed) windspeedIndex + 1,
+                        windspeedIndex < windSpeedValues.Length - 1
+                            ? (Weather.eWindSpeed) windspeedIndex + 1
+                            : (Weather.eWindSpeed) windspeedIndex - 1
+                    };
+                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[Rnd.Next(hourlyWindspeedValues.Length)];
 
                 hourlyTemperature[i] = new HourlyWeather(
                     temp,
@@ -1296,11 +1302,11 @@
                     windDirection);
             }
 
-            double daySteps = (temperatureSunset - temperatureSunrise) / (Weather.Sunset - Weather.Sunrise - 1);
+            double daySteps = (temperatureSunset - temperatureSunrise)/(Weather.Sunset - Weather.Sunrise - 1);
 
             for (int i = Weather.Sunrise + 1; i < Weather.Sunset; i++)
             {
-                Weather.CloudCover hourlyCover = rnd.Next(3) == 0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
+                Weather.CloudCover hourlyCover = Rnd.Next(3) == 0 ? coverValues[Rnd.Next(coverValues.Length)] : cover;
 
                 double temp = hourlyTemperature[i - 1].Temperature + daySteps;
                 if (hourlyCover != hourlyTemperature[i - 1].Cover && hourlyCover == Weather.CloudCover.Overcast)
@@ -1315,17 +1321,17 @@
 
                 int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
                 Weather.eWindSpeed[] hourlyWindspeedValues =
-                {
-                    windSpeed, windSpeed, windSpeed,
-                    hourlyTemperature[i - 1].WindSpeed,
-                    windspeedIndex > 0
-                        ? (Weather.eWindSpeed)windspeedIndex - 1
-                        : (Weather.eWindSpeed)windspeedIndex + 1,
-                    windspeedIndex < windSpeedValues.Length - 1
-                        ? (Weather.eWindSpeed)windspeedIndex + 1
-                        : (Weather.eWindSpeed)windspeedIndex - 1
-                };
-                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[rnd.Next(hourlyWindspeedValues.Length)];
+                    {
+                        windSpeed, windSpeed, windSpeed,
+                        hourlyTemperature[i - 1].WindSpeed,
+                        windspeedIndex > 0
+                            ? (Weather.eWindSpeed) windspeedIndex - 1
+                            : (Weather.eWindSpeed) windspeedIndex + 1,
+                        windspeedIndex < windSpeedValues.Length - 1
+                            ? (Weather.eWindSpeed) windspeedIndex + 1
+                            : (Weather.eWindSpeed) windspeedIndex - 1
+                    };
+                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[Rnd.Next(hourlyWindspeedValues.Length)];
 
                 hourlyTemperature[i] = new HourlyWeather(
                     temp,
@@ -1335,26 +1341,26 @@
                     windDirection);
             }
 
-            double eveningSteps = (temperatureDayend - temperatureSunset) / (hourlyTemperature.Length - Weather.Sunset);
+            double eveningSteps = (temperatureDayend - temperatureSunset)/(hourlyTemperature.Length - Weather.Sunset);
 
             for (int i = Weather.Sunset; i < hourlyTemperature.Length; i++)
             {
                 double temp = hourlyTemperature[i - 1].Temperature + eveningSteps;
-                Weather.CloudCover hourlyCover = rnd.Next(3) == 0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
+                Weather.CloudCover hourlyCover = Rnd.Next(3) == 0 ? coverValues[Rnd.Next(coverValues.Length)] : cover;
 
                 int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
                 Weather.eWindSpeed[] hourlyWindspeedValues =
-                {
-                    windSpeed, windSpeed, windSpeed,
-                    hourlyTemperature[i - 1].WindSpeed,
-                    windspeedIndex > 0
-                        ? (Weather.eWindSpeed)windspeedIndex - 1
-                        : (Weather.eWindSpeed)windspeedIndex + 1,
-                    windspeedIndex < windSpeedValues.Length - 1
-                        ? (Weather.eWindSpeed)windspeedIndex + 1
-                        : (Weather.eWindSpeed)windspeedIndex - 1
-                };
-                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[rnd.Next(hourlyWindspeedValues.Length)];
+                    {
+                        windSpeed, windSpeed, windSpeed,
+                        hourlyTemperature[i - 1].WindSpeed,
+                        windspeedIndex > 0
+                            ? (Weather.eWindSpeed) windspeedIndex - 1
+                            : (Weather.eWindSpeed) windspeedIndex + 1,
+                        windspeedIndex < windSpeedValues.Length - 1
+                            ? (Weather.eWindSpeed) windspeedIndex + 1
+                            : (Weather.eWindSpeed) windspeedIndex - 1
+                    };
+                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[Rnd.Next(hourlyWindspeedValues.Length)];
 
                 hourlyTemperature[i] = new HourlyWeather(
                     temp,
@@ -1367,10 +1373,10 @@
             temperatureHigh = hourlyTemperature.Max(t => t.Temperature);
 
             cover =
-                (from c in hourlyTemperature group c by c.Cover into g select new { Cover = g.Key, Qty = g.Count() })
+                (from c in hourlyTemperature group c by c.Cover into g select new {Cover = g.Key, Qty = g.Count()})
                     .OrderByDescending(g => g.Qty).First().Cover;
             precip =
-                (from c in hourlyTemperature group c by c.Precip into g select new { Precip = g.Key, Qty = g.Count() })
+                (from c in hourlyTemperature group c by c.Precip into g select new {Precip = g.Key, Qty = g.Count()})
                     .OrderByDescending(g => g.Qty).First().Precip;
 
             var weather = new Weather(
@@ -1392,44 +1398,44 @@
             if (temperature > 10)
             {
                 Weather.Precipitation[] values =
-                {
-                    Weather.Precipitation.Thunderstorms, Weather.Precipitation.Heavy_rain,
-                    Weather.Precipitation.Light_rain,
-                    Weather.Precipitation.Isolated_thunderstorms
-                };
-                return values[rnd.Next(values.Length)];
+                    {
+                        Weather.Precipitation.Thunderstorms, Weather.Precipitation.HeavyRain,
+                        Weather.Precipitation.LightRain,
+                        Weather.Precipitation.IsolatedThunderstorms
+                    };
+                return values[Rnd.Next(values.Length)];
             }
             if (temperature <= 10 && temperature >= 5)
             {
                 Weather.Precipitation[] values =
-                {
-                    Weather.Precipitation.Heavy_rain, Weather.Precipitation.Light_rain,
-                    Weather.Precipitation.Isolated_rain,
-                    Weather.Precipitation.Isolated_thunderstorms
-                };
-                return values[rnd.Next(values.Length)];
+                    {
+                        Weather.Precipitation.HeavyRain, Weather.Precipitation.LightRain,
+                        Weather.Precipitation.IsolatedRain,
+                        Weather.Precipitation.IsolatedThunderstorms
+                    };
+                return values[Rnd.Next(values.Length)];
             }
             if (temperature < 5 && temperature >= -3)
             {
                 Weather.Precipitation[] values =
-                {
-                    Weather.Precipitation.Freezing_rain,
-                    Weather.Precipitation.Mixed_rain_and_snow,
-                    Weather.Precipitation.Sleet, Weather.Precipitation.Light_snow,
-                    Weather.Precipitation.Isolated_snow
-                };
-                return values[rnd.Next(values.Length)];
+                    {
+                        Weather.Precipitation.FreezingRain,
+                        Weather.Precipitation.MixedRainAndSnow,
+                        Weather.Precipitation.Sleet, Weather.Precipitation.LightSnow,
+                        Weather.Precipitation.IsolatedSnow
+                    };
+                return values[Rnd.Next(values.Length)];
             }
             if (temperature < -3)
             {
                 Weather.Precipitation[] values =
-                {
-                    Weather.Precipitation.Heavy_snow, Weather.Precipitation.Light_snow,
-                    Weather.Precipitation.Isolated_snow
-                };
-                return values[rnd.Next(values.Length)];
+                    {
+                        Weather.Precipitation.HeavySnow, Weather.Precipitation.LightSnow,
+                        Weather.Precipitation.IsolatedSnow
+                    };
+                return values[Rnd.Next(values.Length)];
             }
-            return Weather.Precipitation.Light_rain;
+            return Weather.Precipitation.LightRain;
         }
 
         #endregion

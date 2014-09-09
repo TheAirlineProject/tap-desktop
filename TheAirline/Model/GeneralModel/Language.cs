@@ -1,15 +1,15 @@
-﻿namespace TheAirline.Model.GeneralModel
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
+namespace TheAirline.Model.GeneralModel
+{
     //the class for a language
     public class Language
     {
         #region Fields
 
-        private readonly Dictionary<string, string> Words;
+        private readonly Dictionary<string, string> _words;
 
         #endregion
 
@@ -17,11 +17,11 @@
 
         public Language(string name, string cultureInfo, Boolean isEnabled)
         {
-            this.Name = name;
-            this.Unit = UnitSystem.Metric;
-            this.CultureInfo = cultureInfo;
-            this.IsEnabled = isEnabled;
-            this.Words = new Dictionary<string, string>();
+            Name = name;
+            Unit = UnitSystem.Metric;
+            CultureInfo = cultureInfo;
+            IsEnabled = isEnabled;
+            _words = new Dictionary<string, string>();
         }
 
         #endregion
@@ -51,22 +51,22 @@
 
         #endregion
 
-        //adds a word to the language
-
         #region Public Methods and Operators
 
-        public void addWord(string wordOrginal, string wordLanguage)
+        public void AddWord(string wordOrginal, string wordLanguage)
         {
-            this.Words.Add(wordOrginal, wordLanguage);
+            _words.Add(wordOrginal, wordLanguage);
         }
 
         //converts a text to the language
-        public string convert(string text)
+        public string Convert(string text)
         {
-            return this.Words[text];
+            return _words[text];
         }
 
         #endregion
+
+        //adds a word to the language
     }
 
     //the collection of languages
@@ -74,46 +74,46 @@
     {
         #region Static Fields
 
-        private static Dictionary<string, Language> languages = new Dictionary<string, Language>();
+        private static Dictionary<string, Language> _languages = new Dictionary<string, Language>();
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        public static void AddLanguage(Language language)
+        {
+            if (!_languages.ContainsKey(language.Name))
+            {
+                _languages.Add(language.Name, language);
+            }
+        }
+
+        public static void Clear()
+        {
+            _languages = new Dictionary<string, Language>();
+        }
+
+        //returns a language 
+        public static Language GetLanguage(string name)
+        {
+            if (_languages.ContainsKey(name))
+            {
+                return _languages[name];
+            }
+            string shortname = name.Substring(name.IndexOf("("));
+            return _languages.Values.ToList().Find(l => l.Name.Contains(shortname));
+        }
+
+        //returns the list of languages
+        public static List<Language> GetLanguages()
+        {
+            return _languages.Values.ToList();
+        }
 
         #endregion
 
         //clears the list of languages
 
         //adds a language to the collection
-
-        #region Public Methods and Operators
-
-        public static void AddLanguage(Language language)
-        {
-            if (!languages.ContainsKey(language.Name))
-            {
-                languages.Add(language.Name, language);
-            }
-        }
-
-        public static void Clear()
-        {
-            languages = new Dictionary<string, Language>();
-        }
-
-        //returns a language 
-        public static Language GetLanguage(string name)
-        {
-            if (languages.ContainsKey(name))
-            {
-                return languages[name];
-            }
-            string shortname = name.Substring(name.IndexOf("("));
-            return languages.Values.ToList().Find(l => l.Name.Contains(shortname));
-        }
-
-        //returns the list of languages
-        public static List<Language> GetLanguages()
-        {
-            return languages.Values.ToList();
-        }
-
-        #endregion
     }
 }

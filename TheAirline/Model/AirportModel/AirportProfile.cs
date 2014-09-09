@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.WeatherModel;
@@ -153,7 +154,7 @@ namespace TheAirline.Model.AirportModel
             {
                 if (!File.Exists(_logo))
                 {
-                    Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + IATACode + ".png";
+                    Logo = AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\" + IATACode + ".png";
                 }
                 return _logo;
             }

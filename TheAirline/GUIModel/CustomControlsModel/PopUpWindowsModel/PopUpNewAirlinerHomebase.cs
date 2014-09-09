@@ -10,6 +10,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.InvoicesModel;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {

@@ -96,7 +96,7 @@
 
         private void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
-            GameObjectWorker.GetInstance().cancel();
+            GameObjectWorker.GetInstance().Cancel();
 
             WPFMessageBoxResult result = WPFMessageBox.Show(
                 Translator.GetInstance().GetString("MessageBox", "1001"),
@@ -105,9 +105,9 @@
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                GameObjectWorker.GetInstance().cancel();
+                GameObjectWorker.GetInstance().Cancel();
 
-                while (GameObjectWorker.GetInstance().isBusy())
+                while (GameObjectWorker.GetInstance().IsBusy())
                 {
                 }
                 PageNavigator.NavigateTo(new PageNewGame());
@@ -124,12 +124,12 @@
 
         private void btnPause_Click(object sender, RoutedEventArgs e)
         {
-            GameObjectWorker.GetInstance().pause();
+            GameObjectWorker.GetInstance().Pause();
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            GameObjectWorker.GetInstance().restart();
+            GameObjectWorker.GetInstance().Restart();
         }
 
         #endregion

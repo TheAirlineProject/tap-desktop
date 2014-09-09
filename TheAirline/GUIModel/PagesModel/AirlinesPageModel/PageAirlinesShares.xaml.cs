@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
+﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -160,7 +162,7 @@
                 AirlineHelpers.AddAirlineInvoice(
                     GameObject.GetInstance().HumanAirline,
                     GameObject.GetInstance().GameTime,
-                    Invoice.InvoiceType.Airline_Expenses,
+                    Invoice.InvoiceType.AirlineExpenses,
                     -buyingPrice);
 
                 Airlines.RemoveAirline(airline.Airline);
@@ -218,7 +220,7 @@
                 AirlineHelpers.AddAirlineInvoice(
                     GameObject.GetInstance().HumanAirline,
                     GameObject.GetInstance().GameTime,
-                    Invoice.InvoiceType.Airline_Expenses,
+                    Invoice.InvoiceType.AirlineExpenses,
                     -buyingPrice);
 
                 Airlines.RemoveAirline(airline.Airline);
@@ -298,7 +300,7 @@
                 AirlineHelpers.AddAirlineInvoice(
                     GameObject.GetInstance().HumanAirline,
                     GameObject.GetInstance().GameTime,
-                    Invoice.InvoiceType.Airline_Expenses,
+                    Invoice.InvoiceType.AirlineExpenses,
                     -amount);
 
                 airline.addOwnership(GameObject.GetInstance().HumanAirline, numberOfShares);

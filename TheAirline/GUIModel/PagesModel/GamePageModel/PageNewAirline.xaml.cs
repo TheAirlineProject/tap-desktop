@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
+﻿using TheAirline.Model.GeneralModel.CountryModel;
+
+namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     using System;
     using System.Collections.Generic;
@@ -47,13 +49,13 @@
 
             this.InitializeComponent();
 
-            this.logoPath = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png";
+            this.logoPath = AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\default.png";
             this.imgLogo.Source = new BitmapImage(new Uri(this.logoPath, UriKind.RelativeOrAbsolute));
 
             this.txtCEO.Text = string.Format(
                 "{0} {1}",
-                Names.GetInstance().getRandomFirstName(this.AllCountries[0]),
-                Names.GetInstance().getRandomLastName(this.AllCountries[0]));
+                Names.GetInstance().GetRandomFirstName(this.AllCountries[0]),
+                Names.GetInstance().GetRandomLastName(this.AllCountries[0]));
         }
 
         #endregion
@@ -176,7 +178,7 @@
 
             dlg.DefaultExt = ".png";
             dlg.Filter = "Images (.png)|*.png";
-            dlg.InitialDirectory = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\";
+            dlg.InitialDirectory = AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\";
 
             bool? result = dlg.ShowDialog();
 
@@ -247,7 +249,7 @@
 
         private void saveAirline(Airline airline)
         {
-            string directory = AppSettings.getCommonApplicationDataPath() + "\\custom airlines";
+            string directory = AppSettings.GetCommonApplicationDataPath() + "\\custom airlines";
 
             if (!Directory.Exists(directory))
             {

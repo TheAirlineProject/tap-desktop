@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
+﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -110,7 +112,7 @@
                 AirlineHelpers.AddAirlineInvoice(
                     GameObject.GetInstance().HumanAirline,
                     GameObject.GetInstance().GameTime,
-                    Invoice.InvoiceType.Airline_Expenses,
+                    Invoice.InvoiceType.AirlineExpenses,
                     -price);
 
                 ICollectionView view = CollectionViewSource.GetDefaultView(this.lvInstructors.ItemsSource);
@@ -186,7 +188,7 @@
                             AirlineHelpers.AddAirlineInvoice(
                                 GameObject.GetInstance().HumanAirline,
                                 GameObject.GetInstance().GameTime,
-                                Invoice.InvoiceType.Airline_Expenses,
+                                Invoice.InvoiceType.AirlineExpenses,
                                 price);
                         }
                     }

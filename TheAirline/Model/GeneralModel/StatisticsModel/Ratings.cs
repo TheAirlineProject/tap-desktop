@@ -1,16 +1,13 @@
-﻿namespace TheAirline.Model.StatisticsModel
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel.Helpers;
+
+namespace TheAirline.Model.GeneralModel.StatisticsModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-
     public class Ratings
     {
-        //calculates customer happiness as a function of average ticket price, crowding on flights, and on-time % - for an airline
-
         #region Public Methods and Operators
 
         public static double GetCustomerHappiness(Airline airline)
@@ -29,8 +26,8 @@
             double airlinePPD = scalePPD[airline];
             double airlineLuxury = scaleLuxury[airline];
 
-            return ((airlinePPD * negInt + 100) * 0.4) + (airlineAvgFill * 0.2) + (airlineOTP * 0.2)
-                   + (airlineLuxury * 0.2);
+            return ((airlinePPD*negInt + 100)*0.4) + (airlineAvgFill*0.2) + (airlineOTP*0.2)
+                   + (airlineLuxury*0.2);
         }
 
         //returns all airline luxury levels
@@ -49,7 +46,7 @@
             double airlineDiscounts = scaleDiscounts[airline];
             double airlineUnassignedPilots = scaleUPilots[airline];
 
-            return (airlineWages * 0.7) + (airlineUnassignedPilots * 0.2) + (airlineDiscounts * 0.1);
+            return (airlineWages*0.7) + (airlineUnassignedPilots*0.2) + (airlineDiscounts*0.1);
         }
 
         #endregion
@@ -64,8 +61,8 @@
             {
                 luxuryLevel =
                     airline.Alliances.SelectMany(a => a.Members)
-                        .Select(m => m.Airline)
-                        .Max(m => airline.Facilities.Sum(f => f.LuxuryLevel));
+                           .Select(m => m.Airline)
+                           .Max(m => airline.Facilities.Sum(f => f.LuxuryLevel));
             }
             else
             {
@@ -86,5 +83,7 @@
         }
 
         #endregion
+
+        //calculates customer happiness as a function of average ticket price, crowding on flights, and on-time % - for an airline
     }
 }

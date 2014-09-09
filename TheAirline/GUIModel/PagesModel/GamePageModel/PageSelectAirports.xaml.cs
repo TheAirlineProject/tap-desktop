@@ -19,6 +19,7 @@ using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
@@ -100,13 +101,13 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             {
                 int majorAirports = Airports.GetAllAirports(a =>
                                 a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Large
-                                || a.Profile.Size == GeneralHelpers.Size.Very_large
+                                || a.Profile.Size == GeneralHelpers.Size.VeryLarge
                                 || a.Profile.Size == GeneralHelpers.Size.Medium).Count;
 
                 foreach (Country country in this.SelectedCountries)
                 {
                     count += Airports.GetAllAirports(a => (new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country) == country && (a.Profile.Size == GeneralHelpers.Size.Small || a.Profile.Size == GeneralHelpers.Size.Smallest
-                                || a.Profile.Size == GeneralHelpers.Size.Very_small)).Count;
+                                || a.Profile.Size == GeneralHelpers.Size.VerySmall)).Count;
                 }
 
                 this.NumberOfAirports = count + majorAirports;

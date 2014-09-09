@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
+﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -233,7 +235,7 @@
                                             id.ToString(),
                                             order.Type,
                                             GameObject.GetInstance()
-                                                .HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(),
+                                                .HumanAirline.Profile.Country.TailNumbers.GetNextTailNumber(),
                                             deliveryDate);
 
                                         airliner.ClearAirlinerClasses();
@@ -436,7 +438,7 @@
                     var airliner = new Airliner(
                         id.ToString(),
                         order.Type,
-                        GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(),
+                        GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.GetNextTailNumber(),
                         deliveryDate);
                     Model.AirlinerModel.Airliners.AddAirliner(airliner);
 

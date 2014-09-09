@@ -38,17 +38,17 @@
             StatisticsType cargoType = StatisticsTypes.GetStatisticsType("Cargo");
             StatisticsType cargoAvgType = StatisticsTypes.GetStatisticsType("Cargo%");
 
-            this.Passengers = this.Airline.Statistics.getStatisticsValue(
+            this.Passengers = this.Airline.Statistics.GetStatisticsValue(
                 GameObject.GetInstance().GameTime.Year,
                 passengersType);
-            this.PassengersPerFlight = this.Airline.Statistics.getStatisticsValue(
+            this.PassengersPerFlight = this.Airline.Statistics.GetStatisticsValue(
                 GameObject.GetInstance().GameTime.Year,
                 passengersAvgType);
-            this.Flights = this.Airline.Statistics.getStatisticsValue(
+            this.Flights = this.Airline.Statistics.GetStatisticsValue(
                 GameObject.GetInstance().GameTime.Year,
                 arrivalsType);
-            this.Cargo = this.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, cargoType);
-            this.CargoPerFlight = this.Airline.Statistics.getStatisticsValue(
+            this.Cargo = this.Airline.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year, cargoType);
+            this.CargoPerFlight = this.Airline.Statistics.GetStatisticsValue(
                 GameObject.GetInstance().GameTime.Year,
                 cargoAvgType);
 

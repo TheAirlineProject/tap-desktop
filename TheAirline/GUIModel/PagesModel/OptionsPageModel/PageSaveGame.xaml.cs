@@ -60,7 +60,7 @@
         {
             Boolean gameworkerPaused = GameObjectWorker.GetInstance().isPaused();
 
-            GameObjectWorker.GetInstance().cancel();
+            GameObjectWorker.GetInstance().Cancel();
 
             string name = this.txtName.Text.Trim();
 
@@ -98,7 +98,7 @@
                 {
                     if (!gameworkerPaused)
                     {
-                        GameObjectWorker.GetInstance().start();
+                        GameObjectWorker.GetInstance().Start();
                     }
 
                     scSaving.Visibility = Visibility.Collapsed;

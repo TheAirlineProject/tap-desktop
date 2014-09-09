@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
+﻿using TheAirline.Model.GeneralModel.Helpers;
+
+namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -214,7 +216,7 @@
 
         private void setValues()
         {
-            this.SelectedLanguage = AppSettings.GetInstance().getLanguage();
+            this.SelectedLanguage = AppSettings.GetInstance().GetLanguage();
             this.SelectedAirportCode = Settings.GetInstance().AirportCodeDisplay;
             this.MailsOnLandings = Settings.GetInstance().MailsOnLandings;
             this.MailsOnBadWeather = Settings.GetInstance().MailsOnBadWeather;

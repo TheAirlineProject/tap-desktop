@@ -1,4 +1,6 @@
-﻿namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
+﻿using TheAirline.Model.GeneralModel.Helpers;
+
+namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
     using System;
     using System.Collections.Generic;

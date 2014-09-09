@@ -1,9 +1,9 @@
-﻿namespace TheAirline.Model.GeneralModel.Helpers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
+namespace TheAirline.Model.GeneralModel.Helpers
+{
     //the class for a performance counter
     public class PagePerformanceCounter
     {
@@ -11,9 +11,9 @@
 
         public PagePerformanceCounter(string page, DateTime timeSpamp, long counter)
         {
-            this.TimeStamp = timeSpamp;
-            this.Counter = counter;
-            this.Page = page;
+            TimeStamp = timeSpamp;
+            Counter = counter;
+            Page = page;
         }
 
         #endregion
@@ -34,31 +34,31 @@
     {
         #region Static Fields
 
-        private static readonly List<PagePerformanceCounter> counters = new List<PagePerformanceCounter>();
+        private static readonly List<PagePerformanceCounter> Counters = new List<PagePerformanceCounter>();
 
         #endregion
-
-        //adds a counter to the list
 
         #region Public Methods and Operators
 
         public static void AddPerformanceCounter(PagePerformanceCounter counter)
         {
-            counters.Add(counter);
+            Counters.Add(counter);
         }
 
         //returns all pages for the list
         public static List<string> GetPages()
         {
-            return counters.Select(c => c.Page).Distinct().ToList();
+            return Counters.Select(c => c.Page).Distinct().ToList();
         }
 
         //returns all counters for a specific page
         public static List<PagePerformanceCounter> GetPerformanceCounters(string page)
         {
-            return counters.FindAll(c => c.Page == page);
+            return Counters.FindAll(c => c.Page == page);
         }
 
         #endregion
+
+        //adds a counter to the list
     }
 }

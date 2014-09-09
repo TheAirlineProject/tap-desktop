@@ -149,14 +149,14 @@ namespace TheAirline.Model.AirlinerModel
 
         private double GetBalance()
         {
-            return getStatisticsValue(StatisticsTypes.GetStatisticsType("Airliner_Income"));
+            return GetStatisticsValue(StatisticsTypes.GetStatisticsType("Airliner_Income"));
         }
 
         //get the degree of filling
         private double GetFillingDegree()
         {
-            double avgPassengers = getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers"))
-                                   /getStatisticsValue(StatisticsTypes.GetStatisticsType("Arrivals"));
+            double avgPassengers = GetStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers"))
+                                   /GetStatisticsValue(StatisticsTypes.GetStatisticsType("Arrivals"));
 
             double totalPassengers = Convert.ToDouble(_airliner.Airliner.GetTotalSeatCapacity());
 
@@ -173,7 +173,7 @@ namespace TheAirline.Model.AirlinerModel
         private double GetIncomePerPassenger()
         {
             double totalPassengers =
-                Convert.ToDouble(getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")));
+                Convert.ToDouble(GetStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")));
 
             if (totalPassengers == 0)
             {

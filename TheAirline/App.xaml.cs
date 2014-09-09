@@ -33,7 +33,7 @@ namespace TheAirline
         {
             //var l_CurrentStack = new System.Diagnostics.StackTrace(true);
             
-            System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairline.log");
+            System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.GetCommonApplicationDataPath() + "\\theairline.log");
             file.WriteLine("{0}: {1} {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), e.ExceptionObject.ToString());
             file.WriteLine("---------GAME INFORMATION----------");
             file.Write("Gametime: {0}, human airline: {1}",GameObject.GetInstance().GameTime.ToShortDateString(),GameObject.GetInstance().HumanAirline.Profile.Name);

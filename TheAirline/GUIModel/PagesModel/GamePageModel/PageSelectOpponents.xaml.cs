@@ -38,7 +38,7 @@
                             && (a.Profile.Country.Region == this.StartData.Region
                                 || (this.StartData.Continent != null
                                     && (this.StartData.Continent.Uid == "100"
-                                        || this.StartData.Continent.hasRegion(a.Profile.Country.Region))))))
+                                        || this.StartData.Continent.HasRegion(a.Profile.Country.Region))))))
             {
                 this.Opponents.Add(airline);
             }

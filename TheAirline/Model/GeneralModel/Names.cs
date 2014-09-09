@@ -1,27 +1,28 @@
-﻿namespace TheAirline.Model.GeneralModel
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using TheAirline.Model.GeneralModel.CountryModel;
 
+namespace TheAirline.Model.GeneralModel
+{
     //the class for the names
     public class Names
     {
         #region Static Fields
 
-        private static Names Instance;
+        private static Names _instance;
 
         #endregion
 
         #region Fields
 
-        private readonly Dictionary<Country, List<string>> FirstNames;
+        private readonly Dictionary<Country, List<string>> _firstNames;
 
-        private readonly Dictionary<Country, List<string>> LastNames;
+        private readonly Dictionary<Country, List<string>> _lastNames;
 
-        private readonly Random rnd;
+        private readonly Random _rnd;
 
         #endregion
 
@@ -29,12 +30,12 @@
 
         private Names()
         {
-            this.rnd = new Random();
+            _rnd = new Random();
 
-            this.FirstNames = new Dictionary<Country, List<string>>();
-            this.LastNames = new Dictionary<Country, List<string>>();
+            _firstNames = new Dictionary<Country, List<string>>();
+            _lastNames = new Dictionary<Country, List<string>>();
 
-            this.setupNames();
+            SetupNames();
         }
 
         #endregion
@@ -43,53 +44,51 @@
 
         public static Names GetInstance()
         {
-            if (Instance == null)
+            if (_instance == null)
             {
-                Instance = new Names();
+                _instance = new Names();
             }
 
-            return Instance;
+            return _instance;
         }
 
         //returns a random first name from a country
-        public string getRandomFirstName(Country country)
+        public string GetRandomFirstName(Country country)
         {
-            if (!this.FirstNames.ContainsKey(country))
+            if (!_firstNames.ContainsKey(country))
             {
-                IEnumerable<Country> countries = this.FirstNames.Select(n => n.Key);
-                country = countries.ElementAt(this.rnd.Next(countries.Count()));
+                IEnumerable<Country> countries = _firstNames.Select(n => n.Key);
+                country = countries.ElementAt(_rnd.Next(countries.Count()));
             }
 
-            return this.getRandomElement(this.FirstNames[country]);
+            return GetRandomElement(_firstNames[country]);
         }
 
         //returns a random last name
-        public string getRandomLastName(Country country)
+        public string GetRandomLastName(Country country)
         {
-            if (!this.LastNames.ContainsKey(country))
+            if (!_lastNames.ContainsKey(country))
             {
-                IEnumerable<Country> countries = this.FirstNames.Select(n => n.Key);
-                country = countries.ElementAt(this.rnd.Next(countries.Count()));
+                IEnumerable<Country> countries = _firstNames.Select(n => n.Key);
+                country = countries.ElementAt(_rnd.Next(countries.Count()));
             }
 
-            return this.getRandomElement(this.LastNames[country]);
+            return GetRandomElement(_lastNames[country]);
         }
 
         #endregion
 
-        //returns a random element from a list
-
         #region Methods
 
-        private string getRandomElement(List<string> list)
+        private string GetRandomElement(List<string> list)
         {
-            return list[this.rnd.Next(list.Count)];
+            return list[_rnd.Next(list.Count)];
         }
 
         //setup the names
-        private void setupNames()
+        private void SetupNames()
         {
-            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\names");
+            var dir = new DirectoryInfo(AppSettings.GetDataPath() + "\\addons\\names");
 
             foreach (FileInfo file in dir.GetFiles("*.names"))
             {
@@ -98,7 +97,7 @@
                 var reader = new StreamReader(file.FullName, Encoding.GetEncoding("iso-8859-1"));
 
                 //first line is the attributes for the file. Format: [TYPE=F(irstnames)||L(astnames)][COUNTRIES=110,111....]
-                string[] attributes = reader.ReadLine().Split(new[] { "[" }, StringSplitOptions.RemoveEmptyEntries);
+                string[] attributes = reader.ReadLine().Split(new[] {"["}, StringSplitOptions.RemoveEmptyEntries);
                 Boolean isFirstname = attributes[0].Substring(attributes[0].IndexOf("=") + 1, 1) == "F";
 
                 string attrCountries = attributes[1].Substring(attributes[1].IndexOf("=") + 1);
@@ -116,22 +115,22 @@
                     {
                         foreach (Country country in countries)
                         {
-                            if (!this.FirstNames.ContainsKey(country))
+                            if (!_firstNames.ContainsKey(country))
                             {
-                                this.FirstNames.Add(country, new List<string>());
+                                _firstNames.Add(country, new List<string>());
                             }
-                            this.FirstNames[country].Add(line);
+                            _firstNames[country].Add(line);
                         }
                     }
                     else
                     {
                         foreach (Country country in countries)
                         {
-                            if (!this.LastNames.ContainsKey(country))
+                            if (!_lastNames.ContainsKey(country))
                             {
-                                this.LastNames.Add(country, new List<string>());
+                                _lastNames.Add(country, new List<string>());
                             }
-                            this.LastNames[country].Add(line);
+                            _lastNames[country].Add(line);
                         }
                     }
                 }
@@ -160,5 +159,7 @@
         }
 
         #endregion
+
+        //returns a random element from a list
     }
 }
