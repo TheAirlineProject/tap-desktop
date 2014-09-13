@@ -4,8 +4,8 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
@@ -103,7 +103,7 @@
 
         private void btnMap_Click(object sender, RoutedEventArgs e)
         {
-            PopUpMap.ShowPopUp(GameObject.GetInstance().HumanAirline.Routes);
+            PopUpMapControl.ShowPopUp(null,GameObject.GetInstance().HumanAirline.Routes);
         }
 
         #endregion

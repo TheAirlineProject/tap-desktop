@@ -91,6 +91,9 @@
     <Reference Include="De.TorstenMandelkow.MetroChart">
       <HintPath>..\Resource\De.TorstenMandelkow.MetroChart.dll</HintPath>
     </Reference>
+    <Reference Include="MapControl.WPF">
+      <HintPath>..\..\..\BBM\xamlmapcontrol\MyMap\bin\Debug\MapControl.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="MathNet.Numerics">
       <HintPath>..\packages\MathNet.Numerics.2.6.2\lib\net40\MathNet.Numerics.dll</HintPath>
     </Reference>
@@ -214,7 +217,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpMap.xaml">
+    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpMapModel\PopUpMapControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -614,8 +617,9 @@
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpInviteAlliance.xaml.cs">
       <DependentUpon>PopUpInviteAlliance.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpMap.xaml.cs">
-      <DependentUpon>PopUpMap.xaml</DependentUpon>
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpMapModel\MapViewModel.cs" />
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpMapModel\PopUpMapControl.xaml.cs">
+      <DependentUpon>PopUpMapControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpNewAirlinerHomebase.cs" />
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpShowConnectingRoutes.xaml.cs">

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1550,7 +1550,6 @@
   </data>
   <data name="MessageBox_101_message" xml:space="preserve">
     <value>The given filename is invalid.
-
 Loading of game aborted.</value>
   </data>
   <data name="MessageBox_1001_name" xml:space="preserve">
@@ -1804,7 +1803,6 @@ Loading of game aborted.</value>
   </data>
   <data name="MessageBox_2206_message" xml:space="preserve">
     <value>Are you sure you want to build a terminal with {0} gates for {1:C}?
-
 All your rented gates will be moved to this terminal when finish building it.</value>
   </data>
   <data name="MessageBox_2207_name" xml:space="preserve">
@@ -1836,7 +1834,6 @@ All your rented gates will be moved to this terminal when finish building it.</v
   </data>
   <data name="MessageBox_2211_message" xml:space="preserve">
     <value>Are you sure you want to buy this terminal for {0:C}?
-
 All your rented gates will be moved to the terminal.</value>
   </data>
   <data name="MessageBox_2212_name" xml:space="preserve">
@@ -2084,7 +2081,6 @@ All your rented gates will be moved to the terminal.</value>
   </data>
   <data name="News_1001_message" xml:space="preserve">
     <value>Dear {0},
-
 Welcome as the CEO of [LI airline={1}]. We hope you will enjoy the game.
 Good luck.</value>
   </data>
@@ -2623,7 +2619,7 @@ Good luck.</value>
     <value>{0} closes its route between {1} and {2}</value>
   </data>
   <data name="NewsFeed_1003_name" xml:space="preserve">
-    <value>{0} opens new hub at {1} in {2},  {3}</value>
+    <value>{0} opens new hub at {1} in {2}, {3}</value>
   </data>
   <data name="PageAirport_1027_name" xml:space="preserve">
     <value>Passengers</value>
@@ -3559,7 +3555,7 @@ Good luck.</value>
     <value>Employees</value>
   </data>
   <data name="PageAirline_2002_name" xml:space="preserve">
-    <value>Advertisements  &amp; Insurances</value>
+    <value>Advertisements &amp; Insurances</value>
   </data>
   <data name="PageAirline_2003_name" xml:space="preserve">
     <value>Services &amp; Fees</value>
@@ -3853,7 +3849,7 @@ Good luck.</value>
     <value>Yearly Payment</value>
   </data>
   <data name="PageAirportInfo_1029_name" xml:space="preserve">
-    <value>Destination Demand</value>
+    <value>Domestic</value>
   </data>
   <data name="PageAirportInfo_1030_name" xml:space="preserve">
     <value>Destination</value>
@@ -4432,7 +4428,7 @@ Good luck.</value>
     <value>Selecting more than 50 opponents will make the game unstable</value>
   </data>
   <data name="PageNewGame_1028_name" xml:space="preserve">
-    <value>Use Only Major Airports</value>
+    <value>Select Airports</value>
   </data>
   <data name="PageFleetAirlinerInformation_1012_name" xml:space="preserve">
     <value>Pilots</value>
@@ -5186,5 +5182,236 @@ Good luck.</value>
   </data>
   <data name="PopUpAirlinerSeatsConfiguration_1012_name" xml:space="preserve">
     <value>Price</value>
+  </data>
+  <data name="News_1016_message" xml:space="preserve">
+    <value>You failed to fulfil your contract {0}. It will cost you a penalty fee of {1}</value>
+  </data>
+  <data name="News_1016_name" xml:space="preserve">
+    <value>Failed contract</value>
+  </data>
+  <data name="News_1017_message" xml:space="preserve">
+    <value>Congrats! You have fulfilled the contract {0} and you will be paid a bonus of {1}</value>
+  </data>
+  <data name="News_1017_name" xml:space="preserve">
+    <value>Successful contract</value>
+  </data>
+  <data name="PageAssignAirliners_1005_name" xml:space="preserve">
+    <value>Special Contracts</value>
+  </data>
+  <data name="PageAssignAirliners_1006_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PageAssignAirliners_1007_name" xml:space="preserve">
+    <value>Airline</value>
+  </data>
+  <data name="PageAssignAirliners_1008_name" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="PopUpSpecialContracts_1000_name" xml:space="preserve">
+    <value>Special Contracts</value>
+  </data>
+  <data name="PopUpSpecialContracts_1001_name" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="PopUpSpecialContracts_1002_name" xml:space="preserve">
+    <value>Penalty</value>
+  </data>
+  <data name="PageCreateRoute_1021_name" xml:space="preserve">
+    <value>Add Route to Contract</value>
+  </data>
+  <data name="PageAssignAirliners_1009_name" xml:space="preserve">
+    <value>To Date</value>
+  </data>
+  <data name="PageRoutePlanner_1027_name" xml:space="preserve">
+    <value>Use as Charter</value>
+  </data>
+  <data name="PageRoutePlanner_1028_name" xml:space="preserve">
+    <value>Charter Route</value>
+  </data>
+  <data name="PageSelectAirports_1000_name" xml:space="preserve">
+    <value>Select Countries</value>
+  </data>
+  <data name="PopUpShowSpecialContract_1000_name" xml:space="preserve">
+    <value>Contract Routes</value>
+  </data>
+  <data name="PopUpShowSpecialContract_1001_name" xml:space="preserve">
+    <value>Requirements</value>
+  </data>
+  <data name="PageNewGame_1031_name" xml:space="preserve">
+    <value>Select Full Countries</value>
+  </data>
+  <data name="PageNewGame_205_name" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="PageSelectAirports_1001_name" xml:space="preserve">
+    <value>Number of Selected Airports: </value>
+  </data>
+  <data name="PageShowAirports_1015_name" xml:space="preserve">
+    <value>Show Distance To</value>
+  </data>
+  <data name="PageShowAirports_1016_name" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="PageShowRoute_1006_name" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="PageShowRoute_1007_name" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="RouteFeedback_1000_name" xml:space="preserve">
+    <value>This is not a good aircraft for this kind of route</value>
+  </data>
+  <data name="RouteFeedback_1001_name" xml:space="preserve">
+    <value>An ok aircraft for a flight of this length, but nothing special</value>
+  </data>
+  <data name="RouteFeedback_1002_name" xml:space="preserve">
+    <value>Excellent choice of aircraft and people really likes it</value>
+  </data>
+  <data name="RouteFeedback_1003_name" xml:space="preserve">
+    <value>Please consider using a younger aircraft than this one. It is way too old</value>
+  </data>
+  <data name="RouteFeedback_1004_name" xml:space="preserve">
+    <value>An aircraft in its best age. Just how it should be</value>
+  </data>
+  <data name="RouteFeedback_1005_name" xml:space="preserve">
+    <value>A young aircraft is always the best choice</value>
+  </data>
+  <data name="RouteFeedback_1006_name" xml:space="preserve">
+    <value>The passengers are going to be very hungry on this route or maybe bring there own food</value>
+  </data>
+  <data name="RouteFeedback_1007_name" xml:space="preserve">
+    <value>It will not be a culinary experience but people can live with it</value>
+  </data>
+  <data name="RouteFeedback_1008_name" xml:space="preserve">
+    <value>Passengers loves the selection of meals onboard</value>
+  </data>
+  <data name="RouteFeedback_1009_name" xml:space="preserve">
+    <value>A bad choice of seats</value>
+  </data>
+  <data name="RouteFeedback_1010_name" xml:space="preserve">
+    <value>Standard seats for a standard experience</value>
+  </data>
+  <data name="RouteFeedback_1011_name" xml:space="preserve">
+    <value>You know exactly what the passengers want</value>
+  </data>
+  <data name="RouteFeedback_1012_name" xml:space="preserve">
+    <value>It is like you don't know what the demand from the passengers is</value>
+  </data>
+  <data name="RouteFeedback_1013_name" xml:space="preserve">
+    <value>People are not gonna be bored on this flight</value>
+  </data>
+  <data name="RouteFeedback_1014_name" xml:space="preserve">
+    <value>On demand entertainment for the win!</value>
+  </data>
+  <data name="RouteFeedback_1015_name" xml:space="preserve">
+    <value>No Wifi. Are you sure about that?</value>
+  </data>
+  <data name="RouteFeedback_1016_name" xml:space="preserve">
+    <value>The flights have paid wifi</value>
+  </data>
+  <data name="RouteFeedback_1017_name" xml:space="preserve">
+    <value>Everybody loves free wifi</value>
+  </data>
+  <data name="RouteFeedback_1018_name" xml:space="preserve">
+    <value>The prices are way too high for this kind of route</value>
+  </data>
+  <data name="RouteFeedback_1019_name" xml:space="preserve">
+    <value>You are spot on with the prices</value>
+  </data>
+  <data name="RouteFeedback_1020_name" xml:space="preserve">
+    <value>Are you offering this at a discount, since it is very cheap?</value>
+  </data>
+  <data name="RouteFeedback_1021_name" xml:space="preserve">
+    <value>The passengers will not like this route</value>
+  </data>
+  <data name="RouteFeedback_1022_name" xml:space="preserve">
+    <value>Without competition on this route you might have success</value>
+  </data>
+  <data name="RouteFeedback_1023_name" xml:space="preserve">
+    <value>This will almost for sure be a winner</value>
+  </data>
+  <data name="RouteFeedback_1024_name" xml:space="preserve">
+    <value>There are fees for checked bags</value>
+  </data>
+  <data name="RouteFeedback_1025_name" xml:space="preserve">
+    <value>There are fees for checked bags</value>
+  </data>
+  <data name="RouteFeedback_1026_name" xml:space="preserve">
+    <value>The bags are checked in for free</value>
+  </data>
+  <data name="RouteFeedback_1100_name" xml:space="preserve">
+    <value>There is no data yet!</value>
+  </data>
+  <data name="PageAirportDemand_1002_name" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="PageAirportInfo_1057_name" xml:space="preserve">
+    <value>International</value>
+  </data>
+  <data name="PageAirportDemand_1003_name" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="PageAirportDemand_1004_name" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="PageAirportDemand_1005_name" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="PageAirportDemand_1006_name" xml:space="preserve">
+    <value>Airline Gates Share</value>
+  </data>
+  <data name="PageAirportDemand_1007_name" xml:space="preserve">
+    <value>Airport Demand</value>
+  </data>
+  <data name="PageAirportDemand_1008_name" xml:space="preserve">
+    <value>Airline Routes</value>
+  </data>
+  <data name="PageAirlineFinances_1021_name" xml:space="preserve">
+    <value>Last 5 Days</value>
+  </data>
+  <data name="MessageBox_3004_message" xml:space="preserve">
+    <value>You are not having the correct license to fly this route</value>
+  </data>
+  <data name="MessageBox_3004_name" xml:space="preserve">
+    <value>Airline license</value>
+  </data>
+  <data name="PageCreateRoute_1022_name" xml:space="preserve">
+    <value>Show Only Hubs</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1006_name" xml:space="preserve">
+    <value>Incomes</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1007_name" xml:space="preserve">
+    <value>Expenses</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1008_name" xml:space="preserve">
+    <value>Weekly Utilization</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1009_name" xml:space="preserve">
+    <value>Airliner Condition</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1010_name" xml:space="preserve">
+    <value>In Air Percent</value>
+  </data>
+  <data name="PageNewGame_1032_name" xml:space="preserve">
+    <value>International Airports</value>
+  </data>
+  <data name="PageNewGame_1033_name" xml:space="preserve">
+    <value>All Airports</value>
+  </data>
+  <data name="PageNewGame_1034_name" xml:space="preserve">
+    <value>Major Airports </value>
+  </data>
+  <data name="PageAirlineFleet_1017_name" xml:space="preserve">
+    <value>Outleased Fleet</value>
+  </data>
+  <data name="PageAirliners_2004_name" xml:space="preserve">
+    <value>Leasing Airliners</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_206_name" xml:space="preserve">
+    <value>Outlease Airliner</value>
+  </data>
+  <data name="PageLeasingAirliners_1000_name" xml:space="preserve">
+    <value>Owner</value>
   </data>
 </root>

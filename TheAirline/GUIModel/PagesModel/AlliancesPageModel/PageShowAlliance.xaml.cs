@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
@@ -189,7 +189,7 @@
         private void btnRouteMap_Click(object sender, RoutedEventArgs e)
         {
             IEnumerable<Route> routes = this.Alliance.Members.SelectMany(m => m.Member.Airline.Routes);
-            PopUpMap.ShowPopUp(routes.ToList());
+            PopUpMapControl.ShowPopUp(null,routes.ToList());
         }
 
         #endregion

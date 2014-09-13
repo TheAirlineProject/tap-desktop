@@ -285,7 +285,10 @@
         {
             return string.Format("{0}°{1}'{2}", this.Degrees, this.Minutes, this.Seconds);
         }
-
+        public double getAsDecimal()
+        {
+            return MathHelpers.DMStoDeg(this.Degrees, this.Minutes, this.Seconds);
+        }
         #endregion
     }
 }

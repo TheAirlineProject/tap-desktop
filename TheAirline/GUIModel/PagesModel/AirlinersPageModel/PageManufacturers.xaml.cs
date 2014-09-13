@@ -9,6 +9,7 @@
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
+    using TheAirline.Model.PassengerModel;
 
     /// <summary>
     ///     Interaction logic for PageManufacturers.xaml
@@ -18,13 +19,14 @@
         #region Constructors and Destructors
 
         public PageManufacturers()
-        {
+        { 
             var airlinerTypes = new List<AirlinerType>(AirlinerTypes.GetAllTypes());
             this.AllManufacturers = (from a in airlinerTypes
                 where
                     a !=null 
                     && a.Produced.From <= GameObject.GetInstance().GameTime
                     && a.Produced.To >= GameObject.GetInstance().GameTime
+                    && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline,a,GameObject.GetInstance().GameTime)
                 orderby a.Manufacturer.Name
                 select a.Manufacturer).Distinct().ToList();
             this.Loaded += this.PageManufacturers_Loaded;

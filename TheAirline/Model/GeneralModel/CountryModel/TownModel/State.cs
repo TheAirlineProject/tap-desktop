@@ -185,7 +185,11 @@
         {
             return states.Find(s => s.Country == country && s.ShortName == shortname);
         }
-
+        //returns the list of states from a country
+        public static List<State> GetStates(Country country)
+        {
+            return states.FindAll(s => s.Country == country);
+        }
         #endregion
     }
 }

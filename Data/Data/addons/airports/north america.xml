@@ -314,6 +314,8 @@
       <runway name="07/25" length="1890" surface="Asphalt" />
       <runway name="10/28" length="2438" surface="Asphalt" />
       <runway name="16/34" length="3863" surface="Asphalt" />
+      <runway name="H1" length="18" surface="Asphalt" type="Helipad" />
+      <runway name="H2" length="18" surface="Asphalt" type="Helipad" />
     </runways>
   </airport>
   <airport name="Victoria International Airport" icao="CYYJ" iata="YYJ" type="Short_Haul_International"
@@ -1513,6 +1515,7 @@
       <terminal name="Fedex Cargo Ramp" gates="8" type="Cargo" />
       <terminal name="UPS Cargo Ramp" gates="9" type="Cargo"  />
       <terminal name="West Cargo Ramp" gates="10"  type="Cargo" />
+       <runway name="H1" length="48" surface="Concrete" type="Helipad" />
     </terminals>
     <runways>
       <runway name="13L/31R" length="2743" surface="Concrete" />
@@ -1763,6 +1766,9 @@
     <runways>
       <runway name="6/24" length="2347" surface="Concrete" />
       <runway name="18/36" length="2652" surface="Concrete" />
+       <runway name="H1" length="18" surface="Concrete" type="Helipad" />
+        <runway name="H2" length="18" surface="Concrete" type="Helipad" />
+         <runway name="H3" length="15" surface="Concrete" type="Helipad" />
     </runways>
   </airport>
   <airport name="Gerald R. Ford International Airport" icao="KGRR" iata="GRR" type="Short_Haul_International"
@@ -1983,6 +1989,8 @@
       <runway name="10/28" length="1534" surface="Asphalt" />
       <runway name="15L/33R" length="968" surface="Asphalt" />
       <runway name="15R/33L" length="1581" surface="Asphalt" />
+     <runway name="H1" length="15" surface="Asphalt" type="Helipad" />
+     <runway name="H2" length="15" surface="Asphalt" type="Helipad" />
     </runways>
   </airport>
   <airport name="Jackson-Evers International Airport" icao="KJAN" iata="JAN" type="Domestic" season="All_Year">
@@ -2031,6 +2039,10 @@
       <terminal name="Terminal 5" gates="26" />
       <terminal name="Terminal 7" gates="12" />
       <terminal name="Terminal 8" gates="29" />
+      <runway name="H1" length="18" surface="Asphalt" type="Helipad" />
+      <runway name="H2" length="18" surface="Asphalt" type="Helipad" />
+      <runway name="H3" length="18" surface="Asphalt" type="Helipad" />
+      <runway name="H4" length="18" surface="Asphalt" type="Helipad" />
     </terminals>
     <runways>
       <runway name="4L/22R" length="3460" surface="Asphalt" />
@@ -2171,6 +2183,7 @@
     <runways>
       <runway name="4/22" length="2134" surface="Asphalt" />
       <runway name="13/31" length="2135" surface="Asphalt" />
+      <runway name="H1" length="12" surface="Concrete" type="Helipad" />
     </runways>
   </airport>
   <airport name="Long Beach Airport" icao="KLGB" iata="LGB" type="Domestic" season="All_Year">
@@ -2307,6 +2320,7 @@ season="All_Year">
       <runway name="17R/35L" length="3048" surface="Concrete" />
       <runway name="18L/36R" length="3659" surface="Asphalt" />
       <runway name="18R/36L" length="3659" surface="Concrete" />
+      <runway name="H1" length="13" surface="Concrete" type="Helipad" />
     </runways>
   </airport>
   <airport name="Harrisburg International Airport" icao="KMDT" iata="MDT" type="Short_Haul_International"
@@ -2621,6 +2635,7 @@ season="All_Year">
       <runway name="10/28" length="3962" surface="Asphalt" />
       <runway name="14L/32R" length="3050" surface="Asphalt" />
       <runway name="14R/32L" length="2952" surface="Asphalt" />
+      <runway name="H1" length="61" surface="Concrete" type="Helipad" />
     </runways>
   </airport>
   <airport name="Norfolk International Airport" icao="KORF" iata="ORF" type="Domestic" season="All_Year">
@@ -2855,6 +2870,7 @@ season="All_Year">
       <runway name="10C/28C" length="2959" surface="Asphalt" />
       <runway name="10R/28L" length="3505" surface="Concrete" />
       <runway name="14/32" length="2469" surface="Concrete" />
+       <runway name="H1" length="18" surface="Concrete" type="Helipad" />
     </runways>
   </airport>
   <airport name="Pensacola International Airport" icao="KPNS" iata="PNS" type="Regional" season="All_Year">
@@ -3058,6 +3074,7 @@ season="All_Year">
       <runway name="12L/30R" length="2774" surface="Asphalt" />
       <runway name="12R/30L" length="1415" surface="Concrete" />
       <runway name="17/35" length="1493" surface="Concrete" />
+       <runway name="H1" length="12" surface="Asphalt" type="Helipad" />
     </runways>
   </airport>
     <airport name="Boulder City Municipal Airport" icao="KBVU" iata="BLD" type="Domestic" season="All_Year">
@@ -3631,6 +3648,22 @@ season="All_Year">
       <runway name="10R/28L" length="3231" surface="Asphalt" />
     </runways>
   </airport>
+   <airport name="Joplin Regional Airport" icao="KJLN" iata="JLN" type="Domestic" season="All_Year">
+    <town town="Joplin, MO" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="037°09'06''N" />
+      <longitude value="094°29'54''W" />
+    </coordinates>
+    <size value="Small" pax="50" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="1982" surface="Asphalt" />
+      <runway name="18/36" length="1981" surface="Asphalt" />
+      <runway name="05/23" length="1098" surface="Asphalt" />
+    </runways>
+  </airport> 
   <airport name="Springfield-Branson National Airport" icao="KSGF" iata="SGF" type="Domestic" season="All_Year">
     <town town="Springfield, MO" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
@@ -3899,7 +3932,140 @@ season="All_Year">
       <runway name="17/35" length="2012" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Stewart International Airport" icao="KSWF" iata="SWF" type="Domestic" season="All_Year">
+  <airport name="Yellowstone Airport" icao="KWYS" iata="WYS" type="Domestic" season="Summer">
+    <town town="West Yellowstone, MT" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="044°41'18''N" />
+      <longitude value="111°07'04''W" />
+    </coordinates>
+    <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2560" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Sidney-Richland Municipal Airport" icao="KSDY" iata="SDY" type="Domestic" season="All_Year">
+    <town town="Sidney, MT" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="047°42'25''N" />
+      <longitude value="104°11'33''W" />
+    </coordinates>
+    <size value="Smallest" pax="20" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="1739" surface="Asphalt" />
+      <runway name="11/29" length="1226" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Vernal Regional Airport" icao="KVEL" iata="VEL" type="Domestic" season="All_Year">
+    <town town="Vernal, UT" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="040°26'27''N" />
+      <longitude value="109°30'36''W" />
+    </coordinates>
+    <size value="Smallest" pax="12" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="1890" surface="Asphalt" />
+      <runway name="07/25" length="1252" surface="Asphalt" />
+    </runways>
+  </airport>
+      <airport name="Ogden-Hinckley Airport" icao="KOGD" iata="OGD" type="Domestic" season="All_Year">
+    <town town="Ogden, UT" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="041°11'44''N" />
+      <longitude value="112°00'47''W" />
+    </coordinates>
+    <size value="Smallest" pax="31" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="2470" surface="Asphalt" />
+      <runway name="07/25" length="1103" surface="Asphalt" />
+      <runway name="16/34" length="1583" surface="Asphalt" />
+    </runways>
+  </airport>
+        <airport name="Ogdensburg International Airport" icao="KOGS" iata="OGS" type="Regional" season="All_Year">
+    <town town="Ogdensburg, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="044°40'55''N" />
+      <longitude value="075°27'56''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1585" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Kirksville Regional Airport" icao="KIRK" iata="IRK" type="Domestic" season="All_Year">
+    <town town="Kirksville, MO" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="040°05'36''N" />
+      <longitude value="092°32'42''W" />
+    </coordinates>
+    <size value="Smallest" pax="12" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="1830" surface="Concrete" />
+      <runway name="9/27" length="418" surface="Grass" />
+    </runways>
+  </airport>
+   <airport name="Waynesville-St. Robert Regional Airport" icao="KTBN" iata="TBN" type="Domestic" season="All_Year">
+    <town town="Waynesville/St. Robert, MO" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="037°44'30''N" />
+      <longitude value="092°08'27''W" />
+    </coordinates>
+    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="1840" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Boone County Airport" icao="KHRO" iata="HRO" type="Domestic" season="All_Year">
+    <town town="Harrison, AR" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="036°15'41''N" />
+      <longitude value="093°09'17''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="1878" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Lea County Regional Airport" icao="KHOB" iata="HOB" type="Domestic" season="All_Year">
+    <town town="Hobbs, NM" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="032°41'15''N" />
+      <longitude value="103°13'01''W" />
+    </coordinates>
+    <size value="Smallest" pax="34" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="2255" surface="Asphalt" />
+      <runway name="12/30" length="1829" surface="Asphalt" />
+      <runway name="17/35" length="1523" surface="Asphalt" />
+          </runways>
+  </airport>
+  <airport name="Stewart International Airport" icao="KSWF" iata="SWF" type="Domestic" season="All_Year" landingfee="0.38">
     <town town="Newburgh, NY" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="041°30'14''N" />
@@ -3912,6 +4078,7 @@ season="All_Year">
     <runways>
       <runway name="9/27" length="3602" surface="Asphalt" />
       <runway name="16/34" length="1831" surface="Asphalt" />
+      <runway name="H1" length="12" surface="Asphalt" type="Helipad" />
     </runways>
   </airport>
   <airport name="Syracuse Hancock International Airport" icao="KSYR" iata="SYR" type="Short_Haul_International"
@@ -3959,6 +4126,7 @@ season="All_Year">
       <runway name="1L/19R" length="3353" surface="Asphalt" />
       <runway name="1R/19L" length="2530" surface="Asphalt" />
       <runway name="10/28" length="2133" surface="Asphalt" />
+<runway name="H1" length="30" surface="Asphalt" type="Helipad" />
     </runways>
   </airport>
   <airport name="Tri Cities Regional Tn Va Airport" icao="KTRI" iata="TRI" type="Domestic" season="All_Year">
@@ -6134,6 +6302,48 @@ season="All_Year">
       <runway name="09/27" length="1621" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Benjamin Rivera Noriega Airport" icao="TJCP" iata="CPX" type="Regional" season="All_Year">
+    <town town="Isla de Culebra, PR" country="122" GMT="-04:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="018°18'48''N" />
+      <longitude value="065°18'16''W" />
+    </coordinates>
+    <size value="Smallest" pax="17" />
+    <terminals>
+      <terminal name="Terminal" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="792" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Jose Aponte de la Torre Airport" icao="TJRV" iata="NRR" type="Regional" season="All_Year">
+    <town town="Ceiba, PR" country="122" GMT="-04:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="018°14'43''N" />
+      <longitude value="065°38'36''W" />
+    </coordinates>
+    <size value="Smallest" pax="36" />
+    <terminals>
+      <terminal name="Terminal" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="3353" surface="Asphalt" />
+    </runways>
+  </airport>
+      <airport name="Eugenio Maria de Hostos Airport" icao="TJMZ" iata="MAZ" type="Regional" season="All_Year">
+    <town town="Mayaguez, PR" country="122" GMT="-04:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="018°15'20''N" />
+      <longitude value="067°08'54''W" />
+    </coordinates>
+    <size value="Smallest" pax="12" />
+    <terminals>
+      <terminal name="Terminal" gates="18" />
+    </terminals>
+    <runways>
+      <runway name="9/27" length="1523" surface="Asphalt" />
+    </runways>
+  </airport>
    <airport name="Vieques Airport" icao="TJCG" iata="VQS" type="Domestic" season="All_Year">
     <town town="Vieques Island, PR" country="122" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
@@ -6149,7 +6359,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Luis Muñoz Marín International Airport" icao="TJSJ" iata="SJU" type="Long_Haul_International"
-           season="Summer">
+           season="All_Year">
     <town town="San Juan, PR" country="122" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="018°26'13''N" />
@@ -6480,6 +6690,22 @@ season="All_Year">
       <runway name="16/34" length="2134" surface="Asphalt" />
     </runways>
   </airport>
+    <airport name="MidAmerica St. Louis Airport/Scott Air Force Base" icao="KBLV" iata="BLV" type="Domestic"
+           season="All_Year">
+       <town town="Belleville, IL" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="038°32'43''N" />
+      <longitude value="089°50'07''W" />
+    </coordinates>
+    <size value="Smallest" pax="36" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="14L/32R" length="3048" surface="Concrete" />
+      <runway name="14R/32L" length="2442" surface="Asphalt" />
+       </runways>
+  </airport> 
   <airport name="University of Illinois Willard Airport" icao="KCMI" iata="CMI" type="Regional" season="All_Year">
     <town town="Champaign/Urbana, IL" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
@@ -7397,7 +7623,7 @@ season="All_Year">
       <latitude value="040°16'33''N" />
       <longitude value="079°24'17''W" />
     </coordinates>
-    <size value="Smallest" pax="14" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="258" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>

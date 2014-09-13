@@ -186,10 +186,16 @@
         {
             long value = 0;
 
+            var stats = new List<RouteStatisticsItem>();
+            
+
             lock (this.Stats)
             {
-                value = this.Stats.Where(s => s.Type.Shortname == type.Shortname).Sum(s => s.Value);
+                stats = new List<RouteStatisticsItem>(this.Stats);
+
+             
             }
+            value = stats.Where(s => s.Type.Shortname == type.Shortname).Sum(s => s.Value);
 
             return value;
         }

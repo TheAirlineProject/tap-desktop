@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Belleville, IL">
+  <months>
+    <month month="1" precipitation="70">
+      <temp min="-4" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="57">
+      <temp min="-3" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="83">
+      <temp min="2" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="104">
+      <temp min="7" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="130">
+      <temp min="13" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="103">
+      <temp min="18" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="101">
+      <temp min="21" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="74">
+      <temp min="20" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="76">
+      <temp min="15" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="71">
+      <temp min="9" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="86">
+      <temp min="3" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="64">
+      <temp min="-3" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

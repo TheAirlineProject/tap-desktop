@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Etihad Airways" iata="EY" color="Gold" country="156" CEO="Hamed bin Zayed Al Nahyan"
            mentality="Aggressive" market="Global" preferedairport="AUH">
+           <narrative
+      narrative="Etihad Airways is the flag carrier airline of the United Arab Emirates. Established by royal decree in July 2003 and based in Abu Dhabi, Etihad commenced operations in November 2003. The name derives from the Arabic word for union."/>
   </profile>
   <info real="True" from="2003" to="2199" />
 </airline>

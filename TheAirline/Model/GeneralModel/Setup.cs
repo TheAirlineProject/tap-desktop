@@ -2459,6 +2459,7 @@
                                 StringSplitOptions.RemoveEmptyEntries);
                     var coords = new int[6];
 
+                  
                     //latitude
                     coords[0] = int.Parse(latitude[0]);
                     coords[1] = int.Parse(latitude[1]);
@@ -2468,7 +2469,7 @@
                     {
                         coords[0] = -coords[0];
                     }
-
+               
                     //longitude
                     coords[3] = int.Parse(longitude[0]);
                     coords[4] = int.Parse(longitude[1]);

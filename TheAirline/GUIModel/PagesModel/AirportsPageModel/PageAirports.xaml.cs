@@ -3,13 +3,14 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
+    using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 
     /// <summary>
     ///     Interaction logic for PageAirports.xaml
@@ -32,6 +33,7 @@
                 .ToList()
                 .GetRange(0,Math.Min(hubs.Count,5));
 
+            this.CountryStates = new ObservableCollection<State>();
           
             this.Loaded += this.PageAirports_Loaded;
 
@@ -47,6 +49,8 @@
         public List<Airport> HumanAirports { get; set; }
 
         public List<Airport> HumanHubs { get; set; }
+
+        public ObservableCollection<State> CountryStates { get; set; }
 
         #endregion
 
@@ -78,6 +82,9 @@
                     .ThenBy(r => r.Name);
 
             cbRegion.ItemsSource = regions;
+
+  
+            
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -94,11 +101,13 @@
         {
             var cbCountry = UIHelpers.FindChild<ComboBox>(this, "cbCountry");
             var cbRegion = UIHelpers.FindChild<ComboBox>(this, "cbRegion");
+            var cbState = UIHelpers.FindChild<ComboBox>(this, "cbState");
             var txtText = UIHelpers.FindChild<TextBox>(this, "txtText");
 
             string text = txtText.Text.Trim().ToUpper();
             var country = (Country)cbCountry.SelectedItem;
             var region = (Region)cbRegion.SelectedItem;
+            var state = (State)cbState.SelectedItem;
 
             if (text == "112")
             {
@@ -114,7 +123,8 @@
                              || a.Profile.Name.ToUpper().StartsWith(text)
                              || a.Profile.Town.Name.ToUpper().StartsWith(text))
                             && ((country.Uid == "100" && (region.Uid == "100" || a.Profile.Country.Region == region))
-                                || new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country == country));
+                                || new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country == country)
+                             && (state.ShortName=="All" || a.Profile.Town.State == state));
 
             var frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
 
@@ -123,7 +133,27 @@
                 frmContent.Navigate(new PageShowAirports(airports.ToList()) { Tag = this.Tag });
             }
         }
+        private void cbCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var cbCountry = UIHelpers.FindChild<ComboBox>(this, "cbCountry");
+            var cbState = UIHelpers.FindChild<ComboBox>(this, "cbState");
 
+            var country = (Country)cbCountry.SelectedItem;
+
+            if (country != null)
+            {
+                while (this.CountryStates.Count > 0)
+                    this.CountryStates.RemoveAt(0);
+
+                this.CountryStates.Add(new State(Countries.GetCountry("100"), "All States", "All", false));
+
+                foreach (State state in States.GetStates(country))
+                    this.CountryStates.Add(state);
+
+                cbState.SelectedIndex = 0;
+
+            }
+        }
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var cbCountry = UIHelpers.FindChild<ComboBox>(this, "cbCountry");
@@ -166,5 +196,7 @@
         }
 
         #endregion
+
+      
     }
 }

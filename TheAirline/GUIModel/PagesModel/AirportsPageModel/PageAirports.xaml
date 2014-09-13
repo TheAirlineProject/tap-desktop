@@ -45,8 +45,42 @@
                                   VerticalAlignment="Bottom" SelectedIndex="0" DisplayMemberPath="Name"
                                   SelectedValuePath="Name" />
                         <ComboBox Name="cbCountry" Style="{DynamicResource ComboBoxTransparentStyle}"
-                                  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SelectedIndex="0"
-                                  ItemTemplate="{StaticResource CountryLongFlagItem}" />
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SelectedIndex="0" 
+                                  ItemTemplate="{StaticResource CountryLongFlagItem}" SelectionChanged="cbCountry_SelectionChanged" />
+                        <ComboBox Name="cbState" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                                  SelectedIndex="0"
+                                   ItemsSource="{Binding ElementName=pageAirports, Path=CountryStates}">
+                            <ComboBox.Style>
+                                <Style BasedOn="{StaticResource ComboBoxTransparentStyle}" TargetType="ComboBox">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=pageAirports,Path=CountryStates.Count}" Value="1">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ComboBox.Style>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <Image Source="{Binding Flag}" Height="20" Width="20"  Margin="0 0 5 0"
+                   RenderOptions.BitmapScalingMode="HighQuality">
+                                            <Image.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding}" Value="{x:Null}">
+                                                            <Setter Property="Image.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <TextBlock
+                Text="{Binding Name}"
+                VerticalAlignment="Bottom" />
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                         <TextBox HorizontalAlignment="Stretch" Name="txtText" VerticalAlignment="Bottom">
                             <TextBox.Style>
                                 <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">

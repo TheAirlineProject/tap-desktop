@@ -743,6 +743,20 @@
   </airport>
   <!--Eastern Pacific (P***)-->
   <!--United States (Alaska) (PA**)-->
+        <airport name="Sand Point Airport" icao="PASD" iata="SDP" type="Domestic" season="All_Year">
+    <town town="Sand Point, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="055°18'49''N" />
+      <longitude value="160°31'17''W" />
+    </coordinates>
+    <size value="Smallest" pax="2" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="1589" surface="Asphalt" />
+     </runways>
+  </airport>
     <airport name="McGrath Airport" icao="PAMC" iata="MCG" type="Domestic" season="All_Year">
     <town town="McGrath, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
@@ -1263,7 +1277,7 @@
     </runways>
   </airport>
   <airport name="Ted Stevens Anchorage International Airport" icao="PANC" iata="ANC" type="Long_Haul_International"
-           season="Summer">
+           season="All_Year">
     <town town="Anchorage, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="061°10'27''N" />

@@ -7,6 +7,7 @@
     using System.Windows.Controls;
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlineModel.SubsidiaryModel;
@@ -56,7 +57,7 @@
 
         private void btnRouteMap_Click(object sender, RoutedEventArgs e)
         {
-            PopUpMap.ShowPopUp(this.Airline.Airline.Routes);
+            PopUpMapControl.ShowPopUp(null,this.Airline.Airline.Routes);
         }
         private void btnCallBackAirliner_Click(object sender, RoutedEventArgs e)
         {
@@ -68,7 +69,7 @@
         private void btnMoveAirliner_Click(object sender, RoutedEventArgs e)
         {
             var airliner = (FleetAirliner)((Button)sender).Tag;
-            
+           
             ComboBox cbAirlines = new ComboBox();
             cbAirlines.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
             cbAirlines.ItemTemplate = Application.Current.Resources["AirlineItem"] as DataTemplate;

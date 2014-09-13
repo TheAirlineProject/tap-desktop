@@ -121,8 +121,7 @@
             else
                 return d + m + s;
 
-            //return Convert.ToDouble(degrees) + (Convert.ToDouble(minutes) / 60) + (Convert.ToDouble(seconds) / 3600);
-        }
+         }
 
         public static double DegreeToRadian(double angle)
         {

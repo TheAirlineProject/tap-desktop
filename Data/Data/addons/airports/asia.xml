@@ -191,8 +191,8 @@
 <period from="06.27.2010 00:00:00" to="01.01.2199 00:00:00" />
 <town town="Dubai" country="156" GMT="04:00:00" DST="04:00:00" />
 <coordinates>
-<latitude value="024Â°55'06''N" />
-<longitude value="055Â°10'32''E" />
+<latitude value="024°55'06''N" />
+<longitude value="055°10'32''E" />
 </coordinates>
 <size value="Very_small" pax="400" cargo="Largest" cargovolume="12000" />
 <terminals>
@@ -4993,7 +4993,7 @@
       <runway name="11R/29L" length="3800" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Tan Son Nhat International Airport" icao="VVTS" iata="SGN" type="Short_Haul_International"
+  <airport name="Tan Son Nhat International Airport" icao="VVTS" iata="SGN" type="Long_Haul_International"
            season="All_Year">
     <town town="Ho Chi Minh City" country="1008" GMT="07:00:00" DST="07:00:00" />
     <coordinates>

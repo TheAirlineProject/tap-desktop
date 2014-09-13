@@ -5,8 +5,9 @@
     using System.Linq;
     using System.Reflection;
     using System.Runtime.Serialization;
-
+    using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel;
+    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.CountryModel;
 
@@ -93,7 +94,9 @@
         {
             Flights,
 
-            Airlines
+            Airlines,
+
+            Aircrafts
         }
 
         #endregion
@@ -196,6 +199,16 @@
             DateTime date,
             FlightRestriction.RestrictionType type)
         {
+            var restrictions = GetRestrictions();
+
+            from = new CountryCurrentCountryConverter().Convert(from) as Country;
+            to = new CountryCurrentCountryConverter().Convert(to) as Country;
+
+            var aircraftRestrictions = restrictions.Where(r => r.Type == type);
+
+            var fromRestrictions = aircraftRestrictions.Where(r => (r.From == from || (r.From is Union && ((Union)r.From).isMember(from, date))));
+            var toRestrictions = aircraftRestrictions.Where(r=> (r.To == to || (r.To is Union && ((Union)r.To).isMember(to, date))));
+
             FlightRestriction restriction =
                 GetRestrictions()
                     .Find(
@@ -204,11 +217,14 @@
                             && (r.To == to || (r.To is Union && ((Union)r.To).isMember(to, date)))
                             && (date >= r.StartDate && date <= r.EndDate) && r.Type == type);
 
-            //FlightRestriction res = GetRestrictions().Find(r => r.From == from && r.To == to && r.Type == type);
-
+   
             return restriction != null;
         }
-
+        //returns if there is restrictions for buying an aircraft type for an airline
+        public static Boolean HasRestriction(Airline airline, AirlinerType airliner, DateTime date)
+        {
+            return HasRestriction(airline.Profile.Country, airliner.Manufacturer.Country, date, FlightRestriction.RestrictionType.Aircrafts);
+        }
         //returns if there is flight restrictions between two countries
         public static Boolean HasRestriction(Country country1, Country country2, DateTime date)
         {

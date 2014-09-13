@@ -11,6 +11,7 @@
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.GUIModel.PagesModel.AirportPageModel;
     using TheAirline.Model.AirlineModel;
@@ -68,7 +69,8 @@
         {
             List<Airport> airports = this.AllAirports.Select(a => a.Airport).ToList();
         
-            PopUpMap.ShowPopUp(airports);
+            //PopUpMap.ShowPopUp(airports);
+            PopUpMapControl.ShowPopUp(airports);
         }
         private void btnContract_Click(object sender, RoutedEventArgs e)
         {

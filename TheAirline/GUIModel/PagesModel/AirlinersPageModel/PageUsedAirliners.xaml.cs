@@ -18,6 +18,7 @@
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
+    using TheAirline.Model.PassengerModel;
 
     /// <summary>
     ///     Interaction logic for PageUsedAirliners.xaml
@@ -63,7 +64,7 @@
 
             this.AllAirliners = new ObservableCollection<AirlinerMVVM>();
             foreach (
-                Airliner airliner in Airliners.GetAirlinersForSale().OrderByDescending(a => a.BuiltDate.Year).ToList())
+                Airliner airliner in Airliners.GetAirlinersForSale(a=> !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline, a.Type, GameObject.GetInstance().GameTime)).OrderByDescending(a => a.BuiltDate.Year).ToList())
             {
                 this.AllAirliners.Add(new AirlinerMVVM(airliner));
             }

@@ -22,7 +22,7 @@
                 <ContentControl ToolTipService.ShowDuration="30000" VerticalAlignment="Bottom"
                                 ContentTemplate="{StaticResource CountryFlagLongItem}" Content="{Binding From}">
                     <ContentControl.ToolTip>
-                        <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                        <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" Background="#2A4861"
                                  ItemTemplate="{StaticResource CountryFlagLongItem}"
                                  ItemsSource="{Binding From, Converter={StaticResource unionMemberConverter}}" />
                     </ContentControl.ToolTip>
@@ -32,7 +32,7 @@
                                 Content="{Binding To}">
                     <ContentControl.ToolTip>
                         <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
-                                 ItemTemplate="{StaticResource CountryFlagLongItem}"
+                                 ItemTemplate="{StaticResource CountryFlagLongItem}" Background="#2A4861"
                                  ItemsSource="{Binding To, Converter={StaticResource unionMemberConverter}}" />
                     </ContentControl.ToolTip>
                 </ContentControl>

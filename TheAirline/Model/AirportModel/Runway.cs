@@ -118,7 +118,9 @@
 
             Sand,
 
-            PSP
+            PSP,
+
+            Clay
         }
         #endregion
 

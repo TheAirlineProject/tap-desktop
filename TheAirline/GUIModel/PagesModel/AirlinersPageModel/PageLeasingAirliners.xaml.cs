@@ -22,6 +22,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.PassengerModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
@@ -81,7 +82,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             this.AllAirliners = new ObservableCollection<AirlinerMVVM>();
             foreach (
-                Airliner airliner in Airliners.GetAirlinersForLeasing().Where(a=>a.Owner==null || !a.Owner.IsHuman).OrderByDescending(a => a.BuiltDate.Year).ToList())
+                Airliner airliner in Airliners.GetAirlinersForLeasing().Where(a => a.Owner == null || !a.Owner.IsHuman && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline, a.Type, GameObject.GetInstance().GameTime)).OrderByDescending(a => a.BuiltDate.Year).ToList())
             {
                 this.AllAirliners.Add(new AirlinerMVVM(airliner));
             }

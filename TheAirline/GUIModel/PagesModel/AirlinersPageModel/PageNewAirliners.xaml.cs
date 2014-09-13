@@ -14,6 +14,7 @@
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
+    using TheAirline.Model.PassengerModel;
 
     /// <summary>
     ///     Interaction logic for PageNewAirliners.xaml
@@ -62,7 +63,8 @@
             AirlinerTypes.GetTypes(
                 t =>
                     t.Produced.From <= GameObject.GetInstance().GameTime
-                    && t.Produced.To > GameObject.GetInstance().GameTime)
+                    && t.Produced.To > GameObject.GetInstance().GameTime 
+                    && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline, t, GameObject.GetInstance().GameTime))
                 .ForEach(t => this.AllTypes.Add(new AirlinerTypeMVVM(t)));
 
             this.InitializeComponent();
