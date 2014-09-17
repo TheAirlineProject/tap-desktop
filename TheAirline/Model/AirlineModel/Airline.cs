@@ -35,7 +35,7 @@
             Route.RouteType routeFocus)
         {
             this.Scores = new AirlineScores();
-            this.Shares = new List<AirlineShare>();
+            this.Shares = new AirlineShare[10];
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
             this.Routes = new List<Route>();
@@ -131,8 +131,6 @@
                     }
                 }
 
-                this.Shares = new List<AirlineShare>();
-
                 if (version == 1)
                 {
                     AirlineHelpers.CreateStandardAirlineShares(this, 100);
@@ -147,10 +145,14 @@
                 if (version < 5)
                     this.SpecialContracts = new List<SpecialContract>();
 
+                if (version < 6)
+                    this.Shares = new AirlineShare[10];
+
                 if (this.Invoices == null)
                 {
                     this.Invoices = new Invoices();
                 }
+              
             }
             catch (Exception e)
             {
@@ -362,7 +364,8 @@
         [Versioning("scores")]
         public AirlineScores Scores { get; set; }
 
-        public List<AirlineShare> Shares { get; set; }
+         [Versioning("shares",Version=6)]
+         public AirlineShare[] Shares { get; set; }
 
         [Versioning("startmoney")]
         public double StartMoney { get; set; }
@@ -413,7 +416,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 5);
+            info.AddValue("version", 6);
 
             Type myType = this.GetType();
 
@@ -455,6 +458,8 @@
         //adds an airliner to the airlines fleet
         public void addAirliner(FleetAirliner.PurchasedType type, Airliner airliner, Airport homeBase)
         {
+            airliner.Airline = this;
+
             this.addAirliner(new FleetAirliner(type, GameObject.GetInstance().GameTime, this, airliner, homeBase));
         }
 

@@ -6640,6 +6640,34 @@
       <runway name="15/33" length="2400" surface="Concrete" />
     </runways>
   </airport>
+  <airport name="Shennongjia Hongping Airport" icao="ZHSN" iata="HPG" type="Domestic" season="All_Year">
+    <town town="Shennongjia" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="31°38'01''N" />
+      <longitude value="110°20'17''E" />
+    </coordinates>
+    <size value="Smallest" pax="150" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2800" surface="Concrete" />
+    </runways>
+  </airport> 
+  <airport name="Fuyuan Airport" icao="ZYFY" iata="FYJ" type="Domestic" season="All_Year">
+    <town town="Fuyuan County" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="048°11'58''N" />
+      <longitude value="134°21'59''E" />
+    </coordinates>
+    <size value="Smallest" pax="75" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+     <runways>
+      <runway name="6/24" length="2500" surface="Concrete" />
+    </runways>
+  </airport> 
           <airport name="Yichun Lindu Airport" icao="ZYLD" iata="LDS" type="Domestic" season="All_Year">
     <town town="Yichun Heilongjiang" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
@@ -9381,7 +9409,7 @@
     </coordinates>
     <size value="Small" pax="2894" cargo="Small" cargovolume="23" />
     <terminals>
-      <terminal name="Terminal A" gates="6" />
+      <terminal name="Terminal A" gates="17" />
     </terminals>
     <runways>
       <runway name="5/23" length="4120" surface="Asphalt" />

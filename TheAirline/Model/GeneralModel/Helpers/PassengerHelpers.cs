@@ -3089,6 +3089,13 @@
 
             var routes = new List<Route>();
 
+            List<Airline> airlines = new List<Airline>();
+
+            lock (Airlines.GetAllAirlines())
+            {
+                airlines = new List<Airline>(Airlines.GetAllAirlines());
+            }
+
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 var aRoutes = new List<Route>(airline.Routes);

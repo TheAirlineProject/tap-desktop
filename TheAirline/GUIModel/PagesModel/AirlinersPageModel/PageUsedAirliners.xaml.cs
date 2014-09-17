@@ -234,6 +234,7 @@
                             }
 
                             airliner.IsSelected = false;
+                            airliner.Airliner.Status = Airliner.StatusTypes.Normal;
                             this.SelectedAirliners.Remove(airliner);
                             this.AllAirliners.Remove(airliner);
                         }
@@ -315,6 +316,7 @@
 
                     long minRunway = this.SelectedAirliners.Max(a => a.Airliner.Type.MinRunwaylength);
 
+                
                     List<Airport> homebases =
                         GameObject.GetInstance()
                             .HumanAirline.Airports.FindAll(
@@ -371,6 +373,7 @@
 
                             this.SelectedAirliners.Remove(airliner);
                             this.AllAirliners.Remove(airliner);
+                            airliner.Airliner.Status = Airliner.StatusTypes.Normal;
                         }
                     }
                     else

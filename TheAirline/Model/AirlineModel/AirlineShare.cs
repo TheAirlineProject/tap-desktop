@@ -12,14 +12,14 @@
     [Serializable]
     public class AirlineShare : ISerializable
     {
-        //ændres til antal, percent per airline
-
+     
         #region Constructors and Destructors
 
         public AirlineShare(Airline airline, double price)
         {
             this.Price = price;
             this.Airline = airline;
+            this.ForSale = this.Airline == null;
         }
 
         private AirlineShare(SerializationInfo info, StreamingContext ctxt)
@@ -82,6 +82,8 @@
         #endregion
 
         #region Public Properties
+        [Versioning("forsale")]
+        public Boolean ForSale { get; set; }
 
         [Versioning("airline")]
         public Airline Airline { get; set; }

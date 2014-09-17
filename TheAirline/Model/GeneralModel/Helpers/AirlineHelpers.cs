@@ -412,11 +412,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             sAirline.Fees = new AirlineFees();
 
+            AirlineHelpers.CreateStandardAirlineShares(sAirline);
+
             airline.addSubsidiaryAirline(sAirline);
 
             if (!AirportHelpers.HasFreeGates(airportHomeBase, sAirline,terminaltype) && airportHomeBase.Terminals.getFreeGates(terminaltype) > 1)
             {
-                AirportHelpers.RentGates(airportHomeBase, sAirline, AirportContract.ContractType.Full,terminaltype, 2);
+                AirportHelpers.RentGates(airportHomeBase, sAirline, AirportContract.ContractType.Full_Service,terminaltype, 2);
                 //sets all the facilities at an airport to none for all airlines
                 foreach (Airport airport in Airports.GetAllAirports())
                 {
@@ -724,57 +726,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return GeneralHelpers.GetInflationPrice(price);
         }
-        //adds a number of shares to an airline
-        public static void AddAirlineShares(Airline airline, int shares, double sharePrice)
-        {
-            for (int i = 0; i < shares; i++)
-            {
-                AirlineShare share = new AirlineShare(null, sharePrice);
-                airline.Shares.Add(share);
-            }
-
-        }
-        //sets a number of shares to an airline
-        public static void SetAirlineShares(Airline airline, Airline shareAirline, int shares)
-        {
-            for (int i = 0; i < shares; i++)
-            {
-                AirlineShare share = airline.Shares.First(s => s.Airline == null);
-                share.Airline = shareAirline;
-
-            }
-        }
+     
         //creates the standard number of shares for an airline
         public static void CreateStandardAirlineShares(Airline airline, double sharePrice)
         {
             Random rnd = new Random();
 
-            int numberOfShares = 10000;
+            airline.Shares = new AirlineShare[10];
 
-            int airlinePercentShares = rnd.Next(55, 65);
-
-            airline.Shares = new List<AirlineShare>();
-
-            int airlineShares = (numberOfShares / 100) * airlinePercentShares;
-
-            //airline shares
-            lock (airline.Shares)
+            for (int i = 0; i < 10; i++)
             {
-                for (int i = 0; i < airlineShares; i++)
-                {
-                    AirlineShare share = new AirlineShare(airline, sharePrice);
-
-                    airline.Shares.Add(share);
-                }
-
-                //'free' shares
-                for (int i = airlineShares; i < numberOfShares; i++)
-                {
-                    AirlineShare share = new AirlineShare(null, sharePrice);
-
-                    airline.Shares.Add(share);
-                }
+                airline.Shares[i] = new AirlineShare(i<4 ? airline : null,sharePrice);
             }
+
+         
+          
 
         }
         public static void CreateStandardAirlineShares(Airline airline)

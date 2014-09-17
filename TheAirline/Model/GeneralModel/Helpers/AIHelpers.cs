@@ -943,13 +943,18 @@
                 () => { CheckForAirlineCodesharing(airline); },
                 () => { CheckForSubsidiaryAirline(airline); },
                 () => { CheckForAirlineAirportFacilities(airline); },
+                () => { CheckForStocksHandling(airline);},
                 () => { CheckForOrderOfAirliners(airline); }); //close parallel.invoke
         }
 
         #endregion
 
         #region Methods
-
+        //checks the airline will buy or sell some stocks
+        private static void CheckForStocksHandling(Airline airline)
+        {
+            d
+        }
         private static void ChangeRouteServiceLevel(PassengerRoute route)
         {
             var oRoutes = new List<Route>(Airlines.GetAirlines(a => a != route.Airline).SelectMany(a => a.Routes));

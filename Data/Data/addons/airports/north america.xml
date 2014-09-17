@@ -1659,7 +1659,7 @@
     </runways>
   </airport>
   <airport name="Fort Lauderdale–Hollywood International Airport" icao="KFLL" iata="FLL" type="Long_Haul_International"
-           season="All_Year">
+           season="All_Year" landingfee="0.35">
     <town town="Fort Lauderdale, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="026°04'21''N" />
@@ -1673,9 +1673,8 @@
       <terminal name="Terminal 4" gates="10" />
     </terminals>
     <runways>
-      <runway name="9L/27R" length="2743" surface="Asphalt" />
-      <runway name="9R/27L" length="1608" surface="Asphalt" />
-      <runway name="13/31" length="2112" surface="Asphalt" />
+      <runway name="10L/28R" length="2743" surface="Asphalt" />
+      <runway name="9R/27L" length="2438" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Bishop International Airport" icao="KFNT" iata="FNT" type="Domestic" season="All_Year">
@@ -2391,7 +2390,7 @@ season="All_Year">
       <runway name="17/35" length="2819" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Miami International Airport" icao="KMIA" iata="MIA" type="Long_Haul_International" season="Summer">
+  <airport name="Miami International Airport" icao="KMIA" iata="MIA" type="Long_Haul_International" season="Summer" landingfee="0.50">
     <town town="Miami, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
  <coordinates>
       <latitude value="025°47'35''N" />
@@ -2654,7 +2653,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Palm Beach International Airport" icao="KPBI" iata="PBI" type="Short_Haul_International"
-           season="Summer">
+           season="Summer" landingfee="0.38">
     <town town="West Palm Beach, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="026°40'59''N" />
@@ -3126,7 +3125,7 @@ season="All_Year">
      </runways>
   </airport>
   <airport name="Southwest Florida International Airport" icao="KRSW" iata="RSW" type="Long_Haul_International"
-           season="Winter">
+           season="Winter"  landingfee="0.76">
     <town town="Fort Myers, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="026°32'10''N" />
@@ -4112,7 +4111,7 @@ season="All_Year">
       <runway name="18/36" length="1852" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Tampa International Airport" icao="KTPA" iata="TPA" type="Long_Haul_International" season="Summer">
+  <airport name="Tampa International Airport" icao="KTPA" iata="TPA" type="Long_Haul_International" season="Summer"  landingfee="0.43">
     <town town="Tampa, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="027°58'32''N" />
@@ -8855,7 +8854,7 @@ season="All_Year">
     </runways>
   </airport>
    <airport name="Sarasota-Brandenton International Airport" icao="KSRQ" iata="SRQ" type="Short_Haul_International"
-           season="All_Year">
+           season="All_Year"  landingfee="0.25">
     <town town="Sarasota, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="027°23'44''N" />

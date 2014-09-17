@@ -533,7 +533,7 @@
         //returns the list of airliners for sale
         public static List<Airliner> GetAirlinersForSale(Predicate<Airliner> match)
         {
-            return airliners.FindAll(a => a.Airline == null).FindAll(match);
+            return airliners.FindAll(a => a.Airline == null && a.Status == Airliner.StatusTypes.Normal).FindAll(match);
         }
 
         public static List<Airliner> GetAllAirliners()

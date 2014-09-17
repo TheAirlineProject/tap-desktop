@@ -22,6 +22,7 @@ using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {
@@ -144,6 +145,8 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             subAirline.Profile.Logos.Clear();
             subAirline.Profile.AddLogo(new AirlineLogo(this.logoPath));
             subAirline.Money = this.slMoney.Value;
+
+            AirlineHelpers.CreateStandardAirlineShares(subAirline);
 
             this.Selected = subAirline;
             this.Close();

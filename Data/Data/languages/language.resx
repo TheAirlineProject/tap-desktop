@@ -4623,10 +4623,10 @@ Good luck.</value>
     <value>Stocks</value>
   </data>
   <data name="MessageBox_2127_message" xml:space="preserve">
-    <value>Are you sure you want to issue {0} shares to a price of {1} per share?</value>
+    <value>Are you sure you want to sell 10% of the shares in {0} for a price of {1}?</value>
   </data>
   <data name="MessageBox_2127_name" xml:space="preserve">
-    <value>Issue Shares</value>
+    <value>Sell Shares</value>
   </data>
   <data name="PageAirlineFleet_1000_name" xml:space="preserve">
     <value>Airline Active Fleet</value>
@@ -4656,7 +4656,7 @@ Good luck.</value>
     <value>Purchase Shares</value>
   </data>
   <data name="PageAirlinesShares_201_name" xml:space="preserve">
-    <value>Issue new Shares</value>
+    <value>Sell Shares</value>
   </data>
   <data name="PageAirline_2005_name" xml:space="preserve">
     <value>Fleet &amp; Routes</value>
@@ -5412,6 +5412,21 @@ Good luck.</value>
     <value>Outlease Airliner</value>
   </data>
   <data name="PageLeasingAirliners_1000_name" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="MessageBox_2130_message" xml:space="preserve">
+    <value>Are you sure you want to purchase 10% of the shares in {0} for a price of {1}?</value>
+  </data>
+  <data name="MessageBox_2130_name" xml:space="preserve">
+    <value>Purchase shares</value>
+  </data>
+  <data name="PageAirlinesShares_202_name" xml:space="preserve">
+    <value>Buy Airline</value>
+  </data>
+  <data name="PageAirlinesShares_203_name" xml:space="preserve">
+    <value>Buy as Subsidiary</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_1015_name" xml:space="preserve">
     <value>Owner</value>
   </data>
 </root>

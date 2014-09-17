@@ -623,8 +623,10 @@
 
                 for (int i = 0; i < contractFrom.NumberOfGates; i++)
                 {
-                    Gate gate = contractFrom.Airport.Terminals.getGates().Where(g => g.Airline == airlineFrom).First();
-                    gate.Airline = airlineTo;
+                    Gate gate = contractFrom.Airport.Terminals.getGates().Where(g => g.Airline == airlineFrom).FirstOrDefault();
+
+                    if (gate != null)
+                        gate.Airline = airlineTo;
                 }
             }
 

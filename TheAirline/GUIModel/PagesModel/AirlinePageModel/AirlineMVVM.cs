@@ -648,6 +648,8 @@
 
             airline.addAirliner(airliner);
 
+            airliner.Airliner.Airline = airline;
+
             var pilots = new List<Pilot>(airliner.Pilots);
 
             foreach (Pilot pilot in pilots)

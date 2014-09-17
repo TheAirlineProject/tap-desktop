@@ -1,11 +1,15 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 {
+    using De.TorstenMandelkow.MetroChart;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
-
+    using System.Windows;
+    using System.Windows.Data;
+    using System.Windows.Media;
+    using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
@@ -18,9 +22,12 @@
 
         private Boolean _isbuyable;
 
-        private int _stocks;
+        private Boolean _isstocksbuyable;
 
-        private int _stocksforsale;
+        private Boolean _isstockssellable;
+
+        private List<KeyValuePair<string, int>> _stocks;
+
 
         #endregion
 
@@ -52,11 +59,11 @@
                 GameObject.GetInstance().GameTime.Year,
                 cargoAvgType);
 
-            this.Stocks = this.Airline.Shares.Count;
-            this.StocksForSale = this.Airline.Shares.Count(s => s.Airline == null);
+        
+
             this.StockPrice = AirlineHelpers.GetPricePerAirlineShare(this.Airline);
 
-            this.setOwnershipValues();
+            setBuyNSellable(); 
         }
 
         #endregion
@@ -92,8 +99,7 @@
             }
         }
 
-        public ObservableCollection<AirlineSharesMVVM> OwnershipAirlines { get; set; }
-
+       
         public double Passengers { get; set; }
 
         public double PassengersPerFlight { get; set; }
@@ -102,7 +108,7 @@
 
         public double StockPrice { get; set; }
 
-        public int Stocks
+        public List<KeyValuePair<string, int>> Stocks
         {
             get
             {
@@ -114,17 +120,28 @@
                 this.NotifyPropertyChanged("Stocks");
             }
         }
-
-        public int StocksForSale
+        public Boolean IsStocksBuyable
         {
             get
             {
-                return this._stocksforsale;
+                return this._isstocksbuyable;
             }
             set
             {
-                this._stocksforsale = value;
-                this.NotifyPropertyChanged("StocksForSale");
+                this._isstocksbuyable = value;
+                this.NotifyPropertyChanged("IsStocksBuyable");
+            }
+        }
+        public Boolean IsStocksSellable
+        {
+            get
+            {
+                return this._isstockssellable;
+            }
+            set
+            {
+                this._isstockssellable = value;
+                this.NotifyPropertyChanged("IsStocksSellable");
             }
         }
 
@@ -134,54 +151,6 @@
 
         #region Public Methods and Operators
 
-        public void addOwnership(Airline airline, int shares)
-        {
-            AirlineHelpers.SetAirlineShares(this.Airline, airline, shares);
-
-            this.StocksForSale -= shares;
-
-            if (this.OwnershipAirlines.Any(o => o.Airline == airline))
-            {
-                AirlineSharesMVVM share = this.OwnershipAirlines.First(o => o.Airline == airline);
-
-                share.Shares += shares;
-                share.Percent = Convert.ToDouble(share.Shares) / Convert.ToDouble(this.Stocks) * 100;
-            }
-            else
-            {
-                double percent = Convert.ToDouble(shares) / Convert.ToDouble(this.Stocks) * 100;
-
-                this.OwnershipAirlines.Add(new AirlineSharesMVVM(airline, shares, percent));
-            }
-
-            int humanShares = this.Airline.Shares.Count(s => s.Airline == GameObject.GetInstance().HumanAirline);
-
-            double humanSharesPercent = Convert.ToDouble(humanShares) / Convert.ToDouble(this.Stocks) * 100;
-
-            this.IsBuyable = !this.Airline.IsHuman && humanSharesPercent > 50;
-        }
-
-        public void setOwnershipValues()
-        {
-            this.OwnershipAirlines = new ObservableCollection<AirlineSharesMVVM>();
-
-            IEnumerable<Airline> airlines =
-                this.Airline.Shares.Where(s => s.Airline != null).Select(s => s.Airline).Distinct();
-
-            foreach (Airline shareAirline in airlines)
-            {
-                int shares = this.Airline.Shares.Count(s => s.Airline == shareAirline);
-                double percent = Convert.ToDouble(shares) / Convert.ToDouble(this.Stocks) * 100;
-
-                this.OwnershipAirlines.Add(new AirlineSharesMVVM(shareAirline, shares, percent));
-            }
-
-            int humanShares = this.Airline.Shares.Count(s => s.Airline == GameObject.GetInstance().HumanAirline);
-
-            double humanSharesPercent = Convert.ToDouble(humanShares) / Convert.ToDouble(this.Stocks) * 100;
-
-            this.IsBuyable = !this.Airline.IsHuman && humanSharesPercent > 50;
-        }
 
         #endregion
 
@@ -195,81 +164,93 @@
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        private void setBuyNSellable()
+        {
+            this.IsStocksSellable = this.Airline.Shares.FirstOrDefault(s => s.Airline == GameObject.GetInstance().HumanAirline) != null;
+        
+            var shareForSale = this.Airline.Shares.FirstOrDefault(s=>s.ForSale);
 
+            double stocksPrice = 300000 * this.StockPrice;
+            double money = GameObject.GetInstance().HumanAirline.Money;
+
+            this.IsStocksBuyable = shareForSale != null && GameObject.GetInstance().HumanAirline.Money > 300000 * this.StockPrice;
+
+            List<KeyValuePair<string, int>> stocks = new List<KeyValuePair<string, int>>();
+
+            var airlines = this.Airline.Shares.Where(s => s.Airline != null).Select(s => s.Airline).Distinct();
+
+            foreach (Airline sAirline in airlines)
+            {
+                int shares = this.Airline.Shares.Count(s => s.Airline == sAirline);
+
+                stocks.Add(new KeyValuePair<string, int>(sAirline.Profile.Name, shares));
+            }
+
+            int nulls = this.Airline.Shares.Count(s => s.Airline == null);
+
+            stocks.Add(new KeyValuePair<string, int>("Free", nulls));
+
+            this.Stocks = stocks;
+
+            this.IsBuyable = this.Airline.Shares.Count(s => s.Airline == null || s.Airline != GameObject.GetInstance().HumanAirline) == 0 && !this.Airline.IsHuman;
+        }
+        public void purchaseShares()
+        {
+             this.Airline.Shares.First(s => s.Airline == null).Airline = GameObject.GetInstance().HumanAirline;
+       
+            setBuyNSellable();
+
+        }
+        public void sellShares()
+        {
+            this.Airline.Shares.First(s => s.Airline == GameObject.GetInstance().HumanAirline).Airline = null;
+     
+            setBuyNSellable();
+        }
         #endregion
     }
 
-    //the mvvm class for the ownership percent in an airline
-    public class AirlineSharesMVVM : INotifyPropertyChanged
+   
+    //the converter for the colors
+    public class PieChartColorConverter : IValueConverter
     {
-        #region Fields
-
-        private double _percent;
-
-        private int _shares;
-
-        #endregion
-
-        #region Constructors and Destructors
-
-        public AirlineSharesMVVM(Airline airline, int shares, double percent)
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            this.Airline = airline;
-            this.Shares = shares;
-            this.Percent = percent;
+            List<KeyValuePair<string, int>> airlines = (List<KeyValuePair<string, int>>)value;
+
+            ResourceDictionaryCollection collection = new ResourceDictionaryCollection();
+
+            int i = 1;
+            foreach (KeyValuePair<string, int> airline in airlines)
+            {
+                if (airline.Key != "Free")
+                {
+                    Airline sAirline = Airlines.GetAirlines(a => a.Profile.Name == airline.Key).FirstOrDefault();
+                    ResourceDictionary rd = new ResourceDictionary();
+
+                    rd.Add("Brush" + i, new StringToBrushConverter().Convert(sAirline.Profile.Color, null, null, null) as SolidColorBrush);
+                    collection.Add(rd);
+
+                    i++;
+                }
+
+            }
+
+            ResourceDictionary rdFree = new ResourceDictionary();
+      
+            rdFree.Add("Brush" + i, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF5B9BD5")));
+
+            collection.Add(rdFree);
+
+            return collection;
+
+      
+
         }
 
-        #endregion
-
-        #region Public Events
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        #region Public Properties
-
-        public Airline Airline { get; set; }
-
-        public double Percent
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            get
-            {
-                return this._percent;
-            }
-            set
-            {
-                this._percent = value;
-                this.NotifyPropertyChanged("Percent");
-            }
+            throw new NotImplementedException();
         }
-
-        public int Shares
-        {
-            get
-            {
-                return this._shares;
-            }
-            set
-            {
-                this._shares = value;
-                this.NotifyPropertyChanged("Shares");
-            }
-        }
-
-        #endregion
-
-        #region Methods
-
-        private void NotifyPropertyChanged(String propertyName)
-        {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion
     }
 }

@@ -175,6 +175,9 @@
                         }
 
                         airliner.Pilots.Clear();
+
+                        if (airliner.Airliner.Owner != null)
+                            airliner.Airliner.Status = Airliner.StatusTypes.Leasing;
                     }
                 }
             }

@@ -70,7 +70,23 @@
                 <StackPanel>
                     <ContentControl Content="{Binding}" VerticalAlignment="Bottom"
                                     ContentTemplate="{StaticResource AirlinerSpecificationItem}" />
-                  
+                    <WrapPanel>
+                        <WrapPanel.Style>
+                            <Style TargetType="WrapPanel" BasedOn="{StaticResource WrapPanelStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Owner}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </WrapPanel.Style>
+                        <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1015'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                        <ContentControl Content="{Binding Owner}" VerticalAlignment="Bottom"
+                                ContentTemplate="{StaticResource AirlineLink}" />
+                    </WrapPanel>
+
                 </StackPanel>
             </Border>
             <StackPanel>

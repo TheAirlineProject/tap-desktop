@@ -26,8 +26,7 @@
 
         private int _numberofsharestoissue;
 
-        private AirlinesMVVM _selectedairline;
-
+     
         #endregion
 
         #region Constructors and Destructors
@@ -77,19 +76,7 @@
             }
         }
 
-        public AirlinesMVVM SelectedAirline
-        {
-            get
-            {
-                return this._selectedairline;
-            }
-            set
-            {
-                this._selectedairline = value;
-                this.NotifyPropertyChanged("SelectedAirline");
-            }
-        }
-
+       
         #endregion
 
         #region Methods
@@ -105,7 +92,7 @@
 
         private void btnBuyAirline_Click(object sender, RoutedEventArgs e)
         {
-            AirlinesMVVM airline = this.SelectedAirline;
+            AirlinesMVVM airline = (AirlinesMVVM)((Button)sender).Tag;
 
             double buyingPrice = airline.Airline.getValue() * 100000 * 1.10;
 
@@ -171,7 +158,7 @@
 
         private void btnBuyAsSubsidiary_Click(object sender, RoutedEventArgs e)
         {
-            AirlinesMVVM airline = this.SelectedAirline;
+            AirlinesMVVM airline = (AirlinesMVVM)((Button)sender).Tag;
 
             double buyingPrice = airline.Airline.getValue() * 100000 * 1.10;
 
@@ -236,79 +223,67 @@
                 sAirline.StartMoney = airline.Airline.Money;
 
                 sAirline.Fees = new AirlineFees();
+                AirlineHelpers.CreateStandardAirlineShares(sAirline);
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
             }
         }
 
-        private void btnIssueShares_Click(object sender, RoutedEventArgs e)
-        {
-            int shares = Convert.ToInt32(this.slShares.Value);
-
-            double price = AirlineHelpers.GetPricePerAirlineShare(GameObject.GetInstance().HumanAirline);
-
-            WPFMessageBoxResult result = WPFMessageBox.Show(
-                Translator.GetInstance().GetString("MessageBox", "2127"),
-                string.Format(
-                    Translator.GetInstance().GetString("MessageBox", "2127", "message"),
-                    shares,
-                    new ValueCurrencyConverter().Convert(price)),
-                WPFMessageBoxButtons.YesNo);
-
-            if (result == WPFMessageBoxResult.Yes)
-            {
-                AirlineHelpers.AddAirlineShares(GameObject.GetInstance().HumanAirline, shares, price);
-
-                AirlinesMVVM humanAirline =
-                    this.AllAirlines.First(a => a.Airline == GameObject.GetInstance().HumanAirline);
-                humanAirline.StocksForSale += shares;
-                humanAirline.Stocks += shares;
-
-                this.NumberOfSharesToIssue -= shares;
-
-                humanAirline.setOwnershipValues();
-            }
-        }
+       
 
         private void btnPurchaseShares_Click(object sender, RoutedEventArgs e)
         {
-            AirlinesMVVM airline = this.SelectedAirline;
+            AirlinesMVVM airline = (AirlinesMVVM)((Button)sender).Tag;
 
-            var cbShares = new ComboBox();
-            cbShares.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
-            cbShares.HorizontalAlignment = HorizontalAlignment.Left;
-            cbShares.Width = 200;
+            double buyingPrice = airline.StockPrice * 300000 * 1.10;
 
-            int dValue = Convert.ToInt16(Convert.ToDouble(airline.StocksForSale) / 10);
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+              Translator.GetInstance().GetString("MessageBox", "2130"),
+              string.Format(
+                  Translator.GetInstance().GetString("MessageBox", "2130", "message"),
+                  airline.Airline.Profile.Name,
+                  new ValueCurrencyConverter().Convert(buyingPrice)),
+              WPFMessageBoxButtons.YesNo);
 
-            for (int i = 0; i <= airline.StocksForSale; i += dValue)
+            if (result == WPFMessageBoxResult.Yes)
             {
-                cbShares.Items.Add(i);
-            }
-
-            cbShares.SelectedIndex = 0;
-
-            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlinesShares", "1000"), cbShares)
-                == PopUpSingleElement.ButtonSelected.OK && cbShares.SelectedItem != null)
-            {
-                int numberOfShares = Convert.ToInt32(cbShares.SelectedItem);
-
-                double amount = numberOfShares * airline.StockPrice;
+                airline.purchaseShares();
 
                 AirlineHelpers.AddAirlineInvoice(
-                    GameObject.GetInstance().HumanAirline,
-                    GameObject.GetInstance().GameTime,
-                    Invoice.InvoiceType.Airline_Expenses,
-                    -amount);
+            GameObject.GetInstance().HumanAirline,
+            GameObject.GetInstance().GameTime,
+            Invoice.InvoiceType.Airline_Expenses,
+            -buyingPrice);
+            }
+         
+        }
+        private void btnSellShares_Click(object sender, RoutedEventArgs e)
+        {
+            AirlinesMVVM airline = (AirlinesMVVM)((Button)sender).Tag;
 
-                airline.addOwnership(GameObject.GetInstance().HumanAirline, numberOfShares);
+            double sellingPrice = airline.StockPrice * 300000;
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+               Translator.GetInstance().GetString("MessageBox", "2127"),
+               string.Format(
+                   Translator.GetInstance().GetString("MessageBox", "2127", "message"),
+                   airline.Airline.Profile.Name,
+                   new ValueCurrencyConverter().Convert(sellingPrice)),
+               WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                airline.sellShares();
+
+                AirlineHelpers.AddAirlineInvoice(
+            GameObject.GetInstance().HumanAirline,
+            GameObject.GetInstance().GameTime,
+            Invoice.InvoiceType.Airline_Expenses,
+            sellingPrice);
             }
         }
 
-        private void btnShowAirline_Click(object sender, RoutedEventArgs e)
-        {
-            this.SelectedAirline = (AirlinesMVVM)((Button)sender).Tag;
-        }
+       
 
         #endregion
     }
