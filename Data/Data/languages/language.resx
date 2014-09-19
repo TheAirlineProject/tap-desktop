@@ -5429,4 +5429,34 @@ Good luck.</value>
   <data name="PageFleetAirlinerInformation_1015_name" xml:space="preserve">
     <value>Owner</value>
   </data>
+  <data name="MessageBox_2016_message" xml:space="preserve">
+    <value>You don't have enough money to buy these airliners</value>
+  </data>
+  <data name="MessageBox_2016_name" xml:space="preserve">
+    <value>Can't Buy Airliners</value>
+  </data>
+  <data name="MessageBox_2017_message" xml:space="preserve">
+    <value>Are you sure you want to buy these airliners for {0}?</value>
+  </data>
+  <data name="MessageBox_2017_name" xml:space="preserve">
+    <value>Buy Airliners</value>
+  </data>
+  <data name="PageAirlineFleet_202_name" xml:space="preserve">
+    <value>Buy Airliners</value>
+  </data>
+  <data name="PageNewGame_1035_name" xml:space="preserve">
+    <value>Use Only Major Airlines</value>
+  </data>
+  <data name="PageShowRoute_202_name" xml:space="preserve">
+    <value>Flights</value>
+  </data>
+  <data name="PageUsedAirliners_1008_name" xml:space="preserve">
+    <value>Show Only Human Types</value>
+  </data>
+  <data name="PopUpRouteFlights_1000_name" xml:space="preserve">
+    <value>Route Flights</value>
+  </data>
+  <data name="PageRoutePlanner_208_name" xml:space="preserve">
+    <value>All Flights</value>
+  </data>
 </root>

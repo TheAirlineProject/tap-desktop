@@ -116,20 +116,7 @@
                     </WrapPanel>
 
 
-                    <!--
-                <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Entries,ElementName=pageRoutePlanner}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <WrapPanel>
-                                <TextBlock Text="{Binding Day}" VerticalAlignment="Bottom" Width="100"></TextBlock>
-                                <TextBlock Text="{Binding Time,StringFormat=hh\\:mm}" VerticalAlignment="Bottom" Margin="0 0 10 0"></TextBlock>
-                                <ContentControl Content="{Binding DepartureAirport}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryItem}" Width="250"></ContentControl>
-                                <ContentControl Content="{Binding Destination.Airport}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryItem}" Width="250"></ContentControl>
-                            </WrapPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>-->
-                <uc:ucTimeTable x:Name="uctimetable" Entries="{Binding ViewEntries,ElementName=pageRoutePlanner}"
+                    <uc:ucTimeTable x:Name="uctimetable" Entries="{Binding ViewEntries,ElementName=pageRoutePlanner}"
                                 EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event"
                                 EntryChanged="EntryChanged_Event" />
             </StackPanel>
@@ -544,7 +531,21 @@
                             Style="{StaticResource StandardButtonStyle}"
                             Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 207'}"
                             Click="btnLoadTimetable_Click" />
-                </WrapPanel>
+                        <Button Margin="5 0 0 0" VerticalAlignment="Bottom"
+                            Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 208'}"
+                            Click="btnAllFlights_Click" >
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedRoute,ElementName=pageRoutePlanner}"
+                                                     Value="{x:Null}">
+                                            <Setter Property="IsEnabled" Value="False" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </WrapPanel>
                 <Expander Margin="0 10 0 0" Visibility="Collapsed" Style="{StaticResource ExpanderStyle}">
                     <WrapPanel>
                         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="0 5 0 0">

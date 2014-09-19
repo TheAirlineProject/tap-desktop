@@ -29,6 +29,7 @@
 
         public PageUsedAirliners()
         {
+         
             Boolean isMetric = AppSettings.GetInstance().getLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Metric;
             this.Loaded += this.PageUsedAirliners_Loaded;
             this.Unloaded += this.PageUsedAirliners_Unloaded;
@@ -402,43 +403,91 @@
 
             this.SelectedAirliners.Remove(airliner);
         }
-
+        private void cbExistingFleet_Checked(object sender, RoutedEventArgs e)
+        {
+            setAirliners();
+        }
+        private void cbExistingFleet_Unchecked(object sender, RoutedEventArgs e)
+        {
+            setAirliners();
+        }
         private void cbPossibleHomebase_Checked(object sender, RoutedEventArgs e)
         {
-            //var homebases = AirlineHelpers.GetHomebases(GameObject.GetInstance().HumanAirline,);
-            var source = this.lvAirliners.Items as ICollectionView;
-            source.Filter = o =>
-            {
-                var a = o as AirlinerMVVM;
-
-                Boolean isPossible =
-                    GameObject.GetInstance()
-                        .HumanAirline.Airports.FindAll(
-                            ai =>
-                                ai.getCurrentAirportFacility(
-                                    GameObject.GetInstance().HumanAirline,
-                                    AirportFacility.FacilityType.Service).TypeLevel > 0
-                                && ai.getMaxRunwayLength() >= a.Airliner.Type.MinRunwaylength)
-                        .Count > 0;
-
-                return isPossible;
-            };
-
-            this.SelectedAirliners.Clear();
+            setAirliners();
         }
 
         private void cbPossibleHomebase_Unchecked(object sender, RoutedEventArgs e)
         {
+            setAirliners();
+        }
+        private void setAirliners()
+        {
+            Boolean isPossibleHomebase = this.cbPossibleHomebase != null && this.cbPossibleHomebase.IsChecked.Value;
+            Boolean isExistingFleet = this.cbExistingFleet != null && this.cbExistingFleet.IsChecked.Value;
+
+            var existingTypes = GameObject.GetInstance().HumanAirline.Fleet.Select(f=>f.Airliner.Type).Distinct();
+
             var source = this.lvAirliners.Items as ICollectionView;
-            source.Filter = o =>
+
+            if (!isPossibleHomebase && !isExistingFleet)
             {
-                var a = o as AirlinerMVVM;
-                return true;
-            };
+                source.Filter = o =>
+                {
+                    var a = o as AirlinerMVVM;
+                    return true;
+                };
+            }
+            if (isPossibleHomebase && !isExistingFleet)
+            {
+                source.Filter = o =>
+                {
+                    var a = o as AirlinerMVVM;
+
+                    Boolean isPossible =
+                        GameObject.GetInstance()
+                            .HumanAirline.Airports.FindAll(
+                                ai =>
+                                    ai.getCurrentAirportFacility(
+                                        GameObject.GetInstance().HumanAirline,
+                                        AirportFacility.FacilityType.Service).TypeLevel > 0
+                                    && ai.getMaxRunwayLength() >= a.Airliner.Type.MinRunwaylength)
+                            .Count > 0;
+
+                    return isPossible;
+                };
+            }
+            if (!isPossibleHomebase && isExistingFleet)
+            {
+                source.Filter = o =>
+              {
+                  var a = o as AirlinerMVVM;
+
+                  return existingTypes.Contains(a.Airliner.Type);
+              };
+            }
+            if (isPossibleHomebase && isExistingFleet)
+            {
+                source.Filter = o =>
+                {
+                    var a = o as AirlinerMVVM;
+
+                    Boolean isPossible =
+                        GameObject.GetInstance()
+                            .HumanAirline.Airports.FindAll(
+                                ai =>
+                                    ai.getCurrentAirportFacility(
+                                        GameObject.GetInstance().HumanAirline,
+                                        AirportFacility.FacilityType.Service).TypeLevel > 0
+                                    && ai.getMaxRunwayLength() >= a.Airliner.Type.MinRunwaylength && existingTypes.Contains(a.Airliner.Type))
+                            .Count > 0;
+
+                    return isPossible;
+                };
+            }
 
             this.SelectedAirliners.Clear();
+          
         }
-
         private void lnkAirliner_Click(object sender, RoutedEventArgs e)
         {
             var airliner = (AirlinerMVVM)((Hyperlink)sender).Tag;

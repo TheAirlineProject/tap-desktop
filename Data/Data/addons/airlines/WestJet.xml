@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="WestJet" iata="WS" color="Black" country="113" CEO="Gregg Saretsky" mentality="Safe" market="Global"
            preferedairport="YYC">
+              <narrative narrative="Founded by Clive Beddoe, David Neeleman, Mark Hill, Tim Morgan, and Donald Bell, WestJet was based on the low-cost carrier business model pioneered by Southwest Airlines and Morris Air in the United States. Its original routes were all located in Western Canada, which gave the airline its name." />
   </profile>
   <info real="True" from="1996" to="2199" />
 </airline>

@@ -203,11 +203,15 @@
                                 </Style>
                             </Button.Style>
                         </Button>
-
+                        <Button Margin="5 0 0 0"
+                        Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 202'}"
+                        Style="{StaticResource StandardButtonStyle}" Click="btnRouteFlights_Click">
+                        </Button>
                     </WrapPanel>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 1007'}" BorderThickness="0">
+    
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 1007'}" BorderThickness="0">
                 <TabItem.Style>
                     <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
                         <Style.Triggers>
@@ -247,6 +251,7 @@
                     </ListBox>
                 </StackPanel>
             </TabItem>
+            
         </TabControl>
     </ScrollViewer>
 </Page>

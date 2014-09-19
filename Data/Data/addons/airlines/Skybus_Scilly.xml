@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Isles of Scilly Skybus" iata="SC" color="Gray" country="130" CEO="Brian Butterfield" mentality="Safe"
            market="Domestic" preferedairport="ISC">
+           <narrative narrative="Skybus provides flights to the Isles of Scilly from Exeter, Newquay and Land’s End airports six days a week."/>
   </profile>
   <info real="True" from="1984" to="2199" />
 </airline>

@@ -20,9 +20,16 @@
             <g:QuickInfoValue
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1002'}">
                 <g:QuickInfoValue.Value>
-                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0"
+                    <WrapPanel>
+                       
+                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0"
                               ItemTemplate="{StaticResource AirlineCountryItem}" Width="300"
                               SelectionChanged="cbAirline_SelectionChanged" Name="cbAirline" />
+                        <Button VerticalAlignment="Bottom" Tag="{Binding}" Height="24" Width="24" Margin="5 0 0 0"
+                        Background="Transparent" Click="btnShuffleAirline_Click">
+                            <Image Source="/Data/images/shuffle.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                        </Button>
+                    </WrapPanel>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
             <g:QuickInfoValue

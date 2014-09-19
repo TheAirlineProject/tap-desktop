@@ -20,6 +20,7 @@
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
+    using System.Windows.Data;
 
     /// <summary>
     ///     Interaction logic for PageAirlineData.xaml
@@ -52,7 +53,8 @@
                          || (this.StartData.Region.Uid == "100"
                              && this.StartData.Continent.hasRegion(airline.Profile.Country.Region)))
                         && airline.Profile.Founded <= this.StartData.Year
-                        && airline.Profile.Folded > this.StartData.Year).OrderBy(a => a.Profile.Name).ToList();
+                        && airline.Profile.Folded > this.StartData.Year
+                        && ((this.StartData.MajorAirlines && airline.MarketFocus == Airline.AirlineFocus.Global) || !this.StartData.MajorAirlines)).OrderBy(a => a.Profile.Name).ToList();
 
             this.cbAirline.ItemsSource = airlines;
         }
@@ -68,7 +70,18 @@
         #endregion
 
         #region Methods
+        private void btnShuffleAirline_Click(object sender, RoutedEventArgs e)
+        {
+            Random rnd = new Random();
 
+            var view = (ListCollectionView)CollectionViewSource.GetDefaultView(cbAirline.ItemsSource);
+
+            Airline airline = (Airline)view.GetItemAt(rnd.Next(view.Count));
+
+            cbAirline.SelectedItem = airline;
+
+
+        }
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             var frmContent = UIHelpers.FindChild<Frame>((Page)this.Tag, "frmContent");
@@ -191,7 +204,7 @@
             foreach (
                 Airport airport in
                     Airports.GetAllActiveAirports()
-                        .Where(a => airline.Profile.Countries.Contains(a.Profile.Country))
+                        .Where(a => airline.Profile.Countries.Contains(new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country))
                         .OrderBy(a => a.Profile.Name))
             {
                 this.AllAirports.Add(airport);
@@ -201,12 +214,15 @@
             {
                 this.cbAirport.SelectedItem = airline.Profile.PreferedAirport;
             }
+            else if (airline.Profile.PreferedAirport != null && this.AllAirports.FirstOrDefault(a=>a.Profile.IATACode == airline.Profile.PreferedAirport.Profile.IATACode) != null)
+            {
+                this.cbAirport.SelectedItem = this.AllAirports.First(a=>a.Profile.IATACode == airline.Profile.PreferedAirport.Profile.IATACode);
+            }
             else
             {
                 this.cbAirport.SelectedIndex = 0;
             }
         }
-
         #endregion
     }
 }

@@ -953,7 +953,45 @@
         //checks the airline will buy or sell some stocks
         private static void CheckForStocksHandling(Airline airline)
         {
-            d
+            double moneyPercent = (airline.Money / airline.StartMoney) * 100;
+
+            //if lower than 10% back of the money then try to sell some shares
+            if (moneyPercent < 10)
+            {
+                Airline shareAirline = null;
+
+                shareAirline = Airlines.GetAirlines(a => a != airline).FirstOrDefault(a => a.Shares.FirstOrDefault(s => s.Airline == airline) != null);
+
+                if (shareAirline == null)
+                    shareAirline = airline.Shares.FirstOrDefault(s => s.Airline == airline) == null ? null : airline;
+
+                if (shareAirline != null)
+                    AirlineHelpers.SellShares(airline, shareAirline);
+            }
+            else
+            {
+                int buySharesInterval = 100000;
+                Boolean buyShares = rnd.Next(buySharesInterval) == 0;
+
+                if (buyShares)
+                {
+                    Airline shareAirline = null;
+
+                    shareAirline = airline.Shares.FirstOrDefault(s => s.Airline == null) == null ? null : airline;
+
+                    if (shareAirline == null)
+                    {
+                        shareAirline = Airlines.GetAirlines(a => a != airline).FirstOrDefault(a => a.Shares.FirstOrDefault(s => s.Airline == airline) != null);
+
+                        if (shareAirline == null)
+                            shareAirline = Airlines.GetAirlines(a => a != airline).OrderBy(a => AirlineHelpers.GetPricePerAirlineShare(a)).FirstOrDefault();
+                    }
+
+                    if (shareAirline != null && airline.Money > 300000 * 1.10 * AirlineHelpers.GetPricePerAirlineShare(shareAirline))
+                        AirlineHelpers.BuyShares(airline, shareAirline);
+
+                }
+            }
         }
         private static void ChangeRouteServiceLevel(PassengerRoute route)
         {

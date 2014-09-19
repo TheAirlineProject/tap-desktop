@@ -76,6 +76,24 @@
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
             <g:QuickInfoValue
+                Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1035'}">
+               
+                <g:QuickInfoValue.Value>
+                    <WrapPanel>
+                        <RadioButton GroupName="Airlines" Name="cbMajorAirlines" Checked="cbMajorAirlines_Checked"
+                                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 106'}"
+                                     Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"/>
+                        <RadioButton GroupName="Airlines"  Checked="cbMajorAirlines_Checked"
+                                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 107'}"
+                                     Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                                     Margin="5 0 0 0"
+                                     IsChecked="True"/>
+                    </WrapPanel>
+
+
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1008'}">
                 <g:QuickInfoValue.Value>
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" Name="cbYear"

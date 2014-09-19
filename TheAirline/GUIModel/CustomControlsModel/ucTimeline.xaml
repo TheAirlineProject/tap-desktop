@@ -9,8 +9,9 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <local:TimeToPositionConverter x:Key="TimeToPositionConverter"></local:TimeToPositionConverter>
+        <local:EntryHeightPositionConverter x:Key="EntryHeightPositionConverter"></local:EntryHeightPositionConverter>
     </UserControl.Resources>
-    <Border BorderThickness="1" BorderBrush="Black" Padding="2 0 0 0" Height="30">
+    <Border BorderThickness="1" BorderBrush="Black" Padding="2 0 0 0" Height="30" Name="brdMain">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition  Width="100"></ColumnDefinition>
@@ -37,7 +38,15 @@
                                 </MultiBinding>
                             </Setter.Value>
                         </Setter>
-                        <Setter Property="Canvas.Top" Value="8" />
+                        <Setter Property="Canvas.Top">  <!-- Value="8" />-->
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource EntryHeightPositionConverter}">
+                                    <Binding Path="."></Binding>
+                                    <Binding Path="Entries" ElementName="timeline"></Binding>
+                                    <Binding ElementName="brdMain"></Binding>
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
                     </Style>
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>

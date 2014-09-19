@@ -3377,23 +3377,32 @@
 
             XmlNodeList airportsList = root.SelectNodes("//majordestination");
             string id;
+            string id2;
             try
             {
                 foreach (XmlElement airportElement in airportsList)
                 {
                     Airport airport = Airports.GetAirport(airportElement.Attributes["airport"].Value);
 
-                    id = airport.Profile.IATACode;
 
-                    XmlNodeList destinationsList = airportElement.SelectNodes("destinations/destination");
-
-                    foreach (XmlElement destinationElement in destinationsList)
+                    if (airport != null)
                     {
-                        string destination = destinationElement.Attributes["airport"].Value;
-                        int pax = Convert.ToInt32(destinationElement.Attributes["pax"].Value);
+                        id2 = airportElement.Attributes["airport"].Value;
 
-                        airport.addMajorDestination(destination, pax);
+                        id = airport.Profile.IATACode;
+
+                        XmlNodeList destinationsList = airportElement.SelectNodes("destinations/destination");
+
+                        foreach (XmlElement destinationElement in destinationsList)
+                        {
+                            string destination = destinationElement.Attributes["airport"].Value;
+                            int pax = Convert.ToInt32(destinationElement.Attributes["pax"].Value);
+
+                            airport.addMajorDestination(destination, pax);
+                        }
                     }
+                    else
+                        Console.WriteLine(airportElement.Attributes["airport"].Value);
 
                 }
             }

@@ -28,7 +28,7 @@
 
             this.SelectedAirlines = new ObservableCollection<Airline>();
             this.Opponents = new ObservableCollection<Airline>();
-
+            
             foreach (
                 Airline airline in
                     Airlines.GetAirlines(
@@ -38,11 +38,12 @@
                             && (a.Profile.Country.Region == this.StartData.Region
                                 || (this.StartData.Continent != null
                                     && (this.StartData.Continent.Uid == "100"
-                                        || this.StartData.Continent.hasRegion(a.Profile.Country.Region))))))
+                                        || this.StartData.Continent.hasRegion(a.Profile.Country.Region))))
+                                        && ((this.StartData.MajorAirlines && a.MarketFocus == Airline.AirlineFocus.Global) || !this.StartData.MajorAirlines)))
             {
                 this.Opponents.Add(airline);
             }
-
+        
             this.InitializeComponent();
         }
 

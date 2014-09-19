@@ -1,8 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Air Mekong" iata="P8" color="Black" country="170" CEO="Doan Quoc Viet" mentality="Safe"
            market="Global" preferedairport="SGN">
+           <narrative narrative="Mekong Aviation Joint Stock Company doing business as Air Mekong, is an airline from Vietnam which operated scheduled passenger flights from its base at Phu Quoc Airport and secondary hubs at Noi Bai International Airport and Tan Son Nhat International Airport."/>
   </profile>
-  <info real="True" from="2009" to="2199" />
+  <info real="True" from="2009" to="2013" />
 </airline>
+
+

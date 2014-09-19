@@ -1,26 +1,28 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlineModel.SubsidiaryModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.PilotModel;
+    using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.PilotModel;
 
     /// <summary>
     ///     Interaction logic for PageAirlineFleet.xaml
     /// </summary>
-    public partial class PageAirlineFleet : Page
+    public partial class PageAirlineFleet : Page, INotifyPropertyChanged
     {
         #region Constructors and Destructors
 
@@ -29,11 +31,14 @@
             this.Airline = airline;
             this.DataContext = this.Airline;
             this.SelectedAirliners = new ObservableCollection<FleetAirliner>();
+            this.IsBuyable = false;
 
             this.InitializeComponent();
         }
 
         #endregion
+
+        private Boolean _isbuyable;
 
         #region Public Properties
 
@@ -41,10 +46,23 @@
 
         public ObservableCollection<FleetAirliner> SelectedAirliners { get; set; }
 
+        public Boolean IsBuyable
+        {
+            get
+            {
+                return this._isbuyable;
+            }
+            set
+            {
+                this._isbuyable = value;
+                this.NotifyPropertyChanged("IsBuyable");
+            }
+        }
+
         #endregion
 
         #region Methods
-
+       
         private void btnEditAirliners_Click(object sender, RoutedEventArgs e)
         {
             var frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
@@ -54,7 +72,43 @@
                 frmContent.Navigate(new PageAirlineEditAirliners(this.SelectedAirliners.ToList()) { Tag = this.Tag });
             }
         }
+        private void btnBuyAirliners_Click(object sender, RoutedEventArgs e)
+        {
+            double totalPrice = this.SelectedAirliners.Sum(s => s.Airliner.getPrice());
+            if (totalPrice > GameObject.GetInstance().HumanAirline.Money)
+            {
+                WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2006"),
+                    Translator.GetInstance().GetString("MessageBox", "2006", "message"),
+                    WPFMessageBoxButtons.Ok);
+            }
+            else
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2007"),
+                    string.Format(
+                        Translator.GetInstance().GetString("MessageBox", "2007", "message"),
+                        new ValueCurrencyConverter().Convert(totalPrice)),
+                    WPFMessageBoxButtons.YesNo);
 
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    foreach (FleetAirliner airliner in this.SelectedAirliners)
+                    {
+                        airliner.Purchased = FleetAirliner.PurchasedType.Bought;
+                      
+                        AirlineHelpers.AddAirlineInvoice(
+                            GameObject.GetInstance().HumanAirline,
+                            GameObject.GetInstance().GameTime,
+                            Invoice.InvoiceType.Purchases,
+                            -airliner.Airliner.getPrice());
+                    }
+
+                    while (this.SelectedAirliners.Count > 0)
+                        this.SelectedAirliners.RemoveAt(0);
+                }
+            }
+        }
         private void btnRouteMap_Click(object sender, RoutedEventArgs e)
         {
             PopUpMapControl.ShowPopUp(null,this.Airline.Airline.Routes);
@@ -188,6 +242,8 @@
             var airliner = (FleetAirliner)((CheckBox)sender).Tag;
 
             this.SelectedAirliners.Add(airliner);
+
+            this.IsBuyable = this.SelectedAirliners.FirstOrDefault(s => s.Purchased == FleetAirliner.PurchasedType.Bought || s.Purchased == FleetAirliner.PurchasedType.BoughtDownPayment || (s.Airliner.Owner != null && s.Airliner.Owner != this.Airline.Airline)) == null;
         }
 
         private void cbAirliner_Unchecked(object sender, RoutedEventArgs e)
@@ -195,8 +251,21 @@
             var airliner = (FleetAirliner)((CheckBox)sender).Tag;
 
             this.SelectedAirliners.Remove(airliner);
+
+            this.IsBuyable = this.SelectedAirliners.FirstOrDefault(s => s.Purchased == FleetAirliner.PurchasedType.Bought || s.Purchased == FleetAirliner.PurchasedType.BoughtDownPayment || (s.Airliner.Owner != null && s.Airliner.Owner != this.Airline.Airline)) == null &&
+                this.SelectedAirliners.Count > 0;
+        }
+        public void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         #endregion
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

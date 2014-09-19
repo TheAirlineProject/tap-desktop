@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Hamilton, BM">
+  <months>
+    <month month="1" precipitation="129">
+      <temp min="16" max="21" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="115">
+      <temp min="15" max="20" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="110">
+      <temp min="15" max="21" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="88">
+      <temp min="17" max="22" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="83">
+      <temp min="20" max="24" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="130">
+      <temp min="23" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="115">
+      <temp min="24" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="131">
+      <temp min="24" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="129">
+      <temp min="23" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="161">
+      <temp min="21" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="105">
+      <temp min="18" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="114">
+      <temp min="16" max="22" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

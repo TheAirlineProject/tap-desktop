@@ -49,6 +49,16 @@
       <destination airport="MEL" pax="255" />
     </destinations>
   </majordestination>
+    <majordestination airport="CJJ">
+    <destinations>
+      <destination airport="HRB" pax="39"  />
+        </destinations>
+	</majordestination>
+    <majordestination airport="CJU">
+    <destinations>
+      <destination airport="HRB" pax="49"  />
+        </destinations>
+	</majordestination>
   <majordestination airport="DXB">
     <destinations>
       <destination airport="KWI" pax="477" />
@@ -70,10 +80,34 @@
       <destination airport="ORD" pax="706" cargo="109" />
         </destinations>
 	</majordestination>
+	  <majordestination airport="HRB">
+    <destinations>
+      <destination airport="CJJ" pax="39"  />
+      <destination airport="CJU" pax="49"  />
+      <destination airport="KIJ" pax="52" cargo="8" />
+      <destination airport="KIX" pax="43"  />
+      <destination airport="ICN" pax="411" cargo="63" />
+      <destination airport="PUS" pax="92" cargo="14" />
+      <destination airport="TAE" pax="57" cargo="9" />
+      <destination airport="TPE" pax="99" cargo="14" />
+      <destination airport="UUS" pax="20"  />
+        </destinations>
+	</majordestination>
 <majordestination airport="ICN">
     <destinations>
       <destination airport="DFW" pax="446" cargo="69" />
+      <destination airport="HRB" pax="411" cargo="63" />
       <destination airport="SEA" pax="496" cargo="76" />
+        </destinations>
+	</majordestination>
+	  <majordestination airport="KIJ">
+    <destinations>
+      <destination airport="HRB" pax="52" cargo="8" />
+        </destinations>
+	</majordestination>
+	  <majordestination airport="KIX">
+    <destinations>
+      <destination airport="HRB" pax="43"  />
         </destinations>
 	</majordestination>
 	  <majordestination airport="PEK">
@@ -91,9 +125,24 @@
       <destination airport="SEA" pax="818" cargo="126" />
         </destinations>
 	</majordestination>
+	  <majordestination airport="PUS">
+    <destinations>
+      <destination airport="HRB" pax="92" cargo="14" />
+        </destinations>
+	</majordestination>
 	  <majordestination airport="PVG">
     <destinations>
       <destination airport="ORD" pax="285" cargo="46" />
+        </destinations>
+	</majordestination>
+	  <majordestination airport="TAE">
+    <destinations>
+      <destination airport="HRB" pax="57" cargo="9" />
+        </destinations>
+	</majordestination>
+	  <majordestination airport="TPE">
+    <destinations>
+      <destination airport="HRB" pax="99" cargo="14" />
         </destinations>
 	</majordestination>
 

@@ -109,7 +109,6 @@ namespace TheAirline.GUIModel.CustomControlsModel
                 TimeSpan startTimeSplit = new TimeSpan(endTime.Days, 0, 0, 0);
                 removeTimelineEntry(startTimeSplit, endTime, text);
             }
-
             var entries = new List<TimelineEntry>();
 
             entries.AddRange(this.TuesdayEntries);

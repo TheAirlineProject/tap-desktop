@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Sunwing Airlines" iata="WG" color="Black" country="113" CEO="Stephen Hunter" mentality="Safe"
            market="Global" preferedairport="YYZ">
+             <narrative narrative="Sunwing Vacations started its in-house airline in November 2005 using Boeing 737-800s to operate domestic flights and flights from Canada to the USA, Mexico, the Caribbean."/>
   </profile>
   <info real="True" from="2005" to="2199" />
 </airline>

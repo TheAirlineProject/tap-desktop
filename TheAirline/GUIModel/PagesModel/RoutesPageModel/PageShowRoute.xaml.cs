@@ -2,11 +2,14 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
+    using System.Windows.Media;
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+    using TheAirline.GUIModel.CustomControlsModel;
+    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
@@ -55,8 +58,8 @@
                     }
                 }
             }
-          
 
+     
             this.InitializeComponent();
 
             this.Loaded += this.PageShowRoute_Loaded;
@@ -69,7 +72,7 @@
         #region Public Properties
 
         public ObservableCollection<MVVMRouteClass> Classes { get; set; }
-
+   
         #endregion
 
         #region Methods
@@ -103,8 +106,9 @@
 
                 airlinerItem.Visibility = Visibility.Collapsed;
             }
-        }
 
+       }
+     
         private void btnDeleteRoute_Click(object sender, RoutedEventArgs e)
         {
             WPFMessageBoxResult result = WPFMessageBox.Show(
@@ -142,7 +146,10 @@
                 }
             }
         }
-
+        private void btnRouteFlights_Click(object sender, RoutedEventArgs e)
+        {
+            PopUpRouteFlights.ShowPopUp(this.Route.Route);
+        }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             //passenger route
@@ -189,6 +196,8 @@
         }
 
         #endregion
+
+      
 
      
     }

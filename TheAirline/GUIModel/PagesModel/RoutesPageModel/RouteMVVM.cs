@@ -100,7 +100,7 @@
 
 
                 this.Feedbacks.Add(new RouteFeedbackMVVM(priceText, "price.png", priceScore, getFeedbackText("price", priceScore)));
-                this.Feedbacks.Add(new RouteFeedbackMVVM(String.Format("{0:0.0}", routeScore), "number.png", routeScore, getFeedbackText("score", routeScore))); AIShares
+                this.Feedbacks.Add(new RouteFeedbackMVVM(String.Format("{0:0.0}", routeScore), "number.png", routeScore, getFeedbackText("score", routeScore))); 
             }
             else
             {

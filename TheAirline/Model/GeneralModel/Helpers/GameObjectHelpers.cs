@@ -133,6 +133,13 @@
                 }
             }
 
+            var majorAirlines = Airlines.GetAirlines(a => ((startData.MajorAirlines && a.MarketFocus == Airline.AirlineFocus.Global) || !startData.MajorAirlines));
+
+            Airlines.Clear();
+
+            foreach (Airline a in majorAirlines)
+                Airlines.AddAirline(a);
+
             PassengerHelpers.CreateAirlineDestinationDemand();
 
             AirlinerHelpers.CreateStartUpAirliners();
@@ -195,6 +202,7 @@
                     }
                 }
             }
+         
             if (startData.MajorAirports)
             {
                 List<Airport> majorAirports =
@@ -248,6 +256,7 @@
                 }
             }
 
+            
             airline.MarketFocus = startData.Focus;
 
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);

@@ -24,6 +24,14 @@
                           Name="cbPossibleHomebase" Checked="cbPossibleHomebase_Checked"
                           Unchecked="cbPossibleHomebase_Unchecked" />
             </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1008'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <CheckBox Style="{StaticResource ImageCheckBoxStyle}" VerticalAlignment="Bottom"
+                          Name="cbExistingFleet" Checked="cbExistingFleet_Checked"
+                          Unchecked="cbExistingFleet_Unchecked" />
+            </WrapPanel>
         </StackPanel>
         <filter:FilterableListView x:Name="lvAirliners" Grid.Row="1"
                                    ItemsSource="{Binding AllAirliners, ElementName=pageUsedAirliners}"

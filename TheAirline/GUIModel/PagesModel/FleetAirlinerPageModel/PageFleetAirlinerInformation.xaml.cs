@@ -169,16 +169,16 @@
             if (this.Airliner.Airliner.Airliner.getPrice() > GameObject.GetInstance().HumanAirline.Money)
             {
                 WPFMessageBox.Show(
-                    Translator.GetInstance().GetString("MessageBox", "2006"),
-                    Translator.GetInstance().GetString("MessageBox", "2006", "message"),
+                    Translator.GetInstance().GetString("MessageBox", "2016"),
+                    Translator.GetInstance().GetString("MessageBox", "2016", "message"),
                     WPFMessageBoxButtons.Ok);
             }
             else
             {
                 WPFMessageBoxResult result = WPFMessageBox.Show(
-                    Translator.GetInstance().GetString("MessageBox", "2007"),
+                    Translator.GetInstance().GetString("MessageBox", "2017"),
                     string.Format(
-                        Translator.GetInstance().GetString("MessageBox", "2007", "message"),
+                        Translator.GetInstance().GetString("MessageBox", "2017", "message"),
                         new ValueCurrencyConverter().Convert(this.Airliner.Airliner.Airliner.getPrice())),
                     WPFMessageBoxButtons.YesNo);
 

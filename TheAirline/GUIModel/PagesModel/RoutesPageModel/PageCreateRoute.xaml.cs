@@ -494,7 +494,7 @@
             season = this.rbSeasonSummer.IsChecked.Value ? Weather.Season.Summer : season;
             season = this.rbSeasonWinter.IsChecked.Value ? Weather.Season.Winter : season;
 
-            Boolean routeExists = GameObject.GetInstance().HumanAirline.Routes.Exists(r => r.Destination1 == destination1 && r.Destination2 == destination2);
+            Boolean routeExists = GameObject.GetInstance().HumanAirline.Routes.Exists(r => r.Destination1 == destination1 && r.Destination2 == destination2 && r.Type == this.RouteType);
 
             if (routeExists)
             {

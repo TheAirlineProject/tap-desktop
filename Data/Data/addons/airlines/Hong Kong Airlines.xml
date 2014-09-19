@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <airline>
-  <profile name="Hong Kong Airlines" iata="HX" color="Red" country="148" CEO="Kalid Razack" mentality="Moderate" market="Regional" preferedairport="HKG">
+  <profile name="Hong Kong Airlines" iata="HX" color="Red" country="176" CEO="Kalid Razack" mentality="Moderate" market="Regional" preferedairport="HKG">
     <narrative narrative="Based at Hong Kong International Airport, Hong Kong Airlines operates service to 23 mainline destinations that don't include charter and cargo service. Thier fleet
 of 23 planes includes 5 A320's,12 A330's and 5 A330 Freighters for cargo. They fly to many Asian countries and also have a flight to London. It's logo is a bauhinia flower, a Hong Kong native flower. It is 45% owned
 by Hainan Airlines. " />

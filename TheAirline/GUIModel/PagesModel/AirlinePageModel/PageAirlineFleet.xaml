@@ -183,9 +183,10 @@
                             </GridView>
                         </ListView.View>
                     </filter:FilterableListView>
+                    <WrapPanel Margin="0 5 0 0">
                     <Button Click="btnEditAirliners_Click"
                             Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 200'}"
-                            HorizontalAlignment="Left" Margin="0 5 0 0">
+                            HorizontalAlignment="Left">
                         <Button.Style>
                             <Style BasedOn="{StaticResource StandardButtonStyle}" TargetType="Button">
                                 <Style.Triggers>
@@ -198,6 +199,22 @@
                             </Style>
                         </Button.Style>
                     </Button>
+                    <Button Click="btnBuyAirliners_Click"
+                            Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 202'}"
+                            HorizontalAlignment="Left" Margin="5 0 0 0">
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource StandardButtonStyle}" TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding IsBuyable,ElementName=pageAirlineFleet}"
+                                        Value="False">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    </WrapPanel>
 
                     <TextBlock VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"
                                Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1006'}"

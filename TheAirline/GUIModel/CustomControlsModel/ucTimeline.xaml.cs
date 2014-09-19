@@ -25,7 +25,6 @@ namespace TheAirline.GUIModel.CustomControlsModel
     public partial class ucTimeline : UserControl
     {
         private Point startPoint;
-
         public static readonly DependencyProperty DayProperty =
                                 DependencyProperty.Register("Day",
                                 typeof(DayOfWeek), typeof(ucTimeline));
@@ -185,6 +184,34 @@ namespace TheAirline.GUIModel.CustomControlsModel
             this.Object = o;
             this.Day = day;
             this.Time = time;
+        }
+    }
+    //the converter for the height position of the item
+    public class EntryHeightPositionConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var entry = (TimelineEntry)values[0];
+            var entries = (ObservableCollection<TimelineEntry>)values[1];
+            Border brdMain = (Border)values[2];
+
+            var overlaps = entries.Where(e => e.StartTime < entry.EndTime && entry.StartTime < e.EndTime);
+
+            int baseValue = 8;
+            int height = 30; 
+
+            if (overlaps.Count() > 1)
+            {
+                brdMain.Height = Math.Max(brdMain.Height, 30 * overlaps.Count());
+                return System.Convert.ToDouble(overlaps.ToList().IndexOf(entry) * height + baseValue);
+            }
+            else
+                return System.Convert.ToDouble(baseValue);
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
     //the converter for the time to position

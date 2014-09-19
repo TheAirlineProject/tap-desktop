@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:map="clr-namespace:MapControl;assembly=MapControl.WPF"
         xmlns:local="clr-namespace:TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapModel"
-        Title="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpMap 1000'}" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow" Height="768" Width="768">
+        Title="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpMap 1000'}" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow" Height="768" Width="768" Background="#004A7F">
     <Window.Resources>
         <local:LocationToVisibilityConverter x:Key="LocationToVisibilityConverter"></local:LocationToVisibilityConverter>
         <local:MapTileSource x:Key="mapTileSource"></local:MapTileSource>
@@ -39,7 +39,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <map:Map x:Name="map" Margin="2" ZoomLevel="3" MaxZoomLevel="6"
+        <map:Map x:Name="map" Margin="2" ZoomLevel="4" MaxZoomLevel="6" MinZoomLevel="2"
                  MouseLeftButtonDown="MapMouseLeftButtonDown" MouseRightButtonDown="MapMouseRightButtonDown" Center="{Binding Center}"  TileLayer="{StaticResource tileSource}">
         
             <map:MapItemsControl ItemsSource="{Binding Routes}"

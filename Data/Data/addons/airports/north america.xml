@@ -765,7 +765,7 @@
     </runways>
   </airport>
   <airport name="Boeing Field King County International Airport" icao="KBFI" iata="BFI" type="Regional"
-           season="All_Year">
+           season="All_Year"  landingfee="0.35">
     <town town="Seattle, WA" country="122" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="047°31'47''N" />
@@ -3591,7 +3591,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Seattle-Tacoma International Airport" icao="KSEA" iata="SEA" type="Long_Haul_International"
-           season="All_Year">
+           season="All_Year"  landingfee="1.00">
     <town town="Seattle, WA" country="122" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="047°26'56''N" />
@@ -7466,6 +7466,21 @@ season="All_Year">
       <runway name="14/32" length="1105" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Hays Regional Airport" icao="KHYS" iata="HYS" type="Domestic" season="All_Year">
+<town town="Hays, KS" country="122" GMT="-05:00:00" DST="-06:00:00" />
+<coordinates>
+<latitude value="038°50'32''N" />
+<longitude value="099°16'23''W" />
+</coordinates>
+<size value="Smallest" pax="17" />
+<terminals>
+<terminal name="Terminal A" gates="8" />
+</terminals>
+<runways>
+<runway name="16/24" length="1982" surface="Asphalt" />
+<runway name="4/22" length="1372" surface="Concrete" />
+</runways>
+</airport> 
   <airport name="Barnstable Municipal Boardman Polando Field" icao="KHYA" iata="HYA" type="Regional" season="All_Year">
     <town town="Hyannis, MA" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>

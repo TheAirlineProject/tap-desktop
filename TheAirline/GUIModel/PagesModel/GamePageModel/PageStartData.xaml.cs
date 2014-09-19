@@ -71,6 +71,7 @@
                         SelectedCountries = (this.cbSelectFull.IsChecked.Value ? new List<Country>() : null),
                         MajorAirports = this.cbMajorAirports.IsChecked.Value,
                         InternationalAirports = !this.cbAllAirports.IsChecked.Value && !this.cbMajorAirports.IsChecked.Value,
+                        MajorAirlines = this.cbMajorAirlines.IsChecked.Value,
                         IsPaused = this.cbPaused.IsChecked.Value,
                         Focus = (Airline.AirlineFocus)this.cbFocus.SelectedItem,
                         SameRegion = this.cbSameRegion.IsChecked.Value,
@@ -144,10 +145,14 @@
             this.setNumberOfOpponents();
         }
 
+        private void cbMajorAirlines_Checked(object sender, RoutedEventArgs e)
+        {
+            setNumberOfOpponents();
+        }
         //sets the number of opponents
         private void setNumberOfOpponents()
         {
-            if (this.cbYear.SelectedItem != null && this.cbRegion.SelectedItem != null
+            if (this.cbYear != null && this.cbRegion != null && cbContinent != null && this.cbYear.SelectedItem != null && this.cbRegion.SelectedItem != null
                 && this.cbContinent.SelectedItem != null)
             {
                 int index = cbOpponents.SelectedIndex;
@@ -156,14 +161,12 @@
                 var region = (Region)this.cbRegion.SelectedItem;
                 var continent = (Continent)this.cbContinent.SelectedItem;
 
-              
-
                 List<Airline> airlines =
                     Airlines.GetAirlines(
                         airline =>
                             (airline.Profile.Country.Region == region || (region.Uid == "100" && continent.Uid == "100")
                              || (region.Uid == "100" && continent.hasRegion(airline.Profile.Country.Region)))
-                            && airline.Profile.Founded <= year && airline.Profile.Folded > year);
+                            && airline.Profile.Founded <= year && airline.Profile.Folded > year && (airline.MarketFocus ==  Airline.AirlineFocus.Global || !cbMajorAirlines.IsChecked.Value));
 
                 this.cbOpponents.Items.Clear();
 
@@ -180,5 +183,6 @@
         }
 
         #endregion
+
     }
 }

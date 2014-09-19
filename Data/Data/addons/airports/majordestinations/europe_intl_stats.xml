@@ -174,4 +174,9 @@
       <destination airport="SEA" pax="330" cargo="51" />
     </destinations>
   </majordestination>
+     <majordestination airport="UUS">
+    <destinations>
+      <destination airport="HRB" pax="20"  />
+    </destinations>
+  </majordestination>
 </majordestinations>

@@ -221,6 +221,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpRouteFlights.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpShowConnectingRoutes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -250,12 +254,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIModel\CustomControlsModel\ucTimeline.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="GUIModel\CustomControlsModel\ucTimeTable.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="GUIModel\MasterPageModel\standard.xaml">
       <SubType>Designer</SubType>
@@ -622,6 +626,9 @@
       <DependentUpon>PopUpMapControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpNewAirlinerHomebase.cs" />
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpRouteFlights.xaml.cs">
+      <DependentUpon>PopUpRouteFlights.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpShowConnectingRoutes.xaml.cs">
       <DependentUpon>PopUpShowConnectingRoutes.xaml</DependentUpon>
     </Compile>
@@ -648,12 +655,8 @@
       <DependentUpon>SplashControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\CustomControlsModel\TimelineEntry.cs" />
-    <Compile Include="GUIModel\CustomControlsModel\ucTimeline.xaml.cs">
-      <DependentUpon>ucTimeline.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GUIModel\CustomControlsModel\ucTimeTable.xaml.cs">
-      <DependentUpon>ucTimeTable.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\ucTimeline.xaml.cs" />
+    <Compile Include="GUIModel\CustomControlsModel\ucTimeTable.xaml.cs" />
     <Compile Include="GUIModel\HelpersModel\Converters.cs" />
     <Compile Include="GUIModel\HelpersModel\GridViewSort.cs" />
     <Compile Include="GUIModel\HelpersModel\PageNavigator.cs" />
@@ -1183,6 +1186,7 @@
     <Resource Include="Data\images\number.png" />
     <Resource Include="Data\images\age.png" />
     <Resource Include="Data\images\Luggage.png" />
+    <Resource Include="Data\images\shuffle.png" />
     <Content Include="TheAirline.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

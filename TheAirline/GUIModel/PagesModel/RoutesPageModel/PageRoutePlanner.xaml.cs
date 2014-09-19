@@ -11,10 +11,10 @@
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Shapes;
-
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.CustomControlsModel;
+    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
@@ -35,6 +35,8 @@
         private Boolean _cantransferschedule;
 
         private Boolean _islongroute;
+
+        private Route _selectedroute;
 
         private Point startPoint;
 
@@ -152,6 +154,20 @@
                 this.NotifyPropertyChanged("CanTransferSchedule");
             }
         }
+
+        public Route SelectedRoute
+        {
+            get
+            {
+                return this._selectedroute;
+            }
+            set
+            {
+                this._selectedroute = value;
+                this.NotifyPropertyChanged("SelectedRoute");
+            }
+        }
+
         public List<Route> SpecialContractRoutes { get; set; }
 
         public ObservableCollection<RouteTimeTableEntry> Entries { get; set; }
@@ -217,15 +233,7 @@
         private void EntryAdded_Event(object sender, RoutedEventArgs e)
         {
             var item = e.OriginalSource as TimelineDropItem;
-            /*
-             RouteTimeTable rt = new RouteTimeTable(item.Object);
-
-            string flightCode = this.Airliner.Airliner.Airline.Profile.IATACode + txtSchedulerFlightNumber.Text;
-
-            RouteTimeTableEntry rEntry = new RouteTimeTableEntry(rt,item.Day,item.Time,new RouteEntryDestination(,flightCode));
-            
-            this.Entries.Add(rEntry);
-            */
+           
         }
 
         private void EntryChanged_Event(object sender, RoutedEventArgs e)
@@ -789,7 +797,10 @@
                 transferAirliner.Routes.Clear();
             }
         }
-
+        private void btnAllFlights_Click(object sender, RoutedEventArgs e)
+        {
+            PopUpRouteFlights.ShowPopUp(this.SelectedRoute);
+        }
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
             this.clearTimeTable();
@@ -856,6 +867,8 @@
                     MathHelpers.GetFlightTime(route.Destination1, route.Destination2, this.Airliner.Airliner.Type)
                         .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner.Airliner.Type))
                         .TotalHours > 12;
+
+                this.SelectedRoute = route;
             }
             else
             {
@@ -921,7 +934,7 @@
                     var interval = (int)((ComboBox)sender).SelectedItem;
 
                     int latestStartTime = 22;
-
+                    
                     TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
 
                     var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
@@ -998,13 +1011,15 @@
 
             if (route != null && this.cbDelayMinutes != null && this.cbSchedule != null && this.cbIntervalType != null)
             {
+                this.SelectedRoute = route;
+
                 TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
 
                 var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
 
                 TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0, delayMinutes, 0));
 
-                int maxHours = 22 - 06; //from 06.00 to 22.00
+                int maxHours = 22 - 06; //from 06.00 to 22.00<
 
                 var opsType = (OpsType)this.cbSchedule.SelectedItem;
                 var intervalType = (IntervalType)this.cbIntervalType.SelectedItem;
@@ -1044,7 +1059,7 @@
                 {
                     var interval = (int)((ComboBox)sender).SelectedItem;
 
-                    int latestStartTime = 22;
+                    int latestStartTime = 22; 
 
                     TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
 
@@ -1075,6 +1090,31 @@
                     {
                         this.cbStartTime.SelectedIndex = 0;
                     }
+
+                    int maxHours = 22 - 06; //from 06.00 to 22.00<
+
+                  
+                    if (opsType == OpsType.Whole_Day)
+                    {
+                        maxHours = 24;
+                    }
+
+                    var flightsPerDay = (int)Math.Floor((maxHours * 60) / (2 * minFlightTime.TotalMinutes));
+                  
+                    if (intervalType == IntervalType.Week)
+                    {
+                        flightsPerDay = 7;
+                    }
+
+
+                    this.Intervals.Clear();
+
+                     for (int i = 0; i < Math.Max(1, flightsPerDay); i++)
+                {
+                    this.Intervals.Add(i + 1);
+                }
+
+                    
                 }
             }
         }

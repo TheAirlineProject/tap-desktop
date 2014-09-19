@@ -13,7 +13,6 @@
         <local:TimeIntervalWidthConverter x:Key="TimeIntervalWidthConverter"></local:TimeIntervalWidthConverter>
     </UserControl.Resources>
     <StackPanel>
-      
         <Grid Background="#004A7F">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"></ColumnDefinition>
