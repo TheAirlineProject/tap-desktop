@@ -1708,7 +1708,7 @@
       <runway name="15/33" length="2438" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Spokane International Airport" icao="KGEG" iata="GEG" type="Domestic" season="All_Year">
+  <airport name="Spokane International Airport" icao="KGEG" iata="GEG" type="Short_Haul_International" season="All_Year">
     <town town="Spokane, WA" country="122" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="047°37'12''N" />
@@ -2429,7 +2429,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Quad City International Airport" icao="KMLI" iata="MLI" type="Domestic" season="All_Year">
-    <town town="Moline, IL" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Quad Cities, IL" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="041°26'55''N" />
       <longitude value="090°30'27''W" />
@@ -8254,7 +8254,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Tri Cities Airport" icao="KPSC" iata="PSC" type="Regional" season="All_Year">
-    <town town="Pasco, WA" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Pasco/Kennewick/Richland, WA" country="122" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="046°15'52''N" />
       <longitude value="119°07'08''W" />
@@ -8541,7 +8541,7 @@ season="All_Year">
     </terminals>
     <runways>
       <runway name="02/20" length="1564" surface="Asphalt" />
-      <runway name="12/30" length="1921" surface="Asphalt" />
+      <runway name="12/30" length="2440" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Abraham Lincoln Capital Airport" icao="KSPI" iata="SPI" type="Domestic" season="All_Year">

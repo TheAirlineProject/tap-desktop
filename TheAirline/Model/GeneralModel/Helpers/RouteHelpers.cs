@@ -158,22 +158,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
         /*returns the total score of the route*/
         public static double GetRouteTotalScore(Route route)
         {
-            double score = GetPlaneAgeScore(route) + GetRouteInflightScore(route) + GetRouteMealScore(route) + GetRoutePlaneTypeScore(route) + GetRoutePriceScore(route) + GetRouteSeatsScore(route) + GetRouteLuggageScore(route);
+            double score = GetPlaneAgeScore(route) + GetRouteInflightScore(route) + GetRouteMealScore(route) + GetRoutePlaneTypeScore(route) + (5*GetRoutePriceScore(route)) + GetRouteSeatsScore(route) + GetRouteLuggageScore(route);
 
             if ((int)RouteFacility.FacilityType.WiFi <= GameObject.GetInstance().GameTime.Year)
             {
                 double wifiScore = GetRouteWifiScore(route);
                 score += wifiScore;
 
-                return score / 8;
+                return score /12;
             }
-
-            return score / 7;
+            return score / 11;
         }
         /*returns the inflight demand score for the route*/
         public static double GetRouteInflightScore(Route route)
         {
-         
             TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, route.getAirliners()[0].Airliner.Type);
 
             AirlinerFacility inflight = route.getAirliners()[0].Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Video);

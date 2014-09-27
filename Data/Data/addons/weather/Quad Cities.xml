@@ -1,6 +1,6 @@
+﻿
 
-
-<weather type="town" value="Moline, IL">
+<weather type="town" value="Quad Cities, IL">
   <months>
     <month month="1" precipitation="38">
       <temp min="-10" max="0" />

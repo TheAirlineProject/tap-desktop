@@ -120,7 +120,9 @@
 
             PSP,
 
-            Clay
+            Clay,
+
+            Water
         }
         #endregion
 

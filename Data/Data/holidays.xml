@@ -30,6 +30,8 @@
       </observer>
       <observer country="150">
       </observer>
+        <observer country="161">
+      </observer>
       <observer country="163">
       </observer>
       <observer country="171">
@@ -475,6 +477,7 @@
       </observer>
     </observers>
   </holiday>
+  
   <holiday uid="125" name="Second Day of Christmas (DEN)" type="Fixed_Date" holidaytype="Normal">
     <translations>
       <en-US name="Second Day of Christmas" />
@@ -518,9 +521,11 @@
     <observers>
       <observer country="140">
       </observer>
+              <observer country="161">
+      </observer>
       <observer country="163">
       </observer>
-    </observers>
+      </observers>
   </holiday>
   <holiday uid="128" name="Victory In Europe Day (Multinational)" type="Fixed_Date" holidaytype="Normal">
     <translations>
@@ -770,6 +775,66 @@
     <observationdate month="5" day="4" />
     <observers>
       <observer country="171">
+      </observer>
+    </observers>
+  </holiday>
+  <holiday uid="143" name="National Sovereignty and Children's Day" type="Fixed_Date" holidaytype="Normal">
+    <translations>
+      <en-US name="National Sovereignty and Children's Day" />
+      <de-DE name="National Sovereignty and Children's Day" />
+      <en-GB name="National Sovereignty and Children's Day" />
+      <nl-NL name="National Sovereignty and Children's Day" />
+      <zh-CN name="National Sovereignty and Children's Day" />
+      <es-ES name="National Sovereignty and Children's Day" />
+    </translations>
+    <observationdate month="04" day="23" />
+    <observers>
+      <observer country="161">
+      </observer>
+    </observers>
+  </holiday>
+    <holiday uid="144" name="Commemoration of Atatürk" type="Fixed_Date" holidaytype="Normal">
+    <translations>
+      <en-US name="Commemoration of Atatürk" />
+      <de-DE name="Commemoration of Atatürk" />
+      <en-GB name="Commemoration of Atatürk" />
+      <nl-NL name="Commemoration of Atatürk" />
+      <zh-CN name="Commemoration of Atatürk" />
+      <es-ES name="Commemoration of Atatürk" />
+    </translations>
+    <observationdate month="05" day="19" />
+    <observers>
+      <observer country="161">
+      </observer>
+    </observers>
+  </holiday>
+      <holiday uid="145" name="Victory Day (TR)" type="Fixed_Date" holidaytype="Normal">
+    <translations>
+      <en-US name="Victory Day (TR)" />
+      <de-DE name="Victory Day (TR)" />
+      <en-GB name="Victory Day (TR)" />
+      <nl-NL name="Victory Day (TR)" />
+      <zh-CN name="Victory Day (TR)" />
+      <es-ES name="Victory Day (TR)" />
+    </translations>
+    <observationdate month="08" day="30" />
+    <observers>
+      <observer country="161">
+      </observer>
+    </observers>
+  </holiday>
+     <holiday uid="146" name="Republic Day (TR)" type="Fixed_Date" holidaytype="Normal">
+    <translations>
+      <en-US name="Republic Day (TR))" />
+      <de-DE name="Republic Day (TR)" />
+      <en-GB name="Republic Day (TR)" />
+      <nl-NL name="Republic Day (TR)" />
+      <zh-CN name="Republic Day (TR)" />
+      <es-ES name="Republic Day (TR)" />
+    </translations>
+    <observationdate month="10" day="29" />
+    <observers>
+      <observer country="161">
       </observer>
     </observers>
   </holiday>

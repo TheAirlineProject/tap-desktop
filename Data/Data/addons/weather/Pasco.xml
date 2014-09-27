@@ -1,5 +1,5 @@
 
-<weather type="town" value="Pasco, WA">
+<weather type="town" value="Pasco/Kennewick/Richland, WA">
   <months>
     <month month="1" precipitation="27">
       <temp min="-2" max="5" />

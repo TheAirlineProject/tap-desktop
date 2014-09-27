@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Kenmore Air" iata="M5" color="Yellow" country="122" CEO="Gregg Munro" mentality="Moderate"
+           market="Regional" preferedairport="BFI">
+  <narrative narrative="Kenmore Air is based at three Seattle area airports. Two of these are seaplane bases, the Kenmore Air Harbor and Lake Union. It's land based base is Boeing Field. Most of its operations are seaplane based and they have 20 seaplanes. These include 10 DHC-2 Beaver's, and 6 DHC-3 Otter's and 2 Piper Super Cubs. They have 4 landed based planes, 2 Cessna 208's and 2 Piper Navajo Chieftans. They go to 9 airports in Washington, all of them being in the San Juan Islands and the Seattle area and Olympic Peninsula. They serves more Canadian airports and seaplane bases, 47 or so, which are all on the west coast islands of Canada including Vancouver Island. They have been around since 1946."/>
+</profile>
+  <info real="True" from="1946" to="2199"></info>
+     <prefereds aircrafts="Cessna 208B,Cessna 207,Cessna 206"></prefereds>
+</airline>
+

@@ -194,16 +194,23 @@ namespace TheAirline.GUIModel.CustomControlsModel
             var entry = (TimelineEntry)values[0];
             var entries = (ObservableCollection<TimelineEntry>)values[1];
             Border brdMain = (Border)values[2];
+           
+            var overlaps = entries.Where(e => e.StartTime <= entry.EndTime && entry.StartTime <= e.EndTime).ToArray();
 
-            var overlaps = entries.Where(e => e.StartTime < entry.EndTime && entry.StartTime < e.EndTime);
+            var allEntries = new List<TimelineEntry>(overlaps);
+            //removes parallels
+            for (int i = 0; i < overlaps.Count() - 2; i++)
+                for (int j = i + 1; j < overlaps.Count() - 1; j++)
+                    if (!(overlaps[i].StartTime <= overlaps[j].EndTime && overlaps[j].StartTime <= overlaps[i].EndTime))
+                        allEntries.Remove(overlaps[i]);
 
             int baseValue = 8;
             int height = 30; 
 
             if (overlaps.Count() > 1)
             {
-                brdMain.Height = Math.Max(brdMain.Height, 30 * overlaps.Count());
-                return System.Convert.ToDouble(overlaps.ToList().IndexOf(entry) * height + baseValue);
+                brdMain.Height = Math.Max(brdMain.Height, 30 * allEntries.Count);//overlaps.Count());
+                return System.Convert.ToDouble(allEntries.IndexOf(entry)*height +baseValue); //overlaps.ToList().IndexOf(entry) * height + baseValue);
             }
             else
                 return System.Convert.ToDouble(baseValue);

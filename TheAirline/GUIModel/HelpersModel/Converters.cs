@@ -130,7 +130,22 @@
 
         #endregion
     }
+    //the converter for a value to the current currency with inflation
+    public class ValueCurrencyInflationConverter : IValueConverter
+    {
 
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double v = Double.Parse(value.ToString());
+
+            return new ValueCurrencyConverter().Convert(GeneralHelpers.GetInflationPrice(v));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for a value to the current currency
     public class ValueCurrencyConverter : IValueConverter
     {

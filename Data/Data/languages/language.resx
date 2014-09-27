@@ -5456,7 +5456,52 @@ Good luck.</value>
   <data name="PopUpRouteFlights_1000_name" xml:space="preserve">
     <value>Route Flights</value>
   </data>
+  <data name="News_1018_message" xml:space="preserve">
+    <value>Your missed a maintenance check for {0} and have been given a penalty of {1}</value>
+  </data>
+  <data name="News_1018_name" xml:space="preserve">
+    <value>Missed maintenance check</value>
+  </data>
+  <data name="News_1019_message" xml:space="preserve">
+    <value>Your airliner {0} is now having a maintenance {1}</value>
+  </data>
+  <data name="News_1019_name" xml:space="preserve">
+    <value>Airliner Maintenance Check</value>
+  </data>
+  <data name="News_1020_message" xml:space="preserve">
+    <value>The condition of {0} is below 50%</value>
+  </data>
+  <data name="News_1020_name" xml:space="preserve">
+    <value>Airliner Condition</value>
+  </data>
   <data name="PageRoutePlanner_208_name" xml:space="preserve">
     <value>All Flights</value>
+  </data>
+  <data name="General_120_name" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1005_name" xml:space="preserve">
+    <value>Checks</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1006_name" xml:space="preserve">
+    <value>Last Check</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1007_name" xml:space="preserve">
+    <value>Next Check</value>
+  </data>
+  <data name="PageAirlineInsurance_1008_name" xml:space="preserve">
+    <value>Airline Maintenance Centers</value>
+  </data>
+  <data name="PageAirlineInsurance_1009_name" xml:space="preserve">
+    <value>Available Maintenace Centers</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1008_name" xml:space="preserve">
+    <value>Maintenance Center</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1009_name" xml:space="preserve">
+    <value>Maintenance Interval</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_203_name" xml:space="preserve">
+    <value>Perform Maintenance</value>
   </data>
 </root>

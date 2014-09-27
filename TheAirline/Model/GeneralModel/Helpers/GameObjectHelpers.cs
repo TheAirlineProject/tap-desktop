@@ -1804,7 +1804,6 @@
                     if (airliner != null)
                     {
                         FleetAirlinerHelpers.DoMaintenance(airliner);
-                        FleetAirlinerHelpers.RestoreMaintRoutes(airliner);
                     }
                 
                 }
@@ -2359,6 +2358,18 @@
 
                     Instructors.RemoveInstructor(instructor);
                 }
+                //maintenance centers
+                foreach (MaintenanceCenter center in airline.MaintenanceCenters)
+                {
+                    double centerPrice = GeneralHelpers.GetInflationPrice(center.MonthlyPrice);
+
+                    AirlineHelpers.AddAirlineInvoice(
+                       airline,
+                       GameObject.GetInstance().GameTime,
+                       Invoice.InvoiceType.Maintenances,
+                       -centerPrice);
+                }
+
 
                 //wages
                 foreach (Pilot pilot in airline.Pilots)
@@ -2944,7 +2955,7 @@
                 }
             }
         }
-
+        /*
         private static void SimulateService(FleetAirliner airliner)
         {
             double servicePrice = 10000;
@@ -2981,7 +2992,7 @@
 
             SetNextFlight(airliner);
         }
-
+        */
         private static void SimulateTakeOff(FleetAirliner airliner)
         {
             KeyValuePair<FleetAirlinerHelpers.DelayType, int> delayedMinutes =
@@ -3217,7 +3228,7 @@
                     }
                     else if (airliner.Status == FleetAirliner.AirlinerStatus.On_service)
                     {
-                        SimulateService(airliner);
+ //                       SimulateService(airliner);
                     }
                     else if (airliner.Status == FleetAirliner.AirlinerStatus.To_homebase)
                     {

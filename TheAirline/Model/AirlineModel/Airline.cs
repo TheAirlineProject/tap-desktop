@@ -65,6 +65,7 @@
             this.InsuranceClaims = new List<InsuranceClaim>();
             this.InsurancePolicies = new List<AirlineInsurance>();
             this.SpecialContracts = new List<SpecialContract>();
+            this.MaintenanceCenters = new List<MaintenanceCenter>();
 
             this.createStandardAdvertisement();
 
@@ -148,10 +149,15 @@
                 if (version < 6)
                     this.Shares = new AirlineShare[10];
 
+                if (version < 7)
+                    this.MaintenanceCenters = new List<MaintenanceCenter>();
+
                 if (this.Invoices == null)
                 {
                     this.Invoices = new Invoices();
                 }
+                if (this.SpecialContracts == null)
+                    this.SpecialContracts = new List<SpecialContract>();
               
             }
             catch (Exception e)
@@ -384,7 +390,8 @@
         [Versioning("scontracts",Version=5)]
         public List<SpecialContract> SpecialContracts { get; set; }
 
-      
+        [Versioning("centers",Version=7)]
+        public List<MaintenanceCenter> MaintenanceCenters { get; set; }      
 
         [Versioning("dailyoperatingbalancehistory")]
         public List<KeyValuePair<DateTime, KeyValuePair<double,double>>> DailyOperatingBalanceHistory
@@ -416,7 +423,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 6);
+            info.AddValue("version", 7);
 
             Type myType = this.GetType();
 

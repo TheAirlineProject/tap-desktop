@@ -174,6 +174,9 @@
         //adds an airline to the alliance
         public void addMember(AllianceMember airline)
         {
+            if (this.Members == null)
+                this.Members = new List<AllianceMember>();
+
             this.Members.Add(airline);
             airline.Airline.addAlliance(this);
         }

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Savoonga, AK">
+  <months>
+    <month month="1" precipitation="27">
+      <temp min="-16" max="-11" />
+      <wind min="Calm" max="Strong_Gale" />
+    </month>
+    <month month="2" precipitation="31">
+      <temp min="-19" max="-14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="40">
+      <temp min="-18" max="-12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="39">
+      <temp min="-12" max="-6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="23">
+      <temp min="-4" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="15">
+      <temp min="1" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="27">
+      <temp min="5" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="63">
+      <temp min="5" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="42">
+      <temp min="2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="39">
+      <temp min="-2" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="48">
+      <temp min="-6" max="-2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="50">
+      <temp min="-11" max="-6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

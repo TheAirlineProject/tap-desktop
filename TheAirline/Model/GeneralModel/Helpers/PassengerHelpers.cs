@@ -3018,7 +3018,7 @@
 
             //double priceDiff = basicPrice / routePrice;
 
-            double routeScoreFactor = RouteHelpers.GetRouteTotalScore(currentRoute) / 5;
+            double routeScoreFactor = RouteHelpers.GetRouteTotalScore(currentRoute) / 10;
 
             double demand = airportCurrent.getDestinationPassengersRate(airportDestination, type);
 

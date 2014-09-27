@@ -127,7 +127,7 @@
     <value>_Iptal</value>
   </data>
   <data name="MsgOk_1000_name" xml:space="preserve">
-    <value>Tamam</value>
+    <value>Ta_mam</value>
   </data>
   <data name="General_100_name" xml:space="preserve">
     <value>Tamam</value>
@@ -151,7 +151,7 @@
     <value>Evet</value>
   </data>
   <data name="General_107_name" xml:space="preserve">
-    <value>hayir</value>
+    <value>Hayir</value>
   </data>
   <data name="General_108_name" xml:space="preserve">
     <value>Tekrar basla</value>
@@ -160,13 +160,13 @@
     <value>Ara</value>
   </data>
   <data name="General_110_name" xml:space="preserve">
-    <value>temizle</value>
+    <value>Temizle</value>
   </data>
   <data name="General_111_name" xml:space="preserve">
-    <value>hepsi</value>
+    <value>Hepsi</value>
   </data>
   <data name="General_112_name" xml:space="preserve">
-    <value>Otomatik olustur</value>
+    <value>Otomatik Olustur</value>
   </data>
   <data name="General_113_name" xml:space="preserve">
     <value>Kaydet</value>
@@ -199,31 +199,31 @@
     <value>Teslim edildi</value>
   </data>
   <data name="PopUpTimeTable_1000_name" xml:space="preserve">
-    <value>Güzergah zaman tablosu</value>
+    <value>Güzergah Zaman Tablosu</value>
   </data>
   <data name="PopUpBuildRunway_1000_name" xml:space="preserve">
-    <value>Pist insa et</value>
+    <value>Pist  Insa Et</value>
   </data>
   <data name="PopUpBuildRunway_1001_name" xml:space="preserve">
-    <value>Pist adi</value>
+    <value>Pist Adi</value>
   </data>
   <data name="PopUpBuildRunway_1002_name" xml:space="preserve">
-    <value>Yüzey tipi</value>
+    <value>Yüzey Tipi</value>
   </data>
   <data name="PopUpBuildRunway_1003_name" xml:space="preserve">
-    <value>Pist uzunlugu</value>
+    <value>Pist Uzunlugu</value>
   </data>
   <data name="PopUpAirlinerRoutes_1000_name" xml:space="preserve">
-    <value>Aktarim plani</value>
+    <value>Aktarim Plani</value>
   </data>
   <data name="PopUpAirlinerRoutes_1001_name" xml:space="preserve">
-    <value>Aktarma icin ucak seciniz</value>
+    <value>Aktarma Icin Ucak Seciniz</value>
   </data>
   <data name="PopUpTerminal_1000_name" xml:space="preserve">
-    <value>Terminal yap</value>
+    <value>Terminal Yap</value>
   </data>
   <data name="PopUpTerminal_1001_name" xml:space="preserve">
-    <value>Kapi numaralari</value>
+    <value>Kapi Numaralari</value>
   </data>
   <data name="PopUpTerminal_1002_name" xml:space="preserve">
     <value>Basit Terminal Fiyati</value>
@@ -232,10 +232,10 @@
     <value>Terminal Kapisi Basina Birim Fiyati</value>
   </data>
   <data name="PopUpTerminal_1004_name" xml:space="preserve">
-    <value>Kadar gün gerekli terminal yapimi icin</value>
+    <value>Terminal yapimi icin gerekli olan gün</value>
   </data>
   <data name="PopUpTerminal_1005_name" xml:space="preserve">
-    <value>Toplam terminal süresi</value>
+    <value>Toplam Terminal Süresi</value>
   </data>
   <data name="PopUpTerminal_1006_name" xml:space="preserve">
     <value>Toplam Terminal Fiyati</value>
@@ -244,55 +244,55 @@
     <value>Terminal ismi</value>
   </data>
   <data name="PopUpRouteFacilities_1000_name" xml:space="preserve">
-    <value>Ucak siniflarini degistir</value>
+    <value>Ucak Siniflarini Degistir</value>
   </data>
   <data name="PopUpRouteFacilities_1001_name" xml:space="preserve">
-    <value>Verilen yiyecek</value>
+    <value>Verilen Yiyecek</value>
   </data>
   <data name="PopUpRouteFacilities_1002_name" xml:space="preserve">
-    <value>Verilen icki</value>
+    <value>Verilen Icecek</value>
   </data>
   <data name="PopUpRouteFacilities_1003_name" xml:space="preserve">
-    <value>Görevli kabin memuru</value>
+    <value>Görevli Kabin Memuru</value>
   </data>
   <data name="PopUpRouteFacilities_1004_name" xml:space="preserve">
-    <value>Koltuk türü</value>
+    <value>Koltuk Türü</value>
   </data>
   <data name="PopUpRouteFacilities_1005_name" xml:space="preserve">
-    <value>Yolculuk ücreti </value>
+    <value>Yolculuk Ücreti </value>
   </data>
   <data name="PopUpSave_1000_name" xml:space="preserve">
-    <value>Oyunu kaydet</value>
+    <value>Oyunu Kaydet</value>
   </data>
   <data name="PopUpLoad_1000_name" xml:space="preserve">
-    <value>Kaydedilmis oyunu yükle</value>
+    <value>Kaydedilmis Oyunu Yükle</value>
   </data>
   <data name="PopUpMap_1000_name" xml:space="preserve">
     <value>Harita</value>
   </data>
   <data name="PopUpMap_1001_name" xml:space="preserve">
-    <value>Yakinlastir/Uzaklastir</value>
+    <value>+/-: Yakinlastir/Uzaklastir</value>
   </data>
   <data name="PopUpMap_1002_name" xml:space="preserve">
-    <value>Sag:Sag tus</value>
+    <value>Sag: Sag Tus</value>
   </data>
   <data name="PopUpMap_1003_name" xml:space="preserve">
-    <value>Sol:Sol tus</value>
+    <value>Sol: Sol Tus</value>
   </data>
   <data name="PopUpMap_1004_name" xml:space="preserve">
-    <value>Yukari: Yukari tusu</value>
+    <value>Yukari: Yukari Tusu</value>
   </data>
   <data name="PopUpMap_1005_name" xml:space="preserve">
-    <value>Assagi: Assagi tusu</value>
+    <value>Assagi: Assagi Tusu</value>
   </data>
   <data name="PopUpLoan_1000_name" xml:space="preserve">
-    <value>Kredi icin basvur</value>
+    <value>Kredi Icin Basvur</value>
   </data>
   <data name="PopUpEditAirlinerName_1000_name" xml:space="preserve">
     <value>Ucak Adi</value>
   </data>
   <data name="PageCreateDifficulty_1000_name" xml:space="preserve">
-    <value>Para seviyesi</value>
+    <value>Para Durumu</value>
   </data>
   <data name="PageCreateDifficulty_1001_name" xml:space="preserve">
     <value>Fiyat Seviyesi</value>
@@ -307,49 +307,49 @@
     <value>Yapay zeka seviyesi</value>
   </data>
   <data name="PopUpNewSubsidiary_1000_name" xml:space="preserve">
-    <value>Yavru sirket kur</value>
+    <value>Yavru Sirket Kur</value>
   </data>
   <data name="PopUpNewSubsidiary_1001_name" xml:space="preserve">
-    <value>Havayolu ismi</value>
+    <value>Havayolu Ismi</value>
   </data>
   <data name="PopUpNewSubsidiary_1002_name" xml:space="preserve">
-    <value>Havayolu IATA kodu</value>
+    <value>Havayolu IATA Kodu</value>
   </data>
   <data name="PopUpNewSubsidiary_1003_name" xml:space="preserve">
-    <value>Havayolu logosu</value>
+    <value>Havayolu Logosu</value>
   </data>
   <data name="PopUpNewSubsidiary_1004_name" xml:space="preserve">
-    <value>Havayolu rengi</value>
+    <value>Havayolu Rengi</value>
   </data>
   <data name="PopUpNewSubsidiary_1005_name" xml:space="preserve">
-    <value>Havayolu merkez üssü</value>
+    <value>Havayolu Merkez Üssü</value>
   </data>
   <data name="PopUpNewSubsidiary_1006_name" xml:space="preserve">
-    <value>Baslangis sermayesi</value>
+    <value>Baslangis Sermayesi</value>
   </data>
   <data name="PageRoutes_200_name" xml:space="preserve">
-    <value>Yeni ucus güzergahi ac</value>
+    <value>Yeni Ucus Güzergahi Ac</value>
   </data>
   <data name="PageRoutes_201_name" xml:space="preserve">
-    <value>Ucus haritasi</value>
+    <value>Ucus Haritasi</value>
   </data>
   <data name="PageRoutes_1000_name" xml:space="preserve">
     <value>Güzergahlar</value>
   </data>
   <data name="PageRoutes_1001_name" xml:space="preserve">
-    <value>Ucak güzergahlari</value>
+    <value>Ucak Güzergahlari</value>
   </data>
   <data name="PageRoutes_1002_name" xml:space="preserve">
-    <value>Ucus kisitlamalari</value>
+    <value>Ucus Kisitlamalari</value>
   </data>
   <data name="PageRoutes_1003_name" xml:space="preserve">
     <value>{0} Güzergahlar</value>
   </data>
   <data name="PageFrontMenu_200_name" xml:space="preserve">
-    <value>Yeni oyun</value>
+    <value>Yeni Oyun</value>
   </data>
   <data name="PageFrontMenu_201_name" xml:space="preserve">
-    <value>Oyun yükle</value>
+    <value>Oyun Yükle</value>
   </data>
   <data name="PageFrontMenu_202_name" xml:space="preserve">
     <value>Seçenekler</value>
@@ -361,16 +361,16 @@
     <value>Oyundan Çık</value>
   </data>
   <data name="PageFrontMenu_1001_name" xml:space="preserve">
-    <value>Başlangıç menüsü</value>
+    <value>Başlangıç Menüsü</value>
   </data>
   <data name="PageFleetAirliner_200_name" xml:space="preserve">
-    <value>Ucak kirala</value>
+    <value>Ucak Kirala</value>
   </data>
   <data name="PageFleetAirliner_1000_name" xml:space="preserve">
-    <value>Havayolu filosu</value>
+    <value>Havayolu Filosu</value>
   </data>
   <data name="PageFleetAirliner_1001_name" xml:space="preserve">
-    <value>Ucak tipi</value>
+    <value>Ucak Tipi</value>
   </data>
   <data name="PageFleetAirliner_1002_name" xml:space="preserve">
     <value>İsim</value>
@@ -379,34 +379,34 @@
     <value>Üretici</value>
   </data>
   <data name="PageFleetAirliner_1004_name" xml:space="preserve">
-    <value>Gövde tipi</value>
+    <value>Gövde Tipi</value>
   </data>
   <data name="PageFleetAirliner_1005_name" xml:space="preserve">
-    <value>Ucus mesafesi</value>
+    <value>Ucus Mesafesi</value>
   </data>
   <data name="PageFleetAirliner_1006_name" xml:space="preserve">
-    <value>Motor tipi</value>
+    <value>Motor Tipi</value>
   </data>
   <data name="PageFleetAirliner_1007_name" xml:space="preserve">
-    <value>Kanat genisligi</value>
+    <value>Kanat Genisligi</value>
   </data>
   <data name="PageFleetAirliner_1008_name" xml:space="preserve">
     <value>Uzunluk</value>
   </data>
   <data name="PageFleetAirliner_1009_name" xml:space="preserve">
-    <value>Yolcu kapasitesi</value>
+    <value>Yolcu Kapasitesi</value>
   </data>
   <data name="PageFleetAirliner_1010_name" xml:space="preserve">
-    <value>Maksimum ucus sinifi sayisi</value>
+    <value>Maksimum Ucus Sinifi Sayisi</value>
   </data>
   <data name="PageFleetAirliner_1011_name" xml:space="preserve">
-    <value>Gerekli ucus pisti uzunlugu</value>
+    <value>Gerekli Ucus Pisti Uzunlugu</value>
   </data>
   <data name="PageFleetAirliner_1012_name" xml:space="preserve">
     <value>Kokpit: {0} Kabin: {1}</value>
   </data>
   <data name="PageFleetAirliner_1013_name" xml:space="preserve">
-    <value>Gerekli olan personel</value>
+    <value>Gerekli Olan Personel</value>
   </data>
   <data name="PageFleetAirliner_1014_name" xml:space="preserve">
     <value>Ucus hizi</value>
@@ -415,28 +415,28 @@
     <value>Yakıt Tüketimi</value>
   </data>
   <data name="PageFleetAirliner_1016_name" xml:space="preserve">
-    <value>Yakit tanki kapasitsesi</value>
+    <value>Yakit Tanki Kapasitsesi</value>
   </data>
   <data name="PageFleetAirliner_1017_name" xml:space="preserve">
-    <value>Mal sahibi</value>
+    <value>Mal Sahibi</value>
   </data>
   <data name="PageFleetAirliner_1018_name" xml:space="preserve">
     <value>Merkez üs</value>
   </data>
   <data name="PageFleetAirliner_1019_name" xml:space="preserve">
-    <value>Insa et</value>
+    <value>Insa Et</value>
   </data>
   <data name="PageFleetAirliner_1020_name" xml:space="preserve">
     <value>{0} ({1} yasinda)</value>
   </data>
   <data name="PageFleetAirliner_1021_name" xml:space="preserve">
-    <value>Kuyruk numarasi</value>
+    <value>Kuyruk Numarasi</value>
   </data>
   <data name="PageFleetAirliner_1022_name" xml:space="preserve">
     <value>Havalanma</value>
   </data>
   <data name="PageFleetAirliner_1023_name" xml:space="preserve">
-    <value>Son servis kontrolü</value>
+    <value>Son Servis Kontrolü</value>
   </data>
   <data name="PageFleetAirliner_1024_name" xml:space="preserve">
     <value>Gecerli Güzergahlar</value>
@@ -481,25 +481,25 @@
     <value>Ortalama yolcu</value>
   </data>
   <data name="PageAirliners_1000_name" xml:space="preserve">
-    <value>En cok kullanilan ucak modeli</value>
+    <value>En cok kullanilan ucak modelleri</value>
   </data>
   <data name="PageAirliners_1001_name" xml:space="preserve">
-    <value>Yeni ucaklar</value>
+    <value>Yeni Ucaklar</value>
   </data>
   <data name="PageAirliners_1002_name" xml:space="preserve">
-    <value>Kullanilmis ucak satin al</value>
+    <value>Kullanilmis Ucak Satin Al</value>
   </data>
   <data name="PageAirport_1000_name" xml:space="preserve">
     <value>Mesafeler</value>
   </data>
   <data name="PageAirport_1001_name" xml:space="preserve">
-    <value>Hava durumu bilgisi</value>
+    <value>Hava Durumu Bilgisi</value>
   </data>
   <data name="PageAirport_1002_name" xml:space="preserve">
     <value>Inisler</value>
   </data>
   <data name="PageAirport_1003_name" xml:space="preserve">
-    <value>dan</value>
+    <value>Dan</value>
   </data>
   <data name="PageAirport_1004_name" xml:space="preserve">
     <value>Kalkislar</value>
@@ -514,10 +514,10 @@
     <value>Isim</value>
   </data>
   <data name="PageAirport_1008_name" xml:space="preserve">
-    <value>Hava yolu kodu</value>
+    <value>Havaalani Kodu</value>
   </data>
   <data name="PageAirport_1009_name" xml:space="preserve">
-    <value>Hava yolu tipi</value>
+    <value>Havaalani Tipi</value>
   </data>
   <data name="PageAirport_1010_name" xml:space="preserve">
     <value>Sehir</value>
@@ -526,10 +526,10 @@
     <value>Ülke</value>
   </data>
   <data name="PageAirport_1012_name" xml:space="preserve">
-    <value>Zaman dilimi</value>
+    <value>Zaman Dilimi</value>
   </data>
   <data name="PageAirport_1013_name" xml:space="preserve">
-    <value>Yerel saat</value>
+    <value>Yerel Saat</value>
   </data>
   <data name="PageAirport_1014_name" xml:space="preserve">
     <value>Kordinatlar</value>
@@ -538,10 +538,10 @@
     <value>Havaalani Büyüklügü</value>
   </data>
   <data name="PageAirport_1016_name" xml:space="preserve">
-    <value>Kapi sayisi</value>
+    <value>Kapi Sayisi</value>
   </data>
   <data name="PageAirport_1017_name" xml:space="preserve">
-    <value>Ucus pisti sayisi</value>
+    <value>Ucus Pisti Sayisi</value>
   </data>
   <data name="PageAirport_1018_name" xml:space="preserve">
     <value>Terminaller</value>
@@ -553,49 +553,49 @@
     <value>Günlük Talep / Kalan Talep (Yolcu / Kargo)</value>
   </data>
   <data name="PageAirport_1021_name" xml:space="preserve">
-    <value>Kargo binasi büyüklügü</value>
+    <value>Kargo Binasi Büyüklügü</value>
   </data>
   <data name="PageAirport_1022_name" xml:space="preserve">
     <value>Acildi</value>
   </data>
   <data name="PageAirport_1023_name" xml:space="preserve">
-    <value>Havaalani geliri</value>
+    <value>Havaalani Geliri</value>
   </data>
   <data name="PageAirport_1024_name" xml:space="preserve">
-    <value>Kapanis tarihi</value>
+    <value>Kapanis Tarihi</value>
   </data>
   <data name="PageAirportRunways_201_name" xml:space="preserve">
-    <value>Ucus pisti insat et</value>
+    <value>Ucus Pisti Insat Et</value>
   </data>
   <data name="PageAirportRunways_1001_name" xml:space="preserve">
-    <value>Ucus pisti Bilgisi (Ad / Uzunluk / Yapi malzemesi)</value>
+    <value>Ucus Pisti Bilgisi (Ad / Uzunluk / Yapi Malzemesi)</value>
   </data>
   <data name="PageAirportRunways_1002_name" xml:space="preserve">
-    <value>Ucus pisti Bilgisi (Ad / Uzunluk / Yapi malzemesi / Bitis zamani)</value>
+    <value>Ucus Pisti Bilgisi (Ad / Uzunluk / Yapi Malzemesi / Bitis Zamani)</value>
   </data>
   <data name="PageAirportFacilities_1001_name" xml:space="preserve">
     <value>Havayolu Tesisleri</value>
   </data>
   <data name="PageAirportFacilities_1002_name" xml:space="preserve">
-    <value>Yeni Tesis insa et</value>
+    <value>Yeni Tesis Insa Et</value>
   </data>
   <data name="PageAirportStatistics_1001_name" xml:space="preserve">
-    <value>Havayolu istatistikleri</value>
+    <value>Havayolu Istatistikleri</value>
   </data>
   <data name="PageAirportStatistics_1002_name" xml:space="preserve">
     <value>{0}</value>
   </data>
   <data name="PageAirportWeather_1001_name" xml:space="preserve">
-    <value>Hava durumu</value>
+    <value>Hava Durumu</value>
   </data>
   <data name="PageAirportWeather_1002_name" xml:space="preserve">
-    <value>Mevcut hava durumu</value>
+    <value>Mevcut Hava Durumu</value>
   </data>
   <data name="PageAirportWeather_1003_name" xml:space="preserve">
-    <value>Hava tahmini</value>
+    <value>Hava Tahmini</value>
   </data>
   <data name="PageAirportTraffic_1001_name" xml:space="preserve">
-    <value>Varis yeri</value>
+    <value>Varis Yeri</value>
   </data>
   <data name="PageAirportFlights_1001_name" xml:space="preserve">
     <value>Ucuslar</value>
@@ -610,28 +610,28 @@
     <value>Gelen Ucuslar</value>
   </data>
   <data name="PageAirportGates_201_name" xml:space="preserve">
-    <value>Terminal insa et </value>
+    <value>Terminal Insa Et </value>
   </data>
   <data name="PageAirportGates_202_name" xml:space="preserve">
     <value>Kira</value>
   </data>
   <data name="PageAirportGates_203_name" xml:space="preserve">
-    <value>Feragat et </value>
+    <value>Feragat Et </value>
   </data>
   <data name="PageAirportGates_204_name" xml:space="preserve">
-    <value>Sirket subesi ac</value>
+    <value>Sirket Subesi Ac</value>
   </data>
   <data name="PageAirportGates_205_name" xml:space="preserve">
-    <value>Tahsis edilen {0}</value>
+    <value>Tahsis Edilen {0}</value>
   </data>
   <data name="PageAirportGates_1001_name" xml:space="preserve">
     <value>Terminaller</value>
   </data>
   <data name="PageAirportGates_1002_name" xml:space="preserve">
-    <value>Kapi bilgileri</value>
+    <value>Kapi Bilgileri</value>
   </data>
   <data name="PageAirportGates_1003_name" xml:space="preserve">
-    <value>Toplam kapi sayisi</value>
+    <value>Toplam Kapi Sayisi</value>
   </data>
   <data name="PageAirportGates_1004_name" xml:space="preserve">
     <value>Kullanilan Kapilar</value>
@@ -640,7 +640,7 @@
     <value>Bos Kapilar</value>
   </data>
   <data name="PageAirportGates_1006_name" xml:space="preserve">
-    <value>kapi basi aylik fiyat</value>
+    <value>Kapi Basi Aylik Fiyat</value>
   </data>
   <data name="PageAirportGates_1007_name" xml:space="preserve">
     <value>Havayolu Sözleşmeleri (Kapilar / kalan ay)</value>
@@ -649,7 +649,7 @@
     <value>Subeler</value>
   </data>
   <data name="PageAirports_1000_name" xml:space="preserve">
-    <value>Hava alanlari</value>
+    <value>Havaalanlari</value>
   </data>
   <data name="PageAirports_1001_name" xml:space="preserve">
     <value>Haritada göster</value>
@@ -658,10 +658,10 @@
     <value>Havaalani arama opsiyonlari</value>
   </data>
   <data name="PageSearchAirports_1002_name" xml:space="preserve">
-    <value>Sadece sivil havaalanlari</value>
+    <value>Sadece sahip oldugum havaalanlari</value>
   </data>
   <data name="PageSearchAirports_1003_name" xml:space="preserve">
-    <value>sadece subeler</value>
+    <value>Sadece subeler</value>
   </data>
   <data name="PageSearchAirports_1004_name" xml:space="preserve">
     <value>Arama Seçenekleri</value>
@@ -682,7 +682,7 @@
     <value>Genisletilmis havaalani arama opsiyonlari</value>
   </data>
   <data name="PageExtendedSearchAirports_1002_name" xml:space="preserve">
-    <value>incindeki havaalanlarini ara</value>
+    <value>Icindeki havaalanlarini ara</value>
   </data>
   <data name="PageExtendedSearchAirports_1003_name" xml:space="preserve">
     <value>den</value>
@@ -694,13 +694,13 @@
     <value>Büyük Havaalanları / Yolcular</value>
   </data>
   <data name="PageAirline_1000_name" xml:space="preserve">
-    <value>En Karlı Güzergahlar</value>
+    <value>En cok kazandiran güzergah</value>
   </data>
   <data name="PageAirline_1001_name" xml:space="preserve">
     <value>En cok kullanilan ucak modeli</value>
   </data>
   <data name="PageAirline_1002_name" xml:space="preserve">
-    <value>enfazla kapilar</value>
+    <value>Enfazla kapi</value>
   </data>
   <data name="PageAirline_1003_name" xml:space="preserve">
     <value>Kod paylasimi icin sor</value>
@@ -712,7 +712,7 @@
     <value>Birlik sec</value>
   </data>
   <data name="PageAirline_1006_name" xml:space="preserve">
-    <value>hava yolu rengi</value>
+    <value>Havayolu rengi</value>
   </data>
   <data name="PageAirline_1007_name" xml:space="preserve">
     <value>Filo büyüklügü</value>
@@ -772,7 +772,7 @@
     <value>En büyük filo</value>
   </data>
   <data name="PageAirlines_1001_name" xml:space="preserve">
-    <value>enfazla kapi</value>
+    <value>En fazla kapi</value>
   </data>
   <data name="PageAirlines_1002_name" xml:space="preserve">
     <value>En fazla güzergah</value>
@@ -838,13 +838,13 @@
     <value>Havaalani kod formati</value>
   </data>
   <data name="PageSettings_1006_name" xml:space="preserve">
-    <value>dakikadaki döngü sayisi</value>
+    <value>Dakikadaki döngü sayisi</value>
   </data>
   <data name="PageSettings_1007_name" xml:space="preserve">
-    <value>Kötü hava icin mail gelsin mi ?</value>
+    <value>Kötü hava sartlarinda mail gelsin mi ?</value>
   </data>
   <data name="PageSettings_1008_name" xml:space="preserve">
-    <value>küsüratli para kullanma</value>
+    <value>Küsüratli para kullanma</value>
   </data>
   <data name="PageCredits_1000_name" xml:space="preserve">
     <value>Krediler</value>
@@ -853,10 +853,10 @@
     <value>Yeni oyun olustur</value>
   </data>
   <data name="PageNewGame_201_name" xml:space="preserve">
-    <value>oyun olustur</value>
+    <value>Oyun olustur</value>
   </data>
   <data name="PageNewGame_202_name" xml:space="preserve">
-    <value>Bağlangıç menüsünr geri dön</value>
+    <value>Bağlangıç menüsüne geri dön</value>
   </data>
   <data name="PageNewGame_1001_name" xml:space="preserve">
     <value>Havayolu Profili</value>
@@ -883,7 +883,7 @@
     <value>Baslangic yili secin</value>
   </data>
   <data name="PageNewGame_1009_name" xml:space="preserve">
-    <value>zaman dilimi secin</value>
+    <value>Zaman dilimi secin</value>
   </data>
   <data name="PageNewGame_1010_name" xml:space="preserve">
     <value>Rakipleri secin</value>
@@ -931,7 +931,7 @@
     <value>Ucak güzergahlari</value>
   </data>
   <data name="PageAirlineFleet_1002_name" xml:space="preserve">
-    <value>İsim</value>
+    <value>Kayit no</value>
   </data>
   <data name="PageAirlineFleet_1003_name" xml:space="preserve">
     <value>Tip</value>
@@ -955,7 +955,7 @@
     <value>Siparis edildi</value>
   </data>
   <data name="PageAirlineFleet_1011_name" xml:space="preserve">
-    <value>Hava yolu filosu</value>
+    <value>Havayolu filosu</value>
   </data>
   <data name="PageAirlineFinances_1001_name" xml:space="preserve">
     <value>Eldeki nakit</value>
@@ -1084,7 +1084,7 @@
     <value>Dakikalar</value>
   </data>
   <data name="PageAirlineStatistics_1001_name" xml:space="preserve">
-    <value>Hava yolu sirketi istatistigi</value>
+    <value>Havayolu sirketi istatistigi</value>
   </data>
   <data name="PageAirlineStatistics_1002_name" xml:space="preserve">
     <value>Toplam kalkis</value>
@@ -1549,10 +1549,8 @@
     <value>Dosya Adi Hatasi</value>
   </data>
   <data name="MessageBox_101_message" xml:space="preserve">
-    <value>Gecersiz dosya adi.
-
-
-Yükleme iptal edildi.</value>
+    <value>Verilen dosya adi gecersiz oldugu icin
+Oyun yüklemesi iptal edildi.</value>
   </data>
   <data name="MessageBox_1001_name" xml:space="preserve">
     <value>Ana Menü</value>
@@ -1576,19 +1574,19 @@ Yükleme iptal edildi.</value>
     <value>Bsarildi</value>
   </data>
   <data name="MessageBox_1004_message" xml:space="preserve">
-    <value>Hava Alani Datalara Kaydedildi</value>
+    <value>HavaAlani Datalara Kaydedildi</value>
   </data>
   <data name="MessageBox_1005_name" xml:space="preserve">
     <value>Hata</value>
   </data>
   <data name="MessageBox_1005_message" xml:space="preserve">
-    <value>Hava alani Datalara Kaydedilemez</value>
+    <value>Havaalani Datalara Kaydedilemez</value>
   </data>
   <data name="MessageBox_1006_name" xml:space="preserve">
     <value>Hata</value>
   </data>
   <data name="MessageBox_1006_message" xml:space="preserve">
-    <value>Hava alani zaten var veya IATA data kodlari bulunamiyor</value>
+    <value>Havaalani zaten var veya IATA data kodlari bulunamiyor</value>
   </data>
   <data name="MessageBox_2000_name" xml:space="preserve">
     <value>Müsait Olmayan Merkez üssü</value>
@@ -1735,7 +1733,7 @@ Yükleme iptal edildi.</value>
     <value>kapatamazsiniz {0}  dan beri kontrol ediyorsunuz.</value>
   </data>
   <data name="MessageBox_2113_name" xml:space="preserve">
-    <value>Hava yolunu tamamen satin al</value>
+    <value>Havayolunu tamamen satin al</value>
   </data>
   <data name="MessageBox_2113_message" xml:space="preserve">
     <value>{0} i  {1:C} icin almak istediginizden eminmisiniz?</value>
@@ -1753,10 +1751,10 @@ Yükleme iptal edildi.</value>
     <value>Ucak seyir halindeyken pilot atayamazsiniz.</value>
   </data>
   <data name="MessageBox_2116_name" xml:space="preserve">
-    <value>Pilotu isten cikaramazsiniz</value>
+    <value>Pilotu kov</value>
   </data>
   <data name="MessageBox_2116_message" xml:space="preserve">
-    <value>{0} i isten cikaramazsiniz</value>
+    <value>{0} i kovdugunuz zaman ucusunuz gerceklesmeyecektir buna ragmen kovmak istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2117_name" xml:space="preserve">
     <value>Pilotu kov</value>
@@ -1789,10 +1787,10 @@ Yükleme iptal edildi.</value>
     <value>Havaalanı bir filo uçağı için ana üs olarak hizmet vermektedir, bu yüzden en azından temel hizmet tesisleri olması gerekir.</value>
   </data>
   <data name="MessageBox_2204_name" xml:space="preserve">
-    <value>Tesisi demodernize et</value>
+    <value>Tesisi kaldir</value>
   </data>
   <data name="MessageBox_2204_message" xml:space="preserve">
-    <value>{0} deki tesisleri demodernize etmek istedignizden eminmisiniz?</value>
+    <value>{0} tesisini kaldirmak istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2205_name" xml:space="preserve">
     <value>Yeterli Paraniz Yok</value>
@@ -1874,7 +1872,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Check-in masalari</value>
   </data>
   <data name="MessageBox_2217_message" xml:space="preserve">
-    <value>Hava alaninda kapi kiralamadan önce check in masalari almak istediginizden eminmisiniz?</value>
+    <value>Havaalaninda kapi kiralamadan önce check in masalari almak istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2218_name" xml:space="preserve">
     <value>pist insa et</value>
@@ -1901,10 +1899,10 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>{0} in üzerine kaydetmek istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2402_name" xml:space="preserve">
-    <value>Hava yolu sirketi olustur</value>
+    <value>Havayolu sirketi olustur</value>
   </data>
   <data name="MessageBox_2402_message" xml:space="preserve">
-    <value>Bu hava yolu sirketini olusturmak istediginizden eminmisiniz?</value>
+    <value>Bu havayolu sirketini olusturmak istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2403_name" xml:space="preserve">
     <value>Sirket sahibinin ismi</value>
@@ -2320,13 +2318,13 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>{0} ile {1} yillik kontrat imzalamak istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2220_name" xml:space="preserve">
-    <value>Hava yolu Kontrati</value>
+    <value>Havayolu Kontrati</value>
   </data>
   <data name="MessageBox_2221_message" xml:space="preserve">
     <value>{0} ile olan hava alani kontratini sonlandirmak istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2221_name" xml:space="preserve">
-    <value>Hava alani kontratini iptal et</value>
+    <value>Havaalani kontratini iptal et</value>
   </data>
   <data name="PageAirportGates_1009_name" xml:space="preserve">
     <value>: tarafindan kontrat</value>
@@ -2359,10 +2357,10 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Ucus haritalari</value>
   </data>
   <data name="PageAirlineFleet_1010_name" xml:space="preserve">
-    <value>Aktarma icin hava yolu secin</value>
+    <value>Aktarma icin havayolu secin</value>
   </data>
   <data name="PageAirlineSubsidiaries_1002_name" xml:space="preserve">
-    <value>Hava yolu sirketleri arasinda para aktarimi</value>
+    <value>Havayolu sirketleri arasinda para aktarimi</value>
   </data>
   <data name="PageAirlineSubsidiaries_201_name" xml:space="preserve">
     <value>Fon aktarimi</value>
@@ -2434,10 +2432,10 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Özel günler ile ilgili takvim</value>
   </data>
   <data name="ToolTip_1014_name" xml:space="preserve">
-    <value>Hava yolu Lisansini gelistir</value>
+    <value>Havayolu Lisansini gelistir</value>
   </data>
   <data name="ToolTip_1015_name" xml:space="preserve">
-    <value>Bu hava yolu sirketini tamamen satin alip bünyene dahil et </value>
+    <value>Bu havayolu sirketini tamamen satin alip bünyene dahil et </value>
   </data>
   <data name="ToolTip_1016_name" xml:space="preserve">
     <value>Bir yavru sirket olarak satin al. </value>
@@ -2680,7 +2678,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Kontrati iptal et</value>
   </data>
   <data name="PageAirportGates_2006_message" xml:space="preserve">
-    <value>Hava alani ile Kapi sözlesmesi imzala</value>
+    <value>Havaalani ile kapi sözlesmesi imzala</value>
   </data>
   <data name="MessageBox_2226_message" xml:space="preserve">
     <value> {0} kontratli kisim terminalinizinin bir parcasi oldugu icin kaldirilamaz </value>
@@ -2689,7 +2687,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Konrati iptal edemezsiniz</value>
   </data>
   <data name="ToolTip_1017_name" xml:space="preserve">
-    <value>Hava alani ile Kapi numarasi sözlesmesi imzala</value>
+    <value>Havaalani ile kapisayilari icin sözlesmesi imzala</value>
   </data>
   <data name="PanelRoute_1016_name" xml:space="preserve">
     <value>Güzergah tipi</value>
@@ -2746,10 +2744,10 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Güvenlik</value>
   </data>
   <data name="PageAirlineStatistics_1018_name" xml:space="preserve">
-    <value>Hava yolu seviyesi (0-100)</value>
+    <value>Havayolu seviyesi (0-100)</value>
   </data>
   <data name="PageFleetInsurances_1000_name" xml:space="preserve">
-    <value>Havayolu Sigorta Politikaları</value>
+    <value>Havayolu sigorta politikaları</value>
   </data>
   <data name="General_118_name" xml:space="preserve">
     <value>Ayarla</value>
@@ -2839,16 +2837,16 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Öncelikli hava alani</value>
   </data>
   <data name="PageNewAirline_1007_name" xml:space="preserve">
-    <value>Yolcu hava yolu</value>
+    <value>Yolcu havayolu</value>
   </data>
   <data name="PageNewAirline_1008_name" xml:space="preserve">
-    <value>Kargo hava yolu</value>
+    <value>Kargo havayolu</value>
   </data>
   <data name="PageNewAirline_201_name" xml:space="preserve">
-    <value>Hava yolu sirketi olustur</value>
+    <value>Havayolu sirketi olustur</value>
   </data>
   <data name="MainMenu_1000_name" xml:space="preserve">
-    <value>Hava yolu Sirketim</value>
+    <value>Havayolu sirketim</value>
   </data>
   <data name="MainMenu_1001_name" xml:space="preserve">
     <value>Güzergahlar</value>
@@ -2881,7 +2879,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Gecersiz isim</value>
   </data>
   <data name="MessageBox_2405_message" xml:space="preserve">
-    <value>Hava yolu sirketi kuruldu</value>
+    <value>Havayolu sirketi kuruldu</value>
   </data>
   <data name="MessageBox_2405_name" xml:space="preserve">
     <value>Sirket kuruldu</value>
@@ -2896,7 +2894,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Büyük Birlikler</value>
   </data>
   <data name="PageNewAirline_1009_name" xml:space="preserve">
-    <value>Havayolu CEOsu</value>
+    <value>Havayolu sahibi</value>
   </data>
   <data name="PageShowAirports_1000_name" xml:space="preserve">
     <value>İsim</value>
@@ -2914,7 +2912,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Kapilar (Bos/toplam)</value>
   </data>
   <data name="PageAlliances_1004_name" xml:space="preserve">
-    <value>Insan birlikleri</value>
+    <value>Sahip olunan, üyesi oldugum birlikler</value>
   </data>
   <data name="PageCreateAlliance_1000_name" xml:space="preserve">
     <value>Birlik adi seciniz</value>
@@ -3034,7 +3032,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Güzergah kazanci</value>
   </data>
   <data name="MessageBox_3000_message" xml:space="preserve">
-    <value>Bir veya daha fazla hava alaninda bos kullanilabilecek kapi yok</value>
+    <value>Bir veya daha fazla havaalaninda bos kullanilabilecek kapi yok</value>
   </data>
   <data name="MessageBox_3000_name" xml:space="preserve">
     <value>Bos kapi yok</value>
@@ -3046,7 +3044,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Mesafe hatasi</value>
   </data>
   <data name="MessageBox_3002_message" xml:space="preserve">
-    <value>Bir veya daha fazla hava alani tipi uygun degil (Bölgesel/Yerel/Ulusal)</value>
+    <value>Bir veya daha fazla havaalani tipi uygun degil (Bölgesel/Yerel/Ulusal)</value>
   </data>
   <data name="MessageBox_3002_name" xml:space="preserve">
     <value>Havalimanı hatası</value>
@@ -3061,10 +3059,10 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Yolcular</value>
   </data>
   <data name="PageAirports_1002_name" xml:space="preserve">
-    <value>Büyük sivil havaalanlari</value>
+    <value>Sahip oldugum en büyük havaalanlari</value>
   </data>
   <data name="PageAirports_1003_name" xml:space="preserve">
-    <value>oyuncuya ait subeler</value>
+    <value>Sahip oldugum subeler</value>
   </data>
   <data name="PageAirports_2000_name" xml:space="preserve">
     <value>Havalimanları</value>
@@ -3118,7 +3116,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Zorluk seviyesi</value>
   </data>
   <data name="PageShowScenario_1001_name" xml:space="preserve">
-    <value>Sivil hava yolu</value>
+    <value>Sahip oldugum havayolu sirketi</value>
   </data>
   <data name="PageShowScenario_1002_name" xml:space="preserve">
     <value>Baslangic Yili</value>
@@ -3652,7 +3650,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Oyun hizini secin</value>
   </data>
   <data name="PageShowOptions_1002_name" xml:space="preserve">
-    <value>Hava alani kod görüntüleri</value>
+    <value>Havaalani kod görüntüleri</value>
   </data>
   <data name="PageShowOptions_1003_name" xml:space="preserve">
     <value>Tur basina dakikayi ayarla</value>
@@ -3673,7 +3671,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Degisikleri Geri al</value>
   </data>
   <data name="PageAirlineFinances_1008_name" xml:space="preserve">
-    <value>Hava yolu kredisi</value>
+    <value>Havayolu kredisi</value>
   </data>
   <data name="PageAirlineFinances_1009_name" xml:space="preserve">
     <value>Kredi Miktari</value>
@@ -3697,7 +3695,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Kredi için başvur</value>
   </data>
   <data name="PageAirlineInfo_1013_name" xml:space="preserve">
-    <value>Hava yolu Güzergahlari</value>
+    <value>Havayolu Güzergahlari</value>
   </data>
   <data name="PageAirlineInfo_1014_name" xml:space="preserve">
     <value>güzergahlar</value>
@@ -3721,7 +3719,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>IATA kodu secin</value>
   </data>
   <data name="PageAirlineInfo_1021_name" xml:space="preserve">
-    <value>Hava yolu tipi secin</value>
+    <value>Havayolu tipi secin</value>
   </data>
   <data name="PageAirlineInfo_1022_name" xml:space="preserve">
     <value>Hava yolu rengi secin</value>
@@ -3739,7 +3737,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Üretim Yili</value>
   </data>
   <data name="PageShowAirports_1005_name" xml:space="preserve">
-    <value>Sadece sivil hava alanlarini göster</value>
+    <value>Sadece sahip oldugum havaalanlarini göster</value>
   </data>
   <data name="PageAirlineInfo_1025_name" xml:space="preserve">
     <value>Sube</value>
@@ -3853,7 +3851,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Yıllık Ödeme</value>
   </data>
   <data name="PageAirportInfo_1029_name" xml:space="preserve">
-    <value>Tapel edilen (ilk 50 Güzergah)</value>
+    <value>Yerel</value>
   </data>
   <data name="PageAirportInfo_1030_name" xml:space="preserve">
     <value>Varis yeri</value>
@@ -3901,7 +3899,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Zorluk seviyesi olustur</value>
   </data>
   <data name="PageAirlineInfo_1026_name" xml:space="preserve">
-    <value>Nakit seçiniz</value>
+    <value>Para birimi seciniz</value>
   </data>
   <data name="PageAirlineInfo_1027_name" xml:space="preserve">
     <value>Sahip havayolu</value>
@@ -4432,7 +4430,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>50 den fazla rakip sectiginiz taktirde oyunda donmalar meydana gelebilir</value>
   </data>
   <data name="PageNewGame_1028_name" xml:space="preserve">
-    <value>Sadece büyük havaalanlarini kullan</value>
+    <value>Hava alanlarini sec</value>
   </data>
   <data name="PageFleetAirlinerInformation_1012_name" xml:space="preserve">
     <value>Pilotlar</value>
@@ -4471,7 +4469,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>günlük</value>
   </data>
   <data name="PageShowOptions_1010_name" xml:space="preserve">
-    <value>aylik</value>
+    <value>Aylik</value>
   </data>
   <data name="PageShowOptions_1011_name" xml:space="preserve">
     <value>yillik</value>
@@ -4627,10 +4625,10 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Stoklar</value>
   </data>
   <data name="MessageBox_2127_message" xml:space="preserve">
-    <value> {0} hisseyi  birim basina {1} dan satisa cikarmak istediginizden eminmisiniz?</value>
+    <value>%10 hissenizi  {0} karsiliginda {1} a satmak istediginizden emin misiniz?</value>
   </data>
   <data name="MessageBox_2127_name" xml:space="preserve">
-    <value>Hisse senedi</value>
+    <value>Hisse senedi sat</value>
   </data>
   <data name="PageAirlineFleet_1000_name" xml:space="preserve">
     <value>Aktif Havayolu Filosu</value>
@@ -4660,7 +4658,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Hisse payi</value>
   </data>
   <data name="PageAirlinesShares_201_name" xml:space="preserve">
-    <value>Yeni hisse ihracı</value>
+    <value>Hisse senedi sat</value>
   </data>
   <data name="PageAirline_2005_name" xml:space="preserve">
     <value>Filo &amp; Güzergahlar</value>
@@ -4861,7 +4859,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Özel Hava Yolunu Yükle</value>
   </data>
   <data name="PageAirliners_2003_name" xml:space="preserve">
-    <value>Insan Filosu</value>
+    <value>Filom</value>
   </data>
   <data name="PageAirlinersHumanFleet_1000_name" xml:space="preserve">
     <value>Teslim Edilen Filo</value>
@@ -4898,5 +4896,575 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
   </data>
   <data name="PageAirlineFleet_201_name" xml:space="preserve">
     <value>Ucus haritasi</value>
+  </data>
+  <data name="PageSelectOpponents_1000_name" xml:space="preserve">
+    <value>Secilen Rakipler</value>
+  </data>
+  <data name="PageSelectOpponents_1001_name" xml:space="preserve">
+    <value>Mevcut kaipler</value>
+  </data>
+  <data name="PopUpExtendContract_1000_name" xml:space="preserve">
+    <value>Havalimani kontratini uzat</value>
+  </data>
+  <data name="PopUpExtendContract_1001_name" xml:space="preserve">
+    <value>Havalimani</value>
+  </data>
+  <data name="PopUpExtendContract_1002_name" xml:space="preserve">
+    <value>Kapi sayisi</value>
+  </data>
+  <data name="PopUpExtendContract_1003_name" xml:space="preserve">
+    <value>Bitis zamani</value>
+  </data>
+  <data name="PopUpExtendContract_1004_name" xml:space="preserve">
+    <value>Sözlesmeleri Otomatik Yenile</value>
+  </data>
+  <data name="PageAirlineEmployees_1013_name" xml:space="preserve">
+    <value>Egitim Ucaklari</value>
+  </data>
+  <data name="PagePilots_1009_name" xml:space="preserve">
+    <value>Egitim Ucaklari</value>
+  </data>
+  <data name="PageShowPilot_1006_name" xml:space="preserve">
+    <value>Egitim Ucaklari</value>
+  </data>
+  <data name="MessageBox_2129_message" xml:space="preserve">
+    <value> {0} mikratindaki parayi {1} gün olan pilot bedeli olarak ödemek istediginizden eminmisiniz ?</value>
+  </data>
+  <data name="MessageBox_2129_name" xml:space="preserve">
+    <value>Pilot bedeli</value>
+  </data>
+  <data name="PageAirlineEmployees_1014_name" xml:space="preserve">
+    <value>Egitim ucagi secin</value>
+  </data>
+  <data name="News_1015_message" xml:space="preserve">
+    <value> ögrenciniz olan {0} ,{1} egitimini tamamlamistir</value>
+  </data>
+  <data name="News_1015_name" xml:space="preserve">
+    <value>Pilot egitimi</value>
+  </data>
+  <data name="PageAirlineServices_1009_name" xml:space="preserve">
+    <value>Fiyat</value>
+  </data>
+  <data name="PageAirlineServices_1010_name" xml:space="preserve">
+    <value>Pilot Egitim Tesisleri</value>
+  </data>
+  <data name="PageAirlineEditAirliners_1002_name" xml:space="preserve">
+    <value>Yapilandirma ismini seciniz</value>
+  </data>
+  <data name="PageAirlineEditAirliners_202_name" xml:space="preserve">
+    <value>Yapilandirmayi kaydet</value>
+  </data>
+  <data name="PagePilots_1010_name" xml:space="preserve">
+    <value>Ucaga pilot tahsis et</value>
+  </data>
+  <data name="MessageBox_2811_message" xml:space="preserve">
+    <value>Buraya yeni ögrenci almak istediginizden eminmisiniz?</value>
+  </data>
+  <data name="MessageBox_2811_name" xml:space="preserve">
+    <value>Ögrenci al</value>
+  </data>
+  <data name="PageAirlineFleet_1014_name" xml:space="preserve">
+    <value>Pilot gereksinimleri</value>
+  </data>
+  <data name="PageAirlineFleet_1015_name" xml:space="preserve">
+    <value>Pilotlar</value>
+  </data>
+  <data name="PageShowFlightSchool_1015_name" xml:space="preserve">
+    <value>Ögrenci al</value>
+  </data>
+  <data name="PageShowFlightSchool_1016_name" xml:space="preserve">
+    <value>Egitmen sec</value>
+  </data>
+  <data name="PageShowFlightSchool_1017_name" xml:space="preserve">
+    <value>Ucak icin egitim</value>
+  </data>
+  <data name="PageManufacturer_1016_name" xml:space="preserve">
+    <value>Teslim tarihi</value>
+  </data>
+  <data name="PageShowFlightSchool_1018_name" xml:space="preserve">
+    <value>Ucak ailesi</value>
+  </data>
+  <data name="PageAirlineFinances_1016_name" xml:space="preserve">
+    <value>Calisanlarin ücretleri</value>
+  </data>
+  <data name="PageRoutePlanner_1026_name" xml:space="preserve">
+    <value>Ucaklar</value>
+  </data>
+  <data name="PageRoutePlanner_206_name" xml:space="preserve">
+    <value>Gecersiz zaman tablosu</value>
+  </data>
+  <data name="PageShowRoute_1005_name" xml:space="preserve">
+    <value>Mesafe</value>
+  </data>
+  <data name="PageAirlineEmployees_1015_name" xml:space="preserve">
+    <value>Pilot ihtiyaci</value>
+  </data>
+  <data name="PageAirportTraffic_1006_name" xml:space="preserve">
+    <value>Mesafe</value>
+  </data>
+  <data name="PageAirportTraffic_1007_name" xml:space="preserve">
+    <value>Havayolu</value>
+  </data>
+  <data name="PageAirportTraffic_1008_name" xml:space="preserve">
+    <value>Ucaklar</value>
+  </data>
+  <data name="PageShowAirports_1012_name" xml:space="preserve">
+    <value>En uzun pist</value>
+  </data>
+  <data name="MessageBox_2812_message" xml:space="preserve">
+    <value>{0} daki pilot okulunu kapatmak istediginizden eminmisiniz?</value>
+  </data>
+  <data name="MessageBox_2812_name" xml:space="preserve">
+    <value>Ucus okulunu kapat</value>
+  </data>
+  <data name="PageFlightSchools_1009_name" xml:space="preserve">
+    <value>Egitmenleri ve Ucakları Tasi</value>
+  </data>
+  <data name="PageAirlineEmployees_1016_name" xml:space="preserve">
+    <value>Ucak</value>
+  </data>
+  <data name="PageAirlineInfo_1036_name" xml:space="preserve">
+    <value>Hava yolu sirketinin ülkesi</value>
+  </data>
+  <data name="MessageBox_2233_message" xml:space="preserve">
+    <value>Zaten bu türde baska bir tesis insa ediliyor</value>
+  </data>
+  <data name="MessageBox_2233_name" xml:space="preserve">
+    <value>tesis insa edilemez</value>
+  </data>
+  <data name="PageAirportDemand_1001_name" xml:space="preserve">
+    <value>Hava alani ara</value>
+  </data>
+  <data name="PageAirport_2003_name" xml:space="preserve">
+    <value>Hava alani ragbeti</value>
+  </data>
+  <data name="PageHumanRoutes_1011_name" xml:space="preserve">
+    <value>Mesafe</value>
+  </data>
+  <data name="PageAirlineInfo_1037_name" xml:space="preserve">
+    <value>Kabin</value>
+  </data>
+  <data name="PageAirlineInfo_1038_name" xml:space="preserve">
+    <value>Siparis halinde</value>
+  </data>
+  <data name="PageAirlineInfo_1039_name" xml:space="preserve">
+    <value>Güzergahlar</value>
+  </data>
+  <data name="PageAirlineInfo_1040_name" xml:space="preserve">
+    <value>Ucak ucus halinde</value>
+  </data>
+  <data name="PageAirlineInfo_1041_name" xml:space="preserve">
+    <value>Filo durumu</value>
+  </data>
+  <data name="PageAirlineInfo_1042_name" xml:space="preserve">
+    <value>Listede</value>
+  </data>
+  <data name="PageAirlineInfo_1043_name" xml:space="preserve">
+    <value>Servis disi</value>
+  </data>
+  <data name="PageAirlineInfo_1044_name" xml:space="preserve">
+    <value>Faal durumda</value>
+  </data>
+  <data name="PageAirlineInfo_1045_name" xml:space="preserve">
+    <value>Kullanilmayan ucaklar</value>
+  </data>
+  <data name="PageAirlineFinances_1017_name" xml:space="preserve">
+    <value>Günlük faaliyet profili</value>
+  </data>
+  <data name="PageAirlineFinances_1018_name" xml:space="preserve">
+    <value>DOB gecmisi</value>
+  </data>
+  <data name="PageAirlineFinances_1019_name" xml:space="preserve">
+    <value>Son 90 gün</value>
+  </data>
+  <data name="PageAirlineFinances_1020_name" xml:space="preserve">
+    <value>Günlük faaliyet profili</value>
+  </data>
+  <data name="PopUpCreateSubsidiary_1000_name" xml:space="preserve">
+    <value>Yavru Sirket Kur</value>
+  </data>
+  <data name="AirlinerTypeSpecifications_1015_name" xml:space="preserve">
+    <value>Agirlik</value>
+  </data>
+  <data name="PageAirlineFleet_1016_name" xml:space="preserve">
+    <value>Ucak a hareket halinde</value>
+  </data>
+  <data name="PageAirportInfo_1047_name" xml:space="preserve">
+    <value>Inis / 1000 kg.</value>
+  </data>
+  <data name="PageAirportInfo_1048_name" xml:space="preserve">
+    <value>Yakit fiyati</value>
+  </data>
+  <data name="PageAirportInfo_1049_name" xml:space="preserve">
+    <value>Terminal tipi</value>
+  </data>
+  <data name="PageAirportInfo_1050_name" xml:space="preserve">
+    <value>Yolcu</value>
+  </data>
+  <data name="PageAirportInfo_1051_name" xml:space="preserve">
+    <value>Kargo</value>
+  </data>
+  <data name="PageAirportInfo_1052_name" xml:space="preserve">
+    <value>Toplam kapi talebi</value>
+  </data>
+  <data name="PageAirportInfo_1053_name" xml:space="preserve">
+    <value>Toplam kargo kapi sayisi</value>
+  </data>
+  <data name="PageAirportInfo_1054_name" xml:space="preserve">
+    <value>Kapilar</value>
+  </data>
+  <data name="PageAirportsOverview_1000_name" xml:space="preserve">
+    <value>Ülke</value>
+  </data>
+  <data name="PageAirportsOverview_1001_name" xml:space="preserve">
+    <value>Havalimanları</value>
+  </data>
+  <data name="PageAirports_2003_name" xml:space="preserve">
+    <value>Genel bakis</value>
+  </data>
+  <data name="PageAirportInfo_1055_name" xml:space="preserve">
+    <value>Bakim tipi</value>
+  </data>
+  <data name="PageShowAirports_1014_name" xml:space="preserve">
+    <value>Kargo</value>
+  </data>
+  <data name="MessageBox_3006_message" xml:space="preserve">
+    <value> {0} ile {1} arasinda hali hazirda seferiniz var</value>
+  </data>
+  <data name="MessageBox_3006_name" xml:space="preserve">
+    <value>Sefer hali hazirda var</value>
+  </data>
+  <data name="PageAirportInfo_1056_name" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="PageCreateRoute_1020_name" xml:space="preserve">
+    <value>Helikopter güzergahi</value>
+  </data>
+  <data name="PageNewGame_1030_name" xml:space="preserve">
+    <value>Kullanilan helikopter pistleri</value>
+  </data>
+  <data name="PageRoutePlanner_207_name" xml:space="preserve">
+    <value>Dolum zaman tablosu</value>
+  </data>
+  <data name="PageShowAirports_1013_name" xml:space="preserve">
+    <value>Helikopter pisti</value>
+  </data>
+  <data name="AirlinerTypeSpecifications_1016_name" xml:space="preserve">
+    <value>Motor</value>
+  </data>
+  <data name="PageAssignAirliners_1004_name" xml:space="preserve">
+    <value>Degistirilmesi icin ucak seciniz</value>
+  </data>
+  <data name="PageShowAirports_201_name" xml:space="preserve">
+    <value>haritayi göster</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1004_name" xml:space="preserve">
+    <value>Motor</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1005_name" xml:space="preserve">
+    <value>Motor secin</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1006_name" xml:space="preserve">
+    <value>Üretici</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1007_name" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1008_name" xml:space="preserve">
+    <value>Motor Tipi</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1009_name" xml:space="preserve">
+    <value>Gürültü seviyesi</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1010_name" xml:space="preserve">
+    <value>Ic kaplama</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1011_name" xml:space="preserve">
+    <value>Maksimum hiz</value>
+  </data>
+  <data name="PopUpAirlinerSeatsConfiguration_1012_name" xml:space="preserve">
+    <value>Fiyat</value>
+  </data>
+  <data name="News_1016_message" xml:space="preserve">
+    <value>{0} sözlesmedeki sartlari yerini getirmediginizden dolayi , {1} tutarinda ceza ödemek zorundasiniz.</value>
+  </data>
+  <data name="News_1016_name" xml:space="preserve">
+    <value>Basarisiz sözlesme</value>
+  </data>
+  <data name="News_1017_message" xml:space="preserve">
+    <value>Tebrikler !  {0}  sözlesmenizin sartlarini yerine getirdiginizden dolayi {1} tutarinda ikramiye kazandiniz</value>
+  </data>
+  <data name="News_1017_name" xml:space="preserve">
+    <value>Basarili sözlesme</value>
+  </data>
+  <data name="PageAssignAirliners_1005_name" xml:space="preserve">
+    <value>Özel Sözlesmeler</value>
+  </data>
+  <data name="PageAssignAirliners_1006_name" xml:space="preserve">
+    <value>İsim</value>
+  </data>
+  <data name="PageAssignAirliners_1007_name" xml:space="preserve">
+    <value>Havayolu</value>
+  </data>
+  <data name="PageAssignAirliners_1008_name" xml:space="preserve">
+    <value>Baslangic tarihi</value>
+  </data>
+  <data name="PopUpSpecialContracts_1000_name" xml:space="preserve">
+    <value>Özel Sözlesmeler</value>
+  </data>
+  <data name="PopUpSpecialContracts_1001_name" xml:space="preserve">
+    <value>Ödeme</value>
+  </data>
+  <data name="PopUpSpecialContracts_1002_name" xml:space="preserve">
+    <value>Ceza</value>
+  </data>
+  <data name="PageCreateRoute_1021_name" xml:space="preserve">
+    <value>Güzergahi kontrata ekle</value>
+  </data>
+  <data name="PageAssignAirliners_1009_name" xml:space="preserve">
+    <value>Bitis tarihi</value>
+  </data>
+  <data name="PageRoutePlanner_1027_name" xml:space="preserve">
+    <value>Charter olarak kullan</value>
+  </data>
+  <data name="PageRoutePlanner_1028_name" xml:space="preserve">
+    <value>Charter güzergahi</value>
+  </data>
+  <data name="PageSelectAirports_1000_name" xml:space="preserve">
+    <value>Ülkeleri Secin</value>
+  </data>
+  <data name="PopUpShowSpecialContract_1000_name" xml:space="preserve">
+    <value>Sözlesmeli güzergahlar</value>
+  </data>
+  <data name="PopUpShowSpecialContract_1001_name" xml:space="preserve">
+    <value>Gereksinimler</value>
+  </data>
+  <data name="PageNewGame_1031_name" xml:space="preserve">
+    <value>Ülkelerin tamamini sec</value>
+  </data>
+  <data name="PageNewGame_205_name" xml:space="preserve">
+    <value>Geri</value>
+  </data>
+  <data name="PageSelectAirports_1001_name" xml:space="preserve">
+    <value>SEcilmis Havaalani sayisi:</value>
+  </data>
+  <data name="PageShowAirports_1015_name" xml:space="preserve">
+    <value>a uzakligi göster</value>
+  </data>
+  <data name="PageShowAirports_1016_name" xml:space="preserve">
+    <value>Mesafe</value>
+  </data>
+  <data name="PageShowRoute_1006_name" xml:space="preserve">
+    <value>Informasyon</value>
+  </data>
+  <data name="PageShowRoute_1007_name" xml:space="preserve">
+    <value>Geirbildirim</value>
+  </data>
+  <data name="RouteFeedback_1000_name" xml:space="preserve">
+    <value>Bu tür güzergah icin uygun bir ucak degil</value>
+  </data>
+  <data name="RouteFeedback_1001_name" xml:space="preserve">
+    <value>Ucak bu mesafe icin uygun fakat özel degil</value>
+  </data>
+  <data name="RouteFeedback_1002_name" xml:space="preserve">
+    <value>Cok iyi bir ucak secimi ve yolcular bunu gercekten begendi</value>
+  </data>
+  <data name="RouteFeedback_1003_name" xml:space="preserve">
+    <value>Bu ucak yerine daha yeni bir ucak düsünebilirsiniz. Bu güzergah eski bir güzergah</value>
+  </data>
+  <data name="RouteFeedback_1004_name" xml:space="preserve">
+    <value>Ucak yasi cok uygun , tam olmasi gerektigi gibi</value>
+  </data>
+  <data name="RouteFeedback_1005_name" xml:space="preserve">
+    <value>Yeni ucaklar herzaman en iyi secimdir</value>
+  </data>
+  <data name="RouteFeedback_1006_name" xml:space="preserve">
+    <value>Bu güzergahtaki yolcular ucus sirasinda cok acikiyorlar, belki yolcular bu ucus icin yanlarinda kendi yiyeceklerini getirebilirler</value>
+  </data>
+  <data name="RouteFeedback_1007_name" xml:space="preserve">
+    <value>Tam bir mutfak deneyimi oldugu söylenemez fakat insanlar bununla yasayailir</value>
+  </data>
+  <data name="RouteFeedback_1008_name" xml:space="preserve">
+    <value>Yolcular yolculuk sirasinda verilen ikramlari seviyor</value>
+  </data>
+  <data name="RouteFeedback_1009_name" xml:space="preserve">
+    <value>Kötü koltuk secimi</value>
+  </data>
+  <data name="RouteFeedback_1010_name" xml:space="preserve">
+    <value>Standart deneyimler icin standart koltuklar</value>
+  </data>
+  <data name="RouteFeedback_1011_name" xml:space="preserve">
+    <value>Yolcularin tam olarak ne istedigini biliyorsunuz</value>
+  </data>
+  <data name="RouteFeedback_1012_name" xml:space="preserve">
+    <value>Görünen o ki , yolcularinizin ne talep ettiginden haberiniz bile yok</value>
+  </data>
+  <data name="RouteFeedback_1013_name" xml:space="preserve">
+    <value>Yolcular bu ucustan hic sikilmadi</value>
+  </data>
+  <data name="RouteFeedback_1014_name" xml:space="preserve">
+    <value>Kazanmaniz icin talep edilen eglence türü !</value>
+  </data>
+  <data name="RouteFeedback_1015_name" xml:space="preserve">
+    <value>Wifi yok. Bu konuda emin misiniz?</value>
+  </data>
+  <data name="RouteFeedback_1016_name" xml:space="preserve">
+    <value>Yolculuklar icin Wifi ücreti ödendi</value>
+  </data>
+  <data name="RouteFeedback_1017_name" xml:space="preserve">
+    <value>Ücretsiz Wifi yi herkes sever</value>
+  </data>
+  <data name="RouteFeedback_1018_name" xml:space="preserve">
+    <value>Bu tür güzerhag icin cok pahali bir fiyat</value>
+  </data>
+  <data name="RouteFeedback_1019_name" xml:space="preserve">
+    <value>Bu fiyatla reklam yapiyorsun</value>
+  </data>
+  <data name="RouteFeedback_1020_name" xml:space="preserve">
+    <value>Ucuz oldugu halde, indirim mi uyguluyorsunuz?</value>
+  </data>
+  <data name="RouteFeedback_1021_name" xml:space="preserve">
+    <value>Yolcular buna benzer güzergahlari begenmezler</value>
+  </data>
+  <data name="RouteFeedback_1022_name" xml:space="preserve">
+    <value>Rekabet olmadigi sürece bu güzergahta basarili olabilirsiniz</value>
+  </data>
+  <data name="RouteFeedback_1023_name" xml:space="preserve">
+    <value>Bu neredeyse tam bir zafer olacak</value>
+  </data>
+  <data name="RouteFeedback_1024_name" xml:space="preserve">
+    <value>Burada canta kontrolleri icin ücret alinmaktadir</value>
+  </data>
+  <data name="RouteFeedback_1025_name" xml:space="preserve">
+    <value>Burada canta kontrolleri icin ücret alinmaktadir</value>
+  </data>
+  <data name="RouteFeedback_1026_name" xml:space="preserve">
+    <value>Ücretsiz canta kontrolü</value>
+  </data>
+  <data name="RouteFeedback_1100_name" xml:space="preserve">
+    <value>Henüz bir bilgi yok!</value>
+  </data>
+  <data name="PageAirportDemand_1002_name" xml:space="preserve">
+    <value>Mesafe</value>
+  </data>
+  <data name="PageAirportInfo_1057_name" xml:space="preserve">
+    <value>Uluslararası</value>
+  </data>
+  <data name="PageAirportDemand_1003_name" xml:space="preserve">
+    <value>Ülke</value>
+  </data>
+  <data name="PageAirportDemand_1004_name" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="PageAirportDemand_1005_name" xml:space="preserve">
+    <value>Boyut</value>
+  </data>
+  <data name="PageAirportDemand_1006_name" xml:space="preserve">
+    <value>Havayolu sirketinin paylastigi kapilar</value>
+  </data>
+  <data name="PageAirportDemand_1007_name" xml:space="preserve">
+    <value>Havaalani ragbeti</value>
+  </data>
+  <data name="PageAirportDemand_1008_name" xml:space="preserve">
+    <value>Ucak Güzergahlari</value>
+  </data>
+  <data name="PageAirlineFinances_1021_name" xml:space="preserve">
+    <value>Son 5 gün</value>
+  </data>
+  <data name="MessageBox_3004_message" xml:space="preserve">
+    <value>Bu güzergahta ucmaniz icin uygun bir lisansiniz yok</value>
+  </data>
+  <data name="MessageBox_3004_name" xml:space="preserve">
+    <value>Havayolu Lisansi</value>
+  </data>
+  <data name="PageCreateRoute_1022_name" xml:space="preserve">
+    <value>Sadece merkezleri göster </value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1006_name" xml:space="preserve">
+    <value>Gelirler</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1007_name" xml:space="preserve">
+    <value>Giderler</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1008_name" xml:space="preserve">
+    <value>Haftalik kullanim</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1009_name" xml:space="preserve">
+    <value>Ucak durumu</value>
+  </data>
+  <data name="PageFleetAirlinerStatistics_1010_name" xml:space="preserve">
+    <value>Havadaki yüzde orani</value>
+  </data>
+  <data name="PageNewGame_1032_name" xml:space="preserve">
+    <value>Uluslararasi Havaalanlari</value>
+  </data>
+  <data name="PageNewGame_1033_name" xml:space="preserve">
+    <value>Bütün havaalanlari</value>
+  </data>
+  <data name="PageNewGame_1034_name" xml:space="preserve">
+    <value>Büyük havaalanlari</value>
+  </data>
+  <data name="PageAirlineFleet_1017_name" xml:space="preserve">
+    <value>Kiralanmislarin disindaki ucak filosu</value>
+  </data>
+  <data name="PageAirliners_2004_name" xml:space="preserve">
+    <value>Kiralik ucaklar</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_206_name" xml:space="preserve">
+    <value>Kiralik harici ucaklar</value>
+  </data>
+  <data name="PageLeasingAirliners_1000_name" xml:space="preserve">
+    <value>Mal Sahibi</value>
+  </data>
+  <data name="MessageBox_2130_message" xml:space="preserve">
+    <value>%10 hisseyi  {1} karsiliginda {0} dan almak istediginizden emin misiniz?</value>
+  </data>
+  <data name="MessageBox_2130_name" xml:space="preserve">
+    <value>Hisse payi</value>
+  </data>
+  <data name="PageAirlinesShares_202_name" xml:space="preserve">
+    <value>Havayolunu tamamen satin al</value>
+  </data>
+  <data name="PageAirlinesShares_203_name" xml:space="preserve">
+    <value>Bagli yavru sirket olarak al</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_1015_name" xml:space="preserve">
+    <value>Mal Sahibi</value>
+  </data>
+  <data name="MessageBox_2016_message" xml:space="preserve">
+    <value>Bu ucagi alabilmeniz icin yeterli paraniz yok.</value>
+  </data>
+  <data name="MessageBox_2016_name" xml:space="preserve">
+    <value>Ucaklari satinalamazsiniz</value>
+  </data>
+  <data name="MessageBox_2017_message" xml:space="preserve">
+    <value>{0} e bu ucagi almak istediginizden eminmisiniz?</value>
+  </data>
+  <data name="MessageBox_2017_name" xml:space="preserve">
+    <value>Ucaklari satin al</value>
+  </data>
+  <data name="PageAirlineFleet_202_name" xml:space="preserve">
+    <value>Ucaklari satin al</value>
+  </data>
+  <data name="PageNewGame_1035_name" xml:space="preserve">
+    <value>Sadece büyük havaalanlarini kullan</value>
+  </data>
+  <data name="PageShowRoute_202_name" xml:space="preserve">
+    <value>Ucuslar</value>
+  </data>
+  <data name="PageUsedAirliners_1008_name" xml:space="preserve">
+    <value>Sadece sahip olduklarimi göster</value>
+  </data>
+  <data name="PopUpRouteFlights_1000_name" xml:space="preserve">
+    <value>Ucus güzergahlari</value>
+  </data>
+  <data name="News_1018_message" xml:space="preserve">
+    <value>{0} bakimini kacirdiginiz icin {1} tutarindaki cezayi ödemek zorundasiniz</value>
+  </data>
+  <data name="News_1018_name" xml:space="preserve">
+    <value>Kacirilan bakim kontrolü</value>
+  </data>
+  <data name="PageRoutePlanner_208_name" xml:space="preserve">
+    <value>Bütün ucuslar</value>
   </data>
 </root>

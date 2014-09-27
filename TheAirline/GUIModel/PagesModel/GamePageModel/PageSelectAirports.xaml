@@ -65,7 +65,7 @@
                         <DataTemplate>
                             <WrapPanel Width="250">
                                 <CheckBox Style="{StaticResource CheckBoxNormalStyle}" VerticalAlignment="Bottom" Tag="{Binding}" Checked="cbCountry_Checked" Unchecked="cbCountry_Unchecked"></CheckBox>
-                                <ContentControl ContentTemplate="{StaticResource CountryFlagLongItem}"
+                                <ContentControl ContentTemplate="{StaticResource CountryLongFlagItem}"
                                                             Content="{Binding}" Margin="10 0 0 0" VerticalAlignment="Bottom"/>
 
                             </WrapPanel>

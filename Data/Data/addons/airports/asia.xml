@@ -6640,6 +6640,35 @@
       <runway name="15/33" length="2400" surface="Concrete" />
     </runways>
   </airport>
+  <airport name="Ngari Gunsa Airport" icao="ZUAL" iata="NGQ" type="Domestic" season="All_Year">
+    <town town="Shiquanhe" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="032°06'31''N" />
+      <longitude value="080°03'10''E" />
+    </coordinates>
+    <size value="Smallest" pax="80" cargo="Smallest" cargovolume="0"  />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+     </terminals>
+     <runways>
+        <runway name="15/33" length="4500" surface="Asphalt" />
+       </runways>
+  </airport> 
+  <airport name="Tonghua Sanyuanpu Airport" icao="ZYTN" iata="TNH" type="Domestic" season="All_Year">
+    <period from="06.18.2014 00:00:00" to="01.01.2199 00:00:00" />
+    <town town="Tonghua" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="042°15'14''N" />
+      <longitude value="125°42'14''E" />
+    </coordinates>
+    <size value="Smallest" pax="100" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+     <runways>
+      <runway name="03/21" length="2300" surface="Concrete" />
+    </runways>
+  </airport> 
   <airport name="Shennongjia Hongping Airport" icao="ZHSN" iata="HPG" type="Domestic" season="All_Year">
     <town town="Shennongjia" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>

@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
       mc:Ignorable="d"
       Name="pageFleetAirlinerInsurances"
       d:DesignHeight="300" d:DesignWidth="300"
@@ -17,117 +18,71 @@
             <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0">
                 <StackPanel>
                     <TextBlock
-                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 1000'}"
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 1005'}"
                         VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
-                    <StackPanel>
-                        <TextBlock
-                            Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetMaintenance 1002'}"
-                            FontWeight="Bold" Style="{StaticResource SmallHeaderStyle}" />
+                    <ListBox ItemsSource="{Binding Maintenances}" Background="Transparent" BorderThickness="0"
+                             ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" VerticalAlignment="Bottom">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" FontSize="16" FontWeight="Bold"></TextBlock>
 
-                        <WrapPanel>
-                            <RadioButton
-                                Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetMaintenance 1005'}"
-                                IsChecked="True" GroupName="MaintenanceCType" x:Name="rbDateC" Width="100" />
-                            <DatePicker IsEnabled="{Binding ElementName=rbDateC,Path=IsChecked}"
-                                        CalendarStyle="{StaticResource CalendarPickerStyle}" x:Name="dpMaintenanceC"
-                                        Margin="5 0 0 0" />
-                        </WrapPanel>
-                        <WrapPanel>
-                            <RadioButton
-                                Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetMaintenance 1006'}"
-                                GroupName="MaintenanceCType" x:Name="rbIntervalC" Width="100" />
-                            <Slider IsEnabled="{Binding ElementName=rbIntervalC,Path=IsChecked}"
-                                    x:Name="slMaintenanceC" Width="200" Maximum="36" Minimum="6"
-                                    Value="{Binding CMaintenanceInterval}" HorizontalAlignment="Right"
+                                    <WrapPanel>
+                                        <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 1006'}"
+                        VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding LastCheck,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"  VerticalAlignment="Bottom"></TextBlock>
+                                </WrapPanel>
+                                    <WrapPanel>
+                                        <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 1007'}"
+                        VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+                                        <TextBlock Text="{Binding NextCheck,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom"></TextBlock>
+                                    </WrapPanel>
+                                    <WrapPanel>
+                                        <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 1009'}"
+                        VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+                                        <Slider x:Name="slMaintenance" Width="200" Maximum="{Binding Type.Interval.To.TotalDays}" Minimum="{Binding Type.Interval.From.TotalDays}"
+                                    Value="{Binding Interval}" HorizontalAlignment="Right" ValueChanged="slMaintenance_ValueChanged" Tag="{Binding}"
                                     IsSnapToTickEnabled="True" TickFrequency="1" />
-                            <TextBlock Text="{Binding ElementName=slMaintenanceC,Path=Value,StringFormat={}{0} months}"
-                                       VerticalAlignment="Bottom" />
-                        </WrapPanel>
-                    </StackPanel>
-                    <WrapPanel>
-                        <StackPanel>
-                            <TextBlock
-                                Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetMaintenance 1003'}"
-                                Margin="0 5 0 0" FontWeight="Bold" Style="{StaticResource SmallHeaderStyle}" />
-                            <WrapPanel>
-                                <RadioButton
-                                    Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetMaintenance 1005'}"
-                                    IsChecked="True" GroupName="MaintenanceDType" x:Name="rbDateD" Width="100" />
-                                <DatePicker IsEnabled="{Binding ElementName=rbDateD,Path=IsChecked}"
-                                            CalendarStyle="{StaticResource CalendarPickerStyle}"
-                                            x:Name="dpMaintenanceD" Margin="5 0 0 0" />
-                            </WrapPanel>
-                            <WrapPanel>
-                                <RadioButton
-                                    Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetMaintenance 1006'}"
-                                    GroupName="MaintenanceDType" x:Name="rbIntervalD" Width="100" />
-                                <Slider IsEnabled="{Binding ElementName=rbIntervalD,Path=IsChecked}"
-                                        x:Name="slMaintenanceD" Width="200" Maximum="120" Minimum="12"
-                                        Value="{Binding DMaintenanceInterval}" HorizontalAlignment="Right"
-                                        IsSnapToTickEnabled="True" TickFrequency="1" />
-                                <TextBlock
-                                    Text="{Binding ElementName=slMaintenanceD,Path=Value,StringFormat={}{0} months}"
-                                    VerticalAlignment="Bottom" />
-                            </WrapPanel>
-                        </StackPanel>
-                    </WrapPanel>
-                    <TextBlock
-                        Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetMaintenance 1004'}"
-                        FontWeight="Bold" Style="{StaticResource SmallHeaderStyle}" Margin="0 5 0 0" />
-                    <WrapPanel>
-                        <TextBlock
-                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 1001'}"
-                            Width="100" VerticalAlignment="Bottom" />
-                        <Slider x:Name="slMaintenanceA" Width="200" Maximum="45" Minimum="3"
-                                Value="{Binding AMaintenanceInterval}" IsSnapToTickEnabled="True" TickFrequency="1" />
-                        <TextBlock Text="{Binding ElementName=slMaintenanceA,Path=Value,StringFormat={}{0} days}"
-                                   VerticalAlignment="Bottom" />
-                    </WrapPanel>
-                    <WrapPanel>
-                        <TextBlock
-                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 1002'}"
-                            VerticalAlignment="Bottom" Width="100" />
-                        <Slider x:Name="slMaintenanceB" Maximum="72" Minimum="14"
-                                Value="{Binding BMaintenanceInterval}" IsSnapToTickEnabled="True" TickFrequency="1"
-                                Width="200" />
-                        <TextBlock Text="{Binding ElementName=slMaintenanceB,Path=Value,StringFormat={}{0} days}" />
-                    </WrapPanel>
-                    <WrapPanel Margin="0 5 0 0" HorizontalAlignment="Left">
+                                    <TextBlock Text="{Binding ElementName=slMaintenance,Path=Value,StringFormat={}{0:0} days}"
+                                       VerticalAlignment="Bottom" Margin="5 0 0 0"/>
+                                    </WrapPanel>
+                                    <WrapPanel>
+                                        <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 1008'}"
+                        VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+                                    <ComboBox ItemsSource="{Binding Centers}" Width="250"
+                                              Style="{StaticResource ComboBoxTransparentStyle}"
+                                              SelectedItem="{Binding Center}" Name="cbCenter"
+                                              DisplayMemberPath="Name" SelectedValuePath="Name" />
+                                    </WrapPanel>
+                                    <Button Click="btnDoMaintenance_Click" HorizontalAlignment="Left" Margin="0 5 0 0" Tag="{Binding}"
+                                        Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 203'}">
+                                        <Button.Style>
+                                            <Style BasedOn="{StaticResource StandardButtonStyle}" TargetType="Button">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=cbCenter, Path=SelectedValue}" Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding CanPerformCheck}" Value="False">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                        
+                                    </Button>     
+                  
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <WrapPanel Margin="0 10 0 0">
                         <Button
-                            Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 200'}"
-                            VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" />
-                        <Button
-                            Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 201'}"
-                            Margin="5 0 0 0" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" />
-                    </WrapPanel>
-                    <TextBlock
-                        Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetMaintenance 1001'}"
-                        FontWeight="Bold" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0" />
-                    <WrapPanel>
-                        <ComboBox Name="cbMaintenanceType" Style="{DynamicResource ComboBoxTransparentStyle}"
-                                  Width="50" SelectedIndex="0">
-                            <ComboBoxItem Content="C" />
-                            <ComboBoxItem Content="D" />
-                        </ComboBox>
-                        <ComboBox Name="cbAirport" Style="{DynamicResource ComboBoxTransparentStyle}" Width="200"
-                                  ItemsSource="{Binding AllAirports, ElementName=pageFleetAirlinerInsurances}"
-                                  Margin="5 0 0 0" ItemTemplate="{StaticResource AirportCountryItem}" />
-                    </WrapPanel>
-                    <WrapPanel Margin="0 5 0 0" HorizontalAlignment="Left">
-                        <Button
-                            Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 202'}"
-                            VerticalAlignment="Bottom">
-                            <Button.Style>
-                                <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=cbAirport, Path=SelectedItem}"
-                                                     Value="{x:Null}">
-                                            <Setter Property="Button.IsEnabled" Value="False" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                        </Button>
+                    Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 120'}"
+                    Click="btnSave_Click" Margin="0 0 5 0" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"/>
                     </WrapPanel>
                 </StackPanel>
             </Border>

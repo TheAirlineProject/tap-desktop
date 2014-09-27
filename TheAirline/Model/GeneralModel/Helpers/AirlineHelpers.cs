@@ -18,6 +18,31 @@ namespace TheAirline.Model.GeneralModel.Helpers
     //the class for some general airline helpers
     public class AirlineHelpers
     {
+        //finds the "best" maintenance center for the airline
+        public static MaintenanceCenter GetAirlineMaintenanceCenter(Airline airline)
+        {
+            var centers = MaintenanceCenters.GetCenters().Where(c => c.Country.Region == airline.Profile.Country.Region);
+
+            if (centers.Count() == 0)
+            {
+                if (airline.MarketFocus == Airline.AirlineFocus.Global)
+                {
+                    centers = MaintenanceCenters.GetCenters().OrderByDescending(c => c.Reputation);
+                }
+                else
+                {
+
+                    var centersList = new Dictionary<MaintenanceCenter, int>();
+
+                    foreach (MaintenanceCenter center in MaintenanceCenters.GetCenters())
+                        centersList.Add(center, (int)(center.Reputation * (20000 - center.MonthlyPrice)));
+
+                    return AIHelpers.GetRandomItem(centersList);
+                  
+                }
+            }
+            return centers.First();
+        }
         //checks for a special contract returns true if not successed or overdue
         public static Boolean CheckSpecialContract(SpecialContract sc)
         {

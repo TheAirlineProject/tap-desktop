@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
@@ -63,7 +64,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (departureAirport.Weather[0] == null)
                 return 0;
 
-            switch (departureAirport.Weather[0].WindSpeed) 
+            switch (departureAirport.Weather[0].WindSpeed)
             {
                 case Weather.eWindSpeed.Strong_Breeze:
                     windFactor = 2;
@@ -146,7 +147,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airliner.Statistics.clear();
         }
         //creates the stop over route based on the main route
-        public static StopoverRoute CreateStopoverRoute(Airport dest1, Airport stopover, Airport dest2, Route mainroute, Boolean oneLegged,Route.RouteType type)
+        public static StopoverRoute CreateStopoverRoute(Airport dest1, Airport stopover, Airport dest2, Route mainroute, Boolean oneLegged, Route.RouteType type)
         {
             StopoverRoute stopoverRoute = new StopoverRoute(stopover);
 
@@ -209,9 +210,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 CargoRoute routeLegOne = new CargoRoute(id.ToString(), stopover, dest2, GameObject.GetInstance().GameTime, ((CargoRoute)mainroute).PricePerUnit);
 
                 stopoverRoute.addLeg(routeLegOne);
-              
+
             }
-           
+
 
             return stopoverRoute;
         }
@@ -223,12 +224,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(route.Destination1, stopover1, stopover2, route, false, route.Type));
                     route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(stopover1, stopover2, route.Destination2, route, true, route.Type));
-         
+
                 }
                 else
                     route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(route.Destination1, stopover1, route.Destination2, route, false, route.Type));
             }
-           
+
             /*
             if (stopover1 != null)
             {
@@ -267,19 +268,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return minTime;
 
 
-            
+
         }
         //sets the flights stats for an airliner
         public static void SetFlightStats(FleetAirliner airliner)
         {
-            TimeSpan flightTime = MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(),airliner.Airliner.Type);
+            TimeSpan flightTime = MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(), airliner.Airliner.Type);
             DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(flightTime);
 
             airliner.Airliner.FlownHours = airliner.Airliner.FlownHours.Add(flightTime);
 
             Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
             Airport dept = airliner.CurrentFlight.Entry.DepartureAirport;
- 
+
             //canellation and ontime-percent
             double cancellationPercent = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Cancellations")) / (airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals")) + airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Cancellations")));
             airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Cancellation%"), cancellationPercent * 100);
@@ -297,11 +298,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double onTimePercent = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time")) / airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
             airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time%"), onTimePercent * 100);
 
-        
+
             if (airliner.CurrentFlight.isCargoFlight())
             {
                 airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"), (int)airliner.CurrentFlight.Cargo);
-                double routePassengers = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue( StatisticsTypes.GetStatisticsType("Cargo"));
+                double routePassengers = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
                 double routeDepartures = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Arrivals"));
                 airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"), (int)(routePassengers / routeDepartures));
 
@@ -313,7 +314,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (airliner.Airliner.Type is AirlinerCombiType)
                     cargocapacity = ((AirlinerCombiType)airliner.Airliner.Type).CargoSize;
 
-                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Capacity"),(int)cargocapacity);
+                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Capacity"), (int)cargocapacity);
 
                 double airlinerCargo = airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Cargo"));
                 double airlinerDepartures = airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
@@ -364,9 +365,24 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double airlinePassengers = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"));
                 double airlineDepartures = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
                 airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinePassengers / airlineDepartures));
-                
+
                 //the statistics for destination airport
                 dept.addPassengerDestinationStatistics(dest, airliner.CurrentFlight.getTotalPassengers());
+            }
+
+            airliner.Airliner.Condition -= (0.05 + flightTime.TotalHours / 30);
+
+            if (airliner.Airliner.Condition < 50 && airliner.Airliner.Airline.IsHuman)
+            {
+                GameObject.GetInstance()
+                                               .NewsBox.addNews(
+                                                   new News(
+                                                       News.NewsType.Flight_News,
+                                                       GameObject.GetInstance().GameTime,
+                                                       Translator.GetInstance().GetString("News", "1020"),
+                                                       string.Format(
+                                                           Translator.GetInstance().GetString("News", "1020", "message"),
+                                                           airliner.Name)));
             }
         }
         //returns the flight crusing speed based on the wind
@@ -422,158 +438,105 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (airliner.CurrentFlight.isPassengerFlight())
             {
-                
+
                 int pax = airliner.CurrentFlight.getTotalPassengers();
-                
-                double basePrice = fuelPrice * distance* ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity * airliner.Airliner.FuelConsumption*0.55;
-                double paxPrice = fuelPrice * distance * airliner.Airliner.FuelConsumption*airliner.CurrentFlight.getTotalPassengers() * 0.45;
-                double seatsPrice = airliner.CurrentFlight.Classes.Sum(c=>(airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses-1) * c.Passengers);
+
+                double basePrice = fuelPrice * distance * ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity * airliner.Airliner.FuelConsumption * 0.55;
+                double paxPrice = fuelPrice * distance * airliner.Airliner.FuelConsumption * airliner.CurrentFlight.getTotalPassengers() * 0.45;
+                double seatsPrice = airliner.CurrentFlight.Classes.Sum(c => (airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses - 1) * c.Passengers);
                 return basePrice + paxPrice + seatsPrice;
 
-             }
+            }
             else
             {
-                double basePrice = fuelPrice * distance* ((AirlinerCargoType)airliner.Airliner.Type).CargoSize * airliner.Airliner.FuelConsumption * 0.55;
-                double cargoPrice = fuelPrice * airliner.Airliner.FuelConsumption* airliner.CurrentFlight.Cargo * distance * 0.45;
+                double basePrice = fuelPrice * distance * ((AirlinerCargoType)airliner.Airliner.Type).CargoSize * airliner.Airliner.FuelConsumption * 0.55;
+                double cargoPrice = fuelPrice * airliner.Airliner.FuelConsumption * airliner.CurrentFlight.Cargo * distance * 0.45;
 
                 return basePrice + cargoPrice;
             }
-        
-    
+
+
         }
         //converts a passenger airliner to a cargo airliner
         public static void ConvertPassengerToCargoAirliner(FleetAirliner airliner)
         {
             AirlinerPassengerType oldType = (AirlinerPassengerType)airliner.Airliner.Type;
-     
+
             double cargoSize = AirlinerHelpers.GetPassengerCargoSize(oldType);
             DateTime builtDate = GameObject.GetInstance().GameTime.AddDays(AirlinerHelpers.GetCargoConvertingDays(oldType));
 
-            AirlinerCargoType newType = new AirlinerCargoType(oldType.Manufacturer,oldType.Name + "F",oldType.AirlinerFamily,oldType.CockpitCrew,cargoSize,oldType.CruisingSpeed,oldType.Range,oldType.Wingspan,oldType.Length,oldType.Weight, oldType.FuelConsumption,oldType.Price,oldType.MinRunwaylength,oldType.FuelCapacity,oldType.Body,oldType.RangeType,oldType.Engine,oldType.Produced,oldType.ProductionRate,false,false);
-        
+            AirlinerCargoType newType = new AirlinerCargoType(oldType.Manufacturer, oldType.Name + "F", oldType.AirlinerFamily, oldType.CockpitCrew, cargoSize, oldType.CruisingSpeed, oldType.Range, oldType.Wingspan, oldType.Length, oldType.Weight, oldType.FuelConsumption, oldType.Price, oldType.MinRunwaylength, oldType.FuelCapacity, oldType.Body, oldType.RangeType, oldType.Engine, oldType.Produced, oldType.ProductionRate, false, false);
+
             airliner.Airliner.Type = newType;
             airliner.Airliner.BuiltDate = builtDate;
-  
+
         }
-    
+
         //does the maintenance of a given type, sends the invoice, updates the last/next maintenance, and improves the aircraft's damage
         //make sure you pass this function a string value of either "A" "B" "C" or "D" or it will throw an error!
         public static void DoMaintenance(FleetAirliner airliner)
         {
+
+            var nextMaintenance = airliner.Maintenance.getNextMaintenance(GameObject.GetInstance().GameTime);
+
+            if (nextMaintenance != null)
+            {
+                double wage = airliner.Maintenance.getCheckCenter(nextMaintenance).Airport == null ? GeneralHelpers.GetInflationPrice(airliner.Maintenance.getCheckCenter(nextMaintenance).Center.Wage) : airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Maintenance Wage"));
+                double price = wage * nextMaintenance.Worktime.TotalHours;
+
+                AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -GeneralHelpers.GetInflationPrice(price));
+
+                airliner.GroundedToDate = GameObject.GetInstance().GameTime.Add(nextMaintenance.Worktime);
+
+                airliner.Maintenance.setLastCheck(nextMaintenance, GameObject.GetInstance().GameTime);
+                airliner.Airliner.LastServiceCheck = airliner.Airliner.Flown;
+
+                int deltaCondition = airliner.Maintenance.getCheckCenter(nextMaintenance).Airport == null ? airliner.Maintenance.getCheckCenter(nextMaintenance).Center.Reputation : 50;
+
+                airliner.Airliner.Condition = Math.Min(100, airliner.Airliner.Condition + deltaCondition);
+
+                if (airliner.Airliner.Airline.IsHuman)
+                    GameObject.GetInstance()
+                                                   .NewsBox.addNews(
+                                                       new News(
+                                                           News.NewsType.Flight_News,
+                                                           GameObject.GetInstance().GameTime,
+                                                           Translator.GetInstance().GetString("News", "1019"),
+                                                           string.Format(
+                                                               Translator.GetInstance().GetString("News", "1019", "message"),
+                                                               airliner.Name,
+                                                               nextMaintenance.Name)));
+
+            }
+            else
+            {
+                var overdueMaintenance = airliner.Maintenance.getOverduedMaintenance(GameObject.GetInstance().GameTime);
+
+                if (overdueMaintenance != null && airliner.GroundedToDate <= GameObject.GetInstance().GameTime)
+                {
+                    AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -GeneralHelpers.GetInflationPrice(overdueMaintenance.Penalty));
+
+                    airliner.Maintenance.setLastCheck(overdueMaintenance, GameObject.GetInstance().GameTime);
            
-            if (airliner.SchedAMaintenance == GameObject.GetInstance().GameTime.Date)
-            {
-                double expense = (airliner.Airliner.getValue() * 0.01) + 2000;
-                GameObject.GetInstance().addHumanMoney((long)-expense);
-                Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
-                AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
-                airliner.Airliner.Condition += rnd.Next(3, 10);
-                if (airliner.Airliner.Condition > 100) airliner.Airliner.Condition = 100;
-                airliner.LastAMaintenance = GameObject.GetInstance().GameTime;
-                airliner.SchedAMaintenance = airliner.SchedAMaintenance.AddDays(airliner.AMaintenanceInterval);
-                airliner.MaintenanceHistory.Add(maintCheck, "A");
-            }
+                    airliner.Airliner.Condition = Math.Min(airliner.Airliner.Condition, 25);
 
-            if (airliner.SchedBMaintenance == GameObject.GetInstance().GameTime.Date)
-            {
-                double expense = (airliner.Airliner.getValue() * 0.02) + 4500;
-                GameObject.GetInstance().addHumanMoney((long)-expense);
-                Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
-                AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
-                airliner.Airliner.Condition += rnd.Next(12, 20);
-                if (airliner.Airliner.Condition > 100) airliner.Airliner.Condition = 100;
-                airliner.LastBMaintenance = GameObject.GetInstance().GameTime;
-                airliner.SchedBMaintenance = airliner.SchedBMaintenance.AddDays(airliner.BMaintenanceInterval);
-                airliner.MaintenanceHistory.Add(maintCheck, "B");
-            }
-
-            if (airliner.SchedCMaintenance == GameObject.GetInstance().GameTime.Date)
-            {
-                double expense = (airliner.Airliner.getValue() * 0.025) + 156000;
-                airliner.OOSDate = airliner.SchedCMaintenance.AddDays(airliner.Airliner.Condition + 20);
-                GameObject.GetInstance().addHumanMoney((long)-expense);
-                Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
-                AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
-                airliner.Airliner.Condition += rnd.Next(20, 30);
-                if (airliner.Airliner.Condition > 100) airliner.Airliner.Condition = 100;
-                airliner.LastCMaintenance = GameObject.GetInstance().GameTime;
-                airliner.SchedCMaintenance = airliner.CMaintenanceInterval > -1 ? airliner.SchedCMaintenance.AddMonths(airliner.CMaintenanceInterval) : airliner.DueCMaintenance = GameObject.GetInstance().GameTime.AddMonths(18);
-                airliner.MaintenanceHistory.Add(maintCheck, "C");
-                foreach (Route r in airliner.Routes.ToList())
-                {
-                    airliner.MaintRoutes.Add(r);
-                    airliner.Routes.Remove(r);
+                    if (airliner.Airliner.Airline.IsHuman)
+                        GameObject.GetInstance()
+                                                       .NewsBox.addNews(
+                                                           new News(
+                                                               News.NewsType.Flight_News,
+                                                               GameObject.GetInstance().GameTime,
+                                                               Translator.GetInstance().GetString("News", "1018"),
+                                                               string.Format(
+                                                                   Translator.GetInstance().GetString("News", "1018", "message"),
+                                                                   airliner.Name,
+                                                                   new ValueCurrencyConverter().Convert(GeneralHelpers.GetInflationPrice(overdueMaintenance.Penalty)))));
                 }
             }
 
-            if (airliner.SchedDMaintenance == GameObject.GetInstance().GameTime.Date)
-            {
-                double expense = (airliner.Airliner.getValue() * 0.03) + 1200000;
-                airliner.OOSDate = airliner.SchedDMaintenance.AddDays(airliner.Airliner.Condition + 50);
-                GameObject.GetInstance().addHumanMoney((long)-expense);
-                Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
-                AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -expense);
-                airliner.Airliner.Condition += rnd.Next(35, 50);
-                if (airliner.Airliner.Condition > 100) airliner.Airliner.Condition = 100;
-                airliner.LastDMaintenance = GameObject.GetInstance().GameTime;
-                airliner.SchedDMaintenance = airliner.DMaintenanceInterval > -1 ? airliner.SchedDMaintenance.AddMonths(airliner.DMaintenanceInterval) : airliner.DueDMaintenance = GameObject.GetInstance().GameTime.AddMonths(60);
-                airliner.DueDMaintenance = GameObject.GetInstance().GameTime.AddMonths(60);
-                airliner.MaintenanceHistory.Add(maintCheck, "D");
-                foreach (Route r in airliner.Routes.ToList())
-                {
-                    airliner.MaintRoutes.Add(r);
-                    airliner.Routes.Remove(r);
-                }
-            }
         }
 
-        //restores routes removed for maintenance
-        public static void RestoreMaintRoutes(FleetAirliner airliner)
-        {
-            if (airliner.OOSDate <= GameObject.GetInstance().GameTime)
-            {
-                foreach (Route r in airliner.MaintRoutes)
-                {
-                    airliner.Routes.Add(r);
-                }
 
-                airliner.MaintRoutes.Clear();
-            }
-        }
-
-        //sets A and B check intervals
-        public static void SetMaintenanceIntervals(FleetAirliner airliner, int a, int b)
-        {
-            airliner.AMaintenanceInterval = a;
-            airliner.BMaintenanceInterval = b;
-            airliner.CMaintenanceInterval = -1;
-            airliner.DMaintenanceInterval = -1;
-        }
-
-        public static void SetMaintenanceIntervals(FleetAirliner airliner, int a, int b, int c)
-        {
-            if (airliner.CMaintenanceInterval == -1)
-            {
-                airliner.AMaintenanceInterval = a;
-                airliner.BMaintenanceInterval = b;
-                airliner.DMaintenanceInterval = c;
-            }
-
-            else if (airliner.DMaintenanceInterval == -1)
-            {
-                airliner.AMaintenanceInterval = a;
-                airliner.BMaintenanceInterval = b;
-                airliner.CMaintenanceInterval = c;
-            }
-        }
-
-        public static void SetMaintenanceIntervals(FleetAirliner airliner, int a, int b, int c, int d)
-        {
-            airliner.AMaintenanceInterval = a;
-            airliner.BMaintenanceInterval = b;
-            airliner.CMaintenanceInterval = c;
-            airliner.DMaintenanceInterval = d;
-        }
     }
     //the helpers class for fleet airliner insurance
     public class FleetAirlinerInsurancesHelpers
@@ -929,7 +892,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         airline.Money -= policy.PaymentAmount;
                         //Invoice payment = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, policy.PaymentAmount);
-                        AirlineHelpers.AddAirlineInvoice(airline,GameObject.GetInstance().GameTime,Invoice.InvoiceType.Maintenances,-policy.PaymentAmount);
+                        AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -policy.PaymentAmount);
                         policy.RemainingPayments--;
                         switch (policy.insTerms)
                         {
@@ -961,7 +924,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
 
         }
-        
+
     }
 
 }

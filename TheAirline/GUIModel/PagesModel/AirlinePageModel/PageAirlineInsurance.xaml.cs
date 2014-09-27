@@ -1,10 +1,11 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
     using System;
+    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.Model.AirlineModel;
+    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel.Helpers;
 
     /// <summary>
@@ -18,6 +19,11 @@
         {
             this.Airline = airline;
             this.DataContext = this.Airline;
+            this.AvailableCenters = new ObservableCollection<MaintenanceCenter>();
+
+            foreach (MaintenanceCenter center in MaintenanceCenters.GetCenters())
+                if (!this.Airline.MaintenanceCenters.Contains(center))
+                    this.AvailableCenters.Add(center);
 
             this.InitializeComponent();
 
@@ -29,6 +35,8 @@
         #region Public Properties
 
         public AirlineMVVM Airline { get; set; }
+
+        public ObservableCollection<MaintenanceCenter> AvailableCenters { get; set; }
 
         #endregion
 
@@ -63,6 +71,18 @@
         private void btnSetAdvertisement_Click(object sender, RoutedEventArgs e)
         {
             this.Airline.saveAdvertisements();
+        }
+        private void btnAddMaintenance_Click(object sender, RoutedEventArgs e)
+        {
+            MaintenanceCenter center = (MaintenanceCenter)((Button)sender).Tag;
+            this.Airline.addMaintenanceCenter(center);
+            this.AvailableCenters.Remove(center);
+        }
+        private void btnDeleteMaintenance_Click(object sender, RoutedEventArgs e)
+        {
+            MaintenanceCenter center = (MaintenanceCenter)((Button)sender).Tag;
+            this.Airline.removeMaintenanceCenter(center);
+            this.AvailableCenters.Add(center);
         }
 
         private void setValues()

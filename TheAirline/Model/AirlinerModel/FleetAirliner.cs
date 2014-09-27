@@ -31,21 +31,16 @@
             this.Homebase = homebase;
             this.Name = airliner.TailNumber;
             this.Statistics = new AirlinerStatistics(this);
-            this.LastCMaintenance = this.Airliner.BuiltDate;
-            this.LastAMaintenance = this.Airliner.BuiltDate;
-            this.LastBMaintenance = this.Airliner.BuiltDate;
-            this.LastDMaintenance = this.Airliner.BuiltDate;
             this.Status = AirlinerStatus.Stopped;
-            this.MaintRoutes = new List<Route>();
 
+            this.Maintenance = new AirlinerMaintenance(this.PurchasedDate);
+          
             this.CurrentPosition = this.Homebase;
-                //new GeoCoordinate(this.Homebase.Profile.Coordinates.Latitude,this.Homebase.Profile.Coordinates.Longitude);
-
+       
             this.Routes = new List<Route>();
             this.Pilots = new List<Pilot>();
             this.InsurancePolicies = new List<AirlinerInsurance>();
-            this.MaintenanceHistory = new Dictionary<Invoice, string>();
-
+         
             this.Data = new OperatingData();
 
             if (this.Purchased == PurchasedType.Bought || this.Purchased == PurchasedType.BoughtDownPayment)
@@ -109,6 +104,9 @@
             }
             if (version == 1)
                 this.Data = new OperatingData();
+
+            if (version < 4)
+                this.Maintenance = new AirlinerMaintenance(this.PurchasedDate);
            
         }
 
@@ -146,32 +144,15 @@
 
         #region Public Properties
 
-        [Versioning("ainterval")]
-        public int AMaintenanceInterval { get; set; }
-
+   
         [Versioning("airliner")]
         public Airliner Airliner { get; set; }
-
-        [Versioning("binterval")]
-        public int BMaintenanceInterval { get; set; }
-
-        [Versioning("cinterval")]
-        public int CMaintenanceInterval { get; set; }
 
         [Versioning("currentflight")]
         public Flight CurrentFlight { get; set; }
 
         [Versioning("currentposition")]
         public Airport CurrentPosition { get; set; }
-
-        [Versioning("dinterval")]
-        public int DMaintenanceInterval { get; set; }
-
-        [Versioning("duecmaintenance")]
-        public DateTime DueCMaintenance { get; set; }
-
-        [Versioning("duedmaintenance")]
-        public DateTime DueDMaintenance { get; set; }
 
         [Versioning("groundedto")]
         public DateTime GroundedToDate { get; set; }
@@ -192,24 +173,6 @@
 
         [Versioning("insurancepolicies")]
         public List<AirlinerInsurance> InsurancePolicies { get; set; }
-
-        [Versioning("lastamaintenance")]
-        public DateTime LastAMaintenance { get; set; }
-
-        [Versioning("lastbmaintenance")]
-        public DateTime LastBMaintenance { get; set; }
-
-        [Versioning("lastcmaintenance")]
-        public DateTime LastCMaintenance { get; set; }
-
-        [Versioning("lastdmaintenance")]
-        public DateTime LastDMaintenance { get; set; }
-
-        [Versioning("maintroutes")]
-        public List<Route> MaintRoutes { get; set; }
-
-        [Versioning("maintenancehistory")]
-        public IDictionary<Invoice, String> MaintenanceHistory { get; set; }
 
         [Versioning("name")]
         public string Name { get; set; }
@@ -237,31 +200,21 @@
         [Versioning("routes")]
         public List<Route> Routes { get; private set; }
 
-        [Versioning("schedamaintenance")]
-        public DateTime SchedAMaintenance { get; set; }
-
-        [Versioning("schedbmaintenance")]
-        public DateTime SchedBMaintenance { get; set; }
-
-        [Versioning("schedcmaintenance")]
-        public DateTime SchedCMaintenance { get; set; }
-
-        [Versioning("scheddmaintenance")]
-        public DateTime SchedDMaintenance { get; set; }
-
         [Versioning("statistics")]
         public AirlinerStatistics Statistics { get; set; }
 
         [Versioning("status")]
         public AirlinerStatus Status { get; set; }
 
+        [Versioning("maintenance",Version=4)]
+        public AirlinerMaintenance Maintenance { get; set; }
          #endregion
 
         #region Public Methods and Operators
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 3);
+            info.AddValue("version", 4);
             
             Type myType = this.GetType();
 

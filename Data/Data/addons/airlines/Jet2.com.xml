@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Jet2.com" iata="LS" color="Black" country="130" CEO="Philip Meeson" mentality="Safe" market="Global"
            preferedairport="MAN">
-  </profile>
+ <narrative narrative="Jet2.com Limited is a subsidiary of the Dart Group PLC, an aviation services and distribution group. The airline began operating commercial aircraft in 1983 under the name Channel Express, initially as a freight operator and then from 2001 operating both freight and passenger charter services using Boeing aircraft to international destinations on mainly short and medium haul flights."/>
+</profile>
   <info real="True" from="2002" to="2199" />
 </airline>

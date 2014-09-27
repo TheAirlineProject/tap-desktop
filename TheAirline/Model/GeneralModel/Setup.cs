@@ -439,6 +439,8 @@
                 LoadSpecialContracts();
                 LoadWeatherAverages();
 
+                CreateAirlinerMaintenanceTypes();
+                CreateMaintenanceCenters();
                 CreateAdvertisementTypes();
                 CreateFeeTypes();
                 CreateFlightFacilities();
@@ -670,6 +672,7 @@
             Airliners.Clear();
             Airlines.Clear();
             AirlinerFacilities.Clear();
+            AirlinerMaintenanceTypes.Clear();
             RouteFacilities.Clear();
             StatisticsTypes.Clear();
             Continents.Clear();
@@ -696,8 +699,25 @@
             Scenarios.Clear();
             HubTypes.Clear();
             CooperationTypes.Clear();
+            MaintenanceCenters.Clear();
         }
-
+        /*! creates maintenance centers
+         */
+        public static void CreateMaintenanceCenters()
+        {
+            MaintenanceCenters.AddCenter(new MaintenanceCenter("Boeing Gold Care Center",2000, Countries.GetCountry("122"), 75, 5.95));
+            MaintenanceCenters.AddCenter(new MaintenanceCenter("Lufthansa Technik",1750,Countries.GetCountry("163"),65,5.75));
+            MaintenanceCenters.AddCenter(new MaintenanceCenter("Nigeria Aircraft Center",1000, Countries.GetCountry("145"), 25, 3.65));
+        }
+        /*! creates the airliner maintenance types
+         */
+        public static void CreateAirlinerMaintenanceTypes()
+        {
+            AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check A", new Period<TimeSpan>(new TimeSpan(1000, 0, 0), new TimeSpan(1200, 0, 0)), new TimeSpan(40, 0, 0), 100000, AirportFacilities.GetFacility("Basic ServiceCenter")));
+            AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check B", new Period<TimeSpan>(new TimeSpan(120, 0, 0, 0), new TimeSpan(180, 0, 0, 0)), new TimeSpan(150, 0, 0), 200000, AirportFacilities.GetFacility("ServiceCenter")));
+            AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check C", new Period<TimeSpan>(new TimeSpan(600, 0, 0, 0), new TimeSpan(720, 0, 0, 0)), new TimeSpan(10, 0, 0, 0), 400000, AirportFacilities.GetFacility("Large ServiceCenter")));
+            AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check D", new Period<TimeSpan>(new TimeSpan(2100, 0, 0), new TimeSpan(2250, 0, 0)), new TimeSpan(50000, 0, 0), 800000, AirportFacilities.GetFacility("Mega ServiceCenter")));
+        }
         /*! reads the settings file if existing
          */
 
@@ -2966,12 +2986,12 @@
 
                         if (currencyElement.HasAttribute("from"))
                         {
-                            currencyFromDate = Convert.ToDateTime(currencyElement.Attributes["from"].Value);
+                            currencyFromDate = Convert.ToDateTime(currencyElement.Attributes["from"].Value,new CultureInfo("en-US", false));
                         }
 
                         if (currencyElement.HasAttribute("to"))
                         {
-                            currencyToDate = Convert.ToDateTime(currencyElement.Attributes["to"].Value);
+                            currencyToDate = Convert.ToDateTime(currencyElement.Attributes["to"].Value,new CultureInfo("en-US", false));
                         }
 
                         country.addCurrency(

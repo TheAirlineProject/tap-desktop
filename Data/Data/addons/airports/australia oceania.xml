@@ -743,6 +743,20 @@
   </airport>
   <!--Eastern Pacific (P***)-->
   <!--United States (Alaska) (PA**)-->
+<airport name="Robert Curtis Memorial Airport" icao="PFNO" iata="ORV" type="Domestic" season="All_Year">
+    <town town="Noorvik, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="066°49'03''N" />
+      <longitude value="161°01'20''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="6/24" length="1219" surface="Gravel" />
+    </runways>
+  </airport>        
         <airport name="Sand Point Airport" icao="PASD" iata="SDP" type="Domestic" season="All_Year">
     <town town="Sand Point, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
@@ -757,6 +771,399 @@
       <runway name="13/31" length="1589" surface="Asphalt" />
      </runways>
   </airport>
+  <airport name="Gambell Airport" icao="PAGM" iata="GAM" type="Domestic" season="All_Year">
+    <town town="Gambell, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="063°46'00''N" />
+      <longitude value="171°43'58''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="1372" surface="Asphalt" />
+    </runways>
+  </airport>
+ <airport name="Savoonga Airport" icao="PASA" iata="SVA" type="Domestic" season="All_Year">
+    <town town="Savoonga, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="063°41'11''N" />
+      <longitude value="170°29'33''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="5/23" length="1341" surface="Gravel" />
+    </runways>
+  </airport>
+  <airport name="Mountain Village Airport" icao="PAMO" iata="MOU" type="Domestic" season="All_Year">
+    <town town="Mountain Village, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="062°05'43''N" />
+      <longitude value="163°40'55''W" />
+    </coordinates>
+    <size value="Smallest" pax="9" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="1067" surface="Gravel" />
+    </runways>
+  </airport>
+  <airport name="Point Hope Airport" icao="PAPO" iata="PHO" type="Domestic" season="All_Year">
+    <town town="Point Hope, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="068°20'56''N" />
+      <longitude value="166°47'58''W" />
+    </coordinates>
+    <size value="Smallest" pax="8" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="1219" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Klawock Airport" icao="PAKW" iata="KLW" type="Domestic" season="All_Year">
+    <town town="Klawock, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="055°34'45''N" />
+      <longitude value="133°04'34''W" />
+    </coordinates>
+    <size value="Smallest" pax="9" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="1524" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Chefornak Airport" icao="PACK" iata="CYF" type="Domestic" season="All_Year">
+    <town town="Chefornak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°08'57''N" />
+      <longitude value="164°17'08''W" />
+    </coordinates>
+    <size value="Smallest" pax="9" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="762" surface="Gravel" />
+    </runways>
+  </airport>
+   <airport name="Selawik Airport" icao="PASK" iata="WLK" type="Domestic" season="All_Year">
+    <town town="Selawik, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="066°36'00''N" />
+      <longitude value="159°59'09''W" />
+    </coordinates>
+    <size value="Smallest" pax="8" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="915" surface="Gravel" />
+      <runway name="9/27" length="810" surface="Gravel" />
+    </runways>
+  </airport>
+  <airport name="Kasigluk Airport" icao="PFKA" iata="KUK" type="Domestic" season="All_Year">
+    <town town="Kasigluk, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°52'24''N" />
+      <longitude value="162°31'28''W" />
+    </coordinates>
+    <size value="Smallest" pax="8" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="914" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Alakanuk Airport" icao="PAUK" iata="AUK" type="Domestic" season="All_Year">
+    <town town="Alakanuk, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="062°40'48''N" />
+      <longitude value="164°39'36''W" />
+    </coordinates>
+    <size value="Smallest" pax="7" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="671" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Kongiganak Airport" icao="PADY" iata="KKH" type="Domestic" season="All_Year">
+    <town town="Kongiganak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="059°57'39''N" />
+      <longitude value="162°52'52''W" />
+    </coordinates>
+    <size value="Smallest" pax="7" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="575" surface="Gravel" />
+      </runways>
+  </airport>
+   <airport name="Kwigillingok Airport" icao="PAGG" iata="KWK" type="Domestic" season="All_Year">
+    <town town="Kwigillingok, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="059°52'35''N" />
+      <longitude value="163°10'07''W" />
+    </coordinates>
+    <size value="Smallest" pax="7" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="559" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Eek Airport" icao="PAEE" iata="EEK" type="Domestic" season="All_Year">
+    <town town="Eek, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°12'49''N" />
+      <longitude value="162°02'38''W" />
+    </coordinates>
+    <size value="Smallest" pax="7" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="988" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Scammon Bay Airport" icao="PACM" iata="SCM" type="Domestic" season="All_Year">
+    <town town="Scammon Bay, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="061°50'43''N" />
+      <longitude value="165°34'17''W" />
+    </coordinates>
+    <size value="Smallest" pax="7" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="914" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Kotlik Airport" icao="PFKO" iata="KOT" type="Domestic" season="All_Year">
+    <town town="Kotlik, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="063°01'50''N" />
+      <longitude value="163°31'58''W" />
+    </coordinates>
+    <size value="Smallest" pax="7" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="1348" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Wainwright Airport" icao="PAWI" iata="AIN" type="Domestic" season="All_Year">
+    <town town="Wainwright, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="070°38'17''N" />
+      <longitude value="159°59'41''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="5/23" length="1370" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Huslia Airport" icao="PAHL" iata="HSL" type="Domestic" season="All_Year">
+    <town town="Huslia, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="065°41'52''N" />
+      <longitude value="156°21'05''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="1219" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Bob Baker Memorial Airport" icao="PAIK" iata="IAN" type="Domestic" season="All_Year">
+    <town town="Kiana, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="066°58'33''N" />
+      <longitude value="160°26'12''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="6/24" length="1036" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Anaktuvuk Pass Airport" icao="PAKP" iata="AKP" type="Domestic" season="All_Year">
+    <town town="Anaktuvuk Pass, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="068°08'01''N" />
+      <longitude value="151°44'36''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="1463" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Kwethluk Airport" icao="PFKW" iata="KWT" type="Domestic" season="All_Year">
+    <town town="Kwethluk, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°47'25''N" />
+      <longitude value="161°26'37''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="975" surface="Gravel" />
+      </runways>
+  </airport>
+ <airport name="Noatak Airport" icao="PAWN" iata="WTK" type="Domestic" season="All_Year">
+    <town town="Noatak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="067°33'40''N" />
+      <longitude value="162°58'49''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="1219" surface="Gravel" />
+      </runways>
+    </airport>
+  <airport name="St. Paul Island Airport" icao="PASN" iata="SNP" type="Domestic" season="All_Year">
+    <town town="St. Paul Island, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="057°10'02''N" />
+      <longitude value="170°13'14''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="1981" surface="Asphalt" />
+      </runways>
+  </airport>
+   <airport name="Kalskag Airport" icao="PALG" iata="KLG" type="Domestic" season="All_Year">
+    <town town="Kalskag, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="061°32'11''N" />
+      <longitude value="160°20'29''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="6/24" length="967" surface="Gravel" />
+      </runways>
+  </airport>
+   <airport name="Buckland Airport" icao="PABL" iata="BKC" type="Domestic" season="All_Year">
+    <town town="Buckland, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="065°58'54''N" />
+      <longitude value="161°08'57''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="975" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Kivalina Airport" icao="PAVL" iata="KVL" type="Domestic" season="All_Year">
+    <town town="Kivalina, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="067°44'10''N" />
+      <longitude value="164°33'49''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="914" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Marshall Don Hunter Sr. Airport" icao="PADM" iata="MLL" type="Domestic" season="All_Year">
+    <town town="Marshall, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="061°51'51''N" />
+      <longitude value="162°01'34''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="976" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Newtok Airport" icao="PAEW" iata="WWT" type="Domestic" season="All_Year">
+    <town town="Newtok, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°56'21''N" />
+      <longitude value="164°38'28''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="671" surface="Gravel" />
+      </runways>
+  </airport>
+  <airport name="Ralph M. Calhoun Memorial Airport" icao="PATA" iata="TAL" type="Domestic" season="All_Year">
+    <town town="Tanana, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="065°10'28''N" />
+      <longitude value="152°06'34''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="1341" surface="Gravel" />
+      </runways>
+  </airport>
+   <airport name="Toksook Bay Airport" icao="PAOO" iata="OOK" type="Domestic" season="All_Year">
+    <town town="Toksook Bay, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°32'29''N" />
+      <longitude value="165°05'14''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="981" surface="Gravel" />
+    </runways>
+  </airport> 
     <airport name="McGrath Airport" icao="PAMC" iata="MCG" type="Domestic" season="All_Year">
     <town town="McGrath, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
@@ -1090,8 +1497,8 @@
       <terminal name="Terminal A" gates="10" />
     </terminals>
     <runways>
-      <runway name="11/29" length="2286" surface="Asphalt" />
-      <runway name="ESE/WNW" length="2896" surface="Asphalt" />
+      <runway name="11/29" length="1686" surface="Asphalt" />
+      <runway name="ESE/WNW" length="2896" surface="Water" />
     </runways>
   </airport>
    <airport name="Cold Bay Airport" icao="PACD" iata="CDB" type="Regional" season="All_Year">
@@ -1260,23 +1667,7 @@
       <runway name="3/21" length="2042" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Merrill Field" icao="PAMR" iata="MRI" type="Regional" season="All_Year">
-    <town town="Anchorage, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
-    <coordinates>
-      <latitude value="061°12'48''N" />
-      <longitude value="149°50'38''W" />
-    </coordinates>
-    <size value="Very_small" pax="177" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="4/22" length="610" surface="Asphalt" />
-      <runway name="7/25" length="1219" surface="Asphalt" />
-      <runway name="16/34" length="805" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Ted Stevens Anchorage International Airport" icao="PANC" iata="ANC" type="Long_Haul_International"
+    <airport name="Ted Stevens Anchorage International Airport" icao="PANC" iata="ANC" type="Long_Haul_International"
            season="All_Year">
     <town town="Anchorage, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>

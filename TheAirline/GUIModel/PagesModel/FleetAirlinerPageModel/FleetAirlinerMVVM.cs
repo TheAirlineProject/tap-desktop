@@ -1,6 +1,7 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Globalization;
@@ -26,10 +27,6 @@
         private int _CMaintenanceInterval;
 
         private int _DMaintenanceInterval;
-
-        private DateTime _SchedCMaintenance;
-
-        private DateTime _SchedDMaintenance;
 
         private Airport _homebase;
 
@@ -114,14 +111,14 @@
 
             this.IsMissingPilots = this.Airliner.Airliner.Type.CockpitCrew > this.Pilots.Count;
 
-            this.AMaintenanceInterval = this.Airliner.AMaintenanceInterval;
-            this.BMaintenanceInterval = this.Airliner.BMaintenanceInterval;
-            this.CMaintenanceInterval = this.Airliner.CMaintenanceInterval;
-            this.DMaintenanceInterval = this.Airliner.DMaintenanceInterval;
+            this.Maintenances = new List<FleetAirlinerMaintenanceMVVM>();
 
-            this.SchedCMaintenance = this.Airliner.SchedCMaintenance;
-            this.SchedDMaintenance = this.Airliner.SchedDMaintenance;
-
+            foreach (AirlinerMaintenanceCheck check in Airliner.Maintenance.Checks)
+            {
+                Boolean canperformcheck = this.Airliner.GroundedToDate < GameObject.GetInstance().GameTime;
+                this.Maintenances.Add(new FleetAirlinerMaintenanceMVVM(check.Type, check.LastCheck, airliner.Maintenance.getNextCheck(check.Type),check.Interval,check.CheckCenter,canperformcheck));
+            }
+            //airline sets
             this.IsBuyable = this.Airliner.Airliner.Airline.IsHuman
                              && this.Airliner.Purchased == FleetAirliner.PurchasedType.Leased && this.Airliner.Airliner.Owner == null;
             this.IsConvertable = this.Airliner.Airliner.Airline.IsHuman
@@ -149,64 +146,14 @@
         #endregion
 
         #region Public Properties
+        public List<FleetAirlinerMaintenanceMVVM> Maintenances{ get; set; }
 
-        public int AMaintenanceInterval
-        {
-            get
-            {
-                return this._AMaintenanceInterval;
-            }
-            set
-            {
-                this._AMaintenanceInterval = value;
-                this.NotifyPropertyChanged("AMaintenanceInterval");
-            }
-        }
-
+       
         public FleetAirliner Airliner { get; set; }
 
         public Airline Owner { get; set; }
 
-        public int BMaintenanceInterval
-        {
-            get
-            {
-                return this._BMaintenanceInterval;
-            }
-            set
-            {
-                this._BMaintenanceInterval = value;
-                this.NotifyPropertyChanged("BMaintenanceInterval");
-            }
-        }
-
-        public int CMaintenanceInterval
-        {
-            get
-            {
-                return this._CMaintenanceInterval;
-            }
-            set
-            {
-                this._CMaintenanceInterval = value;
-                this.NotifyPropertyChanged("CMaintenanceInterval");
-            }
-        }
-
         public ObservableCollection<AirlinerClassMVVM> Classes { get; set; }
-
-        public int DMaintenanceInterval
-        {
-            get
-            {
-                return this._DMaintenanceInterval;
-            }
-            set
-            {
-                this._DMaintenanceInterval = value;
-                this.NotifyPropertyChanged("DMaintenanceInterval");
-            }
-        }
 
         public Airport Homebase
         {
@@ -273,31 +220,7 @@
 
         public ObservableCollection<Pilot> Pilots { get; set; }
 
-        public DateTime SchedCMaintenance
-        {
-            get
-            {
-                return this._SchedCMaintenance;
-            }
-            set
-            {
-                this._SchedCMaintenance = value;
-                this.NotifyPropertyChanged("SchedCMaintenance");
-            }
-        }
-
-        public DateTime SchedDMaintenance
-        {
-            get
-            {
-                return this._SchedDMaintenance;
-            }
-            set
-            {
-                this._SchedDMaintenance = value;
-                this.NotifyPropertyChanged("SchedDMaintenance");
-            }
-        }
+      
 
         #endregion
 
@@ -653,7 +576,121 @@
 
         #endregion
     }
+    //the mvvm object for an airliner maintenance 
+    public class FleetAirlinerMaintenanceMVVM : INotifyPropertyChanged
+    {
+        public AirlinerMaintenanceType Type { get; set; }
+        private DateTime _lastcheck;
+        public DateTime LastCheck
+        {
+            get
+            {
+                return this._lastcheck;
+            }
+            set
+            {
+                this._lastcheck = value;
+                this.NotifyPropertyChanged("LastCheck");
+            }
+        }
+        private DateTime _nextcheck;
+        public DateTime NextCheck 
+        {
+            get
+            {
+                return this._nextcheck;
+            }
+            set
+            {
+                this._nextcheck = value;
+                this.NotifyPropertyChanged("NextCheck");
+            }
+        }
+        public double Interval { get; set; }
+        private MaintenanceCenterMVVM _center;
+        public ObservableCollection<MaintenanceCenterMVVM> Centers { get; set; }
+        public MaintenanceCenterMVVM Center
+        {
+            get
+            {
+                return this._center;
+            }
+            set
+            {
+                this._center = value;
+                this.NotifyPropertyChanged("Center");
+            }
+        }
+        private Boolean _canperformcheck;
+        public Boolean CanPerformCheck
+        {
+            get
+            {
+                return this._canperformcheck;
+            }
+            set
+            {
+                this._canperformcheck = value;
+                this.NotifyPropertyChanged("CanPerformCheck");
+            }
+        }
+        public FleetAirlinerMaintenanceMVVM(AirlinerMaintenanceType type, DateTime lastcheck,DateTime nextcheck,double interval,AirlinerMaintenanceCenter center,Boolean canperformcheck)
+        {
+            this.LastCheck = lastcheck;
+            this.NextCheck = nextcheck;
+            this.Type = type;
+            this.Interval = interval;
+            this.CanPerformCheck = canperformcheck;
+            
+            this.Centers = new ObservableCollection<MaintenanceCenterMVVM>();
 
+            foreach (Airport airport in GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel >= this.Type.Requirement.TypeLevel))
+                this.Centers.Add(new MaintenanceCenterMVVM(airport));
+
+            foreach (MaintenanceCenter mCenter in GameObject.GetInstance().HumanAirline.MaintenanceCenters)
+            {
+                this.Centers.Add(new MaintenanceCenterMVVM(mCenter));
+            }
+
+            if (center != null)
+            {
+                this.Center = center.Airport != null ? new MaintenanceCenterMVVM(center.Airport) : new MaintenanceCenterMVVM(center.Center);
+            }
+
+        }
+        #region Methods
+
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        #endregion
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
+    //the mvvm class for a center
+    public class MaintenanceCenterMVVM
+    {
+        public Airport Airport { get; set; }
+        public MaintenanceCenter Center { get; set; }
+        public string Name { get; set; }
+        public MaintenanceCenterMVVM(Airport airport)
+        {
+            this.Airport = airport;
+            this.Name = this.Airport.Profile.Name;
+        }
+        public MaintenanceCenterMVVM(MaintenanceCenter center)
+        {
+            this.Center = center;
+            this.Name = this.Center.Name;
+        }
+
+    }
     public class ValueIsMaxAirlinerClasses : IMultiValueConverter
     {
         #region Public Methods and Operators

@@ -944,6 +944,7 @@
                 () => { CheckForSubsidiaryAirline(airline); },
                 () => { CheckForAirlineAirportFacilities(airline); },
                 () => { CheckForStocksHandling(airline);},
+                () => { CheckForMaintenance(airline);},
                 () => { CheckForOrderOfAirliners(airline); }); //close parallel.invoke
         }
 
@@ -1066,10 +1067,43 @@
                 }
             }
         }
+        //checks for maintenance for the airline
+        private static void CheckForMaintenance(Airline airline)
+        {
+            int highestServiceLevel = AirlinerMaintenanceTypes.GetMaintenanceTypes().Max(m => m.Requirement.TypeLevel);
+            var hasChecksForAll = airline.Airports.FirstOrDefault(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel >= highestServiceLevel);
 
+            if (hasChecksForAll == null && airline.MaintenanceCenters.Count() == 0)
+            {
+                MaintenanceCenter center = AirlineHelpers.GetAirlineMaintenanceCenter(airline);
+
+                airline.MaintenanceCenters.Add(center);
+
+            }
+
+            foreach (FleetAirliner airliner in airline.Fleet.Where(f=>f.Maintenance.Checks.Exists(c=>!c.canPerformCheck())))
+            {
+                foreach (AirlinerMaintenanceCheck check in airliner.Maintenance.Checks.Where(c => !c.canPerformCheck()))
+                {
+                    if (hasChecksForAll != null)
+                    {
+                        var airport = airline.Airports.First(a=>a.getCurrentAirportFacility(airline,AirportFacility.FacilityType.Service).TypeLevel >= check.Type.Requirement.TypeLevel);
+                        check.CheckCenter = new AirlinerMaintenanceCenter(check.Type);
+                        check.CheckCenter.Airport = airport;
+
+                    }
+                    else
+                    {
+                        check.CheckCenter = new AirlinerMaintenanceCenter(check.Type);
+                        check.CheckCenter.Center = airline.MaintenanceCenters.First();
+                    }
+                }
+            }
+        }
         //checks for building airport facilities for the airline
         private static void CheckForAirlineAirportFacilities(Airline airline)
         {
+            
             int minRoutesForTicketOffice = 3 + (int)airline.Mentality;
             List<Airport> airports =
                 airline.Airports.FindAll(

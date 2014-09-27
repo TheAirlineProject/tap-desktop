@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="CommutAir" iata="C5" color="Blue" country="122" CEO="Rene Delange " mentality="Moderate"
+           market="Regional" preferedairport="CLE">
+  <narrative narrative="CommutAir started in 1989 and was initially linked with U.S Airways. And its headquarters were in upstate New York in Plattsburgh. In 2000 it seperated from codesharing with US Airways and began working with Continental Airlines and downsized its fleet by half and used Albany,New York as its hub flying to east coast airports and Ottawa and Montreal in Canada. At this time it had Beechcraft 1900D's. Its hub moved to Cleveland,Ohio in 2003 serving 12 airports from CLE. CommutAir is now a part of United Express since Continental merged with United. As of 2014 it has 16 Dash 8-200's which are leased from Horizon Air of the Alaska Airline Group. It also has 5 Dah 8-300's. They serve 30 destinations on the east coast and in the mid west and also fly to Toronto,Canada. Other hubs outside of Cleveland are Newark and Washington Dulles. "/>
+</profile>
+  <info real="True" from="1989" to="2199"></info>
+  
+  <startdata>
+     <prefereds aircrafts="Beechcraft 1900C,Beechcraft 1900D,Bombardier Dash 8-200,Bombardier Dash 8-300"></prefereds>
+      
+         <!--the airliners the airline would start with which isn't on a route earyl (1989) late (2000)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900D" early="0" late="31"></airliner>
+	     </airliners>
+   <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2020)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-200" early="16" late="16"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2020)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="5" late="5"></airliner>
+	     </airliners>
+ </startdata>
+</airline>
+

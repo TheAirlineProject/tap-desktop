@@ -20,19 +20,19 @@
                 <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}"
                            VerticalAlignment="Bottom" Width="50" FontWeight="Bold" />
                 <ContentControl ToolTipService.ShowDuration="30000" VerticalAlignment="Bottom"
-                                ContentTemplate="{StaticResource CountryFlagLongItem}" Content="{Binding From}">
+                                ContentTemplate="{StaticResource CountryLongFlagItem}" Content="{Binding From}">
                     <ContentControl.ToolTip>
                         <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" Background="#2A4861"
-                                 ItemTemplate="{StaticResource CountryFlagLongItem}"
+                                 ItemTemplate="{StaticResource CountryLongFlagItem}"
                                  ItemsSource="{Binding From, Converter={StaticResource unionMemberConverter}}" />
                     </ContentControl.ToolTip>
                 </ContentControl>
                 <TextBlock Text=">" VerticalAlignment="Bottom" Margin="5 0 5 0" FontWeight="Bold" />
-                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource CountryFlagLongItem}"
+                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource CountryLongFlagItem}"
                                 Content="{Binding To}">
                     <ContentControl.ToolTip>
                         <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
-                                 ItemTemplate="{StaticResource CountryFlagLongItem}" Background="#2A4861"
+                                 ItemTemplate="{StaticResource CountryLongFlagItem}" Background="#2A4861"
                                  ItemsSource="{Binding To, Converter={StaticResource unionMemberConverter}}" />
                     </ContentControl.ToolTip>
                 </ContentControl>

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Point Hope, AK">
+  <months>
+    <month month="1" precipitation="6">
+      <temp min="-27" max="-17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="0">
+      <temp min="-30" max="-21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="0">
+      <temp min="-30" max="-21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="9">
+      <temp min="-24" max="-15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="12">
+      <temp min="-8" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="18">
+      <temp min="2" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="54">
+      <temp min="5" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="39">
+      <temp min="4" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="36">
+      <temp min="-1" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="24">
+      <temp min="-22" max="-14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="9">
+      <temp min="-21" max="-13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="6">
+      <temp min="-27" max="-18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

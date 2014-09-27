@@ -33,6 +33,7 @@
                        VerticalAlignment="Bottom" />
         </DockPanel>
     </DataTemplate>
+    <!--
     <DataTemplate x:Key="CountryFlagLongItem">
         <DockPanel>
             <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom"
@@ -40,7 +41,7 @@
             <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" VerticalAlignment="Bottom" />
         </DockPanel>
     </DataTemplate>
-
+-->
     <DataTemplate x:Key="CountryFlagItem">
         <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter}}"
                         VerticalAlignment="Bottom">

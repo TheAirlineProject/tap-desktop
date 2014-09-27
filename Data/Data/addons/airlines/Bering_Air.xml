@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Bering Air" iata="8E" color="White" country="122" CEO="James Rowe " mentality="Moderate"
+           market="Regional" preferedairport="OME">
+  <narrative narrative="Bering Air is an Alaskan airline based at Nome Airport and has hubs at Kotzebue and Unalakleet. They serve 29 Alaskan airports and offer charters to Canada and the extreme Russian Far East. It was founded in 1979 by James Rowe, who is still the owner and president of the airline. Bering Air takes its name from the sea and strait that seperates Alaska and Russia. Their fleet in 2009 included 2 Beechcraft 1900D's, 2 Beechcraft B200 King Air's, 2 CASA C212 Aviocars, 4 Cessna 208 Caravans and even three R44 Robinson helicopters, along with some smaller single engine Piper's."/>
+</profile>
+  <info real="True" from="1979" to="2199"></info>
+     <prefereds aircrafts="Cessna 208B,Cessna 206,Beechcraft 1900D,Beechcraft King Air B200,CASA C212 Aviocar"></prefereds>
+</airline>
+

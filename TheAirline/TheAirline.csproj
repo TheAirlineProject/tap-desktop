@@ -104,6 +104,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BBM\Prism\Lib\Desktop\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -126,8 +128,6 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="Xceed.Wpf.AvalonDock">
       <HintPath>..\packages\Extended.Wpf.Toolkit.2.1.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
@@ -916,9 +916,11 @@
     <Compile Include="Model\AirlineModel\AirlineShare.cs" />
     <Compile Include="Model\AirlineModel\AirlineStartData.cs" />
     <Compile Include="Model\AirlineModel\CodeshareAgreement.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerMaintenance.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerInsurance.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerScheduleConfiguration.cs" />
     <Compile Include="Model\AirlinerModel\EngineType.cs" />
+    <Compile Include="Model\AirlinerModel\MaintenanceCenter.cs" />
     <Compile Include="Model\AirportModel\AirportExpansion.cs" />
     <Compile Include="Model\GeneralModel\Helpers\RouteHelpers.cs" />
     <Compile Include="Model\GeneralModel\OperatingData.cs" />
@@ -1105,6 +1107,7 @@
       <Link>Data\languagefiles\language.tr-TR.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Data\languagefiles\language_pt_PT.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

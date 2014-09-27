@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Costa" iata="LB" color="Purple" country="152" CEO="Captain K.N Babu " mentality="Aggressive"
+           market="Domestic" preferedairport="MAA">
+  <narrative narrative="Air Costa is an airline based in India at Chennai. It began operations on October 15th,2013. Right now they only fly to Indian airports, serving 11 of them. They also have a secondary hub at Vijayawada where its corporate headquarters are and a focus city at Visakhapatnam. It currently has four Embraer's, two E-190's and two E-170's. It has a large order for 25 E190-E2's and 25 E195-E2's which are the next version of the current line of Embraer E jets. Those however will not be delievred until 2018, Air Costa is the Asian launch customer of them.   "/>
+</profile>
+  <info real="True" from="2013" to="2199"></info>
+     <prefereds aircrafts="Embraer E-170,Embraer E-175,Embraer E-190,Embraer E-195"></prefereds>
+</airline>
+

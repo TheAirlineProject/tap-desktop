@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
+      Name="pageAirlineInsurances"
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PageAirlineInsurance">
     <Page.Resources>
@@ -33,6 +34,7 @@
             </Grid.ColumnDefinitions>
             <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0">
                 <StackPanel>
+                   
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1000'}"
                         Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom" />
@@ -184,7 +186,58 @@
                         <Button Style="{StaticResource StandardButtonStyle}" Click="btnSetAdvertisement_Click"
                                 Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 201'}" />
                     </WrapPanel>
+                    <StackPanel Margin="0 10 0 0">
+                        <StackPanel.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                        <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                            <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1008'}"
+                        Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom"/>
+                        <ListBox ItemsSource="{Binding MaintenanceCenters}"
+                             Background="Transparent"
+                             BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                        <ContentControl Content="{Binding Country}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}" Width="150"></ContentControl>
+                                        <TextBlock Text="{Binding MonthlyPrice,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                                        <TextBlock Text="{Binding Wage,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                                        <Button  VerticalAlignment="Bottom" Tag="{Binding}" Background="Transparent" Click="btnDeleteMaintenance_Click">
+                                            <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                        </Button>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1009'}"
+                        Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom" Margin="0 10 0 0"/>
 
+                        <ListBox ItemsSource="{Binding AvailableCenters,ElementName=pageAirlineInsurances}"
+                             Background="Transparent"
+                             BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                        <ContentControl Content="{Binding Country}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}" Width="150"></ContentControl>
+                                        <TextBlock Text="{Binding MonthlyPrice,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                                        <TextBlock Text="{Binding Wage,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                                        <Button  VerticalAlignment="Bottom" Background="Transparent" Tag="{Binding}" Click="btnAddMaintenance_Click">
+                                            <Image Source="/Data/images/add.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                        </Button>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
                 </StackPanel>
             </Border>
         </Grid>

@@ -69,7 +69,7 @@
                             SimulateFlight(entry);
                         }
                     }
-                    CheckForService(airliner);
+                    //CheckForService(airliner);
                 }
             } //);
 
@@ -79,7 +79,7 @@
         #endregion
 
         #region Methods
-
+        /*
         private static void CheckForService(FleetAirliner airliner)
         {
             double serviceCheck = 500000000;
@@ -89,7 +89,7 @@
             {
                 SimulateService(airliner);
             }
-        }
+        }*/
 
         private static void CreatePassengersHappiness(FleetAirliner airliner)
         {
@@ -495,7 +495,7 @@
                 airliner.CurrentFlight = null;
             }
         }
-
+        /*
         private static void SimulateService(FleetAirliner airliner)
         {
             double servicePrice = 100000;
@@ -514,7 +514,7 @@
                 -servicePrice);
 
             airliner.GroundedToDate = GameObject.GetInstance().GameTime.AddDays(90);
-        }
+        }*/
 
         private static void SimulateStopoverFlight(RouteTimeTableEntry mainEntry)
         {

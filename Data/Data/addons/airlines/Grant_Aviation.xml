@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Grant Aviation" iata="GV" color="Brown" country="122" CEO="Bruce Mcglasson " mentality="Moderate"
+           market="Domestic" preferedairport="ENA">
+  <narrative narrative="Grant Aviation is an Alaskan airline with its bases at Anchorage,Bethel,Dillingham,Emmonak,Kenai and Kodiak. 15% of its flights go into and out of Kenai. It was originally called Delta Air Services and its main base was Emmonak. It was founded in 1971 and got its current name in 1993. The fleet has 10 Cessna 208's, 4 Cessna 207's , which is a varient of the 206, 3 Beechcrafy King Air 200's, 3 Piper Navajos and 1 GlippsAero GA8 Airvan. They serve over 100 communities in Alaska.  "/>
+</profile>
+  <info real="True" from="1971" to="2199"></info>
+     <prefereds aircrafts="Cessna 208B,Cessna 206,Beechcraft King Air B200"></prefereds>
+</airline>
+

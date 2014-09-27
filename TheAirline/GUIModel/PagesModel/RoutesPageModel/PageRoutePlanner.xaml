@@ -539,7 +539,7 @@
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding SelectedRoute,ElementName=pageRoutePlanner}"
                                                      Value="{x:Null}">
-                                            <Setter Property="IsEnabled" Value="False" />
+                                            <Setter Property="Visibility" Value="Collapsed" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>

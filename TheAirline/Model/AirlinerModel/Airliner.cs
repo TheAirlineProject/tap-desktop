@@ -162,6 +162,8 @@
         [Versioning("enginetype", Version = 2)]
         public EngineType EngineType { get; set; }
 
+      
+
         public string CabinConfiguration
         {
             get

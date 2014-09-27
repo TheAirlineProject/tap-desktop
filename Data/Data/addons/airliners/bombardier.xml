@@ -71,6 +71,13 @@
     <capacity passengers="78" cockpitcrew="2" cabincrew="2" maxclasses="1" />
     <produced from="2000" to="2019" rate="36" />
   </airliner>
+    <airliner manufacturer="Bombardier" name="Bombardier Dash 8-400NextGen" price="5116000"> <!--29765000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="28.40" length="32.81" range="1878" speed="667" fuelcapacity="4860" consumption="0.137"
+           runwaylengthrequired="1400" />
+    <capacity passengers="86" cockpitcrew="2" cabincrew="2" maxclasses="2" />
+    <produced from="2013" to="2199" rate="36" />
+  </airliner>
   <airliner manufacturer="Bombardier" name="Bombardier Global 5000" price="5499040"> <!--40000000-->
     <type body="Single_Aisle" rangetype="Long_Range" engine="Jet" />
     <specs wingspan="28.65" length="29.5" range="9360" speed="904" fuelcapacity="21850" consumption="0.123"

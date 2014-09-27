@@ -101,6 +101,7 @@
             this.Routes = new List<AirlineRouteMVVM>();
             this.Codeshares = new ObservableCollection<Airline>();
             this.Cooperations = new List<CooperationMVVM>();
+            this.MaintenanceCenters = new ObservableCollection<MaintenanceCenter>();
 
             this.Airline.Routes.ForEach(r => this.Routes.Add(new AirlineRouteMVVM(r)));
             this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l, this.Airline)));
@@ -136,6 +137,9 @@
                     this.Cooperations.Add(new CooperationMVVM(airport, cooperation));
                 }
             }
+
+            foreach (MaintenanceCenter center in airline.MaintenanceCenters)
+                this.MaintenanceCenters.Add(center);
 
             this.setValues();
 
@@ -394,6 +398,8 @@
 
         public ObservableCollection<PilotMVVM> Pilots { get; set; }
 
+        public ObservableCollection<MaintenanceCenter> MaintenanceCenters { get; set; }
+
         public int PilotsToRetire
         {
             get
@@ -449,7 +455,16 @@
 
             this.HasAlliance = this.Alliance != null || this.Codeshares.Count > 0;
         }
-
+        public void addMaintenanceCenter(MaintenanceCenter center)
+        {
+            this.MaintenanceCenters.Add(center);
+            this.Airline.MaintenanceCenters.Add(center);
+        }
+        public void removeMaintenanceCenter(MaintenanceCenter center)
+        {
+            this.MaintenanceCenters.Remove(center);
+            this.Airline.MaintenanceCenters.Remove(center);
+        }
         public void addFacility(AirlineFacilityMVVM facility)
         {
             facility.Type = AirlineFacilityMVVM.MVVMType.Purchased;

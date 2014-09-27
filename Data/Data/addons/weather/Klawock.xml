@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Klawock, AK">
+  <months>
+    <month month="1" precipitation="348">
+      <temp min="-1" max="4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="272">
+      <temp min="-1" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="249">
+      <temp min="0" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="227">
+      <temp min="2" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="218">
+      <temp min="5" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="169">
+      <temp min="9" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="175">
+      <temp min="11" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="247">
+      <temp min="11" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="307">
+      <temp min="9" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="437">
+      <temp min="5" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="388">
+      <temp min="1" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="401">
+      <temp min="0" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

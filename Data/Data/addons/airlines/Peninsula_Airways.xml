@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Peninsula Airways" iata="KS" color="Orange" country="122" CEO="Orin Seybert " mentality="Moderate"
+           market="Domestic" preferedairport="ANC">
+  <narrative narrative="Peninsula Airways is also known as PenAir. It's primary hub is Anchorage,Alaska. Most of it's service is in Alaska also, currently serving 11 destinations there. They also have an east coast USA operation based out of Boston, flying to 2 airports in Maine (Bar Harbor and Presque Isle) and one in upstate New York (Plattsburgh). Former service includes Islip,New York. There are also 35 Alaskan airports they no longer serve but once did. It was founded in 1955 at Pilot Point,Alaska by 19 year old Orin Seybert. There current fleet consists of 15 Saab 340B's, two of which are used for cargo only. They used to fly with Grumman Goose's too, having retired the last one in December 2012.  "/>
+</profile>
+  <info real="True" from="1955" to="2199"></info>
+     <prefereds aircrafts="Saab 340B"></prefereds>
+</airline>
+

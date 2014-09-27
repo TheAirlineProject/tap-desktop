@@ -30,5 +30,6 @@
 <merger name="China Airlines has founded a cargo subsidiary called China Airlines Cargo" airline1="CI" airline2="CI2" type="Subsidiary" date="01.01.1980 00:00:00"></merger>
 <merger name="Air China has founded a cargo subsidiary called Air China Cargo" airline1="CA" airline2="CA2" type="Subsidiary" date="01.01.2003 00:00:00"></merger>
 <merger name="Emirates has been founded and has created the cargo subsidiary Emirates SkyCargo" airline1="EK" airline2="EK2" type="Subsidiary" date="01.01.1985 00:00:00"></merger>
-
+<merger name="Elan Air, later known as DHL Air UK, has been founded and is a subsidiary of DHL" airline1="ES" airline2="D0" type="Subsidiary" date="01.01.1982 00:00:00"></merger>
+<merger name="European Air Transport Leipzig has been founded as a division of DHL" airline1="ES" airline2="QY" type="Subsidiary" date="01.01.2008 00:00:00"></merger>
 </mergers>
