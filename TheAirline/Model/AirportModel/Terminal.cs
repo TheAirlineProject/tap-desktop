@@ -37,7 +37,7 @@ namespace TheAirline.Model.AirportModel
             Gates = new Gates(gates, DeliveryDate, airline);
         }
 
-        private Terminal(SerializationInfo info, StreamingContext ctxt) :base(info,ctxt)
+        private Terminal(SerializationInfo info, StreamingContext ctxt) : base(info, ctxt)
         {
             if (Version == 1)
                 Type = TerminalType.Passenger;
@@ -70,12 +70,18 @@ namespace TheAirline.Model.AirportModel
 
         public Boolean IsBuilt
         {
-            get { return isBuilt(); }
+            get { return GameObject.GetInstance().GameTime > DeliveryDate; }
         }
 
         public Boolean IsBuyable
         {
-            get { return isBuyable(); }
+            get
+            {
+                int freeGates = Airport.Terminals.GetFreeGates(Type);
+
+                return freeGates > Gates.NumberOfGates && Airport.Terminals.GetNumberOfAirportTerminals(Type) > 1
+                       && Airline == null;
+            }
         }
 
         [Versioning("name")]
@@ -89,7 +95,7 @@ namespace TheAirline.Model.AirportModel
         {
             info.AddValue("version", 2);
 
-            base.GetObjectData(info,context);
+            base.GetObjectData(info, context);
         }
 
         // chs 11-04-11: changed for the possibility of extending a terminal
@@ -185,23 +191,6 @@ namespace TheAirline.Model.AirportModel
         }
 
         #endregion
-
-        #region Methods
-
-        private Boolean isBuilt()
-        {
-            return GameObject.GetInstance().GameTime > DeliveryDate;
-        }
-
-        private Boolean isBuyable()
-        {
-            int freeGates = Airport.Terminals.GetFreeGates(Type);
-
-            return freeGates > Gates.NumberOfGates && Airport.Terminals.GetNumberOfAirportTerminals(Type) > 1
-                   && Airline == null;
-        }
-
-        #endregion
     }
 
     //the collection of terminals at an airport
@@ -222,9 +211,8 @@ namespace TheAirline.Model.AirportModel
             AirportTerminals = new List<Terminal>();
         }
 
-        private Terminals(SerializationInfo info, StreamingContext ctxt) :base(info,ctxt)
+        private Terminals(SerializationInfo info, StreamingContext ctxt) : base(info, ctxt)
         {
-            
         }
 
         #endregion
@@ -252,7 +240,7 @@ namespace TheAirline.Model.AirportModel
         {
             info.AddValue("version", 1);
 
-            base.GetObjectData(info,context);
+            base.GetObjectData(info, context);
         }
 
         public void AddTerminal(Terminal terminal)
@@ -331,7 +319,9 @@ namespace TheAirline.Model.AirportModel
 
             if (usedGates > 0)
             {
+/*
                 freeGates = 12;
+*/
             }
 
             double inusePercent = Convert.ToDouble(usedGates)/Convert.ToDouble(totalGates)*100.0;

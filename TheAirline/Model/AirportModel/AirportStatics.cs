@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PassengerModel;
 
@@ -134,7 +133,7 @@ namespace TheAirline.Model.AirportModel
 
         public int GetDestinationPassengersSum()
         {
-            int sum = 0;
+            int sum;
             lock (_passengerDemand)
             {
                 sum = _passengerDemand.Sum(p => p.Rate);
@@ -150,14 +149,7 @@ namespace TheAirline.Model.AirportModel
             double distance;
             lock (_airportDistances)
             {
-                if (_airportDistances.ContainsKey(airport))
-                {
-                    distance = _airportDistances[airport];
-                }
-                else
-                {
-                    distance = 0;
-                }
+                distance = _airportDistances.ContainsKey(airport) ? _airportDistances[airport] : 0;
             }
 
             return distance;
