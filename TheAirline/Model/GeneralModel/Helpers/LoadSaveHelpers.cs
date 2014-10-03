@@ -58,22 +58,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the names of the saved games
         public static List<string> GetSavedGames()
         {
-            var saves = new List<string>();
-
             var dir = new DirectoryInfo(AppSettings.GetCommonApplicationDataPath() + "\\saves\\");
 
-            foreach (FileInfo file in dir.GetFiles("*.sav"))
-            {
-                string name = file.Name.Split('.')[0];
-                saves.Add(name);
-            }
-
-            return saves;
+            return dir.GetFiles("*.sav").Select(file => file.Name.Split('.')[0]).ToList();
         }
 
         public static void LoadGame(string name)
         {
-            if (null == name || name == "")
+            if (string.IsNullOrEmpty(name))
             {
                 WPFMessageBoxResult result = WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "101"),
@@ -87,201 +79,228 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             using (var fs = new FileStream(fileName, FileMode.Open))
             {
-                Stream s;
-
-                s = new GZipStream(fs, CompressionMode.Decompress);
+                Stream s = new GZipStream(fs, CompressionMode.Decompress);
                 doc.Load(s);
                 s.Close();
             }
             //doc.Load(AppSettings.getDataPath() + "\\saves\\" + name + ".xml");
             XmlElement root = doc.DocumentElement;
 
-            DateTime gameTime = DateTime.Parse(root.Attributes["time"].Value, new CultureInfo("de-DE"));
-            GameObject.GetInstance().GameTime = gameTime;
-
-            XmlNodeList tailnumbersList = root.SelectNodes("//tailnumbers/tailnumber");
-
-            foreach (XmlElement tailnumberNode in tailnumbersList)
+            if (root != null)
             {
-                Country country = Countries.GetCountry(tailnumberNode.Attributes["country"].Value);
-
-                if (country != null)
-                {
-                    country.TailNumbers.LastTailNumber = tailnumberNode.Attributes["value"].Value;
-                }
+                DateTime gameTime = DateTime.Parse(root.Attributes["time"].Value, new CultureInfo("de-DE"));
+                GameObject.GetInstance().GameTime = gameTime;
             }
 
-            XmlNodeList airlinerTypesList = root.SelectNodes("//airlinertypes/airlinertype");
-
-            foreach (XmlElement airlinerTypeNode in airlinerTypesList)
+            if (root != null)
             {
-                var airlinerType =
-                    (AirlinerType.TypeOfAirliner)
-                    Enum.Parse(typeof (AirlinerType.TypeOfAirliner), airlinerTypeNode.Attributes["type"].Value);
-                AirlinerType baseType = AirlinerTypes.GetType(airlinerTypeNode.Attributes["basetype"].Value);
-                string airlinerTypeName = airlinerTypeNode.Attributes["name"].Value;
+                XmlNodeList tailnumbersList = root.SelectNodes("//tailnumbers/tailnumber");
 
-                AirlinerType type = null;
+                if (tailnumbersList != null)
+                    foreach (XmlElement tailnumberNode in tailnumbersList)
+                    {
+                        Country country = Countries.GetCountry(tailnumberNode.Attributes["country"].Value);
 
-                if (airlinerType == AirlinerType.TypeOfAirliner.Passenger)
-                {
-                    int cabincrew = Convert.ToInt16(airlinerTypeNode.Attributes["cabincrew"].Value);
-                    int passengers = Convert.ToInt16(airlinerTypeNode.Attributes["passengers"].Value);
-                    int maxclasses = Convert.ToInt16(airlinerTypeNode.Attributes["maxclasses"].Value);
+                        if (country != null)
+                        {
+                            country.TailNumbers.LastTailNumber = tailnumberNode.Attributes["value"].Value;
+                        }
+                    }
+            }
 
-                    type = new AirlinerPassengerType(
-                        baseType.Manufacturer,
-                        airlinerTypeName,
-                        "",
-                        passengers,
-                        baseType.CockpitCrew,
-                        cabincrew,
-                        0,
-                        0,
-                        baseType.Wingspan,
-                        baseType.Length,
-                        baseType.Weight,
-                        0,
-                        baseType.Price,
-                        maxclasses,
-                        0,
-                        baseType.FuelCapacity,
-                        baseType.Body,
-                        baseType.RangeType,
-                        baseType.Engine,
-                        baseType.Produced,
-                        baseType.ProductionRate,
-                        false,
-                        false);
-                }
-                if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
-                {
-                    double cargo = Convert.ToDouble(
-                        airlinerTypeNode.Attributes["cargo"].Value,
-                        new CultureInfo("de-DE", false));
-                    type = new AirlinerCargoType(
-                        baseType.Manufacturer,
-                        airlinerTypeName,
-                        "",
-                        baseType.CockpitCrew,
-                        cargo,
-                        0,
-                        0,
-                        baseType.Wingspan,
-                        baseType.Length,
-                        baseType.Weight,
-                        0,
-                        baseType.Price,
-                        0,
-                        baseType.FuelCapacity,
-                        baseType.Body,
-                        baseType.RangeType,
-                        baseType.Engine,
-                        baseType.Produced,
-                        baseType.ProductionRate,
-                        false,
-                        false);
-                }
-                type.BaseType = baseType;
+            if (root != null)
+            {
+                XmlNodeList airlinerTypesList = root.SelectNodes("//airlinertypes/airlinertype");
 
-                AirlinerTypes.AddType(type);
+                if (airlinerTypesList != null)
+                    foreach (XmlElement airlinerTypeNode in airlinerTypesList)
+                    {
+                        var airlinerType =
+                            (AirlinerType.TypeOfAirliner)
+                            Enum.Parse(typeof (AirlinerType.TypeOfAirliner), airlinerTypeNode.Attributes["type"].Value);
+                        AirlinerType baseType = AirlinerTypes.GetType(airlinerTypeNode.Attributes["basetype"].Value);
+                        string airlinerTypeName = airlinerTypeNode.Attributes["name"].Value;
+
+                        AirlinerType type = null;
+
+                        if (airlinerType == AirlinerType.TypeOfAirliner.Passenger)
+                        {
+                            int cabincrew = Convert.ToInt16(airlinerTypeNode.Attributes["cabincrew"].Value);
+                            int passengers = Convert.ToInt16(airlinerTypeNode.Attributes["passengers"].Value);
+                            int maxclasses = Convert.ToInt16(airlinerTypeNode.Attributes["maxclasses"].Value);
+
+                            type = new AirlinerPassengerType(
+                                baseType.Manufacturer,
+                                airlinerTypeName,
+                                "",
+                                passengers,
+                                baseType.CockpitCrew,
+                                cabincrew,
+                                0,
+                                0,
+                                baseType.Wingspan,
+                                baseType.Length,
+                                baseType.Weight,
+                                0,
+                                baseType.Price,
+                                maxclasses,
+                                0,
+                                baseType.FuelCapacity,
+                                baseType.Body,
+                                baseType.RangeType,
+                                baseType.Engine,
+                                baseType.Produced,
+                                baseType.ProductionRate,
+                                false,
+                                false);
+                        }
+                        if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
+                        {
+                            double cargo = Convert.ToDouble(
+                                airlinerTypeNode.Attributes["cargo"].Value,
+                                new CultureInfo("de-DE", false));
+                            type = new AirlinerCargoType(
+                                baseType.Manufacturer,
+                                airlinerTypeName,
+                                "",
+                                baseType.CockpitCrew,
+                                cargo,
+                                0,
+                                0,
+                                baseType.Wingspan,
+                                baseType.Length,
+                                baseType.Weight,
+                                0,
+                                baseType.Price,
+                                0,
+                                baseType.FuelCapacity,
+                                baseType.Body,
+                                baseType.RangeType,
+                                baseType.Engine,
+                                baseType.Produced,
+                                baseType.ProductionRate,
+                                false,
+                                false);
+                        }
+                        if (type != null)
+                        {
+                            type.BaseType = baseType;
+
+                            AirlinerTypes.AddType(type);
+                        }
+                    }
             }
 
             Airliners.Clear();
 
-            XmlNodeList airlinersList = root.SelectNodes("//airliners/airliner");
+            if (root != null)
+            {
+                XmlNodeList airlinersList = root.SelectNodes("//airliners/airliner");
 
-            Parallel.For(
-                0,
-                airlinersList.Count,
-                i => //foreach (XmlElement airlinerNode in airlinersList)
-                    {
-                        var airlinerNode = (XmlElement) airlinersList[i];
-                        AirlinerType type = AirlinerTypes.GetType(airlinerNode.Attributes["type"].Value);
-
-                        if (type != null)
-                        {
-                            string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
-                            string id = airlinerNode.HasAttribute("id") ? airlinerNode.Attributes["id"].Value : tailnumber;
-
-                            string last_service = airlinerNode.Attributes["last_service"].Value;
-                            DateTime built = DateTime.Parse(
-                                airlinerNode.Attributes["built"].Value,
-                                new CultureInfo("de-DE", false));
-                            double flown = Convert.ToDouble(
-                                airlinerNode.Attributes["flown"].Value,
-                                new CultureInfo("de-DE", false));
-                            double damaged = Convert.ToDouble(
-                                airlinerNode.Attributes["damaged"].Value,
-                                new CultureInfo("de-DE", false));
-
-                            var airliner = new Airliner(id, type, tailnumber, built);
-                            airliner.Condition = damaged;
-                            airliner.Flown = flown;
-                            airliner.ClearAirlinerClasses();
-
-                            XmlNodeList airlinerClassList = airlinerNode.SelectNodes("classes/class");
-
-                            foreach (XmlElement airlinerClassNode in airlinerClassList)
+                if (airlinersList != null)
+                    Parallel.For(
+                        0,
+                        airlinersList.Count,
+                        i => //foreach (XmlElement airlinerNode in airlinersList)
                             {
-                                var airlinerClassType =
-                                    (AirlinerClass.ClassType)
-                                    Enum.Parse(
-                                        typeof (AirlinerClass.ClassType),
-                                        airlinerClassNode.Attributes["type"].Value);
-                                int airlinerClassSeating = Convert.ToInt16(airlinerClassNode.Attributes["seating"].Value);
+                                var airlinerNode = (XmlElement) airlinersList[i];
+                                AirlinerType type = AirlinerTypes.GetType(airlinerNode.Attributes["type"].Value);
 
-                                var aClass = new AirlinerClass(airlinerClassType, airlinerClassSeating);
-                                // chs, 2011-13-10 added for loading of airliner facilities
-                                XmlNodeList airlinerClassFacilitiesList =
-                                    airlinerClassNode.SelectNodes("facilities/facility");
-                                foreach (XmlElement airlinerClassFacilityNode in airlinerClassFacilitiesList)
+                                if (type != null)
                                 {
-                                    var airlinerFacilityType =
-                                        (AirlinerFacility.FacilityType)
-                                        Enum.Parse(
-                                            typeof (AirlinerFacility.FacilityType),
-                                            airlinerClassFacilityNode.Attributes["type"].Value);
+                                    string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
+                                    string id = airlinerNode.HasAttribute("id") ? airlinerNode.Attributes["id"].Value : tailnumber;
 
-                                    AirlinerFacility aFacility = AirlinerFacilities.GetFacility(
-                                        airlinerFacilityType,
-                                        airlinerClassFacilityNode.Attributes["uid"].Value);
-                                    aClass.ForceSetFacility(aFacility);
+                                    string last_service = airlinerNode.Attributes["last_service"].Value;
+                                    DateTime built = DateTime.Parse(
+                                        airlinerNode.Attributes["built"].Value,
+                                        new CultureInfo("de-DE", false));
+                                    double flown = Convert.ToDouble(
+                                        airlinerNode.Attributes["flown"].Value,
+                                        new CultureInfo("de-DE", false));
+                                    double damaged = Convert.ToDouble(
+                                        airlinerNode.Attributes["damaged"].Value,
+                                        new CultureInfo("de-DE", false));
+
+                                    var airliner = new Airliner(id, type, tailnumber, built) {Condition = damaged, Flown = flown};
+                                    airliner.ClearAirlinerClasses();
+
+                                    XmlNodeList airlinerClassList = airlinerNode.SelectNodes("classes/class");
+
+                                    if (airlinerClassList != null)
+                                        foreach (XmlElement airlinerClassNode in airlinerClassList)
+                                        {
+                                            var airlinerClassType =
+                                                (AirlinerClass.ClassType)
+                                                Enum.Parse(
+                                                    typeof (AirlinerClass.ClassType),
+                                                    airlinerClassNode.Attributes["type"].Value);
+                                            int airlinerClassSeating = Convert.ToInt16(airlinerClassNode.Attributes["seating"].Value);
+
+                                            var aClass = new AirlinerClass(airlinerClassType, airlinerClassSeating);
+                                            // chs, 2011-13-10 added for loading of airliner facilities
+                                            XmlNodeList airlinerClassFacilitiesList =
+                                                airlinerClassNode.SelectNodes("facilities/facility");
+                                            if (airlinerClassFacilitiesList != null)
+                                                foreach (XmlElement airlinerClassFacilityNode in airlinerClassFacilitiesList)
+                                                {
+                                                    var airlinerFacilityType =
+                                                        (AirlinerFacility.FacilityType)
+                                                        Enum.Parse(
+                                                            typeof (AirlinerFacility.FacilityType),
+                                                            airlinerClassFacilityNode.Attributes["type"].Value);
+
+                                                    AirlinerFacility aFacility = AirlinerFacilities.GetFacility(
+                                                        airlinerFacilityType,
+                                                        airlinerClassFacilityNode.Attributes["uid"].Value);
+                                                    aClass.ForceSetFacility(aFacility);
+                                                }
+
+                                            airliner.AddAirlinerClass(aClass);
+                                        }
+
+                                    Airliners.AddAirliner(airliner);
                                 }
-
-                                airliner.AddAirlinerClass(aClass);
-                            }
-
-                            Airliners.AddAirliner(airliner);
-                        }
-                    });
+                            });
+            }
 
             Airlines.Clear();
 
-            XmlNodeList airlinesList = root.SelectNodes("//airlines/airline[@subsidiary='False']");
-
-            foreach (XmlElement airlineNode in airlinesList)
+            if (root != null)
             {
-                LoadAirline(airlineNode);
+                XmlNodeList airlinesList = root.SelectNodes("//airlines/airline[@subsidiary='False']");
+
+                if (airlinesList != null)
+                    foreach (XmlElement airlineNode in airlinesList)
+                    {
+                        LoadAirline(airlineNode);
+                    }
             }
 
-            XmlNodeList subsidiaryList = root.SelectNodes("//airlines/airline[@subsidiary='True']");
-
-            foreach (XmlElement airlineNode in subsidiaryList)
+            if (root != null)
             {
-                LoadAirline(airlineNode);
+                XmlNodeList subsidiaryList = root.SelectNodes("//airlines/airline[@subsidiary='True']");
+
+                if (subsidiaryList != null)
+                    foreach (XmlElement airlineNode in subsidiaryList)
+                    {
+                        LoadAirline(airlineNode);
+                    }
             }
 
-            XmlNodeList airportsList = root.SelectNodes("//airports/airport");
-
-            var airportsToKeep = new List<Airport>();
-
-            foreach (XmlElement airportNode in airportsList)
+            if (root != null)
             {
-                Airport airport = Airports.GetAirportFromID(airportNode.Attributes["id"].Value);
-                airportsToKeep.Add(airport);
+                XmlNodeList airportsList = root.SelectNodes("//airports/airport");
 
-                /*
+                var airportsToKeep = new List<Airport>();
+
+                if (airportsList != null)
+                    foreach (XmlElement airportNode in airportsList)
+                    {
+                        Airport airport = Airports.GetAirportFromID(airportNode.Attributes["id"].Value);
+                        airportsToKeep.Add(airport);
+
+                        /*
                   *   XmlElement airportPaxNode = xmlDoc.CreateElement("paxvalue");
                     airportPaxNode.SetAttribute("from", paxValue.FromYear.ToString());
                     airportPaxNode.SetAttribute("to", paxValue.ToYear.ToString());
@@ -291,237 +310,236 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airportPaxNode.SetAttribute("inflationafter", paxValue.InflationAfterYear.ToString());
 */
 
-                airport.Income = Convert.ToInt64(airportNode.Attributes["income"].Value);
+                        airport.Income = Convert.ToInt64(airportNode.Attributes["income"].Value);
 
-                airport.Profile.PaxValues.Clear();
+                        airport.Profile.PaxValues.Clear();
 
-                XmlNodeList paxvaluesList = airportNode.SelectNodes("paxvalues/paxvalue");
+                        XmlNodeList paxvaluesList = airportNode.SelectNodes("paxvalues/paxvalue");
 
-                foreach (XmlElement paxElement in paxvaluesList)
-                {
-                    int fromYear = Convert.ToInt16(paxElement.Attributes["from"].Value);
-                    int toYear = Convert.ToInt16(paxElement.Attributes["to"].Value);
-                    var airportSize =
-                        (GeneralHelpers.Size)
-                        Enum.Parse(typeof (GeneralHelpers.Size), paxElement.Attributes["size"].Value);
-                    double pax = Convert.ToDouble(paxElement.Attributes["pax"].Value);
-                    double inflationBefore = Convert.ToDouble(paxElement.Attributes["inflationbefore"].Value);
-                    double inflationAfter = Convert.ToDouble(paxElement.Attributes["inflationafter"].Value);
+                        foreach (XmlElement paxElement in paxvaluesList)
+                        {
+                            int fromYear = Convert.ToInt16(paxElement.Attributes["from"].Value);
+                            int toYear = Convert.ToInt16(paxElement.Attributes["to"].Value);
+                            var airportSize =
+                                (GeneralHelpers.Size)
+                                Enum.Parse(typeof (GeneralHelpers.Size), paxElement.Attributes["size"].Value);
+                            double pax = Convert.ToDouble(paxElement.Attributes["pax"].Value);
+                            double inflationBefore = Convert.ToDouble(paxElement.Attributes["inflationbefore"].Value);
+                            double inflationAfter = Convert.ToDouble(paxElement.Attributes["inflationafter"].Value);
 
-                    var paxValue = new PaxValue(fromYear, toYear, airportSize, pax);
-                    paxValue.InflationAfterYear = inflationAfter;
-                    paxValue.InflationBeforeYear = inflationBefore;
+                            var paxValue = new PaxValue(fromYear, toYear, airportSize, pax) {InflationAfterYear = inflationAfter, InflationBeforeYear = inflationBefore};
 
-                    airport.Profile.PaxValues.Add(paxValue);
-                }
+                            airport.Profile.PaxValues.Add(paxValue);
+                        }
 
-                XmlNodeList runwaysList = airportNode.SelectNodes("runways/runway");
+                        XmlNodeList runwaysList = airportNode.SelectNodes("runways/runway");
 
-                foreach (XmlElement runwayElement in runwaysList)
-                {
-                    string runwayName = runwayElement.Attributes["name"].Value;
-                    long runwayLenght = Convert.ToInt64(runwayElement.Attributes["lenght"].Value);
-                    var runwaySurface =
-                        (Runway.SurfaceType)
-                        Enum.Parse(typeof (Runway.SurfaceType), runwayElement.Attributes["surface"].Value);
-                    DateTime runwayDate = DateTime.Parse(
-                        runwayElement.Attributes["date"].Value,
-                        new CultureInfo("de-DE", false));
+                        foreach (XmlElement runwayElement in runwaysList)
+                        {
+                            string runwayName = runwayElement.Attributes["name"].Value;
+                            long runwayLenght = Convert.ToInt64(runwayElement.Attributes["lenght"].Value);
+                            var runwaySurface =
+                                (Runway.SurfaceType)
+                                Enum.Parse(typeof (Runway.SurfaceType), runwayElement.Attributes["surface"].Value);
+                            DateTime runwayDate = DateTime.Parse(
+                                runwayElement.Attributes["date"].Value,
+                                new CultureInfo("de-DE", false));
 
-                    airport.Runways.Add(new Runway(runwayName, runwayLenght, Runway.RunwayType.Regular, runwaySurface, runwayDate, false));
-                }
+                            airport.Runways.Add(new Runway(runwayName, runwayLenght, Runway.RunwayType.Regular, runwaySurface, runwayDate, false));
+                        }
 
-                XmlNodeList airportHubsList = airportNode.SelectNodes("hubs/hub");
-                // airport.Hubs.Clear();
+                        XmlNodeList airportHubsList = airportNode.SelectNodes("hubs/hub");
+                        // airport.Hubs.Clear();
 
-                foreach (XmlElement airportHubElement in airportHubsList)
-                {
-                    Airline airline = Airlines.GetAirline(airportHubElement.Attributes["airline"].Value);
-                    // airport.Hubs.Add(new Hub(airline,null));
-                }
+                        foreach (XmlElement airportHubElement in airportHubsList)
+                        {
+                            Airline airline = Airlines.GetAirline(airportHubElement.Attributes["airline"].Value);
+                            // airport.Hubs.Add(new Hub(airline,null));
+                        }
 
-                XmlNodeList airportWeatherList = airportNode.SelectNodes("weathers/weather");
+                        XmlNodeList airportWeatherList = airportNode.SelectNodes("weathers/weather");
 
-                for (int i = 0; i < airportWeatherList.Count; i++)
-                {
-                    var airportWeatherElement = airportWeatherList[i] as XmlElement;
+                        for (int i = 0; i < airportWeatherList.Count; i++)
+                        {
+                            var airportWeatherElement = airportWeatherList[i] as XmlElement;
 
-                    DateTime weatherDate = DateTime.Parse(
-                        airportWeatherElement.Attributes["date"].Value,
-                        new CultureInfo("de-DE", false));
-                    var windDirection =
-                        (Weather.WindDirection)
-                        Enum.Parse(
-                            typeof (Weather.WindDirection),
-                            airportWeatherElement.Attributes["direction"].Value);
-                    var windSpeed =
-                        (Weather.eWindSpeed)
-                        Enum.Parse(typeof (Weather.eWindSpeed), airportWeatherElement.Attributes["windspeed"].Value);
-                    Weather.CloudCover cover = airportWeatherElement.HasAttribute("cover")
-                                                   ? (Weather.CloudCover)
-                                                     Enum.Parse(typeof (Weather.CloudCover), airportWeatherElement.Attributes["cover"].Value)
-                                                   : Weather.CloudCover.Clear;
-                    Weather.Precipitation precip = airportWeatherElement.HasAttribute("precip")
-                                                       ? (Weather.Precipitation)
-                                                         Enum.Parse(typeof (Weather.Precipitation), airportWeatherElement.Attributes["precip"].Value)
-                                                       : Weather.Precipitation.None;
-                    double temperatureLow = airportWeatherElement.HasAttribute("temperatureLow")
-                                                ? Convert.ToDouble(
-                                                    airportWeatherElement.Attributes["temperaturelow"].Value,
-                                                    new CultureInfo("de-DE", false))
-                                                : 0;
-                    double temperatureHigh = airportWeatherElement.HasAttribute("temperatureHigh")
-                                                 ? Convert.ToDouble(
-                                                     airportWeatherElement.Attributes["temperaturehigh"].Value,
-                                                     new CultureInfo("de-DE", false))
-                                                 : 20;
+                            DateTime weatherDate = DateTime.Parse(
+                                airportWeatherElement.Attributes["date"].Value,
+                                new CultureInfo("de-DE", false));
+                            var windDirection =
+                                (Weather.WindDirection)
+                                Enum.Parse(
+                                    typeof (Weather.WindDirection),
+                                    airportWeatherElement.Attributes["direction"].Value);
+                            var windSpeed =
+                                (Weather.eWindSpeed)
+                                Enum.Parse(typeof (Weather.eWindSpeed), airportWeatherElement.Attributes["windspeed"].Value);
+                            Weather.CloudCover cover = airportWeatherElement.HasAttribute("cover")
+                                                           ? (Weather.CloudCover)
+                                                             Enum.Parse(typeof (Weather.CloudCover), airportWeatherElement.Attributes["cover"].Value)
+                                                           : Weather.CloudCover.Clear;
+                            Weather.Precipitation precip = airportWeatherElement.HasAttribute("precip")
+                                                               ? (Weather.Precipitation)
+                                                                 Enum.Parse(typeof (Weather.Precipitation), airportWeatherElement.Attributes["precip"].Value)
+                                                               : Weather.Precipitation.None;
+                            double temperatureLow = airportWeatherElement.HasAttribute("temperatureLow")
+                                                        ? Convert.ToDouble(
+                                                            airportWeatherElement.Attributes["temperaturelow"].Value,
+                                                            new CultureInfo("de-DE", false))
+                                                        : 0;
+                            double temperatureHigh = airportWeatherElement.HasAttribute("temperatureHigh")
+                                                         ? Convert.ToDouble(
+                                                             airportWeatherElement.Attributes["temperaturehigh"].Value,
+                                                             new CultureInfo("de-DE", false))
+                                                         : 20;
 
-                    XmlNodeList airportTemperatureList = airportWeatherElement.SelectNodes("temperatures/temperature");
-                    var temperatures = new HourlyWeather[airportTemperatureList.Count];
+                            XmlNodeList airportTemperatureList = airportWeatherElement.SelectNodes("temperatures/temperature");
+                            var temperatures = new HourlyWeather[airportTemperatureList.Count];
 
-                    int t = 0;
-                    foreach (XmlElement airportTemperatureNode in airportTemperatureList)
-                    {
-                        double hourlyTemperature = Convert.ToDouble(
-                            airportTemperatureNode.Attributes["temp"].Value,
-                            new CultureInfo("de-DE", false));
-                        var hourlyCover =
-                            (Weather.CloudCover)
-                            Enum.Parse(typeof (Weather.CloudCover), airportTemperatureNode.Attributes["cover"].Value);
-                        var hourlyPrecip =
-                            (Weather.Precipitation)
-                            Enum.Parse(
-                                typeof (Weather.Precipitation),
-                                airportTemperatureNode.Attributes["precip"].Value);
-                        var hourlyWindspeed =
-                            (Weather.eWindSpeed)
-                            Enum.Parse(
-                                typeof (Weather.eWindSpeed),
-                                airportTemperatureNode.Attributes["windspeed"].Value);
-                        var hourlyDirection =
-                            (Weather.WindDirection)
-                            Enum.Parse(
-                                typeof (Weather.WindDirection),
-                                airportTemperatureNode.Attributes["direction"].Value);
+                            int t = 0;
+                            foreach (XmlElement airportTemperatureNode in airportTemperatureList)
+                            {
+                                double hourlyTemperature = Convert.ToDouble(
+                                    airportTemperatureNode.Attributes["temp"].Value,
+                                    new CultureInfo("de-DE", false));
+                                var hourlyCover =
+                                    (Weather.CloudCover)
+                                    Enum.Parse(typeof (Weather.CloudCover), airportTemperatureNode.Attributes["cover"].Value);
+                                var hourlyPrecip =
+                                    (Weather.Precipitation)
+                                    Enum.Parse(
+                                        typeof (Weather.Precipitation),
+                                        airportTemperatureNode.Attributes["precip"].Value);
+                                var hourlyWindspeed =
+                                    (Weather.eWindSpeed)
+                                    Enum.Parse(
+                                        typeof (Weather.eWindSpeed),
+                                        airportTemperatureNode.Attributes["windspeed"].Value);
+                                var hourlyDirection =
+                                    (Weather.WindDirection)
+                                    Enum.Parse(
+                                        typeof (Weather.WindDirection),
+                                        airportTemperatureNode.Attributes["direction"].Value);
 
-                        temperatures[t] = new HourlyWeather(
-                            hourlyTemperature,
-                            hourlyCover,
-                            hourlyPrecip,
-                            hourlyWindspeed,
-                            hourlyDirection);
-                        t++;
+                                temperatures[t] = new HourlyWeather(
+                                    hourlyTemperature,
+                                    hourlyCover,
+                                    hourlyPrecip,
+                                    hourlyWindspeed,
+                                    hourlyDirection);
+                                t++;
+                            }
+
+                            airport.Weather[i] = new Weather(
+                                weatherDate,
+                                windSpeed,
+                                windDirection,
+                                cover,
+                                precip,
+                                temperatures,
+                                temperatureLow,
+                                temperatureHigh);
+                        }
+
+                        XmlNodeList airportStatList = airportNode.SelectNodes("stats/stat");
+
+                        foreach (XmlElement airportStatNode in airportStatList)
+                        {
+                            int year = Convert.ToInt32(airportStatNode.Attributes["year"].Value);
+                            Airline airline = Airlines.GetAirline(airportStatNode.Attributes["airline"].Value);
+                            string statType = airportStatNode.Attributes["type"].Value;
+                            int statValue = Convert.ToInt32(airportStatNode.Attributes["value"].Value);
+                            airport.Statistics.SetStatisticsValue(
+                                year,
+                                airline,
+                                StatisticsTypes.GetStatisticsType(statType),
+                                statValue);
+                        }
+
+                        XmlNodeList airportFacilitiesList = airportNode.SelectNodes("facilities/facility");
+                        airport.ClearFacilities();
+
+                        foreach (XmlElement airportFacilityNode in airportFacilitiesList)
+                        {
+                            Airline airline = Airlines.GetAirline(airportFacilityNode.Attributes["airline"].Value);
+                            AirportFacility airportFacility =
+                                AirportFacilities.GetFacility(airportFacilityNode.Attributes["name"].Value);
+                            DateTime finishedDate = DateTime.Parse(
+                                airportFacilityNode.Attributes["finished"].Value,
+                                new CultureInfo("de-DE", false));
+
+                            airport.AddAirportFacility(airline, airportFacility, finishedDate);
+                        }
+                        airport.Terminals.Clear();
+
+                        XmlNodeList terminalsList = airportNode.SelectNodes("terminals/terminal");
+
+                        foreach (XmlElement terminalNode in terminalsList)
+                        {
+                            DateTime deliveryDate = DateTime.Parse(
+                                terminalNode.Attributes["delivery"].Value,
+                                new CultureInfo("de-DE", false));
+                            Airline owner = Airlines.GetAirline(terminalNode.Attributes["owner"].Value);
+                            string terminalName = terminalNode.Attributes["name"].Value;
+                            int gates = Convert.ToInt32(terminalNode.Attributes["totalgates"].Value);
+
+                            var terminal = new Terminal(airport, owner, terminalName, gates, deliveryDate, Terminal.TerminalType.Passenger);
+                            terminal.Gates.Clear();
+
+                            XmlNodeList airportGatesList = terminalNode.SelectNodes("gates/gate");
+
+                            foreach (XmlElement airportGateNode in airportGatesList)
+                            {
+                                DateTime gateDeliveryDate = DateTime.Parse(
+                                    airportGateNode.Attributes["delivery"].Value,
+                                    new CultureInfo("de-DE", false));
+                                var gate = new Gate(gateDeliveryDate);
+
+                                terminal.Gates.AddGate(gate);
+                            }
+
+                            airport.AddTerminal(terminal);
+                        }
+                        airport.ClearAirlineContracts();
+
+                        XmlNodeList contractsList = airportNode.SelectNodes("contracts/contract");
+
+                        foreach (XmlElement contractNode in contractsList)
+                        {
+                            Airline contractAirline = Airlines.GetAirline(contractNode.Attributes["airline"].Value);
+                            int contractLength = Convert.ToInt16(contractNode.Attributes["length"].Value);
+                            DateTime contractDate = DateTime.Parse(
+                                contractNode.Attributes["date"].Value,
+                                new CultureInfo("de-DE", false));
+                            int contractGates = Convert.ToInt16(contractNode.Attributes["gates"].Value);
+                            double contractPayment = Convert.ToDouble(
+                                contractNode.Attributes["payment"].Value,
+                                new CultureInfo("de-DE", false));
+                            Boolean contractExclusive = Convert.ToBoolean(contractNode.Attributes["exclusive"].Value);
+                            Terminal contractTerminal = contractNode.HasAttribute("terminal")
+                                                            ? airport.Terminals.AirportTerminals.Find(
+                                                                t => t.Name == contractNode.Attributes["terminal"].Value)
+                                                            : null;
+
+                            var contract = new AirportContract(
+                                contractAirline,
+                                airport,
+                                AirportContract.ContractType.Full,
+                                Terminal.TerminalType.Passenger,
+                                contractDate,
+                                contractGates,
+                                contractLength,
+                                contractPayment,
+                                true,
+                                false,
+                                contractExclusive,
+                                contractTerminal);
+                            AirportHelpers.AddAirlineContract(contract);
+                        }
                     }
 
-                    airport.Weather[i] = new Weather(
-                        weatherDate,
-                        windSpeed,
-                        windDirection,
-                        cover,
-                        precip,
-                        temperatures,
-                        temperatureLow,
-                        temperatureHigh);
-                }
-
-                XmlNodeList airportStatList = airportNode.SelectNodes("stats/stat");
-
-                foreach (XmlElement airportStatNode in airportStatList)
-                {
-                    int year = Convert.ToInt32(airportStatNode.Attributes["year"].Value);
-                    Airline airline = Airlines.GetAirline(airportStatNode.Attributes["airline"].Value);
-                    string statType = airportStatNode.Attributes["type"].Value;
-                    int statValue = Convert.ToInt32(airportStatNode.Attributes["value"].Value);
-                    airport.Statistics.SetStatisticsValue(
-                        year,
-                        airline,
-                        StatisticsTypes.GetStatisticsType(statType),
-                        statValue);
-                }
-
-                XmlNodeList airportFacilitiesList = airportNode.SelectNodes("facilities/facility");
-                airport.ClearFacilities();
-
-                foreach (XmlElement airportFacilityNode in airportFacilitiesList)
-                {
-                    Airline airline = Airlines.GetAirline(airportFacilityNode.Attributes["airline"].Value);
-                    AirportFacility airportFacility =
-                        AirportFacilities.GetFacility(airportFacilityNode.Attributes["name"].Value);
-                    DateTime finishedDate = DateTime.Parse(
-                        airportFacilityNode.Attributes["finished"].Value,
-                        new CultureInfo("de-DE", false));
-
-                    airport.AddAirportFacility(airline, airportFacility, finishedDate);
-                }
-                airport.Terminals.Clear();
-
-                XmlNodeList terminalsList = airportNode.SelectNodes("terminals/terminal");
-
-                foreach (XmlElement terminalNode in terminalsList)
-                {
-                    DateTime deliveryDate = DateTime.Parse(
-                        terminalNode.Attributes["delivery"].Value,
-                        new CultureInfo("de-DE", false));
-                    Airline owner = Airlines.GetAirline(terminalNode.Attributes["owner"].Value);
-                    string terminalName = terminalNode.Attributes["name"].Value;
-                    int gates = Convert.ToInt32(terminalNode.Attributes["totalgates"].Value);
-
-                    var terminal = new Terminal(airport, owner, terminalName, gates, deliveryDate, Terminal.TerminalType.Passenger);
-                    terminal.Gates.Clear();
-
-                    XmlNodeList airportGatesList = terminalNode.SelectNodes("gates/gate");
-
-                    foreach (XmlElement airportGateNode in airportGatesList)
-                    {
-                        DateTime gateDeliveryDate = DateTime.Parse(
-                            airportGateNode.Attributes["delivery"].Value,
-                            new CultureInfo("de-DE", false));
-                        var gate = new Gate(gateDeliveryDate);
-
-                        terminal.Gates.AddGate(gate);
-                    }
-
-                    airport.AddTerminal(terminal);
-                }
-                airport.ClearAirlineContracts();
-
-                XmlNodeList contractsList = airportNode.SelectNodes("contracts/contract");
-
-                foreach (XmlElement contractNode in contractsList)
-                {
-                    Airline contractAirline = Airlines.GetAirline(contractNode.Attributes["airline"].Value);
-                    int contractLength = Convert.ToInt16(contractNode.Attributes["length"].Value);
-                    DateTime contractDate = DateTime.Parse(
-                        contractNode.Attributes["date"].Value,
-                        new CultureInfo("de-DE", false));
-                    int contractGates = Convert.ToInt16(contractNode.Attributes["gates"].Value);
-                    double contractPayment = Convert.ToDouble(
-                        contractNode.Attributes["payment"].Value,
-                        new CultureInfo("de-DE", false));
-                    Boolean contractExclusive = Convert.ToBoolean(contractNode.Attributes["exclusive"].Value);
-                    Terminal contractTerminal = contractNode.HasAttribute("terminal")
-                                                    ? airport.Terminals.AirportTerminals.Find(
-                                                        t => t.Name == contractNode.Attributes["terminal"].Value)
-                                                    : null;
-
-                    var contract = new AirportContract(
-                        contractAirline,
-                        airport,
-                        AirportContract.ContractType.Full,
-                        Terminal.TerminalType.Passenger,
-                        contractDate,
-                        contractGates,
-                        contractLength,
-                        contractPayment,
-                        true,
-                        false,
-                        contractExclusive,
-                        contractTerminal);
-                    AirportHelpers.AddAirlineContract(contract);
-                }
+                Airports.RemoveAirports(a => !airportsToKeep.Contains(a));
             }
-
-            Airports.RemoveAirports(a => !airportsToKeep.Contains(a));
 
             XmlNodeList airportDestinationsList = root.SelectNodes("//airportdestinations/airportdestination");
 
@@ -591,9 +609,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     FlightSchool fs =
                         Airlines.GetAllAirlines()
-                                .SelectMany(a => a.FlightSchools)
-                                .Where(f => f.ID == id)
-                                .FirstOrDefault();
+                                .SelectMany(a => a.FlightSchools).FirstOrDefault(f => f.ID == id);
                     instructor.FlightSchool = fs;
                     fs.AddInstructor(instructor);
                 }
@@ -740,8 +756,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 int minimumSeats = Convert.ToInt16(confElement.Attributes["minimumseats"].Value);
 
-                var configuration = new AirlinerConfiguration(confName, minimumSeats, standard);
-                configuration.ID = confid;
+                var configuration = new AirlinerConfiguration(confName, minimumSeats, standard) {ID = confid};
 
                 XmlNodeList classesList = confElement.SelectNodes("classes/class");
 
@@ -778,8 +793,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 XmlNodeList classesList = confElement.SelectNodes("classes/class");
 
-                var classesConfiguration = new RouteClassesConfiguration(routeConfName, standard);
-                classesConfiguration.ID = confid;
+                var classesConfiguration = new RouteClassesConfiguration(routeConfName, standard) {ID = confid};
 
                 foreach (XmlElement classElement in classesList)
                 {
@@ -836,8 +850,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Scenario scenario = Scenarios.GetScenario(scenarioNode.Attributes["name"].Value);
 
-                var so = new ScenarioObject(scenario);
-                so.IsSuccess = Convert.ToBoolean(scenarioNode.Attributes["success"].Value);
+                var so = new ScenarioObject(scenario) {IsSuccess = Convert.ToBoolean(scenarioNode.Attributes["success"].Value)};
 
                 if (scenarioNode.HasAttribute("failed"))
                 {
@@ -878,7 +891,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             GameTimeZone timezone =
                 TimeZones.GetTimeZones()
                          .Find(
-                             delegate(GameTimeZone gtz) { return gtz.UTCOffset == TimeSpan.Parse(gameSettingsNode.Attributes["timezone"].Value); });
+                             gtz => gtz.UTCOffset == TimeSpan.Parse(gameSettingsNode.Attributes["timezone"].Value));
             GameObject.GetInstance().TimeZone = timezone;
 
             Settings.GetInstance().MailsOnLandings =
@@ -923,8 +936,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 string newsBody = newsNode.Attributes["body"].Value;
                 Boolean newsIsRead = Convert.ToBoolean(newsNode.Attributes["isread"].Value);
 
-                var news = new News(newsType, newsDate, newsSubject, newsBody);
-                news.IsRead = newsIsRead;
+                var news = new News(newsType, newsDate, newsSubject, newsBody) {IsRead = newsIsRead};
 
                 GameObject.GetInstance().NewsBox.AddNews(news);
             }
@@ -979,9 +991,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 tailnumberNode.SetAttribute("country", country.Uid);
                 tailnumberNode.SetAttribute(
                     "value",
-                    country.TailNumbers.LastTailNumber == null
-                        ? country.TailNumbers.GetNextTailNumber()
-                        : country.TailNumbers.LastTailNumber);
+                    country.TailNumbers.LastTailNumber ?? country.TailNumbers.GetNextTailNumber());
 
                 tailnumbersNode.AppendChild(tailnumberNode);
             }
@@ -1000,13 +1010,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     airlinerTypeNode.SetAttribute(
                         "cabincrew",
-                        ((AirlinerPassengerType) airlinerType).CabinCrew.ToString());
+                        ((AirlinerPassengerType) airlinerType).CabinCrew.ToString(CultureInfo.InvariantCulture));
                     airlinerTypeNode.SetAttribute(
                         "passengers",
-                        ((AirlinerPassengerType) airlinerType).MaxSeatingCapacity.ToString());
+                        ((AirlinerPassengerType) airlinerType).MaxSeatingCapacity.ToString(CultureInfo.InvariantCulture));
                     airlinerTypeNode.SetAttribute(
                         "maxclasses",
-                        ((AirlinerPassengerType) airlinerType).MaxAirlinerClasses.ToString());
+                        ((AirlinerPassengerType) airlinerType).MaxAirlinerClasses.ToString(CultureInfo.InvariantCulture));
                 }
                 if (airlinerType.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
                 {
@@ -1029,17 +1039,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlinerNode.SetAttribute("tailnumber", airliner.TailNumber);
                 airlinerNode.SetAttribute("id", airliner.ID);
 
-                airlinerNode.SetAttribute("last_service", airliner.LastServiceCheck.ToString());
+                airlinerNode.SetAttribute("last_service", airliner.LastServiceCheck.ToString(CultureInfo.InvariantCulture));
                 airlinerNode.SetAttribute("built", airliner.BuiltDate.ToString(new CultureInfo("de-DE")));
                 airlinerNode.SetAttribute("flown", airliner.Flown.ToString(new CultureInfo("de-DE", false)));
-                airlinerNode.SetAttribute("damaged", airliner.Condition.ToString());
+                airlinerNode.SetAttribute("damaged", airliner.Condition.ToString(CultureInfo.InvariantCulture));
 
                 XmlElement airlinerClassesNode = xmlDoc.CreateElement("classes");
                 foreach (AirlinerClass aClass in airliner.Classes)
                 {
                     XmlElement airlinerClassNode = xmlDoc.CreateElement("class");
                     airlinerClassNode.SetAttribute("type", aClass.Type.ToString());
-                    airlinerClassNode.SetAttribute("seating", aClass.SeatingCapacity.ToString());
+                    airlinerClassNode.SetAttribute("seating", aClass.SeatingCapacity.ToString(CultureInfo.InvariantCulture));
 
                     XmlElement airlinerClassFacilitiesNode = xmlDoc.CreateElement("facilities");
                     foreach (
@@ -1087,14 +1097,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 //airlineNode.SetAttribute("logo", airline.Profile.Logo.Substring(airline.Profile.Logo.LastIndexOf('\\') + 1));
                 airlineNode.SetAttribute("CEO", airline.Profile.CEO);
                 airlineNode.SetAttribute("money", string.Format("{0:0}", airline.Money));
-                airlineNode.SetAttribute("reputation", airline.Reputation.ToString());
+                airlineNode.SetAttribute("reputation", airline.Reputation.ToString(CultureInfo.InvariantCulture));
                 airlineNode.SetAttribute("mentality", airline.Mentality.ToString());
                 airlineNode.SetAttribute("market", airline.MarketFocus.ToString());
                 airlineNode.SetAttribute("license", airline.License.ToString());
                 airlineNode.SetAttribute("routefocus", airline.AirlineRouteFocus.ToString());
                 airlineNode.SetAttribute("isreal", airline.Profile.IsReal.ToString());
-                airlineNode.SetAttribute("founded", airline.Profile.Founded.ToString());
-                airlineNode.SetAttribute("folded", airline.Profile.Folded.ToString());
+                airlineNode.SetAttribute("founded", airline.Profile.Founded.ToString(CultureInfo.InvariantCulture));
+                airlineNode.SetAttribute("folded", airline.Profile.Folded.ToString(CultureInfo.InvariantCulture));
 
                 XmlElement airlineLogosList = xmlDoc.CreateElement("logos");
 
@@ -1102,8 +1112,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     XmlElement logoElement = xmlDoc.CreateElement("logo");
 
-                    logoElement.SetAttribute("from", logo.FromYear.ToString());
-                    logoElement.SetAttribute("to", logo.ToYear.ToString());
+                    logoElement.SetAttribute("from", logo.FromYear.ToString(CultureInfo.InvariantCulture));
+                    logoElement.SetAttribute("to", logo.ToYear.ToString(CultureInfo.InvariantCulture));
                     logoElement.SetAttribute("path", logo.Path);
 
                     airlineLogosList.AppendChild(logoElement);
@@ -1117,11 +1127,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airlineContractNode.SetAttribute(
                         "signingdate",
                         airline.Contract.SigningDate.ToString(new CultureInfo("de-DE")));
-                    airlineContractNode.SetAttribute("length", airline.Contract.Length.ToString());
+                    airlineContractNode.SetAttribute("length", airline.Contract.Length.ToString(CultureInfo.InvariantCulture));
                     airlineContractNode.SetAttribute(
                         "discount",
                         airline.Contract.Discount.ToString(new CultureInfo("de-DE", false)));
-                    airlineContractNode.SetAttribute("airliners", airline.Contract.PurchasedAirliners.ToString());
+                    airlineContractNode.SetAttribute("airliners", airline.Contract.PurchasedAirliners.ToString(CultureInfo.InvariantCulture));
 
                     airlineNode.AppendChild(airlineContractNode);
                 }
@@ -1165,7 +1175,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     loanNode.SetAttribute("date", loan.Date.ToString(new CultureInfo("de-DE")));
                     loanNode.SetAttribute("rate", loan.Rate.ToString(new CultureInfo("de-DE", false)));
                     loanNode.SetAttribute("amount", loan.Amount.ToString(new CultureInfo("de-DE", false)));
-                    loanNode.SetAttribute("length", loan.Length.ToString());
+                    loanNode.SetAttribute("length", loan.Length.ToString(CultureInfo.InvariantCulture));
                     loanNode.SetAttribute("payment", loan.PaymentLeft.ToString(new CultureInfo("de-DE", false)));
 
                     loansNode.AppendChild(loanNode);
@@ -1181,7 +1191,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         double value = airline.Statistics.GetStatisticsValue(year, type);
 
-                        airlineStatNode.SetAttribute("year", year.ToString());
+                        airlineStatNode.SetAttribute("year", year.ToString(CultureInfo.InvariantCulture));
                         airlineStatNode.SetAttribute("type", type.Shortname);
                         airlineStatNode.SetAttribute("value", value.ToString(new CultureInfo("de-DE", false)));
 
@@ -1195,8 +1205,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     XmlElement invoiceNode = xmlDoc.CreateElement("invoice");
                     invoiceNode.SetAttribute("type", invoice.Type.ToString());
-                    invoiceNode.SetAttribute("year", invoice.Year.ToString());
-                    invoiceNode.SetAttribute("month", invoice.Month.ToString());
+                    invoiceNode.SetAttribute("year", invoice.Year.ToString(CultureInfo.InvariantCulture));
+                    invoiceNode.SetAttribute("month", invoice.Month.ToString(CultureInfo.InvariantCulture));
                     invoiceNode.SetAttribute("amount", invoice.Amount.ToString(new CultureInfo("de-DE", false)));
 
                     invoicesNode.AppendChild(invoiceNode);
@@ -1300,7 +1310,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             XmlElement airlinerStatNode = xmlDoc.CreateElement("stat");
 
                             double value = airliner.Statistics.GetStatisticsValue(year, type);
-                            airlinerStatNode.SetAttribute("year", year.ToString());
+                            airlinerStatNode.SetAttribute("year", year.ToString(CultureInfo.InvariantCulture));
                             airlinerStatNode.SetAttribute("type", type.Shortname);
                             airlinerStatNode.SetAttribute("value", value.ToString(new CultureInfo("de-DE", false)));
 
@@ -1337,20 +1347,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             "flighttime",
                             airliner.CurrentFlight.FlightTime.ToString(new CultureInfo("de-DE")));
 
-                        if (airliner.CurrentFlight is StopoverFlight)
+                        var flight = airliner.CurrentFlight as StopoverFlight;
+                        if (flight != null)
                         {
                             XmlElement stopoverNode = xmlDoc.CreateElement("stopover");
                             stopoverNode.SetAttribute(
                                 "currentflight",
-                                ((StopoverFlight) airliner.CurrentFlight).CurrentFlight.ToString());
+                                flight.CurrentFlight.ToString(CultureInfo.InvariantCulture));
 
-                            if (airliner.CurrentFlight.IsPassengerFlight())
+                            if (flight.IsPassengerFlight())
                             {
                                 XmlElement stopoverClassesNode = xmlDoc.CreateElement("classes");
 
                                 foreach (
                                     RouteTimeTableEntry stopEntry in
-                                        ((StopoverFlight) airliner.CurrentFlight).AllClasses.Keys)
+                                        flight.AllClasses.Keys)
                                 {
                                     XmlElement stopoverClassNode = xmlDoc.CreateElement("class");
                                     stopoverClassNode.SetAttribute("id", stopEntry.ID);
@@ -1358,7 +1369,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                     XmlElement stopoverFlightClassesNode = xmlDoc.CreateElement("flightclasses");
                                     foreach (
                                         FlightAirlinerClass faClass in
-                                            ((StopoverFlight) airliner.CurrentFlight).AllClasses[stopEntry])
+                                            flight.AllClasses[stopEntry])
                                     {
                                         XmlElement stopoverFlightClassNode = xmlDoc.CreateElement("flightclass");
                                         stopoverFlightClassNode.SetAttribute(
@@ -1366,7 +1377,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                             faClass.AirlinerClass.Type.ToString());
                                         stopoverFlightClassNode.SetAttribute(
                                             "passengers",
-                                            faClass.Passengers.ToString());
+                                            faClass.Passengers.ToString(CultureInfo.InvariantCulture));
 
                                         stopoverFlightClassesNode.AppendChild(stopoverFlightClassNode);
                                     }
@@ -1376,20 +1387,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                                 stopoverNode.AppendChild(stopoverClassesNode);
                             }
-                            if (airliner.CurrentFlight.IsCargoFlight())
+                            if (flight.IsCargoFlight())
                             {
                                 XmlElement stopoverCargosNode = xmlDoc.CreateElement("cargos");
 
                                 foreach (
                                     RouteTimeTableEntry stopEntry in
-                                        ((StopoverFlight) airliner.CurrentFlight).AllCargo.Keys)
+                                        flight.AllCargo.Keys)
                                 {
                                     XmlElement stopoverCargoNode = xmlDoc.CreateElement("cargo");
                                     stopoverCargoNode.SetAttribute("id", stopEntry.ID);
 
                                     stopoverCargoNode.SetAttribute(
                                         "value",
-                                        ((StopoverFlight) airliner.CurrentFlight).AllCargo[stopEntry].ToString(
+                                        flight.AllCargo[stopEntry].ToString(
                                             new CultureInfo("de-DE", false)));
 
                                     stopoverCargosNode.AppendChild(stopoverCargoNode);
@@ -1407,7 +1418,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             {
                                 XmlElement flightClassNode = xmlDoc.CreateElement("flightclass");
                                 flightClassNode.SetAttribute("type", aClass.AirlinerClass.Type.ToString());
-                                flightClassNode.SetAttribute("passengers", aClass.Passengers.ToString());
+                                flightClassNode.SetAttribute("passengers", aClass.Passengers.ToString(CultureInfo.InvariantCulture));
 
                                 flightClassesNode.AppendChild(flightClassNode);
                             }
@@ -1439,18 +1450,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 XmlElement airportNode = xmlDoc.CreateElement("airport");
                 airportNode.SetAttribute("id", airport.Profile.ID);
-                airportNode.SetAttribute("income", airport.Income.ToString());
+                airportNode.SetAttribute("income", airport.Income.ToString(CultureInfo.InvariantCulture));
 
                 XmlElement airportPaxsNode = xmlDoc.CreateElement("paxvalues");
                 foreach (PaxValue paxValue in airport.Profile.PaxValues)
                 {
                     XmlElement airportPaxNode = xmlDoc.CreateElement("paxvalue");
-                    airportPaxNode.SetAttribute("from", paxValue.FromYear.ToString());
-                    airportPaxNode.SetAttribute("to", paxValue.ToYear.ToString());
+                    airportPaxNode.SetAttribute("from", paxValue.FromYear.ToString(CultureInfo.InvariantCulture));
+                    airportPaxNode.SetAttribute("to", paxValue.ToYear.ToString(CultureInfo.InvariantCulture));
                     airportPaxNode.SetAttribute("size", paxValue.Size.ToString());
-                    airportPaxNode.SetAttribute("pax", paxValue.Pax.ToString());
-                    airportPaxNode.SetAttribute("inflationbefore", paxValue.InflationBeforeYear.ToString());
-                    airportPaxNode.SetAttribute("inflationafter", paxValue.InflationAfterYear.ToString());
+                    airportPaxNode.SetAttribute("pax", paxValue.Pax.ToString(CultureInfo.InvariantCulture));
+                    airportPaxNode.SetAttribute("inflationbefore", paxValue.InflationBeforeYear.ToString(CultureInfo.InvariantCulture));
+                    airportPaxNode.SetAttribute("inflationafter", paxValue.InflationAfterYear.ToString(CultureInfo.InvariantCulture));
 
                     airportPaxsNode.AppendChild(airportPaxNode);
                 }
@@ -1462,7 +1473,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     XmlElement airportRunwayNode = xmlDoc.CreateElement("runway");
                     airportRunwayNode.SetAttribute("name", runway.Name);
-                    airportRunwayNode.SetAttribute("lenght", runway.Length.ToString());
+                    airportRunwayNode.SetAttribute("lenght", runway.Length.ToString(CultureInfo.InvariantCulture));
                     airportRunwayNode.SetAttribute("surface", runway.Surface.ToString());
                     airportRunwayNode.SetAttribute("date", runway.BuiltDate.ToString(new CultureInfo("de-DE")));
 
@@ -1501,16 +1512,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             weather.TemperatureHigh.ToString(new CultureInfo("de-DE", false)));
 
                         XmlElement temperaturesNode = xmlDoc.CreateElement("temperatures");
-                        for (int i = 0; i < weather.Temperatures.Length; i++)
+                        foreach (HourlyWeather t in weather.Temperatures)
                         {
                             XmlElement temperatureNode = xmlDoc.CreateElement("temperature");
                             temperatureNode.SetAttribute(
                                 "temp",
-                                weather.Temperatures[i].Temperature.ToString(new CultureInfo("de-DE", false)));
-                            temperatureNode.SetAttribute("cover", weather.Temperatures[i].Cover.ToString());
-                            temperatureNode.SetAttribute("precip", weather.Temperatures[i].Precip.ToString());
-                            temperatureNode.SetAttribute("windspeed", weather.Temperatures[i].WindSpeed.ToString());
-                            temperatureNode.SetAttribute("direction", weather.Temperatures[i].Direction.ToString());
+                                t.Temperature.ToString(new CultureInfo("de-DE", false)));
+                            temperatureNode.SetAttribute("cover", t.Cover.ToString());
+                            temperatureNode.SetAttribute("precip", t.Precip.ToString());
+                            temperatureNode.SetAttribute("windspeed", t.WindSpeed.ToString());
+                            temperatureNode.SetAttribute("direction", t.Direction.ToString());
 
                             temperaturesNode.AppendChild(temperatureNode);
                         }
@@ -1534,7 +1545,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             {
                                 XmlElement airportStatNode = xmlDoc.CreateElement("stat");
 
-                                airportStatNode.SetAttribute("year", year.ToString());
+                                airportStatNode.SetAttribute("year", year.ToString(CultureInfo.InvariantCulture));
                                 airportStatNode.SetAttribute("airline", airline.Profile.IATACode);
                                 airportStatNode.SetAttribute("type", type.Shortname);
                                 airportStatNode.SetAttribute("value", value.ToString(new CultureInfo("de-DE", false)));
@@ -1587,7 +1598,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         "owner",
                         terminal.Airline == null ? "airport" : terminal.Airline.Profile.IATACode);
                     terminalNode.SetAttribute("name", terminal.Name);
-                    terminalNode.SetAttribute("totalgates", terminal.Gates.GetGates().Count.ToString());
+                    terminalNode.SetAttribute("totalgates", terminal.Gates.GetGates().Count.ToString(CultureInfo.InvariantCulture));
                     XmlElement gatesNode = xmlDoc.CreateElement("gates");
                     foreach (Gate gate in terminal.Gates.GetGates())
                     {
@@ -1609,9 +1620,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     XmlElement contractNode = xmlDoc.CreateElement("contract");
 
                     contractNode.SetAttribute("airline", contract.Airline.Profile.IATACode);
-                    contractNode.SetAttribute("length", contract.Length.ToString());
+                    contractNode.SetAttribute("length", contract.Length.ToString(CultureInfo.InvariantCulture));
                     contractNode.SetAttribute("date", contract.ContractDate.ToString(new CultureInfo("de-DE")));
-                    contractNode.SetAttribute("gates", contract.NumberOfGates.ToString());
+                    contractNode.SetAttribute("gates", contract.NumberOfGates.ToString(CultureInfo.InvariantCulture));
                     contractNode.SetAttribute(
                         "payment",
                         contract.YearlyPayment.ToString(new CultureInfo("de-DE", false)));
@@ -1656,15 +1667,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         destinationNode.SetAttribute("id", dest.Profile.IATACode);
                         destinationNode.SetAttribute(
                             "rate",
-                            airport.GetDestinationPassengersRate(dest, AirlinerClass.ClassType.EconomyClass).ToString());
+                            airport.GetDestinationPassengersRate(dest, AirlinerClass.ClassType.EconomyClass).ToString(CultureInfo.InvariantCulture));
                         destinationNode.SetAttribute(
                             "passengers",
-                            airport.GetDestinationPassengerStatistics(dest).ToString());
+                            airport.GetDestinationPassengerStatistics(dest).ToString(CultureInfo.InvariantCulture));
 
-                        destinationNode.SetAttribute("cargo", airport.GetDestinationCargoRate(dest).ToString());
+                        destinationNode.SetAttribute("cargo", airport.GetDestinationCargoRate(dest).ToString(CultureInfo.InvariantCulture));
                         destinationNode.SetAttribute(
                             "cargostats",
-                            airport.GetDestinationCargoStatistics(dest).ToString());
+                            airport.GetDestinationCargoStatistics(dest).ToString(CultureInfo.InvariantCulture));
 
                         destinationsNode.AppendChild(destinationNode);
                     }
@@ -1675,7 +1686,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             root.AppendChild(airportDestinationsNode);
 
-            Console.WriteLine("Saving of destinations: {0} ms.", sw.ElapsedMilliseconds);
+            Console.WriteLine(@"Saving of destinations: {0} ms.", sw.ElapsedMilliseconds);
 
             XmlElement instructorsNode = xmlDoc.CreateElement("instructors");
 
@@ -1776,15 +1787,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 configurationNode.SetAttribute("id", conf.ID);
                 configurationNode.SetAttribute("standard", conf.Standard.ToString());
 
-                configurationNode.SetAttribute("minimumseats", conf.MinimumSeats.ToString());
+                configurationNode.SetAttribute("minimumseats", conf.MinimumSeats.ToString(CultureInfo.InvariantCulture));
 
                 XmlElement classesNode = xmlDoc.CreateElement("classes");
 
                 foreach (AirlinerClassConfiguration aClass in conf.Classes)
                 {
                     XmlElement classNode = xmlDoc.CreateElement("class");
-                    classNode.SetAttribute("seating", aClass.SeatingCapacity.ToString());
-                    classNode.SetAttribute("regularseating", aClass.RegularSeatingCapacity.ToString());
+                    classNode.SetAttribute("seating", aClass.SeatingCapacity.ToString(CultureInfo.InvariantCulture));
+                    classNode.SetAttribute("regularseating", aClass.RegularSeatingCapacity.ToString(CultureInfo.InvariantCulture));
                     classNode.SetAttribute("type", aClass.Type.ToString());
 
                     foreach (AirlinerFacility aFac in aClass.Facilities)
@@ -1871,7 +1882,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     XmlElement failureNode = xmlDoc.CreateElement("failure");
 
                     failureNode.SetAttribute("id", sfo.Failure.ID);
-                    failureNode.SetAttribute("count", sfo.Failures.ToString());
+                    failureNode.SetAttribute("count", sfo.Failures.ToString(CultureInfo.InvariantCulture));
                     failureNode.SetAttribute("lastfailuretime", sfo.LastFailureTime.ToString(new CultureInfo("de-DE")));
 
                     failuresNode.AppendChild(failureNode);
@@ -1890,7 +1901,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             gameSettingsNode.SetAttribute("mailonlandings", Settings.GetInstance().MailsOnLandings.ToString());
             gameSettingsNode.SetAttribute("mailonbadweather", Settings.GetInstance().MailsOnBadWeather.ToString());
             gameSettingsNode.SetAttribute("airportcode", Settings.GetInstance().AirportCodeDisplay.ToString());
-            gameSettingsNode.SetAttribute("minutesperturn", Settings.GetInstance().MinutesPerTurn.ToString());
+            gameSettingsNode.SetAttribute("minutesperturn", Settings.GetInstance().MinutesPerTurn.ToString(CultureInfo.InvariantCulture));
             gameSettingsNode.SetAttribute("language", AppSettings.GetInstance().GetLanguage().Name);
             gameSettingsNode.SetAttribute("dayround", GameObject.GetInstance().DayRoundEnabled.ToString());
 
@@ -1935,9 +1946,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //WaitFor.tasks
             using (var fs = new FileStream(path, FileMode.Create))
             {
-                Stream s;
-
-                s = new GZipStream(fs, CompressionMode.Compress);
+                Stream s = new GZipStream(fs, CompressionMode.Compress);
 
                 xmlDoc.Save(s);
                 s.Close();
@@ -1974,9 +1983,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                              ? (Route.RouteType) Enum.Parse(typeof (Route.RouteType), airlineNode.Attributes["routefocus"].Value)
                                              : Route.RouteType.Passenger;
 
-            Boolean isReal = airlineNode.HasAttribute("real")
-                                 ? Convert.ToBoolean(airlineNode.Attributes["real"].Value)
-                                 : true;
+            Boolean isReal = !airlineNode.HasAttribute("real") || Convert.ToBoolean(airlineNode.Attributes["real"].Value);
             int founded = airlineNode.HasAttribute("founded")
                               ? Convert.ToInt16(airlineNode.Attributes["founded"].Value)
                               : 1950;
@@ -1994,8 +2001,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     mentality,
                     market,
                     license,
-                    routefocus);
-                airline.Profile.Country = airlineCountry;
+                    routefocus) {Profile = {Country = airlineCountry}};
                 parent.AddSubsidiaryAirline((SubsidiaryAirline) airline);
             }
             else
@@ -2006,8 +2012,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         mentality,
                         market,
                         license,
-                        routefocus);
-                airline.Profile.Country = airlineCountry;
+                        routefocus) {Profile = {Country = airlineCountry}};
             }
             if (airlineNode.HasAttribute("logo"))
             {
@@ -2026,20 +2031,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             XmlNodeList logosList = airlineNode.SelectNodes("logos/logo");
 
-            foreach (XmlElement logoElement in logosList)
-            {
-                int logoFromYear = Convert.ToInt16(logoElement.Attributes["from"].Value);
-                int logoToYear = Convert.ToInt16(logoElement.Attributes["to"].Value);
-                string logoPath = logoElement.Attributes["path"].Value;
-
-                if (!File.Exists(logoPath))
+            if (logosList != null)
+                foreach (XmlElement logoElement in logosList)
                 {
-                    logoPath = AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\"
-                               + logoPath.Substring(logoPath.LastIndexOf('\\') + 1);
-                }
+                    int logoFromYear = Convert.ToInt16(logoElement.Attributes["from"].Value);
+                    int logoToYear = Convert.ToInt16(logoElement.Attributes["to"].Value);
+                    string logoPath = logoElement.Attributes["path"].Value;
 
-                airline.Profile.AddLogo(new AirlineLogo(logoFromYear, logoToYear, logoPath));
-            }
+                    if (!File.Exists(logoPath))
+                    {
+                        logoPath = AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\"
+                                   + logoPath.Substring(logoPath.LastIndexOf('\\') + 1);
+                    }
+
+                    airline.Profile.AddLogo(new AirlineLogo(logoFromYear, logoToYear, logoPath));
+                }
 
             var airlineContractNode = (XmlElement) airlineNode.SelectSingleNode("contract");
             if (airlineContractNode != null)
@@ -2059,26 +2065,29 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     contractManufacturer,
                     contractSigningDate,
                     contractLength,
-                    contractDiscount);
-                contract.PurchasedAirliners = contractAirliners;
+                    contractDiscount) {PurchasedAirliners = contractAirliners};
 
                 airline.Contract = contract;
             }
 
             // chs, 2011-17-10 added for loading of passenger happiness
             var airlinePassengerNode = (XmlElement) airlineNode.SelectSingleNode("passengerhappiness");
-            double passengerHappiness = Convert.ToDouble(
-                airlinePassengerNode.Attributes["value"].Value,
-                new CultureInfo("de-DE", false));
-            PassengerHelpers.SetPassengerHappiness(airline, passengerHappiness);
+            if (airlinePassengerNode != null)
+            {
+                double passengerHappiness = Convert.ToDouble(
+                    airlinePassengerNode.Attributes["value"].Value,
+                    new CultureInfo("de-DE", false));
+                PassengerHelpers.SetPassengerHappiness(airline, passengerHappiness);
+            }
 
             XmlNodeList airlineFacilitiesList = airlineNode.SelectNodes("facilities/facility");
-            foreach (XmlElement airlineFacilityNode in airlineFacilitiesList)
-            {
-                string airlineFacility = airlineFacilityNode.Attributes["uid"].Value;
+            if (airlineFacilitiesList != null)
+                foreach (XmlElement airlineFacilityNode in airlineFacilitiesList)
+                {
+                    string airlineFacility = airlineFacilityNode.Attributes["uid"].Value;
 
-                airline.AddFacility(AirlineFacilities.GetFacility(airlineFacility));
-            }
+                    airline.AddFacility(AirlineFacilities.GetFacility(airlineFacility));
+                }
 
             XmlNodeList airlinePoliciesList = airlineNode.SelectNodes("policies/policy");
 
@@ -2088,14 +2097,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 object policyValue = airlinePolicyNode.Attributes["value"].Value;
 
                 int number;
-                if (int.TryParse(policyValue.ToString(), out number))
-                {
-                    airline.AddAirlinePolicy(new AirlinePolicy(policyName, number));
-                }
-                else
-                {
-                    airline.AddAirlinePolicy(new AirlinePolicy(policyName, policyValue));
-                }
+                airline.AddAirlinePolicy(int.TryParse(policyValue.ToString(), out number) ? new AirlinePolicy(policyName, number) : new AirlinePolicy(policyName, policyValue));
             }
 
             XmlNodeList airlineLoanList = airlineNode.SelectNodes("loans/loan");
@@ -2115,8 +2117,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airlineLoanNode.Attributes["payment"].Value,
                     new CultureInfo("de-DE", false));
 
-                var loan = new Loan(date, amount, length, rate);
-                loan.PaymentLeft = payment;
+                var loan = new Loan(date, amount, length, rate) {PaymentLeft = payment};
 
                 airline.AddLoan(loan);
             }
@@ -2184,8 +2185,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 string fsID = flightschoolNode.Attributes["id"].Value;
                 Airport fsAirport = Airports.GetAirportFromID(flightschoolNode.Attributes["airport"].Value);
 
-                var fs = new FlightSchool(fsAirport);
-                fs.ID = fsID;
+                var fs = new FlightSchool(fsAirport) {ID = fsID};
 
                 XmlNodeList aircraftsList = flightschoolNode.SelectNodes("trainingaircrafts/trainingaircraft");
 
@@ -2277,10 +2277,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     MathHelpers.DMStoDeg(coords[0], coords[1], coords[2]),
                     MathHelpers.DMStoDeg(coords[3], coords[4], coords[5]));
 
-                var fAirliner = new FleetAirliner(purchasedtype, purchasedDate, airline, airliner, homebase);
-                fAirliner.CurrentPosition = null;
-                fAirliner.Status = status;
-                fAirliner.GroundedToDate = groundedDate;
+                var fAirliner = new FleetAirliner(purchasedtype, purchasedDate, airline, airliner, homebase) {CurrentPosition = null, Status = status, GroundedToDate = groundedDate};
 
                 XmlNodeList airlinerStatList = airlineAirlinerNode.SelectNodes("stats/stat");
 
@@ -2334,10 +2331,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             RouteTimeTableEntry rtte =
                                 route.TimeTable.Entries.Find(
-                                    delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
+                                    e => e.Destination.FlightCode == destination && e.Day == day && e.Time == time);
 
-                            var currentFlight = new Flight(rtte);
-                            currentFlight.FlightTime = flightTime;
+                            var currentFlight = new Flight(rtte) {FlightTime = flightTime};
                             currentFlight.Classes.Clear();
 
                             if (currentFlight.IsPassengerFlight())
@@ -2386,26 +2382,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                                .ToList()
                                                .Find(e => e.ID == stopoverClassNode.Attributes["id"].Value);
 
-                                    var stopoverFlightClasses = new List<FlightAirlinerClass>();
-
                                     XmlNodeList stopoverFlightClassList =
                                         stopoverClassNode.SelectNodes("flightclasses/flightclass");
 
-                                    foreach (XmlElement stopoverFlightClassNode in stopoverFlightClassList)
-                                    {
-                                        var stopoverAirlinerClassType =
-                                            (AirlinerClass.ClassType)
-                                            Enum.Parse(
-                                                typeof (AirlinerClass.ClassType),
-                                                stopoverFlightClassNode.Attributes["type"].Value);
-                                        int stopoverFlightPassengers =
-                                            Convert.ToInt16(stopoverFlightClassNode.Attributes["passengers"].Value);
-
-                                        stopoverFlightClasses.Add(
-                                            new FlightAirlinerClass(
-                                                ((PassengerRoute) route).GetRouteAirlinerClass(stopoverAirlinerClassType),
-                                                stopoverFlightPassengers));
-                                    }
+                                    List<FlightAirlinerClass> stopoverFlightClasses = (from XmlElement stopoverFlightClassNode in stopoverFlightClassList
+                                                                                       let stopoverAirlinerClassType =
+                                                                                           (AirlinerClass.ClassType)
+                                                                                           Enum.Parse(typeof (AirlinerClass.ClassType), stopoverFlightClassNode.Attributes["type"].Value)
+                                                                                       let stopoverFlightPassengers = Convert.ToInt16(stopoverFlightClassNode.Attributes["passengers"].Value)
+                                                                                       select
+                                                                                           new FlightAirlinerClass(((PassengerRoute) route).GetRouteAirlinerClass(stopoverAirlinerClassType),
+                                                                                                                   stopoverFlightPassengers)).ToList();
 
                                     stopEntryAllClasses.Add(stopoverEntry, stopoverFlightClasses);
                                 }
@@ -2427,12 +2414,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                     stopEntryAllCargo.Add(stopoverEntry, cargoValue);
                                 }
 
-                                var stopoverFlight = new StopoverFlight(rtte);
-                                stopoverFlight.AllClasses = stopEntryAllClasses;
-                                stopoverFlight.AllCargo = stopEntryAllCargo;
-                                stopoverFlight.CurrentFlight = currentStopoverFlight;
-                                stopoverFlight.FlightTime = currentFlight.FlightTime;
-                                stopoverFlight.Classes = currentFlight.Classes;
+                                var stopoverFlight = new StopoverFlight(rtte)
+                                    {
+                                        AllClasses = stopEntryAllClasses,
+                                        AllCargo = stopEntryAllCargo,
+                                        CurrentFlight = currentStopoverFlight,
+                                        FlightTime = currentFlight.FlightTime,
+                                        Classes = currentFlight.Classes
+                                    };
 
                                 airliner.CurrentFlight = stopoverFlight;
                             }
@@ -2512,21 +2501,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             XmlNodeList routeStopoverList = routeNode.SelectNodes("stopovers/stopover");
 
-            foreach (XmlElement routeStopoverNode in routeStopoverList)
-            {
-                Airport stopoverAirport = Airports.GetAirportFromID(routeStopoverNode.Attributes["airport"].Value);
-
-                var stopoverRoute = new StopoverRoute(stopoverAirport);
-
-                XmlNodeList legsList = routeStopoverNode.SelectNodes("legs/leg");
-
-                foreach (XmlElement legNode in legsList)
+            if (routeStopoverList != null)
+                foreach (XmlElement routeStopoverNode in routeStopoverList)
                 {
-                    stopoverRoute.AddLeg(LoadRoute((XmlElement) legNode.SelectSingleNode("route"), airline, routetype));
-                }
+                    Airport stopoverAirport = Airports.GetAirportFromID(routeStopoverNode.Attributes["airport"].Value);
 
-                route.AddStopover(stopoverRoute);
-            }
+                    var stopoverRoute = new StopoverRoute(stopoverAirport);
+
+                    XmlNodeList legsList = routeStopoverNode.SelectNodes("legs/leg");
+
+                    if (legsList != null)
+                        foreach (XmlElement legNode in legsList)
+                        {
+                            stopoverRoute.AddLeg(LoadRoute((XmlElement) legNode.SelectSingleNode("route"), airline, routetype));
+                        }
+
+                    route.AddStopover(stopoverRoute);
+                }
 
             if (routetype == Route.RouteType.Passenger || routetype == Route.RouteType.Mixed)
             {
@@ -2534,110 +2525,114 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 XmlNodeList routeClassList = routeNode.SelectNodes("routeclasses/routeclass");
 
-                foreach (XmlElement routeClassNode in routeClassList)
-                {
-                    var airlinerClassType =
-                        (AirlinerClass.ClassType)
-                        Enum.Parse(typeof (AirlinerClass.ClassType), routeClassNode.Attributes["type"].Value);
-                    double fareprice = Convert.ToDouble(
-                        routeClassNode.Attributes["fareprice"].Value,
-                        new CultureInfo("de-DE", false));
-                    var seatingType =
-                        (RouteAirlinerClass.SeatingType)
-                        Enum.Parse(
-                            typeof (RouteAirlinerClass.SeatingType),
-                            routeClassNode.Attributes["seating"].Value);
-
-                    var rClass = new RouteAirlinerClass(
-                        airlinerClassType,
-                        RouteAirlinerClass.SeatingType.ReservedSeating,
-                        fareprice);
-                    rClass.Seating = seatingType;
-
-                    foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof (RouteFacility.FacilityType)))
+                if (routeClassList != null)
+                    foreach (XmlElement routeClassNode in routeClassList)
                     {
-                        if (routeClassNode.HasAttribute(ftype.ToString()))
-                        {
-                            RouteFacility facility =
-                                RouteFacilities.GetFacility(routeClassNode.Attributes[ftype.ToString()].Value);
-                            rClass.AddFacility(facility);
-                        }
-                    }
+                        var airlinerClassType =
+                            (AirlinerClass.ClassType)
+                            Enum.Parse(typeof (AirlinerClass.ClassType), routeClassNode.Attributes["type"].Value);
+                        double fareprice = Convert.ToDouble(
+                            routeClassNode.Attributes["fareprice"].Value,
+                            new CultureInfo("de-DE", false));
+                        var seatingType =
+                            (RouteAirlinerClass.SeatingType)
+                            Enum.Parse(
+                                typeof (RouteAirlinerClass.SeatingType),
+                                routeClassNode.Attributes["seating"].Value);
 
-                    ((PassengerRoute) route).AddRouteAirlinerClass(rClass);
-                }
+                        var rClass = new RouteAirlinerClass(
+                            airlinerClassType,
+                            RouteAirlinerClass.SeatingType.ReservedSeating,
+                            fareprice) {Seating = seatingType};
+
+                        foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof (RouteFacility.FacilityType)))
+                        {
+                            if (routeClassNode.HasAttribute(ftype.ToString()))
+                            {
+                                RouteFacility facility =
+                                    RouteFacilities.GetFacility(routeClassNode.Attributes[ftype.ToString()].Value);
+                                rClass.AddFacility(facility);
+                            }
+                        }
+
+                        ((PassengerRoute) route).AddRouteAirlinerClass(rClass);
+                    }
             }
             if (routetype == Route.RouteType.Mixed || routetype == Route.RouteType.Cargo)
             {
                 var routeCargoNode = (XmlElement) routeNode.SelectSingleNode("cargo");
-                double unitPrice = Convert.ToDouble(
-                    routeCargoNode.Attributes["priceperunit"].Value,
-                    new CultureInfo("de-DE", false));
+                if (routeCargoNode != null)
+                {
+                    double unitPrice = Convert.ToDouble(
+                        routeCargoNode.Attributes["priceperunit"].Value,
+                        new CultureInfo("de-DE", false));
 
-                ((CargoRoute) route).PricePerUnit = unitPrice;
+                    ((CargoRoute) route).PricePerUnit = unitPrice;
+                }
             }
 
             var timeTable = new RouteTimeTable(route);
 
             XmlNodeList timetableList = routeNode.SelectNodes("timetable/timetableentry");
 
-            foreach (XmlElement entryNode in timetableList)
-            {
-                Airport entryDest = Airports.GetAirport(entryNode.Attributes["destination"].Value);
-                string flightCode = entryNode.Attributes["flightcode"].Value;
-                var day = (DayOfWeek) Enum.Parse(typeof (DayOfWeek), entryNode.Attributes["day"].Value);
-                TimeSpan time = TimeSpan.Parse(entryNode.Attributes["time"].Value);
-                FleetAirliner airliner = entryNode.Attributes["airliner"].Value == "-"
-                                             ? null
-                                             : airline.Fleet.Find(a => a.Airliner.ID == entryNode.Attributes["airliner"].Value);
-                ;
-
-                var entry = new RouteTimeTableEntry(
-                    timeTable,
-                    day,
-                    time,
-                    new RouteEntryDestination(entryDest, flightCode, null),
-                    null);
-
-                if (entryNode.HasAttribute("id"))
+            if (timetableList != null)
+                foreach (XmlElement entryNode in timetableList)
                 {
-                    entry.ID = entryNode.Attributes["id"].Value;
+                    Airport entryDest = Airports.GetAirport(entryNode.Attributes["destination"].Value);
+                    string flightCode = entryNode.Attributes["flightcode"].Value;
+                    var day = (DayOfWeek) Enum.Parse(typeof (DayOfWeek), entryNode.Attributes["day"].Value);
+                    TimeSpan time = TimeSpan.Parse(entryNode.Attributes["time"].Value);
+                    FleetAirliner airliner = entryNode.Attributes["airliner"].Value == "-"
+                                                 ? null
+                                                 : airline.Fleet.Find(a => a.Airliner.ID == entryNode.Attributes["airliner"].Value);
+
+                    var entry = new RouteTimeTableEntry(
+                        timeTable,
+                        day,
+                        time,
+                        new RouteEntryDestination(entryDest, flightCode, null),
+                        null);
+
+                    if (entryNode.HasAttribute("id"))
+                    {
+                        entry.ID = entryNode.Attributes["id"].Value;
+                    }
+
+                    if (entryNode.HasAttribute("mainentry"))
+                    {
+                        entry.MainEntry =
+                            airline.Routes.SelectMany(r => r.TimeTable.Entries)
+                                   .ToList()
+                                   .Find(e => e.ID == entryNode.Attributes["mainentry"].Value);
+                    }
+
+                    entry.Airliner = airliner;
+
+                    if (airliner != null && !airliner.Routes.Contains(route))
+                    {
+                        airliner.Routes.Add(route);
+                    }
+
+                    timeTable.AddEntry(entry);
                 }
-
-                if (entryNode.HasAttribute("mainentry"))
-                {
-                    entry.MainEntry =
-                        airline.Routes.SelectMany(r => r.TimeTable.Entries)
-                               .ToList()
-                               .Find(e => e.ID == entryNode.Attributes["mainentry"].Value);
-                }
-
-                entry.Airliner = airliner;
-
-                if (airliner != null && !airliner.Routes.Contains(route))
-                {
-                    airliner.Routes.Add(route);
-                }
-
-                timeTable.AddEntry(entry);
-            }
             route.TimeTable = timeTable;
 
             XmlNodeList routeInvoiceList = routeNode.SelectNodes("invoices/invoice");
 
-            foreach (XmlElement routeInvoiceNode in routeInvoiceList)
-            {
-                var type =
-                    (Invoice.InvoiceType)
-                    Enum.Parse(typeof (Invoice.InvoiceType), routeInvoiceNode.Attributes["type"].Value);
-                int invoiceYear = Convert.ToInt16(routeInvoiceNode.Attributes["year"].Value);
-                int invoiceMonth = Convert.ToInt16(routeInvoiceNode.Attributes["month"].Value);
-                double invoiceAmount = Convert.ToDouble(
-                    routeInvoiceNode.Attributes["amount"].Value,
-                    new CultureInfo("de-DE", false));
+            if (routeInvoiceList != null)
+                foreach (XmlElement routeInvoiceNode in routeInvoiceList)
+                {
+                    var type =
+                        (Invoice.InvoiceType)
+                        Enum.Parse(typeof (Invoice.InvoiceType), routeInvoiceNode.Attributes["type"].Value);
+                    int invoiceYear = Convert.ToInt16(routeInvoiceNode.Attributes["year"].Value);
+                    int invoiceMonth = Convert.ToInt16(routeInvoiceNode.Attributes["month"].Value);
+                    double invoiceAmount = Convert.ToDouble(
+                        routeInvoiceNode.Attributes["amount"].Value,
+                        new CultureInfo("de-DE", false));
 
-                route.SetRouteInvoice(type, invoiceYear, invoiceMonth, 1, invoiceAmount);
-            }
+                    route.SetRouteInvoice(type, invoiceYear, invoiceMonth, 1, invoiceAmount);
+                }
 
             return route;
         }
@@ -2732,8 +2727,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 XmlElement routeInvoiceNode = xmlDoc.CreateElement("invoice");
                 routeInvoiceNode.SetAttribute("type", invoice.Type.ToString());
-                routeInvoiceNode.SetAttribute("year", invoice.Year.ToString());
-                routeInvoiceNode.SetAttribute("month", invoice.Month.ToString());
+                routeInvoiceNode.SetAttribute("year", invoice.Year.ToString(CultureInfo.InvariantCulture));
+                routeInvoiceNode.SetAttribute("month", invoice.Month.ToString(CultureInfo.InvariantCulture));
                 routeInvoiceNode.SetAttribute("amount", invoice.Amount.ToString(new CultureInfo("de-DE", false)));
 
                 routeInvoicesNode.AppendChild(routeInvoiceNode);

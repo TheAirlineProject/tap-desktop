@@ -76,9 +76,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (destPax != null && value > 0)
             {
                 destPax.Rate += Convert.ToUInt16(value);
-
-                if (destPax.Rate < 0)
-                    destPax.Rate = 0;
             }
             else
             {
@@ -99,7 +96,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (destPax.Rate > 0)
                 {
                     ushort oRate = destPax.Rate;
-                    if (oRate*value == destPax.Rate)
+                    if ((oRate*value).Equals(destPax.Rate))
                     {
                         destPax.Rate =
                             Convert.ToUInt16(destPax.Rate + Convert.ToUInt16(Rnd.Next(0, Math.Max(1, (int) factor))));
@@ -152,20 +149,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 } //);
                 if (airport.GetDestinationPassengersSum() == 0)
                 {
+                    Airport airport1 = airport;
                     List<Airport> subAirports =
-                        Airports.GetAllAirports(a => a.Profile.Country == airport.Profile.Country)
+                        Airports.GetAllAirports(a => a.Profile.Country == airport1.Profile.Country)
                                 .DefaultIfEmpty()
                                 .ToList();
                     subAirports.RemoveAll(a => a == null);
 
-                    if (subAirports != null && subAirports.Count() > 0)
+                    if (subAirports.Any())
                     {
                         CreateDestinationPassengers(airport, subAirports);
                     }
                     else
                     {
+                        Airport airport2 = airport;
                         subAirports =
-                            Airports.GetAllAirports(a => a.Profile.Country.Region == airport.Profile.Country.Region)
+                            Airports.GetAllAirports(a => a.Profile.Country.Region == airport2.Profile.Country.Region)
                                     .ToList();
                         CreateDestinationPassengers(airport, subAirports);
                     }
@@ -188,7 +187,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double distanceFactor = distance > 5000 ? 1 : 0.5;
             double sameCountryFactor = airport.Profile.Country == dAirport.Profile.Country ? 0.75 : 1;
-            double sameRegionFactor = sameCountryFactor == 1
+            double sameRegionFactor = sameCountryFactor.Equals(1)
                                       && airport.Profile.Country.Region == dAirport.Profile.Country.Region
                                           ? 0.5
                                           : 1;
@@ -258,7 +257,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                         .ToList();
                             subAirports.RemoveAll(a => a == null);
 
-                            if (subAirports != null && subAirports.Count() > 0)
+                            if (subAirports.Any())
                             {
                                 CreateDestinationPassengers(airports[i], subAirports);
                             }
@@ -292,7 +291,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 List<Airport> subAirports =
                     airports.FindAll(a => a.Profile.Country == airport.Profile.Country).DefaultIfEmpty().ToList();
                 subAirports.RemoveAll(a => a == null);
-                if (subAirports != null && subAirports.Count() > 0)
+                if (subAirports.Any())
                 {
                     CreateDestinationPassengers(airport, subAirports);
                 }
@@ -417,9 +416,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             case "Very_small":
                                 if (airport.Profile.Pax > 0)
                                 {
-                                    double paxVery_small = airport.Profile.Pax*0.04/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = airport.Profile.Pax*0.04/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 else
@@ -544,16 +543,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             case "Very_small":
                                 if (airport.Profile.Pax > 0)
                                 {
-                                    double paxVery_small = airport.Profile.Pax*0.04/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = airport.Profile.Pax*0.04/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 else
                                 {
-                                    double paxVery_small = 20000*0.04/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = 20000*0.04/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 break;
@@ -673,16 +672,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             case "Very_small":
                                 if (airport.Profile.Pax > 0)
                                 {
-                                    double paxVery_small = airport.Profile.Pax*0.04/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = airport.Profile.Pax*0.04/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 else
                                 {
-                                    double paxVery_small = 10000*0.04/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = 10000*0.04/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 break;
@@ -803,16 +802,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                                 if (airport.Profile.Pax > 0)
                                 {
-                                    double paxVery_small = airport.Profile.Pax*0.04/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = airport.Profile.Pax*0.04/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 else
                                 {
-                                    double paxVery_small = 6000*0.04/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = 6000*0.04/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 break;
@@ -931,16 +930,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             case "Very_small":
                                 if (airport.Profile.Pax > 0)
                                 {
-                                    double paxVery_small = airport.Profile.Pax*0.04/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = airport.Profile.Pax*0.04/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 else
                                 {
-                                    double paxVery_small = 1250*0.04/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = 1250*0.04/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 break;
@@ -1059,16 +1058,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             case "Very_small":
                                 if (airport.Profile.Pax > 0)
                                 {
-                                    double paxVery_small = airport.Profile.Pax*0.04/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = airport.Profile.Pax*0.04/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 else
                                 {
-                                    double paxVery_small = 225*0.04/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = 225*0.04/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 break;
@@ -1194,16 +1193,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             case "Very_small":
                                 if (airport.Profile.Pax > 0)
                                 {
-                                    double paxVery_small = airport.Profile.Pax*0/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = airport.Profile.Pax*0/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 else
                                 {
-                                    double paxVery_small = 50*0/Airports.VerySmallAirports;
-                                    paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                                    estimatedPassengerLevel = (paxVery_small*1000)/365;
+                                    double paxVerySmall = 50*0/Airports.VerySmallAirports;
+                                    paxVerySmall *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                                    estimatedPassengerLevel = (paxVerySmall*1000)/365;
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                 }
                                 break;
@@ -2906,10 +2905,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double capacity = 0;
 
-            if (airliner.Airliner.Type is AirlinerCargoType)
-                capacity = ((AirlinerCargoType) airliner.Airliner.Type).CargoSize;
-            if (airliner.Airliner.Type is AirlinerCombiType)
-                capacity = ((AirlinerCombiType) airliner.Airliner.Type).CargoSize;
+            var type = airliner.Airliner.Type as AirlinerCargoType;
+            if (type != null)
+                capacity = type.CargoSize;
+            var combiType = airliner.Airliner.Type as AirlinerCombiType;
+            if (combiType != null)
+                capacity = combiType.CargoSize;
 
             double demand = airportCurrent.GetDestinationCargoRate(airportDestination)
                             *(destinationFacilityFactor/100);
@@ -2941,14 +2942,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                        && (l.Destination1 == airportCurrent
                                            || l.Destination1 == airportDestination)
                                        && (l.Destination2 == airportDestination
-                                           || l.Destination2 == airportCurrent))).Count() > 0));
+                                           || l.Destination2 == airportCurrent))).Any()));
             }
 
             double flightsPerDay = Convert.ToDouble(routes.Sum(r => r.TimeTable.Entries.Count))/7;
 
             cargoDemand = cargoDemand/flightsPerDay;
 
-            double totalCapacity = 0;
+            double totalCapacity;
             if (routes.Count > 0 && routes.Count(r => r.HasAirliner) > 0)
             {
                 totalCapacity =
@@ -3104,14 +3105,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                        && (l.Destination1 == airportCurrent
                                            || l.Destination1 == airportDestination)
                                        && (l.Destination2 == airportDestination
-                                           || l.Destination2 == airportCurrent))).Count() > 0));
+                                           || l.Destination2 == airportCurrent))).Any()));
             }
 
             double flightsPerDay = Convert.ToDouble(routes.Sum(r => r.TimeTable.Entries.Count))/7;
 
             passengerDemand = passengerDemand/flightsPerDay;
 
-            double totalCapacity = 0;
+            double totalCapacity;
             if (routes.Count > 0 && routes.Count(r => r.HasAirliner) > 0)
             {
                 totalCapacity =
@@ -3227,16 +3228,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static double GetPassengersHappiness(Airline airline)
         {
-            double passengers = 0;
-            foreach (int year in airline.Statistics.GetYears())
-            {
-                passengers +=
-                    Convert.ToDouble(
-                        airline.Statistics.GetStatisticsValue(year, StatisticsTypes.GetStatisticsType("Passengers")));
-            }
+            double passengers = airline.Statistics.GetYears().Sum(year => Convert.ToDouble(airline.Statistics.GetStatisticsValue(year, StatisticsTypes.GetStatisticsType("Passengers"))));
             double value = GetHappinessValue(airline);
 
-            if (passengers == 0)
+            if (passengers.Equals(0))
             {
                 return 0;
             }
@@ -3371,8 +3366,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static void SetCargoSize()
         {
-            var airports = new List<Airport>();
-            airports = Airports.GetAllActiveAirports();
+            List<Airport> airports = Airports.GetAllActiveAirports();
 
             foreach (Airport airport in airports)
             {
@@ -3474,10 +3468,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //to convert values to cu meters, multiply the cargo cu footage * 35.3 (194lb/m3 and 88kg/m3 at standard density)
 
             //total cargo volume from/to airport in tonnes
-            double totalCargoVolume = airport.Profile.CargoVolume == 0
+            double totalCargoVolume = airport.Profile.CargoVolume.Equals(0)
                                           ? ((int) airport.Profile.Cargo + 1)*10000
                                           : airport.Profile.CargoVolume*1000; //in metric ton
-            double cargoDensity = 3000; //kg/cu m
+            const double cargoDensity = 3000; //kg/cu m
 
             //in cargo mass
             double cargoMass = totalCargoVolume/(cargoDensity/1000);
@@ -3505,9 +3499,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             double legDistance = MathHelpers.GetDistance(airportCurrent, airportDestination);
 
-            double demandOrigin = 0;
-            double demandDestination = 0;
-
             List<Route> routesFromDestination =
                 airliner.Airliner.Airline.Routes.FindAll(
                     r =>
@@ -3521,39 +3512,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     && ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent)
                         && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)));
 
-            foreach (PassengerRoute route in routesFromDestination)
-            {
-                Airport tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1;
+            double demandDestination = (from PassengerRoute route in routesFromDestination
+                                        let tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1
+                                        let totalDistance = airportCurrent.Profile.Coordinates.ConvertToGeoCoordinate().GetDistanceTo(tDest.Profile.Coordinates.ConvertToGeoCoordinate())/1000
+                                        let directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(airportCurrent, tDest)
+                                        where route.GetDistance() + legDistance < totalDistance*3 && directRoutes < 2
+                                        select airportCurrent.GetDestinationPassengersRate(tDest, type)
+                                        into demand select (demand*0.25)).Sum();
 
-                double totalDistance =
-                    airportCurrent.Profile.Coordinates.ConvertToGeoCoordinate()
-                                  .GetDistanceTo(tDest.Profile.Coordinates.ConvertToGeoCoordinate())/1000;
-
-                int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(airportCurrent, tDest);
-
-                if (route.GetDistance() + legDistance < totalDistance*3 && directRoutes < 2)
-                {
-                    double demand = airportCurrent.GetDestinationPassengersRate(tDest, type);
-                    demandDestination += (demand*0.25);
-                }
-            }
-
-            foreach (PassengerRoute route in routesToOrigin)
-            {
-                Airport tDest = route.Destination1 == airportCurrent ? route.Destination2 : route.Destination1;
-
-                double totalDistance =
-                    tDest.Profile.Coordinates.ConvertToGeoCoordinate()
-                         .GetDistanceTo(airportDestination.Profile.Coordinates.ConvertToGeoCoordinate())/1000;
-
-                int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(tDest, airportDestination);
-
-                if (route.GetDistance() + legDistance < totalDistance*3 && directRoutes < 2)
-                {
-                    double demand = tDest.GetDestinationPassengersRate(airportDestination, type);
-                    demandOrigin += (demand*0.25);
-                }
-            }
+            double demandOrigin = (from PassengerRoute route in routesToOrigin
+                                   let tDest = route.Destination1 == airportCurrent ? route.Destination2 : route.Destination1
+                                   let totalDistance = tDest.Profile.Coordinates.ConvertToGeoCoordinate().GetDistanceTo(airportDestination.Profile.Coordinates.ConvertToGeoCoordinate())/1000
+                                   let directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(tDest, airportDestination)
+                                   where route.GetDistance() + legDistance < totalDistance*3 && directRoutes < 2
+                                   select tDest.GetDestinationPassengersRate(airportDestination, type)
+                                   into demand select (demand*0.25)).Sum();
             //alliances & codesharings
             if (airliner.Airliner.Airline.Alliances.Count > 0 || airliner.Airliner.Airline.Codeshares.Count > 0)
             {
@@ -3588,8 +3561,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                          && a.Type == CodeshareAgreement.CodeshareType.OneWay)
                         || a.Type == CodeshareAgreement.CodeshareType.BothWays);
 
+                var codeshareAgreements = codeshares as CodeshareAgreement[] ?? codeshares.ToArray();
                 IEnumerable<Route> codesharingRoutesFromDestination =
-                    codeshares.Select(a => a.Airline1 == airliner.Airliner.Airline ? a.Airline2 : a.Airline1)
+                    codeshareAgreements.Select(a => a.Airline1 == airliner.Airliner.Airline ? a.Airline2 : a.Airline1)
                               .SelectMany(
                                   a =>
                                   a.Routes.FindAll(
@@ -3597,7 +3571,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                       ((r.Destination2 == airportDestination || r.Destination1 == airportDestination)
                                        && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent))));
                 IEnumerable<Route> codesharingRoutesToOrigin =
-                    codeshares.Select(a => a.Airline1 == airliner.Airliner.Airline ? a.Airline2 : a.Airline1)
+                    codeshareAgreements.Select(a => a.Airline1 == airliner.Airliner.Airline ? a.Airline2 : a.Airline1)
                               .SelectMany(
                                   a =>
                                   a.Routes.FindAll(
@@ -3753,10 +3727,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     return 150/100;
                 }
-                else
-                {
-                    return 50/100;
-                }
+                return 50/100;
             }
             if (airport.Profile.Season == Weather.Season.Winter)
             {
@@ -3764,10 +3735,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     return 50/100;
                 }
-                else
-                {
-                    return 150/100;
-                }
+                return 150/100;
             }
 
             return 1;

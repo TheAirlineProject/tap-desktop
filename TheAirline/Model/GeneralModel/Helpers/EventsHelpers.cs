@@ -14,13 +14,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             var rnd = new Random();
             var eventOccurences = new Dictionary<RandomEvent.EventType, double>();
-            int eFreq = 0;
-            double secEvents;
-            double safEvents;
-            double polEvents;
-            double maintEvents;
-            double custEvents;
-            double empEvents;
+            int eFreq;
 
             //sets an overall event frequency based on an airlines total overall rating
             int totalRating = airline.Ratings.CustomerHappinessRating + airline.Ratings.EmployeeHappinessRating
@@ -44,12 +38,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             //gets the event proportions and multiplies them by total # events to get events per type
             List<double> probs = GetEventProportions(airline);
-            custEvents = eFreq*probs[0];
-            empEvents = eFreq*probs[1];
-            secEvents = eFreq*probs[2];
-            safEvents = eFreq*probs[3];
-            maintEvents = eFreq*probs[4];
-            polEvents = eFreq - custEvents - empEvents - secEvents - maintEvents;
+            double custEvents = eFreq*probs[0];
+            double empEvents = eFreq*probs[1];
+            double secEvents = eFreq*probs[2];
+            double safEvents = eFreq*probs[3];
+            double maintEvents = eFreq*probs[4];
+            double polEvents = eFreq - custEvents - empEvents - secEvents - maintEvents;
             eventOccurences.Add(RandomEvent.EventType.Customer, custEvents);
             eventOccurences.Add(RandomEvent.EventType.Employee, empEvents);
             eventOccurences.Add(RandomEvent.EventType.Maintenance, maintEvents);
@@ -74,12 +68,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static List<double> GetEventProportions(Airline airline)
         {
             //chr 0 ehr 1 scr 2 sfr 3 total 4
-            var ratings = new List<int>();
-            ratings.Add(100 - airline.Ratings.CustomerHappinessRating);
-            ratings.Add(100 - airline.Ratings.EmployeeHappinessRating);
-            ratings.Add(100 - airline.Ratings.SecurityRating);
-            ratings.Add(100 - airline.Ratings.SafetyRating);
-            ratings.Add(100 - airline.Ratings.MaintenanceRating);
+            var ratings = new List<int>
+                {
+                    100 - airline.Ratings.CustomerHappinessRating,
+                    100 - airline.Ratings.EmployeeHappinessRating,
+                    100 - airline.Ratings.SecurityRating,
+                    100 - airline.Ratings.SafetyRating,
+                    100 - airline.Ratings.MaintenanceRating
+                };
             ratings.Add(500 - ratings.Sum());
             double pCHR = ratings[0]/ratings[5];
             double pEHR = ratings[1]/ratings[5];
@@ -87,12 +83,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double pSFR = ratings[3]/ratings[5];
             double pMTR = ratings[4]/ratings[5];
             ratings.Clear();
-            var pRatings = new List<double>();
-            pRatings.Add(pCHR);
-            pRatings.Add(pEHR);
-            pRatings.Add(pSCR);
-            pRatings.Add(pSFR);
-            pRatings.Add(pMTR);
+            var pRatings = new List<double> {pCHR, pEHR, pSCR, pSFR, pMTR};
             return pRatings;
         }
 

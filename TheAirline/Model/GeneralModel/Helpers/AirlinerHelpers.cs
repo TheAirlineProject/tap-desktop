@@ -88,11 +88,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             int number =
                 AirlinerTypes.GetTypes(
-                    delegate(AirlinerType t)
-                        {
-                            return t.Produced.From <= GameObject.GetInstance().GameTime
-                                   && t.Produced.To.AddYears(-10) >= GameObject.GetInstance().GameTime.AddYears(-30);
-                        })
+                    t => t.Produced.From <= GameObject.GetInstance().GameTime
+                         && t.Produced.To.AddYears(-10) >= GameObject.GetInstance().GameTime.AddYears(-30))
                              .Count*Rnd.Next(1, 3);
 
             int airlines = Airlines.GetNumberOfAirlines();
@@ -140,7 +137,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             var classes = new List<AirlinerClass>();
 
-            if (type is AirlinerPassengerType)
+            var passengerType = type as AirlinerPassengerType;
+            if (passengerType != null)
             {
                 Configuration airlinerTypeConfiguration =
                     Configurations.GetConfigurations(Configuration.ConfigurationType.AirlinerType)
@@ -152,9 +150,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (airlinerTypeConfiguration == null)
                 {
+                    int seatingDiff = 0;
                     AirlinerConfiguration configuration = null;
 
-                    int numOfClasses = Rnd.Next(0, ((AirlinerPassengerType) type).MaxAirlinerClasses) + 1;
+                    int numOfClasses = Rnd.Next(0, passengerType.MaxAirlinerClasses) + 1;
 
                     if (GameObject.GetInstance().GameTime.Year >= (int) AirlinerClass.ClassType.BusinessClass)
                     {
@@ -187,35 +186,37 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         }
                     }
 
-                    foreach (AirlinerClassConfiguration aClass in configuration.Classes)
+                    if (configuration != null)
                     {
-                        var airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
-                        airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
-
-                        foreach (AirlinerFacility facility in aClass.GetFacilities())
+                        foreach (AirlinerClassConfiguration aClass in configuration.Classes)
                         {
-                            airlinerClass.SetFacility(null, facility);
-                        }
+                            var airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity) {RegularSeatingCapacity = aClass.RegularSeatingCapacity};
 
-                        foreach (
-                            AirlinerFacility.FacilityType fType in Enum.GetValues(typeof (AirlinerFacility.FacilityType))
-                            )
-                        {
-                            if (!aClass.Facilities.Exists(f => f.Type == fType))
+                            foreach (AirlinerFacility facility in aClass.GetFacilities())
                             {
-                                airlinerClass.SetFacility(null, AirlinerFacilities.GetBasicFacility(fType));
+                                airlinerClass.SetFacility(null, facility);
                             }
+
+                            foreach (
+                                AirlinerFacility.FacilityType fType in Enum.GetValues(typeof (AirlinerFacility.FacilityType))
+                                )
+                            {
+                                if (!aClass.Facilities.Exists(f => f.Type == fType))
+                                {
+                                    airlinerClass.SetFacility(null, AirlinerFacilities.GetBasicFacility(fType));
+                                }
+                            }
+
+                            airlinerClass.SeatingCapacity =
+                                Convert.ToInt16(
+                                    Convert.ToDouble(airlinerClass.RegularSeatingCapacity)
+                                    /airlinerClass.GetFacility(AirlinerFacility.FacilityType.Seat).SeatUses);
+
+                            classes.Add(airlinerClass);
                         }
 
-                        airlinerClass.SeatingCapacity =
-                            Convert.ToInt16(
-                                Convert.ToDouble(airlinerClass.RegularSeatingCapacity)
-                                /airlinerClass.GetFacility(AirlinerFacility.FacilityType.Seat).SeatUses);
-
-                        classes.Add(airlinerClass);
+                        seatingDiff = passengerType.MaxSeatingCapacity - configuration.MinimumSeats;
                     }
-
-                    int seatingDiff = ((AirlinerPassengerType) type).MaxSeatingCapacity - configuration.MinimumSeats;
 
                     AirlinerClass economyClass = classes.Find(c => c.Type == AirlinerClass.ClassType.EconomyClass);
                     economyClass.RegularSeatingCapacity += seatingDiff;
@@ -232,8 +233,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         AirlinerClassConfiguration aClass in
                             ((AirlinerTypeConfiguration) airlinerTypeConfiguration).Classes)
                     {
-                        var airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
-                        airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
+                        var airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity) {RegularSeatingCapacity = aClass.RegularSeatingCapacity};
 
                         foreach (AirlinerFacility facility in aClass.GetFacilities())
                         {
@@ -297,17 +297,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static DateTime GetOrderDeliveryDate(List<AirlinerOrder> orders)
         {
-            double monthsToComplete = 0;
-
-            foreach (AirlinerOrder order in orders)
-            {
-                double orderToComplete = Math.Ceiling(Convert.ToDouble(order.Amount)/order.Type.ProductionRate);
-
-                if (orderToComplete > monthsToComplete)
-                {
-                    monthsToComplete = orderToComplete;
-                }
-            }
+            double monthsToComplete = orders.Select(order => Math.Ceiling(Convert.ToDouble(order.Amount)/order.Type.ProductionRate)).Concat(new double[] {0}).Max();
 
             var latestDate = new DateTime(1900, 1, 1);
 
@@ -326,8 +316,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     for (int i = (rate/4) + 1; i <= order.Amount; i++)
                     {
-                        double iRate = 365/rate;
-                        date = date.AddDays(Math.Round(iRate, 0, MidpointRounding.AwayFromZero));
+                        date = date.AddDays(365.0/rate);
                     }
                 }
 
@@ -371,11 +360,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             List<AirlinerType> types =
                 AirlinerTypes.GetTypes(
-                    delegate(AirlinerType t)
-                        {
-                            return t.Range >= minRange && t.Produced.From.Year < GameObject.GetInstance().GameTime.AddYears(-5).Year
-                                   && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-35);
-                        });
+                    t => t.Range >= minRange && t.Produced.From.Year < GameObject.GetInstance().GameTime.AddYears(-5).Year
+                         && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-35));
 
             int typeNumber = Rnd.Next(types.Count);
             AirlinerType type = types[typeNumber];

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using TheAirline.Model.AirlineModel;
-using TheAirline.Model.AirlinerModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -10,7 +9,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
     {
         #region Fields
 
+/*
         private long _money = (long) GameObject.GetInstance().HumanAirline.Money;
+*/
 
         #endregion
 
@@ -18,7 +19,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static double GetAvgFleetValue()
         {
-            if (GameObject.GetInstance().HumanAirline.Fleet.Count() == 0)
+            if (!GameObject.GetInstance().HumanAirline.Fleet.Any())
             {
                 return 0;
             }
@@ -27,7 +28,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static long GetAvgSubValue(Airline airline)
         {
-            if (airline.Subsidiaries.Count() == 0)
+            if (!airline.Subsidiaries.Any())
             {
                 return 0;
             }
@@ -49,11 +50,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static long GetFleetValue()
         {
-            var values = new List<Int64>();
-            foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet)
-            {
-                values.Add(airliner.Airliner.Price);
-            }
+            var values = GameObject.GetInstance().HumanAirline.Fleet.Select(airliner => airliner.Airliner.Price).ToList();
             return values.Sum();
         }
 
@@ -128,14 +125,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static long GetTotalSubValues(Airline airline)
         {
-            long value = 0;
-            foreach (Airline subsidiary in airline.Subsidiaries)
-            {
-                int airportValue = 10000*(int) StatisticsHelpers.getWorldAirportsServed();
-                value += (GetFleetValue() + airportValue);
-            }
-
-            return value;
+            return (from Airline subsidiary in airline.Subsidiaries select 10000*(int) StatisticsHelpers.GetWorldAirportsServed() into airportValue select (GetFleetValue() + airportValue)).Sum();
         }
 
         //sets default values and max values

@@ -22,10 +22,8 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
 
         private AIWorker()
         {
-            _worker = new BackgroundWorker();
+            _worker = new BackgroundWorker {WorkerReportsProgress = true, WorkerSupportsCancellation = true};
 
-            _worker.WorkerReportsProgress = true;
-            _worker.WorkerSupportsCancellation = true;
             _worker.DoWork += bw_DoWork;
             //bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             _worker.RunWorkerCompleted += bw_RunWorkerCompleted;
@@ -37,12 +35,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
 
         public static AIWorker GetInstance()
         {
-            if (_instance == null)
-            {
-                _instance = new AIWorker();
-            }
-
-            return _instance;
+            return _instance ?? (_instance = new AIWorker());
         }
 
         //cancels the worker
@@ -89,12 +82,12 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         {
             if (e.Cancelled)
             {
-                Console.WriteLine("Canceled!");
+                Console.WriteLine(@"Canceled!");
             }
 
-            else if (!(e.Error == null))
+            else if (e.Error != null)
             {
-                Console.WriteLine("Error: " + e.Error.Message);
+                Console.WriteLine(@"Error: " + e.Error.Message);
             }
 
             else

@@ -44,12 +44,7 @@ namespace TheAirline.Model.GeneralModel
 
         public static Names GetInstance()
         {
-            if (_instance == null)
-            {
-                _instance = new Names();
-            }
-
-            return _instance;
+            return _instance ?? (_instance = new Names());
         }
 
         //returns a random first name from a country
@@ -58,7 +53,8 @@ namespace TheAirline.Model.GeneralModel
             if (!_firstNames.ContainsKey(country))
             {
                 IEnumerable<Country> countries = _firstNames.Select(n => n.Key);
-                country = countries.ElementAt(_rnd.Next(countries.Count()));
+                var enumerable = countries as Country[] ?? countries.ToArray();
+                country = enumerable.ElementAt(_rnd.Next(enumerable.Count()));
             }
 
             return GetRandomElement(_firstNames[country]);
@@ -70,7 +66,8 @@ namespace TheAirline.Model.GeneralModel
             if (!_lastNames.ContainsKey(country))
             {
                 IEnumerable<Country> countries = _firstNames.Select(n => n.Key);
-                country = countries.ElementAt(_rnd.Next(countries.Count()));
+                var enumerable = countries as Country[] ?? countries.ToArray();
+                country = enumerable.ElementAt(_rnd.Next(enumerable.Count()));
             }
 
             return GetRandomElement(_lastNames[country]);
@@ -97,40 +94,44 @@ namespace TheAirline.Model.GeneralModel
                 var reader = new StreamReader(file.FullName, Encoding.GetEncoding("iso-8859-1"));
 
                 //first line is the attributes for the file. Format: [TYPE=F(irstnames)||L(astnames)][COUNTRIES=110,111....]
-                string[] attributes = reader.ReadLine().Split(new[] {"["}, StringSplitOptions.RemoveEmptyEntries);
-                Boolean isFirstname = attributes[0].Substring(attributes[0].IndexOf("=") + 1, 1) == "F";
-
-                string attrCountries = attributes[1].Substring(attributes[1].IndexOf("=") + 1);
-
-                foreach (string country in attrCountries.Split(','))
+                var readLine = reader.ReadLine();
+                if (readLine != null)
                 {
-                    countries.Add(Countries.GetCountry(country.Replace(']', ' ').Trim()));
-                }
+                    string[] attributes = readLine.Split(new[] {"["}, StringSplitOptions.RemoveEmptyEntries);
+                    Boolean isFirstname = attributes[0].Substring(attributes[0].IndexOf("=", StringComparison.Ordinal) + 1, 1) == "F";
 
-                string line;
+                    string attrCountries = attributes[1].Substring(attributes[1].IndexOf("=", StringComparison.Ordinal) + 1);
 
-                while ((line = reader.ReadLine()) != null)
-                {
-                    if (isFirstname)
+                    foreach (string country in attrCountries.Split(','))
                     {
-                        foreach (Country country in countries)
-                        {
-                            if (!_firstNames.ContainsKey(country))
-                            {
-                                _firstNames.Add(country, new List<string>());
-                            }
-                            _firstNames[country].Add(line);
-                        }
+                        countries.Add(Countries.GetCountry(country.Replace(']', ' ').Trim()));
                     }
-                    else
+
+                    string line;
+
+                    while ((line = readLine) != null)
                     {
-                        foreach (Country country in countries)
+                        if (isFirstname)
                         {
-                            if (!_lastNames.ContainsKey(country))
+                            foreach (Country country in countries)
                             {
-                                _lastNames.Add(country, new List<string>());
+                                if (!_firstNames.ContainsKey(country))
+                                {
+                                    _firstNames.Add(country, new List<string>());
+                                }
+                                _firstNames[country].Add(line);
                             }
-                            _lastNames[country].Add(line);
+                        }
+                        else
+                        {
+                            foreach (Country country in countries)
+                            {
+                                if (!_lastNames.ContainsKey(country))
+                                {
+                                    _lastNames.Add(country, new List<string>());
+                                }
+                                _lastNames[country].Add(line);
+                            }
                         }
                     }
                 }

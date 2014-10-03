@@ -27,10 +27,8 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
 
         private GameObjectWorker()
         {
-            _worker = new BackgroundWorker();
+            _worker = new BackgroundWorker {WorkerReportsProgress = true, WorkerSupportsCancellation = true};
 
-            _worker.WorkerReportsProgress = true;
-            _worker.WorkerSupportsCancellation = true;
             _worker.DoWork += bw_DoWork;
             //bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             //this.Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
@@ -69,12 +67,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
 
         public static GameObjectWorker GetInstance()
         {
-            if (_instance == null)
-            {
-                _instance = new GameObjectWorker();
-            }
-
-            return _instance;
+            return _instance ?? (_instance = new GameObjectWorker());
         }
 
         //cancels the worker
@@ -90,11 +83,6 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         public Boolean IsBusy()
         {
             return _worker.IsBusy;
-        }
-
-        public Boolean isPaused()
-        {
-            return IsPaused;
         }
 
         //pause the worker
@@ -196,16 +184,16 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
                 IsFinish = true;
             }
 
-            else if (!(e.Error == null))
+            else if (e.Error != null)
             {
                 //this.Cancelled = true;
 
                 Console.WriteLine(@"Error: " + e.Error.Message);
 
-                var l_CurrentStack = new StackTrace(true);
+                var lCurrentStack = new StackTrace(true);
 
                 var file = new StreamWriter(AppSettings.GetCommonApplicationDataPath() + "\\theairlinepause.log");
-                file.WriteLine(l_CurrentStack.ToString());
+                file.WriteLine(lCurrentStack.ToString());
                 file.WriteLine("------------ERROR MESSAGE--------------");
                 file.WriteLine(e.Error.Message);
                 file.WriteLine(e.Error.StackTrace);

@@ -101,7 +101,7 @@ namespace TheAirline.Model.AirlinerModel
         public string PolicyIndex { get; set; }
 
         [Versioning("remainingpayments")]
-        public int RemainingPayments { get; set; }
+        public double RemainingPayments { get; set; }
 
         [Versioning("termlength")]
         public int TermLength { get; set; }

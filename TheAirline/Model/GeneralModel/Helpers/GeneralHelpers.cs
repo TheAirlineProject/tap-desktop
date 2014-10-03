@@ -103,8 +103,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static void CreateBigImageCanvas()
         {
-            int zoom = 3;
-            int imageSize = 256;
+            const int zoom = 3;
+            const int imageSize = 256;
 
             var panelMap = new Canvas();
 
@@ -114,12 +114,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     string name = string.Format(@"{0}\{1}\{2}.png", zoom, x, y);
 
-                    var imgMap = new Image();
-                    imgMap.Width = imageSize;
-                    imgMap.Height = imageSize;
-                    imgMap.Source =
-                        new BitmapImage(
-                            new Uri(AppSettings.GetDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
+                    var imgMap = new Image
+                        {
+                            Width = imageSize,
+                            Height = imageSize,
+                            Source = new BitmapImage(
+                                new Uri(AppSettings.GetDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute))
+                        };
                     RenderOptions.SetBitmapScalingMode(imgMap, BitmapScalingMode.HighQuality);
 
                     Canvas.SetTop(imgMap, y*imageSize);
@@ -192,12 +193,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     birthdate,
                     town);
 
-                var rankings = new Dictionary<PilotRating, int>();
-                rankings.Add(PilotRatings.GetRating("A"), 10);
-                rankings.Add(PilotRatings.GetRating("B"), 20);
-                rankings.Add(PilotRatings.GetRating("C"), 40);
-                rankings.Add(PilotRatings.GetRating("D"), 20);
-                rankings.Add(PilotRatings.GetRating("E"), 10);
+                var rankings = new Dictionary<PilotRating, int>
+                    {
+                        {PilotRatings.GetRating("A"), 10},
+                        {PilotRatings.GetRating("B"), 20},
+                        {PilotRatings.GetRating("C"), 40},
+                        {PilotRatings.GetRating("D"), 20},
+                        {PilotRatings.GetRating("E"), 10}
+                    };
 
                 PilotRating ranking = AIHelpers.GetRandomItem(rankings);
 
@@ -314,7 +317,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
             entries.Sort(
-                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
+                (e1, e2) => MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)));
             return entries;
         }
 
@@ -342,7 +345,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
             entries.Sort(
-                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
+                (e1, e2) => MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)));
             return entries.GetRange(0, Math.Min(entries.Count, count));
         }
 
@@ -361,7 +364,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
             entries.Sort(
-                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
+                (e1, e2) => MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)));
             return entries;
         }
 
@@ -392,7 +395,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
             entries.Sort(
-                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
+                (e1, e2) => MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)));
             return entries.GetRange(0, Math.Min(entries.Count, count));
         }
 
@@ -426,7 +429,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
             entries.Sort(
-                delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
+                (e1, e2) => MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)));
             return entries;
         }
 
@@ -464,7 +467,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             for (int i = 0; i < numberOfAircrafts; i++)
             {
-                List<string> freeFamilies = airlinerFamilies.Where(a => !families.Contains(a)).ToList();
+                var enumerable = airlinerFamilies as string[] ?? airlinerFamilies.ToArray();
+                List<string> freeFamilies = enumerable.Where(a => !families.Contains(a)).ToList();
                 string family = freeFamilies[rnd.Next(freeFamilies.Count)];
 
                 families.Add(family);
@@ -476,17 +480,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns a rating for a pilot
         public static PilotRating GetPilotRating()
         {
-            var ratings = new Dictionary<PilotRating, int>();
-            ratings.Add(PilotRatings.GetRating("A"), 10);
-            ratings.Add(PilotRatings.GetRating("B"), 20);
-            ratings.Add(PilotRatings.GetRating("C"), 40);
-            ratings.Add(PilotRatings.GetRating("D"), 20);
-            ratings.Add(PilotRatings.GetRating("E"), 10);
+            var ratings = new Dictionary<PilotRating, int>
+                {
+                    {PilotRatings.GetRating("A"), 10},
+                    {PilotRatings.GetRating("B"), 20},
+                    {PilotRatings.GetRating("C"), 40},
+                    {PilotRatings.GetRating("D"), 20},
+                    {PilotRatings.GetRating("E"), 10}
+                };
 
             return AIHelpers.GetRandomItem(ratings);
         }
-
-        //returns if an airport is active (built)
 
         //creates the rating for a pilot student
         public static PilotRating GetPilotStudentRating(Instructor instructor, List<PilotRating> ratings)
@@ -547,8 +551,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                     : 0;
 
             int instructorRankingIndex = PilotRatings.GetRatings().IndexOf(instructorRanking);
-            var rankings = new Dictionary<PilotRating, int>();
-            rankings.Add(instructorRanking, 50);
+            var rankings = new Dictionary<PilotRating, int> {{instructorRanking, 50}};
 
             if (instructorRankingIndex > 0)
             {
@@ -618,11 +621,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
     }
 
     //the class for a key value pair for use on convertres etc.
-    public class GameKeyValuePair<T, S>
+    public class GameKeyValuePair<T, TS>
     {
         #region Constructors and Destructors
 
-        public GameKeyValuePair(T key, S value)
+        public GameKeyValuePair(T key, TS value)
         {
             Key = key;
             Value = value;
@@ -634,7 +637,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public T Key { get; set; }
 
-        public S Value { get; set; }
+        public TS Value { get; set; }
 
         #endregion
     }

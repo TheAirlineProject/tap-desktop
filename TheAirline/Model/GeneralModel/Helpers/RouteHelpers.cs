@@ -155,10 +155,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             double bagFee = GameObject.GetInstance().HumanAirline.Fees.GetValue(FeeTypes.GetType("1 Bag"));
 
-            if (bagFee == 0)
+            if (bagFee.Equals(0))
                 return 8;
-            else
-                return 3;
+            return 3;
         }
 
         /*returns the total score of the route*/
@@ -222,10 +221,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (wifi.Name == "None")
                 return 3;
-            if (wifi.Name == "Buyable")
-                return 6;
-            else
-                return 9;
+            return wifi.Name == "Buyable" ? 6 : 9;
         }
     }
 }

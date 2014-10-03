@@ -100,7 +100,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 return _languages[name];
             }
-            string shortname = name.Substring(name.IndexOf("("));
+            string shortname = name.Substring(name.IndexOf("(", StringComparison.Ordinal));
             return _languages.Values.ToList().Find(l => l.Name.Contains(shortname));
         }
 

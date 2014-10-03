@@ -37,7 +37,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the standard landing fee for an airport
         public static double GetStandardLandingFee(Airport airport)
         {
-            double basefee = 0.27;
+            const double basefee = 0.27;
 
             return basefee*((int) (airport.Profile.Size) + 1);
         }
@@ -53,17 +53,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             contract.Airport.AddAirlineContract(contract);
 
             AirportFacility checkinFacility =
-                AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn)
-                                 .Where(f => f.TypeLevel == 1)
-                                 .First();
+                AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).First(f => f.TypeLevel == 1);
             AirportFacility ticketFacility =
-                AirportFacilities.GetFacilities(AirportFacility.FacilityType.TicketOffice)
-                                 .Where(f => f.TypeLevel == 1)
-                                 .First();
+                AirportFacilities.GetFacilities(AirportFacility.FacilityType.TicketOffice).First(f => f.TypeLevel == 1);
             AirportFacility serviceFacility =
-                AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service)
-                                 .Where(f => f.TypeLevel == 1)
-                                 .First();
+                AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).First(f => f.TypeLevel == 1);
             AirportFacility cargoTerminal =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f => f.TypeLevel > 0);
 
@@ -134,15 +128,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             int numberOfOccupiedSlots =
                 GetOccupiedSlotTimes(airport, airline, contracts, season)
-                    .GroupBy(s => s.Ticks)
-                    .Where(x => x.Count() > 1)
-                    .Count();
+                    .GroupBy(s => s.Ticks).Count(x => x.Count() > 1);
             return numberOfOccupiedSlots == 0 && !(routes.Count > 0 && contracts.Count == 0);
         }
 
         public static void CheckForExtendGates(Airport airport)
         {
-            int minYearsBetweenExpansions = 5;
+            const int minYearsBetweenExpansions = 5;
 
             if (airport.Terminals.GetOrdereredGates() == 0
                 && GameObject.GetInstance().GameTime.AddYears(-minYearsBetweenExpansions) > airport.LastExpansionDate)
@@ -164,8 +156,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         for (int i = 0; i < numberOfGates; i++)
                         {
-                            var gate = new Gate(GameObject.GetInstance().GameTime.AddDays(daysToBuild));
-                            gate.Airline = minTerminal.Airline;
+                            var gate = new Gate(GameObject.GetInstance().GameTime.AddDays(daysToBuild)) {Airline = minTerminal.Airline};
 
                             minTerminal.Gates.AddGate(gate);
                         }
@@ -209,7 +200,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (!isOnlyHeliport)
             {
-                int minYearsBetweenExpansions = 5;
+                const int minYearsBetweenExpansions = 5;
 
                 long maxRunwayLenght = (from r in airport.Runways select r.Length).Max();
                 long longestRequiredRunwayLenght =
@@ -221,8 +212,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 List<Route> airportRoutes = GetAirportRoutes(airport);
                 IEnumerable<FleetAirliner> routeAirliners = airportRoutes.SelectMany(r => r.GetAirliners());
 
-                long longestRunwayInUse = routeAirliners.Count() > 0
-                                              ? routeAirliners.Max(a => a.Airliner.MinRunwaylength)
+                var fleetAirliners = routeAirliners as FleetAirliner[] ?? routeAirliners.ToArray();
+                long longestRunwayInUse = fleetAirliners.Any()
+                                              ? fleetAirliners.Max(a => a.Airliner.MinRunwaylength)
                                               : 0;
 
                 if (maxRunwayLenght < longestRequiredRunwayLenght/2 && maxRunwayLenght < longestRunwayInUse*3/4
@@ -237,11 +229,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
 
                     Runway.SurfaceType surface = airport.Runways[0].Surface;
-                    long lenght = Math.Min(longestRequiredRunwayLenght*3/4, longestRunwayInUse*2);
+                    long length = Math.Min(longestRequiredRunwayLenght*3/4, longestRunwayInUse*2);
 
                     var runway = new Runway(
                         runwayNames[Rnd.Next(runwayNames.Count)],
-                        lenght,
+                        length,
                         Runway.RunwayType.Regular,
                         surface,
                         GameObject.GetInstance().GameTime.AddDays(90),
@@ -265,13 +257,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static GeneralHelpers.Size ConvertAirportPaxToSize(double size)
         {
-            var yearCoeffs = new Dictionary<int, double>();
-            yearCoeffs.Add(1960, 1.3);
-            yearCoeffs.Add(1970, 1.2);
-            yearCoeffs.Add(1980, 1.15);
-            yearCoeffs.Add(1990, 1.10);
-            yearCoeffs.Add(2000, 1.0658);
-            yearCoeffs.Add(2010, 1);
+            var yearCoeffs = new Dictionary<int, double> {{1960, 1.3}, {1970, 1.2}, {1980, 1.15}, {1990, 1.10}, {2000, 1.0658}, {2010, 1}};
 
             int decade = (GameObject.GetInstance().GameTime.Year - 1960)/10*10 + 1960;
 
@@ -320,27 +306,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airport.Weather[0] = null;
 
             WeatherAverage average =
-                WeatherAverages.GetWeatherAverages(
+                (WeatherAverages.GetWeatherAverages(
                     w => w.Airport != null && w.Airport == airport && w.Month == GameObject.GetInstance().GameTime.Month)
-                               .FirstOrDefault();
-
-            if (average == null)
-            {
-                average =
-                    WeatherAverages.GetWeatherAverages(
-                        w =>
-                        w.Town != null && w.Town == airport.Profile.Town
-                        && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
-            }
-
-            if (average == null)
-            {
-                average =
-                    WeatherAverages.GetWeatherAverages(
-                        w =>
-                        w.Country != null && w.Country == airport.Profile.Town.Country
-                        && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
-            }
+                                .FirstOrDefault() ?? WeatherAverages.GetWeatherAverages(
+                                    w =>
+                                    w.Town != null && w.Town == airport.Profile.Town
+                                    && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault()) ?? WeatherAverages.GetWeatherAverages(
+                                        w =>
+                                        w.Country != null && w.Country == airport.Profile.Town.Country
+                                        && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
 
             if (average == null)
             {
@@ -348,8 +322,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             else
             {
-                var lAirport = new List<Airport>();
-                lAirport.Add(airport);
+                var lAirport = new List<Airport> {airport};
 
                 CreateAirportsWeather(lAirport, average);
             }
@@ -360,7 +333,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             if (airports.Count > 0)
             {
-                int maxDays = 5;
+                const int maxDays = 5;
                 var weathers = new Weather[maxDays];
 
                 if (airports[0].Weather[0] == null)
@@ -396,7 +369,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates the weather (5 days) for an airport
         public static void CreateFiveDaysAirportWeather(Airport airport)
         {
-            int maxDays = 5;
+            const int maxDays = 5;
             if (airport.Weather[0] == null)
             {
                 for (int i = 0; i < maxDays; i++)
@@ -428,7 +401,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             double paxDemand = airport.Profile.MajorDestionations.Sum(d => d.Value) + airport.Profile.Pax;
 
-            double basePrice = 10000;
+            const double basePrice = 10000;
 
             return GeneralHelpers.GetInflationPrice(paxDemand*basePrice);
 
@@ -901,10 +874,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             return
-                routes.Where(
-                    r =>
-                    (r.Destination1 == airport1 && r.Destination2 == airport2)
-                    || (r.Destination1 == airport2 && r.Destination2 == airport1)).Count() > 0;
+                routes.Any(r => (r.Destination1 == airport1 && r.Destination2 == airport2)
+                                || (r.Destination1 == airport2 && r.Destination2 == airport1));
         }
 
         public static void ReallocateAirport(Airport airportOld, Airport airportNew)
@@ -975,7 +946,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             for (int i = 0; i < gates; i++)
             {
-                Gate gate = airport.Terminals.GetGates().Where(g => g.Airline == null).FirstOrDefault();
+                Gate gate = airport.Terminals.GetGates().FirstOrDefault(g => g.Airline == null);
 
                 if (gate != null)
                     gate.Airline = airline;
@@ -999,23 +970,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
             var coverValues = (Weather.CloudCover[]) Enum.GetValues(typeof (Weather.CloudCover));
             var windDirectionValues = (Weather.WindDirection[]) Enum.GetValues(typeof (Weather.WindDirection));
             var windSpeedValues = (Weather.eWindSpeed[]) Enum.GetValues(typeof (Weather.eWindSpeed));
-            Weather.WindDirection windDirection;
             Weather.eWindSpeed windSpeed;
-            double temperature,
-                   temperatureLow,
-                   temperatureHigh,
-                   temperatureSunrise,
-                   temperatureSunset,
-                   temperatureDayend;
+            double temperature;
 
-            windDirection = windDirectionValues[Rnd.Next(windDirectionValues.Length)];
+            Weather.WindDirection windDirection = windDirectionValues[Rnd.Next(windDirectionValues.Length)];
 
             if (previousWeather == null)
             {
                 windSpeed = windSpeedValues[Rnd.Next(windSpeedValues.Length)];
 
-                double maxTemp = 40;
-                double minTemp = -20;
+                const double maxTemp = 40;
+                const double minTemp = -20;
 
                 temperature = MathHelpers.GetRandomDoubleNumber(minTemp, maxTemp);
             }
@@ -1034,16 +999,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 temperature = MathHelpers.GetRandomDoubleNumber(minTemp, maxTemp);
             }
 
-            temperatureLow = temperature - Rnd.Next(1, 10);
-            temperatureHigh = temperature + Rnd.Next(1, 10);
+            double temperatureLow = temperature - Rnd.Next(1, 10);
+            double temperatureHigh = temperature + Rnd.Next(1, 10);
 
             double tempDiff = temperatureHigh - temperatureLow;
-            temperatureSunrise = temperatureLow + MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
-            temperatureSunset = temperatureHigh - MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
-            temperatureDayend = temperatureLow + Rnd.Next(-2, 2);
+            double temperatureSunrise = temperatureLow + MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
+            double temperatureSunset = temperatureHigh - MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
+            double temperatureDayend = temperatureLow + Rnd.Next(-2, 2);
 
             Weather.CloudCover cover = coverValues[Rnd.Next(coverValues.Length)];
-            var precip = Weather.Precipitation.None;
+            Weather.Precipitation precip;
             if (cover == Weather.CloudCover.Overcast)
             {
                 precip = precipitationValues[Rnd.Next(precipitationValues.Length)];
@@ -1193,14 +1158,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Weather.WindDirection windDirection = windDirectionValues[Rnd.Next(windDirectionValues.Length)];
             Weather.CloudCover cover;
-            var precip = Weather.Precipitation.None;
+            Weather.Precipitation precip;
             Weather.eWindSpeed windSpeed;
-            double temperature,
-                   temperatureLow,
-                   temperatureHigh,
-                   temperatureSunrise,
-                   temperatureSunset,
-                   temperatureDayend;
+            double temperatureLow,
+                   temperatureHigh;
 
             int windIndexMin = windSpeedValues.ToList().IndexOf(average.WindSpeedMin);
             int windIndexMax = windSpeedValues.ToList().IndexOf(average.WindSpeedMax);
@@ -1235,11 +1196,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             double tempDiff = temperatureHigh - temperatureLow;
-            temperatureSunrise = temperatureLow + MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
-            temperatureSunset = temperatureHigh - MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
-            temperatureDayend = temperatureLow + Rnd.Next(-2, 2);
+            double temperatureSunrise = temperatureLow + MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
+            double temperatureSunset = temperatureHigh - MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
+            double temperatureDayend = temperatureLow + Rnd.Next(-2, 2);
 
-            temperature = (temperatureLow + temperatureHigh)/2;
+            double temperature = (temperatureLow + temperatureHigh)/2;
 
             Boolean isOvercast = Rnd.Next(100) < average.Precipitation;
             if (isOvercast)

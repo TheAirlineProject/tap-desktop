@@ -132,14 +132,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             List<RouteTimeTableEntry> entries,
             Boolean withSlots = true)
         {
-            foreach (RouteTimeTableEntry e in timeTable.Entries)
-            {
-                if (!IsRouteEntryValid(e, airliner, entries, withSlots))
-                {
-                    return false;
-                }
-            }
-            return true;
+            return timeTable.Entries.All(e => IsRouteEntryValid(e, airliner, entries, withSlots));
         }
 
         #endregion
@@ -222,7 +215,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static Boolean IsRouteEntryValid(
             RouteTimeTableEntry entry,
             FleetAirliner airliner,
-            List<RouteTimeTableEntry> entries,
+            IEnumerable<RouteTimeTableEntry> entries,
             Boolean withSlots)
         {
             TimeSpan flightTime =
@@ -287,7 +280,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
                 }
             }
-            double minutesPerWeek = 7*24*60;
+            const double minutesPerWeek = 7*24*60;
 
             RouteTimeTableEntry nextEntry = GetNextEntry(entry, airliner, airlinerEntries);
 

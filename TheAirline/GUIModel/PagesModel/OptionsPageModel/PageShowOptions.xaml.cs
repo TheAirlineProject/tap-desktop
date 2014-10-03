@@ -71,7 +71,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
                     (GeneralHelpers.GameSpeedValue)
                         Enum.ToObject(typeof(GeneralHelpers.GameSpeedValue), (int)this.slGameSpeed.Value);
 
-                Settings.GetInstance().setGameSpeed(gameSpeed);
+                Settings.GetInstance().SetGameSpeed(gameSpeed);
 
                 List<RadioButton> rbAutoSaves = UIHelpers.FindRBChildren(this, "AutoSave");
 

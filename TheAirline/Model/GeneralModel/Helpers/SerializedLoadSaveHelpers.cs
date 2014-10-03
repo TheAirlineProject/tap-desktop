@@ -58,7 +58,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         Airlines.Clear();
 
-                        foreach (Airline airline in deserializedSaveObject.airlinesList)
+                        foreach (Airline airline in deserializedSaveObject.AirlinesList)
                         {
                             Airlines.AddAirline(airline);
                         }
@@ -71,13 +71,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         Airports.Clear();
 
-                        foreach (Airport airport in deserializedSaveObject.airportsList)
+                        foreach (Airport airport in deserializedSaveObject.AirportsList)
                         {
                             airport.Statics = new AirportStatics(airport);
                             Airports.AddAirport(airport);
                         }
 
-                        foreach (string iata in deserializedSaveObject.airportsfromstringList)
+                        foreach (string iata in deserializedSaveObject.AirportsFromStringList)
                         {
                             Airport airport = airports.FirstOrDefault(a => a.Profile.IATACode == iata);
 
@@ -91,7 +91,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         Airliners.Clear();
 
-                        foreach (Airliner airliner in deserializedSaveObject.airlinersList)
+                        foreach (Airliner airliner in deserializedSaveObject.AirlinersList)
                         {
                             Airliners.AddAirliner(airliner);
                         }
@@ -100,7 +100,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         CalendarItems.Clear();
 
-                        foreach (CalendarItem item in deserializedSaveObject.calendaritemsList)
+                        foreach (CalendarItem item in deserializedSaveObject.CalendarItemsList)
                         {
                             CalendarItems.AddCalendarItem(item);
                         }
@@ -109,7 +109,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         Configurations.Clear();
 
-                        foreach (Configuration configuration in deserializedSaveObject.configurationList)
+                        foreach (Configuration configuration in deserializedSaveObject.ConfigurationList)
                         {
                             Configurations.AddConfiguration(configuration);
                         }
@@ -118,7 +118,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         RandomEvents.Clear();
 
-                        foreach (RandomEvent e in deserializedSaveObject.eventsList)
+                        foreach (RandomEvent e in deserializedSaveObject.EventsList)
                         {
                             RandomEvents.AddEvent(e);
                         }
@@ -127,7 +127,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         Alliances.Clear();
 
-                        foreach (Alliance alliance in deserializedSaveObject.allianceList)
+                        foreach (Alliance alliance in deserializedSaveObject.AllianceList)
                         {
                             Alliances.AddAlliance(alliance);
                         }
@@ -136,7 +136,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         AirportFacilities.Clear();
 
-                        foreach (AirportFacility facility in deserializedSaveObject.Airportfacilitieslist)
+                        foreach (AirportFacility facility in deserializedSaveObject.AirportFacilitiesList)
                         {
                             AirportFacilities.AddFacility(facility);
                         }
@@ -145,7 +145,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         FeeTypes.Clear();
 
-                        foreach (FeeType type in deserializedSaveObject.feeTypeslist)
+                        foreach (FeeType type in deserializedSaveObject.FeeTypeslist)
                         {
                             FeeTypes.AddType(type);
                         }
@@ -154,7 +154,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         AdvertisementTypes.Clear();
 
-                        foreach (AdvertisementType addtype in deserializedSaveObject.advertisementTypeslist)
+                        foreach (AdvertisementType addtype in deserializedSaveObject.AdvertisementTypesList)
                         {
                             AdvertisementTypes.AddAdvertisementType(addtype);
                         }
@@ -163,7 +163,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         AirlinerFacilities.Clear();
 
-                        foreach (AirlinerFacility airlinerfas in deserializedSaveObject.airlinerfacilitieslist)
+                        foreach (AirlinerFacility airlinerfas in deserializedSaveObject.AirlinerFacilitiesList)
                         {
                             AirlinerFacilities.AddFacility(airlinerfas);
                         }
@@ -172,23 +172,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         RouteFacilities.Clear();
 
-                        foreach (RouteFacility routefas in deserializedSaveObject.routefacilitieslist)
+                        foreach (RouteFacility routefas in deserializedSaveObject.RouteFacilitiesList)
                         {
                             RouteFacilities.AddFacility(routefas);
                         }
                     },
                 () =>
                     {
-                        GameObject.SetInstance(deserializedSaveObject.instance);
-                        Settings.SetInstance(deserializedSaveObject.settings);
+                        GameObject.SetInstance(deserializedSaveObject.Instance);
+                        Settings.SetInstance(deserializedSaveObject.Settings);
                     },
                 () =>
                     {
-                        if (deserializedSaveObject.airlinefacilitieslist != null)
+                        if (deserializedSaveObject.AirlineFacilitiesList != null)
                         {
                             AirlineFacilities.Clear();
 
-                            foreach (AirlineFacility airlinefac in deserializedSaveObject.airlinefacilitieslist)
+                            foreach (AirlineFacility airlinefac in deserializedSaveObject.AirlineFacilitiesList)
                             {
                                 AirlineFacilities.AddFacility(airlinefac);
                             }
@@ -245,8 +245,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Parallel.Invoke(
                 () =>
                     {
-                        so.airportsList = new List<Airport>();
-                        so.airportsfromstringList = new List<string>();
+                        so.AirportsList = new List<Airport>();
+                        so.AirportsFromStringList = new List<string>();
 
                         IEnumerable<Airport> airportsInUse =
                             Airports.GetAllAirports()
@@ -254,77 +254,78 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                         a =>
                                         Airlines.GetAllAirlines().Exists(al => al.Airports.Contains(a))
                                         || a.HasAirlineFacility());
-                        so.airportsList.AddRange(airportsInUse);
+                        Airport[] inUse = airportsInUse as Airport[] ?? airportsInUse.ToArray();
+                        so.AirportsList.AddRange(inUse);
 
-                        foreach (Airport airport in Airports.GetAirports(a => !airportsInUse.Contains(a)))
+                        foreach (Airport airport in Airports.GetAirports(a => !inUse.Contains(a)))
                         {
-                            so.airportsfromstringList.Add(airport.Profile.IATACode);
+                            so.AirportsFromStringList.Add(airport.Profile.IATACode);
                         }
                     },
                 () =>
                     {
-                        so.airlinesList = new List<Airline>();
-                        so.airlinesList.AddRange(Airlines.GetAllAirlines());
+                        so.AirlinesList = new List<Airline>();
+                        so.AirlinesList.AddRange(Airlines.GetAllAirlines());
                     },
                 () =>
                     {
-                        so.airlinersList = new List<Airliner>();
-                        so.airlinersList.AddRange(Airliners.GetAllAirliners().Where(a => a.Airline != null));
+                        so.AirlinersList = new List<Airliner>();
+                        so.AirlinersList.AddRange(Airliners.GetAllAirliners().Where(a => a.Airline != null));
                     },
                 () =>
                     {
-                        so.calendaritemsList = new List<CalendarItem>();
-                        so.calendaritemsList.AddRange(CalendarItems.GetCalendarItems());
+                        so.CalendarItemsList = new List<CalendarItem>();
+                        so.CalendarItemsList.AddRange(CalendarItems.GetCalendarItems());
                     },
                 () =>
                     {
-                        so.configurationList = new List<Configuration>();
-                        so.configurationList.AddRange(Configurations.GetConfigurations());
+                        so.ConfigurationList = new List<Configuration>();
+                        so.ConfigurationList.AddRange(Configurations.GetConfigurations());
                     },
                 () =>
                     {
-                        so.eventsList = new List<RandomEvent>();
-                        so.eventsList.AddRange(RandomEvents.GetEvents());
+                        so.EventsList = new List<RandomEvent>();
+                        so.EventsList.AddRange(RandomEvents.GetEvents());
                     },
                 () =>
                     {
-                        so.allianceList = new List<Alliance>();
-                        so.allianceList.AddRange(Alliances.GetAlliances());
+                        so.AllianceList = new List<Alliance>();
+                        so.AllianceList.AddRange(Alliances.GetAlliances());
                     },
                 () =>
                     {
-                        so.Airportfacilitieslist = new List<AirportFacility>();
-                        so.Airportfacilitieslist.AddRange(AirportFacilities.GetFacilities());
+                        so.AirportFacilitiesList = new List<AirportFacility>();
+                        so.AirportFacilitiesList.AddRange(AirportFacilities.GetFacilities());
                     },
                 () =>
                     {
-                        so.feeTypeslist = new List<FeeType>();
-                        so.feeTypeslist.AddRange(FeeTypes.GetTypes());
+                        so.FeeTypeslist = new List<FeeType>();
+                        so.FeeTypeslist.AddRange(FeeTypes.GetTypes());
                     },
                 () =>
                     {
-                        so.advertisementTypeslist = new List<AdvertisementType>();
-                        so.advertisementTypeslist.AddRange(AdvertisementTypes.GetTypes());
+                        so.AdvertisementTypesList = new List<AdvertisementType>();
+                        so.AdvertisementTypesList.AddRange(AdvertisementTypes.GetTypes());
                     },
                 () =>
                     {
-                        so.airlinerfacilitieslist = new List<AirlinerFacility>();
-                        so.airlinerfacilitieslist.AddRange(AirlinerFacilities.GetAllFacilities());
+                        so.AirlinerFacilitiesList = new List<AirlinerFacility>();
+                        so.AirlinerFacilitiesList.AddRange(AirlinerFacilities.GetAllFacilities());
                     },
                 () =>
                     {
-                        so.routefacilitieslist = new List<RouteFacility>();
-                        so.routefacilitieslist.AddRange(RouteFacilities.GetAllFacilities());
+                        so.RouteFacilitiesList = new List<RouteFacility>();
+                        so.RouteFacilitiesList.AddRange(RouteFacilities.GetAllFacilities());
                     },
                 () =>
                     {
-                        so.instance = GameObject.GetInstance();
-                        so.settings = Settings.GetInstance();
+                        so.Instance = GameObject.GetInstance();
+                        so.Settings = Settings.GetInstance();
                     },
                 () =>
                     {
-                        so.airlinefacilitieslist = new List<AirlineFacility>();
-                        so.airlinefacilitieslist.AddRange(AirlineFacilities.GetFacilities());
+                        so.AirlineFacilitiesList = new List<AirlineFacility>();
+                        so.AirlineFacilitiesList.AddRange(AirlineFacilities.GetFacilities());
                     });
 
             string fileName = AppSettings.GetCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
@@ -332,7 +333,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             FileSerializer.Serialize(fileName, so);
 
             sw.Stop();
-            Console.WriteLine("Saving: {0} ms", sw.ElapsedMilliseconds);
+            Console.WriteLine(@"Saving: {0} ms", sw.ElapsedMilliseconds);
 
             //Clearing stats because there is no need for saving those.
             if (name != "autosave")
@@ -432,56 +433,56 @@ namespace TheAirline.Model.GeneralModel.Helpers
         #region Public Properties
 
         [Versioning("airportfacilities")]
-        public List<AirportFacility> Airportfacilitieslist { get; set; }
+        public List<AirportFacility> AirportFacilitiesList { get; set; }
 
         [Versioning("advertisementtypes")]
-        public List<AdvertisementType> advertisementTypeslist { get; set; }
+        public List<AdvertisementType> AdvertisementTypesList { get; set; }
 
         [Versioning("airlinefacilities")]
-        public List<AirlineFacility> airlinefacilitieslist { get; set; }
+        public List<AirlineFacility> AirlineFacilitiesList { get; set; }
 
         [Versioning("airlinerfacilities")]
-        public List<AirlinerFacility> airlinerfacilitieslist { get; set; }
+        public List<AirlinerFacility> AirlinerFacilitiesList { get; set; }
 
         [Versioning("airliners")]
-        public List<Airliner> airlinersList { get; set; }
+        public List<Airliner> AirlinersList { get; set; }
 
         [Versioning("airlines")]
-        public List<Airline> airlinesList { set; get; }
+        public List<Airline> AirlinesList { set; get; }
 
         [Versioning("airports")]
-        public List<Airport> airportsList { set; get; }
+        public List<Airport> AirportsList { set; get; }
 
         [Versioning("airportsfromstrings")]
-        public List<string> airportsfromstringList { get; set; }
+        public List<string> AirportsFromStringList { get; set; }
 
         [Versioning("alliances")]
-        public List<Alliance> allianceList { get; set; }
+        public List<Alliance> AllianceList { get; set; }
 
         [Versioning("calendaritems")]
-        public List<CalendarItem> calendaritemsList { get; set; }
+        public List<CalendarItem> CalendarItemsList { get; set; }
 
         [Versioning("configurations")]
-        public List<Configuration> configurationList { get; set; }
+        public List<Configuration> ConfigurationList { get; set; }
 
         [Versioning("events")]
-        public List<RandomEvent> eventsList { get; set; }
+        public List<RandomEvent> EventsList { get; set; }
 
         [Versioning("feetypes")]
-        public List<FeeType> feeTypeslist { get; set; }
+        public List<FeeType> FeeTypeslist { get; set; }
 
         [Versioning("instance")]
-        public GameObject instance { get; set; }
+        public GameObject Instance { get; set; }
 
         [Versioning("routefacilities")]
-        public List<RouteFacility> routefacilitieslist { get; set; }
+        public List<RouteFacility> RouteFacilitiesList { get; set; }
 
-        public string savetype { get; set; }
+        public string SaveType { get; set; }
 
-        public int saveversionnumber { get; set; }
+        public int SaveVersionNumber { get; set; }
 
         [Versioning("settings")]
-        public Settings settings { get; set; }
+        public Settings Settings { get; set; }
 
         #endregion
     }
@@ -525,7 +526,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             if (objectToSerialize == null)
             {
-                throw new ArgumentNullException("objectToSerialize cannot be null");
+                throw new ArgumentNullException("objectToSerialize");
             }
 
             Stream stream = null;

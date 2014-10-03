@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
@@ -31,11 +32,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (!airliner.CurrentFlight.IsOnTime)
                 return new KeyValuePair<DelayType, int>(DelayType.None, 0);
 
-            var delays = new Dictionary<DelayType, int>();
+            var delays = new Dictionary<DelayType, int> {{DelayType.AirlinerProblems, GetAirlinerAgeDelay(airliner)}, {DelayType.BadWeather, 0}};
 
-            delays.Add(DelayType.AirlinerProblems, GetAirlinerAgeDelay(airliner));
             //delays.Add(DelayType.Bad_weather, GetAirlinerWeatherDelay(airliner));
-            delays.Add(DelayType.BadWeather, 0);
 
             var delay = new KeyValuePair<DelayType, int>(DelayType.None, 0);
             foreach (var d in delays)
@@ -58,8 +57,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (delayed)
                 return Rnd.Next(0, age)*2;
-            else
-                return 0;
+            return 0;
         }
 
         //returns the delay time because of the weather for an airliner
@@ -275,8 +273,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (passengers > 200)
                 return minTime.Add(minTime);
-            else
-                return minTime;
+            return minTime;
         }
 
         //sets the flights stats for an airliner
@@ -321,11 +318,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 double cargocapacity = 0;
 
-                if (airliner.Airliner.Type is AirlinerCargoType)
-                    cargocapacity = ((AirlinerCargoType) airliner.Airliner.Type).CargoSize;
+                var type = airliner.Airliner.Type as AirlinerCargoType;
+                if (type != null)
+                    cargocapacity = type.CargoSize;
 
-                if (airliner.Airliner.Type is AirlinerCombiType)
-                    cargocapacity = ((AirlinerCombiType) airliner.Airliner.Type).CargoSize;
+                var combiType = airliner.Airliner.Type as AirlinerCombiType;
+                if (combiType != null)
+                    cargocapacity = combiType.CargoSize;
 
                 airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.AddStatisticsValue(StatisticsTypes.GetStatisticsType("Capacity"), (int) cargocapacity);
 
@@ -608,16 +607,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
     {
         //add insurance policy
         public static void CreatePolicy(Airline airline, FleetAirliner airliner, AirlinerInsurance.InsuranceType type, AirlinerInsurance.InsuranceScope scope, AirlinerInsurance.PaymentTerms terms,
-                                        int length, int amount)
+                                        double length, int amount)
         {
             #region Method Setup
 
             var rnd = new Random();
             double hub = airline.GetHubs().Count()*0.1;
-            var policy = new AirlinerInsurance(type, scope, terms, amount);
-            policy.InsuranceEffective = GameObject.GetInstance().GameTime;
-            policy.InsuranceExpires = GameObject.GetInstance().GameTime.AddYears(length);
-            policy.PolicyIndex = GameObject.GetInstance().GameTime.ToString() + airline;
+            var policy = new AirlinerInsurance(type, scope, terms, amount)
+                {
+                    InsuranceEffective = GameObject.GetInstance().GameTime,
+                    InsuranceExpires = GameObject.GetInstance().GameTime.AddYears((int) length),
+                    PolicyIndex = GameObject.GetInstance().GameTime.ToString(CultureInfo.InvariantCulture) + airline
+                };
             switch (policy.InsTerms)
             {
                 case AirlinerInsurance.PaymentTerms.Monthly:
@@ -636,15 +637,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //sets up multipliers based on the type and scope of insurance policy
             var typeMultipliers = new Dictionary<AirlinerInsurance.InsuranceType, double>();
             var scopeMultipliers = new Dictionary<AirlinerInsurance.InsuranceScope, double>();
-            double typeMLiability = 1;
-            double typeMGround_Parked = 1.2;
-            double typeMGroundTaxi = 1.5;
-            double typeMGroundCombined = 1.8;
-            double typeMInFlight = 2.2;
-            double typeMFullCoverage = 2.7;
+            const double typeMLiability = 1;
+            const double typeMGroundParked = 1.2;
+            const double typeMGroundTaxi = 1.5;
+            const double typeMGroundCombined = 1.8;
+            const double typeMInFlight = 2.2;
+            const double typeMFullCoverage = 2.7;
 
-            double scMAirport = 1;
-            double scMDomestic = 1.5;
+            const double scMAirport = 1;
+            const double scMDomestic = 1.5;
             double scMHub = 1.5 + hub;
             double scMGlobal = 2.0 + hub;
 
@@ -721,7 +722,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         case AirlinerInsurance.InsuranceScope.Airport:
                             policy.Deductible = amount*0.005;
-                            policy.PaymentAmount = policy.InsuredAmount*(4/10)*typeMGround_Parked*scMAirport;
+                            policy.PaymentAmount = policy.InsuredAmount*(4/10)*typeMGroundParked*scMAirport;
                             if (terms == AirlinerInsurance.PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount/length;
                             if (terms == AirlinerInsurance.PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount/length/2;
                             if (terms == AirlinerInsurance.PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount/length/4;
@@ -730,7 +731,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         case AirlinerInsurance.InsuranceScope.Domestic:
                             policy.Deductible = amount*0.001;
-                            policy.PaymentAmount = policy.InsuredAmount*(4/10)*typeMGround_Parked*scMDomestic;
+                            policy.PaymentAmount = policy.InsuredAmount*(4/10)*typeMGroundParked*scMDomestic;
                             if (terms == AirlinerInsurance.PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount/length;
                             if (terms == AirlinerInsurance.PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount/length/2;
                             if (terms == AirlinerInsurance.PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount/length/4;
@@ -739,7 +740,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         case AirlinerInsurance.InsuranceScope.Hub:
                             policy.Deductible = amount*0.001;
-                            policy.PaymentAmount = policy.InsuredAmount*(4/10)*typeMGround_Parked*scMHub;
+                            policy.PaymentAmount = policy.InsuredAmount*(4/10)*typeMGroundParked*scMHub;
                             if (terms == AirlinerInsurance.PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount/length;
                             if (terms == AirlinerInsurance.PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount/length/2;
                             if (terms == AirlinerInsurance.PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount/length/4;
@@ -748,7 +749,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         case AirlinerInsurance.InsuranceScope.Global:
                             policy.Deductible = amount*0.001;
-                            policy.PaymentAmount = policy.InsuredAmount*(4/10)*typeMGround_Parked*scMGlobal;
+                            policy.PaymentAmount = policy.InsuredAmount*(4/10)*typeMGroundParked*scMGlobal;
                             if (terms == AirlinerInsurance.PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount/length;
                             if (terms == AirlinerInsurance.PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount/length/2;
                             if (terms == AirlinerInsurance.PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount/length/4;

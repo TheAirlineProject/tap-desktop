@@ -80,7 +80,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                   GameObject.GetInstance().HumanAirline.Profile.CEO,
                                   GameObject.GetInstance().HumanAirline.Profile.IATACode)));
 
-            Action<object> action = (object obj) =>
+            Action<object> action = obj =>
                 {
                     PassengerHelpers.CreateDestinationDemand();
 
@@ -97,7 +97,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GameObject.GetInstance().GameTime);
 
             List<ScenarioFailure> failuresToCheck =
-                scenario.Scenario.Failures.FindAll(f => f.CheckMonths == 1 || f.CheckMonths == monthsSinceStart);
+                scenario.Scenario.Failures.FindAll(f => f.CheckMonths == 1 || f.CheckMonths.Equals(monthsSinceStart));
             foreach (ScenarioFailure failure in failuresToCheck)
             {
                 Boolean failureOk = true;
@@ -313,7 +313,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
             AirportFacility facility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service)
-                                 .Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
+                                 .Find((f => f.TypeLevel == 1));
 
             airline.Homebase.AddAirportFacility(airline.Airline, facility, GameObject.GetInstance().GameTime);
             airline.Homebase.AddAirportFacility(airline.Airline, checkinFacility, GameObject.GetInstance().GameTime);
@@ -338,7 +338,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             {
                                 AirportFacility noneFacility =
                                     AirportFacilities.GetFacilities(type)
-                                                     .Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
+                                                     .Find((facility => facility.TypeLevel == 0));
 
                                 airport.AddAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
                             }
@@ -364,9 +364,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         private static void SetupScenarioAirlines(Scenario scenario)
         {
-            var airlines = new List<Airline>();
-
-            airlines.Add(scenario.Airline);
+            var airlines = new List<Airline> {scenario.Airline};
 
             foreach (ScenarioAirline airline in scenario.OpponentAirlines)
             {
@@ -376,7 +374,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Airlines.Clear();
 
-            airlines.ForEach(a => Airlines.AddAirline(a));
+            airlines.ForEach(Airlines.AddAirline);
 
             SetupHumanAirline(scenario);
         }
@@ -395,7 +393,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
             AirportFacility facility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service)
-                                 .Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
+                                 .Find((f => f.TypeLevel == 1));
 
             airport.AddAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
             airport.AddAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
@@ -411,8 +409,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 if (demand.Country != null)
                 {
+                    ScenarioPassengerDemand demand1 = demand;
                     PassengerHelpers.ChangePaxDemand(
-                        Airports.GetAllAirports(a => a.Profile.Country == demand.Country),
+                        Airports.GetAllAirports(a => a.Profile.Country == demand1.Country),
                         demand.Factor);
                 }
             }
@@ -502,8 +501,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
                     if (demand.Country != null)
                     {
+                        ScenarioPassengerDemand demand1 = demand;
                         PassengerHelpers.ChangePaxDemand(
-                            Airports.GetAllAirports(a => a.Profile.Country == demand.Country),
+                            Airports.GetAllAirports(a => a.Profile.Country == demand1.Country),
                             -demand.Factor);
                     }
                 }

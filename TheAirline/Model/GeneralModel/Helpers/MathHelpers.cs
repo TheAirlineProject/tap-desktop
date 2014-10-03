@@ -189,7 +189,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airport2.Statics = new AirportStatics(airport2);
             }
 
-            if (airport1.Statics.GetDistance(airport2) == 0 && airport2.Statics.GetDistance(airport1) == 0)
+            if (airport1.Statics.GetDistance(airport2).Equals(0) && airport2.Statics.GetDistance(airport1).Equals(0))
             {
                 return
                     airport1.Profile.Coordinates.ConvertToGeoCoordinate()
@@ -254,7 +254,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             double dist = GetDistance(coordinate1, coordinate2);
 
-            if (dist == 0)
+            if (dist.Equals(0))
             {
                 return new TimeSpan(0, 0, 0);
             }
@@ -487,11 +487,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double timepermove = Settings.GetInstance().MinutesPerTurn;
 
             //Making sure that if the game time is not an hour, the plane is not moving an hour forward.
-            if (timepermove == 15)
+            if (timepermove.Equals(15))
             {
                 speed = speed/4;
             }
-            else if (timepermove == 30)
+            else if (timepermove.Equals(30))
             {
                 speed = speed/2;
             }

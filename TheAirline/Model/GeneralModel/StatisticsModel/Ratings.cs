@@ -12,7 +12,7 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
 
         public static double GetCustomerHappiness(Airline airline)
         {
-            int negInt = -1;
+            const int negInt = -1;
             Dictionary<Airline, Double> fillAverages = StatisticsHelpers.GetFillAverages();
             Dictionary<Airline, Double> onTimePercent = StatisticsHelpers.GetTotalOnTime();
             Dictionary<Airline, Double> ticketPPD = StatisticsHelpers.GetTotalPPD();
@@ -55,7 +55,7 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
 
         private static double GetAirlineLuxuryLevel(Airline airline)
         {
-            int luxuryLevel = 0;
+            int luxuryLevel;
 
             if (airline.Alliances.Count > 0)
             {
@@ -73,13 +73,7 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
 
         private static Dictionary<Airline, Double> GetAirlinesLuxuryLevels()
         {
-            var values = new Dictionary<Airline, Double>();
-            foreach (Airline airline in Airlines.GetAllAirlines())
-            {
-                values.Add(airline, GetAirlineLuxuryLevel(airline));
-            }
-
-            return values;
+            return Airlines.GetAllAirlines().ToDictionary(airline => airline, GetAirlineLuxuryLevel);
         }
 
         #endregion

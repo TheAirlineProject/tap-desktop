@@ -55,7 +55,7 @@ namespace TheAirline.Model.AirlineModel
 
         public double Deductible { get; set; }
 
-        public int TermLength { get; set; }
+        public double TermLength { get; set; }
 
         public double PaymentAmount { get; set; }
 
@@ -68,7 +68,7 @@ namespace TheAirline.Model.AirlineModel
         public DateTime InsuranceEffective { get; set; }
         public DateTime InsuranceExpires { get; set; }
         public DateTime NextPaymentDue { get; set; }
-        public int RemainingPayments { get; set; }
+        public double RemainingPayments { get; set; }
     }
 
     [Serializable]

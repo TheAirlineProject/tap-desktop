@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.Caching;
@@ -146,82 +147,70 @@ namespace TheAirline.Model.GeneralModel
             {
                 return text;
             }
-            else
+            string culture = AppSettings.GetInstance().GetLanguage().CultureInfo;
+
+            // Lese Text mit den gegebenen Parametern region, key und language
+            try
             {
-                string culture = AppSettings.GetInstance().GetLanguage().CultureInfo;
-
-                // Lese Text mit den gegebenen Parametern region, key und language
-                try
+                // Prüfen ob Regions vorhanden sind
+                if (_regions.Count > 0)
                 {
-                    // Prüfen ob Regions vorhanden sind
-                    if (_regions.Count > 0)
+                    //  Prüfen ob angeforderte Region vorhanden ist
+                    if (_regions[region] != null)
                     {
-                        //  Prüfen ob angeforderte Region vorhanden ist
-                        if (_regions[region] != null)
+                        if (((Hashtable) _regions[region])[uid] != null)
                         {
-                            if (((Hashtable) _regions[region])[uid] != null)
+                            // Prüfen ob gewählte Sprache vorhanden ist;
+                            // ansonsten wird die Default-Sprache verwendet
+                            //                        if (((Dictionary<string, string>)((Hashtable)regions[region])[key]).ContainsKey(language.ToString()))
+                            if (((Hashtable) ((Hashtable) _regions[region])[uid]).ContainsKey(culture))
                             {
-                                // Prüfen ob gewählte Sprache vorhanden ist;
-                                // ansonsten wird die Default-Sprache verwendet
-                                //                        if (((Dictionary<string, string>)((Hashtable)regions[region])[key]).ContainsKey(language.ToString()))
-                                if (((Hashtable) ((Hashtable) _regions[region])[uid]).ContainsKey(culture))
-                                {
-                                    text =
-                                        ((Dictionary<string, string>)
-                                         (((Hashtable) ((Hashtable) _regions[region])[uid])[culture]))[attribute];
-                                }
-                                else
-                                {
-                                    text =
-                                        ((Dictionary<string, string>)
-                                         (((Hashtable) ((Hashtable) _regions[region])[uid])[DefaultLanguage]))[
-                                             attribute];
-                                }
-
-                                return text;
+                                text =
+                                    ((Dictionary<string, string>)
+                                     (((Hashtable) ((Hashtable) _regions[region])[uid])[culture]))[attribute];
                             }
                             else
                             {
-                                // we try it in the "General" region
-                                if (((Hashtable) ((Hashtable) _regions["General"])[uid]).ContainsKey(culture))
-                                {
-                                    text =
-                                        ((Dictionary<string, string>)
-                                         (((Hashtable) ((Hashtable) _regions["General"])[uid])[culture]))[attribute
-                                            ];
-                                }
-                                else
-                                {
-                                    text =
-                                        ((Dictionary<string, string>)
-                                         (((Hashtable) ((Hashtable) _regions["General"])[uid])[DefaultLanguage]))[
-                                             attribute];
-                                }
-
-                                return text;
+                                text =
+                                    ((Dictionary<string, string>)
+                                     (((Hashtable) ((Hashtable) _regions[region])[uid])[DefaultLanguage]))[
+                                         attribute];
                             }
+
+                            return text;
+                        }
+                        // we try it in the "General" region
+                        if (((Hashtable) ((Hashtable) _regions["General"])[uid]).ContainsKey(culture))
+                        {
+                            text =
+                                ((Dictionary<string, string>)
+                                 (((Hashtable) ((Hashtable) _regions["General"])[uid])[culture]))[attribute
+                                    ];
                         }
                         else
                         {
-                            return uid;
+                            text =
+                                ((Dictionary<string, string>)
+                                 (((Hashtable) ((Hashtable) _regions["General"])[uid])[DefaultLanguage]))[
+                                     attribute];
                         }
-                        // Region nicht vorhanden
-                        //						throw new Exception(string.Format(
-                        //							"Region {0} ist nicht vorhanden", region));
+
+                        return text;
                     }
-                    else
-                    {
-                        return uid;
-                    }
+                    return uid;
+                    // Region nicht vorhanden
+                    //						throw new Exception(string.Format(
+                    //							"Region {0} ist nicht vorhanden", region));
                 }
-                    // Fehlerbehandlung
-                catch (Exception ex)
-                {
-                    throw new Exception(
-                        "Folgende Parameter ergaben kein Ergebnis im aktuellen Objekt:" + "Region: " + region + " "
-                        + "Key: " + uid + " " + "Language: " + Thread.CurrentThread.CurrentUICulture
-                        + "Fehlermeldung: " + ex.Message);
-                }
+                return uid;
+            }
+                // Fehlerbehandlung
+            catch (Exception ex)
+            {
+                throw new Exception(
+                    "Folgende Parameter ergaben kein Ergebnis im aktuellen Objekt:" + "Region: " + region + " "
+                    + "Key: " + uid + " " + "Language: " + Thread.CurrentThread.CurrentUICulture
+                    + "Fehlermeldung: " + ex.Message);
             }
         }
 
@@ -241,38 +230,39 @@ namespace TheAirline.Model.GeneralModel
             {
                 //  Languages.Clear();
                 // read available languages
-                foreach (XmlNode LanguageNode in xDoc.SelectNodes("Translator/Languages"))
-                {
-                    foreach (XmlNode language in LanguageNode.ChildNodes)
+                var xmlNodeList = xDoc.SelectNodes("Translator/Languages");
+                if (xmlNodeList != null)
+                    foreach (XmlNode languageNode in xmlNodeList)
                     {
-                        var read = new Language(
-                            language.Attributes["name"].Value,
-                            language.Attributes["culture"].Value,
-                            Convert.ToBoolean(language.Attributes["isEnabled"].Value));
-                        // chs, 2011-10-11 changed to display flag together with language
-                        read.ImageFile = AppSettings.GetDataPath() + @"\graphics\flags\"
-                                         + language.Attributes["flag"].Value;
-                        if (language.Attributes["UnitSystem"].Value == Language.UnitSystem.Metric.ToString())
+                        foreach (XmlNode language in languageNode.ChildNodes)
                         {
-                            read.Unit = Language.UnitSystem.Metric;
-                        }
-                        else
-                        {
-                            read.Unit = Language.UnitSystem.Imperial;
-                        }
-
-                        if (language.HasChildNodes)
-                        {
-                            foreach (XmlNode conversion in language.ChildNodes)
+                            if (language.Attributes != null)
                             {
-                                read.AddWord(
-                                    conversion.Attributes["original"].Value,
-                                    conversion.Attributes["translated"].Value);
+                                var read = new Language(
+                                    language.Attributes["name"].Value,
+                                    language.Attributes["culture"].Value,
+                                    Convert.ToBoolean(language.Attributes["isEnabled"].Value))
+                                    {
+                                        ImageFile = AppSettings.GetDataPath() + @"\graphics\flags\"
+                                                    + language.Attributes["flag"].Value,
+                                        Unit = language.Attributes["UnitSystem"].Value == Language.UnitSystem.Metric.ToString() ? Language.UnitSystem.Metric : Language.UnitSystem.Imperial
+                                    };
+                                // chs, 2011-10-11 changed to display flag together with language
+
+                                if (language.HasChildNodes)
+                                {
+                                    foreach (XmlNode conversion in language.ChildNodes)
+                                    {
+                                        if (conversion.Attributes != null)
+                                            read.AddWord(
+                                                conversion.Attributes["original"].Value,
+                                                conversion.Attributes["translated"].Value);
+                                    }
+                                }
+                                Languages.AddLanguage(read);
                             }
                         }
-                        Languages.AddLanguage(read);
                     }
-                }
                 /*
                 // Durch Region-Nodes iterieren
 				foreach(XmlNode regionNode in xDoc.SelectNodes(XML_ROOTNODE)) {
@@ -328,7 +318,7 @@ namespace TheAirline.Model.GeneralModel
 
         public void AddTranslation(String region, string uid, XmlNode node)
         {
-            Hashtable strs = null;
+            Hashtable strs;
             // try to get the existing Hashtable for the region. If no exist, create one 
             if (_regions[region] != null)
             {
@@ -357,14 +347,15 @@ namespace TheAirline.Model.GeneralModel
                 foreach (XmlNode language in node.ChildNodes)
                 {
                     // dictionary with pairs of attribute->translated attribute text for the uid element
-                    var attributes = new Dictionary<string, string>();
-
-                    foreach (XmlAttribute attr in language.Attributes)
+                    if (language != null)
                     {
-                        attributes.Add(attr.Name, attr.Value);
-                    }
+                        if (language.Attributes != null)
+                        {
+                            var attributes = language.Attributes.Cast<XmlAttribute>().ToDictionary(attr => attr.Name, attr => attr.Value);
 
-                    translations.Add(language.Name, attributes);
+                            translations.Add(language.Name, attributes);
+                        }
+                    }
                 }
             }
 

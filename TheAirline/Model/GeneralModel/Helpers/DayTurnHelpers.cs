@@ -42,12 +42,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     SimulateLanding(airliner);
                 }
 
+                FleetAirliner airliner1 = airliner;
                 IOrderedEnumerable<RouteTimeTableEntry> dayEntries =
                     airliner.Routes.Where(r => r.StartDate <= GameObject.GetInstance().GameTime)
                             .SelectMany(r => r.TimeTable.GetEntries(GameObject.GetInstance().GameTime.DayOfWeek))
                             .Where(
                                 e =>
-                                e.Airliner == airliner
+                                e.Airliner == airliner1
                                 && (e.TimeTable.Route.Season == Weather.Season.AllYear
                                     || e.TimeTable.Route.Season
                                     == GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime)))
@@ -79,7 +80,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         private static void CheckForService(FleetAirliner airliner)
         {
-            double serviceCheck = 500000000;
+            const double serviceCheck = 500000000;
             double sinceLastService = airliner.Airliner.Flown - airliner.Airliner.LastServiceCheck;
 
             if (sinceLastService > serviceCheck)
@@ -90,7 +91,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         private static void CreatePassengersHappiness(FleetAirliner airliner)
         {
-            int serviceLevel = 0;
+            const int serviceLevel = 0;
             //airliner.Route.DrinksFacility.ServiceLevel + airliner.Route.FoodFacility.ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Audio).ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Seat).ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Video).ServiceLevel;
             int happyValue = airliner.CurrentFlight.IsOnTime ? 10 : 20;
             happyValue -= (serviceLevel/25);
@@ -241,7 +242,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airliner.CurrentFlight.Entry.Destination.Airport);
 
             TimeSpan flighttime = landingTime.Subtract(airliner.CurrentFlight.FlightTime);
-            double groundTaxPerPassenger = 5;
+            const double groundTaxPerPassenger = 5;
 
             double tax = 0;
 
@@ -261,12 +262,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 tax = groundTaxPerPassenger*airliner.CurrentFlight.GetTotalPassengers();
                 fuelExpenses = FleetAirlinerHelpers.GetFuelExpenses(airliner, fdistance);
 
-                foreach (FlightAirlinerClass fac in airliner.CurrentFlight.Classes)
-                {
-                    ticketsIncome += fac.Passengers
-                                     *((PassengerRoute) airliner.CurrentFlight.Entry.TimeTable.Route)
-                                          .GetRouteAirlinerClass(fac.AirlinerClass.Type).FarePrice;
-                }
+                ticketsIncome += airliner.CurrentFlight.Classes.Sum(fac => fac.Passengers*((PassengerRoute) airliner.CurrentFlight.Entry.TimeTable.Route).GetRouteAirlinerClass(fac.AirlinerClass.Type).FarePrice);
 
                 FeeType employeeDiscountType = FeeTypes.GetType("Employee Discount");
                 double employeesDiscount = airliner.Airliner.Airline.Fees.GetValue(employeeDiscountType);
@@ -275,22 +271,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                        *(employeesDiscount/100.0);
                 ticketsIncome = ticketsIncome - totalDiscount;
 
-                foreach (FeeType feeType in FeeTypes.GetTypes(FeeType.EFeeType.Fee))
-                {
-                    if (GameObject.GetInstance().GameTime.Year >= feeType.FromYear)
-                    {
-                        foreach (FlightAirlinerClass fac in airliner.CurrentFlight.Classes)
-                        {
-                            double percent = 0.10;
-                            double maxValue = Convert.ToDouble(feeType.Percentage)*(1 + percent);
-                            double minValue = Convert.ToDouble(feeType.Percentage)*(1 - percent);
-
-                            double value = Convert.ToDouble(Rnd.Next((int) minValue, (int) maxValue))/100;
-
-                            feesIncome += fac.Passengers*value*airliner.Airliner.Airline.Fees.GetValue(feeType);
-                        }
-                    }
-                }
+                feesIncome += (from feeType in FeeTypes.GetTypes(FeeType.EFeeType.Fee) where GameObject.GetInstance().GameTime.Year >= feeType.FromYear from fac in airliner.CurrentFlight.Classes let percent = 0.10 let maxValue = Convert.ToDouble(feeType.Percentage)*(1 + percent) let minValue = Convert.ToDouble(feeType.Percentage)*(1 - percent) let value = Convert.ToDouble(Rnd.Next((int) minValue, (int) maxValue))/100 select fac.Passengers*value*airliner.Airliner.Airline.Fees.GetValue(feeType)).Sum();
 
                 foreach (FlightAirlinerClass fac in airliner.CurrentFlight.Classes)
                 {
@@ -306,7 +287,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         else
                         {
                             FeeType feeType = facility.FeeType;
-                            double percent = 0.10;
+                            const double percent = 0.10;
                             double maxValue = Convert.ToDouble(feeType.Percentage)*(1 + percent);
                             double minValue = Convert.ToDouble(feeType.Percentage)*(1 - percent);
 
@@ -495,7 +476,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         private static void SimulateService(FleetAirliner airliner)
         {
-            double servicePrice = 100000;
+            const double servicePrice = 100000;
 
             airliner.Airliner.LastServiceCheck = airliner.Airliner.Flown;
 

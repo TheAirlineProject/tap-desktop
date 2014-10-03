@@ -54,11 +54,7 @@ namespace TheAirline.Model.GeneralModel
 
         public static AppSettings GetInstance()
         {
-            if (_appSettingsInstance == null)
-            {
-                _appSettingsInstance = new AppSettings();
-            }
-            return _appSettingsInstance;
+            return _appSettingsInstance ?? (_appSettingsInstance = new AppSettings());
         }
 
         // simple method for initializing the Translator
