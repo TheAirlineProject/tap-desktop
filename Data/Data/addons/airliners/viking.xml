@@ -6,7 +6,7 @@
  
 <airliner manufacturer="Viking" name="DHC-6 Twin Otter 400" price="303850"> <!--12800000-->
 	
-<type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop"/>
+<type body="SingleAisle" rangetype="ShortRange" engine="Turboprop"/>
     
 <specs wingspan="19.8" length="15.77" range="1480" speed="278" fuelcapacity="1466" consumption="0.035" runwaylengthrequired="679"/>
     

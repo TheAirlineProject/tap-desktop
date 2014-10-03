@@ -119,7 +119,8 @@ namespace TheAirline.Model.AirportModel
 
             Sand,
 
-            PSP
+            PSP,
+            Clay
         }
 
         #endregion

@@ -567,7 +567,7 @@ and change the color of the selected bullet into a darker gray for better highli
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="Border" Style="{StaticResource RoundedBorderStyle}">
                         <WrapPanel>
-                            <Image Source="/data/images/plane.png" Width="100"
+                            <Image Source="/Resources\images/plane.png" Width="100"
                                    RenderOptions.BitmapScalingMode="HighQuality" />
                             <ContentPresenter x:Name="Presenter"
                                               Margin="5 0 5 0"
@@ -1207,13 +1207,13 @@ and change the color of the selected bullet into a darker gray for better highli
                             <ContentPresenter Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               VerticalAlignment="Bottom" Margin="{TemplateBinding Padding}" />
-                            <Image Source="/data/images/tickgrey.png" Width="20" Margin="10 0 0 0"
+                            <Image Source="/Resources\images/tickgrey.png" Width="20" Margin="10 0 0 0"
                                    RenderOptions.BitmapScalingMode="HighQuality" Name="tick" VerticalAlignment="Bottom" />
                         </WrapPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="tick" Property="Source" Value="/data/images/tick.png" />
+                            <Setter TargetName="tick" Property="Source" Value="/Resources\images/tick.png" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Foreground"

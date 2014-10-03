@@ -14,7 +14,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Image Source="/data/images/logo_banner.png" Grid.Column="0" VerticalAlignment="Bottom"
+            <Image Source="/Resources\images/logo_banner.png" Grid.Column="0" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" />
             <!--
             <WrapPanel Grid.Column="0" VerticalAlignment="Bottom">
@@ -100,7 +100,7 @@
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
-                <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/data/images/event.png"/>
+                <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/Resources\images/event.png"/>
 
             </Button>
            
@@ -118,7 +118,7 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                    <Image Source="/data/images/back.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                    <Image Source="/Resources\images/back.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
                 <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnPause_Click"
                         ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3002'}">
@@ -132,7 +132,7 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                    <Image Source="/data/images/pause.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                    <Image Source="/Resources\images/pause.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
                 <Button Background="#3772A1" Margin="5 0 0 0" Width="32" Click="btnStart_Click"
                         ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3003'}">
@@ -146,12 +146,12 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                    <Image Source="/data/images/play.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                    <Image Source="/Resources\images/play.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
 
                 <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnNewGame_Click"
                         ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3000'}">
-                    <Image Source="/data/images/newgame.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                    <Image Source="/Resources\images/newgame.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
 
             </WrapPanel>
@@ -170,7 +170,7 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                    <Image Source="/data/images/mail.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                    <Image Source="/Resources\images/mail.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
                 <Button Background="#3772A1" Width="32" Click="btnNews_Click"
                         ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3004'}">
@@ -185,16 +185,16 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                    <Image Source="/data/images/nomail.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                    <Image Source="/Resources\images/nomail.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
                 <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnCalendar_Click"
                         ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3005'}">
-                    <Image Source="/data/images/calendar.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                    <Image Source="/Resources\images/calendar.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
                 <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnExitGame_Click"
                         ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3001'}">
 
-                    <Image Source="/data/images/exit.png" RenderOptions.BitmapScalingMode="HighQuality" />
+                    <Image Source="/Resources\images/exit.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
             </WrapPanel>
             <Button
@@ -252,7 +252,7 @@
                 <ControlTemplate TargetType="{x:Type local:StandardMasterPage}">
                     <Grid>
                         <Grid.Background>
-                            <ImageBrush ImageSource="/data/images/bg.jpg" />
+                            <ImageBrush ImageSource="/Resources\images/bg.jpg" />
                         </Grid.Background>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" />

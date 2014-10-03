@@ -5,7 +5,7 @@
  
 <airliner manufacturer="BN" name="Islander" price="503850"> <!--12800000-->
 	
-<type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop"/>
+<type body="SingleAisle" rangetype="ShortRange" engine="Turboprop"/>
     
 <specs wingspan="14.94" length="10.86" range="1400" speed="257" fuelcapacity="1128" consumption="0.035" runwaylengthrequired="455"/>
     
@@ -17,7 +17,7 @@
 
 <airliner manufacturer="BN" name="Trislander" price="703850"> <!--12800000-->
 	
-<type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop"/>
+<type body="NarrowBody" rangetype="ShortRange" engine="Turboprop"/>
     
 <specs wingspan="16.15" length="15.01" range="1609" speed="249" fuelcapacity="1728" consumption="0.065" runwaylengthrequired="590"/>
     

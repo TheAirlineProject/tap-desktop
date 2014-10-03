@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.RouteModel;

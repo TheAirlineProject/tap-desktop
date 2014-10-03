@@ -17,7 +17,7 @@ namespace TheAirline.Tests.Model.AirlineModel
         [TestMethod]
         public void DailyOperatingBalanceIsZeroByDefault()
         {
-            Assert.AreEqual(0, Fakes.CreateNewDummyAirline().DailyOperatingBalance);
+            Assert.AreEqual(0, Fakes.CreateNewDummyAirline().DailyOperatingBalanceHistory);
         }
 
 
@@ -32,7 +32,7 @@ namespace TheAirline.Tests.Model.AirlineModel
             target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, double>(new DateTime(1995, 1, 3), 30));
             target.DailyOperatingBalanceHistory.Add(new KeyValuePair<DateTime, double>(new DateTime(1995, 1, 4), Expected));
 
-            Assert.AreEqual(Expected, target.DailyOperatingBalance);
+            Assert.AreEqual(Expected, target.DailyOperatingBalanceHistory);
 
         }
 

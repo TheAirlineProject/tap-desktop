@@ -15,10 +15,14 @@ to produce any output during builds or rebuilds of solution
     <AssemblyName>TheAirline.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <OutputPath>..\bin\$(Configuration)</OutputPath>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -45,22 +49,18 @@ to produce any output during builds or rebuilds of solution
     <Content Include="Data\**\*.*" Exclude="Data\**\Thumbs.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-	
   </ItemGroup>
-  
   <Target Name="Build">
     <Copy SourceFiles="@(Content)" SkipUnchangedFiles="true" DestinationFolder="$(OutputPath)\Data\%(RecursiveDir)" />
   </Target>
-  
   <Target Name="Clean">
     <RemoveDir Directories="$(OutputPath)\Data" ContinueOnError="true" />
   </Target>
-  
   <Target Name="Rebuild" DependsOnTargets="Clean;Build">
     <Message Text="Rebuild is successful" />
   </Target>
   <!--CreateManifestResourceNames-->
-  <!--<Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />--> 
+  <!--<Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />-->
   <!-- <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" /> -->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
