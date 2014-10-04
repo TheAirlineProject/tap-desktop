@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.Helpers;
-using TheAirline.Model.RouteModel;
 
 namespace TheAirline.Model.PassengerModel
 {
@@ -103,8 +103,8 @@ namespace TheAirline.Model.PassengerModel
         /// </summary>
         /// <param name="d">
         ///     Destination
-        ///     <n/ param>
-        ///         <returns></returns>
+        /// </param>
+        /// <returns></returns>
         public List<Airport> GetPathTo(Airport d)
         {
             var path = new List<Airport>();
@@ -144,20 +144,9 @@ namespace TheAirline.Model.PassengerModel
         /// </summary>
         /// <param name="n">Airport</param>
         /// <returns></returns>
-        private List<Airport> GetNeighbors(Airport n)
+        private IEnumerable<Airport> GetNeighbors(Airport n)
         {
-            var neighbors = new List<Airport>();
-
-            foreach (Route route in AirportHelpers.GetAirportRoutes(n))
-            {
-                Airport destination = route.Destination1 == n ? route.Destination2 : route.Destination1;
-                if (Basis.Contains(n))
-                {
-                    neighbors.Add(destination);
-                }
-            }
-
-            return neighbors;
+            return AirportHelpers.GetAirportRoutes(n).Select(route => route.Destination1 == n ? route.Destination2 : route.Destination1).Where(destination => Basis.Contains(n)).ToList();
         }
 
         #endregion
