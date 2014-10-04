@@ -55,7 +55,7 @@ namespace TheAirline
             }
             if (e.Key == Key.F8)
             {
-                string text = string.Format("Gameobjectworker paused: {0}\n", GameObjectWorker.GetInstance().isPaused());
+                string text = string.Format("Gameobjectworker paused: {0}\n", GameObjectWorker.GetInstance().IsPaused);
                 text += string.Format("Gameobjectworker finished: {0}\n", GameObjectWorker.GetInstance().IsFinish);
                 text += string.Format("Gameobjectworker errored: {0}\n", GameObjectWorker.GetInstance().IsError);
 

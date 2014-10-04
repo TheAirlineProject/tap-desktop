@@ -58,7 +58,7 @@
 
         private void btnSaveGame_Click(object sender, RoutedEventArgs e)
         {
-            Boolean gameworkerPaused = GameObjectWorker.GetInstance().isPaused();
+            Boolean gameworkerPaused = GameObjectWorker.GetInstance().IsPaused;
 
             GameObjectWorker.GetInstance().Cancel();
 

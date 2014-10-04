@@ -2579,7 +2579,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     AirlineInsuranceHelpers.MakeInsurancePayment(airline);
                 }
 
-                RandomEvent.CheckExpired(GameObject.GetInstance().GameTime);
+                RandomEvent.CheckExpired();
             } //);
 
             if (Pilots.GetNumberOfUnassignedPilots() < 25)
