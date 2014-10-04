@@ -1,9 +1,9 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using NLog;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.GamePageModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
@@ -19,6 +19,8 @@ namespace TheAirline
     /// </summary>
     public partial class MainWindow
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -65,7 +67,7 @@ namespace TheAirline
             }
             if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F12)
             {
-                var file = new StreamWriter(AppSettings.GetCommonApplicationDataPath() + "\\theairline.log");
+                //var file = new StreamWriter(AppSettings.GetCommonApplicationDataPath() + "\\theairline.log");
 
                 if (Airports.Count() >= 5)
                 {
@@ -73,19 +75,21 @@ namespace TheAirline
                     {
                         Airport airport = Airports.GetAllAirports()[i];
 
-                        file.WriteLine("Airport demand for {0} of size {1}", airport.Profile.Name, airport.Profile.Size);
+                        //file.WriteLine("Airport demand for {0} of size {1}", airport.Profile.Name, airport.Profile.Size);
+                        Logger.Info("Airport demand for {0} of size {1}", airport.Profile.Name, airport.Profile.Size);
 
                         foreach (Airport demand in airport.GetDestinationDemands())
                         {
-                            file.WriteLine("    Demand to {0} ({2}) is {1}", demand.Profile.Name, airport.GetDestinationPassengersRate(demand, AirlinerClass.ClassType.EconomyClass),
-                                           demand.Profile.Size);
+                            //file.WriteLine("    Demand to {0} ({2}) is {1}", demand.Profile.Name, airport.GetDestinationPassengersRate(demand, AirlinerClass.ClassType.EconomyClass),
+                            //               demand.Profile.Size);
+                            Logger.Info("Demand to {0} ({2}) is {1}", demand.Profile.Name, airport.GetDestinationPassengersRate(demand, AirlinerClass.ClassType.EconomyClass), demand.Profile.Size);
                         }
                     }
                 }
 
                 WPFMessageBox.Show("Demand has been dumped", "The demand has been dumped to the log file", WPFMessageBoxButtons.Ok);
 
-                file.Close();
+                //file.Close();
             }
         }
 

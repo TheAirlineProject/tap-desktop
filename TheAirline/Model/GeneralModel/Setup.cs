@@ -22,6 +22,7 @@ using TheAirline.Model.GeneralModel.WeatherModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.PilotModel;
 using TheAirline.Model.RouteModel;
+using NLog;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -35,6 +36,7 @@ namespace TheAirline.Model.GeneralModel
         #region Static Fields
 
         private static readonly Random Rnd = new Random();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -448,13 +450,15 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
-                var file = new StreamWriter(
-                    AppSettings.GetCommonApplicationDataPath() + "\\theairlinestartup.log",
-                    true);
-                file.WriteLine("Game start failing");
-                file.WriteLine(e.ToString());
-                file.WriteLine(e.StackTrace);
-                file.Close();
+                //var file = new StreamWriter(
+                //    AppSettings.GetCommonApplicationDataPath() + "\\theairlinestartup.log",
+                //    true);
+                //file.WriteLine("Game start failing");
+                //file.WriteLine(e.ToString());
+                //file.WriteLine(e.StackTrace);
+                //file.Close();
+
+                Logger.Error("Failed to setup game", e);
             }
 
 
@@ -1997,8 +2001,9 @@ namespace TheAirline.Model.GeneralModel
                     LoadAirlinerTypeConfiguration(file.FullName);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Logger.Error("Error loading Airliner configurations", e);
             }
         }
 
@@ -2021,6 +2026,7 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                Logger.Error("Error loading airliners", e);
             }
         }
 
@@ -2262,6 +2268,8 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                Logger.Error("Error loading airliner {0}", id);
+                Logger.Error(e);
             }
         }
 
@@ -2284,13 +2292,15 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
-                var file = new StreamWriter(
-                    AppSettings.GetCommonApplicationDataPath() + "\\theairlinestartup.log",
-                    true);
-                file.WriteLine("Airlines failing: " + f);
-                file.WriteLine(e.ToString());
-                file.WriteLine(e.StackTrace);
-                file.Close();
+                //var file = new StreamWriter(
+                //    AppSettings.GetCommonApplicationDataPath() + "\\theairlinestartup.log",
+                //    true);
+                //file.WriteLine("Airlines failing: " + f);
+                //file.WriteLine(e.ToString());
+                //file.WriteLine(e.StackTrace);
+                //file.Close();
+                Logger.Error("Error loading airline: {0}", f);
+                Logger.Error(e);
             }
         }
 
@@ -2789,6 +2799,9 @@ namespace TheAirline.Model.GeneralModel
                 file.WriteLine(e.StackTrace);
                 file.Close();
                  * */
+
+                Logger.Error("Airport {0} failing to load", id);
+                Logger.Error(e);
             }
         }
 
@@ -2837,7 +2850,7 @@ namespace TheAirline.Model.GeneralModel
                     Alliances.AddAlliance(alliance);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 /*
                 System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log", true);
@@ -2847,6 +2860,9 @@ namespace TheAirline.Model.GeneralModel
 			   
                 file.Close();
                  * */
+
+                Logger.Error("Alliance {0} failing to load", path);
+                Logger.Error(e);
             }
         }
 
@@ -3019,8 +3035,6 @@ namespace TheAirline.Model.GeneralModel
                     }
                 }
 
-                try
-                {
                     if (element.SelectSingleNode("translations") != null)
                     {
                         if (root != null)
@@ -3030,10 +3044,6 @@ namespace TheAirline.Model.GeneralModel
                                           element.Attributes["uid"].Value,
                                           element.SelectSingleNode("translations"));
                     }
-                }
-                catch (Exception e)
-                {
-                }
             }
         }
 
@@ -3237,7 +3247,7 @@ namespace TheAirline.Model.GeneralModel
 
         private static void LoadHolidays()
         {
-            string id = " ";
+            string id = "";
             try
             {
                 var doc = new XmlDocument();
@@ -3346,6 +3356,8 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                Logger.Error("Error loading holiday {0}", id);
+                Logger.Error(e);
             }
         }
 
@@ -3397,6 +3409,7 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                Logger.Error("Error loading destinations", e);
             }
 
             foreach (Airport airport in Airports.GetAllAirports())
@@ -3419,7 +3432,7 @@ namespace TheAirline.Model.GeneralModel
             if (root != null)
             {
                 XmlNodeList airportsList = root.SelectNodes("//majordestination");
-                string id;
+                string id = "";
                 try
                 {
                     if (airportsList != null)
@@ -3443,6 +3456,8 @@ namespace TheAirline.Model.GeneralModel
                 }
                 catch (Exception e)
                 {
+                    Logger.Error("Error loading destination {0}", id);
+                    Logger.Error(e);
                 }
             }
         }
@@ -4003,6 +4018,7 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                Logger.Error("Error loading scenario", e);
             }
         }
 
@@ -4046,11 +4062,9 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                Logger.Error("Error loading configurations", e);
             }
         }
-
-        /*!loads the cooperation types
-         */
 
         /*!loads the states
          */
@@ -4254,9 +4268,9 @@ namespace TheAirline.Model.GeneralModel
                                               element.SelectSingleNode("translations"));
                             }
                         }
-                        catch (Exception)
+                        catch (Exception e)
                         {
-                            throw new Exception("Error on reading unions");
+                            Logger.Error("Error loading unions", e);
                         }
                     }
             }
