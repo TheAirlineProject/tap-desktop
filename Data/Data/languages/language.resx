@@ -5501,7 +5501,31 @@ Good luck.</value>
   <data name="PageFleetAirlinerInsurances_1009_name" xml:space="preserve">
     <value>Maintenance Interval</value>
   </data>
+  <data name="MessageBox_2234_message" xml:space="preserve">
+    <value>The maintenance facilities are used for maintenance of at least one of your airliners and can't be removed</value>
+  </data>
+  <data name="MessageBox_2234_name" xml:space="preserve">
+    <value>Error removing facility</value>
+  </data>
   <data name="PageFleetAirlinerInsurances_203_name" xml:space="preserve">
     <value>Perform Maintenance</value>
+  </data>
+  <data name="PageUsedAirliner_1010_name" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="PageUsedAirliner_1011_name" xml:space="preserve">
+    <value>Registration History</value>
+  </data>
+  <data name="MessageBox_2707_message" xml:space="preserve">
+    <value>Are you sure you want to apply the changes to the selected route(s)?</value>
+  </data>
+  <data name="MessageBox_2707_name" xml:space="preserve">
+    <value>Apply Changes</value>
+  </data>
+  <data name="PageHumanRoutes_1012_name" xml:space="preserve">
+    <value>Change Prices</value>
+  </data>
+  <data name="PageHumanRoutes_201_name" xml:space="preserve">
+    <value>Apply Changes</value>
   </data>
 </root>

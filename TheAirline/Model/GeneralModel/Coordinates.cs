@@ -285,6 +285,27 @@
         {
             return string.Format("{0}°{1}'{2}", this.Degrees, this.Minutes, this.Seconds);
         }
+        public string toLongString(Boolean isLatitude)
+        {
+            string direction;
+
+            if (isLatitude)
+            {
+                if (this.Degrees < 0)
+                    direction = "S";
+                else
+                    direction ="N";
+            }
+            else
+            {
+                if (this.Degrees < 0)
+                    direction = "W";
+                else
+                    direction = "E";
+            }
+
+            return string.Format("{0}°{1}'{2}''{3}", Math.Abs(this.Degrees), this.Minutes, this.Seconds, direction);
+        }
         public double getAsDecimal()
         {
             return MathHelpers.DMStoDeg(this.Degrees, this.Minutes, this.Seconds);

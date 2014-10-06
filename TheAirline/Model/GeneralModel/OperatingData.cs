@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for operating data
+    [Serializable]
     public class OperatingData : ISerializable
     {
         [Versioning("values")]
@@ -131,6 +132,7 @@ namespace TheAirline.Model.GeneralModel
           }
     }
     //the class for an operating value
+    [Serializable]
     public class OperatingValue : ISerializable
     {
         [Versioning("type")]

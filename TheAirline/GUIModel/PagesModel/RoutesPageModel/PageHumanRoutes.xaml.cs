@@ -1,6 +1,7 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -8,6 +9,7 @@
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel;
+    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.GeneralModel;
 
@@ -16,8 +18,9 @@
     /// </summary>
     public partial class PageHumanRoutes : Page
     {
-        #region Constructors and Destructors
 
+        #region Constructors and Destructors
+        
         public PageHumanRoutes()
         {
             var routes = new List<RouteMVVM>();
@@ -40,6 +43,9 @@
                     .SelectMany(a => a.Routes);
 
             this.CodesharingRoutes = codesharingRoutes.ToList();
+            this.SelectedRoutes = new ObservableCollection<RouteMVVM>();
+            this.PriceChanges = new List<double>() {-90,-75,-50,-45,-35,-25,-20,-15,-10,-5,0, 5, 10, 15, 20, 25,35,45, 50, 75, 100 };
+            this.Classes = new ObservableCollection<MVVMRouteClass>();
 
             this.InitializeComponent();
         }
@@ -49,6 +55,9 @@
         #region Public Properties
 
         public List<Route> CodesharingRoutes { get; set; }
+        public ObservableCollection<RouteMVVM> SelectedRoutes { get; set; }
+        public List<double> PriceChanges { get; set; }
+        public ObservableCollection<MVVMRouteClass> Classes { get; set; }
 
         #endregion
 
@@ -107,5 +116,92 @@
         }
 
         #endregion
+
+        private void cbRoute_Checked(object sender, RoutedEventArgs e)
+        {
+            RouteMVVM route = (RouteMVVM)((CheckBox)sender).Tag;
+
+            this.SelectedRoutes.Add(route);
+
+            if (this.SelectedRoutes.Count == 1)
+            {
+                this.Classes.Clear();
+
+                foreach (AirlinerClass.ClassType cType in AirlinerClass.GetAirlinerTypes())
+                {
+                    if ((int)cType <= GameObject.GetInstance().GameTime.Year)
+                    {
+                        var mClass = new MVVMRouteClass(cType,RouteAirlinerClass.SeatingType.Free_Seating, 10);
+
+                        this.Classes.Add(mClass);
+                    }
+                }
+
+                foreach (MVVMRouteClass rClass in this.Classes)
+                {
+                    foreach (MVVMRouteFacility rFacility in rClass.Facilities)
+                    {
+                        RouteFacility tFacility = new RouteFacility("t1000", rFacility.Type, "No Change", 0, RouteFacility.ExpenseType.Fixed, 0,null);
+                        rFacility.Facilities.Insert(0, tFacility);
+                        rFacility.SelectedFacility = rFacility.Facilities[0];
+                    }
+                }
+
+                cbChangePrice.SelectedIndex = this.PriceChanges.Count / 2;
+            }
+        }
+
+        private void cbRoute_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RouteMVVM route = (RouteMVVM)((CheckBox)sender).Tag;
+
+            this.SelectedRoutes.Remove(route);
+        }
+
+        private void btnApply_Click(object sender, RoutedEventArgs e)
+        {
+             WPFMessageBoxResult result = WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2705"),
+                    Translator.GetInstance().GetString("MessageBox", "2705", "message"),
+                    WPFMessageBoxButtons.YesNo);
+
+             if (result == WPFMessageBoxResult.Yes)
+             {
+                 double value = (double)cbChangePrice.SelectedItem;
+
+                 foreach (MVVMRouteClass rClass in this.Classes)
+                 {
+                     foreach (MVVMRouteFacility rFacility in rClass.Facilities)
+                     {
+                         var sFacility = rFacility.SelectedFacility;
+
+                         if (sFacility != null && sFacility.Uid != "t1000")
+                         {
+                             foreach (RouteMVVM route in this.SelectedRoutes)
+                             {
+                                 if (route.Route is HelicopterRoute)
+                                 {
+                                     var raClass = ((HelicopterRoute)route.Route).getRouteAirlinerClass(rClass.Type);
+
+                                     raClass.FarePrice = raClass.FarePrice * (1 + (value / 100));
+
+                                     raClass.addFacility(sFacility);
+                                 }
+                                 else
+                                 {
+                                     var raClass = ((PassengerRoute)route.Route).getRouteAirlinerClass(rClass.Type);
+
+                                     raClass.FarePrice = raClass.FarePrice * (1 + (value / 100));
+
+                                     raClass.addFacility(sFacility);
+                                 }
+                             }
+                         }
+                     }
+                 }
+             }
+     
+        }
+
     }
 }

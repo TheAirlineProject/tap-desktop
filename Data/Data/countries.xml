@@ -2000,6 +2000,204 @@
       <es-ES name="Cambodia" />
     </translations>
   </country>
+    <country uid="295" shortname="BUR" region="101" flag="Burundi" tailformat="9U-\\s3">
+    <translations>
+      <en-US name="Burundi" />
+      <de-DE name="Burundi" />
+      <en-GB name="Burundi" />
+      <nl-NL name="Burundi" />
+      <zh-CN name="Burundi" />
+      <da-DK name="Burundi" />
+      <es-ES name="Burundi" />
+    </translations>
+  </country>
+      <country uid="296" shortname="CAM" region="101" flag="Cameroon" tailformat="TJ-\\s3">
+    <translations>
+      <en-US name="Cameroon" />
+      <de-DE name="Cameroon" />
+      <en-GB name="Cameroon" />
+      <nl-NL name="Cameroon" />
+      <zh-CN name="Cameroon" />
+      <da-DK name="Cameroon" />
+      <es-ES name="Cameroon" />
+    </translations>
+  </country>
+        <country uid="297" shortname="COI" region="112" flag="Cook Islands" tailformat="5A-\\s3">
+    <translations>
+      <en-US name="Cook Islands" />
+      <de-DE name="Cook Islands" />
+      <en-GB name="Cook Islands" />
+      <nl-NL name="Cook Islands" />
+      <zh-CN name="Cook Islands" />
+      <da-DK name="Cook Islands" />
+      <es-ES name="Cook Islands" />
+    </translations>
+  </country>
+      <country uid="298" shortname="DJI" region="102" flag="Djibouti" tailformat="J2-\\s3">
+    <translations>
+      <en-US name="Djibouti" />
+      <de-DE name="Djibouti" />
+      <en-GB name="Djibouti" />
+      <nl-NL name="Djibouti" />
+      <zh-CN name="Djibouti" />
+      <da-DK name="Djibouti" />
+      <es-ES name="Djibouti" />
+    </translations>
+  </country>
+        <country uid="299" shortname="TUV" region="112" flag="Tuvalu" tailformat="T2-\\s3">
+    <translations>
+      <en-US name="Tuvalu" />
+      <de-DE name="Tuvalu" />
+      <en-GB name="Tuvalu" />
+      <nl-NL name="Tuvalu" />
+      <zh-CN name="Tuvalu" />
+      <da-DK name="Tuvalu" />
+      <es-ES name="Tuvalu" />
+    </translations>
+  </country>
+  <country uid="300" shortname="GAB" region="101" flag="Gabon" tailformat="TR-\\s3">
+    <translations>
+      <en-US name="Gabon" />
+      <de-DE name="Gabon" />
+      <en-GB name="Gabon" />
+      <nl-NL name="Gabon" />
+      <zh-CN name="Gabon" />
+      <da-DK name="Gabon" />
+      <es-ES name="Gabon" />
+    </translations>
+  </country>
+  <country uid="301" shortname="GAM" region="105" flag="Gambia" tailformat="C5-\\s3">
+    <translations>
+      <en-US name="Gambia" />
+      <de-DE name="Gambia" />
+      <en-GB name="Gambia" />
+      <nl-NL name="Gambia" />
+      <zh-CN name="Gambia" />
+      <da-DK name="Gambia" />
+      <es-ES name="Gambia" />
+    </translations>
+  </country>
+   <country uid="302" shortname="GUI" region="105" flag="Gambia" tailformat="3X-\\s3">
+    <translations>
+      <en-US name="Guinea" />
+      <de-DE name="Guinea" />
+      <en-GB name="Guinea" />
+      <nl-NL name="Guinea" />
+      <zh-CN name="Guinea" />
+      <da-DK name="Guinea" />
+      <es-ES name="Guinea" />
+    </translations>
+  </country>
+     <country uid="303" shortname="LIB" region="105" flag="Liberia" tailformat="A8-\\s3">
+    <translations>
+      <en-US name="Liberia" />
+      <de-DE name="Liberia" />
+      <en-GB name="Liberia" />
+      <nl-NL name="Liberia" />
+      <zh-CN name="Liberia" />
+      <da-DK name="Liberia" />
+      <es-ES name="Liberia" />
+    </translations>
+  </country>
+       <country uid="304" shortname="EQG" region="101" flag="Equatorial Guinea" tailformat="3C-\\s3">
+    <translations>
+      <en-US name="Equatorial Guinea" />
+      <de-DE name="Equatorial Guinea" />
+      <en-GB name="Equatorial Guinea" />
+      <nl-NL name="Equatorial Guinea" />
+      <zh-CN name="Equatorial Guinea" />
+      <da-DK name="Equatorial Guinea" />
+      <es-ES name="Equatorial Guinea" />
+    </translations>
+  </country>
+    <country uid="305" shortname="GUB" region="105" flag="Guinea-Bissau" tailformat="J5-\\s3">
+    <translations>
+      <en-US name="Guinea-Bissau" />
+      <de-DE name="Guinea-Bissau" />
+      <en-GB name="Guinea-Bissau" />
+      <nl-NL name="Guinea-Bissau" />
+      <zh-CN name="Guinea-Bissau" />
+      <da-DK name="Guinea-Bissau" />
+      <es-ES name="Guinea-Bissau" />
+    </translations>
+  </country>
+   <country uid="306" shortname="SEY" region="102" flag="Seychelles" tailformat="S7-\\s3">
+    <translations>
+      <en-US name="Seychelles" />
+      <de-DE name="Seychelles" />
+      <en-GB name="Seychelles" />
+      <nl-NL name="Seychelles" />
+      <zh-CN name="Seychelles" />
+      <da-DK name="Seychelles" />
+      <es-ES name="Seychelles" />
+    </translations>
+  </country>
+     <country uid="307" shortname="SAM" region="112" flag="Samoa" tailformat="5W-\\s3">
+    <translations>
+      <en-US name="Samoa" />
+      <de-DE name="Samoa" />
+      <en-GB name="Samoa" />
+      <nl-NL name="Samoa" />
+      <zh-CN name="Samoa" />
+      <da-DK name="Samoa" />
+      <es-ES name="Samoa" />
+    </translations>
+  </country>
+      <country uid="308" shortname="STP" region="101" flag="Sao Tome &amp; Principe" tailformat="S9-\\s3">
+    <translations>
+      <en-US name="São Tomé &amp; Príncipe" />
+      <de-DE name="São Tomé &amp; Príncipe" />
+      <en-GB name="São Tomé &amp; Príncipe" />
+      <nl-NL name="São Tomé &amp; Príncipe" />
+      <zh-CN name="São Tomé &amp; Príncipe" />
+      <da-DK name="São Tomé &amp; Príncipe" />
+      <es-ES name="São Tomé &amp; Príncipe" />
+    </translations>
+  </country>
+        <country uid="309" shortname="RTC" region="101" flag="Congo" tailformat="TN-\\s3">
+    <translations>
+      <en-US name="Republic of Congo" />
+      <de-DE name="Republic of Congo" />
+      <en-GB name="Republic of Congo" />
+      <nl-NL name="Republic of Congo" />
+      <zh-CN name="Republic of Congo" />
+      <da-DK name="Republic of Congo" />
+      <es-ES name="Republic of Congo" />
+    </translations>
+  </country>
+          <country uid="310" shortname="SVG" region="117" flag="St Vincent &amp; the Grenadines" tailformat="J8-\\s3">
+    <translations>
+      <en-US name="Saint Vincent and the Grenadines" />
+      <de-DE name="Saint Vincent and the Grenadines" />
+      <en-GB name="Saint Vincent and the Grenadines" />
+      <nl-NL name="Saint Vincent and the Grenadines" />
+      <zh-CN name="Saint Vincent and the Grenadines" />
+      <da-DK name="Saint Vincent and the Grenadines" />
+      <es-ES name="Saint Vincent and the Grenadines" />
+    </translations>
+  </country>
+  <country uid="311" shortname="DPK" region="107" flag="North Korea" tailformat="P-\\d3">
+    <translations>
+      <en-US name="North Korea" />
+      <de-DE name="North Korea" />
+      <en-GB name="North Korea" />
+      <nl-NL name="North Korea" />
+      <zh-CN name="North Korea" />
+      <da-DK name="North Korea" />
+      <es-ES name="North Korea" />
+    </translations>
+  </country>
+  <country uid="312" shortname="DRT" region="109" flag="Timor-Leste" tailformat="4W-\\s3">
+    <translations>
+      <en-US name="East Timor" />
+      <de-DE name="East Timor" />
+      <en-GB name="East Timor" />
+      <nl-NL name="East Timor" />
+      <zh-CN name="East Timor" />
+      <da-DK name="East Timor" />
+      <es-ES name="East Timor" />
+    </translations>
+  </country>
   <!--Territories-->
   <country uid="246" shortname="CUW" region="117" flag="Curacao" tailformat="PJ-\\s3">
     <territoryof uid="179" />

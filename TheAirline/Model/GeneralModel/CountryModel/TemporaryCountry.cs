@@ -318,7 +318,7 @@
                 info.AddValue(att.Name, propValue);
             }
         }
-
+       
         #endregion
     }
 
@@ -362,7 +362,10 @@
             TemporaryCountry country = tCountries.Find(t => t.Uid == uid);
             return country;
         }
-
+        public static Country GetCountryFromName(string name)
+        {
+            return tCountries.FirstOrDefault(t => t.Name == name);
+        }
         //returns a temporary country which a country is a part of
         public static TemporaryCountry GetTemporaryCountry(Country country, DateTime date)
         {

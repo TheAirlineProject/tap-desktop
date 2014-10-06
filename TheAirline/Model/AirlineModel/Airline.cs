@@ -22,8 +22,8 @@
     //the class for an airline
     public class Airline : ISerializable
     {
-      
-        private List<KeyValuePair<DateTime,KeyValuePair<double, double>>> dailyOperatingBalanceHistory;
+
+        private List<KeyValuePair<DateTime, KeyValuePair<double, double>>> dailyOperatingBalanceHistory;
 
         #region Constructors and Destructors
 
@@ -158,7 +158,9 @@
                 }
                 if (this.SpecialContracts == null)
                     this.SpecialContracts = new List<SpecialContract>();
-              
+
+                if (this.MaintenanceCenters == null)
+                    this.MaintenanceCenters = new List<MaintenanceCenter>();
             }
             catch (Exception e)
             {
@@ -370,8 +372,8 @@
         [Versioning("scores")]
         public AirlineScores Scores { get; set; }
 
-         [Versioning("shares",Version=6)]
-         public AirlineShare[] Shares { get; set; }
+        [Versioning("shares", Version = 6)]
+        public AirlineShare[] Shares { get; set; }
 
         [Versioning("startmoney")]
         public double StartMoney { get; set; }
@@ -387,20 +389,20 @@
         [Versioning("routes")]
         public List<Route> _Routes { get; set; }
 
-        [Versioning("scontracts",Version=5)]
+        [Versioning("scontracts", Version = 5)]
         public List<SpecialContract> SpecialContracts { get; set; }
 
-        [Versioning("centers",Version=7)]
-        public List<MaintenanceCenter> MaintenanceCenters { get; set; }      
+        [Versioning("centers", Version = 7)]
+        public List<MaintenanceCenter> MaintenanceCenters { get; set; }
 
         [Versioning("dailyoperatingbalancehistory")]
-        public List<KeyValuePair<DateTime, KeyValuePair<double,double>>> DailyOperatingBalanceHistory
+        public List<KeyValuePair<DateTime, KeyValuePair<double, double>>> DailyOperatingBalanceHistory
         {
             get
             {
                 if (this.dailyOperatingBalanceHistory == null)
                 {
-                    this.dailyOperatingBalanceHistory = new List<KeyValuePair<DateTime, KeyValuePair<double,double>>>();
+                    this.dailyOperatingBalanceHistory = new List<KeyValuePair<DateTime, KeyValuePair<double, double>>>();
 
                 }
 
@@ -412,7 +414,7 @@
                 {
                     this.dailyOperatingBalanceHistory = value;
 
-                   
+
                 }
             }
         }
@@ -455,6 +457,7 @@
 
                 info.AddValue(att.Name, propValue);
             }
+
         }
 
         public void addAirlinePolicy(AirlinePolicy policy)
@@ -1021,9 +1024,9 @@
             this.Invoices.addInvoice(invoice);
         }
 
-        public void setInvoice(Invoice.InvoiceType type, int year, int month,int day, double amount)
+        public void setInvoice(Invoice.InvoiceType type, int year, int month, int day, double amount)
         {
-            this.Invoices.addInvoice(type, year, month,day, amount);
+            this.Invoices.addInvoice(type, year, month, day, amount);
         }
 
         public void storeBudget(AirlineBudget budget)
@@ -1085,7 +1088,7 @@
                          || (r.Destination2.Profile.IATACode == airport.Profile.IATACode)) && r.HasAirliner);
         }
 
-      
+
     }
 
     //the list of airlines
@@ -1173,7 +1176,7 @@
         {
             airlines.RemoveAll(match);
         }
-         #endregion
+        #endregion
 
         //returns if the list of airlines contains an airline
     }

@@ -357,7 +357,10 @@
         {
             return GetCountries().FindAll((delegate(Country country) { return country.Region == region; }));
         }
-
+        public static Country GetCountryFromName(string name)
+        {
+            return countries.Values.FirstOrDefault(c => c.Name == name);
+        }
         public static Country GetCountry(string uid)
         {
             if (countries.ContainsKey(uid))

@@ -64,4 +64,7 @@
       <airlinerimage image="A189" types="AgustaWestland AW189"></airlinerimage>
             <airlinerimage image="S76" types="Sikorsky S-76"></airlinerimage>
       <airlinerimage image="S92" types="Sikorsky S-92"></airlinerimage>
+       <airlinerimage image="PC6" types="Pilatus PC-6 Turbo-Porter"></airlinerimage>
+            <airlinerimage image="PC12" types="Pilatus PC-12"></airlinerimage>
+      <airlinerimage image="PC24" types="Pilatus PC-24"></airlinerimage>
 </airlinerimages>

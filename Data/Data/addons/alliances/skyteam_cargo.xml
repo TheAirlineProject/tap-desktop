@@ -1,6 +1,20 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <alliance name="SkyTeam Cargo" logo="skyteam_cargo" type="Full" formation="09.22.2000 00:00:00" headquarter="AMS">
-  <members>
+  <alliance name="SkyTeam Cargo" logo="skyteam_cargo" type="Full" formation="09.22.2000 00:00:00" headquarter="AMS">
+  <members>  
+  <member airline="KE2" joined="09.22.2000 00:00:00"></member>
+    <member airline="AF2" joined="09.22.2000 00:00:00"></member>
+      <member airline="AM2" joined="09.22.2000 00:00:00"></member>
+    <member airline="CZ2" joined="11.15.2007 00:00:00"></member>
+    <member airline="KL2" joined="09.13.2004 00:00:00"></member>
+  <member airline="CI2" joined="09.28.2011 00:00:00"></member>
+    <member airline="CK" joined="06.21.2011 00:00:00"></member>
+        <member airline="DL2" joined="09.22.2000 00:00:00"></member>
+	<member airline="OK2" joined="03.25.2001 00:00:00"></member>
+	<member airline="AZ2" joined="07.27.2001 00:00:00"></member>
+	  <member airline="AR2" joined="09.30.2013 00:00:00"></member>
+	    <member airline="SU2" joined="04.14.2006 00:00:00"></member>
   </members>
+</alliance>
 </alliance>

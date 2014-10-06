@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Nok Air" iata="DD" color="Black" country="175" CEO="Mr. Patee Sarasin" mentality="Safe"
            market="Global" preferedairport="DMK">
+           <narrative narrative="Nok Air was established in February 2004 and started operations on 23 July 2004 and is a low-cost airline headquartered on the 17th floor of the Rajanakarn Building in Sathorn, Bangkok, Thailand. "/>
   </profile>
   <info real="True" from="2004" to="2199" />
 </airline>

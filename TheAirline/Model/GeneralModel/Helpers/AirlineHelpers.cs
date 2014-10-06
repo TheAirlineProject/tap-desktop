@@ -171,7 +171,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static FleetAirliner AddAirliner(Airline airline, Airliner airliner, Airport airport, Boolean leased)
         {
-
+            
             if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
             {
                 lock (airline.Profile.Country.TailNumbers)

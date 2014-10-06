@@ -1,8 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Saudi Arabian Airlines" iata="SV" color="Blue" country="136" CEO="Khalid Abdullah Almolhem"
-           mentality="Aggressive" market="Global " preferedairport="DOH">
+           mentality="Aggressive" market="Global " preferedairport="JED">
+           <narrative
+      narrative="Saudi Arabian Airlines is the flag carrier airline of Saudi Arabia, based in Jeddah. The airline reverted to its abbreviated English brand name Saudia." />
+  
   </profile>
   <info real="True" from="1945" to="2199" />
 </airline>

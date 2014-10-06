@@ -225,6 +225,18 @@
                         .First()
                         .Contract;
 
+            var maintenances = GameObject.GetInstance().HumanAirline.Fleet.SelectMany(f=>f.Maintenance.Checks.Where(c=>c.CheckCenter.Airport != null && c.CheckCenter.Airport == this.Airport.Airport));
+
+            int maintenanceLevel = -1;
+
+            if (maintenances.Count() > 0)
+            {
+                maintenanceLevel = maintenances.Max(m=>m.Type.Requirement.TypeLevel);
+            }
+
+            Boolean isMaintenanceCenter = facility.Facility.Facility.Type == AirportFacility.FacilityType.Service
+                && facility.Facility.Facility.TypeLevel <= maintenanceLevel;
+
             Boolean isMinimumServiceFacility = facility.Facility.Facility.TypeLevel == 1
                                                && facility.Facility.Facility.Type
                                                == AirportFacility.FacilityType.Service
@@ -247,12 +259,21 @@
                     Translator.GetInstance().GetString("MessageBox", "2230", "message"),
                     WPFMessageBoxButtons.Ok);
             }
+            else if (isMaintenanceCenter)
+            {
+                 WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2234"),
+                    Translator.GetInstance().GetString("MessageBox", "2234", "message"),
+                    WPFMessageBoxButtons.Ok);
+            }
             else if (isMinimumServiceFacility)
             {
                 WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2203"),
                     Translator.GetInstance().GetString("MessageBox", "2203", "message"),
                     WPFMessageBoxButtons.Ok);
+
+                //Set for airline / genbrug aircraft number
             }
             else if (isMinimumHubFacility)
             {

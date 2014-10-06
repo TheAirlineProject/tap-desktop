@@ -45,6 +45,8 @@
 
             if (this.Purchased == PurchasedType.Bought || this.Purchased == PurchasedType.BoughtDownPayment)
                 this.Airliner.Owner = this.Airliner.Airline;
+
+            this.Airliner.History.Add(new AirlinerRegistrationHistory(this.PurchasedDate, this.Airliner.Airline, this.Name));
         }
 
         private FleetAirliner(SerializationInfo info, StreamingContext ctxt)
@@ -120,7 +122,7 @@
 
             On_route,
 
-            On_service,
+           /* On_service,*/
 
             On_charter,
 

@@ -20,13 +20,7 @@
     {
         #region Fields
 
-        private int _AMaintenanceInterval;
-
-        private int _BMaintenanceInterval;
-
-        private int _CMaintenanceInterval;
-
-        private int _DMaintenanceInterval;
+      
 
         private Airport _homebase;
 
@@ -118,7 +112,6 @@
                 Boolean canperformcheck = this.Airliner.GroundedToDate < GameObject.GetInstance().GameTime;
                 this.Maintenances.Add(new FleetAirlinerMaintenanceMVVM(check.Type, check.LastCheck, airliner.Maintenance.getNextCheck(check.Type),check.Interval,check.CheckCenter,canperformcheck));
             }
-            //airline sets
             this.IsBuyable = this.Airliner.Airliner.Airline.IsHuman
                              && this.Airliner.Purchased == FleetAirliner.PurchasedType.Leased && this.Airliner.Airliner.Owner == null;
             this.IsConvertable = this.Airliner.Airliner.Airline.IsHuman

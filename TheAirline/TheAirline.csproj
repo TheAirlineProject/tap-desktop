@@ -918,6 +918,7 @@
     <Compile Include="Model\AirlineModel\CodeshareAgreement.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerMaintenance.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerInsurance.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerRegistrationHistory.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerScheduleConfiguration.cs" />
     <Compile Include="Model\AirlinerModel\EngineType.cs" />
     <Compile Include="Model\AirlinerModel\MaintenanceCenter.cs" />

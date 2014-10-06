@@ -5,9 +5,9 @@
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
-
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlineModel.AirlineCooperationModel;
     using TheAirline.Model.AirlineModel.SubsidiaryModel;
@@ -394,7 +394,273 @@
         /*! public static method SetupGame().
          * Tries to create game´s environment and base configuration.
          */
+        private static void LoadNicksAirports()
+        {
+            var countries = new List<string>();
+            var airports = new List<Airport>();
+            var oldairports = new List<Airport>();
 
+            System.IO.StreamReader file = new StreamReader("c:\\bbm\\airports updated2.csv",Encoding.Default);
+
+            string line;
+
+            int i = 0;
+            while ((line = file.ReadLine()) != null)
+            {
+                if (i != 0)
+                {
+                    string[] columns = line.Split(new []{"@" },StringSplitOptions.RemoveEmptyEntries);
+
+                    string iata = columns[1].Replace("\"", "");
+
+                    Airport airport = Airports.GetAirport(iata);
+
+                    if (airport != null)
+                    {
+                        var size =
+                         (GeneralHelpers.Size)
+                             Enum.Parse(typeof(GeneralHelpers.Size), columns[11].Replace("\"", ""));
+                        var cargosize =
+                            (GeneralHelpers.Size)
+                                Enum.Parse(typeof(GeneralHelpers.Size), columns[13].Replace("\"", ""));
+                        long pax = Convert.ToInt32(columns[12].Replace("\"", ""));
+                        long cargo = Convert.ToInt32(columns[14].Replace("\"", ""));
+
+                        var paxValues = new List<PaxValue>();
+                        paxValues.Add(new PaxValue(1960, 2199, size, pax));
+
+                        airport.Profile.PaxValues = paxValues;
+                        airport.Runways.Clear();
+                        airport.Terminals.clear();
+
+                        string terminalsString = columns[15].Replace("\"", "");
+                        string runwaysString = columns[16].Replace("\"", "");
+
+                        string[] ts = terminalsString.Split(new char[] { '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
+
+                        foreach (string t in ts)
+                        {
+                            string[] temp = t.Split('%');
+
+                            if (temp.Length == 2)
+                                airport.addTerminal(new Terminal(airport, temp[0], Convert.ToInt16(temp[1]), new DateTime(1960, 1, 1), Terminal.TerminalType.Passenger));
+
+                        }
+
+
+                        string[] rs = runwaysString.Split(new char[] { '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
+
+                        foreach (string r in rs)
+                        {
+
+                            string[] temp = r.Split('%');
+
+                            if (temp.Length == 3)
+                            {
+
+                                var surface =
+                                     (Runway.SurfaceType)
+                                     Enum.Parse(typeof(Runway.SurfaceType), temp[1]);
+
+                                airport.Runways.Add(new Runway(temp[0], Convert.ToInt64(temp[2]), Runway.RunwayType.Regular, surface, airport.Profile.Period.From, true));
+                            }
+                        }
+
+                        oldairports.Add(airport);
+                    }
+                    else
+                    {
+                        Country country = Countries.GetCountryFromName(columns[6].Replace("\"", ""));
+
+                        if (country == null)
+                            country = TemporaryCountries.GetCountryFromName(columns[6].Replace("\"", ""));
+
+                        if (country == null && !countries.Contains(columns[6].Replace("\"", "")))
+                            countries.Add(columns[6].Replace("\"", ""));
+                        else
+                        {
+
+                            string name = columns[0].Replace("\"", "");
+                            string icao = columns[2].Replace("\"", "");
+                            string town = columns[5].Replace("\"", "");
+
+                            var type =
+                          (AirportProfile.AirportType)
+                              Enum.Parse(typeof(AirportProfile.AirportType), columns[3].Replace("\"", ""));
+                            var season =
+                                (Weather.Season)Enum.Parse(typeof(Weather.Season), columns[4].Replace("\"", ""));
+
+                            TimeSpan gmt = TimeSpan.Parse(columns[7].Replace("\"", ""));
+                            TimeSpan dst = TimeSpan.Parse(columns[8].Replace("\"", ""));
+
+
+
+                            Town eTown = null;
+                            if (town.Contains(","))
+                            {
+                                State state = States.GetState(country, town.Split(',')[1].Trim());
+
+                                if (state == null)
+                                {
+                                    eTown = new Town(town.Split(',')[0], country);
+                                }
+                                else
+                                {
+                                    eTown = new Town(town.Split(',')[0], country, state);
+                                }
+                            }
+                            else
+                            {
+
+                                eTown = new Town(town, country);
+                            }
+
+                            string latitudeElement = columns[9].Replace("\"", "");
+                            string longitudeElement = columns[10].Replace("\"", "");
+
+                            string[] latitude = latitudeElement.Split(
+                           new[] { '°', '\'' },
+                           StringSplitOptions.RemoveEmptyEntries);
+                            string[] longitude =
+                                longitude =
+                                    longitudeElement.Split(
+                                        new[] { '°', '\'' },
+                                        StringSplitOptions.RemoveEmptyEntries);
+                            var coords = new int[6];
+
+
+                            //latitude
+                            coords[0] = int.Parse(latitude[0]);
+                            coords[1] = int.Parse(latitude[1]);
+                            coords[2] = int.Parse(latitude[2]);
+
+
+                            //longitude
+                            coords[3] = int.Parse(longitude[0]);
+                            coords[4] = int.Parse(longitude[1]);
+                            coords[5] = int.Parse(longitude[2]);
+
+
+                            //cleaning up
+                            latitude = null;
+                            longitude = null;
+
+                            var pos = new Coordinates(
+                                new Coordinate(coords[0], coords[1], coords[2]),
+                                new Coordinate(coords[3], coords[4], coords[5]));
+
+                            var size =
+                             (GeneralHelpers.Size)
+                                 Enum.Parse(typeof(GeneralHelpers.Size), columns[11].Replace("\"", ""));
+                            var cargosize =
+                                (GeneralHelpers.Size)
+                                    Enum.Parse(typeof(GeneralHelpers.Size), columns[13].Replace("\"", ""));
+                            long pax = Convert.ToInt32(columns[12].Replace("\"", ""));
+                            long cargo = Convert.ToInt32(columns[14].Replace("\"", ""));
+
+                            var paxValues = new List<PaxValue>();
+                            paxValues.Add(new PaxValue(1960, 2199, size, pax));
+
+                            airport = new Airport(new AirportProfile(name, iata, icao, type, new Period<DateTime>(new DateTime(1959, 12, 31), new DateTime(2199, 12, 31)), eTown, gmt, dst, pos, cargosize, cargo, season));
+                            airport.Profile.PaxValues = paxValues;
+
+                            string terminalsString = columns[15].Replace("\"", "");
+                            string runwaysString = columns[16].Replace("\"", "");
+
+                            string[] ts = terminalsString.Split(new char[] { '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
+
+                            foreach (string t in ts)
+                            {
+                                string[] temp = t.Split('%');
+
+                                airport.addTerminal(new Terminal(airport, temp[0], Convert.ToInt16(temp[1]), new DateTime(1960, 1, 1), Terminal.TerminalType.Passenger));
+
+                            }
+
+
+                            string[] rs = runwaysString.Split(new char[] { '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
+
+                            foreach (string r in rs)
+                            {
+
+                                string[] temp = r.Split('%');
+
+                                if (temp.Length == 3)
+                                {
+
+                                    var surface =
+                                         (Runway.SurfaceType)
+                                         Enum.Parse(typeof(Runway.SurfaceType), temp[1]);
+
+                                    airport.Runways.Add(new Runway(temp[0], Convert.ToInt64(temp[2]), Runway.RunwayType.Regular, surface, airport.Profile.Period.From, true));
+                                }
+                            }
+
+                            airports.Add(airport);
+
+                        }
+                    }
+                }
+                else
+                    i++;
+            }
+            LoadSaveHelpers.SaveAirportsList(airports,"newairports.xml");
+            LoadSaveHelpers.SaveAirportsList(oldairports, "oldairports.xml");
+
+            countries.ForEach(c=>Console.WriteLine(c));
+         
+            /*
+           System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
+
+           string lines = "Name;IATA;ICAO;Type;Season;Town;Country;GMT;DST;Latitude;Longitude;Size;Pax;Cargosize;Cargo;Terminals[Name%Gates];Runways[Name%Surface%Lenght]";
+            
+           aFile.WriteLine(lines);
+
+           foreach (Airport airport in Airports.GetAllAirports())
+           {
+               string airportLine = airport.Profile.Name;
+               airportLine += ";" + airport.Profile.IATACode;
+               airportLine += ";" + airport.Profile.ICAOCode;
+               airportLine += ";" + airport.Profile.Type.ToString();
+               airportLine += ";" + airport.Profile.Season.ToString(); 
+               airportLine += ";" + airport.Profile.Town.Name;
+               airportLine += ";" + airport.Profile.Country.Name;
+               airportLine += ";" + airport.Profile.OffsetGMT.ToString();
+               airportLine += ";" + airport.Profile.OffsetDST.ToString();
+               airportLine += ";" + airport.Profile.Coordinates.Latitude.ToString();
+               airportLine += ";" + airport.Profile.Coordinates.Longitude.ToString();
+               airportLine += ";" + airport.Profile.Size.ToString();
+               airportLine += ";" + airport.Profile.Pax.ToString();
+               airportLine += ";" + airport.Profile.Cargo.ToString();
+               airportLine += ";" + airport.Profile.CargoVolume.ToString();
+
+               string runwaysLine="";
+               string terminalsLine="";
+
+               foreach (Terminal terminal in airport.Terminals.AirportTerminals)
+               {
+                   terminalsLine += "[" + terminal.Name + "%" + terminal.Gates.NumberOfGates.ToString() + "]";
+               }
+
+               foreach (Runway runway in airport.Runways)
+               {
+                   runwaysLine +=  "[" + runway.Name + "%" + runway.Surface.ToString() + "%" + runway.Length + "]";
+               }
+
+               airportLine += ";" + terminalsLine;
+               airportLine += ";" + runwaysLine;
+
+               aFile.WriteLine(airportLine);
+            
+                    
+                    
+                   //string.Format("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16}", airport.Profile.Name, airport.Profile.IATACode, airport.Profile.ICAOCode, airport.Profile.Type.ToString(), airport.Profile.Season.ToString(),airport.Profile.Town.Name,airport.Profile.Town.Country.Name,airport.Profile.OffsetGMT.ToString(),airport.Profile.OffsetDST.ToString());
+
+               
+           }
+           aFile.Close();
+       */
+        }
         public static void SetupGame()
         {
             try
@@ -467,8 +733,9 @@
 
                 string s = e.ToString();
             }
+            
+            //LoadNicksAirports();
 
-         
             var noRunways = Airports.GetAllAirports().Where(a => a.Runways.Count == 0);
 
             foreach (Airport airport in noRunways)
@@ -480,7 +747,8 @@
             Airport lbb = Airports.GetAirport("LBB");
             Airport dfw = Airports.GetAirport("DFW");
 
-            Console.WriteLine("Distance: " + MathHelpers.GetDistance(lbb,dfw));
+            Console.WriteLine("Distance: " + MathHelpers.GetDistance(lbb, dfw));
+
 
             /*
             System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
@@ -705,9 +973,9 @@
          */
         public static void CreateMaintenanceCenters()
         {
-            MaintenanceCenters.AddCenter(new MaintenanceCenter("Boeing Gold Care Center",2000, Countries.GetCountry("122"), 75, 5.95));
-            MaintenanceCenters.AddCenter(new MaintenanceCenter("Lufthansa Technik",1750,Countries.GetCountry("163"),65,5.75));
-            MaintenanceCenters.AddCenter(new MaintenanceCenter("Nigeria Aircraft Center",1000, Countries.GetCountry("145"), 25, 3.65));
+            MaintenanceCenters.AddCenter(new MaintenanceCenter("Boeing Gold Care Center", 2000, Countries.GetCountry("122"), 75, 5.95));
+            MaintenanceCenters.AddCenter(new MaintenanceCenter("Lufthansa Technik", 1750, Countries.GetCountry("163"), 65, 5.75));
+            MaintenanceCenters.AddCenter(new MaintenanceCenter("Nigeria Aircraft Center", 1000, Countries.GetCountry("145"), 25, 3.65));
         }
         /*! creates the airliner maintenance types
          */
@@ -824,15 +1092,15 @@
                         {
                             dest2.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
                         }
-                        
-                        if (!AirportHelpers.HasFreeGates(dest1, airline,terminaltype))
+
+                        if (!AirportHelpers.HasFreeGates(dest1, airline, terminaltype))
                         {
-                            AirportHelpers.RentGates(dest1, airline, AirportContract.ContractType.Low_Service,terminaltype);
+                            AirportHelpers.RentGates(dest1, airline, AirportContract.ContractType.Low_Service, terminaltype);
                         }
 
-                        if (!AirportHelpers.HasFreeGates(dest2, airline,terminaltype))
+                        if (!AirportHelpers.HasFreeGates(dest2, airline, terminaltype))
                         {
-                            AirportHelpers.RentGates(dest2, airline, AirportContract.ContractType.Low_Service,terminaltype);
+                            AirportHelpers.RentGates(dest2, airline, AirportContract.ContractType.Low_Service, terminaltype);
                         }
 
                         Guid id = Guid.NewGuid();
@@ -1039,7 +1307,7 @@
                     if (origin != null)
                     {
                         Terminal.TerminalType terminalType = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
-                           
+
                         for (int i = 0;
                             i < Math.Min(routes.Destinations / startDataFactor, origin.Terminals.getFreeGates(terminalType));
                             i++)
@@ -1047,9 +1315,9 @@
                             //if (origin.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                             //origin.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
-                            if (!AirportHelpers.HasFreeGates(origin, airline,terminalType))
+                            if (!AirportHelpers.HasFreeGates(origin, airline, terminalType))
                             {
-                                AirportHelpers.RentGates(origin, airline, AirportContract.ContractType.Low_Service,terminalType);
+                                AirportHelpers.RentGates(origin, airline, AirportContract.ContractType.Low_Service, terminalType);
                             }
 
                             Airport destination = GetStartDataRoutesDestination(routes);
@@ -1057,9 +1325,9 @@
                             //if (destination.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                             //destination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
-                            if (!AirportHelpers.HasFreeGates(destination, airline,terminalType))
+                            if (!AirportHelpers.HasFreeGates(destination, airline, terminalType))
                             {
-                                AirportHelpers.RentGates(destination, airline, AirportContract.ContractType.Low_Service,terminalType);
+                                AirportHelpers.RentGates(destination, airline, AirportContract.ContractType.Low_Service, terminalType);
                             }
 
                             Guid id = Guid.NewGuid();
@@ -2099,7 +2367,7 @@
                         (AirlinerType.BodyType)
                             Enum.Parse(typeof(AirlinerType.BodyType), typeElement.Attributes["body"].Value);
 
-                    
+
                     var rangeType =
                         (AirlinerType.TypeRange)
                             Enum.Parse(typeof(AirlinerType.TypeRange), typeElement.Attributes["rangetype"].Value);
@@ -2122,8 +2390,8 @@
                     if (specsElement.HasAttribute("weight"))
                         weight = Convert.ToDouble(specsElement.Attributes["weight"].Value);
                     else
-                        weight = AirlinerHelpers.GetCalculatedWeight(wingspan,length,fuelcapacity);
-                
+                        weight = AirlinerHelpers.GetCalculatedWeight(wingspan, length, fuelcapacity);
+
                     var capacityElement = (XmlElement)airliner.SelectSingleNode("capacity");
 
                     var producedElement = (XmlElement)airliner.SelectSingleNode("produced");
@@ -2267,10 +2535,10 @@
 
                     //if (airliner.HasAttribute("image") && airliner.Attributes["image"].Value.Length > 1)
                     //type.Image = dir + airliner.Attributes["image"].Value + ".png";
-                    
+
                     if (type != null)
                     {
-                        
+
                         AirlinerTypes.AddType(type);
                     }
 
@@ -2479,7 +2747,7 @@
                                 StringSplitOptions.RemoveEmptyEntries);
                     var coords = new int[6];
 
-                  
+
                     //latitude
                     coords[0] = int.Parse(latitude[0]);
                     coords[1] = int.Parse(latitude[1]);
@@ -2489,7 +2757,7 @@
                     {
                         coords[0] = -coords[0];
                     }
-               
+
                     //longitude
                     coords[3] = int.Parse(longitude[0]);
                     coords[4] = int.Parse(longitude[1]);
@@ -2681,7 +2949,7 @@
                             terminalType = Terminal.TerminalType.Passenger;
 
                         airport.Terminals.addTerminal(
-                            new Terminal(airport, null, terminalName, terminalGates, new DateTime(1950, 1, 1),terminalType));
+                            new Terminal(airport, null, terminalName, terminalGates, new DateTime(1950, 1, 1), terminalType));
                     }
 
                     XmlNodeList runwaysList = airportElement.SelectNodes("runways/runway");
@@ -2695,7 +2963,7 @@
                                 Enum.Parse(typeof(Runway.SurfaceType), runwayNode.Attributes["surface"].Value);
 
                         Runway.RunwayType runwayType = Runway.RunwayType.Regular;
-                        
+
                         if (runwayNode.HasAttribute("type"))
                         {
                             runwayType =
@@ -2751,7 +3019,7 @@
                             expansion.Length = length;
                             expansion.Surface = surface;
                         }
-             
+
                         if (expansionType == AirportExpansion.ExpansionType.New_terminal)
                         {
                             string expansionName = expansionNode.Attributes["name"].Value;
@@ -2786,9 +3054,9 @@
                             expansion.Name = expansionName;
                             expansion.Gates = gates;
                         }
-                        airport.Profile.addExpansion(expansion); 
+                        airport.Profile.addExpansion(expansion);
 
-                       
+
                     }
 
                     //30.06.14: Added for loading of landing fees
@@ -2986,12 +3254,12 @@
 
                         if (currencyElement.HasAttribute("from"))
                         {
-                            currencyFromDate = Convert.ToDateTime(currencyElement.Attributes["from"].Value,new CultureInfo("en-US", false));
+                            currencyFromDate = Convert.ToDateTime(currencyElement.Attributes["from"].Value, new CultureInfo("en-US", false));
                         }
 
                         if (currencyElement.HasAttribute("to"))
                         {
-                            currencyToDate = Convert.ToDateTime(currencyElement.Attributes["to"].Value,new CultureInfo("en-US", false));
+                            currencyToDate = Convert.ToDateTime(currencyElement.Attributes["to"].Value, new CultureInfo("en-US", false));
                         }
 
                         country.addCurrency(
@@ -3383,7 +3651,7 @@
 
                 if (majorPax > 0)
                 {
-                    airport.Profile.setPaxValue(Math.Max(airport.Profile.Pax,majorPax));
+                    airport.Profile.setPaxValue(Math.Max(airport.Profile.Pax, majorPax));
                 }
 
             }
@@ -3422,8 +3690,7 @@
                         }
                     }
                     else
-                        Console.WriteLine(airportElement.Attributes["airport"].Value);
-
+                        Console.WriteLine("Airport missing in major destinations: " + airportElement.Attributes["airport"].Value);
                 }
             }
             catch (Exception e)
@@ -3501,15 +3768,15 @@
                 long payment = Convert.ToInt64(infoElement.Attributes["payment"].Value);
                 Boolean asbonus = Convert.ToBoolean(infoElement.Attributes["bonus"].Value);
                 long penalty = Convert.ToInt64(infoElement.Attributes["penalty"].Value);
-                Boolean isfixeddate = !infoElement.HasAttribute("frequency"); 
+                Boolean isfixeddate = !infoElement.HasAttribute("frequency");
 
-                SpecialContractType scType = new SpecialContractType(name,text,payment,asbonus,penalty,isfixeddate);
+                SpecialContractType scType = new SpecialContractType(name, text, payment, asbonus, penalty, isfixeddate);
 
                 if (isfixeddate)
                 {
-                     DateTime fromdate= Convert.ToDateTime(
-                    infoElement.Attributes["from"].Value,
-                    new CultureInfo("en-US", false));
+                    DateTime fromdate = Convert.ToDateTime(
+                   infoElement.Attributes["from"].Value,
+                   new CultureInfo("en-US", false));
 
                     DateTime todate = Convert.ToDateTime(
                      infoElement.Attributes["to"].Value,
@@ -3540,7 +3807,7 @@
                         routetype = (Route.RouteType)
                         Enum.Parse(typeof(Route.RouteType), routeElement.Attributes["type"].Value);
 
-                    SpecialContractRoute scRoute = new SpecialContractRoute(departure, destination, passengers,routetype, bothways);
+                    SpecialContractRoute scRoute = new SpecialContractRoute(departure, destination, passengers, routetype, bothways);
                     scType.Routes.Add(scRoute);
 
                 }
@@ -3552,7 +3819,7 @@
                     if (parameterElement.HasAttribute("departure"))
                     {
                         ContractRequirement parameter = new ContractRequirement(ContractRequirement.RequirementType.Destination);
-                        
+
                         Airport departure = Airports.GetAirport(parameterElement.Attributes["departure"].Value);
 
                         parameter.Departure = departure;
@@ -3568,7 +3835,7 @@
                                 tparameter.Destination = scroute.Destination;
 
                                 scType.Requirements.Add(tparameter);
-                        
+
                             }
                         }
                         else
@@ -3598,7 +3865,7 @@
                 }
 
                 SpecialContractTypes.AddType(scType);
-              
+
             }
         }
         //loads the random events
@@ -3732,7 +3999,7 @@
                     element.Attributes["fuel"].Value,
                         CultureInfo.GetCultureInfo("en-US").NumberFormat);
 
-                Regions.AddRegion(new Region(section, uid,fuelindex));
+                Regions.AddRegion(new Region(section, uid, fuelindex));
 
                 if (element.SelectSingleNode("translations") != null)
                 {
@@ -4397,9 +4664,9 @@
 
                         airport.addAirportFacility(null, cargoTerminal, GameObject.GetInstance().GameTime);
 
-                        if (!airport.Terminals.AirportTerminals.Exists(t=>t.Type == Terminal.TerminalType.Cargo))
+                        if (!airport.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo))
                         {
-                            airport.Terminals.addTerminal(new Terminal(airport,"Cargo Terminal",((int)airport.Profile.Cargo) + 5,GameObject.GetInstance().GameTime,Terminal.TerminalType.Cargo));
+                            airport.Terminals.addTerminal(new Terminal(airport, "Cargo Terminal", ((int)airport.Profile.Cargo) + 5, GameObject.GetInstance().GameTime, Terminal.TerminalType.Cargo));
                         }
 
                     }
@@ -4421,7 +4688,7 @@
                 {
                     GameObject.GetInstance().HumanMoney = airline.Money;
 
-                 }
+                }
 
                 airline.StartMoney = airline.Money;
                 airline.Fees = new AirlineFees();

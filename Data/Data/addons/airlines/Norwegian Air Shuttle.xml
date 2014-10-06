@@ -3,6 +3,7 @@
 <airline>
   <profile name="Norwegian Air Shuttle" iata="DY" color="DarkRed" country="139" CEO="Bjørn Kjos" mentality="Safe"
            market="Global" preferedairport="GOT">
+           <narrative narrative="Norwegian Air Shuttle (NAS) was founded on 22 January 1993 to take over the regional airline services produced by Busy Bee for Braathens in Western Norway. Busy Bee, founded in 1966, was a subsidiary of Braathens that operated a fleet of Fokker 50 aircraft for charter. This included the network of regional services between cities on the west coast of Norway operated on wet lease for the mother company. "/>
   </profile>
   <info real="True" from="1993" to="2199" />
 </airline>

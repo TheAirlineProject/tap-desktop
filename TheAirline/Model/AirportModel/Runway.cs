@@ -122,7 +122,9 @@
 
             Clay,
 
-            Water
+            Water,
+
+            Coral
         }
         #endregion
 

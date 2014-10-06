@@ -575,7 +575,7 @@
 
             SetNextFlight(airliner);
 
-            CheckForService(airliner);
+            //CheckForService(airliner);
         }
 
         //simulates a "turn"
@@ -691,7 +691,7 @@
                 GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddMinutes(15);
             }
         }
-
+    /*
         private static void CheckForService(FleetAirliner airliner)
         {
             double serviceCheck = 500000000;
@@ -702,7 +702,7 @@
                 airliner.Status = FleetAirliner.AirlinerStatus.On_service;
                 airliner.CurrentFlight.Entry.Destination = new RouteEntryDestination(airliner.Homebase, "Service", null);
             }
-        }
+        }*/
 
         private static void ClearAllUsedStats()
         {
@@ -3157,9 +3157,9 @@
                     case FleetAirliner.AirlinerStatus.On_route:
                         UpdateOnRouteAirliner(airliner);
                         break;
-                    case FleetAirliner.AirlinerStatus.On_service:
-                        UpdateOnRouteAirliner(airliner);
-                        break;
+                   // case FleetAirliner.AirlinerStatus.On_service:
+                     //   UpdateOnRouteAirliner(airliner);
+                       // break;
                     case FleetAirliner.AirlinerStatus.To_homebase:
                         UpdateOnRouteAirliner(airliner);
                         break;
@@ -3226,10 +3226,10 @@
                     {
                         SimulateLanding(airliner);
                     }
-                    else if (airliner.Status == FleetAirliner.AirlinerStatus.On_service)
-                    {
+                    //else if (airliner.Status == FleetAirliner.AirlinerStatus.On_service)
+                    //{
  //                       SimulateService(airliner);
-                    }
+                    //}
                     else if (airliner.Status == FleetAirliner.AirlinerStatus.To_homebase)
                     {
                         SimulateToHomebase(airliner);

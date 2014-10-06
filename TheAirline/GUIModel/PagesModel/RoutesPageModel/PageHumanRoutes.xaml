@@ -12,201 +12,280 @@
         <DataTemplate x:Key="StopoverItem">
             <ContentControl Content="{Binding Stopover}" ContentTemplate="{StaticResource AirportCountryLink}" />
         </DataTemplate>
+        <DataTemplate x:Key="FacilityItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}"
+                           VerticalAlignment="Bottom" Width="150" FontWeight="Bold" />
+                <ComboBox Width="100" Style="{StaticResource ComboBoxTransparentStyle}"
+                          SelectedItem="{Binding Path=SelectedFacility,Mode=TwoWay}" DisplayMemberPath="Name"
+                          SelectedValuePath="Name" ItemsSource="{Binding Path=Facilities}" />
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ClassItem">
+            <Border Style="{StaticResource RoundedBorderStyle}">
+                <StackPanel Width="300">
+                    <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}"
+                               FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+                  
+                    <ListBox Margin="0 5 0 0" Background="Transparent" ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0"
+                             ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                             ItemsSource="{Binding Facilities}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel>
-            <ListView util:GridViewSort.AutoSort="True" x:Name="RoutesList" VerticalAlignment="Stretch"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <ListView util:GridViewSort.AutoSort="True" x:Name="RoutesList" VerticalAlignment="Stretch"
                       Background="Transparent" BorderThickness="0" ItemsSource="{Binding}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="" Width="40">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Width="24" Height="24" Background="Transparent" Tag="{Binding Route}"
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="" Width="60">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel>
+                                            
+                                            <CheckBox Tag="{Binding}" VerticalAlignment="Bottom" Checked="cbRoute_Checked" Unchecked="cbRoute_Unchecked">
+                                                <CheckBox.Style>
+                                                    <Style TargetType="CheckBox" BasedOn="{StaticResource CheckBoxNormalStyle}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Route.Type}" Value="Mixed">
+                                                                <Setter Property="CheckBox.Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Route.Type}" Value="Cargo">
+                                                                <Setter Property="CheckBox.Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </CheckBox.Style>
+                                            </CheckBox>
+                                            <Button Width="20" Height="20" Margin="5 0 0 0" Background="Transparent" Tag="{Binding Route}"
                                             Click="btnEdit_Click">
-                                        <Image Source="/data/images/edit.png"
+                                                <Image Source="/data/images/edit.png"
                                                RenderOptions.BitmapScalingMode="HighQuality" />
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                                            </Button>
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                        <GridViewColumn util:GridViewSort.PropertyName="Route.Destination1.Profile.Name"
+                            <GridViewColumn util:GridViewSort.PropertyName="Route.Destination1.Profile.Name"
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1000'}"
                                         Width="250">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ContentControl Content="{Binding Route.Destination1}"
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ContentControl Content="{Binding Route.Destination1}"
                                                     ContentTemplate="{StaticResource AirportCountryLink}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn util:GridViewSort.PropertyName="Route.Destination2.Profile.Name"
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn util:GridViewSort.PropertyName="Route.Destination2.Profile.Name"
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1001'}"
                                         Width="250">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ContentControl Content="{Binding Route.Destination2}"
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ContentControl Content="{Binding Route.Destination2}"
                                                     ContentTemplate="{StaticResource AirportCountryLink}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn
                             Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1002'}"
                             Width="150">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ListBox Style="{StaticResource VerticalListBoxStyle}"
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ListBox Style="{StaticResource VerticalListBoxStyle}"
                                              ItemTemplate="{DynamicResource StopoverItem}"
                                              ItemsSource="{Binding Route.Stopovers}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn util:GridViewSort.PropertyName="Distance"
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn util:GridViewSort.PropertyName="Distance"
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1011'}"
                                         Width="150">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
                                         Text="{Binding Distance,Converter={StaticResource DistanceToUnitConverter}}"
                                         VerticalAlignment="Bottom" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                        <GridViewColumn util:GridViewSort.PropertyName="Route.Type"
+                            <GridViewColumn util:GridViewSort.PropertyName="Route.Type"
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1010'}"
                                         Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Route.Type}" VerticalAlignment="Bottom" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Route.Type}" VerticalAlignment="Bottom" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn
                             Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1007'}"
                             Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock VerticalAlignment="Bottom"
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock VerticalAlignment="Bottom"
                                                Text="{Binding Route.Season,Converter={StaticResource TextUnderscoreConverter}}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn util:GridViewSort.PropertyName="Balance"
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn util:GridViewSort.PropertyName="Balance"
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1003'}"
                                         Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
                                         Text="{Binding Balance,Converter={StaticResource ValueCurrencyConverter}}"
                                         Foreground="{Binding Balance,Converter={StaticResource ValueIsMinusConverter}}"
                                         VerticalAlignment="Bottom" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn util:GridViewSort.PropertyName="Total"
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn util:GridViewSort.PropertyName="Total"
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1005'}"
                                         Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Total}" VerticalAlignment="Bottom" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn util:GridViewSort.PropertyName="Average"
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Total}" VerticalAlignment="Bottom" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn util:GridViewSort.PropertyName="Average"
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1006'}"
                                         Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Average}" VerticalAlignment="Bottom" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn util:GridViewSort.PropertyName="FillingDegree"
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Average}" VerticalAlignment="Bottom" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn util:GridViewSort.PropertyName="FillingDegree"
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1004'}"
                                         Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding FillingDegree,StringFormat={}{0:P2}}"
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding FillingDegree,StringFormat={}{0:P2}}"
                                                VerticalAlignment="Bottom" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-
-
-                </ListView.View>
-
-            </ListView>
-            <Button Click="btnMap_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 5 0 0"
-                    Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 200'}">
-                <Button.Style>
-                    <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Path=Count}" Value="0">
-                                <Setter Property="Button.IsEnabled" Value="False" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <StackPanel Margin="0 10 0 0">
-                <StackPanel.Style>
-                    <Style TargetType="StackPanel">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding CodesharingRoutes.Count,ElementName=pageHumanRoutes}"
-                                         Value="0">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </StackPanel.Style>
-
-                <TextBlock
-                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1008'}"
-                    VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
-                <ListView util:GridViewSort.AutoSort="True" VerticalAlignment="Stretch" Background="Transparent"
-                          BorderThickness="0" ItemsSource="{Binding CodesharingRoutes,ElementName=pageHumanRoutes}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn util:GridViewSort.PropertyName="Airline.Profile.Name"
-                                            Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1009'}"
-                                            Width="200">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ContentControl Content="{Binding Airline}"
-                                                        ContentTemplate="{StaticResource AirlineLink}"
-                                                        VerticalAlignment="Bottom" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-
-                            <GridViewColumn util:GridViewSort.PropertyName="Destination1.Profile.Name"
-                                            Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1000'}"
-                                            Width="250">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ContentControl Content="{Binding Destination1}"
-                                                        ContentTemplate="{StaticResource AirportCountryLink}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn util:GridViewSort.PropertyName="Destination2.Profile.Name"
-                                            Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1001'}"
-                                            Width="250">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ContentControl Content="{Binding Destination2}"
-                                                        ContentTemplate="{StaticResource AirportCountryLink}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                         </GridView>
-                    </ListView.View>
-                </ListView>
-            </StackPanel>
 
-        </StackPanel>
+
+                    </ListView.View>
+
+                </ListView>
+                <Button Click="btnMap_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 5 0 0"
+                    Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 200'}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Count}" Value="0">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <StackPanel Margin="0 10 0 0">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CodesharingRoutes.Count,ElementName=pageHumanRoutes}"
+                                         Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+
+                    <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1008'}"
+                    VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
+                    <ListView util:GridViewSort.AutoSort="True" VerticalAlignment="Stretch" Background="Transparent"
+                          BorderThickness="0" ItemsSource="{Binding CodesharingRoutes,ElementName=pageHumanRoutes}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn util:GridViewSort.PropertyName="Airline.Profile.Name"
+                                            Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1009'}"
+                                            Width="200">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl Content="{Binding Airline}"
+                                                        ContentTemplate="{StaticResource AirlineLink}"
+                                                        VerticalAlignment="Bottom" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn util:GridViewSort.PropertyName="Destination1.Profile.Name"
+                                            Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1000'}"
+                                            Width="250">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl Content="{Binding Destination1}"
+                                                        ContentTemplate="{StaticResource AirportCountryLink}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn util:GridViewSort.PropertyName="Destination2.Profile.Name"
+                                            Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1001'}"
+                                            Width="250">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl Content="{Binding Destination2}"
+                                                        ContentTemplate="{StaticResource AirportCountryLink}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="0 10 0 0">
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedRoutes.Count,ElementName=pageHumanRoutes}" Value="0">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                         </Style.Triggers>
+                        
+                    </Style>
+                </StackPanel.Style>
+                <ListBox Background="Transparent" Style="{StaticResource VerticalListBoxStyle}" Name="lbClasses"
+                         ItemsSource="{Binding Path=Classes,ElementName=pageHumanRoutes}"
+                         ItemTemplate="{DynamicResource ClassItem}" />
+                <StackPanel>
+                    <TextBlock
+                Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1002'}" VerticalAlignment="Bottom"></TextBlock>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Margin="5 0 0 0"
+                          Width="50" VerticalAlignment="Bottom" Name="cbChangePrice" IsSynchronizedWithCurrentItem="True"
+                          ItemsSource="{Binding PriceChanges,ElementName=pageHumanRoutes}" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StringFormat={}{0} %}" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock> 
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+            
+                </StackPanel>
+                <WrapPanel>
+                    <Button VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnApply_Click"
+                            Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 201'}">
+
+                    </Button>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
     </ScrollViewer>
 </Page>

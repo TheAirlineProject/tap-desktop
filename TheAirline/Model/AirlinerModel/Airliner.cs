@@ -34,6 +34,9 @@
             this.Flown = 0;
             this.Condition = this.rnd.Next(90, 100);
             this.Status = StatusTypes.Normal;
+            this.History = new List<AirlinerRegistrationHistory>();
+
+            this.History.Add(new AirlinerRegistrationHistory(builtDate, null, tailNumber));
 
             this.Classes = new List<AirlinerClass>();
            
@@ -132,7 +135,8 @@
             {
                 this.Owner = this.Airline;
             }
-
+            if (version < 6)
+                this.History = new List<AirlinerRegistrationHistory>();
 
         }
 
@@ -301,14 +305,15 @@
         [Versioning("owner", Version = 4)]
         public Airline Owner { get; set; }
 
-      
+        [Versioning("history",Version=6)]
+        public List<AirlinerRegistrationHistory> History { get; set; }
         #endregion
 
         #region Public Methods and Operators
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 5);
+            info.AddValue("version", 6);
 
             Type myType = this.GetType();
 

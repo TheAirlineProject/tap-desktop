@@ -3,6 +3,7 @@
 <airline>
   <profile name="Virgin Atlantic" iata="VS" color="Red" country="130" CEO="Stephen Murphy" mentality="Aggressive"
            market="Global" preferedairport="LHR">
+           <narrative narrative="Virgin Atlantic, a trading name of Virgin Atlantic Airways Limited, is a British airline with its head office in Crawley, West Sussex, England. The airline was established in 1984 as British Atlantic Airways, and was originally planned by its co-founders Randolph Fields and Alan Hellary to fly between London and the Falkland Islands. Soon after changing the name to Virgin Atlantic Airways, Fields sold his shares in the company after disagreements with Richard Branson over the management of the company. The maiden flight from Gatwick to Newark Liberty International Airport took place on 22 June 1984. "/>
   </profile>
   <info real="True" from="1984" to="2199"></info>
 </airline>

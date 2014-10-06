@@ -29,14 +29,21 @@
 	<!--France-->
 	<state country="140" name="French Guiana" shortname="GF"  flag="France - French Guiana" overseas="True" region="120"></state>
 	<state country="140" name="French Polynesia" shortname="PF"  flag="France - French Polynesia" overseas="True" region="112"></state>
+			<state country="140" name="Guadeloupe" shortname="GP"  flag="France - Guadeloupe.png" overseas="True" region="117"></state>
+		<state country="140" name="Martinique" shortname="MQ"  flag="France - Martinique" overseas="True" region="119"></state>
 	<state country="140" name="Mayotte" shortname="YT"  flag="France - Mayotte" overseas="True" region="102"></state>
+	<state country="140" name="New Caledonia" shortname="NC"  flag="France - New Caledonia" overseas="True" region="112"></state>
 	<state country="140" name="Réunion" shortname="RE"  flag="France - Reunion" overseas="True" region="102"></state>
+		<state country="140" name="Saint Martin" shortname="SM"  flag="France" overseas="True" region="119"></state>
+				<state country="140" name="Saint Barthélemy" shortname="BL"  flag="France" overseas="True" region="119"></state>
 	<state country="140" name="Saint Pierre and Miquelon" shortname="PM"  flag="France - Saint Pierre and Miquelon" overseas="True" region="119"></state>
+		<state country="140" name="Wallis and Futuna" shortname="WF"  flag="	France - Wallis_and_Futuna.png" overseas="True" region="112"></state>
 	<!--United Kingdom-->
 	<state country="130" name="Anguilla" shortname="AI"  flag="UK - Anguilla" overseas="True" region="117"></state>
   <state country="130" name="Bermuda" shortname="BM"  flag="UK - Bermuda" overseas="True" region="119"></state>
 	<state country="130" name="Cayman Islands" shortname="KY"  flag="UK - Cayman Islands" overseas="True" region="117"></state>
 	<state country="130" name="England" shortname="ENG"  flag="UK - England"></state>
+		<state country="130" name="Falkland Islands" shortname="FK"  flag="UK - Falklands"></state>
 	<state country="130" name="Guernsey" shortname="GG"  flag="UK - Guernsey"></state>
 	<state country="130" name="Gibraltar" shortname="GI"  flag="UK - Gibraltar"></state>
 	<state country="130" name="Isle of Man" shortname="IM"  flag="UK - Isle of Man"></state>

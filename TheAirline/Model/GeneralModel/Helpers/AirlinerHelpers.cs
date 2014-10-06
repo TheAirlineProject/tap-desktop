@@ -358,7 +358,8 @@
         #region Methods
         private static Airliner CreateLeasingAirliner()
         {
-            int years = rnd.Next(0, 4);
+
+            int years = rnd.Next(0, 5);
 
             Airliner airliner = CreateAirlinerFromYear(GameObject.GetInstance().GameTime.AddYears(-years).Year);
 

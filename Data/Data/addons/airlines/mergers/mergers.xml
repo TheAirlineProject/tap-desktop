@@ -32,4 +32,136 @@
 <merger name="Emirates has been founded and has created the cargo subsidiary Emirates SkyCargo" airline1="EK" airline2="EK2" type="Subsidiary" date="01.01.1985 00:00:00"></merger>
 <merger name="Elan Air, later known as DHL Air UK, has been founded and is a subsidiary of DHL" airline1="ES" airline2="D0" type="Subsidiary" date="01.01.1982 00:00:00"></merger>
 <merger name="European Air Transport Leipzig has been founded as a division of DHL" airline1="ES" airline2="QY" type="Subsidiary" date="01.01.2008 00:00:00"></merger>
+<merger name="DHL Aero Expresso has been founded. It is a Panama based division of DHL." airline1="ES" airline2="D5" type="Subsidiary" date="01.01.1996 00:00:00"></merger>
+<merger name="Blue Dart Aviation has been absorbed into DHL. It is based at Chennai,India." airline1="ES" airline2="BZ" type="Subsidiary" date="10.01.2002 00:00:00"></merger>
+<merger name="DHL has founded DHL Ecuador." airline1="ES" airline2="7T" type="Subsidiary" date="01.01.1991 00:00:00"></merger>
+<merger name="DHL has founded AeroLogic in a joint venture with Lufthansa Cargo. It's main bases are Frankfurt and Leipzig." airline1="ES" airline2="3S" type="Subsidiary" date="01.01.2008 00:00:00"></merger>
+<merger name="China Eastern and Shanghai Airlines have merged. Shanghai Airlines is now a subsidiary of China Eastern." airline1="MU" airline2="FM" type="Subsidiary" date="02.01.2010 00:00:00"></merger>
+<merger name="Sichuan Airlines has aquired an airline called Northeast Airlines and rebranded them as Hebei Airlines. They are a subsidiary of Sichuan now." airline1="3U" airline2="NS" type="Subsidiary" date="01.01.2010 00:00:00"></merger>
+<merger name="Sichuan Airlines has aquired most of the shares of United Eagle Airlines. They have been renamed Chengdu Airlines and are now a subsidiary of Sichuan Airlines." airline1="3U" airline2="EU" type="Subsidiary" date="01.01.2010 00:00:00"></merger>
+<merger name="Air China has founded a subsidiary called Shandong Airlines, its base is Jinan,China." airline1="CA" airline2="SC" type="Subsidiary" date="01.01.1994 00:00:00"></merger>
+<merger name="China Southern has founded a subsidiary called Chongqing Airlines, based at the city it shares its name." airline1="CZ" airline2="OQ" type="Subsidiary" date="01.01.2007 00:00:00"></merger>
+<merger name="China Southern has aquired a 51% stake in XiamenAir, and it is now a subsidiary of China Southern." airline1="CZ" airline2="MF" type="Subsidiary" date="01.01.2005 00:00:00"></merger>
+<merger name="Shenzhen Airlines has founded the subsidiary Kunming Airlines." airline1="ZH" airline2="KY" type="Subsidiary" date="01.01.2009 00:00:00"></merger>
+<merger name="China Southern has been founded and has opened a cargo division." airline1="CZ" airline2="CZ2" type="Subsidiary" date="01.01.1988 00:00:00"></merger>
+<merger name="Hainan Airlines has founded the subsidiary Deer Jet, which will be later renamed Beijing Capital Airlines" airline1="HU" airline2="JD" type="Subsidiary" date="01.01.1995 00:00:00"></merger>
+
+<merger name="Hainan Airlines has founded the subsidiary Shilin Airlines, which will soon be renamed Lucky Air, they are based at Kunming,China." airline1="HU" airline2="8L" type="Subsidiary" date="01.01.2004 00:00:00"></merger>
+
+<merger name="Hainan Airlines has founded the subsidiary West Air. It is based at Chongqing,China." airline1="HU" airline2="PN" type="Subsidiary" date="01.01.2007 00:00:00"></merger>
+
+<merger name="Hainan Airlines has founded the subsidiary Tianjin Airlines, which was originally called Grand China Express Air. It is based at Tianjin,China." airline1="HU" airline2="GS" type="Subsidiary" date="01.01.2007 00:00:00"></merger>
+
+<merger name="Hainan Airlines has founded the cargo subsidiary Yangtze River Express, which is based at Shanghai Pudong,China." airline1="HU" airline2="Y8" type="Subsidiary" date="01.01.2003 00:00:00"></merger>
+<merger name="Hainan Airlines has founded the subsidiary Grand China Air. It's base is Haikou on the island of Hainan also." airline1="HU" airline2="CN" type="Subsidiary" date="01.01.2007 00:00:00"></merger>
+
+<merger name="Southwest Airlines has bought Orlando,FL based carrier AirTran Airways for $1.4 Billion and willkeep it as a subsidiary until 2015 when it will be fully integrated." airline1="WN" airline2="FL" type="Subsidiary" date="01.01.2011 00:00:00"></merger>
+
+<merger name="AirTran Airways has been fully integrated with Southwest Airlines and no longer uses the AirTran name."
+          airline1="DL" airline2="WA" type="Merger" date="01.01.2015 00:00:00"></merger>
+<merger name="KLM has founded the cargo subsidiary KLM Cargo." airline1="KL" airline2="KL2" type="Subsidiary" date="01.01.1919 00:00:00"></merger>
+
+<merger name="Martinair has been founded along with Martinair Cargo," airline1="MP" airline2="MP2" type="Subsidiary" date="01.01.1958 00:00:00"></merger>
+
+<merger name="KLM has purchased Martinair and Martinair Cargo, making them a subsidiary." airline1="KL" airline2="MP" type="Subsidiary" date="01.01.1963 00:00:00"></merger>
+
+<merger name="Aerolineas Argentinas has been founded and has opened a cargo division." airline1="AR" airline2="AR2" type="Subsidiary" date="01.01.1950 00:00:00"></merger>
+
+<merger name="AeroMexico has been founded and has started a cargo subsidiary." airline1="AM" airline2="AM2" type="Subsidiary" date="01.01.1934 00:00:00"></merger>
+
+<merger name="Aeroflot has aquired the airline Donavia and started them as a new entity. They are now a subsidiary of Aeroflot." airline1="SU" airline2="D9" type="Subsidiary" date="01.01.2000 00:00:00"></merger>
+
+<merger name="Aeroflot has founded a subsidiary called Aurora, based in Vladivostok in the Far East." airline1="SU" airline2="HZ" type="Subsidiary" date="01.01.2013 00:00:00"></merger>
+
+<merger name="Aeroflot has founded a cargo subsidiary." airline1="SU" airline2="SU2" type="Subsidiary" date="01.01.1923 00:00:00"></merger>
+
+<merger name="Alitalia has founded a cargo subsidiary." airline1="AZ" airline2="AZ2" type="Subsidiary" date="01.01.1946 00:00:00"></merger>
+
+<merger name="Delta Airlines has founded a cargo subsidiary called Delta Air Logistics." airline1="DL" airline2="DL2" type="Subsidiary" date="01.01.1924 00:00:00"></merger>
+
+<merger name="Czech Airlines has founded CSA Cargo as a subsidiary." airline1="OK" airline2="OK2" type="Subsidiary" date="01.01.1923 00:00:00"></merger>
+
+<merger name="Saudia Arabian has founded Saudia Cargo as a subsidiary." airline1="SV" airline2="SV2" type="Subsidiary" date="01.01.1945 00:00:00"></merger>
+
+<merger name="Garuda Indonesia has founded a cargo subsidiary." airline1="GA" airline2="GA2" type="Subsidiary" date="01.01.1949 00:00:00"></merger>
+
+<merger name="Vietnam Airlines has founded a cargo subsidiary." airline1="VN" airline2="VN2" type="Subsidiary" date="01.01.1956 00:00:00"></merger>
+
+<merger name="Aerolineas Argentinas has aquired its main competitor, Austral Lineas Aereas, and is now a subsidiary of them." airline1="AR" airline2="AU" type="Subsidiary" date="01.01.2000 00:00:00"></merger>
+<merger name="China Eastern has founded a cargo subsidiary, China Cargo Airlines." airline1="MU" airline2="CK" type="Subsidiary" date="01.01.1998 00:00:00"></merger>
+
+<merger name="Cathay Pacific has founded a cargo subsidiary." airline1="CX" airline2="CX2" type="Subsidiary" date="01.01.1981 00:00:00"></merger>
+
+<merger name="Lufthansa has founded Lufthansa Cargo, and no longer uses the name German Cargo." airline1="LH" airline2="LH2" type="Subsidiary" date="01.01.1994 00:00:00"></merger>
+
+<merger name="Lufthansa has founded a cargo subsidiary, German Cargo." airline1="LH" airline2="FX2" type="Subsidiary" date="01.01.1977 00:00:00"></merger>
+
+<merger name="Singapore Airlines has founded a cargo subsidiary." airline1="SQ" airline2="SQ2" type="Subsidiary" date="01.01.2001 00:00:00"></merger>
+<merger name="Korean Air has been founded. It has also founded a cargo subsidiary." airline1="KE" airline2="KE2" type="Subsidiary" date="01.01.1962 00:00:00"></merger>
+
+<merger name="Asiana Airlines has been founded and has also founded a cargo subsidiary." airline1="OZ" airline2="OZ2" type="Subsidiary" date="01.01.1988 00:00:00"></merger>
+
+<merger name="EVA Air has been founded and has also founded a cargo subsidiary." airline1="BR" airline2="BR2" type="Subsidiary" date="01.01.1989 00:00:00"></merger>
+
+<merger name="Etihad has been founded, it has also founded a cargo subsidiary." airline1="EY" airline2="EY2" type="Subsidiary" date="01.01.2003 00:00:00"></merger>
+
+<merger name="Emirates has been founded, at the same time as Emirates SkyCargo it's cargo division." airline1="EK" airline2="EK2" type="Subsidiary" date="01.01.1985 00:00:00"></merger>
+
+<merger name="Air Canada and Air Canada Cargo have been founded." airline1="AC" airline2="AC2" type="Subsidiary" date="01.01.1936 00:00:00"></merger>
+
+<merger name="Air Canada has started Air Canada Express." airline1="AC" airline2="AC3" type="Subsidiary" date="01.01.2011 00:00:00"></merger>
+
+<merger name="Air France has been founded and has opened a cargo division." airline1="AF" airline2="AF2" type="Subsidiary" date="01.01.1933 00:00:00"></merger>
+<merger name="Southern Airways and North Central Airlines have merged, they are now Republic Airlines." airline1="RC" airline2="SO" type="Merger" date="01.01.1979 00:00:00"></merger>
+<merger name="Southern Airways and North Central Airlines have merged, they are now Republic Airlines." airline1="RC" airline2="NC" type="Merger" date="01.01.1979 00:00:00"></merger>
+<merger name="Lufthansa has acquired DLT and have made them a subsidiary, and have renamed them Lufthansa CityLine" airline1="LH" airline2="CL" type="Subsidiary" date="03.01.1992 00:00:00" subsidiarynewname="Lufthansa CityLine"/>
+<merger name="Iran Air has founded the subsidiary Iran Airtour." airline1="IR" airline2="B9" type="Subsidiary" date="01.01.1973 00:00:00"></merger>
+<merger name="Korean Air has founded Jin Air as a subsidiary, it is based at Seoul-Incheon." airline1="KE" airline2="LJ" type="Subsidiary" date="01.01.2008 00:00:00"></merger>
+<merger name="American Airlines has bought Reno Air. They have merged with them and ceased using their name." airline1="AA" airline2="QQ" type="Merger" date="08.30.1999 00:00:00"></merger>
+<merger name="Texas International Airlines has been merged with Continental Airlines." airline1="CO" airline2="TI" type="Merger" date="01.01.1982 00:00:00"></merger>
+<merger name="New York Air has been merged into Continental Airlines." airline1="CO" airline2="NY" type="Merger" date="02.01.1987 00:00:00"></merger>
+<merger name="Rossiya and Pulkovo Aviation Enterprise have merged. The Rossiya name is still used." airline1="FV" airline2="FV2" type="Merger" date="10.29.2006 00:00:00"></merger>
+<merger name="TWA has taken over and merged with Ozark Air Lines." airline1="TW" airline2="OZ" type="Merger" date="10.26.1986 00:00:00"></merger>
+<merger name="Pan Am has completed the purchase and merger of National Airlines." airline1="PA" airline2="NA" type="Merger" date="01.07.1980 00:00:00"></merger>
+<merger name="Aeroflot has aquired a 75% stake in Rossiya, Rossiya is now a subsidiary for Aeroflot. " airline1="SU" airline2="FV" type="Subsidiary" date="03.30.2014 00:00:00"></merger>
+<merger name="Air Berlin has taken in Niki as its subsidiary." airline1="AB" airline2="HG" type="Subsidiary" date="12.01.2012 00:00:00"></merger>
+<merger name="Southern Airways and North Central Airlines have merged, they are now Republic Airlines." airline1="RC" airline2="SO" type="Merger" date="01.01.1979 00:00:00"></merger>
+<merger name="Southern Airways and North Central Airlines have merged, they are now Republic Airlines." airline1="RC" airline2="NC" type="Merger" date="01.01.1979 00:00:00"></merger>
+<merger name="Northwest has acquired Republic and has fully merged them. " airline1="NW" airline2="RC" type="Merger" date="09.30.1986 00:00:00"></merger>
+<merger name="Air West, later known as Hughes Air West, has been formed from the merger of three airlines, Pacific Air Lines, Bonanza Air Lines and West Coast Airlines." airline1="RW" airline2="BO" type="Merger" date="01.01.1968 00:00:00"></merger>
+<merger name="Air West, later known as Hughes Air West, has been formed from the merger of three airlines, Pacific Air Lines, Bonanza Air Lines and West Coast Airlines." airline1="RW" airline2="PC" type="Merger" date="01.01.1968 00:00:00"></merger>
+<merger name="Air West, later known as Hughes Air West, has been formed from the merger of three airlines, Pacific Air Lines, Bonanza Air Lines and West Coast Airlines." airline1="RW" airline2="WCA" type="Merger" date="01.01.1968 00:00:00"></merger>
+<merger name="Republic Airlines has bought and merged with Hughes Airwest." airline1="RC" airline2="RW" type="Merger" date="10.01.1980 00:00:00"></merger>
+<merger name="American Airlines has bought AirCal." airline1="FL" airline2="OC" type="Merger" date="05.01.1987 00:00:00"></merger>
+<merger name="Travel Service has started the subsidiary SmartWings, also based at Prague." airline1="QS" airline2="SMW" type="Subsidiary" date="01.01.2004 00:00:00"></merger>
+<merger name="Travel Service has started the subsidiary Travel Service Hungary based at Budapest." airline1="QS" airline2="7O" type="Subsidiary" date="01.01.2001 00:00:00"></merger>
+<merger name="Travel Service has started the subsidiary Travel Service Slovakia based at Bratislava." airline1="QS" airline2="6D" type="Subsidiary" date="01.01.2010 00:00:00"></merger>
+<merger name="Travel Service has started the subsidiary Travel Service Polska based at Warsaw Chopin." airline1="QS" airline2="3Z" type="Subsidiary" date="01.01.2012 00:00:00"></merger>
+<merger name="American Airlines has bought AirCal." airline1="AA" airline2="OC" type="Merger" date="05.01.1987 00:00:00"></merger>
+<merger name="AirTran and ValuJet have merged, the AirTran name is kept." airline1="FL" airline2="J7" type="Merger" date="11.17.1997 00:00:00"></merger>
+<merger name="Air Dolomiti has been bought by Lufthansa and are now a subsidiary." airline1="LH" airline2="EN" type="Subsidiary" date="04.01.2003 00:00:00"></merger>
+<merger name="Delta has merged with Western Airlines." airline1="DL" airline2="WA" type="Merger" date="04.01.1987 00:00:00"></merger>
+<merger name="US Air has merged with Pacific Southwest." airline1="US" airline2="PS" type="Merger" date="12.31.1987 00:00:00"></merger>
+<merger name="Lufthansa has acquired DLT and have made them a subsidiary, and have renamed them Lufthansa CityLine" airline1="LH" airline2="CL" type="Subsidiary" date="03.01.1992 00:00:00" subsidiarynewname="Lufthansa CityLine"/>
+<merger name="Icelandair has opened the subsidiary Icelandair Cargo." airline1="FI" airline2="FI2" type="Subsidiary" date="01.01.1937 00:00:00"></merger>
+<merger name="Icelandair has opened the subsidiary Air Iceland, and will base it at Reykjavik Airport." airline1="FI" airline2="NY2" type="Subsidiary" date="01.01.1997 00:00:00"></merger>
+<merger name="Qantas has started a cargo subsidiary, Qantas Freight." airline1="QF" airline2="QF2" type="Subsidiary" date="01.01.2001 00:00:00"></merger>
+<merger name="Qantas has founded a cargo subsidiary called Australian air Express, based at Melbourne" airline1="QF" airline2="XM" type="Subsidiary" date="01.01.1992 00:00:00"></merger>
+<merger name="Qantas has bought Perth based Network Aviation, and they are a subsidiary now" airline1="QF" airline2="NA" type="Subsidiary" date="02.01.2011 00:00:00"></merger>
+<merger name="Qantas has started the subsidiary QantasLink." airline1="QF" airline2="QF3" type="Subsidiary" date="01.01.2002 00:00:00"></merger>
+<merger name="Qantas has started the subsidiary Jetconnect, which is based at Auckland,New Zealand." airline1="QF" airline2="QF4" type="Subsidiary" date="01.01.2001 00:00:00"></merger>
+<merger name="Alaska Airlines has bought Jet America Airlines." airline1="AS" airline2="SI" type="Merger" date="10.01.1987 00:00:00"></merger>
+<merger name="Japan Airlines has invested in a subsidiary, Japan Transocean Air, based out of Naha,Okinawa." airline1="JL" airline2="NU" type="Subsidiary" date="01.01.1967 00:00:00"></merger>
+<merger name="Japan Transocean Air, a subsidiary of Japan Airlines, has made a subsidiary of its own, Ryukyu Air Commuter, also based at Naha,Okinawa." airline1="NU" airline2="NU2" type="Subsidiary" date="01.01.1985 00:00:00"></merger>
+<merger name="Air Canada has bought Canadian Airlines and merged them into Air Canada." airline1="AC" airline2="CP" type="Merger" date="01.01.2000 00:00:00"></merger>
+<merger name="Nordair,Canadian Pacific and Pacific Western have merged to form Canadian Airlines." airline1="CP" airline2="CP2" type="Merger" date="01.01.1987 00:00:00"></merger>
+<merger name="Nordair,Canadian Pacific and Pacific Western have merged to form Canadian Airlines." airline1="CP" airline2="PW" type="Merger" date="01.01.1987 00:00:00"></merger>
+<merger name="Nordair,Canadian Pacific and Pacific Western have merged to form Canadian Airlines." airline1="CP" airline2="ND" type="Merger" date="01.01.1987 00:00:00"></merger>
+<merger name="US Airways and America West have merged, and will use the US Airways name." airline1="US" airline2="HP" type="Merger" date="09.27.2005 00:00:00"></merger>
+<merger name="Scandanavian has started the subsidiary Air Greenland." airline1="SK" airline2="GL" type="Subsidiary" date="01.01.1960 00:00:00"></merger>
+<merger name="Braathens has merged with SAS and is now their subsidiary." airline1="SK" airline2="BU" type="Subsidiary" date="05.01.2004 00:00:00"></merger>
+<merger name="Braathens has been fully merged in SAS and is no longer even a subsidiary of SAS." airline1="SK" airline2="BU" type="Merger" date="06.01.2007 00:00:00"></merger>
+<merger name="Swissair has founded the subsidiary Crossair." airline1="SR" airline2="LX" type="Subsidiary" date="01.01.1978 00:00:00"></merger>
+<merger name="Sister air lines Crossair and Swissair have merged with Crossair taking over Swissair, this new entity is called Swiss International Air Lines" airline1="LX" airline2="SR" type="Merger" date="03.31.2002 00:00:00" newname="Swiss International Air Lines"/>
+<merger name="Olympic Air has officially became a subsidiary of Aegean Airlines." airline1="A3" airline2="OA" type="Subsidiary" date="10.10.2013 00:00:00"></merger>
 </mergers>

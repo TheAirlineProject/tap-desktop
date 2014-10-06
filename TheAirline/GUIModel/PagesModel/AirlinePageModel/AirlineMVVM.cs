@@ -138,8 +138,12 @@
                 }
             }
 
-            foreach (MaintenanceCenter center in airline.MaintenanceCenters)
-                this.MaintenanceCenters.Add(center);
+            if (airline.MaintenanceCenters != null)
+            {
+
+                foreach (MaintenanceCenter center in airline.MaintenanceCenters)
+                    this.MaintenanceCenters.Add(center);
+            }
 
             this.setValues();
 

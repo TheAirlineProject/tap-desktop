@@ -2,43 +2,15 @@
 <airports>
   <!--South Pacific (N***)-->
   <!--Kiribati, Tuvalu (NG**)-->
-  <airport name="Bonriki International Airport" icao="NGTA" iata="TRW" type="Long_Haul_International" season="All_Year">
-    <town town="South Tawara" country="115" GMT="12:00:00" DST="12:00:00" />
-    <coordinates>
-      <latitude value="001°22'53''N" />
-      <longitude value="173°08'49''E" />
-    </coordinates>
-    <size value="Smallest" pax="133" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="09/27" length="2011" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Cassidy International Airport" icao="PLCH" iata="CXI" type="Long_Haul_International" season="All_Year">
-    <town town="Banana" country="115" GMT="13:00:00" DST="13:00:00" />
-    <coordinates>
-      <latitude value="001°59'10''N" />
-      <longitude value="157°21'00''W" />
-    </coordinates>
-    <size value="Smallest" pax="41" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="08/26" length="2103" surface="Asphalt" />
-    </runways>
-  </airport>
   <airport name="Abaiang Airport" icao="NGAB" iata="ABF" type="Domestic" season="All_Year">
     <town town="Abaiang" country="115" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
-      <latitude value="001°47'54''N" />
-      <longitude value="173°02'27''E" />
+      <latitude value="1°47'54''N" />
+      <longitude value="173°2'27''E" />
     </coordinates>
-    <size value="Smallest" pax="2" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal" gates="2" />
     </terminals>
     <runways>
       <runway name="05/23" length="885" surface="Grass" />
@@ -47,41 +19,69 @@
   <airport name="Abemama Atoll Airport" icao="NGTB" iata="AEA" type="Domestic" season="All_Year">
     <town town="Abemama Atoll" country="115" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
-      <latitude value="000°29'26''N" />
+      <latitude value="0°29'26''N" />
       <longitude value="173°49'44''E" />
     </coordinates>
     <size value="Smallest" pax="2" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal" gates="2" />
     </terminals>
     <runways>
-      <runway name="02/20" length="1244" surface="Concrete" />
+      <runway name="02/20" length="1244" surface="Grass" />
+    </runways>
+  </airport>
+  <airport name="Cassidy International Airport" icao="PLCH" iata="CXI" type="Long_Haul_International" season="All_Year">
+    <town town="Banana" country="115" GMT="13:00:00" DST="13:00:00" />
+    <coordinates>
+      <latitude value="1°59'10''N" />
+      <longitude value="157°21'0''W" />
+    </coordinates>
+    <size value="Smallest" pax="51" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2103" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Bonriki International Airport" icao="NGTA" iata="TRW" type="Long_Haul_International" season="All_Year">
+    <town town="South Tawara" country="115" GMT="12:00:00" DST="12:00:00" />
+    <coordinates>
+      <latitude value="1°22'53''N" />
+      <longitude value="173°8'49''E" />
+    </coordinates>
+    <size value="Smallest" pax="99" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2011" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Butaritari Atoll Airport" icao="NGTU" iata="BBG" type="Domestic" season="All_Year">
     <town town="Butaritari Atoll" country="115" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
-      <latitude value="003°05'08''N" />
+      <latitude value="3°5'8''N" />
       <longitude value="172°48'39''E" />
     </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal" gates="2" />
     </terminals>
     <runways>
-      <runway name="07/25" length="1067" surface="Asphalt" />
+      <runway name="07/25" length="1067" surface="Grass" />
     </runways>
   </airport>
   <!--Fiji/Tonga (NF**)-->
-  <airport name="Nadi International Airport" icao="NFFN" iata="NAN" type="Long_Haul_International" season="All_Year">
+<airport name="Nadi International Airport" icao="NFFN" iata="NAN" type="Long_Haul_International" season="All_Year">
     <town town="Nadi" country="114" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
-      <latitude value="017°45'19''S" />
+      <latitude value="17°45'19''S" />
       <longitude value="177°26'36''E" />
     </coordinates>
-    <size value="Medium" pax="2231" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="2348" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="4" />
+      <terminal name="Terminal" gates="12" />
     </terminals>
     <runways>
       <runway name="02/20" length="3273" surface="Asphalt" />
@@ -91,31 +91,29 @@
   <airport name="Nausori International Airport" icao="NFNA" iata="SUV" type="Domestic" season="All_Year">
     <town town="Nausori" country="114" GMT="12:00:00" DST="12:00:00" />
     <coordinates>
-      <latitude value="018°02'35''S" />
+      <latitude value="18°2'35''S" />
       <longitude value="178°33'32''E" />
     </coordinates>
-    <size value="Smallest" pax="103" />
+    <size value="Very_small" pax="380" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
       <runway name="10/28" length="1868" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Fuaʻamotu International Airport" icao="NFTF" iata="TBU" type="Long_Haul_International"
-           season="All_Year">
+  <airport name="Fuaʻamotu International Airport" icao="NFTF" iata="TBU" type="Long_Haul_International" season="All_Year">
     <town town="Nukuʻalofa" country="208" GMT="12:00:00" DST="13:00:00" />
     <coordinates>
-      <latitude value="021°14'28''S" />
-      <longitude value="175°08'58''E" />
+      <latitude value="21°14'28''S" />
+      <longitude value="175°8'58''E" />
     </coordinates>
-    <size value="Smallest" pax="89" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="129" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="4" />
+      <terminal name="Terminal" gates="5" />
     </terminals>
     <runways>
       <runway name="11/29" length="2681" surface="Asphalt" />
-      <runway name="17/35" length="1509" surface="Grass" />
     </runways>
   </airport>
   <!--Northern Marianas Islands-->
@@ -212,89 +210,59 @@
   <airport name="Auckland Airport" icao="NZAA" iata="AKL" type="Long_Haul_International" season="All_Year">
     <town town="Auckland" country="186" GMT="12:00:00" DST="13:00:00" />
     <coordinates>
-      <latitude value="037°00'29''S" />
+      <latitude value="37°0'29''S" />
       <longitude value="174°47'30''E" />
     </coordinates>
-    <size value="Large" pax="14006" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="14829" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal 1" gates="17" />
-      <terminal name="Terminal 2" gates="26" />
+      <terminal name="Terminal 1" gates="22" />
+      <terminal name="Terminal 2" gates="20" />
     </terminals>
     <runways>
       <runway name="05L/23R" length="3108" surface="Asphalt" />
       <runway name="05R/23L" length="3635" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Christchurch International Airport" icao="NZCH" iata="CHC" type="Long_Haul_International"
-           season="All_Year">
+  <airport name="Woodbourne Airport" icao="NZWB" iata="BHE" type="Domestic" season="All_Year">
+    <town town="Blenheim" country="186" GMT="12:00:00" DST="11:00:00" />
+    <coordinates>
+      <latitude value="41°31'5''S" />
+      <longitude value="173°52'11''E" />
+    </coordinates>
+    <size value="Very_small" pax="228" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="06L/24R" length="1425" surface="Grass" />
+      <runway name="06R/24L" length="1425" surface="Asphalt" />
+      <runway name="10/28" length="1182" surface="Grass" />
+    </runways>
+  </airport>
+  <airport name="Christchurch International Airport" icao="NZCH" iata="CHC" type="Long_Haul_International" season="All_Year">
     <town town="Christchurch" country="186" GMT="12:00:00" DST="13:00:00" />
     <coordinates>
-      <latitude value="043°29'21''S" />
+      <latitude value="43°29'21''S" />
       <longitude value="172°31'55''E" />
     </coordinates>
-    <size value="Medium" pax="5592" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="5576" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="21" />
+      <terminal name="Terminal" gates="38" />
     </terminals>
     <runways>
       <runway name="02/20" length="3288" surface="Asphalt" />
       <runway name="11/29" length="1741" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Wellington International Airport" icao="NZWN" iata="WLG" type="Short_Haul_International"
-           season="All_Year">
-    <town town="Wellington" country="186" GMT="12:00:00" DST="13:00:00" />
-    <coordinates>
-      <latitude value="041°19'37''S" />
-      <longitude value="174°48'19''E" />
-    </coordinates>
-    <size value="Medium" pax="5135" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="30" />
-    </terminals>
-    <runways>
-      <runway name="16/34" length="2081" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Woodbourne Airport" icao="NZWB" iata="BHE" type="Domestic" season="All_Year">
-    <town town="Blenheim" country="186" GMT="12:00:00" DST="11:00:00" />
-    <coordinates>
-      <latitude value="041°31'05''S" />
-      <longitude value="173°52'11''E" />
-    </coordinates>
-    <size value="Very_small" pax="212" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="4" />
-    </terminals>
-    <runways>
-      <runway name="06L/24R" length="1425" surface="Asphalt" />
-      <runway name="06R/24L" length="1425" surface="Asphalt" />
-      <runway name="10/28" length="1182" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Chatham Islands-Tuuta Airport" icao="NZCI" iata="CHT" type="Domestic" season="All_Year">
-    <town town="Waitangi" country="186" GMT="12:00:00" DST="11:00:00" />
-    <coordinates>
-      <latitude value="043°48'36''S" />
-      <longitude value="176°27'25''W" />
-    </coordinates>
-    <size value="Smallest" pax="17" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="05/23" length="1360" surface="Asphalt" />
-    </runways>
-  </airport>
   <airport name="Dunedin Airport" icao="NZDN" iata="DUD" type="Domestic" season="All_Year">
     <town town="Dunedin" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="045°55'41''S" />
+      <latitude value="45°55'41''S" />
       <longitude value="170°11'52''E" />
     </coordinates>
-    <size value="Small" pax="770" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="858" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="5" />
+      <terminal name="Terminal" gates="5" />
     </terminals>
     <runways>
       <runway name="03/21" length="1900" surface="Asphalt" />
@@ -303,24 +271,23 @@
   <airport name="Gisborne Airport" icao="NZGS" iata="GIS" type="Domestic" season="All_Year">
     <town town="Gisborne" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="038°39'47''S" />
+      <latitude value="38°39'47''S" />
       <longitude value="177°58'40''E" />
     </coordinates>
-    <size value="Smallest" pax="46" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="57" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
     <runways>
-      <runway name="03/21" length="1150" surface="Asphalt" />
-      <runway name="09/27" length="1170" surface="Asphalt" />
-      <runway name="14L/32R" length="763" surface="Asphalt" />
+      <runway name="03/21" length="1150" surface="Grass" />
+      <runway name="09/27" length="1170" surface="Grass" />
       <runway name="14R/32L" length="1310" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Great Barrier Aerodrome" icao="NZGB" iata="GBZ" type="Domestic" season="All_Year">
     <town town="Claris" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="036°14'29''S" />
+      <latitude value="36°14'29''S" />
       <longitude value="175°28'19''E" />
     </coordinates>
     <size value="Smallest" pax="41" cargo="Smallest" cargovolume="0" />
@@ -331,31 +298,43 @@
       <runway name="10/28" length="930" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hamilton International Airport" icao="NZHN" iata="HLZ" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Hamilton International Airport" icao="NZHN" iata="HLZ" type="Short_Haul_International" season="All_Year">
     <town town="Hamilton" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="037°52'00''S" />
+      <latitude value="37°52'0''S" />
       <longitude value="175°19'55''E" />
     </coordinates>
-    <size value="Very_small" pax="362" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="306" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="5" />
+      <terminal name="Terminal" gates="5" />
     </terminals>
     <runways>
-      <runway name="07L/25R" length="720" surface="Asphalt" />
-      <runway name="07R/25L" length="715" surface="Asphalt" />
-      <runway name="18L/36R" length="1960" surface="Asphalt" />
-      <runway name="18R/36L" length="875" surface="Asphalt" />
+      <runway name="18L/36R" length="2195" surface="Asphalt" />
+      <runway name="18R/36L" length="790" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Hawke's Bay Airport" icao="NZNR" iata="NPE" type="Domestic" season="All_Year">
+    <town town="Auckland" country="186" GMT="12:00:00" DST="11:00:00" />
+    <coordinates>
+      <latitude value="39°27'56''S" />
+      <longitude value="176°52'11''E" />
+    </coordinates>
+    <size value="Very_small" pax="451" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="1199" surface="Asphalt" />
+      <runway name="16/34" length="1750" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Hokitika Airfield" icao="NZHK" iata="HKK" type="Domestic" season="All_Year">
     <town town="Hokitika" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="042°42'48''S" />
-      <longitude value="170°59'06''E" />
+      <latitude value="42°42'48''S" />
+      <longitude value="170°59'6''E" />
     </coordinates>
-    <size value="Smallest" pax="71" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="31" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -367,24 +346,22 @@
   <airport name="Invercargill Airport" icao="NZNV" iata="IVC" type="Regional" season="All_Year">
     <town town="Invercargill" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="046°24'44''S" />
+      <latitude value="46°24'44''S" />
       <longitude value="168°18'46''E" />
     </coordinates>
-    <size value="Very_small" pax="281" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="271" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal" gates="3" />
     </terminals>
     <runways>
       <runway name="04/22" length="2210" surface="Asphalt" />
-      <runway name="04R/22L" length="695" surface="Asphalt" />
-      <runway name="07/25" length="426" surface="Asphalt" />
-      <runway name="12/30" length="913" surface="Asphalt" />
+      <runway name="12/30" length="913" surface="Grass" />
     </runways>
   </airport>
   <airport name="Kaikoura Airport" icao="NZKI" iata="KBZ" type="Domestic" season="All_Year">
     <town town="Kaikoura" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="042°25'29''S" />
+      <latitude value="42°25'29''S" />
       <longitude value="173°36'17''E" />
     </coordinates>
     <size value="Smallest" pax="23" cargo="Smallest" cargovolume="0" />
@@ -399,8 +376,8 @@
   <airport name="Kaitaia Airport" icao="NZKT" iata="KAT" type="Domestic" season="All_Year">
     <town town="Kaitaia" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="035°04'11''S" />
-      <longitude value="173°17'06''E" />
+      <latitude value="35°4'11''S" />
+      <longitude value="173°17'6''E" />
     </coordinates>
     <size value="Smallest" pax="15" cargo="Smallest" cargovolume="0" />
     <terminals>
@@ -414,7 +391,7 @@
   <airport name="Kerikeri Airport" icao="NZKK" iata="KKE" type="Domestic" season="All_Year">
     <town town="Kerikeri" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="035°15'46''S" />
+      <latitude value="35°15'46''S" />
       <longitude value="173°54'43''E" />
     </coordinates>
     <size value="Smallest" pax="31" cargo="Smallest" cargovolume="0" />
@@ -430,8 +407,8 @@
   <airport name="Hood Airport" icao="NZMS" iata="MRO" type="Domestic" season="All_Year">
     <town town="Masterton" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="040°58'23''S" />
-      <longitude value="175°38'02''E" />
+      <latitude value="40°58'23''S" />
+      <longitude value="175°38'2''E" />
     </coordinates>
     <size value="Smallest" pax="27" cargo="Smallest" cargovolume="0" />
     <terminals>
@@ -447,8 +424,8 @@
   <airport name="Mount Cook Airport" icao="NZMC" iata="MON" type="Domestic" season="All_Year">
     <town town="Mount Cook Village" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="043°45'53''S" />
-      <longitude value="170°07'58''E" />
+      <latitude value="43°45'53''S" />
+      <longitude value="170°7'58''E" />
     </coordinates>
     <size value="Smallest" pax="19" cargo="Smallest" cargovolume="0" />
     <terminals>
@@ -458,49 +435,30 @@
       <runway name="13/31" length="1572" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hawke's Bay Airport" icao="NZNR" iata="NPE" type="Domestic" season="All_Year">
-    <town town="Auckland" country="186" GMT="12:00:00" DST="11:00:00" />
-    <coordinates>
-      <latitude value="039°27'56''S" />
-      <longitude value="176°52'11''E" />
-    </coordinates>
-    <size value="Very_small" pax="432" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="5" />
-    </terminals>
-    <runways>
-      <runway name="07/25" length="1219" surface="Asphalt" />
-      <runway name="10/28" length="560" surface="Asphalt" />
-      <runway name="16L/34R" length="766" surface="Asphalt" />
-      <runway name="16R/34L" length="1310" surface="Asphalt" />
-    </runways>
-  </airport>
   <airport name="Nelson Airport" icao="NZNS" iata="NSN" type="Regional" season="All_Year">
     <town town="Nelson" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="041°17'53''S" />
+      <latitude value="41°17'53''S" />
       <longitude value="173°13'15''E" />
     </coordinates>
-    <size value="Small" pax="758" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="767" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="5" />
+      <terminal name="Terminal A" gates="11" />
+      <terminal name="Terminal B" gates="5" />
     </terminals>
     <runways>
-      <runway name="02L/20R" length="731" surface="Asphalt" />
       <runway name="02R/20L" length="1347" surface="Asphalt" />
-      <runway name="06/24" length="671" surface="Asphalt" />
-      <runway name="17/35" length="600" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="New Plymouth Airport" icao="NZNP" iata="NPL" type="Domestic" season="All_Year">
     <town town="New Plymouth" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="039°00'30''S" />
+      <latitude value="39°0'30''S" />
       <longitude value="174°10'44''E" />
     </coordinates>
-    <size value="Very_small" pax="275" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="332" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal" gates="5" />
     </terminals>
     <runways>
       <runway name="05L/23R" length="1310" surface="Asphalt" />
@@ -511,8 +469,8 @@
   <airport name="Oamaru Airport" icao="NZOU" iata="OAM" type="Domestic" season="All_Year">
     <town town="Oamaru" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="044°58'12''S" />
-      <longitude value="171°04'55''E" />
+      <latitude value="44°58'12''S" />
+      <longitude value="171°4'55''E" />
     </coordinates>
     <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
     <terminals>
@@ -524,16 +482,29 @@
       <runway name="18/36" length="1283" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Palmerston North International Airport" icao="NZPM" iata="PMR" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Ryans Creek Aerodrome" icao="NZRC" iata="SZS" type="Domestic" season="All_Year">
+    <town town="Oban" country="186" GMT="12:00:00" DST="11:00:00" />
+    <coordinates>
+      <latitude value="46°53'58''S" />
+      <longitude value="168°6'3''E" />
+    </coordinates>
+    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="800" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Palmerston North International Airport" icao="NZPM" iata="PMR" type="Short_Haul_International" season="All_Year">
     <town town="Palmerston North" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="040°19'14''S" />
-      <longitude value="175°37'01''E" />
+      <latitude value="40°19'14''S" />
+      <longitude value="175°37'1''E" />
     </coordinates>
-    <size value="Small" pax="501" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="445" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal" gates="11" />
     </terminals>
     <runways>
       <runway name="07L/25R" length="1902" surface="Asphalt" />
@@ -543,7 +514,7 @@
   <airport name="Kapiti Coast Airport" icao="NZPP" iata="PPQ" type="Domestic" season="All_Year">
     <town town="Kapiti Coast" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="040°54'16''S" />
+      <latitude value="40°54'16''S" />
       <longitude value="174°59'20''E" />
     </coordinates>
     <size value="Smallest" pax="26" cargo="Smallest" cargovolume="0" />
@@ -557,56 +528,40 @@
       <runway name="16R/34L" length="1350" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Queenstown International Airport" icao="NZQN" iata="ZQN" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Queenstown International Airport" icao="NZQN" iata="ZQN" type="Short_Haul_International" season="All_Year">
     <town town="Queenstown" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="045°01'15''S" />
+      <latitude value="45°1'15''S" />
       <longitude value="168°44'20''E" />
     </coordinates>
-    <size value="Small" pax="1047" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1216" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="6" />
+      <terminal name="Terminal" gates="9" />
     </terminals>
     <runways>
-      <runway name="05L/23R" length="800" surface="Asphalt" />
-      <runway name="05R/23L" length="1891" surface="Asphalt" />
-      <runway name="14/32" length="944" surface="Asphalt" />
+      <runway name="05/23" length="1777" surface="Asphalt" />
+      <runway name="14/32" length="720" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Rotorua Regional Airport" icao="NZRO" iata="ROT" type="Regional" season="All_Year">
     <town town="Rotorua" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="038°06'33''S" />
-      <longitude value="176°19'01''E" />
+      <latitude value="38°6'33''S" />
+      <longitude value="176°19'1''E" />
     </coordinates>
-    <size value="Very_small" pax="227" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="218" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal" gates="6" />
     </terminals>
     <runways>
-      <runway name="18L/36R" length="833" surface="Asphalt" />
-      <runway name="18R/36L" length="1622" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Ryans Creek Aerodrome" icao="NZRC" iata="SZS" type="Domestic" season="All_Year">
-    <town town="Oban" country="186" GMT="12:00:00" DST="11:00:00" />
-    <coordinates>
-      <latitude value="046°53'58''S" />
-      <longitude value="168°06'03''E" />
-    </coordinates>
-    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="04/22" length="800" surface="Asphalt" />
+      <runway name="18R/36L" length="1762" surface="Asphalt" />
+      <runway name="18L/36R" length="773" surface="Grass" />
     </runways>
   </airport>
   <airport name="Takaka Airport" icao="NZTK" iata="KTF" type="Domestic" season="All_Year">
     <town town="Takaka" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="040°48'47''S" />
+      <latitude value="40°48'47''S" />
       <longitude value="172°46'29''E" />
     </coordinates>
     <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
@@ -620,8 +575,8 @@
   <airport name="Taupo Airport" icao="NZAP" iata="TUO" type="Domestic" season="All_Year">
     <town town="Taupo" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="038°44'22''S" />
-      <longitude value="176°05'02''E" />
+      <latitude value="38°44'22''S" />
+      <longitude value="176°5'2''E" />
     </coordinates>
     <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
     <terminals>
@@ -635,7 +590,7 @@
   <airport name="Tauranga Airport" icao="NZTG" iata="TRG" type="Domestic" season="All_Year">
     <town town="Tauranga" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="037°40'18''S" />
+      <latitude value="37°40'18''S" />
       <longitude value="176°11'45''E" />
     </coordinates>
     <size value="Smallest" pax="18" cargo="Smallest" cargovolume="0" />
@@ -652,7 +607,7 @@
   <airport name="Timaru Airport" icao="NZTU" iata="TIU" type="Domestic" season="All_Year">
     <town town="Timaru" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="044°18'10''S" />
+      <latitude value="44°18'10''S" />
       <longitude value="171°13'30''E" />
     </coordinates>
     <size value="Smallest" pax="48" cargo="Smallest" cargovolume="0" />
@@ -665,10 +620,24 @@
       <runway name="11/29" length="1113" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Chatham Islands-Tuuta Airport" icao="NZCI" iata="CHT" type="Domestic" season="All_Year">
+    <town town="Waitangi" country="186" GMT="12:00:00" DST="11:00:00" />
+    <coordinates>
+      <latitude value="43°48'36''S" />
+      <longitude value="176°27'25''W" />
+    </coordinates>
+    <size value="Smallest" pax="17" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="1360" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Wanaka Airport" icao="NZWF" iata="WKA" type="Domestic" season="All_Year">
     <town town="Wanaka" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="044°43'19''S" />
+      <latitude value="44°43'19''S" />
       <longitude value="169°14'45''E" />
     </coordinates>
     <size value="Smallest" pax="33" cargo="Smallest" cargovolume="0" />
@@ -682,8 +651,8 @@
   <airport name="Wanganui Airport" icao="NZWU" iata="WAG" type="Domestic" season="All_Year">
     <town town="Wanganui" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="039°57'43''S" />
-      <longitude value="175°01'29''E" />
+      <latitude value="39°57'43''S" />
+      <longitude value="175°1'29''E" />
     </coordinates>
     <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
     <terminals>
@@ -697,10 +666,24 @@
       <runway name="14/32" length="902" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Wellington International Airport" icao="NZWN" iata="WLG" type="Short_Haul_International" season="All_Year">
+    <town town="Wellington" country="186" GMT="12:00:00" DST="13:00:00" />
+    <coordinates>
+      <latitude value="41°19'37''S" />
+      <longitude value="174°48'19''E" />
+    </coordinates>
+    <size value="Medium" pax="5373" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="25" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="2081" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Westport Airport" icao="NZWS" iata="WSZ" type="Domestic" season="All_Year">
     <town town="Westport" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="041°44'17''S" />
+      <latitude value="41°44'17''S" />
       <longitude value="171°34'51''E" />
     </coordinates>
     <size value="Smallest" pax="14" cargo="Smallest" cargovolume="0" />
@@ -714,7 +697,7 @@
   <airport name="Whakatane Airport" icao="NZWK" iata="WHK" type="Domestic" season="All_Year">
     <town town="Whakatane" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="037°55'14''S" />
+      <latitude value="37°55'14''S" />
       <longitude value="176°54'50''E" />
     </coordinates>
     <size value="Smallest" pax="23" cargo="Smallest" cargovolume="0" />
@@ -729,7 +712,7 @@
   <airport name="Whangarei Airport" icao="NZWR" iata="WRE" type="Domestic" season="All_Year">
     <town town="Whangarei" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="035°46'05''S" />
+      <latitude value="35°46'5''S" />
       <longitude value="174°21'54''E" />
     </coordinates>
     <size value="Smallest" pax="51" cargo="Smallest" cargovolume="0" />
@@ -4016,16 +3999,15 @@
     </runways>
   </airport>
   <!--some random oceania airport-->
-  <airport name="Roman Tmetuchl International Airport" icao="PTRO" iata="ROR" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Roman Tmetuchl International Airport" icao="PTRO" iata="ROR" type="Short_Haul_International" season="All_Year">
     <town town="Airai" country="288" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
-      <latitude value="007°22'03''N" />
+      <latitude value="7°22'3''N" />
       <longitude value="134°32'38''E" />
     </coordinates>
-    <size value="Smallest" pax="13" />
+    <size value="Smallest" pax="98" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="5" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
       <runway name="09/27" length="2195" surface="Asphalt" />
@@ -4034,25 +4016,24 @@
   <airport name="Honiara International Airport" icao="AGGH" iata="HIR" type="Regional" season="All_Year">
     <town town="Honiara" country="289" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="009°25'40''S" />
-      <longitude value="160°03'17''E" />
+      <latitude value="9°25'40''S" />
+      <longitude value="160°3'17''E" />
     </coordinates>
-    <size value="Smallest" pax="6" />
+    <size value="Smallest" pax="85" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="6" />
+      <terminal name="Terminal" gates="6" />
     </terminals>
     <runways>
       <runway name="06/24" length="2200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Marshall Islands International Airport" icao="PKMJ" iata="MAJ" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Marshall Islands International Airport" icao="PKMJ" iata="MAJ" type="Short_Haul_International" season="All_Year">
     <town town="Majuro Atoll" country="287" GMT="12:00:00" DST="12:00:00" />
     <coordinates>
-      <latitude value="007°03'53''N" />
+      <latitude value="7°3'53''N" />
       <longitude value="171°16'19''E" />
     </coordinates>
-    <size value="Smallest" pax="8" />
+    <size value="Smallest" pax="36" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -4060,13 +4041,41 @@
       <runway name="07/25" length="2407" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Kosrae International Airport" icao="PTSA" iata="KSA" type="Regional" season="All_Year">
+    <town town="Okat" country="290" GMT="11:00:00" DST="11:00:00" />
+    <coordinates>
+      <latitude value="5°21'25''N" />
+      <longitude value="162°57'28''E" />
+    </coordinates>
+    <size value="Smallest" pax="51" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="1753" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Pohnpei International Airport" icao="PTPN" iata="PNI" type="Regional" season="All_Year">
+    <town town="Pohnpei Island" country="290" GMT="11:00:00" DST="11:00:00" />
+    <coordinates>
+      <latitude value="6°59'6''N" />
+      <longitude value="158°12'32''E" />
+    </coordinates>
+    <size value="Smallest" pax="76" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1829" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Chuuk International Airport" icao="PTKK" iata="TKK" type="Regional" season="All_Year">
     <town town="Weno Island" country="290" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="007°27'42''N" />
+      <latitude value="7°27'42''N" />
       <longitude value="151°50'34''E" />
     </coordinates>
-    <size value="Smallest" pax="6" />
+    <size value="Smallest" pax="67" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -4077,68 +4086,54 @@
   <airport name="Yap International Airport" icao="PTYA" iata="YAP" type="Regional" season="All_Year">
     <town town="Yap Island" country="290" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
-      <latitude value="009°29'56''N" />
-      <longitude value="138°04'58''E" />
+      <latitude value="9°29'56''N" />
+      <longitude value="138°4'58''E" />
     </coordinates>
-    <size value="Smallest" pax="76" />
+    <size value="Smallest" pax="35" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
       <runway name="07/25" length="1829" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Pohnpei International Airport" icao="PTPN" iata="PNI" type="Regional" season="All_Year">
-    <town town="Pohnpei Island" country="290" GMT="11:00:00" DST="11:00:00" />
-    <coordinates>
-      <latitude value="006°59'06''N" />
-      <longitude value="158°12'32''E" />
-    </coordinates>
-    <size value="Smallest" pax="98" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="09/27" length="1829" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Kosrae International Airport" icao="PTSA" iata="KSA" type="Regional" season="All_Year">
-    <town town="Okat" country="290" GMT="11:00:00" DST="11:00:00" />
-    <coordinates>
-      <latitude value="005°21'25''N" />
-      <longitude value="162°57'28''E" />
-    </coordinates>
-    <size value="Smallest" pax="71" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="05/23" length="1753" surface="Asphalt" />
-    </runways>
-  </airport>
   <airport name="Nauru International Airport" icao="ANYN" iata="INU" type="Regional" season="All_Year">
     <town town="Yaren District" country="291" GMT="12:00:00" DST="12:00:00" />
     <coordinates>
-      <latitude value="000°32'50''S" />
-      <longitude value="166°55'08''E" />
+      <latitude value="0°32'50''N" />
+      <longitude value="166°55'8''E" />
     </coordinates>
-    <size value="Smallest" pax="5" />
+    <size value="Smallest" pax="80" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal" gates="3" />
     </terminals>
     <runways>
       <runway name="12/30" length="2150" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Lae Nadzab Airport" icao="AYNZ" iata="LAE" type="Regional" season="All_Year">
+    <town town="Nadzab" country="280" GMT="10:00:00" DST="10:00:00" />
+    <coordinates>
+      <latitude value="6°34'11''S" />
+      <longitude value="146°43'33''E" />
+    </coordinates>
+    <size value="Smallest" pax="19" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2440" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Port Moresby Jacksons International Airport" icao="AYPY" iata="POM" type="Domestic" season="All_Year">
     <town town="Port Moresby" country="280" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
-      <latitude value="009°26'36''S" />
+      <latitude value="9°26'36''S" />
       <longitude value="147°13'12''E" />
     </coordinates>
-    <size value="Smallest" pax="11" />
+    <size value="Small" pax="2101" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="7" />
+      <terminal name="Terminal A" gates="18" />
     </terminals>
     <runways>
       <runway name="14L/32R" length="2750" surface="Asphalt" />
@@ -4147,39 +4142,24 @@
   <airport name="Wewak International Airport" icao="AYWK" iata="WWK" type="Regional" season="All_Year">
     <town town="Wewak" country="280" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
-      <latitude value="003°35'01''S" />
-      <longitude value="143°40'08''E" />
+      <latitude value="3°35'1''S" />
+      <longitude value="143°40'8''E" />
     </coordinates>
-    <size value="Smallest" pax="4" />
+    <size value="Smallest" pax="17" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal" gates="5" />
     </terminals>
     <runways>
       <runway name="10/28" length="1595" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lae Nadzab Airport" icao="AYNZ" iata="LAE" type="Regional" season="All_Year">
-    <town town="Nadzab" country="280" GMT="10:00:00" DST="10:00:00" />
-    <coordinates>
-      <latitude value="006°34'11''S" />
-      <longitude value="146°43'33''E" />
-    </coordinates>
-    <size value="Smallest" pax="6" />
-    <terminals>
-      <terminal name="Terminal A" gates="5" />
-    </terminals>
-    <runways>
-      <runway name="09/27" length="2440" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Bauerfield International Airport" icao="NVVV" iata="VLI" type="Long_Haul_International"
-           season="All_Year">
+  <airport name="Bauerfield International Airport" icao="NVVV" iata="VLI" type="Long_Haul_International" season="All_Year">
     <town town="Port Vila" country="292" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
-      <latitude value="017°41'57''S" />
+      <latitude value="17°41'57''S" />
       <longitude value="168°19'11''E" />
     </coordinates>
-    <size value="Smallest" pax="10" />
+    <size value="Smallest" pax="125" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="10" />
     </terminals>

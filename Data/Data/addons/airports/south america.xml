@@ -3,72 +3,314 @@
 <!--must be placed in \data\addons\airports-->
 <airports>
   <!--Argentina (SA**)-->
+   <airport name="Comandante Espora Airport" icao="SAZB" iata="BHI" type="Domestic" season="All_Year">
+    <town town="Bahia Blanca" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="38°43'30''S" />
+      <longitude value="62°10'9''W" />
+    </coordinates>
+    <size value="Smallest" pax="111" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="16L/34R" length="2615" surface="Asphalt" />
+      <runway name="16R/34L" length="1498" surface="Asphalt" />
+      <runway name="06/24" length="2030" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Jorge Newbery Airport" icao="SABE" iata="AEP" type="Short_Haul_International" season="All_Year">
     <town town="Buenos Aires" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="034°33'33''S" />
-      <longitude value="058°24'56''W" />
+      <latitude value="34°33'33''S" />
+      <longitude value="58°24'56''W" />
     </coordinates>
-    <size value="Medium" pax="7558" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="9553" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="12" />
+      <terminal name="Terminal" gates="26" />
     </terminals>
     <runways>
       <runway name="13/31" length="2100" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Ministro Pistarini International Airport" icao="SAEZ" iata="EZE" type="Long_Haul_International"
-           season="All_Year">
+  <airport name="Ministro Pistarini International Airport" icao="SAEZ" iata="EZE" type="Long_Haul_International" season="All_Year">
     <town town="Buenos Aires" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="034°49'20''S" />
-      <longitude value="058°32'09''W" />
+      <latitude value="34°49'20''S" />
+      <longitude value="58°32'9''W" />
     </coordinates>
-    <size value="Medium" pax="8786" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="8533" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="9" />
-      <terminal name="Terminal B" gates="3" />
-      <terminal name="Terminal C" gates="4" />
+      <terminal name="Terminal A" gates="12" />
+      <terminal name="Terminal B" gates="11" />
+      <terminal name="Terminal C" gates="10" />
     </terminals>
     <runways>
       <runway name="11/29" length="3300" surface="Asphalt" />
       <runway name="17/35" length="3105" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="General Enrique Mosconi International Airport" icao="SAVC" iata="CRD" type="Domestic"
-           season="All_Year">
-    <town town="Comodoro Rivadavia" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Catamarca Airport" icao="SANC" iata="CTC" type="Domestic" season="All_Year">
+    <town town="Catamarca" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="045°47'06''S" />
-      <longitude value="067°27'56''W" />
+      <latitude value="28°35'44''S" />
+      <longitude value="65°45'6''W" />
     </coordinates>
-    <size value="Very_small" pax="288" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="07/25" length="2750" surface="Concrete" />
-    </runways>
-  </airport>
-  <airport name="Suboficial Ay Santiago Germano Airport" icao="SAMR" iata="AFA" type="Domestic" season="All_Year">
-    <town town="San Rafael" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="034°35'17''S" />
-      <longitude value="068°24'14''W" />
-    </coordinates>
-    <size value="Smallest" pax="27" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="38" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
-      <runway name="10/28" length="2110" surface="Asphalt" />
+      <runway name="01/19" length="2800" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="General Enrique Mosconi International Airport" icao="SAVC" iata="CRD" type="Domestic" season="All_Year">
+    <town town="Comodoro Rivadavia" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="45°47'6''S" />
+      <longitude value="67°27'56''W" />
+    </coordinates>
+    <size value="Very_small" pax="445" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="2827" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Comodoro Pierrestegui Airport" icao="SAAC" iata="COC" type="Domestic" season="All_Year">
+    <town town="Concordia" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="31°17'48''S" />
+      <longitude value="57°59'47''W" />
+    </coordinates>
+    <size value="Smallest" pax="15" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="1600" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Ingeniero Ambrosio Taravella Airport" icao="SACO" iata="COR" type="Long_Haul_International" season="All_Year">
+    <town town="Cordoba" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="31°19'24''S" />
+      <longitude value="64°12'28''W" />
+    </coordinates>
+    <size value="Small" pax="1572" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="16" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2280" surface="Concrete" />
+      <runway name="18/36" length="3200" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Corrientes Airport" icao="SARC" iata="CNQ" type="Domestic" season="All_Year">
+    <town town="Corrientes" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="27°26'43''S" />
+      <longitude value="58°45'42''W" />
+    </coordinates>
+    <size value="Smallest" pax="23" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2100" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Curuzu Cuatia Airport" icao="SATU" iata="UZU" type="Domestic" season="All_Year">
+    <town town="Curuzu Cuatia" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="29°46'14''S" />
+      <longitude value="57°58'44''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2150" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="El Calafate Airport" icao="SAWC" iata="FTE" type="Short_Haul_International" season="All_Year">
+    <town town="El Calafate" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="50°16'49''S" />
+      <longitude value="72°3'11''W" />
+    </coordinates>
+    <size value="Small" pax="547" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="2649" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Brigadier Antonio Parodi Airport" icao="SAVE" iata="EQS" type="Domestic" season="All_Year">
+    <town town="Esquel" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="42°54'28''S" />
+      <longitude value="71°8'22''W" />
+    </coordinates>
+    <size value="Smallest" pax="37" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2400" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Formosa Airport" icao="SARF" iata="FMA" type="Short_Haul_International" season="All_Year">
+    <town town="Formosa" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="26°12'45''S" />
+      <longitude value="58°13'41''W" />
+    </coordinates>
+    <size value="Smallest" pax="53" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="1800" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Gobernador Gregores Airport" icao="SAWR" iata="GGS" type="Domestic" season="All_Year">
+    <town town="Gobernador Gregores" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="48°46'59''S" />
+      <longitude value="70°9'0''W" />
+    </coordinates>
+    <size value="Smallest" pax="25" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2600" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Junin Airport" icao="SAAJ" iata="JNI" type="Domestic" season="All_Year">
+    <town town="Junin" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="34°32'45''S" />
+      <longitude value="60°55'50''W" />
+    </coordinates>
+    <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="1500" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="La Plata Airport" icao="SADL" iata="LPG" type="Domestic" season="All_Year">
+    <town town="La Plata" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="34°58'19''S" />
+      <longitude value="57°53'40''W" />
+    </coordinates>
+    <size value="Smallest" pax="29" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="1427" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Capitan V A Almonacid Airport" icao="SANL" iata="IRJ" type="Regional" season="All_Year">
+    <town town="La Rioja" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="29°22'53''S" />
+      <longitude value="66°47'44''W" />
+    </coordinates>
+    <size value="Smallest" pax="48" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="2860" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Comodoro D.R. Salomón Airport" icao="SAMM" iata="LGS" type="Domestic" season="All_Year">
+    <town town="Malargue" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="35°29'36''S" />
+      <longitude value="69°34'27''W" />
+    </coordinates>
+    <size value="Smallest" pax="19" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="2778" surface="Asphalt" />
+      <runway name="09/27" length="1450" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="El Plumerillo Airport" icao="SAME" iata="MDZ" type="Short_Haul_International" season="All_Year">
+    <town town="Mendoza" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="32°49'54''S" />
+      <longitude value="68°47'34''W" />
+    </coordinates>
+    <size value="Small" pax="1269" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2789" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Necochea Airport" icao="SAZO" iata="NEC" type="Domestic" season="All_Year">
+    <town town="Necochea" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="38°28'59''S" />
+      <longitude value="58°49'1''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="799" surface="Grass" />
+      <runway name="17/35" length="1100" surface="Grass" />
+      <runway name="18/36" length="1501" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Presidente Peron Airport" icao="SAZN" iata="NQN" type="Regional" season="All_Year">
+    <town town="Neuquen" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="38°56'56''S" />
+      <longitude value="68°9'20''W" />
+    </coordinates>
+    <size value="Very_small" pax="215" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2570" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="General Urquiza Airport" icao="SAAP" iata="PRA" type="Domestic" season="All_Year">
+    <town town="Parana" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="31°47'41''S" />
+      <longitude value="60°28'49''W" />
+    </coordinates>
+    <size value="Smallest" pax="51" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2100" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Paso De Los Libres Airport" icao="SARL" iata="AOL" type="Regional" season="All_Year">
     <town town="Paso de los Libres" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="029°41'21''S" />
-      <longitude value="057°09'07''W" />
+      <latitude value="29°41'21''S" />
+      <longitude value="57°9'7''W" />
     </coordinates>
     <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
     <terminals>
@@ -78,287 +320,57 @@
       <runway name="18/36" length="2260" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Zapala Airport" icao="SAHZ" iata="APZ" type="Domestic" season="All_Year">
-    <town town="Zapala" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Perito Moreno Airport" icao="SAWP" iata="PMQ" type="Domestic" season="All_Year">
+    <town town="Perito Moreno" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="038°58'31''S" />
-      <longitude value="070°06'48''W" />
+      <latitude value="46°32'16''S" />
+      <longitude value="70°58'43''W" />
     </coordinates>
-    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="15" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
-      <runway name="9/27" length="2200" surface="Asphalt" />
+      <runway name="07/25" length="850" surface="Dirt" />
+      <runway name="10/28" length="1700" surface="Asphalt" />
+      <runway name="11/29" length="1343" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Comandante Espora Airport" icao="SAZB" iata="BHI" type="Domestic" season="All_Year">
-    <town town="Bahia Blanca" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Libertador Gral D Jose De San Martin Airport" icao="SARP" iata="PSS" type="Regional" season="All_Year">
+    <town town="Posadas" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="038°43'30''S" />
-      <longitude value="062°10'09''W" />
+      <latitude value="27°23'8''S" />
+      <longitude value="55°58'14''W" />
     </coordinates>
-    <size value="Smallest" pax="53" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="88" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
     <runways>
-      <runway name="16L/34R" length="2615" surface="Asphalt" />
-      <runway name="16R/34L" length="1498" surface="Asphalt" />
-      <runway name="6/24" length="2030" surface="Asphalt" />
+      <runway name="01/19" length="2200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="San Carlos De Bariloche Airport" icao="SAZS" iata="BRC" type="Domestic" season="All_Year">
-    <town town="San Carlos de Bariloche" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Puerto Deseado Airport" icao="SAWD" iata="PUD" type="Domestic" season="All_Year">
+    <town town="Puerto Deseado" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="041°09'04''S" />
-      <longitude value="071°09'27''W" />
+      <latitude value="47°44'7''S" />
+      <longitude value="65°54'14''W" />
     </coordinates>
-    <size value="Small" pax="724" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="5" />
-    </terminals>
-    <runways>
-      <runway name="11/29" length="2348" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Corrientes Airport" icao="SARC" iata="CNQ" type="Domestic" season="All_Year">
-    <town town="Corrientes" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="027°26'43''S" />
-      <longitude value="058°45'42''W" />
-    </coordinates>
-    <size value="Smallest" pax="17" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="2/20" length="2100" surface="Concrete" />
-    </runways>
-  </airport>
-  <airport name="Comodoro Pierrestegui Airport" icao="SAAC" iata="COC" type="Domestic" season="All_Year">
-    <town town="Concordia" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="031°17'48''S" />
-      <longitude value="057°59'47''W" />
-    </coordinates>
-    <size value="Smallest" pax="28" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="8" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
     <runways>
-      <runway name="3/21" length="1600" surface="Asphalt" />
+      <runway name="06/24" length="1500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ingeniero Ambrosio Taravella Airport" icao="SACO" iata="COR" type="Long_Haul_International"
-           season="All_Year">
-    <town town="Cordoba" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="031°19'24''S" />
-      <longitude value="064°12'28''W" />
-    </coordinates>
-    <size value="Small" pax="1385" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="6" />
-    </terminals>
-    <runways>
-      <runway name="18/36" length="3200" surface="Concrete" />
-      <runway name="5/23" length="2200" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Aviador C. Campos Airport" icao="SAZY" iata="CPC" type="Domestic" season="All_Year">
-    <town town="Chapelco/San Martin de los Andes" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="040°04'31''S" />
-      <longitude value="071°08'14''W" />
-    </coordinates>
-    <size value="Smallest" pax="30" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="6/24" length="2500" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Catamarca Airport" icao="SANC" iata="CTC" type="Domestic" season="All_Year">
-    <town town="Catamarca" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="028°35'44''S" />
-      <longitude value="065°45'06''W" />
-    </coordinates>
-    <size value="Smallest" pax="45" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="1/19" length="2800" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Cutral-Co Airport" icao="SAZW" iata="CUT" type="Domestic" season="All_Year">
-    <town town="Cutral-Co" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="038°56'22''S" />
-      <longitude value="069°15'52''W" />
-    </coordinates>
-    <size value="Smallest" pax="9" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="3/21" length="1235" surface="Asphalt" />
-      <runway name="7/25" length="1694" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="El Bolson Airport" icao="SAVB" iata="EHL" type="Domestic" season="All_Year">
-    <town town="El Bolson" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="041°56'35''S" />
-      <longitude value="071°31'56''W" />
-    </coordinates>
-    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="18/36" length="1300" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Brigadier Antonio Parodi Airport" icao="SAVE" iata="EQS" type="Domestic" season="All_Year">
-    <town town="Esquel" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="042°54'28''S" />
-      <longitude value="071°08'22''W" />
-    </coordinates>
-    <size value="Smallest" pax="24" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="5/23" length="2400" surface="Asphalt" />
-      <runway name="8/26" length="1200" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="San Fernando Airport" icao="SADF" iata="FDO" type="Domestic" season="All_Year">
-    <town town="San Fernando" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="034°27'11''S" />
-      <longitude value="058°35'22''W" />
-    </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="5/23" length="1801" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Formosa Airport" icao="SARF" iata="FMA" type="Short_Haul_International" season="All_Year">
-    <town town="Formosa" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="026°12'45''S" />
-      <longitude value="058°13'41''W" />
-    </coordinates>
-    <size value="Smallest" pax="45" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="4" />
-    </terminals>
-    <runways>
-      <runway name="4/22" length="1800" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="El Calafate Airport" icao="SAWC" iata="FTE" type="Short_Haul_International" season="All_Year">
-    <town town="El Calafate" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="050°16'49''S" />
-      <longitude value="072°03'11''W" />
-    </coordinates>
-    <size value="Very_small" pax="416" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="6" />
-    </terminals>
-    <runways>
-      <runway name="7/25" length="2550" surface="Concrete" />
-    </runways>
-  </airport>
-  <airport name="Gobernador Gregores Airport" icao="SAWR" iata="GGS" type="Domestic" season="All_Year">
-    <town town="Gobernador Gregores" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="048°46'59''S" />
-      <longitude value="070°09'00''W" />
-    </coordinates>
-    <size value="Smallest" pax="18" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="9/27" length="1500" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Gualeguaychu Airport" icao="SAAG" iata="GHU" type="Domestic" season="All_Year">
-    <town town="Gualeguaychu" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="033°00'37''S" />
-      <longitude value="058°36'47''W" />
-    </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="1/19" length="1330" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Dr. Arturo H. Illia Airport" icao="SAHR" iata="GNR" type="Domestic" season="All_Year">
-    <town town="General Roca" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="039°00'02''S" />
-      <longitude value="067°37'13''W" />
-    </coordinates>
-    <size value="Smallest" pax="2" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="9/27" length="2156" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="General Pico Airport" icao="SAZG" iata="GPO" type="Domestic" season="All_Year">
-    <town town="General Pico" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="035°41'46''S" />
-      <longitude value="063°45'29''W" />
-    </coordinates>
-    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="03/21" length="850" surface="Asphalt" />
-      <runway name="16/34" length="2350" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Cabo F.A.A. H. R. Bordón Airport" icao="SAVJ" iata="IGB" type="Domestic" season="All_Year">
-    <town town="Ingeniero Jacobacci" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="041°19'15''S" />
-      <longitude value="069°34'29''W" />
-    </coordinates>
-    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="7/25" length="2100" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Cataratas Del Iguazú International Airport" icao="SARI" iata="IGR" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Cataratas Del Iguazú International Airport" icao="SARI" iata="IGR" type="Short_Haul_International" season="All_Year">
     <town town="Puerto Iguazu" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="025°44'14''S" />
-      <longitude value="054°28'24''W" />
+      <latitude value="25°44'14''S" />
+      <longitude value="54°28'24''W" />
     </coordinates>
-    <size value="Small" pax="620" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="716" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="8" />
     </terminals>
@@ -366,186 +378,139 @@
       <runway name="13/31" length="3300" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Capitan V A Almonacid Airport" icao="SANL" iata="IRJ" type="Regional" season="All_Year">
-    <town town="La Rioja" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="El Tehuelche Airport" icao="SAVY" iata="PMY" type="Domestic" season="All_Year">
+    <town town="Puerto Madryn" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="029°22'53''S" />
-      <longitude value="066°47'44''W" />
+      <latitude value="42°45'33''S" />
+      <longitude value="65°6'9''W" />
     </coordinates>
-    <size value="Smallest" pax="41" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="76" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2493" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Capitan D Daniel Vazquez Airport" icao="SAWJ" iata="ULA" type="Domestic" season="All_Year">
+    <town town="San Julian" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="49°18'24''S" />
+      <longitude value="67°48'9''W" />
+    </coordinates>
+    <size value="Smallest" pax="12" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
-      <runway name="3/21" length="2860" surface="Asphalt" />
+      <runway name="07/25" length="2000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Junin Airport" icao="SAAJ" iata="JNI" type="Domestic" season="All_Year">
-    <town town="Junin" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Santa Cruz Airport" icao="SAWU" iata="RZA" type="Domestic" season="All_Year">
+    <town town="Santa Cruz" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="034°32'45''S" />
-      <longitude value="060°55'50''W" />
+      <latitude value="50°0'59''S" />
+      <longitude value="68°34'45''W" />
     </coordinates>
-    <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="18/36" length="1500" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Libertador Gral D Jose De San Martin Airport" icao="SARP" iata="PSS" type="Regional" season="All_Year">
-    <town town="Posadas" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="027°23'08''S" />
-      <longitude value="055°58'14''W" />
-    </coordinates>
-    <size value="Smallest" pax="65" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
     <runways>
-      <runway name="1/19" length="2200" surface="Asphalt" />
+      <runway name="07/25" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Gobernador Horacio Guzman International Airport" icao="SASJ" iata="JUJ" type="Long_Haul_International"
-           season="All_Year">
-    <town town="San Salvador de Jujuy" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Reconquista Airport" icao="SATR" iata="RCQ" type="Domestic" season="All_Year">
+    <town town="Reconquista" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="024°23'34''S" />
-      <longitude value="065°05'52''W" />
+      <latitude value="29°12'37''S" />
+      <longitude value="59°40'47''W" />
     </coordinates>
-    <size value="Smallest" pax="91" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="22" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2800" surface="Concrete" />
+      <runway name="01/19" length="1250" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Resistencia International Airport" icao="SARE" iata="RES" type="Regional" season="All_Year">
+    <town town="Resistencia" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="27°26'59''S" />
+      <longitude value="59°3'21''W" />
+    </coordinates>
+    <size value="Very_small" pax="178" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="6" />
     </terminals>
     <runways>
-      <runway name="16/34" length="2956" surface="Asphalt" />
+      <runway name="03/21" length="2850" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Comodoro D.R. Salomón Airport" icao="SAMM" iata="LGS" type="Domestic" season="All_Year">
-    <town town="Malargue" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Piloto Civil N. Fernández Airport" icao="SAWG" iata="RGL" type="Long_Haul_International" season="All_Year">
+    <town town="Rio Gallegos" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="035°29'36''S" />
-      <longitude value="069°34'27''W" />
+      <latitude value="51°36'32''S" />
+      <longitude value="69°18'45''W" />
     </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="248" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="8" />
     </terminals>
     <runways>
-      <runway name="14/32" length="2650" surface="Asphalt" />
-      <runway name="9/27" length="1450" surface="Asphalt" />
+      <runway name="07/25" length="3550" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="La Plata Airport" icao="SADL" iata="LPG" type="Domestic" season="All_Year">
-    <town town="La Plata" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Hermes Quijada International Airport" icao="SAWE" iata="RGA" type="Regional" season="All_Year">
+    <town town="Rio Grande" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="034°58'19''S" />
-      <longitude value="057°53'40''W" />
+      <latitude value="53°46'39''S" />
+      <longitude value="67°44'57''W" />
     </coordinates>
-    <size value="Smallest" pax="14" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="14/32" length="1190" surface="Asphalt" />
-      <runway name="2/20" length="1427" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Brigadier Mayor D Cesar Raul Ojeda Airport" icao="SAOU" iata="LUQ" type="Domestic" season="All_Year">
-    <town town="San Luis" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="033°16'23''S" />
-      <longitude value="066°21'23''W" />
-    </coordinates>
-    <size value="Smallest" pax="31" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="18/36" length="2950" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Monte Caseros Airport" icao="SARM" iata="MCS" type="Regional" season="All_Year">
-    <town town="Monte Caseros" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="030°16'18''S" />
-      <longitude value="057°38'24''W" />
-    </coordinates>
-    <size value="Smallest" pax="110" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="5" />
-    </terminals>
-    <runways>
-      <runway name="18/36" length="1240" surface="Asphalt" />
-      <runway name="18L/36R" length="1318" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Monte Caseros Airport" icao="SARM" iata="MCS" type="Regional" season="All_Year">
-    <town town="Monte Caseros" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="030°16'18''S" />
-      <longitude value="057°38'24''W" />
-    </coordinates>
-    <size value="Smallest" pax="110" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="5" />
-    </terminals>
-    <runways>
-      <runway name="18/36" length="1240" surface="Asphalt" />
-      <runway name="18L/36R" length="1318" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="El Plumerillo Airport" icao="SAME" iata="MDZ" type="Short_Haul_International" season="All_Year">
-    <town town="Mendoza" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="032°49'54''S" />
-      <longitude value="068°47'34''W" />
-    </coordinates>
-    <size value="Small" pax="976" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="155" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
     <runways>
-      <runway name="18/36" length="2835" surface="Concrete" />
+      <runway name="07/25" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Necochea Airport" icao="SAZO" iata="NEC" type="Domestic" season="All_Year">
-    <town town="Necochea" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Islas Malvinas Airport" icao="SAAR" iata="ROS" type="Long_Haul_International" season="All_Year">
+    <town town="Rosario" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="038°28'59''S" />
-      <longitude value="058°49'01''W" />
+      <latitude value="32°54'12''S" />
+      <longitude value="60°47'5''W" />
     </coordinates>
-    <size value="Smallest" pax="9" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="98" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="7" />
     </terminals>
     <runways>
-      <runway name="13/31" length="799" surface="Asphalt" />
-      <runway name="17/35" length="1100" surface="Asphalt" />
-      <runway name="18/36" length="1500" surface="Asphalt" />
+      <runway name="02/20" length="3000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Presidente Peron Airport" icao="SAZN" iata="NQN" type="Regional" season="All_Year">
-    <town town="Neuquen" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Martin Miguel De Guemes International Airport" icao="SASA" iata="SLA" type="Long_Haul_International" season="All_Year">
+    <town town="Salta" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="038°56'56''S" />
-      <longitude value="068°09'20''W" />
+      <latitude value="24°51'21''S" />
+      <longitude value="65°29'10''W" />
     </coordinates>
-    <size value="Very_small" pax="168" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="714" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="7" />
     </terminals>
     <runways>
-      <runway name="9/27" length="2570" surface="Asphalt" />
+      <runway name="02/20" length="3000" surface="Asphalt" />
+      <runway name="06/24" length="2400" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Antoine De St Exupery Airport" icao="SAVN" iata="OES" type="Domestic" season="All_Year">
     <town town="San Antonio Oeste" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="040°45'04''S" />
-      <longitude value="065°02'03''W" />
+      <latitude value="40°45'4''S" />
+      <longitude value="65°2'3''W" />
     </coordinates>
     <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
     <terminals>
@@ -555,321 +520,137 @@
       <runway name="12/30" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Orán Airport" icao="SASO" iata="ORA" type="Domestic" season="All_Year">
-    <town town="Orán" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="San Carlos De Bariloche Airport" icao="SAZS" iata="BRC" type="Domestic" season="All_Year">
+    <town town="San Carlos de Bariloche" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="023°09'10''S" />
-      <longitude value="064°19'45''W" />
+      <latitude value="41°9'4''S" />
+      <longitude value="71°9'27''W" />
     </coordinates>
-    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="1/19" length="1475" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Goya Airport" icao="SATG" iata="OYA" type="Domestic" season="All_Year">
-    <town town="Goya" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="029°06'20''S" />
-      <longitude value="059°13'08''W" />
-    </coordinates>
-    <size value="Smallest" pax="9" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="4/22" length="2260" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Tres Arroyos Airport" icao="SAZH" iata="OYO" type="Domestic" season="All_Year">
-    <town town="Tres Arroyos" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="038°23'12''S" />
-      <longitude value="060°19'46''W" />
-    </coordinates>
-    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="14/32" length="900" surface="Asphalt" />
-      <runway name="18/36" length="1199" surface="Asphalt" />
-      <runway name="4/22" length="750" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Comodoro Pedro Zanni Airport" icao="SAZP" iata="PEH" type="Domestic" season="All_Year">
-    <town town="Pehuajó" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="035°50'40''S" />
-      <longitude value="061°51'27''W" />
-    </coordinates>
-    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="18/36" length="1500" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Perito Moreno Airport" icao="SAWP" iata="PMQ" type="Domestic" season="All_Year">
-    <town town="Perito Moreno" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="046°32'16''S" />
-      <longitude value="070°58'43''W" />
-    </coordinates>
-    <size value="Smallest" pax="15" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="07/25" length="850" surface="Asphalt" />
-      <runway name="10/28" length="1700" surface="Asphalt" />
-      <runway name="11/29" length="1343" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="El Tehuelche Airport" icao="SAVY" iata="PMY" type="Domestic" season="All_Year">
-    <town town="Puerto Madryn" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="042°45'33''S" />
-      <longitude value="065°06'09''W" />
-    </coordinates>
-    <size value="Smallest" pax="31" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="4" />
-    </terminals>
-    <runways>
-      <runway name="5/23" length="2500" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="General Urquiza Airport" icao="SAAP" iata="PRA" type="Domestic" season="All_Year">
-    <town town="Parana" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="031°47'41''S" />
-      <longitude value="060°28'49''W" />
-    </coordinates>
-    <size value="Smallest" pax="42" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="4" />
-    </terminals>
-    <runways>
-      <runway name="1/19" length="2100" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Puerto Deseado Airport" icao="SAWD" iata="PUD" type="Domestic" season="All_Year">
-    <town town="Puerto Deseado" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="047°44'07''S" />
-      <longitude value="065°54'14''W" />
-    </coordinates>
-    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="6/24" length="1500" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Reconquista Airport" icao="SATR" iata="RCQ" type="Domestic" season="All_Year">
-    <town town="Reconquista" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="029°12'37''S" />
-      <longitude value="059°40'47''W" />
-    </coordinates>
-    <size value="Smallest" pax="8" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="10/28" length="2800" surface="Concrete" />
-      <runway name="2/20" length="1250" surface="Concrete" />
-    </runways>
-  </airport>
-  <airport name="Almirante Marco Andres Zar Airport" icao="SAVT" iata="REL" type="Short_Haul_International"
-           season="All_Year">
-    <town town="Rawson" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="043°12'37''S" />
-      <longitude value="065°16'13''W" />
-    </coordinates>
-    <size value="Smallest" pax="71" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="6" />
-    </terminals>
-    <runways>
-      <runway name="6/24" length="2560" surface="Concrete" />
-    </runways>
-  </airport>
-  <airport name="Resistencia International Airport" icao="SARE" iata="RES" type="Regional" season="All_Year">
-    <town town="Resistencia" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="027°26'59''S" />
-      <longitude value="059°03'21''W" />
-    </coordinates>
-    <size value="Smallest" pax="100" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="4" />
-    </terminals>
-    <runways>
-      <runway name="3/21" length="2770" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Hermes Quijada International Airport" icao="SAWE" iata="RGA" type="Regional" season="All_Year">
-    <town town="Rio Grande" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="053°46'39''S" />
-      <longitude value="067°44'57''W" />
-    </coordinates>
-    <size value="Smallest" pax="19" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="7/25" length="2000" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Piloto Civil N. Fernández Airport" icao="SAWG" iata="RGL" type="Long_Haul_International"
-           season="All_Year">
-    <town town="Rio Gallegos" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="051°36'32''S" />
-      <longitude value="069°18'45''W" />
-    </coordinates>
-    <size value="Very_small" pax="201" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="835" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="8" />
     </terminals>
     <runways>
-      <runway name="7/25" length="3549" surface="Concrete" />
+      <runway name="11/29" length="2348" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Las Termas Airport" icao="SANH" iata="RHD" type="Domestic" season="All_Year">
-    <town town="Rio Hondo" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Domingo Faustino Sarmiento Airport" icao="SANU" iata="UAQ" type="Regional" season="All_Year">
+    <town town="San Juan" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="027°28'25''S" />
-      <longitude value="064°54'19''W" />
+      <latitude value="31°34'17''S" />
+      <longitude value="68°25'5''W" />
     </coordinates>
-    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="83" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="6" />
     </terminals>
     <runways>
-      <runway name="01/19" length="2500" surface="Asphalt" />
+      <runway name="18/36" length="2460" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Islas Malvinas Airport" icao="SAAR" iata="ROS" type="Long_Haul_International" season="All_Year">
-    <town town="Rosario" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Brigadier Mayor D Cesar Raul Ojeda Airport" icao="SAOU" iata="LUQ" type="Domestic" season="All_Year">
+    <town town="San Luis" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="032°54'12''S" />
-      <longitude value="060°47'05''W" />
+      <latitude value="33°16'23''S" />
+      <longitude value="66°21'23''W" />
     </coordinates>
-    <size value="Smallest" pax="48" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="44" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="6" />
     </terminals>
     <runways>
-      <runway name="2/20" length="3000" surface="Concrete" />
+      <runway name="01/19" length="2950" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Santa Rosa Airport" icao="SAZR" iata="RSA" type="Domestic" season="All_Year">
-    <town town="Santa Rosa" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Aviador C. Campos Airport" icao="SAZY" iata="CPC" type="Domestic" season="All_Year">
+    <town town="Chapelco/San Martin de los Andes" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="036°35'17''S" />
-      <longitude value="064°16'32''W" />
+      <latitude value="40°4'31''S" />
+      <longitude value="71°8'14''W" />
     </coordinates>
-    <size value="Smallest" pax="13" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="1/19" length="2300" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Rio Turbio Airport" icao="SAWT" iata="RYO" type="Domestic" season="All_Year">
-    <town town="Rio Turbio" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="051°36'33''S" />
-      <longitude value="072°13'18''W" />
-    </coordinates>
-    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="44" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
-      <runway name="14/32" length="1200" surface="Asphalt" />
-      <runway name="18/36" length="1200" surface="Asphalt" />
-      <runway name="5/23" length="1200" surface="Asphalt" />
+      <runway name="06/24" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Santa Cruz Airport" icao="SAWU" iata="RZA" type="Domestic" season="All_Year">
-    <town town="Santa Cruz" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Teniente Benjamin Matienzo Airport" icao="SANT" iata="TUC" type="Short_Haul_International" season="All_Year">
+    <town town="San Miguel de Tucuman" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="050°00'59''S" />
-      <longitude value="068°34'45''W" />
+      <latitude value="26°50'27''S" />
+      <longitude value="65°6'17''W" />
     </coordinates>
-    <size value="Smallest" pax="23" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="467" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="6" />
     </terminals>
     <runways>
-      <runway name="07/25" length="2000" surface="Asphalt" />
-      <runway name="08/26" length="1207" surface="Asphalt" />
-      <runway name="11/29" length="907" surface="Asphalt" />
-      <runway name="17/35" length="1288" surface="Asphalt" />
-      <runway name="7/25" length="2000" surface="Asphalt" />
+      <runway name="02/20" length="2900" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Vicecomodoro Angel D. La Paz Aragonés Airport" icao="SANE" iata="SDE" type="Domestic"
-           season="All_Year">
-    <town town="Santiago del Estero" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Suboficial Ay Santiago Germano Airport" icao="SAMR" iata="AFA" type="Domestic" season="All_Year">
+    <town town="San Rafael" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="027°45'56''S" />
-      <longitude value="064°18'35''W" />
+      <latitude value="34°35'17''S" />
+      <longitude value="68°24'14''W" />
     </coordinates>
-    <size value="Smallest" pax="50" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="35" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
-      <runway name="3/21" length="2422" surface="Asphalt" />
+      <runway name="11/29" length="2356" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Gobernador Horacio Guzman International Airport" icao="SASJ" iata="JUJ" type="Long_Haul_International" season="All_Year">
+    <town town="San Salvador de Jujuy" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="24°23'34''S" />
+      <longitude value="65°5'52''W" />
+    </coordinates>
+    <size value="Smallest" pax="110" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="2950" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Sauce Viejo Airport" icao="SAAV" iata="SFN" type="Domestic" season="All_Year">
     <town town="Santa Fe" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="031°42'42''S" />
-      <longitude value="060°48'42''W" />
+      <latitude value="31°42'42''S" />
+      <longitude value="60°48'42''W" />
     </coordinates>
     <size value="Smallest" pax="32" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
-      <runway name="3/21" length="2325" surface="Asphalt" />
+      <runway name="03/21" length="2350" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Martin Miguel De Guemes International Airport" icao="SASA" iata="SLA" type="Long_Haul_International"
-           season="All_Year">
-    <town town="Salta" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Santa Rosa Airport" icao="SAZR" iata="RSA" type="Domestic" season="All_Year">
+    <town town="Santa Rosa" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="024°51'21''S" />
-      <longitude value="065°29'10''W" />
+      <latitude value="36°35'17''S" />
+      <longitude value="64°16'32''W" />
     </coordinates>
-    <size value="Small" pax="614" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="19" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="7" />
+      <terminal name="Terminal A" gates="4" />
     </terminals>
     <runways>
-      <runway name="2/20" length="3000" surface="Asphalt" />
-      <runway name="6/24" length="2400" surface="Asphalt" />
+      <runway name="01/19" length="2300" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Santa Teresita Airport" icao="SAZL" iata="SST" type="Domestic" season="All_Year">
     <town town="Santa Teresita" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="036°32'32''S" />
-      <longitude value="056°43'18''W" />
+      <latitude value="36°32'32''S" />
+      <longitude value="56°43'18''W" />
     </coordinates>
     <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
     <terminals>
@@ -879,147 +660,131 @@
       <runway name="17/35" length="1500" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Vicecomodoro Angel D. La Paz Aragonés Airport" icao="SANE" iata="SDE" type="Domestic" season="All_Year">
+    <town town="Santiago del Estero" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="27°45'56''S" />
+      <longitude value="64°18'35''W" />
+    </coordinates>
+    <size value="Smallest" pax="65" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Héroes De Malvinas Airport" icao="SAZT" iata="TDL" type="Domestic" season="All_Year">
     <town town="Tandil" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="037°14'14''S" />
-      <longitude value="059°13'40''W" />
+      <latitude value="37°14'14''S" />
+      <longitude value="59°13'40''W" />
     </coordinates>
-    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
     <runways>
-      <runway name="1/19" length="2550" surface="Concrete" />
+      <runway name="01/19" length="2550" surface="Concrete" />
     </runways>
   </airport>
   <airport name="General Enrique Mosconi Airport" icao="SAST" iata="TTG" type="Domestic" season="All_Year">
     <town town="Tartagal" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="022°37'10''S" />
-      <longitude value="063°47'37''W" />
+      <latitude value="22°37'10''S" />
+      <longitude value="63°47'37''W" />
     </coordinates>
     <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
     <runways>
-      <runway name="1/19" length="1500" surface="Asphalt" />
+      <runway name="01/19" length="1500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Teniente Benjamin Matienzo Airport" icao="SANT" iata="TUC" type="Short_Haul_International"
-           season="All_Year">
-    <town town="San Miguel de Tucuman" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Las Termas Airport" icao="SANH" iata="RHD" type="Domestic" season="All_Year">
+    <town town="Rio Hondo" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="026°50'27''S" />
-      <longitude value="065°06'17''W" />
+      <latitude value="27°28'25''S" />
+      <longitude value="64°54'19''W" />
     </coordinates>
-    <size value="Very_small" pax="401" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="10" />
-    </terminals>
-    <runways>
-      <runway name="1/19" length="2900" surface="Concrete" />
-    </runways>
-  </airport>
-  <airport name="Domingo Faustino Sarmiento Airport" icao="SANU" iata="UAQ" type="Regional" season="All_Year">
-    <town town="San Juan" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="031°34'17''S" />
-      <longitude value="068°25'05''W" />
-    </coordinates>
-    <size value="Smallest" pax="69" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
     <runways>
-      <runway name="18/36" length="2460" surface="Asphalt" />
+      <runway name="01/19" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Capitan D Daniel Vazquez Airport" icao="SAWJ" iata="ULA" type="Domestic" season="All_Year">
-    <town town="San Julian" country="106" GMT="-03:00:00" DST="-03:00:00" />
+  <airport name="Almirante Marco Andres Zar Airport" icao="SAVT" iata="REL" type="Short_Haul_International" season="All_Year">
+    <town town="Rawson" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="049°18'24''S" />
-      <longitude value="067°48'09''W" />
+      <latitude value="43°12'37''S" />
+      <longitude value="65°16'13''W" />
     </coordinates>
-    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="134" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
-      <runway name="7/25" length="2000" surface="Concrete" />
+      <runway name="06/24" length="2560" surface="Concrete" />
     </runways>
   </airport>
   <airport name="Malvinas Argentinas Airport" icao="SAWH" iata="USH" type="Long_Haul_International" season="All_Year">
     <town town="Ushuahia" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="054°50'35''S" />
-      <longitude value="068°17'44''W" />
+      <latitude value="54°50'35''S" />
+      <longitude value="68°17'44''W" />
     </coordinates>
     <size value="Very_small" pax="244" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="5" />
+      <terminal name="Terminal A" gates="6" />
     </terminals>
     <runways>
-      <runway name="7/25" length="2800" surface="Concrete" />
-    </runways>
-  </airport>
-  <airport name="Curuzu Cuatia Airport" icao="SATU" iata="UZU" type="Domestic" season="All_Year">
-    <town town="Curuzu Cuatia" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="029°46'14''S" />
-      <longitude value="057°58'44''W" />
-    </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="1/19" length="2150" surface="Asphalt" />
+      <runway name="07/25" length="3030" surface="Concrete" />
     </runways>
   </airport>
   <airport name="Gobernador Castello Airport" icao="SAVV" iata="VDM" type="Domestic" season="All_Year">
     <town town="Viedma / Carmen de Patagones" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="040°52'09''S" />
-      <longitude value="063°00'01''W" />
+      <latitude value="40°52'9''S" />
+      <longitude value="63°0'1''W" />
     </coordinates>
-    <size value="Smallest" pax="12" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="34" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
-      <runway name="10/28" length="2550" surface="Asphalt" />
-      <runway name="2/20" length="1510" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Villa Dolores Airport" icao="SAOD" iata="VDR" type="Domestic" season="All_Year">
-    <town town="Villa Dolores" country="106" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="031°56'42''S" />
-      <longitude value="065°08'46''W" />
-    </coordinates>
-    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="02/20" length="952" surface="Asphalt" />
-      <runway name="17/35" length="1400" surface="Asphalt" />
+      <runway name="10/28" length="2552" surface="Asphalt" />
+      <runway name="02/20" length="1500" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Villa Gesell Airport" icao="SAZV" iata="VLG" type="Regional" season="All_Year">
     <town town="Villa Gesell" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="037°14'07''S" />
-      <longitude value="057°01'45''W" />
+      <latitude value="37°14'7''S" />
+      <longitude value="57°1'45''W" />
     </coordinates>
-    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="33" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
-      <runway name="11/29" length="1740" surface="Asphalt" />
+      <runway name="11/29" length="1820" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Zapala Airport" icao="SAHZ" iata="APZ" type="Domestic" season="All_Year">
+    <town town="Zapala" country="106" GMT="-03:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="38°58'31''S" />
+      <longitude value="70°6'48''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2200" surface="Asphalt" />
     </runways>
   </airport>
   <!--Brazil (SB**,SD**, SI**, SJ**, SN**, SS** and SW**)-->
@@ -2967,45 +2732,13 @@
     </runways>
   </airport>
   <!--Chile (SC**)-->
-  <airport name="Comodoro Arturo Merino Benítez International Airport" icao="SCEL" iata="SCL"
-           type="Long_Haul_International" season="All_Year">
-    <town town="Santiago" country="160" GMT="-04:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="033°23'34''S" />
-      <longitude value="070°47'08''W" />
-    </coordinates>
-    <size value="Large" pax="11064" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="23" />
-    </terminals>
-    <runways>
-      <runway name="17L/35R" length="3748" surface="Asphalt" />
-      <runway name="17R/35L" length="3800" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Pdte. carlos Ibañez del Campo Airport" icao="SCCI" iata="PUQ" type="Domestic" season="All_Year">
-    <town town="Punta Arenas" country="160" GMT="-04:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="053°00'09''S" />
-      <longitude value="070°51'16''W" />
-    </coordinates>
-    <size value="Smallest" pax="70" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="01/19" length="1678" surface="Asphalt" />
-      <runway name="07/25" length="2790" surface="Asphalt" />
-      <runway name="12/30" length="2400" surface="Asphalt" />
-    </runways>
-  </airport>
   <airport name="Cerro Moreno Airport" icao="SCFA" iata="ANF" type="Domestic" season="All_Year">
     <town town="Antofagasta" country="160" GMT="-04:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="023°26'40''S" />
-      <longitude value="070°26'42''W" />
+      <latitude value="23°26'40''S" />
+      <longitude value="70°26'42''W" />
     </coordinates>
-    <size value="Very_small" pax="90123" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1090" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="11" />
     </terminals>
@@ -3016,10 +2749,10 @@
   <airport name="Chacalluta Airport" icao="SCAR" iata="ARI" type="Domestic" season="All_Year">
     <town town="Arica" country="160" GMT="-04:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="018°20'54''S" />
-      <longitude value="070°20'19''W" />
+      <latitude value="18°20'54''S" />
+      <longitude value="70°20'19''W" />
     </coordinates>
-    <size value="Smallest" pax="23" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="88" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -3030,185 +2763,72 @@
   <airport name="Carriel Sur Airport" icao="SCIE" iata="CCP" type="Domestic" season="All_Year">
     <town town="Concepcion" country="160" GMT="-04:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="036°46'21''S" />
-      <longitude value="073°03'47''W" />
+      <latitude value="36°46'21''S" />
+      <longitude value="73°3'47''W" />
     </coordinates>
-    <size value="Smallest" pax="14" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="444" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal A" gates="10" />
     </terminals>
     <runways>
-      <runway name="02/20" length="2298" surface="Asphalt" />
+      <runway name="02/20" length="2300" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Diego Aracena Airport" icao="SCDA" iata="IQQ" type="Domestic" season="All_Year">
     <town town="Iquique" country="160" GMT="-04:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="020°32'06''S" />
-      <longitude value="070°10'52''W" />
+      <latitude value="20°32'6''S" />
+      <longitude value="70°10'52''W" />
     </coordinates>
-    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="180" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal" gates="7" />
     </terminals>
     <runways>
       <runway name="01/19" length="3350" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Pdte. carlos Ibañez del Campo Airport" icao="SCCI" iata="PUQ" type="Domestic" season="All_Year">
+    <town town="Punta Arenas" country="160" GMT="-04:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="53°0'9''S" />
+      <longitude value="70°51'16''W" />
+    </coordinates>
+    <size value="Small" pax="751" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="1678" surface="Asphalt" />
+      <runway name="07/25" length="2790" surface="Asphalt" />
+      <runway name="12/30" length="2400" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Comodoro Arturo Merino Benítez International Airport" icao="SCEL" iata="SCL" type="Long_Haul_International" season="All_Year">
+    <town town="Santiago" country="160" GMT="-04:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="33°23'34''S" />
+      <longitude value="70°47'8''W" />
+    </coordinates>
+    <size value="Very_large" pax="15295" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal 1" gates="35" />
+      <terminal name="Terminal 2" gates="18" />
+    </terminals>
+    <runways>
+      <runway name="17L/35R" length="3748" surface="Asphalt" />
+      <runway name="17R/35L" length="3800" surface="Asphalt" />
+    </runways>
+  </airport>
+  
   <!--Equador (SE**)-->
-  <airport name="Mariscal Sucre International Airport" icao="SEQU" iata="UIO" type="Long_Haul_International"
-           season="All_Year">
-    <town town="Quito" country="210" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="000°08'28''S" />
-      <longitude value="078°29'17''W" />
-    </coordinates>
-    <size value="Medium" pax="8956" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="11" />
-    </terminals>
-    <runways>
-      <runway name="17/35" length="3120" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Cotopaxi International Airport" icao="SELT" iata="LTX" type="Short_Haul_International"
-           season="All_Year">
-    <town town="Latacunga" country="210" GMT="-05:00:00" DST="-06:00:00" />
-    <coordinates>
-      <latitude value="000°54'24''S" />
-      <longitude value="078°36'56''W" />
-    </coordinates>
-    <size value="Smallest" pax="102" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="6" />
-    </terminals>
-    <runways>
-      <runway name="18/36" length="3693" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Mariscal Lamar Airport" icao="SECU" iata="CUE" type="Short_Haul_International" season="All_Year">
-    <town town="Cuenca" country="210" GMT="-05:00:00" DST="-06:00:00" />
-    <coordinates>
-      <latitude value="002°53'22''S" />
-      <longitude value="078°59'03''W" />
-    </coordinates>
-    <size value="Small" pax="1481" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="5" />
-    </terminals>
-    <runways>
-      <runway name="05/23" length="1900" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Simon Bolivar International Airport" icao="SEGU" iata="GYE" type="Long_Haul_International"
-           season="All_Year">
-    <town town="Guayaquil" country="210" GMT="-05:00:00" DST="-06:00:00" />
-    <coordinates>
-      <latitude value="002°09'26''S" />
-      <longitude value="079°53'00''W" />
-    </coordinates>
-    <size value="Medium" pax="4934" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="8" />
-    </terminals>
-    <runways>
-      <runway name="03/21" length="2790" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Eloy Alfaro International Airport" icao="SEMT" iata="MEC" type="Short_Haul_International"
-           season="All_Year">
-    <town town="Manta" country="210" GMT="-05:00:00" DST="-06:00:00" />
-    <coordinates>
-      <latitude value="000°56'45''S" />
-      <longitude value="080°40'43''W" />
-    </coordinates>
-    <size value="Small" pax="529" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="5" />
-    </terminals>
-    <runways>
-      <runway name="05/23" length="2860" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Seymour Airport" icao="SEGS" iata="GPS" type="Regional" season="All_Year">
-    <town town="Baltra" country="210" GMT="-05:00:00" DST="-06:00:00" />
-    <coordinates>
-      <latitude value="000°27'13''S" />
-      <longitude value="090°15'57''W" />
-    </coordinates>
-    <size value="Very_small" pax="166" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="4" />
-    </terminals>
-    <runways>
-      <runway name="14/32" length="2401" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Reales Tamarindos Airport" icao="SEPV" iata="PVO" type="Domestic" season="All_Year">
-    <town town="Portoviejo" country="210" GMT="-05:00:00" DST="-06:00:00" />
-    <coordinates>
-      <latitude value="001°02'29''S" />
-      <longitude value="080°28'19''W" />
-    </coordinates>
-    <size value="Smallest" pax="59" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="12/30" length="2271" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="General Ulpiano Paez Airport" icao="SESA" iata="SNC" type="Domestic" season="All_Year">
-    <town town="Salinas" country="210" GMT="-05:00:00" DST="-06:00:00" />
-    <coordinates>
-      <latitude value="002°12'17''S" />
-      <longitude value="080°59'20''W" />
-    </coordinates>
-    <size value="Smallest" pax="84" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="08/26" length="1110" surface="Asphalt" />
-      <runway name="13/31" length="2437" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="San Cristóbal Airport" icao="SEST" iata="SCY" type="Domestic" season="All_Year">
-    <town town="San Cristóbal" country="210" GMT="-05:00:00" DST="-06:00:00" />
-    <coordinates>
-      <latitude value="000°54'36''S" />
-      <longitude value="089°37'02''W" />
-    </coordinates>
-    <size value="Smallest" pax="131" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="4" />
-    </terminals>
-    <runways>
-      <runway name="16/34" length="1894" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Teniente Coronel Luis a Mantilla Airport" icao="SETU" iata="TUA" type="Short_Haul_International"
-           season="All_Year">
-    <town town="Tulcán" country="210" GMT="-05:00:00" DST="-06:00:00" />
-    <coordinates>
-      <latitude value="000°48'34''N" />
-      <longitude value="077°42'29''W" />
-    </coordinates>
-    <size value="Very_small" pax="237" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="5" />
-    </terminals>
-    <runways>
-      <runway name="05/23" length="2460" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Chachoán Airport" icao="SEAM" iata="ATF" type="Domestic" season="All_Year">
+    <airport name="Chachoán Airport" icao="SEAM" iata="ATF" type="Domestic" season="All_Year">
     <town town="Ambato" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
-      <latitude value="001°12'43''S" />
-      <longitude value="078°34'28''W" />
+      <latitude value="1°12'43''S" />
+      <longitude value="78°34'28''W" />
     </coordinates>
-    <size value="Smallest" pax="29" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3216,57 +2836,86 @@
       <runway name="01/19" length="1925" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Francisco De Orellana Airport" icao="SECO" iata="OCC" type="Domestic" season="All_Year">
-    <town town="Coca" country="210" GMT="-05:00:00" DST="-06:00:00" />
+  <airport name="Seymour Airport" icao="SEGS" iata="GPS" type="Regional" season="All_Year">
+    <town town="Baltra" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
-      <latitude value="000°27'46''S" />
-      <longitude value="076°59'12''W" />
+      <latitude value="0°27'13''N" />
+      <longitude value="90°15'57''W" />
     </coordinates>
-    <size value="Smallest" pax="68" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="957" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal" gates="3" />
     </terminals>
     <runways>
-      <runway name="15/33" length="2060" surface="Asphalt" />
+      <runway name="14/32" length="2401" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Mariscal Lamar Airport" icao="SECU" iata="CUE" type="Short_Haul_International" season="All_Year">
+    <town town="Cuenca" country="210" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="2°53'22''S" />
+      <longitude value="78°59'3''W" />
+    </coordinates>
+    <size value="Small" pax="1619" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="1900" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="General Rivadeneira Airport" icao="SETN" iata="ESM" type="Domestic" season="All_Year">
     <town town="Tachina" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
-      <latitude value="000°58'42''N" />
-      <longitude value="079°37'35''W" />
+      <latitude value="0°58'42''N" />
+      <longitude value="79°37'35''W" />
     </coordinates>
-    <size value="Smallest" pax="57" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="77" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="6" />
     </terminals>
     <runways>
       <runway name="18/36" length="2400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nueva Loja Airport" icao="SENL" iata="LGQ" type="Regional" season="All_Year">
-    <town town="Lago Agrio" country="210" GMT="-05:00:00" DST="-06:00:00" />
+  <airport name="Simon Bolivar International Airport" icao="SEGU" iata="GYE" type="Long_Haul_International" season="All_Year">
+    <town town="Guayaquil" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
-      <latitude value="000°05'35''N" />
-      <longitude value="076°52'03''W" />
+      <latitude value="2°9'26''S" />
+      <longitude value="79°53'0''W" />
     </coordinates>
-    <size value="Smallest" pax="71" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="4215" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="8" />
+      <terminal name="Terminal B" gates="12" />
     </terminals>
     <runways>
-      <runway name="05/23" length="2300" surface="Asphalt" />
+      <runway name="03/21" length="2790" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Cotopaxi International Airport" icao="SELT" iata="LTX" type="Short_Haul_International" season="All_Year">
+    <town town="Latacunga" country="210" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="0°54'24''N" />
+      <longitude value="78°36'56''W" />
+    </coordinates>
+    <size value="Smallest" pax="102" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="3693" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Camilo Ponce Enriquez Airport" icao="SETM" iata="LOH" type="Domestic" season="All_Year">
     <town town="La Toma (Catamayo)" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
-      <latitude value="003°59'45''S" />
-      <longitude value="079°22'18''W" />
+      <latitude value="3°59'45''S" />
+      <longitude value="79°22'18''W" />
     </coordinates>
-    <size value="Smallest" pax="66" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="71" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal A" gates="4" />
     </terminals>
     <runways>
       <runway name="06/24" length="2050" surface="Asphalt" />
@@ -3275,8 +2924,8 @@
   <airport name="Jose Maria Velasco Ibarra Airport" icao="SEMA" iata="MRR" type="Domestic" season="All_Year">
     <town town="Macará" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
-      <latitude value="004°22'41''S" />
-      <longitude value="079°56'27''W" />
+      <latitude value="4°22'41''S" />
+      <longitude value="79°56'27''W" />
     </coordinates>
     <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
     <terminals>
@@ -3289,40 +2938,125 @@
   <airport name="Coronel E Carvajal Airport" icao="SEMC" iata="XMS" type="Regional" season="All_Year">
     <town town="Macas" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
-      <latitude value="002°17'57''S" />
-      <longitude value="078°07'14''W" />
+      <latitude value="2°17'57''S" />
+      <longitude value="78°7'14''W" />
+    </coordinates>
+    <size value="Smallest" pax="41" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Eloy Alfaro International Airport" icao="SEMT" iata="MEC" type="Short_Haul_International" season="All_Year">
+    <town town="Manta" country="210" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="0°56'45''N" />
+      <longitude value="80°40'43''W" />
+    </coordinates>
+    <size value="Small" pax="1013" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2860" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Nueva Loja Airport" icao="SENL" iata="LGQ" type="Regional" season="All_Year">
+    <town town="Lago Agrio" country="210" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="0°5'35''N" />
+      <longitude value="76°52'3''W" />
+    </coordinates>
+    <size value="Smallest" pax="56" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2307" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Reales Tamarindos Airport" icao="SEPV" iata="PVO" type="Domestic" season="All_Year">
+    <town town="Portoviejo" country="210" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="1°2'29''S" />
+      <longitude value="80°28'19''W" />
+    </coordinates>
+    <size value="Smallest" pax="9" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2271" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Francisco De Orellana Airport" icao="SECO" iata="OCC" type="Domestic" season="All_Year">
+    <town town="Coca" country="210" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="0°27'46''N" />
+      <longitude value="76°59'12''W" />
     </coordinates>
     <size value="Smallest" pax="89" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
     <runways>
-      <runway name="01/19" length="2500" surface="Asphalt" />
+      <runway name="15/33" length="2060" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="General Manuel Serrano Airport" icao="SEMH" iata="MCH" type="Domestic" season="All_Year">
-    <town town="Machala" country="210" GMT="-05:00:00" DST="-06:00:00" />
+  <airport name="Mariscal Sucre International Airport" icao="SEQU" iata="UIO" type="Long_Haul_International" season="All_Year">
+    <town town="Quito" country="210" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="003°16'08''S" />
-      <longitude value="079°57'41''W" />
+      <latitude value="0°8'28''N" />
+      <longitude value="78°29'17''W" />
     </coordinates>
-    <size value="Smallest" pax="30" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="6010" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal" gates="34" />
     </terminals>
     <runways>
-      <runway name="14/32" length="1674" surface="Asphalt" />
+      <runway name="18/36" length="4100" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="General Ulpiano Paez Airport" icao="SESA" iata="SNC" type="Domestic" season="All_Year">
+    <town town="Salinas" country="210" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="2°12'17''S" />
+      <longitude value="80°59'20''W" />
+    </coordinates>
+    <size value="Smallest" pax="32" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="1110" surface="Asphalt" />
+      <runway name="13/31" length="2437" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="San Cristóbal Airport" icao="SEST" iata="SCY" type="Domestic" season="All_Year">
+    <town town="San Cristóbal" country="210" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="0°54'36''N" />
+      <longitude value="89°37'2''W" />
+    </coordinates>
+    <size value="Smallest" pax="131" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="1894" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Rio Amazonas Airport" icao="SESM" iata="PTZ" type="Domestic" season="All_Year">
     <town town="Shell Mera" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
-      <latitude value="001°30'18''S" />
-      <longitude value="078°03'45''W" />
+      <latitude value="1°30'18''S" />
+      <longitude value="78°3'45''W" />
     </coordinates>
     <size value="Smallest" pax="17" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
       <runway name="12/30" length="1540" surface="Asphalt" />
@@ -3331,28 +3065,41 @@
   <airport name="Tarapoa Airport" icao="SETR" iata="TPC" type="Domestic" season="All_Year">
     <town town="Tarapoa" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
-      <latitude value="000°07'22''S" />
-      <longitude value="076°20'16''W" />
+      <latitude value="0°7'22''N" />
+      <longitude value="76°20'16''W" />
     </coordinates>
-    <size value="Smallest" pax="12" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="22" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
       <runway name="12/30" length="1570" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Teniente Coronel Luis a Mantilla Airport" icao="SETU" iata="TUA" type="Short_Haul_International" season="All_Year">
+    <town town="Tulcán" country="210" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="0°48'34''N" />
+      <longitude value="77°42'29''W" />
+    </coordinates>
+    <size value="Smallest" pax="35" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2460" surface="Asphalt" />
+    </runways>
+  </airport>
   <!--Paraguay (SG**)-->
-  <airport name="Silvio Pettirossi International Airport" icao="SGAS" iata="ASU" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Silvio Pettirossi International Airport" icao="SGAS" iata="ASU" type="Short_Haul_International" season="All_Year">
     <town town="Asunción" country="213" GMT="-04:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="025°14'23''S" />
-      <longitude value="057°31'09''W" />
+      <latitude value="25°14'23''S" />
+      <longitude value="57°31'9''W" />
     </coordinates>
-    <size value="Small" pax="733" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="835" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="6" />
+      <terminal name="Terminal" gates="12" />
     </terminals>
     <runways>
       <runway name="02/20" length="3353" surface="Asphalt" />
@@ -3361,57 +3108,54 @@
   <airport name="Juan De Ayolas Airport" icao="SGAY" iata="AYO" type="Regional" season="All_Year">
     <town town="Ayolas" country="213" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="027°22'12''S" />
-      <longitude value="056°50'59''W" />
+      <latitude value="27°22'12''S" />
+      <longitude value="56°50'59''W" />
     </coordinates>
-    <size value="Very_small" pax="277" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="27" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
       <runway name="02/20" length="1850" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Guarani International Airport" icao="SGES" iata="AGT" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Guarani International Airport" icao="SGES" iata="AGT" type="Short_Haul_International" season="All_Year">
     <town town="Ciudad del Este" country="213" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="025°27'35''S" />
-      <longitude value="054°50'24''W" />
+      <latitude value="25°27'35''S" />
+      <longitude value="54°50'24''W" />
     </coordinates>
-    <size value="Smallest" pax="46" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="66" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="5" />
+      <terminal name="Terminal" gates="5" />
     </terminals>
     <runways>
       <runway name="05/23" length="3400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Dr. Luis Maria Argaña International Airport" icao="SGME" iata="ESG" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Dr. Luis Maria Argaña International Airport" icao="SGME" iata="ESG" type="Short_Haul_International" season="All_Year">
     <town town="Mariscal Estigarribia" country="213" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="022°02'59''S" />
-      <longitude value="060°37'11''W" />
+      <latitude value="22°2'59''S" />
+      <longitude value="60°37'11''W" />
     </coordinates>
-    <size value="Smallest" pax="35" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="15" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
       <runway name="01/19" length="3500" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Dr Augusto Roberto Fuster International Airport" icao="SGPJ" iata="PJC"
-           type="Short_Haul_International" season="All_Year">
+  <airport name="Dr Augusto Roberto Fuster International Airport" icao="SGPJ" iata="PJC" type="Short_Haul_International" season="All_Year">
     <town town="Pedro Juan Caballero" country="213" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="022°38'23''S" />
-      <longitude value="055°49'48''W" />
+      <latitude value="22°38'23''S" />
+      <longitude value="55°49'48''W" />
     </coordinates>
-    <size value="Smallest" pax="71" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="22" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="5" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
       <runway name="03/21" length="1801" surface="Asphalt" />
@@ -3420,206 +3164,25 @@
   <airport name="Carlos Miguel Gimenez Airport" icao="SGPI" iata="PIL" type="Domestic" season="All_Year">
     <town town="Pilar" country="213" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="026°52'47''S" />
-      <longitude value="058°19'11''W" />
+      <latitude value="26°52'47''S" />
+      <longitude value="58°19'11''W" />
     </coordinates>
     <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal" gates="2" />
     </terminals>
     <runways>
       <runway name="02/20" length="1500" surface="Concrete" />
     </runways>
   </airport>
   <!--Columbia (SK**)-->
-  <airport name="El Dorado International Airport" icao="SKBO" iata="BOG" type="Long_Haul_International"
-           season="All_Year">
-    <town town="Bogotá" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="004°42'11''N" />
-      <longitude value="074°08'17''W" />
-    </coordinates>
-    <size value="Large" pax="18934" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="34" />
-    </terminals>
-    <runways>
-      <runway name="13L/31R" length="3800" surface="Asphalt" />
-      <runway name="13R/31L" length="3800" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="El Eden Airport" icao="SKAR" iata="AXM" type="Long_Haul_International" season="All_Year">
-    <town town="Armenia" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="004°27'10''N" />
-      <longitude value="075°45'59''W" />
-    </coordinates>
-    <size value="Very_small" pax="353" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="4" />
-    </terminals>
-    <runways>
-      <runway name="02/20" length="2147" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Ernesto Cortissoz International Airport" icao="SKBQ" iata="BAQ" type="Long_Haul_International"
-           season="All_Year">
-    <town town="Barranquilla" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="010°53'22''N" />
-      <longitude value="074°46'50''W" />
-    </coordinates>
-    <size value="Small" pax="1722" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="13" />
-    </terminals>
-    <runways>
-      <runway name="05/23" length="3000" surface="Concrete" />
-    </runways>
-  </airport>
-  <airport name="Palonegro Airport" icao="SKBG" iata="BGA" type="Short_Haul_International" season="All_Year">
-    <town town="Bucaramanga" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="007°07'35''N" />
-      <longitude value="073°11'05''W" />
-    </coordinates>
-    <size value="Small" pax="880" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="9" />
-    </terminals>
-    <runways>
-      <runway name="17/35" length="2250" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Alfonso Bonilla Aragon International Airport" icao="SKCL" iata="CLO" type="Long_Haul_International"
-           season="All_Year">
-    <town town="Cali" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="003°32'35''N" />
-      <longitude value="076°22'53''W" />
-    </coordinates>
-    <size value="Medium" pax="3422" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="14" />
-      <terminal name="Terminal B" gates="4" />
-    </terminals>
-    <runways>
-      <runway name="01/19" length="3000" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Rafael Nuñez International Airport" icao="SKCG" iata="CTG" type="Long_Haul_International"
-           season="All_Year">
-    <town town="Cartagena" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="010°26'32''N" />
-      <longitude value="075°30'46''W" />
-    </coordinates>
-    <size value="Medium" pax="2118" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="11" />
-    </terminals>
-    <runways>
-      <runway name="01/19" length="2600" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Camilo Daza International Airport" icao="SKCC" iata="CUC" type="Long_Haul_International"
-           season="All_Year">
-    <town town="Cúcuta" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="007°55'39''N" />
-      <longitude value="072°30'41''W" />
-    </coordinates>
-    <size value="Small" pax="673" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="9" />
-    </terminals>
-    <runways>
-      <runway name="02/20" length="1933" surface="Asphalt" />
-      <runway name="16/34" length="2347" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Alfredo Vásquez Cobo International Airport" icao="SKLT" iata="LET" type="Short_Haul_International"
-           season="All_Year">
-    <town town="Leticia" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="004°11'36''S" />
-      <longitude value="069°56'35''W" />
-    </coordinates>
-    <size value="Very_small" pax="188" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="6" />
-    </terminals>
-    <runways>
-      <runway name="03/21" length="1880" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Jose Maria Córdova International Airport" icao="SKRG" iata="MDE" type="Long_Haul_International"
-           season="All_Year">
-    <town town="Rionegro" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="006°09'52''N" />
-      <longitude value="075°25'23''W" />
-    </coordinates>
-    <size value="Medium" pax="2017" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="12" />
-    </terminals>
-    <runways>
-      <runway name="18/36" length="3500" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Matecaña International Airport" icao="SKPE" iata="PEI" type="Short_Haul_International"
-           season="All_Year">
-    <town town="Pereira" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="004°48'45''N" />
-      <longitude value="075°44'22''W" />
-    </coordinates>
-    <size value="Small" pax="646" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="8" />
-    </terminals>
-    <runways>
-      <runway name="08/26" length="2020" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Gustavo Rojas Pinilla International Airport" icao="SKSP" iata="ADZ" type="Short_Haul_International"
-           season="All_Year">
-    <town town="San Andrés" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="012°35'00''N" />
-      <longitude value="081°42'40''W" />
-    </coordinates>
-    <size value="Small" pax="911" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="10" />
-    </terminals>
-    <runways>
-      <runway name="06/24" length="2380" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Simón Bolívar International Airport" icao="SKSM" iata="SMR" type="Short_Haul_International"
-           season="All_Year">
-    <town town="Santa Marta" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="011°07'10''N" />
-      <longitude value="074°13'50''W" />
-    </coordinates>
-    <size value="Small" pax="555" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="6" />
-    </terminals>
-    <runways>
-      <runway name="01/19" length="1700" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Antonio Roldán Betancourt Airport" icao="SKLC" iata="APO" type="Domestic" season="All_Year">
+ <airport name="Antonio Roldán Betancourt Airport" icao="SKLC" iata="APO" type="Domestic" season="All_Year">
     <town town="Apartadó" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="007°01'58''N" />
-      <longitude value="077°11'59''W" />
+      <latitude value="7°1'58''N" />
+      <longitude value="77°11'59''W" />
     </coordinates>
-    <size value="Smallest" pax="133" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="214" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
@@ -3630,26 +3193,40 @@
   <airport name="Santiago Perez Airport" icao="SKUC" iata="AUC" type="Domestic" season="All_Year">
     <town town="Arauca" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="007°04'07''N" />
-      <longitude value="070°44'12''W" />
+      <latitude value="7°4'7''N" />
+      <longitude value="70°44'12''W" />
     </coordinates>
-    <size value="Smallest" pax="89" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="122" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
       <runway name="11/29" length="2100" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="El Eden Airport" icao="SKAR" iata="AXM" type="Long_Haul_International" season="All_Year">
+    <town town="Armenia" country="183" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="4°27'10''N" />
+      <longitude value="75°45'59''W" />
+    </coordinates>
+    <size value="Very_small" pax="405" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="José Celestino Mutis Airport" icao="SKBS" iata="BSC" type="Domestic" season="All_Year">
     <town town="Bahía Solano" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="006°12'10''N" />
-      <longitude value="077°23'40''W" />
+      <latitude value="6°12'10''N" />
+      <longitude value="77°23'40''W" />
     </coordinates>
-    <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="44" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
       <runway name="18/36" length="1211" surface="Asphalt" />
@@ -3658,53 +3235,112 @@
   <airport name="Yariguíes Airport" icao="SKEJ" iata="EJA" type="Domestic" season="All_Year">
     <town town="Barrancabermeja" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="007°01'27''N" />
-      <longitude value="073°48'24''W" />
+      <latitude value="7°1'27''N" />
+      <longitude value="73°48'24''W" />
     </coordinates>
-    <size value="Smallest" pax="71" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="288" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
       <runway name="04/22" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="General José María Yáñez International Airport" icao="MMGM" iata="GYM" type="Domestic"
-           season="All_Year">
-    <town town="Guaymas" country="183" GMT="-05:00:00" DST="-05:00:00" />
+  <airport name="Ernesto Cortissoz International Airport" icao="SKBQ" iata="BAQ" type="Long_Haul_International" season="All_Year">
+    <town town="Barranquilla" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="027°58'08''N" />
-      <longitude value="110°55'30''W" />
+      <latitude value="10°53'22''N" />
+      <longitude value="74°46'50''W" />
     </coordinates>
-    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1722" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="11" />
+      <terminal name="Terminal B" gates="7" />
     </terminals>
     <runways>
-      <runway name="02/20" length="2350" surface="Asphalt" />
+      <runway name="05/23" length="3000" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="El Dorado International Airport" icao="SKBO" iata="BOG" type="Long_Haul_International" season="All_Year">
+    <town town="Bogotá" country="183" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="4°42'11''N" />
+      <longitude value="74°8'17''W" />
+    </coordinates>
+    <size value="Very_large" pax="25009" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal 1" gates="42" />
+      <terminal name="Terminal 2" gates="25" />
+    </terminals>
+    <runways>
+      <runway name="13L/31R" length="3800" surface="Asphalt" />
+      <runway name="13R/31L" length="3800" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Palonegro Airport" icao="SKBG" iata="BGA" type="Short_Haul_International" season="All_Year">
+    <town town="Bucaramanga" country="183" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="7°7'35''N" />
+      <longitude value="73°11'5''W" />
+    </coordinates>
+    <size value="Small" pax="1276" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="11" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="2260" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Gerardo Tobar López Airport" icao="SKBU" iata="BUN" type="Domestic" season="All_Year">
     <town town="Buenaventura" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="003°49'10''N" />
-      <longitude value="076°59'23''W" />
+      <latitude value="3°49'10''N" />
+      <longitude value="76°59'23''W" />
     </coordinates>
-    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="15" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="6" />
     </terminals>
     <runways>
-      <runway name="09/27" length="1202" surface="Asphalt" />
+      <runway name="08/26" length="1200" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Alfonso Bonilla Aragon International Airport" icao="SKCL" iata="CLO" type="Long_Haul_International" season="All_Year">
+    <town town="Cali" country="183" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="3°32'35''N" />
+      <longitude value="76°22'53''W" />
+    </coordinates>
+    <size value="Medium" pax="3356" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="17" />
+      <terminal name="Terminal B" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Rafael Nuñez International Airport" icao="SKCG" iata="CTG" type="Long_Haul_International" season="All_Year">
+    <town town="Cartagena" country="183" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="10°26'32''N" />
+      <longitude value="75°30'46''W" />
+    </coordinates>
+    <size value="Small" pax="2176" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="12" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="2600" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Santa Ana Airport" icao="SKGO" iata="CRC" type="Domestic" season="All_Year">
     <town town="Cartago" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="004°45'29''N" />
-      <longitude value="075°57'20''W" />
+      <latitude value="4°45'29''N" />
+      <longitude value="75°57'20''W" />
     </coordinates>
-    <size value="Smallest" pax="2" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
@@ -3712,43 +3348,30 @@
       <runway name="01/19" length="2200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Las Brujas Airport" icao="SKCZ" iata="CZU" type="Domestic" season="All_Year">
-    <town town="Corozal" country="183" GMT="-05:00:00" DST="-05:00:00" />
+  <airport name="Camilo Daza International Airport" icao="SKCC" iata="CUC" type="Long_Haul_International" season="All_Year">
+    <town town="Cúcuta" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="009°19'57''N" />
-      <longitude value="075°17'08''W" />
+      <latitude value="7°55'39''N" />
+      <longitude value="72°30'41''W" />
     </coordinates>
-    <size value="Smallest" pax="64" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="972" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="10" />
     </terminals>
     <runways>
-      <runway name="02/20" length="1503" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="El Yopal Airport" icao="SKYP" iata="EYP" type="Domestic" season="All_Year">
-    <town town="El Yopal" country="183" GMT="-05:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="005°19'08''N" />
-      <longitude value="072°23'02''W" />
-    </coordinates>
-    <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="05/23" length="2575" surface="Asphalt" />
+      <runway name="02/20" length="1933" surface="Asphalt" />
+      <runway name="16/34" length="2347" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Gustavo Artunduaga Paredes Airport" icao="SKFL" iata="FLA" type="Domestic" season="All_Year">
     <town town="Florencia" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="001°35'21''N" />
-      <longitude value="075°33'51''W" />
+      <latitude value="1°35'21''N" />
+      <longitude value="75°33'51''W" />
     </coordinates>
-    <size value="Smallest" pax="57" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="76" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
       <runway name="12/30" length="1500" surface="Asphalt" />
@@ -3757,12 +3380,12 @@
   <airport name="Santiago Vila Airport" icao="SKGI" iata="GIR" type="Domestic" season="All_Year">
     <town town="Girardot" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="004°16'34''N" />
-      <longitude value="074°47'48''W" />
+      <latitude value="4°16'34''N" />
+      <longitude value="74°47'48''W" />
     </coordinates>
-    <size value="Smallest" pax="2" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
       <runway name="01/19" length="1600" surface="Asphalt" />
@@ -3771,24 +3394,24 @@
   <airport name="Juan Casiano Airport" icao="SKGP" iata="GPI" type="Domestic" season="All_Year">
     <town town="Guapi" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="002°34'12''N" />
-      <longitude value="077°53'54''W" />
+      <latitude value="2°34'12''N" />
+      <longitude value="77°53'54''W" />
     </coordinates>
-    <size value="Smallest" pax="21" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="34" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
     <runways>
-      <runway name="01/19" length="1297" surface="Asphalt" />
+      <runway name="01/19" length="1320" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Perales Airport" icao="SKIB" iata="IBE" type="Domestic" season="All_Year">
     <town town="Ibagué" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="004°25'17''N" />
-      <longitude value="075°07'59''W" />
+      <latitude value="4°25'17''N" />
+      <longitude value="75°7'59''W" />
     </coordinates>
-    <size value="Smallest" pax="33" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="333" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -3799,54 +3422,82 @@
   <airport name="San Luis Airport" icao="SKIP" iata="IPI" type="Domestic" season="All_Year">
     <town town="Ipiales" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="000°51'42''N" />
-      <longitude value="077°40'18''W" />
+      <latitude value="0°51'42''N" />
+      <longitude value="77°40'18''W" />
     </coordinates>
     <size value="Smallest" pax="40" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
-      <runway name="06/24" length="1760" surface="Asphalt" />
+      <runway name="06/24" length="1770" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Gustavo Rojas Pinilla International Airport" icao="SKSP" iata="ADZ" type="Short_Haul_International" season="All_Year">
+    <town town="San Andrés" country="183" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="12°35'0''N" />
+      <longitude value="81°42'40''W" />
+    </coordinates>
+    <size value="Small" pax="1121" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="7" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="2380" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Alfredo Vásquez Cobo International Airport" icao="SKLT" iata="LET" type="Short_Haul_International" season="All_Year">
+    <town town="Leticia" country="183" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="4°11'36''S" />
+      <longitude value="69°56'35''W" />
+    </coordinates>
+    <size value="Very_small" pax="176" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="2010" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Jorge Isaac Airport" icao="SKLM" iata="MCJ" type="Domestic" season="All_Year">
     <town town="La Mina-Maicao" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="011°13'56''N" />
-      <longitude value="072°29'24''W" />
+      <latitude value="11°13'56''N" />
+      <longitude value="72°29'24''W" />
     </coordinates>
-    <size value="Smallest" pax="11" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="101" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
     <runways>
-      <runway name="09/27" length="1486" surface="Asphalt" />
+      <runway name="09/27" length="1700" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="La Nubia Airport" icao="SKMZ" iata="MZL" type="Domestic" season="All_Year">
     <town town="Manizales" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="005°01'46''N" />
-      <longitude value="075°27'52''W" />
+      <latitude value="5°1'46''N" />
+      <longitude value="75°27'52''W" />
     </coordinates>
-    <size value="Very_small" pax="234" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="251" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="5" />
+      <terminal name="Terminal A" gates="6" />
     </terminals>
     <runways>
-      <runway name="10/28" length="1474" surface="Asphalt" />
+      <runway name="09/27" length="1421" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Jose Celestino Mutis Airport" icao="SKQU" iata="MQU" type="Domestic" season="All_Year">
     <town town="Mariquita" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="005°12'45''N" />
-      <longitude value="074°53'00''W" />
+      <latitude value="5°12'45''N" />
+      <longitude value="74°53'0''W" />
     </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="32" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
       <runway name="01/19" length="1800" surface="Asphalt" />
@@ -3855,24 +3506,24 @@
   <airport name="Enrique Olaya Herrera Airport" icao="SKMD" iata="EOH" type="Domestic" season="All_Year">
     <town town="Medellín" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="006°13'13''N" />
-      <longitude value="075°35'26''W" />
+      <latitude value="6°13'13''N" />
+      <longitude value="75°35'26''W" />
     </coordinates>
-    <size value="Small" pax="1125" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="967" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="7" />
+      <terminal name="Terminal A" gates="19" />
     </terminals>
     <runways>
-      <runway name="02/20" length="2500" surface="Asphalt" />
+      <runway name="02/20" length="2508" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Fabio Alberto Leon Bentley Airport" icao="SKMU" iata="MVP" type="Domestic" season="All_Year">
     <town town="Mitú" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="001°15'13''N" />
-      <longitude value="070°14'02''W" />
+      <latitude value="1°15'13''N" />
+      <longitude value="70°14'2''W" />
     </coordinates>
-    <size value="Smallest" pax="18" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="34" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="3" />
     </terminals>
@@ -3883,40 +3534,40 @@
   <airport name="Los Garzones Airport" icao="SKMR" iata="MTR" type="Domestic" season="All_Year">
     <town town="Montería" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="008°49'25''N" />
-      <longitude value="075°49'32''W" />
+      <latitude value="8°49'25''N" />
+      <longitude value="75°49'32''W" />
     </coordinates>
-    <size value="Smallest" pax="61" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="715" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
-      <runway name="14/32" length="1916" surface="Asphalt" />
+      <runway name="14/32" length="2300" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Benito Salas Airport" icao="SKNV" iata="NVA" type="Domestic" season="All_Year">
     <town town="Neiva" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="002°57'00''N" />
-      <longitude value="075°17'38''W" />
+      <latitude value="2°57'0''N" />
+      <longitude value="75°17'38''W" />
     </coordinates>
-    <size value="Smallest" pax="51" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="328" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="6" />
     </terminals>
     <runways>
-      <runway name="02/20" length="1792" surface="Asphalt" />
+      <runway name="02/20" length="1850" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Reyes Murillo Airport" icao="SKNQ" iata="NQU" type="Domestic" season="All_Year">
     <town town="Nuquí" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="005°41'47''N" />
-      <longitude value="077°16'50''W" />
+      <latitude value="5°41'47''N" />
+      <longitude value="77°16'50''W" />
     </coordinates>
-    <size value="Smallest" pax="8" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="28" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="4" />
     </terminals>
     <runways>
       <runway name="02/20" length="1200" surface="Concrete" />
@@ -3925,12 +3576,12 @@
   <airport name="Aguas Claras Airport" icao="SKOC" iata="OCV" type="Domestic" season="All_Year">
     <town town="Ocaña" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="008°18'54''N" />
-      <longitude value="073°21'29''W" />
+      <latitude value="8°18'54''N" />
+      <longitude value="73°21'29''W" />
     </coordinates>
-    <size value="Smallest" pax="1" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
       <runway name="01/19" length="1200" surface="Asphalt" />
@@ -3939,10 +3590,10 @@
   <airport name="Antonio Narino Airport" icao="SKPS" iata="PSO" type="Domestic" season="All_Year">
     <town town="Pasto" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="001°23'46''N" />
-      <longitude value="077°17'29''W" />
+      <latitude value="1°23'46''N" />
+      <longitude value="77°17'29''W" />
     </coordinates>
-    <size value="Very_small" pax="172" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="279" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="4" />
     </terminals>
@@ -3950,127 +3601,183 @@
       <runway name="02/20" length="2312" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Matecaña International Airport" icao="SKPE" iata="PEI" type="Short_Haul_International" season="All_Year">
+    <town town="Pereira" country="183" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="4°48'45''N" />
+      <longitude value="75°44'22''W" />
+    </coordinates>
+    <size value="Small" pax="1186" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2020" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Guillermo León Valencia Airport" icao="SKPP" iata="PPN" type="Domestic" season="All_Year">
     <town town="Popayán" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="002°27'15''N" />
-      <longitude value="076°36'33''W" />
+      <latitude value="2°27'15''N" />
+      <longitude value="76°36'33''W" />
     </coordinates>
-    <size value="Smallest" pax="25" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="99" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="4" />
     </terminals>
     <runways>
-      <runway name="07/25" length="1910" surface="Asphalt" />
+      <runway name="08/26" length="2080" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="El Embrujo Airport" icao="SKPV" iata="PVA" type="Domestic" season="All_Year">
     <town town="Providencia" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="013°21'24''N" />
-      <longitude value="081°21'29''W" />
+      <latitude value="13°21'24''N" />
+      <longitude value="81°21'29''W" />
     </coordinates>
-    <size value="Smallest" pax="14" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="67" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
     <runways>
-      <runway name="17/35" length="1168" surface="Asphalt" />
+      <runway name="17/35" length="1300" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Tres De Mayo Airport" icao="SKAS" iata="PUU" type="Domestic" season="All_Year">
     <town town="Puerto Asís" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="000°30'18''N" />
-      <longitude value="076°30'02''W" />
+      <latitude value="0°30'18''N" />
+      <longitude value="76°30'2''W" />
     </coordinates>
-    <size value="Smallest" pax="19" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="87" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal A" gates="4" />
     </terminals>
     <runways>
-      <runway name="01/19" length="1625" surface="Asphalt" />
+      <runway name="01/19" length="1600" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="German Olano Airport" icao="SKPC" iata="PCR" type="Domestic" season="All_Year">
     <town town="Puerto Carreño" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="006°11'04''N" />
-      <longitude value="067°29'35''W" />
+      <latitude value="6°11'4''N" />
+      <longitude value="67°29'35''W" />
     </coordinates>
-    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="35" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>
     <runways>
-      <runway name="07/25" length="1800" surface="Asphalt" />
+      <runway name="06/24" length="1800" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="El Caraño Airport" icao="SKUI" iata="UIB" type="Domestic" season="All_Year">
     <town town="Quibdó" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="005°41'26''N" />
-      <longitude value="076°38'28''W" />
+      <latitude value="5°41'26''N" />
+      <longitude value="76°38'28''W" />
     </coordinates>
-    <size value="Smallest" pax="18" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="348" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
-      <runway name="13/31" length="1400" surface="Asphalt" />
+      <runway name="12/30" length="1400" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Almirante Padilla Airport" icao="SKRH" iata="RCH" type="Domestic" season="All_Year">
     <town town="Riohacha" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="011°31'34''N" />
-      <longitude value="072°55'33''W" />
+      <latitude value="11°31'34''N" />
+      <longitude value="72°55'33''W" />
     </coordinates>
-    <size value="Smallest" pax="55" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="67" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
-      <runway name="09/27" length="1650" surface="Asphalt" />
+      <runway name="09/27" length="1900" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Jose Maria Córdova International Airport" icao="SKRG" iata="MDE" type="Long_Haul_International" season="All_Year">
+    <town town="Rionegro" country="183" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="6°9'52''N" />
+      <longitude value="75°25'23''W" />
+    </coordinates>
+    <size value="Medium" pax="6557" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="21" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="3500" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Jorge E. Gonzalez Torres Airport" icao="SKSJ" iata="SJE" type="Domestic" season="All_Year">
     <town town="San José Del Guaviare" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="002°34'46''N" />
-      <longitude value="072°38'21''W" />
+      <latitude value="2°34'46''N" />
+      <longitude value="72°38'21''W" />
     </coordinates>
-    <size value="Smallest" pax="30" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="44" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal A" gates="6" />
     </terminals>
     <runways>
-      <runway name="01/19" length="1493" surface="Asphalt" />
+      <runway name="01/19" length="1500" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Eduardo Falla Solano Airport" icao="SKSV" iata="SVI" type="Domestic" season="All_Year">
     <town town="San Vicente Del Caguán" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="002°09'07''N" />
-      <longitude value="074°45'58''W" />
+      <latitude value="2°9'7''N" />
+      <longitude value="74°45'58''W" />
     </coordinates>
-    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="9" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
-      <runway name="14/32" length="1500" surface="Asphalt" />
+      <runway name="13/31" length="1500" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Simón Bolívar International Airport" icao="SKSM" iata="SMR" type="Short_Haul_International" season="All_Year">
+    <town town="Santa Marta" country="183" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="11°7'10''N" />
+      <longitude value="74°13'50''W" />
+    </coordinates>
+    <size value="Small" pax="1265" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="1700" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Las Brujas Airport" icao="SKCZ" iata="CZU" type="Domestic" season="All_Year">
+    <town town="Corozal" country="183" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="9°19'57''N" />
+      <longitude value="75°17'8''W" />
+    </coordinates>
+    <size value="Smallest" pax="32" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="1503" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Gustavo Vargas Airport" icao="SKTM" iata="TME" type="Domestic" season="All_Year">
     <town town="Tame" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="006°27'03''N" />
-      <longitude value="071°45'37''W" />
+      <latitude value="6°27'3''N" />
+      <longitude value="71°45'37''W" />
     </coordinates>
-    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="98" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="3" />
     </terminals>
     <runways>
       <runway name="07/25" length="2000" surface="Asphalt" />
@@ -4079,26 +3786,26 @@
   <airport name="La Florida Airport" icao="SKCO" iata="TCO" type="Domestic" season="All_Year">
     <town town="Tumaco" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="001°48'51''N" />
-      <longitude value="078°44'57''W" />
+      <latitude value="1°48'51''N" />
+      <longitude value="78°44'57''W" />
     </coordinates>
-    <size value="Smallest" pax="9" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="64" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal A" gates="4" />
     </terminals>
     <runways>
-      <runway name="06/24" length="1600" surface="Asphalt" />
+      <runway name="05/23" length="1600" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Alfonso López Pumarejo Airport" icao="SKVP" iata="VUP" type="Domestic" season="All_Year">
     <town town="Valledupar" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="010°26'06''N" />
-      <longitude value="073°14'58''W" />
+      <latitude value="10°26'6''N" />
+      <longitude value="73°14'58''W" />
     </coordinates>
-    <size value="Smallest" pax="41" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="322" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="5" />
     </terminals>
     <runways>
       <runway name="02/20" length="2100" surface="Asphalt" />
@@ -4107,27 +3814,41 @@
   <airport name="Vanguardia Airport" icao="SKVV" iata="VVC" type="Domestic" season="All_Year">
     <town town="Villavicencio" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="004°10'04''N" />
-      <longitude value="073°36'49''W" />
+      <latitude value="4°10'4''N" />
+      <longitude value="73°36'49''W" />
     </coordinates>
-    <size value="Smallest" pax="36" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="212" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal A" gates="12" />
     </terminals>
     <runways>
-      <runway name="05/23" length="1712" surface="Asphalt" />
+      <runway name="05/23" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <!--Bolivia (SL**)-->
+  <airport name="El Yopal Airport" icao="SKYP" iata="EYP" type="Domestic" season="All_Year">
+    <town town="El Yopal" country="183" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="5°19'8''N" />
+      <longitude value="72°23'2''W" />
+    </coordinates>
+    <size value="Very_small" pax="400" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2700" surface="Asphalt" />
+    </runways>
+  </airport>
+    <!--Bolivia (SL**)-->
   <airport name="El Alto International Airport" icao="SLLP" iata="LPB" type="Long_Haul_International" season="All_Year">
     <town town="La Paz" country="211" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
-      <latitude value="016°30'48''S" />
-      <longitude value="068°11'32''W" />
+      <latitude value="16°30'48''S" />
+      <longitude value="68°11'32''W" />
     </coordinates>
-    <size value="Small" pax="833" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="1637" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="4" />
+      <terminal name="Terminal" gates="13" />
     </terminals>
     <runways>
       <runway name="10L/28R" length="2050" surface="Grass" />
@@ -4135,19 +3856,18 @@
     </runways>
   </airport>
   <!--Suriname (SM**)-->
-  <airport name="Paramaribo-Zanderij International Airport" icao="SMJP" iata="PBM" type="Long_Haul_International"
-           season="All_Year">
+   <airport name="Paramaribo-Zanderij International Airport" icao="SMJP" iata="PBM" type="Long_Haul_International" season="All_Year">
     <town town="Zanderij" country="214" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
-      <latitude value="005°27'10''N" />
-      <longitude value="055°11'16''W" />
+      <latitude value="5°27'10''N" />
+      <longitude value="55°11'16''W" />
     </coordinates>
-    <size value="Smallest" pax="107" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="199" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="4" />
+      <terminal name="Terminal" gates="9" />
     </terminals>
     <runways>
-      <runway name="11/29" length="3480" surface="Asphalt" />
+      <runway name="11/29" length="3480" surface="Concrete" />
     </runways>
   </airport>
   <!--French Guiana (SO**)-->
@@ -4166,62 +3886,45 @@
     </runways>
   </airport>
   <!--Peru (SP**)-->
-  <airport name="Jorge Chávez International Airport" icao="SPIM" iata="LIM" type="Long_Haul_International"
-           season="All_Year">
+ <airport name="Jorge Chávez International Airport" icao="SPIM" iata="LIM" type="Long_Haul_International" season="All_Year">
     <town town="Lima" country="182" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
-      <latitude value="012°01'18''S" />
-      <longitude value="077°06'51''W" />
+      <latitude value="12°1'18''S" />
+      <longitude value="77°6'51''W" />
     </coordinates>
-    <size value="Large" pax="10278" cargo="Smallest" cargovolume="0" />
+    <size value="Very_large" pax="15296" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="28" />
+      <terminal name="Terminal" gates="52" />
     </terminals>
     <runways>
       <runway name="15/33" length="3507" surface="Asphalt" />
     </runways>
   </airport>
   <!--Uruguay (SU**)-->
-  <airport name="Carrasco International Airport" icao="SUMU" iata="MVD" type="Long_Haul_International"
-           season="All_Year">
-    <town town="Montevideo" country="212" GMT="-03:00:00" DST="-02:00:00" />
-    <coordinates>
-      <latitude value="034°50'18''S" />
-      <longitude value="056°01'51''W" />
-    </coordinates>
-    <size value="Small" pax="1913" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="6" />
-    </terminals>
-    <runways>
-      <runway name="01/19" length="2250" surface="Asphalt" />
-      <runway name="06/24" length="3200" surface="Asphalt" />
-      <runway name="10/28" length="1700" surface="Asphalt" />
-    </runways>
-  </airport>
   <airport name="Artigas International Airport" icao="SUAG" iata="ATI" type="Domestic" season="All_Year">
     <town town="Artigas" country="212" GMT="-03:00:00" DST="04:00:00" />
     <coordinates>
-      <latitude value="030°24'02''S" />
-      <longitude value="056°30'28''W" />
+      <latitude value="30°24'2''S" />
+      <longitude value="56°30'28''W" />
     </coordinates>
-    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="8" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal" gates="2" />
     </terminals>
     <runways>
-      <runway name="11/29" length="1275" surface="Asphalt" />
+      <runway name="11/29" length="1273" surface="Asphalt" />
+      <runway name="05/23" length="582" surface="Grass" />
     </runways>
   </airport>
   <airport name="Laguna de Los Patos International Airport" icao="SUCA" iata="CYR" type="Domestic" season="All_Year">
     <town town="Colonia" country="212" GMT="-03:00:00" DST="04:00:00" />
     <coordinates>
-      <latitude value="034°27'23''S" />
-      <longitude value="057°46'14''W" />
+      <latitude value="34°27'23''S" />
+      <longitude value="57°46'14''W" />
     </coordinates>
     <size value="Smallest" pax="18" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="2" />
+      <terminal name="Terminal" gates="2" />
     </terminals>
     <runways>
       <runway name="12/30" length="1370" surface="Asphalt" />
@@ -4230,140 +3933,153 @@
   <airport name="Santa Bernardina International Airport" icao="SUDU" iata="DZO" type="Regional" season="All_Year">
     <town town="Durazno" country="212" GMT="-03:00:00" DST="04:00:00" />
     <coordinates>
-      <latitude value="033°21'32''S" />
-      <longitude value="056°29'57''W" />
+      <latitude value="33°21'32''S" />
+      <longitude value="56°29'57''W" />
     </coordinates>
-    <size value="Smallest" pax="41" cargo="Smallest" cargovolume="0" />
+    <size value="Smallest" pax="28" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal" gates="4" />
     </terminals>
     <runways>
       <runway name="03/21" length="2279" surface="Asphalt" />
       <runway name="09/27" length="1452" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Capitan Corbeta CA Curbelo International Airport" icao="SULS" iata="PDP"
-           type="Short_Haul_International" season="All_Year">
-    <town town="Punta del Este" country="212" GMT="-03:00:00" DST="04:00:00" />
+  <airport name="Carrasco International Airport" icao="SUMU" iata="MVD" type="Long_Haul_International" season="All_Year">
+    <town town="Montevideo" country="212" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
-      <latitude value="034°51'18''S" />
-      <longitude value="055°05'39''W" />
+      <latitude value="34°50'18''S" />
+      <longitude value="56°1'51''W" />
     </coordinates>
-    <size value="Very_small" pax="244" cargo="Smallest" cargovolume="0" />
+    <size value="Small" pax="2320" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="5" />
+      <terminal name="Terminal 1" gates="18" />
+      <terminal name="Terminal 2" gates="10" />
     </terminals>
     <runways>
-      <runway name="01/19" length="1600" surface="Asphalt" />
-      <runway name="08/26" length="2133" surface="Asphalt" />
+      <runway name="01/19" length="2250" surface="Asphalt" />
+      <runway name="06/24" length="3200" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Tydeo Larre Borges Airport" icao="SUPU" iata="PDU" type="Domestic" season="All_Year">
     <town town="Paysandu" country="212" GMT="-03:00:00" DST="04:00:00" />
     <coordinates>
-      <latitude value="032°21'47''S" />
-      <longitude value="058°03'42''W" />
+      <latitude value="32°21'47''S" />
+      <longitude value="58°3'42''W" />
     </coordinates>
     <size value="Smallest" pax="37" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal" gates="3" />
     </terminals>
     <runways>
       <runway name="02/20" length="1500" surface="Asphalt" />
       <runway name="10/28" length="900" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Presidente General Don Oscar D. Gestido International Airport" icao="SURV" iata="RVY"
-           type="Short_Haul_International" season="All_Year">
+  <airport name="Capitan Corbeta CA Curbelo International Airport" icao="SULS" iata="PDP" type="Short_Haul_International" season="All_Year">
+    <town town="Punta del Este" country="212" GMT="-03:00:00" DST="04:00:00" />
+    <coordinates>
+      <latitude value="34°51'18''S" />
+      <longitude value="55°5'39''W" />
+    </coordinates>
+    <size value="Very_small" pax="244" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="01/19" length="1600" surface="Asphalt" />
+      <runway name="08/26" length="2133" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Presidente General Don Oscar D. Gestido International Airport" icao="SURV" iata="RVY" type="Short_Haul_International" season="All_Year">
     <town town="Rivera" country="212" GMT="-03:00:00" DST="04:00:00" />
     <coordinates>
-      <latitude value="030°58'28''S" />
-      <longitude value="055°28'34''W" />
+      <latitude value="30°58'28''S" />
+      <longitude value="55°28'34''W" />
     </coordinates>
-    <size value="Smallest" pax="144" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="163" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="4" />
+      <terminal name="Terminal" gates="4" />
     </terminals>
     <runways>
       <runway name="05/23" length="1830" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nueva Hesperides International Airport" icao="SUSO" iata="STY" type="Short_Haul_International"
-           season="All_Year">
+  <airport name="Nueva Hesperides International Airport" icao="SUSO" iata="STY" type="Short_Haul_International" season="All_Year">
     <town town="Salto" country="212" GMT="-03:00:00" DST="04:00:00" />
     <coordinates>
-      <latitude value="031°26'18''S" />
-      <longitude value="057°59'07''W" />
+      <latitude value="31°26'18''S" />
+      <longitude value="57°59'7''W" />
     </coordinates>
     <size value="Very_small" pax="213" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal A" gates="5" />
+      <terminal name="Terminal" gates="5" />
     </terminals>
     <runways>
       <runway name="05/23" length="1588" surface="Asphalt" />
-      <runway name="13/31" length="750" surface="Asphalt" />
+      <runway name="13/31" length="750" surface="Grass" />
     </runways>
   </airport>
   <!--Venezuela (SV**)-->
-  <airport name="Simón Bolívar International Airport" icao="SVMI" iata="CCS" type="Long_Haul_International"
-           season="All_Year">
+<airport name="Simón Bolívar International Airport" icao="SVMI" iata="CCS" type="Long_Haul_International" season="All_Year">
     <town town="Caracas" country="184" GMT="-04:30:00" DST="-04:30:00" />
     <coordinates>
-      <latitude value="010°36'11''N" />
-      <longitude value="066°59'26''W" />
+      <latitude value="10°36'11''N" />
+      <longitude value="66°59'26''W" />
     </coordinates>
-    <size value="Medium" pax="8830" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax="11956" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal" gates="28" />
+      <terminal name="Terminal 1" gates="28" />
+      <terminal name="Terminal 2" gates="24" />
     </terminals>
     <runways>
-      <runway name="09/27" length="3027" surface="Asphalt" />
-      <runway name="10/28" length="3500" surface="Asphalt" />
+      <runway name="09/27" length="3270" surface="Asphalt" />
+      <runway name="10/28" length="3610" surface="Asphalt" />
     </runways>
   </airport>
   <!--Guyana (SY**)-->
-  <airport name="Ogle Airport" icao="SYGO" iata="OGL" type="Domestic" season="All_Year">
-    <town town="Ogle" country="215" GMT="-04:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="006°48'22''N" />
-      <longitude value="058°06'21''W" />
-    </coordinates>
-    <size value="Smallest" pax="16" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="05/23" length="630" surface="Concrete" />
-    </runways>
-  </airport>
-  <airport name="Lethem Airport" icao="SYLT" iata="LTM" type="Regional" season="All_Year">
-    <town town="Lethem" country="215" GMT="-04:00:00" DST="-05:00:00" />
-    <coordinates>
-      <latitude value="003°22'21''N" />
-      <longitude value="059°47'21''W" />
-    </coordinates>
-    <size value="Smallest" pax="81" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="3" />
-    </terminals>
-    <runways>
-      <runway name="07/25" length="1824" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Cheddi Jagan International Airport" icao="SYCJ" iata="GEO" type="Long_Haul_International"
-           season="All_Year">
+  <airport name="Cheddi Jagan International Airport" icao="SYCJ" iata="GEO" type="Long_Haul_International" season="All_Year">
     <town town="Georgetown" country="215" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
-      <latitude value="006°29'54''N" />
-      <longitude value="058°15'14''W" />
+      <latitude value="6°29'54''N" />
+      <longitude value="58°15'14''W" />
     </coordinates>
-    <size value="Very_small" pax="215" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="269" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal" gates="5" />
     </terminals>
     <runways>
       <runway name="06/24" length="2270" surface="Asphalt" />
-      <runway name="11/29" length="1525" surface="Asphalt" />
+      <runway name="10/28" length="1525" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Ogle Airport" icao="SYGO" iata="OGL" type="Domestic" season="All_Year">
+    <town town="Ogle" country="215" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="6°48'22''N" />
+      <longitude value="58°6'21''W" />
+    </coordinates>
+    <size value="Smallest" pax="47" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="07R/25L" length="630" surface="Concrete" />
+      <runway name="07/25" length="1280" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Lethem Airport" icao="SYLT" iata="LTM" type="Regional" season="All_Year">
+    <town town="Lethem" country="215" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="3°22'21''N" />
+      <longitude value="59°47'21''W" />
+    </coordinates>
+    <size value="Smallest" pax="15" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="1824" surface="Asphalt" />
     </runways>
   </airport>
   <!--Falkland Islands (SF**,EG**)-->
