@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Pacific Western Airlines" iata="PW"  color="Firebrick" country="113" CEO="Russ Baker" mentality="Moderate" market="Global" preferedairport="YYC">
+    <narrative narrative="Pacific Western Airlines was around from 1946 to 1987 when it merged with Canadian Pacific and Nordair to make Canadian Airlines. It called Vancouver home at first but then moved over to Calgary later on. Besides domestic operation, they also did international charters around the world. Some of the planes they had were 707's,737-200's,727-100's,Douglas planes,Electra's and at least one 767-200ER, to name the most common types used." /></profile>
+  <info real="True" from="1946" to="1987" />
+  <prefereds aircrafts="Boeing 737-200,Boeing 737-200 Adv.,Boeing 727-100,Boeing 727-100C,Boeing 720 (707-020),Boeing 720B (707-020B),Boeing 707-120,Boeing 707-120B,Boeing 767-200ER,Douglas DC-3,Douglas DC-4-1009,Douglas DC-7C,Douglas DC-6,Lockeed L-188A"></prefereds>
+</airline>

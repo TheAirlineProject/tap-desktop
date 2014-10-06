@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Atlantic Airways" iata="RC" logo="RC2" color="MediumBlue" country="110" CEO="Joergen Holme" mentality="Safe" market="Regional" preferedairport="FAE" >
+    <narrative
+      narrative="Atlantic Airways is the main airline of the Faroe Islands, which is part of Denmark. It is based at the only airport in the Faroe Islands, Vagar. It was founded in 1987 and at first was 51% owned by the Faroese Government and 49% by Cimber Air. But in 1989 the government gained full ownership. The first route was to Copenhagen using a BAe 146-200. In 2012 they began service with A319's and have three of them now. The Avro RJ100 was retired in August 2014. They have two Bell 412 helicopters that are used for search and rescue missions. They also have helicopter service to the other islands and villages since Vagar is the only airport of entry into the islands, they ferry people on the helicopters to and from the airport to the other islands. This service has become an important economic help to the Faroe Islands, providing easier transport between islands without the need for boats as much. They currently serve 10 airports,all in Europe, which include Milan,Italy and Barcelona,Spain outside of the more closer places like mainland Denmark,the UK,Norway,Sweden,and Iceland. " />
+  </profile>
+  <info real="True" from="1987" to="2199" />
+  <prefereds aircrafts="BAe 146-200,Avro RJ 85,Avro RJ100,Airbus A319-100"></prefereds>
+
+</airline>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Pulkovo Aviation Enterprise" iata="FV2" logo="FV2" color="Blue" country="149" CEO="Sergey Belov" mentality="Aggressive" market="Global" preferedairport="LED">
+    <narrative narrative="Pulkovo Aviation Enterprise existed from 1932 to October 29,2006 when it merged with Rossiya. It was the third largest airline in Russia, served 97 destinations in 34 countries and had 52 planes. They were based at the place they took their name, Pulkovo Airport in St. Petersburg. They were 100% state owned. Rossiya the company they merged with is 75% owned by Aeroflot." />
+  </profile>
+  <info real="True" from="1932" to="2006" />
+</airline>

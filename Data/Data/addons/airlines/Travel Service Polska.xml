@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Travel Service Polska" logo="QS2"  iata="3Z" color="DarkBlue" country="135" CEO="Roman Vik" mentality="Moderate" market="Global " preferedairport="WAW">
+    <narrative
+      narrative="Travel Service Polska was founded in 2012 as a subsidiary of Czech Republic based Travel Service. They have 7 destinations in Poland, 4 in Spain and 10 in other European countries. They have 6 outside of Europe in North Africa and Asia. They are based at Warsaw Chopin. They have one 737-800." />
+  </profile>
+  <info real="True" from="2012" to="2199" />
+     <prefereds aircrafts="Boeing 737-800,Boeing 737 MAX 8"></prefereds>
+</airline>

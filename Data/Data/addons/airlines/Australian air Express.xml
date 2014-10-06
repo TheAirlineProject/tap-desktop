@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Australian air Express"  iata="XM" color="SeaGreen" country="116" CEO="Allen Joyce" mentality="Safe" market="Domestic" preferedairport="MEL" routefocus="Cargo" >
+    <narrative
+      narrative="Australian air Express is is cargo airline that is part of the Qantas Group. It was founded in 1992 as a joint venture with Australia Post, in 2012 Qantas acquired the other 50% of the airline. It calls Melbourne it's main hub. 16 airports across all of Australia are served, but none outside Australia. It's fleet consists of four 737-300F's,two BAe 146-300's, a BAe 146-100 and a Fairchild Metroliner." />
+  </profile>
+  <info real="True" from="1992" to="2199" />
+     <prefereds aircrafts="Boeing 737-300,BAe 146-200"></prefereds>
+    
+</airline>

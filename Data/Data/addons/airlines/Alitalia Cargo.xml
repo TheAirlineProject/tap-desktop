@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<airline>
+  <profile name="Alitalia Cargo" iata="AZ2" logo="AZ" color="Green" country="141" CEO="Andrea Ragnetti" mentality="Moderate" market="Global" preferedairport="FCO" routefocus="Cargo">
+    <narrative
+      narrative="Alitalia is a major Italian airline based in Rome, in operation since 1946. They fly to 86 destinations throughout the world on a fleet of 112 aircraft. The fleet primarily consists of Airbus aircraft." />
+  </profile>
+  <info real="True" from="1946" to="2199"></info>
+</airline>

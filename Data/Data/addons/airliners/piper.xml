@@ -1,0 +1,52 @@
+﻿<airliners>
+
+ <airliner manufacturer="Piper" name="PA-31 Navajo" price="250000"> <!--1900000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="12.40" length="9.94" range="1875" speed="383" fuelcapacity="568" consumption="0.204"
+           runwaylengthrequired="283" />
+    <capacity passengers="7" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1967" to="1984" rate="232" />
+  </airliner>
+ <airliner manufacturer="Piper" name="PA-31T Cheyenne" price="365000"> <!--2774000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="13.01" length="10.57" range="2739" speed="393" fuelcapacity="1446" consumption="0.143"
+           runwaylengthrequired="430" />
+    <capacity passengers="6" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1994" to="2199" rate="18" />
+  </airliner>
+   <airliner manufacturer="Piper" name="PA-42 Cheyenne" price="561000"> <!--4263000-->
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
+    <specs wingspan="14.53" length="13.23" range="4207" speed="523" fuelcapacity="14456" consumption="0.124"
+           runwaylengthrequired="447" />
+    <capacity passengers="9" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1979" to="2199" rate="6" />
+  </airliner>
+     <airliner manufacturer="Piper" name="PA-46 Malibu" price="384000"> <!--2918000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="13.11" length="8.65" range="2880" speed="363" fuelcapacity="454" consumption="0.126"
+           runwaylengthrequired="447" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1979" to="2199" rate="10" />
+  </airliner>
+  <airliner manufacturer="Piper Aircraft" name="PA-32 Cherokee Six" price="181000"> <!--1379000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="10.00" length="8.40" range="1361" speed="272" fuelcapacity="190" consumption="0.20"
+           runwaylengthrequired="320" />
+    <capacity passengers="6" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1965" to="2007" rate="187" />
+  </airliner>
+     <airliner manufacturer="Piper Aircraft" name="PA-34 Seneca" price="215000"> <!--1634000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="11.86" length="8.72" range="1611" speed="348" fuelcapacity="353" consumption="0.216"
+           runwaylengthrequired="280" />
+    <capacity passengers="6" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1971" to="2199" rate="114" />
+  </airliner>
+            <airliner manufacturer="Piper Aircraft" name="PA-60 Aerostar" price="220000"> <!--1672000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="11.18" length="10.61" range="1648" speed="390" fuelcapacity="625" consumption="0.237"
+           runwaylengthrequired="594" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1967" to="1984" rate="60" />
+     </airliner>
+</airliners>

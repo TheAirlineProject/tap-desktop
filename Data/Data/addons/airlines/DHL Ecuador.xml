@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="DHL Ecuador" iata="7T" logo="ES" color="Blue" country="210" CEO="Ken Allen" mentality="Safe" market="Domestic" preferedairport="UIO" routefocus="Cargo">
+  <narrative narrative="DHL Ecuador is a division of DHL which only serves Ecuador as a domestic operation. There base is Quito and the only other place they fly to is Guayaquil. They were founded in 1991. They have a single ATR 42-300 and used to have a Dassault Falcon 20." />
+   </profile>
+   <prefereds aircrafts="ATR 42-300,Dassault Falcon 20"></prefereds>
+    <info real="True" from="1991" to="2199" />
+    
+    <routes>
+	    <route destination1="UIO" destination2="GYE" opened="1991" closed="2199"/>
+	        </routes>
+ </airline>

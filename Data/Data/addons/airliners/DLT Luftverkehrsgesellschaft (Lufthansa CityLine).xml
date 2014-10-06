@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="DLT Luftverkehrsgesellschaft" iata="CL" color="Indigo" country="1002" CEO="Stephan Klar" mentality="Aggressive"
+           market="Regional " preferedairport="MUC">
+    <narrative narrative="Now called Lufthansa CityLine, DLT Luftverkehrsgesellschaft was founded in 1958 as Ostfriesische Lufttaxi, which they reorganzied into Ostfriesische Lufttransport in 1970 and broke away from in 1974, Ostfriesische Lufttransport lived until 2013 on it own. In 1978 DLT started working with Lufthansa on short-range international routes, and by 1988 all their operations were on behalf of Lufthansa. In March 1992 they officially became part of Lufthansa and were renamed Lufthansa CityLine. Today they have 57 planes, 24 Embraer 195's, 9 Embraer 190's, 14 CRJ-700's and 12 CRJ-900's. Their main bases are Munich and Frankfurt. They serve 75 destinations, all of them in Europe. " />
+  </profile>
+  <info real="True" from="1958" to="2199" />
+  <logos>
+<logo from="1958" to="1961" path="CL1958-1992"></logo>
+</logos>
+       <prefereds aircrafts="Embraer E-195,Embraer E-190,Bombardier CRJ700,Bombardier CRJ900,Bombardier CRJ200,Bombardier CRJ100,ATR 42-300,ATR 42-500,Avro RJ 85,Boeing 737-200 Adv.,Fokker F27,Fokker 50,HS .748,Short 330"></prefereds>
+</airline>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Bulgaria Air" iata="FB" color="Green" country="185" CEO="Yanko Georgiev" mentality="Aggressive" market="Global" preferedairport="SOF">
+    <narrative narrative="Bulgaria Air is the flagship carrier of Bulgaria and is based at Sofia Airport. Most of its 26 destinations are in Europe but also include Israel and soon Lebanon. As of Apriil 2014 they had 10 planes, three A319's, three A320's and four E-190s." />
+  </profile>
+  <info real="True" from="2002" to="2199" />
+</airline>

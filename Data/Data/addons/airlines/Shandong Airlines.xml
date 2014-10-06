@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Shandong Airlines" iata="SC" logo="SC2" color="Purple" country="148" CEO="Sun Yude " mentality="Aggressive" market="Regional" preferedairport="TNA">
+    <narrative narrative="Shandong Airlines makes its base at Jinan,Shandong,China. It is owned by Air China and also holds a 10% stake in Sichuan Airlines. Other focus cities include Beijing,
+    Qingdao and Yantai. They fly mainly domestic routes but also fly to Japan,South Korea and Taiwan and have more than 60 destinations. Their fleet of 75 planes are mostly 737s and a few CRJ's." />
+  </profile>
+  <info real="True" from="1994" to="2199" />
+  <prefereds aircrafts="Boeing 737-700,Boeing 737-800,Boeing 737 MAX 7,Boeing 737 MAX 8,Bombardier CRJ200,Bombardier CRJ700"></prefereds>
+</airline>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Travel Service Slovakia" logo="QS2"  iata="6D" color="DarkBlue" country="231" CEO="Roman Vik" mentality="Safe" market="Global " preferedairport="BTS">
+    <narrative
+      narrative="Travel Service Slovakia was founded in 2010 as a subsidiary of Czech Republic based Travel Service. They have 27 destinations across Europe,Africa and the Middle East. Most of these are popular vacation spots. They are based at Bratislava. They have one A320." />
+  </profile>
+  <info real="True" from="2010" to="2199" />
+     <prefereds aircrafts="Airbus A320-200"></prefereds>
+</airline>

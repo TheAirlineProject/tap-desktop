@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<airline>
+  <profile name="Aurora" iata="HZ"  color="DarkSlateBlue" country="149" CEO="Konstantin Sukhorebrik" mentality="Aggressive" market="Global " preferedairport="VVO" >
+    <narrative
+      narrative="Aurora is a recently founded subsidiary of Aeroflot, who owns 51% of Aurora. It was founded in late 2013 when it also began operations. It is based at Vladivostok on the Far Russian East coast near China and North Korea. It's first plane was an A319. It plans on having at least 40 planes by 2018, which include more A319's, 737's, Dash 8 Q300's,and Twin Ottters. As of September 2014 they serve 9 Russian cities in the Far East and 3 in Siberia, 2 in China, Hong Kong, 2 in Japan and 2 in South Korea. They also plan to have at least 128 routes in the near future. It is named after the historical Russian war ship Aurora, which saw many battles and wars in its service from 1903-1957, and it is still intact today. " />
+  </profile>
+  <info real="True" from="2013" to="2199" />
+</airline>

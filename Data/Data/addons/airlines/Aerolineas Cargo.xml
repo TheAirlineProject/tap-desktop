@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Aerolineas Cargo" iata="AR2" logo="AR" color="LightBlue" country="106" CEO="Nelson Ramiz" mentality="Safe" market="Global" preferedairport="AEP" routefocus="Cargo">
+    <narrative
+      narrative="Aerolinas Cargo is the cargo division of Aerolineas Argentinas, Argentina's largest airline." />
+  </profile>
+  <info real="True" from="1950" to="2199"></info>
+</airline>

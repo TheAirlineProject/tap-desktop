@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Ryukyu Air Commuter" iata="NU2" logo="NU2" color="DarkRed" country="171" CEO="Takeshi Ichinosawa" mentality="Safe" market="Domestic" preferedairport="OKA">
+    <narrative narrative="Ryukyu Air Communter is an airline based at Okinawa, Naha, Japan. It is 72.9% owned by Japan Transocean Air, which in turn JTA is owned 51% by Japan Airlines, making RAC a subsidiary of Japan Airlines too. They take their name from the chain of islands that Okinawa is in. They serve 10 destinations and have five planes, four Dash 8-100's and one Dash 8-300. " /></profile>
+  <info real="True" from="1985" to="2199" />
+  <prefereds aircrafts="Dash 8-100,Dash 8-300"></prefereds>
+</airline>

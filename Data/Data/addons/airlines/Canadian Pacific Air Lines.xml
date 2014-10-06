@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Canadian Pacific Air Lines" iata="CP2" logo="CP2" color="DarkBlue" country="113" CEO="Donald J. Carty" mentality="Aggressive" market="Global" preferedairport="YVR">
+    <narrative narrative=" Canadian Pacific Air Lines was founded in 1942 and existed until 1987 when they merged with Nordair and Pacific Western to form Canadian Airlines. They were based at Vancouver and at the end served 38 destinations and had a fleet of 68 planes. They flew globally. They had everything from 737's to 747's, and DC-10's to DC-3's.  " /></profile>
+  <info real="True" from="1942" to="1987" />
+  <prefereds aircrafts="Boeing 727-100,Boeing 727-200,Boeing 727-200C,Boeing 737-200,Boeing 737-200 Adv.,Boeing 737-300,Boeing 747-100,Boeing 747-200B,Boeing 747-400,Boeing 707-120B,Douglas DC-3,Douglas DC-4-1009,Douglas DC-6,Douglas DC-8-51,Douglas DC-8-61,Douglas DC-8-40,MD DC-10-30,DH 106 Comet 4C,Bristol Britannia 310"></prefereds>
+</airline>

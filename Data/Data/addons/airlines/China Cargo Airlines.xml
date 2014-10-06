@@ -1,0 +1,13 @@
+<airline>
+  <profile name="China Cargo Airlines" iata="CK" logo="CK" color="Blue" country="148" CEO="Liu Shaoyang" mentality="Aggressive" market="Global" preferedairport="SHA" routefocus="Cargo">
+  <narrative narrative="China Cargo Airlines is the cargo division of China Eastern Airlines. It makes its home at Shanghai Hongqiao and Shanhai Pudong. It is also partly owned by China Ocean Shipping. It was founded in 1998. They have 12 planes, five 747-400F's, six 777F's and a 757-200F." />
+   </profile>
+   <prefereds aircrafts="Boeing 747-400F,Boeing 747-400ERF,Boeing 757-200F,Boeing 777F"></prefereds>
+    <info real="True" from="1998" to="2199" />
+    
+    
+    
+   
+    
+    
+</airline>

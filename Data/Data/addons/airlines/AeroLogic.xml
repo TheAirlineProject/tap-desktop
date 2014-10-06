@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="AeroLogic" iata="3S" logo="3S" color="Yellow" country="1002" CEO="Erich Maltzahn" mentality="Moderate" market="Global" preferedairport="FRA" routefocus="Cargo">
+  <narrative narrative="AeroLogic is a joint venture between DHL and Lufthansa Cargo. They both own 50% of the airline. For this game they are part of DHL. It was founded in 2007 but didn't start operation until 2009. It has hubs at both Leipzig and Frankfurt. During the week they mainly fly for DHL to Asia. On weekends they fly to the US on behalf of Lufthansa Cargo. They have eight 777F's. They serve 22 airports, all in the US,Europe and Asia. " />
+   </profile>
+   <prefereds aircrafts="Boeing 777F"></prefereds>
+    <info real="True" from="2008" to="2199" />
+ </airline>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Canada" iata="AC2" logo="AC2" color="DarkSlateBlue" country="113" CEO="David Richardson"
+           mentality="Safe" market="Global" preferedairport="YYZ"  routefocus="Cargo" >
+    <narrative
+      narrative="Air Canada Cargo is the cargo division of Air Canada. It uses the cargo space on passenger airlines, and also has freighters dedicated to the Canada-Asia and Canada-Europe sectors of cargo distribution." />
+  </profile>
+  <info real="True" from="1936" to="2199"></info>
+  <prefereds aircrafts="Douglas DC-8-62F,Boeing 777F"></prefereds>
+
+</airline>

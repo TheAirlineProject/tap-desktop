@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="KD Avia" iata="KD" color="Orange" country="149" CEO=" Valery Mikhailov " mentality="Moderate" market="Global" preferedairport="KGD">
+    <narrative narrative="KD Avia, or known as Kaliningrad Avia most of it's life, was an airline based at Kaliningrad,Russia, the Russian exclave which lays on the Baltic Sea coast and between Lithuania and Poland. Meaning that is is not connected by land to the rest of Russia. It was founded in 1945 as part of Aeroflot and broke away in 1992 as many airlines did following the breakup of the USSR. In it's last years, which would be 2009, it grew a lot. At the end they served 11 Russian airports besides KGD, 5 in Germany, and 6 others in 6 various European countries. They also served Asia via Israel and Kazakhstan. At the end they had 19 737-300's and had 25 A319's on order to replace them. The company went bankrupt and ceased operation on September 8,2009. And in fact an investigation found it's two owners were responsible for investing company money in things that didn't make sense to invest into for an airline company and made a lot of business deals with friends of the owners that in no way benefitted the company. They were charged with abuse of power and intentional bankruptcy." />
+  </profile>
+  <info real="True" from="1945" to="2009" />
+  
+  <prefereds aircrafts="Boeing 737-300,Airbus A319-100"></prefereds>
+</airline>

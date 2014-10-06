@@ -1,0 +1,11 @@
+﻿<airliners>
+
+     <airliner manufacturer="GippsAero" name="GA8 Airvan" price="251000"> <!--1908000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="12.28" length="8.95" range="1352" speed="222" fuelcapacity="340" consumption="0.166"
+           runwaylengthrequired="488" />
+    <capacity passengers="7" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="2000" to="2199" rate="17" />
+      </airliner>
+  
+</airliners>

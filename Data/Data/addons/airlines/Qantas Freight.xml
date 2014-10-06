@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Qantas Freight" logo="QF2"  iata="QF2" color="NavajoWhite" country="116" CEO="Allen Joyce" mentality="Aggressive" market="Global " preferedairport="SYD" routefocus="Cargo" >
+    <narrative
+      narrative="Qantas Freight is the cargo division of Qantas. It was founded in 2001 and is also based at Sydney. Besides putting freight onto passenger airline cargo holds they have 12 planes operate in their name. Three 747-400F's, one operated by Atlas Air, a 767-300F, operated by it's subsidiary Express Freighters Australia, four 737-300F's as aoperated by Express, three BAe-146's operated by Cobham and a Saab 340 by Pel-Air." />
+  </profile>
+  <info real="True" from="2001" to="2199" />
+     <prefereds aircrafts="Boeing 747-400F,Boeing 767-300F,Boeing 737-300,Saab 340B,BAe 146-200"></prefereds>
+      <subsidiaries>
+    <subsidiary name="Express Freighters Australia" IATA="EFA" homebase="SYD" mentality="Moderate" market="Domestic" logo="EFA"></subsidiary>
+  </subsidiaries>
+
+</airline>

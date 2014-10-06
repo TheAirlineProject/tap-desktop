@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="AeroMexico Cargo" iata="AM2" logo="AM" color="Navy" country="157" CEO="Andres Labastida" mentality="Moderate" market="Global" preferedairport="MEX" routefocus="Cargo">  <narrative narrative="AeroMexico Cargo is the cargo division of AeroMexico. Also based at Mexico City." />
+  </profile>
+   <info real="True" from="1934" to="2199"></info>
+</airline>

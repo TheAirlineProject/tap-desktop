@@ -1,0 +1,17 @@
+﻿<airliners>
+
+ <airliner manufacturer="Britten" name="BN-2A Islander" price="230000"> <!--1747000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="14.94" length="10.86" range="1400" speed="257" fuelcapacity="519" consumption="0.183"
+           runwaylengthrequired="335" />
+    <capacity passengers="9" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1965" to="2199" rate="26" />
+  </airliner>
+ <airliner manufacturer="Britten" name="BN Trislander" price="430000"> <!--3266000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="16.15" length="15.01" range="1609" speed="249" fuelcapacity="746" consumption="0.154"
+           runwaylengthrequired="594" />
+    <capacity passengers="17" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1970" to="1980" rate="7" />
+  </airliner> 
+</airliners>

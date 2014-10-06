@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Hebei Airlines" iata="NS" logo="NS2" color="Red" country="148" CEO="Lan Xinguo" mentality="Aggressive"  market="Domestic" preferedairport="SJW"> 
+ <narrative narrative="Hebei Airlines is a subsidiary of Sichuan Airlines and is based at Shijiazhuang in the Hebei Province. It began operations in 2007 and was called Northeast Airlines. It became Hebei Airlines in 2010 after it was transferred from the ownership of Shenyang Aircraft to Sichuan Airlines and essentially started as a new company. They have five Embraer 190's, five Embraer 145s',five 737-800's and two 737-700's. They also have five more Embraer 190's on order. "/>
+</profile>
+  <info real="True" from="2010" to="2199"></info>
+     <prefereds aircrafts="Boeing 737-700,Boeing 737-800,Embraer ERJ145 LR,Embraer E-190,Embraer E-195"></prefereds>
+</airline>
+

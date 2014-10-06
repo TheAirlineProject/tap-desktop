@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<airline>
+  <profile name="Saudia Cargo" iata="SV2" logo="SV" color="Blue" country="136" CEO="Khalid Abdullah Almolhem"
+           mentality="Aggressive" market="Global " preferedairport="JED" routefocus="Cargo"> <narrative narrative="Saudia Cargo is the cargo division of Saudia, aka Saudi Arabian Airlines. They have four MD-11F's, two 747-8F's,four 747-400F's,and five 747-200F's."/>
+  </profile>
+  <info real="True" from="1945" to="2199" />
+  <prefereds aircrafts="Boeing 747-400F,Boeing 747-8F,MD-11F,Boeing 747-200F"></prefereds>
+</airline>

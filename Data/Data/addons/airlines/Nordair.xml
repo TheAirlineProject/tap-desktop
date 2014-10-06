@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Nordair" iata="ND"  color="LightBlue" country="113" CEO="Frank Henley" mentality="Safe" market="Global" preferedairport="YUL">
+    <narrative narrative="Nordair was an airline that existed from 1947 to 1987, when they merged with Canadian Pacific Airlines and Pacific Western to become Canadian Airlines. They flew at least to 23 domestic airports and were based at both Montreal airports. Outside Canada they flew mostly charters to Europe,the U.S,Mexico and the Caribbean. There were a few scheduled flights to the U.S. Some of the planes they had include 737-200's,SUper Constellations,DC-8's, and L-188A's to name a few." /></profile>
+  <info real="True" from="1947" to="1987" />
+  <prefereds aircrafts="Boeing 737-200,Boeing 737-200 Adv.,Douglas DC-3,Douglas DC-4-1009,Douglas DC-8-51,Douglas DC-8-61,Lockheed L-1011-1,Lockheed L-1011-200,Lockheed L-1011-500,Lockheed L-188A,Convair 990A,BAC One-Eleven 200,Fokker F27"></prefereds>
+</airline>

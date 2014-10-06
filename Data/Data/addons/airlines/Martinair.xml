@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Martinair" iata="MP" logo="MP" color="Tomato" country="179" CEO="Marcel de Nooijer" mentality="Moderate"  market="Global" preferedairport="AMS" >
+ <narrative narrative="Martinair as a passenger airline ceased in 2011 but its cargo operation still lives on. Martinair was founded in 1958 and only a few years later KLM bought most of it and it became a subsidiary to KLM. Its base was also Amsterdam. The only place the passenger side of the airline never flew to in its 53 year run was Australia, it served several destinations every where else at least at one time during it's life. Most of these were in Europe and the America's. "/>
+</profile>
+  <info real="True" from="1958" to="2011"></info>
+     </airline>
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Jetconnect" logo="QF4"  iata="QF4" color="NavajoWhite" country="186" CEO="Alan Joyce" mentality="Moderate" market="Regional" preferedairport="AKL" >
+    <narrative
+      narrative="Jetconnect is a subsidiary or the Australian airline Qantas. They are based at Auckland,New Zealand and Wellington,New Zealand. It was started in 2001. They fly between New Zealand and Australia and used to do domestic New Zealand flights but suspended those flights in 2009. They have 8 737-800's." />
+  </profile>
+  <info real="True" from="2001" to="2199" />
+     <prefereds aircrafts="Boeing 737-800,Boeing 737 MAX 8"></prefereds>
+</airline>

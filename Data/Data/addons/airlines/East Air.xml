@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<airline>
+  <profile name="East Air" iata="EG"  color="Violet" country="240" CEO="Anatoly Galunov" mentality="Moderate" market="Global" preferedairport="TJU" >
+    <narrative
+      narrative="East Air is the first private airline in Tajikistan. They are also the first operator of Airbus and Boeing aircraft in the country. They commenced operation in 2007 and have a hub at Kulob Airport. They operate at 3 airports in Tajikisrab, Bishkek in Kyrgyzstan and seven in Russia. There four planes are two A320's, a 737-300 and a 737-400. The 737-300 is operated  for Daallo Airlines, an airline from the African country of Djibouti." />
+  </profile>
+  <info real="True" from="2007" to="2199" />
+  <prefereds aircrafts="Airbus A320-200,Boeing 737-400,Boeing 737-300"></prefereds>
+
+</airline>

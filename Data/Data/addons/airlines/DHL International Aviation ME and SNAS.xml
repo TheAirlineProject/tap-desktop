@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="DHL International Aviation ME" iata="ES" logo="ES" color="Yellow" country="151" CEO="Phil Couchman" mentality="Aggressive" market="Global" preferedairport="BAH" routefocus="Cargo">
+  <narrative narrative="DHL International Aviation ME was the first of the subsisidiary airlines founded by DHL in 1979. DHL Aviation itself was founded in 1969. In the present day they are the Middle Eastern operations of DHL and are based at Bahrain. They however fly to Europe,Asia, and Africa too, making them nearly a global operation themselves, and are so for the purpose of this game. They currently have four 757-200F's and two 767-200F's. THey have a subisidiary that was founded at the same time, SNAS Aviation based at Riyadh in Saudia Arabia. That division has four 727-200F's. In the past it has also operated Fairchild Swearingen's and Metroliner's." />
+   </profile>
+   <prefereds aircrafts="Boeing 727-100C,Boeing 727-200F,Boeing 757-200PF,Boeing 767-200,Boeing 767-300F,Fairchild Swearingen Merlin,Fairchild Swearingen Merlin IV,Fairchild Swearingen Metroliner"></prefereds>
+    <info real="True" from="1979" to="2199" />
+    <subsidiaries>
+    <subsidiary name="SNAS Aviation" IATA="ES2" homebase="RUH" mentality="Moderate" market="Regional" logo="ES"></subsidiary>
+  </subsidiaries>
+
+</airline>

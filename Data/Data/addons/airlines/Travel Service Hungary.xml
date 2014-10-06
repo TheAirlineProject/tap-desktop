@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Travel Service Hungary" iata="7O" logo="QS2" color="DarkBlue" country="159" CEO="Roman Vik" mentality="Moderate" market="Global" preferedairport="BUD">
+    <narrative narrative="Travel Service Hungary was founded in 2001 as a subsidiary of Travel Service which is based in Prague,Czech Republic. TS Hungary is based at Budapest,Hungary. They have two 737-800's. They travel to 14 places in Europe. Five in Greece, four in Spain, the two countries with the most, and 3 in Egypt and 2 in Tunisia, 1 in Morocco. And also Israel and Jordan." /></profile>
+  <info real="True" from="2001" to="2199" />
+  
+  <prefereds aircrafts="Boeing 737-800"></prefereds>
+</airline>

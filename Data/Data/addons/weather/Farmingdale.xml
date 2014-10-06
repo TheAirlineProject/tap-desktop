@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Farmingdale, NY">
+  <months>
+    <month month="1" precipitation="85">
+      <temp min="-3" max="6" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="2" precipitation="57">
+      <temp min="-3" max="7" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="3" precipitation="99">
+      <temp min="0" max="11" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="4" precipitation="96">
+      <temp min="5" max="16" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="5" precipitation="103">
+      <temp min="11" max="22" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="6" precipitation="98">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="7" precipitation="101">
+      <temp min="19" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="8" precipitation="114">
+      <temp min="19" max="29" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="9" precipitation="108">
+      <temp min="15" max="25" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="10" precipitation="97">
+      <temp min="9" max="19" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="11" precipitation="85">
+      <temp min="4" max="13" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+    <month month="12" precipitation="87">
+      <temp min="-1" max="8" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>

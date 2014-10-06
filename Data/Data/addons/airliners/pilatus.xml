@@ -1,0 +1,25 @@
+﻿<airliners>
+
+ <airliner manufacturer="Pilatus" name="Pilatus PC-6 Turbo-Porter" price="214500"> <!--1630000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="15.87" length="11.00" range="1612" speed="215" fuelcapacity="886" consumption="0.133"
+           runwaylengthrequired="195" />
+    <capacity passengers="10" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1961" to="2199" rate="11" />
+  </airliner>
+ <airliner manufacturer="Pilatus" name="Pilatus PC-12" price="373000"> <!--2833500-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="16.23" length="14.40" range="2804" speed="500" fuelcapacity="1143" consumption="0.178"
+           runwaylengthrequired="450" />
+    <capacity passengers="9" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1994" to="2199" rate="65" />
+  </airliner>
+   <airliner manufacturer="Pilatus" name="Pilatus PC-24" price="1185000"> <!--9000000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Jet" />
+    <specs wingspan="17.00" length="16.80" range="3610" speed="750" fuelcapacity="3363" consumption="0.207"
+           runwaylengthrequired="450" />
+    <capacity passengers="10" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2017" to="2199" rate="43" />
+  </airliner>
+  
+</airliners>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Network Aviation" iata="NA" logo="NA2" color="IndianRed" country="116" CEO="Hugh Davin" mentality="Moderate" market="Domestic" preferedairport="PER" >
+    <narrative
+      narrative="Network Aviation is a part of Qantas. They are based out of Perth and in February 2011 Qantas bought them. Their primary business is flying workers into and out of the many mines of Australia. There are 19 mines on their normal schedule. They now operate a route from Perth to Learmonth three times a week starting in May 2014 also. After Qantas bought them they purchased ten Fokker 100's  and have twelve of them now. They have also had Embraer 120's, and when they just started out in 1998 they had some Cessna 441 Conquests, Cessna 310's and Super King Airs." />
+  </profile>
+  <info real="True" from="1998" to="2199" />
+     <prefereds aircrafts="Fokker 100,EMB 120 Brasilia"></prefereds>
+    
+</airline>

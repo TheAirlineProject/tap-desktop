@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="DHL Aero Expreso" iata="D5" logo="ES" color="Yellow" country="191" CEO="Felix Picardi" mentality="Safe" market="Global" preferedairport="PTY" routefocus="Cargo">
+  <narrative narrative="DHL Aero Express is a Panama based division of DHL. They fly to Central and South America. Founded in 1996 by Felix Picardi who still owns 51% of the airline along with DHL owning the other 49%. Some of the places they to are Aruba,Guatemala,Miami,Curacao and Costa Rica. They have four 757-200F's." />
+   </profile>
+   <prefereds aircrafts="Boeing 757-200PF"></prefereds>
+    <info real="True" from="1996" to="2199" />
+ </airline>

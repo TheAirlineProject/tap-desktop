@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Austral Lineas Aereas" iata="AU" color="Tomato" country="106" CEO="Mariano Recalde"
+           mentality="Aggressive" market="Regional" preferedairport="AEP">
+    <narrative
+      narrative="Austral Lineas Aereas is a subsidiary of Aerolineas Argentinas. It was founded in 1957 and was a competitor to its current parent until the late 90s even doing better at times in the domestic market. In 1998 Iberia bought most of Aerolineas Argentinas, and then Aerolineas Argentinas began buying Austral. Today as a subsidiary it does mostly domestic routes to 33 or so Argentina airports, 4 in Brazil, 2 in Chile,and one each in Uruguay and Paraguay. They have 22 Embraer 190's. " />
+  </profile>
+  <info real="True" from="1957" to="2199"></info>
+  <prefereds aircrafts="Embraer E-190"></prefereds>
+</airline>

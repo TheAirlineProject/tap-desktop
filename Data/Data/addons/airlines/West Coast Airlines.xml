@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="West Coast Airlines" iata="WCA" logo="WCA" color="Black" country="122" CEO="Jay Smith" mentality="Moderate" market="Regional" preferedairport="BFI">
+    <narrative narrative="West Coast Airlines existed from 1941 to 1968 when it merged with Pacific and Bonanza to become Air West. They were based at Seattle's Boing Field. Some of the places they flew to were Spokane,WA, Portland,OR Boise,ID Eugene,OR Medford,OR Pasco,WA Yakima,WA Walla Walla,WA Salt Lake City,UT and San Francisco,CA, which were all DC-9 served. They also had some F-27 Fairchild's. The only international route they had was between Spokane and Calgary,,Alberta,Canada. " />
+  </profile>
+  <info real="True" from="1941" to="1968" />
+</airline>

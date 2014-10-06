@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<airline>
+  <profile name="Vieques Air Link" iata="V4"  color="OrangeRed" country="122" CEO=" Osvaldo Gonzalez-Duriex" mentality="Safe" market="Domestic" preferedairport="VQS" >
+    <narrative
+      narrative="Vieques Air Link is the primary airline that connects the island of Vieques to the Puerto Rican mainland. It lays off the east coast of Puerto Rico. It also links the island to the other smaller island of Culebra also in the territory of Puerto Rico. In total they operate to 6 Puerto Rican airports and 2 in the US Virgin Islands. It was founded in 1965. The current fleet consists of five BN Islanders and two Trislanders and three Cessna Caravans. In 1989 they lost all their planes in Hurricane Hugo, but it soon replaced them with the Islanders and Trislanders they still have. " />
+  </profile>
+  <info real="True" from="1965" to="2199" />
+  <prefereds aircrafts="BN-2A Islander,BN Trislander,Cessna 208B"></prefereds>
+
+</airline>

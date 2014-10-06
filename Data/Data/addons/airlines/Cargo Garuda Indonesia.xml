@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<airline>
+  <profile name="Cargo Garuda Indonesia" iata="GA2" logo="GA" color="LightSlateGray" country="162" CEO="Emirsyah Satar"
+           mentality="Safe" market="Global " preferedairport="CGK" routefocus="Cargo">
+    <narrative
+      narrative="Cargo Garuda Indonesia is the cargo division of Indonesia's flag carrier of the same name." />
+  </profile>
+  <info real="True" from="1949" to="2199" />
+</airline>

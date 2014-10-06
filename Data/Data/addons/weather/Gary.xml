@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Gary, IN">
+  <months>
+    <month month="1" precipitation="17">
+      <temp min="-7" max="1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="25">
+      <temp min="-5" max="4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="40">
+      <temp min="0" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="58">
+      <temp min="6" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="109">
+      <temp min="11" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="87">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="95">
+      <temp min="19" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="98">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="60">
+      <temp min="15" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="66">
+      <temp min="8" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="62">
+      <temp min="3" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="31">
+      <temp min="-5" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

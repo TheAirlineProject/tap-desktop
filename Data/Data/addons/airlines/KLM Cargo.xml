@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="KLM Cargo" iata="KL2" logo="KL2" color="Cyan" country="179" CEO="PF Hartman" mentality="Safe"  market="Global" preferedairport="AMS" routefocus="Cargo">
+ <narrative narrative="KLM Cargo is one of the cargo divisions of the Dutch airline KLM. The other is Martinair Cargo. "/>
+</profile>
+  <info real="True" from="1919" to="2199"></info>
+     <prefereds aircrafts="Boeing 747-400ERF,Boeing 747-400F,MD-11F"></prefereds>
+</airline>
+

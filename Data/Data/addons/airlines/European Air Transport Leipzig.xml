@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="European Air Transport Leipzig" iata="QY" logo="ES" color="Yellow" country="1001" CEO="Markus Otto" mentality="Aggressive" market="Global" preferedairport="LEJ" routefocus="Cargo">
+  <narrative narrative="European Air Transport Leipzig is as its name hints at, based in Germany at Leipzig/Halle Airport. It was founded in 2005 but did not start operations until 2010. It covers 56 or so countries in Europe,the Middle East and Africa. They have 40 planes, 19 A300-600F's,11 757-200F's and its partners Swiftair and Cargoair and Europe Airpost have 9 737-300F's and a 737-400F." />
+   </profile>
+   <prefereds aircrafts="Airbus A300-600F,Airbus A300C4-620,Boeing 737-300,Boeing 737-400,Boeing 757-200PF"></prefereds>
+    <info real="True" from="2008" to="2199" />
+ </airline>

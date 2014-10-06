@@ -1,0 +1,22 @@
+﻿<airline>
+<profile name="China Southern Cargo" iata="CZ2" logo="CZ" color="Khaki" country="148" CEO="Si Xianmin" mentality="Moderate" market="Global" preferedairport="PVG" routefocus="Cargo" > 
+<narrative narrative="This is the cargo division of China Southern Airlines. It's main hub is not the same however, the cargo division is based out of Shanghai Pudong instead of Guangzhou. It does operate their though too." /> 
+<info real="True" from="1988" to="2199" />
+
+</profile>
+
+
+   <prefereds aircrafts="Boeing 747-400F,Boeing 777F"></prefereds>
+    
+    
+    
+    
+  <airliners>
+                   
+		  <airliner type="Boeing 777F" early="8" late="12"></airliner>
+   		
+</airliners>
+
+
+</airline>
+

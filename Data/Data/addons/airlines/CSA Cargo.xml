@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="CSA Cargo" iata="OK2" logo="OK" color="Red" country="166" CEO="Philippe Moreels" mentality="Moderate" market="Global" preferedairport="PRG" routefocus="Cargo">
+    <narrative narrative="CSA Cargo is the cargo division of Czech Airlines." />
+  </profile>
+  <info real="True" from="1923" to="2199" />
+</airline>

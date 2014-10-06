@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="China Postal Airlines" iata="8Y" color="DarkGreen" country="148" CEO="Shui Jian Guo" mentality="Aggressive"  market="Regional" preferedairport="NKG"> routefocus="Cargo">
+ <narrative narrative="China Postal Airlines is the air freight division of the Chinese Postal Bureau, who owns 51% of the airline. The other 49% is owned by China Southern Airlines. Their main base is Nanjing also known as Nanking. It was founded in November 1996 and began operation a few months later in February 1997. At first they were planned to only be a domestic carrier, but in 2006 they started service to South Korea and Japan. They also now do charter cargo services to other countries. They have 21 planes. 12 of these are 737-300's, 8 are 737-400's and one of them is a 757-200F. They fly to over 300 domestic airports. "/>
+</profile>
+  <info real="True" from="1997" to="2199"></info>
+     <prefereds aircrafts="Boeing 737-200C,Boeing 737-300,Boeing 737-400,Boeing 757-200PF"></prefereds>
+</airline>
+

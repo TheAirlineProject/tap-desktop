@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Iceland" logo="NY2"  iata="NY2" color="MidnightBlue" country="121" CEO="Arni Gunnarsson" mentality="Moderate" market="Regional " preferedairport="RKV" >
+    <narrative
+      narrative="Air Iceland is a subsidiary of Icelandair. They make thier home at Reykjavik Airport and have a focus city at Akureyri. In February 2014 they had five Fokker 50's and two Dash 8-200's. They have also had Dash 8-100's and ATR 42's. They serve 7 domestic airports and 5 in Denmark owned Greenland, and Vagar in the Faroe Islands also Denmark ruled. 2 of the domestic flights are operated by Nordlandair." />
+  </profile>
+  <info real="True" from="1997" to="2199" />
+     <prefereds aircrafts="Fokker 50,Bombardier Dash 8-200,Bombardier Dash 8-100,ATR 42-300,ATR 42-500"></prefereds>
+</airline>

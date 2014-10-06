@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<airline>
+   <profile name="Vietnam Airlines Cargo" iata="VN2" logo="VN" color="Aqua" country="1007" CEO="Pham Viet Thanh" mentality="Safe"
+           market="Global" preferedairport="HAN" routefocus="Cargo">
+    <narrative
+      narrative="This is the cargo division of Vietnam Airlines." />
+  </profile>
+  <info real="True" from="1956" to="2199" />
+</airline>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Grand China Air" iata="CN" color="MediumVioletRed" country="148" CEO="Chen Feng" mentality="Safe"  market="Domestic" preferedairport="HAK">
+ <narrative narrative="Grand China Air is a subsidiary of Hainan Airlines and is a division of a holding company called Grand China Air Holding Company. It's base is Haikou on the island of Hainan just like its parent. They have a small fleet of three 737-800's as of 2013. The airline was created in 2007 and assets of three airlines were merged into the holding company, these would be Chang'an Airlines, China Xinhua Airlines and Tianjin Airlines. Tianjin is the only of those three to still have its own identity, being part of Grand China Holding Company but being a large subsidiary of Hainan Airlines at the same time. "/>
+</profile>
+  <info real="True" from="2007" to="2199"></info>
+     <prefereds aircrafts="Boeing 737-800,Boeing 737 MAX 8"></prefereds>
+</airline>
+

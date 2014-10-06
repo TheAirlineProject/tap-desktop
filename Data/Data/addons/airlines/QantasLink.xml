@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="QantasLink" logo="QF3"  iata="QF3" color="NavajoWhite" country="116" CEO="Allen Joyce" mentality="Aggressive" market="Regional" preferedairport="BNE" >
+    <narrative
+      narrative="QantasLink is a subsidiary of the largest Australian airline, Qantas. It was founded in 2002 and makes its base at many airports, including Brisbane,Cairns,Melbourne,Sydney, and Perth. They have a fleet of 69 planes as of July 2014 and serves 56 destinations, all of them but Port Moresby,Papua New Guinea are in Australia. There are three airlines that are use the QantasLink name. Cobham Aviation which uses 18 717's, and who has flights in their own name too, Eastern Australian which uses 16 Dash 8-300's and 3 Dash 8-200's and Sunstate, which uses 31 Dash 8-400's. Of those three Eastern Australia Airlines and Sunstate are owned by Qantas and are considered to simply be subsidiaries of QantasLink." />
+  </profile>
+  <info real="True" from="2002" to="2199" />
+     <prefereds aircrafts="Bombardier Dash 8-400,Boeing 717-200,Bombardier Dash 8-300,Bombardier Dash 8-200,Bombardier Dash 8-400NextGen"></prefereds>
+</airline>

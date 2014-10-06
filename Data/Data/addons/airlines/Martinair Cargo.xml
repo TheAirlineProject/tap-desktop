@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Martinair Cargo" iata="MP2" logo="MP" color="Tomato" country="179" CEO="Marcel de Nooijer" mentality="Aggressive"  market="Global" preferedairport="AMS" routefocus="Cargo" >
+ <narrative narrative="Martinair as a passenger airline ceased in 2011 but its cargo operation still lives on. Martinair was founded in 1958 and only a few years later KLM bought most of it and it became a subsidiary to KLM. They share cargo duties with KLM Cargo both being part of KLM-Air France. Martinair Cargo is mostly responsible for the America's and UK. As of December 2013 it is loaning four 747-400ERF's from KLM Cargo, and has six MD-11F's of its own. "/>
+</profile>
+  <info real="True" from="1958" to="2199"></info>
+     </airline>
+

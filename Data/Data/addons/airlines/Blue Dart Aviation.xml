@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Blue Dart Aviation" iata="BZ" logo="BZ" color="Blue" country="152" CEO="Shivam Rai" mentality="Safe" market="Regional" preferedairport="MAA" routefocus="Cargo">
+  <narrative narrative="Blue Dart Aviation is a subsidiary of DHL. It is based at Chennai,India and serves 6 other Indian airports on a regular basis. They also offer cargo charters in the region outside of India. They have five 757-200F's and one 737-200. They were founded in 1995 and started operations in 1996 and were originally part of Blue Dart Express, a Mumbai based package distribution company. They were partners with FedEx for a while but joined with DHL on October 1st,2002 and have remained with DHL since. Their first two planes were 737-200's bought from Indian Airlines. Their main time of operation is night, shipping overnight express packages." />
+   </profile>
+   <prefereds aircrafts="Boeing 737-200C,Boeing 757-200PF"></prefereds>
+    <info real="True" from="1995" to="2199" />
+ </airline>

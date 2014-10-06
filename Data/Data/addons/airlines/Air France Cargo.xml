@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air France Cargo" iata="AF2" logo="AF" color="LimeGreen" country="140" CEO="Alexandre de Juniac" mentality="Safe" routefocus="Cargo"
+           market="Global" preferedairport="CDG">
+    <narrative
+      narrative="Air France Cargo is the cargo division of Air France. They had 4 747-400ERF's and  777F's as of September 2014. There are three 777F's on order and the 747's are expected to be phased out in 2015." />
+  </profile>
+  <info real="True" from="1933" to="2199"></info>
+  <prefereds aircrafts="Boeing 747-400ERF,Boeing 777F"></prefereds>
+</airline>

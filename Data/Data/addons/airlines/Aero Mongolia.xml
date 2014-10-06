@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Aero Mongolia" iata="M0" color="LightBlue" country="241" CEO="G. Munkhbaatar" mentality="Moderate"
+           market="Global" preferedairport="ULN">
+  <narrative narrative="Aero Mongolia is based at Chinggis Khan Airport in the countries capital and largest city of Ulan Bator. They were founded in 2002. They serve 11 domestic destinations and Hohhot,China and Irkutsk,Russia. They used to serve Urumqi and Tianjin in China, and Cheongju,South Korea. They have 4 Fokker 50's and had some Fokker 100's at one time too."/>
+</profile>
+  <info real="True" from="2002" to="2199"></info>
+     <prefereds aircrafts="Fokker 50,Fokker 100"></prefereds>
+</airline>
+

@@ -1,0 +1,17 @@
+﻿<airliners>
+
+ <airliner manufacturer="Short" name="Short 360" price="2145000"> <!--16302000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="22.80" length="21.58" range="1178" speed="400" fuelcapacity="1742" consumption="0.339"
+           runwaylengthrequired="1189" />
+    <capacity passengers="39" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1981" to="1991" rate="17" />
+  </airliner>
+ <airliner manufacturer="Short" name="Short 330" price="1650000"> <!--12540000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="22.76" length="17.69" range="1695" speed="352" fuelcapacity="2551" consumption="0.207"
+           runwaylengthrequired="1189" />
+    <capacity passengers="30" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1974" to="1992" rate="7" />
+  </airliner> 
+</airliners>

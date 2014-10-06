@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="DHL Air UK" iata="D0" logo="ES" color="Yellow" country="130" CEO="Phil Couchman" mentality="Aggressive" market="Regional" preferedairport="EMA" routefocus="Cargo">
+  <narrative narrative="DHL Air UK is the United Kingdom branch of DHL. It is based at East Midlands Airport. It was founded in 1982 as Elan Air. In August 1989 it became DHL Air UK. It is mostly a European operation. They have 23 757-200F's and 4 767-300F's. In the past they have also operated Armstrong Whitworth Argosy's and Handley Page Dart Heralds and Vickers Merchantman's. " />
+   </profile>
+   <prefereds aircrafts="Boeing 757-200PF,Boeing 767-300F"></prefereds>
+    <info real="True" from="1982" to="2199" />
+ </airline>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Yangtze River Express" iata="Y8" color="Tomato" country="148" CEO="Chen Feng" mentality="Moderate"  market="Global" preferedairport="PVG"> routefocus="Cargo">
+ <narrative narrative="Yangtze River Express is the cargo division of Hainan Airlines and is based at Shanghai Pudong. It was founded in 2003. The aircraft in it's fleet include 14 737-300F's, 3 747-400F's and a single A330-200F. Some of the places they operate in outside of China are Frankfurt Hahn,Luxembourg,Prague,Amsterdam,Los Angeles and Dallas. "/>
+</profile>
+  <info real="True" from="2003" to="2199"></info>
+     <prefereds aircrafts="Boeing 737-300,Boeing 747-400F,Airbus A330-200F"></prefereds>
+</airline>
+
