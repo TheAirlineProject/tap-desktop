@@ -1,0 +1,45 @@
+﻿<Window x:Class="TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpRouteFlights"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:uc="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
+        xmlns:local="clr-namespace:TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel"
+        Name="popUpRouteFlights"
+             Title="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpRouteFlights 1000'}" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow" Height="600" Width="1000" Background="#004A7F">
+    <Window.Resources>
+        <local:AirlinerColorConverter x:Key="airlinerColorConverter"></local:AirlinerColorConverter>
+    </Window.Resources>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <uc:ucTimeTable x:Name="uctimetable" Entries="{Binding ViewEntries,ElementName=popUpRouteFlights}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <ListBox BorderThickness="0" Background="Transparent" Name="lbAircrafts" ItemsSource="{Binding Aircrafts,ElementName=popUpRouteFlights}"
+                     ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}">
+                    <ListBox.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <ContentControl Content="{Binding Name}"
+                                                            ContentTemplate="{StaticResource AirlineItem}"
+                                                            Margin="2,5,0,2" />
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListBox.GroupStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource RoundedBorderStyle}" Background="{Binding Converter={StaticResource airlinerColorConverter}}" Width="100" BorderBrush="Black" BorderThickness="1">
+                          <TextBlock Text="{Binding Name}" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>
