@@ -73,7 +73,7 @@
   </airliner>
     <airliner manufacturer="Bombardier" name="Bombardier Dash 8-400NextGen" price="5116000"> <!--29765000-->
     <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
-    <specs wingspan="28.40" length="32.81" range="1878" speed="667" fuelcapacity="4860" consumption="0.137"
+    <specs wingspan="28.40" length="32.81" range="1878" speed="667" fuelcapacity="4860" consumption="0.011"
            runwaylengthrequired="1400" />
     <capacity passengers="86" cockpitcrew="2" cabincrew="2" maxclasses="2" />
     <produced from="2013" to="2199" rate="36" />

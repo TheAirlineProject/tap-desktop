@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="HeavyLift cargo Airlines" iata="HN" color="Violet" country="116" CEO="Nicholas Leach" mentality="Safe" market="Regional " preferedairport="BNE" routefocus="Cargo" >
+    <narrative
+      narrative="HeavyLift Cargo Airlines is based in Australia at Brisbane, with corporate headquarters at Sydney. It operates most of its routes between Australia,Papua New Guinea and the Solomon Islands. They have as of November 2010, two 727-200F's, one 727-100C,one Short Bros. Belfast, and one Il-76TD. It was founded in 2002 but did not began flying until 2004." />
+  </profile>
+  <info real="True" from="2003" to="2199" />
+     <prefereds aircrafts="Boeing 727-100C,Boeing 727-200,Il-76TD,Boeing 727-200 Adv.,Short Belfast,"></prefereds>
+</airline>

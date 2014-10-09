@@ -711,6 +711,112 @@
   </airport>
   <!--Western North Pacific (R***)-->
   <!--Taiwan (RC**)-->
+  <airport name="Matsu Beigan Airport" icao="RCMT" iata="MFK" type="Domestic" season="All_Year">
+    <town town="Matsu Beigan" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="026°13'26''N" />
+      <longitude value="120°00'09''E" />
+    </coordinates>
+    <size value="Smallest" pax="25" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="1150" surface="Concrete" />
+      <runway name="H1" length="25" surface="Asphalt" type="Helipad" />
+    </runways>
+  </airport>
+     <airport name="Matsu Nangan Airport" icao="RCFG" iata="LZN" type="Domestic" season="All_Year">
+    <town town="Matsu Nangan" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="026°09'35''N" />
+      <longitude value="119°57'30''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="1579" surface="Concrete" />
+      <runway name="H1" length="20" surface="Asphalt" type="Helipad" />
+    </runways>
+  </airport>
+     <airport name="Lyudao Airport" icao="RCGI" iata="GNI" type="Domestic" season="All_Year">
+    <town town="Lyudao (Green Island)" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="022°40'25''N" />
+      <longitude value="121°27'59''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="992" surface="Asphalt" />
+      <runway name="H1" length="30" surface="Asphalt" type="Helipad" />
+    </runways>
+  </airport>
+     <airport name="Wang-an Airport" icao="RCWA" iata="WOT" type="Domestic" season="All_Year">
+    <town town="Wang-an Island" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="023°22'00''N" />
+      <longitude value="119°30'00''E" />
+    </coordinates>
+    <size value="Smallest" pax="20" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="930" surface="Concrete" />
+      <runway name="H1" length="30" surface="Asphalt" type="Helipad" />
+    </runways>
+  </airport>
+     <airport name="Lanyu Airport" icao="RCLY" iata="KYD" type="Domestic" season="All_Year">
+    <town town="Orchid Island" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="022°01'40''N" />
+      <longitude value="121°32'07''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="1123" surface="Asphalt" />
+      <runway name="H1" length="33" surface="Asphalt" type="Helipad" />
+    </runways>
+  </airport>
+     <airport name="Qimei Airport" icao="RCCM" iata="CMJ" type="Domestic" season="All_Year">
+    <town town="Qimei Island" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="023°12'47''N" />
+      <longitude value="119°25'03''E" />
+    </coordinates>
+    <size value="Smallest" pax="20" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="843" surface="Concrete" />
+      <runway name="H1" length="30" surface="Asphalt" type="Helipad" />
+    </runways>
+  </airport>
+     <airport name="Chiayi Airport" icao="RCKU" iata="CYI" type="Domestic" season="All_Year">
+    <town town="Chiayi County" country="172" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="023°27'16''N" />
+      <longitude value="120°23'51''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18R/36L" length="3050" surface="Concrete" />
+      <runway name="18L/36R" length="1618" surface="Asphalt" />
+      <runway name="H1" length="62" surface="Concrete" type="Helipad" />
+    </runways>
+  </airport>
   <airport name="Hualien Airport" icao="RCYU" iata="HUN" type="Short_Haul_International" season="All_Year">
     <town town="Hualien City" country="172" GMT="08:00:00" DST="08:00:00" />
     <coordinates>

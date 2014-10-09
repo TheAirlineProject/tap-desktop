@@ -36,6 +36,8 @@ namespace TheAirline.Model.GeneralModel
           public DateTime LastDate { get; set; }
           [Versioning("penalty")]
           public long Penalty { get; set; }
+          [Versioning("from")]
+          public DateTime from { get; set; }
         public SpecialContractType(string name, string text,long payment,Boolean asbonus, long penalty, Boolean isfixeddate)
         {
             this.Name = name;
@@ -46,6 +48,7 @@ namespace TheAirline.Model.GeneralModel
             this.Penalty = penalty;
             this.AsBonus = asbonus;
             this.Requirements = new List<ContractRequirement>();
+   
         }
           private SpecialContractType(SerializationInfo info, StreamingContext ctxt)
         {

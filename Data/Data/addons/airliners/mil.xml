@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+  <airliner type="Helicopter" manufacturer="Mil" name="Mi-8P" price="1760000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="21.29" length="18.17" range="465" speed="225" fuelcapacity="3720" consumption="0.031"
+           runwaylengthrequired="18" />
+    <capacity passengers="32" cockpitcrew="3" cabincrew="0" maxclasses="1" />
+    <produced from="1967" to="2199" rate="18" />
+  </airliner>
+    <airliner type="Helicopter" manufacturer="Mil" name="Mi-8P ER" price="2245000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="21.29" length="18.17" range="950" speed="225" fuelcapacity="7440" consumption="0.031"
+           runwaylengthrequired="18" />
+    <capacity passengers="32" cockpitcrew="3" cabincrew="0" maxclasses="1" />
+    <produced from="1967" to="2199" rate="3" />
+  </airliner>
+  <airliner type="Helicopter" manufacturer="Mil" name="Mi-26P" price="3465000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="32.00" length="40.03" range="800" speed="255" fuelcapacity="11600" consumption="0.016"
+           runwaylengthrequired="18" />
+    <capacity passengers="63" cockpitcrew="5" cabincrew="1" maxclasses="1" />
+    <produced from="1983" to="2199" rate="2" />
+  </airliner>
+</airliners>

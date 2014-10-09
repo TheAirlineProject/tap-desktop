@@ -1764,6 +1764,13 @@
 
                     sAirline.Profile.Logos = merger.Airline2.Profile.Logos;
                     sAirline.Profile.Color = merger.Airline2.Profile.Color;
+
+                    foreach (AirlinePolicy policy in merger.Airline2.Policies)
+                        sAirline.addAirlinePolicy(policy);
+
+                    sAirline.Fees = new AirlineFees();
+
+                    AirlineHelpers.CreateStandardAirlineShares(sAirline);
                 }
 
                 GameObject.GetInstance()
@@ -1913,7 +1920,7 @@
 
                 int value = 100 - (monthsSinceLast - monthsFrequency);
 
-                Boolean createContract = !GameObject.GetInstance().Contracts.Contains(sct) && rnd.Next(value) == 0;
+                Boolean createContract = !GameObject.GetInstance().Contracts.Contains(sct) && GameObject.GetInstance().GameTime >= sct.from && rnd.Next(value) == 0;
 
                 if (createContract)
                 {
@@ -2756,7 +2763,7 @@
                     airline.Fees.setValue(feeType, airline.Fees.getValue(feeType) * yearlyRaise);
                 }
             }
-
+         
             //increases the passenger demand between airports with up to 5%
             //Parallel.ForEach(
             //    Airports.GetAllActiveAirports(),

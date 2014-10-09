@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+  <airliner type="Helicopter" manufacturer="Bell" name="Bell 412" price="429000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="14.00" length="17.10" range="745" speed="226" fuelcapacity="1249" consumption="0.077"
+           runwaylengthrequired="18" />
+    <capacity passengers="13" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1979" to="2199" rate="25" />
+  </airliner>
+    <airliner type="Helicopter" manufacturer="Bell" name="Bell 212" price="272000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="21.29" length="18.17" range="439" speed="186" fuelcapacity="736" consumption="0.071"
+           runwaylengthrequired="18" />
+    <capacity passengers="14" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1968" to="1998" rate="40" />
+  </airliner>
+  <airliner type="Helicopter" manufacturer="Bell" name="Bell 214ST" price="580000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="15.85" length="15.03" range="858" speed="259" fuelcapacity="1235" consumption="0.059"
+           runwaylengthrequired="15" />
+    <capacity passengers="17" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1979" to="1993" rate="7" />
+  </airliner>
+</airliners>

@@ -6,4 +6,5 @@
     <narrative
       narrative="Big Sky Airlines was a US commuter airline in service from 1978 to 2008 out of Billings, Montana. They operated 10 Beechcraft 1900Ds to several regional destiations." />
   </profile>
+  <info real="True" from="1978" to="2008"></info>
 </airline>

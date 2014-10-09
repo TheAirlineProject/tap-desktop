@@ -4,8 +4,10 @@
     using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls;
+    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlinerModel;
+    using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
 
     /// <summary>
@@ -75,14 +77,35 @@
         private void btnAddMaintenance_Click(object sender, RoutedEventArgs e)
         {
             MaintenanceCenter center = (MaintenanceCenter)((Button)sender).Tag;
-            this.Airline.addMaintenanceCenter(center);
-            this.AvailableCenters.Remove(center);
+            
+            WPFMessageBoxResult result =
+                        WPFMessageBox.Show(
+                            Translator.GetInstance().GetString("MessageBox", "2131"),
+                            string.Format(Translator.GetInstance().GetString("MessageBox", "2131", "message"),center.Name),
+                            WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {   
+
+                 this.Airline.addMaintenanceCenter(center);
+                this.AvailableCenters.Remove(center);
+            }
         }
         private void btnDeleteMaintenance_Click(object sender, RoutedEventArgs e)
         {
             MaintenanceCenter center = (MaintenanceCenter)((Button)sender).Tag;
-            this.Airline.removeMaintenanceCenter(center);
-            this.AvailableCenters.Add(center);
+        
+           WPFMessageBoxResult result =
+                        WPFMessageBox.Show(
+                            Translator.GetInstance().GetString("MessageBox", "2132"),
+                            string.Format(Translator.GetInstance().GetString("MessageBox", "2132", "message"),center.Name),
+                            WPFMessageBoxButtons.YesNo);
+
+           if (result == WPFMessageBoxResult.Yes)
+           {
+               this.Airline.removeMaintenanceCenter(center);
+               this.AvailableCenters.Add(center);
+           }
         }
 
         private void setValues()

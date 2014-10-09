@@ -56,7 +56,7 @@
 
             this.FeedbackTypes.Add("plane", new List<string>() { "1000", "1001", "1002" });
             this.FeedbackTypes.Add("age", new List<string>() { "1003", "1004", "1005" });
-            this.FeedbackTypes.Add("food", new List<string>() { "1006", "1005", "1008" });
+            this.FeedbackTypes.Add("food", new List<string>() { "1006", "1007", "1008" });
             this.FeedbackTypes.Add("seats", new List<string>() { "1009", "1010", "1011" });
             this.FeedbackTypes.Add("inflight", new List<string>() { "1012", "1013", "1014" });
             this.FeedbackTypes.Add("wifi", new List<string>() { "1015", "1016", "1017" });

@@ -3684,6 +3684,8 @@
                         foreach (XmlElement destinationElement in destinationsList)
                         {
                             string destination = destinationElement.Attributes["airport"].Value;
+
+                           
                             int pax = Convert.ToInt32(destinationElement.Attributes["pax"].Value);
 
                             airport.addMajorDestination(destination, pax);
@@ -3788,7 +3790,12 @@
                 {
                     int frequency = Convert.ToInt32(infoElement.Attributes["frequency"].Value);
 
+                    DateTime fromdate = Convert.ToDateTime(
+                 infoElement.Attributes["from"].Value,
+                 new CultureInfo("en-US", false));
+
                     scType.Frequency = frequency;
+                    scType.from = fromdate;
                 }
 
                 XmlNodeList routesList = element.SelectNodes("routes/route");

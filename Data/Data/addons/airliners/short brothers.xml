@@ -2,16 +2,30 @@
 
  <airliner manufacturer="Short" name="Short 360" price="2145000"> <!--16302000-->
     <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
-    <specs wingspan="22.80" length="21.58" range="1178" speed="400" fuelcapacity="1742" consumption="0.339"
+    <specs wingspan="22.80" length="21.58" range="1178" speed="400" fuelcapacity="1742" consumption="0.026"
            runwaylengthrequired="1189" />
     <capacity passengers="39" cockpitcrew="2" cabincrew="1" maxclasses="1" />
     <produced from="1981" to="1991" rate="17" />
   </airliner>
  <airliner manufacturer="Short" name="Short 330" price="1650000"> <!--12540000-->
     <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
-    <specs wingspan="22.76" length="17.69" range="1695" speed="352" fuelcapacity="2551" consumption="0.207"
+    <specs wingspan="22.76" length="17.69" range="1695" speed="352" fuelcapacity="2551" consumption="0.033"
            runwaylengthrequired="1189" />
     <capacity passengers="30" cockpitcrew="2" cabincrew="1" maxclasses="1" />
     <produced from="1974" to="1992" rate="7" />
   </airliner> 
+     <airliner manufacturer="Short" name="Short SC.7 Skyvan" price="1045000"> <!--7942000-->
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="19.78" length="12.21" range="1117" speed="317" fuelcapacity="796" consumption="0.053"
+           runwaylengthrequired="610" />
+    <capacity passengers="19" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1963" to="1986" rate="7" />
+  </airliner>
+  <airliner type="Cargo" manufacturer="Short" name="Short Belfast" price="1205000"> <!--1245000-->
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
+    <specs wingspan="48.40" length="41.58" range="4300" speed="541" fuelcapacity="54553" consumption="0.029"
+           runwaylengthrequired="2500" />
+    <capacity cockpitcrew="4" cargo="35" />
+    <produced from="1964" to="1968" rate="3" />
+  </airliner>
 </airliners>

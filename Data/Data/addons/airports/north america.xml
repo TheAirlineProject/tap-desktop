@@ -3412,6 +3412,7 @@ season="All_Year">
     </runways>
   </airport>
     <airport name="Sawyer International Airport" icao="KSAW" iata="MQT" type="Domestic" season="All_Year">
+    <period from="09.01.1999 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Marquette, MI" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="046°21'12''N" />
@@ -8087,7 +8088,39 @@ season="All_Year">
       <runway name="14/32" length="1676" surface="Asphalt" />
     </runways>
   </airport>
+      <airport name="Clinton County Airport" icao="KPLB" iata="PLB" type="Regional" season="All_Year">
+  <period from="01.01.1950 00:00:00" to="06.17.2008 00:00:00" />
+    <town town="Plattsburgh, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="044°41'15''N" />
+      <longitude value="073°31'28''W" />
+    </coordinates>
+    <size value="Small" pax="100" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="1524" surface="Asphalt" />
+      <runway name="14/32" length="1524" surface="Asphalt" />
+    </runways>
+  </airport>
+     <airport name="Marquette County Airport" icao="KMQT" iata="MQT" type="Domestic" season="All_Year">
+   <period from="01.01.1950 00:00:00" to="08.31.1999 00:00:00" />
+    <town town="Marquette, MI" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="046°32'02''N" />
+      <longitude value="087°33'45''W" />
+    </coordinates>
+    <size value="Smallest" pax="50" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="08/24" length="1981" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Plattsburgh International Airport" icao="KPBG" iata="PBG" type="Regional" season="All_Year">
+  <period from="06.18.2008 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Plattsburgh, NY" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="044°39'03''N" />

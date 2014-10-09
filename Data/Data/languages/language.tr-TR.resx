@@ -235,10 +235,10 @@
     <value>Terminal yapimi icin gerekli olan gün</value>
   </data>
   <data name="PopUpTerminal_1005_name" xml:space="preserve">
-    <value>Toplam Terminal Süresi</value>
+    <value>Terminalinin yapimi icin gerekli olan süre</value>
   </data>
   <data name="PopUpTerminal_1006_name" xml:space="preserve">
-    <value>Toplam Terminal Fiyati</value>
+    <value>Terminalin yapimi icin gerekli olan ücret</value>
   </data>
   <data name="PopUpTerminal_1007_name" xml:space="preserve">
     <value>Terminal ismi</value>
@@ -295,10 +295,10 @@
     <value>Para Durumu</value>
   </data>
   <data name="PageCreateDifficulty_1001_name" xml:space="preserve">
-    <value>Fiyat Seviyesi</value>
+    <value>Fiyat Durumu</value>
   </data>
   <data name="PageCreateDifficulty_1002_name" xml:space="preserve">
-    <value>Kredi Seviyesi</value>
+    <value>Kredi Durumu</value>
   </data>
   <data name="PageCreateDifficulty_1003_name" xml:space="preserve">
     <value>Yolcu Seviyesi</value>
@@ -322,7 +322,7 @@
     <value>Havayolu Rengi</value>
   </data>
   <data name="PopUpNewSubsidiary_1005_name" xml:space="preserve">
-    <value>Havayolu Merkez Üssü</value>
+    <value>Havayolu sirketinin Merkez Üssü</value>
   </data>
   <data name="PopUpNewSubsidiary_1006_name" xml:space="preserve">
     <value>Baslangis Sermayesi</value>
@@ -331,7 +331,7 @@
     <value>Yeni Ucus Güzergahi Ac</value>
   </data>
   <data name="PageRoutes_201_name" xml:space="preserve">
-    <value>Ucus Haritasi</value>
+    <value>Ucus güzergahlari</value>
   </data>
   <data name="PageRoutes_1000_name" xml:space="preserve">
     <value>Güzergahlar</value>
@@ -340,19 +340,19 @@
     <value>Ucak Güzergahlari</value>
   </data>
   <data name="PageRoutes_1002_name" xml:space="preserve">
-    <value>Ucus Kisitlamalari</value>
+    <value>Ucus Kisitlamalari / kayitlari</value>
   </data>
   <data name="PageRoutes_1003_name" xml:space="preserve">
-    <value>{0} Güzergahlar</value>
+    <value>Güzergahlar {0} </value>
   </data>
   <data name="PageFrontMenu_200_name" xml:space="preserve">
     <value>Yeni Oyun</value>
   </data>
   <data name="PageFrontMenu_201_name" xml:space="preserve">
-    <value>Oyun Yükle</value>
+    <value>Hafizadaki bir oyunu yükle</value>
   </data>
   <data name="PageFrontMenu_202_name" xml:space="preserve">
-    <value>Seçenekler</value>
+    <value>Ayarlar</value>
   </data>
   <data name="PageFrontMenu_203_name" xml:space="preserve">
     <value>Krediler</value>
@@ -1528,7 +1528,7 @@
     <value> {0} ve  {1} arasi ucusa izin verilmemektedir </value>
   </data>
   <data name="PanelNewRoute_1003_name" xml:space="preserve">
-    <value>Ara istasyon</value>
+    <value>Aktarma yapilacak yer</value>
   </data>
   <data name="PanelNewRoute_1004_name" xml:space="preserve">
     <value>Güzergah</value>
@@ -1546,7 +1546,7 @@
     <value>Oyundan Cik</value>
   </data>
   <data name="MessageBox_101_name" xml:space="preserve">
-    <value>Dosya Adi Hatasi</value>
+    <value>Dosya adi hatasi</value>
   </data>
   <data name="MessageBox_101_message" xml:space="preserve">
     <value>Verilen dosya adi gecersiz oldugu icin
@@ -1556,13 +1556,13 @@ Oyun yüklemesi iptal edildi.</value>
     <value>Ana Menü</value>
   </data>
   <data name="MessageBox_1001_message" xml:space="preserve">
-    <value>Ana Menüye Gitmek Istediginizden Eminmisiniz?</value>
+    <value>Ana menüye dönmek istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_1002_name" xml:space="preserve">
     <value>Oyun Yükle</value>
   </data>
   <data name="MessageBox_1002_message" xml:space="preserve">
-    <value>Kaydedilmis Bir Oyunu Yüklemek Istediginizden Eminmisiniz?</value>
+    <value>Kaydedilmis bir oyunu yüklemek istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_1003_name" xml:space="preserve">
     <value>Oyundan Cik</value>
@@ -1571,10 +1571,10 @@ Oyun yüklemesi iptal edildi.</value>
     <value>Oyundan Cikmak Istediginizden Eminmisiniz?</value>
   </data>
   <data name="MessageBox_1004_name" xml:space="preserve">
-    <value>Bsarildi</value>
+    <value>Basarildi</value>
   </data>
   <data name="MessageBox_1004_message" xml:space="preserve">
-    <value>HavaAlani Datalara Kaydedildi</value>
+    <value>Havaalani Datalara Kaydedildi</value>
   </data>
   <data name="MessageBox_1005_name" xml:space="preserve">
     <value>Hata</value>
@@ -1622,7 +1622,7 @@ Oyun yüklemesi iptal edildi.</value>
     <value>Ucak Kirala</value>
   </data>
   <data name="MessageBox_2005_message" xml:space="preserve">
-    <value>Bunu kiralamak istediginizden eminmisiniz {0}?</value>
+    <value>{0} i kiralamak istediginizden eminmisiniz ?</value>
   </data>
   <data name="MessageBox_2006_name" xml:space="preserve">
     <value>Yeterli Paraniz Yok</value>
@@ -1643,16 +1643,16 @@ Oyun yüklemesi iptal edildi.</value>
     <value>{0:C} tutarindaki ucak(s) siparisi vermek istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2009_name" xml:space="preserve">
-    <value>Ucak siparisleri (s)</value>
+    <value>Ucak siparisi (siparisleri)</value>
   </data>
   <data name="MessageBox_2009_message" xml:space="preserve">
-    <value>?{0:C} tutarindaki ucak(s) siparisleri icin hesabinizdan {1:C} tutarindaki paranin kesilmesini onayliyormusunuz?</value>
+    <value>{0:C} tutarindaki ucak siparisi (siparisleri)  icin hesabinizdan {1:C} tutarindaki paranin kesilmesini onayliyormusunuz?</value>
   </data>
   <data name="MessageBox_2010_name" xml:space="preserve">
     <value>Kontrati iptal et</value>
   </data>
   <data name="MessageBox_2010_message" xml:space="preserve">
-    <value>{0} firmasi ile  {1:C} tutarinda olacak olan kontratinizi iptal etmek istediginizden eminmisiniz?</value>
+    <value>{0} firmasi ile  {1:C} tutarindaki kontratinizi iptal etmek istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2011_name" xml:space="preserve">
     <value>Kontrati iptal et</value>
@@ -1694,13 +1694,13 @@ Oyun yüklemesi iptal edildi.</value>
     <value>Ucagi sat</value>
   </data>
   <data name="MessageBox_2106_message" xml:space="preserve">
-    <value>{0} model ucaginizi satmak istediginizden eminmisiniz?</value>
+    <value>{0} i satmak istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2107_name" xml:space="preserve">
     <value>Kirayi iptal et</value>
   </data>
   <data name="MessageBox_2107_message" xml:space="preserve">
-    <value> {0} model ucagi daha fazla kiralamak istemediginizden eminmisiniz?</value>
+    <value> {0} i daha fazla kiralamak istemediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2108_name" xml:space="preserve">
     <value>Ücretleri degistir</value>
@@ -1730,7 +1730,7 @@ Oyun yüklemesi iptal edildi.</value>
     <value>Yavru sirketi kapatma sorunu</value>
   </data>
   <data name="MessageBox_2112_message" xml:space="preserve">
-    <value>kapatamazsiniz {0}  dan beri kontrol ediyorsunuz.</value>
+    <value>Kapatamazsiniz {0}  dan beri kontrol ediyorsunuz.</value>
   </data>
   <data name="MessageBox_2113_name" xml:space="preserve">
     <value>Havayolunu tamamen satin al</value>
@@ -2090,7 +2090,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Kötü hava sartlari</value>
   </data>
   <data name="News_1002_message" xml:space="preserve">
-    <value> [LI airport = {0}]  Için kötü hava tahmin {1}</value>
+    <value> [LI airport = {0}]  Için kötü hava tahmini {1}</value>
   </data>
   <data name="News_1003_name" xml:space="preserve">
     <value>Ucus iptal edildi</value>
@@ -2108,10 +2108,10 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Ucus iptal edildi</value>
   </data>
   <data name="News_1005_message" xml:space="preserve">
-    <value>{0}  , [LI airport={1}] dan [LI airport={2}] a olan ucusunuz kötü hava dolayisi ile iptal edildi</value>
+    <value>{0}  , [LI airport={1}] dan [LI airport={2}] a olan ucusunuz kötü hava sartlari dolayisi ile iptal edildi</value>
   </data>
   <data name="News_1006_name" xml:space="preserve">
-    <value>Pilot Okulu</value>
+    <value>Ögrenci pilot</value>
   </data>
   <data name="News_1006_message" xml:space="preserve">
     <value> ögrenciniz olan {0} egitimini tamamlayip pilot olmustur</value>
@@ -2186,19 +2186,19 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Standart üretici</value>
   </data>
   <data name="PageAirlineStatistics_1005_name" xml:space="preserve">
-    <value>Extended Statistics</value>
+    <value>Genisletilmis istatistikler</value>
   </data>
   <data name="PageAirlineStatistics_1006_name" xml:space="preserve">
-    <value>Dakiklik yüzdeki (insan)</value>
+    <value>Dakiklik yüzdeki (Sahip olunan firma)</value>
   </data>
   <data name="PageAirlineStatistics_1007_name" xml:space="preserve">
-    <value>Doluluk yüzdesi (insan)</value>
+    <value>Doluluk yüzdesi (Sahip olunan firma)</value>
   </data>
   <data name="PageAirlineStatistics_1008_name" xml:space="preserve">
     <value>Müsteri memnuniyeti</value>
   </data>
   <data name="PageAirlineStatistics_1009_name" xml:space="preserve">
-    <value>Mesafe Başına Ücret (insan)</value>
+    <value>Mesafe Başına Ücret (Sahip olunan firma)</value>
   </data>
   <data name="PageAirlineStatistics_1010_name" xml:space="preserve">
     <value>Ücret / Mesafe (Toplam)</value>
@@ -3062,7 +3062,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Sahip oldugum en büyük havaalanlari</value>
   </data>
   <data name="PageAirports_1003_name" xml:space="preserve">
-    <value>Sahip oldugum subeler</value>
+    <value>Subelerim</value>
   </data>
   <data name="PageAirports_2000_name" xml:space="preserve">
     <value>Havalimanları</value>
@@ -3116,7 +3116,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Zorluk seviyesi</value>
   </data>
   <data name="PageShowScenario_1001_name" xml:space="preserve">
-    <value>Sahip oldugum havayolu sirketi</value>
+    <value>Hava yolu sirketim</value>
   </data>
   <data name="PageShowScenario_1002_name" xml:space="preserve">
     <value>Baslangic Yili</value>

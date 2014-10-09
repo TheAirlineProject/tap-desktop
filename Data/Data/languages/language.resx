@@ -5528,4 +5528,16 @@ Good luck.</value>
   <data name="PageHumanRoutes_201_name" xml:space="preserve">
     <value>Apply Changes</value>
   </data>
+  <data name="MessageBox_2131_message" xml:space="preserve">
+    <value>Are you sure you want to have a contract with {0}?</value>
+  </data>
+  <data name="MessageBox_2131_name" xml:space="preserve">
+    <value>Maintenance Center contract</value>
+  </data>
+  <data name="MessageBox_2132_message" xml:space="preserve">
+    <value>Are you sure you want to terminate your contract with {0}?</value>
+  </data>
+  <data name="MessageBox_2132_name" xml:space="preserve">
+    <value>Terminate Maintenance contract</value>
+  </data>
 </root>

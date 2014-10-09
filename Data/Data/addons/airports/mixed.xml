@@ -9606,8 +9606,8 @@
       <runway name="16/34" length="1830" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="??ng H?i Airport" icao="VVDH" iata="VDH" type="Domestic" season="All_Year">
-    <town town="??ng H?i" country="1007" GMT="07:00:00" DST="07:00:00" />
+  <airport name="Dong Hoi Airport" icao="VVDH" iata="VDH" type="Domestic" season="All_Year">
+    <town town="Dong Hoi" country="1007" GMT="07:00:00" DST="07:00:00" />
     <coordinates>
       <latitude value="17°30'54''N" />
       <longitude value="106°35'26''E" />
@@ -13005,7 +13005,7 @@
   </airport>
   <!--Tonga-->
   <airport name="Eua Airport" icao="NFTE" iata="EUA" type="Domestic" season="All_Year">
-    <town town="?Eua" country="208" GMT="12:00:00" DST="13:00:00" />
+    <town town="'Eua" country="208" GMT="12:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="21°23'0''S" />
       <longitude value="174°57'0''W" />

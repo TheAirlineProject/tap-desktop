@@ -265,11 +265,11 @@
                 <ListBox Background="Transparent" Style="{StaticResource VerticalListBoxStyle}" Name="lbClasses"
                          ItemsSource="{Binding Path=Classes,ElementName=pageHumanRoutes}"
                          ItemTemplate="{DynamicResource ClassItem}" />
-                <StackPanel>
+                <WrapPanel Margin="0 5 0 0">
                     <TextBlock
-                Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1002'}" VerticalAlignment="Bottom"></TextBlock>
+                Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1012'}" VerticalAlignment="Bottom"></TextBlock>
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Margin="5 0 0 0"
-                          Width="50" VerticalAlignment="Bottom" Name="cbChangePrice" IsSynchronizedWithCurrentItem="True"
+                          Width="100" VerticalAlignment="Bottom" Name="cbChangePrice" IsSynchronizedWithCurrentItem="True"
                           ItemsSource="{Binding PriceChanges,ElementName=pageHumanRoutes}" >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -278,8 +278,8 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
             
-                </StackPanel>
-                <WrapPanel>
+                </WrapPanel>
+                <WrapPanel Margin="0 5 0 0">
                     <Button VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnApply_Click"
                             Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 201'}">
 

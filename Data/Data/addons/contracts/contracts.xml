@@ -17,7 +17,7 @@
       </parameters>
   </contract>
   <contract name="Movie Production Charter" text="A major international film producer would like to charter a one-time flight to their filming destination. They will be flying 300 personnel from Hollywood to Sao Paulo. They have requested a dedicated flight so that they can all travel together.">
-    <information frequency="1" payment="7000000" bonus="True" penalty="5000000"></information>
+    <information from="01.01.1986" frequency="1" payment="7000000" bonus="True" penalty="5000000"></information>
       <routes>
         <route departure="LAX" destination="CGH" bothways="False" passengers="300"/>
       </routes>

@@ -67,4 +67,11 @@
        <airlinerimage image="PC6" types="Pilatus PC-6 Turbo-Porter"></airlinerimage>
             <airlinerimage image="PC12" types="Pilatus PC-12"></airlinerimage>
       <airlinerimage image="PC24" types="Pilatus PC-24"></airlinerimage>
+              <airlinerimage image="MI8" types="Mi-8P,Mi-8P ER"></airlinerimage>
+      <airlinerimage image="MI26" types="Mi-26P"></airlinerimage>
+         <airlinerimage image="SC5" types="Short Belfast"></airlinerimage>
+            <airlinerimage image="SC7" types="Short SC.7 Skyvan"></airlinerimage>
+      <airlinerimage image="B412" types="Bell 412"></airlinerimage>
+         <airlinerimage image="B212" types="Bell 212"></airlinerimage>
+            <airlinerimage image="B214" types="Bell 214ST"></airlinerimage>
 </airlinerimages>
