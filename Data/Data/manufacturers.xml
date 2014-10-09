@@ -47,6 +47,7 @@
   <manufacturer name="Short Brothers" shortname="Short" country="130" />
   <manufacturer name="Mil Moscow Helicopter Plant" shortname="Mil" country="149" />
     <manufacturer name="Bell Helicopter" shortname="Bell" country="122" />
+        <manufacturer name="Messerschmitt-Bölkow-Blohm" shortname="MBB" country="163" />
    <!--engines-->
   <manufacturer name="CFM International" shortname="CFM" country="140" />
   <manufacturer name="Engine Alliance" shortname="EA" country="140" />

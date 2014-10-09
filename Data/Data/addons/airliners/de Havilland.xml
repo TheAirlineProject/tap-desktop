@@ -36,4 +36,25 @@
     <capacity passengers="54" cockpitcrew="2" cabincrew="1" maxclasses="1" />
     <produced from="1975" to="1988" rate="9" />
   </airliner>
+                  <airliner manufacturer="DH" name="DHC-3 Otter" price="500000">
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
+    <specs wingspan="17.69" length="12.80" weight="3269" range="1520" speed="195" fuelcapacity="810" consumption="0.10"
+  runwaylengthrequired="352" />
+    <capacity passengers="10" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1951" to="1967" rate="29" />
+    </airliner>
+        <airliner manufacturer="DH" name="DHC-6-100 Twin Otter" price="925000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="19.80" length="15.77" weight="5246" range="1427" speed="278" fuelcapacity="1447" consumption="0.053"
+  runwaylengthrequired="350" />
+    <capacity passengers="19" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1965" to="1988" rate="9" />
+    </airliner>
+            <airliner manufacturer="DH" name="DHC-6-300 Twin Otter" price="980000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="19.80" length="15.77" weight="5670" range="1434" speed="278" fuelcapacity="1421" consumption="0.05"
+  runwaylengthrequired="350" />
+    <capacity passengers="20" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1965" to="1988" rate="9" />
+    </airliner>
 </airliners>

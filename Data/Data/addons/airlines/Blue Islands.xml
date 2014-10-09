@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Blue Islands" iata="BCI" logo="SI3" color="Gold" country="130" CEO="Derek Coates" mentality="Moderate" market="Regional" preferedairport="JER">
+    <narrative narrative="Blue Islands is an airline based at Jersey Airport, on the island of Jersey in the Channel Islands of Britain, which lay off the coast of France. It was founded in 1999. It also has a base at the other large Channel Island
+    Guernsey and a focus city at Southampton in England. They serve 5 destinations outside the UK in France,Switzerland and the Netherlands. They serve 7 destinations in the UK outside of the Channel Islands. As of August 2013 the planes they had were
+    three ATR 42-300's,two Jetsream 31 varients, an ATR 42-500 and a ATR 72-500. In the past they have had four BN Islanders, three BN Trislanders, two Fokker 50's only in 2012 and a Dornier 338." />
+  </profile>
+  <info real="True" from="1999" to="2199" />
+  <prefereds aircrafts="ATR 42-300,BAe Jetstream 31,ATR 42-500,ATR 72-500,BN-2A Islander,BN Trislander,Fokker 50,Dornier 328-110"></prefereds>
+</airline>

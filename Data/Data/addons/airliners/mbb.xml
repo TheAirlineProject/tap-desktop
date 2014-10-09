@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+  <airliner type="Helicopter" manufacturer="MBB" name="BK 117" price="330000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="11.00" length="9.91" range="541" speed="218" fuelcapacity="697" consumption="0.10"
+           runwaylengthrequired="10" />
+    <capacity passengers="10" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1979" to="2004" rate="15" />
+  </airliner>
+</airliners>

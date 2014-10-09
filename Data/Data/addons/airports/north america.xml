@@ -1773,9 +1773,12 @@
       <terminal name="Terminal" gates="24" />
     </terminals>
     <runways>
-      <runway name="3/21" length="3353" surface="Asphalt" />
+      <runway name="3/21" length="2743" surface="Asphalt" />
       <runway name="7/25" length="2499" surface="Asphalt" />
     </runways>
+             <expansions>
+     <expansion type="Runway_Length" name="3/21" length="3343" date="09.23.2010 00:00:00" notify="True"></expansion>
+    </expansions>
   </airport>
     <airport name="Golden Triangle Regional Airport" icao="KGTR" iata="GTR" type="Domestic" season="All_Year">
     <town town="Columbus/W Point/Starkville, MS" country="122" GMT="-05:00:00" DST="-06:00:00" />

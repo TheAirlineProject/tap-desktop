@@ -48,6 +48,7 @@ namespace TheAirline.Model.GeneralModel
             this.Penalty = penalty;
             this.AsBonus = asbonus;
             this.Requirements = new List<ContractRequirement>();
+
    
         }
           private SpecialContractType(SerializationInfo info, StreamingContext ctxt)
