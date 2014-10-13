@@ -54,8 +54,8 @@
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 1008'}"
                         VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
                                     <ComboBox ItemsSource="{Binding Centers}" Width="250"
-                                              Style="{StaticResource ComboBoxTransparentStyle}"
-                                              SelectedItem="{Binding Center}" Name="cbCenter"
+                                              Style="{StaticResource ComboBoxTransparentStyle}" Loaded="cbCenter_Loaded"
+                                              SelectedItem="{Binding Center,Mode=TwoWay}" Name="cbCenter" Tag="{Binding}"
                                               DisplayMemberPath="Name" SelectedValuePath="Name" />
                                     </WrapPanel>
                                     <Button Click="btnDoMaintenance_Click" HorizontalAlignment="Left" Margin="0 5 0 0" Tag="{Binding}"

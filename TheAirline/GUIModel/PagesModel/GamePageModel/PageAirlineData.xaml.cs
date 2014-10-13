@@ -199,12 +199,15 @@
         {
             var airline = (Airline)this.cbAirline.SelectedItem;
 
+            List<Country> aCountries = airline.Profile.Countries.Select(a => new CountryCurrentCountryConverter().Convert(a) as Country).ToList();
+
             this.AllAirports.Clear();
 
+            //mixed airlines
             foreach (
                 Airport airport in
                     Airports.GetAllActiveAirports()
-                        .Where(a => airline.Profile.Countries.Contains(new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country))
+                        .Where(a => aCountries.Contains(new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country))
                         .OrderBy(a => a.Profile.Name))
             {
                 this.AllAirports.Add(airport);

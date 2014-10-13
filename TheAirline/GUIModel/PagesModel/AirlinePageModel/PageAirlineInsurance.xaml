@@ -237,6 +237,29 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
+                        <TextBlock
+                        Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1010'}"
+                        Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom" Margin="0 5 0 0"/>
+                        <ListBox ItemsSource="{Binding Maintenances}" Background="Transparent" BorderThickness="0"
+                             ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" VerticalAlignment="Bottom">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
+                                        <ComboBox ItemsSource="{Binding Centers}" Width="250" Loaded="cbMaintenance_Loaded" Tag="{Binding}"
+                                              Style="{StaticResource ComboBoxTransparentStyle}"
+                                              SelectedItem="{Binding SelectedType,Mode=TwoWay}"
+                                              DisplayMemberPath="Name" SelectedValuePath="Name" />
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <WrapPanel Margin="0 5 0 0">
+                            <Button Style="{StaticResource StandardButtonStyle}" Click="btnApply_Click"
+                                   Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 202'}" />
+                            <Button Style="{StaticResource StandardButtonStyle}" Margin="5 0 0 0" Click="btnApplyAll_Click"
+                                   Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 203'}" />
+                        </WrapPanel>
                     </StackPanel>
                 </StackPanel>
             </Border>

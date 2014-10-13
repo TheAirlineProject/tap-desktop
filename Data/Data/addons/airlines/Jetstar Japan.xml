@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Jetstar Japan" iata="GK" color="Black" country="171" CEO="Miyuki Suzuki" mentality="Safe"
            market="Global" preferedairport="NRT">
+<narrative narrative="Jetstar Japan  is a low-fare domestic Japanese airline, initially planned to commence flights in late 2012, but it launched ahead of schedule on 3 July 2012."/>
+ 
   </profile>
   <info real="True" from="2011" to="2199" />
 </airline>

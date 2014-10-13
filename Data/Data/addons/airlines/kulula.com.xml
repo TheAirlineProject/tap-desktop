@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="kulula.com" iata="MN" color="Black" country="158" CEO="Gidon Novick" mentality="Safe" market="Global"
            preferedairport="JNB">
+               <narrative narrative="kulula.com was established in July 2001 and started operations as South Africa's first 'no-frills' carrier in August of that year. The stated aim is to position kulula.com as more than just an airline brand, but to include booking, paying and making 'the complete travel experience' affordable." />
   </profile>
   <info real="True" from="2001" to="2199" />
 </airline>

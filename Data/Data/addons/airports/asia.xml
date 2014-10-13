@@ -1041,9 +1041,11 @@
       <terminal name="Terminal" gates="71" />
     </terminals>
     <runways>
-      <runway name="16L/34R" length="4000" surface="Asphalt" />
-      <runway name="16R/34L" length="2500" surface="Asphalt" />
+      <runway name="16R/34L" length="4000" surface="Asphalt" />
     </runways>
+  <expansions>
+     <expansion type="New_runway" name="16L/34R" length="4000" surface="Asphalt" date="10.21.2010 00:00:00" notify="True"></expansion>
+</expansions>
   </airport>
   <airport name="Kansai International Airport" icao="RJBB" iata="KIX" type="Long_Haul_International" season="All_Year"  landingfee="2.56">
     <period from="09.04.1994 00:00:00" to="01.01.2199 00:00:00" />
@@ -1057,8 +1059,25 @@
       <terminal name="Terminal" gates="47" />
     </terminals>
     <runways>
-      <runway name="06L/24R" length="4000" surface="Asphalt" />
       <runway name="06R/24L" length="3500" surface="Asphalt" />
+    </runways>
+           <expansions>
+     <expansion type="New_runway"  name="06L/24R" length="4000" surface="Asphalt"  date="08.02.2007 00:00:00" notify="True"></expansion>
+</expansions>
+  </airport>
+        <airport name="Ibaraki Airport" icao="RJAH" iata="IBR" type="Short_Haul_International" season="All_Year">
+    <town town="Ibaraki" country="171" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="036°10'54''N" />
+      <longitude value="140°24'53''E" />
+    </coordinates>
+    <size value="Smallest" pax="203" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="03L/21R" length="2700" surface="Asphalt" />
+      <runway name="03R/21L" length="2700" surface="Concrete" />
     </runways>
   </airport>
   <airport name="New Chitose Airport" icao="RJCC" iata="CTS" type="Short_Haul_International" season="All_Year">
@@ -1149,10 +1168,12 @@
     </terminals>
     <runways>
       <runway name="04/22" length="2500" surface="Asphalt" />
-      <runway name="05/23" length="2500" surface="Asphalt" />
       <runway name="16L/34R" length="3000" surface="Asphalt" />
       <runway name="16R/34RL" length="3000" surface="Asphalt" />
     </runways>
+        <expansions>
+     <expansion type="New_runway"  name="05/23" length="2500" surface="Asphalt" date="10.21.2010 00:00:00" notify="True"></expansion>
+</expansions>
   </airport>
   <airport name="Kochi Airport" icao="RJOK" iata="KCZ" type="Domestic" season="All_Year">
     <town town="Kochi" country="171" GMT="09:00:00" DST="09:00:00" />
@@ -5284,7 +5305,8 @@
       <runway name="04L/22R" length="4040" surface="Asphalt" />
        </runways>
       <expansions>
-     <expansion type="New_runway" name="04R/22L" length="4025" surface="Asphalt"  date="07.01.2016 00:00:00" notify="True"></expansion>
+     <expansion type="New_runway" name="04R/22L" length="2180" surface="Asphalt"  date="04.17.2002 00:00:00" notify="True"></expansion>   
+     <expansion type="Runway_Length" name="04R/22L" length="2500" date="10.22.2009 00:00:00" notify="True"></expansion>
 </expansions>
   </airport>
   <airport name="Fatmawati Soekarno Airport" icao="WIPL" iata="BKS" type="Domestic" season="All_Year">
@@ -9031,10 +9053,12 @@
       <terminal name="Terminal 2" gates="30" />
     </terminals>
     <runways>
-      <runway name="16/34" length="3800" surface="Concrete" />
       <runway name="17L/35R" length="4000" surface="Concrete" />
-      <runway name="17R/35L" length="3400" surface="Concrete" />
     </runways>
+      <expansions>
+     <expansion type="New_runway" name="16/34" length="3800" surface="Concrete" date="03.17.2005 00:00:00" notify="True"></expansion>
+          <expansion type="New_runway"  name="17R/35L" length="3400" surface="Concrete" date="03.26.2008 00:00:00" notify="True"></expansion>
+</expansions>
   </airport>
   <airport name="Shanghai Hongqiao International Airport" icao="ZSSS" iata="SHA" type="Long_Haul_International"
            season="All_Year"  landingfee="1.83">

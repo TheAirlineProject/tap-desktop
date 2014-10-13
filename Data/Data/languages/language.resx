@@ -5430,16 +5430,16 @@ Good luck.</value>
     <value>Owner</value>
   </data>
   <data name="MessageBox_2016_message" xml:space="preserve">
-    <value>You don't have enough money to buy these airliners</value>
+    <value>You don't have enough money to buy this airliner</value>
   </data>
   <data name="MessageBox_2016_name" xml:space="preserve">
-    <value>Can't Buy Airliners</value>
+    <value>Can't Buy Airliner</value>
   </data>
   <data name="MessageBox_2017_message" xml:space="preserve">
-    <value>Are you sure you want to buy these airliners for {0}?</value>
+    <value>Are you sure you want to buy this airliner for {0}?</value>
   </data>
   <data name="MessageBox_2017_name" xml:space="preserve">
-    <value>Buy Airliners</value>
+    <value>Buy Airliner</value>
   </data>
   <data name="PageAirlineFleet_202_name" xml:space="preserve">
     <value>Buy Airliners</value>
@@ -5463,7 +5463,7 @@ Good luck.</value>
     <value>Missed maintenance check</value>
   </data>
   <data name="News_1019_message" xml:space="preserve">
-    <value>Your airliner {0} is now having a maintenance {1}</value>
+    <value>Your airliner {0} is now having a maintenance {1} for a fee of {2}</value>
   </data>
   <data name="News_1019_name" xml:space="preserve">
     <value>Airliner Maintenance Check</value>
@@ -5539,5 +5539,32 @@ Good luck.</value>
   </data>
   <data name="MessageBox_2132_name" xml:space="preserve">
     <value>Terminate Maintenance contract</value>
+  </data>
+  <data name="MessageBox_2018_message" xml:space="preserve">
+    <value>Are you sure you want to outlease this airliner?</value>
+  </data>
+  <data name="MessageBox_2018_name" xml:space="preserve">
+    <value>Outlease Airliner</value>
+  </data>
+  <data name="PageAirlineInsurance_202_name" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="PageAirlineInsurance_203_name" xml:space="preserve">
+    <value>Apply to Existing</value>
+  </data>
+  <data name="PageAirlineInsurance_1010_name" xml:space="preserve">
+    <value>Standard Airliner Maintenance</value>
+  </data>
+  <data name="MessageBox_2133_message" xml:space="preserve">
+    <value>Are you sure you want to save the maintenance?</value>
+  </data>
+  <data name="MessageBox_2133_name" xml:space="preserve">
+    <value>Save Maintenance</value>
+  </data>
+  <data name="MessageBox_2134_message" xml:space="preserve">
+    <value>Are you sure you want to save the maintenance and apply it to your existing fleet?</value>
+  </data>
+  <data name="MessageBox_2134_name" xml:space="preserve">
+    <value>Apply Maintenance</value>
   </data>
 </root>

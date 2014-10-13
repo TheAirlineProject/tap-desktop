@@ -118,7 +118,7 @@
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
                         <ProgressBar HorizontalAlignment="Center" Width="100" Value="{Binding Airliner.Airliner.Condition}"
                              VerticalAlignment="Bottom" Height="15" Background="Transparent" BorderBrush="Black" />
-                        <TextBlock Text="{Binding Airliner.Airliner.Condition}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
+                        <TextBlock Text="{Binding Airliner.Airliner.Condition,StringFormat={}{0:0}}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
                     </WrapPanel>
                     <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                         <TextBlock

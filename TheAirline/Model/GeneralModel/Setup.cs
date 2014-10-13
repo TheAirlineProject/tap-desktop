@@ -39,6 +39,7 @@
         #region Static Fields
 
         private static readonly Random rnd = new Random();
+        private static List<Airline> AllAirlines;
 
         #endregion
 
@@ -183,6 +184,12 @@
                 {
                     string subName = subsidiaryElement.Attributes["name"].Value;
                     string subIATA = subsidiaryElement.Attributes["IATA"].Value;
+
+                    DateTime subDate = new DateTime(1900,1,1);
+
+                    if (subsidiaryElement.HasAttribute("date"))
+                        subDate = DateTime.Parse(subsidiaryElement.Attributes["date"].Value, new CultureInfo("de-DE"));
+
                     Airport subAirport = Airports.GetAirport(subsidiaryElement.Attributes["homebase"].Value);
                     var subMentality =
                         (Airline.AirlineMentality)
@@ -209,6 +216,7 @@
                         new FutureSubsidiaryAirline(
                             subName,
                             subIATA,
+                            subDate,
                             subAirport,
                             subMentality,
                             subMarket,
@@ -744,12 +752,7 @@
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
-            Airport lbb = Airports.GetAirport("LBB");
-            Airport dfw = Airports.GetAirport("DFW");
-
-            Console.WriteLine("Distance: " + MathHelpers.GetDistance(lbb, dfw));
-
-
+           
             /*
             System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
 
@@ -906,17 +909,38 @@
         {
             AirlineMergers.Clear();
             LoadAirlineMergers();
-
+       
             var mergers = new List<AirlineMerger>(AirlineMergers.GetAirlineMergers());
 
             foreach (AirlineMerger merger in mergers)
             {
-                if (!Airlines.ContainsAirline(merger.Airline1) || !Airlines.ContainsAirline(merger.Airline2)
-                    || merger.Airline2.IsHuman || merger.Airline1.IsHuman)
+                if (merger.Type == AirlineMerger.MergerType.Subsidiary && !(Airlines.ContainsAirline(merger.Airline1) && Airlines.ContainsAirline(merger.Airline2)))
                 {
                     AirlineMergers.RemoveAirlineMerger(merger);
+
+                    if (!merger.Airline1.IsHuman && !merger.Airline2.IsHuman && Airlines.GetAllAirlines().Contains(merger.Airline1))
+                    {
+                        FutureSubsidiaryAirline futureAirline = new FutureSubsidiaryAirline(merger.Airline2.Profile.Name,merger.Airline2.Profile.IATACode,merger.Date,merger.Airline2.Profile.PreferedAirport,merger.Airline2.Mentality,merger.Airline2.MarketFocus,merger.Airline2.AirlineRouteFocus,merger.Airline2.Profile.Logo);
+                       
+                        merger.Airline1.FutureAirlines.Add(futureAirline);
+
+                        if (merger.Date <= GameObject.GetInstance().GameTime)
+                            AIHelpers.CreateSubsidiaryAirline(merger.Airline1, futureAirline);
+
+                    }
+                }
+
+                else
+                {
+                    if (!Airlines.ContainsAirline(merger.Airline1) || !Airlines.ContainsAirline(merger.Airline2)
+                        || merger.Airline2.IsHuman || merger.Airline1.IsHuman)
+                    {
+                        AirlineMergers.RemoveAirlineMerger(merger);
+                    }
                 }
             }
+
+            AllAirlines.Clear();
         }
 
         #endregion
@@ -981,10 +1005,11 @@
          */
         public static void CreateAirlinerMaintenanceTypes()
         {
+            
             AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check A", new Period<TimeSpan>(new TimeSpan(1000, 0, 0), new TimeSpan(1200, 0, 0)), new TimeSpan(40, 0, 0), 100000, AirportFacilities.GetFacility("Basic ServiceCenter")));
             AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check B", new Period<TimeSpan>(new TimeSpan(120, 0, 0, 0), new TimeSpan(180, 0, 0, 0)), new TimeSpan(150, 0, 0), 200000, AirportFacilities.GetFacility("ServiceCenter")));
             AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check C", new Period<TimeSpan>(new TimeSpan(600, 0, 0, 0), new TimeSpan(720, 0, 0, 0)), new TimeSpan(10, 0, 0, 0), 400000, AirportFacilities.GetFacility("Large ServiceCenter")));
-            AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check D", new Period<TimeSpan>(new TimeSpan(2100, 0, 0), new TimeSpan(2250, 0, 0)), new TimeSpan(50000, 0, 0), 800000, AirportFacilities.GetFacility("Mega ServiceCenter")));
+            AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check D", new Period<TimeSpan>(new TimeSpan(2100, 0, 0), new TimeSpan(2250, 0, 0)), new TimeSpan(15,0, 0, 0), 800000, AirportFacilities.GetFacility("Mega ServiceCenter")));
         }
         /*! reads the settings file if existing
          */
@@ -1067,7 +1092,11 @@
                         r.Opened <= GameObject.GetInstance().GameTime.Year
                         && r.Closed >= GameObject.GetInstance().GameTime.Year);
 
-            Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+            Route.RouteType focus = airline.AirlineRouteFocus;
+            if (focus == Route.RouteType.Mixed)
+                focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
+
+            Terminal.TerminalType terminaltype = focus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
             //creates the routes
             List<StartDataRoute> sRoutes = startroutes.GetRange(0, startroutes.Count / startDataFactor);
             Parallel.ForEach(
@@ -1306,7 +1335,11 @@
 
                     if (origin != null)
                     {
-                        Terminal.TerminalType terminalType = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+                      
+                        if (focus == Route.RouteType.Mixed)
+                            focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
+
+                        Terminal.TerminalType terminalType = focus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
                         for (int i = 0;
                             i < Math.Min(routes.Destinations / startDataFactor, origin.Terminals.getFreeGates(terminalType));
@@ -1429,14 +1462,15 @@
                 });
         }
 
-        private static void CreateComputerRoutes(Airline airline)
+        private static void CreateComputerRoutes(Airline airline, int iterations = 0)
         {
+            Console.WriteLine("Creating routes for " + airline.Profile.Name + " iteration: " + iterations);
             Boolean leaseAircraft = airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Leasing;
 
             Airport airportHomeBase = FindComputerHomeBase(airline);
 
             AirportFacility serviceFacility =
-                AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
+                AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 2);
             AirportFacility checkinFacility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
             AirportFacility cargoTerminal =
@@ -1445,7 +1479,7 @@
             airportHomeBase.addAirportFacility(airline, serviceFacility, GameObject.GetInstance().GameTime);
             airportHomeBase.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
-            if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+            if (airline.AirlineRouteFocus == Route.RouteType.Cargo || airline.AirlineRouteFocus == Route.RouteType.Mixed)
             {
                 airportHomeBase.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
             }
@@ -1493,9 +1527,19 @@
                     counter++;
                 }
 
+                Route.RouteType focus = airline.AirlineRouteFocus;
+
+                if (focus == Route.RouteType.Mixed)
+                    focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
+
+                
+
                 if (airportDestination == null || !airliner.HasValue)
                 {
-                    CreateComputerRoutes(airline);
+                    int newIteration = iterations + 1;
+
+                    if (iterations < 5)
+                        CreateComputerRoutes(airline,newIteration);
                 }
                 else
                 {
@@ -1504,7 +1548,7 @@
                             airline,
                             airportHomeBase,
                             AirportContract.ContractType.Full,
-                            airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger,
+                            focus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger,
                             GameObject.GetInstance().GameTime,
                             2,
                             25,
@@ -1519,7 +1563,7 @@
                     double price = PassengerHelpers.GetPassengerPrice(airportDestination, airline.Airports[0]);
 
                     Route route = null;
-                    if (airline.AirlineRouteFocus == Route.RouteType.Passenger)
+                    if (focus == Route.RouteType.Passenger)
                     {
                         route = new PassengerRoute(
                             id.ToString(),
@@ -1546,7 +1590,7 @@
                             }
                         }
                     }
-                    if (airline.AirlineRouteFocus == Route.RouteType.Helicopter)
+                    if (focus == Route.RouteType.Helicopter)
                     {
                         route = new HelicopterRoute(
                           id.ToString(),
@@ -1573,7 +1617,7 @@
                             }
                         }
                     }
-                    if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                    if (focus == Route.RouteType.Cargo)
                     {
                         route = new CargoRoute(
                             id.ToString(),
@@ -1584,6 +1628,7 @@
 
                         airportDestination.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
                     }
+                  
                     if (leaseAircraft)
                     {
                         AirlineHelpers.AddAirlineInvoice(
@@ -1627,6 +1672,8 @@
                         AIHelpers.CreateCargoRouteTimeTable(route, fAirliner);
                     }
                 }
+                Console.WriteLine("Finished creating routes for " + airline.Profile.Name);
+        
             }
         }
 
@@ -1975,6 +2022,7 @@
 
         private static Airport FindComputerHomeBase(Airline airline)
         {
+
             Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
             if (airline.Profile.PreferedAirport != null
                 && GeneralHelpers.IsAirportActive(airline.Profile.PreferedAirport)
@@ -2084,8 +2132,8 @@
             foreach (XmlElement element in mergersList)
             {
                 string mergerName = element.Attributes["name"].Value;
-                Airline airline1 = Airlines.GetAirline(element.Attributes["airline1"].Value);
-                Airline airline2 = Airlines.GetAirline(element.Attributes["airline2"].Value);
+                Airline airline1 = AllAirlines.FirstOrDefault(a=>a.Profile.IATACode == element.Attributes["airline1"].Value);
+                Airline airline2 = AllAirlines.FirstOrDefault(a => a.Profile.IATACode == element.Attributes["airline2"].Value);
                 var mergerType =
                     (AirlineMerger.MergerType)
                         Enum.Parse(typeof(AirlineMerger.MergerType), element.Attributes["type"].Value);
@@ -2580,7 +2628,7 @@
 
                 string s = e.ToString();
             }
-
+            AllAirlines = Airlines.GetAllAirlines();
         }
 
         private static void LoadAirportFacilities()
@@ -3773,7 +3821,7 @@
                 Boolean isfixeddate = !infoElement.HasAttribute("frequency");
 
                 SpecialContractType scType = new SpecialContractType(name, text, payment, asbonus, penalty, isfixeddate);
-
+            
                 if (isfixeddate)
                 {
                     DateTime fromdate = Convert.ToDateTime(
@@ -4638,6 +4686,7 @@
                 {
                     foreach (Airline airline in Airlines.GetAllAirlines())
                     {
+                        
                         foreach (
                             AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
                         {
@@ -4685,6 +4734,8 @@
 
                     foreach (AirportExpansion expansion in expansions)
                         AirportHelpers.SetAirportExpansion(airport, expansion, true);
+
+                 
                 });
 
             foreach (Airline airline in Airlines.GetAllAirlines())

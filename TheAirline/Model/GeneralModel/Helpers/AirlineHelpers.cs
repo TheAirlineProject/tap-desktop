@@ -160,6 +160,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static FleetAirliner BuyAirliner(Airline airline, Airliner airliner, Airport airport, double discount)
         {
+            
             FleetAirliner fAirliner = AddAirliner(airline, airliner, airport, false);
 
             double price = airliner.getPrice() * ((100 - discount) / 100);

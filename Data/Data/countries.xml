@@ -2187,7 +2187,7 @@
       <es-ES name="North Korea" />
     </translations>
   </country>
-  <country uid="312" shortname="DRT" region="109" flag="Timor-Leste" tailformat="4W-\\s3">
+  <country uid="312" shortname="TLS" region="109" flag="Timor-Leste" tailformat="4W-\\s3">
     <translations>
       <en-US name="East Timor" />
       <de-DE name="East Timor" />

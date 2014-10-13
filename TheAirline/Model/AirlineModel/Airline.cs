@@ -66,7 +66,8 @@
             this.InsurancePolicies = new List<AirlineInsurance>();
             this.SpecialContracts = new List<SpecialContract>();
             this.MaintenanceCenters = new List<MaintenanceCenter>();
-
+            this.Maintenances = new Dictionary<AirlinerMaintenanceType, AirlinerMaintenanceCenter>();
+        
             this.createStandardAdvertisement();
 
             this.Pilots = new List<Pilot>();
@@ -152,6 +153,12 @@
                 if (version < 7)
                     this.MaintenanceCenters = new List<MaintenanceCenter>();
 
+                if (version < 8)
+                    this.Maintenances = new Dictionary<AirlinerMaintenanceType, AirlinerMaintenanceCenter>();
+
+                if (this.Maintenances == null)
+                    this.Maintenances = new Dictionary<AirlinerMaintenanceType, AirlinerMaintenanceCenter>();
+
                 if (this.Invoices == null)
                 {
                     this.Invoices = new Invoices();
@@ -230,6 +237,9 @@
 
         [Versioning("airports")]
         public List<Airport> Airports { get; set; }
+
+        [Versioning("maintenances",Version=8)]
+        public Dictionary<AirlinerMaintenanceType,AirlinerMaintenanceCenter> Maintenances { get; set; } 
 
         [Versioning("alliances")]
         public List<Alliance> Alliances { get; set; }
@@ -425,7 +435,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 7);
+            info.AddValue("version", 8);
 
             Type myType = this.GetType();
 
@@ -480,6 +490,19 @@
             {
                 this.Fleet.Add(airliner);
             }
+            foreach (AirlinerMaintenanceType type in this.Maintenances.Keys)
+            {
+                AirlinerMaintenanceCheck check = airliner.Maintenance.Checks.Find(c=>c.Type == type);
+
+                check.CheckCenter = new AirlinerMaintenanceCenter(type);
+
+                if (this.Maintenances[type].Airport == null)
+                    check.CheckCenter.Center = this.Maintenances[type].Center;
+                else
+                    check.CheckCenter.Airport = this.Maintenances[type].Airport;
+
+            }
+            
         }
 
         //remove a fleet airliner from the airlines fleet

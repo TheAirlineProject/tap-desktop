@@ -188,6 +188,7 @@
     </runways>
   </airport>
   <airport name="Berlin Brandenburg Airport" icao="EDDB" iata="BER" type="Long_Haul_International" season="All_Year">
+   <period from="01.01.2016 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Berlin" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="52°22'0''N" />
@@ -752,6 +753,7 @@
     </runways>
   </airport>
   <airport name="Blackpool International Airport" icao="EGNH" iata="BLK" type="Short_Haul_International" season="All_Year">
+      <period from="01.01.1909 00:00:00" to="10.15.2014 00:00:00" />
     <town town="Blackpool, ENG" country="130" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="53°46'17''N" />
@@ -880,7 +882,7 @@
     </runways>
   </airport>
   <airport name="Edinburgh Airport" icao="EGPH" iata="EDI" type="Long_Haul_International" season="All_Year">
-    <town town="Edinburgh, SCO" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Edinburgh, SCT" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="55°57'0''N" />
       <longitude value="3°22'21''W" />
@@ -923,7 +925,7 @@
     </runways>
   </airport>
   <airport name="Glasgow International Airport" icao="EGPF" iata="GLA" type="Long_Haul_International" season="All_Year">
-    <town town="Glasgow, SCO" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Glasgow, SCT" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="55°52'19''N" />
       <longitude value="4°25'59''W" />
@@ -1233,7 +1235,7 @@
     </runways>
   </airport>
   <airport name="Glasgow Prestwick Airport" icao="EGPK" iata="PIK" type="Long_Haul_International" season="All_Year">
-    <town town="Prestwick, SCO" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Prestwick, SCT" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="55°30'33''N" />
       <longitude value="4°35'12''W" />
@@ -2152,7 +2154,7 @@
     </runways>
   </airport>
     <airport name="Szczecin-Goleniów Solidarność Airport" icao="EPSC" iata="SZZ" type="Short_Haul_International" season="All_Year">
-    <town town="Goleniow" country="135" GMT="01:00:00" DST="02:00:00" />
+    <town town="Szczecin" country="135" GMT="01:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="053°35'04''N" />
       <longitude value="014°54'07''E" />
@@ -5963,7 +5965,7 @@
     </runways>
   </airport>
   <!--Turkey (LT**)-->
-   <airport name="Adana Şakirpaşa Airport" icao="LTAF" iata="ADA" type="Long_Haul_International" season="All_Year">
+   <airport name="Adana Şakirpaşa Airport" icao="LTAF" iata="ADA" type="Short_Haul_International" season="All_Year">
     <town town="Adana" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="36°58'55''N" />
@@ -5977,7 +5979,7 @@
       <runway name="05/23" length="2750" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ağrı Airport" icao="LTCO" iata="AJI" type="Short_Haul_International" season="All_Year">
+  <airport name="Ağrı Airport" icao="LTCO" iata="AJI" type="Domestic" season="All_Year">
     <town town="Ağrı" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="39°39'16''N" />
@@ -5991,7 +5993,7 @@
       <runway name="16/34" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Amasya - Merzifon Airport" icao="LTAP" iata="MZH" type="Short_Haul_International" season="All_Year">
+  <airport name="Amasya - Merzifon Airport" icao="LTAP" iata="MZH" type="Domestic" season="All_Year">
     <town town="Amasya" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="40°49'45''N" />
@@ -6052,7 +6054,7 @@
       <runway name="18R/36L" length="2990" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Balıkesir Airport" icao="LTBF" iata="BZI" type="Short_Haul_International" season="All_Year">
+  <airport name="Balıkesir Airport" icao="LTBF" iata="BZI" type="Domestic" season="All_Year">
     <town town="Balıkesir" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°37'9''N" />
@@ -6066,7 +6068,7 @@
       <runway name="18/36" length="2990" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Batman Airport" icao="LTCJ" iata="BAL" type="Short_Haul_International" season="All_Year">
+  <airport name="Batman Airport" icao="LTCJ" iata="BAL" type="Domestic" season="All_Year">
     <town town="Batman" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°55'56''N" />
@@ -6109,7 +6111,7 @@
       <runway name="07L/25R" length="2993" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Çanakkale Airport" icao="LTBH" iata="CKZ" type="Short_Haul_International" season="All_Year">
+  <airport name="Çanakkale Airport" icao="LTBH" iata="CKZ" type="Domestic" season="All_Year">
     <town town="Çanakkale" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="30°8'15''N" />
@@ -6137,7 +6139,7 @@
       <runway name="01/19" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Denizli Çardak Airport" icao="LTAY" iata="DNZ" type="Short_Haul_International" season="All_Year">
+  <airport name="Denizli Çardak Airport" icao="LTAY" iata="DNZ" type="Domestic" season="All_Year">
     <town town="Denizli" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°47'8''N" />
@@ -6151,7 +6153,7 @@
       <runway name="06/24" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Diyarbakır Airport" icao="LTCC" iata="DIY" type="Short_Haul_International" season="All_Year">
+  <airport name="Diyarbakır Airport" icao="LTCC" iata="DIY" type="Domestic" season="All_Year">
     <town town="Diyarbakır" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°53'38''N" />
@@ -6165,7 +6167,7 @@
       <runway name="16/34" length="3549" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Balıkesir - Koca Seyit Airport" icao="LTFD" iata="EDO" type="Short_Haul_International" season="All_Year">
+  <airport name="Balıkesir - Koca Seyit Airport" icao="LTFD" iata="EDO" type="Domestic" season="All_Year">
     <town town="Edremit" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="39°33'42''N" />
@@ -6193,7 +6195,7 @@
       <runway name="13/31" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Erzincan Airport" icao="LTCD" iata="ERC" type="Short_Haul_International" season="All_Year">
+  <airport name="Erzincan Airport" icao="LTCD" iata="ERC" type="Domestic" season="All_Year">
     <town town="Erzincan" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="39°42'33''N" />
@@ -6295,7 +6297,7 @@
       <runway name="12/30" length="3000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Isparta - Süleyman Demirel Airport" icao="LTFC" iata="ISE" type="Short_Haul_International" season="All_Year">
+  <airport name="Isparta - Süleyman Demirel Airport" icao="LTFC" iata="ISE" type="Regional" season="All_Year">
     <town town="Isparta" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°51'42''N" />
@@ -6356,7 +6358,7 @@
       <runway name="16R/34L" length="3240" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Kahramanmaraş Airport" icao="LTCN" iata="KCM" type="Short_Haul_International" season="All_Year">
+  <airport name="Kahramanmaraş Airport" icao="LTCN" iata="KCM" type="Domestic" season="All_Year">
     <town town="Kahramanmaraş" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°32'20''N" />
@@ -6384,7 +6386,7 @@
       <runway name="06/24" length="3500" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Kayseri - Erkilet Airport" icao="LTAU" iata="ASR" type="Long_Haul_International" season="All_Year">
+  <airport name="Erkilet International Airport" icao="LTAU" iata="ASR" type="Long_Haul_International" season="All_Year">
     <town town="Kayseri" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°46'13''N" />
@@ -6398,7 +6400,7 @@
       <runway name="07/25" length="3000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Cengiz Topel Airport" icao="LTBQ" iata="KCO" type="Short_Haul_International" season="All_Year">
+  <airport name="Cengiz Topel Airport" icao="LTBQ" iata="KCO" type="Domestic" season="All_Year">
     <period from="01.01.2011 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Kocaeli" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
@@ -6474,7 +6476,7 @@
       <runway name="03/21" length="2500" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Muş Airport" icao="LTCK" iata="MSR" type="Short_Haul_International" season="All_Year">
+  <airport name="Muş Airport" icao="LTCK" iata="MSR" type="Domestic" season="All_Year">
     <town town="Muş" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°44'41''N" />
@@ -6488,7 +6490,7 @@
       <runway name="11/29" length="3551" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nevşehir - Kapadokya Airport" icao="LTAZ" iata="NAV" type="Short_Haul_International" season="All_Year">
+  <airport name="Nevşehir - Kapadokya Airport" icao="LTAZ" iata="NAV" type="Domestic" season="All_Year">
     <town town="Nevşehir" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°46'8''N" />
@@ -6516,7 +6518,7 @@
       <runway name="13/31" length="3000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Şanlıurfa - GAP Airport" icao="LTCS" iata="GNY" type="Short_Haul_International" season="All_Year">
+  <airport name="Şanlıurfa - GAP Airport" icao="LTCS" iata="GNY" type="Domestic" season="All_Year">
     <town town="Şanlıurfa" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°27'0''N" />
@@ -6530,7 +6532,7 @@
       <runway name="04/22" length="3988" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Siirt Airport" icao="LTCL" iata="SXZ" type="Short_Haul_International" season="All_Year">
+  <airport name="Siirt Airport" icao="LTCL" iata="SXZ" type="Domestic" season="All_Year">
     <town town="Siirt" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°58'41''N" />
@@ -6544,7 +6546,7 @@
       <runway name="06/24" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Sinop Airport" icao="LTCM" iata="NOP" type="Short_Haul_International" season="All_Year">
+  <airport name="Sinop Airport" icao="LTCM" iata="NOP" type="Domestic" season="All_Year">
     <town town="Sinop" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="42°0'57''N" />
@@ -6572,7 +6574,7 @@
       <runway name="01/19" length="3810" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Çorlu Airport" icao="LTBU" iata="TEQ" type="Short_Haul_International" season="All_Year">
+  <airport name="Tekirdağ Çorlu Airport" icao="LTBU" iata="TEQ" type="Domestic" season="All_Year">
     <town town="Tekirdağ" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="41°8'18''N" />
@@ -6586,7 +6588,7 @@
       <runway name="05/23" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Tokat Airport" icao="LTAW" iata="TJK" type="Short_Haul_International" season="All_Year">
+  <airport name="Tokat Airport" icao="LTAW" iata="TJK" type="Domestic" season="All_Year">
     <town town="Tokat" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="40°18'42''N" />
@@ -6614,7 +6616,7 @@
       <runway name="11/29" length="2640" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Uşak Airport" icao="LTBO" iata="USQ" type="Short_Haul_International" season="All_Year">
+  <airport name="Uşak Airport" icao="LTBO" iata="USQ" type="Domestic" season="All_Year">
     <town town="Uşak" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°67'96''N" />
@@ -6628,7 +6630,7 @@
       <runway name="09/27" length="2556" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Van - Ferit Melen Airport" icao="LTCI" iata="VAN" type="Short_Haul_International" season="All_Year">
+  <airport name="Van - Ferit Melen Airport" icao="LTCI" iata="VAN" type="Regional" season="All_Year">
     <town town="Van" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°28'6''N" />

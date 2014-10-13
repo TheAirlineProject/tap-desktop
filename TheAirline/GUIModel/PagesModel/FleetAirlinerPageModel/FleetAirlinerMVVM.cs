@@ -112,6 +112,7 @@
                 Boolean canperformcheck = this.Airliner.GroundedToDate < GameObject.GetInstance().GameTime;
                 this.Maintenances.Add(new FleetAirlinerMaintenanceMVVM(check.Type, check.LastCheck, airliner.Maintenance.getNextCheck(check.Type),check.Interval,check.CheckCenter,canperformcheck));
             }
+
             this.IsBuyable = this.Airliner.Airliner.Airline.IsHuman
                              && this.Airliner.Purchased == FleetAirliner.PurchasedType.Leased && this.Airliner.Airliner.Owner == null;
             this.IsConvertable = this.Airliner.Airliner.Airline.IsHuman
@@ -601,7 +602,7 @@
         }
         public double Interval { get; set; }
         private MaintenanceCenterMVVM _center;
-        public ObservableCollection<MaintenanceCenterMVVM> Centers { get; set; }
+        public List<MaintenanceCenterMVVM> Centers { get; set; }
         public MaintenanceCenterMVVM Center
         {
             get
@@ -634,8 +635,8 @@
             this.Type = type;
             this.Interval = interval;
             this.CanPerformCheck = canperformcheck;
-            
-            this.Centers = new ObservableCollection<MaintenanceCenterMVVM>();
+
+            this.Centers = new List<MaintenanceCenterMVVM>();
 
             foreach (Airport airport in GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel >= this.Type.Requirement.TypeLevel))
                 this.Centers.Add(new MaintenanceCenterMVVM(airport));
@@ -643,11 +644,12 @@
             foreach (MaintenanceCenter mCenter in GameObject.GetInstance().HumanAirline.MaintenanceCenters)
             {
                 this.Centers.Add(new MaintenanceCenterMVVM(mCenter));
-            }
 
+            }
+         
             if (center != null)
             {
-                this.Center = center.Airport != null ? new MaintenanceCenterMVVM(center.Airport) : new MaintenanceCenterMVVM(center.Center);
+                this.Center = center.Airport != null ? this.Centers.Find(c=>c.Airport == center.Airport) : this.Centers.Find(c=>c.Center == center.Center); 
             }
 
         }

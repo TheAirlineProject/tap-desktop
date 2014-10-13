@@ -47,12 +47,19 @@
             {
                 foreach (string type in types)
                 {
-                    var data = this.Airliner.Airliner.Data.getOrderedValues(type)[i];
+                    var orderedValues = this.Airliner.Airliner.Data.getOrderedValues(type);
 
-                    if (data.Value > 0)
-                        incomes.Add(new KeyValuePair<string, int>(type, (int)data.Value));
+                    var data = i<orderedValues.Count ? orderedValues[i] : null;
+
+                    if (data == null)
+                        incomes.Add(new KeyValuePair<string, int>(type, 0));
                     else
-                        expenses.Add(new KeyValuePair<string, int>(type, (int)Math.Abs(data.Value)));
+                    {
+                        if (data.Value > 0)
+                            incomes.Add(new KeyValuePair<string, int>(type, (int)data.Value));
+                        else
+                            expenses.Add(new KeyValuePair<string, int>(type, (int)Math.Abs(data.Value)));
+                    }
                 }
 
             }

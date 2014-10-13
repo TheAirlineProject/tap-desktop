@@ -5,54 +5,26 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
 
-namespace TheAirline.Model.GeneralModel
+namespace TheAirline.Model.AirlinerModel
 {
-    /*the class for a special contract type*/
+    //the class for the maintenance of an airliner
     [Serializable]
-    public class SpecialContractType : ISerializable
+    public class AirlinerMaintenance : ISerializable
     {
-          [Versioning("name")]
-        public string Name { get; set; }
-          [Versioning("text")]
-        public string Text { get; set; }
-          [Versioning("fixed")]
-        public Boolean IsFixedDate { get; set; }
-          [Versioning("period")]
-        public Period<DateTime> Period { get; set; }
-          [Versioning("frequency")]
-          public int Frequency { get; set; } //how often this contract type is available per year
-          [Versioning("routes")]
-          public List<SpecialContractRoute> Routes { get; set; }
-          [Versioning("payment")]
-          public long Payment { get; set; }
-          [Versioning("bonus")]
-          public Boolean AsBonus { get; set; }
-          [Versioning("requirements")]
-          public List<ContractRequirement> Requirements { get; set; }
-          [Versioning("lastdate")]
-          public DateTime LastDate { get; set; }
-          [Versioning("penalty")]
-          public long Penalty { get; set; }
-          [Versioning("from")]
-          public DateTime from { get; set; }
-        public SpecialContractType(string name, string text,long payment,Boolean asbonus, long penalty, Boolean isfixeddate)
+        [Versioning("checks")]
+        public List<AirlinerMaintenanceCheck> Checks { get; set; }
+         public AirlinerMaintenance(DateTime date)
         {
-            this.Name = name;
-            this.Text = text;
-            this.IsFixedDate = isfixeddate;
-            this.Routes = new List<SpecialContractRoute>();
-            this.Payment = payment;
-            this.Penalty = penalty;
-            this.AsBonus = asbonus;
-            this.Requirements = new List<ContractRequirement>();
+            this.Checks = new List<AirlinerMaintenanceCheck>();
 
-   
+             foreach (AirlinerMaintenanceType type in AirlinerMaintenanceTypes.GetMaintenanceTypes())
+                this.Checks.Add(new AirlinerMaintenanceCheck(type,date));
+
         }
-          private SpecialContractType(SerializationInfo info, StreamingContext ctxt)
+          private AirlinerMaintenance(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -107,7 +79,7 @@ namespace TheAirline.Model.GeneralModel
                     }
                 }
             }
-        }
+         }
         #region Public Methods and Operators
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -145,33 +117,112 @@ namespace TheAirline.Model.GeneralModel
                 info.AddValue(att.Name, propValue);
             }
         }
-
-        #endregion
-      
-    }
-    /*the class for a contract route*/
-    public class SpecialContractRoute
-    {
-        [Versioning("departure")]
-        public Airport Departure { get; set; }
-        [Versioning("destination")]
-        public Airport Destination { get; set; }
-        [Versioning("bothways")]
-        public Boolean BothWays { get; set; }
-        [Versioning("passengers")]
-        public long PassengersPerDay { get; set; }
-        [Versioning("type")]
-        public Route.RouteType RouteType { get; set; }
-        public SpecialContractRoute(Airport destination1, Airport destination2, long passengers,Route.RouteType routetype, Boolean bothways)
+        //returns the last check for a specific type
+        public DateTime getLastCheck(AirlinerMaintenanceType type)
         {
-            this.Departure = destination1;
-            this.Destination = destination2;
-            this.BothWays = bothways;
-            this.PassengersPerDay = passengers;
-            this.RouteType = routetype;
+            var check = this.Checks.FirstOrDefault(c=>c.Type == type);
+
+            if (check == null)
+                return DateTime.MinValue;
+            else
+                return check.LastCheck;
+          
+        }
+        public DateTime getNextCheck(AirlinerMaintenanceType type)
+        {
+            var check = this.Checks.First(c => c.Type == type);
+
+            DateTime lastdate = check.LastCheck;
+
+            return lastdate.AddDays(check.Interval);
+        }
+        //sets the last check of a specific type
+        public void setLastCheck(AirlinerMaintenanceType type, DateTime lastcheck)
+        {
+         
+            this.Checks.FirstOrDefault(c => c.Type == type).LastCheck = lastcheck;
+        }
+        //returns the interval where the next check needs be performed of a specific type
+        public Period<DateTime> getNextMaintenanceInterval(AirlinerMaintenanceType type)
+        {
+            var check = this.Checks.First(c=>c.Type == type);
+
+            DateTime lastdate = check.LastCheck;
+            DateTime startdate = lastdate.Add(type.Interval.From);
+            DateTime enddate = lastdate.Add(type.Interval.To);
+
+            return new Period<DateTime>(startdate, enddate);
+        }
+        //returns a maintenance type if overdue
+        public AirlinerMaintenanceType getOverduedMaintenance(DateTime date)
+        {
+            List<AirlinerMaintenanceType> types = new List<AirlinerMaintenanceType>();
+
+            foreach (AirlinerMaintenanceCheck check in this.Checks)
+            {
+                Period<DateTime> nextMaintenanceWindow = new Period<DateTime>(check.LastCheck.Add(check.Type.Interval.From), check.LastCheck.Add(check.Type.Interval.To));
+
+                if (nextMaintenanceWindow.To < GameObject.GetInstance().GameTime)
+                    types.Add(check.Type);
+            }
+           
+
+            if (types.Count > 0)
+                return types.OrderByDescending(t => t.Penalty).First();
+            else
+                return null;
+            
+        }
+        //returns the next maintenance 
+        public AirlinerMaintenanceType getNextMaintenance(DateTime date)
+        {
+              List<AirlinerMaintenanceType> types = new List<AirlinerMaintenanceType>();
+
+              foreach (AirlinerMaintenanceCheck check in this.Checks)
+              {
+                  Period<DateTime> nextMaintenanceWindow = new Period<DateTime>(check.LastCheck.Add(check.Type.Interval.From), check.LastCheck.Add(check.Type.Interval.To));
+
+                  if (nextMaintenanceWindow.From <= date && nextMaintenanceWindow.To >= date && check.canPerformCheck())
+                      types.Add(check.Type);
+              }
+           
+              if (types.Count > 0)
+                  return types.OrderByDescending(t => t.Penalty).First();
+              else
+                  return null;
+
+        }
        
+        //returns the check center of a specific type
+        public AirlinerMaintenanceCenter getCheckCenter(AirlinerMaintenanceType type)
+        {
+            var check = this.Checks.FirstOrDefault(c => c.Type == type);
+
+            return check.CheckCenter;
+          
         }
-          private SpecialContractRoute(SerializationInfo info, StreamingContext ctxt)
+        #endregion
+    }
+    //the class for an airliner check
+    [Serializable]
+    public class AirlinerMaintenanceCheck : ISerializable
+    {
+        [Versioning("lastcheck")]
+        public DateTime LastCheck { get; set; }
+        [Versioning("center")]
+        public AirlinerMaintenanceCenter CheckCenter { get; set; }
+        [Versioning("type")]
+        public AirlinerMaintenanceType Type { get; set; }
+        [Versioning("interval")]
+        public double Interval { get; set; }
+        public AirlinerMaintenanceCheck(AirlinerMaintenanceType type, DateTime lastcheck)
+        {
+            this.LastCheck = lastcheck;
+            this.Type = type;
+            this.Interval = this.Type.Interval.To.TotalDays;
+
+        }
+            private AirlinerMaintenanceCheck(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -226,7 +277,7 @@ namespace TheAirline.Model.GeneralModel
                     }
                 }
             }
-        }
+         }
         #region Public Methods and Operators
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -264,29 +315,28 @@ namespace TheAirline.Model.GeneralModel
                 info.AddValue(att.Name, propValue);
             }
         }
-
-        #endregion
+        //returns if the airliner can perform the check
+        public Boolean canPerformCheck()
+        {
+            return this.CheckCenter != null && this.CheckCenter.hasCheck();
+        }
+#endregion
     }
-    /*the class for a requirement for a contract*/
-    public class ContractRequirement
+    //the class for how a specific type is maintained for an airliner
+    [Serializable]
+    public class AirlinerMaintenanceCenter : ISerializable
     {
-       public enum RequirementType { Destination, ClassType }
-       [Versioning("type")]
-       public RequirementType Type { get; set; }
-       [Versioning("classtype")]
-       public AirlinerClass.ClassType ClassType { get; set; }
-       [Versioning("seats")]
-       public int MinSeats { get; set; }
-       [Versioning("destination")]
-       public Airport Destination { get; set; }
-       [Versioning("departure")]
-       public Airport Departure { get; set; }
-        public ContractRequirement(RequirementType type)
+        [Versioning("type")]
+        public AirlinerMaintenanceType Type { get; set; }
+        [Versioning("airport")]
+        public Airport Airport { get; set; }
+        [Versioning("center")]
+        public MaintenanceCenter Center { get; set; }
+        public AirlinerMaintenanceCenter(AirlinerMaintenanceType type)
         {
             this.Type = type;
-       
         }
-          private ContractRequirement(SerializationInfo info, StreamingContext ctxt)
+          private AirlinerMaintenanceCenter(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -341,7 +391,7 @@ namespace TheAirline.Model.GeneralModel
                     }
                 }
             }
-        }
+         }
         #region Public Methods and Operators
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -379,33 +429,151 @@ namespace TheAirline.Model.GeneralModel
                 info.AddValue(att.Name, propValue);
             }
         }
+        //returns if the type has a check
+        public Boolean hasCheck()
+        {
+            return this.Center != null || this.Airport != null;
+        }
+        #endregion
+        
+    }
+   
+    //the class for a maintenance type
+    [Serializable]
+    public class AirlinerMaintenanceType : ISerializable
+    {
+         [Versioning("name")]
+        public string Name { get; set; }
+         [Versioning("worktime")]
+        public TimeSpan Worktime { get; set; }
+         [Versioning("interval")]
+        public Period<TimeSpan> Interval { get; set; }
+         [Versioning("requirement")]
+         public AirportFacility Requirement { get; set; }
+        [Versioning("penalty")]
+         public double Penalty { get; set; }
+ 
+        public AirlinerMaintenanceType(string name,Period<TimeSpan> interval, TimeSpan worktime, double penalty, AirportFacility requirement)
+        {
+            this.Name = name;
+            this.Interval = interval;
+            this.Worktime = worktime;
+            this.Requirement = requirement;
+            this.Penalty = penalty;
+        }
+         private AirlinerMaintenanceType(SerializationInfo info, StreamingContext ctxt)
+        {
+            int version = info.GetInt16("version");
 
+            IEnumerable<FieldInfo> fields =
+                this.GetType()
+                    .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    this.GetType()
+                        .GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+
+            foreach (SerializationEntry entry in info)
+            {
+                MemberInfo prop =
+                    propsAndFields.FirstOrDefault(
+                        p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+
+                if (prop != null)
+                {
+                    if (prop is FieldInfo)
+                    {
+                        ((FieldInfo)prop).SetValue(this, entry.Value);
+                    }
+                    else
+                    {
+                        ((PropertyInfo)prop).SetValue(this, entry.Value);
+                    }
+                }
+            }
+
+            IEnumerable<MemberInfo> notSetProps =
+                propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+
+            foreach (MemberInfo notSet in notSetProps)
+            {
+                var ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+
+                if (ver.AutoGenerated)
+                {
+                    if (notSet is FieldInfo)
+                    {
+                        ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
+                    else
+                    {
+                        ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
+                    }
+                }
+            }
+         }
+        #region Public Methods and Operators
+
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("version", 1);
+
+            Type myType = this.GetType();
+
+            IEnumerable<FieldInfo> fields =
+                myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                    .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+
+            IList<PropertyInfo> props =
+                new List<PropertyInfo>(
+                    myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
+                        .Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+
+            IEnumerable<MemberInfo> propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+
+            foreach (MemberInfo member in propsAndFields)
+            {
+                object propValue;
+
+                if (member is FieldInfo)
+                {
+                    propValue = ((FieldInfo)member).GetValue(this);
+                }
+                else
+                {
+                    propValue = ((PropertyInfo)member).GetValue(this, null);
+                }
+
+                var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+
+                info.AddValue(att.Name, propValue);
+            }
+        }
         #endregion
     }
-    /*the list of special contracts*/
-    public class SpecialContractTypes
+    //the list of maintenance types
+    public class AirlinerMaintenanceTypes
     {
-        private static List<SpecialContractType> types = new List<SpecialContractType>();
-        //adds a special contract type
-        public static void AddType(SpecialContractType type)
+        private static List<AirlinerMaintenanceType> types = new List<AirlinerMaintenanceType>();
+        //adds a type to the list
+        public static void AddMaintenanceType(AirlinerMaintenanceType type)
         {
             types.Add(type);
         }
         //returns the list of types
-        public static List<SpecialContractType> GetTypes()
+        public static List<AirlinerMaintenanceType> GetMaintenanceTypes()
         {
             return types;
         }
-        //returns all random contract types
-        public static List<SpecialContractType> GetRandomTypes()
-        {
-            return types.FindAll(t => !t.IsFixedDate);
-        }
-        //clears the list
+        //clears the list of types
         public static void Clear()
         {
             types.Clear();
         }
     }
-
 }

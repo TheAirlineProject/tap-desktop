@@ -190,9 +190,8 @@
         {
             if (this.contains(type, year, month))
             {
-                MonthlyInvoice mInvoice =
-                    this.MonthlyInvoices.Find(m => m.Month == month && m.Year == year && m.Type == type);
-                return mInvoice.Amount;
+
+                return this.MonthlyInvoices.FindAll(m => m.Month == month && m.Year == year && m.Type == type).Sum(m => m.Amount);
             }
             return 0;
         }
@@ -200,6 +199,8 @@
         //returns the total amount for a given year and month
         public double getAmount(int year, int month)
         {
+           
+
             return this.MonthlyInvoices.FindAll(m => m.Month == month && m.Year == year).Sum(m => m.Amount);
         }
 

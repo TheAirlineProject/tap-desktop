@@ -3,6 +3,7 @@
 <airline>
   <profile name="Virgin Australia" iata="VA" color="Red" country="116" CEO="John Borghetti" mentality="Aggressive"
            market="Global" preferedairport="BNE">
-  </profile>
-  <info real="True" from="2000" to="2199"></info>
+            <narrative narrative="Virgin Australia was launched as Virgin Blue in August 2000, with two Boeing 737-400 aircraft, one leased from then-sister airline Virgin Express. Initially offering seven return flights a day between Brisbane and Sydney, this has since been expanded to cover all major Australian cities and many holiday destinations. The Virgin Blue name was the result of an open competition; it was a play on the predominantly red livery and the Australian slang tradition of calling a red-headed male 'Blue' or 'Bluey'" />
+            </profile>
+<info real="True" from="2000" to="2199"></info>
 </airline>

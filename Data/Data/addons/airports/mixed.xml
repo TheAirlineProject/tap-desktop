@@ -3847,7 +3847,7 @@
   </airport>
   <!--Denmark-->
   <airport name="Aasiaat Airport" icao="BGAA" iata="JEG" type="Domestic" season="All_Year">
-    <town town="Aasiaat" country="110" GMT="-02:00:00" DST="-03:00:00" />
+    <town town="Aasiaat, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="68°43'19''N" />
       <longitude value="52°47'5''W" />
@@ -3875,7 +3875,7 @@
     </runways>
   </airport>
   <airport name="Ilulissat Airport" icao="BGJN" iata="JAV" type="Regional" season="All_Year">
-    <town town="Ilulissat" country="110" GMT="-02:00:00" DST="-03:00:00" />
+    <town town="Ilulissat, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="69°14'36''N" />
       <longitude value="51°3'26''W" />
@@ -3889,7 +3889,7 @@
     </runways>
   </airport>
   <airport name="Nerlerit Inaat Airport" icao="BGCO" iata="CNP" type="Regional" season="All_Year">
-    <town town="Ittoqqortoormiit" country="110" GMT="-02:00:00" DST="-03:00:00" />
+    <town town="Ittoqqortoormiit, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="70°44'35''N" />
       <longitude value="22°39'2''W" />
@@ -3903,7 +3903,7 @@
     </runways>
   </airport>
   <airport name="Maniitsoq Airport" icao="BGMQ," iata="JSU" type="Domestic" season="All_Year">
-    <town town="Maniitsoq" country="110" GMT="-02:00:00" DST="-03:00:00" />
+    <town town="Maniitsoq, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="65°24'45''N" />
       <longitude value="52°56'22''W" />
@@ -3917,7 +3917,7 @@
     </runways>
   </airport>
   <airport name="Nuuk Airport" icao="BGGH" iata="GOH" type="Regional" season="All_Year">
-    <town town="Nuuk" country="110" GMT="-02:00:00" DST="-03:00:00" />
+    <town town="Nuuk, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="64°11'27''N" />
       <longitude value="51°40'41''W" />
@@ -3931,7 +3931,7 @@
     </runways>
   </airport>
   <airport name="Paamiut Airport" icao="BGPT" iata="JFR" type="Domestic" season="All_Year">
-    <town town="Paamiut" country="110" GMT="-02:00:00" DST="-03:00:00" />
+    <town town="Paamiut, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="62°0'53''N" />
       <longitude value="49°40'15''W" />
@@ -3945,7 +3945,7 @@
     </runways>
   </airport>
   <airport name="Qaarsut Airport" icao="BGUQ" iata="JQA" type="Domestic" season="All_Year">
-    <town town="Qaarsut" country="110" GMT="-02:00:00" DST="-03:00:00" />
+    <town town="Qaarsut, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="70°44'3''N" />
       <longitude value="52°41'46''W" />
@@ -3959,7 +3959,7 @@
     </runways>
   </airport>
   <airport name="Thule Air Base / Pituffik Airport" icao="BGTL" iata="THU" type="Short_Haul_International" season="All_Year">
-    <town town="Qaasuitsup" country="110" GMT="-02:00:00" DST="-03:00:00" />
+    <town town="Qaasuitsup, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="76°31'52''N" />
       <longitude value="68°42'11''W" />
@@ -3973,7 +3973,7 @@
     </runways>
   </airport>
   <airport name="Sisimiut Airport" icao="BGSS" iata="JHS" type="Domestic" season="All_Year">
-    <town town="Sisimiut" country="110" GMT="-02:00:00" DST="-03:00:00" />
+    <town town="Sisimiut, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="66°57'5''N" />
       <longitude value="53°43'46''W" />
@@ -3987,7 +3987,7 @@
     </runways>
   </airport>
   <airport name="Upernavik Airport" icao="BGUK" iata="JUV" type="Domestic" season="All_Year">
-    <town town="Upernavik" country="110" GMT="-02:00:00" DST="-03:00:00" />
+    <town town="Upernavik, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="72°47'25''N" />
       <longitude value="56°7'50''W" />
@@ -13176,8 +13176,8 @@
     </runways>
   </airport>
   <!--Turkey-->
-  <airport name="Ad?yaman Airport" icao="LTCP" iata="ADF" type="Domestic" season="All_Year">
-    <town town="Ad?yaman" country="161" GMT="03:00:00" DST="02:00:00" />
+  <airport name="Adyaman Airport" icao="LTCP" iata="ADF" type="Domestic" season="All_Year">
+    <town town="Adyaman" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°43'54''N" />
       <longitude value="38°28'8''E" />
@@ -13442,8 +13442,8 @@
       <runway name="17/35" length="1220" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cambridge Airport, ENG" icao="EGSC" iata="CBG" type="Regional" season="All_Year">
-    <town town="Cambridge" country="130" GMT="01:00:00" DST="00:00:00" />
+  <airport name="Cambridge Airport" icao="EGSC" iata="CBG" type="Regional" season="All_Year">
+    <town town="Cambridge, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="52°12'18''N" />
       <longitude value="0°10'30''E" />
@@ -13630,7 +13630,7 @@
     </runways>
   </airport>
   <airport name="Kirkwall Airport" icao="EGPA" iata="KOI" type="Regional" season="All_Year">
-    <town town="Kirkwall, SCO" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Kirkwall, SCT" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="58°57'29''N" />
       <longitude value="2°54'2''W" />

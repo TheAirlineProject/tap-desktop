@@ -94,7 +94,7 @@
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
             AirportFacility facility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service)
-                    .Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
+                    .Find((delegate(AirportFacility f) { return f.TypeLevel == 2; }));
 
             airport.addAirportFacility(
                 GameObject.GetInstance().HumanAirline,
@@ -586,8 +586,7 @@
                 var sw = new Stopwatch();
                 sw.Start();
 
-                GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddDays(1);
-
+             
                 DoDailyUpdate();
 
                 if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime))
@@ -625,6 +624,8 @@
                     });
 
                 sw.Stop();
+
+                GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddDays(1);
             }
             else
             {
@@ -670,6 +671,8 @@
                 }
                 sw.Stop();
             }
+      
+
         }
 
         #endregion
@@ -1015,7 +1018,7 @@
                             }
                             else
                             {
-                                AIHelpers.SetAirlinerHomebase(airliner);
+                                AIHelpers.SetAirlinerHomebase(airliner,route.Type);
                             }
                         }
                     }
@@ -1528,7 +1531,8 @@
                     AirportHelpers.SetAirportExpansion(airport,expansion);
                 }
 
-            } //);
+            }
+            //);
             //checks for airliners for the human airline
             foreach (
                 FleetAirliner airliner in
@@ -1539,6 +1543,9 @@
                                     f.Airliner.BuiltDate == GameObject.GetInstance().GameTime
                                     && f.Purchased != FleetAirliner.PurchasedType.BoughtDownPayment)))
             {
+                foreach (AirlinerMaintenanceType maintenanceType in AirlinerMaintenanceTypes.GetMaintenanceTypes())
+                    airliner.Maintenance.setLastCheck(maintenanceType, GameObject.GetInstance().GameTime);
+
                 if (airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline)
                 {
                     GameObject.GetInstance()
@@ -1746,6 +1753,7 @@
                 }
                 if (merger.Type == AirlineMerger.MergerType.Subsidiary)
                 {
+                    
                     string oldLogo = merger.Airline2.Profile.Logo;
 
                     var sAirline = new SubsidiaryAirline(
@@ -1756,7 +1764,7 @@
                         merger.Airline2.License,
                         merger.Airline2.AirlineRouteFocus);
 
-                    AirlineHelpers.SwitchAirline(merger.Airline2, merger.Airline1);
+                    //AirlineHelpers.SwitchAirline(merger.Airline2, merger.Airline1);
 
                     merger.Airline1.addSubsidiaryAirline(sAirline);
 
@@ -1805,7 +1813,7 @@
             {
                 AirlineHelpers.CheckInsuranceSettlements(a);
 
-                var airliners = new List<FleetAirliner>(a.Fleet);
+                var airliners = new List<FleetAirliner>(a.Fleet.Where(f=>f.Airliner.BuiltDate<=GameObject.GetInstance().GameTime));
                 foreach (FleetAirliner airliner in airliners)
                 {
                     if (airliner != null)
