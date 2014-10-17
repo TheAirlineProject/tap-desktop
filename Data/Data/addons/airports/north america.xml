@@ -11,14 +11,14 @@
     <size value="Large" pax="14316" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="50" />
-     </terminals>
+    </terminals>
     <runways>
       <runway name="08/26" length="1890" surface="Asphalt" />
       <runway name="11/29" length="2438" surface="Asphalt" />
       <runway name="17R/35L" length="3863" surface="Asphalt" />
       <runway name="17L/35R" length="4267" surface="Asphalt" />
     </runways>
-        <expansions>
+            <expansions>
      <expansion type="New_terminal" name="Terminal 2" gates="22" date="10 01 2015 00:00:00" notify="True"></expansion>
    </expansions>
   </airport>
@@ -143,7 +143,7 @@
       <runway name="14/32" length="3050" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Québec City Jean Lesage International Airport" icao="CYQB" iata="YQB" type="Short_Haul_International" season="All_Year">
+  <airport name="Québec City Jean Lesage International Airport" icao="CYQB" iata="YQB" type="Long_Haul_International" season="All_Year">
     <town town="Quebec City, QC" country="113" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="46°47'32''N" />
@@ -302,7 +302,7 @@
       <runway name="12/30" length="2225" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Victoria International Airport" icao="CYYJ" iata="YYJ" type="Short_Haul_International" season="All_Year">
+  <airport name="Victoria International Airport" icao="CYYJ" iata="YYJ" type="Long_Haul_International" season="All_Year">
     <town town="Victoria, BC" country="113" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
       <latitude value="48°38'49''N" />
@@ -318,7 +318,7 @@
       <runway name="13/31" length="1524" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Winnipeg International Airport" icao="CYWG" iata="YWG" type="Short_Haul_International" season="All_Year">
+  <airport name="Winnipeg International Airport" icao="CYWG" iata="YWG" type="Long_Haul_International" season="All_Year">
     <town town="Winnipeg, MB" country="113" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="49°54'36''N" />
@@ -4532,7 +4532,7 @@ season="All_Year">
     </runways>
   </airport>
   <!--Dominican Republic (MD**)-->
-  <airport name="Maria Montez International Airport" icao="MDBH" iata="BRX" type="Regional" season="All_Year">
+   <airport name="Maria Montez International Airport" icao="MDBH" iata="BRX" type="Regional" season="All_Year">
     <town town="Barahona" country="207" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="18°15'5''N" />
@@ -4588,8 +4588,8 @@ season="All_Year">
       <runway name="11/29" length="2949" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cabo Rojo Airport" icao="MDCR" iata="CBJ" type="Domestic" season="All_Year">
-    <town town="Cabo Rojo" country="207" GMT="-04:00:00" DST="-05:00:00" />
+  <airport name="Cabo Rojo Airport" icao="MDCR" iata="CBJ" type="Regional" season="All_Year">
+    <town town="Pedernales" country="207" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="17°55'44''N" />
       <longitude value="71°38'41''W" />
@@ -4603,7 +4603,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Gregorio Luperón International Airport" icao="MDPP" iata="POP" type="Long_Haul_International" season="All_Year">
-    <town town="Sosua" country="207" GMT="-04:00:00" DST="-04:00:00" />
+    <town town="Puerto Plata" country="207" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="19°45'28''N" />
       <longitude value="70°34'12''W" />
@@ -4646,7 +4646,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Arroyo Barril International Airport" icao="MDAB" iata="EPS" type="Domestic" season="All_Year">
-    <town town="Arroyo Barril" country="207" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Samaná" country="207" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="19°11'54''N" />
       <longitude value="69°25'47''W" />
@@ -4732,7 +4732,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Coban Airport" icao="MGCB" iata="CBV" type="Domestic" season="All_Year">
-    <town town="Coban" country="194" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Cobán" country="194" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="15°28'8''N" />
       <longitude value="90°24'24''W" />
@@ -4745,8 +4745,8 @@ season="All_Year">
       <runway name="02/20" length="1018" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Mundo Maya International Airport" icao="MGTK" iata="FRS" type="Short_Haul_International" season="All_Year">
-    <town town="Tikal" country="194" GMT="-06:00:00" DST="-06:00:00" />
+  <airport name="Mundo Maya International Airport" icao="MGTK" iata="FRS" type="Regional" season="All_Year">
+    <town town="Flores" country="194" GMT="-06:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="16°54'49''N" />
       <longitude value="89°51'58''W" />
@@ -4788,7 +4788,7 @@ season="All_Year">
       <runway name="12/30" length="2707" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Quezaltenango Airport" icao="MGQZ" iata="AAZ" type="Domestic" season="All_Year">
+  <airport name="Quezaltenango Airport" icao="MGQZ" iata="AAZ" type="Regional" season="All_Year">
     <town town="Quezaltenango" country="194" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="14°51'56''N" />
@@ -4803,7 +4803,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Retalhuleu Airport" icao="MGRT" iata="RER" type="Domestic" season="All_Year">
-<period from="03.01.2014 00:00:00" to="01.01.2199 00:00:00" />
+    <period from="3/1/2014 12:00:00 AM" to="1/1/2199 12:00:00 AM" />
     <town town="Retalhuleu" country="194" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="14°31'15''N" />
@@ -4832,7 +4832,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Quiché Airport" icao="MGQC" iata="AQB" type="Domestic" season="All_Year">
-    <town town="Santa Cruz del Quiche" country="194" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Santa Cruz del Quiché" country="194" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="15°0'43''N" />
       <longitude value="91°9'2''W" />
@@ -4846,8 +4846,8 @@ season="All_Year">
     </runways>
   </airport>
   <!--Hondorus (MH**)-->
-   <airport name="Coronel Enrique Soto Cano Air Base" icao="MHSC" iata="XPL" type="Domestic" season="All_Year">
-  <period from="07.01.2008 00:00:00" to="01.01.2199 00:00:00" />
+    <airport name="Coronel Enrique Soto Cano Air Base" icao="MHSC" iata="XPL" type="Domestic" season="All_Year">
+    <period from="7/1/2008 12:00:00 AM" to="1/1/2199 12:00:00 AM" />
     <town town="Comayagua" country="196" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="14°22'56''N" />
@@ -4862,7 +4862,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Đakovica Airfield" icao="LYDK" iata="GJA" type="Domestic" season="All_Year">
-    <town town="Gjakovë" country="196" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Guanaja" country="196" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="42°26'6''N" />
       <longitude value="20°25'38''E" />
@@ -4890,7 +4890,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Juan Manuel Gálvez International Airport" icao="MHRO" iata="RTB" type="Long_Haul_International" season="All_Year">
-    <town town="Roatan" country="196" GMT="-06:00:00" DST="-06:00:00" />
+    <town town="Roatán" country="196" GMT="-06:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="16°19'0''N" />
       <longitude value="86°31'22''W" />
@@ -4904,7 +4904,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Ramón Villeda Morales International Airport" icao="MHLM" iata="SAP" type="Short_Haul_International" season="All_Year">
-    <town town="La Mesa" country="196" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="San Pedro Sula" country="196" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="15°27'9''N" />
       <longitude value="87°55'24''W" />
@@ -4960,7 +4960,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Utila Airport" icao="MHUT" iata="UII" type="Domestic" season="All_Year">
-    <town town="Utila Island" country="196" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Utila / Islas de la Bahía" country="196" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="16°6'47''N" />
       <longitude value="86°52'49''W" />
@@ -4990,7 +4990,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Tinson Pen Airport" icao="MKTP" iata="KTP" type="Domestic" season="All_Year">
-    <town town="Tinson Pen" country="199" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Kingston" country="199" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="17°59'18''N" />
       <longitude value="76°49'25''W" />
@@ -5032,7 +5032,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Ken Jones Airport" icao="MKKJ" iata="POT" type="Domestic" season="All_Year">
-    <town town="Ken Jones" country="199" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Port Antonio" country="199" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="18°11'55''N" />
       <longitude value="76°32'4''W" />
@@ -6015,7 +6015,7 @@ season="All_Year">
     </runways>
   </airport>
   <!--Nicaragua (MN**)-->
-  <airport name="Augusto C. Sandino International Airport" icao="MNMG" iata="MGA" type="Long_Haul_International" season="All_Year">
+<airport name="Augusto C. Sandino International Airport" icao="MNMG" iata="MGA" type="Long_Haul_International" season="All_Year">
     <town town="Managua" country="195" GMT="-06:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="12°8'29''N" />
@@ -6030,7 +6030,7 @@ season="All_Year">
     </runways>
   </airport>
   <!--Panama (MP**)-->
-   <airport name="Tocumen International Airport" icao="MPTO" iata="PTY" type="Long_Haul_International" season="All_Year">
+<airport name="Tocumen International Airport" icao="MPTO" iata="PTY" type="Long_Haul_International" season="All_Year">
     <town town="Panama City" country="191" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="9°4'17''N" />
@@ -6039,18 +6039,18 @@ season="All_Year">
     <size value="Medium" pax="7784" cargo="Smallest" cargovolume="0" />
     <terminals>
       <terminal name="Terminal 1" gates="28" />
-    </terminals>
+     </terminals>
     <runways>
       <runway name="03L/21R" length="2682" surface="Asphalt" />
       <runway name="03R/21L" length="3050" surface="Concrete" />
     </runways>
-         <expansions>
+             <expansions>
      <expansion type="New_terminal" name="Terminal 2" gates="12" date="04 01 2012 00:00:00" notify="True"></expansion>
          <expansion type="New_terminal" name="Terminal 3" gates="20" date="01 01 2016 00:00:00" notify="True"></expansion>
    </expansions>
   </airport>
   <!--Costa Rica (MR**)-->
-  <airport name="Liberia International Airport" icao="MRLB" iata="LIR" type="Long_Haul_International" season="All_Year">
+   <airport name="Liberia International Airport" icao="MRLB" iata="LIR" type="Long_Haul_International" season="All_Year">
     <town town="Liberia" country="192" GMT="-06:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="10°35'35''N" />
@@ -6111,7 +6111,7 @@ season="All_Year">
     </runways>
   </airport>
   <!--Cuba (MU**)-->
-  <airport name="José Martí International Airport" icao="MUHA" iata="HAV" type="Long_Haul_International" season="All_Year">
+   <airport name="José Martí International Airport" icao="MUHA" iata="HAV" type="Long_Haul_International" season="All_Year">
     <town town="Havana" country="198" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="23°1'0''N" />
@@ -6144,7 +6144,7 @@ season="All_Year">
     </runways>
   </airport>
     <!--Cayman Islands (MW**)-->
-<airport name="Robert L. Bradshaw International Airport" icao="TKPK" iata="SKB" type="Long_Haul_International" season="Summer">
+  <airport name="Robert L. Bradshaw International Airport" icao="TKPK" iata="SKB" type="Long_Haul_International" season="Summer">
     <town town="Basseterre" country="230" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="17°18'40''N" />
@@ -6206,7 +6206,7 @@ season="All_Year">
   </airport>
   <!--Caribbean (T***)-->
   <!--Antigua & Barbuda (TA**)-->
-  <airport name="V. C. Bird International Airport" icao="TAPA" iata="ANU" type="Long_Haul_International" season="Summer">
+<airport name="V. C. Bird International Airport" icao="TAPA" iata="ANU" type="Long_Haul_International" season="Summer">
     <town town="St. John's" country="243" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="17°8'12''N" />
@@ -6238,8 +6238,8 @@ season="All_Year">
     </runways>
   </airport>
   <!--Dominica (TD**)-->
-  <airport name="Melville Hall Airport" icao="TDPD" iata="DOM" type="Long_Haul_International" season="Summer">
-    <town town="Roseau" country="228" GMT="-04:00:00" DST="-04:00:00" />
+<airport name="Melville Hall Airport" icao="TDPD" iata="DOM" type="Long_Haul_International" season="Summer">
+    <town town="Marigot" country="228" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="15°32'49''N" />
       <longitude value="61°18'0''W" />
@@ -6428,7 +6428,7 @@ season="All_Year">
     </runways>
   </airport>
   <!--St. Lucia (TL**)-->
-  <airport name="George F.L. Charles Airport" icao="TLPC" iata="SLU" type="Long_Haul_International" season="All_Year">
+   <airport name="George F.L. Charles Airport" icao="TLPC" iata="SLU" type="Regional" season="All_Year">
     <town town="Castries" country="108" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="14°1'12''N" />
@@ -6443,7 +6443,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Hewanorra International Airport" icao="TLPL" iata="UVF" type="Long_Haul_International" season="All_Year">
-    <town town="Hewandorra" country="108" GMT="-04:00:00" DST="-04:00:00" />
+    <town town="Vieux-Fort" country="108" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="13°43'59''N" />
       <longitude value="60°57'9''W" />
@@ -6457,7 +6457,7 @@ season="All_Year">
     </runways>
   </airport>
   <!--Caribbean Netherlands (TN**)-->
-<airport name="Queen Beatrix International Airport" icao="TNCA" iata="AUA" type="Long_Haul_International" season="All_Year">
+  <airport name="Queen Beatrix International Airport" icao="TNCA" iata="AUA" type="Long_Haul_International" season="All_Year">
     <town town="Oranjestad" country="244" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="12°30'5''N" />
@@ -6485,7 +6485,7 @@ season="All_Year">
       <runway name="10/28" length="2880" surface="Asphalt" />
     </runways>
   </airport>
-<airport name="Curaçao International Airport" icao="TNCC" iata="CUR" type="Long_Haul_International" season="All_Year">
+ <airport name="Curaçao International Airport" icao="TNCC" iata="CUR" type="Long_Haul_International" season="All_Year">
     <town town="Willemstad" country="246" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="12°11'20''N" />

@@ -19,7 +19,7 @@
     </runways>
   </airport>
   <airport name="Houari Boumediene Airport" icao="DAAG" iata="ALG" type="Long_Haul_International" season="All_Year">
-    <town town="Algier" country="142" GMT="01:00:00" DST="01:00:00" />
+    <town town="Algiers" country="142" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="36°41'27''N" />
       <longitude value="3°12'55''E" />
@@ -34,8 +34,8 @@
       <runway name="09/27" length="3500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Annaba Airport" icao="DABB" iata="AAE" type="Short_Haul_International" season="All_Year">
-    <town town="Annabah" country="142" GMT="01:00:00" DST="01:00:00" />
+  <airport name="Annaba Airport" icao="DABB" iata="AAE" type="Long_Haul_International" season="All_Year">
+    <town town="Annaba" country="142" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="36°49'19''N" />
       <longitude value="7°48'33''E" />
@@ -80,7 +80,7 @@
       <runway name="18/36" length="2400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Oued Irara Airport" icao="DAUH" iata="HME" type="Long_Haul_International" season="All_Year">
+  <airport name="Oued Irara Airport" icao="DAUH" iata="HME" type="Short_Haul_International" season="All_Year">
     <town town="Hassi Messaoud" country="142" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="31°40'22''N" />
@@ -94,8 +94,8 @@
       <runway name="18/36" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="In Aménas Airport" icao="DAUZ" iata="IAM" type="Regional" season="All_Year">
-    <town town="Aménas" country="142" GMT="01:00:00" DST="01:00:00" />
+  <airport name="In Aménas Airport" icao="DAUZ" iata="IAM" type="Domestic" season="All_Year">
+    <town town="In Aménas" country="142" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="28°3'5''N" />
       <longitude value="9°38'34''E" />
@@ -139,8 +139,8 @@
       <runway name="08/26" length="3100" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cheikh Larbi Tébessi Airport" icao="DABS" iata="TEE" type="Regional" season="All_Year">
-    <town town="Tébessi" country="142" GMT="01:00:00" DST="01:00:00" />
+  <airport name="Cheikh Larbi Tébessi Airport" icao="DABS" iata="TEE" type="Domestic" season="All_Year">
+    <town town="Tébessa" country="142" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="35°25'53''N" />
       <longitude value="8°7'14''E" />
@@ -154,7 +154,7 @@
       <runway name="12/30" length="2400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Zenata – Messali El Hadj Airport" icao="DAON" iata="TLM" type="Regional" season="All_Year">
+  <airport name="Zenata – Messali El Hadj Airport" icao="DAON" iata="TLM" type="Short_Haul_International" season="All_Year">
     <town town="Tlemcen" country="142" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="35°1'0''N" />
@@ -200,7 +200,7 @@
     </runways>
   </airport>
   <!--Ghana (DG**)-->
-  <airport name="Kotoka International Airport" icao="DGAA" iata="ACC" type="Long_Haul_International" season="All_Year">
+   <airport name="Kotoka International Airport" icao="DGAA" iata="ACC" type="Long_Haul_International" season="All_Year">
     <town town="Accra" country="189" GMT="00:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="5°36'18''N" />
@@ -671,7 +671,7 @@
   </airport>
   <!--Southern Africa (F***)-->
   <!--South Africa (FA**)-->
-  <airport name="Aggeneys Airport" icao="FAAG" iata="AGZ" type="Regional" season="All_Year">
+   <airport name="Aggeneys Airport" icao="FAAG" iata="AGZ" type="Domestic" season="All_Year">
     <town town="Aggeneys" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="29°16'54''S" />
@@ -685,7 +685,7 @@
       <runway name="07/25" length="2080" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Alexander Bay Airport" icao="FAAB" iata="ALJ" type="Regional" season="All_Year">
+  <airport name="Alexander Bay Airport" icao="FAAB" iata="ALJ" type="Domestic" season="All_Year">
     <town town="Alexander Bay" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="28°34'30''S" />
@@ -699,7 +699,7 @@
       <runway name="01/19" length="1848" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Alldays Airport" icao="FAAL" iata="ADY" type="Regional" season="All_Year">
+  <airport name="Alldays Airport" icao="FAAL" iata="ADY" type="Domestic" season="All_Year">
     <town town="Alldays" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="22°40'44''S" />
@@ -743,23 +743,24 @@
       <runway name="16/34" length="1701" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Durban International Airport" icao="FADN" iata="DUR" type="Short_Haul_International" season="All_Year">
-    <period from="12.01.1959 00:00:00" to="05.01.2010 00:00:00" />
+  <airport name="Durban International Airport" icao="FADN" iata="DUR" type="Long_Haul_International" season="All_Year">
+    <period from="12/1/1959 12:00:00 AM" to="5/1/2010 12:00:00 AM" />
     <town town="Durban" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="29°58'7''S" />
       <longitude value="30°56'52''E" />
     </coordinates>
-    <size value="Medium" pax="4303" cargo="Smallest" cargovolume="0" />
+    <size value="Medium" pax="4465" cargo="Smallest" cargovolume="0" />
     <terminals>
-      <terminal name="Terminal 1" gates="14" />
+      <terminal name="Terminal 1" gates="27" />
+      <terminal name="Terminal 2" gates="7" />
     </terminals>
     <runways>
-      <runway name="06/24" length="2439" surface="Asphalt" />
+      <runway name="06/24" length="3700" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="King Shaka International Airport" icao="FALE" iata="DUR" type="Long_Haul_International" season="All_Year">
-    <period from="05.01.2010 00:00:00" to="01.01.2199 00:00:00" />
+  <airport name="Durban International Airport" icao="FADN" iata="DUR" type="Long_Haul_International" season="All_Year">
+    <period from="12/1/1959 12:00:00 AM" to="5/1/2010 12:00:00 AM" />
     <town town="Durban" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="29°58'7''S" />
@@ -818,7 +819,7 @@
       <runway name="11/29" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hluhluwe Airport" icao="FAHL" iata="HLW" type="Regional" season="All_Year">
+  <airport name="Hluhluwe Airport" icao="FAHL" iata="HLW" type="Domestic" season="All_Year">
     <town town="Hluhluwe" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="28°0'29''S" />
@@ -832,7 +833,7 @@
       <runway name="03/21" length="1208" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lanseria International Airport" icao="FALA" iata="HLA" type="Short_Haul_International" season="All_Year">
+  <airport name="Lanseria International Airport" icao="FALA" iata="HLA" type="Regional" season="All_Year">
     <town town="Johannesburg" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="25°56'18''S" />
@@ -891,8 +892,8 @@
       <runway name="10/28" length="2439" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kleinsee Airport" icao="FAKZ" iata="KLZ" type="Regional" season="All_Year">
-    <town town="Kleinsee" country="158" GMT="02:00:00" DST="02:00:00" />
+  <airport name="Kleinsee Airport" icao="FAKZ" iata="KLZ" type="Domestic" season="All_Year">
+    <town town="Kleinzee" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="29°41'18''S" />
       <longitude value="17°5'38''E" />
@@ -905,7 +906,7 @@
       <runway name="02/20" length="1500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Johan Pienaar Airport" icao="FAKU" iata="KMH" type="Regional" season="All_Year">
+  <airport name="Johan Pienaar Airport" icao="FAKU" iata="KMH" type="Domestic" season="All_Year">
     <town town="Kuruman" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="27°27'24''S" />
@@ -919,7 +920,7 @@
       <runway name="02/20" length="1700" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ladysmith Airport" icao="FALY" iata="LAY" type="Regional" season="All_Year">
+  <airport name="Ladysmith Airport" icao="FALY" iata="LAY" type="Domestic" season="All_Year">
     <town town="Ladysmith" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="28°34'54''S" />
@@ -934,7 +935,7 @@
     </runways>
   </airport>
   <airport name="Mafikeng Airport" icao="FAMM" iata="MBD" type="Domestic" season="All_Year">
-    <town town="Mmabatho" country="158" GMT="02:00:00" DST="02:00:00" />
+    <town town="Mafikeng / Mmabatho" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="25°47'53''S" />
       <longitude value="25°32'53''E" />
@@ -947,8 +948,8 @@
       <runway name="04/22" length="4500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Malamala Airport" icao="FAMD" iata="AAM" type="Regional" season="All_Year">
-    <town town="Malamala" country="158" GMT="02:00:00" DST="02:00:00" />
+  <airport name="Malamala Airport" icao="FAMD" iata="AAM" type="Domestic" season="All_Year">
+    <town town="Mala Mala" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="24°49'5''S" />
       <longitude value="31°32'40''E" />
@@ -961,7 +962,7 @@
       <runway name="16/34" length="1263" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Margate Airport" icao="FAMG" iata="MGH" type="Regional" season="All_Year">
+  <airport name="Margate Airport" icao="FAMG" iata="MGH" type="Domestic" season="All_Year">
     <town town="Margate" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="30°51'26''S" />
@@ -989,7 +990,7 @@
       <runway name="17/35" length="1830" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Mthatha Airport" icao="FAUT" iata="UTT" type="Regional" season="All_Year">
+  <airport name="Mthatha Airport" icao="FAUT" iata="UTT" type="Domestic" season="All_Year">
     <town town="Mthatha" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="31°32'52''S" />
@@ -1003,8 +1004,8 @@
       <runway name="14/32" length="2600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kruger Mpumalanga International Airport" icao="FAKN" iata="MQP" type="Domestic" season="All_Year">
-    <town town="Mpumalanga" country="158" GMT="02:00:00" DST="02:00:00" />
+  <airport name="Kruger Mpumalanga International Airport" icao="FAKN" iata="MQP" type="Regional" season="All_Year">
+    <town town="Nelspruit" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="25°22'59''S" />
       <longitude value="31°6'20''E" />
@@ -1017,7 +1018,7 @@
       <runway name="05/23" length="3100" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hendrik Van Eck Airport" icao="FAPH" iata="PHW" type="Regional" season="All_Year">
+  <airport name="Hendrik Van Eck Airport" icao="FAPH" iata="PHW" type="Domestic" season="All_Year">
     <town town="Phalaborwa" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="23°56'13''S" />
@@ -1031,7 +1032,7 @@
       <runway name="01/19" length="1373" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Pietermaritzburg Airport" icao="FAPM" iata="PZB" type="Regional" season="All_Year">
+  <airport name="Pietermaritzburg Airport" icao="FAPM" iata="PZB" type="Domestic" season="All_Year">
     <town town="Pietermaritzburg" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="29°38'56''S" />
@@ -1045,7 +1046,7 @@
       <runway name="16/34" length="1537" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Polokwane International Airport" icao="FAPI" iata="PTG" type="Short_Haul_International" season="All_Year">
+  <airport name="Polokwane International Airport" icao="FAPI" iata="PTG" type="Domestic" season="All_Year">
     <town town="Polokwane" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="23°55'33''S" />
@@ -1060,7 +1061,7 @@
       <runway name="05/23" length="2320" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Port Elizabeth Airport" icao="FAPE" iata="PLZ" type="Short_Haul_International" season="All_Year">
+  <airport name="Port Elizabeth Airport" icao="FAPE" iata="PLZ" type="Domestic" season="All_Year">
     <town town="Port Elizabeth" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="33°59'5''S" />
@@ -1104,8 +1105,8 @@
       <runway name="05/23" length="1300" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Pilanesberg International Airport" icao="FAPN" iata="NTY" type="Short_Haul_International" season="All_Year">
-    <town town="Pilanesberg" country="158" GMT="02:00:00" DST="02:00:00" />
+  <airport name="Pilanesberg International Airport" icao="FAPN" iata="NTY" type="Domestic" season="All_Year">
+    <town town="Sun City" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="25°20'1''S" />
       <longitude value="27°10'24''E" />
@@ -1149,8 +1150,8 @@
       <runway name="01/19" length="2438" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Vryburg Airport" icao="FAVB" iata="VRU" type="Regional" season="All_Year">
-    <town town="Vyrburg" country="158" GMT="02:00:00" DST="02:00:00" />
+  <airport name="Vryburg Airport" icao="FAVB" iata="VRU" type="Domestic" season="All_Year">
+    <town town="Vryburg" country="158" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="26°58'56''S" />
       <longitude value="24°43'43''E" />
@@ -1164,7 +1165,7 @@
     </runways>
   </airport>
   <!--Zimbabwe (FV**)-->
-   <airport name="Joshua Mqabuko Nkomo International Airport" icao="FVBU" iata="BUQ" type="Short_Haul_International" season="All_Year">
+    <airport name="Joshua Mqabuko Nkomo International Airport" icao="FVBU" iata="BUQ" type="Short_Haul_International" season="All_Year">
     <town town="Bulawayo" country="255" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="20°1'2''S" />
@@ -1237,7 +1238,7 @@
       <runway name="09/27" length="1650" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Masvingo Airport" icao="FVMV" iata="MVZ" type="Domestic" season="All_Year">
+  <airport name="Masvingo Airport" icao="FVMV" iata="MVZ" type="Regional" season="All_Year">
     <town town="Masvingo" country="255" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="20°3'19''S" />
@@ -1266,7 +1267,7 @@
       <runway name="12/30" length="950" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Victoria Falls International Airport" icao="FVFA" iata="VFA" type="Long_Haul_International" season="All_Year">
+  <airport name="Victoria Falls International Airport" icao="FVFA" iata="VFA" type="Short_Haul_International" season="All_Year">
     <town town="Victoria Falls" country="255" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="18°5'45''S" />
@@ -1281,8 +1282,8 @@
     </runways>
   </airport>
   <!--Swaziland (FD**)-->
- <airport name="Matsapha Airport" icao="FDMS" iata="MTS" type="Short_Haul_International" season="All_Year">
-  <period from="01.01.1960 00:00:00" to="12.01.2014 00:00:00" />
+  <airport name="Matsapha Airport" icao="FDMS" iata="MTS" type="Short_Haul_International" season="All_Year">
+    <period from="1/1/1960 12:00:00 AM" to="12/1/2014 12:00:00 AM" />
     <town town="Manzini" country="256" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="26°31'44''S" />
@@ -1313,7 +1314,7 @@
     </runways>
   </airport>
   <!--Botswana (FB**)-->
- <airport name="Francistown Airport" icao="FBFT" iata="FRW" type="Domestic" season="All_Year">
+ <airport name="Francistown Airport" icao="FBFT" iata="FRW" type="Regional" season="All_Year">
     <town town="Francistown" country="258" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="21°9'34''S" />
@@ -1329,7 +1330,7 @@
     </runways>
   </airport>
   <airport name="Sir Seretse Khama International Airport" icao="FBSK" iata="GBE" type="Long_Haul_International" season="All_Year">
-  <period from="01.01.1980 00:00:00" to="01.01.2199 00:00:00" />
+    <period from="1/1/1980 12:00:00 AM" to="1/1/2199 12:00:00 AM" />
     <town town="Gaborone" country="258" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="24°33'18''S" />
@@ -1357,7 +1358,7 @@
       <runway name="08/26" length="1675" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kasane Airport" icao="FBKE" iata="BBK" type="Domestic" season="All_Year">
+  <airport name="Kasane Airport" icao="FBKE" iata="BBK" type="Regional" season="All_Year">
     <town town="Kasane" country="258" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="17°49'58''S" />
@@ -1371,7 +1372,7 @@
       <runway name="08/26" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Maun Airport" icao="FBMN" iata="MUB" type="Domestic" season="All_Year">
+  <airport name="Maun Airport" icao="FBMN" iata="MUB" type="Regional" season="All_Year">
     <town town="Maun" country="258" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="19°58'21''S" />
@@ -1400,7 +1401,7 @@
     </runways>
   </airport>
   <!--Namibia (FX**)-->
-  <airport name="Arandis Airport" icao="FYAR" iata="ADI" type="Domestic" season="All_Year">
+   <airport name="Arandis Airport" icao="FYAR" iata="ADI" type="Domestic" season="All_Year">
     <town town="Arandis" country="259" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="22°27'43''S" />
@@ -1430,7 +1431,7 @@
     </runways>
   </airport>
   <airport name="Katima Mulilo Airport" icao="FYKM" iata="MPA" type="Domestic" season="All_Year">
-    <town town="Mpacha" country="259" GMT="02:00:00" DST="02:00:00" />
+    <town town="Katima Mulilo" country="259" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="17°38'3''S" />
       <longitude value="24°10'36''E" />
@@ -1459,7 +1460,7 @@
     </runways>
   </airport>
   <airport name="Luderitz Airport" icao="FYLZ" iata="LUD" type="Domestic" season="All_Year">
-    <town town="Luderitz" country="259" GMT="02:00:00" DST="02:00:00" />
+    <town town="Lüderitz" country="259" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="26°41'14''S" />
       <longitude value="15°14'34''E" />
@@ -1531,7 +1532,7 @@
       <runway name="12/30" length="1470" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Walvis Bay Airport" icao="FYWB" iata="WVB" type="Domestic" season="All_Year">
+  <airport name="Walvis Bay Airport" icao="FYWB" iata="WVB" type="Regional" season="All_Year">
     <town town="Walvis Bay" country="259" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="22°58'47''S" />
@@ -1576,7 +1577,7 @@
     </runways>
   </airport>
   <!--Central African Republic (FE**)-->
-  <airport name="Bangui M’Poko International Airport" icao="FEFF" iata="BGF" type="Long_Haul_International" season="All_Year">
+<airport name="Bangui M’Poko International Airport" icao="FEFF" iata="BGF" type="Long_Haul_International" season="All_Year">
     <town town="Bangui" country="220" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="4°23'54''N" />
@@ -1591,7 +1592,21 @@
     </runways>
   </airport>
   <!--Mauritius (FI**)-->
-<airport name="Sir Seewoosagur Ramgoolam International Airport" icao="FIMP" iata="MRU" type="Long_Haul_International" season="All_Year">
+ <airport name="Nouadhibou International Airport" icao="GQPP" iata="NDB" type="Short_Haul_International" season="All_Year">
+    <town town="Nouadhibou" country="269" GMT="00:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="20°55'59''N" />
+      <longitude value="17°1'48''W" />
+    </coordinates>
+    <size value="Smallest" pax="100" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="2427" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Sir Seewoosagur Ramgoolam International Airport" icao="FIMP" iata="MRU" type="Long_Haul_International" season="All_Year">
     <town town="Port Louis" country="206" GMT="00:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="20°25'48''S" />
@@ -1622,7 +1637,7 @@
       <runway name="15/33" length="1350" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Kenneth Kaunda International Airport" icao="FLLS" iata="LUN" type="Short_Haul_International" season="All_Year">
+  <airport name="Kenneth Kaunda International Airport" icao="FLLS" iata="LUN" type="Long_Haul_International" season="All_Year">
     <town town="Lusaka" country="225" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="15°19'50''S" />
@@ -1638,7 +1653,7 @@
       <runway name="15/33" length="823" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Ndola Airport" icao="FLND" iata="NLA" type="Regional" season="All_Year">
+  <airport name="Ndola Airport" icao="FLND" iata="NLA" type="Short_Haul_International" season="All_Year">
     <town town="Ndola" country="225" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="12°59'53''S" />
@@ -1683,8 +1698,8 @@
       <runway name="15/33" length="1513" surface="Asphalt" />
     </runways>
   </airport>
- <airport name="Analalava Airport" icao="FMNL" iata="HVA" type="Domestic" season="All_Year">
-    <town town="Sowa" country="260" GMT="02:00:00" DST="02:00:00" />
+  <airport name="Analalava Airport" icao="FMNL" iata="HVA" type="Domestic" season="All_Year">
+    <town town="Analalava" country="260" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="14°37'46''S" />
       <longitude value="47°45'49''E" />
@@ -1725,22 +1740,8 @@
       <runway name="11/29" length="3100" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Arrachart Airport" icao="FMNA" iata="DIE" type="Domestic" season="All_Year">
-    <town town="Antsiranana" country="260" GMT="02:00:00" DST="02:00:00" />
-    <coordinates>
-      <latitude value="12°20'57''S" />
-      <longitude value="49°17'30''E" />
-    </coordinates>
-    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="13/31" length="845" surface="Grass" />
-    </runways>
-  </airport>
   <airport name="Besalampy Airport" icao="FMNQ" iata="BPY" type="Domestic" season="All_Year">
-    <town town="Besalampy Airport" country="260" GMT="02:00:00" DST="02:00:00" />
+    <town town="Besalampy" country="260" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="16°44'40''S" />
       <longitude value="44°28'56''E" />
@@ -1866,7 +1867,7 @@
       <runway name="14/32" length="1345" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Fascene Airport" icao="FMNN" iata="NOS" type="Domestic" season="All_Year">
+  <airport name="Fascene Airport" icao="FMNN" iata="NOS" type="Long_Haul_International" season="All_Year">
     <town town="Nosy Be" country="260" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="13°18'43''S" />
@@ -1880,7 +1881,7 @@
       <runway name="05/23" length="2190" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Toamasina Airport" icao="FMMT" iata="TMM" type="Domestic" season="All_Year">
+  <airport name="Toamasina Airport" icao="FMMT" iata="TMM" type="Short_Haul_International" season="All_Year">
     <town town="Toamasina" country="260" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="18°6'34''S" />
@@ -1894,7 +1895,7 @@
       <runway name="01/19" length="2171" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Tôlanaro Airport" icao="FMSD" iata="FTU" type="Domestic" season="All_Year">
+  <airport name="Tôlanaro Airport" icao="FMSD" iata="FTU" type="Short_Haul_International" season="All_Year">
     <town town="Tôlanaro" country="260" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="25°2'17''S" />
@@ -1908,7 +1909,7 @@
       <runway name="08/26" length="1600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Toliara Airport" icao="FMST" iata="TLE" type="Domestic" season="All_Year">
+  <airport name="Toliara Airport" icao="FMST" iata="TLE" type="Short_Haul_International" season="All_Year">
     <town town="Toliara" country="260" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="23°23'0''S" />
@@ -1938,7 +1939,7 @@
     </runways>
   </airport>
   <airport name="Arrachart Airport" icao="FMNA" iata="DIE" type="Domestic" season="All_Year">
-    <town town="Antsiranana" country="260" GMT="02:00:00" DST="02:00:00" />
+    <town town="Denis Island" country="306" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="12°20'57''S" />
       <longitude value="49°17'30''E" />
@@ -1951,8 +1952,8 @@
       <runway name="13/31" length="845" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Ouani Airport" icao="FMCV" iata="AJN" type="Domestic" season="All_Year">
-    <town town="Ouani" country="271" GMT="02:00:00" DST="02:00:00" />
+   <airport name="Ouani Airport" icao="FMCV" iata="AJN" type="Domestic" season="All_Year">
+    <town town="Anjouan" country="271" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="12°7'54''S" />
       <longitude value="44°25'49''E" />
@@ -1979,23 +1980,8 @@
       <runway name="13/31" length="1300" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Iconi Airport" icao="FMCN" iata="YVA" type="Domestic" season="All_Year">
-    <period from="01.01.1950 00:00:00" to="01.01.2004 00:00:00" /> 
-    <town town="Moroni" country="271" GMT="02:00:00" DST="02:00:00" />
-    <coordinates>
-      <latitude value="11°42'38''S" />
-      <longitude value="43°14'38''E" />
-    </coordinates>
-    <size value="Smallest" pax="120" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="03/21" length="1355" surface="Asphalt" />
-    </runways>
-  </airport>
   <airport name="Prince Said Ibrahim International Airport" icao="FMCH" iata="HAH" type="Long_Haul_International" season="All_Year">
-  <period from="01.01.2004 00:00:00" to="12.31.2199 00:00:00" /> 
+    <period from="1/1/2004 12:00:00 AM" to="12/31/2199 12:00:00 AM" />
     <town town="Moroni" country="271" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="11°32'1''S" />
@@ -2007,6 +1993,21 @@
     </terminals>
     <runways>
       <runway name="02/20" length="2900" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Iconi Airport" icao="FMCN" iata="YVA" type="Domestic" season="All_Year">
+    <period from="1/1/1950 12:00:00 AM" to="1/1/2004 12:00:00 AM" />
+    <town town="Moroni" country="271" GMT="02:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="11°42'38''S" />
+      <longitude value="43°14'38''E" />
+    </coordinates>
+    <size value="Smallest" pax="120" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="1355" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Dzaoudzi Pamandzi International Airport" icao="FMCZ" iata="DZA" type="Long_Haul_International"
@@ -2082,7 +2083,7 @@
       <runway name="01/19" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Catumbela Airport" icao="FNCT" iata="CBT" type="Domestic" season="All_Year">
+  <airport name="Catumbela Airport" icao="FNCT" iata="CBT" type="Short_Haul_International" season="All_Year">
     <town town="Catumbela" country="224" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="12°28'45''S" />
@@ -2097,7 +2098,7 @@
     </runways>
   </airport>
   <airport name="Dundo Airport" icao="FNDU" iata="DUE" type="Domestic" season="All_Year">
-    <town town="Chitato" country="224" GMT="01:00:00" DST="01:00:00" />
+    <town town="Dundo" country="224" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="7°24'3''S" />
       <longitude value="20°49'6''E" />
@@ -2153,7 +2154,7 @@
       <runway name="07/25" length="2600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lubango Airport" icao="FNUB" iata="SDD" type="Domestic" season="All_Year">
+  <airport name="Lubango Airport" icao="FNUB" iata="SDD" type="Short_Haul_International" season="All_Year">
     <town town="Lubango" country="224" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="14°55'28''S" />
@@ -2281,7 +2282,7 @@
     </runways>
   </airport>
   <!--Democratic Republic of the Congo (FZ**)-->
-   <airport name="Bandundu Airport" icao="FZBO" iata="FDU" type="Regional" season="All_Year">
+    <airport name="Bandundu Airport" icao="FZBO" iata="FDU" type="Regional" season="All_Year">
     <town town="Bandundu" country="221" GMT="00:00:00" DST="-01:00:00" />
     <coordinates>
       <latitude value="3°18'40''S" />
@@ -2338,7 +2339,7 @@
     </runways>
   </airport>
   <airport name="Bukavu Kavumu Airport" icao="FZMA" iata="BKY" type="Domestic" season="All_Year">
-    <town town="Bukavu" country="221" GMT="01:00:00" DST="00:00:00" />
+    <town town="Bukavu - Kavumu" country="221" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="2°18'32''S" />
       <longitude value="28°48'31''E" />
@@ -2393,7 +2394,7 @@
       <runway name="11/29" length="1996" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Goma International Airport" icao="FZNA" iata="GOM" type="Domestic" season="All_Year">
+  <airport name="Goma International Airport" icao="FZNA" iata="GOM" type="Regional" season="All_Year">
     <town town="Goma" country="221" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="1°40'14''S" />
@@ -2577,7 +2578,7 @@
       <runway name="09/27" length="1575" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Lubumbashi International Airport" icao="FZQA" iata="FBM" type="Short_Haul_International" season="All_Year">
+  <airport name="Lubumbashi International Airport" icao="FZQA" iata="FBM" type="Long_Haul_International" season="All_Year">
     <town town="Lubumbashi" country="221" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="11°35'28''S" />
@@ -2721,7 +2722,7 @@
     </runways>
   </airport>
   <!--Niger(DRR*) -->
- <airport name="Diori Hamani International Airport" icao="DRRN" iata="NIM" type="Short_Haul_International" season="All_Year">
+ <airport name="Diori Hamani International Airport" icao="DRRN" iata="NIM" type="Long_Haul_International" season="All_Year">
     <town town="Niamey" country="267" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="13°28'53''N" />
@@ -3029,7 +3030,7 @@
     </runways>
   </airport>
   <!--Senegal (GO**)-->
-  <airport name="Léopold Sédar Senghor International Airport" icao="GOOY" iata="DKR" type="Long_Haul_International" season="All_Year">
+<airport name="Léopold Sédar Senghor International Airport" icao="GOOY" iata="DKR" type="Long_Haul_International" season="All_Year">
     <town town="Dakar" country="101" GMT="00:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="14°44'22''N" />
@@ -3075,7 +3076,7 @@
     </runways>
   </airport>
   <airport name="Galcaio Airport" icao="HCMR" iata="GLK" type="Regional" season="All_Year">
-    <town town="Galcaio" country="262" GMT="03:00:00" DST="00:00:00" />
+    <town town="Galkayo" country="262" GMT="03:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="6°46'50''N" />
       <longitude value="47°27'16''E" />
@@ -3088,7 +3089,7 @@
       <runway name="05L/23R" length="3006" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Aden Adde International Airport" icao="HCMM" iata="MGQ" type="Regional" season="All_Year">
+  <airport name="Aden Adde International Airport" icao="HCMM" iata="MGQ" type="Long_Haul_International" season="All_Year">
     <town town="Mogadishu" country="262" GMT="03:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="2°0'51''N" />
@@ -3168,7 +3169,7 @@
       <runway name="16R/34L" length="4000" surface="Asphalt" />
       <runway name="16L/31R" length="4000" surface="Asphalt" />
     </runways>
-      <expansions>
+          <expansions>
      <expansion type="New_terminal" name="Terminal B" gates="27" date="07 01 2012 00:00:00" notify="True"></expansion>
    </expansions>
   </airport>
@@ -3202,7 +3203,7 @@
       <runway name="04L/22R" length="3081" surface="Asphalt" />
       <runway name="04R/22L" length="3081" surface="Asphalt" />
     </runways>
-          <expansions>
+              <expansions>
      <expansion type="New_terminal" name="Terminal 3" gates="30" date="01 01 2015 00:00:00" notify="True"></expansion>
    </expansions>
   </airport>
@@ -3237,8 +3238,8 @@
     </runways>
   </airport>
   <!--Libya (HL**)-->
-  <airport name="La Abraq Airport" icao="HLLQ" iata="LAQ" type="Short_Haul_International" season="All_Year">
-    <town town="Al Bayda'" country="1010" GMT="02:00:00" DST="02:00:00" />
+    <airport name="La Abraq Airport" icao="HLLQ" iata="LAQ" type="Short_Haul_International" season="All_Year">
+    <town town="Bayda" country="125" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="32°47'19''N" />
       <longitude value="21°57'51''E" />
@@ -3253,7 +3254,7 @@
     </runways>
   </airport>
   <airport name="Benina International Airport" icao="HLLB" iata="BEN" type="Long_Haul_International" season="All_Year">
-    <town town="Benghazi" country="1010" GMT="02:00:00" DST="02:00:00" />
+    <town town="Benghazi" country="125" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="32°5'48''N" />
       <longitude value="20°16'10''E" />
@@ -3268,7 +3269,7 @@
     </runways>
   </airport>
   <airport name="Marsa Brega Airport" icao="HLMB" iata="LMQ" type="Domestic" season="All_Year">
-    <town town="Brega" country="1010" GMT="02:00:00" DST="02:00:00" />
+    <town town="Brega" country="125" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="30°22'41''N" />
       <longitude value="19°34'35''E" />
@@ -3282,7 +3283,7 @@
     </runways>
   </airport>
   <airport name="Ghadames East Airport" icao="HLTD" iata="LTD" type="Domestic" season="All_Year">
-    <town town="Ghadames" country="1010" GMT="02:00:00" DST="02:00:00" />
+    <town town="Ghadames" country="125" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="30°9'6''N" />
       <longitude value="9°42'55''E" />
@@ -3297,7 +3298,7 @@
     </runways>
   </airport>
   <airport name="Ghat Airport" icao="HLGT" iata="GHT" type="Domestic" season="All_Year">
-    <town town="Ghat" country="1010" GMT="02:00:00" DST="02:00:00" />
+    <town town="Ghat" country="125" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="25°8'44''N" />
       <longitude value="10°8'33''E" />
@@ -3312,7 +3313,7 @@
     </runways>
   </airport>
   <airport name="Kufra Airport" icao="HLKF" iata="AKF" type="Domestic" season="All_Year">
-    <town town="Kufra" country="1010" GMT="02:00:00" DST="02:00:00" />
+    <town town="Kufra" country="125" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="24°10'43''N" />
       <longitude value="23°18'50''E" />
@@ -3326,8 +3327,8 @@
       <runway name="02R/20L" length="3660" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Sabha Airport" icao="HLLS" iata="SEB" type="Domestic" season="All_Year">
-    <town town="Sabha" country="1010" GMT="02:00:00" DST="02:00:00" />
+  <airport name="Sabha Airport" icao="HLLS" iata="SEB" type="Short_Haul_International" season="All_Year">
+    <town town="Sabha" country="125" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="26°59'13''N" />
       <longitude value="14°28'20''E" />
@@ -3341,8 +3342,8 @@
       <runway name="13/31" length="3590" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Gardabya Airport" icao="HLGD" iata="SRX" type="Domestic" season="All_Year">
-    <town town="Sirt" country="1010" GMT="02:00:00" DST="02:00:00" />
+  <airport name="Gardabya Airport" icao="HLGD" iata="SRX" type="Regional" season="All_Year">
+    <town town="Sirte" country="125" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="31°3'48''N" />
       <longitude value="16°35'41''E" />
@@ -3356,8 +3357,8 @@
       <runway name="18/36" length="3600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Gamal Abdel Nasser Airport" icao="HLGN" iata="TOB" type="Domestic" season="All_Year">
-    <town town="Tobruk" country="1010" GMT="02:00:00" DST="02:00:00" />
+  <airport name="Gamal Abdel Nasser Airport" icao="HLGN" iata="TOB" type="Regional" season="All_Year">
+    <town town="Tobruk" country="125" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="31°51'39''N" />
       <longitude value="23°54'25''E" />
@@ -3371,7 +3372,7 @@
     </runways>
   </airport>
   <airport name="Mitiga Airport" icao="HLLM" iata="MJI" type="Short_Haul_International" season="All_Year">
-    <town town="Tripoli" country="1010" GMT="02:00:00" DST="02:00:00" />
+    <town town="Tripoli" country="125" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="32°53'38''N" />
       <longitude value="13°16'33''E" />
@@ -3386,7 +3387,7 @@
     </runways>
   </airport>
   <airport name="Tripoli International Airport" icao="HLLT" iata="TIP" type="Long_Haul_International" season="All_Year">
-    <town town="Tripoli" country="1010" GMT="02:00:00" DST="02:00:00" />
+    <town town="Tripoli" country="125" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="32°39'48''N" />
       <longitude value="13°9'32''E" />
@@ -3417,8 +3418,8 @@
     </runways>
   </airport>
   <!--Tanzania (HT**)-->
-   <airport name="Kilimanjaro International Airport" icao="HTKJ" iata="JRO" type="Short_Haul_International" season="All_Year">
-    <town town="Arusha" country="222" GMT="03:00:00" DST="03:00:00" />
+   <airport name="Kilimanjaro International Airport" icao="HTKJ" iata="JRO" type="Long_Haul_International" season="All_Year">
+    <town town="Arusha / Moshi" country="222" GMT="03:00:00" DST="03:00:00" />
     <coordinates>
       <latitude value="3°25'45''S" />
       <longitude value="37°4'28''E" />
@@ -3448,8 +3449,8 @@
       <runway name="14/32" length="1000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Zanzibar Airport" icao="HTZA" iata="ZNZ" type="Short_Haul_International" season="All_Year">
-    <town town="Kiembi Samaki" country="222" GMT="03:00:00" DST="03:00:00" />
+  <airport name="Zanzibar Airport" icao="HTZA" iata="ZNZ" type="Long_Haul_International" season="All_Year">
+    <town town="Zanzibar City" country="222" GMT="03:00:00" DST="03:00:00" />
     <coordinates>
       <latitude value="6°13'19''S" />
       <longitude value="39°13'29''E" />
@@ -3463,8 +3464,8 @@
       <runway name="18/36" length="3007" surface="Asphalt" />
     </runways>
   </airport>
-  <!-- Added airports -->
-  <airport name="Port Bouet Airport" icao="DIAP" iata="ABJ" type="Long_Haul_International" season="All_Year">
+  <!--Cote d'Ivoire-->
+   <airport name="Port Bouet Airport" icao="DIAP" iata="ABJ" type="Long_Haul_International" season="All_Year">
     <town town="Abidjan" country="275" GMT="00:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="5°15'41''N" />
@@ -3480,7 +3481,7 @@
     </runways>
   </airport>
   <!--Sierra Leone (GF**)-->
- <airport name="Bo Airport" icao="GFBO" iata="KBS" type="Domestic" season="All_Year">
+<airport name="Bo Airport" icao="GFBO" iata="KBS" type="Domestic" season="All_Year">
     <town town="Bo" country="270" GMT="00:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="7°56'39''N" />
@@ -3494,7 +3495,7 @@
       <runway name="04/22" length="1220" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lungi International Airport" icao="GFLL" iata="FNA" type="Short_Haul_International" season="All_Year">
+  <airport name="Lungi International Airport" icao="GFLL" iata="FNA" type="Long_Haul_International" season="All_Year">
     <town town="Freetown" country="270" GMT="00:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="8°36'59''N" />
@@ -3508,7 +3509,7 @@
       <runway name="12/30" length="3200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hastings Airport" icao="GFHA" iata="HGS" type="Domestic" season="All_Year">
+  <airport name="Hastings Airport" icao="GFHA" iata="HGS" type="Short_Haul_International" season="All_Year">
     <town town="Freetown" country="270" GMT="00:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="8°23'49''N" />
@@ -3566,7 +3567,7 @@
       <runway name="12/30" length="1814" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Massawa International Airport" icao="HHMS" iata="MSW" type="Short_Haul_International" season="All_Year">
+  <airport name="Massawa International Airport" icao="HHMS" iata="MSW" type="Domestic" season="All_Year">
     <town town="Massawa" country="264" GMT="03:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="15°40'12''N" />
@@ -3581,7 +3582,7 @@
     </runways>
   </airport>
   <!--Chad (FT**)-->
-  <airport name="Abeche Airport" icao="FTTC" iata="AEH" type="Domestic" season="All_Year">
+   <airport name="Abeche Airport" icao="FTTC" iata="AEH" type="Domestic" season="All_Year">
     <town town="Abéché" country="265" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="13°50'49''N" />
@@ -3638,7 +3639,7 @@
     </runways>
   </airport>
   <!--Uganda (HU**)-->
-  <airport name="Arua Airport" icao="HUAR" iata="RUA" type="Domestic" season="All_Year">
+   <airport name="Arua Airport" icao="HUAR" iata="RUA" type="Domestic" season="All_Year">
     <town town="Arua" country="261" GMT="03:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="3°2'59''N" />
@@ -3653,7 +3654,7 @@
     </runways>
   </airport>
   <airport name="Entebbe International Airport" icao="HUEN" iata="EBB" type="Long_Haul_International" season="All_Year">
-    <town town="Kampala" country="261" GMT="03:00:00" DST="00:00:00" />
+    <town town="Entebbe" country="261" GMT="03:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="0°2'32''N" />
       <longitude value="32°26'36''E" />
@@ -3681,7 +3682,7 @@
       <runway name="17/35" length="3139" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Moyo Airport" icao="" iata="OYG" type="Domestic" season="All_Year">
+  <airport name="Moyo Airport" icao="OYG" iata="OYG" type="Domestic" season="All_Year">
     <town town="Moyo" country="261" GMT="03:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="3°38'39''N" />
@@ -3696,7 +3697,7 @@
     </runways>
   </airport>
   <!--Malawi (FW**)-->
-    <airport name="Chileka International Airport" icao="FWCL" iata="BLZ" type="Regional" season="All_Year">
+   <airport name="Chileka International Airport" icao="FWCL" iata="BLZ" type="Short_Haul_International" season="All_Year">
     <town town="Blantyre" country="286" GMT="02:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="15°40'44''S" />
@@ -3725,7 +3726,7 @@
       <runway name="14/32" length="1280" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lilongwe International Airport" icao="FWKI" iata="LLW" type="Regional" season="All_Year">
+  <airport name="Lilongwe International Airport" icao="FWKI" iata="LLW" type="Long_Haul_International" season="All_Year">
     <town town="Lilongwe" country="286" GMT="02:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="13°47'21''S" />
@@ -3737,6 +3738,63 @@
     </terminals>
     <runways>
       <runway name="14/32" length="3540" surface="Asphalt" />
+    </runways>
+  </airport>
+  <!--Mali-->
+  <airport name="Senou Airport" icao="GABS" iata="BKO" type="Long_Haul_International" season="All_Year">
+    <town town="Bamako" country="268" GMT="00:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="12°32'0''N" />
+      <longitude value="7°56'59''W" />
+    </coordinates>
+    <size value="Small" pax="800" cargo="Very_small" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="3180" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Kayes Dag Dag Airport" icao="GAKY" iata="KYS" type="Short_Haul_International" season="All_Year">
+    <town town="Kayes" country="268" GMT="00:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="14°28'52''N" />
+      <longitude value="11°24'15''W" />
+    </coordinates>
+    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2700" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Ambodedjo Airport" icao="GAMB" iata="MZI" type="Domestic" season="All_Year">
+    <town town="Mopti" country="268" GMT="00:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="14°30'46''N" />
+      <longitude value="4°4'46''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2542" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Timbuktu Airport" icao="GATB" iata="TOM" type="Regional" season="All_Year">
+    <town town="Timbuktu" country="268" GMT="00:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="16°43'49''N" />
+      <longitude value="3°0'27''W" />
+    </coordinates>
+    <size value="Smallest" pax="25" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="2110" surface="Asphalt" />
     </runways>
   </airport>
   <!--Mozambique(FQ**)-->
@@ -3756,7 +3814,7 @@
       <runway name="17/35" length="1700" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Chimoio Airport" icao="FQCH" iata="VPY" type="Regional" season="All_Year">
+  <airport name="Chimoio Airport" icao="FQCH" iata="VPY" type="Domestic" season="All_Year">
     <town town="Chimoio" country="283" GMT="02:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="19°9'4''S" />
@@ -3770,7 +3828,7 @@
       <runway name="01/19" length="2400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Inhambane Airport" icao="FQIN" iata="INH" type="Domestic" season="All_Year">
+  <airport name="Inhambane Airport" icao="FQIN" iata="INH" type="Regional" season="All_Year">
     <town town="Inhambabe" country="283" GMT="02:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="23°52'35''S" />
@@ -3782,6 +3840,20 @@
     </terminals>
     <runways>
       <runway name="16/34" length="1500" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Lichinga Airport" icao="FQLC" iata="VXC" type="Domestic" season="All_Year">
+    <town town="Lichinga" country="283" GMT="02:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="13°16'26''S" />
+      <longitude value="35°15'58''E" />
+    </coordinates>
+    <size value="Smallest" pax="24" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2100" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Maputo Airport" icao="FQMA" iata="MPM" type="Long_Haul_International" season="All_Year">
@@ -3799,7 +3871,7 @@
       <runway name="10/28" length="1700" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nampula Airport" icao="FQNP" iata="APL" type="Regional" season="All_Year">
+  <airport name="Nampula Airport" icao="FQNP" iata="APL" type="Short_Haul_International" season="All_Year">
     <town town="Nampula" country="283" GMT="02:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="15°6'20''S" />
@@ -3815,7 +3887,7 @@
     </runways>
   </airport>
   <airport name="Pemba Airport" icao="FQPB" iata="POL" type="Regional" season="All_Year">
-    <town town="Pemba / Porto Amelia" country="283" GMT="02:00:00" DST="00:00:00" />
+    <town town="Pemba" country="283" GMT="02:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="12°59'30''S" />
       <longitude value="40°31'26''E" />
@@ -3858,7 +3930,6 @@
       <runway name="17/35" length="1470" surface="Asphalt" />
     </runways>
   </airport>
-  
   <!--Uganda(HU**)-->
   <airport name="Arua Airport" icao="HUAR" iata="RUA" type="Domestic" season="All_Year">
     <town town="Arua" country="270" GMT="03:00:00" DST="00:00:00" />
@@ -3904,7 +3975,7 @@
   </airport>
   <!--Cape Verde(GV**)-->
   <airport name="Amílcar Cabral International Airport" icao="GVAC" iata="SID" type="Short_Haul_International" season="All_Year">
-    <town town="Espargos" country="285" GMT="-01:00:00" DST="00:00:00" />
+    <town town="Espargos (Sal Island)" country="285" GMT="-01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="16°44'29''N" />
       <longitude value="22°56'57''W" />
@@ -3918,8 +3989,8 @@
       <runway name="07/25" length="1500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="São Pedro Airport" icao="GVSV" iata="VXE" type="Short_Haul_International" season="All_Year">
-    <town town="São Pedro" country="285" GMT="-01:00:00" DST="00:00:00" />
+  <airport name="São Pedro Airport" icao="GVSV" iata="VXE" type="Long_Haul_International" season="All_Year">
+    <town town="Mindelo ( São Vicente Island)" country="285" GMT="-01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="16°49'59''N" />
       <longitude value="25°3'19''W" />
@@ -3933,8 +4004,8 @@
     </runways>
   </airport>
   <airport name="Nelson Mandela International Airport" icao="GVNP" iata="RAI" type="Long_Haul_International" season="All_Year">
-  <period from="10.01.2005 00:00:00" to="12.31.2199 00:00:00" /> 
-    <town town="Praia" country="285" GMT="-01:00:00" DST="00:00:00" />
+    <period from="10/1/2005 12:00:00 AM" to="12/31/2199 12:00:00 AM" />
+    <town town="Praia (Santiago Island)" country="285" GMT="-01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="14°55'28''N" />
       <longitude value="23°29'36''W" />
@@ -3947,9 +4018,9 @@
       <runway name="04/22" length="3600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Francisco Mendes International Airport" icao="GVNP" iata="RAI" type="Long_Haul_International" season="All_Year">
-  <period from="01.01.1953 00:00:00" to="10.01.2005 00:00:00" /> 
-    <town town="Praia" country="285" GMT="-01:00:00" DST="00:00:00" />
+  <airport name="Nelson Mandela International Airport" icao="GVNP" iata="RAI" type="Long_Haul_International" season="All_Year">
+    <period from="10/1/2005 12:00:00 AM" to="12/31/2199 12:00:00 AM" />
+    <town town="Praia (Santiago Island)" country="285" GMT="-01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="14°55'28''N" />
       <longitude value="23°29'36''W" />
@@ -3963,7 +4034,7 @@
     </runways>
   </airport>
   <airport name="Preguiça Airport" icao="GVSN" iata="SNE" type="Domestic" season="All_Year">
-    <town town="Preguiça" country="285" GMT="-01:00:00" DST="00:00:00" />
+    <town town="Ribeira Brava (São Nicolau Island)" country="285" GMT="-01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="16°35'18''N" />
       <longitude value="24°17'4''W" />
@@ -3976,8 +4047,8 @@
       <runway name="01/19" length="1400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Rabil Airport" icao="GVBA" iata="BVC" type="Short_Haul_International" season="All_Year">
-    <town town="Rabil" country="285" GMT="-01:00:00" DST="00:00:00" />
+  <airport name="Rabil Airport" icao="GVBA" iata="BVC" type="Long_Haul_International" season="All_Year">
+    <town town="Sal Rei (Boa Vista Island)" country="285" GMT="-01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="16°8'11''N" />
       <longitude value="22°53'20''W" />
@@ -3991,7 +4062,7 @@
     </runways>
   </airport>
   <airport name="São Filipe Airport" icao="GVSF" iata="SFL" type="Domestic" season="All_Year">
-    <town town="São Filipe" country="285" GMT="-01:00:00" DST="00:00:00" />
+    <town town="São Filipe (Fogo Island)" country="285" GMT="-01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="14°53'6''N" />
       <longitude value="24°28'47''W" />
@@ -4005,7 +4076,7 @@
     </runways>
   </airport>
   <airport name="Maio Airport" icao="GVMA" iata="MMO" type="Domestic" season="All_Year">
-    <town town="Vila do Maio" country="285" GMT="-01:00:00" DST="00:00:00" />
+    <town town="Vila do Maio (Maio Island)" country="285" GMT="-01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="15°9'21''N" />
       <longitude value="23°12'49''W" />
@@ -4016,20 +4087,6 @@
     </terminals>
     <runways>
       <runway name="02/20" length="1196" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Lichinga Airport" icao="FQLC" iata="VXC" type="Domestic" season="All_Year">
-    <town town="Lichinga" country="285" GMT="02:00:00" DST="00:00:00" />
-    <coordinates>
-      <latitude value="13°16'26''S" />
-      <longitude value="35°15'58''E" />
-    </coordinates>
-    <size value="Smallest" pax="24" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="5" />
-    </terminals>
-    <runways>
-      <runway name="08/26" length="2100" surface="Asphalt" />
     </runways>
   </airport>
 </airports>
