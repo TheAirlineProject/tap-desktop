@@ -108,7 +108,7 @@
             {
                 if (buildingFacility == null)
                 {
-                    
+
                     double price = facility.Price;
 
                     if (this.Airport.Airport.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country)
@@ -218,20 +218,22 @@
                                                   null,
                                                   AirportFacility.FacilityType.Cargo).TypeLevel > 0;
 
-            AirportContract contract =
-                this.Airport.Contracts.Where(a => a.Airline == GameObject.GetInstance().HumanAirline) == null
-                    ? null
-                    : this.Airport.Contracts.Where(a => a.Airline == GameObject.GetInstance().HumanAirline)
-                        .First()
-                        .Contract;
+            AirportContract contract = null;
 
-            var maintenances = GameObject.GetInstance().HumanAirline.Fleet.SelectMany(f=>f.Maintenance.Checks.Where(c=>c.CheckCenter.Airport != null && c.CheckCenter.Airport == this.Airport.Airport));
+            if (this.Airport.Contracts.Any(a => a.Airline == GameObject.GetInstance().HumanAirline))
+            {
+                    contract = this.Airport.Contracts.Where(a => a.Airline == GameObject.GetInstance().HumanAirline)
+                            .First()
+                            .Contract;
+            }
+
+            var maintenances = GameObject.GetInstance().HumanAirline.Fleet.SelectMany(f => f.Maintenance.Checks.Where(c => c.CheckCenter.Airport != null && c.CheckCenter.Airport == this.Airport.Airport));
 
             int maintenanceLevel = -1;
 
             if (maintenances.Count() > 0)
             {
-                maintenanceLevel = maintenances.Max(m=>m.Type.Requirement.TypeLevel);
+                maintenanceLevel = maintenances.Max(m => m.Type.Requirement.TypeLevel);
             }
 
             Boolean isMaintenanceCenter = facility.Facility.Facility.Type == AirportFacility.FacilityType.Service
@@ -261,10 +263,10 @@
             }
             else if (isMaintenanceCenter)
             {
-                 WPFMessageBox.Show(
-                    Translator.GetInstance().GetString("MessageBox", "2234"),
-                    Translator.GetInstance().GetString("MessageBox", "2234", "message"),
-                    WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(
+                   Translator.GetInstance().GetString("MessageBox", "2234"),
+                   Translator.GetInstance().GetString("MessageBox", "2234", "message"),
+                   WPFMessageBoxButtons.Ok);
             }
             else if (isMinimumServiceFacility)
             {
@@ -307,6 +309,8 @@
                     this.Airport.removeAirlineFacility(facility);
                 }
             }
+
+
         }
 
         private void btnQuickUpgradeFacility_Click(object sender, RoutedEventArgs e)

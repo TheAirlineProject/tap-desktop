@@ -1790,7 +1790,7 @@ Loading of game aborted.</value>
     <value>Delete Facility</value>
   </data>
   <data name="MessageBox_2204_message" xml:space="preserve">
-    <value>Are you sure you want to delete the facilities from {0}?</value>
+    <value>Are you sure you want to delete {0} from the facilities?</value>
   </data>
   <data name="MessageBox_2205_name" xml:space="preserve">
     <value>Not Enough Money</value>
@@ -5364,7 +5364,7 @@ Good luck.</value>
     <value>Airport Demand</value>
   </data>
   <data name="PageAirportDemand_1008_name" xml:space="preserve">
-    <value>Airline Routes</value>
+    <value>Airline Seats</value>
   </data>
   <data name="PageAirlineFinances_1021_name" xml:space="preserve">
     <value>Last 5 Days</value>

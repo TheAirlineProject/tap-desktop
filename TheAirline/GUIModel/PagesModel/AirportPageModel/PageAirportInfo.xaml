@@ -46,7 +46,7 @@
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1000'}"
                         Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom" />
-                    <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center"
+                    <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" 
                                Text="{Binding Airport.Profile.Name}" />
                     <Grid>
                         <Grid.ColumnDefinitions>

@@ -1,8 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="PAL Airlines" iata="5P" color="Black" country="160" CEO="Carlos Musiet" mentality="Safe"
            market="Global" preferedairport="SCL">
+               <narrative
+      narrative="The airline was established as a charter airline in September 2003 and received approval for scheduled services in June 2009. It is owned by the Musiet family, who in the 1990s owned now defunct National Airlines." />
+
   </profile>
   <info real="True" from="2003" to="2199" />
 </airline>
