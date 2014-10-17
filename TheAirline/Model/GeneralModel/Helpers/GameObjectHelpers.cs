@@ -1751,6 +1751,11 @@
                         merger.Airline1.Profile.Name = merger.NewName;
                     }
                 }
+                if (merger.Type == AirlineMerger.MergerType.Independant)
+                {
+                    if (merger.Airline2 is SubsidiaryAirline && ((SubsidiaryAirline)merger.Airline2).Airline == merger.Airline1)
+                        AirlineHelpers.MakeSubsidiaryAirlineIndependent((SubsidiaryAirline)merger.Airline2);
+                }
                 if (merger.Type == AirlineMerger.MergerType.Subsidiary)
                 {
                     

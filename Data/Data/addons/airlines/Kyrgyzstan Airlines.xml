@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Kyrgyzstan Airlines" iata="R8" color="SlateGray" country="239" CEO="Tulenbek Asanbayevich Arpachiyev" mentality="Safe" market="Global" preferedairport="FRU">
+    <narrative narrative="Kyrgyzstan Airlines was the flag carrier of the country with the same name in central Asia from 1993-2005 when it was taken over by Altyn Air and then the merged airline
+became Air Kyrgyzstan. It was based at Manas airport in Bishkek. It operated to 6 airports in Russia, 3 domestic outside of Bishkek, Delhi,India, Urumqi,China, Tajikistan, Karachi,Pakistan Istanbul,Turkey,
+and Birmingham,England. At the end they had five An-28's, two Il-76TD's,two Tu-154M's,two Tu-134A's,two Yak-40's,an An-26 and an Airbus 320. " />
+  </profile>
+  <info real="True" from="1993" to="2005" />
+  <prefereds aircrafts="Il-76TD,Tupolev Tu-154M,Tupolev Tu-134A,Tupolev Tu-134B,Yak-40,Airbus A320-200"></prefereds>
+</airline>

@@ -500,7 +500,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airliner.Airliner.Condition = Math.Min(100, airliner.Airliner.Condition + deltaCondition);
 
-                if (airliner.Airliner.Airline.IsHuman)
+                if (airliner.Airliner.Airline.IsHuman && Settings.GetInstance().MailsOnMaintenance)
                     GameObject.GetInstance()
                                                    .NewsBox.addNews(
                                                        new News(

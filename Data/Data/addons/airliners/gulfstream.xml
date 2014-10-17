@@ -1,0 +1,100 @@
+  <airliners>  
+ <airliner manufacturer="Gulfstream" name="Gulfstream G650ER" price="8735000"> <!--66385000-->
+    <type body="Narrow_Body" rangetype="Long_Range" engine="Jet" />
+    <specs wingspan="30.36" length="30.41" range="13890" speed="904" fuelcapacity="21863" consumption="0.055"
+           runwaylengthrequired="1920" />
+    <capacity passengers="18" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2014" to="2199" rate="3" />
+  </airliner>
+ <airliner manufacturer="Gulfstream" name="Gulfstream G650" price="8150000"> <!--61940000-->
+    <type body="Narrow_Body" rangetype="Long_Range" engine="Jet" />
+    <specs wingspan="30.36" length="30.41" range="12960" speed="904" fuelcapacity="20049" consumption="0.055"
+           runwaylengthrequired="1786" />
+    <capacity passengers="18" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2012" to="2199" rate="7" />
+  </airliner>
+      <airliner manufacturer="Gulfstream" name="Gulfstream G550" price="7000000"> <!--53200000-->
+    <type body="Narrow_Body" range="Long_Range" engine="Jet" />
+    <specs wingspan="28.50" length="29.39" range="12501" speed="904" fuelcapacity="18733" consumption="0.055"
+           runwaylengthrequired="1800" />
+    <capacity passengers="18" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2003" to="2199" rate="18" />
+     </airliner>
+          <airliner manufacturer="Gulfstream" name="Gulfstream G500" price="5526000"> <!--42000000-->
+    <type body="Narrow_Body" range="Long_Range" engine="Jet" />
+    <specs wingspan="28.50" length="29.39" range="10700" speed="904" fuelcapacity="16034" consumption="0.055"
+           runwaylengthrequired="1570" />
+    <capacity passengers="18" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2003" to="2199" rate="10" />
+    </airliner>
+              <airliner manufacturer="Gulfstream" name="Gulfstream G450" price="5033000"> <!--38250000-->
+    <type body="Narrow_Body" range="Medium_Range" engine="Jet" />
+    <specs wingspan="23.72" length="27.23" range="8056" speed="850" fuelcapacity="13381" consumption="0.0625"
+           runwaylengthrequired="1707" />
+    <capacity passengers="16" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2004" to="2199" rate="7" />
+  </airliner>
+                <airliner manufacturer="Gulfstream" name="Gulfstream G350" price="4400000"> <!--33427000-->
+    <type body="Narrow_Body" range="Medium_Range" engine="Jet" />
+    <specs wingspan="23.72" length="27.23" range="7040" speed="850" fuelcapacity="11693" consumption="0.0625"
+           runwaylengthrequired="1587" />
+    <capacity passengers="16" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2002" to="2013" rate="7" />
+  </airliner>
+                  <airliner manufacturer="Gulfstream" name="Gulfstream G280" price="2725000"> <!--20710000-->
+    <type body="Narrow_Body" range="Medium_Range" engine="Jet" />
+    <specs wingspan="19.20" length="20.37" range="6667" speed="850" fuelcapacity="6622" consumption="0.10"
+           runwaylengthrequired="1448" />
+    <capacity passengers="10" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2010" to="2199" rate="10" />
+      </airliner>
+                        <airliner manufacturer="Gulfstream" name="Gulfstream G200" price="2575000"> <!--19570000-->
+    <type body="Narrow_Body" range="Medium_Range" engine="Jet" />
+    <specs wingspan="17.70" length="18.97" range="6300" speed="850" fuelcapacity="6257" consumption="0.10"
+           runwaylengthrequired="1390" />
+    <capacity passengers="10" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1997" to="2011" rate="18" />
+      </airliner>
+      <airliner manufacturer="Gulfstream" name="Gulfstream G150" price="2575000"> <!--19570000-->
+    <type body="Narrow_Body" range="Medium_Range" engine="Jet" />
+    <specs wingspan="16.94" length="17.30" range="5556" speed="800" fuelcapacity="4672" consumption="0.10"
+           runwaylengthrequired="1390" />
+    <capacity passengers="8" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2005" to="2199" rate="15" />
+      </airliner>
+                                   <airliner manufacturer="Gulfstream" name="Gulfstream V" price="4533000"> <!--34450000-->
+    <type body="Narrow_Body" range="Long_Range" engine="Jet" />
+    <specs wingspan="28.50" length="29.40" range="10742" speed="904" fuelcapacity="10270" consumption="0.0625"
+           runwaylengthrequired="1580" />
+    <capacity passengers="16" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1998" to="2003" rate="38" />
+      </airliner>
+                              <airliner manufacturer="Gulfstream" name="Gulfstream IV" price="3300000"> <!--25000000-->
+    <type body="Narrow_Body" range="Medium_Range" engine="Jet" />
+    <specs wingspan="23.70" length="26.90" range="7820" speed="850" fuelcapacity="7477" consumption="0.0625"
+           runwaylengthrequired="1650" />
+    <capacity passengers="16" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1987" to="1998" rate="45" />
+      </airliner>
+                            <airliner manufacturer="Gulfstream" name="Gulfstream III" price="2850000"> <!--21600000-->
+    <type body="Narrow_Body" range="Short_Range" engine="Jet" />
+    <specs wingspan="23.72" length="25.32" range="6760" speed="818" fuelcapacity="3825" consumption="0.053"
+           runwaylengthrequired="1650" />
+    <capacity passengers="19" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1979" to="1986" rate="30" />
+      </airliner>
+      <airliner manufacturer="Grumman" name="Gulfstream II" price="2350000"> <!--17860000-->
+    <type body="Narrow_Body" range="Short_Range" engine="Jet" />
+    <specs wingspan="20.98" length="24.36" range="6635" speed="778" fuelcapacity="3750" consumption="0.0714"
+           runwaylengthrequired="1650" />
+    <capacity passengers="14" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1967" to="1978" rate="24" />
+      </airliner>
+            <airliner manufacturer="Grumman" name="Gulfstream I" price="2350000"> <!--17860000-->
+    <type body="Narrow_Body" range="Short_Range" engine="Turboprop" />
+    <specs wingspan="23.93" length="19.43" range="4088" speed="560" fuelcapacity="3750" consumption="0.0714"
+           runwaylengthrequired="1650" />
+    <capacity passengers="24" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1958" to="1966" rate="25" />
+      </airliner>
+  </airliners>

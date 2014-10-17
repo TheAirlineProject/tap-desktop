@@ -473,4 +473,10 @@
     <capacity passengers="323" cockpitcrew="2" cabincrew="5" maxclasses="3" />
     <produced from="2016" to="2029" rate="12" />
   </airliner>
+  <airliner manufacturer="Boeing" name="Boeing 2707" price="59235700">
+<type body="Wide_Body" rangetype="Medium_Range" engine="Jet" />
+<specs wingspan="54.97" length="93.27" range="7242" speed="2600" fuelcapacity="166622" consumption="0.084" runwaylengthrequired="3000" />
+<capacity passengers="275" cockpitcrew="3" cabincrew="6" maxclasses="2" />
+<produced from="1980" to="2005" rate="2" /> 
+</airliner>
 </airliners>

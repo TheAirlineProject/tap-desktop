@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Spantax" iata="BX" logo="BX2" color="RoyalBlue" country="123" CEO="Rodolfo Bay Wright" mentality="Moderate" market="Global" preferedairport="LPA">
+    <narrative narrative="Spantax were an airline based at Gran Canaria in the Canary Islands of Spain. They lasted from 1959-1988. Their full name was Spanish Air Taxi Las Areas.om Sabena." />
+  </profile>
+  <info real="True" from="1959" to="1988" />
+  <prefereds aircrafts="Convair 990,Convair 990A,Douglas DC-7C,Douglas DC-8-63,Douglas DC-9-30,Douglas DC-9-10,Douglas DC-9-15,MD DC-10-30,Boeing 737-200 Adv.,Boeing 747-200B,Douglas DC-6,Douglas DC-3"></prefereds>
+</airline>

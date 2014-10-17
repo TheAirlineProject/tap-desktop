@@ -158,6 +158,22 @@
                         <ContentControl Content="{Binding Owner}" VerticalAlignment="Bottom"
                                 ContentTemplate="{StaticResource AirlineLink}" />
                     </WrapPanel>
+                    <WrapPanel>
+                        <WrapPanel.Style>
+                            <Style TargetType="WrapPanel" BasedOn="{StaticResource WrapPanelStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding BuyPrice}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </WrapPanel.Style>
+                        <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1016'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                        <TextBlock Text="{Binding BuyPrice,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                        
+                    </WrapPanel>
                     <WrapPanel Margin="0 5 0 0">
 
                         <Button

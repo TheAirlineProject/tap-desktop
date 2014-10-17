@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="British Island Airways" iata="UK2" color="Tomato" country="130" CEO="Hon Anthony Cayzer" mentality="Safe" market="Regional" preferedairport="LGW">
+    <narrative narrative="British Island Airways was around from 1970-1980 in its own right, when it merged with Air Anglia an Air Wales and Air Westward to form AirUK. It was spun off again though in 1982 as a charter airline subsidiary. That lasted until 1991.
+    It made its home at London Gatwick. They operated domestic and some international routes and had planes like Handley Page Darts,BAC 111s,DC-3s,EMB 110s, and MD-83s." />
+  </profile>
+  <info real="True" from="1970" to="1991" />
+  <prefereds aircrafts="BAC One-Eleven 400,BAC One-Eleven 500,Douglas DC-3,MD-83 (DC-9-83),EMB 110 Bandeirante"></prefereds>
+</airline>

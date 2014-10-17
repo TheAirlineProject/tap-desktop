@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Air Chathams" iata="CVA" color="Lime" country="186" CEO="Craig Emeny" mentality="Safe" market="Domestic" preferedairport="CHT" >
+    <narrative narrative="Air Chathams is an airline that serves the Chatham Islands of New Zealand. It flies between Chatham Island and the smaller Pitt Island, and to the main islands of New Zealand and it's cities of Auckland,Wellington and Christchurch. It was founded in 1986. They use mostly older planes,three Convair 240 variant 580's in 50 passnger config,two Beechcraft Queen Airs with 8 passengers,a DC-3 for 25 pax,a Metroliner for 19,an BN Islander for 8 and a Cessna 206 for 5. They had a subsidiary from 2007 to 2013 that flew domestic flights in Tonga but it is no longer in service. Its logo shows Chatham Island and the smaller Pitt Island." />
+  </profile>
+  <info real="True" from="1986" to="2199" />
+  <prefereds aircrafts="Convair 440,Convair 240,Beechcraft Queen Air B80,Fairchild Swearingen Metroliner,Cessna 206,Douglas DC-3,BN-2A Islander"></prefereds>
+</airline>

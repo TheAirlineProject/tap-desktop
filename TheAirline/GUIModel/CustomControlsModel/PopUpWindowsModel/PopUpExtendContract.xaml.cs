@@ -22,6 +22,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
     /// </summary>
     public partial class PopUpExtendContract : PopUpWindow, INotifyPropertyChanged
     {
+        public List<AirportContract.ContractType> ContractTypes { get; set; }
         private AirportContract Contract;
         private Boolean _hasfreegates;
         public Boolean HasFreeGates
@@ -50,6 +51,15 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
         }
         public PopUpExtendContract(AirportContract contract)
         {
+            this.Loaded += PopUpExtendContract_Loaded;
+
+            this.ContractTypes = new List<AirportContract.ContractType>();
+
+            foreach (AirportContract.ContractType type in Enum.GetValues(typeof(AirportContract.ContractType)))
+            {
+                this.ContractTypes.Add(type);
+            }
+
             this.Contract = contract;
             this.DataContext = contract;
 
@@ -58,12 +68,20 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 
             this.HasFreeGates = this.Contract.Airport.Terminals.getFreeGates(this.Contract.TerminalType) > 0;
 
+       
             InitializeComponent();
+        }
+
+       private  void PopUpExtendContract_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.cbType.SelectedItem = this.Contract.Type;
+
         }
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             int gates = Convert.ToInt16(txtGates.Text);
 
+            this.Contract.Type = (AirportContract.ContractType)cbType.SelectedItem;
             this.Contract.NumberOfGates = gates;
             this.Contract.AutoRenew = cbAutoRenew.IsChecked.Value;
 
@@ -83,8 +101,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             this.NumberOfGates++;
 
             int diffGates = this.NumberOfGates - this.Contract.NumberOfGates;
-
-          
+                      
             this.HasFreeGates = this.Contract.Airport.Terminals.getFreeGates(this.Contract.TerminalType) - diffGates > 0;
 
           

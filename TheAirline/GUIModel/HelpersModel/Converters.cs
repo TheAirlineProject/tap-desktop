@@ -271,6 +271,7 @@
             }
             catch (Exception)
             {
+                rv = Visibility.Collapsed;
             }
             return rv;
         }
@@ -640,14 +641,14 @@
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var text = (String)value;
-            try
-            {
-                return AppSettings.GetInstance().getLanguage().convert(text);
-            }
-            catch
-            {
+
+            var translation = AppSettings.GetInstance().getLanguage().convert(text);
+
+            if (translation == null)
                 return text;
-            }
+            else
+                return translation;
+           
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Ameriflight" iata="A8" color="MediumTurquoise" country="122" CEO="Andrew Lotter" mentality="Aggressive" market="Global" preferedairport="DFW" routefocus="Cargo">
+    <narrative narrative="Ameriflight is a cargo airline that does scheduled and contract cargo services using smaller planes like Beech 99's and 1900's. They provide feeder services for overnight express carriers at a national and international level. They had their hub at Burbank,CA but changed it to Dallas DFW in 2014. Their fleet as of 2013 was 57 Beech 99's, 46 Metroliner III's and Expediters, 24 Beech 1900's, 31 Piper PA-31's,8 Embraer Brasilia's, and a single King Air 200 in passenger configuration. Other planes they have add include Cessna 402's,Cessna Caravan's,Dassault Falcon 20's,Twin Otters,Learjet 35's,MU-2's,and other various Pipers. They have many hubs all around the US in every region, even Puerto Rico. They are also one of the only FAA Part 135 airlines that have credentials to carry radioactive material, which they haul medical equipment that contains it. And financial document shipping is another big part of what they carry along with pharmaceuticals. They do feeder services for all the major package carriers, FedEx, UPS and DHL. They were founed in 1968 as California Air Charter." />
+  </profile>
+  <info real="True" from="1968" to="2199" />
+  <prefereds aircrafts="Beechcraft 99,Fairchild Swearingen Metroliner,PA-31 Navajo,PA-31T Cheyenne,Beechcraft 1900C,Beechcraft 1900D,Cessna 208B Super Cargomaster,EMB 120 Brasilia,Cessna 402,Cessna 402C,PA-32 Cherokee Six,DHC-6-300 Twin Otter"></prefereds>
+</airline>

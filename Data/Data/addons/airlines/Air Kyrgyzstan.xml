@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Air Kyrgyzstan" iata="QH" logo="QH2" color="Red" country="239" CEO="Meder Dzhaparovich Djundubaev" mentality="Safe" market="Global" preferedairport="FRU">
+    <narrative narrative="Air Kyrgyzstan is the current flag carrier of the central Asian country of Kyrgyzstan with its hub as Manas airpirt in Bishkek. It has been in operation since 2001 and as called Altyn Air until
+    2006 when it took over Kyrgyzstan Airlines and was renamed. They fly to 1 domestic destination, Osh, 6 in Russia, two in the UAE, one in Uzbekistan,one in Tajikistan and one in China. They have as of
+April 2014 three 737-400's, a 737-300 and a 737-500. They used to have An-24's, Tu-154's,Yak-40's and Tu-134's. " />
+  </profile>
+  <info real="True" from="2001" to="2199" />
+  <prefereds aircrafts="Boeing 737-300,Beoing 737-500,Beoing 737-400,Antonov An-24,Tupolev Tu-154M,Tupolev Tu-134B,Yak-40"></prefereds>
+</airline>

@@ -375,13 +375,14 @@
                         new AirportCodeConverter().Convert(entry.Destination.Airport));
 
                     string tooltip = string.Format(
-                        "{0}-{3}\n({1} {2})-({4} {5})",
+                        "{6}\n{0}-{3}\n({1} {2})-({4} {5})",
                         string.Format("{0:hh\\:mm}", entry.Time),
                         string.Format("{0:hh\\:mm}", localTimeDept),
                         entry.DepartureAirport.Profile.TimeZone.ShortName,
                         string.Format("{0:hh\\:mm}", eTime),
                         string.Format("{0:hh\\:mm}", localTimeDest),
-                        entry.Destination.Airport.Profile.TimeZone.ShortName);
+                        entry.Destination.Airport.Profile.TimeZone.ShortName,
+                        entry.Destination.FlightCode);
 
                     uctimetable.addTimelineEntry(entry, sTime, eTime, text, brush, tooltip);
                 }

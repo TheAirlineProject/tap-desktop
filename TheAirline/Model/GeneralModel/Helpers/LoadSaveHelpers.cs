@@ -58,11 +58,23 @@
                     airportNode.SetAttribute("type", airport.Profile.Type.ToString());
                     airportNode.SetAttribute("season", airport.Profile.Season.ToString());
 
+                    XmlElement periodNode = xmlDoc.CreateElement("period");
+                    periodNode.SetAttribute("from", airport.Profile.Period.From.ToString(new CultureInfo("en-US", false)));
+                    periodNode.SetAttribute("to", airport.Profile.Period.To.ToString(new CultureInfo("en-US", false)));
+
+                    if (!(airport.Profile.Period.From.Year <= 1960 && airport.Profile.Period.To.Year == 2199))
+                        airportNode.AppendChild(periodNode);
+
+                    string town = airport.Profile.Town.Name;
+
+                    if (airport.Profile.Town.State != null)
+                        town = town + ", " + airport.Profile.Town.State.ShortName;
+
                     XmlElement townNode = xmlDoc.CreateElement("town");
-                    townNode.SetAttribute("town", airport.Profile.Town.Name);
+                    townNode.SetAttribute("town", town);
                     townNode.SetAttribute("country", airport.Profile.Town.Country.Uid);
-                    townNode.SetAttribute("gmt", airport.Profile.OffsetGMT.ToString());
-                    townNode.SetAttribute("dst", airport.Profile.OffsetDST.ToString());
+                    townNode.SetAttribute("GMT", airport.Profile.OffsetGMT.ToString());
+                    townNode.SetAttribute("DST", airport.Profile.OffsetDST.ToString());
 
                     airportNode.AppendChild(townNode);
 
@@ -105,7 +117,7 @@
                     {
                         XmlElement airportRunwayNode = xmlDoc.CreateElement("runway");
                         airportRunwayNode.SetAttribute("name", runway.Name);
-                        airportRunwayNode.SetAttribute("lenght", runway.Length.ToString());
+                        airportRunwayNode.SetAttribute("length", runway.Length.ToString());
                         airportRunwayNode.SetAttribute("surface", runway.Surface.ToString());
 
                         airportRunwaysNode.AppendChild(airportRunwayNode);

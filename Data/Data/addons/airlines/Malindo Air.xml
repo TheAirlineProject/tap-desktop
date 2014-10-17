@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Malindo Air" iata="OD" logo="OD2" color="Red" country="173" CEO="Chandran Rama Muthy" mentality="Aggressive " market="Regional" preferedairport="KUL">
+            <narrative narrative="Malindo Air is a joint venture between the National Aerospace and Defence Industries of Malaysia and Lion Air of Indonesia. Malindo the name is a combination of Malaysia and Indonesia.
+	    They began operation in 2013. Its base is Kuala Lumpur, at both its airports. They already have 11 domestic destinations and 7 in Indonesia, 4 in India, 2 in Thailand, 2 in Bangladesh and Singapore. Late 2015 has 2 in Pakistan starting. They have six 737-900ERS with 19 on order and 10 ATR 72-600s with 5 on order. They plan to have 100 planes ten years from 2014." />
+  </profile>
+  <info real="True" from="2013" to="2199" />
+  <prefereds aircrafts="Boeing 737-900ER,ATR 72-500,Boeing MAX 9,Boeing MAX 8"></prefereds>
+<!--the airliners the airline would start with which isn't on a route earyl (2013) late (2024)-->
+    <airliners>
+      <airliner type="ATR 72-500" early="10" late="20"></airliner>
+      <airliner type="Boeing 737-900ER" early="6" late="70"></airliner>
+    </airliners>
+
+</airline>

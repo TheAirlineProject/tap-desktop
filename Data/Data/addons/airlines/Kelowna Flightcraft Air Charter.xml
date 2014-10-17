@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Kelowna Flightcraft Air Charter" iata="KW" color="DodgerBlue" country="113" CEO="Barry Lapointe" mentality="Safe" market="Domestic" preferedairport="YLW" routefocus="Mixed" >
+    <narrative
+      narrative="Kelowna Flightcraft Air Charter is based at Kelowna,British Columbia and have another hub at Hamilton,ON. It was founded in 1970. They do both cargo charters for couriers like Purolator and Canada Post and do passenger charters to places like fishing lodges,fire patrols,and aircraft sales and leasing. In 2005 they flew to 17 domestic destinations for the cargo operation. As of June 2011  they had 13 Boeing 727-200F's,six Convair 240 variants,a IAI Astra and four DC-10-30's." />
+  </profile>
+  <info real="True" from="1970" to="2199" />
+     <prefereds aircrafts="Boeing 727-200 Adv.,Convair 440,MD DC-10-30F,Boeing 727-100C"></prefereds>
+</airline>

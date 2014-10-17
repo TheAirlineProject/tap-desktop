@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Sauðárkrókur">
+  <months>
+    <month month="1" precipitation="1">
+      <temp min="-4" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="4">
+      <temp min="-5" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="3">
+      <temp min="-4" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="1">
+      <temp min="-2" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="1">
+      <temp min="2" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="2">
+      <temp min="5" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="1">
+      <temp min="8" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="1">
+      <temp min="7" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="3">
+      <temp min="4" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="1">
+      <temp min="0" max="6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="0">
+      <temp min="-3" max="3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="1">
+      <temp min="-4" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

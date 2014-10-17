@@ -420,11 +420,45 @@
                     string[] columns = line.Split(new []{"@" },StringSplitOptions.RemoveEmptyEntries);
 
                     string iata = columns[1].Replace("\"", "");
-
+             
                     Airport airport = Airports.GetAirport(iata);
 
                     if (airport != null)
                     {
+                        string town = columns[5].Replace("\"", "");
+
+                        Country country = Countries.GetCountryFromName(columns[6].Replace("\"", ""));
+
+                        if (country == null)
+                            country = TemporaryCountries.GetCountryFromName(columns[6].Replace("\"", ""));
+
+                        if (country == null && !countries.Contains(columns[6].Replace("\"", "")))
+                            countries.Add(columns[6].Replace("\"", ""));
+
+                        var type =
+                   (AirportProfile.AirportType)
+                       Enum.Parse(typeof(AirportProfile.AirportType), columns[3].Replace("\"", ""));
+
+                        Town eTown = null;
+                        if (town.Contains(","))
+                        {
+                            State state = States.GetState(country, town.Split(',')[1].Trim());
+
+                            if (state == null)
+                            {
+                                eTown = new Town(town.Split(',')[0], country);
+                            }
+                            else
+                            {
+                                eTown = new Town(town.Split(',')[0], country, state);
+                            }
+                        }
+                        else
+                        {
+
+                            eTown = new Town(town, country);
+                        }
+
                         var size =
                          (GeneralHelpers.Size)
                              Enum.Parse(typeof(GeneralHelpers.Size), columns[11].Replace("\"", ""));
@@ -437,9 +471,11 @@
                         var paxValues = new List<PaxValue>();
                         paxValues.Add(new PaxValue(1960, 2199, size, pax));
 
+                        airport.Profile.Town = eTown;
                         airport.Profile.PaxValues = paxValues;
                         airport.Runways.Clear();
                         airport.Terminals.clear();
+                        airport.Profile.Type = type;
 
                         string terminalsString = columns[15].Replace("\"", "");
                         string runwaysString = columns[16].Replace("\"", "");
@@ -612,7 +648,7 @@
                 else
                     i++;
             }
-            LoadSaveHelpers.SaveAirportsList(airports,"newairports.xml");
+            //LoadSaveHelpers.SaveAirportsList(airports,"newairports.xml");
             LoadSaveHelpers.SaveAirportsList(oldairports, "oldairports.xml");
 
             countries.ForEach(c=>Console.WriteLine(c));
@@ -741,7 +777,6 @@
 
                 string s = e.ToString();
             }
-            
             //LoadNicksAirports();
 
             var noRunways = Airports.GetAllAirports().Where(a => a.Runways.Count == 0);
@@ -929,7 +964,11 @@
 
                     }
                 }
-
+                else if (merger.Type == AirlineMerger.MergerType.Independant && !(Airlines.ContainsAirline(merger.Airline1) && Airlines.ContainsAirline(merger.Airline2)))
+                {
+                     if (merger.Date <= GameObject.GetInstance().GameTime && merger.Airline2 is SubsidiaryAirline && ((SubsidiaryAirline)merger.Airline2).Airline == merger.Airline1)
+                            AirlineHelpers.MakeSubsidiaryAirlineIndependent((SubsidiaryAirline)merger.Airline2);
+                }
                 else
                 {
                     if (!Airlines.ContainsAirline(merger.Airline1) || !Airlines.ContainsAirline(merger.Airline2)

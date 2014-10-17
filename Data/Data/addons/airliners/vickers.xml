@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
   <airliner manufacturer="Vickers" name="Vickers VC10" price="5980390"> <!--6100000-->
@@ -8,6 +8,12 @@
     <capacity passengers="151" cockpitcrew="4" cabincrew="3" maxclasses="1" />
     <produced from="1962" to="1970" rate="6" />
   </airliner>
+  <airliner manufacturer="Vickers" name="Vickers Super VC10" price="6567810">
+<type body="Narrow_Body" rangetype="Long_Range" engine="Jet"/>
+<specs wingspan="44.55" length="52.32" range="11102" speed="933" fuelcapacity="92000" consumption="0.048" runwaylengthrequired="2480"/>
+<capacity passengers="174" cockpitcrew="3" cabincrew="4" maxclasses="2"/>
+<produced from="1965" to="1972" rate="8"/>
+</airliner>
   <airliner manufacturer="Vickers" name="Vickers Viscount 800" price="2770550">
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
     <specs wingspan="28.56" length="26.11" range="2220" speed="530" fuelcapacity="5900" consumption="0.036"

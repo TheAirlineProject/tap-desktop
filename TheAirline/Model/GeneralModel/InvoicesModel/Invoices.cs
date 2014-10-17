@@ -207,7 +207,12 @@
         //returns the total amount of invoices
         public double getAmount()
         {
-            return this.MonthlyInvoices.Sum(m => m.Amount);
+            double sum;
+            lock (this.MonthlyInvoices)
+            {
+                sum = this.MonthlyInvoices.Sum(m => m.Amount);
+            }
+            return sum;
         }
 
         public double getYearlyAmount(Invoice.InvoiceType type, int year)

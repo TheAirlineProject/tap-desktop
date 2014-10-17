@@ -1108,7 +1108,8 @@
       <Link>Data\languagefiles\language.tr-TR.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\languagefiles\language_pt_PT.resx" />
+    <EmbeddedResource Include="Data\languagefiles\language.hu-HU.resx" />
+    <EmbeddedResource Include="Data\languagefiles\language.pt-PT.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

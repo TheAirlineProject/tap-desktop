@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Vietnam Airlines" iata="VN" color="Aqua" country="1007" CEO="Pham Viet Thanh" mentality="Safe"
            market="Global" preferedairport="HAN">
+           <narrative narrative="Vietnam Airlines is the flag carrier of Vietnam. Founded in 1956 under the name Vietnam Civil Aviation, the airline was established as a state-owned enterprise in April 1989. Vietnam Airlines is headquartered in Long Bien District, Hanoi."></narrative>
+ 
   </profile>
   <info real="True" from="1956" to="2199" />
 </airline>

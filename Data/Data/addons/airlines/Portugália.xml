@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Portugalia" iata="NI" color="GreenYellow" country="150" CEO="Luiz Lapa" mentality="Aggressive" market="Global" preferedairport="LIS">
+    <narrative narrative="Portugalia is a subsidiary of TAP Portugal. However that has not always been the case. It was founded in 1988 and did not become part of TAP until 2006 when TAP bought nearly all the shares the the airline.
+    Before this they were competitors and Portugalia did well. For 5 years in a row, 2001-2006 they were named the best Regional Airline in Europe and Best Cabin Staff Award in 2005  from Skytrax. The fleet consists of six Fokker 100's, eight ERJ 145 EP's
+   and two ATR 42-600's. It has an express subsidiary of its own that operates 2 1900D's. They have 3 domestic destinations, 8 in Spain, 6 in France, and 6 other places in Europe. They also serve 3 airports in Morocco and Algiers,Algeria." />
+  </profile>
+   <info real="True" from="1988" to="2199"></info>
+     <prefereds aircrafts="Embraer ERJ145 LR,Fokker 100,ATR 42-500"></prefereds>
+</airline>

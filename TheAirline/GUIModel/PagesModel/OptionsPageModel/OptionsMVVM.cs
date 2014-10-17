@@ -135,7 +135,7 @@
                 this.NotifyPropertyChanged("MailsOnLandings");
             }
         }
-
+        public Boolean MailsOnMaintenance { get; set; }
         public Settings.AirportCode SelectedAirportCode
         {
             get
@@ -218,6 +218,7 @@
             this.SelectedAirportCode = Settings.GetInstance().AirportCodeDisplay;
             this.MailsOnLandings = Settings.GetInstance().MailsOnLandings;
             this.MailsOnBadWeather = Settings.GetInstance().MailsOnBadWeather;
+            this.MailsOnMaintenance = Settings.GetInstance().MailsOnMaintenance;
             this.ShortenCurrency = Settings.GetInstance().CurrencyShorten;
             this.MailsOnAirlineDestinations = Settings.GetInstance().MailsOnAirlineRoutes;
             this.HourRoundEnabled = !GameObject.GetInstance().DayRoundEnabled;

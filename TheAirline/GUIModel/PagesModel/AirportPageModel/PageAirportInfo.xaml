@@ -622,7 +622,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding Contract.Type,Converter={StaticResource TextUnderscoreConverter}}"
+                                                Text="{Binding ContractType,Converter={StaticResource TextUnderscoreConverter}}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

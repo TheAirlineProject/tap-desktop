@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="FlySafair" iata="FA2" color="DeepPink" country="158" CEO="Dave Andrew" mentality="Moderate" market="Domestic" preferedairport="CPT" >
+    <narrative narrative="FlySafair is the subsidiary of Safair, an airline that does both cargo and passenger charters. FlySafair however is a scheduled low cost airline started in 2013 and serves domestic South Africa. They are based at Cape Town.
+They have four 737-400's and serve 4 airports. Johannesburg,George and Port Elizabeth are the 3 outside of Cape Town. Their first flight was October 16,2014. " />
+  </profile>
+  <info real="True" from="2013" to="2199"></info>
+ 
+      <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2020)-->
+    <airliners>
+      <airliner type="Boeing 737-400" early="4" late="4"></airliner>
+    </airliners>
+
+</airline>

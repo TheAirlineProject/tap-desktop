@@ -115,6 +115,9 @@
 
             this.IsBuyable = this.Airliner.Airliner.Airline.IsHuman
                              && this.Airliner.Purchased == FleetAirliner.PurchasedType.Leased && this.Airliner.Airliner.Owner == null;
+
+            this.BuyPrice = this.IsBuyable ? this.Airliner.Airliner.getPrice() : 0;
+
             this.IsConvertable = this.Airliner.Airliner.Airline.IsHuman
                                  && this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
                                  && !this.Airliner.HasRoute
@@ -214,8 +217,8 @@
 
         public ObservableCollection<Pilot> Pilots { get; set; }
 
+        public double BuyPrice { get; set; }
       
-
         #endregion
 
         #region Public Methods and Operators

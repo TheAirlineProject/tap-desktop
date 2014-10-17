@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Frontier Airlines" iata="FL" logo="FL2" color="Red" country="122" CEO="Ray Wilson" mentality="Aggressive" market="Regional" preferedairport="DEN">
+    <narrative narrative="The original Frontier Airlines was around from 1950-1986. Just like the current one its base was Denver, during the time of Stapleton Airport. It was formed in 1950 when Arizona Airways,Challenger Airlines and a Monarch Airlines merged on June 1st. Over it's life it served 170 airports and at the in 1986 they had 94 destinations. At the end they had 60 planes too. They also flew to Mexico and Canada. They had focus cities at Dallas,Kansas City,St. Louis and Salt Lake City. In 1950 they had 12 DC-3's and flew to 40 cities in the Rocky Mountain region. Their fleet consisted of 727's,MD-80's,and 737-200's and they also flew Convair 240 variants, some Twin Otters and some smaller Beechcraft's. They flew the 737s to smaller cities too that most airlines did not. People Express bought them in October 1985 and tried to run them as a subsidiary but that plan failed and Frontier folded even as a subsidiary on August 24,1986. A few months later on October 24th People Express having suffered huge losses mainly because of the failed Frontier plan was bought by the owners of Continental and merged into them and ceased to exist totally on Feb. 1st 1987, making it so Continental also got planes and assets of Frontier. " />
+  </profile>
+  <info real="True" from="1950" to="1986"></info>
+  <prefereds aircrafts="Boeing 737-200 Adv.,Boeing 737-200,Boeing 727-200,Boeing 727-200 Adv.,Boeing 727-100,MD-81 (DSC-9-81),Douglas DC-3,Convair 240,DHC-6-300 Twin Otter"></prefereds>
+</airline>

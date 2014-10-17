@@ -5567,4 +5567,13 @@ Good luck.</value>
   <data name="MessageBox_2134_name" xml:space="preserve">
     <value>Apply Maintenance</value>
   </data>
+  <data name="PageFleetAirlinerInformation_1016_name" xml:space="preserve">
+    <value>Buying Price</value>
+  </data>
+  <data name="PageShowOptions_1014_name" xml:space="preserve">
+    <value>Send Mails on Maintenance</value>
+  </data>
+  <data name="PopUpExtendContract_1005_name" xml:space="preserve">
+    <value>Contact Type</value>
+  </data>
 </root>

@@ -24,6 +24,12 @@
 <capacity passengers="80" cockpitcrew="3" cabincrew="3" maxclasses="2"/>
 <produced from="1970" to="1980" rate="38"/>
 </airliner>
+<airliner manufacturer="Tupolev" name="Tupolev Tu-144" price="34075530">
+<type body="Single_Aisle" rangetype="Medium_Range" engine="Jet" />
+<specs wingspan="28.80" length="65.50" range="6200" speed="2255" fuelcapacity="105000" consumption="0.121" runwaylengthrequired="2800" />
+<capacity passengers="140" cockpitcrew="2" cabincrew="4" maxclasses="2" />
+<produced from="1975" to="1984" rate="3" />
+</airliner>
 <airliner manufacturer="Tupolev" name="Tupolev Tu-154" price="2974500"> <!--4200000-->
 <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
 <specs wingspan="37.55" length="47.90" range="2500" speed="900" fuelcapacity="43000" consumption="0.044" runwaylengthrequired="2500"/>

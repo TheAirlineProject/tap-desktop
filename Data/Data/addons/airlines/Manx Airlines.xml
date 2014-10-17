@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Manx Airlines" iata="JE" logo="JE2" color="ForestGreen" country="130" CEO="Terry Liddiard" mentality="Safe" market="Regional" preferedairport="IOM">
+    <narrative narrative="Manx Airlines was an airline based out of Isle of Man from 1982-2002, being a flag carrier of the UK territory of sorts. Manx takes its name from the language of the island and its culture. If something or someone is Manx it is or they are from the Isle of Man. 
+    There was an airline with the same name from 1953-1958. This one was was founded as a joint venture between British Midlands Airways and AirUK. The first flight was done
+    with a EMB 110 Bandeirante to Glasgow. From 85 to 93 they used Short 330 and 360's. From 83-88 they had a Viscount. For two years they had a Saab 340. They had at least one BAe 146.
+    Their most abundant plane though was the BAe ATP which they had 17 of. Overall they had 19 airplane models they flew in their time. They bought an airline called Business Air in 1991. The same year
+    they started Manx Airlines Europe which later turned into British Regional Airlines which British Airlines bought in 2001. It is now CitiExpress. The last flight for Manx was August 31,2002 from Birmingham, flown by a Manx born captain.
+   " />
+  </profile>
+  <info real="True" from="1982" to="2002" />
+  <prefereds aircrafts="BAe ATP,BAe 146-200,BAe Jetstream 31,BAe Jetstream 41,BAC One-Eleven 500,ATR 72-500,BN-2A Islander,BN Trislander,EMB 110 Bandeirante,DHC-6-300 Twin Otter,Fokker 50,Short 330,Short 360,Saab 340B,Vickers Viscount 800,PA-31 Navajo,PA-31T Cheyenne"></prefereds>
+</airline>

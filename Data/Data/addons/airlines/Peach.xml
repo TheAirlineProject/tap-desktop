@@ -1,8 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Peach" iata="MM" color="Black" country="171" CEO="Shinichi Inoue" mentality="Safe" market="Global"
            preferedairport="KIX">
+            <narrative narrative="Peach Aviation operating under the brand name Peach is a low-cost airline based in Japan. Its head office is on the fifth floor of Kensetsu-to on the property of Kansai International Airport." />
+ 
   </profile>
   <info real="True" from="2011" to="2199" />
 </airline>
+

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Indian" iata="IC" color="DarkOrange" country="152" CEO="Rohit Nandan" mentality="Aggressive" market="Regional" preferedairport="DEL">
+    <narrative narrative="Indian Airlines, or simply Indian near the end of its life from 2005-2011, was the second flag carrier of India after Air India until it merged with Air India on February 27th,2011. They called Delhi and Mumbai their main homes, with secondary hubs at Chennai and Kolkata. They had a subsidiary founded in 1996 called Alliance Air that was rebranded as Air India Regional after the merger. It was founded in 1953 and flew to 63 destinations, all but 8 of them in India, and all were in Asia. That doesn't count its subsidiaries. At the time of the merger in 2011 it had 28 A320's,20 A321's, and 24 A319's, which would all be repainted into Air India livery. It was formed in 1953 with the merger of 8 domestic airlines in an effort to nationalise the Indian airline industry like in Britain. "></narrative>
+  </profile>
+  <info real="True" from="1953" to="2011" />
+  <logos>
+<logo from="1953" to="2005" path="IC1953-2005">
+</logo>
+</logos>
+ <prefereds aircrafts="Airbus A320-200,Airbus A319-100,Airbus A321-200,Boeing 737-200,Boeing 737-200 Adv.,Airbus A300B1,Airbus A300B2,Airbus A300B4,Airbus A300-600,Douglas DC-3,Douglas DC-4-1009,HS .748,Fokker F27,Vickers Viscount 800,Sud Aviation Caravelle I,Sud Aviation Caravelle 10B"></prefereds>
+	      <!--the airliners the airline would start with which isn't on a route earyl (1989) late (2011)-->
+	         <airliners>
+	    <airliner type="Airbus A319-100" early="0" late="24"></airliner>
+	    <airliner type="Airbus A320-200" early="17" late="28"></airliner>
+	    <airliner type="Airbus A321-200" early="0" late="24"></airliner>
+	     </airliners>
+
+
+ </airline>

@@ -63,7 +63,10 @@
         //converts a text to the language
         public string convert(string text)
         {
-            return this.Words[text];
+            if (this.Words.ContainsKey(text))
+                return this.Words[text];
+            else
+                return null;
         }
 
         #endregion

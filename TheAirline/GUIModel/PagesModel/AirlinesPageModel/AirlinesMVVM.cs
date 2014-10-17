@@ -166,6 +166,7 @@
         }
         private void setBuyNSellable()
         {
+            
             this.IsStocksSellable = this.Airline.Shares.FirstOrDefault(s => s.Airline == GameObject.GetInstance().HumanAirline) != null;
         
             var shareForSale = this.Airline.Shares.FirstOrDefault(s=>s.ForSale);
@@ -173,7 +174,7 @@
             double stocksPrice = 300000 * this.StockPrice;
             double money = GameObject.GetInstance().HumanAirline.Money;
 
-            this.IsStocksBuyable = shareForSale != null && GameObject.GetInstance().HumanAirline.Money > 300000 * this.StockPrice;
+            this.IsStocksBuyable = shareForSale != null;// && GameObject.GetInstance().HumanAirline.Money > 300000 * this.StockPrice;
 
             List<KeyValuePair<string, int>> stocks = new List<KeyValuePair<string, int>>();
 
@@ -196,15 +197,19 @@
         }
         public void purchaseShares()
         {
-             this.Airline.Shares.First(s => s.Airline == null).Airline = GameObject.GetInstance().HumanAirline;
+            var share = this.Airline.Shares.First(s => s.Airline == null);
+            share.Airline = GameObject.GetInstance().HumanAirline;
+            share.ForSale = false;
        
             setBuyNSellable();
 
         }
         public void sellShares()
         {
-            this.Airline.Shares.First(s => s.Airline == GameObject.GetInstance().HumanAirline).Airline = null;
-     
+            var share = this.Airline.Shares.First(s => s.Airline == GameObject.GetInstance().HumanAirline);
+            share.Airline = null;
+            share.ForSale = true;
+
             setBuyNSellable();
         }
         #endregion
