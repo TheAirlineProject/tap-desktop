@@ -1,12 +1,12 @@
 ﻿namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Runtime.Serialization;
-
-    using TheAirline.Model.AirportModel;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.AirportModel;
 
     //the class for a town / city
     [Serializable]
@@ -89,6 +89,12 @@
 
         [Versioning("country")]
         public Country Country { get; set; }
+       
+        public Country CurrentCountry 
+        {
+            get { return new CountryCurrentCountryConverter().Convert(this.Country) as Country; }
+            private set { ; } 
+        }
 
         [Versioning("name")]
         public string Name { get; set; }

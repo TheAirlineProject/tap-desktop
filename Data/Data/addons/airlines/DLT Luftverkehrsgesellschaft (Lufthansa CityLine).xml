@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="DLT Luftverkehrsgesellschaft" iata="CL" color="Indigo" country="1002" CEO="Stephan Klar" mentality="Aggressive"
@@ -7,7 +7,7 @@
   </profile>
   <info real="True" from="1958" to="2199" />
   <logos>
-<logo from="1958" to="1961" path="CL1958-1992"></logo>
+<logo from="1958" to="1992" path="CL1958-1992"></logo>
 </logos>
        <prefereds aircrafts="Embraer E-195,Embraer E-190,Bombardier CRJ700,Bombardier CRJ900,Bombardier CRJ200,Bombardier CRJ100,ATR 42-300,ATR 42-500,Avro RJ 85,Boeing 737-200 Adv.,Fokker F27,Fokker 50,HS .748,Short 330"></prefereds>
 </airline>

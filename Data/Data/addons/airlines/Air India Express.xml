@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<airline>
+  <profile name="Air India Express" iata="IX" color="Red" country="152" CEO="Rohit Nandan" mentality="Moderate" market="Regional" preferedairport="CCJ">
+    <narrative narrative="Air India Express is a subsidiary of Air India and was founded in 2004. It is based at Calicut and has a fleet of 20 planes mostly 737-800s. They serve 30 destinations, 11 of them domestic and the others are around Asia and the Middle East, including four in the United Arab Emirates."></narrative>
+  </profile>
+  <info real="True" from="2004" to="2199" />
+<prefereds aircrafts="Boeing 737-800,Boeing 737 MAX 8"></prefereds>
+ </airline>

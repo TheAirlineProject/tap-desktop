@@ -19,6 +19,7 @@
         public FutureSubsidiaryAirline(
             string name,
             string iata,
+            DateTime date,
             Airport airport,
             Airline.AirlineMentality mentality,
             Airline.AirlineFocus market,
@@ -28,6 +29,7 @@
             this.Name = name;
             this.IATA = iata;
             this.PreferedAirport = airport;
+            this.Date = date;
             this.Mentality = mentality;
             this.Market = market;
             this.Logo = logo;
@@ -89,6 +91,9 @@
                     }
                 }
             }
+            if (version == 1)
+                this.Date = new DateTime(1900, 1, 1);
+  
         }
 
         #endregion
@@ -98,7 +103,7 @@
         [Versioning("focus")]
         public Route.RouteType AirlineRouteFocus { get; set; }
 
-        [Versioning("IATA")]
+         [Versioning("IATA")]
         public string IATA { get; set; }
 
         [Versioning("logo")]
@@ -115,6 +120,9 @@
 
         [Versioning("airport")]
         public Airport PreferedAirport { get; set; }
+
+        [Versioning("date",Version=2)]
+        public DateTime Date { get; set; }
 
         #endregion
 

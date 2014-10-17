@@ -118,7 +118,7 @@
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
                         <ProgressBar HorizontalAlignment="Center" Width="100" Value="{Binding Airliner.Airliner.Condition}"
                              VerticalAlignment="Bottom" Height="15" Background="Transparent" BorderBrush="Black" />
-                        <TextBlock Text="{Binding Airliner.Airliner.Condition}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
+                        <TextBlock Text="{Binding Airliner.Airliner.Condition,StringFormat={}{0:0}}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
                     </WrapPanel>
                     <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                         <TextBlock
@@ -157,6 +157,22 @@
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
                         <ContentControl Content="{Binding Owner}" VerticalAlignment="Bottom"
                                 ContentTemplate="{StaticResource AirlineLink}" />
+                    </WrapPanel>
+                    <WrapPanel>
+                        <WrapPanel.Style>
+                            <Style TargetType="WrapPanel" BasedOn="{StaticResource WrapPanelStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding BuyPrice}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </WrapPanel.Style>
+                        <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1016'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                        <TextBlock Text="{Binding BuyPrice,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                        
                     </WrapPanel>
                     <WrapPanel Margin="0 5 0 0">
 

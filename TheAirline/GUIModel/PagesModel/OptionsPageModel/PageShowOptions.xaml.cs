@@ -59,6 +59,7 @@
                 Settings.GetInstance().MailsOnBadWeather = this.cbWeather.IsChecked.Value;
                 Settings.GetInstance().MailsOnAirlineRoutes = this.cbAirlineDestinations.IsChecked.Value;
                 Settings.GetInstance().CurrencyShorten = this.cbShortenCurrency.IsChecked.Value;
+                Settings.GetInstance().MailsOnMaintenance = this.cbMaintenance.IsChecked.Value;
 
                 if (this.Options.HourRoundEnabled)
                 {

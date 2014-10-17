@@ -74,6 +74,8 @@
 
             var smp = this.Content as StandardMasterPage;
 
+            var frmContent = UIHelpers.FindChild<Frame>(this, "scCreating");
+
             // SplashControl scCreating = UIHelpers.FindChild<SplashControl>(smp, "scCreating"); 
 
             //scCreating.Visibility = System.Windows.Visibility.Visible;

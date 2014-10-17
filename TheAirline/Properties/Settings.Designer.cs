@@ -25,7 +25,7 @@ namespace TheAirline.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.4.1 RC1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.4.1 RC2")]
         public string Version {
             get {
                 return ((string)(this["Version"]));

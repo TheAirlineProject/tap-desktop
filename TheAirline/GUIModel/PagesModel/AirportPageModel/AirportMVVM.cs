@@ -477,7 +477,7 @@
             this.FreePaxGates = this.Airport.Terminals.AirportTerminals.Where(t => t.Type == Terminal.TerminalType.Passenger).Sum(t => t.getFreeGates());
 
         }
-
+        
         public void addAirlineFacility(AirportFacility facility)
         {
             var nextFacility = new AirlineAirportFacility(
@@ -817,6 +817,8 @@
 
         private int _numberofgates;
 
+        private AirportContract.ContractType _contracttype;
+
         #endregion
 
         #region Constructors and Destructors
@@ -824,6 +826,7 @@
         public ContractMVVM(AirportContract contract)
         {
             this.Contract = contract;
+            this.ContractType = this.Contract.Type;
             this.Airline = this.Contract.Airline;
             this.NumberOfGates = this.Contract.NumberOfGates;
             this.MonthsLeft = this.Contract.MonthsLeft;
@@ -858,7 +861,18 @@
                 this.NotifyPropertyChanged("MonthsLeft");
             }
         }
-
+        public AirportContract.ContractType ContractType
+        {
+            get
+            {
+                return this._contracttype;
+            }
+            set
+            {
+                this._contracttype = value;
+                this.NotifyPropertyChanged("ContractType");
+            }
+        }
         public int NumberOfGates
         {
             get
@@ -884,7 +898,12 @@
             this.Contract.ExpireDate = this.Contract.ExpireDate.AddYears(years);
             this.MonthsLeft = this.Contract.MonthsLeft;
         }
-
+        //sets the contract type
+        public void setContractType(AirportContract.ContractType type)
+        {
+            this.Contract.Type = type;
+            this.ContractType = type;
+        }
         //sets the number of gates
 
         //sets the expire date
@@ -903,6 +922,8 @@
                 this.Contract.Type,
                 gates,
                 this.Contract.Length);
+
+           
         }
 
         #endregion

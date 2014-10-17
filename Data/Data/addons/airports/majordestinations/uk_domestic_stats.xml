@@ -57,6 +57,7 @@
       <destination airport="BHD" pax="266" />
       <destination airport="BRS" pax="1" />
       <destination airport="CWL" pax="1" />
+      <destination airport="GIB" pax="29" />
       <destination airport="LDY" pax="52" />
       <destination airport="EDI" pax="284" />
       <destination airport="GLA" pax="203" />
@@ -76,6 +77,7 @@
       <destination airport="EDI" pax="118" />
       <destination airport="EXT" pax="84" />
       <destination airport="GCI" pax="66" />
+      <destination airport="GIB" pax="58" />
       <destination airport="GLA" pax="51" />
       <destination airport="INV" pax="55" />
       <destination airport="IOM" pax="131" />
@@ -146,6 +148,7 @@
       <destination airport="ABZ" pax="83" />
       <destination airport="BFS" pax="236" />
       <destination airport="EDI" pax="273" />
+      <destination airport="GIB" pax="62" />
       <destination airport="GLA" pax="281" />
       <destination airport="INV" pax="92" />
       <destination airport="IOM" pax="9" />
@@ -213,6 +216,7 @@
       <destination airport="EDI" pax="694" />
       <destination airport="GLA" pax="606" />
       <destination airport="GCI" pax="346" />
+      <destination airport="GIB" pax="128" />
       <destination airport="INV" pax="219" />
       <destination airport="IOM" pax="184" />
       <destination airport="JER" pax="537" />
@@ -501,7 +505,11 @@
   </majordestination>
       <majordestination airport="GIB">
     <destinations>
+      <destination airport="BHX" pax="29" />
+      <destination airport="LGW" pax="128" />
       <destination airport="LHR" pax="108" />
+      <destination airport="LTN" pax="62" />
+      <destination airport="MAN" pax="58" />
     </destinations>
   </majordestination>
         <majordestination airport="GLO">

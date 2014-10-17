@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Loganair" iata="LM" color="Maroon" country="130" CEO="Scott Grier" mentality="Safe" market="Regional"
            preferedairport="GLA">
+             <narrative narrative="Loganair was established on 1 February 1962 as the air taxi service of the Logan Construction Company Ltd, operating a single Piper Aztec from Edinburgh to the city of Dundee. Almost immediately, it was apparent that there was a demand for scheduled services in addition to the primary role as an air taxi, and Loganair's fleet grew accordingly. As the network expanded to take in more remote islands and communities, Loganair's scheduled network began to emerge." />
   </profile>
   <info real="True" from="1962" to="2199" />
 </airline>

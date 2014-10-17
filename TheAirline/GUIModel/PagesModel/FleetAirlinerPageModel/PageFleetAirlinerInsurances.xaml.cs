@@ -20,6 +20,9 @@
 
         public PageFleetAirlinerInsurances(FleetAirlinerMVVM airliner)
         {
+
+            this.Loaded += PageFleetAirlinerInsurances_Loaded;
+
             this.Airliner = airliner;
             this.DataContext = this.Airliner;
             this.AllAirports = new List<Airport>();
@@ -38,6 +41,19 @@
 
             this.InitializeComponent();
 
+        }
+
+        private void PageFleetAirlinerInsurances_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (FleetAirlinerMaintenanceMVVM maintenance in this.Airliner.Maintenances)
+            {
+                var fMaintenance = this.Airliner.Airliner.Maintenance.Checks.First(c => c.Type == maintenance.Type);
+
+                if (fMaintenance.CheckCenter != null)
+                {
+                    maintenance.Center =fMaintenance.CheckCenter.Airport != null ? maintenance.Centers.Find(c => c.Airport == fMaintenance.CheckCenter.Airport) : maintenance.Centers.Find(c => c.Center == fMaintenance.CheckCenter.Center);
+                }
+            }
         }
 
         #endregion
@@ -104,7 +120,20 @@
             maintenance.NextCheck = maintenance.LastCheck.AddDays(maintenance.Interval);
             maintenance.CanPerformCheck = false;
         }
+        private void cbCenter_Loaded(object sender, RoutedEventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+
+            FleetAirlinerMaintenanceMVVM o = (FleetAirlinerMaintenanceMVVM)cb.Tag;
+
+            if (cb.Items.Contains(o.Center))
+            {
+                cb.SelectedItem = o.Center;
+            }
+        }
         #endregion
+
+     
 
        
 

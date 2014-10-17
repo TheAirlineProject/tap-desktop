@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Fastjet" iata="FN" color="Black" country="146" CEO="Ed Winter" mentality="Safe" market="Global"
            preferedairport="DAR">
+           <narrative narrative="Fastjet Plc is a low-cost airline with ambitions to provide a pan-African service. Fastjet aims to deliver the same service as its European low-cost counterparts to the African continent. The airline was initially created with the acquisition of Fly540, an airline operating in East Africa, and flights in Fastjet's own name commenced in November 2012." />
   </profile>
-  <info real="True" from="2011" to="2199" />
+  <info real="True" from="2012" to="2199" />
 </airline>

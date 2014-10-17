@@ -1,8 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="GoAir" iata="G8" color="Black" country="152" CEO="Giorgio De Roni" mentality="Safe" market="Global"
            preferedairport="BOM">
+               <narrative
+      narrative="GoAir was founded in the year 2005 by Jehangir Wadia, the younger son of eminent Indian industrialist Nusli Wadia. The airline marked the entry into the critical aviation sector for the Wadia Group." />
+
   </profile>
   <info real="True" from="2005" to="2199" />
 </airline>

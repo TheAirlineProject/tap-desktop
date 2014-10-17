@@ -200,8 +200,8 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
         public FilterableListView()
         {
             CommandBindings.Add(new CommandBinding(ShowFilter, ShowFilterCommand));
-  
-         }
+
+        }
 
 
         protected override void OnInitialized(EventArgs e)
@@ -293,7 +293,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
 
                     if (filterValues != null)
                     {
-                        filterList.Add(new FilterItem(new FilterValue("All",0,Int32.MaxValue)));
+                        filterList.Add(new FilterItem(new FilterValue("All", 0, Int32.MaxValue)));
 
                         foreach (FilterValue value in filterValues)
                         {
@@ -304,7 +304,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
                         ContentControl ccPopUp = (ContentControl)popup.Child;
 
                         ccPopUp.SetResourceReference(ContentControl.ContentTemplateProperty, "FixedFilteredPopUp");
-                        
+
                     }
                     else
                     {
@@ -322,13 +322,32 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
 
                                 if (value != null)
                                 {
-                                    FilterItem filterItem = new FilterItem(value as IComparable);
+                                    var filterL = filterList.Cast<FilterItem>().ToList();
 
-                                    Boolean contains = filterList.Cast<FilterItem>().ToList().Exists(i => i.Item.ToString() == filterItem.Item.ToString());
-
-                                    if (!filterList.Contains(filterItem) && !contains)
+                                    if (value is IList)
                                     {
-                                        filterList.Add(filterItem);
+                                        for (int j = 0; j < ((IList)value).Count; j++)
+                                        {
+                                            FilterItem filterItem = new FilterItem(((IList)value)[j] as IComparable);
+
+                                            Boolean contains = filterList.Cast<FilterItem>().ToList().Exists(i => i.Item.ToString() == filterItem.Item.ToString());
+
+                                            if (!filterList.Contains(filterItem) && !contains)
+                                            {
+                                                filterList.Add(filterItem);
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        FilterItem filterItem = new FilterItem(value as IComparable);
+
+                                        Boolean contains = filterList.Cast<FilterItem>().ToList().Exists(i => i.Item.ToString() == filterItem.Item.ToString());
+
+                                        if (!filterList.Contains(filterItem) && !contains)
+                                        {
+                                            filterList.Add(filterItem);
+                                        }
                                     }
 
                                 }
@@ -432,40 +451,61 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
                 bool match = true;
                 foreach (FilterStruct filter in currentFilters.Values)
                 {
-                
+
                     // obtain the value for this property on the item under test
                     //PropertyDescriptor filterPropDesc = TypeDescriptor.GetProperties(typeof(object))[filter.property];
                     object itemValue = getPropertyValue(item, filter.property);// filterPropDesc.GetValue((object)item);
 
                     if (itemValue != null)
                     {
-                        Boolean isFilterMatch = false;
-                        // check to see if it meets our filter criteria
-                        foreach (FilterItem value in filter.values)
+
+                        if (itemValue is IList)
                         {
-                            if (value.Item is FilterValue)
+                            Boolean isFilterMatch = false;
+                            // check to see if it meets our filter criteria
+                            foreach (FilterItem value in filter.values)
                             {
-                                FilterValue fValue = value.Item as FilterValue;
-                         
-                                double num;
-                                if (double.TryParse(itemValue.ToString(), out num))
+
+                                for (int i = 0; i < ((IList)itemValue).Count; i++)
                                 {
-                                    
-                                    if (num >= fValue.MinValue && num <= fValue.MaxValue)
+                                    if (((IList)itemValue)[i].Equals(value.Item))
                                         isFilterMatch = true;
                                 }
-                   
+
                             }
-                            else
-                            {
-                                if (itemValue.Equals(value.Item))
-                                    isFilterMatch = true;
-                            }
+
+                            if (!isFilterMatch)
+                                match = false;
                         }
+                        else
+                        {
+                            Boolean isFilterMatch = false;
+                            // check to see if it meets our filter criteria
+                            foreach (FilterItem value in filter.values)
+                            {
+                                if (value.Item is FilterValue)
+                                {
+                                    FilterValue fValue = value.Item as FilterValue;
 
-                        if (!isFilterMatch)
-                            match = false;
+                                    double num;
+                                    if (double.TryParse(itemValue.ToString(), out num))
+                                    {
 
+                                        if (num >= fValue.MinValue && num <= fValue.MaxValue)
+                                            isFilterMatch = true;
+                                    }
+
+                                }
+                                else
+                                {
+                                    if (itemValue.Equals(value.Item))
+                                        isFilterMatch = true;
+                                }
+                            }
+
+                            if (!isFilterMatch)
+                                match = false;
+                        }
                     }
                     else
                     {
@@ -543,7 +583,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
                     {
                         button.Style = FilterButtonActiveStyle;
                     }
-                    AddFilter(currentFilterProperty,value,button);
+                    AddFilter(currentFilterProperty, value, button);
                     //AddFilters(currentFilterProperty, items.ToArray(), button);
                     ApplyCurrentFilters();
                 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Safair" iata="FA" color="MediumBlue" country="158" CEO="Dave Andrew" mentality="Moderate" market="Global" preferedairport="JNB"  routefocus="Mixed" >
+    <narrative narrative="Safair is based at Johannesburg,South Africa. They are a mixed airline, they do both cargo and passenger service and charters. They do many other things too, leasing,flight crew training and leasing,
+aircraft maintenance and modification,aviation safety an medical training and operations support. For several years they have used their Lockheed Hercules planes to take supplies to Antarctica. They were founded in 1969 and in the 80's
+their main customer was the South African Defense Force. They have six Lockheed Herules L-100-30's which are used for freight,passengers and combi. They have a 737-400 combi. Two freight only 737-300's and one that can convert betwen passengers
+and freight. To replace the aging L-100-30's they have ordered 10 new LM-100J's, a new version of the Hercules. They have also had 200 series 737's. This order was placed in 2014. In 2013 they founded a low cost passenger subsidiart called FlySafair which opeartes domestic service using four 737-400's with it's hub at Cape Town as of September 2013. " />
+  </profile>
+  <info real="True" from="1969" to="2199"></info>
+  <prefereds aircrafts="Lockheed L-100-30,Boeing 737-200 Adv.,Boeing 737-200C,Boeing 737-300,Boeing 737-400"></prefereds>
+  
+      <!--the airliners the airline would start with which isn't on a route earyl (1969) late (2016)-->
+    <airliners>
+      <airliner type="Lockheed L-100-30" early="0" late="6"></airliner>
+    </airliners>
+
+</airline>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
   <airliner manufacturer="Beechcraft" name="Beechcraft 1900C" price="170940"> <!--600000-->
@@ -35,5 +35,18 @@
            runwaylengthrequired="823" />
     <capacity passengers="13" cockpitcrew="2" cabincrew="0" maxclasses="1" />
     <produced from="1972" to="2025" rate="88" />
+  </airliner>
+        <airliner manufacturer="Beechcraft" name="Beechcraft King Air 90" price="475000"> <!--1000000-->
+    <type body="Single_Aisle" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="15.32" length="10.82" range="2446" speed="416" fuelcapacity="1454" consumption="0.143"
+           runwaylengthrequired="533" />
+    <capacity passengers="7" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1964" to="2199" rate="50" />
+  </airliner>
+<airliner manufacturer="Beechcraft" name="Beechcraft 99" price="660000">     <type body="Single_Aisle" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="13.98" length="13.58" range="2441" speed="380" fuelcapacity="2056" consumption="0.066"
+           runwaylengthrequired="880" />
+    <capacity passengers="15" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1968" to="1987" rate="25" />
   </airliner>
 </airliners>

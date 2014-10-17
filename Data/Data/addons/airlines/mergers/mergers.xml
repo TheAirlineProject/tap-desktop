@@ -133,7 +133,7 @@
 <merger name="Air West, later known as Hughes Air West, has been formed from the merger of three airlines, Pacific Air Lines, Bonanza Air Lines and West Coast Airlines." airline1="RW" airline2="WCA" type="Merger" date="01.01.1968 00:00:00"></merger>
 <merger name="Republic Airlines has bought and merged with Hughes Airwest." airline1="RC" airline2="RW" type="Merger" date="10.01.1980 00:00:00"></merger>
 <merger name="American Airlines has bought AirCal." airline1="FL" airline2="OC" type="Merger" date="05.01.1987 00:00:00"></merger>
-<merger name="Travel Service has started the subsidiary SmartWings, also based at Prague." airline1="QS" airline2="SMW" type="Subsidiary" date="01.01.2004 00:00:00"></merger>
+<merger name="Travel Service has started the subsidiary SmartWings, also based at Prague." airline1="QS" airline2="TVS" type="Subsidiary" date="01.01.2004 00:00:00"></merger>
 <merger name="Travel Service has started the subsidiary Travel Service Hungary based at Budapest." airline1="QS" airline2="7O" type="Subsidiary" date="01.01.2001 00:00:00"></merger>
 <merger name="Travel Service has started the subsidiary Travel Service Slovakia based at Bratislava." airline1="QS" airline2="6D" type="Subsidiary" date="01.01.2010 00:00:00"></merger>
 <merger name="Travel Service has started the subsidiary Travel Service Polska based at Warsaw Chopin." airline1="QS" airline2="3Z" type="Subsidiary" date="01.01.2012 00:00:00"></merger>
@@ -164,4 +164,29 @@
 <merger name="Swissair has founded the subsidiary Crossair." airline1="SR" airline2="LX" type="Subsidiary" date="01.01.1978 00:00:00"></merger>
 <merger name="Sister air lines Crossair and Swissair have merged with Crossair taking over Swissair, this new entity is called Swiss International Air Lines" airline1="LX" airline2="SR" type="Merger" date="03.31.2002 00:00:00" newname="Swiss International Air Lines"/>
 <merger name="Olympic Air has officially became a subsidiary of Aegean Airlines." airline1="A3" airline2="OA" type="Subsidiary" date="10.10.2013 00:00:00"></merger>
-</mergers>
+<merger name="Safair has created the subsidiary FlySafair." airline1="FA" airline2="FA2" type="Subsidiary" date="1.01.2013 00:00:00"></merger>
+<merger name="Continental has merged with People Express." airline1="CO" airline2="PE" type="Merger" date="02.01.1987 00:00:00"></merger>
+<merger name="People Express has acquired Frontier Airlines." airline1="PE" airline2="FL" type="Merger" date="10.05.1985 00:00:00"></merger>
+<merger name="TAP Portugal has bought Portugalia and made them a subsidiary." airline1="TP" airline2="NI" type="Subsidiary" date="11.06.2006 00:00:00"></merger>
+<merger name="Air  Kyrgyzstan has acquired and merged with bankrupt  Kyrgyzstan Airlines." airline1="QH" airline2="R8" type="Merger" date="7.28.2006 00:00:00"></merger>
+<merger name="Air India has merged with Indian." airline1="AI" airline2="IC" type="Merger" date="2.27.2011 00:00:00"></merger>
+<merger name="Air India has formed Air India Express." airline1="AI" airline2="IX" type="Subsidiary" date="01.01.2004 00:00:00"></merger>
+<merger name="Indian has formed the subsidiary Alliance Air." airline1="IC" airline2="9I" type="Subsidiary" date="01.01.1996 00:00:00"></merger>
+<merger name="Air India has made Indian's former subsidiary a subsidiary of its own, Air India Regional, before known as Alliance Air." airline1="AI" airline2="9I" type="Subsidiary" date="02.27.2011 00:00:00" newname="Air India Regional"/>
+<merger name="United has bought Capital Airlines and merged with them." airline1="UA" airline2="CA" type="Merger" date="6.01.1961 00:00:00"></merger>
+<merger name="Asiana has founded the subsidiary Air Busan." airline1="OZ" airline2="BX" type="Subsidiary" date="01.01.2007 00:00:00"></merger>
+<merger name="US Airways has acquired Piedmont and made them a subsidiary." airline1="US" airline2="PD" type="Subsidiary" date="01.01.1987 00:00:00"></merger>
+<merger name="Lion Air has founded the subsidiary Wings Air." airline1="JT" airline2="IW" type="Subsidiary" date="01.01.2003 00:00:00"></merger>
+<merger name="Lion Air has founded the subsidiary Malindo Air based at Kuala Lumpur, Malaysia." airline1="JT" airline2="OD" type="Subsidiary" date="01.01.2013 00:00:00"></merger>
+<merger name="AirUK has been formed from the merger of Air Anglia and British Island Airways. British Islands is changed into a subsidiary." airline1="UK" airline2="AQ2" type="Merger" date="1.01.1980 00:00:00"></merger>
+<merger name="AirUK has been formed from the merger of Air Anglia and British Island Airways. British Islands is changed into a subsidiary." airline1="UK" airline2="UK2" type="Subsidiary" date="1.01.1980 00:00:00"></merger>
+  <merger name="KD Avia has became independant from Aeroflot" airline1="SU" airline2="KD" type="Independant" date="01.01.1992 00:00:00"></merger>
+    <merger name="KD Avia has been founded as a subsidiary of Aeroflot based at Kaliningrad. " airline1="SU" airline2="KD" type="Subsidiary" date="01.01.1945 00:00:00">  </merger>
+  <merger name="Aloha Airlines has founded a cargo subsidiary. " airline1="AQ" airline2="KH"
+          type="Subsidiary" date="01.01.1946 00:00:00">
+  </merger>
+  
+     <merger name="Aloha Air Cargo is now an independant airline." airline1="AQ" airline2="KH"
+          type="Independant" date="05.15.2008 00:00:00">
+  </merger>
+  </mergers>

@@ -25,6 +25,7 @@
             this.GameSpeed = GeneralHelpers.GameSpeedValue.Normal;
             this.MailsOnLandings = false;
             this.MailsOnAirlineRoutes = false;
+            this.MailsOnMaintenance = false;
             this.MailsOnBadWeather = true;
             this.MinutesPerTurn = 60;
             this.CurrencyShorten = true;
@@ -89,6 +90,9 @@
                     }
                 }
             }
+
+            if (version < 2)
+                this.MailsOnMaintenance = false;
         }
 
         #endregion
@@ -170,6 +174,9 @@
         [Versioning("mode")]
         public ScreenMode Mode { get; set; }
 
+        [Versioning("mailsonmaintenance",Version=2)]
+        public Boolean MailsOnMaintenance { get; set; }
+
         #endregion
 
         //returns the settings instance
@@ -194,7 +201,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 

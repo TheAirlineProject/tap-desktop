@@ -88,7 +88,9 @@
         {
             Merger,
 
-            Subsidiary
+            Subsidiary,
+
+            Independant 
         }
 
         #endregion

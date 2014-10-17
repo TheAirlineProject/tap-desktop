@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Jazeera Airways" iata="J9" color="Black" country="126" CEO="Stefan Pichler" mentality="Safe"
            market="Global" preferedairport="KWI">
+              <narrative narrative="Jazeera Airways is a low-fare airline with its head office on the grounds of Kuwait International Airport in Al Farwaniyah Governorate, Kuwait. It operates scheduled services in the Middle East. Its main base is Kuwait International Airport." />
   </profile>
   <info real="True" from="2005" to="2199" />
 </airline>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Cargojet Airways" iata="W8" color="Maroon" country="113" CEO="Ajay Virmani" mentality="Moderate" market="Global" preferedairport="YHM" routefocus="Cargo" >
+    <narrative
+      narrative="Cargojet Airways is a cargo airline based at Hamilton,Ontario. They serve 15 domestic destinations and Bermuda,Newark, and Queretaro,Mexico on regular services. Charter and contract operations under other names include Iqaluit for Arctic Co-op Limited,First Air Cargo and Canadian North Cargo, Havana for Cubana,and Cincinatti for DHL. They have ten 727-200F's,seven 767-200ERF's, and four 757-200F's as of October 2014." />
+  </profile>
+  <info real="True" from="2002" to="2199" />
+     <prefereds aircrafts="Boeing 727-200 Adv.,Boeing 767-300F,Boeing 757-200PF"></prefereds>
+</airline>

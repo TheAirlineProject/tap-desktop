@@ -91,6 +91,7 @@
         </DataTemplate>
         <DataTemplate x:Key="FlightsQuickLinks" />
         <DataTemplate x:Key="FlightsContentMenu">
+            <StackPanel>
             <TabControl Background="Transparent" Name="tabMenu" BorderThickness="0"
                         SelectionChanged="tcMenu_SelectionChanged">
                 <TabItem
@@ -115,6 +116,9 @@
                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 2006'}"
                     Tag="Sunday" />
             </TabControl>
+                <ComboBox Width="200" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource AirlineItem}" SelectionChanged="cbAirline_SelectionChanged"
+                          ItemsSource="{Binding AllAirlines,ElementName=pageFlights}" HorizontalAlignment="Left" Style="{DynamicResource ComboBoxTransparentStyle}" Margin="0 0 5 0"></ComboBox>
+            </StackPanel>
         </DataTemplate>
     </Page.Resources>
     <m:StandardMasterPage Style="{StaticResource StandardPage}" MainContentArea="{StaticResource FlightsContent}"

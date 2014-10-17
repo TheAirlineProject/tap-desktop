@@ -1,12 +1,40 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
-  <airliner manufacturer="Cessna" name="Cessna 402C" price="220000"> <!--1700000-->
+          <airliner manufacturer="Cessna" name="Cessna 441" price="441000"> <!--3352000-->
+    <type body="Narrow_Body" rangetype="Medium__Range" engine="Turboprop" />
+    <specs wingspan="15.04" length="11.89" range="4064" speed="480" fuelcapacity="1800" consumption="0.10"
+           runwaylengthrequired="544" />
+    <capacity passengers="10" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1977" to="1987" rate="36" />
+  </airliner>
+     <airliner manufacturer="Cessna" name="Cessna 404 Titan" price="370000"> <!--2812000-->
     <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
-    <specs wingspan="13.45" length="11.09" range="2360" speed="230" fuelcapacity="806" consumption="0.097"
-           runwaylengthrequired="1100" />
+    <specs wingspan="14.12" length="12.04" range="3410" speed="400" fuelcapacity="1317" consumption="0.10"
+           runwaylengthrequired="545" />
+    <capacity passengers="10" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1976" to="1982" rate="66" />
+  </airliner>
+ <airliner manufacturer="Cessna" name="Cessna 402C" price="220000"> <!--1700000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="13.45" length="11.09" range="2360" speed="394" fuelcapacity="806" consumption="0.097"
+           runwaylengthrequired="537" />
     <capacity passengers="9" cockpitcrew="1" cabincrew="0" maxclasses="1" />
-    <produced from="1978" to="1985" rate="81" />
+    <produced from="1978" to="1985" rate="52" />
+  </airliner>
+     <airliner manufacturer="Cessna" name="Cessna 402" price="144000"> <!--1095000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="13.45" length="11.09" range="1543" speed="387" fuelcapacity="386" consumption="0.097"
+           runwaylengthrequired="517" />
+    <capacity passengers="9" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1966" to="1978" rate="55" />
+  </airliner>
+      <airliner manufacturer="Cessna" name="Cessna 401" price="180000"> <!--1368000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="13.45" length="11.09" range="2041" speed="387" fuelcapacity="386" consumption="0.097"
+           runwaylengthrequired="517" />
+    <capacity passengers="8" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1966" to="1972" rate="105" />
   </airliner>
  <airliner manufacturer="Cessna" name="Cessna 206" price="71010"> <!--557500-->
 <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />

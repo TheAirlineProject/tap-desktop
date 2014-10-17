@@ -742,7 +742,12 @@
 
             Airline.AirlineFocus marketFocus = airline.MarketFocus;
 
-            Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+            Route.RouteType focus = airline.AirlineRouteFocus;
+            if (focus == Route.RouteType.Mixed)
+                focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
+
+
+            Terminal.TerminalType terminaltype = focus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
             if (airline.Airports.Count < 4)
             {
@@ -896,7 +901,7 @@
             return isOk;
         }
 
-        public static void SetAirlinerHomebase(FleetAirliner airliner)
+        public static void SetAirlinerHomebase(FleetAirliner airliner, Route.RouteType focus)
         {
             Airport homebase = GetServiceAirport(airliner.Airliner.Airline);
 
@@ -907,7 +912,7 @@
 
             if (homebase.Terminals.getNumberOfGates(airliner.Airliner.Airline) == 0)
             {
-                AirportHelpers.RentGates(homebase, airliner.Airliner.Airline, AirportContract.ContractType.Full, airliner.Airliner.Airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger);
+                AirportHelpers.RentGates(homebase, airliner.Airliner.Airline, AirportContract.ContractType.Full, focus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger);
                 AirportFacility checkinFacility =
                     AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
@@ -1406,10 +1411,15 @@
             }
             newSubInterval *= GameObject.GetInstance().Difficulty.AILevel;
 
+            var futureSubs = new List<FutureSubsidiaryAirline>(airline.FutureAirlines.Where(f=>f.Date.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()));
+
+            foreach (FutureSubsidiaryAirline fAirline in futureSubs)
+                CreateSubsidiaryAirline(airline,fAirline);
+
             //newSubInterval = 0;
 
             Boolean newSub = !airline.IsSubsidiary && rnd.Next(Convert.ToInt32(newSubInterval) * (subAirlines + 1)) == 0
-                             && airline.FutureAirlines.Count > 0 && airline.Money > airline.StartMoney / 5;
+                             && airline.FutureAirlines.Count(f=>f.Date != new DateTime(1900,1,1)) > 0 && airline.Money > airline.StartMoney / 5;
 
             if (newSub)
             {
@@ -1623,7 +1633,13 @@
 
         private static void CreateNewRoute(Airline airline)
         {
-            Airport airport = GetRouteStartDestination(airline);
+
+            Route.RouteType focus = airline.AirlineRouteFocus;
+
+            if (focus == Route.RouteType.Mixed)
+                focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
+
+            Airport airport = GetRouteStartDestination(airline,focus);
 
             if (airport != null)
             {
@@ -1661,11 +1677,12 @@
                             airline.addAirport(destination);
                         }
 
+
                         Guid id = Guid.NewGuid();
 
                         Route route = null;
 
-                        if (airline.AirlineRouteFocus == Route.RouteType.Passenger)
+                        if (focus == Route.RouteType.Passenger)
                         {
                             double price = PassengerHelpers.GetPassengerPrice(airport, destination);
 
@@ -1694,7 +1711,7 @@
                                 }
                             }
                         }
-                        if (airline.AirlineRouteFocus == Route.RouteType.Helicopter)
+                        if (focus == Route.RouteType.Helicopter)
                         {
                             double price = PassengerHelpers.GetPassengerPrice(airport, destination);
 
@@ -1723,7 +1740,7 @@
                                 }
                             }
                         }
-                        if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                        if (focus == Route.RouteType.Cargo)
                         {
                             route = new CargoRoute(
                                 id.ToString(),
@@ -1732,7 +1749,6 @@
                                 GameObject.GetInstance().GameTime,
                                 PassengerHelpers.GetCargoPrice(airport, destination));
                         }
-
                         Boolean isDeptOk = true;
                         Boolean isDestOk = true;
 
@@ -1969,12 +1985,9 @@
                 }
             }
         }
-
         //creates a new subsidiary airline for the airline
-        private static void CreateSubsidiaryAirline(Airline airline)
+        public static void CreateSubsidiaryAirline(Airline airline, FutureSubsidiaryAirline futureAirline)
         {
-            FutureSubsidiaryAirline futureAirline = airline.FutureAirlines[rnd.Next(airline.FutureAirlines.Count)];
-
             airline.FutureAirlines.Remove(futureAirline);
 
             SubsidiaryAirline sAirline = AirlineHelpers.CreateSubsidiaryAirline(
@@ -1986,6 +1999,8 @@
                 futureAirline.Market,
                 futureAirline.AirlineRouteFocus,
                 futureAirline.PreferedAirport);
+
+            sAirline.Profile.Logos.Clear();
             sAirline.Profile.AddLogo(new AirlineLogo(futureAirline.Logo));
             sAirline.Profile.Color = airline.Profile.Color;
 
@@ -1996,11 +2011,20 @@
                     new News(
                         News.NewsType.Airline_News,
                         GameObject.GetInstance().GameTime,
-                        "Created subsidiary",
+                        "Subsidiary Created",
                         string.Format(
                             "[LI airline={0}] has created a new subsidiary airline [LI airline={1}]",
                             airline.Profile.IATACode,
                             sAirline.Profile.IATACode)));
+        }
+        //creates a new subsidiary airline for the airline
+        private static void CreateSubsidiaryAirline(Airline airline)
+        {
+            var randomFutureSubs = airline.FutureAirlines.Where(f => f.Date == new DateTime(1900, 1, 1)).ToList();
+
+            FutureSubsidiaryAirline futureAirline = randomFutureSubs[rnd.Next(randomFutureSubs.Count)];
+
+            CreateSubsidiaryAirline(airline,futureAirline);
         }
 
         //checks for the creation of code sharing for an airline
@@ -2105,7 +2129,7 @@
             return airlineGates.FirstOrDefault();
         }
 
-        private static Airport GetRouteStartDestination(Airline airline)
+        private static Airport GetRouteStartDestination(Airline airline, Route.RouteType focus)
         {
             List<Airport> homeAirports;
 
@@ -2115,7 +2139,7 @@
             }
             homeAirports.AddRange(airline.getHubs());
 
-            Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+            Terminal.TerminalType terminaltype = focus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
             Airport airport = homeAirports.Find(a => AirportHelpers.HasFreeGates(a, airline, terminaltype));
 
@@ -2345,24 +2369,30 @@
                             t.Produced.From <= GameObject.GetInstance().GameTime
                             && t.Produced.To >= GameObject.GetInstance().GameTime && t.Price * numberToOrder < airline.Money);
 
-                if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                Route.RouteType focus = airline.AirlineRouteFocus;
+                if (focus == Route.RouteType.Mixed)
+                            focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
+
+
+                if (focus == Route.RouteType.Cargo)
                 {
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter);
 
                 }
 
-                if (airline.AirlineRouteFocus == Route.RouteType.Passenger)
+                if (focus == Route.RouteType.Passenger)
                 {
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter);
 
                 }
-                if (airline.AirlineRouteFocus == Route.RouteType.Helicopter)
+                if (focus == Route.RouteType.Helicopter)
                 {
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
                 }
+             
                 types = types.OrderBy(t => t.Price).ToList();
 
                 var list = new Dictionary<AirlinerType, int>();

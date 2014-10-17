@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<airline>
+  <profile name="Alliance Air (Air India Regional)" iata="9I" color="DarkOrange" country="152" CEO="Rohit Nandan" mentality="Safe" market="Domestic" preferedairport="DEL">
+    <narrative narrative="Alliance Air now called Air India Regional is a subsidiary of Air India and a former part of Indian Airlines which merged with Air India. It was renamed to Air India Regional after the merger. Founded in 1996 as Indian's subsidiary they fly to 18 domestic destinations with a focus on smaller airports and cities. They call Delhi home. They have four ATR 42-300's and two CRJ700s, all dry leased as of July 2014. "></narrative>
+  </profile>
+  <info real="True" from="1996" to="2199" />
+  <logos>
+<logo from="1996" to="2011" path="9I1996-2011"></logo>
+</logos>
+<prefereds aircrafts="Bombardier CRJ700,ATR 42-300"></prefereds>
+ </airline>

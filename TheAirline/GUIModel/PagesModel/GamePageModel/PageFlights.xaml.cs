@@ -24,6 +24,19 @@
             this.AllFlights =
                 Airlines.GetAllAirlines().SelectMany(a => a.Routes.SelectMany(r => r.TimeTable.Entries)).ToList();
 
+            this.AllAirlines = new List<Airline>(Airlines.GetAllAirlines());
+
+            var dummyAirline = new Airline(
+              new AirlineProfile("All Airlines", "99", "Blue", "", false, 1900, 1900),
+              Airline.AirlineMentality.Safe,
+              Airline.AirlineFocus.Domestic,
+              Airline.AirlineLicense.Domestic,
+              Route.RouteType.Passenger);
+            dummyAirline.Profile.AddLogo(
+                new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
+
+            this.AllAirlines.Insert(0, dummyAirline);
+
             IEnumerable<Route> routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes);
 
             this.InitializeComponent();
@@ -33,14 +46,27 @@
 
         #endregion
 
+        #region Private Properties
+        private DayOfWeek Day;
+        private Airline Airline;
+
+        #endregion
+
+
         #region Public Properties
 
         public List<RouteTimeTableEntry> AllFlights { get; set; }
+        public List<Airline> AllAirlines { get; set; }
 
         #endregion
 
         #region Methods
+        private void cbAirline_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.Airline = (Airline)((ComboBox)sender).SelectedItem;
 
+            setFlights();
+        }
         private void PageFlights_Loaded(object sender, RoutedEventArgs e)
         {
             var tab_main = UIHelpers.FindChild<TabControl>(this, "tabMenu");
@@ -62,21 +88,29 @@
 
             string selection = ((TabItem)control.SelectedItem).Tag.ToString();
 
-            var day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), selection, true);
+            this.Day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), selection, true);
 
-            var lvFlights = UIHelpers.FindChild<ListView>(this, "lvFlights");
-
-            if (lvFlights != null)
+            setFlights();
+        }
+        private void setFlights()
+        {
+            if (this.Airline != null)
             {
-                var source = lvFlights.Items as ICollectionView;
-                source.Filter = delegate(object item)
+                var lvFlights = UIHelpers.FindChild<ListView>(this, "lvFlights");
+
+                if (lvFlights != null)
                 {
-                    var i = item as RouteTimeTableEntry;
-                    return i.Day == day;
-                };
+                    var source = lvFlights.Items as ICollectionView;
+                    source.Filter = delegate(object item)
+                    {
+                        var i = item as RouteTimeTableEntry;
+                        return i.Day == this.Day && (this.Airline.Profile.Name == "All Airlines" || i.Airliner.Airliner.Airline == this.Airline);
+                    };
+                }
             }
         }
-
         #endregion
+
+       
     }
 }

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Kangerlussuaq, GL">
+  <months>
+    <month month="1" precipitation="5">
+      <temp min="-25" max="-14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="4">
+      <temp min="-27" max="-16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="5">
+      <temp min="-24" max="-12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="6">
+      <temp min="-14" max="-2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="8">
+      <temp min="-3" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="15">
+      <temp min="3" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="24">
+      <temp min="5" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="33">
+      <temp min="3" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="18">
+      <temp min="-2" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="14">
+      <temp min="-10" max="-2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="11">
+      <temp min="-17" max="-7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="7">
+      <temp min="-21" max="-11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

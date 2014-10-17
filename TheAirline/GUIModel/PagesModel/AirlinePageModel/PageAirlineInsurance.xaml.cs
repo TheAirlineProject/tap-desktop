@@ -69,7 +69,71 @@
                 lenght,
                 amount);
         }
+        private void btnApply_Click(object sender, RoutedEventArgs e)
+        {
+             WPFMessageBoxResult result =
+                        WPFMessageBox.Show(
+                            Translator.GetInstance().GetString("MessageBox", "2133"),
+                            string.Format(Translator.GetInstance().GetString("MessageBox", "2133", "message")),
+                            WPFMessageBoxButtons.YesNo);
 
+             if (result == WPFMessageBoxResult.Yes)
+             {
+                 this.Airline.setMaintenance();
+             }
+        }
+
+        private void btnApplyAll_Click(object sender, RoutedEventArgs e)
+        {
+            WPFMessageBoxResult result =
+                        WPFMessageBox.Show(
+                            Translator.GetInstance().GetString("MessageBox", "2134"),
+                            string.Format(Translator.GetInstance().GetString("MessageBox", "2134", "message")),
+                            WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                this.Airline.setMaintenance();
+
+                foreach (FleetAirliner airliner in this.Airline.Airline.Fleet)
+                {
+                    foreach (AirlineMaintenanceMVVM maintenance in this.Airline.Maintenances)
+                    {
+                        var m = airliner.Maintenance.Checks.Find(f => f.Type == maintenance.Type);
+
+                        if (m != null)
+                        {
+                            if (m.CheckCenter == null)
+                            {
+                                m.CheckCenter = new AirlinerMaintenanceCenter(maintenance.Type);
+                                if (maintenance.SelectedType.Airport == null)
+                                    m.CheckCenter.Center = maintenance.SelectedType.Center;
+                                else
+                                    m.CheckCenter.Airport = maintenance.SelectedType.Airport;
+                            }
+                            else
+                                if (maintenance.SelectedType.Airport == null)
+                                {
+
+                                    m.CheckCenter.Airport = null;
+                                    m.CheckCenter.Center = maintenance.SelectedType.Center;
+                                }
+                                else
+                                {
+                                    m.CheckCenter.Center = null;
+                                    m.CheckCenter.Airport = maintenance.SelectedType.Airport;
+                                }
+                        }
+                        else
+                        {
+                            string s;
+                        }
+
+
+                    }
+                }
+            }
+        }
         private void btnSetAdvertisement_Click(object sender, RoutedEventArgs e)
         {
             this.Airline.saveAdvertisements();
@@ -77,35 +141,35 @@
         private void btnAddMaintenance_Click(object sender, RoutedEventArgs e)
         {
             MaintenanceCenter center = (MaintenanceCenter)((Button)sender).Tag;
-            
+
             WPFMessageBoxResult result =
                         WPFMessageBox.Show(
                             Translator.GetInstance().GetString("MessageBox", "2131"),
-                            string.Format(Translator.GetInstance().GetString("MessageBox", "2131", "message"),center.Name),
+                            string.Format(Translator.GetInstance().GetString("MessageBox", "2131", "message"), center.Name),
                             WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
-            {   
+            {
 
-                 this.Airline.addMaintenanceCenter(center);
+                this.Airline.addMaintenanceCenter(center);
                 this.AvailableCenters.Remove(center);
             }
         }
         private void btnDeleteMaintenance_Click(object sender, RoutedEventArgs e)
         {
             MaintenanceCenter center = (MaintenanceCenter)((Button)sender).Tag;
-        
-           WPFMessageBoxResult result =
-                        WPFMessageBox.Show(
-                            Translator.GetInstance().GetString("MessageBox", "2132"),
-                            string.Format(Translator.GetInstance().GetString("MessageBox", "2132", "message"),center.Name),
-                            WPFMessageBoxButtons.YesNo);
 
-           if (result == WPFMessageBoxResult.Yes)
-           {
-               this.Airline.removeMaintenanceCenter(center);
-               this.AvailableCenters.Add(center);
-           }
+            WPFMessageBoxResult result =
+                         WPFMessageBox.Show(
+                             Translator.GetInstance().GetString("MessageBox", "2132"),
+                             string.Format(Translator.GetInstance().GetString("MessageBox", "2132", "message"), center.Name),
+                             WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                this.Airline.removeMaintenanceCenter(center);
+                this.AvailableCenters.Add(center);
+            }
         }
 
         private void setValues()
@@ -142,8 +206,37 @@
             {
                 advertisement.SelectedType = this.Airline.Airline.getAirlineAdvertisement(advertisement.Type);
             }
+            
+            foreach (AirlinerMaintenanceType maintenanceType in AirlinerMaintenanceTypes.GetMaintenanceTypes())
+            {
+                var maintenance = this.Airline.Maintenances.Find(m => m.Type == maintenanceType);
+            
+                if (this.Airline.Airline.Maintenances.ContainsKey(maintenanceType))
+                {
+          
+                    maintenance.SelectedType = maintenance.getCenterFromList(this.Airline.Airline.Maintenances[maintenanceType]);
+              
+                    var contains = maintenance.Centers.Contains(maintenance.SelectedType);
+                }
+                else
+                    maintenance.SelectedType = null;
+            }
         }
+        private void cbMaintenance_Loaded(object sender, RoutedEventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
 
+            AirlineMaintenanceMVVM o = (AirlineMaintenanceMVVM)cb.Tag;
+
+            if (cb.Items.Contains(o.SelectedType))
+            {
+                cb.SelectedItem = o.SelectedType;
+            }
+        }
         #endregion
+
+       
+
+
     }
 }

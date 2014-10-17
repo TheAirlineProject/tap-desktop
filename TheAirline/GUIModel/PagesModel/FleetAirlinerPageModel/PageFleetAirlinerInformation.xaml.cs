@@ -192,10 +192,11 @@
         }
         private void btnOutlease_Click(object sender, RoutedEventArgs e)
         {
+            
             WPFMessageBoxResult result = WPFMessageBox.Show(
-                    Translator.GetInstance().GetString("MessageBox", "2016"),
+                    Translator.GetInstance().GetString("MessageBox", "2018"),
                     string.Format(
-                        Translator.GetInstance().GetString("MessageBox", "2016", "message"),
+                        Translator.GetInstance().GetString("MessageBox", "2018", "message"),
                         new ValueCurrencyConverter().Convert(this.Airliner.Airliner.Name)),
                     WPFMessageBoxButtons.YesNo);
 

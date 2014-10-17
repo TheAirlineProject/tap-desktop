@@ -1,8 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
-  <profile name="Mandala Airlines" iata="RI" color="Black" country="162" CEO="Paul Rombeek" mentality="Safe"
+  <profile name="Tigerair Mandala" iata="RI" color="Black" country="162" CEO="Paul Rombeek" mentality="Safe"
            market="Global" preferedairport="CGK">
+            <narrative
+      narrative="PT Mandala Airlines later Tigerair Mandala was founded on April 17, 1969. The founders were Col. Sofjar, Maj. Gen. Raden Soerjo, Adil Aljol, Maj. (Air Force) Soegandi Partosoegondo, Kasbi Indradjanoe and Darwin Ramli. The airline was owned by PT Dharma Kencana Sakti, which in turn was the commercial arm of Yayasan Dharma Putra Kostrad, a foundation linked to Kostrad, the strategic reserve command of the Indonesian army. The airline was named after Operation Mandala, the military operations to incorporate West Papua into Indonesia. The name also refers to mandala, a Sanskrit term for a diagram symbolizing the universe, which is used as the logo of the corporation." />
+
   </profile>
-  <info real="True" from="1969" to="2199" />
+  <info real="True" from="1969" to="2012" />
 </airline>

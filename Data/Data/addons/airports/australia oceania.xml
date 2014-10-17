@@ -17,7 +17,7 @@
     </runways>
   </airport>
   <airport name="Abemama Atoll Airport" icao="NGTB" iata="AEA" type="Domestic" season="All_Year">
-    <town town="Abemama Atoll" country="115" GMT="13:00:00" DST="13:00:00" />
+    <town town="Abemama" country="115" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="0°29'26''N" />
       <longitude value="173°49'44''E" />
@@ -44,8 +44,8 @@
       <runway name="08/26" length="2103" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Bonriki International Airport" icao="NGTA" iata="TRW" type="Long_Haul_International" season="All_Year">
-    <town town="South Tawara" country="115" GMT="12:00:00" DST="12:00:00" />
+  <airport name="Bonriki International Airport" icao="NGTA" iata="TRW" type="Short_Haul_International" season="All_Year">
+    <town town="Bonriki" country="115" GMT="12:00:00" DST="12:00:00" />
     <coordinates>
       <latitude value="1°22'53''N" />
       <longitude value="173°8'49''E" />
@@ -59,7 +59,7 @@
     </runways>
   </airport>
   <airport name="Butaritari Atoll Airport" icao="NGTU" iata="BBG" type="Domestic" season="All_Year">
-    <town town="Butaritari Atoll" country="115" GMT="13:00:00" DST="13:00:00" />
+    <town town="Butaritari" country="115" GMT="13:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="3°5'8''N" />
       <longitude value="172°48'39''E" />
@@ -88,7 +88,7 @@
       <runway name="09/27" length="2136" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nausori International Airport" icao="NFNA" iata="SUV" type="Domestic" season="All_Year">
+  <airport name="Nausori International Airport" icao="NFNA" iata="SUV" type="Short_Haul_International" season="All_Year">
     <town town="Nausori" country="114" GMT="12:00:00" DST="12:00:00" />
     <coordinates>
       <latitude value="18°2'35''S" />
@@ -102,8 +102,8 @@
       <runway name="10/28" length="1868" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Fuaʻamotu International Airport" icao="NFTF" iata="TBU" type="Long_Haul_International" season="All_Year">
-    <town town="Nukuʻalofa" country="208" GMT="12:00:00" DST="13:00:00" />
+  <airport name="Fuaʻamotu International Airport" icao="NFTF" iata="TBU" type="Short_Haul_International" season="All_Year">
+    <town town="Nuku'alofa" country="208" GMT="12:00:00" DST="13:00:00" />
     <coordinates>
       <latitude value="21°14'28''S" />
       <longitude value="175°8'58''E" />
@@ -285,7 +285,7 @@
     </runways>
   </airport>
   <airport name="Great Barrier Aerodrome" icao="NZGB" iata="GBZ" type="Domestic" season="All_Year">
-    <town town="Claris" country="186" GMT="12:00:00" DST="11:00:00" />
+    <town town="Great Barrier Island" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="36°14'29''S" />
       <longitude value="175°28'19''E" />
@@ -298,7 +298,7 @@
       <runway name="10/28" length="930" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hamilton International Airport" icao="NZHN" iata="HLZ" type="Short_Haul_International" season="All_Year">
+  <airport name="Hamilton International Airport" icao="NZHN" iata="HLZ" type="Domestic" season="All_Year">
     <town town="Hamilton" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="37°52'0''S" />
@@ -314,7 +314,7 @@
     </runways>
   </airport>
   <airport name="Hawke's Bay Airport" icao="NZNR" iata="NPE" type="Domestic" season="All_Year">
-    <town town="Auckland" country="186" GMT="12:00:00" DST="11:00:00" />
+    <town town="Hastings / Napier" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="39°27'56''S" />
       <longitude value="176°52'11''E" />
@@ -512,7 +512,7 @@
     </runways>
   </airport>
   <airport name="Kapiti Coast Airport" icao="NZPP" iata="PPQ" type="Domestic" season="All_Year">
-    <town town="Kapiti Coast" country="186" GMT="12:00:00" DST="11:00:00" />
+    <town town="Paraparaumu" country="186" GMT="12:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="40°54'16''S" />
       <longitude value="174°59'20''E" />
@@ -3999,7 +3999,7 @@
     </runways>
   </airport>
   <!--some random oceania airport-->
-  <airport name="Roman Tmetuchl International Airport" icao="PTRO" iata="ROR" type="Short_Haul_International" season="All_Year">
+<airport name="Roman Tmetuchl International Airport" icao="PTRO" iata="ROR" type="Short_Haul_International" season="All_Year">
     <town town="Airai" country="288" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="7°22'3''N" />
@@ -4013,7 +4013,7 @@
       <runway name="09/27" length="2195" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Honiara International Airport" icao="AGGH" iata="HIR" type="Regional" season="All_Year">
+  <airport name="Honiara International Airport" icao="AGGH" iata="HIR" type="Short_Haul_International" season="All_Year">
     <town town="Honiara" country="289" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="9°25'40''S" />
@@ -4028,7 +4028,7 @@
     </runways>
   </airport>
   <airport name="Marshall Islands International Airport" icao="PKMJ" iata="MAJ" type="Short_Haul_International" season="All_Year">
-    <town town="Majuro Atoll" country="287" GMT="12:00:00" DST="12:00:00" />
+    <town town="Majuro" country="287" GMT="12:00:00" DST="12:00:00" />
     <coordinates>
       <latitude value="7°3'53''N" />
       <longitude value="171°16'19''E" />
@@ -4041,7 +4041,7 @@
       <runway name="07/25" length="2407" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kosrae International Airport" icao="PTSA" iata="KSA" type="Regional" season="All_Year">
+  <airport name="Kosrae International Airport" icao="PTSA" iata="KSA" type="Long_Haul_International" season="All_Year">
     <town town="Okat" country="290" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="5°21'25''N" />
@@ -4055,7 +4055,7 @@
       <runway name="05/23" length="1753" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Pohnpei International Airport" icao="PTPN" iata="PNI" type="Regional" season="All_Year">
+  <airport name="Pohnpei International Airport" icao="PTPN" iata="PNI" type="Long_Haul_International" season="All_Year">
     <town town="Pohnpei Island" country="290" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="6°59'6''N" />
@@ -4069,7 +4069,7 @@
       <runway name="09/27" length="1829" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Chuuk International Airport" icao="PTKK" iata="TKK" type="Regional" season="All_Year">
+  <airport name="Chuuk International Airport" icao="PTKK" iata="TKK" type="Long_Haul_International" season="All_Year">
     <town town="Weno Island" country="290" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="7°27'42''N" />
@@ -4097,7 +4097,7 @@
       <runway name="07/25" length="1829" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nauru International Airport" icao="ANYN" iata="INU" type="Regional" season="All_Year">
+  <airport name="Nauru International Airport" icao="ANYN" iata="INU" type="Short_Haul_International" season="All_Year">
     <town town="Yaren District" country="291" GMT="12:00:00" DST="12:00:00" />
     <coordinates>
       <latitude value="0°32'50''N" />
@@ -4111,8 +4111,8 @@
       <runway name="12/30" length="2150" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lae Nadzab Airport" icao="AYNZ" iata="LAE" type="Regional" season="All_Year">
-    <town town="Nadzab" country="280" GMT="10:00:00" DST="10:00:00" />
+   <airport name="Lae Nadzab Airport" icao="AYNZ" iata="LAE" type="Regional" season="All_Year">
+    <town town="Lae / Nadzab" country="280" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="6°34'11''S" />
       <longitude value="146°43'33''E" />
@@ -4125,7 +4125,7 @@
       <runway name="09/27" length="2440" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Port Moresby Jacksons International Airport" icao="AYPY" iata="POM" type="Domestic" season="All_Year">
+  <airport name="Port Moresby Jacksons International Airport" icao="AYPY" iata="POM" type="Long_Haul_International" season="All_Year">
     <town town="Port Moresby" country="280" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="9°26'36''S" />
@@ -4153,7 +4153,7 @@
       <runway name="10/28" length="1595" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Bauerfield International Airport" icao="NVVV" iata="VLI" type="Long_Haul_International" season="All_Year">
+<airport name="Bauerfield International Airport" icao="NVVV" iata="VLI" type="Long_Haul_International" season="All_Year">
     <town town="Port Vila" country="292" GMT="11:00:00" DST="11:00:00" />
     <coordinates>
       <latitude value="17°41'57''S" />

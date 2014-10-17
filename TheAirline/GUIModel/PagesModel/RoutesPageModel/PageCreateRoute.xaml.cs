@@ -464,7 +464,7 @@
                     {
                         view.GroupDescriptions.Clear();
 
-                        var groupDescription = new PropertyGroupDescription("Profile.Town.Country");
+                        var groupDescription = new PropertyGroupDescription("Profile.Town.CurrentCountry");
                         view.GroupDescriptions.Add(groupDescription);
                     }
                 }

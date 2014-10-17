@@ -41,13 +41,21 @@
   <manufacturer name="Viking Air" shortname="Viking" country="113" />
   <manufacturer name="Commercial Aircraft Corporation of China" shortname="Comac" country="148" />
    <manufacturer name="Yak Aircraft Corporation" shortname="Yak" country="134" />
-     <manufacturer name="Pilatus Aircraft" shortname="Pilatus" country="164" />
+   
+   <manufacturer name="Pilatus Aircraft" shortname="Pilatus" country="164" />
   <manufacturer name="Piper Aircraft" shortname="Piper" country="122" />
   <manufacturer name="GippsAero" shortname="GippsAero" country="116" />
   <manufacturer name="Short Brothers" shortname="Short" country="130" />
   <manufacturer name="Mil Moscow Helicopter Plant" shortname="Mil" country="149" />
-    <manufacturer name="Bell Helicopter" shortname="Bell" country="122" />
-        <manufacturer name="Messerschmitt-Bölkow-Blohm" shortname="MBB" country="163" />
+  <manufacturer name="Bell Helicopter" shortname="Bell" country="122" />
+  <manufacturer name="Messerschmitt-Bölkow-Blohm" shortname="MBB" country="163" />
+ <manufacturer name="Gulfstream Aerospace" shortname="Gulfstream" country="122" />
+ <manufacturer name="Grumman Aerospace Corporation" shortname="Grunmman" country="122" />
+  <manufacturer name="Piaggio Aero Industries" shortname="Piaggio" country="141" />
+ <manufacturer name="Learjet" shortname="Learjet" country="122" />
+  <manufacturer name="Israel Aerospace Industries" shortname="Israel" country="128" />
+  <manufacturer name="Irkut Corporation" shortname="Irkut" country="134" />
+  
    <!--engines-->
   <manufacturer name="CFM International" shortname="CFM" country="140" />
   <manufacturer name="Engine Alliance" shortname="EA" country="140" />

@@ -3,5 +3,7 @@
 <airline>
   <profile name="Sonderholm Airlines" iata="SH" color="Teal" country="110" CEO="Christian Sonderholm"
            mentality="Aggressive" market="Regional" preferedairport="AAR">
+           <narrative narrative="Sonderholm Airlines is a fictional airline based in Denmark. "></narrative>
+ 
   </profile>
 </airline>

@@ -417,7 +417,7 @@
         //returns if an airline is building a facility
         public Boolean isBuildingFacility(Airline airline, AirportFacility.FacilityType type)
         {
-             var facilities = new List<AirlineAirportFacility>();
+             var facilities = new List<AirlineAirportFacility>(this.Facilities);
              lock (this.Facilities)
              {
                  return facilities.Exists(f => f.Airline == airline && f.Facility.Type == type && f.FinishedDate > GameObject.GetInstance().GameTime);

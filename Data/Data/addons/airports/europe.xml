@@ -4,7 +4,7 @@
   <!--Greenland, Iceland and Kosovo (B***)-->
 
   <!--Iceland (BI**)-->
-    <airport name="Keflavík International Airport" icao="BIKF" iata="KEF" type="Long_Haul_International" season="All_Year">
+  <airport name="Keflavík International Airport" icao="BIKF" iata="KEF" type="Long_Haul_International" season="All_Year">
     <town town="Keflavík" country="121" GMT="00:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="63°59'6''N" />
@@ -40,7 +40,7 @@
     </runways>
   </airport>
   <airport name="Brussels South Charleroi Airport" icao="EBCI" iata="CRL" type="Long_Haul_International" season="All_Year">
-    <town town="Gosselies" country="107" GMT="02:00:00" DST="01:00:00" />
+    <town town="Charleroi" country="107" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="50°27'36''N" />
       <longitude value="4°27'10''E" />
@@ -69,8 +69,8 @@
       <runway name="05R/23L" length="3700" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ostend-Bruges International Airport" icao="EBOS" iata="OST" type="Short_Haul_International" season="All_Year">
-    <town town="Ostend" country="107" GMT="02:00:00" DST="01:00:00" />
+  <airport name="Ostend-Bruges International Airport" icao="EBOS" iata="OST" type="Long_Haul_International" season="All_Year">
+    <town town="Ostend / Bruges" country="107" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="51°11'59''N" />
       <longitude value="2°51'49''E" />
@@ -83,7 +83,6 @@
       <runway name="08/26" length="3200" surface="Asphalt" />
     </runways>
   </airport>
-
   <!--Germany (ED**)-->
    <airport name="Leipzig-Altenburg Airport" icao="EDAC" iata="AOC" type="Regional" season="All_Year">
     <town town="Altenburg" country="1001" GMT="02:00:00" DST="01:00:00" />
@@ -144,7 +143,7 @@
       <runway name="10/28" length="2600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Leipzig Halle Airport" icao="EDDP" iata="LEJ" type="Regional" season="All_Year">
+  <airport name="Leipzig Halle Airport" icao="EDDP" iata="LEJ" type="Long_Haul_International" season="All_Year">
     <town town="Leipzig" country="1001" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="51°25'56''N" />
@@ -174,7 +173,7 @@
     </runways>
   </airport>
   <airport name="Karlsruhe Baden-Baden Airport" icao="EDSB" iata="FKB" type="Short_Haul_International" season="All_Year">
-    <town town="Baden-Baden" country="1002" GMT="02:00:00" DST="01:00:00" />
+    <town town="Baden-Baden / Karlsruhe" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="48°46'45''N" />
       <longitude value="8°4'49''E" />
@@ -188,6 +187,7 @@
     </runways>
   </airport>
   <airport name="Berlin Brandenburg Airport" icao="EDDB" iata="BER" type="Long_Haul_International" season="All_Year">
+    <period from="1/1/2016 12:00:00 AM" to="1/1/2199 12:00:00 AM" />
     <town town="Berlin" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="52°22'0''N" />
@@ -234,6 +234,21 @@
     <runways>
       <runway name="08L/26R" length="3154" surface="Asphalt" />
       <runway name="08R/26L" length="2540" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Braunschweig Wolfsburg Airport" icao="EDVE" iata="BWE" type="Regional" season="All_Year">
+    <town town="Braunschweig" country="1002" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="52°19'9''N" />
+      <longitude value="10°33'21''E" />
+    </coordinates>
+    <size value="Smallest" pax="12" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2300" surface="Asphalt" />
+      <runway name="08R/26L" length="900" surface="Grass" />
     </runways>
   </airport>
   <airport name="Bremen Airport" icao="EDDW" iata="BRE" type="Short_Haul_International" season="All_Year">
@@ -317,7 +332,7 @@
       <runway name="18" length="4000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Friedrichshafen Airport" icao="EDNY" iata="FDH" type="Regional" season="Summer">
+  <airport name="Friedrichshafen Airport" icao="EDNY" iata="FDH" type="Short_Haul_International" season="Summer">
     <town town="Friedrichshafen" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="47°40'16''N" />
@@ -365,7 +380,37 @@
       <runway name="09R/27L" length="2340" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Lübeck Blankensee Airport" icao="EDHL" iata="LBC" type="Regional" season="All_Year">
+  <airport name="Helgoland-Düne Airport" icao="EDXH" iata="HGL" type="Domestic" season="All_Year">
+    <town town="Helgoland" country="1002" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="54°11'7''N" />
+      <longitude value="7°54'56''E" />
+    </coordinates>
+    <size value="Smallest" pax="36" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="15L/33R" length="580" surface="Concrete" />
+      <runway name="3/21" length="371" surface="Concrete" />
+      <runway name="6/24" length="258" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Kassel-Calden Airport" icao="EDVK" iata="KSF" type="Short_Haul_International" season="All_Year">
+    <town town="Kassel" country="1002" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="51°24'29''N" />
+      <longitude value="9°22'38''E" />
+    </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Lübeck Blankensee Airport" icao="EDHL" iata="LBC" type="Short_Haul_International" season="All_Year">
     <town town="Lübeck" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="53°48'19''N" />
@@ -377,6 +422,21 @@
     </terminals>
     <runways>
       <runway name="07/25" length="2102" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Mannheim-City Airport" icao="EDFM" iata="MHG" type="Short_Haul_International" season="All_Year">
+    <town town="Mannheim" country="1002" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="49°28'23''N" />
+      <longitude value="8°30'51''E" />
+    </coordinates>
+    <size value="Smallest" pax="75" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1066" surface="Asphalt" />
+      <runway name="09L/27R" length="700" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Memmingen Allgau Airport" icao="EDJA" iata="FMM" type="Short_Haul_International" season="All_Year">
@@ -439,7 +499,7 @@
       <runway name="07/25" length="2170" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nuremberg Airport" icao="EDDN" iata="NUE" type="Long_Haul_International" season="All_Year">
+  <airport name="Nuremberg Airport" icao="EDDN" iata="NUE" type="Short_Haul_International" season="All_Year">
     <town town="Nuremberg" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="49°29'54''N" />
@@ -467,8 +527,8 @@
       <runway name="06/24" length="2180" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Frankfurt-Hahn Airport" icao="EDFH" iata="HHN" type="Long_Haul_International" season="All_Year">
-    <town town="Kirchberg" country="1002" GMT="02:00:00" DST="01:00:00" />
+  <airport name="Frankfurt-Hahn Airport" icao="EDFH" iata="HHN" type="Short_Haul_International" season="All_Year">
+    <town town="Rhineland-Palatinate / Frankfurt" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="49°56'55''N" />
       <longitude value="7°15'50''E" />
@@ -512,6 +572,20 @@
       <runway name="07/25" length="3345" surface="Concrete" />
     </runways>
   </airport>
+  <airport name="Niederrhein Airport" icao="EDLV" iata="NRN" type="Short_Haul_International" season="All_Year">
+    <town town="Weeze / Duisburg" country="1002" GMT="01:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="51°36'8''N" />
+      <longitude value="6°8'31''E" />
+    </coordinates>
+    <size value="Small" pax="2488" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="9" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="2440" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Westerland Sylt Airport" icao="EDXW" iata="GWT" type="Short_Haul_International" season="All_Year">
     <town town="Westerland" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
@@ -541,83 +615,8 @@
       <runway name="03/21" length="2675" surface="Concrete" />
     </runways>
   </airport>
-  <!--Germany-->
-  <airport name="Braunschweig Wolfsburg Airport" icao="EDVE" iata="BWE" type="Short_Haul_International" season="All_Year">
-    <town town="Braunschweig" country="163" GMT="01:00:00" DST="01:00:00" />
-    <coordinates>
-      <latitude value="52°19'9''N" />
-      <longitude value="10°33'21''E" />
-    </coordinates>
-    <size value="Smallest" pax="12" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="8" />
-    </terminals>
-    <runways>
-      <runway name="08/26" length="2300" surface="Asphalt" />
-      <runway name="08R/26L" length="900" surface="Grass" />
-    </runways>
-  </airport>
-  <airport name="Helgoland-Düne Airport" icao="EDXH" iata="HGL" type="Domestic" season="All_Year">
-    <town town="Helgoland" country="163" GMT="01:00:00" DST="01:00:00" />
-    <coordinates>
-      <latitude value="54°11'7''N" />
-      <longitude value="7°54'56''E" />
-    </coordinates>
-    <size value="Smallest" pax="36" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="6" />
-    </terminals>
-    <runways>
-      <runway name="15L/33R" length="580" surface="Concrete" />
-      <runway name="3/21" length="371" surface="Concrete" />
-      <runway name="6/24" length="258" surface="Concrete" />
-    </runways>
-  </airport>
-  <airport name="Kassel-Calden Airport" icao="EDVK" iata="KSF" type="Short_Haul_International" season="All_Year">
-    <town town="Kassel" country="163" GMT="01:00:00" DST="01:00:00" />
-    <coordinates>
-      <latitude value="51°24'29''N" />
-      <longitude value="9°22'38''E" />
-    </coordinates>
-    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="4" />
-    </terminals>
-    <runways>
-      <runway name="09/27" length="2500" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Mannheim-City Airport" icao="EDFM" iata="MHG" type="Short_Haul_International" season="All_Year">
-    <town town="Mannheim" country="163" GMT="01:00:00" DST="01:00:00" />
-    <coordinates>
-      <latitude value="49°28'23''N" />
-      <longitude value="8°30'51''E" />
-    </coordinates>
-    <size value="Smallest" pax="75" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="8" />
-    </terminals>
-    <runways>
-      <runway name="09/27" length="1066" surface="Asphalt" />
-      <runway name="09L/27R" length="700" surface="Asphalt" />
-    </runways>
-  </airport>
-  <airport name="Niederrhein Airport" icao="EDLV" iata="NRN" type="Short_Haul_International" season="All_Year">
-    <town town="Weeze" country="163" GMT="01:00:00" DST="01:00:00" />
-    <coordinates>
-      <latitude value="51°36'8''N" />
-      <longitude value="6°8'31''E" />
-    </coordinates>
-    <size value="Small" pax="2488" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="9" />
-    </terminals>
-    <runways>
-      <runway name="09/27" length="2440" surface="Asphalt" />
-    </runways>
-  </airport>
   <!--Estonia (EE**)-->
-<airport name="Lennart Meri Tallinn Airport" icao="EETN" iata="TLL" type="Long_Haul_International" season="All_Year">
+ <airport name="Lennart Meri Tallinn Airport" icao="EETN" iata="TLL" type="Long_Haul_International" season="All_Year">
     <town town="Tallinn" country="117" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="59°24'47''N" />
@@ -664,7 +663,7 @@
       <runway name="12/30" length="2501" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Tampere-Pirkkala Airport" icao="EFTP" iata="TMP" type="Long_Haul_International" season="All_Year">
+  <airport name="Tampere-Pirkkala Airport" icao="EFTP" iata="TMP" type="Short_Haul_International" season="All_Year">
     <town town="Tampere" country="167" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="61°24'55''N" />
@@ -679,21 +678,7 @@
     </runways>
   </airport>
   <!--United Kingdom (EG**)-->
-  <airport name="Scatsta Airport" icao="EGPM" iata="SCS" type="Domestic" season="All_Year">
-    <town town="Sullom Voe Terminal, SCT" country="130" GMT="01:00:00" DST="00:00:00" />
-    <coordinates>
-      <latitude value="60°25'58''N" />
-      <longitude value="1°17'46''W" />
-    </coordinates>
-    <size value="Very_small" pax="161" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="3" />
-    </terminals>
-    <runways>
-        <runway name="06/24" length="1360" surface="Asphalt" />
-    </runways>
-  </airport>
-    <airport name="Aberdeen Airport" icao="EGPD" iata="ABZ" type="Long_Haul_International" season="All_Year">
+   <airport name="Aberdeen Airport" icao="EGPD" iata="ABZ" type="Long_Haul_International" season="All_Year">
     <town town="Aberdeen, SCT" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="57°12'15''N" />
@@ -722,7 +707,7 @@
       <runway name="17/35" length="1891" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="George Best Belfast City Airport" icao="EGAC" iata="BHD" type="Domestic" season="All_Year">
+  <airport name="George Best Belfast City Airport" icao="EGAC" iata="BHD" type="Short_Haul_International" season="All_Year">
     <town town="Belfast, NIR" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="54°37'5''N" />
@@ -752,6 +737,7 @@
     </runways>
   </airport>
   <airport name="Blackpool International Airport" icao="EGNH" iata="BLK" type="Short_Haul_International" season="All_Year">
+    <period from="1/1/1909 12:00:00 AM" to="10/15/2014 12:00:00 AM" />
     <town town="Blackpool, ENG" country="130" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="53°46'17''N" />
@@ -837,7 +823,7 @@
     </runways>
   </airport>
   <airport name="Robin Hood Doncaster Sheffield Airport" icao="EGCN" iata="DSA" type="Short_Haul_International" season="All_Year">
-    <town town="Doncaster, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Doncaster / Sheffield, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="53°28'49''N" />
       <longitude value="1°0'38''W" />
@@ -866,7 +852,7 @@
     </runways>
   </airport>
   <airport name="East Midlands Airport" icao="EGNX" iata="EMA" type="Long_Haul_International" season="All_Year">
-    <town town="Derby, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="East Midlands, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="52°49'51''N" />
       <longitude value="1°19'41''W" />
@@ -880,7 +866,7 @@
     </runways>
   </airport>
   <airport name="Edinburgh Airport" icao="EGPH" iata="EDI" type="Long_Haul_International" season="All_Year">
-    <town town="Edinburgh, SCO" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Edinburgh, SCT" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="55°57'0''N" />
       <longitude value="3°22'21''W" />
@@ -894,7 +880,7 @@
       <runway name="12/30" length="1797" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Exeter International Airport" icao="EGTE" iata="EXT" type="Short_Haul_International" season="Summer">
+  <airport name="Exeter International Airport" icao="EGTE" iata="EXT" type="Long_Haul_International" season="Summer">
     <town town="Exeter, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="50°44'3''N" />
@@ -906,6 +892,20 @@
     </terminals>
     <runways>
       <runway name="08/26" length="2076" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Owen Roberts International Airport" icao="MWCR" iata="GCM" type="Long_Haul_International" season="Winter">
+    <town town="George Town, KY" country="130" GMT="-05:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="19°17'33''N" />
+      <longitude value="81°21'33''W" />
+    </coordinates>
+    <size value="Small" pax="1003" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2136" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Gibraltar Airport" icao="LXGB" iata="GIB" type="Long_Haul_International" season="All_Year">
@@ -923,7 +923,7 @@
     </runways>
   </airport>
   <airport name="Glasgow International Airport" icao="EGPF" iata="GLA" type="Long_Haul_International" season="All_Year">
-    <town town="Glasgow, SCO" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Glasgow, SCT" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="55°52'19''N" />
       <longitude value="4°25'59''W" />
@@ -938,7 +938,7 @@
       <runway name="05/23" length="2665" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Guernsey Airport" icao="EGJB" iata="GCI" type="Long_Haul_International" season="All_Year">
+  <airport name="Guernsey Airport" icao="EGJB" iata="GCI" type="Short_Haul_International" season="All_Year">
     <town town="Guernsey, GG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="49°25'59''N" />
@@ -953,7 +953,7 @@
     </runways>
   </airport>
   <airport name="L.F. Wade International Airport" icao="TXKF" iata="BDA" type="Long_Haul_International" season="All_Year">
-    <town town="St. George's, BM" country="130" GMT="-03:00:00" DST="-04:00:00" />
+    <town town="Hamilton, BM" country="130" GMT="-03:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="32°21'51''N" />
       <longitude value="64°40'42''W" />
@@ -967,7 +967,7 @@
     </runways>
   </airport>
   <airport name="Isle of Man Airport" icao="EGNS" iata="IOM" type="Short_Haul_International" season="All_Year">
-    <town town="Ronaldsway, IM" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Isle of Man, IM" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="54°5'0''N" />
       <longitude value="4°37'24''W" />
@@ -981,8 +981,8 @@
       <runway name="08/26" length="2110" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Jersey Airport" icao="EGJJ" iata="JER" type="Long_Haul_International" season="All_Year">
-    <town town="Saint Helier, JE" country="130" GMT="01:00:00" DST="00:00:00" />
+  <airport name="Jersey Airport" icao="EGJJ" iata="JER" type="Short_Haul_International" season="All_Year">
+    <town town="Jersey, JE" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="49°12'29''N" />
       <longitude value="2°11'44''W" />
@@ -996,7 +996,7 @@
     </runways>
   </airport>
   <airport name="Land's End Airport" icao="EGHC" iata="LEQ" type="Domestic" season="All_Year">
-    <town town="Land's End, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="St Just, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="50°6'10''N" />
       <longitude value="5°40'14''W" />
@@ -1012,8 +1012,8 @@
       <runway name="12/30" length="479" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Leeds Bradford International Airport" icao="EGNM" iata="LBA" type="Long_Haul_International" season="All_Year">
-    <town town="Leeds, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+  <airport name="Leeds Bradford International Airport" icao="EGNM" iata="LBA" type="Short_Haul_International" season="All_Year">
+    <town town="Leeds / Bradfordm ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="53°51'57''N" />
       <longitude value="1°39'38''W" />
@@ -1040,7 +1040,7 @@
       <runway name="09/27" length="2285" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="London City Airport" icao="EGLC" iata="LCY" type="Long_Haul_International" season="All_Year">
+  <airport name="London City Airport" icao="EGLC" iata="LCY" type="Short_Haul_International" season="All_Year">
     <town town="London, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="51°30'18''N" />
@@ -1104,7 +1104,7 @@
     </runways>
   </airport>
   <airport name="London Luton Airport" icao="EGGW" iata="LTN" type="Long_Haul_International" season="All_Year">
-    <town town="London, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Luton, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="51°52'28''N" />
       <longitude value="0°22'6''E" />
@@ -1117,8 +1117,8 @@
       <runway name="08/26" length="2162" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lydd International Airport" icao="EGMD" iata="LYX" type="Short_Haul_International" season="All_Year">
-    <town town="Lydd, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+  <airport name="Lydd Airport" icao="EGMD" iata="LYX" type="Regional" season="All_Year">
+    <town town="Lydd" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="50°57'22''N" />
       <longitude value="0°56'21''E" />
@@ -1233,7 +1233,7 @@
     </runways>
   </airport>
   <airport name="Glasgow Prestwick Airport" icao="EGPK" iata="PIK" type="Long_Haul_International" season="All_Year">
-    <town town="Prestwick, SCO" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Prestwick, SCT" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="55°30'33''N" />
       <longitude value="4°35'12''W" />
@@ -1261,7 +1261,7 @@
       <runway name="10/28" length="2804" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Terrance B. Lettsome International Airport" icao="TUPJ" iata="EIS" type="Short_Haul_International" season="Summer">
+  <airport name="Terrance B. Lettsome International Airport" icao="TUPJ" iata="EIS" type="Regional" season="Summer">
     <town town="Roadtown, VG" country="130" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="18°26'44''N" />
@@ -1276,7 +1276,7 @@
     </runways>
   </airport>
   <airport name="Salt Cay Airport" icao="MBSY" iata="SLX" type="Regional" season="All_Year">
-    <town town="Salt Cay, TC" country="130" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Salt Cay, KY" country="130" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="21°19'58''N" />
       <longitude value="71°11'59''W" />
@@ -1317,8 +1317,8 @@
       <runway name="02/20" length="1723" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="London Southend Airport" icao="EGMC" iata="SEN" type="Long_Haul_International" season="All_Year">
-    <town town="Rochford, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+  <airport name="London Southend Airport" icao="EGMC" iata="SEN" type="Short_Haul_International" season="All_Year">
+    <town town="Southend, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="51°34'17''N" />
       <longitude value="0°41'44''E" />
@@ -1332,7 +1332,7 @@
     </runways>
   </airport>
   <airport name="Land's End Airport" icao="EGHC" iata="LEQ" type="Domestic" season="All_Year">
-    <town town="Land's End, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="St Just, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="50°6'10''N" />
       <longitude value="5°40'14''W" />
@@ -1363,7 +1363,7 @@
       <runway name="09/27" length="600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Port Stanley Airport" icao="SFAL" iata="PSY" type="Domestic" season="All_Year">
+  <airport name="Port Stanley Airport" icao="SFAL" iata="PSY" type="Regional" season="All_Year">
     <town town="Stanley, FK" country="130" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="51°41'8''S" />
@@ -1395,7 +1395,7 @@
     </runways>
   </airport>
   <airport name="Durham Tees Valley Airport" icao="EGNV" iata="MME" type="Short_Haul_International" season="All_Year">
-    <town town="Durham, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Teeside / Durham, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="54°30'33''N" />
       <longitude value="1°25'45''W" />
@@ -1457,7 +1457,7 @@
     </runways>
   </airport>
   <airport name="Enschede Airport Twente" icao="EHTW" iata="ENS" type="Domestic" season="All_Year">
-    <period from="01.01.2016 00:00:00" to="01.01.2199 00:00:00" />
+    <period from="1/1/2016 12:00:00 AM" to="1/1/2199 12:00:00 AM" />
     <town town="Enschede" country="179" GMT="00:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="52°16'12''N" />
@@ -1485,6 +1485,20 @@
     <runways>
       <runway name="01/19" length="1500" surface="Asphalt" />
       <runway name="05/23" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Flamingo International Airport" icao="TNCB" iata="BON" type="Long_Haul_International" season="All_Year">
+    <town town="Kralendijk / Bonaire" country="179" GMT="-04:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="12°7'51''N" />
+      <longitude value="68°16'6''W" />
+    </coordinates>
+    <size value="Small" pax="569" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="6" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2880" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Lelystad Airport" icao="EHLE" iata="LEY" type="Domestic" season="All_Year">
@@ -1531,8 +1545,8 @@
     </runways>
   </airport>
   <!--Ireland (EI**)-->
-   <airport name="Ireland West Knock Airport" icao="EIKN" iata="NOC" type="Regional" season="All_Year">
-    <town town="Charleston" country="137" GMT="-01:00:00" DST="-02:00:00" />
+    <airport name="Ireland West Knock Airport" icao="EIKN" iata="NOC" type="Short_Haul_International" season="All_Year">
+    <town town="Connacht" country="137" GMT="-01:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="53°54'37''N" />
       <longitude value="8°49'6''W" />
@@ -1560,7 +1574,7 @@
       <runway name="17/35" length="2133" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Donegal Airport" icao="EIDL" iata="CFN" type="Domestic" season="All_Year">
+  <airport name="Donegal Airport" icao="EIDL" iata="CFN" type="Regional" season="All_Year">
     <town town="Donegal" country="137" GMT="-01:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="55°2'39''N" />
@@ -1591,7 +1605,7 @@
     </runways>
   </airport>
   <airport name="Galway Airport" icao="EICM" iata="GWY" type="Regional" season="All_Year">
-   <period from="04.01.1956 00:00:00" to="12.01.2013 00:00:00" />
+    <period from="4/1/1956 12:00:00 AM" to="12/1/2013 12:00:00 AM" />
     <town town="Galway" country="137" GMT="-01:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="53°18'0''N" />
@@ -1619,7 +1633,7 @@
       <runway name="06/24" length="3199" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Sligo Airport" icao="EISG" iata="SXL" type="Domestic" season="All_Year">
+  <airport name="Sligo Airport" icao="EISG" iata="SXL" type="Regional" season="All_Year">
     <town town="Sligo" country="137" GMT="-01:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="54°16'48''N" />
@@ -1633,8 +1647,8 @@
       <runway name="11/29" length="1199" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kerry Airport" icao="EIKY" iata="KIR" type="Regional" season="All_Year">
-    <town town="Killarney" country="137" GMT="-01:00:00" DST="-02:00:00" />
+  <airport name="Kerry Airport" icao="EIKY" iata="KIR" type="Short_Haul_International" season="All_Year">
+    <town town="Tralee / Killarney" country="137" GMT="-01:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="52°10'51''N" />
       <longitude value="9°31'25''W" />
@@ -1647,7 +1661,7 @@
       <runway name="08/26" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Waterford Airport" icao="EIWF" iata="WAT" type="Domestic" season="All_Year">
+  <airport name="Waterford Airport" icao="EIWF" iata="WAT" type="Regional" season="All_Year">
     <town town="Waterford" country="137" GMT="-01:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="52°11'13''N" />
@@ -1662,7 +1676,7 @@
     </runways>
   </airport>
   <!--Denmark (EK**)-->
-    <airport name="Aalborg Airport" icao="EKYT" iata="AAL" type="Short_Haul_International" season="All_Year">
+    <airport name="Aalborg Airport" icao="EKYT" iata="AAL" type="Long_Haul_International" season="All_Year">
     <town town="Aalborg" country="110" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="57°5'34''N" />
@@ -1725,7 +1739,7 @@
       <runway name="12/30" length="2800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Copenhagen Roskilde Airport" icao="EKRK" iata="RKE" type="Domestic" season="All_Year">
+  <airport name="Copenhagen Roskilde Airport" icao="EKRK" iata="RKE" type="Regional" season="All_Year">
     <town town="Copenhagen" country="110" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="55°35'8''N" />
@@ -1740,7 +1754,7 @@
       <runway name="11/29" length="1799" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Esbjerg Airport" icao="EKEB" iata="EBJ" type="Domestic" season="All_Year">
+  <airport name="Esbjerg Airport" icao="EKEB" iata="EBJ" type="Short_Haul_International" season="All_Year">
     <town town="Esbjerg" country="110" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="55°31'33''N" />
@@ -1754,7 +1768,7 @@
       <runway name="08/26" length="2599" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kangerlussuaq Airport" icao="BGSF" iata="SFJ" type="Short_Haul_International" season="All_Year">
+  <airport name="Kangerlussuaq Airport" icao="BGSF" iata="SFJ" type="Long_Haul_International" season="All_Year">
     <town town="Kangerlussuaq, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="67°1'0''N" />
@@ -1769,7 +1783,7 @@
     </runways>
   </airport>
   <airport name="Karup Airport" icao="EKKA" iata="KRP" type="Domestic" season="All_Year">
-    <town town="Karup" country="110" GMT="02:00:00" DST="01:00:00" />
+    <town town="Karup / Viborg" country="110" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="56°17'59''N" />
       <longitude value="9°7'0''E" />
@@ -1785,7 +1799,7 @@
       <runway name="14/32" length="782" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Læsø Airport" icao="EKLS" iata="BYR" type="Domestic" season="All_Year">
+  <airport name="Læsø Airport" icao="EKLS" iata="BYR" type="Regional" season="All_Year">
     <town town="Læsø" country="110" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="57°16'37''N" />
@@ -1799,7 +1813,7 @@
       <runway name="07/25" length="928" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hans Christian Andersen Airport" icao="EKOD" iata="ODE" type="Domestic" season="All_Year">
+  <airport name="Hans Christian Andersen Airport" icao="EKOD" iata="ODE" type="Short_Haul_International" season="All_Year">
     <town town="Odense" country="110" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="55°28'36''N" />
@@ -1857,7 +1871,7 @@
     </runways>
   </airport>
   <airport name="Stauning Airport" icao="EKVJ" iata="STA" type="Domestic" season="All_Year">
-    <town town="Skjern / Ringkøbing" country="110" GMT="01:00:00" DST="01:00:00" />
+    <town town="Skjern" country="110" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="55°59'24''N" />
       <longitude value="8°21'14''E" />
@@ -1871,7 +1885,7 @@
     </runways>
   </airport>
   <airport name="Sonderborg Airport" icao="EKSB" iata="SGD" type="Domestic" season="All_Year">
-    <town town="Sonderborg" country="110" GMT="02:00:00" DST="01:00:00" />
+    <town town="Sønderborg" country="110" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="54°57'52''N" />
       <longitude value="9°47'30''E" />
@@ -1884,8 +1898,8 @@
       <runway name="14/32" length="1797" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Vágar Airport, FO" icao="EKVG" iata="FAE" type="Long_Haul_International" season="All_Year">
-    <town town="Sorvágur" country="110" GMT="01:00:00" DST="00:00:00" />
+  <airport name="Vágar Airport" icao="EKVG" iata="FAE" type="Long_Haul_International" season="All_Year">
+    <town town="Sorvágur, FO" country="110" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="62°3'48''N" />
       <longitude value="7°16'36''W" />
@@ -1912,9 +1926,8 @@
       <runway name="10/28" length="1600" surface="Asphalt" />
     </runways>
   </airport>
-
   <!--Luxembourg (EL**)-->
-  <airport name="Luxembourg–Findel Airport" icao="ELLX" iata="LUX" type="Long_Haul_International" season="All_Year">
+<airport name="Luxembourg–Findel Airport" icao="ELLX" iata="LUX" type="Long_Haul_International" season="All_Year">
     <town town="Luxembourg" country="119" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="49°37'35''N" />
@@ -1989,8 +2002,8 @@
       <runway name="01R/19L" length="2950" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Sandefjord Airport, Torp" icao="ENTO" iata="TRF" type="Long_Haul_International" season="All_Year">
-    <town town="Torp" country="139" GMT="02:00:00" DST="01:00:00" />
+  <airport name="Sandefjord Airport, Torp" icao="ENTO" iata="TRF" type="Short_Haul_International" season="All_Year">
+    <town town="Sandefjord" country="139" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="59°11'12''N" />
       <longitude value="10°15'30''E" />
@@ -2019,7 +2032,7 @@
     </runways>
   </airport>
   <airport name="Svalbard Airport, Longyear" icao="ENSB" iata="LYR" type="Domestic" season="All_Year">
-    <town town="Longyearbyen" country="139" GMT="02:00:00" DST="01:00:00" />
+    <town town="Svalbard" country="139" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="78°11'30''N" />
       <longitude value="15°54'0''E" />
@@ -2152,7 +2165,7 @@
     </runways>
   </airport>
     <airport name="Szczecin-Goleniów Solidarność Airport" icao="EPSC" iata="SZZ" type="Short_Haul_International" season="All_Year">
-    <town town="Goleniow" country="135" GMT="01:00:00" DST="02:00:00" />
+    <town town="Szczecin" country="135" GMT="01:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="053°35'04''N" />
       <longitude value="014°54'07''E" />
@@ -2251,8 +2264,8 @@
     </runways>
   </airport>
   <!--Sweden (ES**)-->
-  <airport name="Ängelholm-Helsingborg Airport" icao="ESTA" iata="AGH" type="Regional" season="All_Year">
-    <town town="Ängelholm" country="168" GMT="01:00:00" DST="01:00:00" />
+   <airport name="Ängelholm-Helsingborg Airport" icao="ESTA" iata="AGH" type="Regional" season="All_Year">
+    <town town="Ängelholm / Helsingborg" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="56°17'45''N" />
       <longitude value="12°50'49''E" />
@@ -2266,8 +2279,8 @@
       <runway name="14/32" length="1945" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Östersund Airport" icao="ESNZ" iata="OSD" type="Regional" season="All_Year">
-    <town town="Östersund" country="168" GMT="01:00:00" DST="01:00:00" />
+  <airport name="Östersund Airport" icao="ESNZ" iata="OSD" type="Short_Haul_International" season="All_Year">
+    <town town="Åre / Östersund" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="63°11'39''N" />
       <longitude value="14°30'1''E" />
@@ -2295,7 +2308,7 @@
       <runway name="12/30" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Borlange Airport" icao="ESSD" iata="BLE" type="Domestic" season="All_Year">
+  <airport name="Borlange Airport" icao="ESSD" iata="BLE" type="Short_Haul_International" season="All_Year">
     <town town="Borlänge" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="60°25'19''N" />
@@ -2366,7 +2379,7 @@
       <runway name="18/36" length="1509" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Halmstad Airport" icao="ESMT" iata="HAD" type="Regional" season="All_Year">
+  <airport name="Halmstad Airport" icao="ESMT" iata="HAD" type="Domestic" season="All_Year">
     <town town="Halmstad" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="56°41'27''N" />
@@ -2381,7 +2394,7 @@
     </runways>
   </airport>
   <airport name="Hemavan Airport" icao="ESUT" iata="HMV" type="Domestic" season="All_Year">
-    <town town="Hemavan" country="168" GMT="01:00:00" DST="01:00:00" />
+    <town town="Hemavan / Tärnaby" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="65°48'21''N" />
       <longitude value="15°4'58''E" />
@@ -2394,7 +2407,7 @@
       <runway name="15/33" length="1601" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Jönköping Airport" icao="ESGJ" iata="JKG" type="Domestic" season="All_Year">
+  <airport name="Jönköping Airport" icao="ESGJ" iata="JKG" type="Short_Haul_International" season="All_Year">
     <town town="Jönköping" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="57°45'27''N" />
@@ -2409,7 +2422,7 @@
       <runway name="11/29" length="600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kalmar Airport" icao="ESMQ" iata="KLR" type="Regional" season="All_Year">
+  <airport name="Kalmar Airport" icao="ESMQ" iata="KLR" type="Short_Haul_International" season="All_Year">
     <town town="Kalmar" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="56°41'7''N" />
@@ -2424,7 +2437,7 @@
       <runway name="16/34" length="2050" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Karlstad Airport" icao="ESOK" iata="KSD" type="Domestic" season="All_Year">
+  <airport name="Karlstad Airport" icao="ESOK" iata="KSD" type="Short_Haul_International" season="All_Year">
     <town town="Karlstad" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="59°26'40''N" />
@@ -2481,7 +2494,7 @@
       <runway name="01/19" length="2215" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Linköping SAAB Airport" icao="ESSL" iata="LPI" type="Domestic" season="All_Year">
+  <airport name="Linköping SAAB Airport" icao="ESSL" iata="LPI" type="Regional" season="All_Year">
     <town town="Linköping" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="58°24'22''N" />
@@ -2495,7 +2508,7 @@
       <runway name="11/29" length="2130" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Luleå Airport" icao="ESPA" iata="LLA" type="Short_Haul_International" season="All_Year">
+  <airport name="Luleå Airport" icao="ESPA" iata="LLA" type="Long_Haul_International" season="All_Year">
     <town town="Luleå" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="65°32'37''N" />
@@ -2523,7 +2536,7 @@
       <runway name="14/32" length="2001" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Malmö Airport" icao="ESMS" iata="MMX" type="Long_Haul_International" season="All_Year">
+  <airport name="Malmö Airport" icao="ESMS" iata="MMX" type="Short_Haul_International" season="All_Year">
     <town town="Malmö" country="168" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="55°32'59''N" />
@@ -2552,7 +2565,7 @@
       <runway name="16/34" length="1814" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Norrköping Airport" icao="ESSP" iata="NRK" type="Domestic" season="All_Year">
+  <airport name="Norrköping Airport" icao="ESSP" iata="NRK" type="Regional" season="All_Year">
     <town town="Norrköping" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="58°35'10''N" />
@@ -2581,7 +2594,7 @@
       <runway name="16/34" length="2039" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Örebro Airport" icao="ESOE" iata="ORB" type="Domestic" season="All_Year">
+  <airport name="Örebro Airport" icao="ESOE" iata="ORB" type="Short_Haul_International" season="All_Year">
     <town town="Örebro" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="59°13'25''N" />
@@ -2595,7 +2608,7 @@
       <runway name="01/19" length="2601" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Örnsköldsvik Airport" icao="ESNO" iata="OER" type="Domestic" season="All_Year">
+  <airport name="Örnsköldsvik Airport" icao="ESNO" iata="OER" type="Regional" season="All_Year">
     <town town="Örnsköldsvik" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="63°24'29''N" />
@@ -2610,7 +2623,7 @@
     </runways>
   </airport>
   <airport name="Oskarshamn Airport" icao="ESMO" iata="OSK" type="Domestic" season="All_Year">
-  <period from="04.01.1955 00:00:00" to="05.01.2014 00:00:00" />
+    <period from="4/1/1955 12:00:00 AM" to="5/1/2014 12:00:00 AM" />
     <town town="Oskarshamn" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="57°21'1''N" />
@@ -2624,7 +2637,7 @@
       <runway name="01/19" length="1500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Pajala-Ylläs Airport" icao="ESUP" iata="PJA" type="Domestic" season="All_Year">
+  <airport name="Pajala-Ylläs Airport" icao="ESUP" iata="PJA" type="Regional" season="All_Year">
     <town town="Pajala" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="67°14'44''N" />
@@ -2639,7 +2652,7 @@
     </runways>
   </airport>
   <airport name="Ronneby Airport" icao="ESDF" iata="RNB" type="Domestic" season="All_Year">
-    <town town="Ronneby" country="168" GMT="01:00:00" DST="01:00:00" />
+    <town town="Ronneby / Karlskrona" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="56°16'0''N" />
       <longitude value="15°15'54''E" />
@@ -2684,7 +2697,7 @@
       <runway name="08/26" length="2500" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Stockholm-Bromma Airport" icao="ESSB" iata="BMA" type="Long_Haul_International" season="All_Year">
+  <airport name="Stockholm-Bromma Airport" icao="ESSB" iata="BMA" type="Regional" season="All_Year">
     <town town="Stockholm" country="168" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="59°21'10''N" />
@@ -2698,8 +2711,8 @@
       <runway name="12/30" length="1668" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Stockholm Västerås Airport" icao="ESOW" iata="VST" type="Regional" season="All_Year">
-    <town town="Stockholm / Västerås" country="168" GMT="01:00:00" DST="01:00:00" />
+  <airport name="Stockholm Västerås Airport" icao="ESOW" iata="VST" type="Short_Haul_International" season="All_Year">
+    <town town="Stockholm" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="59°35'21''N" />
       <longitude value="16°38'0''E" />
@@ -2727,7 +2740,7 @@
     </runways>
   </airport>
   <airport name="Sundsvall-Härnösand Airport" icao="ESNN" iata="SDL" type="Short_Haul_International" season="All_Year">
-    <town town="Sundsvall/ Härnösand" country="168" GMT="01:00:00" DST="01:00:00" />
+    <town town="Sundsvall / Härnösand" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="62°31'41''N" />
       <longitude value="17°26'38''E" />
@@ -2754,7 +2767,7 @@
       <runway name="09/27" length="1700" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Torsby Airport" icao="ESST" iata="TYF" type="Domestic" season="All_Year">
+  <airport name="Torsby Airport" icao="ESST" iata="TYF" type="Regional" season="All_Year">
     <town town="Torsby" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="60°9'27''N" />
@@ -2796,7 +2809,7 @@
       <runway name="14/32" length="2302" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Växjö Kronoberg Airport" icao="ESMX" iata="VXO" type="Regional" season="All_Year">
+  <airport name="Växjö Kronoberg Airport" icao="ESMX" iata="VXO" type="Short_Haul_International" season="All_Year">
     <town town="Växjö" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="56°55'44''N" />
@@ -2810,7 +2823,7 @@
       <runway name="01/19" length="2103" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Visby Airport" icao="ESSV" iata="VBY" type="Regional" season="All_Year">
+  <airport name="Visby Airport" icao="ESSV" iata="VBY" type="Short_Haul_International" season="All_Year">
     <town town="Visby" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="57°39'46''N" />
@@ -2886,8 +2899,8 @@
   </airport>
   <!--Southern Europe, Turkey and Israel (L***)-->
   <!--Albania (LA**)-->
- <airport name="Tirana International Airport" icao="LATI" iata="TIA" type="Long_Haul_International" season="All_Year">
-  <period from="12.01.2013 00:00:00" to="01.01.2199 00:00:00" />
+  <airport name="Tirana International Airport" icao="LATI" iata="TIA" type="Long_Haul_International" season="All_Year">
+    <period from="12/1/2013 12:00:00 AM" to="1/1/2199 12:00:00 AM" />
     <town town="Tirana" country="242" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="41°24'53''N" />
@@ -2902,7 +2915,7 @@
     </runways>
   </airport>
   <!--Bulgaria (LB**)-->
-  <airport name="Burgas Airport" icao="LBBG" iata="BOJ" type="Long_Haul_International" season="All_Year">
+  <airport name="Burgas Airport" icao="LBBG" iata="BOJ" type="Short_Haul_International" season="All_Year">
     <town town="Burgas" country="185" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="42°34'13''N" />
@@ -2945,7 +2958,7 @@
       <runway name="09/27" length="3600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Varna Airport" icao="LBWN" iata="VAR" type="Long_Haul_International" season="All_Year">
+  <airport name="Varna Airport" icao="LBWN" iata="VAR" type="Short_Haul_International" season="All_Year">
     <town town="Varna" country="185" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="43°13'55''N" />
@@ -2961,7 +2974,6 @@
       <runway name="09/27" length="2517" surface="Asphalt" />
     </runways>
   </airport>
-    
   <!--Cyprus (LC**)-->
 <airport name="Larnaca International Airport" icao="LCLK" iata="LCA" type="Long_Haul_International" season="All_Year">
     <town town="Larnaca" country="154" GMT="03:00:00" DST="02:00:00" />
@@ -2993,8 +3005,8 @@
   </airport>
   
   <!--Croatia (LD**)-->
-  <airport name="Bol Airport" icao="LDSB" iata="BWK" type="Domestic" season="All_Year">
-    <town town="Brač Island" country="120" GMT="00:00:00" DST="-01:00:00" />
+   <airport name="Bol Airport" icao="LDSB" iata="BWK" type="Regional" season="All_Year">
+    <town town="Bra?" country="120" GMT="00:00:00" DST="-01:00:00" />
     <coordinates>
       <latitude value="43°17'8''N" />
       <longitude value="16°40'46''E" />
@@ -3021,7 +3033,7 @@
       <runway name="12/30" length="3300" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Lošinj Island Airport" icao="LDLO" iata="LSZ" type="Regional" season="All_Year">
+  <airport name="Lošinj Island Airport" icao="LDLO" iata="LSZ" type="Domestic" season="All_Year">
     <town town="Lošinj" country="120" GMT="00:00:00" DST="-01:00:00" />
     <coordinates>
       <latitude value="44°33'56''N" />
@@ -3119,13 +3131,27 @@
     <runways>
       <runway name="05/23" length="3252" surface="Concrete" />
     </runways>
-      <expansions>
+          <expansions>
      <expansion type="New_terminal" name="Terminal 2" gates="18" date="09 01 2016 00:00:00" notify="True"></expansion>
    </expansions>
   </airport>
   <!--Spain (LE**)-->
+ <airport name="Robert Atty Bessing Airport" icao="WRLM" iata="MLN" type="Domestic" season="All_Year">
+    <town town="Melilla Island" country="123" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="2°50'11''N" />
+      <longitude value="117°22'25''E" />
+    </coordinates>
+    <size value="Very_small" pax="290" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="1428" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="A Coruña Airport" icao="LECO" iata="LCG" type="Regional" season="All_Year">
-    <town town="Culleredo" country="123" GMT="02:00:00" DST="01:00:00" />
+    <town town="A Coruña" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="43°18'7''N" />
       <longitude value="8°22'38''W" />
@@ -3166,7 +3192,7 @@
       <runway name="10/28" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Almería International Airport" icao="LEAM" iata="LEI" type="Regional" season="All_Year">
+  <airport name="Almería International Airport" icao="LEAM" iata="LEI" type="Short_Haul_International" season="All_Year">
     <town town="Almería" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="36°50'38''N" />
@@ -3255,7 +3281,7 @@
     </runways>
   </airport>
   <airport name="Hierro Airport" icao="GCHI" iata="VDE" type="Domestic" season="All_Year">
-    <town town="El Hierro Island" country="123" GMT="01:00:00" DST="00:00:00" />
+    <town town="El Hierro" country="123" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="27°48'53''N" />
       <longitude value="17°53'13''W" />
@@ -3269,7 +3295,7 @@
     </runways>
   </airport>
   <airport name="Fuerteventura Airport" icao="GCFV" iata="FUE" type="Long_Haul_International" season="All_Year">
-    <town town="Puerto del Rosario" country="123" GMT="01:00:00" DST="00:00:00" />
+    <town town="Fuerteventura / Puerto del Rosario" country="123" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="28°27'9''N" />
       <longitude value="13°51'49''W" />
@@ -3297,7 +3323,7 @@
     </runways>
   </airport>
   <airport name="Gran Canaria Airport" icao="GCLP" iata="LPA" type="Long_Haul_International" season="All_Year">
-    <town town="Telde" country="123" GMT="01:00:00" DST="00:00:00" />
+    <town town="Gran Canaria" country="123" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="27°55'54''N" />
       <longitude value="15°23'11''W" />
@@ -3311,8 +3337,8 @@
       <runway name="03R/21L" length="3100" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Federico Garcia Lorca Granada-Jaen Airport" icao="LEGR" iata="GRX" type="Domestic" season="All_Year">
-    <town town="Granada" country="123" GMT="02:00:00" DST="01:00:00" />
+  <airport name="Federico Garcia Lorca Granada-Jaen Airport" icao="LEGR" iata="GRX" type="Regional" season="All_Year">
+    <town town="Granada / Jaén" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="37°11'19''N" />
       <longitude value="3°46'38''W" />
@@ -3354,7 +3380,7 @@
       <runway name="06/24" length="2800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Jerez Airport" icao="LEJR" iata="XRY" type="Regional" season="All_Year">
+  <airport name="Jerez Airport" icao="LEJR" iata="XRY" type="Short_Haul_International" season="All_Year">
     <town town="Jerez de la Frontera" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="36°44'40''N" />
@@ -3369,7 +3395,7 @@
     </runways>
   </airport>
   <airport name="La Gomera Airport" icao="GCGM" iata="GMZ" type="Domestic" season="All_Year">
-    <town town="San Sebastián de La Gomera" country="123" GMT="01:00:00" DST="00:00:00" />
+    <town town="La Gomera" country="123" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="28°1'47''N" />
       <longitude value="17°12'53''W" />
@@ -3382,8 +3408,8 @@
       <runway name="09/27" length="1500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="La Palma Airport" icao="GCLA" iata="SPC" type="Regional" season="All_Year">
-    <town town="Santa Cruz de La Palma" country="123" GMT="01:00:00" DST="00:00:00" />
+  <airport name="La Palma Airport" icao="GCLA" iata="SPC" type="Short_Haul_International" season="All_Year">
+    <town town="La Palma" country="123" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="28°37'35''N" />
       <longitude value="17°45'20''W" />
@@ -3397,7 +3423,7 @@
     </runways>
   </airport>
   <airport name="Lanzarote Airport" icao="GCRR" iata="ACE" type="Long_Haul_International" season="All_Year">
-    <town town="San Bartolomé" country="123" GMT="01:00:00" DST="00:00:00" />
+    <town town="Lanzarote" country="123" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="28°56'43''N" />
       <longitude value="13°36'18''W" />
@@ -3477,7 +3503,21 @@
       <runway name="12/30" length="2750" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Menorca Airport" icao="LEMH" iata="MAH" type="Regional" season="All_Year">
+  <airport name="Robert Atty Bessing Airport" icao="WRLM" iata="MLN" type="Domestic" season="All_Year">
+    <town town="Melilla Island" country="123" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="2°50'11''N" />
+      <longitude value="117°22'25''E" />
+    </coordinates>
+    <size value="Very_small" pax="290" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="1428" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Menorca Airport" icao="LEMH" iata="MAH" type="Short_Haul_International" season="All_Year">
     <town town="Menorca Island" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="39°51'45''N" />
@@ -3493,7 +3533,7 @@
     </runways>
   </airport>
   <airport name="Murcia-San Javier Airport" icao="LELC" iata="MJV" type="Regional" season="All_Year">
-    <town town="Murcia" country="123" GMT="02:00:00" DST="01:00:00" />
+    <town town="Murcia / Cartagena" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="37°46'30''N" />
       <longitude value="0°48'44''E" />
@@ -3508,7 +3548,7 @@
     </runways>
   </airport>
   <airport name="Asturias Airport" icao="LEAS" iata="OVD" type="Regional" season="All_Year">
-    <town town="Ranón" country="123" GMT="02:00:00" DST="01:00:00" />
+    <town town="Oviedo / Gijón" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="43°33'49''N" />
       <longitude value="6°2'5''W" />
@@ -3582,7 +3622,7 @@
     </runways>
   </airport>
   <airport name="San Sebastián Airport" icao="LESO" iata="EAS" type="Domestic" season="All_Year">
-    <town town="Hondarribia" country="123" GMT="02:00:00" DST="01:00:00" />
+    <town town="San Sebastián" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="43°21'23''N" />
       <longitude value="1°47'26''W" />
@@ -3595,7 +3635,7 @@
       <runway name="04/22" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Santander Airport" icao="LEXJ" iata="SDR" type="Regional" season="All_Year">
+  <airport name="Santander Airport" icao="LEXJ" iata="SDR" type="Short_Haul_International" season="All_Year">
     <town town="Santander" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="43°25'37''N" />
@@ -3609,7 +3649,7 @@
       <runway name="11/29" length="2420" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Santiago de Compostela Airport" icao="LEST" iata="SCQ" type="Regional" season="All_Year">
+  <airport name="Santiago de Compostela Airport" icao="LEST" iata="SCQ" type="Long_Haul_International" season="All_Year">
     <town town="Santiago de Compostela" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="42°53'46''N" />
@@ -3623,7 +3663,7 @@
       <runway name="17/35" length="3200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Sevilla Airport" icao="LEZL" iata="SVQ" type="Long_Haul_International" season="All_Year">
+  <airport name="Sevilla Airport" icao="LEZL" iata="SVQ" type="Short_Haul_International" season="All_Year">
     <town town="Sevilla" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="37°25'4''N" />
@@ -3638,7 +3678,7 @@
     </runways>
   </airport>
   <airport name="Tenerife South Airport" icao="GCTS" iata="TFS" type="Long_Haul_International" season="All_Year">
-    <town town="Granadilla de Abona" country="123" GMT="01:00:00" DST="00:00:00" />
+    <town town="Tenerife / Granadilla de Abona" country="123" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="28°2'40''N" />
       <longitude value="16°34'20''W" />
@@ -3652,7 +3692,7 @@
     </runways>
   </airport>
   <airport name="Tenerife North Airport" icao="GCXO" iata="TFN" type="Long_Haul_International" season="All_Year">
-    <town town="San Cristóbal de La Laguna" country="123" GMT="01:00:00" DST="00:00:00" />
+    <town town="Tenerife / San Cristóbal de La Laguna" country="123" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="28°28'57''N" />
       <longitude value="16°20'29''W" />
@@ -3707,8 +3747,8 @@
       <runway name="02/20" length="2400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Vitoria/Foronda Airport" icao="LEVT" iata="VIT" type="Domestic" season="All_Year">
-    <town town="Alava" country="123" GMT="02:00:00" DST="01:00:00" />
+  <airport name="Vitoria/Foronda Airport" icao="LEVT" iata="VIT" type="Regional" season="All_Year">
+    <town town="Vitoria-Gasteiz" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="42°52'58''N" />
       <longitude value="2°43'28''W" />
@@ -3721,7 +3761,7 @@
       <runway name="04/22" length="3500" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Zaragoza Airport" icao="LEZG" iata="ZAZ" type="Regional" season="All_Year">
+  <airport name="Zaragoza Airport" icao="LEZG" iata="ZAZ" type="Short_Haul_International" season="All_Year">
     <town town="Zaragoza" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="41°39'58''N" />
@@ -3737,7 +3777,7 @@
     </runways>
   </airport>
   <!--France (LF**)-->
-  <airport name="Ajaccio–Napoléon Bonaparte Airport" icao="LFKJ" iata="AJA" type="Short_Haul_International" season="All_Year">
+   <airport name="Ajaccio–Napoléon Bonaparte Airport" icao="LFKJ" iata="AJA" type="Short_Haul_International" season="All_Year">
     <town town="Ajaccio" country="140" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="41°55'25''N" />
@@ -3767,7 +3807,7 @@
     </runways>
   </airport>
   <airport name="Paris Beauvais Tillé Airport" icao="LFOB" iata="BVA" type="Long_Haul_International" season="All_Year">
-    <town town="Beauvais/Tillé" country="140" GMT="01:00:00" DST="00:00:00" />
+    <town town="Beauvais" country="140" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="49°27'15''N" />
       <longitude value="2°6'46''E" />
@@ -3781,8 +3821,8 @@
       <runway name="13/31" length="2430" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Bora Bora Airport" icao="NTTB" iata="BOB" type="Short_Haul_International" season="All_Year">
-    <town town="Motu Mute, PF" country="140" GMT="10:00:00" DST="10:00:00" />
+  <airport name="Bora Bora Airport" icao="NTTB" iata="BOB" type="Regional" season="All_Year">
+    <town town="Bora Bora, PF" country="140" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="16°26'37''S" />
       <longitude value="151°45'9''W" />
@@ -3826,7 +3866,7 @@
       <runway name="07R/25L" length="700" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cayenne – Rochambeau Airport" icao="SOCA" iata="CAY" type="Short_Haul_International" season="All_Year">
+  <airport name="Cayenne – Rochambeau Airport" icao="SOCA" iata="CAY" type="Long_Haul_International" season="All_Year">
     <town town="Cayenne, GF" country="140" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="4°49'11''N" />
@@ -3855,7 +3895,7 @@
     </runways>
   </airport>
   <airport name="Fa'a'ā International Airport" icao="NTAA" iata="PPT" type="Long_Haul_International" season="All_Year">
-    <town town="Fa'a'ā, PF" country="140" GMT="10:00:00" DST="10:00:00" />
+    <town town="Fa'a'?, PF" country="140" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="17°33'24''S" />
       <longitude value="149°36'41''W" />
@@ -3954,7 +3994,7 @@
     </runways>
   </airport>
   <airport name="Roland Garros Airport" icao="FMEE" iata="RUN" type="Long_Haul_International" season="All_Year">
-    <town town="Sainte-Marie, RE" country="140" GMT="00:00:00" DST="00:00:00" />
+    <town town="Sainte-Denis, RE" country="140" GMT="00:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="20°53'24''S" />
       <longitude value="55°30'59''E" />
@@ -3969,7 +4009,7 @@
       <runway name="14/32" length="2670" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Saint-Pierre Airport" icao="LFVP" iata="FSP" type="Regional" season="All_Year">
+  <airport name="Saint-Pierre Airport" icao="LFVP" iata="FSP" type="Short_Haul_International" season="All_Year">
     <town town="Saint-Pierre, PM" country="140" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="46°45'47''N" />
@@ -3984,7 +4024,7 @@
     </runways>
   </airport>
   <airport name="Pierrefonds Airport" icao="FMEP" iata="ZSE" type="Regional" season="All_Year">
-    <town town="St Pierre, PM" country="140" GMT="04:00:00" DST="00:00:00" />
+    <town town="St Pierre, RE" country="140" GMT="04:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="21°19'15''S" />
       <longitude value="55°25'29''E" />
@@ -4014,7 +4054,7 @@
     </runways>
   </airport>
   <!--Greece (LG**)-->
-  <airport name="Dimokritos Airport" icao="LGAL" iata="AXD" type="Domestic" season="All_Year">
+ <airport name="Dimokritos Airport" icao="LGAL" iata="AXD" type="Domestic" season="All_Year">
     <town town="Alexandroupolis" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="40°51'21''N" />
@@ -4075,7 +4115,7 @@
     </runways>
   </airport>
   <airport name="Kefallinia Airport" icao="LGKF" iata="EFL" type="Short_Haul_International" season="All_Year">
-    <town town="Kefallinia Island" country="118" GMT="03:00:00" DST="02:00:00" />
+    <town town="Cephalonia Island" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°7'12''N" />
       <longitude value="20°30'1''E" />
@@ -4089,7 +4129,7 @@
     </runways>
   </airport>
   <airport name="Chania International Airport" icao="LGSA" iata="CHQ" type="Long_Haul_International" season="All_Year">
-    <town town="Souda" country="118" GMT="03:00:00" DST="02:00:00" />
+    <town town="Chania" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="35°31'54''N" />
       <longitude value="24°8'58''E" />
@@ -4102,7 +4142,7 @@
       <runway name="11/29" length="3347" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Chios Island National Airport" icao="LGHI" iata="JKH" type="Short_Haul_International" season="All_Year">
+  <airport name="Chios Island National Airport" icao="LGHI" iata="JKH" type="Regional" season="All_Year">
     <town town="Chios Island" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°20'35''N" />
@@ -4244,7 +4284,7 @@
     </runways>
   </airport>
   <airport name="Ioannis Kapodistrias International Airport" icao="LGKR" iata="CFU" type="Short_Haul_International" season="All_Year">
-    <town town="Kerkyra Island" country="118" GMT="03:00:00" DST="02:00:00" />
+    <town town="Kerkyra Corfu Island" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="39°36'6''N" />
       <longitude value="19°54'42''E" />
@@ -4257,7 +4297,7 @@
       <runway name="17/35" length="2375" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kithira Airport" icao="LGKC" iata="KIT" type="Regional" season="All_Year">
+  <airport name="Kithira Airport" icao="LGKC" iata="KIT" type="Short_Haul_International" season="All_Year">
     <town town="Kithira Island" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="36°16'27''N" />
@@ -4299,8 +4339,8 @@
       <runway name="14/32" length="1822" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Limnos Airport" icao="LGLM" iata="LXS" type="Regional" season="All_Year">
-    <town town="Limnos Island" country="118" GMT="03:00:00" DST="02:00:00" />
+  <airport name="Limnos Airport" icao="LGLM" iata="LXS" type="Short_Haul_International" season="All_Year">
+    <town town="Lemnos Island" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="39°55'1''N" />
       <longitude value="25°14'10''E" />
@@ -4369,7 +4409,7 @@
       <runway name="14/32" length="2406" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Naxos Airport" icao="LGNX" iata="JNX" type="Regional" season="All_Year">
+  <airport name="Naxos Airport" icao="LGNX" iata="JNX" type="Domestic" season="All_Year">
     <town town="Naxos Island" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°4'51''N" />
@@ -4398,7 +4438,7 @@
     </runways>
   </airport>
   <airport name="Araxos Airport" icao="LGRX" iata="GPA" type="Regional" season="All_Year">
-    <town town="Patras" country="118" GMT="03:00:00" DST="02:00:00" />
+    <town town="Patras / Pyrgos" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°9'3''N" />
       <longitude value="21°25'32''E" />
@@ -4412,8 +4452,8 @@
       <runway name="18R/36L" length="3352" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Aktion National Airport" icao="LGPZ" iata="PVK" type="Domestic" season="All_Year">
-    <town town="Preveza/Lefkada" country="118" GMT="03:00:00" DST="02:00:00" />
+  <airport name="Aktion National Airport" icao="LGPZ" iata="PVK" type="Short_Haul_International" season="All_Year">
+    <town town="Preveza / Lefkada" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°55'31''N" />
       <longitude value="20°45'55''E" />
@@ -4469,7 +4509,7 @@
     </runways>
   </airport>
   <airport name="Sitia Airport" icao="LGST" iata="JSH" type="Regional" season="All_Year">
-    <town town="Crete Island" country="118" GMT="03:00:00" DST="02:00:00" />
+    <town town="Sitia" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="35°12'57''N" />
       <longitude value="26°6'4''E" />
@@ -4482,7 +4522,7 @@
       <runway name="05/23" length="2074" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Skiathos Island National Airport" icao="LGSK" iata="JSI" type="Domestic" season="All_Year">
+  <airport name="Skiathos Island National Airport" icao="LGSK" iata="JSI" type="Short_Haul_International" season="All_Year">
     <town town="Skiathos" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="39°10'37''N" />
@@ -4497,7 +4537,7 @@
     </runways>
   </airport>
   <airport name="Skiros Airport" icao="LGSY" iata="SKU" type="Domestic" season="All_Year">
-    <town town="Skiros Island" country="118" GMT="02:00:00" DST="02:00:00" />
+    <town town="Skyros Island" country="118" GMT="02:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°58'3''N" />
       <longitude value="24°29'13''E" />
@@ -4540,7 +4580,7 @@
     </runways>
   </airport>
   <airport name="Nea Anchialos Airport" icao="LGBL" iata="VOL" type="Short_Haul_International" season="All_Year">
-    <town town="Nea Anchialos" country="118" GMT="03:00:00" DST="02:00:00" />
+    <town town="Volos" country="118" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="39°13'10''N" />
       <longitude value="22°47'39''E" />
@@ -4568,7 +4608,7 @@
     </runways>
   </airport>
   <!--Hungary (LH**)-->
- <airport name="Budapest Liszt Ferenc International Airport" icao="LHPB" iata="BUD" type="Long_Haul_International" season="All_Year">
+  <airport name="Budapest Liszt Ferenc International Airport" icao="LHPB" iata="BUD" type="Long_Haul_International" season="All_Year">
     <town town="Budapest" country="159" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="47°26'12''N" />
@@ -4585,7 +4625,7 @@
     </runways>
   </airport>
   <!--Italy (LI**)-->
- <airport name="Alghero / Fertilia Airport" icao="LIEA" iata="AHO" type="Regional" season="All_Year">
+ <airport name="Alghero / Fertilia Airport" icao="LIEA" iata="AHO" type="Short_Haul_International" season="All_Year">
     <town town="Alghero" country="141" GMT="01:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="40°37'55''N" />
@@ -4599,7 +4639,7 @@
       <runway name="02/20" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ancona / Falconara Airport" icao="LIPY" iata="AOI" type="Regional" season="All_Year">
+  <airport name="Ancona / Falconara Airport" icao="LIPY" iata="AOI" type="Short_Haul_International" season="All_Year">
     <town town="Ancona" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="43°36'58''N" />
@@ -4613,7 +4653,7 @@
       <runway name="04/22" length="2962" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Bari Airport" icao="LIBD" iata="BRI" type="Long_Haul_International" season="All_Year">
+  <airport name="Bari Airport" icao="LIBD" iata="BRI" type="Short_Haul_International" season="All_Year">
     <town town="Bari" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="41°8'19''N" />
@@ -4657,7 +4697,7 @@
       <runway name="12/30" length="2800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Bolzano Airport" icao="LIPB" iata="BZO" type="Domestic" season="All_Year">
+  <airport name="Bolzano Airport" icao="LIPB" iata="BZO" type="Regional" season="All_Year">
     <town town="Bolzano" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="46°27'36''N" />
@@ -4671,7 +4711,7 @@
       <runway name="01/19" length="1294" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Brindisi / Casale Airport" icao="LIBR" iata="BDS" type="Regional" season="All_Year">
+  <airport name="Brindisi / Casale Airport" icao="LIBR" iata="BDS" type="Short_Haul_International" season="All_Year">
     <town town="Brindisi" country="141" GMT="01:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="40°39'27''N" />
@@ -4743,7 +4783,7 @@
     </runways>
   </airport>
   <airport name="Marina Di Campo Airport" icao="LIRJ" iata="EBA" type="Regional" season="All_Year">
-    <town town="Marina  Di Campo" country="141" GMT="02:00:00" DST="01:00:00" />
+    <town town="Elba / Marina  Di Campo" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="42°45'37''N" />
       <longitude value="10°14'21''E" />
@@ -4756,7 +4796,7 @@
       <runway name="16/34" length="949" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Firenze / Amerigo Vespucci Airport" icao="LIRQ" iata="FLR" type="Domestic" season="All_Year">
+  <airport name="Firenze / Amerigo Vespucci Airport" icao="LIRQ" iata="FLR" type="Short_Haul_International" season="All_Year">
     <town town="Firenze" country="141" GMT="01:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="43°48'36''N" />
@@ -4771,7 +4811,7 @@
       <runway name="05/23" length="1750" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Foggia / Gino Lisa Airport" icao="LIBF" iata="FOG" type="Domestic" season="All_Year">
+  <airport name="Foggia / Gino Lisa Airport" icao="LIBF" iata="FOG" type="Regional" season="All_Year">
     <town town="Foggia" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="41°25'58''N" />
@@ -4785,7 +4825,7 @@
       <runway name="16/34" length="1440" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Genova / Sestri Cristoforo Colombo Airport" icao="LIMJ" iata="GOA" type="Domestic" season="All_Year">
+  <airport name="Genova / Sestri Cristoforo Colombo Airport" icao="LIMJ" iata="GOA" type="Short_Haul_International" season="All_Year">
     <town town="Genova" country="141" GMT="01:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="44°24'47''N" />
@@ -4799,7 +4839,7 @@
       <runway name="10/28" length="2915" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lamezia Terme / Sant'Eufemia Airport" icao="LICA" iata="SUF" type="Regional" season="All_Year">
+  <airport name="Lamezia Terme / Sant'Eufemia Airport" icao="LICA" iata="SUF" type="Short_Haul_International" season="All_Year">
     <town town="Lamezia Terme" country="141" GMT="01:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°54'19''N" />
@@ -4813,7 +4853,7 @@
       <runway name="10/28" length="2414" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lampedusa Airport" icao="LICD" iata="LMP" type="Domestic" season="All_Year">
+  <airport name="Lampedusa Airport" icao="LICD" iata="LMP" type="Short_Haul_International" season="All_Year">
     <town town="Lampedusa" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="35°29'52''N" />
@@ -4872,7 +4912,7 @@
       <runway name="06/24" length="2628" surface="Bitumen" />
     </runways>
   </airport>
-  <airport name="Olbia / Costa Smeralda Airport" icao="LIEO" iata="OLB" type="Regional" season="All_Year">
+  <airport name="Olbia / Costa Smeralda Airport" icao="LIEO" iata="OLB" type="Short_Haul_International" season="All_Year">
     <town town="Olbia" country="141" GMT="01:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="40°53'55''N" />
@@ -4916,7 +4956,7 @@
       <runway name="08/26" length="1675" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Parma Airport" icao="LIMP" iata="PMF" type="Domestic" season="All_Year">
+  <airport name="Parma Airport" icao="LIMP" iata="PMF" type="Short_Haul_International" season="All_Year">
     <town town="Parma" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="44°49'28''N" />
@@ -4930,7 +4970,7 @@
       <runway name="02/20" length="2122" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Perugia / San Egidio Airport" icao="LIRZ" iata="PEG" type="Domestic" season="All_Year">
+  <airport name="Perugia / San Egidio Airport" icao="LIRZ" iata="PEG" type="Short_Haul_International" season="All_Year">
     <town town="Perugia" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="43°5'45''N" />
@@ -4973,7 +5013,7 @@
       <runway name="04R/22L" length="3002" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Reggio Calabria Airport" icao="LICR" iata="REG" type="Short_Haul_International" season="All_Year">
+  <airport name="Reggio Calabria Airport" icao="LICR" iata="REG" type="Regional" season="All_Year">
     <town town="Reggio Calabria" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="38°4'16''N" />
@@ -4988,7 +5028,7 @@
       <runway name="15/33" length="1996" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Rome Ciampino Airport" icao="LIRA" iata="CIA" type="Long_Haul_International" season="All_Year">
+  <airport name="Rome Ciampino Airport" icao="LIRA" iata="CIA" type="Short_Haul_International" season="All_Year">
     <town town="Rome" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="41°47'57''N" />
@@ -5023,7 +5063,7 @@
       <runway name="16R/34L" length="3900" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Trapani / Vincenzo Florio Airport" icao="LICT" iata="TPS" type="Domestic" season="All_Year">
+  <airport name="Trapani / Vincenzo Florio Airport" icao="LICT" iata="TPS" type="Short_Haul_International" season="All_Year">
     <town town="Trapani" country="141" GMT="01:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°54'41''N" />
@@ -5037,7 +5077,7 @@
       <runway name="13R/31L" length="2695" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Treviso / Antonio Canova Airport" icao="LIPH" iata="TSF" type="Domestic" season="All_Year">
+  <airport name="Treviso / Antonio Canova Airport" icao="LIPH" iata="TSF" type="Short_Haul_International" season="All_Year">
     <town town="Treviso" country="141" GMT="01:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="45°38'54''N" />
@@ -5094,8 +5134,9 @@
     <runways>
       <runway name="04/22" length="3068" surface="Asphalt" />
     </runways>
-  </airport>  <!--Slovenia (LJ**)-->
-  <airport name="Ljubljana Jože Pučnik Airport" icao="LJLJ" iata="LJU" type="Long_Haul_International" season="All_Year">
+  </airport>
+    <!--Slovenia (LJ**)-->
+   <airport name="Ljubljana Jože Pučnik Airport" icao="LJLJ" iata="LJU" type="Long_Haul_International" season="All_Year">
     <town town="Ljubljana" country="105" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="46°13'24''N" />
@@ -5138,7 +5179,7 @@
     </runways>
   </airport>
   <!--Czech Republic (LK**)-->
-<airport name="Prague Ruzyně Airport" icao="LKPR" iata="PRG" type="Long_Haul_International" season="All_Year">
+  <airport name="Prague Ruzyně Airport" icao="LKPR" iata="PRG" type="Long_Haul_International" season="All_Year">
     <town town="Prague" country="166" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="50°6'3''N" />
@@ -5155,7 +5196,7 @@
     </runways>
   </airport>
     <!--Israel (LL**)-->
-  <airport name="Ben Gurion International Airport" icao="LLBG" iata="TLV" type="Long_Haul_International" season="All_Year">
+<airport name="Ben Gurion International Airport" icao="LLBG" iata="TLV" type="Long_Haul_International" season="All_Year">
     <town town="Tel Aviv" country="128" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="32°0'41''N" />
@@ -5188,7 +5229,7 @@
       <runway name="13/31" length="3544" surface="Asphalt" />
     </runways>
   </airport>
-     <airport name="Malta International Airport" icao="LMML" iata="MLA" type="Long_Haul_International" season="All_Year">
+ <airport name="Malta International Airport" icao="LMML" iata="MLA" type="Long_Haul_International" season="All_Year">
     <town town="Valletta" country="132" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="35°51'26''N" />
@@ -5205,7 +5246,7 @@
     </runways>
   </airport>
   <!--Austria (LO**)-->
-   <airport name="Graz Airport" icao="LOWG" iata="GRZ" type="Short_Haul_International" season="All_Year">
+  <airport name="Graz Airport" icao="LOWG" iata="GRZ" type="Long_Haul_International" season="All_Year">
     <town town="Graz" country="169" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="46°59'27''N" />
@@ -5221,7 +5262,7 @@
       <runway name="17R/35L" length="760" surface="Grass" />
     </runways>
   </airport>
-  <airport name="Innsbruck Airport" icao="LOWI" iata="INN" type="Short_Haul_International" season="All_Year">
+  <airport name="Innsbruck Airport" icao="LOWI" iata="INN" type="Long_Haul_International" season="All_Year">
     <town town="Innsbruck" country="169" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="47°15'37''N" />
@@ -5236,7 +5277,7 @@
     </runways>
   </airport>
   <airport name="Klagenfurt Airport" icao="LOWK" iata="KLU" type="Short_Haul_International" season="All_Year">
-    <town town="Klagenfurt am Wörthersee" country="169" GMT="02:00:00" DST="01:00:00" />
+    <town town="Klagenfurt" country="169" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="46°38'33''N" />
       <longitude value="14°20'15''E" />
@@ -5298,7 +5339,6 @@
       <runway name="16/34" length="3600" surface="Asphalt" />
     </runways>
   </airport>
-  
   <!--Portugal (LP**)-->
  <airport name="Beja International Airport" icao="LPBJ" iata="BYJ" type="Short_Haul_International" season="All_Year">
     <town town="Beja" country="150" GMT="00:00:00" DST="01:00:00" />
@@ -5427,7 +5467,7 @@
       <runway name="10/28" length="1595" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Lajes Field" icao="LPLA" iata="TER" type="Short_Haul_International" season="All_Year">
+  <airport name="Lajes Field" icao="LPLA" iata="TER" type="Long_Haul_International" season="All_Year">
     <town town="Lajes" country="150" GMT="-01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="38°45'42''N" />
@@ -5514,7 +5554,7 @@
     </runways>
   </airport>
   <airport name="Porto Santo Airport" icao="LPPS" iata="PXO" type="Short_Haul_International" season="All_Year">
-    <town town="Vila Baleira" country="150" GMT="00:00:00" DST="01:00:00" />
+    <town town="Porto Santo Island" country="150" GMT="00:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="33°4'24''N" />
       <longitude value="16°21'0''W" />
@@ -5614,7 +5654,7 @@
     </runways>
   </airport>
   <!--Bosnia and Herzegovina (LQ**)-->
-<airport name="Banja Luka International Airport" icao="LQBK" iata="BNX" type="Long_Haul_International" season="All_Year">
+ <airport name="Banja Luka International Airport" icao="LQBK" iata="BNX" type="Short_Haul_International" season="All_Year">
     <town town="Banja Luka" country="248" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="44°56'29''N" />
@@ -5628,7 +5668,7 @@
       <runway name="17/35" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Mostar International Airport" icao="LQMO" iata="OMO" type="Long_Haul_International" season="All_Year">
+  <airport name="Mostar International Airport" icao="LQMO" iata="OMO" type="Short_Haul_International" season="All_Year">
     <town town="Mostar" country="248" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="43°16'58''N" />
@@ -5657,7 +5697,7 @@
       <runway name="12/30" length="2700" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Tuzla International Airport" icao="LQTZ" iata="TZL" type="Long_Haul_International" season="All_Year">
+  <airport name="Tuzla International Airport" icao="LQTZ" iata="TZL" type="Short_Haul_International" season="All_Year">
     <town town="Tuzla" country="248" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="44°27'31''N" />
@@ -5963,7 +6003,7 @@
     </runways>
   </airport>
   <!--Turkey (LT**)-->
-   <airport name="Adana Şakirpaşa Airport" icao="LTAF" iata="ADA" type="Long_Haul_International" season="All_Year">
+   <airport name="Adana Şakirpaşa Airport" icao="LTAF" iata="ADA" type="Short_Haul_International" season="All_Year">
     <town town="Adana" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="36°58'55''N" />
@@ -5977,7 +6017,7 @@
       <runway name="05/23" length="2750" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ağrı Airport" icao="LTCO" iata="AJI" type="Short_Haul_International" season="All_Year">
+  <airport name="Ağrı Airport" icao="LTCO" iata="AJI" type="Domestic" season="All_Year">
     <town town="Ağrı" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="39°39'16''N" />
@@ -5991,7 +6031,7 @@
       <runway name="16/34" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Amasya - Merzifon Airport" icao="LTAP" iata="MZH" type="Short_Haul_International" season="All_Year">
+  <airport name="Amasya - Merzifon Airport" icao="LTAP" iata="MZH" type="Domestic" season="All_Year">
     <town town="Amasya" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="40°49'45''N" />
@@ -6052,7 +6092,7 @@
       <runway name="18R/36L" length="2990" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Balıkesir Airport" icao="LTBF" iata="BZI" type="Short_Haul_International" season="All_Year">
+  <airport name="Balıkesir Airport" icao="LTBF" iata="BZI" type="Domestic" season="All_Year">
     <town town="Balıkesir" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°37'9''N" />
@@ -6066,7 +6106,7 @@
       <runway name="18/36" length="2990" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Batman Airport" icao="LTCJ" iata="BAL" type="Short_Haul_International" season="All_Year">
+  <airport name="Batman Airport" icao="LTCJ" iata="BAL" type="Domestic" season="All_Year">
     <town town="Batman" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°55'56''N" />
@@ -6109,7 +6149,7 @@
       <runway name="07L/25R" length="2993" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Çanakkale Airport" icao="LTBH" iata="CKZ" type="Short_Haul_International" season="All_Year">
+  <airport name="Çanakkale Airport" icao="LTBH" iata="CKZ" type="Domestic" season="All_Year">
     <town town="Çanakkale" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="30°8'15''N" />
@@ -6137,7 +6177,7 @@
       <runway name="01/19" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Denizli Çardak Airport" icao="LTAY" iata="DNZ" type="Short_Haul_International" season="All_Year">
+  <airport name="Denizli Çardak Airport" icao="LTAY" iata="DNZ" type="Domestic" season="All_Year">
     <town town="Denizli" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°47'8''N" />
@@ -6151,7 +6191,7 @@
       <runway name="06/24" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Diyarbakır Airport" icao="LTCC" iata="DIY" type="Short_Haul_International" season="All_Year">
+  <airport name="Diyarbakır Airport" icao="LTCC" iata="DIY" type="Domestic" season="All_Year">
     <town town="Diyarbakır" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°53'38''N" />
@@ -6165,7 +6205,7 @@
       <runway name="16/34" length="3549" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Balıkesir - Koca Seyit Airport" icao="LTFD" iata="EDO" type="Short_Haul_International" season="All_Year">
+  <airport name="Balıkesir - Koca Seyit Airport" icao="LTFD" iata="EDO" type="Domestic" season="All_Year">
     <town town="Edremit" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="39°33'42''N" />
@@ -6193,7 +6233,7 @@
       <runway name="13/31" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Erzincan Airport" icao="LTCD" iata="ERC" type="Short_Haul_International" season="All_Year">
+  <airport name="Erzincan Airport" icao="LTCD" iata="ERC" type="Domestic" season="All_Year">
     <town town="Erzincan" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="39°42'33''N" />
@@ -6295,7 +6335,7 @@
       <runway name="12/30" length="3000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Isparta - Süleyman Demirel Airport" icao="LTFC" iata="ISE" type="Short_Haul_International" season="All_Year">
+  <airport name="Isparta - Süleyman Demirel Airport" icao="LTFC" iata="ISE" type="Regional" season="All_Year">
     <town town="Isparta" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°51'42''N" />
@@ -6356,7 +6396,7 @@
       <runway name="16R/34L" length="3240" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Kahramanmaraş Airport" icao="LTCN" iata="KCM" type="Short_Haul_International" season="All_Year">
+  <airport name="Kahramanmaraş Airport" icao="LTCN" iata="KCM" type="Domestic" season="All_Year">
     <town town="Kahramanmaraş" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°32'20''N" />
@@ -6384,7 +6424,7 @@
       <runway name="06/24" length="3500" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Kayseri - Erkilet Airport" icao="LTAU" iata="ASR" type="Long_Haul_International" season="All_Year">
+  <airport name="Erkilet International Airport" icao="LTAU" iata="ASR" type="Long_Haul_International" season="All_Year">
     <town town="Kayseri" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°46'13''N" />
@@ -6398,7 +6438,7 @@
       <runway name="07/25" length="3000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Cengiz Topel Airport" icao="LTBQ" iata="KCO" type="Short_Haul_International" season="All_Year">
+  <airport name="Cengiz Topel Airport" icao="LTBQ" iata="KCO" type="Domestic" season="All_Year">
     <period from="01.01.2011 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Kocaeli" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
@@ -6474,7 +6514,7 @@
       <runway name="03/21" length="2500" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Muş Airport" icao="LTCK" iata="MSR" type="Short_Haul_International" season="All_Year">
+  <airport name="Muş Airport" icao="LTCK" iata="MSR" type="Domestic" season="All_Year">
     <town town="Muş" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°44'41''N" />
@@ -6488,7 +6528,7 @@
       <runway name="11/29" length="3551" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nevşehir - Kapadokya Airport" icao="LTAZ" iata="NAV" type="Short_Haul_International" season="All_Year">
+  <airport name="Nevşehir - Kapadokya Airport" icao="LTAZ" iata="NAV" type="Domestic" season="All_Year">
     <town town="Nevşehir" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°46'8''N" />
@@ -6516,7 +6556,7 @@
       <runway name="13/31" length="3000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Şanlıurfa - GAP Airport" icao="LTCS" iata="GNY" type="Short_Haul_International" season="All_Year">
+  <airport name="Şanlıurfa - GAP Airport" icao="LTCS" iata="GNY" type="Domestic" season="All_Year">
     <town town="Şanlıurfa" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°27'0''N" />
@@ -6530,7 +6570,7 @@
       <runway name="04/22" length="3988" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Siirt Airport" icao="LTCL" iata="SXZ" type="Short_Haul_International" season="All_Year">
+  <airport name="Siirt Airport" icao="LTCL" iata="SXZ" type="Domestic" season="All_Year">
     <town town="Siirt" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="37°58'41''N" />
@@ -6544,7 +6584,7 @@
       <runway name="06/24" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Sinop Airport" icao="LTCM" iata="NOP" type="Short_Haul_International" season="All_Year">
+  <airport name="Sinop Airport" icao="LTCM" iata="NOP" type="Domestic" season="All_Year">
     <town town="Sinop" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="42°0'57''N" />
@@ -6572,7 +6612,7 @@
       <runway name="01/19" length="3810" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Çorlu Airport" icao="LTBU" iata="TEQ" type="Short_Haul_International" season="All_Year">
+  <airport name="Tekirdağ Çorlu Airport" icao="LTBU" iata="TEQ" type="Domestic" season="All_Year">
     <town town="Tekirdağ" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="41°8'18''N" />
@@ -6586,7 +6626,7 @@
       <runway name="05/23" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Tokat Airport" icao="LTAW" iata="TJK" type="Short_Haul_International" season="All_Year">
+  <airport name="Tokat Airport" icao="LTAW" iata="TJK" type="Domestic" season="All_Year">
     <town town="Tokat" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="40°18'42''N" />
@@ -6614,7 +6654,7 @@
       <runway name="11/29" length="2640" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Uşak Airport" icao="LTBO" iata="USQ" type="Short_Haul_International" season="All_Year">
+  <airport name="Uşak Airport" icao="LTBO" iata="USQ" type="Domestic" season="All_Year">
     <town town="Uşak" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°67'96''N" />
@@ -6628,7 +6668,7 @@
       <runway name="09/27" length="2556" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Van - Ferit Melen Airport" icao="LTCI" iata="VAN" type="Short_Haul_International" season="All_Year">
+  <airport name="Van - Ferit Melen Airport" icao="LTCI" iata="VAN" type="Regional" season="All_Year">
     <town town="Van" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="38°28'6''N" />
@@ -6658,7 +6698,7 @@
   </airport>
   <!--Moldova (LU**)-->
   <airport name="Chișinău International Airport" icao="LUKK" iata="KIV" type="Short_Haul_International" season="All_Year">
-    <town town="Chișinău" country="232" GMT="03:00:00" DST="02:00:00" />
+    <town town="Chilinlu" country="232" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="46°55'40''N" />
       <longitude value="28°55'51''E" />
@@ -6687,7 +6727,7 @@
     </runways>
   </airport>
   <!--Serbia and Montenegro (LY**)-->
-  <airport name="Belgrade Nikola Tesla Airport" icao="LYBE" iata="BEG" type="Long_Haul_International" season="All_Year">
+   <airport name="Belgrade Nikola Tesla Airport" icao="LYBE" iata="BEG" type="Long_Haul_International" season="All_Year">
     <town town="Belgrade" country="104" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="44°49'9''N" />
@@ -6702,7 +6742,7 @@
       <runway name="12/30" length="3400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Morava Airport" icao="LYKV" iata="KVO" type="Short_Haul_International" season="All_Year">
+  <airport name="Morava Airport" icao="LYKV" iata="KVO" type="Domestic" season="All_Year">
     <town town="Kraljevo" country="104" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="43°49'7''N" />
@@ -6716,7 +6756,7 @@
       <runway name="14L/32R" length="2200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Niš Constantine the Great Airport" icao="LYNI" iata="INI" type="Long_Haul_International" season="All_Year">
+  <airport name="Niš Constantine the Great Airport" icao="LYNI" iata="INI" type="Short_Haul_International" season="All_Year">
     <town town="Niš" country="104" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="43°20'14''N" />
@@ -6730,8 +6770,8 @@
       <runway name="11R/29L" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Užice-Ponikve Airport" icao="LYUE" iata="UZC" type="Regional" season="All_Year">
-    <town town="Niš" country="104" GMT="02:00:00" DST="01:00:00" />
+  <airport name="Užice-Ponikve Airport" icao="LYUE" iata="UZC" type="Short_Haul_International" season="All_Year">
+    <town town="Užice" country="104" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="43°53'55''N" />
       <longitude value="19°41'51''E" />
@@ -6744,7 +6784,7 @@
       <runway name="11L/29R" length="3200" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Berane Airport" icao="LYBR" iata="IVG" type="Domestic" season="All_Year">
+  <airport name="Berane Airport" icao="LYBR" iata="IVG" type="Domestic" season="All_Year">
     <town town="Berane" country="249" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="42°50'20''N" />
@@ -8860,7 +8900,7 @@
     </runways>
   </airport>
   <!--Belarus (UM**)-->
-    <airport name="Minsk National Airport" icao="UMMS" iata="MSQ" type="Long_Haul_International" season="All_Year">
+ <airport name="Minsk National Airport" icao="UMMS" iata="MSQ" type="Long_Haul_International" season="All_Year">
     <town town="Minsk" country="217" GMT="03:00:00" DST="03:00:00" />
     <coordinates>
       <latitude value="53°52'57''N" />
@@ -8874,8 +8914,8 @@
       <runway name="13/31" length="3641" surface="Concrete" />
     </runways>
   </airport>
-  <!--added airports-->
-  <airport name="Ohrid St. Paul the Apostle Airport" icao="LWOH" iata="OHD" type="Regional" season="All_Year">
+<!--Republic of Macedonia-->
+    <airport name="Ohrid St. Paul the Apostle Airport" icao="LWOH" iata="OHD" type="Short_Haul_International" season="All_Year">
     <town town="Ohrid" country="284" GMT="01:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="41°10'48''N" />
@@ -8889,7 +8929,7 @@
       <runway name="02/20" length="2550" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Skopje Alexander the Great Airport" icao="LWSK" iata="SKP" type="Short_Haul_International" season="All_Year">
+  <airport name="Skopje Alexander the Great Airport" icao="LWSK" iata="SKP" type="Long_Haul_International" season="All_Year">
     <town town="Skopje" country="284" GMT="01:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="41°57'41''N" />

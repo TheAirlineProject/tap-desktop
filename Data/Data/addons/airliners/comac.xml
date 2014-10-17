@@ -8,11 +8,23 @@
     <capacity passengers="178" cockpitcrew="5" cabincrew="2" maxclasses="2" />
     <produced from="1980" to="1984" rate="13" />
   </airliner>
-  <airliner manufacturer="Comac" name="Comac C919" price="6528370"> <!--7700000-->
-    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
-    <specs wingspan="38.9" length="35.8" range="4075" speed="834" fuelcapacity="8300" consumption="0.063"
-           runwaylengthrequired="1700" />
-    <capacity passengers="156" cockpitcrew="2" cabincrew="3" maxclasses="2" />
-    <produced from="2016" to="2199" rate="17" />
-  </airliner>
+<airliner manufacturer="Comac" name="Comac C919" price="12375000">
+<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+<specs wingspan="38.9" length="35.8" range="4075" speed="834" fuelcapacity="16160" consumption="0.024" runwaylengthrequired="1700"/>
+<capacity passengers="168" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+<produced from="2016" to="2199" rate="17"/>
+</airliner>
+<airliner manufacturer="Comac" name="Comac C929" price="2155000">
+<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
+<specs wingspan="55.6" length="53.5" range="9500" speed="950" fuelcapacity="95000" consumption="0.034" runwaylengthrequired="2290"/>
+<capacity passengers="290" cockpitcrew="2" cabincrew="5" maxclasses="3"/>
+<produced from="2018" to="2199" rate="17"/>
+</airliner>
+
+<airliner manufacturer="Comac" name="Comac C939" price="32455000">
+<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
+<specs wingspan="65.5" length="63.5" range="11750" speed="895" fuelcapacity="150000" consumption="0.032" runwaylengthrequired="2600"/>
+<capacity passengers="390" cockpitcrew="2" cabincrew="8" maxclasses="3"/>
+<produced from="2020" to="2199" rate="17"/>
+</airliner>
 </airliners>

@@ -384,6 +384,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                                            Translator.GetInstance().GetString("News", "1020", "message"),
                                                            airliner.Name)));
             }
+
+            if (airliner.Airliner.Condition < 10)
+            {
+                airliner.GroundedToDate = GameObject.GetInstance().GameTime.AddYears(10);
+            }
         }
         //returns the flight crusing speed based on the wind
         public static int GetCruisingSpeed(FleetAirliner airliner)
@@ -495,7 +500,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airliner.Airliner.Condition = Math.Min(100, airliner.Airliner.Condition + deltaCondition);
 
-                if (airliner.Airliner.Airline.IsHuman)
+                if (airliner.Airliner.Airline.IsHuman && Settings.GetInstance().MailsOnMaintenance)
                     GameObject.GetInstance()
                                                    .NewsBox.addNews(
                                                        new News(
@@ -505,7 +510,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                                            string.Format(
                                                                Translator.GetInstance().GetString("News", "1019", "message"),
                                                                airliner.Name,
-                                                               nextMaintenance.Name)));
+                                                               nextMaintenance.Name,new ValueCurrencyConverter().Convert(price))));
 
             }
             else

@@ -160,6 +160,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static FleetAirliner BuyAirliner(Airline airline, Airliner airliner, Airport airport, double discount)
         {
+            
             FleetAirliner fAirliner = AddAirliner(airline, airliner, airport, false);
 
             double price = airliner.getPrice() * ((100 - discount) / 100);
@@ -362,12 +363,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //launches a subsidiary to operate on its own
         public static void MakeSubsidiaryAirlineIndependent(SubsidiaryAirline airline)
         {
+            if (airline.Profile.CEO == airline.Airline.Profile.CEO)
+                airline.Profile.CEO = string.Format("{0} {1}", Names.GetInstance().getRandomFirstName(airline.Profile.Country), Names.GetInstance().getRandomLastName(airline.Profile.Country));
+
             airline.Airline.removeSubsidiaryAirline(airline);
 
             airline.Airline = null;
-
-            airline.Profile.CEO = string.Format("{0} {1}", Names.GetInstance().getRandomFirstName(airline.Profile.Country), Names.GetInstance().getRandomLastName(airline.Profile.Country));
-
+      
             if (!Airlines.ContainsAirline(airline))
                 Airlines.AddAirline(airline);
         }

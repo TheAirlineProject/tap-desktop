@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Air Anglia" iata="AQ2" color="Yellow" country="130" CEO="Jonathan Smith" mentality="Safe" market="Regional" preferedairport="NWI">
+    <narrative narrative="Air Anglia was around from 1970-1980 and made its home at the city of Norwich in East Anglia. It was formed when three local air taxi companys merged. And it ceased operation
+    when it merged with three other airlines, British Island Airways,Air Wales (not the same as the later one) and Air Westward to form AirUK. Its first routes were with DC-3s to Aberdeen and Humberside. In 1971 it started services to Liverpool,Dublin,
+    Newcastle,Manchester, and Edinburgh. In 1974 it got 2 F27's. This marked when they would begin year round service from NWI to Aberdeen and Amsterdam. Many travellers
+    on the Aberdeen route were in the oil industry. The start of international ops to Amsterdam also led to an agreemnt with KLM to have any of Air Anglias destinations in the UK not served by KLM
+    part of KLMs reservation system. So this led to them handling many of KLMs connecting flight passengers to smaller airports. Seasonal routes in summer included Norwich,Humberside, and Aberdeen 
+    to Jersey. They would also start flights from Abderdeen,Edinburgh,Humberside and Leeds to Amsterdam. In the late 70s that used Piper Navajos on routes from Norwich to Newquay,Birmingham,and Swansea. They at the end had ten F27s and 2 F28's.
+    Other planes they were known to have flown were Islanders,HP Heralds,EMB 110's, and Cessna 404's." />
+  </profile>
+  <info real="True" from="1970" to="1980" />
+  <prefereds aircrafts="Fokker F27,Fokker F28-1000,Fokker F28-4000,Douglas DC-3,BN-2A Islander,EMB 110 Bandeirante,Cessna 404 Titan,PA-31 Navajo,PA-31T Cheyenne"></prefereds>
+</airline>

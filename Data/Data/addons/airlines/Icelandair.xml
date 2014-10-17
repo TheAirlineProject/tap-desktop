@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Icelandair" iata="FI" color="MidnightBlue" country="121" CEO="Bikir Holm Guonason" mentality="Safe"
            market="Regional" preferedairport="KEF">
-  </profile>
+   <narrative narrative="Icelandair is the main airline of Iceland, headquartered at Reykjavík Airport in Reykjavík. It traces its roots back to 1937, when Flugfélag Akureyrar was founded in Akureyri on the north coast of Iceland. Flight operations started in 1938 with a single floatplane of the type Waco YKS-7." />
+   </profile>
+ 
   <info real="True" from="1937" to="2199" />
 </airline>

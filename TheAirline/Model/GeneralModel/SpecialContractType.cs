@@ -12,6 +12,7 @@ using TheAirline.Model.AirportModel;
 namespace TheAirline.Model.GeneralModel
 {
     /*the class for a special contract type*/
+    [Serializable]
     public class SpecialContractType : ISerializable
     {
           [Versioning("name")]

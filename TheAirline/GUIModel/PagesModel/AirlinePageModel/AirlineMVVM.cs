@@ -11,7 +11,6 @@
     using System.Windows.Data;
     using System.Windows.Markup;
     using System.Windows.Media;
-
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlineModel.AirlineCooperationModel;
@@ -21,6 +20,7 @@
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers;
+    using TheAirline.Model.GeneralModel.InvoicesModel;
     using TheAirline.Model.GeneralModel.StatisticsModel;
     using TheAirline.Model.PilotModel;
 
@@ -102,6 +102,7 @@
             this.Codeshares = new ObservableCollection<Airline>();
             this.Cooperations = new List<CooperationMVVM>();
             this.MaintenanceCenters = new ObservableCollection<MaintenanceCenter>();
+            this.Maintenances = new List<AirlineMaintenanceMVVM>();
 
             this.Airline.Routes.ForEach(r => this.Routes.Add(new AirlineRouteMVVM(r)));
             this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l, this.Airline)));
@@ -145,6 +146,33 @@
                     this.MaintenanceCenters.Add(center);
             }
 
+            foreach (AirlinerMaintenanceType maintenanceType in AirlinerMaintenanceTypes.GetMaintenanceTypes())
+            {
+                MaintenanceCenterMVVM selected;
+
+                List<MaintenanceCenterMVVM> centers = new List<MaintenanceCenterMVVM>();
+
+                foreach (Airport airport in GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel >= maintenanceType.Requirement.TypeLevel))
+                    centers.Add(new MaintenanceCenterMVVM(airport));
+
+                foreach (MaintenanceCenter mCenter in GameObject.GetInstance().HumanAirline.MaintenanceCenters)
+                {
+                    centers.Add(new MaintenanceCenterMVVM(mCenter));
+                }
+
+                if (this.Airline.Maintenances.ContainsKey(maintenanceType))
+                {
+                    if (this.Airline.Maintenances[maintenanceType].Airport == null)
+                        selected = centers.Find(c=>c.Center == this.Airline.Maintenances[maintenanceType].Center);
+                    else
+                        selected = centers.Find(c => c.Airport == this.Airline.Maintenances[maintenanceType].Airport);
+                }
+                else
+                    selected = null;
+
+                this.Maintenances.Add(new AirlineMaintenanceMVVM(maintenanceType, selected, centers));
+            }
+
             this.setValues();
 
             this.Colors = new List<PropertyInfo>();
@@ -166,7 +194,7 @@
             this.IsBuyable = !this.Airline.IsHuman && GameObject.GetInstance().HumanAirline.Money > buyingPrice;
 
             this.ActiveQuantity = new List<AirlinerQuantityMVVM>();
-            
+
             var fleet = new List<FleetAirliner>(this.Airline.Fleet);
 
             foreach (FleetAirliner airliner in fleet)
@@ -179,7 +207,7 @@
                     }
                     else
                     {
-                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, airliner.Airliner.CabinConfiguration,0, 1));
+                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, airliner.Airliner.CabinConfiguration, 0, 1));
                     }
                 }
                 else
@@ -190,7 +218,7 @@
                     }
                     else
                     {
-                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, airliner.Airliner.CabinConfiguration, 1,0));
+                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, airliner.Airliner.CabinConfiguration, 1, 0));
                     }
                 }
             }
@@ -219,7 +247,7 @@
             this.FleetStatus.Add(new KeyValuePair<string, int>(
                Translator.GetInstance().GetString("PageAirlineInfo", "1044"),
                ActiveQuantity.Sum(aq => aq.Quantity) - this.Airline.Fleet.Count(fa => fa.GroundedToDate > GameObject.GetInstance().GameTime)));
-            
+
             this.FleetStatus.Add(new KeyValuePair<string, int>(
                Translator.GetInstance().GetString("PageAirlineInfo", "1045"),
                this.Airline.Fleet.Count(fa => !fa.HasRoute && fa.Airliner.BuiltDate <= GameObject.GetInstance().GameTime)));
@@ -402,6 +430,8 @@
 
         public ObservableCollection<PilotMVVM> Pilots { get; set; }
 
+        public List<AirlineMaintenanceMVVM> Maintenances { get; set; }
+
         public ObservableCollection<MaintenanceCenter> MaintenanceCenters { get; set; }
 
         public int PilotsToRetire
@@ -463,11 +493,27 @@
         {
             this.MaintenanceCenters.Add(center);
             this.Airline.MaintenanceCenters.Add(center);
+
+            foreach (AirlineMaintenanceMVVM maintenance in this.Maintenances)
+            {
+                maintenance.Centers.Add(new MaintenanceCenterMVVM(center));
+            }
+
+
+
         }
         public void removeMaintenanceCenter(MaintenanceCenter center)
         {
             this.MaintenanceCenters.Remove(center);
             this.Airline.MaintenanceCenters.Remove(center);
+
+            foreach (AirlineMaintenanceMVVM maintenance in this.Maintenances)
+            {
+                MaintenanceCenterMVVM mCenter = maintenance.Centers.First(m=>m.Center == center);
+
+                maintenance.Centers.Remove(mCenter);
+            }
+           
         }
         public void addFacility(AirlineFacilityMVVM facility)
         {
@@ -643,7 +689,39 @@
         {
             this.MaxTransferFunds = airline.Money / 2;
         }
+        //sets the maintenance
+        public void setMaintenance()
+        {
+            foreach (AirlineMaintenanceMVVM maintenance in this.Maintenances)
+            {
+                if (maintenance.SelectedType != null)
+                {
+                    AirlinerMaintenanceCenter center = new AirlinerMaintenanceCenter(maintenance.Type);
 
+                    if (maintenance.SelectedType.Airport != null)
+                        center.Airport = maintenance.SelectedType.Airport;
+                    else
+                        center.Center = maintenance.SelectedType.Center;
+
+                    if (this.Airline.Maintenances.ContainsKey(maintenance.Type))
+                    {
+                        if (maintenance.SelectedType.Airport == null)
+                        {
+                            this.Airline.Maintenances[maintenance.Type].Center = maintenance.SelectedType.Center;
+                            this.Airline.Maintenances[maintenance.Type].Airport = null;
+                        }
+                        else
+                        {
+                            this.Airline.Maintenances[maintenance.Type].Center = null;
+                            this.Airline.Maintenances[maintenance.Type].Airport = maintenance.SelectedType.Airport;
+                        }
+                    }
+                    else
+                        this.Airline.Maintenances.Add(maintenance.Type, center);
+
+                }
+            }
+        }
         #endregion
 
         //adds a codeshare agreement
@@ -866,6 +944,77 @@
         public double Price { get; set; }
 
         public int TrainingDays { get; set; }
+
+        #endregion
+    }
+    //the mvvm class for a center
+    public class MaintenanceCenterMVVM
+    {
+        public Airport Airport { get; set; }
+        public MaintenanceCenter Center { get; set; }
+        public string Name { get; set; }
+        public MaintenanceCenterMVVM(Airport airport)
+        {
+            this.Airport = airport;
+            this.Name = this.Airport.Profile.Name;
+        }
+        public MaintenanceCenterMVVM(MaintenanceCenter center)
+        {
+            this.Center = center;
+            this.Name = this.Center.Name;
+        }
+
+    }
+    //the mvvm object for an airline maintenance
+    public class AirlineMaintenanceMVVM
+    {
+        private MaintenanceCenterMVVM _selectedtype;
+        public AirlinerMaintenanceType Type { get; set; }
+
+        public MaintenanceCenterMVVM SelectedType
+        {
+            get
+            {
+                return this._selectedtype;
+            }
+            set
+            {
+                this._selectedtype = value;
+                this.NotifyPropertyChanged("SelectedType");
+            }
+        }
+
+        public ObservableCollection<MaintenanceCenterMVVM> Centers { get; set; }
+        public AirlineMaintenanceMVVM(AirlinerMaintenanceType type, MaintenanceCenterMVVM selected, List<MaintenanceCenterMVVM> centers)
+        {
+            this.Type = type;
+            this.Centers = new ObservableCollection<MaintenanceCenterMVVM>(centers);
+
+            this.SelectedType = selected;
+
+
+        }
+        #region Public Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+        #region Methods
+        public MaintenanceCenterMVVM getCenterFromList(AirlinerMaintenanceCenter center)
+        {
+            if (center.Airport == null)
+                return this.Centers.FirstOrDefault(c => c.Center == center.Center);
+            else
+                return this.Centers.FirstOrDefault(c => c.Airport == center.Airport);
+        }
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
         #endregion
     }
@@ -1153,6 +1302,7 @@
         public double getLastMonthTotal()
         {
             DateTime tDate = GameObject.GetInstance().GameTime.AddMonths(-1);
+            
             return this.Airline.getInvoicesAmountMonth(tDate.Year, tDate.Month, this.InvoiceType);
         }
 

@@ -70,8 +70,8 @@
                 
             </WrapPanel>
         </StackPanel>
-        <filter:FilterableListView x:Name="AirportsList" Grid.Row="1"
-                                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
+        <filter:FilterableListView x:Name="AirportsList" Grid.Row="1" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"
+                                   ItemContainerStyle="{StaticResource ListViewItemStyle}" ScrollViewer.CanContentScroll="True"
                                    ItemsSource="{Binding AllAirports,ElementName=pageShowAirports}"
                                    FilterButtonActiveStyle="{StaticResource filterButtonActive}"
                                    FilterButtonInactiveStyle="{StaticResource filterButtonInactive}"
@@ -176,7 +176,7 @@
                     </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn
                         Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1003'}"
-                        CanFilter="True" SortPropertyName="Airport.Profile.Town.Country.Name" Width="100">
+                        CanFilter="True" SortPropertyName="Airport.Profile.Town.CurrentCountry.Name" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}"

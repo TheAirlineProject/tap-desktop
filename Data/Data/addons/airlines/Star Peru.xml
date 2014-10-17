@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Star Perú" iata="2I" color="Black" country="182" CEO="Valentin Kasyanov" mentality="Safe"
            market="Global" preferedairport="LIM">
+               <narrative
+      narrative="The airline was established in May 1997 as Servicio de Transporte Aéreo Regional by the chief executive, Valentin Kasyanov. Operations were inaugurated with a single Antonov An-32 aircraft flying cargo and charter services around South America." />
   </profile>
   <info real="True" from="1997" to="2199" />
 </airline>

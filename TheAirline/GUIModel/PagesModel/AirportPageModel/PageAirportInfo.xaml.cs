@@ -200,9 +200,23 @@
             {
                 var nContract = (AirportContract)o;
 
+                int gatesDiff = nContract.NumberOfGates - tContract.NumberOfGates;
+
                 tContract.setNumberOfGates(nContract.NumberOfGates);
                 tContract.setExpireDate(nContract.ExpireDate);
                 tContract.Contract.AutoRenew = nContract.AutoRenew;
+                tContract.setContractType(nContract.Type);
+
+                if (gatesDiff > 0)
+                {
+                    for (int i = 0; i < gatesDiff; i++)
+                    {
+                        Gate gate = this.Airport.Airport.Terminals.getGates().Where(g => g.Airline == null).First();
+                        gate.Airline = GameObject.GetInstance().HumanAirline;
+                    }
+                }
+
+            
             }
         }
 

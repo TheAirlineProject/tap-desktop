@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Eastar Jet" iata="ZE" color="Black" country="165" CEO="Dal-Ho Kang" mentality="Safe" market="Global"
            preferedairport="ICN">
+  <narrative narrative="Eastar Jet was established on October 26, 2007 and acquired its Air Operator's Certificate the following year on August 6, 2008. On December 9, 2008, it launched its trial flight and in less than a month on January 7, 2009, Eastar Jet launched its first commercial flight from Seoul to Jeju with a Boeing 737. In the next five months, the airline launched its second route - Cheongju-Jeju on June 12, 2009." />
   </profile>
   <info real="True" from="2007" to="2199" />
 </airline>

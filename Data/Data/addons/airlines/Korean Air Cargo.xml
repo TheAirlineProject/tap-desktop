@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <airline>
-  <profile name="Korean Air Cargo" iata="KE" logo="KE2" color="RoyalBlue" country="165" CEO="Cho Yangho " mentality="Aggressive" market="Global" preferedairport="ICN" routefocus="Cargo"><narrative narrative="Korean Air Cargo is the cargo division of Korean Air based at Incheon Airport. It's current fleet has 9 747-400F's, 8 747-400ERF's,5 747-8F's with 2 on order, and 4 777F's with 1 on order. It is the 5th largest cargo airline in the world  in terms of freight tonne-kilometres  as of 2012 with 8,144 million tonnes flown. They have flown many aircraft types over the years, A300's, 707's, 747-200's, and MD-11F's are part of their historical fleet. " />
+  <profile name="Korean Air Cargo" iata="KE2" logo="KE2" color="RoyalBlue" country="165" CEO="Cho Yangho " mentality="Aggressive" market="Global" preferedairport="ICN" routefocus="Cargo"><narrative narrative="Korean Air Cargo is the cargo division of Korean Air based at Incheon Airport. It's current fleet has 9 747-400F's, 8 747-400ERF's,5 747-8F's with 2 on order, and 4 777F's with 1 on order. It is the 5th largest cargo airline in the world  in terms of freight tonne-kilometres  as of 2012 with 8,144 million tonnes flown. They have flown many aircraft types over the years, A300's, 707's, 747-200's, and MD-11F's are part of their historical fleet. " />
    </profile>
    <prefereds aircrafts="Airbus A300-600F,Boeing 707-320C,Boeing 747-200F,Boeing 747-400F,Boeing 747-400ERF,Boeing 747-8F,Boeing 777F,MD-11F"></prefereds>
     <info real="True" from="1962" to="2199" />

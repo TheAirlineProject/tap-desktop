@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airliners>
+<airliner manufacturer="Irkut" name="MC-21-200" price="8050000">
+<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+<specs wingspan="35.90" length="35.90" range="5000" speed="850" fuelcapacity="18000" consumption="0.024" runwaylengthrequired="2000" />
+<capacity passengers="150" cockpitcrew="2" cabincrew="3" maxclasses="2" />
+<produced from="2017" to="2199" rate="15" />
+</airliner>
+
+<airliner manufacturer="Irkut" name="MC-21-300" price="9050000">
+<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+<specs wingspan="35.90" length="41.50" range="5500" speed="850" fuelcapacity="19000" consumption="0.020" runwaylengthrequired="2400" />
+<capacity passengers="180" cockpitcrew="2" cabincrew="4" maxclasses="2" />
+<produced from="2017" to="2199" rate="15" />
+</airliner>
+
+<airliner manufacturer="Irkut" name="MC-21-400" price="10050000">
+<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+<specs wingspan="36.80" length="46.70" range="5500" speed="850" fuelcapacity="21000" consumption="0.018" runwaylengthrequired="2500" />
+<capacity passengers="210" cockpitcrew="2" cabincrew="4" maxclasses="2" />
+<produced from="2017" to="2199" rate="15" />
+</airliner> 
+</airliners>

@@ -76,7 +76,7 @@
                 </filter:SortableGridViewColumn>
                 <filter:SortableGridViewColumn
                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1009'}"
-                    Width="400" SortPropertyName="Aircrafts.Count" CanFilter="False">
+                    Width="400" SortPropertyName="Aircrafts" CanFilter="True">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Aircrafts}" />
