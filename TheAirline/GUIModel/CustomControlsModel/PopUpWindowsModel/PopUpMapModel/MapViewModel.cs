@@ -29,7 +29,19 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapMode
 
             if (routes != null)
             {
+                var allRoutes = new List<Route>();
+
                 foreach (Route route in routes)
+                {
+                    if (route.HasStopovers)
+                        foreach (StopoverRoute sRoute in routes.SelectMany(r => r.Stopovers))
+                            foreach (Route leg in sRoute.Legs)
+                                allRoutes.Add(leg);
+                    else
+                        allRoutes.Add(route);
+                }
+
+                foreach (Route route in allRoutes)
                 {
                     this.Airports.Add(
              new VmPoint

@@ -6,5 +6,5 @@
     <narrative
       narrative="Orenburg Airlines or JSC Orenair was formed from the Aeroflot Orenburg Division, which was established in 1932. It started operations in 1992 under its present name. It was the first Russian domestic airline to introduce the hub system of connecting flights in Orenburg, providing a full service for transfer passengers, and the first Russian domestic airline to introduce through air fares." />
   </profile>
-  <info real="True" from="1992" to="2199"></info>
+  <info real="True" from="1932" to="2199"></info>
 </airline>

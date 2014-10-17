@@ -96,7 +96,7 @@
                             </GridViewColumn>
                             <GridViewColumn
                             Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1002'}"
-                            Width="150">
+                            Width="250">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <ListBox Style="{StaticResource VerticalListBoxStyle}"

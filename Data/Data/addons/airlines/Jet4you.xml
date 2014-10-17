@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Jet4you" iata="8J" color="Black" country="133" CEO="Jawad Ziyat" mentality="Safe" market="Global"
            preferedairport="CMN">
   </profile>
-  <info real="True" from="2006" to="2199" />
+        <narrative narrative="Jet4you is a low-cost airline based in Casablanca, Morocco. "></narrative>
+  <info real="True" from="2006" to="2012" />
 </airline>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<airline>
+  <profile name="Aloha Air Cargo" iata="KH" color="Orangered" country="122" CEO="David Karp" mentality="Safe" market="Domestic" preferedairport="HNL" routefocus="Cargo">
+    <narrative  narrative="Aloha Air Cargo is the part of Aloha Airlines that didn't cease operation in 2008, and also has its base at Honolulu. They flew cargo between Honolulu and 4 other Hawaiian airports. They began a route to Los Angeles in October 2014 5x weekly with a 767-300F that was ordered new. They also have three 737-200Cs from the former passenger part of thr airline on active duty and three in storage, two 737-300F's which used to be with Lufthansa and three Saab 340's.">
+    </narrative>
+  </profile>
+  <info real="True" from="1946" to="2199" />
+ <prefereds aircrafts="Boeing 737-200C,Boeing 737-300,Boeing 767-300F,Saab 340B"></prefereds>
+</airline>

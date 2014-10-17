@@ -959,15 +959,20 @@
                        
                         merger.Airline1.FutureAirlines.Add(futureAirline);
 
-                        if (merger.Date <= GameObject.GetInstance().GameTime)
+                        if (merger.Date < GameObject.GetInstance().GameTime)
+                        {
                             AIHelpers.CreateSubsidiaryAirline(merger.Airline1, futureAirline);
+                        }
 
                     }
                 }
                 else if (merger.Type == AirlineMerger.MergerType.Independant && !(Airlines.ContainsAirline(merger.Airline1) && Airlines.ContainsAirline(merger.Airline2)))
                 {
-                     if (merger.Date <= GameObject.GetInstance().GameTime && merger.Airline2 is SubsidiaryAirline && ((SubsidiaryAirline)merger.Airline2).Airline == merger.Airline1)
-                            AirlineHelpers.MakeSubsidiaryAirlineIndependent((SubsidiaryAirline)merger.Airline2);
+                    if (merger.Date < GameObject.GetInstance().GameTime && merger.Airline2 is SubsidiaryAirline && ((SubsidiaryAirline)merger.Airline2).Airline == merger.Airline1)
+                    {
+                        AirlineHelpers.MakeSubsidiaryAirlineIndependent((SubsidiaryAirline)merger.Airline2);
+                        AirlineMergers.RemoveAirlineMerger(merger);
+                    }
                 }
                 else
                 {

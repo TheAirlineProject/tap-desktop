@@ -174,7 +174,7 @@
             double stocksPrice = 300000 * this.StockPrice;
             double money = GameObject.GetInstance().HumanAirline.Money;
 
-            this.IsStocksBuyable = shareForSale != null;// && GameObject.GetInstance().HumanAirline.Money > 300000 * this.StockPrice;
+            this.IsStocksBuyable = shareForSale != null && GameObject.GetInstance().HumanAirline.Money > 300000 * this.StockPrice;
 
             List<KeyValuePair<string, int>> stocks = new List<KeyValuePair<string, int>>();
 

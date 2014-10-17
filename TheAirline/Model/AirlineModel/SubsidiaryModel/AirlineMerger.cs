@@ -90,7 +90,7 @@
 
             Subsidiary,
 
-            Independant
+            Independant 
         }
 
         #endregion

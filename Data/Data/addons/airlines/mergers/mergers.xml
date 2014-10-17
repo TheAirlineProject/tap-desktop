@@ -180,4 +180,13 @@
 <merger name="Lion Air has founded the subsidiary Malindo Air based at Kuala Lumpur, Malaysia." airline1="JT" airline2="OD" type="Subsidiary" date="01.01.2013 00:00:00"></merger>
 <merger name="AirUK has been formed from the merger of Air Anglia and British Island Airways. British Islands is changed into a subsidiary." airline1="UK" airline2="AQ2" type="Merger" date="1.01.1980 00:00:00"></merger>
 <merger name="AirUK has been formed from the merger of Air Anglia and British Island Airways. British Islands is changed into a subsidiary." airline1="UK" airline2="UK2" type="Subsidiary" date="1.01.1980 00:00:00"></merger>
-</mergers>
+  <merger name="KD Avia has became independant from Aeroflot" airline1="SU" airline2="KD" type="Independant" date="01.01.1992 00:00:00"></merger>
+    <merger name="KD Avia has been founded as a subsidiary of Aeroflot based at Kaliningrad. " airline1="SU" airline2="KD" type="Subsidiary" date="01.01.1945 00:00:00">  </merger>
+  <merger name="Aloha Airlines has founded a cargo subsidiary. " airline1="AQ" airline2="KH"
+          type="Subsidiary" date="01.01.1946 00:00:00">
+  </merger>
+  
+     <merger name="Aloha Air Cargo is now an independant airline." airline1="AQ" airline2="KH"
+          type="Independant" date="05.15.2008 00:00:00">
+  </merger>
+  </mergers>

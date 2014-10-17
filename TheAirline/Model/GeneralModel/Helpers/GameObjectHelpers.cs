@@ -1753,8 +1753,10 @@
                 }
                 if (merger.Type == AirlineMerger.MergerType.Independant)
                 {
-                    if (merger.Airline2 is SubsidiaryAirline && ((SubsidiaryAirline)merger.Airline2).Airline == merger.Airline1)
-                        AirlineHelpers.MakeSubsidiaryAirlineIndependent((SubsidiaryAirline)merger.Airline2);
+                    Airline mergedAirline = Airlines.GetAirline(merger.Airline2.Profile.IATACode);
+
+                    if (mergedAirline is SubsidiaryAirline && ((SubsidiaryAirline)mergedAirline).Airline == merger.Airline1)
+                        AirlineHelpers.MakeSubsidiaryAirlineIndependent((SubsidiaryAirline)mergedAirline);
                 }
                 if (merger.Type == AirlineMerger.MergerType.Subsidiary)
                 {
@@ -1791,7 +1793,7 @@
                         new News(
                             News.NewsType.Airline_News,
                             GameObject.GetInstance().GameTime,
-                            "Airline merger",
+                            "Airline news",
                             merger.Name));
             }
             /*
