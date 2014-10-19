@@ -22,17 +22,13 @@
       <destination airport="MEX" pax="501" cargo="77" />
       <destination airport="CCS" pax="222" />
       <destination airport="CDG" pax="168" />
-      <destination airport="IAH" pax="158" />
       <destination airport="GRU" pax="155" />
-      <destination airport="JFK" pax="110" />
-      <destination airport="LGA" pax="42" />
       <destination airport="SCL" pax="134" />
       <destination airport="FRA" pax="132" />
       <destination airport="EZE" pax="130" />
       <destination airport="MCO" pax="103" />
       <destination airport="SJO" pax="80" />
       <destination airport="GYE" pax="71" />
-      <destination airport="EWR" pax="68" />
       <destination airport="YYZ" pax="67" />
     </destinations>
   </majordestination>

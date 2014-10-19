@@ -35,7 +35,7 @@
         </StackPanel>
         <filter:FilterableListView x:Name="lvAirliners" Grid.Row="1"
                                    ItemsSource="{Binding AllAirliners, ElementName=pageUsedAirliners}"
-                                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                   ItemContainerStyle="{StaticResource ListViewItemStyle}" 
                                    FilterButtonActiveStyle="{StaticResource filterButtonActive}"
                                    FilterButtonInactiveStyle="{StaticResource filterButtonInactive}"
                                    Background="Transparent">

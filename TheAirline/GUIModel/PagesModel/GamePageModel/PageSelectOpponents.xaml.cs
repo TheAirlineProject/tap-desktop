@@ -74,7 +74,7 @@
 
             var smp = this.Content as StandardMasterPage;
 
-            var frmContent = UIHelpers.FindChild<Frame>(this, "scCreating");
+            //var frmContent = UIHelpers.FindChild<Frame>(this, "scCreating");
 
             // SplashControl scCreating = UIHelpers.FindChild<SplashControl>(smp, "scCreating"); 
 

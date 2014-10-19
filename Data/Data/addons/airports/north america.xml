@@ -4861,20 +4861,6 @@ season="All_Year">
       <runway name="17/35" length="2441" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Đakovica Airfield" icao="LYDK" iata="GJA" type="Domestic" season="All_Year">
-    <town town="Guanaja" country="196" GMT="-06:00:00" DST="-07:00:00" />
-    <coordinates>
-      <latitude value="42°26'6''N" />
-      <longitude value="20°25'38''E" />
-    </coordinates>
-    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways>
-      <runway name="12/30" length="1220" surface="Asphalt" />
-    </runways>
-  </airport>
   <airport name="Goloson International Airport" icao="MHLC" iata="LCE" type="Short_Haul_International" season="All_Year">
     <town town="La Ceiba" country="196" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>

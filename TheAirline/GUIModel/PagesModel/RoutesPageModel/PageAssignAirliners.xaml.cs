@@ -339,6 +339,13 @@
                                 GeneralHelpers.CreatePilots(50);
                             }
 
+                            if (pilots.Count == 0)
+                            {
+                                  pilots =
+                                    Pilots.GetUnassignedPilots(
+                                        p => p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
+                            }
+
                             Pilot pilot = pilots.First();
 
                             airliner.Airliner.Airliner.Airline.addPilot(pilot);

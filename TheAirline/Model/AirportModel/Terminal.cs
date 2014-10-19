@@ -207,7 +207,7 @@
         {
             if (this.Airline != null)
             {
-                return this.Gates.NumberOfGates;
+                return 0;
             }
             int terminalIndex =
                 this.Airport.Terminals.AirportTerminals.Where(
@@ -225,11 +225,14 @@
             int gates = 0;
 
             int i = 0;
-            while (gates < contracts)
+           
+            var terminals = this.Airport.Terminals.AirportTerminals.Where(
+                        a => a.Airline == null && a.Type == this.Type && a.DeliveryDate <= GameObject.GetInstance().GameTime).ToList();
+
+            while (gates < contracts && i<terminals.Count())
             {
                 gates +=
-                    this.Airport.Terminals.AirportTerminals.Where(
-                        a => a.Airline == null && a.Type == this.Type && a.DeliveryDate <= GameObject.GetInstance().GameTime).ToList()[i].Gates
+                 terminals[i].Gates
                         .NumberOfGates;
 
                 if (gates < contracts)

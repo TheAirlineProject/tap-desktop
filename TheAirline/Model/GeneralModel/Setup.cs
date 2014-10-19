@@ -1053,7 +1053,7 @@
             AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check A", new Period<TimeSpan>(new TimeSpan(1000, 0, 0), new TimeSpan(1200, 0, 0)), new TimeSpan(40, 0, 0), 100000, AirportFacilities.GetFacility("Basic ServiceCenter")));
             AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check B", new Period<TimeSpan>(new TimeSpan(120, 0, 0, 0), new TimeSpan(180, 0, 0, 0)), new TimeSpan(150, 0, 0), 200000, AirportFacilities.GetFacility("ServiceCenter")));
             AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check C", new Period<TimeSpan>(new TimeSpan(600, 0, 0, 0), new TimeSpan(720, 0, 0, 0)), new TimeSpan(10, 0, 0, 0), 400000, AirportFacilities.GetFacility("Large ServiceCenter")));
-            AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check D", new Period<TimeSpan>(new TimeSpan(2100, 0, 0), new TimeSpan(2250, 0, 0)), new TimeSpan(15,0, 0, 0), 800000, AirportFacilities.GetFacility("Mega ServiceCenter")));
+            AirlinerMaintenanceTypes.AddMaintenanceType(new AirlinerMaintenanceType("Check D", new Period<TimeSpan>(new TimeSpan(2100,0, 0, 0), new TimeSpan(2250,0, 0, 0)), new TimeSpan(15,0, 0, 0), 800000, AirportFacilities.GetFacility("Mega ServiceCenter")));
         }
         /*! reads the settings file if existing
          */
@@ -4164,6 +4164,7 @@
                 Airline startAirline = Airlines.GetAirline(startElement.Attributes["airline"].Value);
                 Airport homebase = Airports.GetAirport(startElement.Attributes["homeBase"].Value);
 
+              
                 if (startElement.HasAttribute("license"))
                 {
                     startAirline.License =
@@ -4181,6 +4182,29 @@
                     startCash,
                     difficulty);
                 Scenarios.AddScenario(scenario);
+
+
+                  XmlElement airportElement = (XmlElement)element.SelectSingleNode("airports");
+                if (airportElement != null)
+                {
+                    
+                    if (airportElement.HasAttribute("countries"))
+                    {
+                        string countries = airportElement.Attributes["countries"].Value;
+
+                        foreach (string countryid in countries.Split(','))
+                            scenario.Countries.Add(Countries.GetCountry(countryid));
+                    }
+                    if (airportElement.HasAttribute("type"))
+                    {
+                        Scenario.AirportTypes airportType =
+                        (Scenario.AirportTypes)
+                            Enum.Parse(typeof(Scenario.AirportTypes), airportElement.Attributes["type"].Value);
+
+                        scenario.AirportType = airportType;
+                    }
+                }
+
 
                 XmlNodeList humanRoutesList = startElement.SelectNodes("routes/route");
 

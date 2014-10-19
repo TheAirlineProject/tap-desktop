@@ -88,6 +88,9 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoList.Control">
+      <HintPath>..\..\..\BBM\AutoListSamples\AutoList.CustomizableColumnsDemo\Client\bin\Debug\AutoList.Control.dll</HintPath>
+    </Reference>
     <Reference Include="De.TorstenMandelkow.MetroChart">
       <HintPath>..\Resource\De.TorstenMandelkow.MetroChart.dll</HintPath>
     </Reference>
@@ -497,6 +500,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\OptionsPageModel\PageLoadGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -842,6 +849,9 @@
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageStartMenu.xaml.cs">
       <DependentUpon>PageStartMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageTest.xaml.cs">
+      <DependentUpon>PageTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\OptionsPageModel\OptionsMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageLoadGame.xaml.cs">

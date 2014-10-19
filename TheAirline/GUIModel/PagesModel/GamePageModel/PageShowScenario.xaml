@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:g="clr-namespace:TheAirline.GUIModel.HelpersModel"
+         xmlns:c="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
       mc:Ignorable="d"
       Name="pageShowScenario"
       d:DesignHeight="300" d:DesignWidth="300"
@@ -67,6 +68,8 @@
                         Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowScenario 201'}"
                         Visibility="Collapsed" Width="NaN" Click="btnBack_Click" Margin="5 0 0 0" />
             </WrapPanel>
+            <c:SplashControl Visibility="Collapsed" Text="Creating...." HorizontalAlignment="Center"
+                                             VerticalAlignment="Center" x:Name="scCreating" />
         </StackPanel>
     </ScrollViewer>
 </Page>

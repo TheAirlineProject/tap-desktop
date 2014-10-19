@@ -72,7 +72,7 @@
         </StackPanel>
         <filter:FilterableListView x:Name="AirportsList" Grid.Row="1" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"
                                    ItemContainerStyle="{StaticResource ListViewItemStyle}" ScrollViewer.CanContentScroll="True"
-                                   ItemsSource="{Binding AllAirports,ElementName=pageShowAirports}"
+                                   ItemsSource="{Binding AllAirports,ElementName=pageShowAirports}" 
                                    FilterButtonActiveStyle="{StaticResource filterButtonActive}"
                                    FilterButtonInactiveStyle="{StaticResource filterButtonInactive}"
                                    Background="Transparent">

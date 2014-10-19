@@ -23,6 +23,12 @@
 
         #region Methods
 
+        private void btnTest_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageTest());
+            //PageNavigator.NavigateTo(new PageSelectAirports());
+        }
+
         private void btnCredits_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageCredits());

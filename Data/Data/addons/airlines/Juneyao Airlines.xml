@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Juneyao Airlines" iata="HO" color="Black" country="148" CEO="Wang Junjin" mentality="Safe"
            market="Global" preferedairport="PVG">
+            <narrative
+      narrative="Juneyao Airlines is a regional airline based in Changning District, Shanghai, China, operating domestic services out of the two Shanghai airports (Hongqiao and Pudong). The company was founded in 2005 as a subsidiary of Juneyao Group." />
   </profile>
   <info real="True" from="2005" to="2199" />
 </airline>

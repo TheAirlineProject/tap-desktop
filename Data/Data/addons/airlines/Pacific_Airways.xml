@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Pacific Airways" iata="PCA" color="DarkGreen" country="122" CEO="Alex Wright" mentality="Aggressive" market="Global" preferedairport="SFO">
+ <narrative narrative="Pacific Airways is a fictional airline based in San Fransisco. "></narrative>
+</profile>
+</airline>

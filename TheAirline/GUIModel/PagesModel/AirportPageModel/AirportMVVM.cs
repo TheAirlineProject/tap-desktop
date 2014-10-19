@@ -90,10 +90,9 @@
 
             this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
 
-            this.FreeCargoGates = this.Airport.Terminals.AirportTerminals.Where(t=>t.Type == Terminal.TerminalType.Cargo).Sum(t=>t.getFreeGates());
-
-            this.FreePaxGates = this.Airport.Terminals.AirportTerminals.Where(t => t.Type == Terminal.TerminalType.Passenger).Sum(t => t.getFreeGates());
-
+            this.FreeCargoGates = this.Airport.Terminals.getFreeGates(Terminal.TerminalType.Cargo);
+            this.FreePaxGates = this.Airport.Terminals.getFreeGates(Terminal.TerminalType.Passenger);
+            
             this.DomesticDemands = new List<DemandMVVM>();
             this.IntlDemands = new List<DemandMVVM>();
 
