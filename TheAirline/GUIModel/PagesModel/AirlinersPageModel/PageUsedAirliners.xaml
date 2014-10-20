@@ -12,7 +12,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
@@ -33,9 +33,10 @@
                           Unchecked="cbExistingFleet_Unchecked" />
             </WrapPanel>
         </StackPanel>
-        <filter:FilterableListView x:Name="lvAirliners" Grid.Row="1"
+        <StackPanel Grid.Row="1" Name="panelListView">
+        <filter:FilterableListView x:Name="lvAirliners"
                                    ItemsSource="{Binding AllAirliners, ElementName=pageUsedAirliners}"
-                                   ItemContainerStyle="{StaticResource ListViewItemStyle}" 
+                                   ItemContainerStyle="{StaticResource ListViewItemStyle}" Height="{Binding ActualHeight,ElementName=panelListView}"
                                    FilterButtonActiveStyle="{StaticResource filterButtonActive}"
                                    FilterButtonInactiveStyle="{StaticResource filterButtonInactive}"
                                    Background="Transparent">
@@ -248,6 +249,7 @@
                 </GridView>
             </ListView.View>
         </filter:FilterableListView>
+        </StackPanel>
         <WrapPanel Grid.Row="2" Margin="0 5 0 0">
             <Button Click="btnCompare_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsEnabled="False"
                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1005'}">

@@ -2148,14 +2148,16 @@
                 airport = homeAirports.Find(a => a.Terminals.getFreeGates(terminaltype) > 0);
                 if (airport != null)
                 {
-                    AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service, terminaltype);
+                    if (!AirportHelpers.HasFreeGates(airport, airline))
+                        AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service, terminaltype);
                 }
                 else
                 {
                     airport = GetServiceAirport(airline);
                     if (airport != null)
                     {
-                        AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service, terminaltype);
+                       if (!AirportHelpers.HasFreeGates(airport, airline))
+                          AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service, terminaltype);
                     }
                 }
             }

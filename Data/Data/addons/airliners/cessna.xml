@@ -2,7 +2,7 @@
 
 <airliners>
           <airliner manufacturer="Cessna" name="Cessna 441" price="441000"> <!--3352000-->
-    <type body="Narrow_Body" rangetype="Medium__Range" engine="Turboprop" />
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
     <specs wingspan="15.04" length="11.89" range="4064" speed="480" fuelcapacity="1800" consumption="0.10"
            runwaylengthrequired="544" />
     <capacity passengers="10" cockpitcrew="2" cabincrew="0" maxclasses="1" />

@@ -778,16 +778,17 @@
                 string s = e.ToString();
             }
             //LoadNicksAirports();
+            GameObject.GetInstance().GameTime = new DateTime(1971, 1, 1);
 
-            var noRunways = Airports.GetAllAirports().Where(a => a.Runways.Count == 0);
-
-            foreach (Airport airport in noRunways)
-                Console.WriteLine("{0}, {1} in {2} has no runways", airport.Profile.Name, airport.Profile.IATACode, airport.Profile.Country.Name);
+            var airportNoCountry = Airports.GetAllAirports(a => a.Profile.Country.Uid == null);
+            var airlineNoCountry = Airlines.GetAirlines(a => a.Profile.Country.Uid == null);
 
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
            
+
+
             /*
             System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
 
@@ -1042,7 +1043,7 @@
         public static void CreateMaintenanceCenters()
         {
             MaintenanceCenters.AddCenter(new MaintenanceCenter("Boeing Gold Care Center", 2000, Countries.GetCountry("122"), 75, 5.95));
-            MaintenanceCenters.AddCenter(new MaintenanceCenter("Lufthansa Technik", 1750, Countries.GetCountry("163"), 65, 5.75));
+            MaintenanceCenters.AddCenter(new MaintenanceCenter("Lufthansa Technik", 1750, Countries.GetCountry("1002"), 65, 5.75));
             MaintenanceCenters.AddCenter(new MaintenanceCenter("Nigeria Aircraft Center", 1000, Countries.GetCountry("145"), 25, 3.65));
         }
         /*! creates the airliner maintenance types
@@ -2336,6 +2337,9 @@
                     foreach (
                         AirlinerFacility.FacilityType facType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
                     {
+                        XmlAttribute facUidAttr = classElement.Attributes[facType.ToString()];
+
+
                         string facUid = classElement.Attributes[facType.ToString()].Value;
 
                         classConf.addFacility(AirlinerFacilities.GetFacility(facType, facUid));
@@ -2350,12 +2354,14 @@
 
         private static void LoadAirlinerTypeConfigurations()
         {
+            string sFile = "";
             try
             {
                 var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airliners\\configurations");
 
                 foreach (FileInfo file in dir.GetFiles("*.xml"))
                 {
+                    sFile = file.ToString();
                     LoadAirlinerTypeConfiguration(file.FullName);
                 }
             }
@@ -3225,6 +3231,7 @@
             }
             catch (Exception)
             {
+                string s = "";
                 /*
                 System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log", true);
                 file.WriteLine("Alliance failing: " + path);

@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <scenario name="Southwest Airlines Birth" startYear="1971" startCash="750000000" difficulty="Easy" endYear="1983">
   <intro
-   text="You will try and do what Southwest did in real life and make at least 40 domestic routes within the U.S within 12 years, from 1971-1983. You will start as they did, with three 737-200's on three routes, Dallas Love-Houston Hobby,DAL-San Antonio and HOU-SAT. You will also fail if you are in debt for 3 months. Your competition will all start with 6 historic routes from their home base which they were really doing in 1971.The first is American based at DFW  and will have 5 707's and a DC-10-10 to start. United will be based at Philadelphia and will have 3 707's and 3 737-200's. Delta will be at Atlanta and will have 3 DC-8's and 3 DC-9's. " />
+   text="You will try and do what Southwest did in real life and make at least 40 domestic routes within the U.S within 12 years, from 1971-1983. You will start as they did, with three 737-200's on three routes, Dallas Love-Houston Hobby,DAL-San Antonio and HOU-SAT. You will also fail if you are in debt for 3 months. Your competition will all start with 6 historic routes from their home base which they were really doing in 1971.The first is Continental based at IAH,  and will have 3 720B's and two 727-200's and a 737-200. United will be based at Philadelphia and will have 3 707's and 3 737-200's. Delta will be at Atlanta and will have 3 DC-8's and 3 DC-9's. " />
   <success  
     text="Congratulations! You have successfully reached the goal of 40 routes within the US and have successfully got Southwest Airlines off to a great start!" />
     <airports countries="122,157,113"></airports>  <!--uses the countries with the ids-->
@@ -13,13 +13,13 @@
       <route departure="HOU" destination="SAT" airliner="Boeing 737-200" quantity="1" />
     </routes>
     <AI>
-      <airline name="AA" homeBase="DFW">
-        <route departure="DFW" destination="LIT" airliner="Boeing 707-120B" quantity="1" />
-        <route departure="DFW" destination="ORD" airliner="Boeing 707-320B" quantity="1" />
-        <route departure="DFW" destination="OKC" airliner="Boeing 707-120B" quantity="1" />
-        <route departure="DFW" destination="MEX" airliner="MD DC-10-10" quantity="1" />
-        <route departure="DFW" destination="ELP" airliner="Boeing 707-120B" quantity="1" />
-        <route departure="DFW" destination="PHX" airliner="Boeing 707-120B" quantity="1" />
+      <airline name="CO" homeBase="IAH">
+        <route departure="IAH" destination="ELP" airliner="Boeing 720B (707-020B)" quantity="1" />
+        <route departure="IAH" destination="MAF" airliner="Boeing 737-200" quantity="1" />
+        <route departure="IAH" destination="LAX" airliner="Boeing 727-200" quantity="1" />
+        <route departure="IAH" destination="SAT" airliner="Boeing 720B (707-020B)" quantity="1" />
+        <route departure="IAH" destination="ABQ" airliner="Boeing 720B (707-020B)" quantity="1" />
+        <route departure="IAH" destination="SAN" airliner="Boeing 727-200" quantity="1" />
       </airline>
       <airline name="UA" homeBase="PHL">
         <route departure="PHL" destination="ORD" airliner="Boeing 707-120B" quantity="1" />
@@ -31,7 +31,7 @@
       </airline>
       <airline name="DL" homeBase="ATL">
         <route departure="ATL" destination="CLT" airliner="Douglas DC-8-40" quantity="1" />
-        <route departure="ATL" destination="DFW" airliner="Douglas DC-8-40" quantity="1" />
+        <route departure="ATL" destination="DAL" airliner="Douglas DC-8-40" quantity="1" />
         <route departure="ATL" destination="SFO" airliner="Douglas DC-8-32" quantity="1" />
         <route departure="ATL" destination="MSY" airliner="Douglas DC-9-30" quantity="1" />
         <route departure="ATL" destination="JAX" airliner="Douglas DC-9-30" quantity="1" />

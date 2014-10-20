@@ -71,16 +71,16 @@
         }
         private void btnApply_Click(object sender, RoutedEventArgs e)
         {
-             WPFMessageBoxResult result =
-                        WPFMessageBox.Show(
-                            Translator.GetInstance().GetString("MessageBox", "2133"),
-                            string.Format(Translator.GetInstance().GetString("MessageBox", "2133", "message")),
-                            WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result =
+                       WPFMessageBox.Show(
+                           Translator.GetInstance().GetString("MessageBox", "2133"),
+                           string.Format(Translator.GetInstance().GetString("MessageBox", "2133", "message")),
+                           WPFMessageBoxButtons.YesNo);
 
-             if (result == WPFMessageBoxResult.Yes)
-             {
-                 this.Airline.setMaintenance();
-             }
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                this.Airline.setMaintenance();
+            }
         }
 
         private void btnApplyAll_Click(object sender, RoutedEventArgs e)
@@ -159,16 +159,47 @@
         {
             MaintenanceCenter center = (MaintenanceCenter)((Button)sender).Tag;
 
-            WPFMessageBoxResult result =
-                         WPFMessageBox.Show(
-                             Translator.GetInstance().GetString("MessageBox", "2132"),
-                             string.Format(Translator.GetInstance().GetString("MessageBox", "2132", "message"), center.Name),
-                             WPFMessageBoxButtons.YesNo);
+            Boolean inUse = false;
 
-            if (result == WPFMessageBoxResult.Yes)
+            foreach (FleetAirliner airliner in this.Airline.Airline.Fleet)
             {
-                this.Airline.removeMaintenanceCenter(center);
-                this.AvailableCenters.Add(center);
+                if (airliner.Maintenance.Checks.Exists(c => c.CheckCenter != null && c.CheckCenter.Center != null && c.CheckCenter.Center == center))
+                    inUse = true;
+            }
+
+            if (!inUse)
+            {
+                foreach (AirlinerMaintenanceType maintenanceType in AirlinerMaintenanceTypes.GetMaintenanceTypes())
+                {
+                    if (this.Airline.Airline.Maintenances.ContainsKey(maintenanceType))
+                    {
+                        var maintenance = this.Airline.Airline.Maintenances[maintenanceType];
+
+                        if (maintenance.Center != null && maintenance.Center == center)
+                            inUse = true;
+                    }
+                }
+            }
+            if (inUse)
+            {
+                WPFMessageBox.Show(
+                                 Translator.GetInstance().GetString("MessageBox", "2135"),
+                                 string.Format(Translator.GetInstance().GetString("MessageBox", "2135", "message"), center.Name),
+                                 WPFMessageBoxButtons.Ok);
+            }
+            else
+            {
+                WPFMessageBoxResult result =
+                             WPFMessageBox.Show(
+                                 Translator.GetInstance().GetString("MessageBox", "2132"),
+                                 string.Format(Translator.GetInstance().GetString("MessageBox", "2132", "message"), center.Name),
+                                 WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    this.Airline.removeMaintenanceCenter(center);
+                    this.AvailableCenters.Add(center);
+                }
             }
         }
 
@@ -206,16 +237,16 @@
             {
                 advertisement.SelectedType = this.Airline.Airline.getAirlineAdvertisement(advertisement.Type);
             }
-            
+
             foreach (AirlinerMaintenanceType maintenanceType in AirlinerMaintenanceTypes.GetMaintenanceTypes())
             {
                 var maintenance = this.Airline.Maintenances.Find(m => m.Type == maintenanceType);
-            
+
                 if (this.Airline.Airline.Maintenances.ContainsKey(maintenanceType))
                 {
-          
+
                     maintenance.SelectedType = maintenance.getCenterFromList(this.Airline.Airline.Maintenances[maintenanceType]);
-              
+
                     var contains = maintenance.Centers.Contains(maintenance.SelectedType);
                 }
                 else
@@ -235,7 +266,7 @@
         }
         #endregion
 
-       
+
 
 
     }

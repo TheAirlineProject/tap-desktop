@@ -40,11 +40,10 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void PageTest_Loaded(object sender, RoutedEventArgs e)
         {
-            ListView lv = UIHelpers.FindChild<ListView>(this, "AirportsList");
-
-            double h = lv.Height;
-            //lv.ItemsSource = this.AllAirports;
-
+            var tab_main = UIHelpers.FindChild<StackPanel>(this, "panelMain");
+            var lv = UIHelpers.FindChild<ListView>(this, "AirportsList");
+            double h = tab_main.ActualHeight;
+            
             sw.Stop();
             long time = sw.ElapsedMilliseconds;
         }

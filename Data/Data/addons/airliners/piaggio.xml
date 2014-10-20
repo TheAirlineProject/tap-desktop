@@ -1,0 +1,9 @@
+  <airliners>
+  <airliner manufacturer="Piaggio" name="P180 Avanti" price="1994000"> <!--7000000-->
+    <type body="Single_Aisle" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="14.03" length="14.41" range="2795" speed="660" fuelcapacity="1271" consumption="0.111"
+           runwaylengthrequired="869" />
+    <capacity passengers="9" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1990" to="2199" rate="10" />
+  </airliner>
+  </airliners>

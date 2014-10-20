@@ -88,9 +88,6 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoList.Control">
-      <HintPath>..\..\..\BBM\AutoListSamples\AutoList.CustomizableColumnsDemo\Client\bin\Debug\AutoList.Control.dll</HintPath>
-    </Reference>
     <Reference Include="De.TorstenMandelkow.MetroChart">
       <HintPath>..\Resource\De.TorstenMandelkow.MetroChart.dll</HintPath>
     </Reference>

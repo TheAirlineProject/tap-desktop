@@ -38,7 +38,7 @@
         <DataTemplate x:Key="NoLeftContent" />
         <DataTemplate x:Key="CreditsContent">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Center">
-            <StackPanel>
+            <StackPanel Name="panelMain">
 <!--
                     <ListView Name="lvUsers" ItemsSource="{Binding AllAirports,ElementName=pageTest}">
                         <ListView.View>
@@ -54,9 +54,10 @@
                         </ListView.View>
                     </ListView>-->
 
-                    
+                
                 <filter:FilterableListView x:Name="AirportsList" Grid.Row="1" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"
                                    ItemContainerStyle="{StaticResource ListViewItemStyle}" ScrollViewer.CanContentScroll="True"
+                                   ItemsSource="{Binding AllAirports,ElementName=pageTest}" Height="{Binding ActualHeight,ElementName=panelMain}"
                                    FilterButtonActiveStyle="{StaticResource filterButtonActive}"
                                    FilterButtonInactiveStyle="{StaticResource filterButtonInactive}"
                                    Background="Transparent">
@@ -79,7 +80,7 @@
                         </GridView>
                     </ListView.View>
                 </filter:FilterableListView>
-          
+               
             </StackPanel>
             </ScrollViewer>
         </DataTemplate>

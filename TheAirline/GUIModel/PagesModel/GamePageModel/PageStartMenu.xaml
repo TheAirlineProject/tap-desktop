@@ -53,7 +53,7 @@
                         Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 204'}"
                         Style="{StaticResource StartMenuButtonStyle}" Click="btnExitGame_Click" />
                 <Button Margin="0 5 0 0"
-                        Content="Test Page"
+                        Content="Test Page" Visibility="Collapsed"
                         Style="{StaticResource StartMenuButtonStyle}" Click="btnTest_Click" />
 
 
