@@ -3,10 +3,17 @@
 <airliners>
   <airliner manufacturer="Douglas" name="Douglas DC-3" price="3100000">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
-    <specs wingspan="29.0" length="19.7" range="1210" speed="333" fuelcapacity="3736" consumption="0.096"
+    <specs wingspan="29.0" length="19.7" range="3400" speed="333" fuelcapacity="3736" consumption="0.096"
            runwaylengthrequired="1800" />
     <capacity passengers="32" cockpitcrew="2" cabincrew="1" maxclasses="1" />
     <produced from="1937" to="1942" rate="100" />
+  </airliner>
+  <airliner manufacturer="Douglas" name="Douglas DC-2" price="1350000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="25.9" length="19.1" range="1750" speed="304" fuelcapacity="1900" consumption="0.071"
+           runwaylengthrequired="915" />
+    <capacity passengers="14" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1934" to="1939" rate="40" />
   </airliner>
   <airliner manufacturer="Douglas" name="Douglas DC-6" price="3800000">
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />

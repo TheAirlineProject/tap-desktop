@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Thai Smile" iata="WE" color="DarkMagenta" country="175" CEO="Prajin Juntong" mentality="Aggressive " market="Regional" preferedairport="BKK">
+            <narrative narrative="Thai Smaile is a subsidiary of Thai International that began operation in July 2012. They call BKK home and Bangkoks older airport Don Mueang a second home. They serve 9 domestic destinations and 10 international across Asia. They have 15 A320s and will have 20 by 2015 and have options for 5 more. They are branded as a low cost carrier and offer seat selection and check in service and snacks and drinks and bags up to 20kg with no additional charge." />
+  </profile>
+  <info real="True" from="2012" to="2199" />
+  <prefereds aircrafts="Airbus A320-200,Airbus A320neo"></prefereds>
+<!--the airliners the airline would start with which isn't on a route earyl (2012) late (2020)-->
+    <airliners>
+      <airliner type="Airbus A320-200" early="15" late="25"></airliner>
+          </airliners>
+
+</airline>

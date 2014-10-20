@@ -1112,30 +1112,6 @@
       <runway name="9/27" length="1804" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Banco De Occidente Heliport" icao="" iata="BAT" type="Domestic" season="All_Year">
-    <town town="Cali" country="138" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="003°27'03''N" />
-      <longitude value="076°32'08''W" />
-    </coordinates>
-    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways />
-  </airport>
-  <airport name="Baru Heliport" icao="" iata="BAU" type="Domestic" season="All_Year">
-    <town town="Cartagena" country="138" GMT="-03:00:00" DST="-03:00:00" />
-    <coordinates>
-      <latitude value="010°12'37''N" />
-      <longitude value="075°37'00''W" />
-    </coordinates>
-    <size value="Smallest" pax="12" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal A" gates="2" />
-    </terminals>
-    <runways />
-  </airport>
   <airport name="Barcelos Airport" icao="SWBC" iata="BAZ" type="Domestic" season="All_Year">
     <town town="Barcelos" country="138" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>

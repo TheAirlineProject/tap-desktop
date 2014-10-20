@@ -5490,10 +5490,10 @@ Good luck.</value>
     <value>Next Check</value>
   </data>
   <data name="PageAirlineInsurance_1008_name" xml:space="preserve">
-    <value>Airline Maintenance Centers</value>
+    <value>Airline Maintenance Centers (Name / Monthly Price / Fee)</value>
   </data>
   <data name="PageAirlineInsurance_1009_name" xml:space="preserve">
-    <value>Available Maintenace Centers</value>
+    <value>Available Maintenace Centers (Name / Monthly Price / Fee)</value>
   </data>
   <data name="PageFleetAirlinerInsurances_1008_name" xml:space="preserve">
     <value>Maintenance Center</value>
@@ -5575,5 +5575,11 @@ Good luck.</value>
   </data>
   <data name="PopUpExtendContract_1005_name" xml:space="preserve">
     <value>Contact Type</value>
+  </data>
+  <data name="MessageBox_2135_message" xml:space="preserve">
+    <value>You can't remove your contract with {0} since it is in use</value>
+  </data>
+  <data name="MessageBox_2135_name" xml:space="preserve">
+    <value>Can't Remove Contract</value>
   </data>
 </root>

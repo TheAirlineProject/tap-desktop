@@ -219,4 +219,25 @@
     <history before="125" after="125">
     </history>
   </country>
+   <country uid="1011" shortname="SRB" region="115" flag="Serbia" tailformat="YU-\\s3" type="OneToMany">
+    <translations>
+      <en-US name="Serbia" />
+      <de-DE name="Serbia" />
+      <en-GB name="Serbia" />
+      <nl-NL name="Servië" />
+      <zh-CN name="Serbia" />
+      <da-DK name="Serbien" />
+      <es-ES name="Serbia" />
+    </translations>
+    <period start="06.05.2006 00:00:00" end="02.17.2008 00:00:00">
+    </period>
+    <history>
+      <tempcountries>
+        <tempcountry id="104" start="06.05.2006 00:00:00" end="02.17.2008 00:00:00">
+        </tempcountry>
+        <tempcountry id="313" start="06.05.2006 00:00:00" end="02.17.2008 00:00:00">
+        </tempcountry>
+      </tempcountries>
+    </history>
+  </country>
 </countries>

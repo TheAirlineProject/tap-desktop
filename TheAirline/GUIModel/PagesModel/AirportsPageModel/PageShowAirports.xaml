@@ -70,9 +70,10 @@
                 
             </WrapPanel>
         </StackPanel>
-        <filter:FilterableListView x:Name="AirportsList" Grid.Row="1" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"
-                                   ItemContainerStyle="{StaticResource ListViewItemStyle}" ScrollViewer.CanContentScroll="True"
-                                   ItemsSource="{Binding AllAirports,ElementName=pageShowAirports}"
+        <StackPanel Grid.Row="1" Name="panelListView">
+            <filter:FilterableListView x:Name="AirportsList"  VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"
+                                   ItemContainerStyle="{StaticResource ListViewItemStyle}" ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True"
+                                   ItemsSource="{Binding AllAirports,ElementName=pageShowAirports}" Height="{Binding ActualHeight, ElementName=panelListView}"
                                    FilterButtonActiveStyle="{StaticResource filterButtonActive}"
                                    FilterButtonInactiveStyle="{StaticResource filterButtonInactive}"
                                    Background="Transparent">
@@ -295,6 +296,7 @@
             </ListView.View>
 
         </filter:FilterableListView>
+        </StackPanel>
         <WrapPanel Grid.Row="2" Margin="0 5 0 0">
             <Button VerticalAlignment="Bottom" Click="btnCompare_Click" HorizontalAlignment="Left"
                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 200'}">

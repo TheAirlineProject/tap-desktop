@@ -1,35 +1,36 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Documents;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirportModel;
-    using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.PassengerModel;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.PassengerModel;
 
     /// <summary>
     ///     Interaction logic for PageUsedAirliners.xaml
     /// </summary>
     public partial class PageUsedAirliners : Page
     {
+      
         #region Constructors and Destructors
 
         public PageUsedAirliners()
         {
-         
+          
             Boolean isMetric = AppSettings.GetInstance().getLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Metric;
             this.Loaded += this.PageUsedAirliners_Loaded;
             this.Unloaded += this.PageUsedAirliners_Unloaded;
@@ -118,6 +119,8 @@
             {
                 this.lvAirliners.setCurrentFilters(filters);
             }
+
+        
         }
 
         private void PageUsedAirliners_Unloaded(object sender, RoutedEventArgs e)

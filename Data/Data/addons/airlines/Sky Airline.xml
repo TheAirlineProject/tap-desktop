@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Sky Airline" iata="H2" color="Black" country="160" CEO="Jurgen Paulmann" mentality="Safe"
            market="Global" preferedairport="SCL">
+                   <narrative narrative="Sky Airline is an airline based at Comodoro Arturo Merino Benítez International Airport in Santiago, Chile. It is the second largest airline in the country behind rival LAN Airlines. Sky Airline was controlled by its founder, Jürgen Paulmann a German-Chilean businessman, brother of retail billionaire Horst Paulmann. It started operations in December 2001 and made the first flights from Santiago to Northern Chile in June 2002. Since 2005 is a full member of IATA. "></narrative>
   </profile>
   <info real="True" from="2001" to="2199" />
 </airline>

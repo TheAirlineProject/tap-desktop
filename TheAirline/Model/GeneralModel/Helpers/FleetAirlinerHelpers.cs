@@ -483,9 +483,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
 
             var nextMaintenance = airliner.Maintenance.getNextMaintenance(GameObject.GetInstance().GameTime);
-
+            
             if (nextMaintenance != null)
             {
+                int maintenanceIndex = AirlinerMaintenanceTypes.GetMaintenanceTypes().IndexOf(nextMaintenance);
+
                 double wage = airliner.Maintenance.getCheckCenter(nextMaintenance).Airport == null ? GeneralHelpers.GetInflationPrice(airliner.Maintenance.getCheckCenter(nextMaintenance).Center.Wage) : airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Maintenance Wage"));
                 double price = wage * nextMaintenance.Worktime.TotalHours;
 
@@ -495,6 +497,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airliner.Maintenance.setLastCheck(nextMaintenance, GameObject.GetInstance().GameTime);
                 airliner.Airliner.LastServiceCheck = airliner.Airliner.Flown;
+
+                for (int i = 0; i < maintenanceIndex; i++)
+                    airliner.Maintenance.setLastCheck(AirlinerMaintenanceTypes.GetMaintenanceTypes()[i], GameObject.GetInstance().GameTime);
 
                 int deltaCondition = airliner.Maintenance.getCheckCenter(nextMaintenance).Airport == null ? airliner.Maintenance.getCheckCenter(nextMaintenance).Center.Reputation : 50;
 

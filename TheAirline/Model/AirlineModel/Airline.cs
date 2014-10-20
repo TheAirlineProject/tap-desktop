@@ -494,12 +494,15 @@
             {
                 AirlinerMaintenanceCheck check = airliner.Maintenance.Checks.Find(c=>c.Type == type);
 
-                check.CheckCenter = new AirlinerMaintenanceCenter(type);
+                if (check != null)
+                {
+                    check.CheckCenter = new AirlinerMaintenanceCenter(type);
 
-                if (this.Maintenances[type].Airport == null)
-                    check.CheckCenter.Center = this.Maintenances[type].Center;
-                else
-                    check.CheckCenter.Airport = this.Maintenances[type].Airport;
+                    if (this.Maintenances[type].Airport == null)
+                        check.CheckCenter.Center = this.Maintenances[type].Center;
+                    else
+                        check.CheckCenter.Airport = this.Maintenances[type].Airport;
+                }
 
             }
             

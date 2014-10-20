@@ -21,8 +21,7 @@
       <destination airport="LPA" pax="1" />
       <destination airport="TFS" pax="5" />
       <destination airport="DLM" pax="1" />
-      <destination airport="EWR" pax="5" />
-    </destinations>
+         </destinations>
   </majordestination>
   <majordestination airport="BHD">
     <destinations>
@@ -91,7 +90,6 @@
       <destination airport="DLM" pax="1" />
       <destination airport="IST" pax="6" />
       <destination airport="DXB" pax="38" />
-      <destination airport="EWR" pax="6" />
       <destination airport="SFB" pax="1" />
     </destinations>
   </majordestination>
@@ -192,11 +190,6 @@
       <destination airport="KBP" pax="1" />
       <destination airport="AUH" pax="24" />
       <destination airport="DXB" pax="59" />
-      <destination airport="ATL" pax="8" />
-      <destination airport="ORD" pax="17" cargo="3"/>
-      <destination airport="LAS" pax="7" />
-      <destination airport="JFK" pax="8" />
-      <destination airport="EWR" pax="8" />
       <destination airport="MCO" pax="28" />
       <destination airport="PHL" pax="11" />
       <destination airport="SFB" pax="6" />
@@ -539,10 +532,7 @@
       <destination airport="ADB" pax="1" />
       <destination airport="KBP" pax="7" />
       <destination airport="DXB" pax="50" />
-      <destination airport="ATL" pax="1" />
-      <destination airport="BOS" pax="1" />
-      <destination airport="CLT" pax="10" />
-      <destination airport="LAS" pax="25" />
+       <destination airport="CLT" pax="10" />
       <destination airport="MCO" pax="54" />
       <destination airport="SFB" pax="3" />
       <destination airport="TPA" pax="12" />
@@ -576,8 +566,7 @@
       <destination airport="ARN" pax="5" />
       <destination airport="GVA" pax="15" />
       <destination airport="ZRH" pax="32" />
-      <destination airport="JFK" pax="1" />
-    </destinations>
+         </destinations>
   </majordestination>
   <majordestination airport="LHR">
     <destinations>  
@@ -593,7 +582,6 @@
       <destination airport="ARN" pax="921" />
       <destination airport="ASB" pax="21" />
       <destination airport="ATH" pax="669" />
-      <destination airport="ATL" pax="34" />
       <destination airport="AUH" pax="638" />
       <destination airport="BAH" pax="24" />
       <destination airport="BCN" pax="610" />
@@ -607,8 +595,7 @@
       <destination airport="BLQ" pax="228" />
       <destination airport="BLR" pax="15" />
       <destination airport="BOM" pax="85" />
-      <destination airport="BOS" pax="67" />
-      <destination airport="BRU" pax="569" />
+       <destination airport="BRU" pax="569" />
       <destination airport="BSL" pax="216" />
       <destination airport="BUD" pax="276" />
       <destination airport="BWI" pax="8" />
@@ -621,17 +608,14 @@
       <destination airport="CPT" pax="45" />
       <destination airport="DEL" pax="85" />
       <destination airport="DEN" pax="24" cargo="4" />
-      <destination airport="DFW" pax="1477" cargo="227" />
       <destination airport="DME" pax="348" />
       <destination airport="DMM" pax="1" />
       <destination airport="DOH" pax="816" />
       <destination airport="DRS" pax="1" />
-      <destination airport="DTW" pax="10" />
-      <destination airport="DUB" pax="1664" />
+       <destination airport="DUB" pax="1664" />
       <destination airport="DUS" pax="647" />
       <destination airport="DXB" pax="2240" />
       <destination airport="EVN" pax="1" />
-      <destination airport="EWR" pax="87" />
       <destination airport="FCO" pax="981" />
       <destination airport="FLR" pax="62" />
       <destination airport="FNC" pax="20" />
@@ -650,14 +634,12 @@
       <destination airport="HEL" pax="575" />
       <destination airport="HKG" pax="101" />
       <destination airport="IAD" pax="68" />
-      <destination airport="IAH" pax="42" />
-      <destination airport="IAS" pax="9" />
+       <destination airport="IAS" pax="9" />
       <destination airport="IBZ" pax="13" />
       <destination airport="ICN" pax="20" />
       <destination airport="IKA" pax="3" />
       <destination airport="IST" pax="906" />
       <destination airport="JED" pax="16" />
-      <destination airport="JFK" pax="217" />
       <destination airport="JNB" pax="71" />
       <destination airport="KBP" pax="122" />
       <destination airport="KEF" pax="212" />
@@ -668,9 +650,7 @@
       <destination airport="KUL" pax="40" />
       <destination airport="KWI" pax="20" />
       <destination airport="LAD" pax="3" />
-      <destination airport="LAS" pax="17" />
-      <destination airport="LAX" pax="83" />
-      <destination airport="LCA" pax="330" />
+      <destination airport="LCA" pax="330"/> 
       <destination airport="LCG" pax="92" />
       <destination airport="LED" pax="90" />
       <destination airport="LIN" pax="820" />
@@ -697,7 +677,6 @@
       <destination airport="NCE" pax="437" />
       <destination airport="NRT" pax="53" />
       <destination airport="OLB" pax="5" />
-      <destination airport="ORD" pax="2290" cargo="352" />
       <destination airport="ORK" pax="393" />
       <destination airport="ORY" pax="267" />
       <destination airport="OSL" pax="688" />
@@ -715,10 +694,7 @@
       <destination airport="RTM" pax="123" />
       <destination airport="RUH" pax="16" />
       <destination airport="SAN" pax="12" />
-      <destination airport="SEA" pax="13" />
-      <destination airport="SEA" pax="390" cargo="60" />
-      <destination airport="SFO" pax="65" />
-      <destination airport="SIN" pax="92" />
+       <destination airport="SIN" pax="92" />
       <destination airport="SKG" pax="8" />
       <destination airport="SNN" pax="255" />
        <destination airport="SOF" pax="168" />
@@ -950,8 +926,6 @@
       <destination airport="TFS" pax="18" />
       <destination airport="AYT" pax="2" />
       <destination airport="DXB" pax="28" />
-      <destination airport="LAS" pax="1" />
-      <destination airport="EWR" pax="8" />
       <destination airport="SFB" pax="1" />
     </destinations>
   </majordestination>
@@ -1005,8 +979,7 @@
       <destination airport="GVA" pax="5" />
       <destination airport="ZRH" pax="1" />
       <destination airport="IST" pax="2" />
-      <destination airport="EWR" pax="8" />
-    </destinations>
+         </destinations>
   </majordestination>
   <majordestination airport="PIK">
     <destinations>

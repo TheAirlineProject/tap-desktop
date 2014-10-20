@@ -58,7 +58,7 @@
             GeneralHelpers.CreateInstructors(instructorsPool);
 
             SetupScenarioAirlines(scenario);
-            SetupScenario();
+            SetupScenarioSettings(scenario);
             Setup.SetupAlliances();
 
             PassengerHelpers.CreateAirlineDestinationDemand();
@@ -66,10 +66,7 @@
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
             GameObjectWorker.GetInstance().start();
 
-            PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
-
-            PageNavigator.ClearNavigator();
-
+        
             // GameObject.GetInstance().HumanAirline.Money = 1000000000;
 
             GameObject.GetInstance()
@@ -147,6 +144,21 @@
                                 s => s.Airports.Count(a => a.Profile.Country != s.Profile.Country));
 
                     failureOk = intlDestinations > Convert.ToInt32(failure.Value);
+                }
+                if (failure.Type == ScenarioFailure.FailureType.RoutesIntl)
+                {
+                    int intlRoutes =
+                        GameObject.GetInstance().MainAirline.Routes.Count((r => (r.Destination1.Profile.Country == GameObject.GetInstance().MainAirline.Profile.Country && r.Destination2.Profile.Country != GameObject.GetInstance().MainAirline.Profile.Country)
+                        || r.Destination2.Profile.Country == GameObject.GetInstance().MainAirline.Profile.Country && r.Destination1.Profile.Country != GameObject.GetInstance().MainAirline.Profile.Country));
+              
+                    failureOk = intlRoutes > Convert.ToInt32(failure.Value);
+                }
+                if (failure.Type == ScenarioFailure.FailureType.RoutesDomestic)
+                {
+                    int domesticRoutes =
+                        GameObject.GetInstance().MainAirline.Routes.Count(r=>r.Destination1.Profile.Country == GameObject.GetInstance().MainAirline.Profile.Country && r.Destination2.Profile.Country == GameObject.GetInstance().MainAirline.Profile.Country);
+             
+                    failureOk = domesticRoutes > Convert.ToInt32(failure.Value);
                 }
                 if (failure.Type == ScenarioFailure.FailureType.PaxGrowth)
                 {
@@ -325,10 +337,106 @@
                 SetupScenarioRoute(saroute, airline.Airline);
             }
         }
-
-        //sets up the different scenario setting
-        private static void SetupScenario()
+        //sets up the airports
+        private static void SetupAirports(Scenario scenario)
         {
+            if (scenario.Countries.Count == 0)
+            {
+                if (scenario.AirportType == Scenario.AirportTypes.Intl)
+                {
+                    List<Airport> intlAirports = Airports.GetAllAirports(a => a.Profile.Type == AirportProfile.AirportType.Long_Haul_International
+                        || a.Profile.Type == AirportProfile.AirportType.Short_Haul_International);
+
+                    int minAirportsPerRegion = 5;
+                    foreach (Region airportRegion in Regions.GetRegions())
+                    {
+                        IEnumerable<Airport> usedAirports = Airlines.GetAllAirlines().SelectMany(a => a.Airports);
+
+                        int countRegionAirports = intlAirports.Count(a => a.Profile.Country.Region == airportRegion);
+                        if (countRegionAirports < minAirportsPerRegion)
+                        {
+                            IEnumerable<Airport> regionAirports =
+                                Airports.GetAirports(airportRegion)
+                                    .Where(a => !intlAirports.Contains(a))
+                                    .OrderByDescending(a => a.Profile.Size)
+                                    .Take(minAirportsPerRegion - countRegionAirports);
+
+                            intlAirports.AddRange(regionAirports);
+                        }
+
+                        intlAirports.AddRange(usedAirports);
+                
+                        Airports.Clear();
+
+                        foreach (Airport majorAirport in intlAirports.Distinct())
+                        {
+                            Airports.AddAirport(majorAirport);
+                        }
+                    }
+                }
+
+                if (scenario.AirportType == Scenario.AirportTypes.Major)
+                {
+                    List<Airport> majorAirports =
+                        Airports.GetAllAirports(
+                            a =>
+                                a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Large
+                                || a.Profile.Size == GeneralHelpers.Size.Very_large
+                                || a.Profile.Size == GeneralHelpers.Size.Medium);
+                    IEnumerable<Airport> usedAirports = Airlines.GetAllAirlines().SelectMany(a => a.Airports);
+
+                    int minAirportsPerRegion = 5;
+                    foreach (Region airportRegion in Regions.GetRegions())
+                    {
+                        int countRegionAirports = majorAirports.Count(a => a.Profile.Country.Region == airportRegion);
+                        if (countRegionAirports < minAirportsPerRegion)
+                        {
+                            IEnumerable<Airport> regionAirports =
+                                Airports.GetAirports(airportRegion)
+                                    .Where(a => !majorAirports.Contains(a))
+                                    .OrderByDescending(a => a.Profile.Size)
+                                    .Take(minAirportsPerRegion - countRegionAirports);
+
+                            majorAirports.AddRange(regionAirports);
+                        }
+                    }
+
+                    majorAirports.AddRange(usedAirports);
+           
+                    Airports.Clear();
+
+                    foreach (Airport majorAirport in majorAirports.Distinct())
+                    {
+                        Airports.AddAirport(majorAirport);
+                    }
+                }
+            }
+            else 
+            {
+                List<Airport> countryAirports = new List<Airport>();
+
+                IEnumerable<Airport> usedAirports = Airlines.GetAllAirlines().SelectMany(a => a.Airports);
+
+                foreach (Country country in scenario.Countries)
+                {
+                    countryAirports.AddRange(Airports.GetAirports(a => a.Profile.Country == country));
+                }
+
+                countryAirports.AddRange(usedAirports);
+
+                Airports.Clear();
+
+                foreach (Airport countryAirport in countryAirports.Distinct())
+                    Airports.AddAirport(countryAirport);
+            }
+
+            
+        }
+        //sets up the different scenario setting
+        private static void SetupScenarioSettings(Scenario scenario)
+        {
+            SetupAirports(scenario);
+
             Parallel.ForEach(
                 Airports.GetAllAirports(),
                 airport =>
@@ -360,6 +468,7 @@
                 airline.StartMoney = airline.Money;
 
                 airline.Fees = new AirlineFees();
+                AirlineHelpers.CreateStandardAirlineShares(airline);
                 airline.addAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 150));
             }
         }

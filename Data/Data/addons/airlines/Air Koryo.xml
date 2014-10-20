@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Koryo" iata="JS"  color="Navy" country="311" CEO="Kang Ki Sop" mentality="Safe" market="Global" preferedairport="FNJ">
+    <narrative narrative="Air Koryo is the state owned flag carrier of North Korea. It is based at the main airport of the country at its largest city and capital of Pyongyang. They only have scheduled service to Beijing,Shenyang also in China and Vladivostok not far from North Korea on the Russian Far East coastline. They however do charters to 20 destinations, 10 of those being in North Korea and 5 in China, the other 5 are Moscow,Singapore,Kuala Lumpur,Kuwait and Bangkok. They have 16 terminated destinations. They did some South Korean flights starting in 2002 and flew at least 40 services to Seoul. They were formerly called CAAK, or  Civil Aviation Administration of Korea. The founding name in 1950 was Sokao. In 1992 they became Air Koryo. They are well known as the only airline to be rated 1 star by Skytrax out of 681 rated airlines.   " />
+  </profile>
+  <info real="True" from="1950" to="2199"></info>
+  <prefereds aircrafts="Il-62M,Antonov An-148 100E,Tupolev Tu-134B,Tupolev Tu-204-300,Tupolev Tu-154M,Tupolev Tu-154B,Il-18V,Il-18D,Il-18E"></prefereds>
+         <routes>
+                <route destination1="FNJ" destination2="PEK" />
+		<route destination1="FNJ" destination2="SHE" />
+		<route destination1="FNJ" destination2="VVO" />
+		<route destination1="FNJ" destination2="SVO" />
+		<route destination1="FNJ" destination2="BKK" />
+		<route destination1="FNJ" destination2="PVG" />
+		<route destination1="FNJ" destination2="DLC" />
+		<route destination1="FNJ" destination2="SZX" />
+		<route destination1="FNJ" destination2="YNJ" />
+		<route destination1="FNJ" destination2="SIN" />
+		<route destination1="FNJ" destination2="RGO" />
+		<route destination1="FNJ" destination2="YJS" />
+		  <route destination1="FNJ" destination2="KWI"  opened="2012" closed="2199" />
+		<route destination1="FNJ" destination2="KUL"  opened="2011" closed="2199" />
+		<route destination1="FNJ" destination2="HRB" opened="2012" closed="2199" />
+		
+		</routes>
+		
+		 <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2020)-->
+	         <airliners>
+	    <airliner type="Antonov An-148 100E" early="2" late="2"></airliner>
+	     </airliners>
+	     <!--the airliners the airline would start with which isn't on a route earyl (1974) late (2020)-->
+	         <airliners>
+	    <airliner type="Il-62M" early="4" late="4"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (1980) late (2020)-->
+	         <airliners>
+	    <airliner type="Tupolev Tu-134B" early="1" late="1"></airliner>
+	     </airliners>
+	     	        <!--the airliners the airline would start with which isn't on a route earyl (1975) late (2020)-->
+	         <airliners>
+	    <airliner type="Tupolev Tu-154B" early="1" late="1"></airliner>
+	     </airliners>
+	     	        <!--the airliners the airline would start with which isn't on a route earyl (1984) late (2020)-->
+	         <airliners>
+	    <airliner type="Tupolev Tu-154M" early="1" late="1"></airliner>
+	     </airliners>
+	     	        <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2030)-->
+	         <airliners>
+	    <airliner type="Tupolev Tu-204-300" early="1" late="5"></airliner>
+	     </airliners>
+</airline>

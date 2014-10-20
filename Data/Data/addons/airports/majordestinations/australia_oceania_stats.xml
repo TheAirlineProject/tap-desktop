@@ -3,7 +3,7 @@
 <majordestinations>
 <majordestination airport="SYD">
     <destinations>
-      <destination airport="DFW" pax="391" cargo="60" />
+      <destination airport="DFW" pax="101" cargo="15" />
     </destinations>
   </majordestination>
 </majordestinations>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <airline>
-<profile name="BH Airlines" iata="JA" logo="JA" color="DarkBlue" country="248" CEO="Amir Jažić" mentality="Moderate" market="Regional" preferedairport="SSJ">
+<profile name="BH Airlines" iata="JA" logo="JA" color="DarkBlue" country="248" CEO="Amir Jažić" mentality="Moderate" market="Regional" preferedairport="SJJ">
 <narrative narrative="BH Airlines is an airline with its head office in Sarajevo, Bosnia and Herzegovina, operating scheduled services, charter passenger services and small cargo services. With its home base at the Sarajevo International Airport, the airline is the flag carrier of Bosnia and Herzegovina." />
 </profile>
 <info real="True" from="1994" to="2199"></info>

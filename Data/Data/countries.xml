@@ -2198,6 +2198,17 @@
       <es-ES name="East Timor" />
     </translations>
   </country>
+    <country uid="313" shortname="KOS" region="115" flag="Kosovo" tailformat="Z6-\\s3">
+    <translations>
+      <en-US name="Republic of Kosovo" />
+      <de-DE name="Republic of Kosovo" />
+      <en-GB name="Republic of Kosovo" />
+      <nl-NL name="Republic of Kosovo" />
+      <zh-CN name="Republic of Kosovo" />
+      <da-DK name="Republic of Kosovo" />
+      <es-ES name="Republic of Kosovo" />
+    </translations>
+  </country>
   <!--Territories-->
   <country uid="246" shortname="CUW" region="117" flag="Curacao" tailformat="PJ-\\s3">
     <territoryof uid="179" />

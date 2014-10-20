@@ -1821,6 +1821,7 @@
                 AirlineHelpers.CheckInsuranceSettlements(a);
 
                 var airliners = new List<FleetAirliner>(a.Fleet.Where(f=>f.Airliner.BuiltDate<=GameObject.GetInstance().GameTime));
+                
                 foreach (FleetAirliner airliner in airliners)
                 {
                     if (airliner != null)

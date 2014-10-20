@@ -40,6 +40,8 @@
             this.Routes = new List<ScenarioAirlineRoute>();
             this.Failures = new List<ScenarioFailure>();
             this.PassengerDemands = new List<ScenarioPassengerDemand>();
+            this.Countries = new List<Country>();
+            this.AirportType = AirportTypes.All;
         }
 
         private Scenario(SerializationInfo info, StreamingContext ctxt)
@@ -118,6 +120,12 @@
         [Versioning("endyear")]
         public int EndYear { get; set; }
 
+        [Versioning("countries")]
+        public List<Country> Countries { get; set; }
+
+        [Versioning("airporttype")]
+        public AirportTypes AirportType { get; set; }
+
         [Versioning("failures")]
         public List<ScenarioFailure> Failures { get; set; }
 
@@ -145,6 +153,12 @@
         [Versioning("startyear")]
         public int StartYear { get; set; }
 
+        #endregion
+
+        #region Enums
+        
+        public enum AirportTypes { All, Major, Intl }
+        
         #endregion
 
         #region Public Methods and Operators

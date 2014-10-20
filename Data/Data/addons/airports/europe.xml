@@ -678,6 +678,20 @@
     </runways>
   </airport>
   <!--United Kingdom (EG**)-->
+    <airport name="Scatsta Airport" icao="EGPM" iata="SCS" type="Domestic" season="All_Year">
+    <town town="Sullom Voe Terminal, SCT" country="130" GMT="01:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="60°25'58''N" />
+      <longitude value="1°17'46''W" />
+    </coordinates>
+    <size value="Very_small" pax="161" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="3" />
+    </terminals>
+    <runways>
+        <runway name="06/24" length="1360" surface="Asphalt" />
+    </runways>
+  </airport>
    <airport name="Aberdeen Airport" icao="EGPD" iata="ABZ" type="Long_Haul_International" season="All_Year">
     <town town="Aberdeen, SCT" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
@@ -6725,6 +6739,38 @@
     <runways>
       <runway name="09/27" length="1828" surface="Asphalt" />
     </runways>
+  </airport>
+  <!--Kosovo (LY**)-->
+    <airport name="Đakovica Airfield" icao="LYDK" iata="GJA" type="Domestic" season="All_Year">
+    <town town="Guanaja" country="313" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="42°26'6''N" />
+      <longitude value="20°25'38''E" />
+    </coordinates>
+    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="1220" surface="Asphalt" />
+    </runways>
+  </airport>
+      <airport name="Pristina International Airport" icao="BKPR" iata="PRN" type="Long_Haul_International" season="All_Year">
+    <town town="Pristina" country="313" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="42°34'22''N" />
+      <longitude value="21°02'09''E" />
+    </coordinates>
+    <size value="Small" pax="1300" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="2501" surface="Asphalt" />
+    </runways>
+       <expansions>
+     <expansion type="New_terminal" name="Terminal B" gates="27" date="10 23 2013 00:00:00" notify="True"></expansion>
+   </expansions>
   </airport>
   <!--Serbia and Montenegro (LY**)-->
    <airport name="Belgrade Nikola Tesla Airport" icao="LYBE" iata="BEG" type="Long_Haul_International" season="All_Year">

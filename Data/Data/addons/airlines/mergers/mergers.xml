@@ -185,7 +185,9 @@
   <merger name="Aloha Airlines has founded a cargo subsidiary. " airline1="AQ" airline2="KH"
           type="Subsidiary" date="01.01.1946 00:00:00">
   </merger>
-  
+  <merger name="Air Arabia has started the subsidiary Air Arabia Egypt." airline1="G9" airline2="E5" type="Subsidiary" date="01.01.2009 00:00:00"></merger>
+<merger name="Air Arabia has started the subsidiary Air Arabia Maroc." airline1="G9" airline2="3O" type="Subsidiary" date="01.01.2009 00:00:00"></merger>
+<merger name="Thai International has founded the subsidiary Thai Smile" airline1="TG" airline2="WE" type="Subsidiary" date="01.01.2012 00:00:00"></merger>
      <merger name="Aloha Air Cargo is now an independant airline." airline1="AQ" airline2="KH"
           type="Independant" date="05.15.2008 00:00:00">
   </merger>

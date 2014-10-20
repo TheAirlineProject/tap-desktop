@@ -1,6 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <scenario name="Re-deregulation of the Turkish Domestic Flights" startYear="2003" startCash="10000000" difficulty="Hard" endYear="2014">
   <intro text="Until the liberalization in 1983, the flag carrier of Turkey, THY, acted as the only airline company for both domestic and international flights. The amendment in 1983 allowed the entry of private sector into the market. However, particularly after THY entered the privatization process, private airline companies were confronted with bureaucratic obstacles in their entry to domestic flights market. In addition, the DGCA took a decision in 1996, and made it more difficult for private airline companies to enter into the market. As a result, THY maintained its monopoly in domestic flights until 2003, and thus, domestic flights transport did not make any progress. Binali Yıldırım, the Minister of Transport in the government of Justice and Development Party, made a radical change on this state policy. In October 2003, he abolished the decision taken in 1996, and hence, allowed competition in domestic flights and removed the barriers that inhibited private airline companies from entering into the market. (Article by Yrd. Doç. Dr. Ender GEREDE - 2010) You will have 10 years to grow to a fleet of at least 15 aircraft, serving at least 40 domestic destinations..." />
+  <airports countries="161"></airports>
   <success text="Congratulations! You may just have a job." />
   <start airline="8Q" homeBase="IST">
     <destinations>
