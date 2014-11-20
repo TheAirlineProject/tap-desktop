@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Up" iata="ELY" color="DarkBlue" country="128" CEO="Israel Borovich" mentality="Safe" market="Global" preferedairport="TLV" >
+  <narrative narrative="Up is a subsidiary of El Al, the largest airline of Israel. It was founded in November 2013 and has taken over some of its parents routes in Europe. It goes to as of August 2014, five places besides the Tel Aviv base. Larnaca,Cyprus, Prague,Czech Republic, Berlin,Germany, Budapest,Hungary, and Kiev,Ukraine. It uses three 737-800s from its parent and has two on order."/>
+</profile>
+  <info real="True" from="2014" to="2199" />
+  <prefereds aircrafts="Boeing 737-800"></prefereds>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2020)-->
+	         <airliners>
+	    <airliner type="Boeing 737-800" early="3" late="5"></airliner>
+	     </airliners>
+	     	  
+</airline>

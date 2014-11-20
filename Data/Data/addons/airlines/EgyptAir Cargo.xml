@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="EgyptAir Cargo" iata="MSX" color="GoldenRod" country="155" CEO="Captain Basem Gohar" mentality="Safe" market="Global" preferedairport="CAI" routefocus="Cargo">
+  <narrative narrative="EgyptAir Cargo is the cargo sector of EgyptAir, also based at Cairo. It was founded in 2002. They have as of 2014 three A300-600F types, and one being stored. As of May 2014 they flew to one airport in Belgium,Ethiopia,France,Italy,Kenya,Uganda,the UAE,Sudan,Turkey and two in Germany. "/>
+</profile>
+  <info real="True" from="2002" to="2199" />
+  <prefereds aircrafts="A300C4-620,A300-600F"></prefereds>
+
+                <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2017)-->
+	         <airliners>
+	    <airliner type="A300C4-620" early="1" late="4"></airliner>
+	     </airliners>  
+
+</airline>

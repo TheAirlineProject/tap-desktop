@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Astra Airlines" iata="A2" color="MidnightBlue" country="118" CEO="Ioannis Zlatanis" mentality="Safe" market="Regional" preferedairport="SKG">
+  <narrative narrative="Astra Airlines is based at Thessaloniki,Greece and was founded in 2008. They have as of 2014, 17 domestic destinations and one seasonal charter in Russia, that being Astrakhan. 8 of its domestic destinations are also seasonal. It has a focus city at Athens. As of October 2014 they had an A320, two BAe 146-300's, and an ATR 72. "/>
+</profile>
+  <info real="True" from="2008" to="2199" />
+  <prefereds aircrafts="Avro RJ100 Avroliner,ATR 72-210,Airbus A320-200,Airbus A320neo"></prefereds>
+     <focusairports>
+	<focusairport airport="ATH"></focusairport>
+     </focusairports>
+     <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2016)-->
+	         <airliners>
+	    <airliner type="Avro RJ100 Avroliner" early="1" late="2"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2019)-->
+	         <airliners>
+	    <airliner type="ATR 72-210" early="1" late="1"></airliner>
+	     </airliners>  
+	           <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2020)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="1" late="1"></airliner>
+	     </airliners>  
+</airline>

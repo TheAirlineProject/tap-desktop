@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Antrak Air" iata="O4" color="DarkOrchid" country="189" CEO="Alhaji Asoma Banda" mentality="Safe"  market="Regional " preferedairport="ACC">
+    <narrative narrative="Antrak Air are an airline based at Accra,Ghana in West Africa. They have 5 destinations all domestic as of 2012, and do charters to other regional airports. In 2012 their fleet was three ATR 72's and one ATR 42. It was founded in 2003." />
+  </profile>
+  <info real="True" from="2003" to="2199" />
+  <prefereds aircrafts="ATR 72-500,ATR 72-210,ATR 72-200,ATR 42-500,ATR 42-300"></prefereds>
+
+</airline>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Cairo" iata="SM" color="Tomato" country="155" CEO="Ahmed El-Helow" mentality="Safe" market="Global" preferedairport="CAI">
+  <narrative narrative="Air Cairo is a 60% owned subsidiary of EgyptAir. It is based at its namesake city of Cairo and is also owned 20% by the National Bank of Egypt and 20% by Bank Misr. Its roots start in 1997 when it was an independant company that flew Tupolev's, in 2003 EgyotAir bought 40% and later 60% of the company and it was turned into a charter airline. In 2012 it started scheduled flights from Alexandria to Kuwait,Amman,Jeddah,Tripoli,Sabha and Misrata. And from Hurghada to Belgrade. As of 2014 they had five A320's with three on order. "/>
+</profile>
+  <info real="True" from="1997" to="2199" />
+  <prefereds aircrafts="Airbus A320-200,Airbus A320neo"></prefereds>
+                <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2016)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="2" late="8"></airliner>
+	     </airliners>  
+</airline>

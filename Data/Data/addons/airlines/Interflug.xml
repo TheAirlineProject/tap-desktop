@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Interflug" iata="IF" color="Red" country="1001" CEO="Niklas Trommler" mentality="Safe" market="Global" preferedairport="SXF">
+  <narrative narrative="Interflug was the flag carrier of East Germany, the Soviet held part of Germany, from 1958-1991 when it was liquidated following the reunification of Germany and the fall of the USSR. Its hub was
+  Berlin Schonefeld. Most of the places it served were also in the Soviet Union or its close allies, however it flew charters to other places too. It also competed with the free part of Berlin's passenger market, attracting passengers to
+  Schonefeld instead of Tegel sometimes, since West Germans were allowed to at least cross into East Germany to use the other airport. It offered lower prices than could be found at Tegel and targeted Western Germans to fly with them to and from
+  destinations in the Mediterranean and Black Sea areas for vacation. It even caused Tegel to see a major decline in holiday flights since using Schonefeld and its main tenant Interflug was the cheaper and better deal. 
+  The most used plane in their fleet was Il-18's from 1961 until the end. They also used Il-62's from 1970-1991,Tu-134's from 1969-1991,Il-14's from 1955-1967,An-24's from 1966-1975 , An-2
+  s in the late 50s and early 60s, and had A310's the last few years too. Deutsche Lufthansa was also a East German flag carrier that Interflug took over for after it was sued by the Lufthansa of West Germany for using its name without permission and barred from 
+  being a member of ICAO and IATA. It lasted from 1955-1963 when Interflug took over as the main East German airline."/>
+</profile>
+  <info real="True" from="1958" to="1991" />
+  <prefereds aircrafts="Il-18V,Il-18D,Il-18E,Tupolev Tu-134,Tupolev Tu-134A,Tupolev Tu-134B,Il-62,Il-62M,Antonov An-24,Il-14M,Il-14,Antonov An-2,Airbus A310-200,Bombardier Dash 8-100"></prefereds>
+   
+	   
+</airline>

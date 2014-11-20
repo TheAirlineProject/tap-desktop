@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Aviaco" iata="AO" logo="AO2" color="Cyan" country="123" CEO="Elias Ugartechea Isusi" mentality="Moderate" market="Global" preferedairport="MAD" >
+  <narrative narrative="Aviaco was a Spanish airline that existed from 1948-September 1,1999 when it was absorbed into Iberia who had owned it since 1998 and kept it as a subsidiary for a year or so. It was founded as a freighter company but soon after 1948 it did start passenger service from its Bilbao base to Madrid and Barcelona. Its first international route was Algiers-Palma-Marseilles and then a short time later expansion to the Canary Islands. Its HQ was moved from Bilbao to Madrid in 1955 and the Instituto Nacional de Industria took a majority interest. Iberia got 2/3 of its shares in 1959 and they got three Convair 440's shortly after along with five DH 114 Heron's, and five SE 161 Languedoc. In 1960s places served included Barcelona,Brussels,Casablanca,Las Palmas,Oran,Palma,Tanger,Tenerife and Tetouan. In 1962 they got some Convair 240's from Varig. In the 70s they would use mostly DC-9-30's and had at least five DC-8-51's. They also used Fokker F27's and Caravelle 10's. In the early 80s they had five DC-8-63s Iberia used to have. At the time of ceasing into Iberia they had about 18 DC-9-30's and 13 MD-88's."/>
+</profile>
+  <info real="True" from="1948" to="2000" />
+  <prefereds aircrafts="Douglas DC-9-30,MD-88 (DC-9-88),Douglas DC-8-51,Douglas DC-8-63,Fokker F27,Sud Aviation Caravelle 10B,Convair 440,DH 114 Heron,SE 161 Languedoc,Douglas DC-4-1009,Convair 240"></prefereds>
+     <focusairports>
+        <focusairport airport="BIO"></focusairport>
+	<focusairport airport="BCN"></focusairport>
+	<focusairport airport="PMI"></focusairport>
+	<focusairport airport="LPA"></focusairport>
+	<focusairport airport="TFS"></focusairport>
+	<focusairport airport="TFN"></focusairport>
+	<focusairport airport="GRO"></focusairport>
+     </focusairports>
+                <!--the airliners the airline would start with which isn't on a route earyl (1972) late (1982)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-51" early="5" late="0"></airliner>
+	     </airliners>  
+	         <!--the airliners the airline would start with which isn't on a route earyl (1981) late (1984)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-63" early="4" late="0"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (1974) late (1999)-->
+	         <airliners>
+	    <airliner type="Douglas DC-9-30" early="4" late="18"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (1991) late (1999)-->
+	         <airliners>
+	    <airliner type="MD-88 (DC-9-88)" early="13" late="13"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1974) late (1994)-->
+	         <airliners>
+	    <airliner type="Fokker F27" early="6" late="8"></airliner>
+	     </airliners>
+
+
+</airline>

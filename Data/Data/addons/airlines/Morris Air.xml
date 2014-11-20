@@ -1,0 +1,13 @@
+<airline>
+<profile name="Morris Air" iata="MSS" color="MidnightBlue" country="122" CEO="June Morris" mentality="Moderate" market="Regional" preferedairport="SLC">
+<narrative narrative="Morris Air was a low fare airline based out of Salt Lake City. It was founded in 1984 as Morris Air Service as a charter operation who hired other airlines to do contract charter services for them, such as Ryan International Airlines, and Sierra Pacific Airlines. In 1992 it began operation on its own and a short time later in Summer 1994 Southwest Airlines bought it. They served 21 scheduled destinations all in the western US, and the charter places served were Hawaii,Orlando, and 5 Mexican tourists hot spots like Cancun and Cabo. They had 21 737-300's."/>
+</profile>
+<info real="True" from="1992" to="1994"></info>
+ 	   
+		
+	 	 <!--the airliners the airline would start with which isn't on a route earyl (1992) late (1993)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="21" late="21"></airliner>
+	     </airliners>
+	
+</airline>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Nile Air" iata="NP" color="Gold" country="155" CEO="Ahmed Aly" mentality="Safe" market="Global" preferedairport="CAI">
+  <narrative narrative="Nile Air is based out of Cairo and started operations in August 2010 after being founded in 2008.  Alexandria,Egypt is a secondary hub and they have focus cities at Yanbu,Saudi Arabia, Qassim,Saudi Arabia and Jeddah in the same country. In all it has 5 destinations in Saudi Arabia, its two hubs in Egypt and Kuwait as of December 2013. It also had two A320's which are leased and had two A321's on order in December 2013."/>
+</profile>
+  <info real="True" from="2010" to="2199" />
+  <prefereds aircrafts="Airbus A321-200,Airbus A320-200,Airbus A321neo,Airbus A320neo"></prefereds>
+     <focusairports>
+	<focusairport airport="HBE"></focusairport>
+	<focusairport airport="ALY"></focusairport>
+	<focusairport airport="YNB"></focusairport>
+	<focusairport airport="ELQ"></focusairport>
+	<focusairport airport="JED"></focusairport>
+     </focusairports>
+                <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2016)-->
+	         <airliners>
+	    <airliner type="Airbus A321-200" early="0" late="2"></airliner>
+	     </airliners>  
+	           <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2016)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="2" late="2"></airliner>
+	     </airliners>  
+</airline>

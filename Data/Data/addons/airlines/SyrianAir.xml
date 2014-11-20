@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="SyrianAir" iata="RB"  color="Navy" country="281" CEO="Ghaida Abdullatif" mentality="Safe" market="Global" preferedairport="DAM">
+    <narrative narrative="SyrianAir, or Syrian Arab Airlines, is the flag carrier of Syria. As of 2013 it had 23 destinations most in the Middle East, but also 3 in Africa and Moscow. It has 17 suspended European routes not included in the 23 served. It was founded in 1946. Its current fleet is 6 A320's, 2 ATR 72-500's,6 Il-76's, a Tu-134B,and orders are for threee TU-204's,three IL-96-300's, and ten AN-148's. It has had many planes in the past: In the beginning it had DC-3' and DC-4's, and then DC-6's and 6B's,Caravelle 10B's,Boeing 707-320's,Antonov 24's,Dassualt Falcon 20's,Dassault Mercures,Dassault 900's,Yak 40's,727-200's, and 747SP's. It is a member of the Arab Air Carriers Organization and Arabesk Airline Alliance." />
+  </profile>
+  <info real="True" from="1946" to="2199"></info>
+  <prefereds aircrafts="Airbus A320-200,ATR 72-500,Il-96-300,Boeing 727-200 Adv.,Boeing 747SP,Antonov An-148 100E,Tupolev Tu-204-300,Tupolev Tu-134B,Yak-40,Dassault Falcon 20,Dassault Mercure,Douglas DC-6B,Douglas DC-6,Antonov An-24,Sud Aviation Caravelle 10B,Boeing 707-320,Douglas DC-3,Douglas DC-4-1009"></prefereds>
+		
+</airline>

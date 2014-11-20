@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Mauritania Airways" iata="YD" color="MediumVioletRed" country="269" CEO="Mohamed Ould Bouamatou" mentality="Safe" market="Global" preferedairport="NKC" >
+  <narrative narrative="Mauritania Airways was founded in 2006 and began operation in 2007 and replaced the former flag carrier of Mauritania Air Mauritanie. It was owned 51% by Tunisair of Tunisia, and 39% by Mohamed Ould Bouamatou a businessman from Mauritania,and the government owned 10%. It ceased operations in December 2010 after the European Union added it to their blacklist of airlines that can't fly into Europe and they had to suspend their flights to Paris Orly and Gran Canaria which is part of Spain. Mauritania Airlines International was founded after their demise. They served two domestic airports, two in Senegal, and eight others in eight African countries mostly in the same area as Mauritania, and of course Paris and Gran Canaria before they were banned. At the end they had two 737-700's and an ATR 42-300. They used an A320 from 2007-2009 also."/>
+</profile>
+  <info real="True" from="2007" to="2011" />
+  <prefereds aircrafts="Boeing 737-700,ATR 42-300,Airbus A320-200"></prefereds>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2010)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="1" late="0"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2010)-->
+	         <airliners>
+	    <airliner type="Boeing 737-700" early="2" late="2"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2010)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="1" late="1"></airliner>
+	     </airliners>
+	     	  
+</airline>

@@ -1,0 +1,8 @@
+<airline>
+<profile name="Air Vanuatu" iata="NF" color="Crimson" country="292" CEO="Joseph Laloyer" mentality="Safe" market="Regional" preferedairport="VLI">
+<narrative narrative="Air Vanuatu is the flag carrier of the island nation of the South Pacific. It was founded in 1981 following Vanuatu's independance from France and the UK the previous year. It operates 28 domestic routes as of 2009. And as of 2012 ten international routes to other places in the South Pacific such as Fiji and the Solomon Islands, and Australia and New Zealand. They have three Chinese built Harbin Y-12 IV's, and their flagship is a 737-800, and also have an ATR 72-500. Past planes include a DC-9-30,Boeing 737-200,Boeing 727,Boeing 737-400 and 300,Saab 2000,EMB 110,Dash 8,and ATR 42. In their first 5 years Ansett Australia airlines would lease them planes and staff. After that they had an agreement with Australian, and now Qantas, who they use the frequent flyer program of and codeshares Australian flights with, and provides maitenace and pilot training. It is owned by the government. In 2004 the smaller domestic carrier Vanair merged with them.  "/>
+</profile>
+<info real="True" from="1981" to="2199"></info>
+  <prefereds aircrafts="Harbin Y-12 IV,Harbin Y-12 II,Boeing 737-800,ATR 72-500,Douglas DC-9-30,Boeing 737-200 Adv.,Boeing 727-200 Adv.,Boeing 737-400,Boeing 737-300,EMB 110 Bandeirante,Saab 2000,ATR 42-500,Bombardier Dash 8-400,Bombardier Dash 8-300,Bombardier Dash 8-200"></prefereds>	   
+	
+</airline>

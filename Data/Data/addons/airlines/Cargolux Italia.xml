@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Cargolux Italia" iata="C8" logo="CV" color="Olive" country="141" CEO="Frank Reiman" mentality="Safe" market="Global" preferedairport="MXP" routefocus="Cargo">
+  <narrative narrative="Cargolux Italia is a subsidiary of Cargolux of Luxembourg based at Milan Malpensa,Italy. It started in 2009 and as of 2014 has 10 destinations. These include
+  Baku in Azerbaijan,Campinas in Brazil,Hong Kong, Osaka in Japan, Almaty in Kazakhstan, three in the US and Glasgow,Scotland. They also have two 747-400F's."/>
+</profile>
+  <info real="True" from="2009" to="2199" />
+  <prefereds aircrafts="Boeing 747-400F,Boeing 747-400ERF,Boeing 747-8F"></prefereds>
+                <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 747-400F" early="1" late="2"></airliner>
+	     </airliners>  
+</airline>

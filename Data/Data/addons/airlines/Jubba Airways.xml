@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Jubba Airways" iata="6J" color="Turquoise" country="262" CEO="Abdullahi Warsame" mentality="Safe"  market="Global " preferedairport="MGQ">
+    <narrative narrative="Jubba Airways is an airline with its headquarters in Nairobi,Kenya buts its hubs in Mogadishu,Somalia and Hargeisa,Somalia. It also has a secondary hub at Djibouti. It has 5 destinations in Somalia, one in Kenya,one in Saudi Arabia, one in the UAE and Djibouti. It has two 737-200's, a 737-300 and a leased 737-400 from East Air as of 2014. It was founded in 1998 and started the same year, by two Somali entrepreneurs living in Calgary,Canada." />
+  </profile>
+  <info real="True" from="1998" to="2199" />
+  <prefereds aircrafts="Boeing 737-200 Adv.,Boeing 737-200,Boeing 737-300,Boeing 737-400"></prefereds>
+
+</airline>

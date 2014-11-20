@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Binter Canarias" iata="NT" color="LawnGreen" country="123" CEO="Pedro Agustin del Castillo Machado" mentality="Safe" market="Global" preferedairport="LPA" >
+  <narrative narrative="Binter Canarias is based at Gran Canaria of the Canary Islands in Spain. It also has bases at Tenerife North and La Palma also in the islands. It began service in 1989 as a subsidiary of Iberia. After a 
+  period of privatisation Iberia started in 1999 it was sold in July 2002 and became independant not being owned by any other large airline. Later on some of its owners bought another Canary Islands airline called NAYSA and transferred some of Binters planes to it.
+  Binter also had a sister airline of Iberia called Binter Mediterraneo which was bought by Air Nostrum. As of 2014 it operates at 8 Spanish airports, all in the Canary Islands and are the only airline that operates at them all. They also serve three in Portugal
+four in Morocco, one in Senegal and one in The Gambia. As of March 2014 they had 14 ATR 72-500's,3 ATR 72-200's,and one CRJ900. There were six ATR 72's on order. They started with four CN-235's which they stopped using in 1997 and had a few leased DC-9's from 1995-1998. CRJ200's have been used short times as well.
+They leased a 737-400 for a few years too."/>
+</profile>
+  <info real="True" from="1989" to="2199" />
+  <prefereds aircrafts="ATR 72-500,ATR 72-200,CN-235,Bombardier CRJ900,Bombardier CRJ200"></prefereds>
+     <focusairports>
+        <focusairport airport="TFN"></focusairport>
+	<focusairport airport="SPC"></focusairport>
+     </focusairports>
+                <!--the airliners the airline would start with which isn't on a route earyl (1991) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-200" early="6" late="3"></airliner>
+	     </airliners>  
+	         <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-500" early="1" late="14"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (1989) late (1998)-->
+	         <airliners>
+	    <airliner type="CN-235" early="4" late="0"></airliner>
+	     </airliners>
+
+</airline>

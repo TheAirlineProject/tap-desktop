@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Jazz" iata="QK" color="Maroon" country="113" CEO="Joseph Randell" mentality="Aggressive" market="Regional" preferedairport="YHZ" >
+  <narrative narrative="Jazz is an airline based at Halifax,Nova Scotia. It has many hubs and focus cities at Toronto,Montreal,Vancouver,Calgary,Ottawa,Edmonton,Winnipeg and Victoria. It is a franchise for Air Canada, under an agreement to operate many flights under the Air Canada name.
+  Much of its fleet is dedicated to this, but they also have many planes that operate under their own name. It was formed in 2002 after the merger of Air BC,Air Nova,Air Ontario and Canadian Regional Airlines. In 2010 and 2011 they also did some flights for Thomas Cook using 757's. 
+  They have a large fleet, 34 Dash 8-100's,28 Dash 8-300's,21 Dash 8-400's,26 CRJ 200's,and 16 CRJ 705's as of November 2014. The CRJ 705 is a special edition of the 900 and only Jazz has these which were special ordered. They had 10 BAe 146-200's near the beginning too. They operate at 79 destinations in Canada and the US.
+  It was called Air Canada Jazz from 2002-2006."/>
+</profile>
+  <info real="True" from="2002" to="2199" />
+  <prefereds aircrafts="Bombardier Dash 8-100,Bombardier Dash 8-300,Bombardier CRJ200,Bombardier Dash 8-400,Bombardier Dash 8-400NextGen,Bombardier CRJ705,BAe 146-200"></prefereds>
+     <focusairports>
+	<focusairport airport="YYZ"></focusairport>
+	<focusairport airport="YUL"></focusairport>
+	 <focusairport airport="YVR"></focusairport>
+	  <focusairport airport="YYC"></focusairport>
+	 <focusairport airport="YOW"></focusairport>
+	<focusairport airport="YEG"></focusairport>
+	 <focusairport airport="YWG"></focusairport>
+	 <focusairport airport="YYJ"></focusairport>
+     </focusairports>
+                <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2018)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ705" early="16" late="16"></airliner>
+	     </airliners>  
+	         <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2012)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ100" early="25" late="0"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2014)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ200" early="10" late="26"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2014)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-100" early="61" late="34"></airliner>
+	     </airliners>
+	          	     	         <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2018)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-400" early="10" late="30"></airliner>
+	     </airliners>
+	         	     	         <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2014)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="26" late="28"></airliner>
+	     </airliners>
+	         	     	         <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2012)-->
+	         <airliners>
+	    <airliner type="BAe 146-200" early="10" late="0"></airliner>
+	     </airliners>
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

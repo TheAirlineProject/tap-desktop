@@ -1,0 +1,18 @@
+      <airliners>
+
+    <airliner manufacturer="Harbin" name="Harbin Y-12 II" price="1290000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="17.24" length="18.86" range="1340" speed="250" fuelcapacity="955" consumption="0.059"
+           runwaylengthrequired="610" />
+    <capacity passengers="17" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1985" to="1995" rate="100" />
+  </airliner>
+           <airliner manufacturer="Harbin" name="Harbin Y-12 IV" price="1445000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="17.24" length="18.86" range="1340" speed="250" fuelcapacity="955" consumption="0.053"
+           runwaylengthrequired="610" />
+    <capacity passengers="19" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1995" to="2199" rate="100" />
+  </airliner>
+  
+  </airliners>

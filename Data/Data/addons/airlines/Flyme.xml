@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Flyme" iata="VP" color="GreenYellow" country="276" CEO="Qasim Ibrahim" mentality="Moderate" market="Domestic" preferedairport="VAM" >
+  <narrative narrative="Flyme is an airline that does domestic Maldives service, the island country in the Indian Ocean area. Its two bases are Villa and Male. It is also called Villa Air and is owned by the Villa Group. It was founded in 2011. It serves 9 domestic destinations. As of November 2013 it had two ATR 72-600's and two ATR 42-500's."/>
+</profile>
+  <info real="True" from="2011" to="2199" />
+  <prefereds aircrafts="ATR 42-500,ATR 72-600"></prefereds>
+  <focusairports>
+        <focusairport airport="MLE"></focusairport>
+     </focusairports>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2018)-->
+	         <airliners>
+	    <airliner type="ATR 42-500" early="2" late="2"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2018)-->
+	         <airliners>
+	    <airliner type="ATR 72-600" early="2" late="2"></airliner>
+	     </airliners>
+	     	  
+</airline>

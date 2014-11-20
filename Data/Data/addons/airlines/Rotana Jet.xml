@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Rotana Jet" iata="RG" logo="RG2" color="Blue" country="156" CEO="Ahmed bin Saif Al Nahyan" mentality="Safe" market="Global" preferedairport="AZI">
+  <narrative narrative="Rotana Jet is an airlinr based at Abu Dhabi's Al Bateen Executive Airport. It was founded in 2010 and did executive charter flights before starting
+  scheduled service in June 2012, including a flight to Fujairah making it the first domestic airline to connect two emirates. It flies internationally to Bahrain, two airports in Oman
+  and two airports in Sri Lanka. Seven domestic airports are served. As of 2014 they had two A319's, one in VIP configuration. And also two Embraer ERJ145's and a Gulfstream G450. It also
+  has been a member of the Arab Air Carriers Organization since 2011."/>
+</profile>
+  <info real="True" from="2010" to="2199" />
+  <prefereds aircrafts="Embraer ERJ145,Airbus A319-100,Gulfstream G450,Airbus A319neo"></prefereds>
+     <focusairports>
+	<focusairport airport="AAN"></focusairport>
+	<focusairport airport="FJR"></focusairport>
+     </focusairports>
+     <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2016)-->
+	         <airliners>
+	    <airliner type="Embraer ERJ145" early="2" late="3"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2016)-->
+	         <airliners>
+	    <airliner type="Airbus A319-100" early="1" late="2"></airliner>
+	     </airliners>  
+
+</airline>

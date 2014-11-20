@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Mauritania Airlines International" iata="L6" color="GreenYellow" country="269" CEO="Mohamed Ould Bouamatou" mentality="Safe" market="Global" preferedairport="NKC" >
+  <narrative narrative="Mauritania Airlines International was founded in 2010 after the end of the previous carrier Mauritania Airways. It is the flag carrier of the West African nation Mauritania. It's base is Nouakchott. It serves 3 domestic destinations and seven other African countries in the same area, one airport in each, and also serves Paris and Gran Canaria of the Canary Islands of Spain. As of September 2014 they had two 737-500's and a 737-700 and an Embraer ERJ145, none of the planes belonged to the previous flag carrier."/>
+</profile>
+  <info real="True" from="2010" to="2199" />
+  <prefereds aircrafts="Boeing 737-500,Boeing 737-700,Embraer ERJ145 LR"></prefereds>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-500" early="1" late="2"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2017)-->
+	         <airliners>
+	    <airliner type="Boeing 737-700" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2018)-->
+	         <airliners>
+	    <airliner type="Embraer ERJ145LR" early="1" late="1"></airliner>
+	     </airliners>
+	     	  
+</airline>

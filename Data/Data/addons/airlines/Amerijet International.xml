@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Amerijet International" iata="M6" color="DodgerBlue" country="122" CEO="David Bassett" mentality="Safe" market="Global" preferedairport="MIA" routefocus="Cargo" >
+    <narrative
+      narrative="Amerijet International is a cargo airline based at Fort Lauderdale with hubs at Miami,Reno in Nevada and Columbus Rickenbacker in Ohio.They began in 1974 flying passengers and cargo to the Bahamas. In 1976 they became
+      a freight only carrier. In 1978 it got contracts from Purolator,FedEx,UPS,DHL. Airborne Express signed on in the early 80's. One of its founders David Bassett still owns 34% of it while HIG Capital owns the rest. They go to 52
+      destinations, and all the international ones are in the Caribbean,South and Central America. As of 2011 they had three 767-200F's,a 767-300F with another on order, and a 727-200F. In the early 80's they had
+      two Dassult Falcon 20's,two Cessna 401's,three Cessna 402's,a Cessna Stationair and a Learjet 23." />
+  </profile>
+  <info real="True" from="1974" to="2199" />
+     <prefereds aircrafts="Boeing 727-200 Adv.,Boeing 767-300F,Boeing 767-200,Cessna 207,Cessna 206,Cessna 402,Cessna 402C,Cessna 401,Dassault Falcon 20"></prefereds>
+</airline>

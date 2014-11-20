@@ -1,0 +1,23 @@
+<airline>
+<profile name="Senegal Airlines" iata="DN" color="Red" country="101" CEO="Edgardo Badiali" mentality="Safe" market="Regional" preferedairport="DKR">
+<narrative narrative="Senegal Airlines is an airline based at Dakar,Senegal, launched in 2009 after Air Senegal International ceased operations. It is 64% privately owned. As of 2013 it has operations at 15 airports all in West Africa divided among 13 countries. The only country where it serves more than 1 destination being the three domestic airports. It has three A320's and an ATR 72-500 as of 2012. "/>
+</profile>
+<info real="True" from="2009" to="2199"></info>
+  <prefereds aircrafts="Airbus A320-200,ATR 72-500"></prefereds>	   
+                <routes>
+                <route destination1="DKR" destination2="ZIG" />
+		<route destination1="DKR" destination2="CSK" />
+		<route destination1="DKR" destination2="BKO" />
+		<route destination1="DKR" destination2="CKY" />
+		<route destination1="DKR" destination2="OXB" />
+		<route destination1="DKR" destination2="ABJ" />
+		<route destination1="DKR" destination2="BJL" />
+		<route destination1="DKR" destination2="LBV" />
+		<route destination1="DKR" destination2="OUA" />
+		<route destination1="DKR" destination2="DLA" />
+		<route destination1="DKR" destination2="NIM" />
+		<route destination1="DKR" destination2="RAI" />
+		<route destination1="DKR" destination2="COO" />
+		<route destination1="DKR" destination2="NKC" />
+		</routes>
+</airline>

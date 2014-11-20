@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="ZanAir" iata="B4" color="Gold" country="222" CEO="Lancy" mentality="Safe"  market="Regional " preferedairport="ZNZ">
+    <narrative narrative="ZanAir is an airline based on the island of Zanzibar in the East African country of Tanzania. They go to 6 domestic airports and one in Kenya, Mombasa. It was founded in 1992.  In 2013 their fleet was a Fokker F28,a Let L-410,a Cessna 404 Titan,a Cessna 402, and a Piper Seneca." />
+  </profile>
+  <info real="True" from="1992" to="2199" />
+  <prefereds aircrafts="Fokker F28-6000,Let L-410,Cessna 404 Titan,Cessna 402C,Cessna 402,PA-34 Seneca"></prefereds>
+
+</airline>

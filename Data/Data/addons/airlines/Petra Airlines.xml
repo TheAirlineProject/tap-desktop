@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Petra Airlines" iata="9P" color="Orange" country="274" CEO="Riad Khasman" mentality="Safe" market="Global" preferedairport="AMM">
+  <narrative narrative="Petra Airlines is based at Amman,Jordan. It was founded in 2005 but didn't get its first plane until 2010. That plane would be the A320, still the only plane
+  it has as of 2014. It's destinations include 2 in Egypt, 2 in Saudi Arabia and 3 in Turkey. It has a secondary hub at Marka,Jordan near Amman and at Aqaba they have a focus city."/>
+</profile>
+  <info real="True" from="2010" to="2199" />
+  <prefereds aircrafts="Airbus A320-200,Airbus A320neo"></prefereds>
+     <focusairports>
+	<focusairport airport="ADJ"></focusairport>
+	<focusairport airport="AQJ"></focusairport>
+     </focusairports>
+	      <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2016)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="1" late="1"></airliner>
+	     </airliners>  
+
+</airline>

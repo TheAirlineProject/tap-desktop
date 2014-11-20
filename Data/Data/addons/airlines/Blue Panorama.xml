@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Blue Panorama" iata="BV" logo="BV2" color="BlueViolet" country="115" CEO="Franco Pecci" mentality="Moderate" market="Global" preferedairport="FCO" >
+  <narrative narrative="Blue Panorama is an airline based at Rome,Italy with other bases at Milan Malpensa and Tirana,Albania. It was founded in 1998 and as of May 2014 serves 
+  14 domestic airports,10 in Greece,5 in Cuba,3 in Spain,and one each in Albania,Croatia,Dominican Republic,Jamaica,Mexico,Russia and Turkey. It operates both scheduled and charters and runs a low cost brand called  Blu-Express.
+  18 of its destinations are seasonal,including all the ones in Greece and Spain. As of late 2014 it had three 767-300ER's and a 737-500 and two Piaggio 180s. Previous planes operated include 737-400's and 757-200's."/>
+</profile>
+  <info real="True" from="1998" to="2199" />
+  <prefereds aircrafts="Boeing 767-300ER,Boeing 767-300,Boeing 737-500,Boeing 737-400,Boeing 757-200,P180 Avanti"></prefereds>
+     <focusairports>
+	 <focusairport airport="MXP"></focusairport>
+	 <focusairport airport="TIA"></focusairport>
+     </focusairports>
+                
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2014)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300ER" early="2" late="3"></airliner>
+	     </airliners>
+		         	     	         <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2013)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="2" late="0"></airliner>
+	     </airliners>
+	         	     	         <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2013)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="6" late="0"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2017)-->
+	         <airliners>
+	    <airliner type="Boeing 737-500" early="1" late="0"></airliner>
+	     </airliners>
+	      	     	         <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2018)-->
+	         <airliners>
+	    <airliner type="P180 Avanti" early="2" late="2"></airliner>
+	     </airliners>
+	 
+	 
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

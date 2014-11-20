@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Daallo Airlines" iata="D3" color="Blue" country="298" CEO="Mohamed Ibrahim Yassin" mentality="Safe"  market="Global " preferedairport="JIB">
+    <narrative narrative="Daallo Airlines is based at Dubai,UAE but has its hub at Djibouti on the Horn of Africa in West Africa. As of 2014 they had 5 destinations, all in Africa and the Middle East. They previously served London and Paris too. Last reports in May 2014 say they had a Airbus A321-200, a BAe-200
+    and a 737-300 which East Air operates. They have been known to operate many plane types over their life, like a DC-9-30,Tupolev 154,Antonov-24,Il-18,Boeing 767,Boeing 757,Let 410,Antonov 12,,and Il-76, and 727-200. It was founded in 1991 and first used a Cessna. " />
+  </profile>
+  <info real="True" from="1991" to="2199" />
+  <prefereds aircrafts="Boeing 737-300,BAe 146-200,Airbus A321-200,MD DC-9-20,MD DC-9-40,Tupolev Tu-154M,Antonov An-24,Boeing 727-200 Adv.,Il-18E,Il-18D,Let L-410,Boeing 757-200,Boeing 767-200"></prefereds>
+
+</airline>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Wings of Alaska" iata="SQH" color="MidnightBlue" country="122" CEO="Rob McKinney" mentality="Safe" market="Local" preferedairport="JNU">
+  <narrative narrative="Wings of Alaska is a subsidiary of Portland,OR based SeaPort Airlines and has been since 2008 when it was acquired. However it was its own airline from 1982 until then. Its base is Juneau,Alaska and they serve 4 other Alaskan airports all in the same part of Alaska as Juneau, the Southern part that consists of a lot of islands and is closely bordered by Canada.They have 6 planes, which include Cessna 208's and Cessna 207's like their parent. "/>
+</profile>
+  <info real="True" from="1982" to="2199" />
+  <prefereds aircrafts="Cessna 208B,Cessna 207"></prefereds>
+   
+
+	   
+</airline>

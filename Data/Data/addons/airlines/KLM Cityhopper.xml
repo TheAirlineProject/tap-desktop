@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="KLM Cityhopper" iata="KL3" color="Cyan" country="179" CEO="PF Hartman" mentality="Aggressive"  market="Regional" preferedairport="AMS" >
+ <narrative narrative="KLM Cityhopper is a regional subsidiary of KLM. It was formed when NLM Cityhopper and its parent Netherlines were bought by KLM. In 2003 KLM UK also merged with KLM Cityhopper. They fly to 44 destinations all in Europe and as of October 2014 had 28 Embraer 190ER's and 19 Fokker 70's.  Their past fleet includes many other Fokker planes and Saab 340's."/>
+</profile>
+  <info real="True" from="1991" to="2199"></info>
+     <prefereds aircrafts="Embraer E-190,Fokker 70,Fokker 100,Fokker F27,Fokker 50,Saab 340B,Fokker F28-6000,Fokker F28-4000"></prefereds>
+</airline>
+

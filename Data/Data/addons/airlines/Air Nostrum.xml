@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Nostrum" iata="YW" color="Blue" country="123" CEO="Artemio Menendez" mentality="Moderate" market="Global" preferedairport="VLC" >
+  <narrative narrative="Air Nostrum is also known as Iberia Regional, but it is not a subsidiary of Iberia, rather an airline under a franchise agreement with them. They are based at Valencia with other hubs at Barcelona and Madrid. It was founded in 1994 and in 1997 became a franchise for Iberia but are not owned by Iberia at all. A group called Nefinsa owns 74.8% of it, with a group called Caja Duero owning 22.2% and the other 3% is owned by the managers of the airline. It has absorbed the Iberia subsidiary Binter Mediterraneo and its operations and got the routes that belonged to Aviaco after Iberia merged with that airline. For a short time from 1999-2002 they owned Dutch airline Denim Air. As of 2013 they operated at 33 domestic airports, 8 in France,6 in Italy, 3 in Greece,3 in Morocco,2 in Portugal,2 in Algeria,and one each in Croatia,Germany, and Malta. As of 2014 they had 15 CRJ200's,11 CRJ900's and 10 CRJ1000's. They have also had Dash 8-300's and Fokker 50's in the past as the main or big part of the fleet."/>
+</profile>
+  <info real="True" from="1994" to="2199" />
+  <prefereds aircrafts="Bombardier CRJ200,Bombardier CRJ900,Bombardier CRJ1000,ATR 72-500,Fokker 50,Bombardier Dash 8-300 "></prefereds>
+     <focusairports>
+	<focusairport airport="BCN"></focusairport>
+	<focusairport airport="MAD"></focusairport>
+     </focusairports>
+                <!--the airliners the airline would start with which isn't on a route earyl (1998) late (2014)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ200" early="1" late="15"></airliner>
+	     </airliners>  
+	         <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2016)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ900" early="11" late="11"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2016)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ1000" early="9" late="10"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2012)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="14" late="0"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1996) late (2003)-->
+	         <airliners>
+	    <airliner type="Fokker 50" early="14" late="0"></airliner>
+	     </airliners>
+
+
+</airline>

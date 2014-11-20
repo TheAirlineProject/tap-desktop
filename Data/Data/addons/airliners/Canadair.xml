@@ -1,0 +1,8 @@
+﻿<airliners> 
+<airliner manufacturer="Canadair" name="Canadair North Star" price="2850000">
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop"/>
+	<specs wingspan="35.81" length="28.89" weight="33112" range="6212" speed="523" fuelcapacity="7949" consumption="0.016" runwaylengthrequired="1400"/>
+	<capacity passengers="62" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+	<produced from="1946" to="1950" rate="14"/>
+  </airliner>
+</airliners>

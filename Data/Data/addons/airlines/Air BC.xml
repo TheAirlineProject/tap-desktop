@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air BC" iata="ZX" logo="ZX2" color="Maroon" country="113" CEO="Joseph Randell" mentality="Moderate" market="Regional" preferedairport="YVR" >
+  <narrative narrative="Air BC was an airline based out of Vancouver from 1980 to 2002. It merged with 4 other regional Canadian airlines to form Jazz. Air BC itself had been
+  majority owned by Air Canada since 1987. They had seven Dash 8-100's,six Dash 8-300's and five BAe 146-200's at the end in 2002. A 1991 time table shows them serving 17 airports in British Columbia,
+  7 in Alberta,2 in Saskatchewan,one in Manitoba,and in the U.S Seattle and Portland."/>
+</profile>
+  <info real="True" from="1980" to="2002" />
+  <prefereds aircrafts="Bombardier Dash 8-100,Bombardier Dash 8-300,BAe 146-200,BAe Jetstream 31,DHC-7-100"></prefereds>
+     <focusairports>
+	 <focusairport airport="YYJ"></focusairport>
+     </focusairports>
+                
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1985) late (2001)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-100" early="2" late="7"></airliner>
+	     </airliners>
+		         	     	         <!--the airliners the airline would start with which isn't on a route earyl (1991) late (2001)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="6" late="6"></airliner>
+	     </airliners>
+	         	     	         <!--the airliners the airline would start with which isn't on a route earyl (1988) late (2002)-->
+	         <airliners>
+	    <airliner type="BAe 146-200" early="5" late="5"></airliner>
+	     </airliners>
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Ivoire" iata="VU" color="GreenYellow" country="275" CEO="Hans Marienfeld" mentality="Safe"  market="Global " preferedairport="ABJ">
+    <narrative narrative="Air Ivoire was the flag carrier of the Ivory Coast/Cote d'Ivoire in West Africa from 1964 to 2011 when it folded. In 2009 they served  13 West African destinations and Paris and Marseille,France. At the demise they had four 737-500's and one A321. Fokker F28's were used in the past too." />
+  </profile>
+  <info real="True" from="1964" to="2011" />
+  <prefereds aircrafts="Boeing 737-500,Airbus A321-100,Fokker F28-3000,Fokker F28-4000,Fokker F28-6000,Fokker F28-2000,Fokker F28-1000"></prefereds>
+
+</airline>

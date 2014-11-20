@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Auric Air" iata="UI" color="Tan" country="222" CEO="Rashid Kikwete" mentality="Moderate"  market="Regional " preferedairport="MWZ">
+    <narrative narrative="Auric Air is an airline based in Tanzania in East Africa at Mwanza. 23 of their destinations are domestic and they also have one in Uganda. It was founded in 2001 and has ten Cessna 208B's as of 2014." />
+  </profile>
+  <info real="True" from="2001" to="2199" />
+  <prefereds aircrafts="Cessna 208B"></prefereds>
+
+</airline>

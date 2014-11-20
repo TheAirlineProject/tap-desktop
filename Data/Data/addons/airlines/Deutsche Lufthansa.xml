@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Deutsche Lufthansa" iata="DLH" color="Gray" country="1001" CEO="Niklas Trommler" mentality="Safe" market="Regional" preferedairport="SXF">
+  <narrative narrative="Deutsche Lufthansa was a rival East German airline of Lufthansa of West Germany. It was based at Berlin Schonefeld and lasted from 1955-1963 when Interflug 
+  took over as the main East German airline. It failed because Lufthansa of West Germany sued it for using their brand name which they had rights to, and as a result it was also
+  barred from membership in ICAO and IATA. They flew Il-14s and Il-18s. They served 14 destinations and 5 domestic ones. All destinations were in Soviet countries of Europe or close allies."/>
+</profile>
+  <info real="True" from="1955" to="1963" />
+  <prefereds aircrafts="Il-18V,Il-14M,Il-14"></prefereds>
+   
+	   
+</airline>

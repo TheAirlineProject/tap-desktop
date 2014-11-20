@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Germania" iata="ST" color="LimeGreen" country="1002" CEO="Andreas Wobig" mentality="Moderate"  market="Global " preferedairport="BRE">
+    <narrative
+      narrative="Germania are a German airline with its headquarters at Berlin and its focus cities at Bremen,Dusseldorf and Erfurt-Weimar. They have 42 destinations across Europe,the Middle East,and North Africa. This includes 12 in Turkey, 8 in Spain, 7 in Greece, and 12 in Germany. In 2012 they started Gambia Bird, a subsidiary based at The Gambia in West Africa. As of September 2014 their fleet was ten 737-700's, nine A319's, and five A321's. Two of the A319s are used by Gambia Bird. Past planes include 737-300's,Fokker 100's,Fokker F27's,727-100's and Sud Caravelles. They were founded in 1978 as Special Air Transport and changed to Germania in 1986. Its main business at the start was doing charter services for other airlines such as TUI and Condor, and became known for having the lowest prices for such services. " />
+  </profile>
+  <info real="True" from="1978" to="2199" />
+  <prefereds aircrafts="Boeing 737-700,Airbus A319-100,Airbus A321-200,Boeing 737-300,Fokker 100,Fokker F27,Boeing 727-100,Boeing 737 MAX 7,Airbus A319neo,Airbus A321neo,Sud Aviation Caravelle 10B,Sud Aviation Caravelle I"></prefereds>
+  <logos>
+<logo from="1958" to="1992" path="ST1978-2009"></logo>
+</logos>
+
+</airline>

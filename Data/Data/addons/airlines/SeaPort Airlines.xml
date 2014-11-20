@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="SeaPort Airlines" iata="K5" color="MidnightBlue" country="122" CEO="Rob McKinney" mentality="Safe" market="Domestic" preferedairport="PDX">
+  <narrative narrative="SeaPort Airlines is a small airline based of Portland,Oregon. They operate Cessna 208's. They were founded in 2008 and in the same year acquired the airline Wings of Alaska, of which it is a subsidiary of SeaPort. Wings of Alaska is based at Juneau and also operates Cessna 208's and 207's. SeaPort also has bases at Memphis,TN, and San Diego,CA. It has focus cities at Kansas City,MO and Nashville,TN. Nine of their 22 destinations are part of the Essential Air Service Program which gives the airline money to serve airports the government deems should have service that may not otherwise get it. Examples of these places are El Dorado,Arkansas, Harrison,AR, Hot Springs,AR, Pendleton,Oregon Imperial/El Centro,CA and Salina,Kansas to name some. 5 Alaskan airports are served by its Wings of Alaska division."/>
+</profile>
+  <info real="True" from="2008" to="2199" />
+  <prefereds aircrafts="Cessna 208B,Cessna 207"></prefereds>
+   
+  <focusairports>
+        <focusairport airport="MEM"></focusairport>
+	<focusairport airport="SAN"></focusairport>
+	<focusairport airport="MCI"></focusairport>
+	<focusairport airport="BNA"></focusairport>
+     </focusairports>
+
+	   
+</airline>

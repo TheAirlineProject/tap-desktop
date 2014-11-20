@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Coyne Airways" iata="7C" logo="7C2" color="LightBlue" country="130" CEO="Larry Coyne" mentality="Safe" market="Global" preferedairport="STN" routefocus="Cargo">
+  <narrative narrative="Coyne Airways is a cargo airline based at London Stansted. It also has bases at Cologne,Germany, Dubai,UAE and Tbilisi,Georgia. It was founded in 1994. They as of June 2013  besides their bases they fly to 3 airports in Afghanistan, 3 in Iraq,3 in Kazakhstan which are not the main cities of Almaty or Astana, 2 in Turkmenistan,and one each in Armenia and Azerbaijian. Also at this time they had a 747-400F,a Tupolev 204C,a Il-76 and an AN-12."/>
+</profile>
+  <info real="True" from="1994" to="2199" />
+  <prefereds aircrafts="Boeing 747-400F,Il-76,Tupolev Tu-204-300"></prefereds>
+   
+  <focusairports>
+        <focusairport airport="CGN"></focusairport>
+	<focusairport airport="DXB"></focusairport>
+	<focusairport airport="TBS"></focusairport>
+     </focusairports>
+	   
+</airline>

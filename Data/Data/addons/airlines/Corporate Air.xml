@@ -1,0 +1,59 @@
+
+<airline>
+  <profile name="Corporate Air" iata="OJ" color="Blue" country="122" CEO="Linda Overstreet" mentality="Safe" market="Domestic " preferedairport="BIL" routefocus="Cargo">
+    <narrative narrative="Corporate Air is a cargo airline based at Billings,Montana. It flies feeder service for FedEx and the United States Postal Service. It also has secondary hubs at Casper,Wyoming, Grand Forks,North Dakota, Great Falls,Montana, Salt Lake City,Utah and Honolulu,Hawaii. It flies inter island cargo between the Hawaiian islands from its HNL base. As of 2011 its fleet consisted of 37 Cessna 208B's, 4 Beechcraft 1900C's, and 2 Shorts 330's. In the past it has had 5 Embraer 120's,a DHC-6-300 Twin Otter, a Dornier 228-212 and a King Air B200. It was founded in 1981." />
+  </profile>
+  <info real="True" from="1981" to="2199" />
+  
+  <prefereds aircrafts="Cessna 208B Super Cargomaster,EMB 120 Brasilia,Beechcraft 1900C,Short 330,DHC-6-300 Twin Otter,Dornier 228-212,Beechcraft King Air B200"></prefereds>
+  
+  
+  
+       <focusairports>
+        <focusairport airport="CPR"></focusairport>
+        <focusairport airport="GFK"></focusairport>
+        <focusairport airport="GTF"></focusairport>
+        <focusairport airport="SLC"></focusairport>
+        <focusairport airport="HNL"></focusairport>
+     </focusairports>
+  
+  
+       <airliners>
+	       
+	       	      <!--the airliners the airline would start with which isn't on a route earyl (1990) late (2016)-->
+	       <airliners>
+	                 <airliner type="Beechcraft 1900C" early="0" late="4"></airliner>
+	  </airliners>
+				      <!--the airliners the airline would start with which isn't on a route earyl (1984) late (2016)-->
+	       <airliners>
+	                 <airliner type="Cessna 208B Super Cargomaster" early="0" late="37"></airliner>
+	  </airliners>
+		<!--the airliners the airline would start with which isn't on a route earyl (1985) late (2016)-->
+	       <airliners>
+	                 <airliner type="Short 330" early="2" late="2"></airliner>
+	  </airliners>
+	  <!--the airliners the airline would start with which isn't on a route earyl (1987) late (2009)-->
+	       <airliners>
+	                 <airliner type="EMB 120 Brasilia" early="0" late="5"></airliner>
+	  </airliners>
+<!--the airliners the airline would start with which isn't on a route earyl (1990) late (2005)-->
+	       <airliners>
+	                 <airliner type="Dornier 228-212" early="1" late="1"></airliner>
+	  </airliners>
+	  <!--the airliners the airline would start with which isn't on a route earyl (1981) late (2005)-->
+	       <airliners>
+	                 <airliner type="DHC-6-300 Twin Otter" early="1" late="1"></airliner>
+	  </airliners>
+	  <!--the airliners the airline would start with which isn't on a route earyl (1981) late (2005)-->
+	       <airliners>
+	                 <airliner type="Beechcraft King Air B200" early="1" late="1"></airliner>
+	  </airliners>
+	 
+	  </airliners>
+	  
+    
+    
+    
+  
+  
+</airline>

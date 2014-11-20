@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Minoan Air" iata="MAV" color="DarkBlue" country="118" CEO="George Mavrantonakis " mentality="Safe" market="Regional" preferedairport="HER" >
+  <narrative narrative="Minoan Air is an airline based out of Heraklion on the island of Crete in Greece. It commenced operation in 2012 and has four Fokker 50's, two of which were being stored and not used as of 2014. They fly to six Greek airports. They have also had a base at London Oxford in the UK and Lugano,Switzerland but these hubs have been terminated along with the flights operated from there, from March 2013-August 2013 is how long that lasted. They also  for a short time had a plane based out of France that flew charters."/>
+</profile>
+  <info real="True" from="2012" to="2199" />
+  <prefereds aircrafts="Fokker 50,Fokker F27"></prefereds>
+   
+     <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2017)-->
+	         <airliners>
+	    <airliner type="Fokker 50" early="3" late="4"></airliner>
+	     </airliners>
+	   
+</airline>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="EasyJet Switzerland (TEA Basel)" iata="DS" logo="U2" color="Orange" country="164" CEO="Carolyn McCall" mentality="Moderate"  market="Global" preferedairport="GVA">
+    <narrative
+      narrative="EasyJet Switerland is an airline based at Geneva and Basel in Switzerland operating under the easyJet franchise since 1999. It was founded in 1988 as TEA Basel and in 1998 easyJet bought a 40% stake in it. Today they own 49% while private investors own 51%. They have 16 A319's and 8 A320's, all painted in easyJet livery. They go to 41 destinations,most are in Europe and some are in Egypt and Morocco." />
+  </profile>
+     <info real="True" from="1988" to="2199"></info>
+       <focusairports>
+        <focusairport airport="BSL"></focusairport>
+        </focusairports>
+     <prefereds aircrafts="Airbus A319-100,Airbus A320-200,Airbus A319neo,Airbus A320neo,Boeing 737-300"></prefereds>
+  <startdata>
+    <airliners>
+      <airliner type="Airbus A320-200" early="0" late="8"></airliner>
+      <airliner type="Airbus A319-100" early="0" late="16"></airliner>
+    </airliners>
+  </startdata>
+</airline>

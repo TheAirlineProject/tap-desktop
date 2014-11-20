@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Whitehorse, YU">
+  <months>
+    <month month="1" precipitation="18">
+      <temp min="-19" max="-11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="12">
+      <temp min="-18" max="-8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="10">
+      <temp min="-12" max="0" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="7">
+      <temp min="-5" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="16">
+      <temp min="1" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="32">
+      <temp min="5" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="38">
+      <temp min="8" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="36">
+      <temp min="6" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="33">
+      <temp min="2" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="23">
+      <temp min="-3" max="4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="20">
+      <temp min="-13" max="-6" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="16">
+      <temp min="-17" max="-8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>
