@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Indonesia AirAsia" iata="QZ" color="Red" country="162" CEO="Pin Harris" mentality="Safe"
            market="Global" preferedairport="CGK">
+            <narrative
+      narrative="Indonesia AirAsia  is a low-cost airline based in Jakarta, Indonesia. It operates scheduled domestic, international services and is an Indonesian associate carrier of Malaysian low-fare airline AirAsia. Its main base is Soekarno-Hatta International Airport, Jakarta." />
   </profile>
   <info real="True" from="2004" to="2199" />
 </airline>

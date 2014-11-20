@@ -3012,7 +3012,7 @@ Good luck.</value>
     <value>Create Route</value>
   </data>
   <data name="PageRoutes_1005_name" xml:space="preserve">
-    <value>Assign Airliners &amp; Flight Restrictions</value>
+    <value>Assign Airliners</value>
   </data>
   <data name="PageRoutes_1006_name" xml:space="preserve">
     <value>Most Profitable Routes</value>
@@ -5581,5 +5581,53 @@ Good luck.</value>
   </data>
   <data name="MessageBox_2135_name" xml:space="preserve">
     <value>Can't Remove Contract</value>
+  </data>
+  <data name="MessageBox_2136_message" xml:space="preserve">
+    <value>Are you sure you want to change the airliner classes for an amount of {0}?</value>
+  </data>
+  <data name="MessageBox_2136_name" xml:space="preserve">
+    <value>Change Classes</value>
+  </data>
+  <data name="PageAirportDemand_1009_name" xml:space="preserve">
+    <value>Max. Runway Length</value>
+  </data>
+  <data name="PageRestrictions_1000_name" xml:space="preserve">
+    <value>Restrictions</value>
+  </data>
+  <data name="PageRestrictions_1001_name" xml:space="preserve">
+    <value>Banned Airlines</value>
+  </data>
+  <data name="PageRoutes_1011_name" xml:space="preserve">
+    <value>Flight Restrictions</value>
+  </data>
+  <data name="MessageBox_2235_message" xml:space="preserve">
+    <value>{0} has accepted to build customs services at the airport</value>
+  </data>
+  <data name="MessageBox_2235_name" xml:space="preserve">
+    <value>Building Customs Services</value>
+  </data>
+  <data name="MessageBox_2236_message" xml:space="preserve">
+    <value>{0} has declined your wish to build customs services at the airport</value>
+  </data>
+  <data name="MessageBox_2236_name" xml:space="preserve">
+    <value>Declined Customs Services</value>
+  </data>
+  <data name="PageAirportAdvisory_1000_name" xml:space="preserve">
+    <value>Unserved Routes</value>
+  </data>
+  <data name="PageAirport_2004_name" xml:space="preserve">
+    <value>Advisory</value>
+  </data>
+  <data name="PageAirport_3000_name" xml:space="preserve">
+    <value>The estimated daily demand from {0} to {1} is {2} passengers. A route with {3} weekly departures would be a good option.</value>
+  </data>
+  <data name="MessageBox_2019_message" xml:space="preserve">
+    <value>You don't have enough money to apply the settings to the airliner</value>
+  </data>
+  <data name="MessageBox_2019_name" xml:space="preserve">
+    <value>Not Enough Money</value>
+  </data>
+  <data name="PageAirlineFinances_1022_name" xml:space="preserve">
+    <value>Loan Limit</value>
   </data>
 </root>

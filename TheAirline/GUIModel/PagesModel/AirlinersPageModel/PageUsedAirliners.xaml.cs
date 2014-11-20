@@ -48,12 +48,24 @@ using TheAirline.Model.PassengerModel;
                                    new FilterValue("400-599", isMetric ? 400 : (int)MathHelpers.MilesToKM(400), isMetric ? 599 : (int)MathHelpers.MilesToKM(599)),
                                    new FilterValue("600+", isMetric ? 600 : (int)MathHelpers.MilesToKM(600), int.MaxValue)
                                };
-            this.RunwayRanges = new List<FilterValue>
+           if (isMetric)
+            {
+                this.RunwayRanges = new List<FilterValue>
                                 {
-                                    new FilterValue("<5000", 0, isMetric ? 4999 : (int)MathHelpers.FeetToMeter(4999)),
-                                    new FilterValue("5000-7999", isMetric ? 5000 : (int)MathHelpers.FeetToMeter(5000), isMetric ? 7999 : (int)MathHelpers.FeetToMeter(7999)),
-                                    new FilterValue("8000+", isMetric ? 8000 : (int)MathHelpers.FeetToMeter(8000), int.MaxValue)
+                                    new FilterValue("<1500", 0, 1500),
+                                    new FilterValue("1500-3000",1500,3000),
+                                    new FilterValue("3000+", 3000, int.MaxValue) 
                                 };
+            }
+            else
+            {
+                this.RunwayRanges = new List<FilterValue>
+                                {
+                                    new FilterValue("<5000", 0, (int)MathHelpers.FeetToMeter(4999)),
+                                    new FilterValue("5000-7999", (int)MathHelpers.FeetToMeter(5000), (int)MathHelpers.FeetToMeter(7999)),
+                                    new FilterValue("8000+", (int)MathHelpers.FeetToMeter(8000), int.MaxValue) 
+                                };
+            }
             this.CapacityRanges = new List<FilterValue>
                                   {
                                       new FilterValue("<100", 0, 99),

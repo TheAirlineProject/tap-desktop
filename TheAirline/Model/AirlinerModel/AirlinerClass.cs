@@ -212,15 +212,18 @@
 
         public void setFacility(Airline airline, AirlinerFacility facility)
         {
-            this.Facilities[facility.Type] = facility;
-
-            if (airline != null)
+            if (facility != null)
             {
-                AirlineHelpers.AddAirlineInvoice(
-                    airline,
-                    GameObject.GetInstance().GameTime,
-                    Invoice.InvoiceType.Purchases,
-                    -facility.PricePerSeat * facility.PercentOfSeats / 100.0 * this.SeatingCapacity);
+                this.Facilities[facility.Type] = facility;
+
+                if (airline != null)
+                {
+                    AirlineHelpers.AddAirlineInvoice(
+                        airline,
+                        GameObject.GetInstance().GameTime,
+                        Invoice.InvoiceType.Purchases,
+                        -facility.PricePerSeat * facility.PercentOfSeats / 100.0 * this.SeatingCapacity);
+                }
             }
         }
 

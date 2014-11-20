@@ -1,8 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Sky Aviation (Indonesia)" iata="SS" color="Blue" country="162" CEO="Krisman Tarigan" mentality="Safe"
            market="Domestic" preferedairport="BTH">
+             <narrative
+      narrative="Sky Aviation is a regional airline based in Jakarta, Indonesia. It was established as an air charter service in 2010 with a fleet of two Cirrus aircraft. After a management change in 2010, the airline expanded its services to a regular scheduled airline." />
   </profile>
   <info real="True" from="2010" to="2199" />
 </airline>
+

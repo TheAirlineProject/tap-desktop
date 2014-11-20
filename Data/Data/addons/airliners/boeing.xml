@@ -183,63 +183,70 @@
     <specs wingspan="35.70" length="31.20" range="5648" speed="828" fuelcapacity="26020" consumption="0.035"
            runwaylengthrequired="1220" />
     <capacity passengers="130" cockpitcrew="2" cabincrew="3" maxclasses="2" />
-    <produced from="1995" to="2015" rate="160" />
+    <produced from="1995" to="2006" rate="8" />
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 737-700" image="Boeing 737-700" price="9036030"> <!--47900000-->
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
     <specs wingspan="35.70" length="33.60" range="6230" speed="828" fuelcapacity="26020" consumption="0.028"
            runwaylengthrequired="1545" />
     <capacity passengers="148" cockpitcrew="2" cabincrew="3" maxclasses="2" />
-    <produced from="1996" to="2016" rate="160" />
+    <produced from="1996" to="2016" rate="75" />
   </airliner>
   <airliner type="Cargo" manufacturer="Boeing" name="Boeing 737-700C" image="Boeing 737-700" price="9036030"> <!--47900000-->
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
     <specs wingspan="35.70" length="33.60" range="6230" speed="828" fuelcapacity="26020" consumption="0.028"
            runwaylengthrequired="1545" />
     <capacity cockpitcrew="2" cargo="108" />
-    <produced from="1996" to="2016" rate="160" />
+    <produced from="1996" to="2016" rate="2" />
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 737-800" image="Boeing 737-800" price="10752690"> <!--57000000-->
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
     <specs wingspan="35.70" length="39.50" range="5665" speed="828" fuelcapacity="26020" consumption="0.024"
            runwaylengthrequired="1725" />
     <capacity passengers="189" cockpitcrew="2" cabincrew="4" maxclasses="2" />
-    <produced from="1996" to="2016" rate="160" />
+    <produced from="1996" to="2016" rate="200" />
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 737-900" image="Boeing 737-900" price="11550360"> <!--67200000-->
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
     <specs wingspan="35.70" length="42.10" range="5100" speed="823" fuelcapacity="26020" consumption="0.027"
            runwaylengthrequired="1780" />
     <capacity passengers="189" cockpitcrew="2" cabincrew="4" maxclasses="2" />
-    <produced from="2000" to="2020" rate="160" />
+    <produced from="2001" to="2005" rate="10" />
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 737-900ER" image="Boeing 737-900" price="12043630"> <!--79500000-->
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
     <specs wingspan="35.70" length="42.10" range="5925" speed="823" fuelcapacity="29660" consumption="0.023"
            runwaylengthrequired="1800" />
     <capacity passengers="215" cockpitcrew="2" cabincrew="4" maxclasses="2" />
-    <produced from="2005" to="2020" rate="160" />
+    <produced from="2005" to="2016" rate="65" />
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 737 MAX 7" image="Boeing 737-700" price="8736030"> <!--47900000-->
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
     <specs wingspan="35.90" length="33.60" range="7038" speed="842" fuelcapacity="26020" consumption="0.015"
            runwaylengthrequired="1545" />
-    <capacity passengers="126" cockpitcrew="2" cabincrew="3" maxclasses="2" />
+    <capacity passengers="140" cockpitcrew="2" cabincrew="3" maxclasses="2" />
     <produced from="2016" to="2199" rate="160" />
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 737 MAX 8" image="Boeing 737-800" price="10852690"> <!--57000000-->
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
     <specs wingspan="35.90" length="39.50" range="6704" speed="842" fuelcapacity="26020" consumption="0.017"
            runwaylengthrequired="1735" />
-    <capacity passengers="189" cockpitcrew="2" cabincrew="4" maxclasses="2" />
+    <capacity passengers="175" cockpitcrew="2" cabincrew="4" maxclasses="2" />
     <produced from="2016" to="2199" rate="160" />
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 737 MAX 9" image="Boeing 737-900" price="12543630"> <!--79500000-->
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
     <specs wingspan="35.90" length="42.10" range="6658" speed="842" fuelcapacity="29660" consumption="0.020"
            runwaylengthrequired="1800" />
-    <capacity passengers="215" cockpitcrew="2" cabincrew="4" maxclasses="2" />
+    <capacity passengers="192" cockpitcrew="2" cabincrew="4" maxclasses="2" />
     <produced from="2017" to="2199" rate="160" />
+  </airliner>
+    <airliner manufacturer="Boeing" name="Boeing 737 MAX 200" image="Boeing 737-900" price="13550360"> <!--67200000-->
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <specs wingspan="35.70" length="42.10" range="5100" speed="823" fuelcapacity="26020" consumption="0.027"
+           runwaylengthrequired="1780" />
+    <capacity passengers="200" cockpitcrew="2" cabincrew="4" maxclasses="2" />
+    <produced from="2015" to="2030" rate="200" />
   </airliner>
   <airliner manufacturer="Boeing" name="Boeing 747-100" image="Boeing 747-100" price="19557820"> <!--23000000-->
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />

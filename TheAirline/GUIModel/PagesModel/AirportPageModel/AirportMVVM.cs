@@ -33,6 +33,7 @@
 
         private int _freeGates;
 
+        private AirportProfile.AirportType _type;
         #endregion
 
         #region Constructors and Destructors
@@ -52,6 +53,9 @@
             this.Cooperations = new ObservableCollection<Cooperation>();
             this.Terminals = new ObservableCollection<AirportTerminalMVVM>();
             this.BuildingTerminals = new ObservableCollection<AirportTerminalMVVM>();
+            this.UnservedRoutes = new ObservableCollection<UnservedRouteMVVM>();
+
+            this.Type = this.Airport.Profile.Type;
 
             foreach (Terminal terminal in this.Airport.Terminals.getTerminals())
             {
@@ -92,7 +96,10 @@
 
             this.FreeCargoGates = this.Airport.Terminals.getFreeGates(Terminal.TerminalType.Cargo);
             this.FreePaxGates = this.Airport.Terminals.getFreeGates(Terminal.TerminalType.Passenger);
-            
+
+            if (!this.Airport.Statics.HasDemand)
+                PassengerHelpers.CreateDestinationDemand(this.Airport);
+
             this.DomesticDemands = new List<DemandMVVM>();
             this.IntlDemands = new List<DemandMVVM>();
 
@@ -115,23 +122,36 @@
 
             foreach (Airport destination in internationalDemand)
             {
-                this.IntlDemands.Add(
-                    new DemandMVVM(
+                double runway = destination.Runways.Max(r => r.Length);
+
+                DemandMVVM demand = new DemandMVVM(
                         destination,
                         this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),
                         (int)this.Airport.Profile.Pax,
-                        this.Airport.getDestinationCargoRate(destination),MathHelpers.GetDistance(destination,this.Airport)));
+                        this.Airport.getDestinationCargoRate(destination),MathHelpers.GetDistance(destination,this.Airport),runway);
+                this.IntlDemands.Add(demand);
+  
+                if (AirportHelpers.GetNumberOfAirportsRoutes(this.Airport,destination) == 0 && demand.Passengers > 10)
+                    this.UnservedRoutes.Add(new UnservedRouteMVVM(this.Airport, destination,demand.Passengers));
             }
 
             foreach (Airport destination in domesticDemand)
             {
-                this.DomesticDemands.Add(
-                    new DemandMVVM(
+                double runway = destination.Runways.Max(r => r.Length);
+
+                DemandMVVM demand = new DemandMVVM(
                         destination,
                         this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),
                         (int)this.Airport.Profile.Pax,
-                        this.Airport.getDestinationCargoRate(destination), MathHelpers.GetDistance(destination,this.Airport)));
+                        this.Airport.getDestinationCargoRate(destination), MathHelpers.GetDistance(destination,this.Airport),runway);
+                this.DomesticDemands.Add(demand);
+
+             if (AirportHelpers.GetNumberOfAirportsRoutes(this.Airport,destination) == 0 && demand.Passengers > 10)
+                this.UnservedRoutes.Add(new UnservedRouteMVVM(this.Airport,destination,demand.Passengers));
+                   
             }
+
+            this.UnservedRoutes = new ObservableCollection<UnservedRouteMVVM>(this.UnservedRoutes.OrderByDescending(r=>r.EstimatedDemand).Take(Math.Min(10,this.UnservedRoutes.Count)));
 
             this.AirportFacilities =
                 this.Airport.getAirportFacilities()
@@ -423,7 +443,18 @@
                 this.NotifyPropertyChanged("FreeGates");
             }
         }
-
+        public AirportProfile.AirportType Type
+        {
+            get
+            {
+                return this._type;
+            }
+            set
+            {
+                this._type = value;
+                this.NotifyPropertyChanged("Type");
+            }
+        }
         public ObservableCollection<Hub> Hubs { get; set; }
 
         public DateTime LocalTime { get; set; }
@@ -437,6 +468,8 @@
         public double FuelPrice { get; set; }
 
         public double TerminalPrice { get; set; }
+
+        public ObservableCollection<UnservedRouteMVVM> UnservedRoutes { get; set; }
 
         public ObservableCollection<AirportTerminalMVVM> Terminals { get; set; }
 
@@ -453,7 +486,11 @@
         //adds an airline contract to the airport
 
         #region Public Methods and Operators
-
+        public void setType(AirportProfile.AirportType type)
+        {
+            this.Airport.Profile.Type = type;
+            this.Type = type;
+        }
         public void addAirlineContract(AirportContract contract)
         {
             AirportHelpers.AddAirlineContract(contract);
@@ -725,7 +762,7 @@
 
         #region Constructors and Destructors
 
-        public DemandMVVM(Airport destination, int passengers, int totalpax, int cargo, double distance)
+        public DemandMVVM(Airport destination, int passengers, int totalpax, int cargo, double distance,double runway)
         {
             this.Cargo = cargo;
             this.Passengers = passengers;
@@ -750,6 +787,8 @@
             this.GatesPercent.Add(new KeyValuePair<string,int>("Free", this.Destination.Terminals.getFreeGates()));
 
             this.Type = "";
+
+            this.RunwayLength = runway;
         }
 
         #endregion
@@ -764,6 +803,7 @@
         #region Public Properties
         public List<KeyValuePair<string,int>> GatesPercent { get; set; }
 
+        public double RunwayLength { get; set; }
         public double Distance { get; set; }
 
         public int Cargo { get; set; }
@@ -806,7 +846,50 @@
 
         #endregion
     }
+    //the mvvm class for an unserved route
+    public class UnservedRouteMVVM
+    {
+        public Airport Origin { get; set; }
+        public Airport Destination { get; set; }
+        public long EstimatedDemand { get; set; }
+        public string Text
+        {
+            private set { ;}
+            get { return getText(); }
+        }
+        public UnservedRouteMVVM(Airport origin, Airport destination, long estimated)
+        {
+            this.Destination = destination;
+            this.EstimatedDemand = estimated;
+            this.Origin = origin;
+        }
+        private string getText()
+        {
+            TimeSpan flightTime =  MathHelpers.GetFlightTime(this.Origin.Profile.Coordinates.convertToGeoCoordinate(), this.Destination.Profile.Coordinates.convertToGeoCoordinate(), 500);
 
+            int pax;
+
+            if (flightTime.TotalHours < 2)
+                pax = 50;
+            else if (flightTime.TotalHours < 4)
+                pax = 125;
+            else if (flightTime.TotalHours < 6)
+                pax = 250;
+            else
+                pax = 300;
+            
+
+            int maxWeeklyDepartures = (int)(7 * new TimeSpan(24, 0, 0).TotalHours / flightTime.TotalHours);
+
+            int weeklyDepartures = (int)this.EstimatedDemand * 7 / pax;
+
+         
+            weeklyDepartures = Math.Min(weeklyDepartures, maxWeeklyDepartures);
+
+            return string.Format(Translator.GetInstance().GetString("PageAirport", "3000", "name"), this.Origin.Profile.Name, this.Destination.Profile.Name, this.EstimatedDemand, weeklyDepartures);
+        }
+
+    }
     //the mvvm class for an airline contract
     public class ContractMVVM : INotifyPropertyChanged
     {

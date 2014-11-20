@@ -103,6 +103,11 @@
             {
                 frmContent.Navigate(new PageAirportDemand(this.Airport) { Tag = this });
             }
+
+            if (selection == "Advisory" && frmContent.Content != null)
+            {
+                frmContent.Navigate(new PageAirportAdvisory(this.Airport) { Tag = this });
+            }
         }
 
         #endregion

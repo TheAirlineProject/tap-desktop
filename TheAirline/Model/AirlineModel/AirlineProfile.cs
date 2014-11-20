@@ -37,6 +37,9 @@
             this.Logos = new List<AirlineLogo>();
             this.PreferedAircrafts = new List<AirlinerType>();
             this.PrimaryPurchasing = PreferedPurchasing.Random;
+            this.PreferedAirports = new Dictionary<DateTime, Airport>();
+            this.FocusAirports = new List<Airport>();
+
         }
 
         private AirlineProfile(SerializationInfo info, StreamingContext ctxt)
@@ -104,6 +107,14 @@
             {
                 this.PrimaryPurchasing = PreferedPurchasing.Random;
             }
+            if (version < 4)
+            {
+                this.PreferedAirports = new Dictionary<DateTime, Airport>();
+                this.FocusAirports = new List<Airport>();
+            }
+
+            if (this.FocusAirports == null)
+                this.FocusAirports = new List<Airport>();
         }
 
         #endregion
@@ -174,19 +185,30 @@
         [Versioning("aircrafttypes", Version = 2)]
         public List<AirlinerType> PreferedAircrafts { get; set; }
 
-        [Versioning("preferedairport")]
-        public Airport PreferedAirport { get; set; }
+        [Versioning("preferedairports",Version=4)]
+        public Dictionary<DateTime,Airport> PreferedAirports { get; set; }
+
+        [Versioning("focusairports",Version=4)]
+        public List<Airport> FocusAirports { get; set; }
 
         [Versioning("purchasing", Version = 3)]
         public PreferedPurchasing PrimaryPurchasing { get; set; }
 
+        public Airport PreferedAirport
+        {
+            get
+            {
+                return getCurrentPreferedAirport();
+            }
+            private set { ;}
+        }
         #endregion
 
         #region Public Methods and Operators
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 3);
+            info.AddValue("version", 4);
 
             Type myType = this.GetType();
 
@@ -236,7 +258,23 @@
         //returns the current logo for the airline
 
         #region Methods
+        private Airport getCurrentPreferedAirport()
+        {
+            DateTime currentDate = GameObject.GetInstance().GameTime;
 
+            if (this.PreferedAirports.Count == 1)
+                return this.PreferedAirports.Values.First();
+
+            var dates = this.PreferedAirports.Keys.OrderByDescending(d => d).ToArray();
+
+            for (int i = 0; i < dates.Count() - 1; i++)
+            {
+                if (currentDate > dates[i])
+                    return this.PreferedAirports[dates[i]];
+            }
+
+            return this.PreferedAirports.Values.Last();
+        }
         private string GetCurrentLogo()
         {
             var ret =

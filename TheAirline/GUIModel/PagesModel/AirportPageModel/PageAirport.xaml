@@ -47,6 +47,9 @@
                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirport 2003'}"
                     Tag="Demand" />
                 <TabItem
+                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirport 2004'}"
+                    Tag="Advisory" />
+                <TabItem
                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirport 2001'}"
                     Tag="Traffic" />
                 <TabItem

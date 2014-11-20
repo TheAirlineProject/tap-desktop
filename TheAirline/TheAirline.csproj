@@ -91,6 +91,9 @@
     <Reference Include="De.TorstenMandelkow.MetroChart">
       <HintPath>..\Resource\De.TorstenMandelkow.MetroChart.dll</HintPath>
     </Reference>
+    <Reference Include="DevZest.DataVirtualization">
+      <HintPath>..\..\..\BBM\DataVirtualization_Src\Src\DataVirtualization\bin\Debug\DevZest.DataVirtualization.dll</HintPath>
+    </Reference>
     <Reference Include="MapControl.WPF">
       <HintPath>..\..\..\BBM\xamlmapcontrol\MyMap\bin\Debug\MapControl.WPF.dll</HintPath>
     </Reference>
@@ -104,9 +107,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BBM\Prism\Lib\Desktop\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\Users\Christian\Downloads\raven-csharp-master\raven-csharp-master\src\app\SharpRaven\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="SharpRaven">
+      <HintPath>..\..\..\Users\Christian\Downloads\raven-csharp-master\raven-csharp-master\src\app\SharpRaven\bin\Debug\SharpRaven.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Device" />
@@ -361,6 +370,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\AirportPageModel\PageAirportAdvisory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\AirportPageModel\PageAirportDemand.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -553,6 +566,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\RoutesPageModel\PageRestrictions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\RoutesPageModel\PageRoutePlanner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -740,6 +757,9 @@
     <Compile Include="GUIModel\PagesModel\AirportPageModel\PageAirport.xaml.cs">
       <DependentUpon>PageAirport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\PagesModel\AirportPageModel\PageAirportAdvisory.xaml.cs">
+      <DependentUpon>PageAirportAdvisory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\AirportPageModel\PageAirportDemand.xaml.cs">
       <DependentUpon>PageAirportDemand.xaml</DependentUpon>
     </Compile>
@@ -891,6 +911,9 @@
     <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageHumanRoutes.xaml.cs">
       <DependentUpon>PageHumanRoutes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageRestrictions.xaml.cs">
+      <DependentUpon>PageRestrictions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageRoutePlanner.xaml.cs">
       <DependentUpon>PageRoutePlanner.xaml</DependentUpon>
     </Compile>
@@ -923,14 +946,19 @@
     <Compile Include="Model\AirlineModel\AirlineShare.cs" />
     <Compile Include="Model\AirlineModel\AirlineStartData.cs" />
     <Compile Include="Model\AirlineModel\CodeshareAgreement.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerHistory.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerMaintenance.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerInsurance.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerRegistrationHistory.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerScheduleConfiguration.cs" />
     <Compile Include="Model\AirlinerModel\EngineType.cs" />
     <Compile Include="Model\AirlinerModel\MaintenanceCenter.cs" />
+    <Compile Include="Model\AirportModel\AirportDemand.cs" />
     <Compile Include="Model\AirportModel\AirportExpansion.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\DatabaseHelpersModel\DatabaseHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\DatabaseHelpersModel\SQLite.cs" />
     <Compile Include="Model\GeneralModel\Helpers\RouteHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\TAPLogger.cs" />
     <Compile Include="Model\GeneralModel\OperatingData.cs" />
     <Compile Include="Model\GeneralModel\SpecialContract.cs" />
     <Compile Include="Model\GeneralModel\SpecialContractType.cs" />
@@ -1199,6 +1227,7 @@
     <Resource Include="Data\images\age.png" />
     <Resource Include="Data\images\Luggage.png" />
     <Resource Include="Data\images\shuffle.png" />
+    <Resource Include="Data\images\Customs.png" />
     <Content Include="TheAirline.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

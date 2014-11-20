@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Gol Transportes Aéreos" iata="G3" color="Black" country="138" CEO="Constantino de Oliveira Junior"
            mentality="Safe" market="Global" preferedairport="GIG">
+                    <narrative narrative="Gol Transportes Aéreps was established in 2000 and started operations on January 15, 2001 with a flight from Brasília to São Paulo.[6] It is a subsidiary of the Brazilian conglomerate Grupo Áurea based at Minas Gerais state, which has other transport interests including Brazil's largest long-distance bus company. Grupo Áurea in turn is owned by the Constantino family."></narrative>
   </profile>
   <info real="True" from="2000" to="2199" />
 </airline>

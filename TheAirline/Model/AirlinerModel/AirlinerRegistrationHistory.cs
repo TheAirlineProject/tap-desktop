@@ -17,15 +17,18 @@ namespace TheAirline.Model.AirlinerModel
     {
         [Versioning("delivery")]
         public DateTime DeliveryDate { get; set; }
-        [Versioning("airline")]
-        public Airline Airline { get; set; }
+        [Versioning("owner")]
+        public string Owner { get; set; }
+        [Versioning("logo")]
+        public string Logo { get; set; }
         [Versioning("reg")]
         public string Registration { get; set; }
         #region constructors
-        public AirlinerRegistrationHistory(DateTime date, Airline airline, string reg)
+        public AirlinerRegistrationHistory(DateTime date, string owner, string logo, string reg)
         {
             this.DeliveryDate = date;
-            this.Airline = airline;
+            this.Owner = owner;
+            this.Logo = logo;
             this.Registration = reg;
         }
 

@@ -433,7 +433,7 @@
             Boolean forStartdata = false)
         {
             List<AirlinerType> airlineAircrafts = airline.Profile.PreferedAircrafts;
-
+            
             double maxLoanTotal = 100000000;
             double distance = MathHelpers.GetDistance(
                 destination1.Profile.Coordinates.convertToGeoCoordinate(),
@@ -709,6 +709,18 @@
         public static List<Airport> GetDestinationAirports(Airline airline, Airport airport)
         {
 
+            if (airline.Profile.FocusAirports.Count > 0)
+            {
+                var focusAirports = airline.Profile.FocusAirports.Where(f => f != airport && !airline.Airports.Contains(f));
+
+                if (focusAirports.Count() > 0)
+                {
+                    focusAirports = focusAirports.OrderBy(f => MathHelpers.GetDistance(f, airport));
+
+                    return focusAirports.ToList();
+                }
+            }
+
             IEnumerable<long> airliners = from a in Airliners.GetAirlinersForSale() select a.Range;
             double maxDistance = airliners.Count() == 0 ? 5000 : airliners.Max();
 
@@ -885,19 +897,15 @@
 
         public static Boolean IsRouteInCorrectArea(Airport dest1, Airport dest2)
         {
+         //   less than 3 hours is short haul Reminds me though, Hong Kong isnt in the same region as China in the game
             double distance = MathHelpers.GetDistance(
                 dest1.Profile.Coordinates.convertToGeoCoordinate(),
                 dest2.Profile.Coordinates.convertToGeoCoordinate());
 
-            Boolean isOk = (dest1.Profile.Country == dest2.Profile.Country || distance < 1000
-                            || (dest1.Profile.Country.Region == dest2.Profile.Country.Region
-                                && (dest1.Profile.Type == AirportProfile.AirportType.Short_Haul_International
-                                    || dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International)
-                                && (dest2.Profile.Type == AirportProfile.AirportType.Short_Haul_International
-                                    || dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International))
-                            || (dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International
-                                && dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International));
+            Boolean isOk = (dest1.Profile.Country == dest2.Profile.Country) 
+                || (dest1.Profile.Type == AirportProfile.AirportType.International && dest2.Profile.Type == AirportProfile.AirportType.International);
 
+         
             return isOk;
         }
 
@@ -1661,9 +1669,9 @@
                         airport,
                         destination,
                         doLeasing,
-                        airline.AirlineRouteFocus);
+                        focus);
                     
-                    fAirliner = GetFleetAirliner(airline, airport, destination);
+                    fAirliner = GetFleetAirliner(airline, airport, destination,focus);
 
                     if (airliner.HasValue || fAirliner != null)
                     {
@@ -2100,8 +2108,19 @@
         //creates a new alliance for an airline
 
         //returns an airliner from the fleet which fits a route
-        private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)
+        private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2, Route.RouteType focus)
         {
+            AirlinerType.TypeOfAirliner type = AirlinerType.TypeOfAirliner.Passenger;
+
+            if (focus == Route.RouteType.Cargo)
+                type = AirlinerType.TypeOfAirliner.Cargo;
+            else if (focus == Route.RouteType.Helicopter)
+                type = AirlinerType.TypeOfAirliner.Helicopter;
+            else if (focus == Route.RouteType.Mixed)
+                type = AirlinerType.TypeOfAirliner.Mixed;
+            else if (focus == Route.RouteType.Passenger)
+                type = AirlinerType.TypeOfAirliner.Passenger;
+
             //Order new airliner
             List<FleetAirliner> fleet =
                 airline.Fleet.FindAll(
@@ -2110,7 +2129,8 @@
                         && f.Airliner.Range
                         > MathHelpers.GetDistance(
                             destination1.Profile.Coordinates.convertToGeoCoordinate(),
-                            destination2.Profile.Coordinates.convertToGeoCoordinate()));
+                            destination2.Profile.Coordinates.convertToGeoCoordinate())
+                            && f.Airliner.Type.TypeAirliner == type);
 
             if (fleet.Count > 0)
             {
@@ -2136,8 +2156,13 @@
             lock (airline.Airports)
             {
                 homeAirports = AirlineHelpers.GetHomebases(airline);
+                var focusAirports = airline.Airports.Where(a => airline.Profile.FocusAirports.Contains(a));
+
+                homeAirports.AddRange(focusAirports);
             }
             homeAirports.AddRange(airline.getHubs());
+            
+            
 
             Terminal.TerminalType terminaltype = focus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 

@@ -12,6 +12,7 @@
       Title="PageShowAirports">
     <Page.Resources>
         <local:AirportDistanceConverter x:Key="airportDistanceConverter"></local:AirportDistanceConverter>
+        
     </Page.Resources>
         <Grid>
         <Grid.RowDefinitions>
@@ -72,7 +73,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Name="panelListView">
             <filter:FilterableListView x:Name="AirportsList"  VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"
-                                   ItemContainerStyle="{StaticResource ListViewItemStyle}" ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True"
+                                        ItemContainerStyle="{StaticResource ListViewItemStyle}" ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True"
                                    ItemsSource="{Binding AllAirports,ElementName=pageShowAirports}" Height="{Binding ActualHeight, ElementName=panelListView}"
                                    FilterButtonActiveStyle="{StaticResource filterButtonActive}"
                                    FilterButtonInactiveStyle="{StaticResource filterButtonInactive}"

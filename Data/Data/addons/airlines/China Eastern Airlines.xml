@@ -7,6 +7,30 @@
   
   <prefereds aircrafts="Airbus A300-600,Airbus A319-100,Airbus A320-200,Airbus A321-200,Airbus A330-200,Airbus A330-300,Boeing 737-300,Boeing 737-700,Boeing 737-800,Boeing 777-300ER,BAe 146-200,Comac C919,Embraer ERJ145 LR,Fokker 100,MD-82 (DC-9-82)"></prefereds>
   
+  
+  
+       <focusairports>
+        <focusairport airport="PVG"></focusairport>
+        <focusairport airport="XIY"></focusairport>
+        <focusairport airport="KMG"></focusairport>
+        <focusairport airport="PEK"></focusairport>
+        <focusairport airport="TAO"></focusairport>
+        <focusairport airport="WUH"></focusairport>
+        <focusairport airport="TYN"></focusairport>
+        <focusairport airport="NKG"></focusairport>
+        <focusairport airport="CTU"></focusairport>
+        <focusairport airport="KHN"></focusairport>
+        <focusairport airport="NGB"></focusairport>
+        <focusairport airport="HFE"></focusairport>
+        <focusairport airport="KHN"></focusairport>
+        <focusairport airport="NGB"></focusairport>
+        <focusairport airport="HFE"></focusairport>
+        <focusairport airport="HGH"></focusairport>
+        <focusairport airport="CZX"></focusairport>
+        <focusairport airport="SJW"></focusairport>
+     </focusairports>
+  
+  
        <airliners>
 	       
 	       

@@ -29,6 +29,7 @@
             this.PassengerDemand = new List<DestinationDemand>();
             this.CargoDemand = new List<DestinationDemand>();
             this.Airport = airport;
+            this.HasDemand = false;
         }
 
         #endregion
@@ -36,6 +37,7 @@
         #region Public Properties
 
         public Airport Airport { get; set; }
+        public Boolean HasDemand { get; set; }
 
         #endregion
 
@@ -61,7 +63,10 @@
                 }
             }
         }
-
+        public Boolean hasDistance(Airport airport)
+        {
+            return this.AirportDistances.ContainsKey(airport);
+        }
         public void addPassengerDemand(DestinationDemand demand)
         {
             lock (this.PassengerDemand) this.PassengerDemand.Add(demand);
@@ -94,7 +99,10 @@
 
             return demands;
         }
-
+        public List<DestinationDemand> getPassengersDemand()
+        {
+            return this.PassengerDemand;
+        }
         //returns if the airport have passenger demand to another airport
 
         //returns the destination cargo for a specific destination

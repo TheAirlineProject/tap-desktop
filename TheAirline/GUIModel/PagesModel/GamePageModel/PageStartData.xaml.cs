@@ -110,7 +110,7 @@
                 {
                     this.cbRegion.Items.Add(Regions.GetRegion("100"));
                 }
-
+                
                 foreach (Region region in selectedContinent.Regions.OrderBy(r => r.Name))
                 {
                     this.cbRegion.Items.Add(region);

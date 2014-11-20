@@ -5,9 +5,9 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.Caching;
     using System.Runtime.CompilerServices;
     using System.Runtime.Serialization;
-
     using TheAirline.Model.AirlineModel.SubsidiaryModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
@@ -367,6 +367,7 @@
         [Versioning("reputation")]
         public int Reputation { get; set; }
 
+     
         public List<Route> Routes
         {
             get
@@ -453,6 +454,8 @@
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
+
+               
 
                 if (member is FieldInfo)
                 {
@@ -1063,9 +1066,12 @@
         #endregion
 
         #region Methods
-
+      
         private void createStandardAdvertisement()
         {
+            if (this.Advertisements == null)
+                this.Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
+
             foreach (
                 AdvertisementType.AirlineAdvertisementType type in
                     Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
@@ -1083,13 +1089,9 @@
 
         private List<Route> getRoutes()
         {
-            var routes = new List<Route>();
-            lock (this._Routes)
-            {
-                routes = new List<Route>(this._Routes);
-            }
+            var routes = new List<Route>(this._Routes);
 
-            return routes;
+             return routes;
         }
 
         #endregion
@@ -1134,7 +1136,9 @@
 
         public static void AddAirline(Airline airline)
         {
-            airlines.Add(airline);
+     
+            if (airline != null)
+                airlines.Add(airline);
         }
 
         public static void Clear()

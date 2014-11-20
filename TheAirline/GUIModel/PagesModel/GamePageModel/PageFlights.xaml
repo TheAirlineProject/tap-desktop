@@ -72,7 +72,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock VerticalAlignment="Bottom"
-                                               Text="{Binding Time,StringFormat={}{0:hh\\:mm}}" Width="75" />
+                                               Text="{Binding Time,Converter={StaticResource TimeSpanConverter}}" Width="100" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

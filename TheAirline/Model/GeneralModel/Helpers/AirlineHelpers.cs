@@ -256,11 +256,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 for (int i = 0; i < oldContract.NumberOfGates; i++)
                 {
-                    Gate newGate = newAirport.Terminals.getGates().Where(g => g.Airline == null).First();
-                    newGate.Airline = airline;
+                    Gate newGate = newAirport.Terminals.getGates().Where(g => g.Airline == null).FirstOrDefault();
 
-                    Gate oldGate = oldAirport.Terminals.getGates().Where(g => g.Airline == airline).First();
-                    oldGate.Airline = null;
+                    if (newGate != null)
+                        newGate.Airline = airline;
+
+                    Gate oldGate = oldAirport.Terminals.getGates().Where(g => g.Airline == airline).FirstOrDefault();
+
+                    if (oldGate != null)
+                        oldGate.Airline = null;
                 }
 
 
@@ -664,7 +668,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             double loans = airline.Loans.Sum(l => l.Amount);
 
-            return loan.Amount + loans < GetMaxLoanAmount(airline);
+            return loan.Amount + loans <= GetMaxLoanAmount(airline);
         }
         //returns if an airline has licens for flying between two airports
         public static Boolean HasAirlineLicens(Airline airline, Airport airport1, Airport airport2)

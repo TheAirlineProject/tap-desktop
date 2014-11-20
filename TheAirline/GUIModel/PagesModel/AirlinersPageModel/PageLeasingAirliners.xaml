@@ -276,7 +276,7 @@
             </ListView.View>
         </filter:FilterableListView>
         <WrapPanel Grid.Row="2" Margin="0 5 0 0">
-            <Button Click="btnCompare_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsEnabled="False"
+            <Button Click="btnCompare_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left" IsEnabled="False" Visibility="Collapsed"
                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1005'}">
                 <Button.Style>
                     <Style BasedOn="{StaticResource StandardButtonStyle}" TargetType="Button">

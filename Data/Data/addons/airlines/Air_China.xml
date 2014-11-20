@@ -5,7 +5,19 @@
 <info real="True" from="1988" to="2199"></info>
 
 <prefereds aircrafts="Airbus A319-100,Airbus A320-200,Airbus A320neo,Airbus A321-200,Airbus A330-200,Airbus A330-300,Airbus A350-900,Boeing 737-300,Boeing 737-700,Boeing 737-800,Boeing 747-400,Boeing 777-200,Boeing 777-300ER,Boeing 787-9,Comac C919"></prefereds>
-
+   
+  <focusairports>
+        <focusairport airport="CTU"></focusairport>
+        <focusairport airport="PVG"></focusairport>
+        <focusairport airport="HGH"></focusairport>
+        <focusairport airport="CAN"></focusairport>
+        <focusairport airport="CKG"></focusairport>
+        <focusairport airport="TSN"></focusairport>
+        <focusairport airport="WUH"></focusairport>
+        <focusairport airport="KWE"></focusairport>
+        <focusairport airport="HET"></focusairport>
+        <focusairport airport="LXA"></focusairport>
+     </focusairports>
     
      <airliners>
 	       

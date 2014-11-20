@@ -246,11 +246,15 @@
             {
                 case "airline":
                     o = Airlines.GetAirline(linkObject);
-                    objectText = ((Airline)o).Profile.Name;
+
+                    if (o!=null)
+                        objectText = o == null ? "Missing " + linkObject : ((Airline)o).Profile.Name;
                     break;
                 case "airport":
                     o = Airports.GetAirport(linkObject);
-                    objectText = ((Airport)o).Profile.Name;
+
+                    if (o!=null)
+                        objectText = ((Airport)o).Profile.Name;
                     break;
                 case "airliner":
                     o =

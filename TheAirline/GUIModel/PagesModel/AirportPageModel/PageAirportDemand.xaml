@@ -249,6 +249,13 @@
                 <TextBlock Text="{Binding SelectedAirport.Distance,ElementName=pageAirportDemand,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
 
             </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportDemand 1009'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding SelectedAirport.RunwayLength,ElementName=pageAirportDemand,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+
+            </WrapPanel>
             <WrapPanel>
             <chart:PieChart Name="pcGates" HorizontalAlignment="Left"
         Style="{StaticResource MinimalChartStyle}" 

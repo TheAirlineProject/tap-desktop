@@ -271,6 +271,19 @@
                 }
                 return false;
             };
+
+            source = this.lvDemandIntl.Items as ICollectionView;
+            source.Filter = o =>
+            {
+                if (o != null)
+                {
+                    var a = o as DemandMVVM;
+                    return a != null && a.Destination.Profile.IATACode.ToUpper().StartsWith(searchText)
+                           || a.Destination.Profile.ICAOCode.ToUpper().StartsWith(searchText)
+                           || a.Destination.Profile.Name.ToUpper().StartsWith(searchText);
+                }
+                return false;
+            };
         }
 
         #endregion

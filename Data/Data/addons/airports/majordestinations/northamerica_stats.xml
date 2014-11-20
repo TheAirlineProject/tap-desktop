@@ -12,10 +12,30 @@
       <destination airport="MEX" pax="233" cargo="36" />
            </destinations>
   </majordestination>
-<majordestination airport="AUS">
+      <majordestination airport="ANU">
     <destinations>
-      <destination airport="MTY" pax="1" cargo="16" />
+       <destination airport="LGW" pax="96"  />
+               </destinations>
+  </majordestination>
+        <majordestination airport="AUA">
+    <destinations>
+       <destination airport="LGW" pax="12"  />
+               </destinations>
+  </majordestination>
+    <majordestination airport="AZS">
+    <destinations>
+      <destination airport="LGW" pax="13"  />
            </destinations>
+  </majordestination>
+        <majordestination airport="BDA">
+    <destinations>
+       <destination airport="LGW" pax="94"  />
+               </destinations>
+  </majordestination>
+        <majordestination airport="BGI">
+    <destinations>
+       <destination airport="LGW" pax="388"  />
+               </destinations>
   </majordestination>
   <majordestination airport="BJX">
     <destinations>
@@ -24,9 +44,9 @@
       <destination airport="MTY" pax="126" cargo="20" />
            </destinations>
   </majordestination>
-<majordestination airport="BRO">
+  <majordestination airport="CCC">
     <destinations>
-      <destination airport="MTY" pax="1" />
+      <destination airport="LGW" pax="17"  />
            </destinations>
   </majordestination>
 <majordestination airport="CEN">
@@ -44,11 +64,6 @@
 <majordestination airport="CLQ">
     <destinations>
       <destination airport="MEX" pax="98" cargo="15" />
-           </destinations>
-  </majordestination>
-<majordestination airport="CLT">
-    <destinations>
-      <destination airport="MEX" pax="68" cargo="10" />
            </destinations>
   </majordestination>
 <majordestination airport="CME">
@@ -79,17 +94,15 @@
       <destination airport="CJS" pax="14" cargo="2" />
       <destination airport="CUU" pax="20" cargo="3" />
       <destination airport="CZM" pax="10" cargo="2" />
-      <destination airport="DEN" pax="46" cargo="7" />
       <destination airport="GDL" pax="399" cargo="61" />
       <destination airport="HMO" pax="10" cargo="2" />
+       <destination airport="LGW" pax="368"  />
       <destination airport="MEX" pax="3302" cargo="508" />
       <destination airport="MID" pax="1" />
       <destination airport="MLM" pax="8" cargo="1" />
       <destination airport="MTY" pax="672" cargo="103" />
       <destination airport="PBC" pax="77" cargo="12" />
-      <destination airport="PHX" pax="124" cargo="17" />
       <destination airport="QRO" pax="33" cargo="5" />
-      <destination airport="SLC" pax="58" cargo="9" />
       <destination airport="REX" pax="15" cargo="2" />
       <destination airport="SLP" pax="4" cargo="1" />
       <destination airport="TAM" pax="14" cargo="2" />
@@ -108,11 +121,6 @@
       <destination airport="MTY" pax="134" cargo="21" />
            </destinations>
   </majordestination>
-<majordestination airport="CVG">
-    <destinations>
-      <destination airport="MEX" pax="1" cargo="23" />
-           </destinations>
-  </majordestination>
 <majordestination airport="CVM">
     <destinations>
       <destination airport="MEX" pax="56" cargo="9" />
@@ -121,40 +129,30 @@
   <majordestination airport="CZM">
     <destinations>
       <destination airport="CUN" pax="10" cargo="2" />
-      <destination airport="DEN" pax="22" cargo="3" />
       <destination airport="MEX" pax="20" cargo="3" />
                 </destinations>
-  </majordestination>
-<majordestination airport="DEN">
-    <destinations>
-      <destination airport="CUN" pax="46" cargo="7" />
-      <destination airport="CZM" pax="22" cargo="3" />
-      <destination airport="MEX" pax="4"  />
-      <destination airport="MTY" pax="1"  />
-      <destination airport="PVR" pax="23" cargo="4" />
-      <destination airport="SJD" pax="28" cargo="4" />
-      <destination airport="YEG" pax="7" cargo="1" />
-      <destination airport="YQR" pax="50" cargo="8" />
-      <destination airport="YVR" pax="26" cargo="4" />
-      <destination airport="YWG" pax="106" cargo="16"  />
-      <destination airport="YXE" pax="54" cargo="8" />
-      <destination airport="YYC" pax="35" cargo="5" />
-      <destination airport="YYZ" pax="31" cargo="5" />
-           </destinations>
   </majordestination>
 <majordestination airport="DGO">
     <destinations>
       <destination airport="MEX" pax="163" cargo="25" />
            </destinations>
   </majordestination>
+    <majordestination airport="GCM">
+    <destinations>
+       <destination airport="LHR" pax="36"  />
+               </destinations>
+  </majordestination>
   <majordestination airport="GDL">
     <destinations>
       <destination airport="CUN" pax="399" cargo="61" />
        <destination airport="MEX" pax="2287" cargo="352" /> 
       <destination airport="MTY" pax="495" cargo="76" />      
-      <destination airport="PHX" pax="373" cargo="20" />
-      <destination airport="SLC" pax="26" cargo="4" />
            </destinations>
+  </majordestination>
+        <majordestination airport="GND">
+    <destinations>
+       <destination airport="LGW" pax="77"  />
+               </destinations>
   </majordestination>
 <majordestination airport="GUA">
     <destinations>
@@ -163,13 +161,14 @@
   </majordestination>
   <majordestination airport="HAV">
     <destinations>
+      <destination airport="LGW" pax="88"  />
       <destination airport="MEX" pax="250" cargo="38" />
       <destination airport="MTY" pax="6" cargo="1" />
            </destinations>
   </majordestination>
-  <majordestination airport="IAD">
+    <majordestination airport="HOG">
     <destinations>
-      <destination airport="MEX" pax="139" cargo="21" />
+      <destination airport="LGW" pax="56"  />
            </destinations>
   </majordestination>
   <majordestination airport="LAP">
@@ -182,7 +181,6 @@
       <destination airport="CUN" pax="10" cargo="2" />
       <destination airport="MEX" pax="572" cargo="88" />
       <destination airport="MTY" pax="141" cargo="22"  />
-      <destination airport="PHX" pax="20" cargo="4"  />
            </destinations>
   </majordestination>
   <majordestination airport="HUX">
@@ -195,15 +193,15 @@
       <destination airport="MEX" pax="5" cargo="1" />
            </destinations>
   </majordestination>
+        <majordestination airport="KIN">
+    <destinations>
+       <destination airport="LGW" pax="75"  />
+               </destinations>
+  </majordestination>
   <majordestination airport="LAP">
     <destinations>
       <destination airport="MEX" pax="252" cargo="39" />
       <destination airport="MTY" pax="1" />
-                  </destinations>
-  </majordestination>
-<majordestination airport="LAX">
-    <destinations>
-      <destination airport="MEX" pax="940" cargo="145" />
                   </destinations>
   </majordestination>
 <majordestination airport="LRD">
@@ -221,21 +219,10 @@
       <destination airport="MEX" pax="63" cargo="10" />
                   </destinations>
   </majordestination>
-  <majordestination airport="MBJ">
+        <majordestination airport="MBJ">
     <destinations>
-            <destination airport="PHX" pax="124" cargo="17" />
-           </destinations>
-  </majordestination>
-  <majordestination airport="MCO">
-    <destinations>
-      <destination airport="MEX" pax="177" cargo="27" />
-      <destination airport="MTY" pax="12" cargo="2"  />
-                  </destinations>
-  </majordestination>
-<majordestination airport="MEM">
-    <destinations>
-      <destination airport="MTY" pax="1" cargo="32" />
-              </destinations>
+       <destination airport="LGW" pax="166"  />
+               </destinations>
   </majordestination>
   <majordestination airport="MEX">
     <destinations>
@@ -248,17 +235,14 @@
       <destination airport="CEN" pax="107" cargo="16"  />
       <destination airport="CJS" pax="370" cargo="57" />
       <destination airport="CLQ" pax="98" cargo="15"  />
-      <destination airport="CLT" pax="68" cargo="10"  />
       <destination airport="CME" pax="323" cargo="50" />
       <destination airport="CPE" pax="177" cargo="27" />
       <destination airport="CTM" pax="157" cargo="24" />
       <destination airport="CUL" pax="454" cargo="70"   />
       <destination airport="CUN" pax="3302" cargo="508"  />
       <destination airport="CUU" pax="525" cargo="81" />
-      <destination airport="CVG" pax="1" cargo="23" />
       <destination airport="CVM" pax="56" cargo="9"  />
       <destination airport="CZM" pax="20" cargo="3"  />
-      <destination airport="DEN" pax="4" />
       <destination airport="DGO" pax="163" cargo="25" />
       <destination airport="EZE" pax="139" cargo="21" />
       <destination airport="FRA" pax="237" cargo="36" />
@@ -268,7 +252,6 @@
       <destination airport="HAV" pax="250" cargo="38" />
       <destination airport="HMO" pax="572" cargo="88"  />
       <destination airport="HUX" pax="377" cargo="52"  />
-      <destination airport="IAD" pax="139" cargo="21"  />
        <destination airport="JAL" pax="5" cargo="1"  />
       <destination airport="LAP" pax="252" cargo="39" />
       <destination airport="LHR" pax="174" cargo="27" />
@@ -276,9 +259,6 @@
       <destination airport="LMM" pax="72" cargo="11" />
       <destination airport="MAD" pax="488" cargo="75" />
       <destination airport="MAM" pax="63" cargo="10" />
-      <destination airport="MCO" pax="177" cargo="27" />
-      <destination airport="MDW" pax="78" />
-      <destination airport="MIA" pax="702" cargo="108" />
       <destination airport="MID" pax="1081" cargo="166" />
       <destination airport="MLM" pax="64" cargo="10" />
       <destination airport="MTT" pax="191" cargo="29" />
@@ -289,18 +269,15 @@
       <destination airport="OAX" pax="374" cargo="57" />
       <destination airport="PAZ" pax="69"   cargo="11" />
       <destination airport="PDS" pax="11"   cargo="2" />
-      <destination airport="PHX" pax="308"   cargo="19" />
-      <destination airport="PTY" pax="368" cargo="57" />
+       <destination airport="PTY" pax="368" cargo="57" />
       <destination airport="PVR" pax="545" cargo="84" />
       <destination airport="PXM" pax="73" cargo="11" />
       <destination airport="REX" pax="301" cargo="46" />
       <destination airport="SAL" pax="128" cargo="20" />
-      <destination airport="SAT" pax="321" cargo="50" />
       <destination airport="SCL" pax="188" cargo="29" />
       <destination airport="SDF" pax="1" cargo="25" />
       <destination airport="SJD" pax="426" cargo="66" />
       <destination airport="SJO" pax="244" cargo="38"/>
-      <destination airport="SLC" pax="21" cargo="3" />
       <destination airport="SLP" pax="151" cargo="23" />
       <destination airport="SLW" pax="117" cargo="18" />
       <destination airport="TAM" pax="404" cargo="62" />
@@ -316,11 +293,6 @@
       <destination airport="ZIH" pax="207"   cargo="38" />
       <destination airport="ZLO" pax="131"   cargo="20" />
     </destinations>
-  </majordestination>
-<majordestination airport="MIA">
-    <destinations>
-      <destination airport="MEX" pax="543" cargo="84" />
-              </destinations>
   </majordestination>
   <majordestination airport="MID">
     <destinations>
@@ -346,19 +318,14 @@
       <destination airport="ACA" pax="32" cargo="5" />
       <destination airport="AUS" pax="1" cargo="16"  />
       <destination airport="BJX" pax="126" cargo="20" />
-      <destination airport="BRO" pax="1" />
       <destination airport="CJS" pax="117" cargo="18" />
       <destination airport="CUL" pax="122" cargo="19" />
       <destination airport="CUN" pax="672" cargo="103" />
       <destination airport="CUU" pax="134" cargo="21" />
-      <destination airport="DEN" pax="1"  />
        <destination airport="GDL" pax="495" cargo="76" />
       <destination airport="HAV" pax="6" cargo="1" />
       <destination airport="HMO" pax="141" cargo="22"  />
        <destination airport="LAP" pax="1" />
-      <destination airport="LRD" pax="7" cargo="1"  />
-      <destination airport="MCO" pax="12" cargo="2"  />
-      <destination airport="MEM" pax="1" cargo="32"  />
       <destination airport="MEX" pax="2523" cargo="388" />
       <destination airport="MID" pax="84" cargo="13" />
       <destination airport="MLM" pax="1" />
@@ -368,7 +335,6 @@
       <destination airport="PTY" pax="26" cargo="4"  />
       <destination airport="PVR" pax="94" cargo="14" />
       <destination airport="QRO" pax="80" cargo="12" />
-      <destination airport="SAT" pax="61" cargo="9"  />
       <destination airport="SJD" pax="68" cargo="10" />
       <destination airport="SJO" pax="3" />
       <destination airport="SLP" pax="1" />
@@ -390,8 +356,12 @@
     <destinations>
       <destination airport="MEX" pax="298" cargo="46" />
       <destination airport="MTY" pax="72" cargo="11" />
-      <destination airport="PHX" pax="106" cargo="21"  />
-              </destinations>
+                </destinations>
+  </majordestination>
+    <majordestination airport="NAS">
+    <destinations>
+       <destination airport="LHR" pax="42"  />
+               </destinations>
   </majordestination>
   <majordestination airport="NLD">
     <destinations>
@@ -415,41 +385,36 @@
       <destination airport="MTY" pax="34" cargo="5" />
            </destinations>
 </majordestination>
-  <majordestination airport="PHX">
-    <destinations>
-      <destination airport="CUN" pax="124" cargo="17"  />
-      <destination airport="GDL" pax="373" cargo="20"  />
-      <destination airport="HMO" pax="20" cargo="4"  />
-      <destination airport="MEX" pax="308" cargo="19"  />
-      <destination airport="MZT" pax="106" cargo="21"  />
-      <destination airport="PVR" pax="234" cargo="37"  />
-      <destination airport="SJD" pax="296" cargo="47"  />
-      <destination airport="YEG" pax="380" cargo="25"  />
-      <destination airport="YVR" pax="434" cargo="40"  />
-      <destination airport="YYC" pax="666" cargo="60" />
-      <destination airport="YYZ" pax="248" cargo="17"  />
-      <destination airport="ZIH" pax="21" cargo="3"  />
-      <destination airport="ZLO" pax="3" cargo="1"  />
-       </destinations>
-  </majordestination>
-<majordestination airport="PDS">
+  <majordestination airport="PDS">
     <destinations>
       <destination airport="MEX" pax="11" cargo="2" />
            </destinations>
 </majordestination>
+      <majordestination airport="POP">
+    <destinations>
+       <destination airport="LGW" pax="22"  />
+               </destinations>
+  </majordestination>
+      <majordestination airport="POS">
+    <destinations>
+       <destination airport="LGW" pax="165"  />
+               </destinations>
+  </majordestination>
   <majordestination airport="PTY">
     <destinations>
        <destination airport="MEX" pax="368" cargo="57" />
       <destination airport="MTY" pax="26" cargo="4"  />
            </destinations>
   </majordestination>
+    <majordestination airport="PUJ">
+    <destinations>
+      <destination airport="LGW" pax="120"  />
+           </destinations>
+</majordestination>
   <majordestination airport="PVR">
     <destinations>
-       <destination airport="DEN" pax="23" cargo="4" />
       <destination airport="MEX" pax="545" cargo="84" />
       <destination airport="MTY" pax="94" cargo="14" />
-      <destination airport="PHX" pax="234" cargo="37" />
-      <destination airport="SLC" pax="20" cargo="3" />
            </destinations>
   </majordestination>
   <majordestination airport="PXM">
@@ -474,12 +439,6 @@
        <destination airport="MEX" pax="128" cargo="20" />
             </destinations>
   </majordestination>
-  <majordestination airport="SAT">
-    <destinations>
-      <destination airport="MEX" pax="321" cargo="50" />
-      <destination airport="MTY" pax="61" cargo="9"  />
-            </destinations>
-  </majordestination>
   <majordestination airport="SDF">
     <destinations>
       <destination airport="MEX" pax="1" cargo="25" />
@@ -487,11 +446,8 @@
   </majordestination>
   <majordestination airport="SJD">
     <destinations>
-      <destination airport="DEN" pax="28" cargo="4" />
       <destination airport="MEX" pax="426" cargo="66" />
       <destination airport="MTY" pax="68" cargo="10" />
-      <destination airport="PHX" pax="296" cargo="47" />
-      <destination airport="SLC" pax="21" cargo="3" />
            </destinations>
   </majordestination>
   <majordestination airport="SJO">
@@ -500,17 +456,12 @@
       <destination airport="MTY" pax="3"/>
               </destinations>
   </majordestination>
-    <majordestination airport="SLC">
+      <majordestination airport="SKB">
     <destinations>
-      <destination airport="CUN" pax="58" cargo="9" />
-      <destination airport="GDL" pax="26" cargo="4" />
-      <destination airport="MEX" pax="21" cargo="3" />
-      <destination airport="PVR" pax="20" cargo="3" />
-      <destination airport="SJD" pax="21" cargo="3" />
-      <destination airport="YVR" pax="87" cargo="13" />
-                </destinations>
+       <destination airport="LGW" pax="57"  />
+               </destinations>
   </majordestination>
-  <majordestination airport="SLP">
+      <majordestination airport="SLP">
     <destinations>
       <destination airport="CUN" pax="4" cargo="1" />
        <destination airport="MEX" pax="151" cargo="23" />
@@ -521,6 +472,11 @@
     <destinations>
       <destination airport="MEX" pax="117" cargo="18" />
                 </destinations>
+  </majordestination>
+        <majordestination airport="TAB">
+    <destinations>
+       <destination airport="LGW" pax="578"  />
+               </destinations>
   </majordestination>
  <majordestination airport="TAM">
     <destinations>
@@ -565,12 +521,22 @@
       <destination airport="MEX" pax="358" cargo="55" />
              </destinations>
   </majordestination>
+        <majordestination airport="UVF">
+    <destinations>
+       <destination airport="LGW" pax="58"  />
+               </destinations>
+  </majordestination>
 <majordestination airport="VER">
     <destinations>
       <destination airport="CUN" pax="105" cargo="16" />
       <destination airport="MEX" pax="513" cargo="79" />
       <destination airport="MTY" pax="128" cargo="20" />
                 </destinations>
+  </majordestination>
+        <majordestination airport="VRA">
+    <destinations>
+       <destination airport="LGW" pax="8"  />
+               </destinations>
   </majordestination>
 <majordestination airport="VSA">
     <destinations>
@@ -581,44 +547,51 @@
   </majordestination>
   <majordestination airport="YEG">
     <destinations>
-      <destination airport="DEN" pax="7" cargo="1" />
-       <destination airport="PHX" pax="380" cargo="25" />
-                 </destinations>
+       <destination airport="LGW" pax="7" />
+       <destination airport="LHR" pax="94"  />
+               </destinations>
   </majordestination>
-  <majordestination airport="YQR">
+    <majordestination airport="YHZ">
     <destinations>
-       <destination airport="DEN" pax="50" cargo="8" />
-                 </destinations>
+      <destination airport="LGW" pax="7" />
+       <destination airport="LHR" pax="92"  />
+               </destinations>
   </majordestination>
-  <majordestination airport="YVR">
+    <majordestination airport="YOW">
     <destinations>
-      <destination airport="DEN" pax="26" cargo="4" />
-             <destination airport="PHX" pax="434" cargo="40" />
-            <destination airport="SLC" pax="87" cargo="13" />
-           </destinations>
+      <destination airport="LGW" pax="6" />
+       <destination airport="LHR" pax="109"  />
+               </destinations>
   </majordestination>
-  <majordestination airport="YWG">
+    <majordestination airport="YUL">
     <destinations>
-     <destination airport="DEN" pax="106" cargo="16" />
-                    </destinations>
+      <destination airport="LGW" pax="14" />
+       <destination airport="LHR" pax="317"  />
+               </destinations>
   </majordestination>
-  <majordestination airport="YXE">
+    <majordestination airport="YVR">
     <destinations>
-      <destination airport="DEN" pax="54" cargo="8" />
-                    </destinations>
+       <destination airport="LGW" pax="93" />
+       <destination airport="LHR" pax="516"  />
+               </destinations>
   </majordestination>
 <majordestination airport="YYC">
     <destinations>
-      <destination airport="DEN" pax="35" cargo="5" />
+       <destination airport="LGW" pax="60" />
+       <destination airport="LHR" pax="262"  />
        <destination airport="YVR" pax="343" cargo="53" />
                </destinations>
   </majordestination>
-<majordestination airport="YYZ">
+    <majordestination airport="YYT">
     <destinations>
-      <destination airport="DEN" pax="31" cargo="5" />
-      <destination airport="MEX" pax="137" cargo="21" />
-      <destination airport="PHX" pax="248" cargo="17"  />
-                    </destinations>
+       <destination airport="LHR" pax="34"  />
+               </destinations>
+  </majordestination>
+    <majordestination airport="YYZ">
+    <destinations>
+      <destination airport="LGW" pax="200" />
+       <destination airport="LHR" pax="1014"  />
+               </destinations>
   </majordestination>
 <majordestination airport="ZCL">
     <destinations>
@@ -629,13 +602,11 @@
     <destinations>
        <destination airport="MEX" pax="207" cargo="32" />
       <destination airport="MTY" pax="2"  />
-       <destination airport="PHX" pax="21" cargo="3" />
                     </destinations>
   </majordestination>
 <majordestination airport="ZLO">
     <destinations>
       <destination airport="MEX" pax="131" cargo="20" />
-      <destination airport="PHX" pax="3" cargo="1" />
      </destinations>
   </majordestination>
 </majordestinations>

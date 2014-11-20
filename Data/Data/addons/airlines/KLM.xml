@@ -19,8 +19,6 @@
       <airliner type="Boeing 777-300ER" early="0" late="7"></airliner>
     </airliners>
   </startdata>
-  <subsidiaries>
-    <subsidiary name="KLM Cityhopper" IATA="WA" homebase="AMS" mentality="Moderate" market="Local" logo="WA"></subsidiary>
-  </subsidiaries>
+
   <info real="True" from="1919" to="2199" />
 </airline>

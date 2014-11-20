@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Vivaaerobus.com" iata="VB" color="Black" country="157" CEO="Juan Carlos Zuazua" mentality="Safe"
            market="Global" preferedairport="MEX">
+             <narrative
+      narrative="Aeroenlaces Nacionales, S.A. de C.V., trading as VivaAerobus.com, is a Mexican low cost airline part-owned by the founders of Europe's biggest low-cost carrier, Ryanair and the biggest bus company group in Mexico, IAMSA. It has its corporate headquarters in the Cargo Zone of Terminal C on the grounds of General Mariano Escobedo International Airport in Apodaca, Nuevo León." />
   </profile>
   <info real="True" from="2005" to="2199" />
 </airline>

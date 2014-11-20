@@ -168,6 +168,19 @@
                                             flight.Entry.DepartureAirport.Profile.IATACode,
                                             flight.Entry.Destination.Airport.Profile.IATACode)));
                             break;
+                        case FleetAirlinerHelpers.DelayType.Maintenance:
+                             GameObject.GetInstance()
+                                .NewsBox.addNews(
+                                    new News(
+                                        News.NewsType.Flight_News,
+                                        GameObject.GetInstance().GameTime,
+                                        Translator.GetInstance().GetString("News", "1021"),
+                                        string.Format(
+                                            Translator.GetInstance().GetString("News", "1021", "message"),
+                                            flight.Entry.Destination.FlightCode,
+                                            flight.Entry.DepartureAirport.Profile.IATACode,
+                                            flight.Entry.Destination.Airport.Profile.IATACode)));
+                            break;
                     }
                 }
                 airliner.Airliner.Airline.Statistics.addStatisticsValue(

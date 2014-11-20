@@ -59,30 +59,32 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (this.Engines.Count > 0)
                 this.SelectedEngine = engine;
 
-            AirlinerClass economyClass = classes.Find(c => c.Type == AirlinerClass.ClassType.Economy_Class);
-
-            foreach (AirlinerClass aClass in classes)
+            if (this.Type is AirlinerPassengerType || this.Type is AirlinerCombiType)
             {
+                AirlinerClass economyClass = classes.Find(c => c.Type == AirlinerClass.ClassType.Economy_Class);
 
-                int maxseats = aClass.Type == AirlinerClass.ClassType.Economy_Class ? aClass.SeatingCapacity : economyClass.RegularSeatingCapacity - 1;
-                AirlinerClassMVVM nClass = new AirlinerClassMVVM(aClass.Type, aClass.SeatingCapacity, maxseats, aClass.Type != AirlinerClass.ClassType.Economy_Class);
-                this.Classes.Add(nClass);
+                foreach (AirlinerClass aClass in classes)
+                {
 
-                foreach (AirlinerFacility facility in aClass.getFacilities())
-                    nClass.Facilities.Where(f => f.Type == facility.Type).First().SelectedFacility = facility;
+                    int maxseats = aClass.Type == AirlinerClass.ClassType.Economy_Class ? aClass.SeatingCapacity : economyClass.RegularSeatingCapacity - 1;
+                    AirlinerClassMVVM nClass = new AirlinerClassMVVM(aClass.Type, aClass.SeatingCapacity, maxseats, aClass.Type != AirlinerClass.ClassType.Economy_Class);
+                    this.Classes.Add(nClass);
 
+                    foreach (AirlinerFacility facility in aClass.getFacilities())
+                        nClass.Facilities.Where(f => f.Type == facility.Type).First().SelectedFacility = facility;
+
+                }
+
+                this.CanAddNewClass = this.Classes.Count < (this.Type is AirlinerPassengerType ? ((AirlinerPassengerType)this.Type).MaxAirlinerClasses : ((AirlinerCombiType)this.Type).MaxAirlinerClasses);
+
+                if (this.Classes.Count < 3)
+                {
+                    this.FreeClassTypes.Clear();
+                    this.FreeClassTypes.Add(AirlinerClass.ClassType.Business_Class);
+                    this.FreeClassTypes.Add(AirlinerClass.ClassType.First_Class);
+
+                }
             }
-
-            this.CanAddNewClass = this.Classes.Count < ((AirlinerPassengerType)this.Type).MaxAirlinerClasses;
-
-            if (this.Classes.Count < 3)
-            {
-                this.FreeClassTypes.Clear();
-                this.FreeClassTypes.Add(AirlinerClass.ClassType.Business_Class);
-                this.FreeClassTypes.Add(AirlinerClass.ClassType.First_Class);
-
-            }
-
             this.Loaded += PopUpAirlinerSeatsConfiguration_Loaded;
 
             InitializeComponent();
@@ -112,7 +114,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.Classes[0].Seating -= seating;
             this.Classes[0].RegularSeating -= seating;
             this.Classes[0].MaxSeats -= seating;
-          
+
 
             AirlinerClass.ClassType nextType = AirlinerClass.ClassType.Economy_Class;
 
@@ -127,7 +129,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             AirlinerClassMVVM newClass = new AirlinerClassMVVM(nextType, seating, maxseats, true);
             this.Classes.Add(newClass);
 
-            this.CanAddNewClass = this.Classes.Count < ((AirlinerPassengerType)this.Type).MaxAirlinerClasses;
+            this.CanAddNewClass = this.Classes.Count < (this.Type is AirlinerPassengerType ? ((AirlinerPassengerType)this.Type).MaxAirlinerClasses : ((AirlinerCombiType)this.Type).MaxAirlinerClasses);
+
 
             if (this.Classes.Count < 3)
             {
@@ -359,7 +362,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 AirlinerClassFacilityMVVM facility = new AirlinerClassFacilityMVVM(this,facType);
 
-                foreach (AirlinerFacility fac in AirlinerFacilities.GetFacilities(facType))
+                foreach (AirlinerFacility fac in AirlinerFacilities.GetFacilities(facType).Where(f=>f.FromYear <= GameObject.GetInstance().GameTime.Year))
                     facility.Facilities.Add(fac);
 
                 this.Facilities.Add(facility);

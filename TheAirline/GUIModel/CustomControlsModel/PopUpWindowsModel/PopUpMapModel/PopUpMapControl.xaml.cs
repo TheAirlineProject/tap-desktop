@@ -34,6 +34,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapMode
             this.DataContext = model;
 
             InitializeComponent();
+
         }
         private void MapMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

@@ -54,22 +54,25 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <!--
-                        <Image                                  
-                               Source="{Binding Airport.Profile.Logo}"
-                               RenderOptions.BitmapScalingMode="HighQuality"
-                HorizontalAlignment="Center" Width="96" Grid.Column="0">
-                            <Image.Style>
-                                <Style>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Airport.Profile.Logo.Length}" Value="0">
-                                            <Setter Property="Image.Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Image.Style>
-                        </Image>-->
+                       
+                      
                         <StackPanel Margin="5 0 0 0" Grid.Column="1">
+                            <Image Source="{Binding Airport.Profile.Logo}" Height="300" Width="500" HorizontalAlignment="Stretch" RenderOptions.BitmapScalingMode="HighQuality">
+                                <Image.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Airport.Profile.Logo}"
+                                                                 Value="{x:Null}">
+                                                <Setter Property="Image.Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Airport.Profile.Logo.Length}"
+                                                                 Value="0">
+                                                <Setter Property="Image.Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1001'}"
@@ -150,8 +153,23 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1037'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="100" />
                                 <TextBlock
-                                    Text="{Binding Airport.Profile.Type,Converter={StaticResource TextUnderscoreConverter}}"
+                                    Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}"
                                     VerticalAlignment="Bottom" />
+                                <Button Background="Transparent" Width="20" Tag="{Binding}" Margin="10 0 0 0"
+                                                        Click="btnCustoms_Click">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Type}" Value="International">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <Image Source="/data/images/customs.png"
+                                                           RenderOptions.BitmapScalingMode="HighQuality" />
+                                </Button>
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock

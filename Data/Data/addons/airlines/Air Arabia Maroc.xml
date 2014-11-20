@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Air Arabia Maroc" iata="3O" color="Black" country="133" CEO="Amin Alhaimy" mentality="Safe"
            market="Global" preferedairport="CMN">
+            <narrative
+      narrative="Air Arabia Maroc  Moroccan low-cost airline, setup as a joint venture between various Moroccan investors and Air Arabia. Its head office is located in the Arrivals Terminal of Mohammed V International Airport in Nouaceur Province, Morocco in Greater Casablanca. It was launched in April 2009, and started operations in May the same year." />
   </profile>
   <info real="True" from="2009" to="2199" />
 </airline>

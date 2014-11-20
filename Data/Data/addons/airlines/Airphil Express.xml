@@ -1,8 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Airphil Express" iata="2P" color="Black" country="131" CEO="Iñigo Zobel" mentality="Safe"
            market="Global" preferedairport="CRK">
+             <narrative
+      narrative="PAL Express, formerly Air Philippines or Airphil Express, is operating under business name of Air Philippines Corporation. After operating as PAL Express for a while, the airline transformed again the brand into Airphil Express." />
+
   </profile>
   <info real="True" from="1995" to="2199" />
 </airline>
+

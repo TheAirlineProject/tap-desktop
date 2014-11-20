@@ -112,17 +112,17 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
                     string text = entry.Airliner.Name;
 
                     string tooltip = string.Format(
-                        "{0}-{1}\n",
+                        "{0}-{1}\n{2}\n",
                         new AirportCodeConverter().Convert(entry.DepartureAirport),
-                        new AirportCodeConverter().Convert(entry.Destination.Airport)) + string.Format(
+                        new AirportCodeConverter().Convert(entry.Destination.Airport),entry.Destination.FlightCode) + string.Format(
                         "{0}-{3}\n({1} {2})-({4} {5})",
-                        string.Format("{0:hh\\:mm}", entry.Time),
-                        string.Format("{0:hh\\:mm}", localTimeDept),
-                        entry.DepartureAirport.Profile.TimeZone.ShortName,
-                        string.Format("{0:hh\\:mm}", eTime),
-                        string.Format("{0:hh\\:mm}", localTimeDest),
+                        new TimeSpanConverter().Convert(entry.Time),
+                        new TimeSpanConverter().Convert(localTimeDept),
+                         entry.DepartureAirport.Profile.TimeZone.ShortName,
+                        new TimeSpanConverter().Convert(eTime),
+                        new TimeSpanConverter().Convert(localTimeDest),
                         entry.Destination.Airport.Profile.TimeZone.ShortName);
-
+                    
                     uctimetable.addTimelineEntry(entry, sTime, eTime, text, brush, tooltip);
         
                 }

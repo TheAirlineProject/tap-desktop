@@ -21,8 +21,8 @@
 
         public PageFlights()
         {
-            this.AllFlights =
-                Airlines.GetAllAirlines().SelectMany(a => a.Routes.SelectMany(r => r.TimeTable.Entries)).ToList();
+           this.AllFlights =
+                Airlines.GetAllAirlines().SelectMany(a => a.Routes.SelectMany(r => r.TimeTable.Entries)).OrderBy(e=>e.Time).ToList();
 
             this.AllAirlines = new List<Airline>(Airlines.GetAllAirlines());
 
@@ -36,6 +36,8 @@
                 new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
 
             this.AllAirlines.Insert(0, dummyAirline);
+
+            this.Airline = dummyAirline;
 
             IEnumerable<Route> routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes);
 

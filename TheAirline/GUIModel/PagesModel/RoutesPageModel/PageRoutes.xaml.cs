@@ -146,6 +146,10 @@
             {
                 frmContent.Navigate(new PageAssignAirliners { Tag = this });
             }
+            if (selection == "Restrictions" && frmContent != null)
+            {
+                frmContent.Navigate(new PageRestrictions{ Tag = this });
+            }
         }
 
         #endregion

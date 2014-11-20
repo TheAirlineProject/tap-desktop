@@ -82,7 +82,7 @@
                 this.MostUsedAircrafts.OrderByDescending(a => a.Count)
                     .Take(Math.Min(5, this.MostUsedAircrafts.Count))
                     .ToList();
-
+        
             this.Loaded += this.PageAirline_Loaded;
 
             this.InitializeComponent();

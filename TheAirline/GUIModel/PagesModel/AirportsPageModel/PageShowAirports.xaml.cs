@@ -257,7 +257,9 @@ using TheAirline.Model.GeneralModel.Helpers;
        
         private void createPage(List<Airport> airports)
         {
-        
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             this.HumanAirports = new ObservableCollection<Airport>();
 
             foreach (Airport hAirport in GameObject.GetInstance().HumanAirline.Airports)
@@ -306,6 +308,7 @@ using TheAirline.Model.GeneralModel.Helpers;
                 this.AllAirports.Add(new AirportMVVM(airport));
             }
 
+         
             AirlinerType dummyAircraft = new AirlinerCargoType(
                 new Manufacturer("Dummy", "", null, false),
                 "All Aircrafts",
@@ -339,6 +342,10 @@ using TheAirline.Model.GeneralModel.Helpers;
                 this.HumanAircrafts.Add(type);
             }
 
+            sw.Stop();
+
+            long time = sw.ElapsedMilliseconds;
+
             this.InitializeComponent();
 
             var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
@@ -351,6 +358,8 @@ using TheAirline.Model.GeneralModel.Helpers;
                 //matchingItem.IsSelected = true;
                 tab_main.SelectedItem = matchingItem;
             }
+
+         
         }
 
        

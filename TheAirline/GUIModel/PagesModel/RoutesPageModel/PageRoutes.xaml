@@ -108,6 +108,9 @@
                 <TabItem
                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutes 1005'}"
                     Tag="Airliners" />
+                <TabItem
+                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutes 1011'}"
+                    Tag="Restrictions" />
                 <TabItem Header="" Tag="Route" Visibility="Collapsed" />
                 <TabItem Header="" Tag="Airliner" Visibility="Collapsed" />
             </TabControl>

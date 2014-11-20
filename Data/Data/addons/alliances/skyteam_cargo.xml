@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <alliance name="SkyTeam Cargo" logo="skyteam_cargo" type="Full" formation="09.22.2000 00:00:00" headquarter="AMS">
-  <alliance name="SkyTeam Cargo" logo="skyteam_cargo" type="Full" formation="09.22.2000 00:00:00" headquarter="AMS">
   <members>  
   <member airline="KE2" joined="09.22.2000 00:00:00"></member>
     <member airline="AF2" joined="09.22.2000 00:00:00"></member>
@@ -16,5 +15,4 @@
 	  <member airline="AR2" joined="09.30.2013 00:00:00"></member>
 	    <member airline="SU2" joined="04.14.2006 00:00:00"></member>
   </members>
-</alliance>
 </alliance>

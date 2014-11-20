@@ -14,6 +14,7 @@
                      ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
+                     
                         <WrapPanel>
                             <TextBlock Text="{Binding GateNumber,StringFormat=Gate {0}}" VerticalAlignment="Bottom"
                                        Width="100" FontWeight="Bold" />

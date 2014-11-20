@@ -1,22 +1,23 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.Linq;
-    using System.Windows.Data;
-    using System.Windows.Media;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirlinerModel.RouteModel;
-    using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.CountryModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.InvoicesModel;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Data;
+using System.Windows.Media;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.InvoicesModel;
+using TheAirline.Model.GeneralModel.StatisticsModel;
 
     //the mvvm object for a human route
     public class HumanRouteMVVM
@@ -577,7 +578,19 @@
 
         #endregion
     }
-
+     //the mvvm object for the banned airlines from one country to another
+    public class BannedAirlinesMVVM
+    {
+        public BaseUnit ToCountry { get; set; }
+        public Country FromCountry { get; set; }
+        public List<Airline> Airlines { get; set; }
+        public BannedAirlinesMVVM(Country from, BaseUnit to, List<Airline> airlines)
+        {
+            this.ToCountry = to;
+            this.FromCountry = from;
+            this.Airlines = airlines;
+        }
+    }
     //the converter for the statistics for a route
     public class RouteStatisticsConverter : IValueConverter
     {

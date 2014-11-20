@@ -850,7 +850,7 @@
       <es-ES name="Tailandia" />
     </translations>
   </country>
-  <country uid="176" shortname="HKG" region="109" flag="Hong Kong" tailformat="B-\\s3">
+  <country uid="176" shortname="HKG" region="107" flag="Hong Kong" tailformat="B-\\s3">
     <currency symbol="HK$" position="Left" rate="7.75" />
     <translations>
       <en-US name="Hong Kong" />

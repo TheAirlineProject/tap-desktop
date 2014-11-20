@@ -206,7 +206,8 @@
 
             if (this.getAirliners().Count > 0)
             {
-                cabinCrew = this.getAirliners().Sum(a => ((AirlinerPassengerType)a.Airliner.Type).CabinCrew);
+                var airliners = this.getAirliners().Where(a => a.Airliner.Type.GetType() == typeof(AirlinerPassengerType));
+                cabinCrew = airliners.Sum(a => ((AirlinerPassengerType)a.Airliner.Type).CabinCrew);
             }
 
             return cabinCrew;

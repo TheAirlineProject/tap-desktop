@@ -14,6 +14,7 @@
     <c:AirportCodeConverter x:Key="AirportCodeConverter" />
     <c:TranslatorConverter x:Key="TranslatorConverter" />
     <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter" />
+    <c:TimeSpanConverter x:Key="TimeSpanConverter"></c:TimeSpanConverter>
     <c:WeightToUnitConverter x:Key="WeightToUnitConverter"></c:WeightToUnitConverter>
 
     <Style TargetType="WrapPanel" x:Key="WrapPanelStyle">
@@ -522,11 +523,8 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                <Hyperlink Tag="{Binding}" Click="Airport_Click">
-                    <Run Text="{Binding Profile.IATACode}" />
-                </Hyperlink>
-            </TextBlock>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Converter={StaticResource AirportCodeConverter}}"></TextBlock>
+        
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
                 <Hyperlink Tag="{Binding}" Click="Airport_Click">
                     <Run Text="{Binding Profile.Name}" />
@@ -548,8 +546,30 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
+            
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
 
+        </DockPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="AirportCountryNormalLink">
+        <DockPanel>
+            <ContentControl
+                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                VerticalAlignment="Bottom">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                        </DockPanel>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                <Hyperlink Tag="{Binding}" Click="Airport_Click">
+                    <Run Text="{Binding Profile.Name}" />
+                </Hyperlink>
+            </TextBlock>
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirportCountryCodeItem">

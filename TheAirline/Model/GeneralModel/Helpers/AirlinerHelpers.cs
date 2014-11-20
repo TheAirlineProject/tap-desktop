@@ -43,16 +43,10 @@
                 airliner.addAirlinerClass(aClass);
             }
         }
-
-        public static Airliner CreateAirlinerFromYear(int year)
+        public static Airliner CreateAirlinerFromYear(int year, AirlinerType type)
         {
+           
             Guid id = Guid.NewGuid();
-
-            List<AirlinerType> types =
-                AirlinerTypes.GetTypes(t => t.Produced.From.Year < year && t.Produced.To.Year > year);
-
-            int typeNumber = rnd.Next(types.Count);
-            AirlinerType type = types[typeNumber];
 
             int countryNumber = rnd.Next(Countries.GetCountries().Count() - 1);
             Country country = Countries.GetCountries()[countryNumber];
@@ -81,10 +75,20 @@
                 airliner.EngineType = engines[engineNumber];
             }
 
-      
+
             CreateAirlinerClasses(airliner);
 
             return airliner;
+        }
+        public static Airliner CreateAirlinerFromYear(int year)
+        {
+            List<AirlinerType> types =
+             AirlinerTypes.GetTypes(t => t.Produced.From.Year < year && t.Produced.To.Year > year);
+
+            int typeNumber = rnd.Next(types.Count);
+            AirlinerType type = types[typeNumber];
+
+            return CreateAirlinerFromYear(year, type);
         }
 
         public static void CreateStartUpAirliners()

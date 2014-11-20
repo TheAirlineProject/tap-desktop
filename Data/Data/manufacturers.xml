@@ -50,12 +50,17 @@
   <manufacturer name="Bell Helicopter" shortname="Bell" country="122" />
   <manufacturer name="Messerschmitt-Bölkow-Blohm" shortname="MBB" country="163" />
  <manufacturer name="Gulfstream Aerospace" shortname="Gulfstream" country="122" />
- <manufacturer name="Grumman Aerospace Corporation" shortname="Grunmman" country="122" />
+ <manufacturer name="Grumman Aerospace Corporation" shortname="Grumman" country="122" />
   <manufacturer name="Piaggio Aero Industries" shortname="Piaggio" country="141" />
  <manufacturer name="Learjet" shortname="Learjet" country="122" />
   <manufacturer name="Israel Aerospace Industries" shortname="Israel" country="128" />
   <manufacturer name="Irkut Corporation" shortname="Irkut" country="134" />
    <manufacturer name="Handley Page Limited" shortname="HP" country="130" /> 
+     <manufacturer name="Cirrus Aircraft" shortname="Cirrus" country="122" />
+       <manufacturer name="Harbin Aircraft Industry Group" shortname="Harbin" country="148" />
+  <manufacturer name="Ford Trimotor" shortname="Ford" country="122" />
+  <manufacturer name="SNCASE" shortname="SNCASE" country="140" />
+    <manufacturer name="Canadair Ltd." shortname="Canadair" country="113" />
    <!--engines-->
   <manufacturer name="CFM International" shortname="CFM" country="140" />
   <manufacturer name="Engine Alliance" shortname="EA" country="140" />

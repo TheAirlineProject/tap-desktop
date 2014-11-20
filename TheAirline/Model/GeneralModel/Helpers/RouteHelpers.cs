@@ -111,7 +111,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             int airlinerLevel;
 
-            int paxLevel = ((AirlinerPassengerType)airlinertype).MaxSeatingCapacity / 40; //maks 10??
+            int paxLevel = 5;
+
+            if (airlinertype is AirlinerPassengerType)
+                paxLevel = ((AirlinerPassengerType)airlinertype).MaxSeatingCapacity / 40; //maks 10??
 
             if (flightTime.Hours < 1)
             {
@@ -208,12 +211,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             RouteFacility wifi = ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(RouteFacility.FacilityType.WiFi);
 
-            if (wifi.Name == "None")
-                return 3;
-            if (wifi.Name == "Buyable")
-                return 6;
+            if (wifi != null)
+            {
+                if (wifi.Name == "None")
+                    return 3;
+                if (wifi.Name == "Buyable")
+                    return 6;
+                else
+                    return 9;
+            }
             else
-                return 9;
+                return 5;
         }
     }
 }

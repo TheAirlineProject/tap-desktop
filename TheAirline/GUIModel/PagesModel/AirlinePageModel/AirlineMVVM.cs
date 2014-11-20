@@ -159,7 +159,7 @@
                 {
                     centers.Add(new MaintenanceCenterMVVM(mCenter));
                 }
-
+                
                 if (this.Airline.Maintenances.ContainsKey(maintenanceType))
                 {
                     if (this.Airline.Maintenances[maintenanceType].Airport == null)
@@ -761,13 +761,13 @@
             {
                 this.Finances.Add(new AirlineFinanceMVVM(this.Airline, type));
             }
-
+    
             this.Money = this.Airline.Money;
             this.Balance = this.Airline.Money - this.Airline.StartMoney;
             double tMoney = GameObject.GetInstance().HumanMoney;
 
             this.CabinCrew =
-                this.Airline.Routes.Where(r => r.Type == Route.RouteType.Passenger)
+                this.Airline.Routes.Where(r => r is PassengerRoute)
                     .Sum(r => ((PassengerRoute)r).getTotalCabinCrew());
             this.SupportCrew =
                 this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline))

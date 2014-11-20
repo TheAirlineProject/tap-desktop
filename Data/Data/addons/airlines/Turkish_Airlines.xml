@@ -6,7 +6,7 @@
     <narrative
       narrative="Turkish Airlines is the national flag carrier airline of Turkey, headquartered at the Turkish Airlines General Management Building on the grounds of Atatrk Airport in Istanbul. It operates scheduled services to 163 international and 41 domestic cities (38 domestic airports), serving a total of 204 airports, in Europe, Asia, Africa, and the Americas. With an increase to 91 destination countries, the carrier's destination network from one hub is the world's largest." />
   </profile>
-  <info real="True" from="1953" to="2199" />
+  <info real="True" from="1933" to="2199" />
   <startdata>
     <airliners>
       <airliner type="Airbus A320-200" early="0" late="28"></airliner>

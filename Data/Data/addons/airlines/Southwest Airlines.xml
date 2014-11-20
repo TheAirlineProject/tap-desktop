@@ -1,6 +1,10 @@
 ﻿<airline>
-<profile name="Southwest Airlines" iata="WN" color="SteelBlue" country="122" CEO="Gary Kelley" mentality="Aggressive" market="Regional" preferedairport="MDW">
+<profile name="Southwest Airlines" iata="WN" color="SteelBlue" country="122" CEO="Gary Kelley" mentality="Aggressive" market="Regional">
 <narrative narrative="Southwest Airlines traces their roots to the March 16, 1967 incorporation of Air Southwest Co. by Rollin King and Herb Kelleher to provide service within the state of Texas. Southwest Airlines has solely operated Boeing 737s, except for a few years in the 1970s and 1980s, when they operated a few Boeing 727s. They are the largest domestic carrier by passengers carried as of 2011 and have a very large fleet of 596 737's as of 2014. Since they bought airTran they will be taking over airTran's routes to Mexico and the Caribbean beginning in 2014 and will no longer be a domestic only carrier. They serve 96 destinations."/>
+<airports>
+<airport  preferedairport="DAL" date="1.01.1971 00:00:00"></airport>
+<airport   preferedairport="MDW" date="1.01.1996 00:00:00"></airport>
+</airports>
 </profile>
 <info real="True" from="1971" to="2199"></info>
 <startdata>

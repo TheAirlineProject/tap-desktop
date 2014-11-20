@@ -22,6 +22,21 @@
 
         #region Public Methods and Operators
         //returns the fuel price for an airport
+        public static Boolean WillBuildCustomersService(Airport airport)
+        {
+            int demand =0;
+            var intlAirports = airport.getDestinationDemands().Where(a => a.Profile.Country.ShortName != airport.Profile.Country.ShortName);
+
+            foreach (Airport intlAirport in intlAirports)
+                demand += airport.getDestinationPassengersRate(intlAirport, AirlinerClass.ClassType.Economy_Class);
+         
+            if (demand > 5000)
+                return true;
+            else
+                return false;
+
+            
+        }
         public static double GetFuelPrice(Airport airport)
         {
             return GetFuelPrice(airport.Profile.Country.Region);
@@ -259,23 +274,25 @@
 
         public static GeneralHelpers.Size ConvertAirportPaxToSize(double size)
         {
-            var yearCoeffs = new Dictionary<int, double>();
-            yearCoeffs.Add(1960, 1.3);
-            yearCoeffs.Add(1970, 1.2);
-            yearCoeffs.Add(1980, 1.15);
-            yearCoeffs.Add(1990, 1.10);
-            yearCoeffs.Add(2000, 1.0658);
-            yearCoeffs.Add(2010, 1);
-
+            
             int decade = (GameObject.GetInstance().GameTime.Year - 1960) / 10 * 10 + 1960;
 
             double coeff = 1;
 
-            if (yearCoeffs.ContainsKey(decade))
-            {
-                coeff = yearCoeffs[decade];
-            }
+            if (decade == 1960)
+                coeff = 1.3;
+            else if (decade == 1970)
+                coeff = 1.2;
+            else if (decade == 1980)
+                coeff = 1.15;
+            else if (decade == 1990)
+                coeff = 1.10;
+            else if (decade == 2000)
+                coeff = 1.0658;
+            else
+                coeff = 1;
 
+           
             double coeffPax = coeff * size;
 
             if (coeffPax > 32000)
@@ -688,6 +705,25 @@
         //sets the airport expansion to an airport
         public static void SetAirportExpansion(Airport airport, AirportExpansion expansion, Boolean onStartUp = false)
         {
+            if (expansion.Type == AirportExpansion.ExpansionType.Town_name)
+            {
+                 if (expansion.NotifyOnChange && !onStartUp)
+                {
+                    GameObject.GetInstance()
+                      .NewsBox.addNews(
+                          new News(
+                              News.NewsType.Airport_News,
+                              GameObject.GetInstance().GameTime,
+                              "Town Name Changed",
+                              string.Format(
+                                  "The town of [LI airport={0}]({1}) has changed its name to {2}",
+                                  airport.Profile.IATACode,
+                                  new AirportCodeConverter().Convert(airport),
+                                expansion.Name)));
+                }
+
+                 airport.Profile.Town.Name = expansion.Name;
+            }
             if (expansion.Type == AirportExpansion.ExpansionType.Name)
             {
 

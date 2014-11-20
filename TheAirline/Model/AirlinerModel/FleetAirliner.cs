@@ -46,7 +46,7 @@
             if (this.Purchased == PurchasedType.Bought || this.Purchased == PurchasedType.BoughtDownPayment)
                 this.Airliner.Owner = this.Airliner.Airline;
 
-            this.Airliner.History.Add(new AirlinerRegistrationHistory(this.PurchasedDate, this.Airliner.Airline, this.Name));
+            this.Airliner.History.Add(new AirlinerRegistrationHistory(this.PurchasedDate, this.Airliner.Airline.Profile.Name,this.Airliner.Airline.Profile.Logo, this.Name));
         }
 
         private FleetAirliner(SerializationInfo info, StreamingContext ctxt)
@@ -283,7 +283,14 @@
             this.Routes.Remove(route);
             route.TimeTable.Entries.RemoveAll(e => e.Airliner == this);
         }
-
+        [OnDeserialized()]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            if (this.Maintenance.Checks.Exists(c => c == null))
+            {
+                string ss = "";
+            }
+        }
         #endregion
     }
 }

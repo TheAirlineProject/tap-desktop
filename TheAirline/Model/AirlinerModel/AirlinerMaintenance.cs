@@ -120,7 +120,7 @@ namespace TheAirline.Model.AirlinerModel
         //returns the last check for a specific type
         public DateTime getLastCheck(AirlinerMaintenanceType type)
         {
-            var check = this.Checks.FirstOrDefault(c=>c.Type == type);
+            var check = this.Checks.FirstOrDefault(c=>c.Type.Name == type.Name);
 
             if (check == null)
                 return DateTime.MinValue;
@@ -130,7 +130,7 @@ namespace TheAirline.Model.AirlinerModel
         }
         public DateTime getNextCheck(AirlinerMaintenanceType type)
         {
-            var check = this.Checks.First(c => c.Type == type);
+            var check = this.Checks.First(c => c.Type.Name == type.Name);
 
             DateTime lastdate = check.LastCheck;
 
@@ -139,13 +139,17 @@ namespace TheAirline.Model.AirlinerModel
         //sets the last check of a specific type
         public void setLastCheck(AirlinerMaintenanceType type, DateTime lastcheck)
         {
-         
-            this.Checks.FirstOrDefault(c => c.Type == type).LastCheck = lastcheck;
+            var check = this.Checks.FirstOrDefault(c => c.Type.Name == type.Name);
+
+            if (check == null)
+                this.Checks.Add(new AirlinerMaintenanceCheck(type, lastcheck));
+            else
+                this.Checks.FirstOrDefault(c => c.Type == type).LastCheck = lastcheck;
         }
         //returns the interval where the next check needs be performed of a specific type
         public Period<DateTime> getNextMaintenanceInterval(AirlinerMaintenanceType type)
         {
-            var check = this.Checks.First(c=>c.Type == type);
+            var check = this.Checks.First(c => c.Type.Name == type.Name);
 
             DateTime lastdate = check.LastCheck;
             DateTime startdate = lastdate.Add(type.Interval.From);
@@ -196,7 +200,7 @@ namespace TheAirline.Model.AirlinerModel
         //returns the check center of a specific type
         public AirlinerMaintenanceCenter getCheckCenter(AirlinerMaintenanceType type)
         {
-            var check = this.Checks.FirstOrDefault(c => c.Type == type);
+            var check = this.Checks.FirstOrDefault(c => c.Type.Name == type.Name);
 
             return check.CheckCenter;
           

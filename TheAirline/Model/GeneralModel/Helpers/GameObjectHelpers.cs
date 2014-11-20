@@ -116,8 +116,8 @@
                 List<Airport> airports =
                     Airports.GetAirports(
                         a =>
-                            a.Profile.Country.Region == region
-                            || (region.Uid == "100" && continent.hasRegion(a.Profile.Country.Region))
+                            (new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country).Region == region
+                            || (region.Uid == "100" && continent.hasRegion((new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country).Region))
                             && a.Profile.Period.From.Year <= startYear && a.Profile.Period.To.Year > startYear);
 
                 Airports.Clear();
@@ -156,8 +156,7 @@
 
             if (startData.InternationalAirports)
             {
-                List<Airport> intlAirports = Airports.GetAllAirports(a => a.Profile.Type == AirportProfile.AirportType.Long_Haul_International 
-                    || a.Profile.Type == AirportProfile.AirportType.Short_Haul_International);
+                List<Airport> intlAirports = Airports.GetAllAirports(a => a.Profile.Type == AirportProfile.AirportType.International);
 
                 int minAirportsPerRegion = 5;
                 foreach (Region airportRegion in Regions.GetRegions())
@@ -183,7 +182,7 @@
                             List<Airport> countryAirports =
                         Airports.GetAllAirports(
                             a => (new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country) == country &&
-                                (a.Profile.Type == AirportProfile.AirportType.Regional || a.Profile.Type == AirportProfile.AirportType.Domestic));
+                                (a.Profile.Type == AirportProfile.AirportType.Domestic));
 
                             foreach (Airport cairport in countryAirports)
                                 if (!intlAirports.Contains(cairport))
@@ -281,14 +280,18 @@
                             GameObject.GetInstance().HumanAirline.Profile.CEO,
                             GameObject.GetInstance().HumanAirline.Profile.IATACode)));
 
+            DatabaseHelpersModel.DatabaseHelpers.SetupDatabase();
+
             Action action = () =>
             {
                 var swPax = new Stopwatch();
                 swPax.Start();
 
                 PassengerHelpers.CreateDestinationDemand();
+        
+                Console.WriteLine("Demand has been created in {0} ms.", swPax.ElapsedMilliseconds);
 
-                Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
+            
                 swPax.Stop();
             };
 
@@ -741,9 +744,9 @@
                     GameObject.GetInstance().GameTime.AddMonths(-1),
                     GameObject.GetInstance().GameTime);
                 summary += string.Format(
-                    "[WIDTH=300 {0}-{1}]Balance in month: {2}\n",
-                    route.Destination1.Profile.Name,
-                    route.Destination2.Profile.Name,
+                    "[WIDTH=100 {0}-{1}]Balance in month: {2}\n",
+                    new AirportCodeConverter().Convert(route.Destination1),
+                    new AirportCodeConverter().Convert(route.Destination2),
                     new ValueCurrencyConverter().Convert(monthBalance));
             }
 
@@ -850,6 +853,12 @@
                 SerializedLoadSaveHelpers.SaveGame("autosave");
             }
 
+            /*
+            if (GameObject.GetInstance().GameTime.Day == 8)
+            {
+                GameObject.GetInstance().HumanAirline.Profile.PreferedAirport = null;
+                string prefAirport = GameObject.GetInstance().HumanAirline.Profile.PreferedAirport.Profile.Name;
+            }*/
             //Clearing stats as an RAM work-a-round
             Airports.GetAllAirports().ForEach(a => a.clearDestinationPassengerStatistics());
             Airports.GetAllAirports().ForEach(a => a.clearDestinationCargoStatistics());
@@ -1097,8 +1106,8 @@
             //checks for airport facilities for the human airline
             IEnumerable<AirlineAirportFacility> humanAirportFacilities =
                 (from f in humanAirlines.SelectMany(ai => ai.Airports.SelectMany(a => a.getAirportFacilities(ai)))
-                    where f.FinishedDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()
-                    select f);
+                    where f.FinishedDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() && f.Facility.TypeLevel > 0
+                    select f); 
 
             foreach (AirlineAirportFacility facility in humanAirportFacilities)
             {
@@ -3044,7 +3053,7 @@
                                             flight.Entry.DepartureAirport.Profile.IATACode,
                                             flight.Entry.Destination.Airport.Profile.IATACode)));
                             break;
-                        case FleetAirlinerHelpers.DelayType.Bad_weather:
+                         case FleetAirlinerHelpers.DelayType.Bad_weather:
                             GameObject.GetInstance()
                                 .NewsBox.addNews(
                                     new News(
@@ -3057,6 +3066,20 @@
                                             flight.Entry.DepartureAirport.Profile.IATACode,
                                             flight.Entry.Destination.Airport.Profile.IATACode)));
                             break;
+                         case FleetAirlinerHelpers.DelayType.Maintenance:
+                             GameObject.GetInstance()
+                                .NewsBox.addNews(
+                                    new News(
+                                        News.NewsType.Flight_News,
+                                        GameObject.GetInstance().GameTime,
+                                        Translator.GetInstance().GetString("News", "1021"),
+                                        string.Format(
+                                            Translator.GetInstance().GetString("News", "1021", "message"),
+                                            flight.Entry.Destination.FlightCode,
+                                            flight.Entry.DepartureAirport.Profile.IATACode,
+                                            flight.Entry.Destination.Airport.Profile.IATACode)));
+                            break;
+          
                     }
                 }
                 airliner.Airliner.Airline.Statistics.addStatisticsValue(

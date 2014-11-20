@@ -2633,13 +2633,13 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Haftalik Toplam Ucus</value>
   </data>
   <data name="MessageBox_2123_message" xml:space="preserve">
-    <value>{0} model ucaginizi {1} kargo ucagina cevirmek istediginizden eminmisiniz?</value>
+    <value>{0} ucaginizi {1} karsiliginda kargo ucagina cevirmek istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2123_name" xml:space="preserve">
     <value>Ucagi Dönüstür</value>
   </data>
   <data name="MessageBox_2223_message" xml:space="preserve">
-    <value>Kargo hizmeti verebilmeniz icin en az bir terminale ihtiyaciniz var</value>
+    <value>Kargo hizmeti verebilmeniz icin  bir terminale ihtiyaciniz var</value>
   </data>
   <data name="MessageBox_2223_name" xml:space="preserve">
     <value>Kargo Güzergahi</value>
@@ -2651,7 +2651,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Kargo Ucagina Dönüstür</value>
   </data>
   <data name="PanelNewRoute_1009_name" xml:space="preserve">
-    <value>Yeni güzergahi acmaniz icin kargo binanizin olmasi gerekmektedir</value>
+    <value>Yeni güzergah acmaniz icin kargo binanizin olmasi gerekmektedir</value>
   </data>
   <data name="PopUpAirportContract_1000_name" xml:space="preserve">
     <value>Kontrat tipini seciniz</value>
@@ -2672,7 +2672,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Kullanilan Sözlesme</value>
   </data>
   <data name="MessageBox_2225_message" xml:space="preserve">
-    <value> {0} degerindeki kontaratinizi iptal etmek istediginizden eminmisiniz?</value>
+    <value> {0} karsiliginda kontaratinizi iptal etmek istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2225_name" xml:space="preserve">
     <value>Kontrati iptal et</value>
@@ -5366,7 +5366,7 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Havaalani ragbeti</value>
   </data>
   <data name="PageAirportDemand_1008_name" xml:space="preserve">
-    <value>Ucak Güzergahlari</value>
+    <value>Ucak Koltuklari</value>
   </data>
   <data name="PageAirlineFinances_1021_name" xml:space="preserve">
     <value>Son 5 gün</value>
@@ -5405,13 +5405,13 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Büyük havaalanlari</value>
   </data>
   <data name="PageAirlineFleet_1017_name" xml:space="preserve">
-    <value>Kiralanmislarin disindaki ucak filosu</value>
+    <value>Kiraya verilmis ucak filosu</value>
   </data>
   <data name="PageAirliners_2004_name" xml:space="preserve">
     <value>Kiralik ucaklar</value>
   </data>
   <data name="PageFleetAirlinerInformation_206_name" xml:space="preserve">
-    <value>Kiralik harici ucaklar</value>
+    <value>Kiradaki ucaklar</value>
   </data>
   <data name="PageLeasingAirliners_1000_name" xml:space="preserve">
     <value>Mal Sahibi</value>
@@ -5435,13 +5435,13 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Bu ucagi alabilmeniz icin yeterli paraniz yok.</value>
   </data>
   <data name="MessageBox_2016_name" xml:space="preserve">
-    <value>Ucaklari satinalamazsiniz</value>
+    <value>Ucagi satinalamazsiniz</value>
   </data>
   <data name="MessageBox_2017_message" xml:space="preserve">
-    <value>{0} e bu ucagi almak istediginizden eminmisiniz?</value>
+    <value>{0} karsiliginda bu ucagi almak istediginizden eminmisiniz?</value>
   </data>
   <data name="MessageBox_2017_name" xml:space="preserve">
-    <value>Ucaklari satin al</value>
+    <value>Ucagi satin al</value>
   </data>
   <data name="PageAirlineFleet_202_name" xml:space="preserve">
     <value>Ucaklari satin al</value>
@@ -5459,12 +5459,123 @@ Satin aldiktan sonra kirada kaldiginiz bürolardan sahip oldugunuz bürolara tas
     <value>Ucus güzergahlari</value>
   </data>
   <data name="News_1018_message" xml:space="preserve">
-    <value>{0} bakimini kacirdiginiz icin {1} tutarindaki cezayi ödemek zorundasiniz</value>
+    <value>{0} bakimini kacirdiginiz icin {1} tutarinda ceza ödendi</value>
   </data>
   <data name="News_1018_name" xml:space="preserve">
     <value>Kacirilan bakim kontrolü</value>
   </data>
+  <data name="News_1019_message" xml:space="preserve">
+    <value>Ucagin {0} nin {2} karsiliginda {1}  bakimi yapildi</value>
+  </data>
+  <data name="News_1019_name" xml:space="preserve">
+    <value>Ucak Bakim Kontrolü</value>
+  </data>
+  <data name="News_1020_message" xml:space="preserve">
+    <value> {0} in durumu %50 nin altinda</value>
+  </data>
+  <data name="News_1020_name" xml:space="preserve">
+    <value>Ucak durumu</value>
+  </data>
   <data name="PageRoutePlanner_208_name" xml:space="preserve">
     <value>Bütün ucuslar</value>
+  </data>
+  <data name="General_120_name" xml:space="preserve">
+    <value>Değişiklikleri Kaydet</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1005_name" xml:space="preserve">
+    <value>Kontroller</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1006_name" xml:space="preserve">
+    <value>Son Kontrol</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1007_name" xml:space="preserve">
+    <value>Gelecek Kontrol</value>
+  </data>
+  <data name="PageAirlineInsurance_1008_name" xml:space="preserve">
+    <value>Ucak Bakim Merkezleri</value>
+  </data>
+  <data name="PageAirlineInsurance_1009_name" xml:space="preserve">
+    <value>Müsait olan bakim merkezleri</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1008_name" xml:space="preserve">
+    <value>Bakim merkezi</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1009_name" xml:space="preserve">
+    <value>Bakim araligi</value>
+  </data>
+  <data name="MessageBox_2234_message" xml:space="preserve">
+    <value>Bakım tesisi  uçaklarınizdan en az birinin bakımı için kullanıldigindan dolayi kaldırılamaz</value>
+  </data>
+  <data name="MessageBox_2234_name" xml:space="preserve">
+    <value>Tesis yikim hatasi</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_203_name" xml:space="preserve">
+    <value>Bakim yap</value>
+  </data>
+  <data name="PageUsedAirliner_1010_name" xml:space="preserve">
+    <value>Üretici</value>
+  </data>
+  <data name="PageUsedAirliner_1011_name" xml:space="preserve">
+    <value>Kayıt Tarihi</value>
+  </data>
+  <data name="MessageBox_2707_message" xml:space="preserve">
+    <value>Secmis oldugunuz güzergah(lar) daki degisiklikleri onayladiginiza emin misiniz?</value>
+  </data>
+  <data name="MessageBox_2707_name" xml:space="preserve">
+    <value>Degisiklikleri kabulet</value>
+  </data>
+  <data name="PageHumanRoutes_1012_name" xml:space="preserve">
+    <value>Fiyatlari degistir</value>
+  </data>
+  <data name="PageHumanRoutes_201_name" xml:space="preserve">
+    <value>Degisiklikleri kabulet</value>
+  </data>
+  <data name="MessageBox_2131_message" xml:space="preserve">
+    <value>{0} ile kontrat yapmak istediginizden eminmisiniz?</value>
+  </data>
+  <data name="MessageBox_2131_name" xml:space="preserve">
+    <value>Bakim Merkezi Kontratlari</value>
+  </data>
+  <data name="MessageBox_2132_message" xml:space="preserve">
+    <value>{0} ile olan kontaratinizi iptal etmek istediginizden emin misiniz?</value>
+  </data>
+  <data name="MessageBox_2132_name" xml:space="preserve">
+    <value>Bakim kontratini iptal et</value>
+  </data>
+  <data name="MessageBox_2018_message" xml:space="preserve">
+    <value>Bu ucagi kiraya vermek istedignizden emin misiniz?</value>
+  </data>
+  <data name="MessageBox_2018_name" xml:space="preserve">
+    <value>Kirada olan ucaklar</value>
+  </data>
+  <data name="PageAirlineInsurance_202_name" xml:space="preserve">
+    <value>Uygula</value>
+  </data>
+  <data name="PageAirlineInsurance_203_name" xml:space="preserve">
+    <value>Mevcut uygulama</value>
+  </data>
+  <data name="PageAirlineInsurance_1010_name" xml:space="preserve">
+    <value>Standart ucak bakimi</value>
+  </data>
+  <data name="MessageBox_2133_message" xml:space="preserve">
+    <value>Bakimi kaydetmek istedignizden emin misiniz?</value>
+  </data>
+  <data name="MessageBox_2133_name" xml:space="preserve">
+    <value>Bakimi Kaydet</value>
+  </data>
+  <data name="MessageBox_2134_message" xml:space="preserve">
+    <value>Bakimi mevcut filonuza uygulamak ve kaydetmek istediginizden eminmisiniz?</value>
+  </data>
+  <data name="MessageBox_2134_name" xml:space="preserve">
+    <value>Bakim yap</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_1016_name" xml:space="preserve">
+    <value>Satin alma fiyati</value>
+  </data>
+  <data name="PageShowOptions_1014_name" xml:space="preserve">
+    <value>Bakimda mail gönder</value>
+  </data>
+  <data name="PopUpExtendContract_1005_name" xml:space="preserve">
+    <value> Baglanti Tipi</value>
   </data>
 </root>

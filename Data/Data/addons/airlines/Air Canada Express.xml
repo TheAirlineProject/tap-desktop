@@ -2,11 +2,21 @@
 
 <airline>
   <profile name="Air Canada Express" iata="AC3" logo="AC3" color="DarkSlateBlue" country="113" CEO="David Richardson"
-           mentality="Aggressive" market="Regional" preferedairport="YYC">
+           mentality="Aggressive" market="Regional" preferedairport="YUL">
     <narrative
       narrative="Air Canada Express was founded in 2011 as a feeder operation for Air Canada. This was following the discontinuation of Air Canada Jazz. Express includes four carriers that work for them, Air Georgian, Exploits Valley Air Services,Jazz Aviation LP, and Sky Regional Airlines. The total aircraft used as of July 2014 is 164, which consists of CRJ types, Beechcraft 1900's, Dash 8's, and Embraer E-175's. " />
   </profile>
+
   <info real="True" from="2011" to="2199"></info>
+     <focusairports>
+        <focusairport airport="YYZ"></focusairport>
+	<focusairport airport="YVR"></focusairport>
+        <focusairport airport="YYC"></focusairport>
+	<focusairport airport="YOW"></focusairport>
+	<focusairport airport="YHZ"></focusairport>
+        <focusairport airport="YEG"></focusairport>
+	<focusairport airport="YWG"></focusairport>
+     </focusairports>
   <prefereds aircrafts="Beechcraft 1900C,Beechcraft 1900D,Bombardier CRJ100,Bombardier CRJ200,Bombardier CRJ700,Bombardier Dash 8-100,Bombardier Dash 8-300,Bombardier Dash-8-400,Bombardier Dash-8-400NextGen,Embraer E-175"></prefereds>
 
 </airline>

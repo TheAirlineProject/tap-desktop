@@ -2,7 +2,7 @@
 
 <airline>
   <profile name="Avianca S.A" iata="AV" color="Red" country="183" CEO="Fabio Villegas Ramírez" mentality="Moderate"
-           market="Regional" preferedairport="BOG">
+           market="Global" preferedairport="BOG">
     <narrative
       narrative="Avianca S.A is the flag carrier airline of Colombia since December 5, 1919 when it was initially registered under the name SCADTA">
     </narrative>

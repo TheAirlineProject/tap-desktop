@@ -222,7 +222,7 @@
             profile.Countries = new List<Country> { country };
             profile.Country = country;
             profile.AddLogo(new AirlineLogo(this.logoPath));
-            profile.PreferedAirport = this.cbAirport.SelectedItem != null ? (Airport)this.cbAirport.SelectedItem : null;
+            profile.PreferedAirports.Add(new DateTime(1900, 1, 1), this.cbAirport.SelectedItem != null ? (Airport)this.cbAirport.SelectedItem : null);
 
             Route.RouteType focus = this.rbPassengerType.IsChecked.Value
                 ? Route.RouteType.Passenger

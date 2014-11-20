@@ -227,28 +227,9 @@
                             <DataTemplate>
                                 <WrapPanel>
                                     <TextBlock Text="{Binding DeliveryDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                                    <ContentControl Content="{Binding Airline}" Width="200" ContentTemplate="{StaticResource AirlineItem}">
-                                        <ContentControl.Style>
-                                            <Style>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Airline,Converter={StaticResource IsNullConverter}}" Value="True">
-                                                        <Setter Property="ContentControl.Visibility" Value="Collapsed" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </ContentControl.Style>
-                                    </ContentControl>
-                                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1010'}" Width="200" VerticalAlignment="Bottom">
-                                        <TextBlock.Style>
-                                            <Style>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Airline,Converter={StaticResource IsNullConverter}}" Value="False">
-                                                        <Setter Property="TextBlock.Visibility" Value="Collapsed" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+                                    <Image Source="{Binding Logo}" Width="20" Height="20" 
+                                           RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" />
+                                    <TextBlock Text="{Binding Owner}" VerticalAlignment="Bottom" Width="200"></TextBlock>
                                     <TextBlock Text="{Binding Registration}" VerticalAlignment="Bottom"></TextBlock>
                                 </WrapPanel>
                             </DataTemplate>

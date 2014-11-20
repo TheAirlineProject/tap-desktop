@@ -318,9 +318,19 @@
                                         HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5 0 0 0" />
                                 </StackPanel>
                             </WrapPanel>
-                            <Button Margin="0 5 0 0" Style="{StaticResource StandardButtonStyle}"
+                            <Button Margin="0 5 0 0"
                                     HorizontalAlignment="Left" Click="btnTransferFunds_Click"
-                                    Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 203'}" />
+                                    Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 203'}" >
+                                <Button.Style>
+                                    <Style BasedOn="{StaticResource StandardButtonStyle}" TargetType="Button">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedItem,ElementName=cbTransferAirline}" Value="{x:Null}">
+                                                <Setter Property="Button.IsEnabled" Value="False" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
                         </StackPanel>
                     </StackPanel>
                     <TextBlock

@@ -1,6 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <mergers>
+  <merger name="Meridiana has acquired Air Italy and are now a subsidiary." airline1="IG" airline2="I9" type="Subsidiary" date="07.18.2011 00:00:00"></merger>
+
+  <merger name="El Al has started the subsidiary El Al Cargo." airline1="LY" airline2="LY2" type="Subsidiary" date="01.01.1948 00:00:00"></merger>
+  <merger name="El Al has started the subsidiary called Up." airline1="LY" airline2="ELY" type="Subsidiary" date="01.01.2014 00:00:00"></merger>
+  <merger name="El Al has started the subsidiary Sun D'Or International Airlines." airline1="LY" airline2="ERO" type="Subsidiary" date="01.01.1977 00:00:00"></merger>
+  <merger name="Cargolux has started the subsidiary Cargolux Italia based at Milan Malpensa,Italy." airline1="CV" airline2="C8" type="Subsidiary" date="01.01.2009 00:00:00"></merger>
+  <merger name="Cathay Pacific has bought a majority of the cargo airline Air Hong Kong and has made them a subsidiary." airline1="CX" airline2="LD" type="Subsidiary" date="06.01.1994 00:00:00"></merger>
+  <merger name="Iberia has purchased 100% of Aviaco and has made them a subsidiary." airline1="IB" airline2="AO" type="Subsidiary" date="01.01.1998 00:00:00"></merger>
+  <merger name="Iberia has started the subsidiary Binter Canarias based at Gran Canaria of the Canary Islands." airline1="IB" airline2="NT" type="Subsidiary" date="01.01.1989 00:00:00"></merger>
+  <merger name="Iberia has started the subsidiary Binter Mediterraneo based at Malaga." airline1="IB" airline2="AX" type="Subsidiary" date="01.01.1989 00:00:00"></merger>
+  <merger name="Tunisair has founded the subsidiary Mauritania Airways based at Nouakchott,Mauritania." airline1="TU" airline2="YD" type="Subsidiary" date="01.01.2007 00:00:00"></merger>
+  <merger name="Air Canada has founded the subsidiary Air Canada Rouge." airline1="AC" airline2="RV" type="Subsidiary" date="01.01.2013 00:00:00"></merger>
+    <merger name="Air Canada has bought most of Air BC making them a subsidiary." airline1="AC" airline2="ZX" type="Subsidiary" date="01.01.1987 00:00:00"></merger>
+  <merger name="Air BC has merged with other airlines to make Jazz, Air BC is now part of Jazz." airline1="QK" airline2="ZX" type="Merger" date="01.01.2002 00:00:00"></merger>
+    <merger name="Air Nostrum has acquired Binter Mediterraneo and made them a subsidiary." airline1="YW" airline2="AX" type="Subsidiary" date="01.01.1998 00:00:00"></merger>
+  <merger name="Jazz has been formed as part of Air Canada." airline1="AC" airline2="QK" type="Subsidiary" date="01.01.2002 00:00:00"></merger>
+<merger name="Air Nova has been created as a subsidiary to Air Canada." airline1="AC" airline2="ARN" type="Subsidiary" date="01.01.1986 00:00:00"></merger>
+<merger name="Air Alliance has been created as a subsidiary to Air Canada." airline1="AC" airline2="3J" type="Subsidiary" date="01.01.1988 00:00:00"></merger>
+<merger name="Air Canada has started Air Canada Tango as a subsidiary." airline1="AC" airline2="AC4" type="Subsidiary" date="01.01.2001 00:00:00"></merger>
+<merger name="Air Alliance is now part of Air Nova." airline1="ARN" airline2="3J" type="Merger" date="01.01.1999 00:00:00"></merger>
+<merger name="Air Nova is now part of Jazz." airline1="QK" airline2="ARN" type="Merger" date="01.01.2002 00:00:00"></merger>
+<merger name="Jazz is now a seperate entity from Air Canada." airline1="AC" airline2="QK" type="Independant" date="01.01.2006 00:00:00"></merger>
+<merger name="Air Canada has started Zip as a subsidiary based at Calgary." airline1="AC" airline2="3J" type="Subsidiary" date="01.01.2002 00:00:00"></merger>
+
+<merger name="Air Ontario has been created as a subsidiary to Air Canada." airline1="AC" airline2="GX" type="Subsidiary" date="01.01.1987 00:00:00"></merger>
+
+<merger name="Air Ontario is now part of Jazz." airline1="QK" airline2="GX" type="Merger" date="01.01.2002 00:00:00"></merger>
+<merger name="Binter Mediteraneo has ceased operation and has been fully absorbed into Air Nostrum." airline1="YW" airline2="AX" type="Merger" date="08.29.2001 00:00:00"></merger>
+  
+<merger name="Binter Canarias has been bought by another group and is now independant from Iberia." airline1="IB" airline2="NT" type="Independant" date="07.01.2002 00:00:00"></merger>
+  <merger name="Iberia has absorbed its subsidiary Aviaco into their company causing Aviaco to no longer exist." airline1="IB" airline2="AO" type="Merger" date="09.01.1999 00:00:00"></merger>
+  <merger name="EgyptAir has bought most of Air Cairo and has made them a subsidiary." airline1="MS" airline2="SM" type="Subsidiary" date="01.01.2003 00:00:00"></merger>
 <merger name="Alaska Airlines has bought Horizon Air" airline1="AS" airline2="QX" type="Subsidiary" date="01.01.1987 00:00:00"></merger> 
   <merger name="Lufthansa takes over Austrian Airlines which continues as a subsidiary for Lufthansa" airline1="LH"
           airline2="OS" type="Subsidiary" date="09.13.2009 00:00:00">
@@ -12,6 +44,9 @@
     name="Delta Air Lines and Northwest Airlines have merged together and continues under the name Delta Air Lines"
     airline1="DL" airline2="NW" type="Merger" date="01.31.2010 00:00:00">
   </merger>
+    <merger name="Turkish Airlines has started the subsidiary Turkish Cargo." airline1="TK" airline2="TK2" type="Subsidiary" date="01.01.1933 00:00:00"></merger>
+
+  <merger name="Turkish Airlines has started the subsidiary AnadoluJet and is basing it at Ankara." airline1="TK" airline2="AJA" type="Subsidiary" date="01.01.2008 00:00:00"></merger>
   <merger name="Delta Air Lines and Western Airlines have merged together and continues under the name Delta Air Lines"
           airline1="DL" airline2="WA" type="Merger" date="04.01.1987 00:00:00">
   </merger>
@@ -23,9 +58,14 @@
     name="United Airlines and Continental Airlines have merged togehter and continues under the name United Airlines"
     airline1="UA" airline2="CO" type="Subsidiary" date="03.03.2012 00:00:00">
   </merger>
+    <merger name="EgyptAir has started EgyptAir Express as a subsidiary." airline1="MS" airline2="MSE" type="Subsidiary" date="01.01.2006 00:00:00"></merger>
+
+  <merger name="EgyptAir has started EgyptAir Cargo as a subsidiary." airline1="MS" airline2="MSX" type="Subsidiary" date="01.01.2002 00:00:00"></merger>
   <merger name="Royal Air Maroc has bought Atlas Blue" airline1="AT" airline2="8A" type="Merger"
           date="12.31.2009 00:00:00">
   </merger>
+  <merger name="SeaPort Airlines has acquired Wings of Alaska and has made them a subsidiary." airline1="K5"
+          airline2="SQH" type="Subsidiary" date="01.01.2008 00:00:00"/>
   <merger name="China Northern Airlines has merged with China Southern Airlines and now uses the China Southern name" airline1="CZ" airline2="CJ" type="Merger" date="01.01.2003 00:00:00"></merger>
 <merger name="China Airlines has founded a cargo subsidiary called China Airlines Cargo" airline1="CI" airline2="CI2" type="Subsidiary" date="01.01.1980 00:00:00"></merger>
 <merger name="Air China has founded a cargo subsidiary called Air China Cargo" airline1="CA" airline2="CA2" type="Subsidiary" date="01.01.2003 00:00:00"></merger>
@@ -191,4 +231,8 @@
      <merger name="Aloha Air Cargo is now an independant airline." airline1="AQ" airline2="KH"
           type="Independant" date="05.15.2008 00:00:00">
   </merger>
+    <merger name="Nippon Cargo Airlines has been founded by All Nippon Airways." airline1="NH" airline2="KZ" type="Subsidiary" date="01.01.1984 00:00:00"></merger>
+
+
+<merger name="Nippon Cargo Airlines has become independant from All Nippon Airways." airline1="NH" airline2="KZ" type="Independant" date="08.01.2005 00:00:00"></merger>
   </mergers>

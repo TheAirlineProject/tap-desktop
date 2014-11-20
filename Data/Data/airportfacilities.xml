@@ -278,6 +278,7 @@
     </translations>
   </airportfacility>
 
+
   <!-- <airportfacility uid="113" shortname="International Departures" type="IntlService" typelevel="1" price="260000" buildingdays="10">
     <level service="0" luxury="5"></level>
     <translations>

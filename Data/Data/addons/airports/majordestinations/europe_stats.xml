@@ -1,23 +1,4 @@
 <majordestinations>
-  <majordestination airport="LHR">
-    <destinations>
-      <destination airport="BKK" pax="579" />
-      <destination airport="BOM" pax="950" />
-      <destination airport="DEL" pax="1003" />
-       <destination airport="DEN" pax="24" cargo="4" /> 
-       <destination airport="FCO" pax="1052" />
-      <destination airport="HKG" pax="1412" />
-      <destination airport="IAD" pax="989" />
-      <destination airport="JNB" pax="840" />
-      <destination airport="MEX" pax="174" cargo="27" />
-      <destination airport="MIA" pax="953" />
-      <destination airport="NRT" pax="604" />
-      <destination airport="PHX" pax="351" cargo="50" /> 
-       <destination airport="SIN" pax="1069" />
-      <destination airport="SYD" pax="698" />
-      <destination airport="YYZ" pax="926" />
-           </destinations>
-  </majordestination>
   <majordestination airport="CDG">
     <destinations>
       <destination airport="MAD" pax="2117" />
@@ -39,12 +20,10 @@
       <destination airport="PVG" pax="512" />
        <destination airport="GIG" pax="505" />
       <destination airport="BOG" pax="482" />
-      <destination airport="IAD" pax="480" />
       <destination airport="CAI" pax="418" />
       <destination airport="MEX" pax="411" cargo="63" />
       <destination airport="DKR" pax="320" />
-      <destination airport="SLC" pax="103" cargo="16" />
-    </destinations>
+         </destinations>
   </majordestination>
   <majordestination airport="FRA">
     <destinations>
@@ -59,7 +38,6 @@
       <destination airport="WAW" pax="378" />
       <destination airport="IST" pax="353" />
       <destination airport="DXB" pax="337" />
-      <destination airport="IAD" pax="334" />
       <destination airport="BKK" pax="330" />
       <destination airport="FCO" pax="320" />
       <destination airport="PMI" pax="319" />
@@ -85,7 +63,6 @@
       <destination airport="ATH" pax="210" />
       <destination airport="DME" pax="210" />
       <destination airport="JNB" pax="209" />
-       <destination airport="DEN" pax="24" cargo="4" /> 
        </destinations>
   </majordestination>
   <majordestination airport="AMS">
@@ -100,7 +77,7 @@
       <destination airport="AYT" pax="725" />
       <destination airport="MUN" pax="675" />
       <destination airport="ZRH" pax="665" />
-      <destination airport="LGW" pax="635" />
+      <destination airport="LGW" pax="750" />
       <destination airport="MAN" pax="629" />
        <destination airport="OSL" pax="596" />
       <destination airport="GVA" pax="593" />
@@ -121,53 +98,102 @@
       <destination airport="SIN" pax="325" />
       <destination airport="PVG" pax="325" />
       <destination airport="PBM" pax="267" />
-       <destination airport="IAD" pax="256" />
-      <destination airport="MEX" pax="192" cargo="30" />
+       <destination airport="MEX" pax="192" cargo="30" />
+       <destination airport="LGW" pax="38"  />
            </destinations>
   </majordestination>
   <majordestination airport="MAD">
     <destinations>
+      <destination airport="LGW" pax="652"  />
         <destination airport="LHR" pax="1165"  />
        <destination airport="MEX" pax="488" cargo="75" />
     </destinations>
   </majordestination>
   <majordestination airport="MUC">
     <destinations>
+       <destination airport="LGW" pax="235"  />
        <destination airport="LHR" pax="1162"  />
          </destinations>
   </majordestination>
+      <majordestination airport="AAL">
+    <destinations>
+      <destination airport="LGW" pax="38"  />
+       </destinations>
+  </majordestination>
+          <majordestination airport="ACE">
+    <destinations>
+      <destination airport="LGW" pax="348"  />
+          </destinations>
+  </majordestination>
+          <majordestination airport="ADB">
+    <destinations>
+      <destination airport="LGW" pax="79"  />
+          </destinations>
+  </majordestination>
+            <majordestination airport="AES">
+    <destinations>
+      <destination airport="LGW" pax="24"  />
+          </destinations>
+  </majordestination>
+          <majordestination airport="AGP">
+    <destinations>
+      <destination airport="LGW" pax="1007"  />
+          </destinations>
+  </majordestination>
+        <majordestination airport="AHO">
+    <destinations>
+      <destination airport="LGW" pax="8"  />
+         </destinations>
+  </majordestination>
+            <majordestination airport="AJA">
+    <destinations>
+      <destination airport="LGW" pax="6"  />
+    </destinations>
+  </majordestination>
           <majordestination airport="ALC">
     <destinations>
+      <destination airport="ALC" pax="714"  />
       <destination airport="LHR" pax="26"  />
     </destinations>
   </majordestination>
             <majordestination airport="ARN">
     <destinations>
+     <destination airport="LGW" pax="392"  />
       <destination airport="LHR" pax="921"  />
     </destinations>
   </majordestination>
         <majordestination airport="ATH">
     <destinations>
+      <destination airport="LGW" pax="152"  />
       <destination airport="LHR" pax="669"  />
+    </destinations>
+  </majordestination>
+                <majordestination airport="AYT">
+    <destinations>
+      <destination airport="LGW" pax="295"  />
     </destinations>
   </majordestination>
             <majordestination airport="BCN">
     <destinations>
+      <destination airport="BCN" pax="1126"  />
       <destination airport="LHR" pax="610"  />
     </destinations>
   </majordestination>
               <majordestination airport="BEG">
     <destinations>
+      <destination airport="LGW" pax="3"  />
       <destination airport="LHR" pax="81"  />
     </destinations>
   </majordestination>
           <majordestination airport="BGO">
     <destinations>
+      <destination airport="LGW" pax="202"  />
       <destination airport="LHR" pax="107"  />
     </destinations>
   </majordestination>
           <majordestination airport="BIA">
     <destinations>
+      <destination airport="LGW" pax="8"  />
       <destination airport="LHR" pax="5"  />
     </destinations>
   </majordestination>
@@ -176,15 +202,37 @@
       <destination airport="LHR" pax="112"  />
     </destinations>
   </majordestination>
+      <majordestination airport="BIQ">
+    <destinations>
+      <destination airport="LGW" pax="18"  />
+       </destinations>
+  </majordestination>
               <majordestination airport="BJV">
     <destinations>
+      <destination airport="LGW" pax="167"  />
       <destination airport="LHR" pax="7"  />
     </destinations>
   </majordestination>
           <majordestination airport="BLQ">
     <destinations>
+      <destination airport="LGW" pax="93"  />
       <destination airport="LHR" pax="228"  />
     </destinations>
+  </majordestination>
+      <majordestination airport="BOD">
+    <destinations>
+      <destination airport="LGW" pax="242"  />
+         </destinations>
+  </majordestination>
+          <majordestination airport="BOJ">
+    <destinations>
+      <destination airport="LGW" pax="37"  />
+          </destinations>
+  </majordestination>
+        <majordestination airport="BRI">
+    <destinations>
+      <destination airport="LGW" pax="64"  />
+         </destinations>
   </majordestination>
     <majordestination airport="BRU">
     <destinations>
@@ -193,56 +241,132 @@
   </majordestination>
             <majordestination airport="BSL">
     <destinations>
+      <destination airport="LGW" pax="244"  />
       <destination airport="LHR" pax="216"  />
     </destinations>
   </majordestination>
               <majordestination airport="BUD">
     <destinations>
+      <destination airport="LGW" pax="95"  />
       <destination airport="LHR" pax="276"  />
     </destinations>
   </majordestination>
             <majordestination airport="CAG">
     <destinations>
+      <destination airport="LGW" pax="6"  />
       <destination airport="LHR" pax="13"  />
     </destinations>
   </majordestination>
+        <majordestination airport="CFU">
+    <destinations>
+      <destination airport="LGW" pax="215"  />
+          </destinations>
+  </majordestination>
           <majordestination airport="CGN">
     <destinations>
+     <destination airport="LGW" pax="153"  />
       <destination airport="LHR" pax="178"  />
     </destinations>
   </majordestination>
-        <majordestination airport="CPH">
+        <majordestination airport="CHQ">
     <destinations>
+      <destination airport="LGW" pax="68"  />
+          </destinations>
+  </majordestination>
+        <majordestination airport="CMF">
+    <destinations>
+      <destination airport="LGW" pax="45"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="CPH">
+    <destinations> 
+      <destination airport="LGW" pax="593"  />
       <destination airport="LHR" pax="969"  />
     </destinations>
   </majordestination>
+          <majordestination airport="CTA">
+    <destinations>
+      <destination airport="LGW" pax="134"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="DBV">
+    <destinations>
+      <destination airport="LGW" pax="165"  />
+          </destinations>
+  </majordestination>
+          <majordestination airport="DLM">
+    <destinations>
+      <destination airport="LGW" pax="457"  />
+          </destinations>
+  </majordestination>
         <majordestination airport="DME">
     <destinations>
+      <destination airport="LGW" pax="150" />
       <destination airport="LHR" pax="348"  />
     </destinations>
   </majordestination>
     <majordestination airport="DUB">
     <destinations>
+      <destination airport="LGW" pax="976" />
       <destination airport="LHR" pax="1664"  />
        </destinations>
   </majordestination>
           <majordestination airport="DUS">
     <destinations>
+      <destination airport="LGW" pax="142"  />
       <destination airport="LHR" pax="647"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="EFL">
+    <destinations>
+      <destination airport="LGW" pax="106"  />
+          </destinations>
+  </majordestination>
+      <majordestination airport="EGC">
+    <destinations>
+      <destination airport="LGW" pax="3"  />
+       </destinations>
+  </majordestination>
+        <majordestination airport="ENF">
+    <destinations>
+      <destination airport="LGW" pax="5"  />
+    </destinations>
+  </majordestination>
+      <majordestination airport="ERF">
+    <destinations>
+      <destination airport="LGW" pax="2"  />
+          </destinations>
+  </majordestination>
+            <majordestination airport="FAE">
+    <destinations>
+      <destination airport="LGW" pax="4"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="FAO">
+    <destinations>
+      <destination airport="LGW" pax="660"  />
     </destinations>
   </majordestination>
     <majordestination airport="FCO">
     <destinations>
+      <destination airport="LGW" pax="544" />
       <destination airport="LHR" pax="981"  />
+          </destinations>
+  </majordestination>
+      <majordestination airport="FDH">
+    <destinations>
+      <destination airport="LGW" pax="29"  />
           </destinations>
   </majordestination>
       <majordestination airport="FLR">
     <destinations>
+      <destination airport="LGW" pax="2" />
       <destination airport="LHR" pax="62" />
     </destinations>
   </majordestination>
           <majordestination airport="FNC">
     <destinations>
+      <destination airport="LGW" pax="199" />
       <destination airport="LHR" pax="20"  />
     </destinations>
   </majordestination>
@@ -251,18 +375,36 @@
       <destination airport="LHR" pax="5"  />
     </destinations>
   </majordestination>
+          <majordestination airport="FUE">
+    <destinations>
+      <destination airport="LGW" pax="139"  />
+          </destinations>
+  </majordestination>
           <majordestination airport="GNB">
     <destinations>
+     <destination airport="LGW" pax="148"  />
       <destination airport="LHR" pax="6"  />
     </destinations>
   </majordestination>
+        <majordestination airport="GOA">
+    <destinations>
+      <destination airport="LGW" pax="85"  />
+          </destinations>
+  </majordestination>
             <majordestination airport="GOT">
     <destinations>
+      <destination airport="LGW" pax="72"  />
       <destination airport="LHR" pax="273"  />
+    </destinations>
+  </majordestination>
+              <majordestination airport="GRO">
+    <destinations>
+      <destination airport="LGW" pax="16"  />
     </destinations>
   </majordestination>
               <majordestination airport="GVA">
     <destinations>
+      <destination airport="LGW" pax="783" />
       <destination airport="LHR" pax="971"  />
     </destinations>
   </majordestination>
@@ -278,13 +420,20 @@
   </majordestination>
           <majordestination airport="HAM">
     <destinations>
+      <destination airport="LGW" pax="166"  />
       <destination airport="LHR" pax="544"  />
     </destinations>
   </majordestination>
         <majordestination airport="HEL">
     <destinations>
+      <destination airport="LGW" pax="176"  />
       <destination airport="LHR" pax="575"  />
     </destinations>
+  </majordestination>
+        <majordestination airport="HER">
+    <destinations>
+      <destination airport="LGW" pax="235"  />
+          </destinations>
   </majordestination>
             <majordestination airport="IAS">
     <destinations>
@@ -293,36 +442,113 @@
   </majordestination>
           <majordestination airport="IBZ">
     <destinations>
+      <destination airport="LGW" pax="249"  />
       <destination airport="LHR" pax="13"  />
     </destinations>
   </majordestination>
+          <majordestination airport="ILD">
+    <destinations>
+      <destination airport="LGW" pax="3"  />
+          </destinations>
+  </majordestination>
+        <majordestination airport="INN">
+    <destinations>
+      <destination airport="LGW" pax="168"  />
+          </destinations>
+  </majordestination>
     <majordestination airport="IST">
     <destinations>
+      <destination airport="LGW" pax="203" />
       <destination airport="LHR" pax="906"  />
+    </destinations>
+  </majordestination>
+      <majordestination airport="IVL">
+    <destinations>
+      <destination airport="LGW" pax="9"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="JMK">
+    <destinations>
+      <destination airport="LGW" pax="44"  />
+          </destinations>
+  </majordestination>
+        <majordestination airport="JSI">
+    <destinations>
+      <destination airport="LGW" pax="42"  />
+          </destinations>
+  </majordestination>
+        <majordestination airport="JTR">
+    <destinations>
+      <destination airport="LGW" pax="62"  />
+          </destinations>
+  </majordestination>
+        <majordestination airport="KAO">
+    <destinations>
+      <destination airport="LGW" pax="4"  />
     </destinations>
   </majordestination>
               <majordestination airport="KBP">
     <destinations>
-      <destination airport="LHR" pax="122"  />
+      <destination airport="LGW" pax="122" />
+      <destination airport="LHR" pax="106"  />
     </destinations>
   </majordestination>
             <majordestination airport="KEF">
     <destinations>
+     <destination airport="LGW" pax="189"  />
       <destination airport="LHR" pax="212"  />
     </destinations>
   </majordestination>
           <majordestination airport="KGS">
     <destinations>
+      <destination airport="LGW" pax="117"  />
       <destination airport="LHR" pax="10"  />
     </destinations>
   </majordestination>
+          <majordestination airport="KIR">
+    <destinations>
+      <destination airport="LGW" pax="3"  />
+    </destinations>
+  </majordestination>
+                <majordestination airport="KIV">
+    <destinations>
+      <destination airport="LGW" pax="2"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="KLX">
+    <destinations>
+      <destination airport="LGW" pax="22"  />
+          </destinations>
+  </majordestination>
+            <majordestination airport="KRK">
+    <destinations>
+      <destination airport="LGW" pax="106"  />
+          </destinations>
+  </majordestination>
             <majordestination airport="KRN">
     <destinations>
+      <destination airport="LGW" pax="3"  />
       <destination airport="LHR" pax="3"  />
     </destinations>
   </majordestination>
+        <majordestination airport="KTT">
+    <destinations>
+      <destination airport="LGW" pax="18"  />
+    </destinations>
+  </majordestination>
+            <majordestination airport="KUN">
+    <destinations>
+      <destination airport="LGW" pax="54"  />
+          </destinations>
+  </majordestination>
+          <majordestination airport="KVA">
+    <destinations>
+      <destination airport="LGW" pax="9"  />
+          </destinations>
+  </majordestination>
         <majordestination airport="LCA">
     <destinations>
+      <destination airport="LGW" pax="241"  />
       <destination airport="LHR" pax="330"  />
     </destinations>
   </majordestination>
@@ -331,68 +557,145 @@
       <destination airport="LHR" pax="92"  />
     </destinations>
   </majordestination>
+      <majordestination airport="LDE">
+    <destinations>
+      <destination airport="LGW" pax="2"  />
+          </destinations>
+  </majordestination>
         <majordestination airport="LED">
     <destinations>
       <destination airport="LHR" pax="90"  />
     </destinations>
   </majordestination>
+        <majordestination airport="LEI">
+    <destinations>
+      <destination airport="LGW" pax="85"  />
+    </destinations>
+  </majordestination>
           <majordestination airport="LIN">
     <destinations>
+     <destination airport="LGW" pax="127"  />
       <destination airport="LHR" pax="820"  />
     </destinations>
   </majordestination>
           <majordestination airport="LIS">
     <destinations>
+      <destination airport="LGW" pax="189"  />
       <destination airport="LHR" pax="753"  />
     </destinations>
   </majordestination>
             <majordestination airport="LPA">
     <destinations>
+     <destination airport="LGW" pax="223"  />
       <destination airport="LHR" pax="2"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="LRH">
+    <destinations>
+      <destination airport="LGW" pax="11"  />
     </destinations>
   </majordestination>
    <majordestination airport="LUX">
     <destinations>
+      <destination airport="LGW" pax="67"  />
       <destination airport="LHR" pax="123"  />
     </destinations>
   </majordestination>
           <majordestination airport="LXS">
     <destinations>
+      <destination airport="LGW" pax="12"  />
       <destination airport="LHR" pax="5"  />
     </destinations>
   </majordestination>
         <majordestination airport="LYS">
     <destinations>
+      <destination airport="LGW" pax="187"  />
       <destination airport="LHR" pax="273"  />
     </destinations>
   </majordestination>
+          <majordestination airport="MAH">
+    <destinations>
+      <destination airport="LGW" pax="216"  />
+          </destinations>
+  </majordestination>
+          <majordestination airport="MJT">
+    <destinations>
+      <destination airport="LGW" pax="11"  />
+          </destinations>
+  </majordestination>
+          <majordestination airport="MJV">
+    <destinations>
+      <destination airport="LGW" pax="116"  />
+          </destinations>
+  </majordestination>
    <majordestination airport="MLA">
     <destinations>
+      <destination airport="LGW" pax="269"  />
       <destination airport="LHR" pax="193"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="MPL">
+    <destinations>
+      <destination airport="LGW" pax="109"  />
     </destinations>
   </majordestination>
         <majordestination airport="MRS">
     <destinations>
+      <destination airport="LGW" pax="139"  />
       <destination airport="LHR" pax="236"  />
+    </destinations>
+  </majordestination>
+                <majordestination airport="MSQ">
+    <destinations>
+      <destination airport="LGW" pax="23"  />
     </destinations>
   </majordestination>
           <majordestination airport="MXP">
     <destinations>
+      <destination airport="LGW" pax="484"  />
       <destination airport="LHR" pax="184"  />
+    </destinations>
+  </majordestination>
+            <majordestination airport="NAP">
+    <destinations>
+      <destination airport="LGW" pax="323"  />
     </destinations>
   </majordestination>
         <majordestination airport="NCE">
     <destinations>
+      <destination airport="LGW" pax="602"  />
       <destination airport="LHR" pax="437"  />
     </destinations>
   </majordestination>
+          <majordestination airport="NOC">
+    <destinations>
+      <destination airport="LGW" pax="68"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="NTE">
+    <destinations>
+      <destination airport="LGW" pax="33"  />
+    </destinations>
+  </majordestination>
+      <majordestination airport="NUE">
+    <destinations>
+      <destination airport="LGW" pax="2"  />
+          </destinations>
+  </majordestination>
  <majordestination airport="OLB">
     <destinations>
+     <destination airport="LGW" pax="58"  />
       <destination airport="LHR" pax="5"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="OPO">
+    <destinations>
+      <destination airport="LGW" pax="236"  />
     </destinations>
   </majordestination>
           <majordestination airport="ORK">
     <destinations>
+      <destination airport="LGW" pax="118" />
       <destination airport="LHR" pax="393"  />
     </destinations>
   </majordestination>
@@ -403,33 +706,84 @@
   </majordestination>
           <majordestination airport="OSL">
     <destinations>
+      <destination airport="LGW" pax="327"  />
       <destination airport="LHR" pax="688"  />
     </destinations>
   </majordestination>
                 <majordestination airport="OTP">
     <destinations>
+      <destination airport="LGW" pax="12"  />
       <destination airport="LHR" pax="259"  />
     </destinations>
   </majordestination>
+          <majordestination airport="PDL">
+    <destinations>
+      <destination airport="LGW" pax="7"  />
+    </destinations>
+  </majordestination>
+      <majordestination airport="PFO">
+    <destinations>
+      <destination airport="LGW" pax="346"  />
+          </destinations>
+  </majordestination>
               <majordestination airport="PMI">
     <destinations>
+      <destination airport="LGW" pax="687"  />
       <destination airport="LHR" pax="60"  />
     </destinations>
   </majordestination>
+        <majordestination airport="PMO">
+    <destinations>
+      <destination airport="LGW" pax="61"  />
+          </destinations>
+  </majordestination>
               <majordestination airport="PRG">
     <destinations>
+      <destination airport="LGW" pax="181"  />
       <destination airport="LHR" pax="413"  />
+    </destinations>
+  </majordestination>
+                <majordestination airport="PRN">
+    <destinations>
+      <destination airport="LGW" pax="6"  />
     </destinations>
   </majordestination>
             <majordestination airport="PSA">
     <destinations>
+      <destination airport="LGW" pax="261"  />
       <destination airport="LHR" pax="89"  />
     </destinations>
   </majordestination>
+        <majordestination airport="PUY">
+    <destinations>
+      <destination airport="LGW" pax="15"  />
+          </destinations>
+  </majordestination>
+          <majordestination airport="PVK">
+    <destinations>
+      <destination airport="LGW" pax="77"  />
+          </destinations>
+  </majordestination>
+            <majordestination airport="PXO">
+    <destinations>
+      <destination airport="LGW" pax="9"  />
+          </destinations>
+  </majordestination>
           <majordestination airport="RHO">
     <destinations>
+      <destination airport="LGW" pax="144"  />
       <destination airport="LHR" pax="11"  />
     </destinations>
+  </majordestination>
+            <majordestination airport="REU">
+    <destinations>
+      <destination airport="LGW" pax="39"  />
+          </destinations>
+  </majordestination>
+              <majordestination airport="RIX">
+    <destinations>
+      <destination airport="LGW" pax="92"  />
+          </destinations>
   </majordestination>
         <majordestination airport="RJK">
     <destinations>
@@ -441,23 +795,47 @@
       <destination airport="LHR" pax="123"  />
     </destinations>
   </majordestination>
+          <majordestination airport="SAW">
+    <destinations>
+      <destination airport="LGW" pax="59"  />
+          </destinations>
+  </majordestination>
+            <majordestination airport="SCQ">
+    <destinations>
+      <destination airport="LGW" pax="23"  />
+          </destinations>
+  </majordestination>
+          <majordestination airport="SMI">
+    <destinations>
+      <destination airport="LGW" pax="11"  />
+          </destinations>
+  </majordestination>
           <majordestination airport="SNN">
     <destinations>
+      <destination airport="LGW" pax="104" />
       <destination airport="LHR" pax="258"  />
     </destinations>
   </majordestination>
           <majordestination airport="SKG">
     <destinations>
+      <destination airport="LGW" pax="111"  />
       <destination airport="LHR" pax="8"  />
     </destinations>
   </majordestination>
               <majordestination airport="SOF">
     <destinations>
+      <destination airport="LGW" pax="133"  />
       <destination airport="LHR" pax="168"  />
     </destinations>
   </majordestination>
+          <majordestination airport="SPC">
+    <destinations>
+      <destination airport="LGW" pax="19"  />
+          </destinations>
+  </majordestination>
         <majordestination airport="SPU">
     <destinations>
+     <destination airport="LGW" pax="99"  />
       <destination airport="LHR" pax="7"  />
     </destinations>
   </majordestination>
@@ -468,6 +846,7 @@
   </majordestination>
           <majordestination airport="SVG">
     <destinations>
+      <destination airport="LGW" pax="67"  />
       <destination airport="LHR" pax="217"  />
     </destinations>
   </majordestination>
@@ -476,19 +855,81 @@
       <destination airport="LHR" pax="312"  />
     </destinations>
   </majordestination>
+            <majordestination airport="SVQ">
+    <destinations>
+      <destination airport="LGW" pax="97"  />
+          </destinations>
+  </majordestination>
+      <majordestination airport="SXF">
+    <destinations>
+      <destination airport="LGW" pax="375"  />
+          </destinations>
+  </majordestination>
+        <majordestination airport="SZG">
+    <destinations>
+      <destination airport="LGW" pax="120"  />
+          </destinations>
+  </majordestination>
             <majordestination airport="TBS">
     <destinations>
       <destination airport="LHR" pax="3"  />
     </destinations>
   </majordestination>
+          <majordestination airport="TFS">
+    <destinations>
+      <destination airport="LGW" pax="628"  />
+          </destinations>
+  </majordestination>
+              <majordestination airport="TGD">
+    <destinations>
+      <destination airport="LGW" pax="2"  />
+    </destinations>
+  </majordestination>
+                <majordestination airport="TIA">
+    <destinations>
+      <destination airport="LGW" pax="47"  />
+    </destinations>
+  </majordestination>
+              <majordestination airport="TIV">
+    <destinations>
+      <destination airport="LGW" pax="8"  />
+    </destinations>
+  </majordestination>
+                <majordestination airport="TLL">
+    <destinations>
+      <destination airport="LGW" pax="60"  />
+    </destinations>
+  </majordestination>
         <majordestination airport="TLS">
     <destinations>
+      <destination airport="LGW" pax="270"  />
       <destination airport="LHR" pax="231"  />
     </destinations>
   </majordestination>
               <majordestination airport="TLV">
     <destinations>
+      <destination airport="LGW" pax="2"  />
       <destination airport="LHR" pax="572"  />
+    </destinations>
+  </majordestination>
+            <majordestination airport="TOS">
+    <destinations>
+      <destination airport="LGW" pax="24"  />
+    </destinations>
+  </majordestination>
+            <majordestination airport="TRD">
+    <destinations>
+      <destination airport="LGW" pax="59"  />
+    </destinations>
+  </majordestination>
+              <majordestination airport="TRF">
+    <destinations>
+      <destination airport="LGW" pax="61"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="TRN">
+    <destinations>
+      <destination airport="LGW" pax="127"  />
     </destinations>
   </majordestination>
           <majordestination airport="TXL">
@@ -496,8 +937,19 @@
       <destination airport="LHR" pax="773"  />
     </destinations>
   </majordestination>
+          <majordestination airport="VAR">
+    <destinations>
+      <destination airport="LGW" pax="5"  />
+          </destinations>
+  </majordestination>
+          <majordestination airport="VCE">
+    <destinations>
+      <destination airport="LGW" pax="576"  />
+    </destinations>
+  </majordestination>
       <majordestination airport="VIE">
     <destinations>
+     <destination airport="LGW" pax="140"  />
       <destination airport="LHR" pax="709"  />
     </destinations>
   </majordestination>
@@ -506,19 +958,46 @@
       <destination airport="LHR" pax="96"  />
     </destinations>
   </majordestination>
+            <majordestination airport="VLC">
+    <destinations>
+      <destination airport="LGW" pax="195"  />
+          </destinations>
+  </majordestination>
+        <majordestination airport="VOL">
+    <destinations>
+      <destination airport="LGW" pax="10"  />
+          </destinations>
+  </majordestination>
+          <majordestination airport="VRN">
+    <destinations>
+      <destination airport="LGW" pax="286"  />
+    </destinations>
+  </majordestination>
               <majordestination airport="WAW">
     <destinations>
       <destination airport="LHR" pax="377"  />
     </destinations>
   </majordestination>
+          <majordestination airport="XRY">
+    <destinations>
+      <destination airport="LGW" pax="9"  />
+    </destinations>
+  </majordestination>
         <majordestination airport="ZAG">
     <destinations>
+     <destination airport="LGW" pax="68"  />
       <destination airport="LHR" pax="157"  />
     </destinations>
   </majordestination>
               <majordestination airport="ZRH">
     <destinations>
+      <destination airport="LGW" pax="180" />
       <destination airport="LHR" pax="1039"  />
     </destinations>
+  </majordestination>
+        <majordestination airport="ZTH">
+    <destinations>
+      <destination airport="LGW" pax="147"  />
+          </destinations>
   </majordestination>
 </majordestinations>

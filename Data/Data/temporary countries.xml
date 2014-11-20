@@ -124,6 +124,10 @@
         </tempcountry>
         <tempcountry id="249" start="12.04.1918 00:00:00" end="08.28.1992 00:00:00">
         </tempcountry>
+         <tempcountry id="284" start="12.04.1918 00:00:00" end="09.08.1991 00:00:00">
+        </tempcountry> 
+        <tempcountry id="313" start="12.04.1918 00:00:00" end="08.28.1992 00:00:00">
+        </tempcountry>
       </tempcountries>
     </history>
   </country>
@@ -144,6 +148,8 @@
         <tempcountry id="104" start="08.28.1992 00:00:00" end="06.05.2006 00:00:00">
         </tempcountry>
         <tempcountry id="249" start="08.28.1992 00:00:00" end="06.05.2006 00:00:00">
+        </tempcountry>
+             <tempcountry id="313" start="08.28.1992 00:00:00" end="06.05.2006 00:00:00">
         </tempcountry>
       </tempcountries>
     </history>

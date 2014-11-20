@@ -113,7 +113,7 @@
                 this.Maintenances.Add(new FleetAirlinerMaintenanceMVVM(check.Type, check.LastCheck, airliner.Maintenance.getNextCheck(check.Type),check.Interval,check.CheckCenter,canperformcheck));
             }
 
-            this.IsBuyable = this.Airliner.Airliner.Airline.IsHuman
+            this.IsBuyable = this.Airliner.Airliner.Airline != null && this.Airliner.Airliner.Airline.IsHuman
                              && this.Airliner.Purchased == FleetAirliner.PurchasedType.Leased && this.Airliner.Airliner.Owner == null;
 
             this.BuyPrice = this.IsBuyable ? this.Airliner.Airliner.getPrice() : 0;
@@ -235,6 +235,8 @@
         public void buyAirliner()
         {
             this.Airliner.Purchased = FleetAirliner.PurchasedType.Bought;
+            this.Airliner.Airliner.Owner = GameObject.GetInstance().HumanAirline;
+
             this.IsBuyable = false;
 
             AirlineHelpers.AddAirlineInvoice(
@@ -395,7 +397,9 @@
             {
                 var facility = new AirlinerFacilityMVVM(facType, this);
 
-                foreach (AirlinerFacility fac in AirlinerFacilities.GetFacilities(facType))
+                var facilities = AirlinerFacilities.GetFacilities(facType);
+
+                foreach (AirlinerFacility fac in facilities.FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year))
                 {
                     facility.Facilities.Add(fac);
                 }

@@ -1790,7 +1790,7 @@ Carregamento do jogo abortado.</value>
     <value>Destruir infraestrutura</value>
   </data>
   <data name="MessageBox_2204_message" xml:space="preserve">
-    <value>Tens a certeza que queres destruir as infraestruturas de {0}?</value>
+    <value>Tens a certeza que queres destruir {0} das infraestruturas?</value>
   </data>
   <data name="MessageBox_2205_name" xml:space="preserve">
     <value>Fundos Insuficientes</value>
@@ -5364,7 +5364,7 @@ Boa sorte.</value>
     <value>Procura do Aeroporto</value>
   </data>
   <data name="PageAirportDemand_1008_name" xml:space="preserve">
-    <value>Rotas da Companhia</value>
+    <value>Assentos</value>
   </data>
   <data name="PageAirlineFinances_1021_name" xml:space="preserve">
     <value>Últimos 5 Dias</value>
@@ -5430,16 +5430,16 @@ Boa sorte.</value>
     <value>Proprietário</value>
   </data>
   <data name="MessageBox_2016_message" xml:space="preserve">
-    <value>Não tens dinheiro suficiente para comprar estas aeronaves</value>
+    <value>Não tens dinheiro suficiente para comprar esta aeronave.</value>
   </data>
   <data name="MessageBox_2016_name" xml:space="preserve">
-    <value>Impossível Comprar Aeronaves</value>
+    <value>Impossível Comprar Aeronave</value>
   </data>
   <data name="MessageBox_2017_message" xml:space="preserve">
-    <value>Tens a certeza  que queres comprar estas aeronaves por  {0}</value>
+    <value>Tens a certeza que queres comprar esta aeronave por {0}?</value>
   </data>
   <data name="MessageBox_2017_name" xml:space="preserve">
-    <value>Comprar Aeronaves</value>
+    <value>Comprar Aeronave</value>
   </data>
   <data name="PageAirlineFleet_202_name" xml:space="preserve">
     <value>Comprar Aeronaves</value>
@@ -5462,7 +5462,118 @@ Boa sorte.</value>
   <data name="News_1018_name" xml:space="preserve">
     <value>Verificação de Manutenção Falhada</value>
   </data>
+  <data name="News_1019_message" xml:space="preserve">
+    <value>A tua aeronave {0} está em manutenção {1} por uma taxa de {2}</value>
+  </data>
+  <data name="News_1019_name" xml:space="preserve">
+    <value>Verificação de Manutenção da Aeronave</value>
+  </data>
+  <data name="News_1020_message" xml:space="preserve">
+    <value>A condição de {0} está abaixo de 50%</value>
+  </data>
+  <data name="News_1020_name" xml:space="preserve">
+    <value>Condição da Aeronave</value>
+  </data>
   <data name="PageRoutePlanner_208_name" xml:space="preserve">
     <value>Todos os Voos</value>
+  </data>
+  <data name="General_120_name" xml:space="preserve">
+    <value>Guardar Alterações</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1005_name" xml:space="preserve">
+    <value>Verificações</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1006_name" xml:space="preserve">
+    <value>Última Verificação</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1007_name" xml:space="preserve">
+    <value>Próxima Verificação</value>
+  </data>
+  <data name="PageAirlineInsurance_1008_name" xml:space="preserve">
+    <value>Centros de Manutenção</value>
+  </data>
+  <data name="PageAirlineInsurance_1009_name" xml:space="preserve">
+    <value>Centros de Manutenção Disponíveis</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1008_name" xml:space="preserve">
+    <value>Centro de Manutenção</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_1009_name" xml:space="preserve">
+    <value>Intervalo de Manutenção</value>
+  </data>
+  <data name="MessageBox_2234_message" xml:space="preserve">
+    <value>As infraestruturas de manutenção estão a ser usadas por pelo menos uma das tuas aeronaves pelo que não podem ser removidas.</value>
+  </data>
+  <data name="MessageBox_2234_name" xml:space="preserve">
+    <value>Erro ao remover infraestrutura</value>
+  </data>
+  <data name="PageFleetAirlinerInsurances_203_name" xml:space="preserve">
+    <value>Realizar Manutenção</value>
+  </data>
+  <data name="PageUsedAirliner_1010_name" xml:space="preserve">
+    <value>Fabricante</value>
+  </data>
+  <data name="PageUsedAirliner_1011_name" xml:space="preserve">
+    <value>Histórico de Registos</value>
+  </data>
+  <data name="MessageBox_2707_message" xml:space="preserve">
+    <value>Tens a certeza que queres aplicar as alterações às rota(s) seleccionadas?</value>
+  </data>
+  <data name="MessageBox_2707_name" xml:space="preserve">
+    <value>Aplicar Alterações</value>
+  </data>
+  <data name="PageHumanRoutes_1012_name" xml:space="preserve">
+    <value>Alterar Preços</value>
+  </data>
+  <data name="PageHumanRoutes_201_name" xml:space="preserve">
+    <value>Aplicar Alterações</value>
+  </data>
+  <data name="MessageBox_2131_message" xml:space="preserve">
+    <value>Tens a certeza que queres ter um contracto com {0}?</value>
+  </data>
+  <data name="MessageBox_2131_name" xml:space="preserve">
+    <value>Contracto com Centro de Manutenção</value>
+  </data>
+  <data name="MessageBox_2132_message" xml:space="preserve">
+    <value>Tens a certeza que queres terminar o contracto com {0}?</value>
+  </data>
+  <data name="MessageBox_2132_name" xml:space="preserve">
+    <value>Terminar Contracto de Manutenção</value>
+  </data>
+  <data name="MessageBox_2018_message" xml:space="preserve">
+    <value>Tens a certeza que queres subalugar esta aeronave?</value>
+  </data>
+  <data name="MessageBox_2018_name" xml:space="preserve">
+    <value>Subalugar aeronave</value>
+  </data>
+  <data name="PageAirlineInsurance_202_name" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="PageAirlineInsurance_203_name" xml:space="preserve">
+    <value>Aplicar ao Existente</value>
+  </data>
+  <data name="PageAirlineInsurance_1010_name" xml:space="preserve">
+    <value>Manutenção Básica para Aeronave</value>
+  </data>
+  <data name="MessageBox_2133_message" xml:space="preserve">
+    <value>Tens a certeza que queres guardar as configurações de manutenção?</value>
+  </data>
+  <data name="MessageBox_2133_name" xml:space="preserve">
+    <value>Guardar Manutenção</value>
+  </data>
+  <data name="MessageBox_2134_message" xml:space="preserve">
+    <value>Tens a certeza que queres guardar a manutenção e aplicá-la à tua frota?</value>
+  </data>
+  <data name="MessageBox_2134_name" xml:space="preserve">
+    <value>Aplicar Manutenção</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_1016_name" xml:space="preserve">
+    <value>Preço de Compra</value>
+  </data>
+  <data name="PageShowOptions_1014_name" xml:space="preserve">
+    <value>Mandar mensagem de manutenções</value>
+  </data>
+  <data name="PopUpExtendContract_1005_name" xml:space="preserve">
+    <value>Tipo de Contracto</value>
   </data>
 </root>

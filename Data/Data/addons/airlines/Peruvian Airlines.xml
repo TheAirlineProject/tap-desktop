@@ -1,8 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Peruvian Airlines" iata="P9" color="Black" country="182" CEO="Cesar Catano" mentality="Safe"
            market="Global" preferedairport="LIM">
+             <narrative
+      narrative="Peruvian Airlines was founded in November 2007, receiving its Air Operator Certificate from Peru's aviation authority on August 7, 2008. The airline commenced operations on October 29, 2008." />
+ 
   </profile>
   <info real="True" from="2007" to="2199" />
 </airline>
