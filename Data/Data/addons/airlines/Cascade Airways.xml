@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Cascade Airways" iata="CZ"  logo="CZ3" color="Green" country="122" CEO="Kevin Griffith" mentality="Safe" market="Regional" preferedairport="SEA" >
+  <narrative narrative="Cascade Airways was an airline with its hub at Seattle and its headquarters at Spokane,Washington. Spokane was also a secondary hub. It was around from 1969-1986. It served routes in the northwest US mostly,lending to its name of Cascade, the large mountain range in Washington and Oregon. It served 8 other airports in Washington at least, including its maintenance base of Walla Walla in southeast Washington,5 in Idaho,3 in Montana,3 in Oregon, Calgary in Alberta Canada,Salt Lake in Utah and Reno in Nevada. They used mostly props like the Embraer Bandeirante,Fairchild Swearingen,Beechcraft 1900C and 99,and the HS 748. It also had near the end of its life BAC jets One-Eleven 200 and 400's jets."/>
+</profile>
+  <info real="True" from="1969" to="1986" />
+  <prefereds aircrafts="EMB 110 Bandeirante,Fairchild Swearingen Metroliner,Beechcraft 1900C,HS .748,BAC One-Eleven 200,BAC One-Eleven 400,Beechcraft 99"></prefereds>
+     <focusairports>
+	 <focusairport airport="GEG"></focusairport>
+     </focusairports>
+
+	 
+	 
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

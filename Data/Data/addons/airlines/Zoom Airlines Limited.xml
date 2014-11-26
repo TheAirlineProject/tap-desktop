@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Zoom Airlines Limited" iata="ZX" logo="ZX3" color="DodgerBlue" country="130" CEO="John Boyle" mentality="Safe" market="Global" preferedairport="LGW" >
+  <narrative narrative="Zoom Airlines Limited was a subsidiary of the Canadian based airline Zoom Airlines. It was based at London Gatwick and was founded in August 2006 and folded with its parent two years later in August 2008. It also served Glasgow,Cardiff and the island of Corisca in Europe,and Bermuda and 3 US airports in North America,Guyana in South America and Trinidad and Tobago in the Caribbean. It had two 767-300ER's. "/>
+</profile>
+  <info real="True" from="2006" to="2009" />
+  <prefereds aircrafts="Boeing 767-300ER,Boeing 757-200"></prefereds>
+                
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2008)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300ER" early="2" late="2"></airliner>
+	     </airliners>
+ 
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

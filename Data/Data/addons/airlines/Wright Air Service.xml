@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Wright Air Service" iata="8V" color="Black" country="122" CEO="Robert Bursiel" mentality="Safe" market="Local" preferedairport="FAI"  >
+  <narrative narrative="Wright Air Service is an Alaskan airline based at Fairbanks. As of June 2012 it served 16 Alaskan airports outside of Fairbanks, and most of them if not all of them are in Central and Eastern Alaska. As of 2014 it had eight Cessna 208B's,three Piper Navajo's,a Cessna 206,a Beechcraft Bonanza and a Helio Courier. It started in 1967."/>
+</profile> 
+  <info real="True" from="1967" to="2199" />
+  <prefereds aircrafts="Cessna 208B,PA-31T Cheyenne,Cessna 206,PA-31 Navajo,Helio Courier,Beechcraft Bonanza"></prefereds>
+
+
+</airline>
