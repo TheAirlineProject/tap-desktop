@@ -20,6 +20,7 @@ using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel;
 
+
 namespace TheAirline
 {
     /// <summary>
@@ -27,12 +28,12 @@ namespace TheAirline
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        private string CurrentPage;
         public MainWindow()
         {
 
             InitializeComponent();
-          
+
             Setup.SetupGame();
 
             if (Settings.GetInstance().Mode == Settings.ScreenMode.Fullscreen)
@@ -47,12 +48,19 @@ namespace TheAirline
             this.Width = SystemParameters.PrimaryScreenWidth;
             this.Height = SystemParameters.PrimaryScreenHeight;
 
+            frmContent.Navigated += frmContent_Navigated;
+
             if (AppSettings.GetInstance().hasLanguage())
                 frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageStartMenu());
             else
                 frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageSelectLanguage());
 
 
+        }
+
+        private void frmContent_Navigated(object sender, NavigationEventArgs e)
+        {
+            this.CurrentPage = e.Content.ToString();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -64,6 +72,21 @@ namespace TheAirline
                 if (result == WPFMessageBoxResult.Yes)
                     this.Close();
             }
+            if (e.Key == Key.F9)
+            {
+
+                string text = "";
+               var reflectProperties = UIHelpers.GetReflectPropertyDescriptorInfo();
+
+                foreach (ReflectPropertyDescriptorInfo rInfo in reflectProperties)
+                    text += string.Format("{0}.{1} Handler count: {2}\n", rInfo.TypeName, rInfo.PropertyName,rInfo.DisplayHandlerCount);
+
+                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\bindingerrors.log",true);
+
+                file.WriteLine(text); 
+
+                file.Close();
+            }
             if (e.Key == Key.F8)
             {
                 string text = string.Format("Gameobjectworker paused: {0}\n", GameObjectWorker.GetInstance().isPaused());
@@ -74,6 +97,7 @@ namespace TheAirline
 
                 WPFMessageBox.Show("Threads states", text, WPFMessageBoxButtons.Ok);
             }
+            /*
             if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F12)
             {
                 System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairline.log");
@@ -98,7 +122,7 @@ namespace TheAirline
 
                 file.Close();
             }
-
+            */
         }
 
         //clears the navigator
@@ -133,7 +157,7 @@ namespace TheAirline
         //navigates to a new page
         public void navigateTo(Page page)
         {
-
+            
             frmContent.Navigate(page);
             frmContent.NavigationService.RemoveBackEntry();
 
@@ -160,5 +184,6 @@ namespace TheAirline
         {
             //social groups + passenger happiness
         }
+
     }
 }

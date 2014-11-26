@@ -1,9 +1,9 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Controls;
-
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.StatisticsModel;
@@ -17,7 +17,7 @@
 
         public PageAirportsStatistics()
         {
-            this.AllAirports = new List<Airport>();
+            this.AllAirports = new ObservableCollection<Airport>();
 
             StatisticsType statType = StatisticsTypes.GetStatisticsType("Passengers");
 
@@ -38,7 +38,7 @@
 
         #region Public Properties
 
-        public List<Airport> AllAirports { get; set; }
+        public ObservableCollection<Airport> AllAirports { get; set; }
 
         #endregion
     }

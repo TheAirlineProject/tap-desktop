@@ -35,16 +35,18 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
             this.IsEditable = true;
             // !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
 
-            this.Invoices = new List<MonthlyInvoice>();
+            this.Invoices = new ObservableCollection<MonthlyInvoice>();
 
             foreach (Invoice.InvoiceType type in this.Route.getRouteInvoiceTypes())
             {
                 this.Invoices.Add(new MonthlyInvoice(type, 1950, 1,1, this.Route.getRouteInvoiceAmount(type)));
             }
 
-            this.Legs = new List<Route>();
+            this.Legs = new ObservableCollection<Route>();
             this.Legs.Add(this.Route);
-            this.Legs.AddRange(this.Route.Stopovers.SelectMany(s => s.Legs));
+
+            foreach (Route sRoute in this.Route.Stopovers.SelectMany(s => s.Legs))
+                this.Legs.Add(sRoute);
 
             this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
 
@@ -64,8 +66,8 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
             this.FeedbackTypes.Add("price", new List<string>() { "1018", "1019", "1020" });
             this.FeedbackTypes.Add("score", new List<string>() { "1021", "1022", "1023" });
             this.FeedbackTypes.Add("luggage",new List<string>() {"1024","1025","1026"});
-            
-            this.Feedbacks = new List<RouteFeedbackMVVM>();
+
+            this.Feedbacks = new ObservableCollection<RouteFeedbackMVVM>();
 
             if (this.Route.HasAirliner && this.Route.Type == Route.RouteType.Passenger)
             {
@@ -147,11 +149,11 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 
         public double Distance { get; set; }
 
-        public List<MonthlyInvoice> Invoices { get; set; }
+        public ObservableCollection<MonthlyInvoice> Invoices { get; set; }
 
         public Boolean IsEditable { get; set; }
 
-        public List<Route> Legs { get; set; }
+        public ObservableCollection<Route> Legs { get; set; }
 
         public Route Route { get; set; }
 
@@ -159,7 +161,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 
         public Boolean ShowPassengersInformation { get; set; }
 
-        public List<RouteFeedbackMVVM> Feedbacks { get; set; }
+        public ObservableCollection<RouteFeedbackMVVM> Feedbacks { get; set; }
 
         public Dictionary<string, List<string>> FeedbackTypes;
 
@@ -583,12 +585,12 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
     {
         public BaseUnit ToCountry { get; set; }
         public Country FromCountry { get; set; }
-        public List<Airline> Airlines { get; set; }
+        public ObservableCollection<Airline> Airlines { get; set; }
         public BannedAirlinesMVVM(Country from, BaseUnit to, List<Airline> airlines)
         {
             this.ToCountry = to;
             this.FromCountry = from;
-            this.Airlines = airlines;
+            this.Airlines = new ObservableCollection<Airline>(airlines);
         }
     }
     //the converter for the statistics for a route

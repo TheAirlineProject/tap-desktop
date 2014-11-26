@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -29,8 +30,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
     public partial class PageSelectAirports : Page, INotifyPropertyChanged
     {
         public StartDataObject StartData{ get; set; }
-        public List<Country> AllCountries { get; set; }
-        private List<Country> SelectedCountries;
+        public ObservableCollection<Country> AllCountries { get; set; }
+        private ObservableCollection<Country> SelectedCountries;
 
         private int _numberofairports;
         public int NumberOfAirports
@@ -49,7 +50,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         public PageSelectAirports(StartDataObject startdata)
         {
             this.StartData = startdata;
-            this.SelectedCountries = new List<Country>();
+            this.SelectedCountries = new ObservableCollection<Country>();
 
             List<Country> countries =
             Airports.GetAllAirports()
@@ -57,7 +58,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                 .Distinct()
                 .ToList();
 
-            this.AllCountries = countries.OrderBy(c=>c.Region.Name).ThenBy(c => c.Name).ToList();
+            this.AllCountries = new ObservableCollection<Country>(countries.OrderBy(c=>c.Region.Name).ThenBy(c => c.Name));
 
             setNumberOfAirports();
 

@@ -18,7 +18,7 @@
                 <g:QuickInfoValue
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1000'}">
                     <g:QuickInfoValue.Value>
-                        <TextBlock Width="200" Text="{Binding Pilot.Profile.Name,ElementName=pageShowPilot}"
+                        <TextBlock Width="200" Text="{Binding Pilot.Profile.Name,Mode=OneTime,ElementName=pageShowPilot}"
                                    VerticalAlignment="Bottom" />
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
@@ -26,14 +26,14 @@
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1001'}">
                     <g:QuickInfoValue.Value>
                         <TextBlock Width="200"
-                                   Text="{Binding Pilot.Profile.Birthdate,ElementName=pageShowPilot,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                                   Text="{Binding Pilot.Profile.Birthdate,Mode=OneTime,ElementName=pageShowPilot,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
                                    VerticalAlignment="Bottom" />
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
                 <g:QuickInfoValue
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1002'}">
                     <g:QuickInfoValue.Value>
-                        <ContentControl Content="{Binding Pilot.Profile.Town,ElementName=pageShowPilot}"
+                        <ContentControl Content="{Binding Pilot.Profile.Town,Mode=OneTime,ElementName=pageShowPilot}"
                                         VerticalAlignment="Bottom" ContentTemplate="{StaticResource TownItem}" />
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
@@ -41,14 +41,14 @@
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1003'}">
                     <g:QuickInfoValue.Value>
                         <TextBlock Width="200"
-                                   Text="{Binding Pilot.EducationTime,ElementName=pageShowPilot,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                                   Text="{Binding Pilot.EducationTime,Mode=OneTime,ElementName=pageShowPilot,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
                                    VerticalAlignment="Bottom" />
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
                 <g:QuickInfoValue
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1004'}">
                     <g:QuickInfoValue.Value>
-                        <TextBlock Width="200" Text="{Binding Pilot.Rating.Name,ElementName=pageShowPilot}"
+                        <TextBlock Width="200" Text="{Binding Pilot.Rating.Name,Mode=OneTime,ElementName=pageShowPilot}"
                                    VerticalAlignment="Bottom" />
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
@@ -64,7 +64,7 @@
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1005'}">
                     <g:QuickInfoValue.Value>
                         <TextBlock Width="200"
-                                   Text="{Binding Salary,ElementName=pageShowPilot,Converter={StaticResource ValueCurrencyConverter}}"
+                                   Text="{Binding Salary,Mode=OneTime,ElementName=pageShowPilot,Converter={StaticResource ValueCurrencyConverter}}"
                                    VerticalAlignment="Bottom" />
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>

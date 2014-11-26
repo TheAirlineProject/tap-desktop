@@ -37,6 +37,7 @@
 
         public PageAirlineData(StartDataObject startData)
         {
+
             this.AllTimeZones = TimeZones.GetTimeZones();
             this.AllAirports = new ObservableCollection<Airport>();
             this.StartData = startData;
@@ -45,7 +46,8 @@
 
             this.InitializeComponent();
 
-            List<Airline> airlines =
+            ObservableCollection<Airline> airlines = new ObservableCollection<Airline>();
+
                 Airlines.GetAirlines(
                     airline =>
                         (airline.Profile.Country.Region == this.StartData.Region
@@ -54,10 +56,12 @@
                              && this.StartData.Continent.hasRegion(airline.Profile.Country.Region)))
                         && airline.Profile.Founded <= this.StartData.Year
                         && airline.Profile.Folded > this.StartData.Year
-                        && ((this.StartData.MajorAirlines && airline.MarketFocus == Airline.AirlineFocus.Global) || !this.StartData.MajorAirlines)).OrderBy(a => a.Profile.Name).ToList();
+                        && ((this.StartData.MajorAirlines && airline.MarketFocus == Airline.AirlineFocus.Global) || !this.StartData.MajorAirlines)).OrderBy(a => a.Profile.Name).ToList().ForEach(a=>airlines.Add(a));
 
             this.cbAirline.ItemsSource = airlines;
         }
+
+       
 
         #endregion
 

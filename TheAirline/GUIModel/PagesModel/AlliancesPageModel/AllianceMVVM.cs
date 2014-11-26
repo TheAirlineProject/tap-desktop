@@ -88,7 +88,7 @@
             this.Alliance = alliance;
             this.Members = new ObservableCollection<AllianceMemberMVVM>();
             this.PendingMembers = new ObservableCollection<PendingAllianceMember>();
-            this.AllianceRoutes = new List<AllianceRouteMMVM>();
+            this.AllianceRoutes = new ObservableCollection<AllianceRouteMMVM>();
 
             foreach (AllianceMember member in this.Alliance.Members)
             {
@@ -115,7 +115,7 @@
 
         public Alliance Alliance { get; set; }
 
-        public List<AllianceRouteMMVM> AllianceRoutes { get; set; }
+        public ObservableCollection<AllianceRouteMMVM> AllianceRoutes { get; set; }
 
         public int Destinations
         {

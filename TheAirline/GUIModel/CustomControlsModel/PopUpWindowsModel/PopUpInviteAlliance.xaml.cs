@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
     public partial class PopUpInviteAlliance : PopUpWindow
     {
         private Alliance Alliance;
-        private List<Airline> InviteAirlines;
+        private ObservableCollection<Airline> InviteAirlines;
         public static object ShowPopUp(Alliance alliance)
         {
             PopUpWindow window = new PopUpInviteAlliance(alliance);
@@ -33,7 +34,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
         }
         public PopUpInviteAlliance(Alliance alliance)
         {
-            this.InviteAirlines = new List<Airline>();
+            this.InviteAirlines = new ObservableCollection<Airline>();
 
             this.Alliance = alliance;
             InitializeComponent();

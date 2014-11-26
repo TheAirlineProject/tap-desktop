@@ -1,10 +1,10 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
-
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.GeneralModel;
 
@@ -17,7 +17,7 @@
 
         public PageSelectLanguage()
         {
-            this.AllLanguages = Languages.GetLanguages().FindAll(l => l.IsEnabled);
+            this.AllLanguages = new ObservableCollection<Language>(Languages.GetLanguages().FindAll(l => l.IsEnabled));
 
             this.InitializeComponent();
         }
@@ -26,7 +26,7 @@
 
         #region Public Properties
 
-        public List<Language> AllLanguages { get; set; }
+        public ObservableCollection<Language> AllLanguages { get; set; }
 
         #endregion
 

@@ -251,7 +251,6 @@
         //returns the weather average for a specific airport and specific month
         public static WeatherAverage GetWeatherAverage(int month, Airport airport)
         {
-           //optimization to db
             WeatherAverage airportAverage = averages.Find(w => w.Airport == airport && w.Month == month);
             WeatherAverage townAverage = averages.Find(w => w.Town == airport.Profile.Town && w.Month == month);
             WeatherAverage countryAverage =

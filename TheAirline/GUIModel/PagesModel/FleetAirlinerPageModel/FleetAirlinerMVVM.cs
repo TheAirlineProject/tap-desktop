@@ -1,6 +1,7 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
@@ -19,9 +20,7 @@
     public class FleetAirlinerMVVM : INotifyPropertyChanged
     {
         #region Fields
-
       
-
         private Airport _homebase;
 
         private Boolean _isbuyable;
@@ -105,7 +104,7 @@
 
             this.IsMissingPilots = this.Airliner.Airliner.Type.CockpitCrew > this.Pilots.Count;
 
-            this.Maintenances = new List<FleetAirlinerMaintenanceMVVM>();
+            this.Maintenances = new ObservableCollection<FleetAirlinerMaintenanceMVVM>();
 
             foreach (AirlinerMaintenanceCheck check in Airliner.Maintenance.Checks)
             {
@@ -143,7 +142,7 @@
         #endregion
 
         #region Public Properties
-        public List<FleetAirlinerMaintenanceMVVM> Maintenances{ get; set; }
+        public ObservableCollection<FleetAirlinerMaintenanceMVVM> Maintenances{ get; set; }
 
        
         public FleetAirliner Airliner { get; set; }
@@ -609,7 +608,7 @@
         }
         public double Interval { get; set; }
         private MaintenanceCenterMVVM _center;
-        public List<MaintenanceCenterMVVM> Centers { get; set; }
+        public System.Collections.ObjectModel.ObservableCollection<MaintenanceCenterMVVM> Centers { get; set; }
         public MaintenanceCenterMVVM Center
         {
             get
@@ -643,7 +642,7 @@
             this.Interval = interval;
             this.CanPerformCheck = canperformcheck;
 
-            this.Centers = new List<MaintenanceCenterMVVM>();
+            this.Centers = new ObservableCollection<MaintenanceCenterMVVM>();
 
             foreach (Airport airport in GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel >= this.Type.Requirement.TypeLevel))
                 this.Centers.Add(new MaintenanceCenterMVVM(airport));
@@ -656,7 +655,7 @@
          
             if (center != null)
             {
-                this.Center = center.Airport != null ? this.Centers.Find(c=>c.Airport == center.Airport) : this.Centers.Find(c=>c.Center == center.Center); 
+                this.Center = center.Airport != null ? this.Centers.First(c=>c.Airport == center.Airport) : this.Centers.First(c=>c.Center == center.Center); 
             }
 
         }

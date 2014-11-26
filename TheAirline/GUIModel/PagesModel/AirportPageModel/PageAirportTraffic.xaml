@@ -30,7 +30,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock VerticalAlignment="Bottom">
-                                                <ContentControl Content="{Binding Airport}" VerticalAlignment="Bottom"
+                                                <ContentControl Content="{Binding Airport,Mode=OneTime}" VerticalAlignment="Bottom"
                                                                 ContentTemplate="{StaticResource AirportCountryLink}" />
                                             </TextBlock>
                                         </DataTemplate>
@@ -41,7 +41,7 @@
                                     Width="250" util:GridViewSort.PropertyName="Airline.Profile.Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding Airline}" VerticalAlignment="Bottom"
+                                            <ContentControl Content="{Binding Airline,Mode=OneTime}" VerticalAlignment="Bottom"
                                                             ContentTemplate="{StaticResource AirlineLongLink}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -51,7 +51,7 @@
                                     Width="100" util:GridViewSort.PropertyName="Distance">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Distance,StringFormat={}{0:0}}"
+                                            <TextBlock Text="{Binding Distance,Mode=OneTime,StringFormat={}{0:0}}"
                                                        VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -66,7 +66,7 @@
                                                      VerticalAlignment="Bottom">
                                                 <ListBox.ItemTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock VerticalAlignment="Bottom" Text="{Binding Name}" />
+                                                        <TextBlock VerticalAlignment="Bottom" Text="{Binding Name,Mode=OneTime}" />
                                                     </DataTemplate>
                                                 </ListBox.ItemTemplate>
                                             </ListBox>

@@ -1,10 +1,10 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.IO;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.GeneralModel;
 
@@ -26,11 +26,11 @@
 
         #region Public Properties
 
-        public List<Language> AllLanguages
+        public ObservableCollection<Language> AllLanguages
         {
             get
             {
-                return Languages.GetLanguages().FindAll(l => l.IsEnabled);
+                return new ObservableCollection<Language>(Languages.GetLanguages().FindAll(l => l.IsEnabled));
             }
             private set
             {

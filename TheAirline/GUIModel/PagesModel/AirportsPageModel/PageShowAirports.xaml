@@ -64,7 +64,7 @@
                           ItemsSource="{Binding HumanAirports,ElementName=pageShowAirports}" >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <ContentControl Content="{Binding}" ContentTemplate="{StaticResource AirportCountryItem}" VerticalAlignment="Bottom"></ContentControl>
+                            <ContentControl Content="{Binding Mode=OneTime}" ContentTemplate="{StaticResource AirportCountryItem}" VerticalAlignment="Bottom"></ContentControl>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
@@ -139,8 +139,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                                    <Hyperlink Tag="{Binding Airport}" Click="clName_Click">
-                                        <Run Text="{Binding Airport.Profile.Name}" />
+                                    <Hyperlink Tag="{Binding Airport,Mode=OneTime}" Click="clName_Click">
+                                        <Run Text="{Binding Airport.Profile.Name,Mode=OneTime}" />
                                     </Hyperlink>
                                 </TextBlock>
                             </DataTemplate>
@@ -153,7 +153,7 @@
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom">
                                     <TextBlock.Text>
-                                        <MultiBinding StringFormat="{}{0}/{1}">
+                                        <MultiBinding StringFormat="{}{0}/{1}" Mode="OneTime">
                                             <Binding Path="Airport.Profile.IATACode" />
                                             <Binding Path="Airport.Profile.ICAOCode" />
                                         </MultiBinding>
@@ -168,9 +168,9 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <WrapPanel>
-                                    <TextBlock Text="{Binding Airport.Profile.Town.Name}" VerticalAlignment="Bottom" />
+                                    <TextBlock Text="{Binding Airport.Profile.Town.Name,Mode=OneTime}" VerticalAlignment="Bottom" />
                                     <TextBlock
-                                        Text="{Binding Airport.Profile.Town.State.ShortName,TargetNullValue={x:Static sys:String.Empty},StringFormat='{}, {0}'}"
+                                        Text="{Binding Airport.Profile.Town.State.ShortName,Mode=OneTime,TargetNullValue={x:Static sys:String.Empty},StringFormat='{}, {0}'}"
                                         VerticalAlignment="Bottom" />
                                 </WrapPanel>
                             </DataTemplate>
@@ -182,7 +182,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}"
-                                                Content="{Binding Airport.Profile.Town.Country}" />
+                                                Content="{Binding Airport.Profile.Town.Country,Mode=OneTime}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
@@ -192,7 +192,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom"
-                                           Text="{Binding Airport.Profile.Type,Converter={StaticResource TextUnderscoreConverter}}" />
+                                           Text="{Binding Airport.Profile.Type,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
@@ -202,7 +202,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom"
-                                           Text="{Binding Airport.Profile.Size,Converter={StaticResource TextUnderscoreConverter}}" />
+                                           Text="{Binding Airport.Profile.Size,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
@@ -246,7 +246,7 @@
                             <DataTemplate>
                                 <Image Source="/data/images/tick.png" VerticalAlignment="Bottom"
                                                    RenderOptions.BitmapScalingMode="HighQuality" Width="20"
-                                                   Visibility="{Binding HasCargoTerminal,Converter={StaticResource BooleanToVisibility}}" />
+                                                   Visibility="{Binding HasCargoTerminal,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
@@ -257,7 +257,7 @@
                             <DataTemplate>
                                 <Image Source="/data/images/tick.png" VerticalAlignment="Bottom"
                                                    RenderOptions.BitmapScalingMode="HighQuality" Width="20"
-                                                   Visibility="{Binding HasHelipad,Converter={StaticResource BooleanToVisibility}}" />
+                                                   Visibility="{Binding HasHelipad,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
@@ -269,7 +269,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom"
-                                           Text="{Binding LongestRunway,Converter={StaticResource SmallDistanceToUnitConverter}}" />
+                                           Text="{Binding LongestRunway,Mode=OneTime,Converter={StaticResource SmallDistanceToUnitConverter}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
@@ -289,7 +289,7 @@
                         SortPropertyName="NumberOfRoutes" Width="125">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock VerticalAlignment="Bottom" Text="{Binding NumberOfRoutes}" />
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding NumberOfRoutes,Mode=OneTime}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>

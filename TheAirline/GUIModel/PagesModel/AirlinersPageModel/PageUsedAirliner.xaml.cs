@@ -2,10 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
@@ -24,11 +24,12 @@
         {
             this.Airliner = airliner;
 
-            long minRunway = this.Airliner.MinRunwaylength; 
+            long minRunway = this.Airliner.MinRunwaylength;
 
-            List<Airport> homebases = AirlineHelpers.GetHomebases(GameObject.GetInstance().HumanAirline, minRunway);
+            this.Homebases = new ObservableCollection<Airport>();
 
-            this.Homebases = homebases;
+            AirlineHelpers.GetHomebases(GameObject.GetInstance().HumanAirline, minRunway).ForEach(h => this.Homebases.Add(h));
+
 
             this.DataContext = this.Airliner;
 
@@ -41,7 +42,7 @@
 
         public Airliner Airliner { get; set; }
 
-        public List<Airport> Homebases { get; set; }
+        public ObservableCollection<Airport> Homebases { get; set; }
 
         #endregion
 

@@ -8,11 +8,11 @@
         <DataTemplate x:Key="AirlinerFacilityItem">
             <StackPanel>
                 <WrapPanel>
-                    <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                    <TextBlock Text="{Binding Path=Name,Mode=OneTime}"></TextBlock>
                 </WrapPanel>
                 <WrapPanel>
-                    <TextBlock Text="{Binding Path=PricePerSeat, StringFormat=Price per seat: {0:c}}" x:Name="ColumnPrice"></TextBlock>
-                    <TextBlock Margin="20 0 0 0" Text="{Binding Path=PercentOfSeats, StringFormat=Percent of seats: {0} %}" x:Name="ColumnPercent"></TextBlock>
+                    <TextBlock Text="{Binding Path=PricePerSeat,Mode=OneTime, StringFormat=Price per seat: {0:c}}" x:Name="ColumnPrice"></TextBlock>
+                    <TextBlock Margin="20 0 0 0" Text="{Binding Path=PercentOfSeats,Mode=OneTime, StringFormat=Percent of seats: {0} %}" x:Name="ColumnPercent"></TextBlock>
                 </WrapPanel>
             </StackPanel>
             <DataTemplate.Triggers>

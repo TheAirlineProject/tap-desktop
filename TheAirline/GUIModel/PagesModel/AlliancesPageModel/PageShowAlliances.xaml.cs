@@ -21,7 +21,7 @@
 
         public PageShowAlliances()
         {
-            this.AllAlliances = Alliances.GetAlliances();
+            this.AllAlliances = new ObservableCollection<Alliance>(Alliances.GetAlliances());
 
             this.AllCodesharings = new ObservableCollection<CodeshareAgreementMVVM>();
 
@@ -42,7 +42,7 @@
 
         #region Public Properties
 
-        public List<Alliance> AllAlliances { get; set; }
+        public ObservableCollection<Alliance> AllAlliances { get; set; }
 
         public ObservableCollection<CodeshareAgreementMVVM> AllCodesharings { get; set; }
 

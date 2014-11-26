@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
+    <airliner manufacturer="Beechcraft" name="Beechcraft Bonanza" price="104774">     
+    <type body="Single_Aisle" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="10.21" length="8.38" range="1713" speed="326" fuelcapacity="280" consumption="0.20"
+           runwaylengthrequired="583" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1947" to="2199" rate="254" />
+  </airliner>
   <airliner manufacturer="Beechcraft" name="Beechcraft 1900C" price="170940"> <!--600000-->
     <type body="Single_Aisle" rangetype="Regional" engine="Turboprop" />
     <specs wingspan="17.64" length="17.62" range="650" speed="495" fuelcapacity="2520" consumption="0.020"

@@ -25,7 +25,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <Image Source="{Binding Logo}" RenderOptions.BitmapScalingMode="HighQuality"
+                                        <Image Source="{Binding Logo,Mode=OneTime}" RenderOptions.BitmapScalingMode="HighQuality"
                                                Width="32" />
                                         <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
                                             <Hyperlink Tag="{Binding}" Click="lnkManufacturer_Click">
@@ -42,7 +42,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <ContentControl ContentTemplate="{StaticResource CountryLongFlagItem}"
-                                                    VerticalAlignment="Bottom" Content="{Binding Country}" />
+                                                    VerticalAlignment="Bottom" Content="{Binding Country,Mode=OneTime}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

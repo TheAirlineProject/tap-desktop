@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,21 +25,20 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     /// </summary>
     public partial class PageRestrictions : Page
     {
-        public List<FlightRestriction> Restrictions { get; set; }
-        public List<BannedAirlinesMVVM> BannedAirlines { get; set; }
+        public ObservableCollection<FlightRestriction> Restrictions { get; set; }
+        public ObservableCollection<BannedAirlinesMVVM> BannedAirlines { get; set; }
         public PageRestrictions()
         {
             this.Loaded += PageRestrictions_Loaded;
-            
-            this.Restrictions =
-              FlightRestrictions.GetRestrictions()
-                  .FindAll(
+
+            this.Restrictions = new ObservableCollection<FlightRestriction>(
+              FlightRestrictions.GetRestrictions().FindAll(
                       r =>
                           (r.Type == FlightRestriction.RestrictionType.Airline || r.Type == FlightRestriction.RestrictionType.Aircrafts || r.Type == FlightRestriction.RestrictionType.Flights || r.Type == FlightRestriction.RestrictionType.Maintenance)
                           && r.StartDate < GameObject.GetInstance().GameTime
-                          && r.EndDate > GameObject.GetInstance().GameTime);
+                          && r.EndDate > GameObject.GetInstance().GameTime));
 
-            this.BannedAirlines = new List<BannedAirlinesMVVM>();
+            this.BannedAirlines = new ObservableCollection<BannedAirlinesMVVM>();
 
             var bannedCountries = FlightRestrictions.GetRestrictions()
                   .FindAll(

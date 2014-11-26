@@ -2,10 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel;
 
@@ -19,15 +19,16 @@
         public PageAirlines()
         {
             List<Airline> airlines = Airlines.GetAllAirlines();
-            this.MostGates =
+            this.MostGates = new ObservableCollection<Airline>();
                 airlines.OrderByDescending(
                     a =>
                         a.Airports.Sum(c => c.AirlineContracts.Where(ac => ac.Airline == a).Sum(ac => ac.NumberOfGates)))
                     .Take(Math.Min(5, airlines.Count))
-                    .ToList();
-            this.MostRoutes = airlines.OrderByDescending(a => a.Routes.Count).Take(Math.Min(airlines.Count, 5)).ToList();
-            this.LargestFleet =
-                airlines.OrderByDescending(a => a.Fleet.Count).Take(Math.Min(airlines.Count, 5)).ToList();
+                    .ToList().ForEach(a=>this.MostGates.Add(a));
+                this.MostRoutes = new ObservableCollection<Airline>();
+            airlines.OrderByDescending(a => a.Routes.Count).Take(Math.Min(airlines.Count, 5)).ToList().ForEach(a=>this.MostRoutes.Add(a));
+            this.LargestFleet = new ObservableCollection<Airline>();
+            airlines.OrderByDescending(a => a.Fleet.Count).Take(Math.Min(airlines.Count, 5)).ToList().ForEach(a => this.LargestFleet.Add(a));
 
             this.Loaded += this.PageAirlines_Loaded;
             this.InitializeComponent();
@@ -37,11 +38,11 @@
 
         #region Public Properties
 
-        public List<Airline> LargestFleet { get; set; }
+        public ObservableCollection<Airline> LargestFleet { get; set; }
 
-        public List<Airline> MostGates { get; set; }
+        public ObservableCollection<Airline> MostGates { get; set; }
 
-        public List<Airline> MostRoutes { get; set; }
+        public ObservableCollection<Airline> MostRoutes { get; set; }
 
         #endregion
 

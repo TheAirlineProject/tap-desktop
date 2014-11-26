@@ -2,12 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Data;
-
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
@@ -29,8 +29,8 @@
             this.Airport = airport;
             this.DataContext = this.Airport;
 
-            this.FacilityTypes =
-                Enum.GetValues(typeof(AirportFacility.FacilityType)).Cast<AirportFacility.FacilityType>().ToList();
+            this.FacilityTypes = new ObservableCollection<AirportFacility.FacilityType>();
+            Enum.GetValues(typeof(AirportFacility.FacilityType)).Cast<AirportFacility.FacilityType>().ToList().ForEach(f => this.FacilityTypes.Add(f));
 
             if (!airport.Airport.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo))
                 this.FacilityTypes.Remove(AirportFacility.FacilityType.Cargo);
@@ -57,7 +57,7 @@
 
         public AirportMVVM Airport { get; set; }
 
-        public List<AirportFacility.FacilityType> FacilityTypes { get; set; }
+        public ObservableCollection<AirportFacility.FacilityType> FacilityTypes { get; set; }
 
         #endregion
 

@@ -2,10 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
@@ -26,7 +26,7 @@
             this.Airport = airport;
             this.DataContext = this.Airport;
 
-            this.ContractTypes = new List<AirportContract.ContractType>();
+            this.ContractTypes = new ObservableCollection<AirportContract.ContractType>();
 
             //Boolean showLogo
 
@@ -58,7 +58,7 @@
 
         public AirportMVVM Airport { get; set; }
 
-        public List<AirportContract.ContractType> ContractTypes { get; set; }
+        public ObservableCollection<AirportContract.ContractType> ContractTypes { get; set; }
 
         #endregion
 

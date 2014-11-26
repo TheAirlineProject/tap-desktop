@@ -10,8 +10,8 @@
         <DataTemplate x:Key="ColorItem">
             <WrapPanel>
                 <Rectangle Width="20" Height="10"
-                           Fill="{Binding Name,Converter={StaticResource stringToBrushConverter}}" Margin="0 0 5 0" />
-                <TextBlock Text="{Binding Name}" />
+                           Fill="{Binding Name,Mode=OneTime,Converter={StaticResource stringToBrushConverter}}" Margin="0 0 5 0" />
+                <TextBlock Text="{Binding Name,Mode=OneTime}" />
             </WrapPanel>
         </DataTemplate>
     </Window.Resources>
@@ -21,13 +21,13 @@
                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1019'}"
                                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBox Width="200" Name="txtAirlineName" VerticalAlignment="Bottom" TextChanged="txtAirlineName_TextChanged"/>
+                <TextBox Width="200" Name="txtAirlineName" VerticalAlignment="Bottom" UndoLimit="10" TextChanged="txtAirlineName_TextChanged"/>
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1020'}"
                                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBox Width="50" MaxLength="2" Name="txtIATA" VerticalAlignment="Bottom" TextChanged="txtIATA_TextChanged" />
+                <TextBox Width="50" MaxLength="2" UndoLimit="10" Name="txtIATA" VerticalAlignment="Bottom" TextChanged="txtIATA_TextChanged" />
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                 <TextBlock

@@ -150,7 +150,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock
-                                            Text="{Binding Loan.Amount,Converter={StaticResource ValueCurrencyConverter}}"
+                                            Text="{Binding Loan.Amount,Converter={StaticResource ValueCurrencyConverter},Mode=OneTime}"
                                             FontWeight="Bold" VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -161,7 +161,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock
-                                            Text="{Binding Loan.MonthlyPayment,Converter={StaticResource ValueCurrencyConverter}}"
+                                            Text="{Binding Loan.MonthlyPayment,Converter={StaticResource ValueCurrencyConverter},Mode=OneTime}"
                                             VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>

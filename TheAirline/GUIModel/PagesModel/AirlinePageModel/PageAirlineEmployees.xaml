@@ -12,8 +12,8 @@
     <Page.Resources>
         <DataTemplate x:Key="TrainingFacility">
             <WrapPanel>
-                <TextBlock Text="{Binding Family}" VerticalAlignment="Bottom" Width="150" />
-                <TextBlock Text="{Binding TrainingDays,StringFormat={}Days: {0}}" VerticalAlignment="Bottom" Width="50" />
+                <TextBlock Text="{Binding Family,Mode=OneTime}" VerticalAlignment="Bottom" Width="150" />
+                <TextBlock Text="{Binding TrainingDays,Mode=OneTime,StringFormat={}Days: {0}}" VerticalAlignment="Bottom" Width="50" />
                 <TextBlock
                     Text="{Binding Price,Converter={StaticResource ValueCurrencyConverter},StringFormat={}Price: {0}}"
                     VerticalAlignment="Bottom" />
@@ -21,14 +21,14 @@
         </DataTemplate>
         <DataTemplate x:Key="OpponentWageItem">
             <WrapPanel>
-                <TextBlock Text="{Binding FeeType.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <TextBlock Text="{Binding Value,Converter={StaticResource ValueCurrencyConverter}}"
+                <TextBlock Text="{Binding FeeType.Name,Mode=OneTime}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding Value,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="HumanWageItem">
             <WrapPanel>
-                <TextBlock Text="{Binding FeeType.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding FeeType.Name,Mode=OneTime}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
                 <Slider IsSnapToTickEnabled="True" Width="200" Maximum="{Binding FeeType.MaxValue}"
                         Minimum="{Binding FeeType.MinValue}" Value="{Binding Value}" x:Name="slValue" />
                 <TextBlock Margin="5 0 0 0" Text="{Binding Value,Converter={StaticResource ValueCurrencyConverter}}"
@@ -89,21 +89,21 @@
                                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1002'}">
                                 <h:QuickInfoValue.Value>
                                     <TextBlock VerticalAlignment="Bottom"
-                                               Text="{Binding Airline.CabinCrew,ElementName=pageAirlineEmployees}" />
+                                               Text="{Binding Airline.CabinCrew,ElementName=pageAirlineEmployees,Mode=OneTime}" />
                                 </h:QuickInfoValue.Value>
                             </h:QuickInfoValue>
                             <h:QuickInfoValue
                                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1003'}">
                                 <h:QuickInfoValue.Value>
                                     <TextBlock VerticalAlignment="Bottom"
-                                               Text="{Binding Airline.SupportCrew,ElementName=pageAirlineEmployees}" />
+                                               Text="{Binding Airline.SupportCrew,ElementName=pageAirlineEmployees,Mode=OneTime}" />
                                 </h:QuickInfoValue.Value>
                             </h:QuickInfoValue>
                             <h:QuickInfoValue
                                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1004'}">
                                 <h:QuickInfoValue.Value>
                                     <TextBlock VerticalAlignment="Bottom"
-                                               Text="{Binding Airline.MaintenanceCrew,ElementName=pageAirlineEmployees}" />
+                                               Text="{Binding Airline.MaintenanceCrew,ElementName=pageAirlineEmployees,Mode=OneTime}" />
                                 </h:QuickInfoValue.Value>
                             </h:QuickInfoValue>
                         </ListBox>
@@ -136,7 +136,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock VerticalAlignment="Bottom"
-                                                           Text="{Binding Pilot.Profile.Name}" />
+                                                           Text="{Binding Pilot.Profile.Name,Mode=OneTime}" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -146,7 +146,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock VerticalAlignment="Bottom"
-                                                           Text="{Binding Pilot.Profile.Age}" />
+                                                           Text="{Binding Pilot.Profile.Age,Mode=OneTime}" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -156,7 +156,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock VerticalAlignment="Bottom"
-                                                           Text="{Binding Pilot.Rating.Name}" />
+                                                           Text="{Binding Pilot.Rating.Name,Mode=OneTime}" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -165,7 +165,7 @@
                                         Width="200" util:GridViewSort.PropertyName="Profile.Town.Country.Name">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <ContentControl Content="{Binding Pilot.Profile.Town}"
+                                                <ContentControl Content="{Binding Pilot.Profile.Town,Mode=OneTime}"
                                                                 VerticalAlignment="Bottom"
                                                                 ContentTemplate="{StaticResource TownItem}" />
                                             </DataTemplate>
@@ -177,7 +177,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <ListBox Style="{StaticResource VerticalListBoxStyle}"
-                                                         ItemsSource="{Binding Pilot.Aircrafts}" />
+                                                         ItemsSource="{Binding Pilot.Aircrafts,Mode=OneTime}" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

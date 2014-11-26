@@ -18,7 +18,7 @@
         </DataTemplate>
         <DataTemplate x:Key="HumanAdvertisementItem">
             <WrapPanel>
-                <TextBlock Text="{Binding Type, Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold"
+                <TextBlock Text="{Binding Type, Converter={StaticResource TextUnderscoreConverter},Mode=OneTime}" FontWeight="Bold"
                            VerticalAlignment="Bottom" Width="150" />
                 <ComboBox Width="200" Style="{StaticResource ComboBoxTransparentStyle}"
                           SelectedItem="{Binding Path=SelectedType,Mode=TwoWay}" DisplayMemberPath="Name"
@@ -57,7 +57,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding InsType, Converter={StaticResource TextUnderscoreConverter}}"
+                                                Text="{Binding InsType, Converter={StaticResource TextUnderscoreConverter},Mode=OneTime}"
                                                 VerticalAlignment="Bottom" FontWeight="Bold" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -68,7 +68,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding InsScope, Converter={StaticResource TextUnderscoreConverter}}"
+                                                Text="{Binding InsScope, Converter={StaticResource TextUnderscoreConverter},Mode=OneTime}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -79,7 +79,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding InsTerms, Converter={StaticResource TextUnderscoreConverter}}"
+                                                Text="{Binding InsTerms, Converter={StaticResource TextUnderscoreConverter},Mode=OneTime}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -90,7 +90,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding InsuredAmount, Converter={StaticResource ValueCurrencyConverter}}"
+                                                Text="{Binding InsuredAmount, Converter={StaticResource ValueCurrencyConverter},Mode=OneTime}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -108,7 +108,7 @@
                                       Style="{StaticResource ComboBoxTransparentStyle}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter}}"
+                                        <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter},Mode=OneTime}"
                                                    VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
@@ -190,7 +190,7 @@
                         <StackPanel.Style>
                             <Style>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                    <DataTrigger Binding="{Binding Airline.IsHuman,Mode=OneTime}" Value="False">
                                         <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -205,10 +205,10 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                                        <ContentControl Content="{Binding Country}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}" Width="150"></ContentControl>
-                                        <TextBlock Text="{Binding MonthlyPrice,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
-                                        <TextBlock Text="{Binding Wage,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                                        <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                        <ContentControl Content="{Binding Country,Mode=OneTime}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}" Width="150"></ContentControl>
+                                        <TextBlock Text="{Binding MonthlyPrice,Mode=OneTime,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                                        <TextBlock Text="{Binding Wage,Mode=OneTime,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
                                         <Button  VerticalAlignment="Bottom" Tag="{Binding}" Background="Transparent" Click="btnDeleteMaintenance_Click">
                                             <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                         </Button>
@@ -226,7 +226,7 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                        <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" Width="150"></TextBlock>
                                         <ContentControl Content="{Binding Country}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}" Width="150"></ContentControl>
                                         <TextBlock Text="{Binding MonthlyPrice,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
                                         <TextBlock Text="{Binding Wage,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>

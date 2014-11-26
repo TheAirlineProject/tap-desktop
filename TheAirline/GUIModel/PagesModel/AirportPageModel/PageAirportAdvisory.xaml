@@ -34,9 +34,9 @@
                                 </Rectangle.Fill>-->
                             </Rectangle>
                                 <StackPanel Margin="5 0 0 0" Grid.Column="1">
-                                <ContentControl Content="{Binding Destination}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryNormalLink}" FontSize="16" FontWeight="Black"></ContentControl>
-                                <TextBlock Text="{Binding Destination,Converter={StaticResource AirportCodeConverter}}" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="Gray"></TextBlock>
-                                    <TextBlock Text="{Binding Text}" VerticalAlignment="Bottom" TextWrapping="Wrap"></TextBlock>
+                                <ContentControl Content="{Binding Destination,Mode=OneTime}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryNormalLink}" FontSize="16" FontWeight="Black"></ContentControl>
+                                <TextBlock Text="{Binding Destination,Mode=OneTime,Converter={StaticResource AirportCodeConverter}}" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                                    <TextBlock Text="{Binding Text,Mode=OneTime}" VerticalAlignment="Bottom" TextWrapping="Wrap"></TextBlock>
                                 </StackPanel>
 
                         </Grid>

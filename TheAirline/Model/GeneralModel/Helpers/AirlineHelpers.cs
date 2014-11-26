@@ -486,7 +486,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             AirlineProfile profile = new AirlineProfile(name, iata, airline.Profile.Color, airline.Profile.CEO, true, GameObject.GetInstance().GameTime.Year, 2199);
             profile.Country = homebase.Profile.Country;
 
-            SubsidiaryAirline sAirline = new SubsidiaryAirline(airline, profile, mentality, market, airline.License, routefocus);
+            SubsidiaryAirline sAirline = new SubsidiaryAirline(airline, profile, mentality, market, airline.License, routefocus,airline.Schedule);
 
             AddSubsidiaryAirline(airline, sAirline, money, homebase);
 

@@ -9,15 +9,15 @@
         <local:DistanceConverter x:Key="DistanceConverter"></local:DistanceConverter>
         <DataTemplate x:Key="ComparerItem">
             <StackPanel>
-                <TextBlock Text="{Binding Airport.Profile.Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
-                <TextBlock Text="{Binding Airport.Profile.Pax}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
-                <TextBlock Text="{Binding Airport.Terminals.NumberOfGates}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
-                <TextBlock Text="{Binding Airport.Runways.Count}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
-                <TextBlock Text="{Binding ServingAirlines}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
-                <TextBlock Text="{Binding Routes}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="{Binding Airport.Profile.Type,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="{Binding Airport.Profile.Pax,Mode=OneTime}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="{Binding Airport.Terminals.NumberOfGates,Mode=OneTime}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="{Binding Airport.Runways.Count,Mode=OneTime}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="{Binding ServingAirlines,Mode=OneTime}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="{Binding Routes,Mode=OneTime}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center">
                     <TextBlock.Text>
-                        <MultiBinding Converter="{StaticResource DistanceConverter}">
+                        <MultiBinding Converter="{StaticResource DistanceConverter}" Mode="OneTime">
                             <Binding Path="."></Binding>
                             <Binding Path="SelectedAirport" ElementName="popUpCompareAirports"></Binding>
                         </MultiBinding>
@@ -48,7 +48,7 @@
                         <ComboBox IsSynchronizedWithCurrentItem="True" SelectionChanged="cbAirport_SelectionChanged" VerticalAlignment="Bottom" Name="cbAirport" Width="200" Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
-                                    <ContentControl Content="{Binding Airport}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryItem}"></ContentControl>
+                                    <ContentControl Content="{Binding Airport,Mode=OneTime}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryItem}"></ContentControl>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
@@ -60,8 +60,8 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Width="200">
-                                        <ContentControl Content="{Binding Airport}" HorizontalAlignment="Center" Height="30" ContentTemplate="{StaticResource AirportCountryItem}" VerticalAlignment="Bottom"></ContentControl>
-                                        <ContentControl Content="{Binding}" ContentTemplate="{StaticResource ComparerItem}" VerticalAlignment="Bottom"></ContentControl>
+                                    <ContentControl Content="{Binding Airport,Mode=OneTime}" HorizontalAlignment="Center" Height="30" ContentTemplate="{StaticResource AirportCountryItem}" VerticalAlignment="Bottom"></ContentControl>
+                                        <ContentControl Content="{Binding Mode=OneTime}" ContentTemplate="{StaticResource ComparerItem}" VerticalAlignment="Bottom"></ContentControl>
                                      </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

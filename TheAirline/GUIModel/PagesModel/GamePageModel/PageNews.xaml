@@ -116,7 +116,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock
-                                                    Text="{Binding News.Date,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                                                    Text="{Binding News.Date,Mode=OneTime,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
                                                     VerticalAlignment="Bottom">
                                                     <TextBlock.Style>
                                                         <Style TargetType="TextBlock"

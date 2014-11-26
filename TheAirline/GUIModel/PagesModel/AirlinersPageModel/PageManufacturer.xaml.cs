@@ -24,7 +24,7 @@
 
         public PageManufacturer(Manufacturer manufacturer)
         {
-            this.NumberOfAirliners = new List<int>();
+            this.NumberOfAirliners = new ObservableCollection<int>();
 
             for (int i = 1; i <= 50; i++)
             {
@@ -69,7 +69,7 @@
 
         public Manufacturer Manufacturer { get; set; }
 
-        public List<int> NumberOfAirliners { get; set; }
+        public ObservableCollection<int> NumberOfAirliners { get; set; }
 
         public AirlinerOrdersMVVM Orders { get; set; }
 

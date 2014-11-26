@@ -21,17 +21,18 @@
 
         public PageAirports()
         {
-            this.HumanAirports =
+            this.HumanAirports = new ObservableCollection<Airport>();
                 GameObject.GetInstance()
                     .HumanAirline.Airports.OrderBy(a => a.Profile.Pax)
                     .ToList()
-                    .GetRange(0, Math.Min(GameObject.GetInstance().HumanAirline.Airports.Count, 5));
+                    .GetRange(0, Math.Min(GameObject.GetInstance().HumanAirline.Airports.Count, 5)).ForEach(a=>this.HumanAirports.Add(a));
 
             var hubs =GameObject.GetInstance().HumanAirline.getHubs();
 
-            this.HumanHubs =hubs.OrderBy(h=>h.Profile.Pax)
-                .ToList()
-                .GetRange(0,Math.Min(hubs.Count,5));
+            this.HumanHubs = new ObservableCollection<Airport>();
+            hubs.OrderBy(h => h.Profile.Pax)
+                 .ToList()
+                 .GetRange(0, Math.Min(hubs.Count, 5)).ForEach(h=>this.HumanHubs.Add(h));
 
             this.CountryStates = new ObservableCollection<State>();
           
@@ -46,9 +47,9 @@
 
         public Hashtable AirportsFilters { get; set; }
 
-        public List<Airport> HumanAirports { get; set; }
+        public ObservableCollection<Airport> HumanAirports { get; set; }
 
-        public List<Airport> HumanHubs { get; set; }
+        public ObservableCollection<Airport> HumanHubs { get; set; }
 
         public ObservableCollection<State> CountryStates { get; set; }
 

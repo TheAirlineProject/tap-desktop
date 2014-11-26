@@ -43,17 +43,17 @@ using TheAirline.Model.GeneralModel.Helpers;
 
         #region Public Properties
 
-        public List<Airline> AllAirlines { get; set; }
+        public ObservableCollection<Airline> AllAirlines { get; set; }
 
-        public List<AirportMVVM> AllAirports { get; set; }
+        public ObservableCollection<AirportMVVM> AllAirports { get; set; }
 
         public List<AirlinerType> HumanAircrafts { get; set; }
 
         public ObservableCollection<Airport> HumanAirports { get; set; }
 
-        public List<FilterValue> OperatingRanges { get; set; }
+        public ObservableCollection<FilterValue> OperatingRanges { get; set; }
 
-        public List<FilterValue> RoutesRanges { get; set; }
+        public ObservableCollection<FilterValue> RoutesRanges { get; set; }
 
         public ObservableCollection<AirportMVVM> SelectedAirports { get; set; }
 
@@ -265,16 +265,16 @@ using TheAirline.Model.GeneralModel.Helpers;
             foreach (Airport hAirport in GameObject.GetInstance().HumanAirline.Airports)
                 this.HumanAirports.Add(hAirport);
 
-            this.AllAirlines = new List<Airline>();
+            this.AllAirlines = new ObservableCollection<Airline>();
             this.SelectedAirports = new ObservableCollection<AirportMVVM>();
-            this.RoutesRanges = new List<FilterValue>
+            this.RoutesRanges = new ObservableCollection<FilterValue>
                                 {
                                     new FilterValue("0", 0, 0),
                                     new FilterValue("1-9", 1, 9),
                                     new FilterValue("10-24", 10, 24),
                                     new FilterValue("25+", 25, int.MaxValue)
                                 };
-            this.OperatingRanges = new List<FilterValue>
+            this.OperatingRanges = new ObservableCollection<FilterValue>
                                    {
                                        new FilterValue("0", 0, 0),
                                        new FilterValue("1-5", 1, 5),
@@ -286,7 +286,8 @@ using TheAirline.Model.GeneralModel.Helpers;
                 Airline.AirlineMentality.Safe,
                 Airline.AirlineFocus.Domestic,
                 Airline.AirlineLicense.Domestic,
-                Route.RouteType.Passenger);
+                Route.RouteType.Passenger,
+                Airline.AirlineRouteSchedule.Regular);
             dummyAirline.Profile.AddLogo(
                 new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
 
@@ -301,7 +302,7 @@ using TheAirline.Model.GeneralModel.Helpers;
                 this.AllAirlines.Add(airline);
             }
 
-            this.AllAirports = new List<AirportMVVM>();
+            this.AllAirports = new ObservableCollection<AirportMVVM>();
 
             foreach (Airport airport in airports.OrderBy(a => a.Profile.Name))
             {
@@ -310,7 +311,7 @@ using TheAirline.Model.GeneralModel.Helpers;
 
          
             AirlinerType dummyAircraft = new AirlinerCargoType(
-                new Manufacturer("Dummy", "", null, false),
+                new Manufacturer("Dummy", "", null, false,false),
                 "All Aircrafts",
                 "",
                 0,

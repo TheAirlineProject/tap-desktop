@@ -55,7 +55,7 @@
                         CanFilter="True" SortPropertyName="Type.AirlinerFamily" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Type.Name}" />
+                                <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Type.Name,Mode=OneTime}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
@@ -65,10 +65,10 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <WrapPanel>
-                                    <Image Source="{Binding Type.Manufacturer.Logo}" Visibility="Collapsed"
+                                    <Image Source="{Binding Type.Manufacturer.Logo,Mode=OneTime}" Visibility="Collapsed"
                                            VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"
                                            Width="20" />
-                                    <TextBlock Text="{Binding Type.Manufacturer.Name}" VerticalAlignment="Bottom"
+                                    <TextBlock Text="{Binding Type.Manufacturer.Name,Mode=OneTime}" VerticalAlignment="Bottom"
                                                Margin="5 0 0 0" />
                                 </WrapPanel>
                             </DataTemplate>
@@ -79,7 +79,7 @@
                         CanFilter="True" SortPropertyName="Type.TypeAirliner" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Type.TypeAirliner}" VerticalAlignment="Bottom" />
+                                <TextBlock Text="{Binding Type.TypeAirliner,Mode=OneTime}" VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
@@ -91,7 +91,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
-                                    Text="{Binding Type.Range,Converter={StaticResource DistanceToUnitConverter}}"
+                                    Text="{Binding Type.Range,Mode=OneTime,Converter={StaticResource DistanceToUnitConverter}}"
                                     VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -103,7 +103,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
-                                    Text="{Binding Type.CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}"
+                                    Text="{Binding Type.CruisingSpeed,Mode=OneTime,Converter={StaticResource SpeedToUnitConverter}}"
                                     VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -115,7 +115,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
-                                    Text="{Binding Type.MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                                    Text="{Binding Type.MinRunwaylength,Mode=OneTime,Converter={StaticResource SmallDistanceToUnitConverter}}"
                                     VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -126,7 +126,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
-                                    Text="{Binding Type.FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}"
+                                    Text="{Binding Type.FuelConsumption,Mode=OneTime,Converter={StaticResource FuelConsumptionConverter}}"
                                     VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -139,12 +139,12 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Type.MaxSeatingCapacity,StringFormat={}{0} pax}"
+                                    <TextBlock Text="{Binding Type.MaxSeatingCapacity,Mode=OneTime,StringFormat={}{0} pax}"
                                                VerticalAlignment="Bottom">
                                         <TextBlock.Style>
                                             <Style>
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Cargo">
+                                                    <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime}" Value="Cargo">
                                                         <Setter Property="TextBlock.Visibility" Value="Collapsed" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -157,7 +157,7 @@
                                         <TextBlock.Style>
                                             <Style>
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Type.TypeAirliner}"
+                                                    <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime}"
                                                                  Value="Passenger">
                                                         <Setter Property="TextBlock.Visibility" Value="Collapsed" />
                                                     </DataTrigger>
@@ -175,7 +175,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
-                                    Text="{Binding Type.Price,Converter={StaticResource ValueCurrencyConverter}}"
+                                    Text="{Binding Type.Price,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                     VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

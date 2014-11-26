@@ -16,7 +16,7 @@
                 <h:QuickInfoValue
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1000'}">
                     <h:QuickInfoValue.Value>
-                        <TextBox Width="200" Name="txtName" Text="Alliance Name">
+                        <TextBox Width="200" Name="txtName" Text="Alliance Name" UndoLimit="10">
                             <TextBox.Style>
                                 <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                                     <Style.Triggers>

@@ -347,7 +347,7 @@ inflationafter="1">
     </runways>
   </airport>
   <airport name="Yellowknife Airport" icao="CYZF" iata="YZF" type="Domestic" season="All_Year">
-    <town town="Yellowknife, NT" country="113" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Yellowknife, YU" country="113" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="62°27'47''N" />
       <longitude value="114°26'25''W" />
@@ -1448,6 +1448,7 @@ inflationafter="1">
       <runway name="10/28" length="3201" surface="Asphalt" />
       <runway name="15L/33R" length="1524" surface="Asphalt" />
       <runway name="15R/33L" length="2869" surface="Asphalt" />
+      <runway name="H1" length="30" surface="Asphalt" type="Helipad" />
     </runways>
   </airport>
   <airport name="Bozeman Yellowstone International Airport" icao="KBZN" iata="BZN" type="Domestic" season="All_Year">
@@ -1653,6 +1654,316 @@ inflationafter="1">
       <runway name="09/27" length="1219" surface="Asphalt" />
     </runways>
   </airport>
+    <airport name="Ruby Airport" icao="PARY" iata="RBY" type="Domestic" season="All_Year">
+    <town town="Ruby, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="064°43'38''N" />
+      <longitude value="155°28'12''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="1219" surface="Gravel" />
+    </runways>
+  </airport>    
+ <airport name="Russian Mission Airport" icao="PARS" iata="RSH" type="Domestic" season="All_Year">
+    <town town="Russian Mission, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="061°46'30''N" />
+      <longitude value="161°19'10''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="1097" surface="Gravel" />
+    </runways>
+  </airport>    
+<airport name="Seldovia Airport" icao="PASO" iata="SOV" type="Domestic" season="All_Year">
+    <town town="Seldovia, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="059°26'33''N" />
+      <longitude value="151°42'15''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="562" surface="Gravel" />
+    </runways>
+  </airport>    
+   <airport name="Nulato Airport" icao="PANU" iata="NUL" type="Domestic" season="All_Year">
+    <town town="Nulato, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="064°43'46''N" />
+      <longitude value="158°04'27''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="1219" surface="Gravel" />
+    </runways>
+  </airport> 
+<airport name="Shaktoolik Airport" icao="PFSH" iata="SKK" type="Domestic" season="All_Year">
+    <town town="Shaktoolik, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="064°22'16''N" />
+      <longitude value="161°13'26''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="1220" surface="Gravel" />
+    </runways>
+  </airport> 
+  <airport name="Shishmaref Airport" icao="PASH" iata="SHH" type="Domestic" season="All_Year">
+    <town town="Shishmaref, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="066°14'58''N" />
+      <longitude value="166°05'22''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="5/23" length="1524" surface="Asphalt" />
+    </runways>
+  </airport> 
+ <airport name="Venetie Airport" icao="PAVE" iata="VEE" type="Domestic" season="All_Year">
+    <town town="Venetie, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="067°00'31''N" />
+      <longitude value="146°21'59''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="4/22" length="1219" surface="Gravel" />
+    </runways>
+  </airport> 
+ <airport name="Shungnak Airport" icao="PAGH" iata="SHG" type="Domestic" season="All_Year">
+    <town town="Shungnak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="066°53'17''N" />
+      <longitude value="157°09'45''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="9/27" length="1219" surface="Gravel" />
+    </runways>
+  </airport> 
+<airport name="St. Michael Airport" icao="PAMK" iata="SMK" type="Domestic" season="All_Year">
+    <town town="St. Michael, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="063°29'24''N" />
+      <longitude value="162°06'37''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="1220" surface="Gravel" />
+    </runways>
+  </airport> 
+  <airport name="Larsen Bay Airport" icao="PALB" iata="KLN" type="Domestic" season="All_Year">
+    <town town="Larsen Bay, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="057°32'06''N" />
+      <longitude value="153°58'36''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="4/22" length="820" surface="Gravel" />
+    </runways>
+  </airport> 
+    <airport name="Elim Airport" icao="PFEL" iata="ELI" type="Domestic" season="All_Year">
+    <town town="Elim, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="064°36'54''N" />
+      <longitude value="162°16'14''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="1037" surface="Gravel" />
+    </runways>
+  </airport> 
+<airport name="Nuiqsut Airport" icao="PAQT" iata="NUI" type="Domestic" season="All_Year">
+    <town town="Nuiqsut, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="070°12'36''N" />
+      <longitude value="151°00'20''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="4/22" length="1324" surface="Gravel" />
+    </runways>
+  </airport> 
+  <airport name="Koyuk Alfred Adams Airport" icao="PAKK" iata="KKA" type="Domestic" season="All_Year">
+    <town town="Koyuk, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="064°56'22''N" />
+      <longitude value="161°09'15''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="914" surface="Gravel" />
+    </runways>
+  </airport> 
+ <airport name="Barter Island LRRS Airport" icao="PABA" iata="BTI" type="Domestic" season="All_Year">
+    <town town="Barter Island, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="070°08'02''N" />
+      <longitude value="143°34'55''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="1469" surface="Gravel" />
+    </runways>
+  </airport> 
+  <airport name="Adak Airport" icao="PADK" iata="ADK" type="Domestic" season="All_Year">
+    <town town="Adak Island, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="051°52'41''N" />
+      <longitude value="176°38'46''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="5/23" length="2374" surface="Asphalt" />
+      <runway name="18/36" length="2318" surface="Asphalt" />
+    </runways>
+  </airport> 
+    <airport name="Akiak Airport" icao="PFAK" iata="AKI" type="Domestic" season="All_Year">
+    <town town="Akiak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°54'10''N" />
+      <longitude value="161°13'50''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="974" surface="Gravel" />
+    </runways>
+  </airport> 
+<airport name="Allakaket Airport" icao="PFAL" iata="AET" type="Domestic" season="All_Year">
+    <town town="Allakaket, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="066°33'07''N" />
+      <longitude value="152°37'20''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="5/23" length="1219" surface="Gravel" />
+    </runways>
+  </airport> 
+        <airport name="Arctic Village Airport" icao="PARC" iata="ARC" type="Domestic" season="All_Year">
+    <town town="Arctic Village, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="068°06'53''N" />
+      <longitude value="145°34'46''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="1372" surface="Gravel" />
+    </runways>
+  </airport> 
+ <airport name="Atqasuk Airport" icao="PATQ" iata="ATK" type="Domestic" season="All_Year">
+    <town town="Atqasuk, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="070°28'02''N" />
+      <longitude value="157°26'08''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="6/24" length="1332" surface="Gravel" />
+    </runways>
+  </airport> 
+   <airport name="Bettles Airport" icao="PABT" iata="BTT" type="Domestic" season="All_Year">
+    <town town="Bettles, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="066°54'50''N" />
+      <longitude value="151°31'45''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="1582" surface="Gravel" />
+    </runways>
+  </airport> 
+     <airport name="Brevig Mission Airport" icao="PFKT" iata="KTS" type="Domestic" season="All_Year">
+    <town town="Brevig Mission, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="065°19'53''N" />
+      <longitude value="166°27'57''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="914" surface="Gravel" />
+      <runway name="4/22" length="643" surface="Gravel" />
+    </runways>
+  </airport> 
+       <airport name="Golovin Airport" icao="PAGL" iata="GLV" type="Domestic" season="All_Year">
+    <town town="Golovin, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="064°33'02''N" />
+      <longitude value="163°00'26''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="1219" surface="Gravel" />
+    </runways>
+  </airport> 
    <airport name="Red Dog Airport" icao="PADG" iata="RDB" type="Domestic" season="All_Year">
     <town town="Red Dog Mine, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
@@ -1898,7 +2209,7 @@ inflationafter="1">
       <terminal name="Fedex Cargo Ramp" gates="8" type="Cargo" />
       <terminal name="UPS Cargo Ramp" gates="9" type="Cargo"  />
       <terminal name="West Cargo Ramp" gates="10"  type="Cargo" />
-       <runway name="H1" length="48" surface="Concrete" type="Helipad" />
+     
     </terminals>
     <runways>
       <runway name="13L/31R" length="2743" surface="Concrete" />
@@ -1908,6 +2219,7 @@ inflationafter="1">
       <runway name="17R/35L" length="4085" surface="Concrete" />
       <runway name="18L/36R" length="4084" surface="Concrete" />
       <runway name="18R/36L" length="4084" surface="Concrete" />
+              <runway name="H1" length="48" surface="Concrete" type="Helipad" />
     </runways>
   </airport>
   <airport name="Duluth International Airport" icao="KDLH" iata="DLH" type="Domestic" season="All_Year">
@@ -3577,6 +3889,20 @@ season="All_Year">
     </terminals>
     <runways>
       <runway name="6/24" length="3658" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Los Alamos County Airport" icao="KLAM" iata="LAM" type="Domestic" season="All_Year">
+    <town town="Los Alamos, NM" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="035°52'47''N" />
+      <longitude value="106°16'07''W" />
+    </coordinates>
+    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="9/27" length="1829" surface="Asphalt" />
     </runways>
   </airport>
     <airport name="Four Corners Regional Airport" icao="KFMN" iata="FMN" type="Domestic" season="All_Year">
@@ -7599,6 +7925,8 @@ season="All_Year">
     </terminals>
     <runways>
       <runway name="03/21" length="2743" surface="Asphalt" />
+      <runway name="H1" length="80" surface="Asphalt" type="Helipad" />
+      <runway name="H2" length="60" surface="Asphalt" type="Helipad" />
     </runways>
   </airport>
     <airport name="Sloulin Field International Airport" icao="KISN" iata="ISN" type="Domestic" season="All_Year">

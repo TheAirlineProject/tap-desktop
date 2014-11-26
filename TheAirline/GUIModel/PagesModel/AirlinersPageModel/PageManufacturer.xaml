@@ -11,7 +11,7 @@
     <Page.Resources>
         <DataTemplate x:Key="OrderItem">
             <WrapPanel>
-                <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" Width="200" />
+                <TextBlock Text="{Binding Type.Name,Mode=OneTime}" VerticalAlignment="Bottom" Width="200" />
                 <!--   <TextBlock Text="{Binding Amount}" VerticalAlignment="Bottom" Width="50"></TextBlock> -->
                 <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedItem="{Binding Amount}" Width="50"
                           SelectionChanged="cbNumberOfAirliners_SelectionChanged" Tag="{Binding}"
@@ -69,11 +69,11 @@
                                 Width="200" util:GridViewSort.PropertyName="Name">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock ToolTipService.ShowDuration="30000" Text="{Binding Name}"
+                                        <TextBlock ToolTipService.ShowDuration="30000" Text="{Binding Name,Mode=OneTime}"
                                                    VerticalAlignment="Bottom">
                                             <TextBlock.ToolTip>
                                                 <ToolTip>
-                                                    <ContentControl Content="{Binding}"
+                                                    <ContentControl Content="{Binding Mode=OneTime}"
                                                                     ContentTemplate="{StaticResource AirlinerTypeSpecificationItem}" />
                                                 </ToolTip>
                                             </TextBlock.ToolTip>
@@ -86,7 +86,7 @@
                                 Width="100" util:GridViewSort.PropertyName="TypeAirliner">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding TypeAirliner}" VerticalAlignment="Bottom" />
+                                        <TextBlock Text="{Binding TypeAirliner,Mode=OneTime}" VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -96,7 +96,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Text="{Binding Range,Converter={StaticResource DistanceToUnitConverter}}"
+                                            Text="{Binding Range,Mode=OneTime,Converter={StaticResource DistanceToUnitConverter}}"
                                             VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -107,7 +107,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Text="{Binding CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}"
+                                            Text="{Binding CruisingSpeed,Mode=OneTime,Converter={StaticResource SpeedToUnitConverter}}"
                                             VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -118,7 +118,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Text="{Binding MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                                            Text="{Binding MinRunwaylength,Mode=OneTime,Converter={StaticResource SmallDistanceToUnitConverter}}"
                                             VerticalAlignment="Bottom" />
 
                                     </DataTemplate>
@@ -130,7 +130,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Text="{Binding FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}"
+                                            Text="{Binding FuelConsumption,Mode=OneTime,Converter={StaticResource FuelConsumptionConverter}}"
                                             VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -140,7 +140,7 @@
                                 Width="75" util:GridViewSort.PropertyName="Produced.From.Year">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Produced.From.Year}" VerticalAlignment="Bottom" />
+                                        <TextBlock Text="{Binding Produced.From.Year,Mode=OneTime}" VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -150,7 +150,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Text="{Binding Price,Converter={StaticResource ValueCurrencyConverter}}"
+                                            Text="{Binding Price,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                             VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>

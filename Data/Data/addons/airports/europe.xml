@@ -3167,11 +3167,11 @@
    </expansions>
   </airport>
   <!--Spain (LE**)-->
- <airport name="Robert Atty Bessing Airport" icao="WRLM" iata="MLN" type="Domestic" season="All_Year">
-    <town town="Melilla Island" country="123" GMT="08:00:00" DST="08:00:00" />
+<airport name="Melilla Airport" icao="GEML" iata="MLN" type="Domestic" season="All_Year">
+    <town town="Melilla" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
-      <latitude value="2°50'11''N" />
-      <longitude value="117°22'25''E" />
+      <latitude value="35°16'47''N" />
+      <longitude value="002°57'23''E" />
     </coordinates>
     <size value="Very_small" pax="290" cargo="Smallest" cargovolume="0" />
     <terminals>

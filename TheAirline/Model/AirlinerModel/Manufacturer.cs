@@ -14,12 +14,13 @@
     {
         #region Constructors and Destructors
 
-        public Manufacturer(string name, string shortname, Country country, Boolean isReal)
+        public Manufacturer(string name, string shortname, Country country, Boolean isReal, Boolean isMajor)
         {
             this.Name = name;
             this.ShortName = shortname;
             this.Country = country;
             this.IsReal = isReal;
+            this.IsMajor = IsMajor;
         }
 
         private Manufacturer(SerializationInfo info, StreamingContext ctxt)
@@ -85,6 +86,9 @@
 
         [Versioning("country")]
         public Country Country { get; set; }
+
+        [Versioning("ismajor")]
+        public Boolean IsMajor { get; set; }
 
         [Versioning("isreal")]
         public Boolean IsReal { get; set; }

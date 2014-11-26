@@ -1,6 +1,7 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Windows;
     using System.Windows.Controls;
@@ -20,7 +21,7 @@
 
         public PageShowScenario()
         {
-            this.AllScenarios = Scenarios.GetScenarios();
+            this.AllScenarios = new ObservableCollection<Scenario>(Scenarios.GetScenarios());
 
             this.InitializeComponent();
         }
@@ -29,7 +30,7 @@
 
         #region Public Properties
 
-        public List<Scenario> AllScenarios { get; set; }
+        public ObservableCollection<Scenario> AllScenarios { get; set; }
 
         public Scenario Scenario { get; set; }
 

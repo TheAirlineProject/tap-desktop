@@ -35,15 +35,14 @@
         {
             this.FlightSchool = new FlightSchoolMVVM(fs);
             this.Instructors = new ObservableCollection<Instructor>();
-            this.AirlinerFamilies =
+            this.AirlinerFamilies = new ObservableCollection<string>(
                 AirlinerTypes.GetTypes(
                     t =>
                         t.Produced.From.Year <= GameObject.GetInstance().GameTime.Year
                         && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30))
                     .Select(t => t.AirlinerFamily)
                     .Distinct()
-                    .OrderBy(a => a)
-                    .ToList();
+                    .OrderBy(a => a));
 
             this.DataContext = this.FlightSchool;
 
@@ -56,7 +55,7 @@
 
         #region Public Properties
 
-        public List<string> AirlinerFamilies { get; set; }
+        public ObservableCollection<string> AirlinerFamilies { get; set; }
 
         public FlightSchoolMVVM FlightSchool { get; set; }
 

@@ -34,7 +34,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
         private string logoPath;
         public Airline Airline { get; set; }
         public ObservableCollection<Airport> AllAirports { get; set; }
-        public List<PropertyInfo> Colors { get; set; }
+        public ObservableCollection<PropertyInfo> Colors { get; set; }
         public double MaxSubsidiaryMoney { get; set; }
         private Boolean _iataok;
         public Boolean IATAOk
@@ -66,7 +66,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 
             this.IATAOk = false;
 
-            this.Colors = new List<PropertyInfo>();
+            this.Colors = new ObservableCollection<PropertyInfo>();
 
             foreach (PropertyInfo c in typeof(Colors).GetProperties())
             {
@@ -139,7 +139,8 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
                 Model.AirlineModel.Airline.AirlineMentality.Safe,
                 Model.AirlineModel.Airline.AirlineFocus.Local,
                 Model.AirlineModel.Airline.AirlineLicense.Domestic,
-                focus);
+                focus,
+                Model.AirlineModel.Airline.AirlineRouteSchedule.Regular);
 
             subAirline.addAirport(airport);
             subAirline.Profile.Logos.Clear();

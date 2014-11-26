@@ -17,7 +17,7 @@
                         <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1000'}"
                             VerticalAlignment="Bottom" Width="100" />
-                        <TextBlock Text="{Binding Seating}" VerticalAlignment="Bottom" />
+                        <TextBlock Text="{Binding Seating,Mode=OneTime}" VerticalAlignment="Bottom" />
                     </WrapPanel>
                     <ListBox BorderThickness="0" Background="Transparent"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
@@ -62,7 +62,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <WrapPanel>
-                                    <ContentControl Content="{Binding}" VerticalAlignment="Bottom"
+                                    <ContentControl Content="{Binding Mode=OneTime}" VerticalAlignment="Bottom"
                                                     ContentTemplate="{StaticResource FleetAirlinerLink}" />
 
                                 </WrapPanel>

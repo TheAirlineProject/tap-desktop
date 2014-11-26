@@ -28,8 +28,8 @@
         </DataTemplate>
         <DataTemplate x:Key="OpponentDiscountItem">
             <WrapPanel>
-                <TextBlock Text="{Binding FeeType.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <TextBlock Text="{Binding Value,StringFormat={}{0:0.00}%}" VerticalAlignment="Bottom" />
+                <TextBlock Text="{Binding FeeType.Name,Mode=OneTime}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding Value,Mode=OneTime,StringFormat={}{0:0.00}%}" VerticalAlignment="Bottom" />
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="HumanDiscountItem">
@@ -43,14 +43,14 @@
         </DataTemplate>
         <DataTemplate x:Key="OpponentFeeItem">
             <WrapPanel>
-                <TextBlock Text="{Binding FeeType.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <TextBlock Text="{Binding Value,Converter={StaticResource ValueCurrencyConverter}}"
+                <TextBlock Text="{Binding FeeType.Name,Mode=OneTime}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding Value,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="HumanFeeItem">
             <WrapPanel>
-                <TextBlock Text="{Binding FeeType.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding FeeType.Name,Mode=OneTime}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
                 <Slider IsSnapToTickEnabled="True" TickFrequency="{Binding Frequency}" Width="200"
                         Maximum="{Binding FeeType.MaxValue}" Minimum="{Binding FeeType.MinValue}"
                         Value="{Binding Value}" x:Name="slValue" />
@@ -72,36 +72,36 @@
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1000'}"
                         VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
                     <ListBox ItemsSource="{Binding Chargers}"
-                             Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}"
+                             Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}"
                              ItemTemplate="{StaticResource OpponentFeeItem}" Background="Transparent"
                              BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" />
                     <ListBox ItemsSource="{Binding Chargers}"
-                             Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}"
+                             Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}"
                              ItemTemplate="{StaticResource HumanFeeItem}" Background="Transparent" BorderThickness="0"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" />
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1001'}"
                         VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
                     <ListBox ItemsSource="{Binding Fees}"
-                             Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}"
+                             Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}"
                              ItemTemplate="{StaticResource OpponentFeeItem}" Background="Transparent"
                              BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" />
                     <ListBox ItemsSource="{Binding Fees}"
-                             Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}"
+                             Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}"
                              ItemTemplate="{StaticResource HumanFeeItem}" Background="Transparent" BorderThickness="0"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" />
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1002'}"
                         Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
                     <ListBox ItemsSource="{Binding Discounts}" ItemTemplate="{StaticResource OpponentDiscountItem}"
-                             Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}"
+                             Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}"
                              Background="Transparent" BorderThickness="0"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" />
                     <ListBox ItemsSource="{Binding Discounts}" ItemTemplate="{StaticResource HumanDiscountItem}"
-                             Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}"
+                             Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}"
                              Background="Transparent" BorderThickness="0"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" />
-                    <StackPanel Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                    <StackPanel Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}">
                         <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1003'}"
                             Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
@@ -125,7 +125,7 @@
                         </WrapPanel>
                     </StackPanel>
                     <WrapPanel Margin="0 5 0 0"
-                               Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                               Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}">
                         <Button
                             Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 200'}"
                             VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"
@@ -192,7 +192,7 @@
                                                                 <DataTrigger Binding="{Binding Type}" Value="Available">
                                                                     <Setter Property="Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
-                                                                <DataTrigger Binding="{Binding Airline.IsHuman}"
+                                                                <DataTrigger Binding="{Binding Airline.IsHuman,Mode=OneTime}"
                                                                              Value="False">
                                                                     <Setter Property="Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
@@ -210,7 +210,7 @@
                                                                 <DataTrigger Binding="{Binding Type}" Value="Purchased">
                                                                     <Setter Property="Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
-                                                                <DataTrigger Binding="{Binding Airline.IsHuman}"
+                                                                <DataTrigger Binding="{Binding Airline.IsHuman,Mode=OneTime}"
                                                                              Value="False">
                                                                     <Setter Property="Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
@@ -234,7 +234,7 @@
                             </GroupStyle>
                         </ListView.GroupStyle>
                     </ListView>
-                    <StackPanel Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                    <StackPanel Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}">
                         <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1010'}"
                             Margin="0 5 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
@@ -260,7 +260,7 @@
                             </Button>
                         </WrapPanel>
                     </StackPanel>
-                    <StackPanel Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                    <StackPanel Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}">
                         <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1008'}"
                             Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />

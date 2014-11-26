@@ -83,10 +83,13 @@
                 this.Cooperations.Add(cooperation);
             }
 
-            AirportHelpers.CreateAirportWeather(this.Airport);
+            
+            //AirportHelpers.CreateAirportWeather(this.Airport);
 
-            this.Weather = this.Airport.Weather.ToList();
+            this.Weather = new ObservableCollection<Weather>();
 
+            this.Airport.Weather.ForEach(w => this.Weather.Add(w));
+            
             if (!GameObject.GetInstance().DayRoundEnabled)
             {
                 this.CurrentWeather = this.Weather[0].Temperatures[GameObject.GetInstance().GameTime.Hour];
@@ -100,8 +103,8 @@
             if (!this.Airport.Statics.HasDemand)
                 PassengerHelpers.CreateDestinationDemand(this.Airport);
 
-            this.DomesticDemands = new List<DemandMVVM>();
-            this.IntlDemands = new List<DemandMVVM>();
+            this.DomesticDemands = new ObservableCollection<DemandMVVM>();
+            this.IntlDemands = new ObservableCollection<DemandMVVM>();
 
             IOrderedEnumerable<Airport> demands =
                 this.Airport.getDestinationDemands()
@@ -153,13 +156,12 @@
 
             this.UnservedRoutes = new ObservableCollection<UnservedRouteMVVM>(this.UnservedRoutes.OrderByDescending(r=>r.EstimatedDemand).Take(Math.Min(10,this.UnservedRoutes.Count)));
 
-            this.AirportFacilities =
-                this.Airport.getAirportFacilities()
-                    .FindAll(f => f.Airline == null && f.Facility.TypeLevel != 0)
-                    .Select(f => f.Facility)
-                    .Distinct()
-                    .ToList();
-
+            this.AirportFacilities = new ObservableCollection<AirportFacility>();
+            this.Airport.getAirportFacilities()
+                .FindAll(f => f.Airline == null && f.Facility.TypeLevel != 0)
+                .Select(f => f.Facility)
+                .Distinct().ToList().ForEach(f => this.AirportFacilities.Add(f));
+            
             this.AirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
             this.BuildingAirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
 
@@ -213,7 +215,7 @@
                     new AirportStatisticsMVMM(airline, passengers, passengersAvg, arrivals, routes));
             }
 
-            this.Traffic = new List<AirportTrafficMVVM>();
+            this.Traffic = new ObservableCollection<AirportTrafficMVVM>();
 
             IOrderedEnumerable<Airport> passengerDestinations = from a in Airports.GetAllActiveAirports()
                 orderby this.Airport.getDestinationPassengerStatistics(a) descending
@@ -240,7 +242,7 @@
                         AirportTrafficMVVM.TrafficType.Cargo));
             }
 
-            this.Flights = new List<DestinationFlightsMVVM>();
+            this.Flights = new ObservableCollection<DestinationFlightsMVVM>();
 
             IEnumerable<Route> airportRoutes =
                 AirportHelpers.GetAirportRoutes(this.Airport).Where(r => r.getAirliners().Count > 0);
@@ -252,7 +254,7 @@
                 Airport destination = airportRoute.Destination1 == this.Airport
                     ? airportRoute.Destination2
                     : airportRoute.Destination1;
-                if (this.Flights.Exists(f => f.Airline == airportRoute.Airline && f.Airport == destination))
+                if (this.Flights.Any(f => f.Airline == airportRoute.Airline && f.Airport == destination))
                 {
                     DestinationFlightsMVVM flight =
                         this.Flights.First(f => f.Airline == airportRoute.Airline && f.Airport == destination);
@@ -351,7 +353,7 @@
 
         public Airport Airport { get; set; }
 
-        public List<AirportFacility> AirportFacilities { get; set; }
+        public ObservableCollection<AirportFacility> AirportFacilities { get; set; }
 
         public ObservableCollection<AirlineAirportFacilityMVVM> BuildingAirlineFacilities { get; set; }
 
@@ -398,11 +400,11 @@
 
         public HourlyWeather CurrentWeather { get; set; }
 
-        public List<DemandMVVM> DomesticDemands { get; set; }
+        public ObservableCollection<DemandMVVM> DomesticDemands { get; set; }
 
-        public List<DemandMVVM> IntlDemands { get; set; }
+        public ObservableCollection<DemandMVVM> IntlDemands { get; set; }
 
-        public List<DestinationFlightsMVVM> Flights { get; set; }
+        public ObservableCollection<DestinationFlightsMVVM> Flights { get; set; }
 
 
         public int FreeCargoGates 
@@ -473,9 +475,9 @@
 
         public ObservableCollection<AirportTerminalMVVM> Terminals { get; set; }
 
-        public List<AirportTrafficMVVM> Traffic { get; set; }
+        public ObservableCollection<AirportTrafficMVVM> Traffic { get; set; }
 
-        public List<Weather> Weather { get; set; }
+        public ObservableCollection<Weather> Weather { get; set; }
 
         public double TotalPaxGates { get; set; }
 
@@ -759,7 +761,7 @@
         private Boolean _contracted;
 
         #endregion
-
+        
         #region Constructors and Destructors
 
         public DemandMVVM(Airport destination, int passengers, int totalpax, int cargo, double distance,double runway)
@@ -1252,14 +1254,14 @@
             this.Airport = airport;
             this.Distance = distance;
             this.Airline = airline;
-            this.Aircrafts = aircrafts;
+            this.Aircrafts = new ObservableCollection<AirlinerType>(aircrafts);
         }
 
         #endregion
 
         #region Public Properties
 
-        public List<AirlinerType> Aircrafts { get; set; }
+        public ObservableCollection<AirlinerType> Aircrafts { get; set; }
 
         public Airline Airline { get; set; }
 

@@ -2,10 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
@@ -25,7 +25,7 @@
 
             double totalProfit = profitRoutes.Sum(r => r.Balance);
 
-            this.ProfitRoutes = new List<RouteProfitMVVM>();
+            this.ProfitRoutes = new ObservableCollection<RouteProfitMVVM>();
             foreach (Route route in profitRoutes.Take(Math.Min(5, profitRoutes.Count())))
             {
                 this.ProfitRoutes.Add(new RouteProfitMVVM(route, totalProfit));
@@ -41,7 +41,8 @@
                             + r.Destination2.getDestinationPassengersRate(
                                 r.Destination1,
                                 AirlinerClass.ClassType.Economy_Class));
-            this.RequestedRoutes = requestedRoutes.Take(Math.Min(5, requestedRoutes.Count())).ToList();
+
+            this.RequestedRoutes = new ObservableCollection<Route>(requestedRoutes.Take(Math.Min(5, requestedRoutes.Count())));
 
             IOrderedEnumerable<Route> yearToDateRoutes =
                 GameObject.GetInstance()
@@ -58,7 +59,7 @@
                             new DateTime(GameObject.GetInstance().GameTime.Year, 1, 1),
                             GameObject.GetInstance().GameTime));
 
-            this.YearToDateProfitRoutes = new List<RouteProfitMVVM>();
+            this.YearToDateProfitRoutes = new ObservableCollection<RouteProfitMVVM>();
             foreach (Route route in yearToDateRoutes.Take(Math.Min(5, yearToDateRoutes.Count())))
             {
                 this.YearToDateProfitRoutes.Add(new RouteProfitMVVM(route, yearToDateProfit));
@@ -78,22 +79,22 @@
 
             double lastMonthProfit = lastMonthProfitRoutes.Sum(r => r.getBalance(lastMonthStartDate, lastMonthEndDate));
 
-            this.LastMonthProfitRoutes = new List<RouteProfitMVVM>();
+            this.LastMonthProfitRoutes = new ObservableCollection<RouteProfitMVVM>();
             foreach (Route route in lastMonthProfitRoutes.Take(Math.Min(5, lastMonthProfitRoutes.Count())))
             {
                 this.LastMonthProfitRoutes.Add(new RouteProfitMVVM(route, lastMonthProfit));
             }
 
-            this.IncomePaxRoutes = new List<RouteIncomePerPaxMVVM>();
+            this.IncomePaxRoutes = new ObservableCollection<RouteIncomePerPaxMVVM>();
             foreach (Route route in GameObject.GetInstance().HumanAirline.Routes)
             {
                 this.IncomePaxRoutes.Add(new RouteIncomePerPaxMVVM(route));
             }
 
-            this.IncomePaxRoutes =
-                this.IncomePaxRoutes.OrderByDescending(r => r.IncomePerPax)
-                    .Take(Math.Min(5, this.IncomePaxRoutes.Count))
-                    .ToList();
+            this.IncomePaxRoutes = new ObservableCollection<RouteIncomePerPaxMVVM>();
+            this.IncomePaxRoutes.OrderByDescending(r => r.IncomePerPax)
+                .Take(Math.Min(5, this.IncomePaxRoutes.Count))
+                .ToList().ForEach(r => this.IncomePaxRoutes.Add(r));
 
             this.Loaded += this.PageRoutes_Loaded;
             this.InitializeComponent();
@@ -103,15 +104,15 @@
 
         #region Public Properties
 
-        public List<RouteIncomePerPaxMVVM> IncomePaxRoutes { get; set; }
+        public ObservableCollection<RouteIncomePerPaxMVVM> IncomePaxRoutes { get; set; }
 
-        public List<RouteProfitMVVM> LastMonthProfitRoutes { get; set; }
+        public ObservableCollection<RouteProfitMVVM> LastMonthProfitRoutes { get; set; }
 
-        public List<RouteProfitMVVM> ProfitRoutes { get; set; }
+        public ObservableCollection<RouteProfitMVVM> ProfitRoutes { get; set; }
 
-        public List<Route> RequestedRoutes { get; set; }
+        public ObservableCollection<Route> RequestedRoutes { get; set; }
 
-        public List<RouteProfitMVVM> YearToDateProfitRoutes { get; set; }
+        public ObservableCollection<RouteProfitMVVM> YearToDateProfitRoutes { get; set; }
 
         #endregion
 

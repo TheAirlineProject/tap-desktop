@@ -21,6 +21,7 @@
     using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
+    using System.Collections.ObjectModel;
 
     /// <summary>
     ///     Interaction logic for PageNewAirline.xaml
@@ -38,7 +39,7 @@
         public PageNewAirline()
         {
             this.Colors = new List<PropertyInfo>();
-            this.AllCountries = Countries.GetCountries().OrderBy(c => c.Name).ToList();
+            this.AllCountries = new ObservableCollection<Country>(Countries.GetCountries().OrderBy(c => c.Name));
 
             foreach (PropertyInfo c in typeof(Colors).GetProperties())
             {
@@ -60,7 +61,7 @@
 
         #region Public Properties
 
-        public List<Country> AllCountries { get; set; }
+        public ObservableCollection<Country> AllCountries { get; set; }
 
         public List<PropertyInfo> Colors { get; set; }
 
@@ -233,7 +234,8 @@
                 Airline.AirlineMentality.Aggressive,
                 Airline.AirlineFocus.Local,
                 Airline.AirlineLicense.Domestic,
-                focus);
+                focus,
+                Airline.AirlineRouteSchedule.Regular);
 
             Airlines.AddAirline(airline);
 

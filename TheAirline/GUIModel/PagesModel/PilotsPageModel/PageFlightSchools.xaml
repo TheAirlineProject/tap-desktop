@@ -55,7 +55,7 @@
                                                                Width="200" SortPropertyName="Profile.Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Name}" />
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Name,Mode=OneTime}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </filter:SortableGridViewColumn>
@@ -64,7 +64,7 @@
                                                                Width="50" SortPropertyName="Profile.Age">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Age}" />
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Age,Mode=OneTime}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </filter:SortableGridViewColumn>
@@ -73,7 +73,7 @@
                                                                Width="100" SortPropertyName="Rating.Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Rating.Name}" />
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Rating.Name,Mode=OneTime}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </filter:SortableGridViewColumn>
@@ -82,7 +82,7 @@
                                                                Width="200" SortPropertyName="Profile.Town.Country.Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding Profile.Town.Country}"
+                                            <ContentControl Content="{Binding Profile.Town.Country,Mode=OneTime}"
                                                             VerticalAlignment="Bottom"
                                                             ContentTemplate="{StaticResource CountryLongFlagItem}" />
                                         </DataTemplate>
@@ -121,8 +121,8 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock VerticalAlignment="Bottom">
-                                                <Hyperlink Tag="{Binding}" Click="lnkFlightSchool_Click">
-                                                    <Run Text="{Binding Name}" />
+                                                <Hyperlink Tag="{Binding Mode=OneTime}" Click="lnkFlightSchool_Click">
+                                                    <Run Text="{Binding Name,Mode=OneTime}" />
                                                 </Hyperlink>
                                             </TextBlock>
                                         </DataTemplate>

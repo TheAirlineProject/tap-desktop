@@ -11,7 +11,7 @@
         <DataTemplate x:Key="ScoreItem">
             <WrapPanel>
                 <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Width="150" FontWeight="Bold" />
-                <ProgressBar Width="100" Value="{Binding Score}" VerticalAlignment="Bottom" Height="15"
+                <ProgressBar Width="100" Value="{Binding Score,Mode=OneTime}" VerticalAlignment="Bottom" Height="15"
                              Background="Transparent" BorderBrush="Black" />
                 <TextBlock Text="{Binding Score}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
             </WrapPanel>
@@ -50,7 +50,7 @@
                                     Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom"
+                                            <TextBlock Text="{Binding Type.Name,Mode=OneTime}" VerticalAlignment="Bottom"
                                                        FontWeight="Bold" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

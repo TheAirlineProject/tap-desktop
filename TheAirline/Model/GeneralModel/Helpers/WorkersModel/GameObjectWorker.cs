@@ -168,6 +168,7 @@
                     sw.Start();
                     GameObjectHelpers.SimulateTurn();
                     sw.Stop();
+                    //Console.WriteLine(GameObject.GetInstance().GameTime.ToShortDateString() + " took " + sw.ElapsedMilliseconds + " ms. to run");
 
                     long waittime = (int)Settings.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
                   

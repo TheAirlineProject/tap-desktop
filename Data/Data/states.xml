@@ -10,12 +10,14 @@
 	<state country="116" name="Australian Capital Territory" shortname="ACT"  flag="Australia - 	Australian_Capital_Territory"></state>
 	<!--Canada-->
 	<state country="113" name="Alberta" shortname="AB"  flag="Canada - Alberta"></state>
-	<state country="113" name="Yukon" shortname="YT"  flag="Canada - Yukon"></state>
+	<state country="113" name="Yukon" shortname="YU"  flag="Canada - Yukon"></state>
 		<state country="113" name="Northwest Territories" shortname="NW"  flag="Canada - Northwest Territories"></state>
 	<state country="113" name="British Columbia" shortname="BC"  flag="Canada - British Columbia"></state>
 	<state country="113" name="Manitoba" shortname="MB"  flag="Canada - Manitoba"></state>
 	<state country="113" name="New Brunswick" shortname="NB"  flag="Canada - New Brunswick"></state>
 	<state country="113" name="Newfoundland and Labrador" shortname="NL"  flag="Canada - Newfoundland and Labrador"></state>
+		<state country="113" name="Northwest Territories" shortname="NT"  flag="Canada - Northwest Territories"></state>
+		<state country="113" name="Nunavut" shortname="NU"  flag="Canada - Nunavut"></state>
 	<state country="113" name="Nova Scotia" shortname="NS"  flag="Canada - Nova Scotia"></state>
 	<state country="113" name="Ontario" shortname="ON"  flag="Canada - Ontario"></state>
 	<state country="113" name="Quebec" shortname="QC"  flag="Canada - Quebec"></state>

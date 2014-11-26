@@ -1594,6 +1594,23 @@
     </runways>
   </airport>
   <!--Canada-->
+  <airport name="Toronto Pickering International Airport" icao="CYZZ" iata="ZZZ" type="International" season="All_Year">
+    <period from="01.01.2020 00:00:00" to="12.31.2199 00:00:00" />
+    <town town="Toronto, ON" country="113" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="43°56'06''N" />
+      <longitude value="79°10'05''W" />
+    </coordinates>
+    <size value="Large" pax="11900" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="45" />
+    </terminals>
+    <runways>
+      <runway name="10L/28R" length="3048" surface="Asphalt" />
+      <runway name="15/33" length="2591" surface="Asphalt" />
+      <runway name="10R/28L" length="3048" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Abbotsford International Airport" icao="CYXX" iata="YXX" type="International" season="All_Year">
     <town town="Abbotsford, BC" country="113" GMT="-07:00:00" DST="-08:00:00" />
     <coordinates>
@@ -13828,6 +13845,36 @@
     </runways>
   </airport>
   <!--Spain-->
+  <airport name="Ceuta Heliport" icao="GECE" iata="JCU" type="Domestic" season="All_Year">
+	    <period from="01.09.2004 00:00:00" to="01.01.2199 00:00:00" />
+    <town town="Ceuta" country="123" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="035°53'33''N" />
+      <longitude value="005°18'21''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="H1" length="42" surface="Asphalt" type="Helipad" />
+      </runways>
+  </airport>
+  <airport name="Algeciras Heliport" icao="LEAG" iata="AEI" type="Domestic" season="All_Year">
+  <period from="07.01.2010 00:00:00" to="01.01.2199 00:00:00" />
+    <town town="Algeciras" country="123" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="036°07'44''N" />
+      <longitude value="005°26'28''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="H1" length="32" surface="Asphalt" type="Helipad" />
+      </runways>
+  </airport>
   <airport name="Lleida–Alguaire Airport" icao="LEDA" iata="ILD" type="International" season="All_Year">
     <town town="Lleida" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>

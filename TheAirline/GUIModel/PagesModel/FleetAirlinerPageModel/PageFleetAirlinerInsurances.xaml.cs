@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -25,7 +26,7 @@
 
             this.Airliner = airliner;
             this.DataContext = this.Airliner;
-            this.AllAirports = new List<Airport>();
+            this.AllAirports = new ObservableCollection<Airport>();
 
             IEnumerable<Airport> airports =
                 this.Airliner.Airliner.Airliner.Airline.Airports.Where(
@@ -51,7 +52,7 @@
 
                 if (fMaintenance.CheckCenter != null)
                 {
-                    maintenance.Center =fMaintenance.CheckCenter.Airport != null ? maintenance.Centers.Find(c => c.Airport == fMaintenance.CheckCenter.Airport) : maintenance.Centers.Find(c => c.Center == fMaintenance.CheckCenter.Center);
+                    maintenance.Center =fMaintenance.CheckCenter.Airport != null ? maintenance.Centers.First(c => c.Airport == fMaintenance.CheckCenter.Airport) : maintenance.Centers.First(c => c.Center == fMaintenance.CheckCenter.Center);
                 }
             }
         }
@@ -62,7 +63,7 @@
 
         public FleetAirlinerMVVM Airliner { get; set; }
 
-        public List<Airport> AllAirports { get; set; }
+        public ObservableCollection<Airport> AllAirports { get; set; }
 
         #endregion
 

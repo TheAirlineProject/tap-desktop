@@ -40,7 +40,7 @@
                         util:GridViewSort.PropertyName="Airline.Profile.Name" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ContentControl Content="{Binding Airline}"
+                                <ContentControl Content="{Binding Airline,Mode=OneTime}"
                                                 ContentTemplate="{StaticResource AirlineLongLink}"
                                                 VerticalAlignment="Bottom" />
                             </DataTemplate>
@@ -52,7 +52,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ProgressBar HorizontalAlignment="Center" Width="100"
-                                             Value="{Binding Airline.Reputation}" VerticalAlignment="Bottom"
+                                             Value="{Binding Airline.Reputation,Mode=OneTime}" VerticalAlignment="Bottom"
                                              Height="15" Background="Transparent" BorderBrush="Black" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -71,7 +71,7 @@
                         util:GridViewSort.PropertyName="AvgFleetAge" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding AvgFleetAge,StringFormat={}{0:0.#}}"
+                                <TextBlock Text="{Binding AvgFleetAge,Mode=OneTime,StringFormat={}{0:0.#}}"
                                            VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -90,7 +90,7 @@
                         util:GridViewSort.PropertyName="Flights" Width="75">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom" />
+                                <TextBlock Text="{Binding Flights,Mode=OneTime}" VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -99,7 +99,7 @@
                         util:GridViewSort.PropertyName="Passengers" Width="75">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Passengers}" VerticalAlignment="Bottom" />
+                                <TextBlock Text="{Binding Passengers,Mode=OneTime}" VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -108,7 +108,7 @@
                         util:GridViewSort.PropertyName="PassengersPerFlight" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding PassengersPerFlight}" VerticalAlignment="Bottom" />
+                                <TextBlock Text="{Binding PassengersPerFlight,Mode=OneTime}" VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -117,7 +117,7 @@
                         util:GridViewSort.PropertyName="Passengers" Width="75">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Cargo}" VerticalAlignment="Bottom" />
+                                <TextBlock Text="{Binding Cargo,Mode=OneTime}" VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -126,7 +126,7 @@
                         util:GridViewSort.PropertyName="PassengersPerFlight" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding CargoPerFlight}" VerticalAlignment="Bottom" />
+                                <TextBlock Text="{Binding CargoPerFlight,Mode=OneTime}" VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -136,7 +136,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Profit,Converter={StaticResource ValueCurrencyConverter}}"
-                                           Foreground="{Binding Profit,Converter={StaticResource ValueIsMinusConverter}}"
+                                           Foreground="{Binding Profit,Mode=OneTime,Converter={StaticResource ValueIsMinusConverter}}"
                                            HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

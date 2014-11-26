@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
-  <profile name="Jetstar Asia Airways" iata="3K" color="Black" country="174" CEO="Barathan Pasupathi" mentality="Safe"
+  <profile name="Jetstar Asia Airways" iata="3K" logo="JQ" color="Black" country="174" CEO="Barathan Pasupathi" mentality="Safe"
            market="Global" preferedairport="SIN">
   <narrative narrative="Jetstar Asia was launched in 2004 as a partnership between Qantas, holding a 49% stake in the airline, Singaporean businessmen Tony Chew (22%) and FF Wong (10%) and the Singapore government's investment company, Temasek Holdings (Private) Limited (19%)."/>
    </profile>

@@ -25,7 +25,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" FontSize="16" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding Type.Name,Mode=OneTime}" VerticalAlignment="Bottom" FontSize="16" FontWeight="Bold"></TextBlock>
 
                                     <WrapPanel>
                                         <TextBlock
@@ -101,7 +101,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding InsType, Converter={StaticResource TextUnderscoreConverter}}"
+                                                Text="{Binding InsType,Mode=OneTime, Converter={StaticResource TextUnderscoreConverter}}"
                                                 VerticalAlignment="Bottom" FontWeight="Bold" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -112,7 +112,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding InsScope, Converter={StaticResource TextUnderscoreConverter}}"
+                                                Text="{Binding InsScope,Mode=OneTime, Converter={StaticResource TextUnderscoreConverter}}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -123,7 +123,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding InsTerms, Converter={StaticResource TextUnderscoreConverter}}"
+                                                Text="{Binding InsTerms,Mode=OneTime, Converter={StaticResource TextUnderscoreConverter}}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -134,7 +134,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding InsuredAmount, Converter={StaticResource ValueCurrencyConverter}}"
+                                                Text="{Binding InsuredAmount,Mode=OneTime, Converter={StaticResource ValueCurrencyConverter}}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

@@ -2,10 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.GeneralModel;
@@ -20,7 +20,7 @@
 
         public PageAlliances()
         {
-            this.HumanAlliances = GameObject.GetInstance().HumanAirline.Alliances;
+            this.HumanAlliances = new ObservableCollection<Alliance>(GameObject.GetInstance().HumanAirline.Alliances);
 
             List<Alliance> alliances =
                 Alliances.GetAlliances()
@@ -33,7 +33,7 @@
                                         StatisticsTypes.GetStatisticsType("Passengers"))))
                     .ToList();
 
-            this.LargestAlliances = alliances.Take(Math.Min(5, alliances.Count)).ToList();
+            this.LargestAlliances = new ObservableCollection<Alliance>(alliances.Take(Math.Min(5, alliances.Count)));
             this.Loaded += this.PageAlliances_Loaded;
 
             this.InitializeComponent();
@@ -43,9 +43,9 @@
 
         #region Public Properties
 
-        public List<Alliance> HumanAlliances { get; set; }
+        public ObservableCollection<Alliance> HumanAlliances { get; set; }
 
-        public List<Alliance> LargestAlliances { get; set; }
+        public ObservableCollection<Alliance> LargestAlliances { get; set; }
 
         #endregion
 

@@ -7,19 +7,19 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel HorizontalAlignment="Center">
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Airliner1.TailNumber,ElementName=popUpCompareAirliners}" Width="150" VerticalAlignment="Bottom" TextAlignment="Right"></TextBlock>
+                <TextBlock Text="{Binding Airliner1.TailNumber,Mode=OneTime,ElementName=popUpCompareAirliners}" Width="150" VerticalAlignment="Bottom" TextAlignment="Right"></TextBlock>
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1009'}" TextAlignment="Center" HorizontalAlignment="Center" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding Airliner2.TailNumber,ElementName=popUpCompareAirliners}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Airliner2.TailNumber,Mode=OneTime,ElementName=popUpCompareAirliners}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <ContentControl Content="{Binding Airliner1.Registered, ElementName=popUpCompareAirliners}" Width="150" VerticalAlignment="Bottom" HorizontalAlignment="Right" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
+                <ContentControl Content="{Binding Airliner1.Registered,Mode=OneTime, ElementName=popUpCompareAirliners}" Width="150" VerticalAlignment="Bottom" HorizontalAlignment="Right" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1004'}" HorizontalAlignment="Center" TextAlignment="Center" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <ContentControl Content="{Binding Airliner2.Registered, ElementName=popUpCompareAirliners}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
+                <ContentControl Content="{Binding Airliner2.Registered,Mode=OneTime, ElementName=popUpCompareAirliners}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="{Binding Airliner1.BuiltDate.Year,ElementName=popUpCompareAirliners}" Width="150" VerticalAlignment="Bottom" TextAlignment="Right"></TextBlock>
+                <TextBlock Text="{Binding Airliner1.BuiltDate.Year,Mode=OneTime,ElementName=popUpCompareAirliners}" Width="150" VerticalAlignment="Bottom" TextAlignment="Right"></TextBlock>
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1009'}" Width="150" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding Airliner2.BuiltDate.Year,ElementName=popUpCompareAirliners}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Airliner2.BuiltDate.Year,Mode=OneTime,ElementName=popUpCompareAirliners}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
         </StackPanel>
    <!--

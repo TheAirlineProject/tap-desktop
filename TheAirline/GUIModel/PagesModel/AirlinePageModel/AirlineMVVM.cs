@@ -69,8 +69,9 @@
                 this.DeliveredFleet.Add(airliner);
             }
 
-            this.OrderedFleet = this.Airline.Fleet.FindAll(
-                a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
+            this.OrderedFleet = new ObservableCollection<FleetAirliner>();
+            this.Airline.Fleet.FindAll(
+                a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime).ForEach(f=>this.OrderedFleet.Add(f));
 
             this.OutleasedFleet = new ObservableCollection<FleetAirliner>();
 
@@ -98,9 +99,9 @@
             this.Destinations = new ObservableCollection<AirlineDestinationMVVM>();
             this.AirlineAirlines = new ObservableCollection<Airline>();
             this.FundsAirlines = new ObservableCollection<Airline>();
-            this.Routes = new List<AirlineRouteMVVM>();
+            this.Routes = new ObservableCollection<AirlineRouteMVVM>();
             this.Codeshares = new ObservableCollection<Airline>();
-            this.Cooperations = new List<CooperationMVVM>();
+            this.Cooperations = new ObservableCollection<CooperationMVVM>();
             this.MaintenanceCenters = new ObservableCollection<MaintenanceCenter>();
             this.Maintenances = new List<AirlineMaintenanceMVVM>();
 
@@ -193,7 +194,7 @@
             double buyingPrice = this.Airline.getValue() * 1000000 * 1.10;
             this.IsBuyable = !this.Airline.IsHuman && GameObject.GetInstance().HumanAirline.Money > buyingPrice;
 
-            this.ActiveQuantity = new List<AirlinerQuantityMVVM>();
+            this.ActiveQuantity = new ObservableCollection<AirlinerQuantityMVVM>();
 
             var fleet = new List<FleetAirliner>(this.Airline.Fleet);
 
@@ -223,7 +224,9 @@
                 }
             }
 
-            this.ActiveQuantity = ActiveQuantity.OrderBy(a => a.Type.Name).ToList();
+            this.ActiveQuantity = new ObservableCollection<AirlinerQuantityMVVM>();
+            
+            ActiveQuantity.OrderBy(a => a.Type.Name).ToList().ForEach(a=>this.ActiveQuantity.Add(a));
 
             this.HasAlliance = this.Alliance != null || this.Codeshares.Count > 0;
 
@@ -266,7 +269,7 @@
 
         #region Public Properties
 
-        public List<AirlinerQuantityMVVM> ActiveQuantity { get; set; }
+        public ObservableCollection<AirlinerQuantityMVVM> ActiveQuantity { get; set; }
 
         public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
 
@@ -308,7 +311,7 @@
 
         public List<PropertyInfo> Colors { get; set; }
 
-        public List<CooperationMVVM> Cooperations { get; set; }
+        public ObservableCollection<CooperationMVVM> Cooperations { get; set; }
 
         public ObservableCollection<FleetAirliner> DeliveredFleet { get; set; }
 
@@ -426,7 +429,7 @@
         }
         public ObservableCollection<FleetAirliner> OutleasedFleet { get; set; }
 
-        public List<FleetAirliner> OrderedFleet { get; set; }
+        public ObservableCollection<FleetAirliner> OrderedFleet { get; set; }
 
         public ObservableCollection<PilotMVVM> Pilots { get; set; }
 
@@ -447,7 +450,7 @@
             }
         }
 
-        public List<AirlineRouteMVVM> Routes { get; set; }
+        public ObservableCollection<AirlineRouteMVVM> Routes { get; set; }
 
         public ObservableCollection<SubsidiaryAirline> Subsidiaries { get; set; }
 
@@ -821,7 +824,8 @@
                 {
                     var advertisement = new AirlineAdvertisementMVVM(type);
 
-                    advertisement.Types = AdvertisementTypes.GetTypes(type);
+                    advertisement.Types = new ObservableCollection<AdvertisementType>();
+                    AdvertisementTypes.GetTypes(type).ForEach(t=>advertisement.Types.Add(t));
 
                     this.Advertisements.Add(advertisement);
                 }
@@ -1385,14 +1389,14 @@
         {
             this.Type = type;
 
-            this.Facilities = new List<AirlineClassFacilityMVVM>();
+            this.Facilities = new ObservableCollection<AirlineClassFacilityMVVM>();
         }
 
         #endregion
 
         #region Public Properties
 
-        public List<AirlineClassFacilityMVVM> Facilities { get; set; }
+        public ObservableCollection<AirlineClassFacilityMVVM> Facilities { get; set; }
 
         public AirlinerClass.ClassType Type { get; set; }
 
@@ -1440,7 +1444,7 @@
 
         public AdvertisementType.AirlineAdvertisementType Type { get; set; }
 
-        public List<AdvertisementType> Types { get; set; }
+        public ObservableCollection<AdvertisementType> Types { get; set; }
 
         #endregion
 
@@ -1459,8 +1463,13 @@
     }
 
     //the mvvm class for a rating/score
-    public class AirlineScoreMVVM
+    public class AirlineScoreMVVM : INotifyPropertyChanged
     {
+        #region Private properties
+        private string _name;
+        private int _score;
+        #endregion
+        
         #region Constructors and Destructors
 
         public AirlineScoreMVVM(string name, int score)
@@ -1473,12 +1482,46 @@
 
         #region Public Properties
 
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return this._name;
+            }
+            set
+            {
+                this._name = value;
+                this.NotifyPropertyChanged("Name");
+            }
+        }
 
-        public int Score { get; set; }
+       public int Score
+        {
+            get
+            {
+                return this._score;
+            }
+            set
+            {
+                this._score = value;
+                this.NotifyPropertyChanged("Score");
+            }
+        }
 
         #endregion
-    }
+    
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+}
 
     //the mvvm class for a loan
     public class LoanMVVM : INotifyPropertyChanged

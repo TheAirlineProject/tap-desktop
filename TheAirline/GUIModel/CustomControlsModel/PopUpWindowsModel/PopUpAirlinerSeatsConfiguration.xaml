@@ -9,33 +9,33 @@
             <StackPanel>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1006'}"  Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                    <Image Source="{Binding Manufacturer.Logo}" VerticalAlignment="Bottom"
+                    <Image Source="{Binding Manufacturer.Logo,Mode=OneTime}" VerticalAlignment="Bottom"
                        RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
-                    <TextBlock Text="{Binding Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock Text="{Binding Manufacturer.Name,Mode=OneTime}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 </WrapPanel>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1007'}"  Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding Model}" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding Model,Mode=OneTime}" VerticalAlignment="Bottom"></TextBlock>
                 </WrapPanel>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1008'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding Engine}" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding Engine,Mode=OneTime}" VerticalAlignment="Bottom"></TextBlock>
                 </WrapPanel>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1009'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding Noise,Converter={StaticResource TextUnderscoreConverter}}"  VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding Noise,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"  VerticalAlignment="Bottom"></TextBlock>
                 </WrapPanel>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1010'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding Ceiling}" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding Ceiling,Mode=OneTime}" VerticalAlignment="Bottom"></TextBlock>
                 </WrapPanel>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1011'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding MaxSpeed,Converter={StaticResource SpeedToUnitConverter}}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding MaxSpeed,Mode=OneTime,Converter={StaticResource SpeedToUnitConverter}}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
                 </WrapPanel>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1012'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding Price,Converter={StaticResource ValueCurrencyConverter}}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding Price,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
                 </WrapPanel>
             </StackPanel>
         </DataTemplate>
@@ -48,7 +48,7 @@
                                 <DataTrigger Binding="{Binding Path=FreeClassTypes.Count,ElementName=popUpAirlinerSeatsConfiguration}" Value="2">
                                 <Setter Property="TextBlock.Visibility" Value="Collapsed" />
                             </DataTrigger>
-                                <DataTrigger Binding="{Binding CanDelete}" Value="False">
+                                <DataTrigger Binding="{Binding CanDelete,Mode=OneTime}" Value="False">
                                     <Setter Property="TextBlock.Visibility" Value="Visible" />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -67,7 +67,7 @@
                                 <DataTrigger Binding="{Binding Path=FreeClassTypes.Count,ElementName=popUpAirlinerSeatsConfiguration}" Value="0">
                                     <Setter Property="ComboBox.Visibility" Value="Collapsed" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding CanDelete}" Value="False">
+                                <DataTrigger Binding="{Binding CanDelete,Mode=OneTime}" Value="False">
                                     <Setter Property="ComboBox.Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -79,7 +79,7 @@
                     <TextBlock.Style>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding CanDelete}" Value="True">
+                                <DataTrigger Binding="{Binding CanDelete,Mode=OneTime}" Value="True">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -90,7 +90,7 @@
                     <WrapPanel.Style>
                         <Style>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding CanDelete}" Value="False">
+                                <DataTrigger Binding="{Binding CanDelete,Mode=OneTime}" Value="False">
                                     <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -113,10 +113,10 @@
                     <TabItem.Style>
                         <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Type.TypeAirliner,ElementName=popUpAirlinerSeatsConfiguration}" Value="Cargo">
+                                <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime,ElementName=popUpAirlinerSeatsConfiguration}" Value="Cargo">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Type.TypeAirliner,ElementName=popUpAirlinerSeatsConfiguration}" Value="Helicopter">
+                                <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime,ElementName=popUpAirlinerSeatsConfiguration}" Value="Helicopter">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -132,10 +132,10 @@
                     <TabItem.Style>
                         <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Type.TypeAirliner,ElementName=popUpAirlinerSeatsConfiguration}" Value="Cargo">
+                                <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime,ElementName=popUpAirlinerSeatsConfiguration}" Value="Cargo">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Type.TypeAirliner,ElementName=popUpAirlinerSeatsConfiguration}" Value="Helicopter">
+                                <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime,ElementName=popUpAirlinerSeatsConfiguration}" Value="Helicopter">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -186,9 +186,9 @@
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                            <Image Source="{Binding Manufacturer.Logo}" VerticalAlignment="Bottom"
+                                            <Image Source="{Binding Manufacturer.Logo,Mode=OneTime}" VerticalAlignment="Bottom"
                        RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
-                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Model}" Margin="5 0 0 0"></TextBlock>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Model,Mode=OneTime}" Margin="5 0 0 0"></TextBlock>
                                     </WrapPanel>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>

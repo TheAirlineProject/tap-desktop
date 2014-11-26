@@ -26,7 +26,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     {
         public ObservableCollection<AirlinerClassMVVM> Classes { get; set; }
         public ObservableCollection<AirlinerClass.ClassType> FreeClassTypes { get; set; }
-        public List<EngineType> Engines { get; set; }
+        public ObservableCollection<EngineType> Engines { get; set; }
         public EngineType SelectedEngine { get; set; }
         public Boolean CanSetSeats { get; set; }
         private Boolean _canAddNewClass;
@@ -51,7 +51,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.FreeClassTypes = new ObservableCollection<AirlinerClass.ClassType>();
             this.Classes = new ObservableCollection<AirlinerClassMVVM>();
             this.Type = type;
-            this.Engines = new List<EngineType>();
+            this.Engines = new ObservableCollection<EngineType>();
 
             foreach (EngineType e in EngineTypes.GetEngineTypes(type, GameObject.GetInstance().GameTime.Year).OrderBy(t => t.Price))
                 this.Engines.Add(e);

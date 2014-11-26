@@ -63,7 +63,7 @@
                     .ToList();*/
 
             AirlinerType dummyAircraft = new AirlinerCargoType(
-                new Manufacturer("Dummy", "", null, false),
+                new Manufacturer("Dummy", "", null, false,false),
                 "All Aircrafts",
                 "",
                 0,
@@ -82,9 +82,9 @@
                 AirlinerType.TypeOfEngine.Jet,
                 new Period<DateTime>(DateTime.Now, DateTime.Now),
                 0,
-                false);
+                false,false);
 
-            this.HumanAircrafts = new List<AirlinerType>();
+            this.HumanAircrafts = new ObservableCollection<AirlinerType>();
 
             this.HumanAircrafts.Add(dummyAircraft);
 
@@ -118,7 +118,7 @@
 
         public ObservableCollection<SpecialContract> Contracts { get; set; }
 
-        public List<AirlinerType> HumanAircrafts { get; set; }
+        public ObservableCollection<AirlinerType> HumanAircrafts { get; set; }
 
         public string RouteInformationText
         {

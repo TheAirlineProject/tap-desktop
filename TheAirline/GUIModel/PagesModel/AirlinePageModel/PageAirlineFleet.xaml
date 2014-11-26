@@ -127,7 +127,7 @@
                                                 <Image Source="{Binding Airliner.Type.Manufacturer.Logo}"
                                                        VerticalAlignment="Bottom"
                                                        RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
-                                                <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name}"
+                                                <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name,Mode=OneTime}"
                                                            VerticalAlignment="Bottom" />
                                             </WrapPanel>
                                         </DataTemplate>
@@ -166,7 +166,7 @@
                                     CanFilter="False" SortPropertyName="Airliner.Type.CockpitCrew" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Airliner.Type.CockpitCrew}"
+                                            <TextBlock Text="{Binding Airliner.Type.CockpitCrew,Mode=OneTime}"
                                                        VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -245,7 +245,7 @@
                                                 <Image Source="{Binding Airliner.Type.Manufacturer.Logo}"
                                                        VerticalAlignment="Bottom"
                                                        RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
-                                                <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name}"
+                                                <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name,Mode=OneTime}"
                                                            VerticalAlignment="Bottom" />
                                             </WrapPanel>
                                         </DataTemplate>
@@ -257,7 +257,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding Airliner.BuiltDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                                                Text="{Binding Airliner.BuiltDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture},Mode=OneTime}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -315,7 +315,7 @@
                                     CanFilter="False" SortPropertyName="Name" Width="150">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
+                                                <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </filter:SortableGridViewColumn>
@@ -328,7 +328,7 @@
                                                     <Image Source="{Binding Airliner.Type.Manufacturer.Logo}"
                                                        VerticalAlignment="Bottom"
                                                        RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
-                                                    <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name}"
+                                                    <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name,Mode=OneTime}"
                                                            VerticalAlignment="Bottom" />
                                                 </WrapPanel>
                                             </DataTemplate>
@@ -340,7 +340,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock
-                                                Text="{Binding Airliner.BuiltDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                                                Text="{Binding Airliner.BuiltDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture},Mode=OneTime}"
                                                 VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -366,7 +366,7 @@
                                     Width="100" util:GridViewSort.PropertyName="Route.Destination1.Profile.Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding Route}" VerticalAlignment="Bottom"
+                                            <ContentControl Content="{Binding Route,Mode=OneTime}" VerticalAlignment="Bottom"
                                                             ContentTemplate="{StaticResource RouteItem}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -398,8 +398,8 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding Route.Balance,Converter={StaticResource ValueCurrencyConverter}}"
-                                                Foreground="{Binding Route.Balance,Converter={StaticResource ValueIsMinusConverter}}"
+                                                Text="{Binding Route.Balance,Converter={StaticResource ValueCurrencyConverter},Mode=OneTime}"
+                                                Foreground="{Binding Route.Balance,Converter={StaticResource ValueIsMinusConverter},Mode=OneTime}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -409,7 +409,7 @@
                                     Width="75" util:GridViewSort.PropertyName="Route.FillingDegree">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Route.FillingDegree,StringFormat={}{0:0.00 %}}"
+                                            <TextBlock Text="{Binding Route.FillingDegree,StringFormat={}{0:0.00 %},Mode=OneTime}"
                                                        VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -430,7 +430,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <WrapPanel>
-                                    <ContentControl Content="{Binding Airport}"
+                                    <ContentControl Content="{Binding Airport,Mode=OneTime}"
                                                     ContentTemplate="{StaticResource AirportCountryLink}"
                                                     VerticalAlignment="Bottom" Width="250" />
                                     <TextBlock Text="{Binding Cooperation.Type.Name}" VerticalAlignment="Bottom" />

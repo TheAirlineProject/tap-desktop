@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -39,9 +40,9 @@
                 this.Contracts.Add(new SpecialContractMVVM(sc,startdate,enddate));
             }
 
-          
 
-            this.Airliners = new List<FleetAirlinerMVVM>();
+
+            this.Airliners = new ObservableCollection<FleetAirlinerMVVM>();
             foreach (
                 FleetAirliner airliner in
                     GameObject.GetInstance()
@@ -59,7 +60,7 @@
 
         #region Public Properties
 
-        public List<FleetAirlinerMVVM> Airliners { get; set; }
+        public ObservableCollection<FleetAirlinerMVVM> Airliners { get; set; }
 
         public List<SpecialContractMVVM> Contracts { get; set; }
 

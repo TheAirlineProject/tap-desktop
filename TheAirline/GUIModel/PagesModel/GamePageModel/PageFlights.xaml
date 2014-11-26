@@ -30,7 +30,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <ContentControl ContentTemplate="{DynamicResource AirlineLargeLogoLink}"
-                                                    Content="{Binding Airliner.Airliner.Airline}"
+                                                    Content="{Binding Airliner.Airliner.Airline,Mode=OneTime}"
                                                     VerticalAlignment="Bottom" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -40,7 +40,7 @@
                                         util:GridViewSort.PropertyName="Destination.FlightCode">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Destination.FlightCode}" VerticalAlignment="Bottom" />
+                                    <TextBlock Text="{Binding Destination.FlightCode,Mode=OneTime}" VerticalAlignment="Bottom" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -51,7 +51,7 @@
                                 <DataTemplate>
                                     <ContentControl VerticalAlignment="Bottom"
                                                     ContentTemplate="{DynamicResource AirportCountryLink}"
-                                                    Content="{Binding DepartureAirport}" />
+                                                    Content="{Binding DepartureAirport,Mode=OneTime}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -62,7 +62,7 @@
                                 <DataTemplate>
                                     <ContentControl VerticalAlignment="Bottom"
                                                     ContentTemplate="{DynamicResource AirportCountryLink}"
-                                                    Content="{Binding Destination.Airport}" />
+                                                    Content="{Binding Destination.Airport,Mode=OneTime}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -72,7 +72,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock VerticalAlignment="Bottom"
-                                               Text="{Binding Time,Converter={StaticResource TimeSpanConverter}}" Width="100" />
+                                               Text="{Binding Time,Converter={StaticResource TimeSpanConverter},Mode=OneTime}" Width="100" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -81,7 +81,7 @@
                                         util:GridViewSort.PropertyName="TimeTable.Route.Type">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock VerticalAlignment="Bottom" Text="{Binding TimeTable.Route.Type}" />
+                                    <TextBlock VerticalAlignment="Bottom" Text="{Binding TimeTable.Route.Type,Mode=OneTime}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

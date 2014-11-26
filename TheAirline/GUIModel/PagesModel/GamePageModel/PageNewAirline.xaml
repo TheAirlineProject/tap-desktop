@@ -26,7 +26,7 @@
                 <g:QuickInfoValue
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1001'}">
                     <g:QuickInfoValue.Value>
-                        <TextBox Width="200" Name="txtName" Text="Airline Name">
+                        <TextBox Width="200" Name="txtName" Text="Airline Name" UndoLimit="10">
                             <TextBox.Style>
                                 <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                                     <Style.Triggers>
@@ -42,13 +42,13 @@
                 <g:QuickInfoValue
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1002'}">
                     <g:QuickInfoValue.Value>
-                        <TextBox Width="200" Name="txtIATA" MaxLength="2" Text="--" />
+                        <TextBox Width="200" Name="txtIATA" MaxLength="2" Text="--" UndoLimit="10"/>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
                 <g:QuickInfoValue
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1009'}">
                     <g:QuickInfoValue.Value>
-                        <TextBox Width="200" Name="txtCEO" Text="Firstname Lastname">
+                        <TextBox Width="200" Name="txtCEO" Text="Firstname Lastname" UndoLimit="10">
                             <TextBox.Style>
                                 <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                                     <Style.Triggers>

@@ -57,7 +57,7 @@
 
             this.IsLongRoute = false;
 
-            this.AllRoutes = new List<RoutePlannerItemMVVM>();
+            this.AllRoutes = new ObservableCollection<RoutePlannerItemMVVM>();
             this.Intervals = new ObservableCollection<int> { 1, 2, 3, 4, 5, 6 };
 
             this.Routes = new ObservableCollection<Route>();
@@ -75,7 +75,7 @@
                 this.Routes.Add(route);
             }
 
-            this.AllRegions = new List<Region>();
+            this.AllRegions = new ObservableCollection<Region>();
             this.AllRegions.Add(Regions.GetRegion("100"));
 
             List<Region> routeRegions = this.Routes.Select(r => r.Destination1.Profile.Country.Region).ToList();
@@ -94,7 +94,7 @@
                 this.AllRoutes.Add(new RoutePlannerItemMVVM(route, this.Airliner.Airliner.Type));
             }
 
-            this.OutboundAirports = new List<Airport>();
+            this.OutboundAirports = new ObservableCollection<Airport>();
             List<Airport> routeAirports = this.Routes.Select(r => r.Destination1).ToList();
             routeAirports.AddRange(this.Routes.Select(r => r.Destination2));
 
@@ -110,11 +110,11 @@
                 this.StartTimes.Add(new TimeSpan(6, i * 15, 0));
             }
 
-            this.StopoverMinutes = new List<int> { 45, 60, 75, 90, 105, 120 };
+            this.StopoverMinutes = new ObservableCollection<int> { 45, 60, 75, 90, 105, 120 };
 
             this.setCanTransferSchedule();
 
-            this.SpecialContractRoutes = new List<Route>();
+            this.SpecialContractRoutes = new ObservableCollection<Route>();
 
             var humanSpecialRoutes = GameObject.GetInstance().HumanAirline.SpecialContracts.Where(s => !s.Type.IsFixedDate).SelectMany(s => s.Routes.Where(r=>!r.HasAirliner));
 
@@ -138,9 +138,9 @@
 
         public FleetAirliner Airliner { get; set; }
 
-        public List<Region> AllRegions { get; set; }
+        public ObservableCollection<Region> AllRegions { get; set; }
 
-        public List<RoutePlannerItemMVVM> AllRoutes { get; set; }
+        public ObservableCollection<RoutePlannerItemMVVM> AllRoutes { get; set; }
 
         public Boolean CanTransferSchedule
         {
@@ -168,7 +168,7 @@
             }
         }
 
-        public List<Route> SpecialContractRoutes { get; set; }
+        public ObservableCollection<Route> SpecialContractRoutes { get; set; }
 
         public ObservableCollection<RouteTimeTableEntry> Entries { get; set; }
 
@@ -211,13 +211,13 @@
             }
         }
 
-        public List<Airport> OutboundAirports { get; set; }
+        public ObservableCollection<Airport> OutboundAirports { get; set; }
 
         public ObservableCollection<Route> Routes { get; set; }
 
         public ObservableCollection<TimeSpan> StartTimes { get; set; }
 
-        public List<int> StopoverMinutes { get; set; }
+        public ObservableCollection<int> StopoverMinutes { get; set; }
 
         public ObservableCollection<RouteTimeTableEntry> ViewEntries { get; set; }
 

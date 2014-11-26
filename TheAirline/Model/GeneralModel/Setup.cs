@@ -79,6 +79,12 @@
                 (Airline.AirlineFocus)
                     Enum.Parse(typeof(Airline.AirlineFocus), profileElement.Attributes["market"].Value);
 
+            var schedule = Airline.AirlineRouteSchedule.Regular;
+
+            if (profileElement.HasAttribute("schedule"))
+                schedule = (Airline.AirlineRouteSchedule)
+                    Enum.Parse(typeof(Airline.AirlineRouteSchedule), profileElement.Attributes["schedule"].Value);
+
             var routeFocus = Route.RouteType.Passenger;
 
             if (profileElement.HasAttribute("routefocus"))
@@ -131,7 +137,8 @@
                 mentality,
                 market,
                 license,
-                routeFocus);
+                routeFocus,
+                schedule);
             airline.Profile.Countries = countries;
             airline.Profile.Country = airline.Profile.Countries[0];
             airline.Profile.LogoName = logoImage;
@@ -1209,11 +1216,13 @@
                 }
                 else
                 {
+                    Console.WriteLine(airline.Profile.Name + " (" + airline.Profile.IATACode + ") has no logo in the game: " + logoName );
                     airline.Profile.AddLogo(
                         new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
                 }
             }
-        }
+         }
+
 
         private static void CreateAirlineStartData(Airline airline, AirlineStartData startData)
         {
@@ -4019,7 +4028,11 @@
                     ? Convert.ToBoolean(manufacturer.Attributes["isreal"].Value)
                     : true;
 
-                Manufacturers.AddManufacturer(new Manufacturer(name, shortname, country, isReal));
+                Boolean isMajor = manufacturer.HasAttribute("ismajor")
+                    ? Convert.ToBoolean(manufacturer.Attributes["ismajor"].Value) 
+                    : true;
+
+                Manufacturers.AddManufacturer(new Manufacturer(name, shortname, country, isReal,isMajor));
             }
         }
         /*loads the special contracts*/
@@ -4988,7 +5001,7 @@
 
                     }
 
-                    AirportHelpers.CreateAirportWeather(airport);
+                    //AirportHelpers.CreateAirportWeather(airport,DateTime.DaysInMonth(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month));
 
                     //creates the already existing expansions
                     var expansions = airport.Profile.Expansions.Where(e => GameObject.GetInstance().GameTime > e.Date);

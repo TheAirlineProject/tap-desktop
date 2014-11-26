@@ -2,11 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
@@ -21,17 +21,22 @@
 
         public PageFlights()
         {
-           this.AllFlights =
-                Airlines.GetAllAirlines().SelectMany(a => a.Routes.SelectMany(r => r.TimeTable.Entries)).OrderBy(e=>e.Time).ToList();
+            this.AllFlights = new ObservableCollection<RouteTimeTableEntry>();
 
-            this.AllAirlines = new List<Airline>(Airlines.GetAllAirlines());
+            var flights = Airlines.GetAllAirlines().SelectMany(a => a.Routes.SelectMany(r => r.TimeTable.Entries)).OrderBy(e=>e.Time);
+            
+            foreach (RouteTimeTableEntry flight in flights)
+                this.AllFlights.Add(flight);
+                    
+            this.AllAirlines = new ObservableCollection<Airline>(Airlines.GetAllAirlines());
 
             var dummyAirline = new Airline(
               new AirlineProfile("All Airlines", "99", "Blue", "", false, 1900, 1900),
               Airline.AirlineMentality.Safe,
               Airline.AirlineFocus.Domestic,
               Airline.AirlineLicense.Domestic,
-              Route.RouteType.Passenger);
+              Route.RouteType.Passenger,
+              Airline.AirlineRouteSchedule.Regular);
             dummyAirline.Profile.AddLogo(
                 new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
 
@@ -57,8 +62,8 @@
 
         #region Public Properties
 
-        public List<RouteTimeTableEntry> AllFlights { get; set; }
-        public List<Airline> AllAirlines { get; set; }
+        public ObservableCollection<RouteTimeTableEntry> AllFlights { get; set; }
+        public ObservableCollection<Airline> AllAirlines { get; set; }
 
         #endregion
 

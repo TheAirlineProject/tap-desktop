@@ -8,13 +8,13 @@
         <StackPanel>
             <WrapPanel>
             <RadioButton Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpCodeshareAgreement 1001'}" Name="rbBothWays" VerticalAlignment="Bottom" GroupName="AgreementType" Tag="Both_Ways" IsChecked="True"/>
-                <TextBlock Text="{Binding TicketSalePercent,ElementName=popUpCodeshareAgreement,StringFormat='{}({0} % of ticket revenue)'}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                <TextBlock Text="{Binding TicketSalePercent,Mode=OneTime,ElementName=popUpCodeshareAgreement,StringFormat='{}({0} % of ticket revenue)'}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
 
             </WrapPanel>
             <WrapPanel>
             <RadioButton Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpCodeshareAgreement 1002'}" VerticalAlignment="Bottom" GroupName="AgreementType" Tag="One_Way" />
-                <TextBlock Text="{Binding Price,ElementName=popUpCodeshareAgreement,Converter={StaticResource ValueCurrencyConverter},StringFormat='{}({0} per month'}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
-                <TextBlock Text="{Binding TicketSalePercent,ElementName=popUpCodeshareAgreement,StringFormat='{} + {0} % of ticket revenue)'}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Price,Mode=OneTime,ElementName=popUpCodeshareAgreement,Converter={StaticResource ValueCurrencyConverter},StringFormat='{}({0} per month'}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                <TextBlock Text="{Binding TicketSalePercent,Mode=OneTime,ElementName=popUpCodeshareAgreement,StringFormat='{} + {0} % of ticket revenue)'}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Margin="0 10 0 0">
             <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" IsDefault="True" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 100'}" Style="{StaticResource StandardButtonStyle}" Click="btnOk_Click"/>

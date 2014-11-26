@@ -42,7 +42,7 @@
             this.Facilities = new List<AirlineAirportFacility>();
             this.Cooperations = new List<Cooperation>();
             this.Statistics = new AirportStatistics();
-            this.Weather = new Weather[5];
+            this.Weather = new List<Weather>();
             this.Terminals = new Terminals(this);
             this.Runways = new List<Runway>();
             this._Hubs = new List<Hub>();
@@ -115,7 +115,7 @@
 
             if (this.Weather.Contains(null))
             {
-                AirportHelpers.CreateAirportWeather(this);
+                AirportHelpers.CreateAirportWeather(this,DateTime.DaysInMonth(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month));
             }
 
             this.Statics = new AirportStatics(this);
@@ -188,7 +188,7 @@
         public Terminals Terminals { get; set; }
 
         [Versioning("weather")]
-        public Weather[] Weather { get; set; }
+        public List<Weather> Weather { get; set; }
 
         [Versioning("landingfee",Version=3)]
         public double LandingFee { get; set; }

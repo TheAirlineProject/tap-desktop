@@ -1,6 +1,7 @@
 ﻿using MapControl;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -17,14 +18,14 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapMode
 {
     public class MapViewModel
     {
-        public List<VmPolyline> Routes { get; set; }
-        public List<VmPoint> Airports { get; set; }
+        public ObservableCollection<VmPolyline> Routes { get; set; }
+        public ObservableCollection<VmPoint> Airports { get; set; }
         public Location Center { get; set; }
         public MapViewModel(List<Airport> airports = null, List<Route> routes = null)
         {
 
-            this.Routes = new List<VmPolyline>();
-            this.Airports = new List<VmPoint>();
+            this.Routes = new ObservableCollection<VmPolyline>();
+            this.Airports = new ObservableCollection<VmPoint>();
 
             if (routes != null)
             {

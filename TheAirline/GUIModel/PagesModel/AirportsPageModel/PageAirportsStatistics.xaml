@@ -29,7 +29,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <ContentControl ContentTemplate="{StaticResource AirportCountryLink}"
-                                                    VerticalAlignment="Bottom" Content="{Binding}" />
+                                                    VerticalAlignment="Bottom" Content="{Binding Mode=OneTime}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -38,7 +38,7 @@
                                         Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={StaticResource airportStatisticsConverter}}"
+                                    <TextBlock Text="{Binding Converter={StaticResource airportStatisticsConverter},Mode=OneTime}"
                                                Width="100" VerticalAlignment="Bottom" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

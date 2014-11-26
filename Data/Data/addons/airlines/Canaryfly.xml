@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Canaryfly" iata="PM" color="SlateBlue" country="123" CEO="Victorino Lopez Chaves" mentality="Safe" market="Global" preferedairport="LPA" >
@@ -16,7 +16,7 @@
 	     </airliners>
 	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2016)-->
 	         <airliners>
-	    <airliner type="Fairchild Sweaingen Metroliner" early="3" late="3"></airliner>
+	    <airliner type="Fairchild Swearingen Metroliner" early="3" late="3"></airliner>
 	     </airliners>
 	     	  
 </airline>

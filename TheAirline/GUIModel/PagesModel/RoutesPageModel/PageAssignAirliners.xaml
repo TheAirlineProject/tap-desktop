@@ -48,7 +48,7 @@
                                         <DataTemplate>
                                             <TextBlock VerticalAlignment="Bottom" Text="{Binding Contract.Type.Name}" ToolTipService.ShowDuration="30000">
                                                 <TextBlock.ToolTip>
-                                                    <TextBlock Text="{Binding Contract.Type.Text}" VerticalAlignment="Bottom" TextWrapping="Wrap" MaxWidth="400"></TextBlock>
+                                                    <TextBlock Text="{Binding Contract.Type.Text,Mode=OneTime}" VerticalAlignment="Bottom" TextWrapping="Wrap" MaxWidth="400"></TextBlock>
                                                 </TextBlock.ToolTip>
                                             </TextBlock>
                                         </DataTemplate>
@@ -61,7 +61,7 @@
                                         Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding Contract.Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom"></ContentControl>
+                                            <ContentControl Content="{Binding Contract.Airline,Mode=OneTime}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom"></ContentControl>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -70,7 +70,7 @@
                                         Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding StartDate,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding StartDate,Mode=OneTime,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -79,7 +79,7 @@
                                         Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock VerticalAlignment="Bottom" Text="{Binding EndDate,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
+                                        <TextBlock VerticalAlignment="Bottom" Text="{Binding EndDate,Mode=OneTime,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -101,7 +101,7 @@
                                 <DataTemplate>
                                     <TextBlock VerticalAlignment="Bottom">
                                         <Hyperlink Tag="{Binding}" Click="hlAirliner_Click">
-                                            <Run Text="{Binding Airliner.Name}" />
+                                            <Run Text="{Binding Airliner.Name,Mode=OneTime}" />
                                         </Hyperlink>
                                     </TextBlock>
                                 </DataTemplate>
@@ -113,10 +113,10 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <Image Source="{Binding Airliner.Airliner.Type.Manufacturer.Logo}"
+                                        <Image Source="{Binding Airliner.Airliner.Type.Manufacturer.Logo,Mode=OneTime}"
                                                RenderOptions.BitmapScalingMode="HighQuality" Width="20"
                                                VerticalAlignment="Bottom" />
-                                        <TextBlock Text="{Binding Airliner.Airliner.Type.Name}" Margin="5 0 0 0"
+                                        <TextBlock Text="{Binding Airliner.Airliner.Type.Name,Mode=OneTime}" Margin="5 0 0 0"
                                                    VerticalAlignment="Bottom" />
 
                                     </WrapPanel>

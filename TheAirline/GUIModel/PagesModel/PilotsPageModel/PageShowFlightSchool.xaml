@@ -82,13 +82,13 @@
                                     <GridViewColumn
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1013'}"
                                         Width="250" util:GridViewSort.PropertyName="Type.Name"
-                                        DisplayMemberBinding="{Binding Type.Name}" />
+                                        DisplayMemberBinding="{Binding Type.Name,Mode=OneTime}" />
                                     <GridViewColumn
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1004'}"
                                         Width="100" util:GridViewSort.PropertyName="Age">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Age,StringFormat={}{0} years old}"
+                                                <TextBlock Text="{Binding Age,Mode=OneTime,StringFormat={}{0} years old}"
                                                            VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -129,7 +129,7 @@
                                         Width="150" util:GridViewSort.PropertyName="Profile.Name">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Profile.Name}" VerticalAlignment="Bottom" />
+                                                <TextBlock Text="{Binding Profile.Name,Mode=OneTime}" VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -138,7 +138,7 @@
                                         Width="50" util:GridViewSort.PropertyName="Profile.Age">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Profile.Age}" VerticalAlignment="Bottom" />
+                                                <TextBlock Text="{Binding Profile.Age,Mode=OneTime}" VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -147,7 +147,7 @@
                                         Width="50" util:GridViewSort.PropertyName="Rating.Name">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Rating.Name}" VerticalAlignment="Bottom" />
+                                                <TextBlock Text="{Binding Rating.Name,Mode=OneTime}" VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -157,7 +157,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <ContentControl ContentTemplate="{StaticResource TownItem}"
-                                                                Content="{Binding Profile.Town}"
+                                                                Content="{Binding Profile.Town,Mode=OneTime}"
                                                                 VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -230,7 +230,7 @@
                                     <GridViewColumn
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1008'}"
                                         Width="50" util:GridViewSort.PropertyName="Rating.Name"
-                                        DisplayMemberBinding="{Binding Rating.Name}" />
+                                        DisplayMemberBinding="{Binding Rating.Name,Mode=OneTime}" />
                                     <GridViewColumn
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1012'}"
                                         Width="150" util:GridViewSort.PropertyName="Instructor.Profile.Name">
@@ -238,11 +238,11 @@
                                             <DataTemplate>
                                                 <TextBlock VerticalAlignment="Bottom">
                                                     <Hyperlink Tag="{Binding}" Click="btnChangeInstructor_Click">
-                                                        <Run Text="{Binding Instructor.Profile.Name}" />
+                                                        <Run Text="{Binding Instructor.Profile.Name,Mode=OneTime}" />
                                                     </Hyperlink>
                                                     <TextBlock.ToolTip>
                                                         <TextBlock VerticalAlignment="Bottom" FontWeight="Bold"
-                                                                   Text="{Binding Aircraft.Type.Name}" />
+                                                                   Text="{Binding Aircraft.Type.Name,Mode=OneTime}" />
                                                     </TextBlock.ToolTip>
                                                 </TextBlock>
                                             </DataTemplate>
@@ -251,7 +251,7 @@
                                     <GridViewColumn
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1018'}"
                                         Width="100" util:GridViewSort.PropertyName="AirlinerFamily"
-                                        DisplayMemberBinding="{Binding AirlinerFamily}" />
+                                        DisplayMemberBinding="{Binding AirlinerFamily,Mode=OneTime}" />
                                 </GridView>
                             </ListView.View>
                         </ListView>

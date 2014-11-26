@@ -120,13 +120,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
                 matchingItem.Visibility = Visibility.Collapsed;
             }
-            /*
-            Hashtable filters = ((PageAirliners)this.Tag).AirlinersFilters;
-
-            if (filters != null)
-            {
-                this.lvAirliners.setCurrentFilters(filters);
-            }*/
+           
         }
         private void btnLease_Click(object sender, RoutedEventArgs e)
         {

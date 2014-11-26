@@ -32,7 +32,8 @@
             AirlineMentality mentality,
             AirlineFocus marketFocus,
             AirlineLicense license,
-            Route.RouteType routeFocus)
+            Route.RouteType routeFocus,
+            AirlineRouteSchedule schedule)
         {
             this.Scores = new AirlineScores();
             this.Shares = new AirlineShare[10];
@@ -56,6 +57,7 @@
             this.Alliances = new List<Alliance>();
             this.Mentality = mentality;
             this.MarketFocus = marketFocus;
+            this.Schedule = schedule;
             this.License = license;
             this.Policies = new List<AirlinePolicy>();
             this.EventLog = new List<RandomEvent>();
@@ -156,6 +158,9 @@
                 if (version < 8)
                     this.Maintenances = new Dictionary<AirlinerMaintenanceType, AirlinerMaintenanceCenter>();
 
+                if (version < 9)
+                    this.Schedule = AirlineRouteSchedule.Regular;
+
                 if (this.Maintenances == null)
                     this.Maintenances = new Dictionary<AirlinerMaintenanceType, AirlinerMaintenanceCenter>();
 
@@ -200,7 +205,16 @@
 
             Long_Haul
         }
+        public enum AirlineRouteSchedule 
+        {
+            Regular,
 
+            Business,
+
+            Charter,
+
+            Sightseeing
+        }
         public enum AirlineMentality
         {
             Safe,
@@ -229,6 +243,9 @@
 
         [Versioning("advertisements")]
         public Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType> Advertisements { get; set; }
+
+        [Versioning("schedule",Version=9)]
+        public AirlineRouteSchedule Schedule { get; set; }
 
         [Versioning("routefocus")]
         public Route.RouteType AirlineRouteFocus { get; set; }
@@ -436,7 +453,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 8);
+            info.AddValue("version", 9);
 
             Type myType = this.GetType();
 

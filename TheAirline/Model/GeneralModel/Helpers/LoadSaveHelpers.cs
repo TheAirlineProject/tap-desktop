@@ -2118,7 +2118,8 @@
                     mentality,
                     market,
                     license,
-                    routefocus);
+                    routefocus,
+                    Airline.AirlineRouteSchedule.Regular);
                 airline.Profile.Country = airlineCountry;
                 parent.addSubsidiaryAirline((SubsidiaryAirline)airline);
             }
@@ -2130,7 +2131,8 @@
                         mentality,
                         market,
                         license,
-                        routefocus);
+                        routefocus,
+                        Airline.AirlineRouteSchedule.Regular);
                 airline.Profile.Country = airlineCountry;
             }
             if (airlineNode.HasAttribute("logo"))

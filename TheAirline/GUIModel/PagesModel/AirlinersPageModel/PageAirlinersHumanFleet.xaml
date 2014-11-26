@@ -27,7 +27,7 @@
                             CanFilter="False" SortPropertyName="Name" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ContentControl Content="{Binding}" VerticalAlignment="Bottom"
+                                    <ContentControl Content="{Binding Mode=OneTime}" VerticalAlignment="Bottom"
                                                     ContentTemplate="{StaticResource FleetAirlinerLink}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -38,10 +38,10 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <Image Source="{Binding Airliner.Type.Manufacturer.Logo}"
+                                        <Image Source="{Binding Airliner.Type.Manufacturer.Logo,Mode=OneTime}"
                                                VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"
                                                Width="20" />
-                                        <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name}"
+                                        <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name,Mode=OneTime}"
                                                    VerticalAlignment="Bottom" />
                                     </WrapPanel>
                                 </DataTemplate>
@@ -56,7 +56,7 @@
                                              Style="{StaticResource VerticalListBoxStyle}" VerticalAlignment="Bottom">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <ContentControl Content="{Binding}"
+                                                <ContentControl Content="{Binding Mode=OneTime}"
                                                                 ContentTemplate="{StaticResource RouteFlagItem}"
                                                                 VerticalAlignment="Bottom" />
                                             </DataTemplate>
@@ -70,7 +70,7 @@
                             CanFilter="False" SortPropertyName="Airliner.Type.CockpitCrew" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Airliner.Type.CockpitCrew}" VerticalAlignment="Bottom" />
+                                    <TextBlock Text="{Binding Airliner.Type.CockpitCrew,Mode=OneTime}" VerticalAlignment="Bottom" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </filter:SortableGridViewColumn>
@@ -113,7 +113,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <Image Source="{Binding Airliner.Type.Manufacturer.Logo}"
+                                        <Image Source="{Binding Airliner.Type.Manufacturer.Logo,Mode=OneTime}"
                                                VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"
                                                Width="20" />
                                         <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name}"
@@ -155,7 +155,7 @@
                             CanFilter="False" SortPropertyName="Name" Width="150">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
+                                        <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </filter:SortableGridViewColumn>
@@ -165,10 +165,10 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <WrapPanel>
-                                            <Image Source="{Binding Airliner.Type.Manufacturer.Logo}"
+                                            <Image Source="{Binding Airliner.Type.Manufacturer.Logo,Mode=OneTime}"
                                                VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"
                                                Width="20" />
-                                            <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name}"
+                                            <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name,Mode=OneTime}"
                                                    VerticalAlignment="Bottom" />
                                         </WrapPanel>
                                     </DataTemplate>

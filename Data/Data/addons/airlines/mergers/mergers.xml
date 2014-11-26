@@ -2,7 +2,7 @@
 
 <mergers>
   <merger name="Meridiana has acquired Air Italy and are now a subsidiary." airline1="IG" airline2="I9" type="Subsidiary" date="07.18.2011 00:00:00"></merger>
-
+<merger name="Zoom Airlines has started the subsidiary Zoom Airlines Limited based at London Gatwick." airline1="Z4" airline2="ZX" type="Subsidiary" date="01.01.2006 00:00:00"></merger>
   <merger name="El Al has started the subsidiary El Al Cargo." airline1="LY" airline2="LY2" type="Subsidiary" date="01.01.1948 00:00:00"></merger>
   <merger name="El Al has started the subsidiary called Up." airline1="LY" airline2="ELY" type="Subsidiary" date="01.01.2014 00:00:00"></merger>
   <merger name="El Al has started the subsidiary Sun D'Or International Airlines." airline1="LY" airline2="ERO" type="Subsidiary" date="01.01.1977 00:00:00"></merger>
@@ -94,7 +94,9 @@
 
 <merger name="Hainan Airlines has founded the cargo subsidiary Yangtze River Express, which is based at Shanghai Pudong,China." airline1="HU" airline2="Y8" type="Subsidiary" date="01.01.2003 00:00:00"></merger>
 <merger name="Hainan Airlines has founded the subsidiary Grand China Air. It's base is Haikou on the island of Hainan also." airline1="HU" airline2="CN" type="Subsidiary" date="01.01.2007 00:00:00"></merger>
+<merger name="Southwest Airlines has acquired Muse Air and changed their name to TranStar." airline1="WN" airline2="MC" type="Subsidiary" date="6.25.1985 00:00:00" subsidiarynewname="TranStar"></merger>
 
+<merger name="Southwest Airlines has fully merged the former Muse Air, now known as TranStar, and will no longer use it as a subsidiary." airline1="WN" airline2="MC" type="Merger" date="8.07.1987 00:00:00"></merger>
 <merger name="Southwest Airlines has bought Orlando,FL based carrier AirTran Airways for $1.4 Billion and willkeep it as a subsidiary until 2015 when it will be fully integrated." airline1="WN" airline2="FL" type="Subsidiary" date="01.01.2011 00:00:00"></merger>
 
 <merger name="AirTran Airways has been fully integrated with Southwest Airlines and no longer uses the AirTran name."

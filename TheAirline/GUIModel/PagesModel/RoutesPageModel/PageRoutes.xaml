@@ -25,7 +25,7 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <ContentControl Content="{Binding Route}"
+                                        <ContentControl Content="{Binding Route,Mode=OneTime}"
                                                         ContentTemplate="{StaticResource RouteItem}"
                                                         VerticalAlignment="Bottom" Width="75" />
                                         <TextBlock
@@ -52,7 +52,7 @@
                                                         ContentTemplate="{StaticResource RouteItem}"
                                                         VerticalAlignment="Bottom" Width="75" />
                                         <TextBlock
-                                            Text="{Binding Percent,Converter={StaticResource ValueCurrencyConverter}}"
+                                            Text="{Binding Percent,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                             VerticalAlignment="Bottom" />
                                     </WrapPanel>
                                 </DataTemplate>
@@ -75,7 +75,7 @@
                                                         ContentTemplate="{StaticResource RouteItem}"
                                                         VerticalAlignment="Bottom" Width="75" />
                                         <TextBlock
-                                            Text="{Binding IncomePerPax,Converter={StaticResource ValueCurrencyConverter}}"
+                                            Text="{Binding IncomePerPax,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                             VerticalAlignment="Bottom" />
                                     </WrapPanel>
                                 </DataTemplate>

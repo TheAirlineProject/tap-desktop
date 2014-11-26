@@ -95,7 +95,8 @@
             {
                 this.Airline.setMaintenance();
 
-
+                
+            
                 foreach (FleetAirliner airliner in this.Airline.Airline.Fleet)
                 {
                     foreach (AirlineMaintenanceMVVM maintenance in this.Airline.Maintenances.FindAll(m=>m.SelectedType != null))
