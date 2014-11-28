@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace TheAirline.Model.Services.Filesystem
 {
-    class PathDoesntExistException : Exception
+    class EntityDoesntExistException : Exception
     {
-        public PathDoesntExistException()
+        public EntityDoesntExistException()
         {
 
         }
 
-        public PathDoesntExistException(string message)
+        public EntityDoesntExistException(string message)
             : base(message)
         {
 
         }
 
-        public PathDoesntExistException(string message, Exception inner)
+        public EntityDoesntExistException(string message, Exception inner)
             :base(message, inner)
         {
 

@@ -8,7 +8,7 @@ using SysPath = System.IO.Path;
 
 namespace TheAirline.Model.Services.Filesystem
 {
-    class Path
+    class Path : IFilesystemEntity
     {
         private string path;
 
@@ -46,11 +46,11 @@ namespace TheAirline.Model.Services.Filesystem
             return Directory.Exists(path);
         }
 
-        public void PathMustExist()
+        private void PathMustExist()
         {
             if (!Exists())
             {
-                throw new PathDoesntExistException("Path " + path + " does not exist");
+                throw new EntityDoesntExistException("Path " + path + " does not exist");
             }
         }
     }
