@@ -4,6 +4,8 @@
     using System.Globalization;
     using System.IO;
     using System.Threading;
+    using TheAirline.Model.Services;
+    using System.Collections.Generic;
 
     public class AppSettings
     {
@@ -60,11 +62,7 @@
 
         public static AppSettings GetInstance()
         {
-            if (AppSettingsInstance == null)
-            {
-                AppSettingsInstance = new AppSettings();
-            }
-            return AppSettingsInstance;
+            return AppSettingsInstance == null ? new AppSettings() : AppSettingsInstance;
         }
 
         // simple method for initializing the Translator
@@ -95,12 +93,7 @@
         public static string getCommonApplicationDataPath()
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\theairlineproject\\";
-
-            if (!Directory.Exists(path))
-            {
-                createPaths(path);
-            }
-
+            createPaths(path);
             return path;
         }
 
@@ -159,8 +152,11 @@
 
         private static void createPaths(string path)
         {
-            Directory.CreateDirectory(path);
-            Directory.CreateDirectory(path + "\\saves");
+            Filesystem filesystem = new Filesystem();
+            List<string> paths = new List<string> { path, path + "\\saves" };
+            filesystem.CreateIfNotExists(paths);
+            //Directory.CreateDirectory(path);
+            //Directory.CreateDirectory(path + "\\saves");
             //LoadSaveHelpers.CreateBaseXml(path + "\\saves");
         }
 
