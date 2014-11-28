@@ -46,6 +46,11 @@ namespace TheAirline.Model.Services.Filesystem
             return Directory.Exists(path);
         }
 
+        public string ToString()
+        {
+            return path;
+        }
+
         private void PathMustExist()
         {
             if (!Exists())
