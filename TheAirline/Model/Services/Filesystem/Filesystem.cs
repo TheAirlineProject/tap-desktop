@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace TheAirline.Model.Services
+namespace TheAirline.Model.Services.Filesystem
 {
     /**
      * Responsible for the creation and deletion of directories
