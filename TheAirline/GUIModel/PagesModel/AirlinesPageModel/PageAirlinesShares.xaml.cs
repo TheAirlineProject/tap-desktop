@@ -196,7 +196,8 @@
                     airline.Airline.Mentality,
                     airline.Airline.MarketFocus,
                     airline.Airline.License,
-                    airline.Airline.AirlineRouteFocus);
+                    airline.Airline.AirlineRouteFocus,
+                    airline.Airline.Schedule);
 
                 AirlineHelpers.SwitchAirline(airline.Airline, sAirline);
 

@@ -42,7 +42,7 @@
             this.Facilities = new List<AirlineAirportFacility>();
             this.Cooperations = new List<Cooperation>();
             this.Statistics = new AirportStatistics();
-            this.Weather = new Weather[5];
+            this.Weather = new List<Weather>();
             this.Terminals = new Terminals(this);
             this.Runways = new List<Runway>();
             this._Hubs = new List<Hub>();
@@ -51,6 +51,7 @@
             this.LastExpansionDate = new DateTime(1900, 1, 1);
             this.Statics = new AirportStatics(this);
             this.AirlineContracts = new List<AirportContract>();
+            this.Demand = new AirportDemand(this);
         }
 
         private Airport(SerializationInfo info, StreamingContext ctxt)
@@ -114,10 +115,10 @@
 
             if (this.Weather.Contains(null))
             {
-                AirportHelpers.CreateAirportWeather(this);
+                AirportHelpers.CreateAirportWeather(this,DateTime.DaysInMonth(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month));
             }
 
-    
+            this.Statics = new AirportStatics(this);
            
         }
 
@@ -168,6 +169,7 @@
             }
         }
 
+        public AirportDemand Demand { get; set; }
         [Versioning("lastexpansiondate")]
         public DateTime LastExpansionDate { get; set; }
 
@@ -186,7 +188,7 @@
         public Terminals Terminals { get; set; }
 
         [Versioning("weather")]
-        public Weather[] Weather { get; set; }
+        public List<Weather> Weather { get; set; }
 
         [Versioning("landingfee",Version=3)]
         public double LandingFee { get; set; }
@@ -339,7 +341,7 @@
                 }
             }
         }
-
+      
         public void addHub(Hub hub)
         {
             this._Hubs.Add(hub);
@@ -639,7 +641,8 @@
             destinations.AddRange(this.DestinationPassengers);
 
             return destinations.Select(d => Airports.GetAirport(d.Destination)).Distinct().ToList();
-        }
+
+       }
 
         public long getDestinationPassengerStatistics(Airport destination)
         {
@@ -712,8 +715,18 @@
         public List<DestinationDemand> getDestinationsPassengers()
         {
             return this.DestinationPassengers;
-        }
 
+          
+        }
+        public List<DestinationDemand> getDestinationPassengersDemands()
+        {
+            List<DestinationDemand> demands = new List<DestinationDemand>();
+
+            demands.AddRange(this.Statics.getPassengersDemand());
+            demands.AddRange(this.getDestinationsPassengers());
+           
+            return demands;
+        }
         //adds a number of passengers to destination to the statistics
 
         //returns the price for a gate
@@ -1055,6 +1068,7 @@
             {
                 return airport;
             }
+
             return airports.Find(a => a.Profile.ID.StartsWith(id.Substring(0, 8)));
                 //airports.Find(a=>a.Profile.ID.StartsWith(id.Substring(0, id.LastIndexOf('-'))));
         }

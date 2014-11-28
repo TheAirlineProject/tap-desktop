@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Turkish Cargo" iata="TK2" color="PowderBlue" country="161" CEO="Temel Kotil" mentality="Safe" market="Global" preferedairport="IST" routefocus="Cargo">
+  <narrative narrative="Turkish Cargo is based at Istanbul like its parent. As of November 2014 it had six A330-200F's and three A310-300F's."/>
+</profile>
+  <info real="True" from="1933" to="2199" />
+  <prefereds aircrafts="Airbus A330-200F,Airbus A310-300"></prefereds>
+</airline>

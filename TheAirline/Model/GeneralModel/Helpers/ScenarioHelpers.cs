@@ -344,8 +344,7 @@
             {
                 if (scenario.AirportType == Scenario.AirportTypes.Intl)
                 {
-                    List<Airport> intlAirports = Airports.GetAllAirports(a => a.Profile.Type == AirportProfile.AirportType.Long_Haul_International
-                        || a.Profile.Type == AirportProfile.AirportType.Short_Haul_International);
+                    List<Airport> intlAirports = Airports.GetAllAirports(a => a.Profile.Type == AirportProfile.AirportType.International);
 
                     int minAirportsPerRegion = 5;
                     foreach (Region airportRegion in Regions.GetRegions())
@@ -453,7 +452,7 @@
                             airport.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
                         }
                     }
-                    AirportHelpers.CreateAirportWeather(airport);
+                    AirportHelpers.CreateAirportWeather(airport,DateTime.DaysInMonth(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month));
                 });
 
             foreach (Airline airline in Airlines.GetAllAirlines())

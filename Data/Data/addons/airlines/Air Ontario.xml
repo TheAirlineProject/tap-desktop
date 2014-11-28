@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Ontario" iata="GX" color="DarkGreen" country="113" CEO="James Plaxton" mentality="Moderate" market="Regional" preferedairport="YXU" >
+  <narrative narrative="Air Ontario was based at London,Ontario,Canada. It was a subsidiary of Air Canada and ended when it merged with several other airlines to form the airline Jazz in 2002. They also had a focus city or hub at Toronto Island Airport, also known as Billy Bishop Airport. At the end they had 6 or 7 Dash 8-300's and 24 or so Dash 8-100's. They were the newer version of an airline that lasted from 1958-1983 called Great Lakes Airlines, no relation to the U.S airline of the same name. Air Ontario was the same corporation with a new owner and name. They also did flights to the U.S."/>
+</profile>
+  <info real="True" from="1987" to="2002" />
+  <prefereds aircrafts="Bombardier Dash 8-100,Bombardier Dash 8-300,Douglas DC-3"></prefereds>
+     <focusairports>
+	 <focusairport airport="YTZ"></focusairport>
+     </focusairports>
+                
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1988) late (2001)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-100" early="12" late="24"></airliner>
+	     </airliners>
+		         	     	         <!--the airliners the airline would start with which isn't on a route earyl (1990) late (2001)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="6" late="6"></airliner>
+	     </airliners>
+	     	  
+	     	  
+
+
+</airline>

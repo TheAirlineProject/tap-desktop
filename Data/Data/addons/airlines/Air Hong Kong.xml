@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Hong Kong" iata="LD"  color="Tomato" country="176" CEO="Rupert Hogg" mentality="Safe" market="Global" preferedairport="HKG" routefocus="Cargo">
+  <narrative narrative="Air Hong Kong is a cargo airline which is majority owned by Cathay Pacific since June 1994. It has also been owned 40% by DHL since 2002. It was founded
+  in 1986 and began flying in February 1988 with a 707-320C doing cargo charter to Bombay,Britain and Nepal. Scheduled service started in October 1989 and soon they had two 707's. March 1993
+  they had two 747-100's and a 707. They were the launch customer for the A300-600F. In 2010 they didn't serve anyplace outside Asia as they once did, but they
+  still served 12 destinations in 9 countries, the most being three in Japan. The fleet as of 2014 was eight A300-600F's and three 747-400F's. They have had a few 747-200F's also."/>
+</profile>
+  <info real="True" from="1987" to="2199" />
+  <prefereds aircrafts="Airbus A300-600F,Boeing 707-320C,Boeing 747-400F,Boeing 747-100,Boeing 747-200F"></prefereds>
+                <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2016)-->
+	         <airliners>
+	    <airliner type="Airbus A300-600F" early="4" late="8"></airliner>
+	     </airliners>  
+	           <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2017)-->
+	         <airliners>
+	    <airliner type="Boeing 747-400F" early="3" late="3"></airliner>
+	     </airliners>  
+	     	           <!--the airliners the airline would start with which isn't on a route earyl (1996) late (2005)-->
+	         <airliners>
+	    <airliner type="Boeing 747-200F" early="3" late="0"></airliner>
+	     </airliners> 
+	     	     	           <!--the airliners the airline would start with which isn't on a route earyl (1987) late (1993)-->
+	         <airliners>
+	    <airliner type="Boeing 707-320C" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	     	           <!--the airliners the airline would start with which isn't on a route earyl (1991) late (1997)-->
+	         <airliners>
+	    <airliner type="Boeing 747-100" early="2" late="0"></airliner>
+	     </airliners>
+</airline>

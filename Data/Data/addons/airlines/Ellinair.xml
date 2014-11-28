@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Ellinair" iata="EL" color="Cyan" country="118" CEO="Ioannis Mouzenidis" mentality="Moderate" market="Global" preferedairport="SKG">
+  <narrative narrative="Ellinair is based at Thessaloniki,Greece and was founded in 2013. Its parent is also based there, the tour operator Mouzenidis Group. As of 2014 they had four all year round flights and eleven summer regular scheduled destinations. They also had two summer charter destinations. They have eleven more destinations opening in 2015. They also are calling Corfu,Heraklion,Kavala,Athens,and Zakynthos summer bases. 18 of their current and upcoming destinations are in Russia, 5 in the Ukraine,2 in Kazakhstan,1 in Latvia, 1 in Moldova, and 1 in Italy. They as of 2014 have two Avro RJ 85's and have two Airbus A320's on order."/>
+</profile>
+  <info real="True" from="2013" to="2199" />
+  <prefereds aircrafts="Avro RJ 85,Airbus A320-200,Airbus A320neo"></prefereds>
+     <focusairports>
+        <focusairport airport="CFU"></focusairport>
+	<focusairport airport="HER"></focusairport>
+	<focusairport airport="ZTH"></focusairport>
+        <focusairport airport="KVA"></focusairport>
+	<focusairport airport="ATH"></focusairport>
+     </focusairports>
+     <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2017)-->
+	         <airliners>
+	    <airliner type="Avro RJ 85" early="2" late="2"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (2015) late (2020)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="2" late="2"></airliner>
+	     </airliners>  
+</airline>

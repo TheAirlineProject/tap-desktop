@@ -5,9 +5,9 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.Caching;
     using System.Runtime.CompilerServices;
     using System.Runtime.Serialization;
-
     using TheAirline.Model.AirlineModel.SubsidiaryModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
@@ -32,7 +32,8 @@
             AirlineMentality mentality,
             AirlineFocus marketFocus,
             AirlineLicense license,
-            Route.RouteType routeFocus)
+            Route.RouteType routeFocus,
+            AirlineRouteSchedule schedule)
         {
             this.Scores = new AirlineScores();
             this.Shares = new AirlineShare[10];
@@ -56,6 +57,7 @@
             this.Alliances = new List<Alliance>();
             this.Mentality = mentality;
             this.MarketFocus = marketFocus;
+            this.Schedule = schedule;
             this.License = license;
             this.Policies = new List<AirlinePolicy>();
             this.EventLog = new List<RandomEvent>();
@@ -156,6 +158,9 @@
                 if (version < 8)
                     this.Maintenances = new Dictionary<AirlinerMaintenanceType, AirlinerMaintenanceCenter>();
 
+                if (version < 9)
+                    this.Schedule = AirlineRouteSchedule.Regular;
+
                 if (this.Maintenances == null)
                     this.Maintenances = new Dictionary<AirlinerMaintenanceType, AirlinerMaintenanceCenter>();
 
@@ -200,7 +205,16 @@
 
             Long_Haul
         }
+        public enum AirlineRouteSchedule 
+        {
+            Regular,
 
+            Business,
+
+            Charter,
+
+            Sightseeing
+        }
         public enum AirlineMentality
         {
             Safe,
@@ -229,6 +243,9 @@
 
         [Versioning("advertisements")]
         public Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType> Advertisements { get; set; }
+
+        [Versioning("schedule",Version=9)]
+        public AirlineRouteSchedule Schedule { get; set; }
 
         [Versioning("routefocus")]
         public Route.RouteType AirlineRouteFocus { get; set; }
@@ -367,6 +384,7 @@
         [Versioning("reputation")]
         public int Reputation { get; set; }
 
+     
         public List<Route> Routes
         {
             get
@@ -435,7 +453,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 8);
+            info.AddValue("version", 9);
 
             Type myType = this.GetType();
 
@@ -453,6 +471,8 @@
             foreach (MemberInfo member in propsAndFields)
             {
                 object propValue;
+
+               
 
                 if (member is FieldInfo)
                 {
@@ -1063,9 +1083,12 @@
         #endregion
 
         #region Methods
-
+      
         private void createStandardAdvertisement()
         {
+            if (this.Advertisements == null)
+                this.Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
+
             foreach (
                 AdvertisementType.AirlineAdvertisementType type in
                     Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
@@ -1083,13 +1106,9 @@
 
         private List<Route> getRoutes()
         {
-            var routes = new List<Route>();
-            lock (this._Routes)
-            {
-                routes = new List<Route>(this._Routes);
-            }
+            var routes = new List<Route>(this._Routes);
 
-            return routes;
+             return routes;
         }
 
         #endregion
@@ -1134,7 +1153,9 @@
 
         public static void AddAirline(Airline airline)
         {
-            airlines.Add(airline);
+     
+            if (airline != null)
+                airlines.Add(airline);
         }
 
         public static void Clear()

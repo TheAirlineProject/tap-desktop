@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<alliance name="Arab Air Carriers Organization" logo="AACO" type="Full" formation="01.01.1965 00:00:00" headquarter="BEY">
+  <members>
+    <member airline="8U" joined="01.01.2002 00:00:00"></member>
+    <member airline="AH" joined="01.01.1971 00:00:00"></member>
+    <member airline="G9" joined="01.01.2004 00:00:00"></member>
+    <member airline="MS" joined="01.01.1965 00:00:00"></member>
+    <member airline="EK" joined="01.01.1989 00:00:00"></member>
+    <member airline="EY" joined="01.01.2004 00:00:00"></member>
+    <member airline="GF" joined="01.01.1971 00:00:00"></member>
+    <member airline="IA" joined="01.01.1965 00:00:00"></member>
+    <member airline="KU" joined="01.01.1965 00:00:00"></member>
+    <member airline="LN" joined="01.01.1970 00:00:00"></member>
+    <member airline="ME" joined="01.01.1965 00:00:00"></member>
+    <member airline="WY" joined="01.01.1997 00:00:00"></member>
+    <member airline="QR" joined="01.01.1997 00:00:00"></member>
+    <member airline="AT" joined="01.01.1974 00:00:00"></member>
+    <member airline="RJ" joined="01.01.1965 00:00:00"></member>
+    <member airline="SV" joined="01.01.1965 00:00:00"></member>
+    <member airline="SD" joined="01.01.1965 00:00:00"></member>
+    <member airline="RB" joined="01.01.1965 00:00:00"></member>
+    <member airline="TU" joined="01.01.1972 00:00:00"></member>
+    <member airline="IY" joined="01.01.1965 00:00:00"></member>
+    <member airline="BJ" joined="01.01.2011 00:00:00"></member>
+    <member airline="RG" joined="01.01.2011 00:00:00"></member>
+    <member airline="SF" joined="01.01.2012 00:00:00"></member>
+    <member airline="XY" joined="01.01.2012 00:00:00"></member>
+    <member airline="9P" joined="01.01.2012 00:00:00"></member>
+    <member airline="FZ" joined="01.01.2014 00:00:00"></member>
+    <member airline="NP" joined="01.01.2014 00:00:00"></member>
+    <member airline="SM" joined="01.01.2007 00:00:00"></member>
+    <member airline="T2" joined="01.01.1965 00:00:00"></member>
+    <member airline="PF" joined="01.01.1999 00:00:00"></member>
+  </members>
+</alliance>

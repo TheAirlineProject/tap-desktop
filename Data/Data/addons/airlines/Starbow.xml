@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Starbow" iata="S9" color="Teal" country="189" CEO="James Eric Antwi" mentality="Safe"  market="Regional " preferedairport="ACC">
+    <narrative narrative="Starbow are an airline based at Accra,Ghana in West Africa. They have 4 destinations all domestic as of 2014, and do charters to other regional airports. In 2013 their fleet was two BAe 146-300's and a BAe 146-200. They had international scheduled flights within the region but these lasted less than a year from late 2012 to early 2013. Air Shuttle was its name before becoming Starbow in 2011. They started out with two Embraer 110's in 1997." />
+  </profile>
+  <info real="True" from="1997" to="2199" />
+  <prefereds aircrafts="BAe 146-200,Avro RJ 85,EMB 110 Bandeirante,Avro RJ100 Avroliner"></prefereds>
+
+</airline>

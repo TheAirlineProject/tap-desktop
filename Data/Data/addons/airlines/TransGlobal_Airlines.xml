@@ -3,5 +3,8 @@
 <airline>
   <profile name="TransGlobal Airlines" iata="TGA" color="LightBlue" country="122" CEO="Vernon Bricknell"
            mentality="Aggressive" market="Global" preferedairport="JFK">
+               <narrative
+      narrative="Trans Global Airlines was the name of the fictional airline for the film Airport (1970). For many years it was not unusual to see props from the movie (with the fictional TGA logo) in other Universal films where airliner interior scenes were shot." />
+  
   </profile>
 </airline>

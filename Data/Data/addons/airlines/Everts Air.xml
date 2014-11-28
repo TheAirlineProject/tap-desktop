@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Everts Air" iata="5V" color="MediumBlue" country="122" CEO="Robert Everts" mentality="Safe" market="Regional" preferedairport="FAI" routefocus="Mixed" >
+    <narrative
+      narrative="Everts Air is a mixed cargo and passenger carrier based at Fairbanks,Alaska and at Anchorage,Alaska. They fly to 25 airports scheduled and go to Canada too. The passenger division is
+      called Everts Air Alaska and the cargo one is called Everts Air Cargo. It was founded in 1978 with a single Cessna 180 to transport miners. As of 2008 they have eight DC-6's for cargo,two Curtiss Commando's for cargo,
+      three Embraer Brasilia's,three MD-80s types,four Piper Cherokee Six's and a Cessna 180." />
+  </profile>
+  <info real="True" from="1978" to="2199" />
+     <prefereds aircrafts="Douglas DC-6,Douglas DC-6B,MD-83 (DC-9-83),MD-82 (DC-9-82),EMB 120 Brasilia,PA-32 Cherokee Six"></prefereds>
+</airline>

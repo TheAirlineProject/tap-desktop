@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Air One" iata="AP" color="Black" country="141" CEO="Skúli Mogensen" mentality="Safe" market="Global"
            preferedairport="MXP">
+           <narrative narrative="Air One began life as Aliadriatica which was established in Pescara in 1983 to operate as a flying school and provide air-taxi services and later regional scheduled services. In 1988 Gruppo Toto, one of the leading building and civil engineering groups in Italy, became the majority shareholder. With the acquisition of its first Boeing 737-200 in June 1994, Aliadriatica started scheduled and charter operations."/>
+
   </profile>
   <info real="True" from="1983" to="2199" />
 </airline>

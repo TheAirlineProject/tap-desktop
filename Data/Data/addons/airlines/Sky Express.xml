@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Sky Express" iata="GQ" color="Purple" country="118" CEO="Cpt. Miltiadis Tsagkarakis" mentality="Safe" market="Global" preferedairport="HER" routefocus="Mixed" >
+  <narrative narrative="Sky Express of Greece is an airline based at Heraklion on the island of Crete that does scheduled passenger service,charters,cargo and even emergency medical flights. It was founded in 2005 and as of 2014 serves 24 domestic destinations, 4 of them being seasonal. Its cargo operations and charter operations are a global venture, with their 747-200 they used to have being spotted at places like Quito,Ecaudor, Frankfurt Hahn,Germany, Hong Kong and Ostend,Belgium. They only had the 747 from 2006-2008. Currently they have three Jetstream 41's and a ATR 42-300. They also had an MD-83 from 2009-2011."/>
+</profile>
+  <info real="True" from="2005" to="2199" />
+  <prefereds aircrafts="BAe Jetstream 41,ATR 42-300"></prefereds>
+   
+     <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2009)-->
+	         <airliners>
+	    <airliner type="Boeing 747-200F" early="1" late="0"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2015)-->
+	         <airliners>
+	    <airliner type="BAe Jetstream 41" early="2" late="3"></airliner>
+	     </airliners>
+	     	      <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2018)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="1" late="1"></airliner>
+	     </airliners>
+	          	      <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2012)-->
+	         <airliners>
+	    <airliner type="MD-83 (DC-9-83)" early="1" late="0"></airliner>
+	     </airliners>
+	   
+</airline>

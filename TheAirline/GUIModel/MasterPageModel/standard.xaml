@@ -26,18 +26,18 @@
             </WrapPanel>-->
             <WrapPanel Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <Image
-                    Source="{Binding GameObject.HumanAirline.Profile.Logo,Source={StaticResource gameObject}}"
+                    Source="{Binding GameObject.HumanAirline.Profile.Logo,Mode=OneTime,Source={StaticResource gameObject}}"
                     RenderOptions.BitmapScalingMode="HighQuality"
                     HorizontalAlignment="Left"
                     Margin="0 0 20 0" Opacity="0.8"
                     VerticalAlignment="Center"
                     Height="32" />
 
-                <TextBlock Text="{Binding GameObject.HumanAirline.Profile.Name,Source={StaticResource gameObject}}"
+                <TextBlock Text="{Binding GameObject.HumanAirline.Profile.Name,Mode=OneTime,Source={StaticResource gameObject}}"
                            Style="{StaticResource HeaderStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </WrapPanel>
             <StackPanel VerticalAlignment="Center" Grid.Column="2" Margin="0 0 10 0">
-                <TextBlock Text="{Binding GameObject.HumanAirline.Profile.CEO,Source={StaticResource gameObject}}"
+                <TextBlock Text="{Binding GameObject.HumanAirline.Profile.CEO,Mode=OneTime,Source={StaticResource gameObject}}"
                            HorizontalAlignment="Center" FontWeight="Bold" />
                 <TextBlock
                     Text="{Binding GameObject.GameTime,Source={StaticResource gameObject},ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
@@ -46,7 +46,7 @@
                         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                             <Style.Triggers>
                                 <DataTrigger
-                                    Binding="{Binding GameObject.DayRoundEnabled,Source={StaticResource gameObject}}"
+                                    Binding="{Binding GameObject.DayRoundEnabled,Mode=OneTime,Source={StaticResource gameObject}}"
                                     Value="True">
                                     <Setter Property="TextBlock.Visibility" Value="Collapsed" />
                                 </DataTrigger>
@@ -61,7 +61,7 @@
                         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                             <Style.Triggers>
                                 <DataTrigger
-                                    Binding="{Binding GameObject.DayRoundEnabled,Source={StaticResource gameObject}}"
+                                    Binding="{Binding GameObject.DayRoundEnabled,Mode=OneTime,Source={StaticResource gameObject}}"
                                     Value="False">
                                     <Setter Property="TextBlock.Visibility" Value="Collapsed" />
                                 </DataTrigger>
@@ -111,7 +111,7 @@
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding NavigatorCanGoBack,Source={StaticResource gameObject}}"
+                                <DataTrigger Binding="{Binding NavigatorCanGoBack,Mode=OneTime,Source={StaticResource gameObject}}"
                                              Value="False">
                                     <Setter Property="Button.IsEnabled" Value="False" />
                                 </DataTrigger>

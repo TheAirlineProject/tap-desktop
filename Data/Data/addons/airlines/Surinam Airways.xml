@@ -1,0 +1,17 @@
+<airline>
+<profile name="Surinam Airways" iata="PY" color="Red" country="214" CEO="Ewald Henshuijs" mentality="Safe" market="Global" preferedairport="PBM">
+<narrative narrative="Surinam Airways is the flag carrier of Suriname in South America, it is not suppose to have the E in ts name like the country. It's base is Paramaribo. It started operation in 1955 and currently flies to 9 destinations, none of them are domestic. It did fly domestic routes in its earlier years. Its destinations as of July 2013 are Amsterdam, Belem in Brazil,Curacao,Aruba,Cayenne in French Guiana,Georgetown in Guyana,Miami,and Port of Spain in Trinidad and Tobago. It has as of September 2014 three 737-300's and an Airbus A340-300."/>
+</profile>
+<info real="True" from="1955" to="2199"></info>
+  <prefereds aircrafts="Boeing 737-300,Airbus A340-300,Boeing 737-200,Boeing 737-200 Adv.,DHC-6-100 Twin Otter,DHC-6-300 Twin Otter,Douglas DC-3,Douglas DC-6,Douglas DC-6B,Douglas DC-8-51,Douglad DC-8-61,Boeing 747-200B,Boeing 747-300,Boeing 777-200ER,Boeing 707-320B,Cessna 206,MD DC-9-50,PA-31 Navajo"></prefereds>	   
+           <routes>
+                <route destination1="PBM" destination2="AMS" />
+		<route destination1="PBM" destination2="GEO" />
+		<route destination1="PBM" destination2="MIA" />
+		<route destination1="PBM" destination2="AUA" />
+		<route destination1="PBM" destination2="CAY" />
+		<route destination1="PBM" destination2="POS" />
+		<route destination1="PBM" destination2="CUR" />
+		<route destination1="PBM" destination2="BEL" />
+		</routes>
+</airline>

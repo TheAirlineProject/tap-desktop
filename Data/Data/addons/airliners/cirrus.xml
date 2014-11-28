@@ -1,0 +1,11 @@
+      <airliners>
+
+   <airliner manufacturer="Cirrus" name="Vision SF50" price="260000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="11.68" length="9.40" range="1000" speed="556" fuelcapacity="1200" consumption="0.166"
+           runwaylengthrequired="600" />
+    <capacity passengers="6" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="2015" to="2199" rate="125" />
+      </airliner>
+      
+      </airliners>

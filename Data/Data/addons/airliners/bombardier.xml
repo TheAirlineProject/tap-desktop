@@ -8,6 +8,13 @@
     <capacity passengers="50" cockpitcrew="2" cabincrew="1" maxclasses="1" />
     <produced from="1992" to="2008" rate="60" />
   </airliner>
+      <airliner manufacturer="Bombardier" name="Bombardier CRJ705" price="5063000"> <!--27541000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Jet" />
+    <specs wingspan="24.85" length="36.40" range="3635" speed="829" fuelcapacity="14837" consumption="0.013"
+           runwaylengthrequired="1560" />
+    <capacity passengers="75" cockpitcrew="2" cabincrew="2" maxclasses="2" />
+    <produced from="2005" to="2006" rate="8" />
+  </airliner>
   <airliner manufacturer="Bombardier" name="Bombardier CRJ200" price="3594970"> <!--18000000-->
     <type body="Narrow_Body" rangetype="Regional" engine="Jet" />
     <specs wingspan="21.21" length="26.77" range="2350" speed="809" fuelcapacity="8080" consumption="0.069"

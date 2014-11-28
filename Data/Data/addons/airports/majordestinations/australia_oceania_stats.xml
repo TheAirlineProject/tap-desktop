@@ -1,9 +1,19 @@
 
 
 <majordestinations>
+<majordestination airport="AKL">
+    <destinations>
+       <destination airport="LHR" pax="151"  />
+    </destinations>
+  </majordestination>
+<majordestination airport="MEL">
+    <destinations>
+       <destination airport="LHR" pax="231"  />
+    </destinations>
+  </majordestination>
 <majordestination airport="SYD">
     <destinations>
-      <destination airport="DFW" pax="101" cargo="15" />
+       <destination airport="LHR" pax="513"  />
     </destinations>
   </majordestination>
 </majordestinations>

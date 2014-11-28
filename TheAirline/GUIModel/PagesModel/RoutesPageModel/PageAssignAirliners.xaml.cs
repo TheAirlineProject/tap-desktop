@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -39,14 +40,9 @@
                 this.Contracts.Add(new SpecialContractMVVM(sc,startdate,enddate));
             }
 
-            this.Restrictions =
-                FlightRestrictions.GetRestrictions()
-                    .FindAll(
-                        r =>
-                            r.StartDate < GameObject.GetInstance().GameTime
-                            && r.EndDate > GameObject.GetInstance().GameTime);
 
-            this.Airliners = new List<FleetAirlinerMVVM>();
+
+            this.Airliners = new ObservableCollection<FleetAirlinerMVVM>();
             foreach (
                 FleetAirliner airliner in
                     GameObject.GetInstance()
@@ -64,9 +60,7 @@
 
         #region Public Properties
 
-        public List<FleetAirlinerMVVM> Airliners { get; set; }
-
-        public List<FlightRestriction> Restrictions { get; set; }
+        public ObservableCollection<FleetAirlinerMVVM> Airliners { get; set; }
 
         public List<SpecialContractMVVM> Contracts { get; set; }
 
@@ -125,69 +119,72 @@
                 Translator.GetInstance().GetString("PageAssignAirliners", "1004"),
                 cbAirliners) == PopUpSingleElement.ButtonSelected.OK && cbAirliners.SelectedItem != null)
             {
-                
+
                 var transferAirliner = (FleetAirliner)cbAirliners.SelectedItem;
-                FleetAirlinerMVVM fAirlinerMVVM = this.Airliners.First(a => a.Airliner == transferAirliner);
+                FleetAirlinerMVVM fAirlinerMVVM = this.Airliners.FirstOrDefault(a => a.Airliner == transferAirliner);
 
-                foreach (Route route in airliner.Airliner.Routes)
+                if (fAirlinerMVVM != null)
                 {
-                    foreach (
-                        RouteTimeTableEntry entry in
-                            route.TimeTable.Entries.FindAll(en => en.Airliner == airliner.Airliner))
+                    foreach (Route route in airliner.Airliner.Routes)
                     {
-                        entry.Airliner = transferAirliner;
+                        foreach (
+                            RouteTimeTableEntry entry in
+                                route.TimeTable.Entries.FindAll(en => en.Airliner == airliner.Airliner))
+                        {
+                            entry.Airliner = transferAirliner;
 
+                        }
+
+                        if (!transferAirliner.Routes.Contains(route))
+                        {
+                            transferAirliner.addRoute(route);
+                            fAirlinerMVVM.Routes.Add(route);
+
+
+                        }
+                    }
+                    airliner.Airliner.Routes.Clear();
+                    airliner.HasRoute = false;
+
+                    while (airliner.Routes.Count > 0)
+                        airliner.Routes.Remove(airliner.Routes[0]);
+
+                    int missingPilots = transferAirliner.Airliner.Type.CockpitCrew - transferAirliner.NumberOfPilots;
+
+                    List<Pilot> pilots =
+                                     Pilots.GetUnassignedPilots(
+                                         p =>
+                                             p.Profile.Town.Country == airliner.Airliner.Airliner.Airline.Profile.Country
+                                             && p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
+
+                    if (pilots.Count == 0)
+                    {
+                        pilots =
+                            Pilots.GetUnassignedPilots(
+                                p =>
+                                    p.Profile.Town.Country.Region
+                                    == airliner.Airliner.Airliner.Airline.Profile.Country.Region
+                                    && p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
                     }
 
-                    if (!transferAirliner.Routes.Contains(route))
+                    while (pilots.Count < missingPilots)
                     {
-                        transferAirliner.addRoute(route);
-                        fAirlinerMVVM.Routes.Add(route);
-                        
-              
+                        GeneralHelpers.CreatePilots(4, airliner.Airliner.Airliner.Type.AirlinerFamily);
+                        pilots =
+                            Pilots.GetUnassignedPilots(
+                                p => p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
                     }
+
+
+                    for (int i = 0; i < missingPilots; i++)
+                    {
+                        pilots[i].Airliner = transferAirliner;
+                        transferAirliner.addPilot(pilots[i]);
+                    }
+
+
+                    fAirlinerMVVM.HasRoute = true;
                 }
-                airliner.Airliner.Routes.Clear();
-                airliner.HasRoute = false;
-
-                while (airliner.Routes.Count > 0)
-                    airliner.Routes.Remove(airliner.Routes[0]);
-
-                int missingPilots =transferAirliner.Airliner.Type.CockpitCrew - transferAirliner.NumberOfPilots;
-
-                List<Pilot> pilots =
-                                 Pilots.GetUnassignedPilots(
-                                     p =>
-                                         p.Profile.Town.Country == airliner.Airliner.Airliner.Airline.Profile.Country
-                                         && p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
-
-                if (pilots.Count == 0)
-                {
-                    pilots =
-                        Pilots.GetUnassignedPilots(
-                            p =>
-                                p.Profile.Town.Country.Region
-                                == airliner.Airliner.Airliner.Airline.Profile.Country.Region
-                                && p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
-                }
-
-                while (pilots.Count < missingPilots)
-                {
-                    GeneralHelpers.CreatePilots(4, airliner.Airliner.Airliner.Type.AirlinerFamily);
-                    pilots =
-                        Pilots.GetUnassignedPilots(
-                            p => p.Aircrafts.Contains(airliner.Airliner.Airliner.Type.AirlinerFamily));
-                }
-
-
-                for (int i = 0; i < missingPilots; i++)
-                {
-                    pilots[i].Airliner = transferAirliner;
-                    transferAirliner.addPilot(pilots[i]);
-                }
-
-           
-                fAirlinerMVVM.HasRoute = true;
             }
 
         }

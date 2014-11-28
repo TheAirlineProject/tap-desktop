@@ -32,7 +32,7 @@
             this.DataContext = this.Airliner;
             this.Loaded += this.PageFleetAirlinerInformation_Loaded;
 
-   
+
             this.InitializeComponent();
         }
 
@@ -192,7 +192,7 @@
         }
         private void btnOutlease_Click(object sender, RoutedEventArgs e)
         {
-            
+
             WPFMessageBoxResult result = WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2018"),
                     string.Format(
@@ -286,20 +286,68 @@
 
         private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            this.Airliner.Airliner.Airliner.clearAirlinerClasses();
+            double price = 0;
+
+            var oldClasses = new List<AirlinerClass>(this.Airliner.Airliner.Airliner.Classes);
 
             foreach (AirlinerClassMVVM aClass in this.Airliner.Classes)
             {
-                var nClass = new AirlinerClass(aClass.Type, aClass.RegularSeatingCapacity);
-                nClass.SeatingCapacity = aClass.Seating;
-
-                foreach (AirlinerFacilityMVVM aFacility in aClass.Facilities)
+                if (!oldClasses.Exists(c => c.Type == aClass.Type))
                 {
-                    nClass.forceSetFacility(aFacility.SelectedFacility);
+                    price += 10000;
                 }
+                foreach (AirlinerFacilityMVVM facility in aClass.Facilities)
+                {
+                    if (oldClasses.Exists(c => c.Type == aClass.Type))
+                    {
+                        AirlinerClass oldClass = oldClasses.First(c => c.Type == aClass.Type);
 
-                this.Airliner.Airliner.Airliner.addAirlinerClass(nClass);
+                        if (oldClass.getFacility(facility.Type).PricePerSeat > facility.SelectedFacility.PricePerSeat)
+                            price += facility.SelectedFacility.PricePerSeat * aClass.Seating * facility.SelectedFacility.PercentOfSeats;
+                    }
+                    else
+                    {
+                        price += facility.SelectedFacility.PricePerSeat * aClass.Seating * facility.SelectedFacility.PercentOfSeats;
+                    }
+                }
             }
+
+            price = Math.Max(price, 0);
+            //Airport codes on the routes page don't change between IATA and ICAO
+            if (price <= GameObject.GetInstance().HumanAirline.Money)
+            {
+
+                WPFMessageBoxResult result = WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2136"),
+                    string.Format(Translator.GetInstance().GetString("MessageBox", "2136", "message"), new ValueCurrencyConverter().Convert(price)),
+                    WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+
+                    this.Airliner.Airliner.Airliner.clearAirlinerClasses();
+
+                    foreach (AirlinerClassMVVM aClass in this.Airliner.Classes)
+                    {
+                        var nClass = new AirlinerClass(aClass.Type, aClass.RegularSeatingCapacity);
+                        nClass.SeatingCapacity = aClass.Seating;
+
+                        foreach (AirlinerFacilityMVVM aFacility in aClass.Facilities)
+                        {
+                            nClass.forceSetFacility(aFacility.SelectedFacility);
+                        }
+
+                        this.Airliner.Airliner.Airliner.addAirlinerClass(nClass);
+                    }
+
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airliner_Expenses, -price);
+                }
+            }
+            else
+                WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2019"),
+                    Translator.GetInstance().GetString("MessageBox", "2019", "message"),
+                    WPFMessageBoxButtons.Ok);
         }
 
         private void btnUndoChanges_Click(object sender, RoutedEventArgs e)
@@ -398,5 +446,5 @@
 
         #endregion
     }
-   
+
 }

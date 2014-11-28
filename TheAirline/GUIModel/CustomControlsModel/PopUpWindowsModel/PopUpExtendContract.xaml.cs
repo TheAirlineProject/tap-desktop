@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
     /// </summary>
     public partial class PopUpExtendContract : PopUpWindow, INotifyPropertyChanged
     {
-        public List<AirportContract.ContractType> ContractTypes { get; set; }
+        public ObservableCollection<AirportContract.ContractType> ContractTypes { get; set; }
         private AirportContract Contract;
         private Boolean _hasfreegates;
         public Boolean HasFreeGates
@@ -53,7 +54,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
         {
             this.Loaded += PopUpExtendContract_Loaded;
 
-            this.ContractTypes = new List<AirportContract.ContractType>();
+            this.ContractTypes = new ObservableCollection<AirportContract.ContractType>();
 
             foreach (AirportContract.ContractType type in Enum.GetValues(typeof(AirportContract.ContractType)))
             {

@@ -24,6 +24,7 @@ using TheAirline.Model.AirportModel;
             this.Name = name;
             this.Country = country;
             this.State = state;
+            this.OriginalName = name;
         }
 
         private Town(SerializationInfo info, StreamingContext ctxt)
@@ -81,6 +82,9 @@ using TheAirline.Model.AirportModel;
                     }
                 }
             }
+
+            if (version == 1)
+                this.OriginalName = this.Name;
         }
 
         #endregion
@@ -95,6 +99,8 @@ using TheAirline.Model.AirportModel;
             get { return new CountryCurrentCountryConverter().Convert(this.Country) as Country; }
             private set { ; } 
         }
+        [Versioning("originalname",Version=2)]
+        public string OriginalName { get; set; }
 
         [Versioning("name")]
         public string Name { get; set; }
@@ -119,9 +125,9 @@ using TheAirline.Model.AirportModel;
             {
                 return false;
             }
-
+            
             // Return true if the fields match:
-            return a.Name == b.Name && a.Name == b.Name
+            return ((a.Name == b.Name) || (a.Name == b.OriginalName) || (a.OriginalName == b.Name) || (a.OriginalName == b.OriginalName))
                    && ((a.State == null && b.State == null) || (a.State == b.State));
         }
 
@@ -149,7 +155,7 @@ using TheAirline.Model.AirportModel;
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 
@@ -205,7 +211,7 @@ using TheAirline.Model.AirportModel;
                 if (
                     Airports.GetAirport(
                         a =>
-                            a.Profile.Town.Name == town && a.Profile.Town.State != null
+                            (a.Profile.Town.Name == town || a.Profile.Town.OriginalName == town) && a.Profile.Town.State != null
                             && a.Profile.Town.State.ShortName == state) == null)
                 {
                     if (Airports.GetAirport(a => a.Profile.Town.Name == town && a.Profile.Country.Uid == state) != null)

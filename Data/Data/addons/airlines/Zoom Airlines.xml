@@ -1,10 +1,35 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
-  <profile name="Zoom Airlines" iata="Z4" color="Blue" country="113" CEO="Hugh Boyle" mentality="Moderate"
-           market="Regional" preferedairport="YYZ">
-    <narrative
-      narrative="Zoom Airlines Inc. was founded in May 2002 as a low-fare transatlantic airline. The carrier, based in Canada's capital city, Ottawa, was conceived by two Scottish brothers, John and Hugh Boyle, to fill an opportunity in the Canadian leisure travel market." />
-  </profile>
-  <info real="True" from="2002" to="2008"></info>
+  <profile name="Zoom Airlines" iata="Z4" color="DodgerBlue" country="113" CEO="Hugh Boyle" mentality="Safe" market="Global" preferedairport="YOW" >
+  <narrative narrative="Zoom was a transatlantic low fare airline that lasted from May 2002 to August 2008. It was based in Ottawa and also had bases at Toronto and Montreal. It also operated out o Vancouver,Calgary,Winnipeg and Halifax. It had three destinations in the U.S (Ft. Lauderdale,New York JFK,San Diego),five in the Caribbean,one in Guyana in Souther America,one in Thailand in Asia,five in the UK including London Gatwick,Manchester,Belfast,Glasgow and Cardiff. Paris,Rome and Amsterdam are other ones in Europe it served. At the end they had three 767-300ER's and two 757-200's. It also had the subsidiary Zoom Airlines Limited based at London Gatwick from August 2006 to the end. The airline was founded by the two Scottish brothers Hugh and John Boyle who had started at least two tour and holiday companies in Scotland with much success before founding Zoom."/>
+</profile>
+  <info real="True" from="2002" to="2009" />
+  <prefereds aircrafts="Boeing 767-300ER,Boeing 757-200,Airbus A320-200,Boeing 737-800"></prefereds>
+     <focusairports>
+	 <focusairport airport="YYZ"></focusairport>
+	 <focusairport airport="YUL"></focusairport>
+	 <focusairport airport="YVR"></focusairport>
+	 <focusairport airport="YYC"></focusairport>
+	  <focusairport airport="YHZ"></focusairport>
+	 <focusairport airport="YWG"></focusairport>
+     </focusairports>
+                
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2008)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300ER" early="2" late="2"></airliner>
+	     </airliners>
+		         	     	         <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2008)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="1" late="2"></airliner>
+	     </airliners>
+	
+	 
+	 
+	 
+	     	  
+	     	  
+	     	  
+
+
 </airline>

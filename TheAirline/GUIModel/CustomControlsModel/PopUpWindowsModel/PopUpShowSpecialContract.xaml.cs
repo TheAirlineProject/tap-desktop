@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,8 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
     /// </summary>
     public partial class PopUpShowSpecialContract : PopUpWindow
     {
-        public List<RequirementMVVM> Requirements { get; set; }
-        public List<SpecialRouteMVVM> Routes { get; set; }
+        public ObservableCollection<RequirementMVVM> Requirements { get; set; }
+        public ObservableCollection<SpecialRouteMVVM> Routes { get; set; }
         public string ContractName { get; set; }
         public static object ShowPopUp(SpecialContract contract)
         {
@@ -38,8 +39,8 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             this.ContractName = contract.Type.Name;
             this.Content = contract;
 
-            this.Requirements = new List<RequirementMVVM>();
-            this.Routes = new List<SpecialRouteMVVM>();
+            this.Requirements = new ObservableCollection<RequirementMVVM>();
+            this.Routes = new ObservableCollection<SpecialRouteMVVM>();
 
             foreach (ContractRequirement requirement in contract.Type.Requirements)
             {   

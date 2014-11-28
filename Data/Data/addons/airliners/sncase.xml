@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airliners>
+    <airliner manufacturer="SNCASE" name="SE 161 Languedoc" price="1300000">
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop"/>
+	<specs wingspan="29.39" length="24.26" range="3200" speed="352" fuelcapacity="3720" consumption="0.030" runwaylengthrequired="2000"/>
+	<capacity passengers="33" cockpitcrew="4" cabincrew="1" maxclasses="2"/>
+	<produced from="1945" to="1948" rate="33"/>
+  </airliner>
+</airliners>

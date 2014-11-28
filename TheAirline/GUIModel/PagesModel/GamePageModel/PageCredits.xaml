@@ -44,7 +44,7 @@
                 <TextBlock Text="Mike" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20"
                            HorizontalAlignment="Center" />
                 <TextBlock Text="Webmaster" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
-                <TextBlock Text="Rayhan, RobotWillie and Nick" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20"
+                <TextBlock Text="William A. Nelsen and Nick" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20"
                            HorizontalAlignment="Center" />
                 <TextBlock Text="Main Contributers" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
                 <TextBlock Text="Offical Website" HorizontalAlignment="Center" VerticalAlignment="Bottom"

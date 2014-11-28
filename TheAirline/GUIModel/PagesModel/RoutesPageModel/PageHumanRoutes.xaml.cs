@@ -43,9 +43,9 @@
                     .Select(c => c.Airline1 == GameObject.GetInstance().HumanAirline ? c.Airline2 : c.Airline1)
                     .SelectMany(a => a.Routes);
 
-            this.CodesharingRoutes = codesharingRoutes.ToList();
+            this.CodesharingRoutes = new ObservableCollection<Route>(codesharingRoutes);
             this.SelectedRoutes = new ObservableCollection<RouteMVVM>();
-            this.PriceChanges = new List<double>() { -90, -75, -50, -45, -35, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 35, 45, 50, 75, 100 };
+            this.PriceChanges = new ObservableCollection<double>() { -90, -75, -50, -45, -35, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 35, 45, 50, 75, 100 };
             this.Classes = new ObservableCollection<MVVMRouteClass>();
 
             this.InitializeComponent();
@@ -55,9 +55,9 @@
 
         #region Public Properties
 
-        public List<Route> CodesharingRoutes { get; set; }
+        public ObservableCollection<Route> CodesharingRoutes { get; set; }
         public ObservableCollection<RouteMVVM> SelectedRoutes { get; set; }
-        public List<double> PriceChanges { get; set; }
+        public ObservableCollection<double> PriceChanges { get; set; }
         public ObservableCollection<MVVMRouteClass> Classes { get; set; }
 
         #endregion

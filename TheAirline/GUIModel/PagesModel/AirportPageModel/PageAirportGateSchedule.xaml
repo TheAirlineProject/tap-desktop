@@ -14,10 +14,11 @@
                      ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
+                     
                         <WrapPanel>
                             <TextBlock Text="{Binding GateNumber,StringFormat=Gate {0}}" VerticalAlignment="Bottom"
                                        Width="100" FontWeight="Bold" />
-                            <ContentControl Content="{Binding Airline}"
+                            <ContentControl Content="{Binding Airline,Mode=OneTime}"
                                             ContentTemplate="{StaticResource AirlineLongLink}"
                                             VerticalAlignment="Bottom">
                                 <ContentControl.Style>
@@ -52,7 +53,7 @@
                     ContentTemplate="{StaticResource GatesTemplate}">
             <TabControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" FontWeight="Bold" />
+                    <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" FontWeight="Bold" />
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>

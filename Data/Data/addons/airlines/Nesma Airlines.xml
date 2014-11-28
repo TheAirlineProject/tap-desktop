@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Nesma Airlines" iata="NE" color="Gray" country="155" CEO="Mohamed Hammad" mentality="Safe" market="Global" preferedairport="CAI">
+  <narrative narrative="Nesma Airlines are a scheduled and charter airline based at Cairo,Egypt with secondary hubs at Sharm el-Sheikh and Hurghada, with focus cities at Paris and Taif,Saudi Arabia and Tabuk,Saudi Arabia. It was founded in 2010 and started scheduled operations in June 2011. It serves three Egyptian airports scheduled wise, Cairo,Alexandria and Asyut, and six in Saudi Arabia. It's charters go to places like Armenia,Czech Republic,France,Germany,Italy,Macedonia,Poland,Romania,Slovakia,Serbia,Ireland and the UK. Its primary charter spots are bringing people to the holiday spots in Egypt like Sharm el-Sheikh. As of 2011 they had three A320's and two on order."/>
+</profile>
+  <info real="True" from="2010" to="2199" />
+  <prefereds aircrafts="Airbus A320-200,Airbus A320neo"></prefereds>
+     <focusairports>
+	<focusairport airport="SSH"></focusairport>
+	<focusairport airport="HRG"></focusairport>
+	<focusairport airport="TIF"></focusairport>
+	<focusairport airport="TUU"></focusairport>
+	<focusairport airport="CDG"></focusairport>
+     </focusairports>
+	           <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2016)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="3" late="5"></airliner>
+	     </airliners>  
+</airline>

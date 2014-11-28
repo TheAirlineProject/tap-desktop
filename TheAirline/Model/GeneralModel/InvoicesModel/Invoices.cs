@@ -145,8 +145,9 @@
                 if (this.contains(type, year, month,day))
                 {
                     MonthlyInvoice mInvoice =
-                        this.MonthlyInvoices.Find(m => m.Month == month && m.Year == year && m.Type == type && m.Day == day);
-                    mInvoice.Amount += amount;
+                        this.MonthlyInvoices.Find(m => m.Month == month && m.Year == year && m.Type == type && m.Day == day);//optimization to DB + stats
+                   
+                     mInvoice.Amount += amount;
                 }
                 else
                 {

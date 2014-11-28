@@ -103,7 +103,7 @@
                                 Width="75">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Margin="5 0 0 0" Text="{Binding Passengers}"
+                                                <TextBlock Margin="5 0 0 0" Text="{Binding Passengers,Mode=OneTime}"
                                                    VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -113,7 +113,7 @@
                                 Width="75">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Cargo}" VerticalAlignment="Bottom" />
+                                                <TextBlock Text="{Binding Cargo,Mode=OneTime}" VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -177,7 +177,7 @@
                                 Width="300">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <ContentControl VerticalAlignment="Bottom" Content="{Binding Destination}"
+                                                <ContentControl VerticalAlignment="Bottom" Content="{Binding Destination,Mode=OneTime}"
                                                         ContentTemplate="{StaticResource AirportCountryLink}" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -187,7 +187,7 @@
                                 Width="75">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Margin="5 0 0 0" Text="{Binding Passengers}"
+                                                <TextBlock Margin="5 0 0 0" Text="{Binding Passengers,Mode=OneTime}"
                                                    VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -197,7 +197,7 @@
                                 Width="75">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Cargo}" VerticalAlignment="Bottom" />
+                                                <TextBlock Text="{Binding Cargo,Mode=OneTime}" VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -247,6 +247,13 @@
                     Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportDemand 1002'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
                 <TextBlock Text="{Binding SelectedAirport.Distance,ElementName=pageAirportDemand,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportDemand 1009'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding SelectedAirport.RunwayLength,ElementName=pageAirportDemand,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
 
             </WrapPanel>
             <WrapPanel>

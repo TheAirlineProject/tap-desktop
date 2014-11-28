@@ -21,8 +21,9 @@
             AirlineMentality mentality,
             AirlineFocus market,
             AirlineLicense license,
-            Route.RouteType routefocus)
-            : base(profile, mentality, market, license, routefocus)
+            Route.RouteType routefocus,
+            AirlineRouteSchedule schedule)
+            : base(profile, mentality, market, license, routefocus,schedule)
         {
             this.Airline = airline;
 

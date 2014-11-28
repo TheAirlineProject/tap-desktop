@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="EgyptAir Express" iata="MSE" color="GoldenRod" country="155" CEO="Helmi Rizq" mentality="Safe" market="Global" preferedairport="CAI">
+  <narrative narrative="EgyptAir Express is a subsidiary of EgyptAir. It's base is also Cairo with other bases at Sharm el-Shiekh and Alexandria. It was founded in 2006 and began operation in June 2007, it was made to focus on the domestic market but it also does flights to Cyprus,Budapest,Beirut,Malta,Jeddah in the summer,Athens in the summer,and Tel Aviv. It operates at 10 domestic airports. It operated 12 Embraer 170's as of June 2013 in a 76 passenger layout."/>
+</profile>
+  <info real="True" from="2006" to="2199" />
+  <prefereds aircrafts="Embraer E-170,Embraer E-175"></prefereds>
+     <focusairports>
+	<focusairport airport="ALY"></focusairport>
+	<focusairport airport="SSH"></focusairport>
+     </focusairports>
+                <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2017)-->
+	         <airliners>
+	    <airliner type="Embraer E-170" early="12" late="12"></airliner>
+	     </airliners>  
+
+</airline>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="BMI Regional" iata="BM" color="Blue" country="130" CEO="Cathal O'Connell" mentality="Moderate"  market="Regional " preferedairport="ABZ">
+    <narrative narrative="BMI Regional is an airline with it's headquarters at East Midlands and its bases at Aberdeen,Bristol,Chester Hawarden,East Midlands,Newcastle and Stavanger,Norway. It was a part of British Midland International from 1999 to 2012 when that airline was bought by British Airways, BMI Regional was bought by another group called Sector Aviation Holdings and broke from British Midland becoming an independant airline once more starting October 27,2012. Its name from 1987-1999 was Business Air. It was named the most punctual scheduled airline in the UK for the ninth year in a row in 2014, 92% on time percent. They serve 20 destinations in Europe, 7 of these are in the UK and 5 in Germany, and 4 in Norway and 3 in Sweden and one each in France,Denmark,Belgium and Italy. as of 2014 their fleet was 14 Embraer 145's and 4 Embraer 135's. " />
+  </profile>
+  <info real="True" from="1987" to="2199" />
+  <prefereds aircrafts="Embraer ERJ145 LR,Embraer ERJ 135 ER,ATR 42-300,Saab 340B"></prefereds>
+
+</airline>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Gambia Bird" iata="3G"  color="MediumBlue" country="301" CEO="Thomas Wazinski" mentality="Moderate" market="Global" preferedairport="BJL">
+    <narrative narrative="Gambia Bird is a subsidiary of Germania based at Banjul,Gambia in West Africa. It was founded in 2012 and has two A319s leased from its parent. It has 6 West African destinations and London Gatwick and Barcelona,Spain. A 757-200 is also used on the European flights. " />
+  </profile>
+  <info real="True" from="2012" to="2199"></info>
+  <prefereds aircrafts="Airbus A319-100,Airbus A319neo,Boeing 757-200"></prefereds>
+ </airline>

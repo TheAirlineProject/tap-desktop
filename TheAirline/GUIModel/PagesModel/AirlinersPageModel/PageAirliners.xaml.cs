@@ -3,10 +3,10 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
@@ -20,12 +20,14 @@
 
         public PageAirliners()
         {
-            this.NewestAircrafts =
-                AirlinerTypes.GetTypes(a => a.Produced.From <= GameObject.GetInstance().GameTime)
-                    .OrderByDescending(a => a.Produced.From)
-                    .Take(5)
-                    .ToList();
-            this.MostUsedAircrafts = new List<AirlineFleetSizeMVVM>();
+            this.NewestAircrafts = new ObservableCollection<AirlinerType>();
+
+            AirlinerTypes.GetTypes(a => a.Produced.From <= GameObject.GetInstance().GameTime)
+                .OrderByDescending(a => a.Produced.From)
+                .Take(5)
+                .ToList().ForEach(a => this.NewestAircrafts.Add(a));
+
+            this.MostUsedAircrafts = new ObservableCollection<AirlineFleetSizeMVVM>();
 
             var query =
                 GameObject.GetInstance()
@@ -51,9 +53,9 @@
 
         public Hashtable AirlinersFilters { get; set; }
 
-        public List<AirlineFleetSizeMVVM> MostUsedAircrafts { get; set; }
+        public ObservableCollection<AirlineFleetSizeMVVM> MostUsedAircrafts { get; set; }
 
-        public List<AirlinerType> NewestAircrafts { get; set; }
+        public ObservableCollection<AirlinerType> NewestAircrafts { get; set; }
 
         #endregion
 

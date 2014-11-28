@@ -168,6 +168,7 @@
                     sw.Start();
                     GameObjectHelpers.SimulateTurn();
                     sw.Stop();
+                    //Console.WriteLine(GameObject.GetInstance().GameTime.ToShortDateString() + " took " + sw.ElapsedMilliseconds + " ms. to run");
 
                     long waittime = (int)Settings.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
                   
@@ -178,12 +179,14 @@
                 }
                 catch (Exception ex)
                 {
+                    TAPLogger.LogEvent(ex.StackTrace, "Exception in GameObjectWorker.cs");
+                /*
                     System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairline.log");
                     file.WriteLine("{0}: {1} {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.StackTrace);
                     file.WriteLine(ex.ToString());
                     file.WriteLine("---------GAME INFORMATION----------");
                     file.Write("Gametime: {0}, human airline: {1}", GameObject.GetInstance().GameTime.ToShortDateString(), GameObject.GetInstance().HumanAirline.Profile.Name);
-                    file.Close();
+                    file.Close();*/
                   
                     this.IsError = true;
 

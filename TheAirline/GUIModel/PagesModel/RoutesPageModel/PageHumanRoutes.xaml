@@ -79,7 +79,7 @@
                                         Width="250">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <ContentControl Content="{Binding Route.Destination1}"
+                                        <ContentControl Content="{Binding Route.Destination1,Mode=OneTime}"
                                                     ContentTemplate="{StaticResource AirportCountryLink}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -89,7 +89,7 @@
                                         Width="250">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <ContentControl Content="{Binding Route.Destination2}"
+                                        <ContentControl Content="{Binding Route.Destination2,Mode=OneTime}"
                                                     ContentTemplate="{StaticResource AirportCountryLink}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -111,7 +111,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                        Text="{Binding Distance,Converter={StaticResource DistanceToUnitConverter}}"
+                                        Text="{Binding Distance,Mode=OneTime,Converter={StaticResource DistanceToUnitConverter}}"
                                         VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -122,7 +122,7 @@
                                         Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Route.Type}" VerticalAlignment="Bottom" />
+                                        <TextBlock Text="{Binding Route.Type,Mode=OneTime}" VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -132,7 +132,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock VerticalAlignment="Bottom"
-                                               Text="{Binding Route.Season,Converter={StaticResource TextUnderscoreConverter}}" />
+                                               Text="{Binding Route.Season,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -142,8 +142,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                        Text="{Binding Balance,Converter={StaticResource ValueCurrencyConverter}}"
-                                        Foreground="{Binding Balance,Converter={StaticResource ValueIsMinusConverter}}"
+                                        Text="{Binding Balance,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
+                                        Foreground="{Binding Balance,Mode=OneTime,Converter={StaticResource ValueIsMinusConverter}}"
                                         VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -153,7 +153,7 @@
                                         Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Total}" VerticalAlignment="Bottom" />
+                                        <TextBlock Text="{Binding Total,Mode=OneTime}" VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -162,7 +162,7 @@
                                         Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Average}" VerticalAlignment="Bottom" />
+                                        <TextBlock Text="{Binding Average,Mode=OneTime}" VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -171,7 +171,7 @@
                                         Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding FillingDegree,StringFormat={}{0:P2}}"
+                                        <TextBlock Text="{Binding FillingDegree,Mode=OneTime,StringFormat={}{0:P2}}"
                                                VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -218,7 +218,7 @@
                                             Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding Airline}"
+                                            <ContentControl Content="{Binding Airline,Mode=OneTime}"
                                                         ContentTemplate="{StaticResource AirlineLink}"
                                                         VerticalAlignment="Bottom" />
                                         </DataTemplate>
@@ -230,7 +230,7 @@
                                             Width="250">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding Destination1}"
+                                            <ContentControl Content="{Binding Destination1,Mode=OneTime}"
                                                         ContentTemplate="{StaticResource AirportCountryLink}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -240,7 +240,7 @@
                                             Width="250">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding Destination2}"
+                                            <ContentControl Content="{Binding Destination2,Mode=OneTime}"
                                                         ContentTemplate="{StaticResource AirportCountryLink}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

@@ -36,7 +36,7 @@
             this.Status = StatusTypes.Normal;
             this.History = new List<AirlinerRegistrationHistory>();
 
-            this.History.Add(new AirlinerRegistrationHistory(builtDate, null, tailNumber));
+            this.History.Add(new AirlinerRegistrationHistory(builtDate,this.Type.Manufacturer.Name,this.Type.Manufacturer.Logo, tailNumber));
 
             this.Classes = new List<AirlinerClass>();
            

@@ -237,7 +237,29 @@
 
         #endregion
     }
+    //the converter for a timespan to time string
+    public class TimeSpanConverter : IValueConverter
+    {
+        public object Convert(object value)
+        {
+            return Convert(value, null, null, null);
+        }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
 
+            TimeSpan ts = (TimeSpan)value;
+    
+            if (System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern.Contains("H"))
+                return new DateTime(1960,1,1).Add(ts).ToString("HH:mm");
+            else
+                return new DateTime(1960, 1, 1).Add(ts).ToString("h:mm tt");
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for a boolean to visibility
     public class BooleanToVisibility : IValueConverter
     {
@@ -436,15 +458,15 @@
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-           
-            
+
+
             var weight = (double)value;
 
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
             {
                 return string.Format("{0:0} kg", weight);
             }
-        
+
             return string.Format("{0:0} lbs", MathHelpers.KgToPound(weight));
         }
 
@@ -648,7 +670,7 @@
                 return text;
             else
                 return translation;
-           
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

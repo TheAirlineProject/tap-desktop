@@ -1,6 +1,7 @@
 ﻿using MapControl;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -17,15 +18,14 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapMode
 {
     public class MapViewModel
     {
-        public List<VmPolyline> Routes { get; set; }
-        public List<VmPoint> Airports { get; set; }
+        public ObservableCollection<VmPolyline> Routes { get; set; }
+        public ObservableCollection<VmPoint> Airports { get; set; }
         public Location Center { get; set; }
         public MapViewModel(List<Airport> airports = null, List<Route> routes = null)
         {
 
-          
-            this.Routes = new List<VmPolyline>();
-            this.Airports = new List<VmPoint>();
+            this.Routes = new ObservableCollection<VmPolyline>();
+            this.Airports = new ObservableCollection<VmPoint>();
 
             if (routes != null)
             {
@@ -41,6 +41,9 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapMode
                         allRoutes.Add(route);
                 }
 
+
+              
+
                 foreach (Route route in allRoutes)
                 {
                     this.Airports.Add(
@@ -55,17 +58,24 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpMapMode
                  Airport = route.Destination2,
                  Location = new Location(route.Destination2.Profile.Coordinates.Latitude.getAsDecimal(), route.Destination2.Profile.Coordinates.Longitude.getAsDecimal())
              });
+                    var locations = new List<Location>();
+                    locations.Add(new Location(route.Destination2.Profile.Coordinates.Latitude.getAsDecimal(), route.Destination2.Profile.Coordinates.Longitude.getAsDecimal()));
+                    locations.Add(new Location(route.Destination1.Profile.Coordinates.Latitude.getAsDecimal(), route.Destination1.Profile.Coordinates.Longitude.getAsDecimal()));
+
                     this.Routes.Add(
               new VmPolyline
               {
-                  Locations = LocationCollection.Parse(string.Format("{0},{1} {2},{3}",route.Destination1.Profile.Coordinates.Latitude.getAsDecimal(),route.Destination1.Profile.Coordinates.Longitude.getAsDecimal(),route.Destination2.Profile.Coordinates.Latitude.getAsDecimal(),route.Destination2.Profile.Coordinates.Longitude.getAsDecimal()))// "57.0927589,9.8492432 52.3086014,4.7638898")// 53.5156,8.1623 53.5276,8.1757 53.5491,8.1852 53.5495,8.1877 53.5426,8.1993 53.5184,8.2219 53.5182,8.2386 53.5195,8.2387")
+                  
+                  Locations = new LocationCollection(locations)
               });
                 }
             }
+         
             if (airports != null)
             {
                 foreach (Airport airport in airports)
                 {
+                                    
                     this.Airports.Add(
                new VmPoint
                {

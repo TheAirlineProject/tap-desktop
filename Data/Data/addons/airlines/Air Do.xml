@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Air Do" iata="HD" color="Black" country="171" CEO="Sadao Saito" mentality="Safe" market="Global"
            preferedairport="HND">
+             <narrative
+      narrative="Air Do previously known as Hokkaido International Airlines was founded in 1996 by Teruo Hamada, a poultry farmer in Hokkaidō, shortly after the Japanese government approved a domestic airline deregulation policy that would allow carriers to freely set fares on domestic routes. Hamada gathered investments from 29 other individuals who were interested in establishing a low-cost airline to compete with Japan's major domestic carriers (All Nippon Airways, Japan Airlines, and Japan Air System) on flights between Hokkaido cities and Tokyo." />
   </profile>
-  <info real="True" from="1998" to="2199" />
+  <info real="True" from="1996" to="2199" />
 </airline>

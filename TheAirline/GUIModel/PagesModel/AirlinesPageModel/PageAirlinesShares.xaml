@@ -26,10 +26,10 @@
                                     <WrapPanel>
                                         <Image Source="/data/images/human.png" VerticalAlignment="Bottom" Width="20"
                                                RenderOptions.BitmapScalingMode="HighQuality"
-                                               Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" />
+                                               Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}" />
                                         <Image Source="/data/images/airplane.png" VerticalAlignment="Bottom" Width="20"
                                                RenderOptions.BitmapScalingMode="HighQuality"
-                                               Visibility="{Binding Airline.IsSubsidiary,Converter={StaticResource BooleanToVisibility}}"
+                                               Visibility="{Binding Airline.IsSubsidiary,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}"
                                                ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 3000'}" />
                                     </WrapPanel>
                                 </DataTemplate>
@@ -40,7 +40,7 @@
                             util:GridViewSort.PropertyName="Airline.Profile.Name" Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ContentControl Content="{Binding Airline}"
+                                    <ContentControl Content="{Binding Airline,Mode=OneTime}"
                                                     ContentTemplate="{StaticResource AirlineLongLink}"
                                                     VerticalAlignment="Bottom" />
                                 </DataTemplate>

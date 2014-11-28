@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Arkia Israeli Airlines" iata="IZ" color="MediumTurquoise" country="128" CEO="Gadi Tepper" mentality="Safe" market="Global" preferedairport="SDV" >
+  <narrative narrative="Arkia Israeli Airlines is the second largest airline of Israel, and has been around since 1949. Its main base is  Sde Dov airport which is Tel Aviv's second airport which handles domestic flights. It has hubs at Eilat  Airport and Ovda Airport, which are both in Eilat. It also has a base at the main Israel airport Ben Gurion in Tel Aviv too. They have 13 regular destinations including the bases, and 8 seasonal ones. Some of the cities served all year outside Israel are Paris,Larnaca in Cyprus,Munich in Germany,Rome in Italy,Amman in Jordan,Amsterdam in the Netherlands, and Barcelona in Spain. Seasonal ones include four in Greece,Yerevan in Armenia,Dublin in Ireland,and Ljubljana in Slovenia. Some new destinations that started in 2013 included Yekaterinburg,Russia, Oslo,Norway and Helsinki,Finland. It also does holiday charters across Europe. The fleet in April 2014 included five ATR 72-500's,two Boeing 757-300's,an Embraer 190LR and a 195LR. They had four A321neo's on order and two 787-9's on order and another Embraer 195LR on order. Past planes include some 737-200 Adv.'s and normal 200's, some 757-200's,thirteen Dash 7's,DC-3's,Curtiss Commando's,Handley Page Dart Herald's and Vickers Viscounts. They also in the beginning did helicopter service, the first airline in Israel to do so. "/>
+</profile>
+  <info real="True" from="1949" to="2199" />
+  <prefereds aircrafts="DHC-7-100,ATR 72-500,Boeing 737-200 Adv.,Boeing 757-200,Boeing 757-300,Airbus A321neo,Boeing 787-9,Boeing 737-200,Douglas DC-3,Dart Herald,Vickers Viscount 800"></prefereds>
+     <focusairports>
+	<focusairport airport="ETH"></focusairport>
+	<focusairport airport="VDA"></focusairport>
+	 <focusairport airport="TLV"></focusairport>
+     </focusairports>
+                <!--the airliners the airline would start with which isn't on a route earyl (1989) late (2001)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200" early="2" late="0"></airliner>
+	     </airliners>  
+	         <!--the airliners the airline would start with which isn't on a route earyl (1996) late (2007)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200 Adv." early="1" late="0"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (1991) late (2008)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="2" late="0"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2014)-->
+	         <airliners>
+	    <airliner type="ATR 72-500" early="3" late="5"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2014)-->
+	         <airliners>
+	    <airliner type="Boeing 757-300" early="2" late="2"></airliner>
+	     </airliners>
+	     	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2020)-->
+	         <airliners>
+	    <airliner type="Embraer E-190" early="1" late="1"></airliner>
+	     </airliners>
+	       	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2016)-->
+	         <airliners>
+	    <airliner type="Embraer E-195" early="1" late="2"></airliner>
+	     </airliners>
+	       	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2018)-->
+	         <airliners>
+	    <airliner type="Boeing 787-9" early="0" late="2"></airliner>
+	     </airliners>
+	       	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2019)-->
+	         <airliners>
+	    <airliner type="Airbus A321neo" early="0" late="4"></airliner>
+	     </airliners>
+
+
+</airline>

@@ -1,5 +1,44 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <contracts>
+  <contract name="The Airline Project Convention" text="There is going to be a convention for the programmers,contributors and fans of The Airline Project soon in Las Vegas. You will fly 15 people from Aarhus,Denmark direct to LAS
+  and from BWI and from SXF in Berlin,Germany. Only the flight to LAS is needed to win the payment. The payment is 7 million dollars and the penalty for failure is 4 million.">
+    <information from="06.15.2014" frequency="1"  payment="7000000" bonus="True" penalty="4000000" ></information>
+      <routes>
+        <route departure="AAR" destination="LAS" bothways="False" passengers="15"/>
+	<route departure="BWI" destination="LAS" bothways="False" passengers="15"/>
+        <route departure="SXF" destination="LAS" bothways="False" passengers="15"/>
+      </routes>
+      <parameters>
+        <parameter classtype="Economy_Class" minseats="15"></parameter><!--minimum 15 economy class seats-->
+          </parameters>
+  </contract>
+    <contract name="The Airline Project Convention" text="There is going to be a convention for the programmers,contributors and fans of The Airline Project soon in New York City. You will fly 15 people from Aarhus,Denmark direct to JFK
+  and from BWI and from SXF in Berlin,Germany and from GEG in the U.S. Only the flight to JFK is needed to win the payment. The payment is 9 million dollars and the penalty for failure is 6 million.">
+    <information from="06.15.2015" frequency="1"  payment="9000000" bonus="True" penalty="6000000" ></information>
+      <routes>
+        <route departure="AAR" destination="JFK" bothways="False" passengers="15"/>
+	<route departure="BWI" destination="JFK" bothways="False" passengers="15"/>
+        <route departure="SXF" destination="JFK" bothways="False" passengers="15"/>
+	<route departure="GEG" destination="JFK" bothways="False" passengers="15"/>
+      </routes>
+      <parameters>
+        <parameter classtype="Economy_Class" minseats="15"></parameter><!--minimum 15 economy class seats-->
+          </parameters>
+  </contract>
+      <contract name="The Airline Project Convention" text="There is going to be a convention for the programmers,contributors and fans of The Airline Project soon in Atlanta. You will fly 15 people from Aarhus,Denmark direct to ATL
+  and from BWI and MSP  and from LGW in London and from GEG in the U.S. Only the flight to ATL is needed to win the payment. The payment is 11 million dollars and the penalty for failure is 8 million.">
+    <information from="06.15.2016" frequency="1"  payment="11000000" bonus="True" penalty="8000000" ></information>
+      <routes>
+        <route departure="AAR" destination="ATL" bothways="False" passengers="15"/>
+	<route departure="BWI" destination="ATL" bothways="False" passengers="15"/>
+        <route departure="LGW" destination="ATL" bothways="False" passengers="15"/>
+	<route departure="GEG" destination="ATL" bothways="False" passengers="15"/>
+	<route departure="MSP" destination="ATL" bothways="False" passengers="15"/>
+      </routes>
+      <parameters>
+        <parameter classtype="Economy_Class" minseats="15"></parameter><!--minimum 15 economy class seats-->
+          </parameters>
+  </contract>
   <contract name="Summer Olympics 1996" text="The Summer Olympics are coming up! This year, they will be hosted in Atlanta, Georgia. You have been offered the chance to provide airline transportation for officials, athletes, and serious fans. The contract will last 2 months, and you must maintain daily flights from Atlanta to London, Amsterdam, Paris, Moscow, Cairo, Tokyo, Beijing, Sao Paulo, and Dubai. If you successfully complete this contract by serving all the destinations through the whole period, you will receive a $25,000,000 bonus!">
     <information from="07.01.1996" to="09.01.1996" payment="25000000" bonus="True" penalty="20000000"></information>
      <routes>
@@ -57,7 +96,7 @@
         
 <contract name="Honor Flight Collier County Florida" text="The branch of honor flight based in the Fort Myers,FL area of Collier and Lee counties is flying 75 vets and some volunteers to escort them, to Washington D.C to see the war memorials. Most of them were in WW2. This contract is true to life. Fort Myers RSW, Reagan National Airport DCA 
       will be the airports used in this contract. If fulfilled, which includes flying them back home, you will win $8,000,000, if you fail you lose $5,000,000.">
-    <information from="09.01.2013" frequency="10"  payment="10000000" bonus="True" penalty="7000000" ></information>
+    <information from="09.01.2013" frequency="10"  payment="8000000" bonus="True" penalty="5000000" ></information>
       <routes>
         <route departure="RSW" destination="DCA" bothways="True" passengers="75"/>
       </routes>

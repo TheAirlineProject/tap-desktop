@@ -96,7 +96,13 @@
 
             Airlines,
 
-            Aircrafts
+            AllowAirline,
+
+            Airline, 
+
+            Aircrafts,
+
+            Maintenance
         }
 
         #endregion
@@ -118,13 +124,19 @@
         [Versioning("type")]
         public RestrictionType Type { get; set; }
 
+        [Versioning("level",Version=2)]
+        public int MaintenanceLevel { get; set; }
+
+        [Versioning("airline",Version=2)]
+        public Airline Airline { get; set; }
+
         #endregion
 
         #region Public Methods and Operators
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 
@@ -191,7 +203,38 @@
         {
             return restrictions;
         }
+        private static List<FlightRestriction> GetRestrictions(Country to, DateTime date, Airline airline, FlightRestriction.RestrictionType type)
+        {
+            to = new CountryCurrentCountryConverter().Convert(to) as Country;
 
+            return
+                GetRestrictions()
+                    .FindAll(
+                        r =>
+                            (r.To == to || (r.To is Union && ((Union)r.To).isMember(to, date)))
+                            && (date >= r.StartDate && date <= r.EndDate) && r.Type == type && r.Airline != null && r.Airline == airline);
+        }
+        public static List<FlightRestriction> GetRestrictions(Country from,
+        Country to,
+        DateTime date,
+        FlightRestriction.RestrictionType type)
+        {
+            from = new CountryCurrentCountryConverter().Convert(from) as Country;
+            to = new CountryCurrentCountryConverter().Convert(to) as Country;
+
+            //var aircraftRestrictions = restrictions.Where(r => r.Type == type);
+
+           // var fromRestrictions = aircraftRestrictions.Where(r => (r.From == from || (r.From is Union && ((Union)r.From).isMember(from, date))));
+           // var toRestrictions = aircraftRestrictions.Where(r => (r.To == to || (r.To is Union && ((Union)r.To).isMember(to, date))));
+
+            return
+                GetRestrictions()
+                    .FindAll(
+                        r =>
+                            (r.From == from || (r.From is Union && ((Union)r.From).isMember(from, date)))
+                            && (r.To == to || (r.To is Union && ((Union)r.To).isMember(to, date)))
+                            && (date >= r.StartDate && date <= r.EndDate) && r.Type == type);
+        }
         //returns if there is flight restrictions from one country to another
         public static Boolean HasRestriction(
             Country from,
@@ -199,28 +242,11 @@
             DateTime date,
             FlightRestriction.RestrictionType type)
         {
-            var restrictions = GetRestrictions();
+            var restrictions = GetRestrictions(from,to,date,type);
 
-            from = new CountryCurrentCountryConverter().Convert(from) as Country;
-            to = new CountryCurrentCountryConverter().Convert(to) as Country;
-
-            var aircraftRestrictions = restrictions.Where(r => r.Type == type);
-
-            var fromRestrictions = aircraftRestrictions.Where(r => (r.From == from || (r.From is Union && ((Union)r.From).isMember(from, date))));
-            var toRestrictions = aircraftRestrictions.Where(r=> (r.To == to || (r.To is Union && ((Union)r.To).isMember(to, date))));
-
-            FlightRestriction restriction =
-                GetRestrictions()
-                    .Find(
-                        r =>
-                            (r.From == from || (r.From is Union && ((Union)r.From).isMember(from, date)))
-                            && (r.To == to || (r.To is Union && ((Union)r.To).isMember(to, date)))
-                            && (date >= r.StartDate && date <= r.EndDate) && r.Type == type);
-
-   
-            return restriction != null;
+            return restrictions.Count > 0;
         }
-        //returns if there is restrictions for buying an aircraft type for an airline
+       //returns if there is restrictions for buying an aircraft type for an airline
         public static Boolean HasRestriction(Airline airline, AirlinerType airliner, DateTime date)
         {
             return HasRestriction(airline.Profile.Country, airliner.Manufacturer.Country, date, FlightRestriction.RestrictionType.Aircrafts);
@@ -235,10 +261,44 @@
         //returns if there is flight restrictions for airlines to one of the destinations
         public static Boolean HasRestriction(Airline airline, Country dest1, Country dest2, DateTime date)
         {
-            return HasRestriction(airline.Profile.Country, dest2, date, FlightRestriction.RestrictionType.Airlines)
-                   || HasRestriction(airline.Profile.Country, dest1, date, FlightRestriction.RestrictionType.Airlines);
-        }
+            var dest = airline.Profile.Country == dest1 ? dest2 : dest1;
 
+            if (GetRestrictions(dest, date, airline, FlightRestriction.RestrictionType.AllowAirline).Count > 0)
+                return false;
+
+            if (GetRestrictions(dest, date, airline, FlightRestriction.RestrictionType.Airline).Count > 0)
+                return true;
+
+            var dest1Restriction = HasRestriction(airline.Profile.Country, dest2, date, FlightRestriction.RestrictionType.Airlines);
+            var dest2Restriction = HasRestriction(airline.Profile.Country, dest1, date, FlightRestriction.RestrictionType.Airlines);
+
+            return dest1Restriction
+                   || dest2Restriction;
+        }
+        //returns if an airline is allowed
+        public static Boolean IsAllowed(Airline airline, BaseUnit to, DateTime date)
+        {
+            Country from = new CountryCurrentCountryConverter().Convert(airline.Profile.Country) as Country;
+            Country toCountry = new CountryCurrentCountryConverter().Convert(to) as Country;
+
+            //var aircraftRestrictions = restrictions.Where(r => r.Type == type);
+
+            // var fromRestrictions = aircraftRestrictions.Where(r => (r.From == from || (r.From is Union && ((Union)r.From).isMember(from, date))));
+            // var toRestrictions = aircraftRestrictions.Where(r => (r.To == to || (r.To is Union && ((Union)r.To).isMember(to, date))));
+           // fjern iairport AirlineLogo 041
+            var rs = GetRestrictions().FindAll(r=>date >= r.StartDate && date <= r.EndDate && r.Type == FlightRestriction.RestrictionType.AllowAirline);
+            
+            var restrictions = 
+                GetRestrictions()
+                    .FindAll(
+                        r =>
+                            r.Airline != null && r.Airline == airline
+                            && (r.To == to || (r.To is Union && ((Union)r.To).isMember(toCountry, date)))
+                            && (date >= r.StartDate && date <= r.EndDate) && r.Type == FlightRestriction.RestrictionType.AllowAirline);
+
+     
+            return restrictions.Count > 0;
+        }
         #endregion
     }
 }

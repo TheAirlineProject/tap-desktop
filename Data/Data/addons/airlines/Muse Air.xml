@@ -1,0 +1,17 @@
+<airline>
+<profile name="Muse Air" iata="MC" color="Beige" country="122" CEO="Marion Lamar Muse" mentality="Safe" market="Domestic" preferedairport="DAL">
+<narrative narrative="Muse Air, later TransStar after its acquisition by Southwest, was an airline based at Dallas Love and Houston Hobby. It began service in 1982 with two DC-9's on the DAL-HOU route. In 1985 on June 25th Southwest bought them and a few months later changed their name to TranStar and operated them independently still, changing the old beige livery to a dark shade of blue. However profits were still not being made and it ceased operation on August 7,1987. Its founded Marion Lamar Muse was at one time president of Southwest who would buy his and his son Michael's Muse Air. At the end they served 21 airports all in the US and mostly in Texas,California and Flordia. The other cities outside those states were Las Vegas,New Orleans,Oklahoma City and Tulsa. They had eight DC-9-51's, eight MD-82's, a DC-9-30, two MD-81's and two MD-83's."/>
+</profile>
+<info real="True" from="1982" to="1987"></info>
+ 	   
+		
+	 	 <!--the airliners the airline would start with which isn't on a route earyl (1982) late (1986)-->
+	         <airliners>
+	    <airliner type="Douglas DC-9-30" early="1" late="1"></airliner>
+	    <airliner type="MD DC-9-50" early="1" late="8"></airliner>
+	    <airliner type="MD-81 (DC-9-81)" early="0" late="2"></airliner>
+	    <airliner type="MD-82 (DC-9-82)" early="0" late="8"></airliner>
+	    <airliner type="MD-83 (DC-9-83)" early="0" late="2"></airliner>
+	     </airliners>
+	
+</airline>

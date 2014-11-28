@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Canada Tango" iata="AC4" color="Purple" country="113" CEO="David Richardson" mentality="Moderate" market="Regional" preferedairport="YYZ" >
+  <narrative narrative="Air Canada Tango was a short lived subsidiary of Air Canada that lasted from 2001-2004. Its name Tango was the word tan and go put together to represent the vacation spots that have beaches the airline was meant to cater to. It would turn out to do longer distance domestic routes too. Its base was Toronto and it did fly to some holiday destinations like Tampa,Ft. Lauderdale and Mexico City. Air Canada still uses the name Tango for a fare in its price structure. Its planes were all economy class and its paint scheme had purple instead of red as with most other AC planes. They used in the end 12 A320's and 2 737-200 Adv. "/>
+</profile>
+  <info real="True" from="2001" to="2004" />
+  <prefereds aircrafts="Airbus A320-200,Boeing 737-200,Boeing 737-200 Adv."></prefereds>              
+	     	         	     	         <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2003)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="7" late="12"></airliner>
+	     </airliners>
+	              	     	         <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2003)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200 Adv." early="9" late="2"></airliner>
+	     </airliners>
+	     	  
+	     	  
+	     	  
+
+
+</airline>

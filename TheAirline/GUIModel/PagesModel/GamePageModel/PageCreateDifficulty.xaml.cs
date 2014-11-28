@@ -1,9 +1,9 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.GeneralModel;
@@ -17,7 +17,7 @@
 
         public PageCreateDifficulty()
         {
-            this.Difficulties = new List<DifficultyMVVM>();
+            this.Difficulties = new ObservableCollection<DifficultyMVVM>();
 
             DifficultyLevel easyLevel = DifficultyLevels.GetDifficultyLevel("Easy");
             DifficultyLevel normalLevel = DifficultyLevels.GetDifficultyLevel("Normal");
@@ -73,7 +73,7 @@
 
         #region Public Properties
 
-        public List<DifficultyMVVM> Difficulties { get; set; }
+        public ObservableCollection<DifficultyMVVM> Difficulties { get; set; }
 
         #endregion
 

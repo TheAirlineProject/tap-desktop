@@ -3,6 +3,8 @@
 <airline>
   <profile name="Mihin Lanka" iata="MJ" color="DarkBlue" country="153" CEO="Kapila Chandrasena" mentality="Moderate"
            market="Regional" preferedairport="CMB">
+           <narrative narrative="Mihin Lanka is a low-fare leisure airline based in Colombo, Sri Lanka. It is owned by the Sri Lankan government."/>
+
   </profile>
   <info real="True" from="2007" to="2199"></info>
 </airline>

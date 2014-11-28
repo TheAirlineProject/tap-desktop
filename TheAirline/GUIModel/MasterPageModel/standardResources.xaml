@@ -17,4 +17,5 @@
     <c:FuelUnitConverter x:Key="FuelUnitConverter" />
     <c:IsNullConverter x:Key="IsNullConverter"></c:IsNullConverter>
     <c:ValueCurrencyInflationConverter x:Key="ValueCurrencyInflationConverter"></c:ValueCurrencyInflationConverter>
+    <c:TimeSpanConverter x:Key="TimeSpanConverter"></c:TimeSpanConverter>
 </ResourceDictionary>

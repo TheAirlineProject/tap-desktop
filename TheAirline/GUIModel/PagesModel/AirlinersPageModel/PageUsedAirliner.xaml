@@ -13,7 +13,7 @@
             <WrapPanel>
                 <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}"
                            VerticalAlignment="Bottom" Width="100" FontWeight="Bold" />
-                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
+                <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" />
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="ClassItem">
@@ -25,7 +25,7 @@
                         <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1000'}"
                             Width="100" VerticalAlignment="Bottom" FontWeight="Bold" />
-                        <TextBlock Text="{Binding SeatingCapacity}" VerticalAlignment="Bottom" />
+                        <TextBlock Text="{Binding SeatingCapacity,Mode=OneTime}" VerticalAlignment="Bottom" />
                     </WrapPanel>
                     <ListBox ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" Background="Transparent"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
@@ -39,21 +39,21 @@
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1001'}"
                         Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                    <TextBlock Text="{Binding Price,Converter={StaticResource ValueCurrencyConverter}}"
+                    <TextBlock Text="{Binding Price,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                VerticalAlignment="Bottom" />
                 </WrapPanel>
                 <WrapPanel>
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1002'}"
                         Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                    <TextBlock Text="{Binding LeasingPrice,Converter={StaticResource ValueCurrencyConverter}}"
+                    <TextBlock Text="{Binding LeasingPrice,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                VerticalAlignment="Bottom" />
                 </WrapPanel>
                 <WrapPanel>
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1003'}"
                         Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                    <TextBlock Text="{Binding Type.Maintenance,Converter={StaticResource ValueCurrencyConverter}}"
+                    <TextBlock Text="{Binding Type.Maintenance,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                VerticalAlignment="Bottom" />
                 </WrapPanel>
 
@@ -74,13 +74,13 @@
                             <TextBlock
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1008'}"
                 VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
-                            <ContentControl Content="{Binding}" VerticalAlignment="Bottom"
+                            <ContentControl Content="{Binding Mode=OneTime}" VerticalAlignment="Bottom"
                                     ContentTemplate="{StaticResource AirlinerSpecificationItem}" />
                             <WrapPanel>
                                 <WrapPanel.Style>
                                     <Style TargetType="WrapPanel" BasedOn="{StaticResource WrapPanelStyle}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Owner}" Value="{x:Null}">
+                                            <DataTrigger Binding="{Binding Owner,Mode=OneTime}" Value="{x:Null}">
                                                 <Setter Property="Visibility" Value="Collapsed" />
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -89,7 +89,7 @@
                                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1015'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                                <ContentControl Content="{Binding Owner}" VerticalAlignment="Bottom"
+                                <ContentControl Content="{Binding Owner,Mode=OneTime}" VerticalAlignment="Bottom"
                                 ContentTemplate="{StaticResource AirlineLink}" />
                             </WrapPanel>
 
@@ -102,34 +102,15 @@
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1011'}"
                 VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
                         <ListBox Background="Transparent"
-                         ItemsSource="{Binding History}" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}">
+                         ItemsSource="{Binding History,Mode=OneTime}" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <TextBlock Text="{Binding DeliveryDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                                        <ContentControl Content="{Binding Airline}" Width="200" ContentTemplate="{StaticResource AirlineItem}">
-                                            <ContentControl.Style>
-                                                <Style>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Airline,Converter={StaticResource IsNullConverter}}" Value="True">
-                                                            <Setter Property="ContentControl.Visibility" Value="Collapsed" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </ContentControl.Style>
-                                        </ContentControl>
-                                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1010'}" Width="200" VerticalAlignment="Bottom">
-                                            <TextBlock.Style>
-                                                <Style>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Airline,Converter={StaticResource IsNullConverter}}" Value="False">
-                                                            <Setter Property="TextBlock.Visibility" Value="Collapsed" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                        <TextBlock Text="{Binding Registration}" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock Text="{Binding DeliveryDate,Mode=OneTime,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                        <Image Source="{Binding Logo,Mode=OneTime}" Width="20" Height="20" 
+                                           RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" />
+                                        <TextBlock Text="{Binding Owner,Mode=OneTime}" VerticalAlignment="Bottom" Width="200"></TextBlock>
+                                        <TextBlock Text="{Binding Registration,Mode=OneTime}" VerticalAlignment="Bottom"></TextBlock>
                                     </WrapPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -142,7 +123,7 @@
                 <StackPanel.Style>
                     <Style>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Cargo">
+                            <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime}" Value="Cargo">
                                 <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>

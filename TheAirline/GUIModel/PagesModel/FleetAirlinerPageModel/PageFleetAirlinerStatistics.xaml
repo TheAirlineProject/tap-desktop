@@ -93,7 +93,7 @@
                                     Width="100">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <ContentControl Content="{Binding}" VerticalAlignment="Bottom"
+                                                    <ContentControl Content="{Binding Mode=OneTime}" VerticalAlignment="Bottom"
                                                             ContentTemplate="{StaticResource RouteItem}" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
@@ -103,7 +103,7 @@
                                     Width="100">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Type}" VerticalAlignment="Bottom" />
+                                                    <TextBlock Text="{Binding Type,Mode=OneTime}" VerticalAlignment="Bottom" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -113,7 +113,7 @@
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <TextBlock
-                                                Text="{Binding Balance,Converter={StaticResource ValueCurrencyConverter}}"
+                                                Text="{Binding Balance,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                                 Foreground="{Binding Balance,Converter={StaticResource ValueIsMinusConverter}}"
                                                 VerticalAlignment="Bottom" />
                                                 </DataTemplate>
@@ -124,7 +124,7 @@
                                     Width="75">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding FillingDegree,StringFormat={}{0:0.00 %}}"
+                                                    <TextBlock Text="{Binding FillingDegree,Mode=OneTime,StringFormat={}{0:0.00 %}}"
                                                        VerticalAlignment="Bottom" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
@@ -195,7 +195,6 @@
                     </chart:RadialGaugeChart>
                 </WrapPanel>
             </Border>
-  
         </Grid>
     </ScrollViewer>
 </Page>

@@ -22,14 +22,14 @@
         <DataTemplate x:Key="WeatherItem">
             <WrapPanel>
                 <TextBlock
-                    Text="{Binding Date,StringFormat=D,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                    Text="{Binding Date,Mode=OneTime,StringFormat=D,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
                     VerticalAlignment="Bottom" Width="150" />
                 <Image Source="{Binding Converter={StaticResource WeatherImageConverter}}"
                        RenderOptions.BitmapScalingMode="HighQuality" Height="16" VerticalAlignment="Bottom" />
-                <TextBlock Text="{Binding TemperatureHigh,Converter={StaticResource TemperatureToTextConverter}}"
+                <TextBlock Text="{Binding TemperatureHigh,Mode=OneTime,Converter={StaticResource TemperatureToTextConverter}}"
                            FontWeight="Bold" VerticalAlignment="Bottom" Width="50" Margin="20 0 0 0"
                            TextAlignment="Right" />
-                <TextBlock Text="{Binding TemperatureLow,Converter={StaticResource TemperatureToTextConverter}}"
+                <TextBlock Text="{Binding TemperatureLow,Mode=OneTime,Converter={StaticResource TemperatureToTextConverter}}"
                            FontWeight="Light" VerticalAlignment="Bottom" Width="50" TextAlignment="Right" />
             </WrapPanel>
         </DataTemplate>
@@ -47,36 +47,39 @@
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1000'}"
                         Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom" />
                     <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" 
-                               Text="{Binding Airport.Profile.Name}" />
+                               Text="{Binding Airport.Profile.Name,Mode=OneTime}" />
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <!--
-                        <Image                                  
-                               Source="{Binding Airport.Profile.Logo}"
-                               RenderOptions.BitmapScalingMode="HighQuality"
-                HorizontalAlignment="Center" Width="96" Grid.Column="0">
-                            <Image.Style>
-                                <Style>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Airport.Profile.Logo.Length}" Value="0">
-                                            <Setter Property="Image.Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Image.Style>
-                        </Image>-->
+                       
+                      
                         <StackPanel Margin="5 0 0 0" Grid.Column="1">
+                            <Image Source="{Binding Airport.Profile.Logo,Mode=OneTime}" Height="300" Width="500" HorizontalAlignment="Stretch" RenderOptions.BitmapScalingMode="HighQuality">
+                                <Image.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Airport.Profile.Logo}"
+                                                                 Value="{x:Null}">
+                                                <Setter Property="Image.Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Airport.Profile.Logo.Length}"
+                                                                 Value="0">
+                                                <Setter Property="Image.Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1001'}"
                                     Width="100" VerticalAlignment="Bottom" FontWeight="Bold" />
                                 <TextBlock VerticalAlignment="Bottom">
                                     <TextBlock.Text>
-                                        <MultiBinding StringFormat="{}{0} / {1}">
+                                        <MultiBinding StringFormat="{}{0} / {1}" Mode="OneTime">
                                             <Binding Path="Airport.Profile.IATACode" />
                                             <Binding Path="Airport.Profile.ICAOCode" />
                                         </MultiBinding>
@@ -87,7 +90,7 @@
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1002'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="100" />
-                                <ContentControl Content="{Binding Airport.Profile.Town}"
+                                <ContentControl Content="{Binding Airport.Profile.Town,Mode=OneTime}"
                                                 ContentTemplate="{StaticResource TownItem}" VerticalAlignment="Bottom" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
@@ -95,7 +98,7 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1003'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="100" />
                                 <TextBlock
-                                    Text="{Binding Airport.Profile.Period.From,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                                    Text="{Binding Airport.Profile.Period.From,Mode=OneTime,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
                                     VerticalAlignment="Bottom" />
                             </WrapPanel>
 
@@ -103,20 +106,20 @@
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1004'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="100" />
-                                <TextBlock Text="{Binding Airport.Profile.TimeZone.DisplayName}"
+                                <TextBlock Text="{Binding Airport.Profile.TimeZone.DisplayName,Mode=OneTime}"
                                            VerticalAlignment="Bottom" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1041'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="100" />
-                                <TextBlock Text="{Binding Airport.Profile.Pax}" VerticalAlignment="Bottom" />
+                                <TextBlock Text="{Binding Airport.Profile.Pax,Mode=OneTime}" VerticalAlignment="Bottom" />
                             </WrapPanel>
                             <WrapPanel>
                                 <WrapPanel.Style>
                                     <Style BasedOn="{StaticResource WrapPanelStyle}" TargetType="WrapPanel">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ShowLocalTime}" Value="False">
+                                            <DataTrigger Binding="{Binding ShowLocalTime,Mode=OneTime}" Value="False">
                                                 <Setter Property="Visibility" Value="Collapsed" />
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -126,7 +129,7 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1040'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="100" />
                                 <TextBlock
-                                    Text="{Binding LocalTime,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                                    Text="{Binding LocalTime,Mode=OneTime,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
                                     VerticalAlignment="Bottom" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
@@ -134,7 +137,7 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1005'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="100" />
                                 <TextBlock
-                                    Text="{Binding Airport.Profile.Size,Converter={StaticResource TextUnderscoreConverter}}"
+                                    Text="{Binding Airport.Profile.Size,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                                     VerticalAlignment="Bottom" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
@@ -142,7 +145,7 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1006'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="100" />
                                 <TextBlock
-                                    Text="{Binding Airport.Profile.Cargo,Converter={StaticResource TextUnderscoreConverter}}"
+                                    Text="{Binding Airport.Profile.Cargo,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                                     VerticalAlignment="Bottom" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
@@ -150,15 +153,30 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1037'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="100" />
                                 <TextBlock
-                                    Text="{Binding Airport.Profile.Type,Converter={StaticResource TextUnderscoreConverter}}"
+                                    Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}"
                                     VerticalAlignment="Bottom" />
+                                <Button Background="Transparent" Width="20" Tag="{Binding}" Margin="10 0 0 0"
+                                                        Click="btnCustoms_Click">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Type}" Value="International">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <Image Source="/data/images/customs.png"
+                                                           RenderOptions.BitmapScalingMode="HighQuality" />
+                                </Button>
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1038'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="100" />
                                 <TextBlock
-                                    Text="{Binding Airport.Profile.Season,Converter={StaticResource TextUnderscoreConverter}}"
+                                    Text="{Binding Airport.Profile.Season,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                                     VerticalAlignment="Bottom" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
@@ -166,7 +184,7 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1047'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="100" />
                                 <TextBlock
-                                    Text="{Binding LandingFee,Converter={StaticResource ValueCurrencyConverter}}"
+                                    Text="{Binding LandingFee,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                     VerticalAlignment="Bottom" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
@@ -174,7 +192,7 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1048'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="100" />
                                 <TextBlock
-                                    Text="{Binding FuelPrice,Converter={StaticResource ValueCurrencyConverter}}"
+                                    Text="{Binding FuelPrice,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                     VerticalAlignment="Bottom" />
                             </WrapPanel>
                         </StackPanel>
@@ -183,7 +201,7 @@
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1017'}"
                         VerticalAlignment="Bottom" Margin="0 10 0 0" Style="{StaticResource SmallHeaderStyle}" />
                     <ListView VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0"
-                              ItemsSource="{Binding Airport.Runways}">
+                              ItemsSource="{Binding Airport.Runways,Mode=OneTime}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
@@ -191,7 +209,7 @@
                                     Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
+                                            <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -201,7 +219,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding Length,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                                                Text="{Binding Length,Mode=OneTime,Converter={StaticResource SmallDistanceToUnitConverter}}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -212,7 +230,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding Surface,Converter={StaticResource TextUnderscoreConverter}}"
+                                                Text="{Binding Surface,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -223,7 +241,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding Type}"
+                                                Text="{Binding Type,Mode=OneTime}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -238,7 +256,7 @@
                         <StackPanel.Style>
                             <Style TargetType="StackPanel">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding CurrentWeather}" Value="{x:Null}">
+                                    <DataTrigger Binding="{Binding CurrentWeather,Mode=OneTime}" Value="{x:Null}">
                                         <Setter Property="Visibility" Value="Collapsed" />
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -251,7 +269,7 @@
                             <Image Width="48" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"
                                    Source="{Binding CurrentWeather,Converter={StaticResource WeatherImageConverter}}" />
                             <TextBlock
-                                Text="{Binding CurrentWeather.Temperature,Converter={StaticResource TemperatureToTextConverter}}"
+                                Text="{Binding CurrentWeather.Temperature,Mode=OneTime,Converter={StaticResource TemperatureToTextConverter}}"
                                 FontWeight="Bold" VerticalAlignment="Bottom" FontSize="24" />
                             <StackPanel Margin="25 0 0 0" VerticalAlignment="Center">
                                 <WrapPanel>
@@ -259,12 +277,12 @@
                                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1035'}"
                                         VerticalAlignment="Bottom" Width="50" FontWeight="Bold" />
                                     <TextBlock
-                                        Text="{Binding CurrentWeather.Cover,Converter={StaticResource TextUnderscoreConverter}}"
+                                        Text="{Binding CurrentWeather.Cover,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                                         VerticalAlignment="Bottom">
                                         <TextBlock.Style>
                                             <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding CurrentWeather.HasPrecip}"
+                                                    <DataTrigger Binding="{Binding CurrentWeather.HasPrecip,Mode=OneTime}"
                                                                  Value="True">
                                                         <Setter Property="Visibility" Value="Collapsed" />
                                                     </DataTrigger>
@@ -273,12 +291,12 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                     <TextBlock
-                                        Text="{Binding CurrentWeather.Precip,Converter={StaticResource TextUnderscoreConverter}}"
+                                        Text="{Binding CurrentWeather.Precip,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                                         VerticalAlignment="Bottom">
                                         <TextBlock.Style>
                                             <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding CurrentWeather.HasPrecip}"
+                                                    <DataTrigger Binding="{Binding CurrentWeather.HasPrecip,Mode=OneTime}"
                                                                  Value="False">
                                                         <Setter Property="Visibility" Value="Collapsed" />
                                                     </DataTrigger>
@@ -292,10 +310,10 @@
                                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1036'}"
                                         VerticalAlignment="Bottom" Width="50" FontWeight="Bold" />
                                     <TextBlock
-                                        Text="{Binding CurrentWeather.WindSpeed,Converter={StaticResource WindSpeedToUnitConverter}}"
+                                        Text="{Binding CurrentWeather.WindSpeed,Mode=OneTime,Converter={StaticResource WindSpeedToUnitConverter}}"
                                         VerticalAlignment="Bottom" />
                                     <TextBlock
-                                        Text="{Binding CurrentWeather.Direction,Converter={StaticResource TextUnderscoreConverter}}"
+                                        Text="{Binding CurrentWeather.Direction,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                                         Margin="5 0 0 0" VerticalAlignment="Bottom" />
                                 </WrapPanel>
                             </StackPanel>
@@ -349,7 +367,7 @@
                                     Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
+                                            <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -390,7 +408,7 @@
                                                     <Image.Style>
                                                         <Style>
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Terminal.Type}" Value="Cargo">
+                                                                <DataTrigger Binding="{Binding Terminal.Type,Mode=OneTime}" Value="Cargo">
                                                                     <Setter Property="Image.Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
                                                             </Style.Triggers>
@@ -402,7 +420,7 @@
                                                     <Image.Style>
                                                         <Style>
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Terminal.Type}" Value="Passenger">
+                                                                <DataTrigger Binding="{Binding Terminal.Type,Mode=OneTime}" Value="Passenger">
                                                                     <Setter Property="Image.Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
                                                             </Style.Triggers>
@@ -459,7 +477,7 @@
                                         Width="100">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
+                                                <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -479,7 +497,7 @@
                                         Width="75">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Gates}" />
+                                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Gates,Mode=OneTime}" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -489,7 +507,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock
-                                                    Text="{Binding DeliveryDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                                                    Text="{Binding DeliveryDate,StringFormat=d,Mode=OneTime,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
                                                     VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -506,7 +524,7 @@
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1013'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                                <TextBox Width="200" Name="txtName" Text="Terminal X">
+                                <TextBox Width="200" Name="txtName" Text="Terminal X" UndoLimit="10">
                                     <TextBox.Style>
                                         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                                             <Style.Triggers>
@@ -593,7 +611,7 @@
                                     Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding Airline}" VerticalAlignment="Bottom"
+                                            <ContentControl Content="{Binding Airline,Mode=OneTime}" VerticalAlignment="Bottom"
                                                             ContentTemplate="{StaticResource AirlineLink}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -671,7 +689,7 @@
                                                     <Button.Style>
                                                         <Style TargetType="Button">
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding IsHuman}" Value="False">
+                                                                <DataTrigger Binding="{Binding IsHuman,Mode=OneTime}" Value="False">
                                                                     <Setter Property="Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
 
@@ -683,7 +701,7 @@
                                                 </Button>
                                                 <Button Background="Transparent" Width="20" Tag="{Binding}"
                                                         Margin="5 0 0 0" Click="btnRemoveContract_Click"
-                                                        Visibility="{Binding IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                                                        Visibility="{Binding IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}">
                                                     <Image Source="/data/images/delete.png"
                                                            RenderOptions.BitmapScalingMode="HighQuality" />
                                                 </Button>

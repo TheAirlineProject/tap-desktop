@@ -17,7 +17,7 @@
                         <WrapPanel>
                             <Image Height="32" Width="32" Source="{Binding ImageFile}"
                                    RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" />
-                            <TextBlock Text="{Binding Name}" Margin="5 0 0 0" VerticalAlignment="Bottom" />
+                            <TextBlock Text="{Binding Name,Mode=OneTime}" Margin="5 0 0 0" VerticalAlignment="Bottom" />
                         </WrapPanel>
                     </Hyperlink>
                 </TextBlock>

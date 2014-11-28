@@ -22,6 +22,21 @@
 
         #region Public Methods and Operators
         //returns the fuel price for an airport
+        public static Boolean WillBuildCustomersService(Airport airport)
+        {
+            int demand =0;
+            var intlAirports = airport.getDestinationDemands().Where(a => a.Profile.Country.ShortName != airport.Profile.Country.ShortName);
+
+            foreach (Airport intlAirport in intlAirports)
+                demand += airport.getDestinationPassengersRate(intlAirport, AirlinerClass.ClassType.Economy_Class);
+         
+            if (demand > 5000)
+                return true;
+            else
+                return false;
+
+            
+        }
         public static double GetFuelPrice(Airport airport)
         {
             return GetFuelPrice(airport.Profile.Country.Region);
@@ -259,23 +274,25 @@
 
         public static GeneralHelpers.Size ConvertAirportPaxToSize(double size)
         {
-            var yearCoeffs = new Dictionary<int, double>();
-            yearCoeffs.Add(1960, 1.3);
-            yearCoeffs.Add(1970, 1.2);
-            yearCoeffs.Add(1980, 1.15);
-            yearCoeffs.Add(1990, 1.10);
-            yearCoeffs.Add(2000, 1.0658);
-            yearCoeffs.Add(2010, 1);
-
+            
             int decade = (GameObject.GetInstance().GameTime.Year - 1960) / 10 * 10 + 1960;
 
             double coeff = 1;
 
-            if (yearCoeffs.ContainsKey(decade))
-            {
-                coeff = yearCoeffs[decade];
-            }
+            if (decade == 1960)
+                coeff = 1.3;
+            else if (decade == 1970)
+                coeff = 1.2;
+            else if (decade == 1980)
+                coeff = 1.15;
+            else if (decade == 1990)
+                coeff = 1.10;
+            else if (decade == 2000)
+                coeff = 1.0658;
+            else
+                coeff = 1;
 
+           
             double coeffPax = coeff * size;
 
             if (coeffPax > 32000)
@@ -309,9 +326,9 @@
         //returns all entries for a specific airport with take off in a time span for a day
 
         //creates the weather for an airport
-        public static void CreateAirportWeather(Airport airport)
+        public static void CreateAirportWeather(Airport airport, int daysInMonth)
         {
-            airport.Weather[0] = null;
+            airport.Weather.Clear();
 
             WeatherAverage average =
                 WeatherAverages.GetWeatherAverages(
@@ -335,50 +352,39 @@
                             w.Country != null && w.Country == airport.Profile.Town.Country
                             && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
             }
-
+           
             if (average == null)
             {
-                CreateFiveDaysAirportWeather(airport);
+                CreateMonthlyAirportWeather(airport,daysInMonth);
             }
             else
             {
                 var lAirport = new List<Airport>();
                 lAirport.Add(airport);
 
-                CreateAirportsWeather(lAirport, average);
+                CreateAirportsWeather(lAirport, average,daysInMonth);
             }
         }
 
-        //creates the weather (5 days) for a number of airport with an average
-        public static void CreateAirportsWeather(List<Airport> airports, WeatherAverage average)
+        //creates the weather for a number of airport with an average
+        public static void CreateAirportsWeather(List<Airport> airports, WeatherAverage average, int daysInMonth)
         {
+            
             if (airports.Count > 0)
             {
-                int maxDays = 5;
-                var weathers = new Weather[maxDays];
+                int maxDays = daysInMonth;
+                var weathers = new List<Weather>();
 
-                if (airports[0].Weather[0] == null)
-                {
+              
                     for (int i = 0; i < maxDays; i++)
                     {
-                        weathers[i] = CreateDayWeather(
+                        weathers.Add(CreateDayWeather(
                             GameObject.GetInstance().GameTime.AddDays(i),
-                            i > 0 ? weathers[i - 1] : null,
-                            average);
+                            null,
+                            average));
+                        
                     }
-                }
-                else
-                {
-                    for (int i = 1; i < maxDays; i++)
-                    {
-                        weathers[i - 1] = airports[0].Weather[i];
-                    }
-
-                    weathers[maxDays - 1] = CreateDayWeather(
-                        GameObject.GetInstance().GameTime.AddDays(maxDays - 1),
-                        weathers[maxDays - 2],
-                        average);
-                }
+               
 
                 foreach (Airport airport in airports)
                 {
@@ -387,31 +393,34 @@
             }
         }
 
-        //creates the weather (5 days) for an airport
-        public static void CreateFiveDaysAirportWeather(Airport airport)
+        //creates the weather for an airport
+        public static void CreateMonthlyAirportWeather(Airport airport,int daysInMonth)
         {
-            int maxDays = 5;
-            if (airport.Weather[0] == null)
+            int maxDays = daysInMonth;
+            if (airport.Weather.Count == 0)
             {
+                airport.Weather.Clear();
+
                 for (int i = 0; i < maxDays; i++)
                 {
-                    airport.Weather[i] = CreateDayWeather(
-                        airport,
-                        GameObject.GetInstance().GameTime.AddDays(i),
-                        i > 0 ? airport.Weather[i - 1] : null);
+                    airport.Weather.Add(CreateDayWeather(airport,GameObject.GetInstance().GameTime.AddDays(i),i > 0 ? airport.Weather[i - 1] : null));
+                  
                 }
             }
             else
             {
+                Weather prevWeather = airport.Weather[airport.Weather.Count - 1];
+
+                airport.Weather.Clear();
+
+                airport.Weather.Add(CreateDayWeather(airport,GameObject.GetInstance().GameTime,prevWeather));
+
                 for (int i = 1; i < maxDays; i++)
                 {
-                    airport.Weather[i - 1] = airport.Weather[i];
+                    airport.Weather.Add(CreateDayWeather(airport,GameObject.GetInstance().GameTime.AddDays(i),airport.Weather[i-1]));
                 }
 
-                airport.Weather[maxDays - 1] = CreateDayWeather(
-                    airport,
-                    GameObject.GetInstance().GameTime.AddDays(maxDays - 1),
-                    airport.Weather[maxDays - 2]);
+     
             }
         }
 
@@ -558,7 +567,7 @@
 
         public static int GetNumberOfAirportsRoutes(Airport airport1, Airport airport2)
         {
-            var routes = new List<Route>(Airlines.GetAllAirlines().SelectMany(a => a.Routes));
+            var routes = new List<Route>(Airlines.GetAllAirlines().Where(a=>a.Routes != null).SelectMany(a => a.Routes));
 
             return
                 routes.Count(
@@ -688,6 +697,25 @@
         //sets the airport expansion to an airport
         public static void SetAirportExpansion(Airport airport, AirportExpansion expansion, Boolean onStartUp = false)
         {
+            if (expansion.Type == AirportExpansion.ExpansionType.Town_name)
+            {
+                 if (expansion.NotifyOnChange && !onStartUp)
+                {
+                    GameObject.GetInstance()
+                      .NewsBox.addNews(
+                          new News(
+                              News.NewsType.Airport_News,
+                              GameObject.GetInstance().GameTime,
+                              "Town Name Changed",
+                              string.Format(
+                                  "The town of [LI airport={0}]({1}) has changed its name to {2}",
+                                  airport.Profile.IATACode,
+                                  new AirportCodeConverter().Convert(airport),
+                                expansion.Name)));
+                }
+
+                 airport.Profile.Town.Name = expansion.Name;
+            }
             if (expansion.Type == AirportExpansion.ExpansionType.Name)
             {
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Bluebird Cargo" iata="BF" color="DarkBlue" country="121" CEO="Thor Kjartansson" mentality="Safe" market="Global" preferedairport="KEF" routefocus="Cargo" >
+  <narrative narrative="Bluebird Cargo is based at Keflavik,Iceland and is a part of the Icelandair Group. It was founded in 2000 and started with a single 737-300. It now has four of those and a 737-400 as of November 2014. 
+  It has a focus city at Cologne,Germany. As of May 2012 it served three airports in Italy,2 in Germany,1 in Belgium,1 in Slovenia,and Moncton in New Brunswick Canada."/>
+</profile> 
+  <info real="True" from="2000" to="2199" />
+  <prefereds aircrafts="Boeing 737-300,Boeing 737-400"></prefereds>
+     <focusairports>
+	<focusairport airport="CGN"></focusairport>
+     </focusairports>
+                <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="1" late="4"></airliner>
+	     </airliners>  
+	         <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="1" late="1"></airliner>
+	     </airliners>
+
+
+</airline>

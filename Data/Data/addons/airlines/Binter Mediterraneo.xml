@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Binter Mediterraneo" iata="AX" color="LawnGreen" country="123" CEO="Marcial Orellana" mentality="Safe" market="Domestic" preferedairport="AGP" >
+  <narrative narrative="Binter Mediterraneo was a subsidiary of Iberia from 1989-1998 when Air Nostrum, a franchise but not subsidiary of Iberia bought it and made it a subsidiary. It was fully absorbed by August 29,2001.
+  It operated five CN-235's and then as part of Nostrum had some ATR 72's. It operated out of Malaga and Madrid and operated at five domestic airports in its last year."/>
+</profile>
+  <info real="True" from="1989" to="2001" />
+  <prefereds aircrafts="CN-235,ATR 72-200,ATR 72-500"></prefereds>
+     <focusairports>
+        <focusairport airport="MAD"></focusairport>
+     </focusairports>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (1989) late (1999)-->
+	         <airliners>
+	    <airliner type="CN-235" early="5" late="0"></airliner>
+	     </airliners>
+
+</airline>

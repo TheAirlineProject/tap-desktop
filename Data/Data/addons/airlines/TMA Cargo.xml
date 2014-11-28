@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="TMA Cargo" iata="T2" color="Blue" country="129" CEO="Mazen Bsat" mentality="Safe" market="Global" preferedairport="BEY" routefocus="Cargo">
+  <narrative narrative="Officially called Trans Mediterranean Airways, it is shortend to TMA Cargo. It is based at Beirut,Lebanon and has had two lifes, it was around from 1953-2004 and then was reborn in 2010. As of December 2012 they flew to 8 Asian airports besides Beirut, and 3 in Europe and 3 in Africa. They had three 767-300ER's and an A300-600F. They have been known to have DC-4's  and DC-6's in the 60's and 707's in the 70's and 80's too."/>
+</profile>
+  <info real="True" from="1953" to="2199" />
+  <prefereds aircrafts="Boeing 767-300F,Airbus A300-600F,Douglas DC-4-1009,Douglas DC-6,Douglas DC-6B,Boeing 707-320C"></prefereds>
+   <logos>
+      <logo from="1953" to="2004" path="T21953-2004"></logo>
+    </logos>
+
+</airline>

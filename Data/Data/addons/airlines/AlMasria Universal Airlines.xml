@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="AlMasria Universal Airlines" iata="UJ" color="Orange" country="155" CEO="Hassan Aziz" mentality="Safe" market="Global" preferedairport="CAI">
+  <narrative narrative="AlMasria Universal Airlines are based at Cairo and have a secondary hub at Alexandria. It commenced operations in 2009 and flies from Cairo to five Saudi Arabian airports and Bergamo near Milan,Italy. It also
+  flies from Alexandria to Jeddah. It has an agreement with EgyptAir to  have them do its maintenance,ground handling,flight crew training and catering. As of November 2014 they had an A321 and an A320. It also has a summer base at Mostar,Bosnia and Herzegovina."/>
+</profile>
+  <info real="True" from="2009" to="2199" />
+  <prefereds aircrafts="Airbus A321-200,Airbus A320-200,Airbus A321neo,Airbus A320neo"></prefereds>
+     <focusairports>
+	<focusairport airport="HBE"></focusairport>
+	<focusairport airport="ALY"></focusairport>
+	<focusairport airport="OMO"></focusairport>
+     </focusairports>
+                <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2017)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="1" late="1"></airliner>
+	     </airliners>  
+	              <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2017)-->
+	         <airliners>
+	    <airliner type="Airbus A321-200" early="1" late="1"></airliner>
+	     </airliners>  
+
+</airline>

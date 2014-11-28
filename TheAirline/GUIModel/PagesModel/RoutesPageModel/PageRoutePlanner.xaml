@@ -175,7 +175,7 @@
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock VerticalAlignment="Bottom" TextAlignment="Right"
-                                                   HorizontalAlignment="Stretch" Text="{Binding StringFormat=hh\\:mm}" />
+                                                   HorizontalAlignment="Stretch" Text="{Binding Converter={StaticResource TimeSpanConverter}}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -624,7 +624,7 @@
                                     Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding FlightTime,StringFormat=hh\\:mm}"
+                                            <TextBlock Text="{Binding FlightTime,Converter={StaticResource TimeSpanConverter}}"
                                                        VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

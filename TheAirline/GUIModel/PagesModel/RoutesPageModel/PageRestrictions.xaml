@@ -1,0 +1,144 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.RoutesPageModel.PageRestrictions"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+         xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.RoutesPageModel"
+         xmlns:g="clr-namespace:System.Globalization;assembly=mscorlib"
+      Name="pageRestrictions"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageRestrictions">
+    <Page.Resources>
+            <local:UnionMemberConverter x:Key="unionMemberConverter" />
+        <DataTemplate x:Key="BannedItem">
+            <WrapPanel>
+   
+                  <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource CountryLongFlagItem}"
+                                Content="{Binding FromCountry}">
+                    <ContentControl.ToolTip>
+                        <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                                 ItemTemplate="{StaticResource AirlineItem}" Background="#2A4861"
+                                 ItemsSource="{Binding Airlines}" />
+                    </ContentControl.ToolTip>
+                </ContentControl>
+                <TextBlock Text=">" VerticalAlignment="Bottom" Margin="5 0 5 0" FontWeight="Bold" />
+                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource CountryLongFlagItem}"
+                                Content="{Binding ToCountry}">
+                    <ContentControl.ToolTip>
+                        <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                                 ItemTemplate="{StaticResource CountryLongFlagItem}" Background="#2A4861"
+                                 ItemsSource="{Binding ToCountry, Converter={StaticResource unionMemberConverter}}" />
+                    </ContentControl.ToolTip>
+                </ContentControl>
+            </WrapPanel>
+        </DataTemplate>   
+        <DataTemplate x:Key="RestrictionItem">
+                <StackPanel>
+                  
+                    <WrapPanel>
+                        <WrapPanel.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Type,Mode=OneTime}"
+                                         Value="Flights">
+                                        <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                  
+                                    <DataTrigger Binding="{Binding Type,Mode=OneTime}"
+                                         Value="Aircrafts">
+                                        <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Type,Mode=OneTime}"
+                                         Value="Airline">
+                                        <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                   
+                                </Style.Triggers>
+                            </Style>
+                        </WrapPanel.Style>
+                        <TextBlock
+                    Text="{Binding StartDate,Mode=OneTime,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"
+                    VerticalAlignment="Bottom" Width="100" />
+                        <TextBlock Text="{Binding Type,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
+                           VerticalAlignment="Bottom" Width="100" FontWeight="Bold" />
+                        <ContentControl ToolTipService.ShowDuration="30000" VerticalAlignment="Bottom"
+                                ContentTemplate="{StaticResource CountryLongFlagItem}" Content="{Binding From,Mode=OneTime}">
+                            <ContentControl.ToolTip>
+                                <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" Background="#2A4861"
+                                 ItemTemplate="{StaticResource CountryLongFlagItem}"
+                                 ItemsSource="{Binding From, Converter={StaticResource unionMemberConverter}}" />
+                            </ContentControl.ToolTip>
+                        </ContentControl>
+                        <TextBlock Text="{Binding MaintenanceLevel,Mode=OneTime,StringFormat='{}Min. Level: {0}'}" Margin="25 0 0 0" VerticalAlignment="Bottom"></TextBlock>
+                    </WrapPanel>
+
+                    <WrapPanel>
+                        <WrapPanel.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Type,Mode=OneTime}"
+                                         Value="Maintenance">
+                                        <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                  
+                                </Style.Triggers>
+                            </Style>
+                        </WrapPanel.Style>
+                        <TextBlock
+                    Text="{Binding StartDate,StringFormat=d,Mode=OneTime, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"
+                    VerticalAlignment="Bottom" Width="100" />
+                        <TextBlock Text="{Binding Type,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
+                           VerticalAlignment="Bottom" Width="100" FontWeight="Bold" />
+                        <ContentControl ToolTipService.ShowDuration="30000" VerticalAlignment="Bottom"
+                                ContentTemplate="{StaticResource CountryLongFlagItem}" Content="{Binding From,Mode=OneTime}">
+                            <ContentControl.ToolTip>
+                                <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" Background="#2A4861"
+                                 ItemTemplate="{StaticResource CountryLongFlagItem}"
+                                 ItemsSource="{Binding From,Mode=OneTime, Converter={StaticResource unionMemberConverter}}" />
+                            </ContentControl.ToolTip>
+                        </ContentControl>
+                        <TextBlock Text=">" VerticalAlignment="Bottom" Margin="5 0 5 0" FontWeight="Bold" />
+                        <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource CountryLongFlagItem}"
+                                Content="{Binding To,Mode=OneTime}">
+                            <ContentControl.ToolTip>
+                                <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                                 ItemTemplate="{StaticResource CountryLongFlagItem}" Background="#2A4861"
+                                 ItemsSource="{Binding To,Converter={StaticResource unionMemberConverter}}" />
+                            </ContentControl.ToolTip>
+                        </ContentControl>
+                    </WrapPanel>
+                </StackPanel>
+            </DataTemplate>
+
+  
+    </Page.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel>
+               <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Restrictions.Count,ElementName=pageRestrictions}"
+                                         Value="0">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRestrictions 1000'}"
+                    Style="{StaticResource SmallHeaderStyle}" />
+                <ListBox Background="Transparent" BorderThickness="0"
+                         ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                         ItemTemplate="{DynamicResource RestrictionItem}"
+                         ItemsSource="{Binding Path=Restrictions,ElementName=pageRestrictions}" />
+            <TextBlock Margin="0 5 0 0"
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRestrictions 1001'}"
+                    Style="{StaticResource SmallHeaderStyle}" />
+            <ListBox Background="Transparent" BorderThickness="0"
+                         ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
+                         ItemTemplate="{DynamicResource BannedItem}"
+                         ItemsSource="{Binding Path=BannedAirlines,ElementName=pageRestrictions}" />
+        </StackPanel>
+        </ScrollViewer>
+</Page>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="KLM uk" iata="UK" logo="UK3" color="Cyan" country="130" CEO="PF Hartman" mentality="Moderate"  market="Regional" preferedairport="STN" >
+ <narrative narrative="KLM uk was formed when KLM bought AirUK. It remained a subsidiary called KLM uk for 6 years until 2003 when it was fully integrated into KLM and KLM Cityhopper. Its base was London Stansted. At the end they had 17 Fokker 100's,9 Fokker 50's, 2 ATR 72-200s and one ATR 72-210."/>
+</profile>
+  <info real="True" from="1998" to="2003"></info>
+     <prefereds aircrafts="Fokker 100,Fokker 50,ATR 72-200,ATR 72-210,Boeing 737-300,BAe 146-200"></prefereds>
+</airline>
+

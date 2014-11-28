@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Bek Air" iata="Z9" color="LightBlue" country="236" CEO="Erasyl Bajmadi" mentality="Safe" market="Regional" preferedairport="URA">
+  <narrative narrative="Bek Air is an airline based at Uralsk/Oral in Kazakhstan. It also has a focus city at the countries largest city and airport at Almaty. It was founded in 2011 and started operation on September 1st of that year. They serve 7 domestic destinations and plan to expand service soon with the help of the seven new Sukoi Superjet 100's they have ordered, with three expected to be delivered in 2015. Service to other Asian countries, the Middle East and Russia are planned. As of 2013 they had six Fokker 100's and have used Yak-40,Tu-154,Dassault Falcon 20 and BAC One Eleven aircraft before also."/>
+</profile>
+  <info real="True" from="2011" to="2199" />
+  <prefereds aircrafts="Fokker 100,Sukoi 100-95LR,Sukoi 100-75LR,Sukoi 100-75,Yak-40,Tupolev Tu-154M,Dassault Falcon 20,BAC One-Eleven 500 "></prefereds>
+   
+  <focusairports>
+        <focusairport airport="ALA"></focusairport>
+     </focusairports>
+    	            <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2016)-->
+	         <airliners>
+	    <airliner type="Fokker 100" early="6" late="6"></airliner>
+	     </airliners>
+	             <!--the airliners the airline would start with which isn't on a route earyl (2015) late (2020)-->
+	         <airliners>
+	    <airliner type="Sukhoi 100-95LR" early="3" late="7"></airliner>
+	     </airliners>
+	   
+</airline>

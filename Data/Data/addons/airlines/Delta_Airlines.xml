@@ -8,6 +8,12 @@
 consisting largely of Boeing 757s, MD-88s, Boeing 767, Airbus A320, and Boeing 737s." />
   </profile>
      <info real="True" from="1924" to="2199"></info>
+     <focusairports>
+        <focusairport airport="AMS"></focusairport>
+        <focusairport airport="BOS"></focusairport>
+        <focusairport airport="CVG"></focusairport>
+        <focusairport airport="DTW"></focusairport>
+     </focusairports>
   <startdata>
     <routes>
       <route destination1="ATL" destination2="DTW" opened="1960" closed="2199"></route>

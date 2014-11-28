@@ -238,7 +238,7 @@
         //returns the basic facility for a specific type
         public static RouteFacility GetBasicFacility(RouteFacility.FacilityType type)
         {
-            return facilities.FindAll(f => f.Type == type).OrderBy(f => f.ServiceLevel).First();
+            return facilities.FindAll(f => f.Type == type).OrderBy(f => f.ServiceLevel).FirstOrDefault();
         }
 
         public static List<RouteFacility> GetFacilities()

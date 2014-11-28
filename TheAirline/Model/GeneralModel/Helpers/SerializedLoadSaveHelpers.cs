@@ -7,8 +7,8 @@
     using System.Linq;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Threading.Tasks;
-
     using TheAirline.Model.AirlineModel;
+    using TheAirline.Model.AirlineModel.SubsidiaryModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
     using TheAirline.Model.AirportModel;
@@ -184,7 +184,19 @@
                 {
                     GameObject.SetInstance(deserializedSaveObject.instance);
                     Settings.SetInstance(deserializedSaveObject.settings);
-                },
+                }, ()=>
+                    {
+                        if (deserializedSaveObject.mergerslist != null)
+                        {
+                            AirlineMergers.Clear();
+
+                            foreach (AirlineMerger merger in deserializedSaveObject.mergerslist)
+                            {
+                                AirlineMergers.AddAirlineMerger(merger);
+
+                            }
+                        }
+                    },
                 () =>
                 {
                     if (deserializedSaveObject.airlinefacilitieslist != null)
@@ -319,7 +331,11 @@
                 {
                     so.routefacilitieslist = new List<RouteFacility>();
                     so.routefacilitieslist.AddRange(RouteFacilities.GetAllFacilities());
-                },
+                }, () =>
+                    {
+                        so.mergerslist = new List<AirlineMerger>();
+                        so.mergerslist.AddRange(AirlineMergers.GetAirlineMergers());
+                    },
                 () =>
                 {
                     so.instance = GameObject.GetInstance();
@@ -477,7 +493,9 @@
 
         [Versioning("routefacilities")]
         public List<RouteFacility> routefacilitieslist { get; set; }
-
+        
+        [Versioning("mergers")]
+        public List<AirlineMerger> mergerslist { get; set; }
         public string savetype { get; set; }
 
         public int saveversionnumber { get; set; }
@@ -509,7 +527,8 @@
 
             catch (Exception err)
             {
-                Console.WriteLine(err.ToString());
+                TAPLogger.LogEvent(err.StackTrace, "Exception on loading game");
+        
             }
 
             finally
@@ -550,7 +569,8 @@
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                TAPLogger.LogEvent(e.StackTrace, "Exception on saving game");
+        
             }
             finally
             {

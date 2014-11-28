@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Nova" iata="ARN" color="Maroon" country="113" CEO="James Plaxton" mentality="Moderate" market="Regional" preferedairport="YHZ" >
+  <narrative narrative="Air Nova was a subsidiary of Air Canada that was based at Halifax,Nova Scotia. It was around from 1986-2002 when it merged with several other subsidaries to form Jazz. It had about 26 Dash 8-100's,about 4 Dash 8-300's and 5 BAe 146-200's and some Beechcraft 1900D's at the end. Air Nova itself had absorbed Air Alliance in 1999, another Air Canada subsidiary that was around from 1988-1999 and was based at Quebec City. It served Eastern Canada and the Eastern US."/>
+</profile>
+  <info real="True" from="1986" to="2002" />
+  <prefereds aircrafts="Bombardier Dash 8-100,Bombardier Dash 8-300,BAe 146-200,Beechcraft 1900D"></prefereds>
+     <focusairports>
+	 <focusairport airport="YTZ"></focusairport>
+     </focusairports>
+                
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2001)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-100" early="7" late="26"></airliner>
+	     </airliners>
+		         	     	         <!--the airliners the airline would start with which isn't on a route earyl (1989) late (2001)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="2" late="4"></airliner>
+	     </airliners>
+	     	         	     	         <!--the airliners the airline would start with which isn't on a route earyl (1989) late (2001)-->
+	         <airliners>
+	    <airliner type="BAe 146-200" early="5" late="5"></airliner>
+	     </airliners>
+	     	  
+	     	  
+
+
+</airline>

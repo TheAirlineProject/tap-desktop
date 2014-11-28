@@ -9,7 +9,22 @@ consists primarily of the Airbus A320 and Boeing 737s with international destina
 
    <prefereds aircrafts="Airbus A300-600,Airbus A319-100,Airbus A320-200,Airbus A321-200,Airbus A330-200,Airbus A330-300,Airbus A380-800,Boeing 737-200,Boeing 737-300,Boeing 737-500,Boeing 737-700,Boeing 737-800,Boeing 757-200,Boeing 777-200,Boeing 777-200ER,Boeing 777-300ER,Boeing 787-8,Comac 919,Embraer ERJ145 LR,Embraer E-195"></prefereds>
     
-    
+         <focusairports>
+        <focusairport airport="URC"></focusairport>
+        <focusairport airport="PEK"></focusairport>
+        <focusairport airport="CKG"></focusairport>
+        <focusairport airport="SZX"></focusairport>
+	<focusairport airport="CGO"></focusairport>
+        <focusairport airport="DLC"></focusairport>
+        <focusairport airport="CSX"></focusairport>
+	<focusairport airport="SHE"></focusairport>
+        <focusairport airport="CGQ"></focusairport>
+        <focusairport airport="HAK"></focusairport>
+        <focusairport airport="HGH"></focusairport>
+        <focusairport airport="PVG"></focusairport>
+        <focusairport airport="WUH"></focusairport>
+	<focusairport airport="SWA"></focusairport>
+     </focusairports>
     
     
   <airliners>

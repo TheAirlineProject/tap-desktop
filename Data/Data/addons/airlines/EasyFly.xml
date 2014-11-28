@@ -1,8 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="EasyFly" iata="EF" color="Black" country="183" CEO="Alfonso Ávila" mentality="Safe" market="Global"
            preferedairport="BOG">
+               <narrative
+      narrative="Easyfly S.A. is a regional low-cost carrier that operates in Colombia. Its main focus is to serve intermediate cities and those not served by other carriers. Operations started in October 2007, with one British Aerospace Jetstream 41 aircraft. Its main base is El Dorado International Airport, Bogotá. Alfonso Ávila, the founder of EasyFly, was also one of the founders of Aero República in 1992." />
+  
   </profile>
   <info real="True" from="2007" to="2199" />
 </airline>

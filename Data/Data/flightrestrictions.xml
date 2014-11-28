@@ -1,24 +1,156 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <restrictions>
-  <restriction type="Flights" start="01.01.1962 00:00:00" end="06.22.2011 00:00:00">
-    <countries fromtype="C" from="198" totype="C" to="122"></countries>
-  </restriction>
-  <restriction type="Flights" start="01.01.1962 00:00:00" end="06.22.2011 00:00:00">
-    <countries fromtype="C" from="122" totype="C" to="198"></countries>
-  </restriction>
+<!--ban all aircrafts from one country to another-->
   <restriction type="Aircrafts" start="05.14.1955 00:00:00" end="07.01.1991 00:00:00">
     <countries fromtype="U" from="102" totype="U" to="103"></countries>
   </restriction>
   <restriction type="Aircrafts" start="05.14.1955 00:00:00" end="07.01.1991 00:00:00">
     <countries fromtype="U" from="103" totype="U" to="102"></countries>
   </restriction>
+  <!--ban all flights from one country to another-->
   <restriction type="Flights" start="11.01.1955 00:00:00" end="08.15.1973 00:00:00">
     <countries fromtype="C" from="122" totype="C" to="1007"></countries>
   </restriction>
   <restriction type="Flights" start="11.01.1955 00:00:00" end="08.15.1973 00:00:00">
     <countries fromtype="C" from="1007" totype="C" to="122"></countries>
   </restriction>
+    <restriction type="Flights" start="01.01.1962 00:00:00" end="06.22.2011 00:00:00">
+    <countries fromtype="C" from="198" totype="C" to="122"></countries>
+  </restriction>
+  <restriction type="Flights" start="01.01.1962 00:00:00" end="06.22.2011 00:00:00">
+    <countries fromtype="C" from="122" totype="C" to="198"></countries>
+  </restriction>
+  <!--ban the airliner of a flight is below a maintenance level-->
+    <restriction type="Maintenance" start="01.01.1900 00:00:00" end="12.31.2199 00:00:00" level="50">
+    <countries fromtype="U" from="101" totype="U" to="101"></countries>
+  </restriction>
+      <restriction type="Maintenance" start="01.01.1900 00:00:00" end="12.31.2199 00:00:00" level="50">
+    <countries fromtype="C" from="122" totype="C" to="122"></countries>
+  </restriction>
+  <!--ban all airlines from a country to another-->
+    <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="253" totype="U" to="101"></countries>
+  </restriction>
+   <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="251" totype="U" to="101"></countries>
+  </restriction>
+      <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="187" totype="U" to="101"></countries>
+  </restriction>
+   <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="298" totype="U" to="101"></countries>
+  </restriction>
+      <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="221" totype="U" to="101"></countries>
+  </restriction>
+   <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="264" totype="U" to="101"></countries>
+  </restriction>
+        <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="309" totype="U" to="101"></countries>
+  </restriction>
+   <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="304" totype="U" to="101"></countries>
+  </restriction>
+        <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="300" totype="U" to="101"></countries>
+  </restriction>
+   <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="236" totype="U" to="101"></countries>
+  </restriction>
+          <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="239" totype="U" to="101"></countries>
+  </restriction>
+   <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="303" totype="U" to="101"></countries>
+  </restriction>
+    <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="283" totype="U" to="101"></countries>
+  </restriction>
+   <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="131" totype="U" to="101"></countries>
+  </restriction>
+      <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="308" totype="U" to="101"></countries>
+  </restriction>
+   <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="270" totype="U" to="101"></countries>
+  </restriction>
+        <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="223" totype="U" to="101"></countries>
+  </restriction>
+   <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="225" totype="U" to="101"></countries>
+  </restriction>
+     <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="162" totype="U" to="101"></countries>
+  </restriction>
+       <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="214" totype="U" to="101"></countries>
+  </restriction>
+     <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="216" totype="C" to="122"></countries>
+  </restriction>
+       <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="197" totype="C" to="122"></countries>
+  </restriction>
+     <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="275" totype="C" to="122"></countries>
+  </restriction>
+         <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="301" totype="C" to="122"></countries>
+  </restriction>
+     <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="221" totype="C" to="122"></countries>
+  </restriction>
+         <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="189" totype="C" to="122"></countries>
+  </restriction>
+     <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="111" totype="C" to="122"></countries>
+  </restriction>
+         <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="162" totype="C" to="122"></countries>
+  </restriction>
+     <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="196" totype="C" to="122"></countries>
+  </restriction>
+         <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="255" totype="C" to="122"></countries>
+  </restriction>
+     <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="212" totype="C" to="122"></countries>
+  </restriction>
+         <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="256" totype="C" to="122"></countries>
+  </restriction>
+     <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="131" totype="C" to="122"></countries>
+  </restriction>
+         <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="195" totype="C" to="122"></countries>
+  </restriction>
+     <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="213" totype="C" to="122"></countries>
+  </restriction>
+         <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="291" totype="C" to="122"></countries>
+  </restriction>
+     <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="115" totype="C" to="122"></countries>
+  </restriction>
+  <!--which airlines to allow-->
+      <restriction type="AllowAirline" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="A" from="GA" totype="U" to="101"></countries>
+  </restriction>
+        <restriction type="AllowAirline" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="A" from="5J" totype="U" to="101"></countries>
+  </restriction>
+        <restriction type="AllowAirline" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="A" from="PR" totype="U" to="101"></countries>
+  </restriction>
+ 
   <!--
 	<restriction type="Flights" start="01.01.1962 00:00:00" end="06.22.2012 00:00:00">
 <countries fromtype="C" from="130" totype="C" to="140"></countries>

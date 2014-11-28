@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Sun D'Or International Airlines" iata="ERO" color="Gold" country="128" CEO="Bezalel Karvat" mentality="Safe" market="Global" preferedairport="TLV" >
+  <narrative narrative="Sun D'Or International Airlines is a subsidiary of El Al, the largest airline of Israel. It was founded in 1977 as El Al Charter Services and got its new name in 1981, Sun D'Or means gold in French. It is based at Tel Aviv Ben Gurion. As of 2013 it served 22 destinations all in Europe, and all but 2 being seasonal. These would be Rome and Barcelona. It also serves 4 others in Italy,3 in Poland,2 in Greece,2 in France and one each in Belarus,Croatia,Germany,Lithuania,the Netherlands,Portugal,Slovakia,and Switzerland. From 2001-2011 it used 757-200's, never really having more than one at a time. Now it uses a 737-800 which is operated by its parent El Al."/>
+</profile>
+  <info real="True" from="1977" to="2199" />
+  <prefereds aircrafts="Boeing 757-200,Boeing 737-800"></prefereds>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2012)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="1" late="0"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2016)-->
+	         <airliners>
+	    <airliner type="Boeing 737-800" early="1" late="1"></airliner>
+	     </airliners>
+	     	  
+</airline>

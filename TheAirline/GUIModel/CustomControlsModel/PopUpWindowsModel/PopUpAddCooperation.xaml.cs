@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
     {
         private Airline Airline;
         private Airport Airport;
-        public List<CooperationType> Types { get; set; }
+        public ObservableCollection<CooperationType> Types { get; set; }
         public static object ShowPopUp(Airline airline,Airport airport)
         {
             PopUpWindow window = new PopUpAddCooperation(airline,airport);
@@ -36,7 +37,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
         }
         public PopUpAddCooperation(Airline airline, Airport airport)
         {
-            this.Types = new List<CooperationType>();
+            this.Types = new ObservableCollection<CooperationType>();
             
             this.Airline = airline;
             this.Airport = airport;

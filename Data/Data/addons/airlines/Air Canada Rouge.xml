@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Canada Rouge" iata="RV" color="Maroon" country="113" CEO="Calin Rovinescu" mentality="Aggressive" market="Global" preferedairport="YUL" >
+  <narrative narrative="Air Canada Rouge is a subsidiary of Air Canada. It started operations in 2013 and it's main purpose is to serve leisure routes from its hubs at Montreal,Toronto,Vancouver, and Calgary. As of the end of 2014 it served 11 places in the U.S two of them being seasonal,and two in the Bahamas,2 in Costa Rica,4 in Cuba,Curacao,4 in the Dominican Republic,one in France,one in Greece,Grenada,Haiti,Ireland,2 in Italy,2 in Jamaica,one in Japan,4 in Mexico,one in Peru,one in Portugal,Saint Kitts and Nevis,one in Spain,and 2 in the UK. 21 of their destinations are seasonal. 25 of them are not. As of November 2014 they had 20 A319's and 8 767-300ER's. It plans on having 50 planes in the future as its goal."/>
+</profile>
+  <info real="True" from="2013" to="2199" />
+  <prefereds aircrafts="Airbus A319-100,Boeing 767-300ER,Airbus A319neo"></prefereds>
+     <focusairports>
+	<focusairport airport="YYZ"></focusairport>
+	<focusairport airport="YVR"></focusairport>
+	 <focusairport airport="YYC"></focusairport>
+     </focusairports>
+                <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2014)-->
+	         <airliners>
+	    <airliner type="Airbus A319-100" early="2" late="8"></airliner>
+	     </airliners>  
+	         <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2014)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300ER" early="7" late="20"></airliner>
+	     </airliners>
+	     	  
+
+
+</airline>

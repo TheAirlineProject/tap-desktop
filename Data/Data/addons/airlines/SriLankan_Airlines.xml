@@ -3,6 +3,8 @@
 <airline>
   <profile name="SriLankan Airlines" iata="UL" color="Purple" country="153" CEO="Kapila Chandrasena"
            mentality="Moderate" market="Global" preferedairport="CMB">
+              <narrative
+      narrative="SriLankan Airlines is the flag carrier of Sri Lanka and a IOSA certified airline. SriLankan operates hubs at Colombo, and Mattala, and has a strong presence in South Asia, Middle East, Europe and Southeast Asia markets." />
   </profile>
   <info real="True" from="1979" to="2199"></info>
 </airline>

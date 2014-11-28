@@ -1,0 +1,8 @@
+<airline>
+<profile name="Ansett New Zealand" iata="ZQ" color="Blue" country="186" CEO="Peter Abeles" mentality="Safe" market="Domestic" preferedairport="AKL">
+<narrative narrative="Ansett New Zealand was a subsidiary of Ansett Australia that was started in 1987. They operated at 15 domestic destinations. In 1996 Air New Zealand and News Corporation bought Ansett Australia, while News Corporation alone got Ansett New Zealand making it independant. In 2000 an airline called Tasman Pacific bought it and then they started operating as a Qantas franchise called Qantas New Zealand. A year later it was liquidated. In 1987 its first routes were with three 737-100's between Auckland,Wellington and Christchurch. Those were replaced by BAe 146's. In total they had twelve BAe 146's, seven Dash 8-100's, two Dash 8-300's,two Dash 7's,five EMB 110's, and five Jetstream 31's besides the 737's. "/>
+</profile>
+<info real="True" from="1987" to="2001"></info>
+  <prefereds aircrafts="BAe 146-200,Dash 8-300,BAe Jetstream 31,EMB 110 Bandeirante,Boeing 737-100,Dash 8-100,DHC-7-100"></prefereds>	   
+	
+</airline>

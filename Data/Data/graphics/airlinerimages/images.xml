@@ -76,4 +76,10 @@
             <airlinerimage image="B214" types="Bell 214ST"></airlinerimage>
 <airlinerimage image="DHC6" types="DHC-6-300 Twin Otter"></airlinerimage>
 <airlinerimage image="P180" types="P180 Avanti"></airlinerimage>
+<airlinerimage image="CV50" types="Vision SF50"></airlinerimage>
+<airlinerimage image="4AT" types="Ford Trimotor"></airlinerimage>
+<airlinerimage image="AAN2" types="Antonov An-2"></airlinerimage>
+<airlinerimage image="AN26" types="Antonov An-26"></airlinerimage>
+  <airlinerimage image="IL14" types="Il-14,Il-14M"></airlinerimage>
+    <airlinerimage image="SE161" types="SE 161 Languedoc"></airlinerimage>
 </airlinerimages>

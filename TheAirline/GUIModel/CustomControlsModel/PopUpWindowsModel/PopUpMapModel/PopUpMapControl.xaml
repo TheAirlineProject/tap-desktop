@@ -28,7 +28,7 @@
                         <Canvas>
                             <Image Source="{Binding Airport,Converter={StaticResource pinColorConverter}}" RenderOptions.BitmapScalingMode="HighQuality" Canvas.Left="-5" Canvas.Top="-20" ToolTipService.ShowDuration="60000">
                                 <Image.ToolTip>
-                                    <ContentControl Content="{Binding Airport}" ContentTemplate="{StaticResource AirportCountryItem}"></ContentControl>
+                                    <ContentControl Content="{Binding Airport,Mode=OneTime}" ContentTemplate="{StaticResource AirportCountryItem}"></ContentControl>
                          
                                 </Image.ToolTip>
                             </Image>

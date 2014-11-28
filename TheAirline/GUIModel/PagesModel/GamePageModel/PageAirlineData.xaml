@@ -50,7 +50,7 @@
                     <ComboBox Width="300" Name="cbCountry" IsSynchronizedWithCurrentItem="True"
                               Style="{StaticResource ComboBoxTransparentStyle}"
                               ItemTemplate="{StaticResource CountryLongFlagItem}"
-                              SelectedItem="{Binding SelectedItem.Profile.Country,ElementName=cbAirline}"
+                              SelectedItem="{Binding SelectedItem.Profile.Country,ElementName=cbAirline, Mode=OneTime}"
                               ItemsSource="{Binding SelectedItem.Profile.Countries,ElementName=cbAirline}" />
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
@@ -85,7 +85,7 @@
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1006'}">
                 <g:QuickInfoValue.Value>
                     <ContentControl ContentTemplate="{StaticResource AirlineColorItem}"
-                                    Content="{Binding SelectedItem.Profile.Color,ElementName=cbAirline}"
+                                    Content="{Binding SelectedItem.Profile.Color,ElementName=cbAirline,Mode=OneTime}"
                                     HorizontalAlignment="Center" />
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>

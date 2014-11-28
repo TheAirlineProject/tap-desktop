@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Tristar Air" iata="YS" color="Black" country="155" CEO="Alaa El Din Rahmy" mentality="Safe" market="Global" preferedairport="CAI" routefocus="Cargo">
+  <narrative narrative="Tristar Air is a cargo airline based out of Cairo,Egypt. It links Cairo with Amsterdam and Tripoli,Libya on scheduled service. It also does cargo charters. It is owned 100% by members of
+  the Messeh family. They have a single A300B4-200F which they have had since 2002. The airline was founded in 1998."/>
+</profile>
+  <info real="True" from="1998" to="2199" />
+  <prefereds aircrafts="Airbus A300C4-620,Airbus A300-600F "></prefereds>
+     <focusairports>
+	<focusairport airport="AMS"></focusairport>
+	<focusairport airport="TIP"></focusairport>
+     </focusairports>
+                <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2017)-->
+	         <airliners>
+	    <airliner type="Airbus A300C4-620" early="1" late="1"></airliner>
+	     </airliners>  
+
+</airline>

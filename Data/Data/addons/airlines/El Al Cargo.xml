@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="El Al Cargo" iata="LY2" logo="LY" color="DarkBlue" country="128" CEO="David Maimon" mentality="Safe" market="Global" preferedairport="TLV" routefocus="Cargo" >
+  <narrative narrative="El Al Cargo is just as its name says, the cargo division of El Al, the largest airline of Israel. It had one 747-400F as of 2013 and has used 707-320C's and 747-200F's in the past too."/>
+</profile>
+  <info real="True" from="1948" to="2199" />
+  <prefereds aircrafts="Boeing 747-400F,Boeing 707-320C,Boeing 747-200F"></prefereds>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2020)-->
+	         <airliners>
+	    <airliner type="Boeing 747-400F" early="1" late="1"></airliner>
+	     </airliners>
+	     	  
+</airline>

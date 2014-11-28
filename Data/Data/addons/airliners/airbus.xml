@@ -21,7 +21,7 @@
     <specs wingspan="44.85" length="54.08" range="3430" speed="847" fuelcapacity="62900" consumption="0.035"
            runwaylengthrequired="2500" />
 
-    <capacity passengers="375" cockpitcrew="3" cabincrew="5" maxclasses="2" />
+    <capacity passengers="345" cockpitcrew="3" cabincrew="5" maxclasses="2" />
 
     <produced from="1974" to="1984" rate="17" />
 
@@ -33,7 +33,7 @@
     <specs wingspan="44.85" length="54.08" range="6670" speed="829" fuelcapacity="62900" consumption="0.035"
            runwaylengthrequired="2500" />
 
-    <capacity passengers="375" cockpitcrew="3" cabincrew="5" maxclasses="2" />
+    <capacity passengers="345" cockpitcrew="3" cabincrew="5" maxclasses="2" />
 
     <produced from="1978" to="1985" rate="17" />
 
@@ -45,7 +45,7 @@
     <specs wingspan="44.85" length="54.08" range="6850" speed="875" fuelcapacity="62000" consumption="0.034"
            runwaylengthrequired="2240" />
 
-    <capacity passengers="375" cockpitcrew="2" cabincrew="5" maxclasses="2" />
+    <capacity passengers="361" cockpitcrew="2" cabincrew="5" maxclasses="2" />
 
     <produced from="1983" to="2006" rate="17" />
 
@@ -83,7 +83,7 @@
     <specs wingspan="44.85" length="54.08" range="7540" speed="829" fuelcapacity="68150" consumption="0.034"
            runwaylengthrequired="2300" />
 
-    <capacity passengers="375" cockpitcrew="2" cabincrew="5" maxclasses="2" />
+    <capacity passengers="361" cockpitcrew="2" cabincrew="5" maxclasses="2" />
 
     <produced from="1988" to="2006" rate="17" />
 
@@ -230,6 +230,18 @@
     <produced from="2017" to="2199" rate="220" />
 
   </airliner>
+      <airliner manufacturer="Airbus" name="Airbus A321neoLR" image="Airbus A321" price="11656000"> <!--63658000-->
+
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+
+    <specs wingspan="34.10" length="44.51" range="7223" speed="828" fuelcapacity="32100" consumption="0.010"
+           runwaylengthrequired="2145" />
+
+    <capacity passengers="164" cockpitcrew="2" cabincrew="4" maxclasses="2" />
+
+    <produced from="2018" to="2199" rate="50" />
+
+  </airliner>
   <airliner manufacturer="Airbus" name="Airbus A330-200" image="Airbus A330-200" price="26366440"> <!--145200000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
@@ -325,7 +337,7 @@
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
 
-    <specs wingspan="64.80" length="60.54" range="15700" speed="903" fuelcapacity="129000" consumption="0.022"
+    <specs wingspan="64.80" length="60.54" range="15300" speed="903" fuelcapacity="129000" consumption="0.022"
            runwaylengthrequired="2750" />
 
     <capacity passengers="375" cockpitcrew="2" cabincrew="8" maxclasses="3" />
@@ -338,7 +350,7 @@
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
 
-    <specs wingspan="64.80" length="66.89" range="15000" speed="903" fuelcapacity="138000" consumption="0.022"
+    <specs wingspan="64.80" length="66.89" range="14350" speed="903" fuelcapacity="138000" consumption="0.022"
            runwaylengthrequired="2810" />
 
     <capacity passengers="420" cockpitcrew="2" cabincrew="8" maxclasses="3" />

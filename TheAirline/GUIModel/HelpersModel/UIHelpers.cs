@@ -1,14 +1,17 @@
 ﻿namespace TheAirline.GUIModel.HelpersModel
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Device.Location;
+    using System.Globalization;
     using System.Linq.Expressions;
+    using System.Reflection;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
-
     using Expression = System.Linq.Expressions.Expression;
 
     public static class Extensions
@@ -741,7 +744,180 @@
 
             #endregion
         }
+        
+        public static ReadOnlyCollection<ReflectPropertyDescriptorInfo> GetReflectPropertyDescriptorInfo()
+        {
+
+            List<ReflectPropertyDescriptorInfo> listInfo = new List<ReflectPropertyDescriptorInfo>();
+
+            // get the ReflectTypeDescriptionProvider._propertyCache field
+
+            Type typeRtdp = typeof(PropertyDescriptor).Module.
+
+                GetType("System.ComponentModel.ReflectTypeDescriptionProvider");
+
+            FieldInfo propertyCacheFieldInfo = typeRtdp.GetField("_propertyCache",
+
+                BindingFlags.Static | BindingFlags.NonPublic);
+
+            Hashtable propertyCache = (Hashtable)propertyCacheFieldInfo.GetValue(null);
+
+            if (propertyCache != null)
+            {
+
+                // try to make a copy of the hashtable as quickly as possible (this object can be accessed by other threads)
+
+                DictionaryEntry[] entries = new DictionaryEntry[propertyCache.Count];
+
+                propertyCache.CopyTo(entries, 0);
+
+
+                FieldInfo valueChangedHandlersFieldInfo = typeof(PropertyDescriptor).GetField("valueChangedHandlers",
+
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+
+   
+
+                // count the "value changed" handlers for each type
+
+                foreach (DictionaryEntry entry in entries)
+                {
+                    
+                    PropertyDescriptor[] pds = (PropertyDescriptor[])entry.Value;
+
+                    if (pds != null)
+                    {
+                        
+                        foreach (PropertyDescriptor pd in pds)
+                        {
+                            Hashtable valueChangedHandlers = (Hashtable)valueChangedHandlersFieldInfo.GetValue(pd);
+
+                            if (valueChangedHandlers != null && valueChangedHandlers.Count != 0)
+                            { 
+                                listInfo.Add(new ReflectPropertyDescriptorInfo(entry.Key.ToString(), pd.Name,
+
+                                    valueChangedHandlers.Count));
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+
+
+            listInfo.Sort();
+
+            return listInfo.AsReadOnly();
+
+        }
     }
+
+
+    public sealed class ReflectPropertyDescriptorInfo : IEquatable<ReflectPropertyDescriptorInfo>,
+
+        IComparable<ReflectPropertyDescriptorInfo>
+    {
+
+        public ReflectPropertyDescriptorInfo(string typeName, string propertyName, int handlerCount)
+        {
+
+            m_typeName = typeName;
+
+            m_propertyName = propertyName;
+
+            m_handlerCount = handlerCount;
+
+        }
+
+
+
+        public string TypeName
+        {
+
+            get { return m_typeName; }
+
+        }
+
+
+
+        public string PropertyName
+        {
+
+            get { return m_propertyName; }
+
+        }
+
+
+
+        public int HandlerCount
+        {
+
+            get { return m_handlerCount; }
+
+        }
+
+
+
+        public string DisplayHandlerCount
+        {
+
+            get
+            {
+                return m_handlerCount == 1 ? "" : string.Format(CultureInfo.InvariantCulture,
+
+                    " ({0:n0} handlers)", m_handlerCount);
+            }
+
+        }
+
+
+
+        public int CompareTo(ReflectPropertyDescriptorInfo other)
+        {
+
+            if (object.ReferenceEquals(other, null))
+
+                return 1;
+
+
+
+            int compareResult = m_typeName.CompareTo(other.m_typeName);
+
+            if (compareResult == 0)
+
+                compareResult = m_propertyName.CompareTo(other.m_propertyName);
+
+            if (compareResult == 0)
+
+                compareResult = m_handlerCount.CompareTo(other.m_handlerCount);
+
+            return compareResult;
+
+        }
+
+
+
+        // Implementations of Equals, GetHashCode, operators, etc. elided for brevity
+
+
+
+        readonly string m_typeName;
+
+        readonly string m_propertyName;
+
+        readonly int m_handlerCount;
+
+
+        public bool Equals(ReflectPropertyDescriptorInfo other)
+        {
+            return this.CompareTo(other) == 0;
+        }
+    }
+    
 
     public class ListBoxItemStyleSelector : StyleSelector
     {

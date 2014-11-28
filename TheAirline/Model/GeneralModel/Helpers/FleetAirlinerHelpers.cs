@@ -9,6 +9,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using TheAirline.Model.PassengerModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -16,10 +17,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
     public class FleetAirlinerHelpers
     {
         private static Random rnd = new Random();
-        public enum DelayType { None, Airliner_problems, Bad_weather, Airport_Traffic }
+        public enum DelayType { None, Airliner_problems, Bad_weather,Maintenance, Airport_Traffic }
         //returns the number of delay minutes (0 if not delayed) for an airliner
         public static KeyValuePair<DelayType, int> GetDelayedMinutes(FleetAirliner airliner)
         {
+            if (IsMaintenanceBanned(airliner))
+                return new KeyValuePair<DelayType, int>(DelayType.Maintenance, int.MaxValue);
+
             //has already been delayed
             if (!airliner.CurrentFlight.IsOnTime)
                 return new KeyValuePair<DelayType, int>(DelayType.None, 0);
@@ -476,7 +480,29 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airliner.Airliner.BuiltDate = builtDate;
 
         }
+        //returns if an airliner is banned due to no maintenance
+        private static Boolean IsMaintenanceBanned(FleetAirliner airliner)
+        {
+            Boolean banned = false;
+            Airport airport1 = airliner.CurrentFlight.Entry.Destination.Airport;
+            Airport airport2 = airliner.CurrentFlight.Entry.DepartureAirport;
 
+            var restriction1 = FlightRestrictions.GetRestrictions(airport1.Profile.Country, airport1.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Maintenance);
+            var restriction2 = FlightRestrictions.GetRestrictions(airport2.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Maintenance);
+
+            if (restriction1.Count > 0)
+            {
+                if (restriction1.First().MaintenanceLevel > airliner.Airliner.Condition)
+                    banned = true;
+            }
+            if (restriction2.Count > 0)
+            {
+                if (restriction2.First().MaintenanceLevel > airliner.Airliner.Condition)
+                    banned = true;
+            }
+
+            return banned;
+        }
         //does the maintenance of a given type, sends the invoice, updates the last/next maintenance, and improves the aircraft's damage
         //make sure you pass this function a string value of either "A" "B" "C" or "D" or it will throw an error!
         public static void DoMaintenance(FleetAirliner airliner)

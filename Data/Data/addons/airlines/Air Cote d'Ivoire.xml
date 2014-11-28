@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Cote d'Ivoire" iata="HF" color="Olive" country="275" CEO="General Coulibaly Abdoulaye" mentality="Moderate"  market="Regional " preferedairport="ABJ">
+    <narrative narrative="Air Cote d'Ivoire is the flag carrier of the country in West Africa, also called Ivory Coast. It was founded in 2012 and replaced the former flag carrier Air Ivoire which folded in 2011 and had been around since the early 1960's. It's base is Port Bouet.  As of June 2014 it had 15 destinations besides its hub, all in West Africa besides Chad in Central Africa. As of 2013 it had three A319's, an Embraer 170 and on order it has two Dash 8 400's. It is owned 65% by the government, and 20% by Air France, and 15% by AKFED." />
+  </profile>
+  <info real="True" from="2012" to="2199" />
+  <prefereds aircrafts="Airbus A319-100,Airbus A319neo,Bombardier Dash 8-400,Embraer E-170,Bombardier Dash 8-400NextGen"></prefereds>
+
+</airline>

@@ -20,7 +20,7 @@
                                 <DataTrigger Binding="{Binding IsRemoveable}" Value="False">
                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Member.Airline.IsHuman}" Value="True">
+                                <DataTrigger Binding="{Binding Member.Airline.IsHuman,Mode=OneTime}" Value="True">
                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -33,7 +33,7 @@
         </DataTemplate>
         <DataTemplate x:Key="PendingMemberItem">
             <WrapPanel>
-                <ContentControl ContentTemplate="{StaticResource AirlineLink}" Content="{Binding Airline}"
+                <ContentControl ContentTemplate="{StaticResource AirlineLink}" Content="{Binding Airline,Mode=OneTime}"
                                 VerticalAlignment="Bottom" />
                 <Button Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}"
                         VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnAccept_Click"
@@ -97,7 +97,7 @@
                 <TextBlock
                     Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1004'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <ContentControl Content="{Binding Alliance.Headquarter}" VerticalAlignment="Bottom"
+                <ContentControl Content="{Binding Alliance.Headquarter,Mode=OneTime}" VerticalAlignment="Bottom"
                                 ContentTemplate="{StaticResource AirportCountryLink}" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">

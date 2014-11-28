@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Africa World Airlines" iata="AW" color="Yellow" country="189" CEO="Chen Feng" mentality="Safe"  market="Regional " preferedairport="ACC">
+    <narrative narrative="Africa World Airlines are an airline based at Accra,Ghana in West Africa. They are a joint venture between Hainan Airlines of China,China-Africa Development Fund,SSNIT and SAS Finance Group. It was founded in 2010 but didn't start operation until September 2012. They have 4 destinations, 3 in Ghana and one in Nigeria. They are planned to be expanded to other West African destinations and eventually to other regions of Africa as well. The fleet as of 2014 was three ERJ-145's and there are plans to add A319's in the future." />
+  </profile>
+  <info real="True" from="2012" to="2199" />
+  <prefereds aircrafts="Embraer ERJ145 LR,Airbus A319-100,Airbus A319neo,Embraer ERJ140 ER,Embraer ERJ135 ER"></prefereds>
+
+</airline>

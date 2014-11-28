@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Bmibaby" iata="WW" color="Blue" country="130" CEO="Wolfgang Prock-Schauer" mentality="Moderate"  market="Regional " preferedairport="BHX">
+    <narrative narrative="Bmibaby was a subsidiary of British Midlands International from 2002 to 2012 when that airline was bought by British Airlines group IAG. Bmibaby was dissolved in the merger. It's two hubs were Birmingham and East Midlands. They had 12 737-300's and 2 737-500's at the end in 2012. They served 42 destinations across Europe. " />
+  </profile>
+  <info real="True" from="2002" to="2012" />
+  <prefereds aircrafts="Boeing 737-300,Beoing 737-500"></prefereds>
+
+</airline>

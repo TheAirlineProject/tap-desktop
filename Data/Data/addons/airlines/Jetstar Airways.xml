@@ -2,7 +2,7 @@
 
 <airline>
   <profile name="Jetstar Airways" iata="JQ" color="Black" country="116" CEO="Jayne Hrdlicka" mentality="Safe"
-           market="Local" preferedairport="MEL">
+           market="Global" preferedairport="MEL">
            <narrative narrative="Jetstar Airways Pty Ltd, trading as Jetstar, is an Australian low-cost airline (self-described as value based) headquartered in Melbourne, Australia. It is a wholly owned subsidiary of Qantas, created in response to the threat posed by low-cost airline Virgin Blue. Jetstar is part of Qantas' two brand strategy of having Qantas Airways for the premium full-service market and Jetstar for the low-cost market."/>
   </profile>
   <info real="True" from="2003" to="2199" />

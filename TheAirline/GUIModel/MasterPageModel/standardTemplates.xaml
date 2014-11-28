@@ -14,6 +14,7 @@
     <c:AirportCodeConverter x:Key="AirportCodeConverter" />
     <c:TranslatorConverter x:Key="TranslatorConverter" />
     <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter" />
+    <c:TimeSpanConverter x:Key="TimeSpanConverter"></c:TimeSpanConverter>
     <c:WeightToUnitConverter x:Key="WeightToUnitConverter"></c:WeightToUnitConverter>
 
     <Style TargetType="WrapPanel" x:Key="WrapPanelStyle">
@@ -27,9 +28,9 @@
     <!--countries templates-->
     <DataTemplate x:Key="CountryFlagLongBoldItem">
         <DockPanel>
-            <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom"
+            <Image Source="{Binding Flag,Mode=OneTime}" Width="20" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" />
-            <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" FontWeight="Bold"
+            <TextBlock Text="{Binding Name,Mode=OneTime}" Margin="5 0 0 0" TextAlignment="Left" FontWeight="Bold"
                        VerticalAlignment="Bottom" />
         </DockPanel>
     </DataTemplate>
@@ -43,14 +44,14 @@
     </DataTemplate>
 -->
     <DataTemplate x:Key="CountryFlagItem">
-        <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter}}"
+        <ContentControl Content="{Binding Mode=OneTime,Converter={StaticResource CountryCurrentCountryConverter}}"
                         VerticalAlignment="Bottom">
             <ContentControl.ContentTemplate>
                 <DataTemplate>
                     <DockPanel>
-                        <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                        <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                                RenderOptions.BitmapScalingMode="HighQuality" />
-                        <TextBlock Text="{Binding ShortName}" Margin="5 0 0 0" TextAlignment="Left" Width="30"
+                        <TextBlock Text="{Binding ShortName,Mode=OneTime}" Margin="5 0 0 0" TextAlignment="Left" Width="30"
                                    VerticalAlignment="Bottom" />
                     </DockPanel>
                 </DataTemplate>
@@ -58,14 +59,14 @@
         </ContentControl>
     </DataTemplate>
     <DataTemplate x:Key="CountryLongFlagItem">
-        <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter}}"
+        <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter},Mode=OneTime}"
                         VerticalAlignment="Bottom">
             <ContentControl.ContentTemplate>
                 <DataTemplate>
                     <DockPanel>
-                        <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                        <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                                RenderOptions.BitmapScalingMode="HighQuality" />
-                        <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left"
+                        <TextBlock Text="{Binding Name,Mode=OneTime}" Margin="5 0 0 0" TextAlignment="Left"
                                    VerticalAlignment="Bottom" />
                     </DockPanel>
                 </DataTemplate>
@@ -73,14 +74,14 @@
         </ContentControl>
     </DataTemplate>
     <DataTemplate x:Key="CountryShortFlagItem">
-        <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter}}"
+        <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter},Mode=OneTime}"
                         VerticalAlignment="Bottom">
             <ContentControl.ContentTemplate>
                 <DataTemplate>
                     <DockPanel>
-                        <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                        <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                                RenderOptions.BitmapScalingMode="HighQuality" />
-                        <TextBlock Text="{Binding ShortName}" Margin="5 0 0 0" TextAlignment="Left"
+                        <TextBlock Text="{Binding ShortName,Mode=OneTime}" Margin="5 0 0 0" TextAlignment="Left"
                                    VerticalAlignment="Bottom" />
                     </DockPanel>
                 </DataTemplate>
@@ -92,28 +93,28 @@
         <WrapPanel>
             <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
             <TextBlock
-                Text="{Binding State.ShortName,TargetNullValue={x:Static sys:String.Empty},StringFormat='{}, {0}'}"
+                Text="{Binding State.ShortName,Mode=OneTime,TargetNullValue={x:Static sys:String.Empty},StringFormat='{}, {0}'}"
                 VerticalAlignment="Bottom" />
-            <Image Source="{Binding State.Flag}" Margin="5 0 0 0" Height="20" Width="20"
+            <Image Source="{Binding State.Flag,Mode=OneTime}" Margin="5 0 0 0" Height="20" Width="20"
                    RenderOptions.BitmapScalingMode="HighQuality">
                 <Image.Style>
                     <Style>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding State}" Value="{x:Null}">
+                            <DataTrigger Binding="{Binding State,Mode=OneTime}" Value="{x:Null}">
                                 <Setter Property="Image.Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Image.Style>
             </Image>
-            <ContentControl Content="{Binding Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+            <ContentControl Content="{Binding Country,Mode=OneTime,Converter={StaticResource CountryCurrentCountryConverter}}"
                             VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
 
-                            <TextBlock Text="{Binding Name,StringFormat='{}, {0}'}" VerticalAlignment="Bottom" />
-                            <Image Source="{Binding Flag}" Width="20" Height="20" Margin="5 0 0 0"
+                            <TextBlock Text="{Binding Name,Mode=OneTime,StringFormat='{}, {0}'}" VerticalAlignment="Bottom" />
+                            <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" Margin="5 0 0 0"
                                    VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
@@ -126,18 +127,18 @@
         <TextBlock VerticalAlignment="Bottom">
             <TextBlock.ToolTip>
                 <TextBlock VerticalAlignment="Bottom" FontWeight="Bold"
-                           Text="{Binding Airliner,Converter={StaticResource AirlinerClassCodeConverter}}" />
+                           Text="{Binding Airliner,Mode=OneTime,Converter={StaticResource AirlinerClassCodeConverter}}" />
             </TextBlock.ToolTip>
-            <Hyperlink Tag="{Binding}" Click="lnkAirliner_Click">
-                <Run Text="{Binding Name}" />
+            <Hyperlink Tag="{Binding Mode=OneTime}" Click="lnkAirliner_Click">
+                <Run Text="{Binding Name,Mode=OneTime}" />
             </Hyperlink>
         </TextBlock>
     </DataTemplate>
     <DataTemplate x:Key="AirlinerCodeItem">
-        <TextBlock VerticalAlignment="Bottom" Text="{Binding Name}">
+        <TextBlock VerticalAlignment="Bottom" Text="{Binding Name,Mode=OneTime}">
             <TextBlock.ToolTip>
                 <TextBlock VerticalAlignment="Bottom"
-                           Text="{Binding Converter={StaticResource AirlinerClassCodeConverter}}" />
+                           Text="{Binding Mode=OneTime, Converter={StaticResource AirlinerClassCodeConverter}}" />
             </TextBlock.ToolTip>
         </TextBlock>
     </DataTemplate>
@@ -148,40 +149,40 @@
                 <WrapPanel.Style>
                     <Style BasedOn="{StaticResource WrapPanelStyle}" TargetType="WrapPanel">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Type.Image}" Value="{x:Null}">
+                            <DataTrigger Binding="{Binding Mode=OneTime}" Value="{x:Null}">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </WrapPanel.Style>
-                <Image Source="{Binding Type.Image}" Width="300" VerticalAlignment="Bottom"
+                <Image Source="{Binding Type.Image,Mode=OneTime}" Width="300" VerticalAlignment="Bottom"
                        RenderOptions.BitmapScalingMode="HighQuality" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1000'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" />
+                <TextBlock Text="{Binding Type.Name,Mode=OneTime}" VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1001'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <Image Source="{Binding Type.Manufacturer.Logo}" VerticalAlignment="Bottom"
+                <Image Source="{Binding Type.Manufacturer.Logo,Mode=OneTime}" VerticalAlignment="Bottom"
                        RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
-                <TextBlock Text="{Binding Type.Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
+                <TextBlock Text="{Binding Type.Manufacturer.Name,Mode=OneTime}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1002'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Type.TypeAirliner}" VerticalAlignment="Bottom" />
+                <TextBlock Text="{Binding Type.TypeAirliner,Mode=OneTime}" VerticalAlignment="Bottom" />
             </WrapPanel>
             <StackPanel>
                 <StackPanel.Style>
                     <Style>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Cargo">
+                            <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime}" Value="Cargo">
                                 <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -191,23 +192,23 @@
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1011'}"
                         Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                    <TextBlock Text="{Binding Type.MaxSeatingCapacity}" VerticalAlignment="Bottom" />
+                    <TextBlock Text="{Binding Type.MaxSeatingCapacity,Mode=OneTime}" VerticalAlignment="Bottom" />
                 </WrapPanel>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1012'}"
                         Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                    <TextBlock Text="{Binding Type.MaxAirlinerClasses}" VerticalAlignment="Bottom" />
+                    <TextBlock Text="{Binding Type.MaxAirlinerClasses,Mode=OneTime}" VerticalAlignment="Bottom" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel>
                 <StackPanel.Style>
                     <Style>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Passenger">
+                            <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime}" Value="Passenger">
                                 <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Helicopter">
+                            <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime}" Value="Helicopter">
                                 <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -217,7 +218,7 @@
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1013'}"
                         Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                    <TextBlock Text="{Binding Type.CargoSize,Converter={StaticResource CargoSizeConverter}}"
+                    <TextBlock Text="{Binding Type.CargoSize,Mode=OneTime,Converter={StaticResource CargoSizeConverter}}"
                                VerticalAlignment="Bottom" />
                 </WrapPanel>
             </StackPanel>
@@ -225,76 +226,76 @@
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1014'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Type.CockpitCrew}" VerticalAlignment="Bottom" />
+                <TextBlock Text="{Binding Type.CockpitCrew,Mode=OneTime}" VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1003'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Type.Body,Converter={StaticResource TextUnderscoreConverter}}"
+                <TextBlock Text="{Binding Type.Body,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1004'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Type.Engine,Converter={StaticResource TextUnderscoreConverter}}"
+                <TextBlock Text="{Binding Type.Engine,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1005'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Type.Length,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                <TextBlock Text="{Binding Type.Length,Mode=OneTime,Converter={StaticResource SmallDistanceToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1006'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Type.Wingspan,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                <TextBlock Text="{Binding Type.Wingspan,Mode=OneTime,Converter={StaticResource SmallDistanceToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1015'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Type.Weight,Converter={StaticResource WeightToUnitConverter}}"
+                <TextBlock Text="{Binding Type.Weight,Mode=OneTime,Converter={StaticResource WeightToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1007'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Range,Converter={StaticResource DistanceToUnitConverter}}"
+                <TextBlock Text="{Binding Range,Mode=OneTime,Converter={StaticResource DistanceToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1008'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}"
+                <TextBlock Text="{Binding CruisingSpeed,Mode=OneTime,Converter={StaticResource SpeedToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1009'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                <TextBlock Text="{Binding MinRunwaylength,Mode=OneTime,Converter={StaticResource SmallDistanceToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1010'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}"
+                <TextBlock Text="{Binding FuelConsumption,Mode=OneTime,Converter={StaticResource FuelConsumptionConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel>
                 <WrapPanel.Style>
                     <Style BasedOn="{StaticResource WrapPanelStyle}" TargetType="WrapPanel">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding EngineType}" 
+                            <DataTrigger Binding="{Binding EngineType,Mode=OneTime}" 
 
 Value="{x:Null}">
                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -306,9 +307,9 @@ Value="{x:Null}">
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1016'}"
                         Width="150" VerticalAlignment="Bottom" 
 FontWeight="Bold" />
-                <Image Source="{Binding EngineType.Manufacturer.Logo}" VerticalAlignment="Bottom"
+                <Image Source="{Binding EngineType.Manufacturer.Logo,Mode=OneTime}" VerticalAlignment="Bottom"
                        RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
-      <TextBlock Text="{Binding EngineType.Model}" 
+      <TextBlock Text="{Binding EngineType.Model,Mode=OneTime}" 
 VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 <Image VerticalAlignment="Bottom" Source="/Data/images/info.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality" Margin="5 0 0 0"
                        ToolTipService.ShowDuration="60000">
@@ -316,29 +317,29 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                         <StackPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1006'}"  Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                                <Image Source="{Binding EngineType.Manufacturer.Logo}" VerticalAlignment="Bottom"
+                                <Image Source="{Binding EngineType.Manufacturer.Logo,Mode=OneTime}" VerticalAlignment="Bottom"
                        RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
-                                <TextBlock Text="{Binding EngineType.Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                                <TextBlock Text="{Binding EngineType.Manufacturer.Name,Mode=OneTime}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1007'}"  Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                                <TextBlock Text="{Binding EngineType.Model}" VerticalAlignment="Bottom"></TextBlock>
+                                <TextBlock Text="{Binding EngineType.Model,Mode=OneTime}" VerticalAlignment="Bottom"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1008'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                                <TextBlock Text="{Binding EngineType.Engine}" VerticalAlignment="Bottom"></TextBlock>
+                                <TextBlock Text="{Binding EngineType.Engine,Mode=OneTime}" VerticalAlignment="Bottom"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1009'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                                <TextBlock Text="{Binding EngineType.Noise,Converter={StaticResource TextUnderscoreConverter}}"  VerticalAlignment="Bottom"></TextBlock>
+                                <TextBlock Text="{Binding EngineType.Noise,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"  VerticalAlignment="Bottom"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1010'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                                <TextBlock Text="{Binding EngineType.Ceiling}" VerticalAlignment="Bottom"></TextBlock>
+                                <TextBlock Text="{Binding EngineType.Ceiling,Mode=OneTime}" VerticalAlignment="Bottom"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1011'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                                <TextBlock Text="{Binding EngineType.MaxSpeed,Converter={StaticResource SpeedToUnitConverter}}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                                <TextBlock Text="{Binding EngineType.MaxSpeed,Mode=OneTime,Converter={StaticResource SpeedToUnitConverter}}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
                             </WrapPanel>
                            
                         </StackPanel>
@@ -349,14 +350,14 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1004'}"
                             Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <ContentControl Content="{Binding Registered}" VerticalAlignment="Bottom"
+                <ContentControl Content="{Binding Registered,Mode=OneTime}" VerticalAlignment="Bottom"
                                         ContentTemplate="{StaticResource CountryLongFlagItem}" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1009'}"
                             Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding BuiltDate.Year}" VerticalAlignment="Bottom" />
+                <TextBlock Text="{Binding BuiltDate.Year,Mode=OneTime}" VerticalAlignment="Bottom" />
             </WrapPanel>
         </StackPanel>
     </DataTemplate>
@@ -366,7 +367,7 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 <WrapPanel.Style>
                     <Style BasedOn="{StaticResource WrapPanelStyle}" TargetType="WrapPanel">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Image}" Value="{x:Null}">
+                            <DataTrigger Binding="{Binding Image,Mode=OneTime}" Value="{x:Null}">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -379,15 +380,15 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1000'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
+                <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1001'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <Image Source="{Binding Manufacturer.Logo}" VerticalAlignment="Bottom"
+                <Image Source="{Binding Manufacturer.Logo,Mode=OneTime}" VerticalAlignment="Bottom"
                        RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
-                <TextBlock Text="{Binding Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
+                <TextBlock Text="{Binding Manufacturer.Name,Mode=OneTime}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
@@ -399,7 +400,7 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 <StackPanel.Style>
                     <Style>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding TypeAirliner}" Value="Cargo">
+                            <DataTrigger Binding="{Binding TypeAirliner,Mode=OneTime}" Value="Cargo">
                                 <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -409,20 +410,20 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1011'}"
                         Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                    <TextBlock Text="{Binding MaxSeatingCapacity}" VerticalAlignment="Bottom" />
+                    <TextBlock Text="{Binding MaxSeatingCapacity,Mode=OneTime}" VerticalAlignment="Bottom" />
                 </WrapPanel>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1012'}"
                         Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                    <TextBlock Text="{Binding MaxAirlinerClasses}" VerticalAlignment="Bottom" />
+                    <TextBlock Text="{Binding MaxAirlinerClasses,Mode=OneTime}" VerticalAlignment="Bottom" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel>
                 <StackPanel.Style>
                     <Style>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding TypeAirliner}" Value="Passenger">
+                            <DataTrigger Binding="{Binding TypeAirliner,Mode=OneTime}" Value="Passenger">
                                 <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -432,7 +433,7 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1013'}"
                         Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                    <TextBlock Text="{Binding CargoSize,Converter={StaticResource CargoSizeConverter}}"
+                    <TextBlock Text="{Binding CargoSize,Mode=OneTime,Converter={StaticResource CargoSizeConverter}}"
                                VerticalAlignment="Bottom" />
                 </WrapPanel>
             </StackPanel>
@@ -440,69 +441,69 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1014'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding CockpitCrew}" VerticalAlignment="Bottom" />
+                <TextBlock Text="{Binding CockpitCrew,Mode=OneTime}" VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1003'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Body,Converter={StaticResource TextUnderscoreConverter}}"
+                <TextBlock Text="{Binding Body,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1004'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Engine,Converter={StaticResource TextUnderscoreConverter}}"
+                <TextBlock Text="{Binding Engine,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1005'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Length,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                <TextBlock Text="{Binding Length,Mode=OneTime,Converter={StaticResource SmallDistanceToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1006'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Wingspan,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                <TextBlock Text="{Binding Wingspan,Mode=OneTime,Converter={StaticResource SmallDistanceToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1015'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Weight,Converter={StaticResource WeightToUnitConverter}}"
+                <TextBlock Text="{Binding Weight,Mode=OneTime,Converter={StaticResource WeightToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1007'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding Range,Converter={StaticResource DistanceToUnitConverter}}"
+                <TextBlock Text="{Binding Range,Mode=OneTime,Converter={StaticResource DistanceToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1008'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}"
+                <TextBlock Text="{Binding CruisingSpeed,Mode=OneTime,Converter={StaticResource SpeedToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1009'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}"
+                <TextBlock Text="{Binding MinRunwaylength,Mode=OneTime,Converter={StaticResource SmallDistanceToUnitConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1010'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}"
+                <TextBlock Text="{Binding FuelConsumption,Mode=OneTime,Converter={StaticResource FuelConsumptionConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
         </StackPanel>
@@ -511,25 +512,22 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
     <DataTemplate x:Key="AirportCountryLink">
         <DockPanel>
             <ContentControl
-                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                Content="{Binding Profile.Town.Country,Mode=OneTime,Converter={StaticResource CountryCurrentCountryConverter}}"
                 VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                            <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                                    RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Mode=OneTime,Converter={StaticResource AirportCodeConverter}}"></TextBlock>
+        
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                <Hyperlink Tag="{Binding}" Click="Airport_Click">
-                    <Run Text="{Binding Profile.IATACode}" />
-                </Hyperlink>
-            </TextBlock>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                <Hyperlink Tag="{Binding}" Click="Airport_Click">
-                    <Run Text="{Binding Profile.Name}" />
+                <Hyperlink Tag="{Binding Mode=OneTime}" Click="Airport_Click">
+                    <Run Text="{Binding Profile.Name,Mode=OneTime}" />
                 </Hyperlink>
             </TextBlock>
         </DockPanel>
@@ -537,77 +535,99 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
     <DataTemplate x:Key="AirportCountryItem">
         <DockPanel>
             <ContentControl
-                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                Content="{Binding Profile.Town.Country,Mode=OneTime,Converter={StaticResource CountryCurrentCountryConverter}}"
                 VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                            <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                                    RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
+            
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name,Mode=OneTime}" />
 
         </DockPanel>
     </DataTemplate>
-    <DataTemplate x:Key="AirportCountryCodeItem">
+    <DataTemplate x:Key="AirportCountryNormalLink">
         <DockPanel>
             <ContentControl
-                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                Content="{Binding Profile.Town.Country,Mode=OneTime,Converter={StaticResource CountryCurrentCountryConverter}}"
                 VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
-                                   RenderOptions.BitmapScalingMode="HighQuality" />
-                        </DockPanel>
-                    </DataTemplate>
-                </ContentControl.ContentTemplate>
-            </ContentControl>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0"
-                       Text="{Binding Converter={StaticResource AirportCodeConverter},StringFormat={}({0})}" />
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
-        </DockPanel>
-    </DataTemplate>
-    <DataTemplate x:Key="AirportCodeItem">
-        <DockPanel>
-            <ContentControl
-                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
-                VerticalAlignment="Bottom">
-                <ContentControl.ContentTemplate>
-                    <DataTemplate>
-                        <DockPanel>
-                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
-                                   RenderOptions.BitmapScalingMode="HighQuality" />
-                        </DockPanel>
-                    </DataTemplate>
-                </ContentControl.ContentTemplate>
-            </ContentControl>
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0"
-                       Text="{Binding Converter={StaticResource AirportCodeConverter}}" />
-        </DockPanel>
-    </DataTemplate>
-
-    <DataTemplate x:Key="AirportShortCountryLink">
-        <DockPanel>
-            <ContentControl
-                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
-                VerticalAlignment="Bottom">
-                <ContentControl.ContentTemplate>
-                    <DataTemplate>
-                        <DockPanel>
-
-                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                            <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                                    RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                <Hyperlink Tag="{Binding}" Click="Airport_Click">
-                    <Run Text="{Binding Path=.,Converter={StaticResource AirportCodeConverter}}" />
+                <Hyperlink Tag="{Binding Mode=OneTime}" Click="Airport_Click">
+                    <Run Text="{Binding Profile.Name,Mode=OneTime}" />
+                </Hyperlink>
+            </TextBlock>
+        </DockPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="AirportCountryCodeItem">
+        <DockPanel>
+            <ContentControl
+                Content="{Binding Profile.Town.Country,Mode=OneTime,Converter={StaticResource CountryCurrentCountryConverter}}"
+                VerticalAlignment="Bottom">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                        </DockPanel>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0"
+                       Text="{Binding Converter={StaticResource AirportCodeConverter},Mode=OneTime,StringFormat={}({0})}" />
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name,Mode=OneTime}" />
+        </DockPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="AirportCodeItem">
+        <DockPanel>
+            <ContentControl
+                Content="{Binding Profile.Town.Country,Mode=OneTime,Converter={StaticResource CountryCurrentCountryConverter}}"
+                VerticalAlignment="Bottom">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                        </DockPanel>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0"
+                       Text="{Binding Mode=OneTime,Converter={StaticResource AirportCodeConverter}}" />
+        </DockPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="AirportShortCountryLink">
+        <DockPanel>
+            <ContentControl
+                Content="{Binding Profile.Town.Country,Mode=OneTime,Converter={StaticResource CountryCurrentCountryConverter}}"
+                VerticalAlignment="Bottom">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+
+                            <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                        </DockPanel>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                <Hyperlink Tag="{Binding Mode=OneTime}" Click="Airport_Click">
+                    <Run Text="{Binding Path=.,Mode=OneTime,Converter={StaticResource AirportCodeConverter}}" />
                 </Hyperlink>
             </TextBlock>
         </DockPanel>
@@ -615,19 +635,19 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
     <DataTemplate x:Key="AirportCountryLongLink">
         <DockPanel>
             <TextBlock VerticalAlignment="Bottom">
-                <Hyperlink Tag="{Binding}" Click="Airport_Click">
-                    <Run Text="{Binding Profile.Name}" />
+                <Hyperlink Tag="{Binding Mode=OneTime}" Click="Airport_Click">
+                    <Run Text="{Binding Profile.Name,Mode=OneTime}" />
                 </Hyperlink>
             </TextBlock>
             <ContentControl
-                Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                Content="{Binding Profile.Town.Country,Mode=OneTime,Converter={StaticResource CountryCurrentCountryConverter}}"
                 VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <TextBlock Text="{Binding Name,StringFormat='{}, {0}'}" VerticalAlignment="Bottom" />
+                            <TextBlock Text="{Binding Name,Mode=OneTime,StringFormat='{}, {0}'}" VerticalAlignment="Bottom" />
 
-                            <Image Source="{Binding Flag}" Width="20" Height="20" Margin="5 0 0 0"
+                            <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" Margin="5 0 0 0"
                                    VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
@@ -638,14 +658,14 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
     <!--route templates-->
     <DataTemplate x:Key="RouteFlagItem">
         <WrapPanel VerticalAlignment="Bottom">
-            <Image Source="{Binding Destination1.Profile.Country.Flag}" VerticalAlignment="Bottom"
+            <Image Source="{Binding Destination1.Profile.Country.Flag,Mode=OneTime}" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" Height="20" />
             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0"
                        ToolTipService.ShowDuration="60000">
                 <TextBlock.ToolTip>
                     <TextBlock VerticalAlignment="Bottom" FontWeight="Bold">
                         <TextBlock.Text>
-                            <MultiBinding StringFormat="{}{0(2)}-{1(3)}">
+                            <MultiBinding StringFormat="{}{0(2)}-{1(3)}" Mode="OneTime">
                                 <Binding Path="Destination1.Profile.Name" />
                                 <Binding Path="Destination2.Profile.Name" />
                                 <Binding Path="Destination1.Profile.IATACode" />
@@ -656,31 +676,31 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                     </TextBlock>
                 </TextBlock.ToolTip>
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="{}{0}-{1}">
+                    <MultiBinding StringFormat="{}{0}-{1}" Mode="OneTime">
                         <Binding Path="Destination1" Converter="{StaticResource AirportCodeConverter}" />
                         <Binding Path="Destination2" Converter="{StaticResource AirportCodeConverter}" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
-            <Image Source="{Binding Destination2.Profile.Country.Flag}" VerticalAlignment="Bottom"
+            <Image Source="{Binding Destination2.Profile.Country.Flag,Mode=OneTime}" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" Height="20" />
 
         </WrapPanel>
     </DataTemplate>
     <DataTemplate x:Key="RouteFlagLongItem">
         <WrapPanel VerticalAlignment="Bottom">
-            <Image Source="{Binding Destination1.Profile.Country.Flag}" VerticalAlignment="Bottom"
+            <Image Source="{Binding Destination1.Profile.Country.Flag,Mode=OneTime}" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" Height="20" />
             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0"
                        ToolTipService.ShowDuration="60000">
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="{}{0}-{1}">
+                    <MultiBinding StringFormat="{}{0}-{1}" Mode="OneTime">
                         <Binding Path="Destination1.Profile.Name" />
                         <Binding Path="Destination2.Profile.Name" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
-            <Image Source="{Binding Destination2.Profile.Country.Flag}" VerticalAlignment="Bottom"
+            <Image Source="{Binding Destination2.Profile.Country.Flag,Mode=OneTime}" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" Height="20" />
 
         </WrapPanel>
@@ -690,7 +710,7 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
             <TextBlock.ToolTip>
                 <TextBlock VerticalAlignment="Bottom" FontWeight="Bold">
                     <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0}-{1}">
+                        <MultiBinding StringFormat="{}{0}-{1}" Mode="OneTime">
                             <Binding Path="Destination1.Profile.Name" />
                             <Binding Path="Destination2.Profile.Name" />
                         </MultiBinding>
@@ -699,7 +719,7 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 </TextBlock>
             </TextBlock.ToolTip>
             <TextBlock.Text>
-                <MultiBinding StringFormat="{}{0}-{1}">
+                <MultiBinding StringFormat="{}{0}-{1}" Mode="OneTime">
                     <Binding Path="Destination1" Converter="{StaticResource AirportCodeConverter}" />
                     <Binding Path="Destination2" Converter="{StaticResource AirportCodeConverter}" />
                 </MultiBinding>
@@ -710,7 +730,7 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
     <DataTemplate x:Key="RouteLongItem">
         <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <TextBlock.Text>
-                <MultiBinding StringFormat="{}{0}-{1}">
+                <MultiBinding StringFormat="{}{0}-{1}" Mode="OneTime">
                     <Binding Path="Destination1.Profile.Name" />
                     <Binding Path="Destination2.Profile.Name" />
                 </MultiBinding>
@@ -720,11 +740,11 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
     <!--alliance templates-->
     <DataTemplate x:Key="AllianceLink">
         <DockPanel>
-            <Image Source="{Binding Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
+            <Image Source="{Binding Logo,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" />
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Width="100">
-                <Hyperlink Tag="{Binding}" Click="Alliance_Click">
-                    <Run Text="{Binding Name}" />
+                <Hyperlink Tag="{Binding Mode=OneTime}" Click="Alliance_Click">
+                    <Run Text="{Binding Name,Mode=OneTime}" />
                 </Hyperlink>
             </TextBlock>
         </DockPanel>
@@ -732,68 +752,68 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
     <!--airline templates-->
     <DataTemplate x:Key="AirlineLink">
         <DockPanel>
-            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
+            <Image Source="{Binding Profile.Logo,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" />
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                <Hyperlink Tag="{Binding}" Click="Airline_Click">
-                    <Run Text="{Binding Profile.Name}" />
+                <Hyperlink Tag="{Binding Mode=OneTime}" Click="Airline_Click">
+                    <Run Text="{Binding Profile.Name,Mode=OneTime}" />
                 </Hyperlink>
             </TextBlock>
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineLargeLogoLink">
         <DockPanel>
-            <Image Source="{Binding Profile.Logo}" Width="48" VerticalAlignment="Bottom"
+            <Image Source="{Binding Profile.Logo,Mode=OneTime}" Width="48" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" />
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                <Hyperlink Tag="{Binding}" Click="Airline_Click">
-                    <Run Text="{Binding Profile.Name}" />
+                <Hyperlink Tag="{Binding Mode=OneTime}" Click="Airline_Click">
+                    <Run Text="{Binding Profile.Name,Mode=OneTime}" />
                 </Hyperlink>
             </TextBlock>
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineLongLink">
         <DockPanel>
-            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
+            <Image Source="{Binding Profile.Logo,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" />
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                <Hyperlink Tag="{Binding}" Click="Airline_Click">
-                    <Run Text="{Binding Profile.Name}" />
+                <Hyperlink Tag="{Binding Mode=OneTime}" Click="Airline_Click">
+                    <Run Text="{Binding Profile.Name,Mode=OneTime}" />
                 </Hyperlink>
             </TextBlock>
-            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,StringFormat={} ({0})}" />
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,Mode=OneTime,StringFormat={} ({0})}" />
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineItem">
         <WrapPanel>
-            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
+            <Image Source="{Binding Profile.Logo,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" />
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name,Mode=OneTime}" />
         </WrapPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineLongItem">
         <DockPanel>
-            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
+            <Image Source="{Binding Profile.Logo,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" />
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
-            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,StringFormat={} ({0})}" />
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name,Mode=OneTime}" />
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,Mode=OneTime,StringFormat={} ({0})}" />
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineCountryItem">
         <WrapPanel>
 
-            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom"
+            <Image Source="{Binding Profile.Logo,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" />
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}" />
-            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,StringFormat='{} ({0}) , '}" />
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name,Mode=OneTime}" />
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,Mode=OneTime,StringFormat='{} ({0}) , '}" />
             <ContentControl Margin="5 0 0 0"
-                            Content="{Binding Profile.Country,Converter={StaticResource CountryCurrentCountryConverter}}"
+                            Content="{Binding Profile.Country,Mode=OneTime,Converter={StaticResource CountryCurrentCountryConverter}}"
                             VerticalAlignment="Bottom">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel VerticalAlignment="Bottom">
 
-                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom"
+                            <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
                                    RenderOptions.BitmapScalingMode="HighQuality" />
                         </DockPanel>
                     </DataTemplate>
@@ -804,7 +824,7 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
     <!--random templates-->
     <DataTemplate x:Key="AirlineColorItem">
         <Rectangle Width="50" Height="20" Stroke="Black" StrokeThickness="2"
-                   Fill="{Binding Converter={StaticResource airlineColorConverter}}" RadiusX="10" RadiusY="10"
+                   Fill="{Binding Mode=OneTime,Converter={StaticResource airlineColorConverter}}" RadiusX="10" RadiusY="10"
                    Margin="0 5 0 0" />
     </DataTemplate>
     <DataTemplate x:Key="QuickInfoItem">
@@ -813,9 +833,9 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 <ColumnDefinition Width="150" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{Binding Text}" Grid.Column="0" HorizontalAlignment="Left" FontWeight="Bold"
+            <TextBlock Text="{Binding Text,Mode=OneTime}" Grid.Column="0" HorizontalAlignment="Left" FontWeight="Bold"
                        VerticalAlignment="Top" />
-            <ContentControl Grid.Column="1" HorizontalAlignment="Left" Content="{Binding Value}"
+            <ContentControl Grid.Column="1" HorizontalAlignment="Left" Content="{Binding Value,Mode=OneTime}"
                             VerticalAlignment="Bottom" />
         </Grid>
     </DataTemplate>

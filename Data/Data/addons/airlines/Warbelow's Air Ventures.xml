@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Warbelow's Air Ventures" iata="4W" color="Tomato" country="122" CEO="Darren Young" mentality="Safe" market="Local" preferedairport="FAI"  >
+  <narrative narrative="Warbelow's Air Ventures is an Alaskan airline based at Fairbanks. It served 12 Alaskan airports outside of Fairbanks, most of them being in the same area, and mostly in Central and East Alaska, but also at least one in North Alaska, Anaktuvuk Pass being it.
+  It has 15 Piper Navajo 31's, and a Cessna 206 as of 2014. It started service in 1989."/>
+</profile> 
+  <info real="True" from="1989" to="2199" />
+  <prefereds aircrafts="PA-31 Navajo,Cessna 206"></prefereds>
+
+
+</airline>

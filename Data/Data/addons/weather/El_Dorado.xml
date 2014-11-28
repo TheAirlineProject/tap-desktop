@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="El Dorado, AR">
+  <months>
+    <month month="1" precipitation="125">
+      <temp min="-1" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="102">
+      <temp min="2" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="122">
+      <temp min="6" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="135">
+      <temp min="10" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="139">
+      <temp min="15" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="99">
+      <temp min="20" max="32" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="99">
+      <temp min="22" max="34" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="97">
+      <temp min="22" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="99">
+      <temp min="18" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="97">
+      <temp min="11" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="124">
+      <temp min="6" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="119">
+      <temp min="1" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

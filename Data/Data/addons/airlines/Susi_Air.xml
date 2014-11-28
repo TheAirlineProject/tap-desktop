@@ -3,6 +3,8 @@
 <airline>
   <profile name="Susi Air" iata="SI" color="LightRed" country="162" CEO="Susi Pudjiastuti" mentality="Safe"
            market="Local" preferedairport="HLP">
+              <narrative
+      narrative="Susi Air was established in late 2004 by Susi Pudjiastuti, it was originally set up to transport the fisheries cargo of sister company PT ASI Pudjiastuti, because land transportation to Jakarta takes around 12 hours and this is too long for fresh and live fishes and lobster." />
   </profile>
   <info real="True" from="2004" to="2199" />
   <startdata>

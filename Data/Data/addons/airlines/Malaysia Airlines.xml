@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Malaysia Airlines" iata="MH" color="CadetBlue" country="173" CEO="Tan Sri Md Nor Yusof"
            mentality="Safe" market="Global " preferedairport="KUL">
+             <narrative
+      narrative="Malaysia Airlines is a major airline operating flights from Kuala Lumpur International Airport. In 1947, the airline began as Malayan Airways, being renamed Malaysian Airways after Malaysia gained independence." />
   </profile>
   <info real="True" from="1972" to="2199" />
 </airline>

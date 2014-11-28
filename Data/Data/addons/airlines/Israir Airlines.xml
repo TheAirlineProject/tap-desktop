@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Israir Airlines" iata="6H" color="Orange" country="128" CEO="David Kaminitz" mentality="Safe" market="Global" preferedairport="TLV" >
+  <narrative narrative="Israir Airlines is the third largest in Israel. They have bases at Tel Aviv Ben Gurion,Tel Aviv Sde Dov,Haifa and Eilat. It was founded in 1989 as Knafei HaEmek and changed to its current name in 1996. They serve 8 regular destinations including the bases and 15 seasonal ones as of December 2012. 9 destinations are no longer served that once were. Their destinations are 5 domestic ones, 3 in Italy,4 in Germany,2 in France, 2 in Greece,and one each in Bulgaria,Croatia,Georgia,Netherlands,Portugal,Russia and Spain. Past places include New York City,USA, Paphos,Cyprus, Brussels,Belgium and Copenhagen,Denmark to name a few. As of December 2013 the fleet had two A320's and two ATR 72-500's. Past planes include two 757-200's and a 767-300 and ATR 42-300's. "/>
+</profile>
+  <info real="True" from="1989" to="2199" />
+  <prefereds aircrafts="Airbus A320-200,ATR 72-500,ATR 42-300,Boeing 757-200,Boeing 767-300,Airbus A330-200,Airbus A320neo,ATR 72-600"></prefereds>
+     <focusairports>
+	<focusairport airport="SDV"></focusairport>
+	<focusairport airport="HFA"></focusairport>
+	 <focusairport airport="ETH"></focusairport>
+     </focusairports>
+                <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2020)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="2" late="2"></airliner>
+	     </airliners>  
+	         <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2021)-->
+	         <airliners>
+	    <airliner type="ATR 72-500" early="2" late="2"></airliner>
+	     </airliners>
+	          	         <!--the airliners the airline would start with which isn't on a route earyl (1996) late (2014)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="2" late="0"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2008)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="2" late="0"></airliner>
+	     </airliners>
+	     	  
+
+
+</airline>

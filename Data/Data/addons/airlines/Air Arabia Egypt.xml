@@ -3,6 +3,8 @@
 <airline>
   <profile name="Air Arabia Egypt" iata="E5" color="Black" country="155" CEO="Jaan Albrecht" mentality="Safe"
            market="Global" preferedairport="ALY">
+            <narrative
+      narrative="Air Arabia Egypt is a low-cost carrier based in Egypt.The airline is a joint venture between the Egyptian travel and tourism company, Travco Group, and Air Arabia." />
   </profile>
   <info real="True" from="2009" to="2199" />
 </airline>

@@ -13,7 +13,6 @@
       <destination airport="AYT" pax="725" />
       <destination airport="MUN" pax="675" />
       <destination airport="ZRH" pax="665" />
-      <destination airport="LGW" pax="635" />
       <destination airport="MAN" pax="629" />
       <destination airport="OSL" pax="596" />
       <destination airport="GVA" pax="593" />
@@ -34,27 +33,8 @@
       <destination airport="SIN" pax="325" />
       <destination airport="PVG" pax="325" />
       <destination airport="PBM" pax="267" />
-      <destination airport="IAD" pax="256" />
       <destination airport="MEX" pax="192" cargo="30" />
     </destinations>
-  </majordestination>
-  <majordestination airport="LHR">
-    <destinations>  
-       <destination airport="HKG" pax="1412" />
-      <destination airport="SIN" pax="1069" />
-      <destination airport="DEL" pax="1003" />
-      <destination airport="IAD" pax="989" />
-      <destination airport="MIA" pax="953" />
-      <destination airport="BOM" pax="950" />
-      <destination airport="YYZ" pax="926" />
-       <destination airport="JNB" pax="840" />
-      <destination airport="SYD" pax="698" />
-      <destination airport="NRT" pax="604" />
-      <destination airport="BKK" pax="579" />
-      <destination airport="PHX" pax="351" cargo="50" />
-      <destination airport="MEX" pax="174" cargo="27" />
-       <destination airport="DEN" pax="24" cargo="4" />
-             </destinations>
   </majordestination>
   <majordestination airport="CDG">
     <destinations> 
@@ -77,12 +57,10 @@
       <destination airport="PVG" pax="512" />
       <destination airport="GIG" pax="505" />
       <destination airport="BOG" pax="482" />
-      <destination airport="IAD" pax="480" />
-      <destination airport="CAI" pax="418" />
+         <destination airport="CAI" pax="418" />
       <destination airport="MEX" pax="411" cargo="63" />
       <destination airport="DKR" pax="320" />
-       <destination airport="SLC" pax="103" cargo="16" />
-    </destinations>
+          </destinations>
   </majordestination>
 <majordestination airport="MAD">
     <destinations>
@@ -96,8 +74,7 @@
   </majordestination>
     <majordestination airport="FRA">
     <destinations>
-     <destination airport="DEN" pax="27" cargo="4" />
-      <destination airport="MEX" pax="237" cargo="36" />
+       <destination airport="MEX" pax="237" cargo="36" />
     </destinations>
   </majordestination>
      <majordestination airport="UUS">

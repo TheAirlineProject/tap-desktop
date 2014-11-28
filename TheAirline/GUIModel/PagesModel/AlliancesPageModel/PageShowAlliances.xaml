@@ -29,7 +29,7 @@
 
                                         <TextBlock Margin="5 0 0 0" VerticalAlignment="Bottom">
                                             <Hyperlink Tag="{Binding}" Click="clName_Click">
-                                                <Run Text="{Binding Name}" />
+                                                <Run Text="{Binding Name,Mode=OneTime}" />
                                             </Hyperlink>
                                         </TextBlock>
                                     </WrapPanel>
@@ -43,7 +43,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <ContentControl ContentTemplate="{StaticResource AirportCountryLink}"
-                                                    Content="{Binding Headquarter}" />
+                                                    Content="{Binding Headquarter,Mode=OneTime}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -85,7 +85,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button
-                                            Visibility="{Binding IsHuman,Converter={StaticResource BooleanToVisibility}}"
+                                            Visibility="{Binding IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}"
                                             VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0"
                                             Background="Transparent" Click="btnDelete_Click">
                                             <Image Source="/Data/images/delete.png" Height="16" Width="16"
@@ -100,7 +100,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <ContentControl ContentTemplate="{StaticResource AirlineLink}"
-                                                        Content="{Binding Agreement.Airline1}"
+                                                        Content="{Binding Agreement.Airline1,Mode=OneTime}"
                                                         VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -111,7 +111,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <ContentControl ContentTemplate="{StaticResource AirlineLink}"
-                                                        Content="{Binding Agreement.Airline2}"
+                                                        Content="{Binding Agreement.Airline2,Mode=OneTime}"
                                                         VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -122,7 +122,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Text="{Binding Agreement.Type,Converter={StaticResource TextUnderscoreConverter}}"
+                                            Text="{Binding Agreement.Type,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                                             VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>

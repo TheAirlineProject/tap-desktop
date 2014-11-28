@@ -1,10 +1,10 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
@@ -27,7 +27,7 @@
             this.Loaded += this.PageAirport_Loaded;
             this.Airport = new AirportMVVM(airport);
 
-            this.Distances = new List<AirportDistanceMVVM>();
+            this.Distances = new ObservableCollection<AirportDistanceMVVM>();
 
             foreach (
                 Airport destination in
@@ -44,7 +44,7 @@
 
         #region Public Properties
 
-        public List<AirportDistanceMVVM> Distances { get; set; }
+        public ObservableCollection<AirportDistanceMVVM> Distances { get; set; }
 
         #endregion
 
@@ -102,6 +102,11 @@
             if (selection == "Demand" && frmContent != null)
             {
                 frmContent.Navigate(new PageAirportDemand(this.Airport) { Tag = this });
+            }
+
+            if (selection == "Advisory" && frmContent.Content != null)
+            {
+                frmContent.Navigate(new PageAirportAdvisory(this.Airport) { Tag = this });
             }
         }
 

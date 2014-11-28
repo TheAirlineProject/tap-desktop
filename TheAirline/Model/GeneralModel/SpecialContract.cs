@@ -10,6 +10,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 
 namespace TheAirline.Model.GeneralModel
 {
+    [Serializable]
     /*the class for a speial contract*/
     public class SpecialContract : ISerializable
     {

@@ -25,31 +25,43 @@
 
         public PageNewAirliners()
         {
-            this.AllTypes = new List<AirlinerTypeMVVM>();
+            this.AllTypes = new ObservableCollection<AirlinerTypeMVVM>();
             this.SelectedAirliners = new ObservableCollection<AirlinerTypeMVVM>();
 
             Boolean isMetric = AppSettings.GetInstance().getLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Metric;
          
-            this.RangeRanges = new List<FilterValue>
+            this.RangeRanges = new ObservableCollection<FilterValue>
                                {
                                    new FilterValue("<1500", 0, isMetric ? 1499 : (int)MathHelpers.MilesToKM(1499)),
                                    new FilterValue("1500-2999", isMetric ? 1500 : (int)MathHelpers.MilesToKM(1500), isMetric ? 2999 : (int)MathHelpers.MilesToKM(2999)),
                                    new FilterValue("3000-5999", isMetric ? 3000 : (int)MathHelpers.MilesToKM(3000), isMetric ? 5999 : (int)MathHelpers.MilesToKM(5999)),
                                    new FilterValue("6000+", isMetric ? 600 : (int)MathHelpers.MilesToKM(6000), int.MaxValue)
                                };
-            this.SpeedRanges = new List<FilterValue>
+            this.SpeedRanges = new ObservableCollection<FilterValue>
                                {
                                    new FilterValue("<400",  0,isMetric ? 399 : (int)MathHelpers.MilesToKM(399)),
                                    new FilterValue("400-599", isMetric ? 400 : (int)MathHelpers.MilesToKM(400), isMetric ? 599 : (int)MathHelpers.MilesToKM(599)),
                                    new FilterValue("600+", isMetric ? 600 : (int)MathHelpers.MilesToKM(600), int.MaxValue)
                                };
-            this.RunwayRanges = new List<FilterValue>
+           if (isMetric)
+            {
+                this.RunwayRanges = new ObservableCollection<FilterValue>
                                 {
-                                    new FilterValue("<5000", 0, isMetric ? 4999 : (int)MathHelpers.FeetToMeter(4999)),
-                                    new FilterValue("5000-7999", isMetric ? 5000 : (int)MathHelpers.FeetToMeter(5000), isMetric ? 7999 : (int)MathHelpers.FeetToMeter(7999)),
-                                    new FilterValue("8000+", isMetric ? 8000 : (int)MathHelpers.FeetToMeter(8000), int.MaxValue)
+                                    new FilterValue("<1500", 0, 1500),
+                                    new FilterValue("1500-3000",1500,3000),
+                                    new FilterValue("3000+", 3000, int.MaxValue) 
                                 };
-            this.CapacityRanges = new List<FilterValue>
+            }
+            else
+            {
+                this.RunwayRanges = new ObservableCollection<FilterValue>
+                                {
+                                    new FilterValue("<5000", 0, (int)MathHelpers.FeetToMeter(4999)),
+                                    new FilterValue("5000-7999", (int)MathHelpers.FeetToMeter(5000), (int)MathHelpers.FeetToMeter(7999)),
+                                    new FilterValue("8000+", (int)MathHelpers.FeetToMeter(8000), int.MaxValue) 
+                                };
+            }
+            this.CapacityRanges = new ObservableCollection<FilterValue>
                                   {
                                       new FilterValue("<100", 0, 99),
                                       new FilterValue("100-199", 100, 199),
@@ -59,7 +71,7 @@
                                       new FilterValue("500+", 500, int.MaxValue)
                                   };
 
-            this.AllTypes = new List<AirlinerTypeMVVM>();
+            this.AllTypes = new ObservableCollection<AirlinerTypeMVVM>();
             AirlinerTypes.GetTypes(
                 t =>
                     t.Produced.From <= GameObject.GetInstance().GameTime
@@ -74,17 +86,17 @@
 
         #region Public Properties
 
-        public List<AirlinerTypeMVVM> AllTypes { get; set; }
+        public ObservableCollection<AirlinerTypeMVVM> AllTypes { get; set; }
 
-        public List<FilterValue> CapacityRanges { get; set; }
+        public ObservableCollection<FilterValue> CapacityRanges { get; set; }
 
-        public List<FilterValue> RangeRanges { get; set; }
+        public ObservableCollection<FilterValue> RangeRanges { get; set; }
 
-        public List<FilterValue> RunwayRanges { get; set; }
+        public ObservableCollection<FilterValue> RunwayRanges { get; set; }
 
         public ObservableCollection<AirlinerTypeMVVM> SelectedAirliners { get; set; }
 
-        public List<FilterValue> SpeedRanges { get; set; }
+        public ObservableCollection<FilterValue> SpeedRanges { get; set; }
 
         #endregion
 

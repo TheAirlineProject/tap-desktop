@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Comores Aviation International" iata="O5"  color="DarkGreen" country="271" CEO="Jean-Marc Heintz" mentality="Safe" market="Regional" preferedairport="HAH">
+    <narrative narrative="Comores Aviation International is a regional airline based at Moroni,Comoros, the island nation off the east coast of Africa and off the west coast of the large island nation of Madagascar. Founded in 1996, they have 6 destinations outside of their hub.  One of these is the domestic route to Anjouan its secondary hub, the others are to Mayotte a French Overseas Territory, two in Madagascar, and 
+two in Tanzania as of 2009. They had in 2009 three BAe 146-200's, two Let 410's and a Embraer 120. They have also had a Hawker Siddeley 748 before. The airline is privately owned 70% by its president Jean-Marc Heintz and 30% by General Manager Batouli Heintz.   " />
+  </profile>
+  <info real="True" from="1996" to="2199"></info>
+  <prefereds aircrafts="BAe 146-200,Let L-410,EMB 120 Brasilia,HS. 748"></prefereds>
+ </airline>

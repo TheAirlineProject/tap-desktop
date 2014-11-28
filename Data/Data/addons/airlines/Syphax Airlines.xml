@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Syphax Airlines" iata="FS" color="MediumBlue" country="144" CEO="Mohamed Frikha" mentality="Safe" market="Global" preferedairport="SFA" >
+  <narrative narrative="Syphax Airlines is based at Sfax,Tunisia and has a secondary hub at Tunis. It was founded in 2011 and serves 4 domestic airports,4 in France,3 in the UK,3 in Libya,New York City,
+  Istanbul,Casablanca,Ljubljana in Slovenia,Zagreb in Croatia, and Jeddah in Saudi Arabia as of 2014. Future plans are for Beijing,Montreal,Rio de Janeiro,Burkina Faso,and the Ivory Coast. As of late 2014
+  it had two A319's and a A330-200. It had three A320neo's on order and is the first African airline who have ordered the type."/>
+</profile>
+  <info real="True" from="2011" to="2199" />
+  <prefereds aircrafts="Airbus A319-100,Airbus A330-200,Airbus A320-200,Airbus A319neo,Airbus A320neo"></prefereds>
+     <focusairports>
+        <focusairport airport="TUN"></focusairport>
+     </focusairports>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2016)-->
+	         <airliners>
+	    <airliner type="Airbus A319-100" early="2" late="2"></airliner>
+	     </airliners>
+	              <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2016)-->
+	         <airliners>
+	    <airliner type="Airbus A330-200" early="1" late="1"></airliner>
+	     </airliners>
+	     	              <!--the airliners the airline would start with which isn't on a route earyl (2017) late (2023)-->
+	         <airliners>
+	    <airliner type="Airbus A320neo" early="3" late="3"></airliner>
+	     </airliners>
+
+</airline>

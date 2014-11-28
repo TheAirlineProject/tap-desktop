@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="CAL Cargo Airlines" iata="5C" color="Cyan" country="128" CEO="Eyal Zagagi" mentality="Safe" market="Global" preferedairport="TLV" routefocus="Cargo" >
+  <narrative narrative="CAL Cargo Airlines is based at Tel Aviv,Israel and has a hub a Liege,Belgium. It was founded in 1976 and has as of September 2014 three destinations outside its hubs. New York JFK,
+  Larnaca in Cyprus and Moncton in New Brunswick,Canada. Until 1999 it leased planes from El Al. They carry 100,000 tons of cargo a year. They do scheduled and charter cargo services, and carry some special cargo like pharmaceuticals and live animals and perishable's and fine art and oversize/overweight cargo to name some. They had as of 2014 two 747-400F's, which one may be an ERF."/>
+</profile>
+  <info real="True" from="1976" to="2199" />
+  <prefereds aircrafts="Boeing 747-400F,Boeing 747-400ERF,Boeing 707-320C,Boeing 747-200F,Boeing 747-8F"></prefereds>
+  <focusairports>
+        <focusairport airport="LGG"></focusairport>
+     </focusairports>
+
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2020)-->
+	         <airliners>
+	    <airliner type="Boeing 747-400F" early="1" late="1"></airliner>
+	     </airliners>
+	          	         <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2020)-->
+	         <airliners>
+	    <airliner type="Boeing 747-400ERF" early="1" late="1"></airliner>
+	     </airliners>
+	     	  
+</airline>

@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Transavia.com" iata="HV" color="Black" country="179" CEO="Skúli Mogensen" mentality="Safe"
            market="Global" preferedairport="AMS">
+               <narrative
+      narrative="The first brainstorming sessions about starting a second charter company in the Netherlands, after Martinair, started in spring 1966, when the American Chalmers Goodlin met with captain Pete Holmes. 'Slick' Goodlin had recently bought the dormant small company Transavia Limburg, based in Maastricht, which had 3 DC6's available. The Dutch Government needed to be approached in order to obtain an operating license for the airline, both in order to be allowed to operate out of Amsterdam Airport, and for these DC6s." />
   </profile>
   <info real="True" from="1966" to="2199" />
 </airline>

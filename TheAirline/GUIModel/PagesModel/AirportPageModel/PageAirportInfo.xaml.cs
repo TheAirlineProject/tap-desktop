@@ -2,10 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
@@ -26,7 +26,9 @@
             this.Airport = airport;
             this.DataContext = this.Airport;
 
-            this.ContractTypes = new List<AirportContract.ContractType>();
+            this.ContractTypes = new ObservableCollection<AirportContract.ContractType>();
+
+            //Boolean showLogo
 
             foreach (AirportContract.ContractType type in Enum.GetValues(typeof(AirportContract.ContractType)))
             {
@@ -56,7 +58,7 @@
 
         public AirportMVVM Airport { get; set; }
 
-        public List<AirportContract.ContractType> ContractTypes { get; set; }
+        public ObservableCollection<AirportContract.ContractType> ContractTypes { get; set; }
 
         #endregion
 
@@ -134,14 +136,14 @@
                 if (result == WPFMessageBoxResult.Yes)
                 {
                     this.Airport.purchaseTerminal(terminal, GameObject.GetInstance().HumanAirline);
-                 
+
                     AirlineHelpers.AddAirlineInvoice(
                         GameObject.GetInstance().HumanAirline,
                         GameObject.GetInstance().GameTime,
                         Invoice.InvoiceType.Purchases,
                         -price);
 
-                    
+
                 }
             }
         }
@@ -216,10 +218,25 @@
                     }
                 }
 
-            
+
             }
         }
-
+        private void btnCustoms_Click(object sender, RoutedEventArgs e)
+        {
+            if (AirportHelpers.WillBuildCustomersService(this.Airport.Airport))
+            {
+                WPFMessageBox.Show(
+                   Translator.GetInstance().GetString("MessageBox", "2235"),
+                   string.Format(Translator.GetInstance().GetString("MessageBox", "2235", "message"), this.Airport.Airport.Profile.Name),
+                   WPFMessageBoxButtons.Ok);
+                this.Airport.setType(AirportProfile.AirportType.International);
+            }
+            else
+                WPFMessageBox.Show(
+                   Translator.GetInstance().GetString("MessageBox", "2236"),
+                   string.Format(Translator.GetInstance().GetString("MessageBox", "2236", "message"), this.Airport.Airport.Profile.Name),
+                   WPFMessageBoxButtons.Ok);
+        }
         private void btnRemoveContract_Click(object sender, RoutedEventArgs e)
         {
             var tContract = (ContractMVVM)((Button)sender).Tag;
@@ -310,7 +327,7 @@
             int totalRentedGates = this.Airport.Airport.AirlineContracts.Sum(c => c.NumberOfGates);
 
             Boolean isTerminalFree = this.Airport.Airport.Terminals.getNumberOfGates(terminal.Terminal.Type) - terminal.Gates
-                                     >= totalRentedGates; 
+                                     >= totalRentedGates;
             if (isTerminalFree)
             {
                 // chs, 2011-31-10 changed for the possibility of having delivered and non-delivered terminals
@@ -322,7 +339,7 @@
                 {
                     WPFMessageBoxResult result = WPFMessageBox.Show(
                    Translator.GetInstance().GetString("MessageBox", "2207"),
-                   Translator.GetInstance().GetString("MessageBox", "2207","message"),
+                   Translator.GetInstance().GetString("MessageBox", "2207", "message"),
                    WPFMessageBoxButtons.YesNo);
 
                     if (result == WPFMessageBoxResult.Yes)
@@ -334,20 +351,20 @@
                 {
                     WPFMessageBoxResult result = WPFMessageBox.Show(
                   Translator.GetInstance().GetString("MessageBox", "2208"),
-                  string.Format(Translator.GetInstance().GetString("MessageBox", "2208", "message"),terminal.Gates,new ValueCurrencyConverter().Convert(price)),
+                  string.Format(Translator.GetInstance().GetString("MessageBox", "2208", "message"), terminal.Gates, new ValueCurrencyConverter().Convert(price)),
                   WPFMessageBoxButtons.YesNo);
 
                     if (result == WPFMessageBoxResult.Yes)
                     {
-                       
+
                         AirlineHelpers.AddAirlineInvoice(
                          GameObject.GetInstance().HumanAirline,
                          GameObject.GetInstance().GameTime,
                          Invoice.InvoiceType.Purchases,
                          price);
 
-                        var contract = this.Airport.Contracts.First(f=>f.Airline == terminal.Airline && f.NumberOfGates == terminal.Gates);
-                                           
+                        var contract = this.Airport.Contracts.First(f => f.Airline == terminal.Airline && f.NumberOfGates == terminal.Gates);
+
                         terminal.Airline = null;
 
                         contract.Contract.YearlyPayment = AirportHelpers.GetYearlyContractPayment(
@@ -356,13 +373,13 @@
               terminal.Gates,
               20);
 
-        
+
 
                     }
                 }
-               
 
-               
+
+
             }
             else
             {
@@ -438,8 +455,10 @@
 
             for (int i = 0; i < gates; i++)
             {
-                Gate gate = this.Airport.Airport.Terminals.getGates().Where(g => g.Airline == null).First();
-                gate.Airline = GameObject.GetInstance().HumanAirline;
+                Gate gate = this.Airport.Airport.Terminals.getGates().Where(g => g.Airline == null).FirstOrDefault();
+
+                if (gate != null)
+                    gate.Airline = GameObject.GetInstance().HumanAirline;
             }
 
             this.Airport.addAirlineContract(contract);

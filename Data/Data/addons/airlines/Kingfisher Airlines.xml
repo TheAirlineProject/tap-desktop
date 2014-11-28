@@ -1,8 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Kingfisher Airlines" iata="IT" color="Firebrick" country="152" CEO="Sanjay Aggarwal" mentality="Safe"
            market="Local" preferedairport="BLR">
+             <narrative
+      narrative="Kingfisher Airlines was established in 2003. It is owned by the Bengaluru based United Breweries Group. The airline started commercial operations in 9 May 2005 with a fleet of four new Airbus A320-200s operating a flight from Mumbai to Delhi." />
   </profile>
-  <info real="True" from="2005" to="2199" />
+  <info real="True" from="2005" to="2013" />
 </airline>

@@ -1,6 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
+  <airliner manufacturer="Antonov" name="Antonov An-2" price="384000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="18.2" length="12.4" range="845" speed="190" fuelcapacity="2000" consumption="0.10"
+           runwaylengthrequired="153" />
+    <capacity passengers="12" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1947" to="2002" rate="164" />
+  </airliner>
   <airliner manufacturer="Antonov" name="Antonov An-10" price="3200090">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
     <specs wingspan="38" length="34" range="4075" speed="610" fuelcapacity="17120" consumption="0.042"
@@ -14,6 +21,13 @@
            runwaylengthrequired="650" />
     <capacity passengers="50" cockpitcrew="2" cabincrew="2" maxclasses="2" />
     <produced from="1960" to="1979" rate="68" />
+  </airliner>
+      <airliner manufacturer="Antonov" name="Antonov An-26" price="1379000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="29.2" length="23.80" weight="5500" range="1800" speed="440" fuelcapacity="4400" consumption="0.025"
+           runwaylengthrequired="650" />
+    <capacity passengers="40" cockpitcrew="5" cabincrew="1" maxclasses="2" />
+    <produced from="1969" to="1986" rate="82" />
   </airliner>
   <airliner manufacturer="Antonov" name="Antonov An-38" price="8553480">
     <type body="Single_Aisle" rangetype="Regional" engine="Turboprop" />

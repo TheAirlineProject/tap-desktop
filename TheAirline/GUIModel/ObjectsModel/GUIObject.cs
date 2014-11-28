@@ -1,16 +1,17 @@
 ﻿namespace TheAirline.GUIModel.ObjectsModel
 {
     using System;
-
+    using System.ComponentModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
     //the class for the GUI object
-    public class GUIObject
+    public class GUIObject 
     {
-        #region Public Properties
 
+        #region Public Properties
+       
         public GameObject GameObject
         {
             get
@@ -50,7 +51,7 @@
         #endregion
 
         #region Methods
-
+      
         private GameObject getGameObject()
         {
             return GameObject.GetInstance();

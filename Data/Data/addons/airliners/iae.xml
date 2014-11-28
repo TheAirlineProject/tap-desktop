@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
 
@@ -28,7 +28,13 @@
     <produced from="1995" to="2199" rate="10" />
 
   </airliner>
-
+  <airliner manufacturer="IAe" name="CN-235" price="4070000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="25.81" length="21.40" range="4355" speed="450" fuelcapacity="8833" consumption="0.020"
+           runwaylengthrequired="670" />
+    <capacity passengers="51" cockpitcrew="2" cabincrew="1" maxclasses="2" />
+    <produced from="1988" to="2199" rate="11" />
+      </airliner>
   <airliner manufacturer="IAe" name="N250-100" price="908620"> <!--12800000-->
 
     <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Palestinian Airlines" iata="PF" color="Purple" country="155" CEO="Saad Eddin Kharma" mentality="Safe" market="Global" preferedairport="AAC">
+  <narrative narrative="Palestinian Airlines is owned by the Palestinian Authority. It is based at El Arish Airport in Egypt. It was founded in 1995 but didn't start operation until 1997. As of 2013 it served Cairo,Amman Civil Airport in Jordan and Jeddah,Saudi Arabia. They as of August 2014 have two Fokker 50's and had two Dash 8-300's from 2000-2004. They also had an Il-62 at one time and a 727-200. "/>
+</profile>
+  <info real="True" from="1997" to="2199" />
+  <prefereds aircrafts="Fokker 50,Bombardier Dash 8-300,Boeing 727-200 Adv.,Il-62"></prefereds>
+                <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2016)-->
+	         <airliners>
+	    <airliner type="Fokker 50" early="2" late="2"></airliner>
+	     </airliners>  
+	                     <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2005)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="2" late="0"></airliner>
+	     </airliners> 
+</airline>

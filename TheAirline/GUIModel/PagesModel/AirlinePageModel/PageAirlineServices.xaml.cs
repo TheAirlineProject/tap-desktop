@@ -54,7 +54,7 @@
                             }
 
                             facility.SelectedFacility = RouteFacilities.GetBasicFacility(facility.Type);
-                                //GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
+                            //GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
 
                             rClass.Facilities.Add(facility);
                         }

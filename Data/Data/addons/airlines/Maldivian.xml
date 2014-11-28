@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Maldivian" iata="Q2" color="MediumVioletRed" country="276" CEO="Ahmed Shafeeu" mentality="Safe" market="Regional" preferedairport="MLE" >
+  <narrative narrative="Maldivian is is airline based at Male,Maldives. This is the island country about 600 kilometres (370 miles) southwest of India in the Indian Ocean and close to the Arabian Sea. It is the national airline of the country. It was founded in 2000 and serves nine domestic airports besides the hub,along with two in Bangladesh,two in China,two in India,and one each in Sri Lanka and Thailand. The fleet as of August 2014 was five Bombardier Dash 8-300's,two Dash 8-200's,an A320,and two DHC-6-300 Twin Otter's. There was also an A321 on order and two more Twin Otter's on order.  "/>
+</profile>
+  <info real="True" from="2000" to="2199" />
+  <prefereds aircrafts="Bombardier Dash 8-300,Bombardier Dash 8-200,Airbus A320-200,Airbus A321-200,DHC-6-300 Twin Otter,Airbus A320neo,Airbus A321neo,DHC-6-400 Twin Otter"></prefereds>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2017)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2015) late (2025)-->
+	         <airliners>
+	    <airliner type="Airbus A321-200" early="1" late="1"></airliner>
+	     </airliners>
+	        	     	         <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="2" late="5"></airliner>
+	     </airliners>
+	        	         <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2017)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-200" early="2" late="2"></airliner>
+	     </airliners>
+	        	         <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2017)-->
+	         <airliners>
+	    <airliner type="DHC-6-300 Twin Otter" early="0" late="4"></airliner>
+	     </airliners>
+	     	  
+</airline>

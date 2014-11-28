@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Alliance" iata="3J" color="Maroon" country="113" CEO="James Plaxton" mentality="Moderate" market="Domestic" preferedairport="YQB" >
+  <narrative narrative="Air Alliance was a subsidiary of Air Canada based at Quebec City. It was merged into another subsidiary in 1999 after having been around since 1988. It was merged into Air Nova based at Halifax. They operated Dash 8-100's and Beechcraft 1900D's. "/>
+</profile>
+  <info real="True" from="1988" to="1999" />
+  <prefereds aircrafts="Bombardier Dash 8-100,Beechcraft 1900D"></prefereds>              
+	     	         	     	         <!--the airliners the airline would start with which isn't on a route earyl (1989) late (1999)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900D" early="5" late="5"></airliner>
+	     </airliners>
+	     	  
+	     	  
+
+
+</airline>

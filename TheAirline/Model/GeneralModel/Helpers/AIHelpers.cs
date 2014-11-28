@@ -433,14 +433,14 @@
             Boolean forStartdata = false)
         {
             List<AirlinerType> airlineAircrafts = airline.Profile.PreferedAircrafts;
-
+            
             double maxLoanTotal = 100000000;
             double distance = MathHelpers.GetDistance(
                 destination1.Profile.Coordinates.convertToGeoCoordinate(),
                 destination2.Profile.Coordinates.convertToGeoCoordinate());
 
             AirlinerType.TypeRange rangeType = GeneralHelpers.ConvertDistanceToRangeType(distance);
-        
+      
             List<Airliner> airliners;
 
             if (airlineAircrafts.Count > 0)
@@ -608,6 +608,13 @@
             }
             if (airliners.Count > 0)
             {
+                if (airline.MarketFocus == Airline.AirlineFocus.Global && (airline.AirlineRouteFocus == Route.RouteType.Passenger || airline.AirlineRouteFocus == Route.RouteType.Mixed))
+                {
+                     var majorAirliners = airliners.FindAll(a=>a.Type.Manufacturer.IsMajor);
+
+                     if (majorAirliners.Count > 0)
+                         return new KeyValuePair<Airliner, Boolean>(majorAirliners.OrderBy(a => a.Price).First(), true);
+                }
                 return new KeyValuePair<Airliner, Boolean>(airliners.OrderBy(a => a.Price).First(), false);
             }
             if (airline.Mentality == Airline.AirlineMentality.Aggressive || airline.Fleet.Count == 0 || forStartdata)
@@ -680,13 +687,21 @@
                     }
                     if (loanAirliners.Count > 0)
                     {
+                        if (airline.MarketFocus == Airline.AirlineFocus.Global && (airline.AirlineRouteFocus == Route.RouteType.Passenger || airline.AirlineRouteFocus == Route.RouteType.Mixed))
+                        {
+                           var loanMajorAirliners = loanAirliners.FindAll(a=>a.Type.Manufacturer.IsMajor);  
+  
+                            if (loanMajorAirliners.Count > 0)
+                                return new KeyValuePair<Airliner,Boolean>(loanMajorAirliners.OrderBy(a=>a.Price).First(),true);
+                        }
+                        
                         Airliner airliner = loanAirliners.OrderBy(a => a.Price).First();
 
                         if (airliner == null)
                         {
                             return null;
                         }
-
+                        
                         return new KeyValuePair<Airliner, Boolean>(airliner, true);
                     }
                     return null;
@@ -708,6 +723,18 @@
 
         public static List<Airport> GetDestinationAirports(Airline airline, Airport airport)
         {
+
+            if (airline.Profile.FocusAirports.Count > 0)
+            {
+                var focusAirports = airline.Profile.FocusAirports.Where(f => f != airport && !airline.Airports.Contains(f));
+
+                if (focusAirports.Count() > 0)
+                {
+                    focusAirports = focusAirports.OrderBy(f => MathHelpers.GetDistance(f, airport));
+
+                    return focusAirports.ToList();
+                }
+            }
 
             IEnumerable<long> airliners = from a in Airliners.GetAirlinersForSale() select a.Range;
             double maxDistance = airliners.Count() == 0 ? 5000 : airliners.Max();
@@ -885,19 +912,15 @@
 
         public static Boolean IsRouteInCorrectArea(Airport dest1, Airport dest2)
         {
+         //   less than 3 hours is short haul Reminds me though, Hong Kong isnt in the same region as China in the game
             double distance = MathHelpers.GetDistance(
                 dest1.Profile.Coordinates.convertToGeoCoordinate(),
                 dest2.Profile.Coordinates.convertToGeoCoordinate());
 
-            Boolean isOk = (dest1.Profile.Country == dest2.Profile.Country || distance < 1000
-                            || (dest1.Profile.Country.Region == dest2.Profile.Country.Region
-                                && (dest1.Profile.Type == AirportProfile.AirportType.Short_Haul_International
-                                    || dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International)
-                                && (dest2.Profile.Type == AirportProfile.AirportType.Short_Haul_International
-                                    || dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International))
-                            || (dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International
-                                && dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International));
+            Boolean isOk = (dest1.Profile.Country == dest2.Profile.Country) 
+                || (dest1.Profile.Type == AirportProfile.AirportType.International && dest2.Profile.Type == AirportProfile.AirportType.International);
 
+         
             return isOk;
         }
 
@@ -1542,7 +1565,59 @@
                 }
             }
         }
+        private static void CreateCharterRouteTimeTable(Route route, FleetAirliner airliner)
+        {
+            Boolean twiceAWeek = rnd.Next(2) == 0;
+            int tDay = rnd.Next(3);
+            List<DayOfWeek> days = new List<DayOfWeek>();
 
+            DayOfWeek firstDay = DayOfWeek.Friday + tDay;
+
+            days.Add(firstDay);
+
+            if (twiceAWeek)
+                days.Add(firstDay + 3);
+
+            string flightCode1 = airliner.Airliner.Airline.getNextFlightCode(0);
+            string flightCode2 = airliner.Airliner.Airline.getNextFlightCode(1);
+
+            route.TimeTable = CreateCharterRouteTimeTable(route, airliner, days, flightCode1, flightCode2);
+        }
+        public static RouteTimeTable CreateCharterRouteTimeTable(
+          Route route,
+          FleetAirliner airliner,
+          List<DayOfWeek> days,
+          string flightCode1,
+          string flightCode2)
+        {
+            var timeTable = new RouteTimeTable(route);
+
+            TimeSpan minFlightTime =
+                MathHelpers.GetFlightTime(
+                    route.Destination1.Profile.Coordinates.convertToGeoCoordinate(),
+                    route.Destination2.Profile.Coordinates.convertToGeoCoordinate(),
+                    airliner.Airliner.Type)
+                    .Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
+
+            foreach (DayOfWeek day in days)
+            {
+
+                TimeSpan startTime = new TimeSpan(11,0,0).Subtract(minFlightTime);
+
+                timeTable.addEntry(new RouteTimeTableEntry(timeTable,day,startTime,new RouteEntryDestination(route.Destination2,flightCode1)));
+
+                TimeSpan endTime = new TimeSpan(22,0,0).Subtract(minFlightTime);
+
+                timeTable.addEntry(new RouteTimeTableEntry(timeTable,day,endTime,new RouteEntryDestination(route.Destination1,flightCode2)));
+            }
+            
+            foreach (RouteTimeTableEntry e in timeTable.Entries)
+            {
+                e.Airliner = airliner;
+            }
+
+            return timeTable;
+        }
         private static void CreateBusinessRouteTimeTable(Route route, FleetAirliner airliner)
         {
             TimeSpan minFlightTime =
@@ -1661,9 +1736,9 @@
                         airport,
                         destination,
                         doLeasing,
-                        airline.AirlineRouteFocus);
+                        focus);
                     
-                    fAirliner = GetFleetAirliner(airline, airport, destination);
+                    fAirliner = GetFleetAirliner(airline, airport, destination,focus);
 
                     if (airliner.HasValue || fAirliner != null)
                     {
@@ -1909,14 +1984,19 @@
 
                             if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed || route.Type == Route.RouteType.Helicopter)
                             {
-                                //creates a business route
-                                if (IsBusinessRoute(route, fAirliner))
-                                {
-                                    CreateBusinessRouteTimeTable(route, fAirliner);
-                                }
+                                if (airline.Schedule == Airline.AirlineRouteSchedule.Charter)
+                                    CreateCharterRouteTimeTable(route, fAirliner);
                                 else
                                 {
-                                    CreateRouteTimeTable(route, fAirliner);
+                                    //creates a business route
+                                    if (IsBusinessRoute(route, fAirliner) || airline.Schedule == Airline.AirlineRouteSchedule.Business)
+                                    {
+                                        CreateBusinessRouteTimeTable(route, fAirliner);
+                                    }
+                                    else
+                                    {
+                                        CreateRouteTimeTable(route, fAirliner);
+                                    }
                                 }
                             }
                             if (route.Type == Route.RouteType.Cargo)
@@ -2100,8 +2180,19 @@
         //creates a new alliance for an airline
 
         //returns an airliner from the fleet which fits a route
-        private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)
+        private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2, Route.RouteType focus)
         {
+            AirlinerType.TypeOfAirliner type = AirlinerType.TypeOfAirliner.Passenger;
+
+            if (focus == Route.RouteType.Cargo)
+                type = AirlinerType.TypeOfAirliner.Cargo;
+            else if (focus == Route.RouteType.Helicopter)
+                type = AirlinerType.TypeOfAirliner.Helicopter;
+            else if (focus == Route.RouteType.Mixed)
+                type = AirlinerType.TypeOfAirliner.Mixed;
+            else if (focus == Route.RouteType.Passenger)
+                type = AirlinerType.TypeOfAirliner.Passenger;
+
             //Order new airliner
             List<FleetAirliner> fleet =
                 airline.Fleet.FindAll(
@@ -2110,7 +2201,8 @@
                         && f.Airliner.Range
                         > MathHelpers.GetDistance(
                             destination1.Profile.Coordinates.convertToGeoCoordinate(),
-                            destination2.Profile.Coordinates.convertToGeoCoordinate()));
+                            destination2.Profile.Coordinates.convertToGeoCoordinate())
+                            && f.Airliner.Type.TypeAirliner == type);
 
             if (fleet.Count > 0)
             {
@@ -2136,8 +2228,13 @@
             lock (airline.Airports)
             {
                 homeAirports = AirlineHelpers.GetHomebases(airline);
+                var focusAirports = airline.Airports.Where(a => airline.Profile.FocusAirports.Contains(a));
+
+                homeAirports.AddRange(focusAirports);
             }
             homeAirports.AddRange(airline.getHubs());
+            
+            
 
             Terminal.TerminalType terminaltype = focus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
@@ -2346,6 +2443,12 @@
         private static void OrderAirliners(Airline airline)
         {
             List<AirlinerType> airlineAircrafts = airline.Profile.PreferedAircrafts;
+
+            if (airline.MarketFocus == Airline.AirlineFocus.Global && (airline.AirlineRouteFocus == Route.RouteType.Passenger || airline.AirlineRouteFocus == Route.RouteType.Mixed) && airlineAircrafts.Count == 0)
+            {
+                airlineAircrafts.AddRange(AirlinerTypes.GetTypes(t => t.Produced.From <= GameObject.GetInstance().GameTime
+                            && t.Produced.To >= GameObject.GetInstance().GameTime && t.Manufacturer.IsMajor));
+            }
 
             int airliners = airline.Fleet.Count;
             int airlinersWithoutRoute = airline.Fleet.Count(a => !a.HasRoute);

@@ -6,8 +6,8 @@
     <Window.Resources>
         <DataTemplate x:Key="AirlineItem">
             <WrapPanel>
-                <Image Source="{Binding Profile.Logo}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="32" Height="32" Margin="2 0 5 0"></Image>
-                <TextBlock Width="150" VerticalAlignment="Bottom" Text="{Binding Profile.Name}"/>
+                <Image Source="{Binding Profile.Logo,Mode=OneTime}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="32" Height="32" Margin="2 0 5 0"></Image>
+                <TextBlock Width="150" VerticalAlignment="Bottom" Text="{Binding Profile.Name,Mode=OneTime}"/>
 
             </WrapPanel>
         </DataTemplate>

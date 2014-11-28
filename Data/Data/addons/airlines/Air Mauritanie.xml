@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Mauritanie" iata="MR" color="DarkGreen" country="269" CEO="Mohamed Ould Bouamatou" mentality="Safe" market="Global" preferedairport="NKC" >
+  <narrative narrative="Air Mauritanie was the flag carrier of the West African country of Mauritania from 1962-2007. Throughout its history it served nine domestic airports,and one each in Cape Verde,France,Gambia,Guinea-Bissau,Mali,Morocco,Senegal and Spain. At the end it had two 737-700's. It also operated ATR 42-300's,and at least one 737-200,DC-3,DC-4,Fokker F28-4000 and 6000,Fokker F27,and Il-18 series of planes over its history."/>
+</profile>
+  <info real="True" from="1962" to="2007" />
+  <prefereds aircrafts="Boeing 737-700,ATR 42-300,Boeing 737-200,Boeing 737-200 Adv.,DC-3,DC-4-1009,Fokker F28-4000,Fokker F28-6000,Fokker F27,Il-18E,Il-18D,Il-18V,Aerospatiale N262"></prefereds>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (1996) late (2000)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="2" late="0"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2007)-->
+	         <airliners>
+	    <airliner type="Boeing 737-700" early="2" late="2"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2003)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200" early="1" late="0"></airliner>
+	     </airliners>
+	     	  
+</airline>

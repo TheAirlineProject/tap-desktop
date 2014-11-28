@@ -23,8 +23,8 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" Width="100" />
-                                        <TextBlock Text="{Binding Count,StringFormat={}#{0}}"
+                                        <TextBlock Text="{Binding Type.Name,Mode=OneTime}" VerticalAlignment="Bottom" Width="100" />
+                                        <TextBlock Text="{Binding Count,Mode=OneTime,StringFormat={}#{0}}"
                                                    VerticalAlignment="Bottom" />
                                     </WrapPanel>
                                 </DataTemplate>

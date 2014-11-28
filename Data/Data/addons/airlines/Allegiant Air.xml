@@ -1,9 +1,61 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
-  <profile name="Allegiant Air" iata="G4" color="Black" country="122" CEO="Maurice J. Gallagher, Jr." mentality="Safe"
-           market="Global" preferedairport="LAX">
-  <narrative narrative="Allegiant Air is an American low-cost airline owned by Allegiant Travel Co. that operates scheduled and charter flights. Allegiant Travel Company is a publicly traded company with 1,800 employees and $1 billion USD market capitalization. The corporate headquarters are in Enterprise, Nevada, an unincorporated suburb of Las Vegas."/>
+  <profile name="Allegiant Air" iata="G4" color="Black" country="122" CEO="Maurice J. Gallagher, Jr." mentality="Safe" market="Global" preferedairport="LAX">
+  <narrative narrative="Allegiant Air is an American low-cost airline owned by Allegiant Travel Co. that operates scheduled and charter flights. Allegiant Travel Company is a publicly traded company with 1,800 employees and $1 billion USD market capitalization. The corporate headquarters are in Enterprise, Nevada, an unincorporated suburb of Las Vegas. They fly to 99 destinations as of 2014, all the scheduled ones being in the US. Most of their routes are twice weekly. Their hubs and focus cities outside of LAX are Orlando Sanford,Las Vegas,Phoenix-Mesa,St. Petersburg Florida,Punta Gorda Florida,Honolulu,Oakland,Fort Lauderdale and Bellingham in Washington state. They focus on smaller airports in larger metro areas that have other larger airports mostly, such as Mesa in the Phoenix area, Sanford in the Orlando,FL area, Oakland in the Bay area,Bellingham in the Seattle and Vancouver,BC area are some examples. And they serves mostly smaller cities from their hubs too. Their fleet as of November 2014 was 29 MD-83's,15 MD-82's,6 MD-81's,6 MD-88's,7 A320's,4 A319's, and 6 757-200's. They have 3 more A320's and 18 more A319's on order. They have also had a few DC-9's at the beginning of their life and four MD-87's."/>
 </profile>
   <info real="True" from="1997" to="2199" />
+  <prefereds aircrafts="MD-83 (DC-9-83),MD-82 (DC-9-82),Airbus A320-200,Boeing 757-200,MD-81 (DC-9-81),MD-88 (DC-9-88),Airbus A319-100,Airbus A320neo,Airbus A319neo,MD-87 (DC-9-87)"></prefereds>
+   
+  <focusairports>
+        <focusairport airport="SFB"></focusairport>
+        <focusairport airport="LAS"></focusairport>
+        <focusairport airport="AZA"></focusairport>
+        <focusairport airport="PIE"></focusairport>
+        <focusairport airport="PGD"></focusairport>
+        <focusairport airport="HNL"></focusairport>
+        <focusairport airport="OAK"></focusairport>
+        <focusairport airport="FLL"></focusairport>
+        <focusairport airport="BLI"></focusairport>
+     </focusairports>
+    	            <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2018)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="7" late="10"></airliner>
+	     </airliners>
+	            <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2018)-->
+	         <airliners>
+	    <airliner type="Airbus A319-100" early="1" late="22"></airliner>
+	     </airliners>
+	         	            <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2016)-->
+	         <airliners>
+	    <airliner type="MD-88 (DC-9-88)" early="1" late="6"></airliner>
+	     </airliners>
+	     	         	          <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2008)-->
+	         <airliners>
+	    <airliner type="MD-87 (DC-9-87)" early="1" late="0"></airliner>
+	     </airliners>
+  <!--the airliners the airline would start with which isn't on a route earyl (2003) late (2017)-->
+	         <airliners>
+			    <airliner type="MD-83 (DC-9-83)" early="3" late="29"></airliner>
+	     </airliners>
+	       <!--the airliners the airline would start with which isn't on a route earyl (2003) late (2017)-->
+	         <airliners>
+	    <airliner type="MD-82 (DC-9-82)" early="1" late="15"></airliner>
+	     </airliners>
+	            <!--the airliners the airline would start with which isn't on a route earyl (2003) late (2017)-->
+	         <airliners>
+	    <airliner type="MD-81 (DC-9-81)" early="0" late="6"></airliner>
+	     </airliners>
+	     	            <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2016)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="1" late="6"></airliner>
+	     </airliners>
+	              <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2005)-->
+	         <airliners>
+	    <airliner type="MD DC-9-50" early="2" late="0"></airliner>
+	     </airliners>
+	               <!--the airliners the airline would start with which isn't on a route earyl (1998) late (2003)-->
+	         <airliners>
+	    <airliner type="Douglas DC-9-15" early="1" late="0"></airliner>
+	     </airliners>
 </airline>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Mega Maldives" iata="LV" color="HotPink" country="276" CEO="George Weinmann" mentality="Safe" market="Regional" preferedairport="MLE" >
+  <narrative narrative="Mega Maldives is is airline based at Male,Maldives. This is the island country about 600 kilometres (370 miles) southwest of India in the Indian Ocean and close to the Arabian Sea. It was founded in 2010 and serves one other domestic airport and four places in China, Hong Kong,Seoul,and Koror of the Palau Islands as of 2014. They had as of January 2014 two 767-300ER's and a 757-200, and were leasing a 737-800. "/>
+</profile>
+  <info real="True" from="2010" to="2199" />
+  <prefereds aircrafts="Boeing 767-300ER,Boeing 757-200,Boeing 737-800"></prefereds>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2020)-->
+	         <airliners>
+	    <airliner type="Boeing 737-800" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2020)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300ER" early="2" late="2"></airliner>
+	     </airliners>
+	        	     	         <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2020)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="1" late="1"></airliner>
+	     </airliners>
+	     	  
+</airline>

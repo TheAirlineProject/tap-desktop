@@ -1,6 +1,7 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -18,18 +19,22 @@
         public PageAirlinersHumanFleet()
         {
             this.Loaded += PageAirlinersHumanFleet_Loaded;
-            this.Fleet =
-                GameObject.GetInstance()
-                    .HumanAirline.Fleet.Where(f => f.Airliner.BuiltDate < GameObject.GetInstance().GameTime && f.Airliner.Status == Airliner.StatusTypes.Normal)
-                    .ToList();
-            this.OrderedFleet =
+            this.Fleet = new ObservableCollection<FleetAirliner>();
+
+            GameObject.GetInstance()
+                .HumanAirline.Fleet.Where(f => f.Airliner.BuiltDate < GameObject.GetInstance().GameTime && f.Airliner.Status == Airliner.StatusTypes.Normal)
+                .ToList().ForEach(f => this.Fleet.Add(f));
+
+            this.OrderedFleet = new ObservableCollection<FleetAirliner>();
+
                 GameObject.GetInstance()
                     .HumanAirline.Fleet.Where(f => f.Airliner.BuiltDate >= GameObject.GetInstance().GameTime)
-                    .ToList();
-            this.OutleasedFleet =
+                    .ToList().ForEach(f=>this.OrderedFleet.Add(f));
+
+                this.OutleasedFleet = new ObservableCollection<FleetAirliner>();
                GameObject.GetInstance()
                    .HumanAirline.Fleet.Where(f => f.Airliner.BuiltDate < GameObject.GetInstance().GameTime && f.Airliner.Status == Airliner.StatusTypes.Leasing)
-                   .ToList();
+                   .ToList().ForEach(f=>this.OutleasedFleet.Add(f));
            
 
             this.InitializeComponent();
@@ -57,11 +62,11 @@
 
         #region Public Properties
 
-        public List<FleetAirliner> OutleasedFleet { get; set; }
+        public ObservableCollection<FleetAirliner> OutleasedFleet { get; set; }
 
-        public List<FleetAirliner> Fleet { get; set; }
+        public ObservableCollection<FleetAirliner> Fleet { get; set; }
 
-        public List<FleetAirliner> OrderedFleet { get; set; }
+        public ObservableCollection<FleetAirliner> OrderedFleet { get; set; }
 
         #endregion
        

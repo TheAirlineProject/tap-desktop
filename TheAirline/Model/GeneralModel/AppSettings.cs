@@ -2,8 +2,9 @@
 {
     using System;
     using System.Globalization;
-    using System.IO;
     using System.Threading;
+    using TheAirline.Model.Services.Filesystem;
+    using System.Collections.Generic;
 
     public class AppSettings
     {
@@ -13,13 +14,15 @@
 
         #region Static Fields
 
-        private static readonly string basePath = Environment.CurrentDirectory;
+        private static readonly Path basePath = new Path(Environment.CurrentDirectory);
+
+        private static Filesystem filesystem = new Filesystem();
 
         /*! private static variable dataPath.
          * stores the path to the Data directory.
          */
 
-        private static readonly string dataPath = basePath + "\\data\\data";
+        private static readonly Path dataPath = new Path(basePath + "\\data\\data");
 
         /*! private static variable basePath.
          * stores the path to the Plugin directory.
@@ -27,7 +30,7 @@
          * the working directory as base path, but the location of the exe file as base
          */
 
-        private static readonly string pluginsPath = AppDomain.CurrentDomain.BaseDirectory + "plugins";
+        private static readonly Path pluginsPath = new Path(AppDomain.CurrentDomain.BaseDirectory + "plugins");
 
         private static AppSettings AppSettingsInstance;
 
@@ -60,11 +63,7 @@
 
         public static AppSettings GetInstance()
         {
-            if (AppSettingsInstance == null)
-            {
-                AppSettingsInstance = new AppSettings();
-            }
-            return AppSettingsInstance;
+            return AppSettingsInstance == null ? new AppSettings() : AppSettingsInstance;
         }
 
         // simple method for initializing the Translator
@@ -80,7 +79,7 @@
 
         public static string getBasePath()
         {
-            return basePath;
+            return basePath.ToString();
         }
 
         /*! public static method getDataPath.
@@ -94,19 +93,14 @@
 
         public static string getCommonApplicationDataPath()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\theairlineproject\\";
-
-            if (!Directory.Exists(path))
-            {
-                createPaths(path);
-            }
-
+            string path = filesystem.GetMyDocumentsSubpath("\\theairlineproject\\");
+            createPaths(path);
             return path;
         }
 
         public static string getDataPath()
         {
-            return dataPath;
+            return dataPath.ToString();
         }
 
         //creates all relevant paths
@@ -118,7 +112,7 @@
 
         public static string getPluginPath()
         {
-            return pluginsPath;
+            return pluginsPath.ToString();
         }
 
         public Language getLanguage()
@@ -159,13 +153,10 @@
 
         private static void createPaths(string path)
         {
-            Directory.CreateDirectory(path);
-            Directory.CreateDirectory(path + "\\saves");
-            //LoadSaveHelpers.CreateBaseXml(path + "\\saves");
+            List<string> paths = new List<string> { path, path + "\\saves" };
+            filesystem.CreateIfNotExists(paths);
         }
 
         #endregion
-
-        //returns the current language
     }
 }

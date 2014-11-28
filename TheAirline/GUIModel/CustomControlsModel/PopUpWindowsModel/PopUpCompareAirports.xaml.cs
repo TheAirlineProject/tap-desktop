@@ -26,7 +26,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
     /// </summary>
     public partial class PopUpCompareAirports : PopUpWindow, INotifyPropertyChanged
     {
-        public List<CompareAirportMVVM> Airports { get; set; }
+        public ObservableCollection<CompareAirportMVVM> Airports { get; set; }
         public ObservableCollection<CompareAirportMVVM> CompareAirports { get; set; }
         private CompareAirportMVVM _selectedairport;
         public CompareAirportMVVM SelectedAirport
@@ -44,7 +44,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
         }
         public PopUpCompareAirports(List<Airport> airports)
         {
-            this.Airports = new List<CompareAirportMVVM>();
+            this.Airports = new ObservableCollection<CompareAirportMVVM>();
 
             airports.ForEach(a=>this.Airports.Add(new CompareAirportMVVM(a)));
 

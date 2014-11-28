@@ -19,7 +19,7 @@
       <runway name="06/24" length="2030" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Jorge Newbery Airport" icao="SABE" iata="AEP" type="Short_Haul_International" season="All_Year">
+  <airport name="Jorge Newbery Airport" icao="SABE" iata="AEP" type="International" season="All_Year">
     <town town="Buenos Aires" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="34°33'33''S" />
@@ -33,7 +33,7 @@
       <runway name="13/31" length="2100" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Ministro Pistarini International Airport" icao="SAEZ" iata="EZE" type="Long_Haul_International" season="All_Year">
+  <airport name="Ministro Pistarini International Airport" icao="SAEZ" iata="EZE" type="International" season="All_Year">
     <town town="Buenos Aires" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="34°49'20''S" />
@@ -92,7 +92,7 @@
       <runway name="03/21" length="1600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ingeniero Ambrosio Taravella Airport" icao="SACO" iata="COR" type="Long_Haul_International" season="All_Year">
+  <airport name="Ingeniero Ambrosio Taravella Airport" icao="SACO" iata="COR" type="International" season="All_Year">
     <town town="Cordoba" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="31°19'24''S" />
@@ -163,7 +163,7 @@
       <runway name="04/22" length="2400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Formosa Airport" icao="SARF" iata="FMA" type="Regional" season="All_Year">
+  <airport name="Formosa Airport" icao="SARF" iata="FMA" type="Domestic" season="All_Year">
     <town town="Formosa" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="26°12'45''S" />
@@ -219,7 +219,7 @@
       <runway name="02/20" length="1427" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Capitan V A Almonacid Airport" icao="SANL" iata="IRJ" type="Regional" season="All_Year">
+  <airport name="Capitan V A Almonacid Airport" icao="SANL" iata="IRJ" type="Domestic" season="All_Year">
     <town town="La Rioja" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="29°22'53''S" />
@@ -248,7 +248,7 @@
       <runway name="09/27" length="1450" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="El Plumerillo Airport" icao="SAME" iata="MDZ" type="Short_Haul_International" season="All_Year">
+  <airport name="El Plumerillo Airport" icao="SAME" iata="MDZ" type="International" season="All_Year">
     <town town="Mendoza" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="32°49'54''S" />
@@ -278,7 +278,7 @@
       <runway name="18/36" length="1501" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Presidente Peron Airport" icao="SAZN" iata="NQN" type="Short_Haul_International" season="All_Year">
+  <airport name="Presidente Peron Airport" icao="SAZN" iata="NQN" type="International" season="All_Year">
     <town town="Neuquén" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="38°56'56''S" />
@@ -306,7 +306,7 @@
       <runway name="01/19" length="2100" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Paso De Los Libres Airport" icao="SARL" iata="AOL" type="Regional" season="All_Year">
+  <airport name="Paso De Los Libres Airport" icao="SARL" iata="AOL" type="Domestic" season="All_Year">
     <town town="Paso de los Libres" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="29°41'21''S" />
@@ -364,7 +364,7 @@
       <runway name="06/24" length="1500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cataratas Del Iguazú International Airport" icao="SARI" iata="IGR" type="Short_Haul_International" season="All_Year">
+  <airport name="Cataratas Del Iguazú International Airport" icao="SARI" iata="IGR" type="International" season="All_Year">
     <town town="Puerto Iguazú" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="25°44'14''S" />
@@ -435,7 +435,7 @@
       <runway name="01/19" length="1250" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Resistencia International Airport" icao="SARE" iata="RES" type="Regional" season="All_Year">
+  <airport name="Resistencia International Airport" icao="SARE" iata="RES" type="Domestic" season="All_Year">
     <town town="Resistencia" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="27°26'59''S" />
@@ -449,7 +449,7 @@
       <runway name="03/21" length="2850" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Piloto Civil N. Fernández Airport" icao="SAWG" iata="RGL" type="Long_Haul_International" season="All_Year">
+  <airport name="Piloto Civil N. Fernández Airport" icao="SAWG" iata="RGL" type="International" season="All_Year">
     <town town="Rio Gallegos" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="51°36'32''S" />
@@ -477,7 +477,7 @@
       <runway name="07/25" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Islas Malvinas Airport" icao="SAAR" iata="ROS" type="Short_Haul_International" season="All_Year">
+  <airport name="Islas Malvinas Airport" icao="SAAR" iata="ROS" type="International" season="All_Year">
     <town town="Rosario" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="32°54'12''S" />
@@ -491,7 +491,7 @@
       <runway name="02/20" length="3000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Martin Miguel De Guemes International Airport" icao="SASA" iata="SLA" type="Short_Haul_International" season="All_Year">
+  <airport name="Martin Miguel De Guemes International Airport" icao="SASA" iata="SLA" type="International" season="All_Year">
     <town town="Salta" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="24°51'21''S" />
@@ -520,7 +520,7 @@
       <runway name="12/30" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="San Carlos De Bariloche Airport" icao="SAZS" iata="BRC" type="Regional" season="All_Year">
+  <airport name="San Carlos De Bariloche Airport" icao="SAZS" iata="BRC" type="Domestic" season="All_Year">
     <town town="San Carlos de Bariloche" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="41°9'4''S" />
@@ -576,7 +576,7 @@
       <runway name="06/24" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Teniente Benjamin Matienzo Airport" icao="SANT" iata="TUC" type="Short_Haul_International" season="All_Year">
+  <airport name="Teniente Benjamin Matienzo Airport" icao="SANT" iata="TUC" type="International" season="All_Year">
     <town town="San Miguel de Tucuman" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="26°50'27''S" />
@@ -716,7 +716,7 @@
       <runway name="01/19" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Almirante Marco Andres Zar Airport" icao="SAVT" iata="REL" type="Short_Haul_International" season="All_Year">
+  <airport name="Almirante Marco Andres Zar Airport" icao="SAVT" iata="REL" type="International" season="All_Year">
     <town town="Trelew / Rawson" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="43°12'37''S" />
@@ -730,7 +730,7 @@
       <runway name="06/24" length="2560" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Malvinas Argentinas Airport" icao="SAWH" iata="USH" type="Long_Haul_International" season="All_Year">
+  <airport name="Malvinas Argentinas Airport" icao="SAWH" iata="USH" type="International" season="All_Year">
     <town town="Ushuahia" country="106" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="54°50'35''S" />
@@ -789,7 +789,7 @@
   </airport>
   <!--Brazil (SB**,SD**, SI**, SJ**, SN**, SS** and SW**)-->
   <!--Brazil (SB**,SD**, SI**, SJ**, SN**, SS** and SW**)-->
-  <airport name="Brasília Presidente Juscelino Kubitschek International Airport" icao="SBBR" iata="BSB" type="Long_Haul_International"
+  <airport name="Brasília Presidente Juscelino Kubitschek International Airport" icao="SBBR" iata="BSB" type="International"
            season="All_Year">
     <town town="Brasília" country="138" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
@@ -805,7 +805,7 @@
       <runway name="11R/29L" length="3300" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Tancredo Neves International Airport" icao="SBCF" iata="CNF" type="Long_Haul_International"
+  <airport name="Tancredo Neves International Airport" icao="SBCF" iata="CNF" type="International"
            season="All_Year">
     <town town="Belo Horizonte" country="138" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
@@ -820,7 +820,7 @@
       <runway name="16/34" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Pinto Martins International Airport" icao="SBFZ" iata="FOR" type="Long_Haul_International"
+  <airport name="Pinto Martins International Airport" icao="SBFZ" iata="FOR" type="International"
            season="All_Year">
     <town town="Fortaleza" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
@@ -835,7 +835,7 @@
       <runway name="13/31" length="2545" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Rio de Janeiro-Galeão International Airport" icao="SBGL" iata="GIG" type="Long_Haul_International"
+  <airport name="Rio de Janeiro-Galeão International Airport" icao="SBGL" iata="GIG" type="International"
            season="All_Year">
     <town town="Rio De Janeiro" country="138" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
@@ -852,7 +852,7 @@
       <runway name="15/33" length="3180" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="São Paulo-Guarulhos International Airport" icao="SBGR" iata="GRU" type="Long_Haul_International"
+  <airport name="São Paulo-Guarulhos International Airport" icao="SBGR" iata="GRU" type="International"
            season="All_Year">
     <town town="São Paulo" country="138" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
@@ -868,7 +868,7 @@
       <runway name="09R/27L" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Viracopos-Campinas International Airport" icao="SBKP" iata="VCP" type="Short_Haul_International"
+  <airport name="Viracopos-Campinas International Airport" icao="SBKP" iata="VCP" type="International"
            season="All_Year">
     <town town="Campinas" country="138" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
@@ -883,7 +883,7 @@
       <runway name="14/32" length="3240" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Salgado Filho International Airport" icao="SBPA" iata="POA" type="Long_Haul_International"
+  <airport name="Salgado Filho International Airport" icao="SBPA" iata="POA" type="International"
            season="All_Year">
     <town town="Porto Alegre " country="138" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
@@ -898,7 +898,7 @@
       <runway name="11/29" length="2280" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Recife Guararapes-Gilberto Freyre International Airport" icao="SBRF" iata="REC" type="Long_Haul_International" season="All_Year">
+  <airport name="Recife Guararapes-Gilberto Freyre International Airport" icao="SBRF" iata="REC" type="International" season="All_Year">
     <town town="Recife" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="008°07'36''S" />
@@ -912,7 +912,7 @@
       <runway name="18/36" length="3300" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Santos Dumont Airport" icao="SBRJ" iata="SDU" type="Long_Haul_International" season="All_Year">
+  <airport name="Santos Dumont Airport" icao="SBRJ" iata="SDU" type="International" season="All_Year">
     <town town="Rio De Janeiro" country="138" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="022°54'37''S" />
@@ -927,7 +927,7 @@
       <runway name="02R/20L" length="1323" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Congonhas-São Paulo Airport" icao="SBSP" iata="CGH" type="Short_Haul_International" season="All_Year">
+  <airport name="Congonhas-São Paulo Airport" icao="SBSP" iata="CGH" type="International" season="All_Year">
     <town town="São Paulo" country="138" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="023°37'34''S" />
@@ -943,7 +943,7 @@
     </runways>
   </airport>
   <airport name="Deputado Luís Eduardo Magalhães International Airport" icao="SBSV" iata="SSA"
-           type="Long_Haul_International" season="All_Year">
+           type="International" season="All_Year">
     <town town="Salvador da Bahia" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="012°54'31''S" />
@@ -1000,7 +1000,7 @@
       <runway name="12/30" length="1400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Rio Grande Regional Airport" icao="SJRG" iata="RIG" type="Domestic" season="All_Year">
+  <airport name="Rio Grande Domestic Airport" icao="SJRG" iata="RIG" type="Domestic" season="All_Year">
     <town town="Rio Grande" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="032°04'54''S" />
@@ -1028,7 +1028,7 @@
       <runway name="6/24" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Santa Maria Airport" icao="SBAR" iata="AJU" type="Short_Haul_International" season="All_Year">
+  <airport name="Santa Maria Airport" icao="SBAR" iata="AJU" type="International" season="All_Year">
     <town town="Aracaju" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="010°59'07''S" />
@@ -1126,7 +1126,7 @@
       <runway name="9/27" length="1200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Val de Cães International Airport" icao="SBBE" iata="BEL" type="Long_Haul_International"
+  <airport name="Val de Cães International Airport" icao="SBBE" iata="BEL" type="International"
            season="All_Year">
     <town town="Belém" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
@@ -1171,7 +1171,7 @@
       <runway name="8/26" length="1600" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Atlas Brasil Cantanhede Airport" icao="SBBV" iata="BVB" type="Short_Haul_International"
+  <airport name="Atlas Brasil Cantanhede Airport" icao="SBBV" iata="BVB" type="International"
            season="All_Year">
     <town town="Boa Vista" country="138" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
@@ -1326,7 +1326,7 @@
       <runway name="12/30" length="1100" surface="Gravel" />
     </runways>
   </airport>
-  <airport name="Marechal Rondon Airport" icao="SBCY" iata="CGB" type="Short_Haul_International" season="All_Year">
+  <airport name="Marechal Rondon Airport" icao="SBCY" iata="CGB" type="International" season="All_Year">
     <town town="Cuiabá" country="138" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="015°39'00''S" />
@@ -1383,7 +1383,7 @@
       <runway name="9/27" length="2100" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Corumbá International Airport" icao="SBCR" iata="CMG" type="Regional" season="All_Year">
+  <airport name="Corumbá International Airport" icao="SBCR" iata="CMG" type="Domestic" season="All_Year">
     <town town="Corumbá" country="138" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="019°00'42''S" />
@@ -1397,7 +1397,7 @@
       <runway name="9/27" length="1660" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Campo Grande International Airport" icao="SBCG" iata="CGR" type="Short_Haul_International" season="All_Year">
+    <airport name="Campo Grande International Airport" icao="SBCG" iata="CGR" type="International" season="All_Year">
     <town town="Campo Grande" country="138" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="020°28'10''S" />
@@ -1425,7 +1425,7 @@
       <runway name="15/33" length="1600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Afonso Pena Airport" icao="SBCT" iata="CWB" type="Long_Haul_International" season="All_Year">
+  <airport name="Afonso Pena Airport" icao="SBCT" iata="CWB" type="International" season="All_Year">
     <town town="Curitiba" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="025°31'52''S" />
@@ -1511,7 +1511,7 @@
       <runway name="16/34" length="1600" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Fernando de Noronha Airport" icao="SBFN" iata="FEN" type="Regional" season="All_Year">
+    <airport name="Fernando de Noronha Airport" icao="SBFN" iata="FEN" type="Domestic" season="All_Year">
     <town town="Fernando De Noronha" country="138" GMT="-02:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="003°51'17''S" />
@@ -1525,7 +1525,7 @@
       <runway name="12/30" length="1845" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hercílio Luz International Airport" icao="SBFL" iata="FLN" type="Short_Haul_International"
+  <airport name="Hercílio Luz International Airport" icao="SBFL" iata="FLN" type="International"
            season="All_Year">
     <town town="Florianópolis" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
@@ -1570,7 +1570,7 @@
       <runway name="7/25" length="1400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Santa Genoveva Airport" icao="SBGO" iata="GYN" type="Regional" season="All_Year">
+  <airport name="Santa Genoveva Airport" icao="SBGO" iata="GYN" type="Domestic" season="All_Year">
     <town town="Goiânia" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="016°37'47''S" />
@@ -1584,7 +1584,7 @@
       <runway name="14/32" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cataratas International Airport" icao="SBFI" iata="IGU" type="Short_Haul_International"
+  <airport name="Cataratas International Airport" icao="SBFI" iata="IGU" type="International"
            season="All_Year">
     <town town="Foz Do Iguaçu" country="138" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
@@ -1613,7 +1613,7 @@
       <runway name="7/25" length="1798" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Bahia - Jorge Amado Airport" icao="SBIL" iata="IOS" type="Regional" season="All_Year">
+  <airport name="Bahia - Jorge Amado Airport" icao="SBIL" iata="IOS" type="Domestic" season="All_Year">
     <town town="Ilhéus" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="014°48'54''S" />
@@ -1683,7 +1683,7 @@
       <runway name="5/23" length="1700" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Zona da Mata Regional Airport" icao="SBZM" iata="IZA" type="Domestic" season="All_Year">
+  <airport name="Zona da Mata Domestic Airport" icao="SBZM" iata="IZA" type="Domestic" season="All_Year">
     <town town="Juiz De Fora" country="138" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="021°30'47''S" />
@@ -1809,7 +1809,7 @@
       <runway name="16/34" length="1200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Presidente Castro Pinto Airport" icao="SBJP" iata="JPA" type="Short_Haul_International"
+  <airport name="Presidente Castro Pinto Airport" icao="SBJP" iata="JPA" type="International"
            season="All_Year">
     <town town="João Pessoa" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
@@ -1894,7 +1894,7 @@
       <runway name="18/36" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Governador José Richa Airport" icao="SBLO" iata="LDB" type="Regional" season="All_Year">
+  <airport name="Governador José Richa Airport" icao="SBLO" iata="LDB" type="Domestic" season="All_Year">
     <town town="Londrina" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="023°19'49''S" />
@@ -1922,7 +1922,7 @@
       <runway name="14/32" length="2082" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Marabá Airport" icao="SBMA" iata="MAB" type="Long_Haul_International" season="All_Year">
+   <airport name="Marabá Airport" icao="SBMA" iata="MAB" type="International" season="All_Year">
     <town town="Marabá" country="138" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="005°22'04''S" />
@@ -1937,7 +1937,7 @@
       <runway name="7/25" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Eduardo Gomes International Airport" icao="SBEG" iata="MAO" type="Long_Haul_International"
+  <airport name="Eduardo Gomes International Airport" icao="SBEG" iata="MAO" type="International"
            season="All_Year">
     <town town="Manaus" country="138" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
@@ -1953,7 +1953,7 @@
       <runway name="10/28" length="2700" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Alberto Alcolumbre Airport" icao="SBMQ" iata="MCP" type="Regional" season="All_Year">
+    <airport name="Alberto Alcolumbre Airport" icao="SBMQ" iata="MCP" type="Domestic" season="All_Year">
     <town town="Macapá" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="000°03'03''N" />
@@ -1967,7 +1967,7 @@
       <runway name="8/26" length="2100" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Valenca Airport" icao="SNVB" iata="VAL" type="Regional" season="All_Year">
+   <airport name="Valenca Airport" icao="SNVB" iata="VAL" type="Domestic" season="All_Year">
     <town town="Valenca" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="013°17'47''S" />
@@ -1981,7 +1981,7 @@
       <runway name="4/22" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Zumbi dos Palmares Airport" icao="SBMO" iata="MCZ" type="Short_Haul_International" season="All_Year">
+  <airport name="Zumbi dos Palmares Airport" icao="SBMO" iata="MCZ" type="International" season="All_Year">
     <town town="Maceió" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="009°31'02''S" />
@@ -2023,7 +2023,7 @@
       <runway name="8/26" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Regional de Maringá - Sílvio Nane Junior Airport" icao="SBMG" iata="MGF" type="Regional"
+  <airport name="Domestic de Maringá - Sílvio Nane Junior Airport" icao="SBMG" iata="MGF" type="Domestic"
            season="All_Year">
     <town town="Maringá" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
@@ -2080,7 +2080,7 @@
       <runway name="5/23" length="1275" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Augusto Severo Airport" icao="SBNT" iata="NAT" type="Long_Haul_International" season="All_Year">     <period from="01.01.1940 00:00:00" to="05.30.2014 00:00:00" /> <town town="Natal" country="138" GMT="-03:00:00" DST="-03:00:00" />
+   <airport name="Augusto Severo Airport" icao="SBNT" iata="NAT" type="International" season="All_Year">     <period from="01.01.1940 00:00:00" to="05.30.2014 00:00:00" /> <town town="Natal" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="005°54'30''S" />
       <longitude value="035°14'57''W" />
@@ -2096,7 +2096,7 @@
       <runway name="16R/34L" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Greater Natal International Airport" icao="SBSG" iata="NAT" type="Long_Haul_International" season="All_Year">   
+  <airport name="Greater Natal International Airport" icao="SBSG" iata="NAT" type="International" season="All_Year">   
   <period from="05.31.2014 00:00:00" to="01.01.2199 00:00:00" /> <town town="Natal" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="005°46'05''S" />
@@ -2111,7 +2111,7 @@
       <runway name="12/30" length="3000" surface="Asphalt" />
         </runways>
   </airport>
-  <airport name="Ministro Victor Konder International Airport" icao="SBNF" iata="NVT" type="Regional" season="All_Year">
+  <airport name="Ministro Victor Konder International Airport" icao="SBNF" iata="NVT" type="Domestic" season="All_Year">
     <town town="Navegantes" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="026°52'43''S" />
@@ -2181,7 +2181,7 @@
       <runway name="14/32" length="1200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Paulo Afonso Airport" icao="SBUF" iata="PAV" type="Regional" season="All_Year">
+  <airport name="Paulo Afonso Airport" icao="SBUF" iata="PAV" type="Domestic" season="All_Year">
     <town town="Paulo Afonso" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="009°24'08''S" />
@@ -2209,7 +2209,7 @@
       <runway name="8/26" length="1700" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Pampulha - Carlos Drummond de Andrade Airport" icao="SBBH" iata="PLU" type="Short_Haul_International"
+    <airport name="Pampulha - Carlos Drummond de Andrade Airport" icao="SBBH" iata="PLU" type="International"
            season="All_Year">
     <town town="Belo Horizonte" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
@@ -2224,7 +2224,7 @@
       <runway name="13/31" length="2540" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Brigadeiro Lysias Rodrigues Airport" icao="SBPJ" iata="PMW" type="Short_Haul_International"
+    <airport name="Brigadeiro Lysias Rodrigues Airport" icao="SBPJ" iata="PMW" type="International"
            season="All_Year">
     <town town="Palmas" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
@@ -2296,7 +2296,7 @@
       <runway name="11/29" length="2100" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Governador Jorge Teixeira de Oliveira Airport" icao="SBPV" iata="PVH" type="Short_Haul_International"
+    <airport name="Governador Jorge Teixeira de Oliveira Airport" icao="SBPV" iata="PVH" type="International"
            season="All_Year">
     <town town="Porto Velho" country="138" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
@@ -2311,7 +2311,7 @@
       <runway name="1/19" length="2400" surface="Asphalt" />
     </runways>
   </airport>
-     <airport name="Leite Lopes Airport" icao="SBRP" iata="RAO" type="Regional" season="All_Year">
+     <airport name="Leite Lopes Airport" icao="SBRP" iata="RAO" type="Domestic" season="All_Year">
     <town town="Ribeirão Preto" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="021°08'10''S" />
@@ -2325,7 +2325,7 @@
       <runway name="18/36" length="2100" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Plácido de Castro Airport" icao="SBRB" iata="RBR" type="Short_Haul_International" season="All_Year">
+  <airport name="Plácido de Castro Airport" icao="SBRB" iata="RBR" type="International" season="All_Year">
     <town town="Rio Branco" country="138" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="009°52'07''S" />
@@ -2424,7 +2424,7 @@
       <runway name="5/23" length="2600" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="São José do Rio Preto Airport" icao="SBSR" iata="SJP" type="Short_Haul_International"
+  <airport name="São José do Rio Preto Airport" icao="SBSR" iata="SJP" type="International"
            season="All_Year">
     <town town="São José Do Rio Preto" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
@@ -2439,7 +2439,7 @@
       <runway name="7/25" length="1700" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Marechal Cunha Machado International Airport" icao="SBSL" iata="SLZ" type="Short_Haul_International"
+  <airport name="Marechal Cunha Machado International Airport" icao="SBSL" iata="SLZ" type="International"
            season="All_Year">
     <town town="São Luís" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
@@ -2483,7 +2483,7 @@
       <runway name="7/25" length="1200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Maestro Wilson Fonseca Airport" icao="SBSN" iata="STM" type="Regional" season="All_Year">
+  <airport name="Maestro Wilson Fonseca Airport" icao="SBSN" iata="STM" type="Domestic" season="All_Year">
     <town town="Santarém" country="138" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="002°25'28''S" />
@@ -2539,7 +2539,7 @@
       <runway name="14/32" length="2200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Senador Petrônio Portela Airport" icao="SBTE" iata="THE" type="Regional" season="All_Year">
+  <airport name="Senador Petrônio Portela Airport" icao="SBTE" iata="THE" type="Domestic" season="All_Year">
     <town town="Teresina" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="005°03'38''S" />
@@ -2622,7 +2622,7 @@
       <runway name="17/35" length="1759" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ten. Cel. Aviador César Bombonato Airport" icao="SBUL" iata="UDI" type="Regional" season="All_Year">
+  <airport name="Ten. Cel. Aviador César Bombonato Airport" icao="SBUL" iata="UDI" type="Domestic" season="All_Year">
     <town town="Uberlândia" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="018°53'01''S" />
@@ -2678,7 +2678,7 @@
       <runway name="15/33" length="1775" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Eurico de Aguiar Salles Airport" icao="SBVT" iata="VIX" type="Short_Haul_International"
+   <airport name="Eurico de Aguiar Salles Airport" icao="SBVT" iata="VIX" type="International"
            season="All_Year">
     <town town="Vitória" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
@@ -2693,7 +2693,7 @@
       <runway name="5/23" length="1750" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Chapecó Airport" icao="SBCH" iata="XAP" type="Regional" season="All_Year">
+  <airport name="Chapecó Airport" icao="SBCH" iata="XAP" type="Domestic" season="All_Year">
     <town town="Chapecó" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="027°08'02''S" />
@@ -2708,7 +2708,7 @@
     </runways>
   </airport>
   <!--Chile (SC**)-->
- <airport name="Cerro Moreno Airport" icao="SCFA" iata="ANF" type="Regional" season="All_Year">
+ <airport name="Cerro Moreno Airport" icao="SCFA" iata="ANF" type="Domestic" season="All_Year">
     <town town="Antofagasta" country="160" GMT="-04:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="23°26'40''S" />
@@ -2750,7 +2750,7 @@
       <runway name="02/20" length="2300" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Diego Aracena Airport" icao="SCDA" iata="IQQ" type="Short_Haul_International" season="All_Year">
+  <airport name="Diego Aracena Airport" icao="SCDA" iata="IQQ" type="International" season="All_Year">
     <town town="Iquique" country="160" GMT="-04:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="20°32'6''S" />
@@ -2764,7 +2764,7 @@
       <runway name="01/19" length="3350" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Pdte. carlos Ibañez del Campo Airport" icao="SCCI" iata="PUQ" type="Short_Haul_International" season="All_Year">
+  <airport name="Pdte. carlos Ibañez del Campo Airport" icao="SCCI" iata="PUQ" type="International" season="All_Year">
     <town town="Punta Arenas" country="160" GMT="-04:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="53°0'9''S" />
@@ -2780,7 +2780,7 @@
       <runway name="12/30" length="2400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Comodoro Arturo Merino Benítez International Airport" icao="SCEL" iata="SCL" type="Long_Haul_International" season="All_Year">
+  <airport name="Comodoro Arturo Merino Benítez International Airport" icao="SCEL" iata="SCL" type="International" season="All_Year">
     <town town="Santiago" country="160" GMT="-04:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="33°23'34''S" />
@@ -2811,7 +2811,7 @@
       <runway name="01/19" length="1925" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Seymour Airport" icao="SEGS" iata="GPS" type="Regional" season="All_Year">
+  <airport name="Seymour Airport" icao="SEGS" iata="GPS" type="Domestic" season="All_Year">
     <town town="Baltra / Galapagos Islands" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="0°27'13''N" />
@@ -2825,7 +2825,7 @@
       <runway name="14/32" length="2401" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Mariscal Lamar Airport" icao="SECU" iata="CUE" type="Long_Haul_International" season="All_Year">
+  <airport name="Mariscal Lamar Airport" icao="SECU" iata="CUE" type="International" season="All_Year">
     <town town="Cuenca" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="2°53'22''S" />
@@ -2853,7 +2853,7 @@
       <runway name="18/36" length="2400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Simon Bolivar International Airport" icao="SEGU" iata="GYE" type="Long_Haul_International" season="All_Year">
+  <airport name="Simon Bolivar International Airport" icao="SEGU" iata="GYE" type="International" season="All_Year">
     <town town="Guayaquil" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="2°9'26''S" />
@@ -2868,7 +2868,7 @@
       <runway name="03/21" length="2790" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Cotopaxi International Airport" icao="SELT" iata="LTX" type="Long_Haul_International" season="All_Year">
+  <airport name="Cotopaxi International Airport" icao="SELT" iata="LTX" type="International" season="All_Year">
     <town town="Latacunga" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="0°54'24''N" />
@@ -2980,7 +2980,7 @@
       <runway name="15/33" length="2060" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Mariscal Sucre International Airport" icao="SEQU" iata="UIO" type="Long_Haul_International" season="All_Year">
+  <airport name="Mariscal Sucre International Airport" icao="SEQU" iata="UIO" type="International" season="All_Year">
     <town town="Quito" country="210" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="0°8'28''N" />
@@ -3009,7 +3009,7 @@
       <runway name="13/31" length="2437" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="San Cristóbal Airport" icao="SEST" iata="SCY" type="Regional" season="All_Year">
+  <airport name="San Cristóbal Airport" icao="SEST" iata="SCY" type="Domestic" season="All_Year">
     <town town="San Cristóbal / Galapagos Islands" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="0°54'36''N" />
@@ -3066,7 +3066,7 @@
     </runways>
   </airport>
   <!--Paraguay (SG**)-->
-  <airport name="Silvio Pettirossi International Airport" icao="SGAS" iata="ASU" type="Long_Haul_International" season="All_Year">
+  <airport name="Silvio Pettirossi International Airport" icao="SGAS" iata="ASU" type="International" season="All_Year">
     <town town="Asunción" country="213" GMT="-04:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="25°14'23''S" />
@@ -3080,7 +3080,7 @@
       <runway name="02/20" length="3353" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Juan De Ayolas Airport" icao="SGAY" iata="AYO" type="Regional" season="All_Year">
+  <airport name="Juan De Ayolas Airport" icao="SGAY" iata="AYO" type="Domestic" season="All_Year">
     <town town="Ayolas" country="213" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="27°22'12''S" />
@@ -3094,7 +3094,7 @@
       <runway name="02/20" length="1850" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Guarani International Airport" icao="SGES" iata="AGT" type="Short_Haul_International" season="All_Year">
+  <airport name="Guarani International Airport" icao="SGES" iata="AGT" type="International" season="All_Year">
     <town town="Ciudad del Este" country="213" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="25°27'35''S" />
@@ -3108,7 +3108,7 @@
       <runway name="05/23" length="3400" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Dr. Luis Maria Argaña International Airport" icao="SGME" iata="ESG" type="Short_Haul_International" season="All_Year">
+  <airport name="Dr. Luis Maria Argaña International Airport" icao="SGME" iata="ESG" type="International" season="All_Year">
     <town town="Mariscal Estigarribia" country="213" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="22°2'59''S" />
@@ -3122,7 +3122,7 @@
       <runway name="01/19" length="3500" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Dr Augusto Roberto Fuster International Airport" icao="SGPJ" iata="PJC" type="Short_Haul_International" season="All_Year">
+  <airport name="Dr Augusto Roberto Fuster International Airport" icao="SGPJ" iata="PJC" type="International" season="All_Year">
     <town town="Pedro Juan Caballero" country="213" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="22°38'23''S" />
@@ -3179,7 +3179,7 @@
       <runway name="11/29" length="2100" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="El Eden Airport" icao="SKAR" iata="AXM" type="Short_Haul_International" season="All_Year">
+  <airport name="El Eden Airport" icao="SKAR" iata="AXM" type="International" season="All_Year">
     <town town="Armenia" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="4°27'10''N" />
@@ -3221,7 +3221,7 @@
       <runway name="04/22" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ernesto Cortissoz International Airport" icao="SKBQ" iata="BAQ" type="Short_Haul_International" season="All_Year">
+  <airport name="Ernesto Cortissoz International Airport" icao="SKBQ" iata="BAQ" type="International" season="All_Year">
     <town town="Barranquilla" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="10°53'22''N" />
@@ -3236,7 +3236,7 @@
       <runway name="05/23" length="3000" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="El Dorado International Airport" icao="SKBO" iata="BOG" type="Long_Haul_International" season="All_Year">
+  <airport name="El Dorado International Airport" icao="SKBO" iata="BOG" type="International" season="All_Year">
     <town town="Bogotá" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="4°42'11''N" />
@@ -3252,7 +3252,7 @@
       <runway name="13R/31L" length="3800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Palonegro Airport" icao="SKBG" iata="BGA" type="Short_Haul_International" season="All_Year">
+  <airport name="Palonegro Airport" icao="SKBG" iata="BGA" type="International" season="All_Year">
     <town town="Bucaramanga" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="7°7'35''N" />
@@ -3280,7 +3280,7 @@
       <runway name="08/26" length="1200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Alfonso Bonilla Aragon International Airport" icao="SKCL" iata="CLO" type="Long_Haul_International" season="All_Year">
+  <airport name="Alfonso Bonilla Aragon International Airport" icao="SKCL" iata="CLO" type="International" season="All_Year">
     <town town="Cali" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="3°32'35''N" />
@@ -3295,7 +3295,7 @@
       <runway name="01/19" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Rafael Nuñez International Airport" icao="SKCG" iata="CTG" type="Long_Haul_International" season="All_Year">
+  <airport name="Rafael Nuñez International Airport" icao="SKCG" iata="CTG" type="International" season="All_Year">
     <town town="Cartagena" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="10°26'32''N" />
@@ -3323,7 +3323,7 @@
       <runway name="01/19" length="2200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Camilo Daza International Airport" icao="SKCC" iata="CUC" type="Short_Haul_International" season="All_Year">
+  <airport name="Camilo Daza International Airport" icao="SKCC" iata="CUC" type="International" season="All_Year">
     <town town="Cúcuta" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="7°55'39''N" />
@@ -3408,7 +3408,7 @@
       <runway name="06/24" length="1770" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Gustavo Rojas Pinilla International Airport" icao="SKSP" iata="ADZ" type="Long_Haul_International" season="All_Year">
+  <airport name="Gustavo Rojas Pinilla International Airport" icao="SKSP" iata="ADZ" type="International" season="All_Year">
     <town town="Isla de San Andrés" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="12°35'0''N" />
@@ -3422,7 +3422,7 @@
       <runway name="06/24" length="2380" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Alfredo Vásquez Cobo International Airport" icao="SKLT" iata="LET" type="Short_Haul_International" season="All_Year">
+  <airport name="Alfredo Vásquez Cobo International Airport" icao="SKLT" iata="LET" type="International" season="All_Year">
     <town town="Leticia" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="4°11'36''S" />
@@ -3576,7 +3576,7 @@
       <runway name="02/20" length="2312" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Matecaña International Airport" icao="SKPE" iata="PEI" type="Short_Haul_International" season="All_Year">
+  <airport name="Matecaña International Airport" icao="SKPE" iata="PEI" type="International" season="All_Year">
     <town town="Pereira" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="4°48'45''N" />
@@ -3688,7 +3688,7 @@
       <runway name="09/27" length="1900" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Jose Maria Córdova International Airport" icao="SKRG" iata="MDE" type="Long_Haul_International" season="All_Year">
+  <airport name="Jose Maria Córdova International Airport" icao="SKRG" iata="MDE" type="International" season="All_Year">
     <town town="Rionegro / Antioquia" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="6°9'52''N" />
@@ -3730,7 +3730,7 @@
       <runway name="13/31" length="1500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Simón Bolívar International Airport" icao="SKSM" iata="SMR" type="Short_Haul_International" season="All_Year">
+  <airport name="Simón Bolívar International Airport" icao="SKSM" iata="SMR" type="International" season="All_Year">
     <town town="Santa Marta" country="183" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="11°7'10''N" />
@@ -3829,7 +3829,7 @@
     </runways>
   </airport>
     <!--Bolivia (SL**)-->
-  <airport name="El Alto International Airport" icao="SLLP" iata="LPB" type="Long_Haul_International" season="All_Year">
+  <airport name="El Alto International Airport" icao="SLLP" iata="LPB" type="International" season="All_Year">
     <town town="La Paz" country="211" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="16°30'48''S" />
@@ -3845,7 +3845,7 @@
     </runways>
   </airport>
   <!--Suriname (SM**)-->
-  <airport name="Paramaribo-Zanderij International Airport" icao="SMJP" iata="PBM" type="Long_Haul_International" season="All_Year">
+  <airport name="Paramaribo-Zanderij International Airport" icao="SMJP" iata="PBM" type="International" season="All_Year">
     <town town="Paramaribo / Zanderij" country="214" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="5°27'10''N" />
@@ -3860,7 +3860,7 @@
     </runways>
   </airport>
   <!--French Guiana (SO**)-->
-  <airport name="Cayenne – Rochambeau Airport" icao="SOCA" iata="CAY" type="Short_Haul_International" season="All_Year">
+  <airport name="Cayenne – Rochambeau Airport" icao="SOCA" iata="CAY" type="International" season="All_Year">
     <town town="Cayenne" country="140" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="004°49'11''N" />
@@ -3875,7 +3875,7 @@
     </runways>
   </airport>
   <!--Peru (SP**)-->
-  <airport name="Jorge Chávez International Airport" icao="SPIM" iata="LIM" type="Long_Haul_International" season="All_Year">
+  <airport name="Jorge Chávez International Airport" icao="SPIM" iata="LIM" type="International" season="All_Year">
     <town town="Lima" country="182" GMT="-05:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="12°1'18''S" />
@@ -3919,7 +3919,7 @@
       <runway name="12/30" length="1370" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Santa Bernardina International Airport" icao="SUDU" iata="DZO" type="Regional" season="All_Year">
+  <airport name="Santa Bernardina International Airport" icao="SUDU" iata="DZO" type="Domestic" season="All_Year">
     <town town="Durazno" country="212" GMT="-03:00:00" DST="04:00:00" />
     <coordinates>
       <latitude value="33°21'32''S" />
@@ -3934,7 +3934,7 @@
       <runway name="09/27" length="1452" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Carrasco International Airport" icao="SUMU" iata="MVD" type="Long_Haul_International" season="All_Year">
+  <airport name="Carrasco International Airport" icao="SUMU" iata="MVD" type="International" season="All_Year">
     <town town="Montevideo" country="212" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="34°50'18''S" />
@@ -3965,7 +3965,7 @@
       <runway name="10/28" length="900" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Capitan Corbeta CA Curbelo International Airport" icao="SULS" iata="PDP" type="Short_Haul_International" season="All_Year">
+  <airport name="Capitan Corbeta CA Curbelo International Airport" icao="SULS" iata="PDP" type="International" season="All_Year">
     <town town="Punta del Este" country="212" GMT="-03:00:00" DST="04:00:00" />
     <coordinates>
       <latitude value="34°51'18''S" />
@@ -3980,7 +3980,7 @@
       <runway name="08/26" length="2133" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Presidente General Don Oscar D. Gestido International Airport" icao="SURV" iata="RVY" type="Short_Haul_International" season="All_Year">
+  <airport name="Presidente General Don Oscar D. Gestido International Airport" icao="SURV" iata="RVY" type="International" season="All_Year">
     <town town="Rivera" country="212" GMT="-03:00:00" DST="04:00:00" />
     <coordinates>
       <latitude value="30°58'28''S" />
@@ -3994,7 +3994,7 @@
       <runway name="05/23" length="1830" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nueva Hesperides International Airport" icao="SUSO" iata="STY" type="Short_Haul_International" season="All_Year">
+  <airport name="Nueva Hesperides International Airport" icao="SUSO" iata="STY" type="International" season="All_Year">
     <town town="Salto" country="212" GMT="-03:00:00" DST="04:00:00" />
     <coordinates>
       <latitude value="31°26'18''S" />
@@ -4010,7 +4010,7 @@
     </runways>
   </airport>
   <!--Venezuela (SV**)-->
-  <airport name="Simón Bolívar International Airport" icao="SVMI" iata="CCS" type="Long_Haul_International" season="All_Year">
+  <airport name="Simón Bolívar International Airport" icao="SVMI" iata="CCS" type="International" season="All_Year">
     <town town="Caracas" country="184" GMT="-04:30:00" DST="-04:30:00" />
     <coordinates>
       <latitude value="10°36'11''N" />
@@ -4027,7 +4027,7 @@
     </runways>
   </airport>
   <!--Guyana (SY**)-->
-  <airport name="Cheddi Jagan International Airport" icao="SYCJ" iata="GEO" type="Long_Haul_International" season="All_Year">
+  <airport name="Cheddi Jagan International Airport" icao="SYCJ" iata="GEO" type="International" season="All_Year">
     <town town="Georgetown" country="215" GMT="-04:00:00" DST="-04:00:00" />
     <coordinates>
       <latitude value="6°29'54''N" />
@@ -4042,7 +4042,7 @@
       <runway name="10/28" length="1525" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ogle Airport" icao="SYGO" iata="OGL" type="Regional" season="All_Year">
+  <airport name="Ogle Airport" icao="SYGO" iata="OGL" type="Domestic" season="All_Year">
     <town town="Georgetown" country="215" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="6°48'22''N" />
@@ -4057,7 +4057,7 @@
       <runway name="07/25" length="1280" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Lethem Airport" icao="SYLT" iata="LTM" type="Regional" season="All_Year">
+  <airport name="Lethem Airport" icao="SYLT" iata="LTM" type="Domestic" season="All_Year">
     <town town="Lethem" country="215" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="3°22'21''N" />

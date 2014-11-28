@@ -150,7 +150,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock
-                                            Text="{Binding Loan.Amount,Converter={StaticResource ValueCurrencyConverter}}"
+                                            Text="{Binding Loan.Amount,Converter={StaticResource ValueCurrencyConverter},Mode=OneTime}"
                                             FontWeight="Bold" VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -161,7 +161,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock
-                                            Text="{Binding Loan.MonthlyPayment,Converter={StaticResource ValueCurrencyConverter}}"
+                                            Text="{Binding Loan.MonthlyPayment,Converter={StaticResource ValueCurrencyConverter},Mode=OneTime}"
                                             VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -250,11 +250,18 @@
                                     </TextBlock.Text>
                                 </TextBlock>
                             </WrapPanel>
+                            
                             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                                 <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1013'}"
                             VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
                                 <TextBlock Text="{Binding LoanRate,StringFormat={}{0} %}" VerticalAlignment="Bottom" />
+                            </WrapPanel>
+                            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                                <TextBlock
+                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1022'}"
+                            VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                                <TextBlock Text="{Binding MaxLoan,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom" />
                             </WrapPanel>
                             <WrapPanel>
                                 <Button

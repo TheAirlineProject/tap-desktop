@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Italy" iata="I9" color="LimeGreen" country="115" CEO="Giuseppe Gentile" mentality="Moderate" market="Global" preferedairport="NAP" >
+  <narrative narrative="Air Italy is an airline that has been a subsidiary of Meridiana since July 18,2011. It was founded in 2005 and did scheduled flights for tour operators in Europe to places like Brazil
+  and Kenya as well as independant short haul flights. It was based at Naples,Turin,Verona,and Milan Malpensa. It started doing Meridiana flights in 2013 and no longer has a route network of their own.'
+  It had two short lived subsidiaries that did charters, Air Italy Egypt from 2006-2009 and Air Poland from 2007-2012. As of July 2014 they had a 767-300ER, a 767-200ER,two 737-700's,two 737-300's and one 737-800. Past planes
+  include 757-200's,MD-83's,and Saab 2000's but were used for only a few years to a year in most cases."/>
+</profile>
+  <info real="True" from="2005" to="2199" />
+  <prefereds aircrafts="Boeing 767-300ER,Boeing 737-700,Boeing 737-300,Boeing 737-800,Boeing 737 MAX 7,Boeing 737 MAX 8,Boeing 757-200,MD-83 (DC-9-83),Saab 2000"></prefereds>
+     <focusairports>
+	 <focusairport airport="TRN"></focusairport>
+	 <focusairport airport="VRN"></focusairport>
+	 <focusairport airport="MXP"></focusairport>
+     </focusairports>
+                
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2018)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300ER" early="1" late="1"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2017)-->
+	         <airliners>
+	    <airliner type="Boeing 767-200ER" early="1" late="1"></airliner>
+	     </airliners>
+		         	     	         <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2010)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="2" late="0"></airliner>
+	     </airliners>
+	         	     	         <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2017)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="2" late="2"></airliner>
+	     </airliners>
+	       <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2018)-->
+	         <airliners>
+	    <airliner type="Boeing 737-800" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2018)-->
+	         <airliners>
+	    <airliner type="Boeing 737-700" early="2" late="2"></airliner>
+	     </airliners>
+	      	     	         <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2005)-->
+	         <airliners>
+	    <airliner type="MD-83 (DC-9-83)" early="1" late="0"></airliner>
+	     </airliners>
+	 
+	 
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Canaryfly" iata="PM" color="SlateBlue" country="123" CEO="Victorino Lopez Chaves" mentality="Safe" market="Global" preferedairport="LPA" >
+  <narrative narrative="Canaryfly is an airline based at Gran Canaria of the Canary Islands of Spain. It was founded in 2010 by former employees of charter airline Top Fly which ceased operation in November 2009. As of July 2013 the places they served were five in the Canary Islands, three in Morocco and one in Mauritania. As of November 2014 the fleet had three Fairchild Swearingen Metroliners,two ATR 42-300's and one ATR 72-200 and one Dash 8-300 which was being leased."/>
+</profile>
+  <info real="True" from="2010" to="2199" />
+  <prefereds aircrafts="ATR 42-300,Fairchild Swearingen Metroliner,ATR 72-200,Bombardier Dash 8-300"></prefereds>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="1" late="2"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2018)-->
+	         <airliners>
+	    <airliner type="ATR 72-200" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2016)-->
+	         <airliners>
+	    <airliner type="Fairchild Swearingen Metroliner" early="3" late="3"></airliner>
+	     </airliners>
+	     	  
+</airline>

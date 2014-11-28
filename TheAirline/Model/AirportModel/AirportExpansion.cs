@@ -13,7 +13,7 @@ namespace TheAirline.Model.AirportModel
     [Serializable]
     public class AirportExpansion : ISerializable
     {
-        public enum ExpansionType { New_terminal, New_runway,Runway_Length,Name, Extra_gates, Close_terminal }
+        public enum ExpansionType { New_terminal, New_runway,Runway_Length,Name,Town_name, Extra_gates, Close_terminal }
         [Versioning("type")]
         public ExpansionType Type { get; set; }
         [Versioning("date")]

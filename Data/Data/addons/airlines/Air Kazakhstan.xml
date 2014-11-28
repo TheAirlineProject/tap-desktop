@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Kazakhstan" iata="9Y" color="Cyan" country="236" CEO="Nikodim Vasilyev" mentality="Safe" market="Global" preferedairport="ALA" >
+  <narrative narrative="Air Kazakhstan was the flag carrier of the same country from 1996-2004 when it went bankrupt and was followed by Air Astana as the countries flag carrier. Almaty was its base. In April 2004 it served 9 domestic destinations,two in Germany,and one each in Azerbaijan,Hungary,India,Russia,South Korea,Tajikistan,Thailand,Turkey,Ukraine, and the UAE. Plane types flown include Tu-154M's,A310-300's,Il-86's,Tu-134's,Yak-42's and 737-200's."/>
+</profile>
+  <info real="True" from="1996" to="2004" />
+  <prefereds aircrafts="Tupolev Tu-154M,Airbus A310-300,Il-86,Yak-42D,Yak-42,Boeing 737-200 Adv.,Tupolev Tu-134B"></prefereds>
+   
+	   
+</airline>

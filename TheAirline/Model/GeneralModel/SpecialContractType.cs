@@ -149,6 +149,7 @@ namespace TheAirline.Model.GeneralModel
         #endregion
       
     }
+    [Serializable]
     /*the class for a contract route*/
     public class SpecialContractRoute
     {
@@ -267,6 +268,7 @@ namespace TheAirline.Model.GeneralModel
 
         #endregion
     }
+    [Serializable]
     /*the class for a requirement for a contract*/
     public class ContractRequirement
     {

@@ -352,7 +352,7 @@
             this.Order = order;
             this.Amount = amount;
             this._classes = new List<AirlinerClass>();
-            this.Homebases = new List<Airport>();
+            this.Homebases = new ObservableCollection<Airport>();
 
             if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger || this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
             {
@@ -444,7 +444,7 @@
 
         public Boolean ForConfig { get; set; }
 
-        public List<Airport> Homebases { get; set; }
+        public ObservableCollection<Airport> Homebases { get; set; }
 
         public AirlinerOrdersMVVM Order { get; set; }
 

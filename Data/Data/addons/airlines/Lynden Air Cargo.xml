@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Lynden Air Cargo" iata="L2" color="DarkGreen" country="122" CEO="Rick Zerkel" mentality="Safe" market="Global" preferedairport="ANC" routefocus="Cargo" >
+  <narrative narrative="Lynden Air Cargo is based out of Anchorage,Alaska. They were founded in 1995 and operate seven L100 Hercules planes. They do on demand charters for the military in addition to flying to four airport in Alaska and having a base at Lae,Papua New Guinea where it operates in the Australia and Southeast Asia market. "/>
+</profile>
+  <info real="True" from="1995" to="2199" />
+  <prefereds aircrafts="Lockheed L-100-30"></prefereds>
+   
+    <focusairports>
+        <focusairport airport="LAE"></focusairport>
+     </focusairports>
+      <!--the airliners the airline would start with which isn't on a route earyl (1995) late (2015)-->
+	         <airliners>
+	    <airliner type="Lockheed L-100-30" early="1" late="7"></airliner>
+	     </airliners>
+	   
+</airline>

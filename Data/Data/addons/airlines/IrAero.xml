@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="IrAero" iata="IO" color="MediumBlue" country="149" CEO="Roman Pavlov" mentality="Safe" market="Global" preferedairport="IKT" routefocus="Mixed" >
+  <narrative narrative="IrAero is based at Irkutsk in the east of Russia in Siberia. It has focus cities at Krasnoyarsk,Novosibirsk and Ulan-Ude. It does both passenger and cargo, and
+  charters too. As of 2013 its passenger service included 24 domestic airports, 5 in China, 2 in Azerbaijan,and one each in Armenia,Kazakhstan,Kyrgyzstan,Tajikistan an Uzbekistan.
+  Its fleet in 2012 was six CRJ200's, one CRJ100,nine Antonov 26's,four Antonov 24's and had ten Irkut MC-21's on order which is planned to go into service in 2017. All Antonov types are to be 
+phased out soon."/>
+</profile>
+  <info real="True" from="1999" to="2199" />
+  <prefereds aircrafts="Antonov An-26,Antonov An-24,Bombardier CRJ200,MC-21-200,MC-21-300,MC-21-400,Bombardier CRJ100"></prefereds>
+     <focusairports>
+        <focusairport airport="KJA"></focusairport>
+	<focusairport airport="OVB"></focusairport>
+        <focusairport airport="UUD"></focusairport>
+     </focusairports>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2016)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ200" early="6" late="6"></airliner>
+	     </airliners>
+	              <!--the airliners the airline would start with which isn't on a route earyl (2017) late (2025)-->
+	         <airliners>
+	    <airliner type="MC-21-200" early="10" late="10"></airliner>
+	     </airliners>
+	     	              <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2017)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ100" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	              <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2014)-->
+	         <airliners>
+	    <airliner type="Antonov An-26" early="9" late="9"></airliner>
+	     </airliners>
+	       	     	              <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2014)-->
+	         <airliners>
+	    <airliner type="Antonov An-24" early="4" late="4"></airliner>
+	     </airliners>
+
+</airline>

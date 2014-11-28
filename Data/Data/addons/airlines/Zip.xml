@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Zip" iata="3J" color="Cyan" country="113" CEO="Steve Smith" mentality="Safe" market="Domestic" preferedairport="YYC" >
+  <narrative narrative="Zip was a short lived subsidiary of Air Canada that lasted from September 2002 to September 2004. It was formed to compete direct with Westjet and served mostly only routes in the west of Canada from its Calgary base to places like Abbotsford,Edmonton,Vanoucver,Saskatoon,Regina and Winnipeg. It had about 16 or so 737-200 Adv. at the end and thats the only type it operated. Its planes were painted in neon colors, in the shades of blue,fuchsia,green and orange. Its head person was former WestJet CEO Steve Smith. It is known for having the words yuk printed on its air sickness bags, bag on the baggage tags and yum on the napkins. Many of its ads simply said 'fly'."/>
+</profile>
+  <info real="True" from="2002" to="2005" />
+  <prefereds aircrafts="Boeing 737-200 Adv."></prefereds>              
+	     	              	     	         <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2004)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200 Adv." early="16" late="16"></airliner>
+	     </airliners>
+	     	  
+	     	  
+	     	  
+
+
+</airline>
