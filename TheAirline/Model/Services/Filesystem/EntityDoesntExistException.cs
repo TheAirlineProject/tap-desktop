@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TheAirline.Model.Services.Filesystem
 {
@@ -20,7 +16,7 @@ namespace TheAirline.Model.Services.Filesystem
         }
 
         public EntityDoesntExistException(string message, Exception inner)
-            :base(message, inner)
+            : base(message, inner)
         {
 
         }

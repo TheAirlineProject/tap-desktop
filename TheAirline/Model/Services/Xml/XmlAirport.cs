@@ -11,9 +11,9 @@ namespace TheAirline.Model.Services.Xml
 {
     public class XmlAirport
     {
-        private AirportProfile profile;
-        private List<Runway> runways;
-        private List<Terminal> terminals;
+        private readonly AirportProfile profile;
+        private readonly List<Runway> runways;
+        private readonly List<Terminal> terminals;
         private Xml xml;
 
         public XmlAirport(AirportProfile profile, List<Runway> runways, List<Terminal> terminals)

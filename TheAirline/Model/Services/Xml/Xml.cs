@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using TheAirline.Model.Services.Filesystem;
 using System.Xml;
 
-namespace TheAirline.Model.Services.Xml;
+namespace TheAirline.Model.Services.Xml
 {
     public class Xml
     {
@@ -41,7 +39,7 @@ namespace TheAirline.Model.Services.Xml;
         public void Comment(string comment, XmlNode parent = null)
         {
             XmlComment xmlComment = xmlDoc.CreateComment(comment);
-            XmlNode appendTo = parent is XmlNode ? parent : xmlDoc.FirstChild;
+            XmlNode appendTo = parent ?? xmlDoc.FirstChild;
             appendTo.AppendChild(xmlComment);
         }
 

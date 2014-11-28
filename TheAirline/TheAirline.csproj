@@ -1089,6 +1089,12 @@
     <Compile Include="Model\PilotModel\PilotTrainingFacility.cs" />
     <Compile Include="Model\PilotModel\TrainingAircraft.cs" />
     <Compile Include="Model\PilotModel\TrainingAircraftType.cs" />
+    <Compile Include="Model\Services\Filesystem\EntityDoesntExistException.cs" />
+    <Compile Include="Model\Services\Filesystem\File.cs" />
+    <Compile Include="Model\Services\Filesystem\Filesystem.cs" />
+    <Compile Include="Model\Services\Filesystem\IFilesystemEntity.cs" />
+    <Compile Include="Model\Services\Filesystem\Path.cs" />
+    <Compile Include="Model\Services\Xml\Xml.cs" />
     <Compile Include="Properties\AssemblyVersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

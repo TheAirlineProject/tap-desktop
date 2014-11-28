@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 
 namespace TheAirline.Model.Services.Filesystem
 {
@@ -12,12 +7,12 @@ namespace TheAirline.Model.Services.Filesystem
      */
     class Filesystem
     {
-        public File GetOrCreateFile(string path, string contents = null)
+        public File GetOrCreateFile(string path)
         {
             File file = new File(path);
             if (!file.Exists())
             {
-                file.Create(contents);
+                file.Create();
             }
 
             return file;
