@@ -13,5 +13,7 @@ namespace TheAirline.Model.Services.Filesystem
         public bool Create();
 
         public void Delete();
+
+        public void Require();
     }
 }

@@ -12,65 +12,48 @@ namespace TheAirline.Model.Services.Filesystem
      */
     class Filesystem
     {
-        public bool CreatePath(string path)
+        public File GetOrCreateFile(string path, string contents = null)
         {
-            var dirInfo = Directory.CreateDirectory(path);
-            return dirInfo is DirectoryInfo;
-        }
-
-        public bool DeletePath(string path, bool recursive = false)
-        {
-            Directory.Delete(path, recursive);
-            return true;
-        }
-
-        public bool PathExists(string path)
-        {
-            return Directory.Exists(path);
-        }
-
-        
-        public bool CreateIfNotExists(string path)
-        {
-            if (!PathExists(path))
+            File file = new File(path);
+            if (!file.Exists())
             {
-                CreatePath(path);
+                file.Create(contents);
             }
 
-            return true;
+            return file;
         }
 
-        public bool CreateIfNotExists(List<string> paths)
+        public Path GetOrCreateDirectory(string path)
         {
-            bool success = true;
-
-            for(int i = 0; i < paths.Count; i++)
+            Path newPath = new Path(path);
+            if (!newPath.Exists())
             {
-                if (! CreateIfNotExists(paths[i]))
-                {
-                    success = false;
-                }
+                newPath.Create();
             }
 
-            return success;
+            return newPath;
         }
 
-        public List<string> ListPathFiles(string path)
+        public File GetFile(string path)
         {
-            var contents = Directory.EnumerateFiles(path);
-            return contents.ToList();
-        }
-
-        public Array ListPathFiles(List<string> paths)
-        {
-            List<string>[] results = new List<string>[paths.Count];
-
-            for (int i = 0; i < paths.Count; i++)
+            File file = new File(path);
+            if (!file.Exists())
             {
-                results[i] = ListPathFiles(paths[i]);
+                throw new EntityDoesntExistException("File " + path + " does not exist");
             }
 
-            return results;
+            return file;
+        }
+
+        public Path GetDirectory(string path)
+        {
+            Path newPath = new Path(path);
+            if (!newPath.Exists())
+            {
+                throw new EntityDoesntExistException("Directory " + path + " does not exist");
+            }
+
+            return newPath;
         }
 
         public string GetMyDocumentsPath()
