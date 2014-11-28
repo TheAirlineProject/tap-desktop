@@ -17,6 +17,8 @@
 
         private static readonly string basePath = Environment.CurrentDirectory;
 
+        private static Filesystem filesystem = new Filesystem();
+
         /*! private static variable dataPath.
          * stores the path to the Data directory.
          */
@@ -92,7 +94,7 @@
 
         public static string getCommonApplicationDataPath()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\theairlineproject\\";
+            string path = filesystem.GetMyDocumentsSubpath("\\theairlineproject\\");
             createPaths(path);
             return path;
         }
@@ -152,12 +154,8 @@
 
         private static void createPaths(string path)
         {
-            Filesystem filesystem = new Filesystem();
             List<string> paths = new List<string> { path, path + "\\saves" };
             filesystem.CreateIfNotExists(paths);
-            //Directory.CreateDirectory(path);
-            //Directory.CreateDirectory(path + "\\saves");
-            //LoadSaveHelpers.CreateBaseXml(path + "\\saves");
         }
 
         #endregion

@@ -72,5 +72,15 @@ namespace TheAirline.Model.Services
 
             return results;
         }
+
+        public string GetMyDocumentsPath()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        }
+
+        public string GetMyDocumentsSubpath(string path)
+        {
+            return GetMyDocumentsPath() + path;
+        }
     }
 }
