@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Wiggins Airways" iata="WG" logo="WG" color="Goldenrod" country="122" CEO="E.W. Wiggins" mentality="Moderate" market="Domestic" preferedairport="MHT" routefocus="Cargo" >
+  <narrative narrative="Wiggins Airways is a cargo airline based out of Manchester,New Hampshire. It does feeder for both UPS and FedEx and has a fleet of 31 Cessna 208's, 11 Beechcraft 99's,
+  3 Embraer 110's, a Cessna 402 and a Beechcraft King Air 100 as of 2009. It serves about 30 airports outside of its hub, this includes 8 in New York,6 in Pennsylvania,5 in Maine,4 in Massachusetts,
+  3 in Connecticut,3 in Vermont,and one each in New Jersey and Rhode Island. It was founded in 1929. It also offers some passenger charter, operates a Fixed Base Operator,has a private terminal at
+  Manchester and does refueling and service for commercial and private planes."/>
+</profile>
+  <info real="True" from="1929" to="2199" />
+  <prefereds aircrafts="Cessna 208B Super Cargomaster,Beechcraft 99,EMB 110 Bandeirante,Beechcraft King Air B200,Beechcraft King Air 90,Cessna 402,Cessna 402C,"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (1984) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 208B Super Cargomaster" early="0" late="31"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (1968) late (2014)-->
+	         <airliners>
+	    <airliner type="Beechcraft 99" early="0" late="11"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (1973) late (2014)-->
+	         <airliners>
+	    <airliner type="EMB 110 Bandeirante" early="0" late="3"></airliner>
+	     </airliners>
+
+	
+	
+
+	
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

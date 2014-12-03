@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Asia Pacific Airlines" iata="P9" logo="P92" color="Green" country="122" CEO="Shiro Ohishi" mentality="Safe" market="Global" preferedairport="GUM" schedule="Charter" routefocus="Cargo" >
+  <narrative narrative="Asia Pacific Airlines is a charter cargo airline based in Guam, which is a US territory in the Pacific Ocean near Asia. It also has a hub at Honolulu,Hawaii. There is an airline with the same name that operates out of Papua New Guinea and is not related to this one. Its corporate HQ is in the San Francisco area. As of 2014 it had three 727-200 Adv.'s. It started operations in 1999. Regular places served include Saipan which is also a territory of the US,the Marshall Islands,Micronesia,Palau,the Philippines,and Hong Kong.  "/>
+</profile>
+  <info real="True" from="1999" to="2199" />
+  <prefereds aircrafts="Boeing 727-200 Adv.,Boeing 727-200"></prefereds>
+     <focusairports>
+	 <focusairport airport="HNL"></focusairport>
+     </focusairports>
+     	  <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2014)-->
+	         <airliners>
+	    <airliner type="Boeing 727-200 Adv." early="1" late="3"></airliner>
+	     </airliners>
+
+
+
+
+	
+	     	  
+	     	  
+	     	  
+
+
+</airline>

@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <mergers>
+<merger name="World Airways has acquired Key Airlines." airline1="WO" airline2="KWY" type="Subsidiary" date="1.01.1987 00:00:00"></merger>
+<merger name="Key Airlines is independant from World Airways now." airline1="WO" airline2="KWY" type="Independant" date="1.01.1992 00:00:00"></merger>
+  <merger name="Continental has started Continental Micronesia based at Guam." airline1="CO" airline2="CS" type="Subsidiary" date="01.01.1968 00:00:00"></merger>
+<merger name="World Airways and North Amercican Airlines are now part of the same company." airline1="WO" airline2="NA" type="Subsidiary" date="4.01.2005 00:00:00"></merger>
+<merger name="World Airways and North Amercican Airlines are now part of ATA Airlines as subsidiries." airline1="TZ" airline2="NA" type="Subsidiary" date="4.05.2007 00:00:00"></merger>
+<merger name="World Airways is now independant from ATA." airline1="TZ" airline2="WO" type="Independant" date="4.03.2008 00:00:00"></merger>
+<merger name="World Airways is now independant from ATA." airline1="TZ" airline2="NA" type="Independant" date="4.03.2008 00:00:00"></merger>
+<merger name="World Airways and North Amercican Airlines are now no longer part of ATA but are still part of the same company." airline1="WO" airline2="NA" type="Subsidiary" date="4.04.2008 00:00:00"></merger>
+  <merger name="Continental has stopped using its subsidiary Continental Micronesia as a business model and has merged all assets into the main airline." airline1="CO" airline2="CS" type="Merger" date="12.22.2010 00:00:00"></merger>
   <merger name="Meridiana has acquired Air Italy and are now a subsidiary." airline1="IG" airline2="I9" type="Subsidiary" date="07.18.2011 00:00:00"></merger>
 <merger name="Zoom Airlines has started the subsidiary Zoom Airlines Limited based at London Gatwick." airline1="Z4" airline2="ZX" type="Subsidiary" date="01.01.2006 00:00:00"></merger>
   <merger name="El Al has started the subsidiary El Al Cargo." airline1="LY" airline2="LY2" type="Subsidiary" date="01.01.1948 00:00:00"></merger>

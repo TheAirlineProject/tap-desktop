@@ -13689,7 +13689,7 @@
   </airport>
   <!--South Vietnam-->
   <airport name="Buon Ma Thuot Airport" icao="VVBM" iata="BMV" type="Domestic" season="All_Year">
-    <town town="Buôn Ma Thu?t" country="1008" GMT="07:00:00" DST="07:00:00" />
+    <town town="Buôn Ma Thuot" country="1008" GMT="07:00:00" DST="07:00:00" />
     <coordinates>
       <latitude value="12°40'5''N" />
       <longitude value="108°7'12''E" />
@@ -13716,8 +13716,8 @@
       <runway name="09/27" length="1500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="C? ?ng Airport" icao="VVCS" iata="VCS" type="Domestic" season="All_Year">
-    <town town="Côn ??o" country="1008" GMT="07:00:00" DST="07:00:00" />
+  <airport name="Con Dao Airport" icao="VVCS" iata="VCS" type="Domestic" season="All_Year">
+    <town town="Con Dao" country="1008" GMT="07:00:00" DST="07:00:00" />
     <coordinates>
       <latitude value="8°43'57''N" />
       <longitude value="106°37'44''E" />
@@ -13731,7 +13731,7 @@
     </runways>
   </airport>
   <airport name="Phu Bai International Airport" icao="VVPB" iata="HUI" type="Domestic" season="All_Year">
-    <town town="Hu?" country="1008" GMT="07:00:00" DST="07:00:00" />
+    <town town="Hue" country="1008" GMT="07:00:00" DST="07:00:00" />
     <coordinates>
       <latitude value="16°24'6''N" />
       <longitude value="107°42'10''E" />
@@ -13803,7 +13803,7 @@
     </runways>
   </airport>
   <airport name="Phu Cat Airport" icao="VVPC" iata="UIH" type="Domestic" season="All_Year">
-    <town town="Qui Nh?n" country="1008" GMT="07:00:00" DST="07:00:00" />
+    <town town="Qui Nhon" country="1008" GMT="07:00:00" DST="07:00:00" />
     <coordinates>
       <latitude value="13°57'18''N" />
       <longitude value="109°2'32''E" />

@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Tiger Airways" iata="TR" color="Black" country="174" CEO="Koay Peng Yen" mentality="Safe"
            market="Global" preferedairport="SIN">
+             <narrative narrative="Tiger Airways Singapore Pte Ltd, operating as Tigerair, is a low-cost airline headquartered in Singapore. It operates services to regional destinations in Southeast Asia, Australia, China and India from its main base at Singapore Changi Airport." />
   </profile>
   <info real="True" from="2003" to="2199" />
 </airline>

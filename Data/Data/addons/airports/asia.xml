@@ -3637,6 +3637,164 @@ inflationafter="1">
   </airport>
   <!--South Asia (V***)-->
   <!--India (VA**, VE**, VI** and VO**)-->
+  <airport name="Swami Vivekananda Airport" icao="VARP" iata="RPR" type="International" season="All_Year">
+    <town town="Raipur" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="021°10'52''N" />
+      <longitude value="081°44'19''E" />
+    </coordinates>
+    <size value="Smallest" pax="840" />
+    <terminals>
+      <terminal name="Terminal" gates="15" />
+    </terminals>
+    <runways>
+      <runway name="06/24" length="2286" surface="Asphalt" />
+    </runways>
+  </airport>
+            <airport name="Diu Airport" icao="VA1P" iata="DIU" type="Domestic" season="All_Year">
+    <town town="Diu" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="020°42'47''N" />
+      <longitude value="070°55'16''E" />
+    </coordinates>
+    <size value="Smallest" pax="120" />
+    <terminals>
+      <terminal name="Terminal" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="05/22" length="1823" surface="Asphalt" />
+       <runway name="13/31" length="1084" surface="Asphalt" />
+    </runways>
+  </airport>
+            <airport name="Pathankot Airport" icao="VIPK" iata="IXP" type="Domestic" season="All_Year">
+	       <period from="11/21/2006 12:00:00 AM" to="1/1/2199 12:00:00 AM" />
+    <town town="Pathankot" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="032°14'01''N" />
+      <longitude value="075°38'04''E" />
+    </coordinates>
+    <size value="Smallest" pax="43" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="2734" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Bhuntar Airport" icao="VIBR" iata="KUU" type="Domestic" season="All_Year">
+    <town town="Kullu" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="031°52'36''N" />
+      <longitude value="077°09'16''E" />
+    </coordinates>
+    <size value="Smallest" pax="40" />
+    <terminals>
+      <terminal name="Terminal" gates="4" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="1125" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Sahnewal Airport" icao="VILD" iata="LUH" type="Domestic" season="All_Year">
+    <town town="Ludhiana" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="030°51'17''N" />
+      <longitude value="075°57'09''E" />
+    </coordinates>
+    <size value="Smallest" pax="14" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="1463" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Lilabari Airport" icao="VELR" iata="IXI" type="Domestic" season="All_Year">
+    <town town="North Lakhimpur" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="027°17'44''N" />
+      <longitude value="094°05'52''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="2286" surface="Concrete" />
+    </runways>
+  </airport>
+      <airport name="Tezpur Airport" icao="VETZ" iata="TEZ" type="Domestic" season="All_Year">
+    <town town="Tezpur" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="026°42'44''N" />
+      <longitude value="092°47'14''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="2746" surface="Asphalt" />
+    </runways>
+  </airport>
+        <airport name="Allahabad Airport" icao="VIAL" iata="IXD" type="Domestic" season="All_Year">
+    <town town="Allahabad" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="025°26'24''N" />
+      <longitude value="081°44'02''E" />
+    </coordinates>
+    <size value="Smallest" pax="30" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2472" surface="Asphalt" />
+        <runway name="6/24" length="1463" surface="Concrete" />
+    </runways>
+  </airport>
+          <airport name="Cooch Behar Airport" icao="VECO" iata="COH" type="Domestic" season="All_Year">
+    <town town="Cooch Behar" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="026°30'00''N" />
+      <longitude value="089°40'00''E" />
+    </coordinates>
+    <size value="Smallest" pax="12" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="4/22" length="1067" surface="Asphalt" />
+    </runways>
+  </airport>
+              <airport name="Gorakhpur Airport" icao="VEGK" iata="GOP" type="Domestic" season="All_Year">
+    <town town="Gorakhpur" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="026°44'22''N" />
+      <longitude value="083°26'58''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="2743" surface="Asphalt" />
+    </runways>
+  </airport>
+                <airport name="Tuticorin Airport" icao="VO80" iata="TCR" type="Domestic" season="All_Year">
+    <town town="Thoothukudi/Tirunelveli" country="152" GMT="05:30:00" DST="05:30:00" />
+    <coordinates>
+      <latitude value="008°43'27''N" />
+      <longitude value="078°01'33''E" />
+    </coordinates>
+    <size value="Smallest" pax="16" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="1351" surface="Asphalt" />
+    </runways>
+  </airport>
+  
    <airport name="Cochin International Airport" icao="VOCI" iata="COK" type="International" season="All_Year">
     <town town="Cochin" country="152" GMT="05:30:00" DST="05:30:00" />
     <coordinates>
@@ -5988,20 +6146,7 @@ inflationafter="1">
       <runway name="15/33" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Brasília Presidente Juscelino Kubitschek International Airport" icao="SBBR" iata="BSB" type="International" season="All_Year">
-    <town town="Samarinda" country="162" GMT="-03:00:00" DST="-02:00:00" />
-    <coordinates>
-      <latitude value="15°52'9''S" />
-      <longitude value="47°55'15''W" />
-    </coordinates>
-    <size value="Small" pax="1500" cargo="Medium" cargovolume="44" />
-    <terminals>
-      <terminal name="Terminal" gates="12" />
-    </terminals>
-    <runways>
-      <runway name="04/22" length="3000" surface="Asphalt" />
-    </runways>
-  </airport>
+
   <airport name="H. Asan Airport" icao="WAOS" iata="SMQ" type="Domestic" season="All_Year">
     <town town="Sampit" country="162" GMT="07:00:00" DST="07:00:00" />
     <coordinates>
@@ -9746,6 +9891,133 @@ inflationafter="1">
     </runways>
   </airport>
   <!--Mongolia (ZM**)-->
+   <airport name="Choibalsan Airport" icao="ZMCD" iata="COQ" type="International" season="All_Year">
+    <town town="Choibalsan" country="241" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="048°08'08''N" />
+      <longitude value="114°38'46''E" />
+    </coordinates>
+    <size value="Smallest" pax="19" />
+    <terminals>
+      <terminal name="Terminal" gates="3" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2600" surface="Concrete" />
+    </runways>
+  </airport>
+<airport name="Altai Airport" icao="ZMAT" iata="LTI" type="Domestic" season="All_Year">
+    <town town="Altai" country="241" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="046°22'33''N" />
+      <longitude value="096°13'09''E" />
+    </coordinates>
+    <size value="Smallest" pax="11" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="2290" surface="Grass" />
+    </runways>
+  </airport>
+      <airport name="Bulgan Airport" icao="ZMBN" iata="UGA" type="Domestic" season="All_Year">
+    <town town="Bulgan" country="241" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="048°51'15''N" />
+      <longitude value="103°29'03''E" />
+    </coordinates>
+    <size value="Smallest" pax="8" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+     <runways>
+      <runway name="13/31" length="1900" surface="Grass" />
+    </runways>
+  </airport>
+      <airport name="Tavan Tolgoi Airport" icao="ZMTT" iata="MUV" type="Domestic" season="All_Year">
+    <town town="Tsogttsetsii" country="241" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="043°46'18''N" />
+      <longitude value="105°34'47''E" />
+    </coordinates>
+    <size value="Smallest" pax="19" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+     <runways>
+      <runway name="14/32" length="2350" surface="Dirt" />
+    </runways>
+  </airport>
+      <airport name="Bayankhongor Airport" icao="ZMBH" iata="BYN" type="Domestic" season="All_Year">
+    <town town="Bayankhongor" country="241" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="046°10'14''N" />
+      <longitude value="100°42'00''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+     <runways>
+      <runway name="16L/34R" length="2800" surface="Asphalt" />
+      <runway name="16R/34L" length="2100" surface="Grass" />
+    </runways>
+  </airport>
+ <airport name="Donoi Airport" icao="ZMDN" iata="ULZ" type="Domestic" season="All_Year">
+    <town town="Uliastai" country="241" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="047°42'46''N" />
+      <longitude value="096°31'27''E" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+     <runways>
+      <runway name="16/34" length="3200" surface="Grass" />
+    </runways>
+  </airport>
+   <airport name="Arvaikheer Airport" icao="ZMAH" iata="AVK" type="Domestic" season="All_Year">
+    <town town="Arvaikheer" country="241" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="046°15'09''N" />
+      <longitude value="102°47'57''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+     <runways>
+      <runway name="14/32" length="2300" surface="Grass" />
+    </runways>
+  </airport>
+   <airport name="Umnugobi/Ovoot Airport" icao="ZMGT" iata="OOT" type="Domestic" season="All_Year">
+    <town town="Ovoot Tolgoi" country="241" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="043°01'35''N" />
+      <longitude value="101°20'10''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+     <runways>
+      <runway name="18/36" length="2219" surface="Concrete" />
+    </runways>
+  </airport>
+        <airport name="Baruun-Urt Airport" icao="ZMBU" iata="UUN" type="Domestic" season="All_Year">
+    <town town="Baruun-Urt" country="241" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="046°39'37''N" />
+      <longitude value="113°17'07''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+     <runways>
+      <runway name="18/36" length="2200" surface="Grass" />
+    </runways>
+  </airport>
  <airport name="Chinggis Khaan International Airport" icao="ZMUB" iata="ULN" type="International"
            season="All_Year">
     <town town="Ulaanbaatar" country="241" GMT="08:00:00" DST="08:00:00" />

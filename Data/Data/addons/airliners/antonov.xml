@@ -13,7 +13,7 @@
     <specs wingspan="38" length="34" range="4075" speed="610" fuelcapacity="17120" consumption="0.042"
            runwaylengthrequired="720" />
     <capacity passengers="100" cockpitcrew="2" cabincrew="4" maxclasses="2" />
-    <produced from="1960" to="1972" rate="8" />
+    <produced from="1959" to="1972" rate="8" />
   </airliner>
   <airliner manufacturer="Antonov" name="Antonov An-24" price="1900000">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
@@ -77,6 +77,20 @@
            runwaylengthrequired="1900" />
     <capacity passengers="99" cockpitcrew="2" cabincrew="3" maxclasses="2" />
     <produced from="2010" to="2016" rate="3" />
+  </airliner>
+      <airliner manufacturer="Antonov" name="Antonov An-12 Passenger" price="3650000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="38" length="33.10" range="4650" speed="670" fuelcapacity="19200" consumption="0.042"
+           runwaylengthrequired="720" />
+    <capacity passengers="100" cockpitcrew="5" cabincrew="2" maxclasses="2" />
+    <produced from="1959" to="1973" rate="10" />
+  </airliner>
+     <airliner type="Cargo" manufacturer="Antonov" name="Antonov An-12 Cargo" price="3650000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="38" length="33.10" range="4650" speed="670" fuelcapacity="19200" consumption="0.042"
+           runwaylengthrequired="720" />
+    <capacity cockpitcrew="5" Cargo="20" />
+    <produced from="1959" to="1973" rate="32" />
   </airliner>
   <airliner type="Cargo" manufacturer="Antonov" name="Antonov An-124" price="37512740"> <!--59600000-->
 

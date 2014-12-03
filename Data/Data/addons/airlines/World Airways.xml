@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="World Airways" iata="WO" color="MidnightBlue" country="122" CEO="John Graber" mentality="Safe" market="Global" preferedairport="OAK" schedule="Charter" routefocus="Mixed" >
+  <narrative narrative="World Airways was a duel passenger and cargo airline and mostly charter airline based out of Oakland most of its life, and also at Washington Dulles. It was around from 1948 until March 27,2014. For a time in the 80s it had scheduled service using DC-10's and was the only airline to ever use a widebody on some routes, s
+  uch as OAK-LAX. Other places served included Baltimore,Honolulu,Kansas City,Newark,Orlando,San Francisco,Washington Dulles and overseas Frankfurt and London Gatwick. It served the military a substantial amount, ferring servicemen and equipment to places and from places like the Middle East. It was also used in the same role during Vietnam and two of its 727's were some of the last planes 
+  out of Vietnam and the last ones out of Da Nang on March 29,1975 as gunfire was being shot at the planes and they were over capacity with people having to stay in the cargo holds, and even having to start its take off role in such a hurry the airstairs at the back were not secured before the takeoff role. In 2006 it and North American Airlines were bought by World Air Holdings, making them both subsidaries. North American also went out of business in 2014,a few months after World on June 7,2014. That didn't last long however and Global Aero Logistics soon bought them. That company also owned ATA Airlines which would go defunct in April 2008. World itself owned Key Airlines from 1987-1992, an airline that was based out of Hailey,Idaho and Savannah,Georgia. At the end it had four MD-11F's and two 747-400F's for cargo and three passenger MD-11's. It used DC-10-10's,DC-10-30's both passenger and cargo versions,DC-8-61's and 63's in both versions,and  747-200F's and DC-4's,DC-6's,Lockheed Constellations,707's,727-200's throughout its life. "/>
+</profile>
+  <info real="True" from="1948" to="2014" />
+  <prefereds aircrafts="MD-11F,MD-11,Boeing 747-400F,MD DC-10-30F,MD DC-10-30,MD DC-10-10,Douglas DC-8-62F,Douglas DC-8-63,Douglas DC-8-61,Boeing 747-200F,MD-11ER,Boeing 727-200,Boeing 727-200 Adv.,Boeing 747-100,DC-6,DC-6B,DC-4-1009,Boeing 707-120B,Boeing 707-320C"></prefereds>
+     <focusairports>
+	 <focusairport airport="IAD"></focusairport>
+	 <focusairport airport="SFO"></focusairport>
+	 <focusairport airport="LAX"></focusairport>
+     </focusairports>
+
+	 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2014)-->
+	         <airliners>
+	    <airliner type="Boeing 747-400F" early="2" late="0"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1971) late (1985)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-62F" early="1" late="0"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1971) late (2012)-->
+	         <airliners>
+	    <airliner type="Douglas DC-10-30F" early="3" late="0"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1983) late (2010)-->
+	         <airliners>
+	    <airliner type="Douglas DC-10-30" early="1" late="0"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1984) late (1992)-->
+	         <airliners>
+	    <airliner type="Douglas DC-10-10" early="1" late="0"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1973) late (1988)-->
+	         <airliners>
+	    <airliner type="Boeing 747-200F" early="1" late="0"></airliner>
+	     </airliners>
+	     	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1994) late (2010)-->
+	         <airliners>
+	    <airliner type="MD-11" early="3" late="0"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1995) late (2013)-->
+	         <airliners>
+	    <airliner type="MD-11F" early="3" late="4"></airliner>
+	     </airliners>
+
+
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

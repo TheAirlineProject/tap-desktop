@@ -3,7 +3,7 @@ using SysFile = System.IO.File;
 
 namespace TheAirline.Model.Services.Filesystem
 {
-    class File : IFilesystemEntity
+    public class File : IFilesystemEntity
     {
         private string path;
 

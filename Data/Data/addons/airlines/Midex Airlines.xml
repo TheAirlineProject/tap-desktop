@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Midex Airlines" iata="MG" color="MediumBlue" country="156" CEO="Issam Khairallah" mentality="Safe" market="Global" preferedairport="SHJ" Schedule="Charter" routefocus="Cargo">
+  <narrative narrative="Midex Airlines is a cargo airline based at Sharjah,United Arab Emirates. It does charters and only for a brief time did scheduled service. It was founded in 2007. As of November 2014 it had five A300B4-200F's and three 747-200F's. A list of common destinations served as of May 2012 are Kabul and Kandahar in Afghanistan,four in Pakistan,Yekaterinburg in Russia,Bergamo in Italy,Dubai domestic wise,Sana'a in Yemen,Shanghai in China,Rio de Janeiro in Brazil,Amsterdam in the Netherlands and Frankfurt Hahn in Germany. However it is said only Kabul is the only one it really serves still starting a month later in June 2012. For a few months it did an Al Ain,UAE to Paris Orly route. Passsenger service was a plan at one time but never started."/>
+</profile> 
+  <info real="True" from="2007" to="2199" />
+  <prefereds aircrafts="Airbus A300C4-620,Boeing 747-200F,Airbus A300-600F"></prefereds>
+ 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2014)-->
+	         <airliners>
+	    <airliner type="Airbus A300C4-620" early="3" late="5"></airliner>
+	     </airliners>
+	     	      	  <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2014)-->
+	         <airliners>
+	    <airliner type="Boeing 747-200F" early="1" late="3"></airliner>
+	     </airliners>
+
+	     	  
+	     	  
+
+
+</airline>

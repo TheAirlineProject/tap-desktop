@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Cargo Mongolia" iata="MGC" color="Yellow" country="241" CEO="P. Baatarsuren" mentality="Safe" market="Global" preferedairport="ULN" schedule="Charter" routefocus="Cargo" >
+  <narrative narrative="Air Cargo Mongolia is a charter cargo airline based at Ulaanbaatar,Mongolia. It offers charters to Asian and European destinations. It was founded in 2007 but did not get going until 2014. It as of November 2014 has one A300-600F."/>
+</profile> 
+  <info real="True" from="2014" to="2199" />
+  <prefereds aircrafts="Airbus A300-600F"></prefereds>
+ 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2018)-->
+	         <airliners>
+	    <airliner type="Airbus A300-600F" early="1" late="1"></airliner>
+	     </airliners>
+
+	     	  
+	     	  
+
+
+</airline>

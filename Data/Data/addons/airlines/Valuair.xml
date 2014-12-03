@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Valuair" iata="VF" color="LightGreen" country="174" CEO="Barathan Pasupathi" mentality="Safe"
            market="Local" preferedairport="SIN">
+             <narrative narrative="Valuair is a Singapore-based low-cost carrier. It was launched in 2004, offering initial services to Bangkok and Hong Kong. It differentiates itself from other low-cost carriers in that it offers frills such as a baggage allowance of over 20 kg, in-flight food, allocated seats, and 32 inch seat pitch. Acquired in 2005 by Jetstar Asia Airways, the Valuair brand is retained for Jetstar Asia's scheduled services to major cities in Indonesia." />
   </profile>
   <info real="True" from="2004" to="2199" />
 </airline>

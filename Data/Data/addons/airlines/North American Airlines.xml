@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="North American Airlines" iata="NA" logo="NA3" color="DarkBlue" country="122" CEO="James Casbarro" mentality="Safe" market="Global" preferedairport="TPA">
+  <narrative narrative="North American Airlines was around from 1990 to 2014. It's aircraft and maintenance base was Tampa. The last 6 years of its life were charter only but it did do scheduled service in the 90's and up to 2008. Its last round of scheduled service included
+  a  hub at JFK and a focus city at Baltimore BWI. Tampa and Miami were a part of it, and Accra,Ghana, Georgetown,Guyana Lagos,Nigeria Port of Spain,Trinindad and Tobago and Santa Cruz,Bolivia were its international destinations. It operated 
+  Miami-Bolivia on behalf of AeroSur. Other destinations served in the past included San Juan,Puerto Rico, and some in Mexico. It operated JFK-LAX as a feeder for El Al. The airline was in fact founded with El Al in mind, and it was planned to compliment El Al routes
+  to North America and they even owned about 25% of it until July 2003 from its founding. In April 2005 it was bought by World Air Holdings, the owner of World Airways, making them sister airlines. In April 2007 the owner of ATA Airlines bought 
+  the parent of North American and World making them part of ATA's group, but ATA would go under in 2008. The company would rename itself Global Aero Logistics after the fall of ATA and continue to own North American and World until their demise
+  in 2014. North Americans final plane fleet were five 767-300ER's and a 757-200. In the 90's it operated 757's, at least one MD-83 and had at least two 737-800's from about 1997-2004."/>
+</profile> 
+  <info real="True" from="1990" to="2014" />
+  <prefereds aircrafts="Boeing 767-300ER,Boeing 757-200,Boeing 737-800,MD-83 (DC-9-83)"></prefereds>
+     <focusairports>
+	 <focusairport airport="LAX"></focusairport>
+	 <focusairport airport="EWR"></focusairport>
+	 <focusairport airport="OAK"></focusairport>
+	 <focusairport airport="JFK"></focusairport>
+	 <focusairport airport="BWI"></focusairport>
+     </focusairports>
+
+	 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2013)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300ER" early="2" late="5"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1990) late (2013)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="1" late="1"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1992) late (2000)-->
+	         <airliners>
+	    <airliner type="MD-83 (DC-9-83)" early="1" late="0"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1997) late (2004)-->
+	         <airliners>
+	    <airliner type="Boeing 737-800" early="2" late="0"></airliner>
+	     </airliners>
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

@@ -1774,7 +1774,7 @@
     </runways>
   </airport>
   <airport name="Molokai Airport" icao="PHMK" iata="MKK" type="Domestic" season="All_Year">
-    <town town="Kaunakakai, HI" country="122" GMT="-10:00:00" DST="-11:00:00" />
+    <town town="Kaunakakai, HI" country="122" GMT="-10:00:00" DST="-10:00:00" />
     <coordinates>
       <latitude value="021°09'10''N" />
       <longitude value="157°05'45''W" />
@@ -1809,7 +1809,7 @@
     </runways>
   </airport>
   <airport name="Lanai Airport" icao="PHNY" iata="LNY" type="Domestic" season="All_Year">
-    <town town="Lanai City, HI" country="122" GMT="-10:00:00" DST="-11:00:00" />
+    <town town="Lanai City, HI" country="122" GMT="-10:00:00" DST="-10:00:00" />
     <coordinates>
       <latitude value="020°47'08''N" />
       <longitude value="156°57'03''W" />

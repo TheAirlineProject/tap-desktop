@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Continental Micronesia" iata="CS" color="MidnightBlue" country="122" CEO="Robert F. Six" mentality="Moderate" market="Global" preferedairport="GUM" >
+  <narrative narrative="Continental Micronesia was a subsidiary of Continental based at Guam, the U.S territory in the Pacific Ocean in Asia. It was founded in 1968 as Air Micronesia and has always been a part of Continental. It was merged into the main airline on December 22,2010 as part of the new business model after Continentals merger with United. Its main route was Guam-Honolulu. At the end it served much of Micronesia, and served Asia and Australia. This includes 9 in Japan,Hong Kong, and Manila in Asia. 4 in Micronesia itself,2 in the Marshall Islands, Koror in Palau, Cairns in Australia,and Nadi in Fiji. Other U.S destinations were Los Angeles,San Francisco,Houston and Newark. In the beginning it was also based at the main island of what is now the Northern Marianas, another US territory near Guam called Saipan. Its planes were always on loan from the parent, and at the end it had 8 737-800's, 4 737-700s and 4 767-400ER's. Past planes used include 757-200's,727's,DC-10's and 747's. It was also nicknamed Air Mike. The only three airports that had both Continental and its Micronesia brand present in the last 10 years was Hong Kong,Tokyo and Honolulu. "/>
+</profile>
+  <info real="True" from="1968" to="2011" />
+  <prefereds aircrafts="Boeing 737-800,Boeing 737-700,Boeing 767-400ER,Boeing 757-200,Boeing 727-100,Boeing 727-200,Boeing 727-200 Adv.,Boeing 747-100,Boeing 747-200B,Boeing 747-300,Beoing 747-400,Douglas DC-10-10,Douglas DC-10-30"></prefereds>
+     <focusairports>
+	 <focusairport airport="HNL"></focusairport>
+        <focusairport airport="SPN"></focusairport>
+     </focusairports>
+
+	 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (1995) late (2000)-->
+	         <airliners>
+	    <airliner type="Boeing 747-200B" early="3" late="0"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1996) late (1999)-->
+	         <airliners>
+	    <airliner type="Douglas DC-10-10" early="6" late="0"></airliner>
+	     </airliners>
+
+
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

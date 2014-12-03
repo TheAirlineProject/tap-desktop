@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Freight Runners Express" iata="FRG" color="Gray" country="122" CEO="Chip Zens" mentality="Safe" market="Regional" preferedairport="MKE" routefocus="Cargo" >
+  <narrative narrative="Freight Runners Express is a cargo airline based at Milwaukee,Wisconsin. It does both scheduled and charter service. It was founded in 1985. It operates in Canada and Mexico too. Its fleet in December 2013 was 10 Beechcraft 99's,3 Beechcraft 1900C's,3 Cessna 402's,2 Cessna 207's,3 Beechcraft King Air's,and one Embraer 120 Brasilia."/>
+</profile>
+  <info real="True" from="1985" to="2199" />
+  <prefereds aircrafts="Beechcraft 99,Beechcraft 1900C,Cessna 402,Cessna 207,EMB 120 Brasilia,Cessna 402C"></prefereds>
+     	  <!--the airliners the airline would start with which isn't on a route earyl (1985) late (2014)-->
+	         <airliners>
+	    <airliner type="Beechcraft 99" early="1" late="10"></airliner>
+	     </airliners>
+	          	  <!--the airliners the airline would start with which isn't on a route earyl (1985) late (2014)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900C" early="0" late="3"></airliner>
+	     </airliners>
+	     	          	  <!--the airliners the airline would start with which isn't on a route earyl (1985) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 402" early="1" late="2"></airliner>
+	     </airliners>
+	        	          	  <!--the airliners the airline would start with which isn't on a route earyl (1985) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 402C" early="0" late="1"></airliner>
+	     </airliners>
+	     	          	  <!--the airliners the airline would start with which isn't on a route earyl (1985) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 207" early="0" late="2"></airliner>
+	     </airliners>
+	          	  <!--the airliners the airline would start with which isn't on a route earyl (1985) late (2014)-->
+	         <airliners>
+	    <airliner type="EMB 120 Brasilia" early="0" late="1"></airliner>
+	     </airliners>
+
+
+
+
+
+
+	
+	     	  
+	     	  
+	     	  
+
+
+</airline>

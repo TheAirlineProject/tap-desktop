@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Xtra Airways" iata="XP" color="SkyBlue" country="122" CEO="Lisa Dunn" mentality="Safe" market="Global" preferedairport="SAT" schedule="Charter" >
+  <narrative narrative="Xtra Airways is a charter airline based in Boise,Idaho and has a hub at San Antonio,Texas. It does not limit its service to the US and is even approved to fly domestic service
+  in Chile. It operates in the Caribbean,Mexico,Canada,and Central and South America besides the US, which includes Alaska. Currently it has 4 737-400's as of November 2014. One is based at San Antonio,one at Miami,one at Pittsburgh and one at Baltimore. It was founded in 1987 and started operations in 1989 as Casino Express Airlines
+  and operated out of Elko,Nevada using a 737-200. A few years later it got another one. From 1999-2005 it had 3 737-200 Adv.'s and have leased 737-800's and at least one 300 for short times. It changed its name in 2005 to reflect that it serves much more than casino vacationers. "/>
+</profile>
+  <info real="True" from="1988" to="2199" />
+  <prefereds aircrafts="Boeing 737-400,Boeing 737-200 Adv.,Boeing 737-200,Boeing 737-300,Boeing 737-800,Boeing 737 MAX 8"></prefereds>
+     <focusairports>
+	 <focusairport airport="EKO"></focusairport>
+	 <focusairport airport="BOI"></focusairport>
+	 <focusairport airport="MYR"></focusairport>
+	 <focusairport airport="ENV"></focusairport>
+	 <focusairport airport="MIA"></focusairport>
+	 <focusairport airport="PIT"></focusairport>
+	 <focusairport airport="BWI"></focusairport>
+     </focusairports>
+
+	  <!--the airliners the airline would start with which isn't on a route earyl (1968) late (2014)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="5" late="4"></airliner>
+	     </airliners>
+	     	  <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2006)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200 Adv." early="3" late="0"></airliner>
+	     </airliners>
+	         	  <!--the airliners the airline would start with which isn't on a route earyl (1988) late (1998)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200" early="1" late="2"></airliner>
+	     </airliners>
+
+
+
+
+	
+	     	  
+	     	  
+	     	  
+
+
+</airline>

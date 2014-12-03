@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Florida West International Airways" iata="RF" color="Violet" country="122" CEO="Mansour Rasnavad" mentality="Safe" market="Global" preferedairport="MIA" routefocus="Cargo" >
+  <narrative narrative="Florida West International Airways is a cargo airline based at Miami,Florida. It does both scheduled and charter services worldwide, but mainly in Latin America,the Caribbean and domestically. As of 2014 it had one 767-300F. It has operated DC-8's before too."/>
+</profile>
+  <info real="True" from="1981" to="2199" />
+  <prefereds aircrafts="Boeing 767-300F,Douglas DC-8-62F"></prefereds>
+
+
+	  <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300F" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1996) late (2003)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-62F" early="1" late="0"></airliner>
+	     </airliners>
+
+	 
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

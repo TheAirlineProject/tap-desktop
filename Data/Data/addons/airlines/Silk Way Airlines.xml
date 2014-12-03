@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Silk Way Airlines" iata="ZP" color="DarkBlue" country="235" CEO="Zaur Akhundov" mentality="Moderate" market="Global" preferedairport="GYD" schedule="Business" routefocus="Cargo" >
+  <narrative narrative="Silk Way Airlines is a cargo airline based out of Baku,Azerbaijan. It started in 2001 and is named after the Silk Road,the historical trade route between Asia and Europe. As of April 2013 it served 14 countries outside of Azerbaijan. Two in Afghanistan,three in China including Hong Kong,one in Georgia,one in Germany,one in the UK,four in Kazakhstan,one in South Korea,one in Kyrgyzstan,one in Israel,one in Italy,Luxembourg,one in Turkey,The Netherlands and the UAE. As of late 2014 it had seven Il-76's,a 747-400F,two 767-300F's,and three An-12's. It is part of the EuroAsian Transport Company, which is owned by Russian company Auerelius Utopaite. It also has a subsidiary that does charter and VIP flights with a seperate fleet called SW Business Aviation, also based at Baku. That has a 727-200,ATR-500,and three Gulfstream types. Most of Silk Ways flights operate once weekly, some twice and a few three times."/>
+</profile> 
+  <info real="True" from="2001" to="2199" />
+  <prefereds aircrafts="Il-76TD,Boeing 747-400F,Antonov An-12 Cargo,Boeing 747-8F,Boeing 767-300F,Douglas DC-8-62F"></prefereds>
+ 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2016)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300F" early="2" late="2"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 2008) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 747-400F" early="1" late="1"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 2001) late (2015)-->
+	         <airliners>
+	    <airliner type="Antonov An-12 Cargo" early="1" late="3"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 2001) late (2015)-->
+	         <airliners>
+	    <airliner type="Il-76TD" early="1" late="7"></airliner>
+	     </airliners>
+	 	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 2001) late (2010)-->
+	         <airliners>
+	    <airliner type="DC-8-62F" early="1" late="0"></airliner>
+	     </airliners>
+	     	  
+	     	  
+	     	  
+
+
+</airline>

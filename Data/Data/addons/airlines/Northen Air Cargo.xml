@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Northern Air Cargo" iata="NAC" color="Red" country="122" CEO="Bobby Sholton" mentality="Safe" market="Domestic" preferedairport="ANC" routefocus="Cargo" >
+  <narrative narrative="Northern Air Cargo is based at Anchorage,Alaska and has a hub at Fairbanks,Alaska. It was founded in 1956 to do charter freight. Then it became the first scheduled all-cargo airline in Alaska. In 2014 is had three 737-200 Adv., and two 737-300's. Past planes include four 727-100C's,an ATR 42-300,and thirteen DC-6's. As of August 2012 it served 17 destinations all in Alaska."/>
+</profile>
+  <info real="True" from="1956" to="2199" />
+  <prefereds aircrafts="Douglas DC-6,Douglas DC-6B,Boeing 737-200,Boeing 737-200 Adv.,Boeing 737-300,Boeing 727-100C,ATR 42-300"></prefereds>
+     <focusairports>
+	 <focusairport airport="FAI"></focusairport>
+     </focusairports>
+
+	  <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2014)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200 Adv." early="1" late="3"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="1" late="2"></airliner>
+	     </airliners>
+	     	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2003) late (2007)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="1" late="0"></airliner>
+	     </airliners>
+
+	 
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

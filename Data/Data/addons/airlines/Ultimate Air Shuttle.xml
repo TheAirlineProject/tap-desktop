@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Ultimate Air Shuttle" iata="UJC" color="DarkGreen" country="122" CEO="Rick Pawlak" mentality="Safe" market="Regional" preferedairport="LUK" Schedule="Business" >
+  <narrative narrative="Ultimate Air Shuttle is a public charter airline based at the smaller of Cininatti,Ohio's airports, Lunken Airport. It also operates out of the larger Northern-Kentucky Cincinatti International. The other airports it operates its scheduled charters are at Morristown,New Jersey in the New York City area,Chicago Midway, and Charlotte,North Carolina. It does many of its routes every weekday, Monday-Friday, and some of them Monday-Thursday and some of them 3 days a week. There are no bag fees,no cancellation fees,and you can arruve at the airport as close to flight as 15 minutes before it. There are free drinks,with a light breakfast on morning flights and a fruit,cheese and meat tray on evening flights. Its parent Ultimate Jet Charters has been around since 1984 doing charters in the form of corporate,sports teams and fans,casino goers,bands and musicians and the like for high profile names and celebrities to name a few important charter services. This branch of it was founded in 2009. They used nine Fairchild-Dornier 328JET's, which their parent owns and also uses the same plane type."/>
+</profile>
+  <info real="True" from="2009" to="2199" />
+  <prefereds aircrafts="Fairchild-Dornier 328JET"></prefereds>
+  <focusairports>
+	 <focusairport airport="CVG"></focusairport>
+	 <focusairport airport="MMU"></focusairport>
+	 <focusairport airport="MDW"></focusairport>
+	 <focusairport airport="CLT"></focusairport>
+     </focusairports>
+
+
+     	  <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2014)-->
+	         <airliners>
+	    <airliner type="Fairchild-Dornier 328JET" early="9" late="9"></airliner>
+	     </airliners>
+
+
+
+
+
+
+	
+	     	  
+	     	  
+	     	  
+
+
+</airline>

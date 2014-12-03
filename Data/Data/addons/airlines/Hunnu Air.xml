@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Hunnu Air" iata="MR" logo="MR2" color="MediumOrchid" country="241" CEO="B. Bayar" mentality="Moderate" market="Global" preferedairport="ULN">
+  <narrative narrative="Hunnu Air is an airline based at Ulaanbaatar,Mongolia. It was founded in 2011 as Mongolian Airlines Group but changed in 2013 to avoid confusion with MIAT Mongolian Airlines. As of 2014 it serves 6 domestic destinations,3 in China,Hong Kong,1 in Russia, and Bangkok in Thailand. It also serves Paris seasonally which started in June 2014. Seasonal charters to Jeju,South Korea, Sanya on Hainan Island in China and several Japanese cities is also offered. It has three Fokker 50's, and two A319's as of November 2014. It also has an A330-200 on order. It plans to open a Singapore-ULN route in 2015 or 2016. It also plans to expand in China and Russia adding Hailar and Hohhot in China and Ulan-Ude and Irkutsk in Russia."/>
+</profile> 
+  <info real="True" from="2011" to="2199" />
+  <prefereds aircrafts="Fokker 50,Airbus A319-100,Airbus A330-200"></prefereds>
+ 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2017)-->
+	         <airliners>
+	    <airliner type="Fokker 50" early="3" late="3"></airliner>
+	     </airliners>
+	     	      	  <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2020)-->
+	         <airliners>
+	    <airliner type="Airbus A319-100" early="2" late="2"></airliner>
+	     </airliners>
+	     	     	      	  <!--the airliners the airline would start with which isn't on a route earyl (2015) late (2020)-->
+	         <airliners>
+	    <airliner type="Airbus A330-200" early="1" late="1"></airliner>
+	     </airliners>
+
+	     	  
+	     	  
+
+
+</airline>

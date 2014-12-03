@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+<airliner manufacturer="Helio" name="Helio Courier" price="44283">     <type body="Single_Aisle" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="11.89" length="9.35" range="1760" speed="255" fuelcapacity="454" consumption="0.20"
+           runwaylengthrequired="229" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1954" to="1974" rate="25" />
+  </airliner>
+</airliners>

@@ -14,19 +14,19 @@
 </airliner>
 <airliner type="Passenger" manufacturer="Ilyushin" name="Il-18V" price="1700000"> <!--59600000-->
 <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop"/>
-<specs wingspan="37.4" length="35.9" range="4270" speed="600" fuelcapacity="30000" consumption="0.091" runwaylengthrequired="3280"/>
+<specs wingspan="37.4" length="35.9" range="4270" speed="600" fuelcapacity="30000" consumption="0.091" runwaylengthrequired="1000"/>
 <capacity passengers="100" cockpitcrew="3" cabincrew="2" maxclasses="1"/>
 <produced from="1959" to="1965" rate="30"/>
 </airliner>
 <airliner type="Passenger" manufacturer="Ilyushin" name="Il-18D" price="1800000"> <!--59600000-->
 <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop"/>
-<specs wingspan="37.4" length="35.9" range="5300" speed="625" fuelcapacity="30000" consumption="0.063" runwaylengthrequired="3280"/>
+<specs wingspan="37.4" length="35.9" range="5300" speed="625" fuelcapacity="30000" consumption="0.063" runwaylengthrequired="1350"></specs>
 <capacity passengers="90" cockpitcrew="3" cabincrew="2" maxclasses="1"/>
 <produced from="1965" to="1978" rate="30"/>
 </airliner>
 <airliner type="Passenger" manufacturer="Ilyushin" name="Il-18E" price="1800000"> <!--59600000-->
 <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop"/>
-<specs wingspan="37.4" length="35.9" range="4400" speed="625" fuelcapacity="30000" consumption="0.056" runwaylengthrequired="3280"/>
+<specs wingspan="37.4" length="35.9" range="4400" speed="625" fuelcapacity="30000" consumption="0.056" runwaylengthrequired="1000"/>
 <capacity passengers="120" cockpitcrew="3" cabincrew="2" maxclasses="1"/>
 <produced from="1965" to="1978" rate="30"/>
 </airliner>

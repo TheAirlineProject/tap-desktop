@@ -92,10 +92,10 @@
       <HintPath>..\Resource\De.TorstenMandelkow.MetroChart.dll</HintPath>
     </Reference>
     <Reference Include="DevZest.DataVirtualization">
-      <HintPath>..\..\..\BBM\DataVirtualization_Src\Src\DataVirtualization\bin\Debug\DevZest.DataVirtualization.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\BBM\DataVirtualization_Src\Src\DataVirtualization\bin\Debug\DevZest.DataVirtualization.dll</HintPath>
     </Reference>
     <Reference Include="MapControl.WPF">
-      <HintPath>..\..\..\BBM\xamlmapcontrol\MyMap\bin\Debug\MapControl.WPF.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\tap-desktop\branches\042-dev\Debug\MapControl.WPF.dll</HintPath>
     </Reference>
     <Reference Include="MathNet.Numerics">
       <HintPath>..\packages\MathNet.Numerics.2.6.2\lib\net40\MathNet.Numerics.dll</HintPath>
@@ -108,13 +108,13 @@
       <HintPath>..\..\BBM\Prism\Lib\Desktop\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\Users\Christian\Downloads\raven-csharp-master\raven-csharp-master\src\app\SharpRaven\bin\Debug\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\raven-csharp-master\raven-csharp-master\src\app\SharpRaven\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="SharpRaven">
-      <HintPath>..\..\..\Users\Christian\Downloads\raven-csharp-master\raven-csharp-master\src\app\SharpRaven\bin\Debug\SharpRaven.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\raven-csharp-master\raven-csharp-master\src\app\SharpRaven\bin\Debug\SharpRaven.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

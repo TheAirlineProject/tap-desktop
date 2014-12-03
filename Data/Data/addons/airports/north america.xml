@@ -591,8 +591,179 @@ inflationafter="1">
       <runway name="13/31" length="1218" surface="Asphalt" />
       </runways>
   </airport>
+   <airport name="Orcas Island Airport" icao="KORS" iata="ESD" type="Domestic" season="All_Year">
+    <town town="Eastsound, WA" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="048°42'29''N" />
+      <longitude value="122°54'38''W" />
+    </coordinates>
+    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal 1" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="884" surface="Asphalt" />
+    </runways>
+  </airport>
+ <airport name="Bradford Regional Airport" icao="KBFD" iata="BFD" type="Domestic" season="All_Year">
+    <town town="Bradford, PA" country="122" GMT="-05:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="041°48'11''N" />
+      <longitude value="078°38'24''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="1922" surface="Asphalt" />
+      <runway name="5/23" length="1371" surface="Asphalt" />
+    </runways>
+  </airport>
+ <airport name="Glasgow International Airport/Wokal Field" icao="KGGW" iata="GGW" type="Domestic" season="All_Year">
+    <town town="Glasgow, MT" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="048°12'45''N" />
+      <longitude value="106°36'53''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="1524" surface="Asphalt" />
+      <runway name="8/26" length="1524" surface="Asphalt" />
+    </runways>
+  </airport>
+   <airport name="Havre City-County Airport" icao="KHVR" iata="HVR" type="Domestic" season="All_Year">
+    <town town="Havre, MT" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="048°32'35''N" />
+      <longitude value="109°45'44''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="1127" surface="Asphalt" />
+      <runway name="8/26" length="1586" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Dawson Community Airport" icao="KGDV" iata="GDV" type="Domestic" season="All_Year">
+    <town town="Glendive, MT" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="047°08'19''N" />
+      <longitude value="104°48'26''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="1739" surface="Asphalt" />
+      <runway name="2/20" length="915" surface="Asphalt" />
+    </runways>
+  </airport>
+ <airport name="McCook Ben Nelson Regional Airport" icao="KMCK" iata="MCK" type="Domestic" season="All_Year">
+    <town town="McCook, NE" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="040°12'23''N" />
+      <longitude value="100°35'32''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="1966" surface="Concrete" />
+      <runway name="4/22" length="1219" surface="Concrete" />
+      <runway name="17/35" length="411" surface="Dirt" />
+    </runways>
+  </airport>
+<airport name="Thief River Falls Regional Airport" icao="KTVF" iata="TVF" type="Domestic" season="All_Year">
+    <town town="Thief River Falls, MN" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="048°03'56''N" />
+      <longitude value="096°11'06''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="1982" surface="Asphalt" />
+      <runway name="4/22" length="1523" surface="Asphalt" />
+    </runways>
+  </airport>
+ <airport name="Huron Regional Airport" icao="KHON" iata="HON" type="Domestic" season="All_Year">
+    <town town="Huron, SD" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="044°23'07''N" />
+      <longitude value="98°13'43''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2195" surface="Concrete" />
+      <runway name="17/35" length="1524" surface="Concrete" />
+    </runways>
+  </airport>
+    <airport name="Jamestown Regional Airport" icao="KJMS" iata="JMS" type="Domestic" season="All_Year">
+    <town town="Jamestown, ND" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="046°55'47''N" />
+      <longitude value="98°40'42''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="1982" surface="Asphalt" />
+      <runway name="4/22" length="1753" surface="Asphalt" />
+    </runways>
+  </airport>
+ <airport name="Grand Canyon West Airport" icao="KGCW" iata="GCW" type="Domestic" season="All_Year">
+    <town town="Grand Canyon West, AZ" country="122" GMT="-07:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="035°59'25''N" />
+      <longitude value="113°48'59''W" />
+    </coordinates>
+    <size value="Very_small" pax="141" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal 1" gates="65" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="1542" surface="Asphalt" />
+      <runway name="H1" length="12" surface="Concrete" type="Helipad" /> 
+      <runway name="H2" length="12" surface="Concrete" type="Helipad" />
+      <runway name="H3" length="12" surface="Concrete" type="Helipad" /> 
+      <runway name="H4" length="13" surface="Concrete" type="Helipad" />
+      <runway name="H5" length="13" surface="Concrete" type="Helipad" /> 
+      <runway name="H6" length="13" surface="Concrete" type="Helipad" />
+      <runway name="H7" length="13" surface="Concrete" type="Helipad" /> 
+      <runway name="H8" length="13" surface="Concrete" type="Helipad" />
+    </runways>
+  </airport>
+   <airport name="Waimea-Kohala Airport" icao="PHMU" iata="MUE" type="Domestic" season="All_Year">
+    <town town="Waimea/Kamuela, HI" country="122" GMT="-10:00:00" DST="-10:00:00" />
+    <coordinates>
+      <latitude value="020°00'05''N" />
+      <longitude value="155°40'05''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="4/22" length="1584" surface="Asphalt" />
+    </runways>
+  </airport>
     <airport name="Kalaupapa Airport" icao="PHLU" iata="LUP" type="Domestic" season="All_Year">
-    <town town="Kalaupapa, HI" country="122" GMT="-10:00:00" DST="-11:00:00" />
+    <town town="Kalaupapa, HI" country="122" GMT="-10:00:00" DST="-10:00:00" />
     <coordinates>
       <latitude value="021°12'40''N" />
       <longitude value="156°58'25''W" />
@@ -622,7 +793,7 @@ inflationafter="1">
     </runways>
   </airport>
   <airport name="Midland International Airport" icao="KMAF" iata="MAF" type="Domestic" season="All_Year">
-    <period from="11/22/2012 12:00:00 AM" to="1/1/2199 12:00:00 AM" />
+    <period from="11/22/1961 12:00:00 AM" to="1/1/2199 12:00:00 AM" />
     <town town="Midland/Odessa, TX" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="31°56'33''N" />
@@ -1851,7 +2022,7 @@ inflationafter="1">
     </runways>
   </airport> 
   <airport name="Adak Airport" icao="PADK" iata="ADK" type="Domestic" season="All_Year">
-    <town town="Adak Island, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Adak Island, AK" country="122" GMT="-10:00:00" DST="-10:00:00" />
     <coordinates>
       <latitude value="051°52'41''N" />
       <longitude value="176°38'46''W" />
@@ -3215,7 +3386,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Yuma MCAS/Yuma International Airport" icao="KNYL" iata="YUM" type="Domestic" season="All_Year">
-    <town town="Yuma, AZ" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Yuma, AZ" country="122" GMT="-07:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="032°39'23''N" />
       <longitude value="114°36'21''W" />
@@ -7825,7 +7996,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Flagstaff Pulliam Airport" icao="KFLG" iata="FLG" type="Domestic" season="All_Year">
-    <town town="Flagstaff, AZ" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Flagstaff, AZ" country="122" GMT="-07:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="035°08'18''N" />
       <longitude value="111°40'15''W" />
@@ -7914,7 +8085,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Grand Canyon National Park Airport" icao="KGCN" iata="GCN" type="Domestic" season="All_Year">
-    <town town="Grand Canyon, AZ" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Grand Canyon, AZ" country="122" GMT="-07:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="035°57'08''N" />
       <longitude value="112°08'49''W" />
@@ -8203,7 +8374,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Laughlin Bullhead International Airport" icao="KIFP" iata="IFP" type="Domestic" season="All_Year">
-    <town town="Bullhead City, AZ" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Bullhead City, AZ" country="122" GMT="-07:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="035°09'26''N" />
       <longitude value="114°33'35''W" />
@@ -8262,7 +8433,7 @@ season="All_Year">
     </runways>
   </airport>
   <airport name="Phoenix-Mesa-Gateway Airport" icao="KIWA" iata="AZA" type="Domestic" season="All_Year">
-    <town town="Phoenix, AZ" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Phoenix, AZ" country="122" GMT="-07:00:00" DST="-07:00:00" />
     <coordinates>
       <latitude value="033°18'28''N" />
       <longitude value="111°39'17''W" />

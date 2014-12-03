@@ -154,7 +154,7 @@
         private static void createPaths(string path)
         {
             List<string> paths = new List<string> { path, path + "\\saves" };
-            filesystem.CreateIfNotExists(paths);
+           // filesystem.CreateIfNotExists(paths);
         }
 
         #endregion

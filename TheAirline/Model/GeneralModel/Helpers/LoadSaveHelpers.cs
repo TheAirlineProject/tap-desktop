@@ -50,8 +50,8 @@
 
                 foreach (Airport airport in g.Airports)
                 {
-                    XmlAirport xmlAirport = new XmlAirport(airport.Profile, airport.Runways.ToList(), airport.Terminals.getTerminals());
-                    root.AppendChild(xmlAirport.GetElement(xmlDoc));
+                    //XmlAirport xmlAirport = new XmlAirport(airport.Profile, airport.Runways.ToList(), airport.Terminals.getTerminals());
+                    //root.AppendChild(xmlAirport.GetElement(xmlDoc));
                 }
             }
         }
