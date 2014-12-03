@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Vietnam" iata="VN" logo="VN2" color="DarkBlue" country="170" CEO="Bao Dai" mentality="Moderate" market="Global" preferedairport="SGN" >
+  <narrative narrative="Air Vietnam was the main airline of South Vietnam from 1951 to 1975 at the end of the Vietnam War. Its base was Saigon and had a secondary hub at Da Nang. Its initial fleet was five Cessna 170's which hold only 3 passengers. It used DC-3's,DC-4's,Viscounts around the start of the war. It had to get bigger planes to meet the higher demands of the war. It had jets in the 727 and 707 series of Boeings. One of its 707's and one of its 727-100's went to the new Vietnam Airlines after the war. In 1969 it served 2 cities in Japan and one each in Hong Kong,Taiwan,Cambodia,Laos,Malaysia,the Philippines,Singapore,Thailand, and it served Paris Orly in France. In its last days it helped many people flee from South Vietnam to neighboring countries. It is estimated to have carried over one million passengers over its life."/>
+</profile>
+  <info real="True" from="1951" to="1975" />
+  <prefereds aircrafts="Douglas DC-3,Boeing 727-100,Boeing 727-200,Boeing 727-200 Adv.,Boeing 707-320B,Boeing 707-320,Boeing 707-120,Boeing 707-120B,Sud Aviation Caravelle I,Sud Aviation Caravelle 10B,Vickers Viscount 800,Douglas DC-4-1009,Cessna 170"></prefereds>
+     <focusairports>
+	 <focusairport airport="DAD"></focusairport>
+     </focusairports>
+                
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1951) late (1966)-->
+	         <airliners>
+	    <airliner type="Cessna 170" early="5" late="5"></airliner>
+	     </airliners>
+     	  
+
+
+</airline>

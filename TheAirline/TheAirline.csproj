@@ -108,13 +108,13 @@
       <HintPath>..\..\BBM\Prism\Lib\Desktop\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\Downloads\raven-csharp-master\raven-csharp-master\src\app\SharpRaven\bin\Debug\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\Users\Christian\Downloads\raven-csharp-master\raven-csharp-master\src\app\SharpRaven\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="SharpRaven">
-      <HintPath>..\..\..\..\Downloads\raven-csharp-master\raven-csharp-master\src\app\SharpRaven\bin\Debug\SharpRaven.dll</HintPath>
+      <HintPath>..\..\..\Users\Christian\Downloads\raven-csharp-master\raven-csharp-master\src\app\SharpRaven\bin\Debug\SharpRaven.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
