@@ -22,11 +22,17 @@ namespace TheAirline
     {
         static App()
         {
+            try { 
             AppSettings.Init();
 
            
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += currentDomain_UnhandledException;
+                }
+            catch (Exception e)
+            {
+                string ggg = e.ToString();
+            }
                  
         }
 
