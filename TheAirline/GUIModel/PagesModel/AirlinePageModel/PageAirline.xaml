@@ -72,10 +72,10 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <ContentControl Content="{Binding Route}"
+                                        <ContentControl Content="{Binding Route,Mode=OneTime}"
                                                         ContentTemplate="{StaticResource RouteItem}"
                                                         VerticalAlignment="Bottom" Width="75" />
-                                        <TextBlock Text="{Binding Percent,StringFormat={}{0:0.#}%}"
+                                        <TextBlock Text="{Binding Percent,Mode=OneTime,StringFormat={}{0:0.#}%}"
                                                    VerticalAlignment="Bottom" />
                                     </WrapPanel>
                                 </DataTemplate>
@@ -94,8 +94,8 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" Width="100" />
-                                        <TextBlock Text="{Binding Count,StringFormat={}#{0}}"
+                                        <TextBlock Text="{Binding Type.Name,Mode=OneTime}" VerticalAlignment="Bottom" Width="100" />
+                                        <TextBlock Text="{Binding Count,StringFormat={}#{0},Mode=OneTime}"
                                                    VerticalAlignment="Bottom" />
                                     </WrapPanel>
                                 </DataTemplate>

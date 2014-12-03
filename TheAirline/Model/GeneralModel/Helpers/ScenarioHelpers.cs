@@ -452,7 +452,7 @@
                             airport.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
                         }
                     }
-                    AirportHelpers.CreateAirportWeather(airport,DateTime.DaysInMonth(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month));
+                    AirportHelpers.CreateAirportWeather(airport);
                 });
 
             foreach (Airline airline in Airlines.GetAllAirlines())

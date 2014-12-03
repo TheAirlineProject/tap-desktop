@@ -13,8 +13,8 @@
     <Page.Resources>
         <DataTemplate x:Key="TrainingAircraftTypeItem">
             <WrapPanel>
-                <TextBlock Text="{Binding Name}" Width="150" VerticalAlignment="Bottom" />
-                <TextBlock Text="{Binding Price,Converter={StaticResource ValueCurrencyConverter},StringFormat=({0})}"
+                <TextBlock Text="{Binding Name,Mode=OneTime}" Width="150" VerticalAlignment="Bottom" />
+                <TextBlock Text="{Binding Price,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter},StringFormat=({0})}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
         </DataTemplate>

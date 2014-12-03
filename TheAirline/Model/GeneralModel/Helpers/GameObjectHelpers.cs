@@ -1221,7 +1221,10 @@
             //    airport =>
             foreach (var airport in Airports.GetAllActiveAirports())
             {
-                //AirportHelpers.CreateAirportWeather(airport);
+                if (GameObject.GetInstance().GameTime.Day == 15 || GameObject.GetInstance().GameTime.Day == 1)
+                    AirportHelpers.CreateAirportWeather(airport);
+                
+                
                 airport.clearDestinationCargoStatistics();
                 airport.clearDestinationPassengerStatistics();
              

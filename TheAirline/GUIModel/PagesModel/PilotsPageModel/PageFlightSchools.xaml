@@ -133,7 +133,7 @@
                                     Width="200" util:GridViewSort.PropertyName="Airport.Profile.Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding Airport}"
+                                            <ContentControl Content="{Binding Airport,Mode=OneTime}"
                                                             ContentTemplate="{StaticResource AirportCountryItem}"
                                                             VerticalAlignment="Bottom" />
                                         </DataTemplate>
@@ -142,11 +142,11 @@
                                 <GridViewColumn
                                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1005'}"
                                     Width="100" util:GridViewSort.PropertyName="NumberOfInstructors"
-                                    DisplayMemberBinding="{Binding NumberOfInstructors}" />
+                                    DisplayMemberBinding="{Binding NumberOfInstructors,Mode=OneTime}" />
                                 <GridViewColumn
                                     Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1006'}"
                                     Width="100" util:GridViewSort.PropertyName="NumberOfStudents"
-                                    DisplayMemberBinding="{Binding NumberOfStudents}" />
+                                    DisplayMemberBinding="{Binding NumberOfStudents,Mode=OneTime}" />
 
                             </GridView>
                         </ListView.View>

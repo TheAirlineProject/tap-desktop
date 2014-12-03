@@ -22,11 +22,11 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <ContentControl Content="{Binding Destination}"
+                                        <ContentControl Content="{Binding Destination,Mode=OneTime}"
                                                         ContentTemplate="{StaticResource AirportShortCountryLink}"
                                                         VerticalAlignment="Bottom" Width="60" />
                                         <TextBlock
-                                            Text="{Binding Distance,Converter={StaticResource DistanceToUnitConverter}}"
+                                            Text="{Binding Distance,Mode=OneTime,Converter={StaticResource DistanceToUnitConverter}}"
                                             VerticalAlignment="Bottom" />
                                     </WrapPanel>
                                 </DataTemplate>

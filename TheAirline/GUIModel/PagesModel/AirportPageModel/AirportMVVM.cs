@@ -86,13 +86,17 @@
             
             //AirportHelpers.CreateAirportWeather(this.Airport);
 
+            Weather currentWeather = this.Airport.Weather.First(w=>w.Date.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
+
+            int weatherIndex = this.Airport.Weather.IndexOf(currentWeather);
+
             this.Weather = new ObservableCollection<Weather>();
 
-            this.Airport.Weather.ForEach(w => this.Weather.Add(w));
+            this.Airport.Weather.GetRange(weatherIndex,5).ForEach(w => this.Weather.Add(w)); 
             
             if (!GameObject.GetInstance().DayRoundEnabled)
             {
-                this.CurrentWeather = this.Weather[0].Temperatures[GameObject.GetInstance().GameTime.Hour];
+                this.CurrentWeather = this.Weather[weatherIndex].Temperatures[GameObject.GetInstance().GameTime.Hour];
             }
 
             this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
@@ -188,7 +192,7 @@
                 }
             }
 
-            this.AirlineStatistics = new List<AirportStatisticsMVMM>();
+            this.AirlineStatistics = new ObservableCollection<AirportStatisticsMVMM>();
 
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
@@ -320,7 +324,7 @@
 
             this.ShowLocalTime = !GameObject.GetInstance().DayRoundEnabled;
 
-            this.AirlineReputations = new List<AirlineReputationMVVM>();
+            this.AirlineReputations = new ObservableCollection<AirlineReputationMVVM>();
 
             IDictionary<Airline, double> airlineScores = new Dictionary<Airline, double>();
 
@@ -347,9 +351,9 @@
 
         public ObservableCollection<AirlineAirportFacilityMVVM> AirlineFacilities { get; set; }
 
-        public List<AirlineReputationMVVM> AirlineReputations { get; set; }
+        public ObservableCollection<AirlineReputationMVVM> AirlineReputations { get; set; }
 
-        public List<AirportStatisticsMVMM> AirlineStatistics { get; set; }
+        public ObservableCollection<AirportStatisticsMVMM> AirlineStatistics { get; set; }
 
         public Airport Airport { get; set; }
 
@@ -775,7 +779,7 @@
             this.HasFreeGates = this.Destination.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0;
             this.Distance = distance;
 
-            this.GatesPercent = new List<KeyValuePair<string, int>>();
+            this.GatesPercent = new ObservableCollection<KeyValuePair<string, int>>();
 
             var airlines = this.Destination.AirlineContracts.Select(a=>a.Airline).Distinct();
 
@@ -803,7 +807,7 @@
 
        
         #region Public Properties
-        public List<KeyValuePair<string,int>> GatesPercent { get; set; }
+        public ObservableCollection<KeyValuePair<string,int>> GatesPercent { get; set; }
 
         public double RunwayLength { get; set; }
         public double Distance { get; set; }
@@ -880,11 +884,9 @@
             else
                 pax = 300;
             
-
             int maxWeeklyDepartures = (int)(7 * new TimeSpan(24, 0, 0).TotalHours / flightTime.TotalHours);
 
             int weeklyDepartures = (int)this.EstimatedDemand * 7 / pax;
-
          
             weeklyDepartures = Math.Min(weeklyDepartures, maxWeeklyDepartures);
 

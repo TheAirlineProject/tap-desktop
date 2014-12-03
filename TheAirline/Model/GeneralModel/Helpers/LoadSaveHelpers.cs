@@ -24,14 +24,9 @@
     using TheAirline.Model.GeneralModel.WeatherModel;
     using TheAirline.Model.PassengerModel;
     using TheAirline.Model.PilotModel;
-    using TapXml = TheAirline.Model.Services.Xml.Xml;
-    using TapFile = TheAirline.Model.Services.Filesystem.File;
-    using TheAirline.Model.Services.Xml;
 
     public class LoadSaveHelpers
     {
-        private static TapXml xmlDoc = new TapXml();
-
         public static void SaveAirportsList(List<Airport> airports,string name)
         {
             var airportCountryGroups =
@@ -39,21 +34,102 @@
                 group a by a.Profile.Country into g
                 select new { Country = g.Key, Airports = g };
 
-            xmlDoc.SetFile(new TapFile("c:\\bbm\\" + name));
-            xmlDoc.Initialize();
+             var xmlDoc = new XmlDocument();
+
+            XmlDeclaration xmlDeclaration = xmlDoc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            xmlDoc.AppendChild(xmlDeclaration);
 
             XmlElement root = xmlDoc.CreateElement("airports");
+            xmlDoc.AppendChild(root);
 
             foreach (var g in airportCountryGroups)
-            {      
-                xmlDoc.Comment(g.Country.Name, root);
+            {
+                XmlComment countryComment;
+                countryComment = xmlDoc.CreateComment(g.Country.Name);
+
+                root.AppendChild(countryComment);
 
                 foreach (Airport airport in g.Airports)
                 {
-                    //XmlAirport xmlAirport = new XmlAirport(airport.Profile, airport.Runways.ToList(), airport.Terminals.getTerminals());
-                    //root.AppendChild(xmlAirport.GetElement(xmlDoc));
+                    XmlElement airportNode = xmlDoc.CreateElement("airport");
+                    airportNode.SetAttribute("name", airport.Profile.Name);
+                    airportNode.SetAttribute("icao", airport.Profile.ICAOCode);
+                    airportNode.SetAttribute("iata", airport.Profile.IATACode);
+                    airportNode.SetAttribute("type", airport.Profile.Type.ToString());
+                    airportNode.SetAttribute("season", airport.Profile.Season.ToString());
+
+                    XmlElement periodNode = xmlDoc.CreateElement("period");
+                    periodNode.SetAttribute("from", airport.Profile.Period.From.ToString(new CultureInfo("en-US", false)));
+                    periodNode.SetAttribute("to", airport.Profile.Period.To.ToString(new CultureInfo("en-US", false)));
+
+                    if (!(airport.Profile.Period.From.Year <= 1960 && airport.Profile.Period.To.Year == 2199))
+                        airportNode.AppendChild(periodNode);
+
+                    string town = airport.Profile.Town.Name;
+
+                    if (airport.Profile.Town.State != null)
+                        town = town + ", " + airport.Profile.Town.State.ShortName;
+
+                    XmlElement townNode = xmlDoc.CreateElement("town");
+                    townNode.SetAttribute("town", town);
+                    townNode.SetAttribute("country", airport.Profile.Town.Country.Uid);
+                    townNode.SetAttribute("GMT", airport.Profile.OffsetGMT.ToString());
+                    townNode.SetAttribute("DST", airport.Profile.OffsetDST.ToString());
+
+                    airportNode.AppendChild(townNode);
+
+                    XmlElement coordinatesNode = xmlDoc.CreateElement("coordinates");
+
+                    XmlElement latitudeNode = xmlDoc.CreateElement("latitude");
+                    latitudeNode.SetAttribute("value", airport.Profile.Coordinates.Latitude.toLongString(true));
+                    coordinatesNode.AppendChild(latitudeNode);
+
+                    XmlElement longitudeNode = xmlDoc.CreateElement("longitude");
+                    longitudeNode.SetAttribute("value", airport.Profile.Coordinates.Longitude.toLongString(false));
+                    coordinatesNode.AppendChild(longitudeNode);
+
+                    airportNode.AppendChild(coordinatesNode);
+
+                    XmlElement sizeNode = xmlDoc.CreateElement("size");
+                    sizeNode.SetAttribute("value", airport.Profile.Size.ToString());
+                    sizeNode.SetAttribute("pax", airport.Profile.Pax.ToString());
+                    sizeNode.SetAttribute("cargo", airport.Profile.Cargo.ToString());
+                    sizeNode.SetAttribute("cargovolume", airport.Profile.CargoVolume.ToString());
+
+                    airportNode.AppendChild(sizeNode);
+
+                    XmlElement terminalsNode = xmlDoc.CreateElement("terminals");
+                    foreach (Terminal terminal in airport.Terminals.getTerminals())
+                    {
+                        XmlElement terminalNode = xmlDoc.CreateElement("terminal");
+
+                        terminalNode.SetAttribute("name", terminal.Name);
+                        terminalNode.SetAttribute("gates", terminal.Gates.getGates().Count.ToString());
+
+                        terminalsNode.AppendChild(terminalNode);
+                    }
+                    airportNode.AppendChild(terminalsNode);
+
+
+                    XmlElement airportRunwaysNode = xmlDoc.CreateElement("runways");
+
+                    foreach (Runway runway in airport.Runways)
+                    {
+                        XmlElement airportRunwayNode = xmlDoc.CreateElement("runway");
+                        airportRunwayNode.SetAttribute("name", runway.Name);
+                        airportRunwayNode.SetAttribute("length", runway.Length.ToString());
+                        airportRunwayNode.SetAttribute("surface", runway.Surface.ToString());
+
+                        airportRunwaysNode.AppendChild(airportRunwayNode);
+                    }
+
+                    airportNode.AppendChild(airportRunwaysNode);
+
+                    root.AppendChild(airportNode);
                 }
             }
+
+            xmlDoc.Save("c:\\bbm\\" + name);
         }
         /*
         //creates the saves.xml

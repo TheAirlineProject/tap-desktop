@@ -79,7 +79,7 @@
                             CanFilter="False" SortPropertyName="Pilots.Count" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Pilots.Count}" VerticalAlignment="Bottom" />
+                                    <TextBlock Text="{Binding Pilots.Count,Mode=OneTime}" VerticalAlignment="Bottom" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </filter:SortableGridViewColumn>
@@ -116,7 +116,7 @@
                                         <Image Source="{Binding Airliner.Type.Manufacturer.Logo,Mode=OneTime}"
                                                VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"
                                                Width="20" />
-                                        <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name}"
+                                        <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name,Mode=OneTime}"
                                                    VerticalAlignment="Bottom" />
                                     </WrapPanel>
                                 </DataTemplate>

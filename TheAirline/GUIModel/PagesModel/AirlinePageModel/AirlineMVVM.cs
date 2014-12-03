@@ -195,7 +195,7 @@
             this.IsBuyable = !this.Airline.IsHuman && GameObject.GetInstance().HumanAirline.Money > buyingPrice;
 
             this.ActiveQuantity = new ObservableCollection<AirlinerQuantityMVVM>();
-
+        
             var fleet = new List<FleetAirliner>(this.Airline.Fleet);
 
             foreach (FleetAirliner airliner in fleet)

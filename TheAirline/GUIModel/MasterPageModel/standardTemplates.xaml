@@ -91,7 +91,7 @@
     <!--town templates-->
     <DataTemplate x:Key="TownItem">
         <WrapPanel>
-            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
+            <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" />
             <TextBlock
                 Text="{Binding State.ShortName,Mode=OneTime,TargetNullValue={x:Static sys:String.Empty},StringFormat='{}, {0}'}"
                 VerticalAlignment="Bottom" />
@@ -373,7 +373,7 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                         </Style.Triggers>
                     </Style>
                 </WrapPanel.Style>
-                <Image Source="{Binding Image}" Width="300" VerticalAlignment="Bottom"
+                <Image Source="{Binding Image,Mode=OneTime}" Width="300" VerticalAlignment="Bottom"
                        RenderOptions.BitmapScalingMode="HighQuality" />
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
@@ -394,7 +394,7 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1002'}"
                     Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
-                <TextBlock Text="{Binding TypeAirliner}" VerticalAlignment="Bottom" />
+                <TextBlock Text="{Binding TypeAirliner,Mode=OneTime}" VerticalAlignment="Bottom" />
             </WrapPanel>
             <StackPanel>
                 <StackPanel.Style>

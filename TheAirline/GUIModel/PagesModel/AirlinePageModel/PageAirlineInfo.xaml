@@ -109,7 +109,7 @@
                                                 <DataTrigger Binding="{Binding License}" Value="Long_Haul">
                                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                                 </DataTrigger>
-                                                <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                                <DataTrigger Binding="{Binding Airline.IsHuman,Mode=OneTime}" Value="False">
                                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                                 </DataTrigger>
                                             </Style.Triggers>

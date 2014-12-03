@@ -7,7 +7,7 @@
       xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
       xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
          xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.AirlinePageModel"
-   
+
       Name="pageAirlineFleet"
       mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300"
@@ -44,15 +44,15 @@
                                                     <Style BasedOn="{StaticResource CheckBoxNormalStyle}"
                                                            TargetType="CheckBox">
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Airliner.Airline.IsHuman}"
+                                                            <DataTrigger Binding="{Binding Airliner.Airline.IsHuman,Mode=OneTime}"
                                                                          Value="False">
                                                                 <Setter Property="Visibility" Value="Collapsed" />
                                                             </DataTrigger>
-                                                            <DataTrigger Binding="{Binding Airliner.Type.TypeAirliner}"
+                                                            <DataTrigger Binding="{Binding Airliner.Type.TypeAirliner,Mode=OneTime}"
                                                                          Value="Cargo">
                                                                 <Setter Property="Visibility" Value="Collapsed" />
                                                             </DataTrigger>
-                                                            <DataTrigger Binding="{Binding Airliner.Type.TypeAirliner}"
+                                                            <DataTrigger Binding="{Binding Airliner.Type.TypeAirliner,Mode=OneTime}"
                                                                          Value="Mixed">
                                                                 <Setter Property="Visibility" Value="Collapsed" />
                                                             </DataTrigger>
@@ -73,7 +73,7 @@
                                                 <Button.Style>
                                                     <Style TargetType="Button">
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Airliner.Airline.IsHuman}"
+                                                            <DataTrigger Binding="{Binding Airliner.Airline.IsHuman,Mode=OneTime}"
                                                                          Value="False">
                                                                 <Setter Property="Button.Visibility" Value="Collapsed" />
                                                             </DataTrigger>
@@ -95,7 +95,7 @@
                                                 <Button.Style>
                                                     <Style TargetType="Button">
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Converter={StaticResource airlinerToSubsidiaryConverter}}"
+                                                            <DataTrigger Binding="{Binding Converter={StaticResource airlinerToSubsidiaryConverter},Mode=OneTime}"
                                                                          Value="False">
                                                                 <Setter Property="Button.Visibility" Value="Collapsed" />
                                                             </DataTrigger>
@@ -124,7 +124,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <WrapPanel>
-                                                <Image Source="{Binding Airliner.Type.Manufacturer.Logo}"
+                                                <Image Source="{Binding Airliner.Type.Manufacturer.Logo,Mode=OneTime}"
                                                        VerticalAlignment="Bottom"
                                                        RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
                                                 <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name,Mode=OneTime}"
@@ -138,12 +138,12 @@
                                     CanFilter="False" SortPropertyName="Airliner.Routes" Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ListBox ItemsSource="{Binding Routes}" BorderThickness="0"
+                                            <ListBox ItemsSource="{Binding Routes,Mode=OneTime}" BorderThickness="0"
                                                      Style="{StaticResource VerticalListBoxStyle}"
                                                      VerticalAlignment="Bottom">
                                                 <ListBox.ItemTemplate>
                                                     <DataTemplate>
-                                                        <ContentControl Content="{Binding}"
+                                                        <ContentControl Content="{Binding Mode=OneTime}"
                                                                         ContentTemplate="{StaticResource RouteFlagItem}"
                                                                         VerticalAlignment="Bottom" />
                                                     </DataTemplate>
@@ -157,7 +157,7 @@
                                     CanFilter="True" SortPropertyName="Purchased" Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Purchased}" VerticalAlignment="Bottom" />
+                                            <TextBlock Text="{Binding Purchased,Mode=OneTime}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </filter:SortableGridViewColumn>
@@ -176,7 +176,7 @@
                                     CanFilter="False" SortPropertyName="Pilots.Count" Width="50">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Pilots.Count}" VerticalAlignment="Bottom" />
+                                            <TextBlock Text="{Binding Pilots.Count,Mode=OneTime}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </filter:SortableGridViewColumn>
@@ -232,7 +232,7 @@
                                     CanFilter="False" SortPropertyName="Name" Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
+                                            <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </filter:SortableGridViewColumn>
@@ -242,7 +242,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <WrapPanel>
-                                                <Image Source="{Binding Airliner.Type.Manufacturer.Logo}"
+                                                <Image Source="{Binding Airliner.Type.Manufacturer.Logo,Mode=OneTime}"
                                                        VerticalAlignment="Bottom"
                                                        RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
                                                 <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name,Mode=OneTime}"
@@ -325,7 +325,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <WrapPanel>
-                                                    <Image Source="{Binding Airliner.Type.Manufacturer.Logo}"
+                                                    <Image Source="{Binding Airliner.Type.Manufacturer.Logo,Mode=OneTime}"
                                                        VerticalAlignment="Bottom"
                                                        RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
                                                     <TextBlock Margin="5 0 0 0" Text="{Binding Airliner.Type.Name,Mode=OneTime}"
@@ -376,7 +376,7 @@
                                     Width="100" util:GridViewSort.PropertyName="Route.Type">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Route.Type}" VerticalAlignment="Bottom" />
+                                            <TextBlock Text="{Binding Route.Type,Mode=OneTime}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -386,7 +386,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding PriceIndex,Converter={StaticResource ValueCurrencyConverter}}"
+                                                Text="{Binding PriceIndex,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                                 VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -433,7 +433,7 @@
                                     <ContentControl Content="{Binding Airport,Mode=OneTime}"
                                                     ContentTemplate="{StaticResource AirportCountryLink}"
                                                     VerticalAlignment="Bottom" Width="250" />
-                                    <TextBlock Text="{Binding Cooperation.Type.Name}" VerticalAlignment="Bottom" />
+                                    <TextBlock Text="{Binding Cooperation.Type.Name,Mode=OneTime}" VerticalAlignment="Bottom" />
                                 </WrapPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

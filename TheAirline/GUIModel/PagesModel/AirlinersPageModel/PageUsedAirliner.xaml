@@ -11,7 +11,7 @@
     <Page.Resources>
         <DataTemplate x:Key="FacilityItem">
             <WrapPanel>
-                <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}"
+                <TextBlock Text="{Binding Type,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                            VerticalAlignment="Bottom" Width="100" FontWeight="Bold" />
                 <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" />
             </WrapPanel>
@@ -19,7 +19,7 @@
         <DataTemplate x:Key="ClassItem">
             <Border Style="{StaticResource RoundedBorderStyle}">
                 <StackPanel Width="300">
-                    <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}"
+                    <TextBlock Text="{Binding Type,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                                FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
                     <WrapPanel Margin="0 5 0 0">
                         <TextBlock
@@ -29,7 +29,7 @@
                     </WrapPanel>
                     <ListBox ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" Background="Transparent"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
-                             ItemsSource="{Binding AllFacilities}" />
+                             ItemsSource="{Binding AllFacilities,Mode=OneTime}" />
                 </StackPanel>
             </Border>
         </DataTemplate>
@@ -133,7 +133,7 @@
                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1005'}"
                            VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
                 <ListBox Style="{StaticResource VerticalListBoxStyle}" Background="Transparent" Name="lbClasses"
-                         ItemsSource="{Binding Classes}" ItemTemplate="{DynamicResource ClassItem}" />
+                         ItemsSource="{Binding Classes,Mode=OneTime}" ItemTemplate="{DynamicResource ClassItem}" />
             </StackPanel>
             <TextBlock
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1006'}"
@@ -168,7 +168,7 @@
                                              Value="{x:Null}">
                                     <Setter Property="Button.IsEnabled" Value="False" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Status}"
+                                <DataTrigger Binding="{Binding Status,Mode=OneTime}"
                                              Value="Leasing">
                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                 </DataTrigger>

@@ -15,7 +15,7 @@
             <WrapPanel>
    
                   <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource CountryLongFlagItem}"
-                                Content="{Binding FromCountry}">
+                                Content="{Binding FromCountry,Mode=OneTime}">
                     <ContentControl.ToolTip>
                         <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                                  ItemTemplate="{StaticResource AirlineItem}" Background="#2A4861"
@@ -24,7 +24,7 @@
                 </ContentControl>
                 <TextBlock Text=">" VerticalAlignment="Bottom" Margin="5 0 5 0" FontWeight="Bold" />
                 <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource CountryLongFlagItem}"
-                                Content="{Binding ToCountry}">
+                                Content="{Binding ToCountry,Mode=OneTime}">
                     <ContentControl.ToolTip>
                         <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                                  ItemTemplate="{StaticResource CountryLongFlagItem}" Background="#2A4861"

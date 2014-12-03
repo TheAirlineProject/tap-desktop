@@ -11,7 +11,7 @@
 
         <DataTemplate x:Key="OpponentAdvertisementItem">
             <WrapPanel>
-                <TextBlock Text="{Binding Type, Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold"
+                <TextBlock Text="{Binding Type,Mode=OneTime, Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold"
                            VerticalAlignment="Bottom" Width="150" />
                 <TextBlock Text="{Binding SelectedType.Name}" VerticalAlignment="Bottom" />
             </WrapPanel>
@@ -174,15 +174,15 @@
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1007'}"
                         Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom" />
                     <ListBox ItemsSource="{Binding Advertisements}"
-                             Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}"
+                             Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}"
                              ItemTemplate="{StaticResource OpponentAdvertisementItem}" Background="Transparent"
                              BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" />
                     <ListBox ItemsSource="{Binding Advertisements}"
-                             Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}"
+                             Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}"
                              ItemTemplate="{StaticResource HumanAdvertisementItem}" Background="Transparent"
                              BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" />
                     <WrapPanel Margin="0 10 0 0"
-                               Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                               Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}">
                         <Button Style="{StaticResource StandardButtonStyle}" Click="btnSetAdvertisement_Click"
                                 Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 201'}" />
                     </WrapPanel>
@@ -199,7 +199,7 @@
                             <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1008'}"
                         Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom"/>
-                        <ListBox ItemsSource="{Binding MaintenanceCenters}"
+                        <ListBox ItemsSource="{Binding MaintenanceCenters, Mode=OneTime}"
                              Background="Transparent"
                              BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" >
                             <ListBox.ItemTemplate>
@@ -227,9 +227,9 @@
                                 <DataTemplate>
                                     <WrapPanel>
                                         <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                                        <ContentControl Content="{Binding Country}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}" Width="150"></ContentControl>
-                                        <TextBlock Text="{Binding MonthlyPrice,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
-                                        <TextBlock Text="{Binding Wage,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                                        <ContentControl Content="{Binding Country,Mode=OneTime}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}" Width="150"></ContentControl>
+                                        <TextBlock Text="{Binding MonthlyPrice,Mode=OneTime,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                                        <TextBlock Text="{Binding Wage,Mode=OneTime,Converter={StaticResource ValueCurrencyInflationConverter}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
                                         <Button  VerticalAlignment="Bottom" Background="Transparent" Tag="{Binding}" Click="btnAddMaintenance_Click">
                                             <Image Source="/Data/images/add.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                         </Button>
@@ -245,7 +245,7 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
+                                        <TextBlock Text="{Binding Type.Name,Mode=OneTime}" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
                                         <ComboBox ItemsSource="{Binding Centers}" Width="250" Loaded="cbMaintenance_Loaded" Tag="{Binding}"
                                               Style="{StaticResource ComboBoxTransparentStyle}"
                                               SelectedItem="{Binding SelectedType,Mode=TwoWay}"

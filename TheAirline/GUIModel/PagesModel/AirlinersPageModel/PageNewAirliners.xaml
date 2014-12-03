@@ -152,7 +152,7 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                     <TextBlock
-                                        Text="{Binding Type.CargoSize,Converter={StaticResource CargoSizeConverter}}"
+                                        Text="{Binding Type.CargoSize,Mode=OneTime,Converter={StaticResource CargoSizeConverter}}"
                                         VerticalAlignment="Bottom">
                                         <TextBlock.Style>
                                             <Style>

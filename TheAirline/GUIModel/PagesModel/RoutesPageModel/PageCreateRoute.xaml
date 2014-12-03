@@ -17,8 +17,13 @@
                 <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}"
                            VerticalAlignment="Bottom" Width="150" FontWeight="Bold" />
                 <ComboBox Width="100" SelectedItem="{Binding Path=SelectedFacility,Mode=TwoWay}"
-                          DisplayMemberPath="Name" SelectedValuePath="Name"
-                          Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding Path=Facilities}" />
+                          Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding Path=Facilities}" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="ClassItem">
@@ -280,7 +285,7 @@
                                       ItemsSource="{Binding Path=Contracts,ElementName=pageCreateRoute}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock Text="{Binding Type.Name,Mode=OneTime}" VerticalAlignment="Bottom"></TextBlock>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                                

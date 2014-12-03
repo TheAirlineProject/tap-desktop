@@ -35,10 +35,10 @@
                         <chart:ClusteredColumnChart.SeriesTemplate>
                             <DataTemplate>
                                 <chart:ChartSeries
-			                                SeriesTitle="{Binding Path=DisplayName}"
+			                                SeriesTitle="{Binding Path=DisplayName,Mode=OneTime}"
                                             DisplayMember="Key"
                                             ValueMember="Value"
-                                            ItemsSource="{Binding Path=Items}" />
+                                            ItemsSource="{Binding Path=Items,Mode=OneTime}" />
                             </DataTemplate>
                         </chart:ClusteredColumnChart.SeriesTemplate>
                     </chart:ClusteredColumnChart>
@@ -58,16 +58,16 @@
                         <TextBlock FontWeight="Bold"
                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1001'}"
                            VerticalAlignment="Bottom" Width="150" />
-                        <TextBlock Text="{Binding Money,Converter={StaticResource ValueCurrencyConverter}}"
-                           Foreground="{Binding Money,Converter={StaticResource ValueIsMinusConverter}}"
+                        <TextBlock Text="{Binding Money,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
+                           Foreground="{Binding Money,Mode=OneTime,Converter={StaticResource ValueIsMinusConverter}}"
                            VerticalAlignment="Bottom" />
                     </WrapPanel>
                     <WrapPanel Style="{StaticResource WrapPanelStyle}">
                         <TextBlock FontWeight="Bold"
                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1002'}"
                            VerticalAlignment="Bottom" Width="150" />
-                        <TextBlock Text="{Binding Balance,Converter={StaticResource ValueCurrencyConverter}}"
-                           Foreground="{Binding Balance,Converter={StaticResource ValueIsMinusConverter}}"
+                        <TextBlock Text="{Binding Balance,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
+                           Foreground="{Binding Balance,Mode=OneTime,Converter={StaticResource ValueIsMinusConverter}}"
                            VerticalAlignment="Bottom" />
                     </WrapPanel>
                     <TextBlock
@@ -83,7 +83,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                        Text="{Binding InvoiceType,Converter={StaticResource TextUnderscoreConverter}}"
+                                        Text="{Binding InvoiceType,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                                         FontWeight="Bold" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -94,8 +94,8 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                        Text="{Binding CurrentMonth,Converter={StaticResource ValueCurrencyConverter}}"
-                                        Foreground="{Binding CurrentMonth,Converter={StaticResource ValueIsMinusConverter}}"
+                                        Text="{Binding CurrentMonth,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
+                                        Foreground="{Binding CurrentMonth,Mode=OneTime,Converter={StaticResource ValueIsMinusConverter}}"
                                         VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -106,8 +106,8 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                        Text="{Binding LastMonth,Converter={StaticResource ValueCurrencyConverter}}"
-                                        Foreground="{Binding LastMonth,Converter={StaticResource ValueIsMinusConverter}}"
+                                        Text="{Binding LastMonth,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
+                                        Foreground="{Binding LastMonth,Mode=OneTime,Converter={StaticResource ValueIsMinusConverter}}"
                                         VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -118,8 +118,8 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                        Text="{Binding YearToDate,Converter={StaticResource ValueCurrencyConverter}}"
-                                        Foreground="{Binding YearToDate,Converter={StaticResource ValueIsMinusConverter}}"
+                                        Text="{Binding YearToDate,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
+                                        Foreground="{Binding YearToDate,Mode=OneTime,Converter={StaticResource ValueIsMinusConverter}}"
                                         VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -280,7 +280,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <WrapPanel>
-                                    <TextBlock Text="{Binding FeeType.Name}" VerticalAlignment="Bottom" FontWeight="Bold"
+                                    <TextBlock Text="{Binding FeeType.Name,Mode=OneTime}" VerticalAlignment="Bottom" FontWeight="Bold"
                                        Width="200" />
                                     <TextBlock Text="{Binding Value,Converter={StaticResource ValueCurrencyConverter}}"
                                        VerticalAlignment="Bottom" />

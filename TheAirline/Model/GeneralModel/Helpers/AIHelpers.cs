@@ -423,7 +423,27 @@
 
             return true;
         }
+        private static int GetEstimatedDemandPerFlight(Airport destination1, Airport destination2,Route.RouteType focus)
+        {
+            //int maxWeeklyDepartures = (int)(7 * new TimeSpan(24, 0, 0).TotalHours / flightTime.TotalHours);
 
+            //int weeklyDepartures = (int)this.EstimatedDemand * 7 / pax;
+
+            TimeSpan flightTime = MathHelpers.GetFlightTime(destination1.Profile.Coordinates.convertToGeoCoordinate(),destination2.Profile.Coordinates.convertToGeoCoordinate(),500);
+
+            double demand = destination1.getDestinationPassengersRate(destination2, AirlinerClass.ClassType.Economy_Class);
+
+            int estimatedFlightsPerDay = 0;
+
+            if (flightTime.TotalHours < 2) //business route
+                estimatedFlightsPerDay = 2;
+
+            else
+                estimatedFlightsPerDay = Math.Max(1,(int)Math.Floor(new TimeSpan(12, 0, 0).TotalHours / (flightTime.Add(new TimeSpan(1, 0, 0)).TotalHours)));
+
+            return (int)demand / estimatedFlightsPerDay;
+
+        }
         public static KeyValuePair<Airliner, Boolean>? GetAirlinerForRoute(
             Airline airline,
             Airport destination1,
@@ -432,6 +452,9 @@
             Route.RouteType focus,
             Boolean forStartdata = false)
         {
+
+            int demand = GetEstimatedDemandPerFlight(destination1, destination2,focus);
+
             List<AirlinerType> airlineAircrafts = airline.Profile.PreferedAircrafts;
             
             double maxLoanTotal = 100000000;
@@ -613,8 +636,10 @@
                      var majorAirliners = airliners.FindAll(a=>a.Type.Manufacturer.IsMajor);
 
                      if (majorAirliners.Count > 0)
-                         return new KeyValuePair<Airliner, Boolean>(majorAirliners.OrderBy(a => a.Price).First(), true);
+                         return new KeyValuePair<Airliner, Boolean>(majorAirliners.OrderBy(a=>((AirlinerPassengerType)a.Type).MaxSeatingCapacity - demand).ThenBy(a => a.Price).First(), true);
                 }
+
+         
                 return new KeyValuePair<Airliner, Boolean>(airliners.OrderBy(a => a.Price).First(), false);
             }
             if (airline.Mentality == Airline.AirlineMentality.Aggressive || airline.Fleet.Count == 0 || forStartdata)
@@ -692,9 +717,8 @@
                            var loanMajorAirliners = loanAirliners.FindAll(a=>a.Type.Manufacturer.IsMajor);  
   
                             if (loanMajorAirliners.Count > 0)
-                                return new KeyValuePair<Airliner,Boolean>(loanMajorAirliners.OrderBy(a=>a.Price).First(),true);
+                                return new KeyValuePair<Airliner,Boolean>(loanMajorAirliners.OrderBy(a=>((AirlinerPassengerType)a.Type).MaxSeatingCapacity - demand).ThenBy(a=>a.Price).First(),true);
                         }
-                        
                         Airliner airliner = loanAirliners.OrderBy(a => a.Price).First();
 
                         if (airliner == null)

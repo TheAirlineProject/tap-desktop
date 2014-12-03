@@ -26,7 +26,7 @@
 
         public PageAssignAirliners()
         {
-            this.Contracts = new List<SpecialContractMVVM>();
+            this.Contracts = new ObservableCollection<SpecialContractMVVM>();
 
             foreach (SpecialContract sc in
                 GameObject.GetInstance().HumanAirline.SpecialContracts)
@@ -62,7 +62,7 @@
 
         public ObservableCollection<FleetAirlinerMVVM> Airliners { get; set; }
 
-        public List<SpecialContractMVVM> Contracts { get; set; }
+        public ObservableCollection<SpecialContractMVVM> Contracts { get; set; }
 
         #endregion
 

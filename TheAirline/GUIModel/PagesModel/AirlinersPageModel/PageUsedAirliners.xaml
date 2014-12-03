@@ -81,8 +81,8 @@
                                             </TextBlock.Text>
                                         </TextBlock>
                                     </TextBlock.ToolTip>
-                                    <Hyperlink Tag="{Binding}" Click="lnkAirliner_Click">
-                                        <Run Text="{Binding Airliner.Type.Name}" />
+                                    <Hyperlink Tag="{Binding Mode=OneTime}" Click="lnkAirliner_Click">
+                                        <Run Text="{Binding Airliner.Type.Name,Mode=OneTime}" />
                                     </Hyperlink>
                                 </TextBlock>
                             </DataTemplate>
@@ -184,7 +184,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Airliner.Type.MaxSeatingCapacity,StringFormat={}{0} pax}"
+                                    <TextBlock Text="{Binding Airliner.Type.MaxSeatingCapacity,Mode=OneTime,StringFormat={}{0} pax}"
                                                VerticalAlignment="Bottom">
                                         <TextBlock.Style>
                                             <Style>
@@ -198,7 +198,7 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                     <TextBlock
-                                        Text="{Binding Airliner.Type.CargoSize,Converter={StaticResource CargoSizeConverter}}"
+                                        Text="{Binding Airliner.Type.CargoSize,Mode=OneTime,Converter={StaticResource CargoSizeConverter}}"
                                         VerticalAlignment="Bottom">
                                         <TextBlock.Style>
                                             <Style>
@@ -220,7 +220,7 @@
                         CanFilter="True" SortPropertyName="Airliner.Classes.Count" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Airliner.Classes.Count}" VerticalAlignment="Bottom" />
+                                <TextBlock Text="{Binding Airliner.Classes.Count,Mode=OneTime}" VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>

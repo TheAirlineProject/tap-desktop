@@ -29,8 +29,8 @@
         <DataTemplate x:Key="HumanWageItem">
             <WrapPanel>
                 <TextBlock Text="{Binding FeeType.Name,Mode=OneTime}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <Slider IsSnapToTickEnabled="True" Width="200" Maximum="{Binding FeeType.MaxValue}"
-                        Minimum="{Binding FeeType.MinValue}" Value="{Binding Value}" x:Name="slValue" />
+                <Slider IsSnapToTickEnabled="True" Width="200" Maximum="{Binding FeeType.MaxValue,Mode=OneTime}"
+                        Minimum="{Binding FeeType.MinValue,Mode=OneTime}" Value="{Binding Value}" Name="slValue" />
                 <TextBlock Margin="5 0 0 0" Text="{Binding Value,Converter={StaticResource ValueCurrencyConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
@@ -121,7 +121,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button VerticalAlignment="Bottom"
-                                                        Visibility="{Binding Pilot.Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}"
+                                                        Visibility="{Binding Pilot.Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}"
                                                         Background="Transparent" Click="btnFirePilot_Click" Width="20"
                                                         Tag="{Binding}">
                                                     <Image Source="/data/images/delete.png"
@@ -189,7 +189,7 @@
                                                     <Button.Style>
                                                         <Style>
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Pilot.Airline.IsHuman}"
+                                                                <DataTrigger Binding="{Binding Pilot.Airline.IsHuman,Mode=OneTime}"
                                                                              Value="False">
                                                                     <Setter Property="Button.Visibility"
                                                                             Value="Collapsed" />
@@ -213,7 +213,7 @@
                                         Width="100" util:GridViewSort.PropertyName="Aircrafts">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Pilot.Airliner.Name,FallbackValue='-'}"
+                                                <TextBlock Text="{Binding Pilot.Airliner.Name,Mode=OneTime,FallbackValue='-'}"
                                                            VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -233,15 +233,15 @@
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1010'}"
                         VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
                     <ListBox ItemsSource="{Binding Wages}"
-                             Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}"
+                             Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}"
                              ItemTemplate="{StaticResource OpponentWageItem}" Background="Transparent"
                              BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" />
                     <ListBox ItemsSource="{Binding Wages}"
-                             Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}"
+                             Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}"
                              ItemTemplate="{StaticResource HumanWageItem}" Background="Transparent" BorderThickness="0"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" />
                     <WrapPanel Margin="0 5 0 0"
-                               Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                               Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}">
                         <Button
                             Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 200'}"
                             IsDefault="True" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"

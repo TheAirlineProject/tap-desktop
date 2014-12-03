@@ -115,7 +115,7 @@
 
             if (this.Weather.Contains(null))
             {
-                AirportHelpers.CreateAirportWeather(this,DateTime.DaysInMonth(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month));
+                AirportHelpers.CreateAirportWeather(this);
             }
 
             this.Statics = new AirportStatics(this);

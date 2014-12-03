@@ -75,7 +75,7 @@ namespace TheAirline
             if (e.Key == Key.F9)
             {
 
-                string text = "";
+                string text = DateTime.Now.ToShortDateString() + "\n";
                var reflectProperties = UIHelpers.GetReflectPropertyDescriptorInfo();
 
                 foreach (ReflectPropertyDescriptorInfo rInfo in reflectProperties)

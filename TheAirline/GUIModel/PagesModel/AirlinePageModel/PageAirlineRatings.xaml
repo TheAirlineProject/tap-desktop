@@ -60,7 +60,7 @@
                                     Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding LastYear,StringFormat={}{0:0}}" FontWeight="Bold"
+                                            <TextBlock Text="{Binding LastYear,Mode=OneTime,StringFormat={}{0:0}}" FontWeight="Bold"
                                                        VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -70,7 +70,7 @@
                                     Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding CurrentYear,StringFormat={}{0:0}}"
+                                            <TextBlock Text="{Binding CurrentYear,Mode=OneTime,StringFormat={}{0:0}}"
                                                        FontWeight="Bold" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -80,7 +80,7 @@
                                     Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Change,StringFormat={}{0:0.00 %}}"
+                                            <TextBlock Text="{Binding Change,Mode=OneTime,StringFormat={}{0:0.00 %}}"
                                                        FontWeight="Bold" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

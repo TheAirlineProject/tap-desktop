@@ -26,10 +26,10 @@
                                 <WrapPanel>
                                     <Image Source="/data/images/human.png" VerticalAlignment="Bottom" Width="20"
                                            RenderOptions.BitmapScalingMode="HighQuality"
-                                           Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" />
+                                           Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}" />
                                     <Image Source="/data/images/airplane.png" VerticalAlignment="Bottom" Width="20"
                                            RenderOptions.BitmapScalingMode="HighQuality"
-                                           Visibility="{Binding Airline.IsSubsidiary,Converter={StaticResource BooleanToVisibility}}"
+                                           Visibility="{Binding Airline.IsSubsidiary,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}"
                                            ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 3000'}" />
                                 </WrapPanel>
                             </DataTemplate>
@@ -62,7 +62,7 @@
                         util:GridViewSort.PropertyName="Airline.Fleet.Count" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Airline.Fleet.Count}" VerticalAlignment="Bottom" />
+                                <TextBlock Text="{Binding Airline.Fleet.Count,Mode=OneTime}" VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -81,7 +81,7 @@
                         util:GridViewSort.PropertyName="Airline.Airports.Count" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Airline.Airports.Count}" VerticalAlignment="Bottom" />
+                                <TextBlock Text="{Binding Airline.Airports.Count,Mode=OneTime}" VerticalAlignment="Bottom" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

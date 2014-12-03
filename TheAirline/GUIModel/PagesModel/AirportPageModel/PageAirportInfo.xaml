@@ -61,11 +61,11 @@
                                 <Image.Style>
                                     <Style>
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Airport.Profile.Logo}"
+                                            <DataTrigger Binding="{Binding Airport.Profile.Logo,Mode=OneTime}"
                                                                  Value="{x:Null}">
                                                 <Setter Property="Image.Visibility" Value="Collapsed" />
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding Airport.Profile.Logo.Length}"
+                                            <DataTrigger Binding="{Binding Airport.Profile.Logo.Length,Mode=OneTime}"
                                                                  Value="0">
                                                 <Setter Property="Image.Visibility" Value="Collapsed" />
                                             </DataTrigger>
@@ -376,7 +376,7 @@
                                     Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Airline.Profile.Name,FallbackValue='Airport'}"
+                                            <TextBlock Text="{Binding Airline.Profile.Name,Mode=OneTime,FallbackValue='Airport'}"
                                                        VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -487,7 +487,7 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock
-                                                    Text="{Binding Airline.Profile.Name,FallbackValue='Airport'}"
+                                                    Text="{Binding Airline.Profile.Name,Mode=OneTime,FallbackValue='Airport'}"
                                                     VerticalAlignment="Bottom" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -656,7 +656,7 @@
                                                     <Image.Style>
                                                         <Style>
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Contract.TerminalType}" Value="Cargo">
+                                                                <DataTrigger Binding="{Binding Contract.TerminalType,Mode=OneTime}" Value="Cargo">
                                                                     <Setter Property="Image.Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
                                                             </Style.Triggers>
@@ -668,7 +668,7 @@
                                                     <Image.Style>
                                                         <Style>
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Contract.TerminalType}" Value="Passenger">
+                                                                <DataTrigger Binding="{Binding Contract.TerminalType,Mode=OneTime}" Value="Passenger">
                                                                     <Setter Property="Image.Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
                                                             </Style.Triggers>
@@ -867,10 +867,10 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <ContentControl Content="{Binding Airline}" VerticalAlignment="Bottom"
+                                        <ContentControl Content="{Binding Airline,Mode=OneTime}" VerticalAlignment="Bottom"
                                                         ContentTemplate="{StaticResource AirlineLink}" />
                                         <Button Background="Transparent" Width="20" Margin="5 0 0 0" Tag="{Binding}"
-                                                Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}"
+                                                Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}"
                                                 Click="btnRemoveHub_Click">
                                             <Image Source="/data/images/delete.png"
                                                    RenderOptions.BitmapScalingMode="HighQuality" />

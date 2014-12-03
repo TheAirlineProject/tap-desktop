@@ -112,7 +112,7 @@ and change the color of the selected bullet into a darker gray for better highli
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <Border CornerRadius="5,5,5,5" BorderThickness="1,1,1,1" RenderTransformOrigin="0.5,0.5"
-                            x:Name="border" BorderBrush="#FFFFFFFF">
+                            Name="border" BorderBrush="#FFFFFFFF">
                         <Border.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="1" ScaleY="1" />
@@ -121,7 +121,7 @@ and change the color of the selected bullet into a darker gray for better highli
                                 <TranslateTransform X="0" Y="0" />
                             </TransformGroup>
                         </Border.RenderTransform>
-                        <Border Background="{TemplateBinding Background}" CornerRadius="5,5,5,5" x:Name="border1">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5,5,5,5" Name="border1">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="0.5*" />
@@ -135,12 +135,12 @@ and change the color of the selected bullet into a darker gray for better highli
                                         </LinearGradientBrush>
                                     </Border.Background>
                                 </Border>
-                                <Border Grid.Row="1" Opacity="0" x:Name="Shine" Width="Auto" Height="Auto"
+                                <Border Grid.Row="1" Opacity="0" Name="Shine" Width="Auto" Height="Auto"
                                         CornerRadius="0,0,5,5" Margin="1,0,-1,0"
                                         Background="{TemplateBinding BorderBrush}" />
                                 <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"
                                                   Grid.RowSpan="2" HorizontalAlignment="Center"
-                                                  x:Name="contentPresenter" />
+                                                  Name="contentPresenter" />
                             </Grid>
                         </Border>
                     </Border>
@@ -165,10 +165,10 @@ and change the color of the selected bullet into a darker gray for better highli
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.ExitActions>
                                 <BeginStoryboard Storyboard="{StaticResource HideShine}"
-                                                 x:Name="HideShine_BeginStoryboard" />
+                                                 Name="HideShine_BeginStoryboard" />
                             </Trigger.ExitActions>
                             <Trigger.EnterActions>
-                                <BeginStoryboard x:Name="ShowShine_BeginStoryboard"
+                                <BeginStoryboard Name="ShowShine_BeginStoryboard"
                                                  Storyboard="{StaticResource ShowShine}" />
                             </Trigger.EnterActions>
                         </Trigger>
@@ -1518,7 +1518,7 @@ and change the color of the selected bullet into a darker gray for better highli
                                     <WrapPanel>
                                         <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}"
                                                   VerticalAlignment="Bottom" />
-                                        <TextBlock Text="{Binding ItemView,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"
+                                        <TextBlock Text="{Binding ItemView,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"
                                                    Margin="5 0 0 0" />
                                     </WrapPanel>
                                 </DataTemplate>
@@ -1528,7 +1528,7 @@ and change the color of the selected bullet into a darker gray for better highli
                 </ListView.View>
             </ListView>
             <WrapPanel HorizontalAlignment="Right" Margin="0 5 0 0">
-                <Button Content="Apply" Tag="{Binding ElementName=filterList}" x:Name="btnOk"
+                <Button Content="Apply" Tag="{Binding ElementName=filterList}" Name="btnOk"
                         VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Width="NaN"
                         Height="NaN" />
                 <Button Content="Cancel" VerticalAlignment="Bottom" Margin="5 0 0 0"
@@ -1542,7 +1542,7 @@ and change the color of the selected bullet into a darker gray for better highli
             <StackPanel.Background>
                 <SolidColorBrush Color="Black" Opacity="0.6" />
             </StackPanel.Background>
-            <ListView x:Name="filterList" ItemsSource="{Binding}"
+            <ListView Name="filterList" ItemsSource="{Binding}"
                       BorderThickness="1" Background="Transparent">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -1575,7 +1575,7 @@ and change the color of the selected bullet into a darker gray for better highli
                 </ListView.View>
             </ListView>
             <WrapPanel HorizontalAlignment="Right" Margin="0 5 0 0">
-                <Button Content="Apply" Tag="{Binding ElementName=filterList}" x:Name="btnOk"
+                <Button Content="Apply" Tag="{Binding ElementName=filterList}" Name="btnOk"
                         VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Width="NaN"
                         Height="NaN" />
                 <Button Content="Cancel" VerticalAlignment="Bottom" Margin="5 0 0 0"

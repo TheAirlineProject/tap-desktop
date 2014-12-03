@@ -187,7 +187,7 @@
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=Count}" Value="0">
+                                <DataTrigger Binding="{Binding Path=Count,Mode=OneTime}" Value="0">
                                     <Setter Property="Button.IsEnabled" Value="False" />
                                 </DataTrigger>
                             </Style.Triggers>

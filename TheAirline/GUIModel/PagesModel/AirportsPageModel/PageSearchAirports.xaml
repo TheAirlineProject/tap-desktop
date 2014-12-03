@@ -38,7 +38,7 @@
                 <TextBlock
                     Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageSearchAirports 1008'}"
                     VerticalAlignment="Bottom" Width="150" />
-                <TextBox Width="100" VerticalAlignment="Bottom" Name="txtText" />
+                <TextBox Width="100" VerticalAlignment="Bottom" Name="txtText" UndoLimit="10" />
             </WrapPanel>
             <Button Style="{DynamicResource StandardButtonStyle}"
                     Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='General 109'}"

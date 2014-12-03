@@ -5001,7 +5001,7 @@
 
                     }
 
-                    //AirportHelpers.CreateAirportWeather(airport,DateTime.DaysInMonth(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month));
+                    AirportHelpers.CreateAirportWeather(airport);
 
                     //creates the already existing expansions
                     var expansions = airport.Profile.Expansions.Where(e => GameObject.GetInstance().GameTime > e.Date);

@@ -326,9 +326,12 @@
         //returns all entries for a specific airport with take off in a time span for a day
 
         //creates the weather for an airport
-        public static void CreateAirportWeather(Airport airport, int daysInMonth)
+        public static void CreateAirportWeather(Airport airport)
         {
-            airport.Weather.Clear();
+            if (airport.Weather.Count > 15)
+                airport.Weather.RemoveRange(0, 15);
+            else
+                airport.Weather.Clear();
 
             WeatherAverage average =
                 WeatherAverages.GetWeatherAverages(
@@ -355,14 +358,14 @@
            
             if (average == null)
             {
-                CreateMonthlyAirportWeather(airport,daysInMonth);
+                CreateMonthlyAirportWeather(airport,30);
             }
             else
             {
                 var lAirport = new List<Airport>();
                 lAirport.Add(airport);
 
-                CreateAirportsWeather(lAirport, average,daysInMonth);
+                CreateAirportsWeather(lAirport, average,30);
             }
         }
 

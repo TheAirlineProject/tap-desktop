@@ -232,7 +232,7 @@
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="{}{0}/{1}">
                                             <Binding Path="NumberOfFreeGates" />
-                                            <Binding Path="Airport.Terminals.NumberOfGates" />
+                                            <Binding Path="Airport.Terminals.NumberOfGates" Mode="OneTime" />
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>

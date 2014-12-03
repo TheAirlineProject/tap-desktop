@@ -79,7 +79,7 @@
                     Width="400" SortPropertyName="Aircrafts" CanFilter="True">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Aircrafts}" />
+                            <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Aircrafts,Mode=OneTime}" />
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </filter:SortableGridViewColumn>

@@ -19,11 +19,11 @@
         </DataTemplate>
         <DataTemplate x:Key="ClassItem">
             <StackPanel Width="150">
-                <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}"
+                <TextBlock Text="{Binding Type,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                            HorizontalAlignment="Center" FontWeight="Bold" Height="20" />
                 <ListBox Background="Transparent" ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0"
                          ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
-                         ItemsSource="{Binding Facilities}" />
+                         ItemsSource="{Binding Facilities,Mode=OneTime}" />
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="OpponentDiscountItem">
@@ -34,9 +34,9 @@
         </DataTemplate>
         <DataTemplate x:Key="HumanDiscountItem">
             <WrapPanel>
-                <TextBlock Text="{Binding FeeType.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <TextBlock Text="{Binding FeeType.Name,Mode=OneTime}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
                 <Slider Maximum="100" Minimum="0" Width="200" IsSnapToTickEnabled="True" TickFrequency="1"
-                        Value="{Binding Value}" x:Name="slValue" />
+                        Value="{Binding Value}" Name="slValue" />
                 <TextBlock Margin="5 0 0 0" Text="{Binding Value,ElementName=slValue,StringFormat={}{0:0.00}%}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
@@ -51,9 +51,9 @@
         <DataTemplate x:Key="HumanFeeItem">
             <WrapPanel>
                 <TextBlock Text="{Binding FeeType.Name,Mode=OneTime}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <Slider IsSnapToTickEnabled="True" TickFrequency="{Binding Frequency}" Width="200"
-                        Maximum="{Binding FeeType.MaxValue}" Minimum="{Binding FeeType.MinValue}"
-                        Value="{Binding Value}" x:Name="slValue" />
+                <Slider IsSnapToTickEnabled="True" TickFrequency="{Binding Frequency,Mode=OneTime}" Width="200"
+                        Maximum="{Binding FeeType.MaxValue,Mode=OneTime}" Minimum="{Binding FeeType.MinValue,Mode=OneTime}"
+                        Value="{Binding Value}" Name="slValue" />
                 <TextBlock Margin="5 0 0 0" Text="{Binding Value,Converter={StaticResource ValueCurrencyConverter}}"
                            VerticalAlignment="Bottom" />
             </WrapPanel>
@@ -151,7 +151,7 @@
                                     Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Facility.Name}" FontWeight="Bold"
+                                            <TextBlock Text="{Binding Facility.Name,Mode=OneTime}" FontWeight="Bold"
                                                        VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -162,7 +162,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding Facility.Price,Converter={StaticResource ValueCurrencyConverter}}"
+                                                Text="{Binding Facility.Price,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                                 FontWeight="Bold" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -173,7 +173,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock
-                                                Text="{Binding Facility.MonthlyCost,Converter={StaticResource ValueCurrencyConverter}}"
+                                                Text="{Binding Facility.MonthlyCost,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}"
                                                 FontWeight="Bold" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -189,7 +189,7 @@
                                                     <Button.Style>
                                                         <Style TargetType="Button">
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Type}" Value="Available">
+                                                                <DataTrigger Binding="{Binding Type,Mode=OneTime}" Value="Available">
                                                                     <Setter Property="Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
                                                                 <DataTrigger Binding="{Binding Airline.IsHuman,Mode=OneTime}"
@@ -244,15 +244,15 @@
                                       ItemsSource="{Binding TrainingFacilities}" Name="cbTrainingFacilities">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Facility.Name}" VerticalAlignment="Bottom" />
+                                        <TextBlock Text="{Binding Facility.Name,Mode=OneTime}" VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <TextBlock Margin="15 0 0 0"
-                                       Text="{Binding SelectedItem.Facility.Price,ElementName=cbTrainingFacilities,Converter={StaticResource ValueCurrencyConverter}}"
+                                       Text="{Binding SelectedItem.Facility.Price,Mode=OneTime,ElementName=cbTrainingFacilities,Converter={StaticResource ValueCurrencyConverter}}"
                                        FontWeight="Bold" VerticalAlignment="Bottom" Width="150" />
                             <TextBlock
-                                Text="{Binding SelectedItem.Facility.MonthlyCost,ElementName=cbTrainingFacilities,Converter={StaticResource ValueCurrencyConverter}}"
+                                Text="{Binding SelectedItem.Facility.MonthlyCost,Mode=OneTime,ElementName=cbTrainingFacilities,Converter={StaticResource ValueCurrencyConverter}}"
                                 FontWeight="Bold" VerticalAlignment="Bottom" Width="150" />
                             <Button Width="20" VerticalAlignment="Bottom" Click="btnBuyTrainingFacility_Click"
                                     Tag="{Binding}" Background="Transparent">

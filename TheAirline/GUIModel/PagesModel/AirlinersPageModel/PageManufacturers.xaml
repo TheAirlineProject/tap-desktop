@@ -28,8 +28,8 @@
                                         <Image Source="{Binding Logo,Mode=OneTime}" RenderOptions.BitmapScalingMode="HighQuality"
                                                Width="32" />
                                         <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                                            <Hyperlink Tag="{Binding}" Click="lnkManufacturer_Click">
-                                                <Run Text="{Binding Name}" />
+                                            <Hyperlink Tag="{Binding Mode=OneTime}" Click="lnkManufacturer_Click">
+                                                <Run Text="{Binding Name, Mode=OneTime}" />
                                             </Hyperlink>
                                         </TextBlock>
                                     </WrapPanel>
@@ -53,7 +53,7 @@
                                     <WrapPanel>
                                         <Image Source="/data/images/tick.png" Name="imgTick"
                                                RenderOptions.BitmapScalingMode="HighQuality"
-                                               Visibility="{Binding Converter={StaticResource HumanManufacturerContractConverter}}"
+                                               Visibility="{Binding Converter={StaticResource HumanManufacturerContractConverter},Mode=OneTime}"
                                                Width="20" />
                                         <Image Source="/data/images/tickgrey.png" Tag="{Binding}" Width="20"
                                                RenderOptions.BitmapScalingMode="HighQuality">

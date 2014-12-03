@@ -161,7 +161,7 @@
                         <GroupStyle>
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>
-                                    <TextBlock Style="{StaticResource SmallHeaderStyle}" Text="{Binding Name}" />
+                                    <TextBlock Style="{StaticResource SmallHeaderStyle}" Text="{Binding Name,Mode=OneTime}" />
                                 </DataTemplate>
                             </GroupStyle.HeaderTemplate>
                         </GroupStyle>

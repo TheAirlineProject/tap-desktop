@@ -62,12 +62,12 @@
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <Image Source="{Binding Flag}" Height="20" Width="20"  Margin="0 0 5 0"
+                                        <Image Source="{Binding Flag,Mode=OneTime}" Height="20" Width="20"  Margin="0 0 5 0"
                    RenderOptions.BitmapScalingMode="HighQuality">
                                             <Image.Style>
                                                 <Style>
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Null}">
+                                                        <DataTrigger Binding="{Binding Mode=OneTime}" Value="{x:Null}">
                                                             <Setter Property="Image.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
@@ -81,7 +81,7 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <TextBox HorizontalAlignment="Stretch" Name="txtText" VerticalAlignment="Bottom">
+                        <TextBox HorizontalAlignment="Stretch" Name="txtText" VerticalAlignment="Bottom" UndoLimit="10">
                             <TextBox.Style>
                                 <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                                     <Setter Property="Template">

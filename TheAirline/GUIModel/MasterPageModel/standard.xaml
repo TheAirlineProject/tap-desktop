@@ -75,7 +75,7 @@
                         Foreground="{Binding GameObject.HumanMoney,Source={StaticResource gameObject},Converter={StaticResource ValueIsMinusConverter}}"
                         HorizontalAlignment="Center" FontWeight="Bold" />
                     <TextBlock Margin="10 0 0 0"
-                               Text="{Binding GameObject.HumanAirline.OverallScore,Source={StaticResource gameObject},StringFormat=Human Score: {0}}"
+                               Text="{Binding GameObject.HumanAirline.OverallScore,Mode=OneTime,Source={StaticResource gameObject},StringFormat=Human Score: {0}}"
                                HorizontalAlignment="Center" FontWeight="Bold" />
                 </WrapPanel>
             </StackPanel>
@@ -125,7 +125,7 @@
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding GameWorker.IsPaused,Source={StaticResource gameObject}}"
+                                <DataTrigger Binding="{Binding GameWorker.IsPaused,Mode=OneTime,Source={StaticResource gameObject}}"
                                              Value="True">
                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                 </DataTrigger>
@@ -139,7 +139,7 @@
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding GameWorker.IsPaused,Source={StaticResource gameObject}}"
+                                <DataTrigger Binding="{Binding GameWorker.IsPaused,Mode=OneTime,Source={StaticResource gameObject}}"
                                              Value="False">
                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                 </DataTrigger>

@@ -13,9 +13,9 @@
         <local:TypeFacilitiesConverter x:Key="TypeFacilitiesConverter" />
         <DataTemplate x:Key="AllianceItem">
             <WrapPanel>
-                <Image Source="{Binding Logo}" Width="20" VerticalAlignment="Bottom"
+                <Image Source="{Binding Logo,Mode=OneTime}" Width="20" VerticalAlignment="Bottom"
                        RenderOptions.BitmapScalingMode="HighQuality" Margin="0 0 5 0" />
-                <TextBlock VerticalAlignment="Bottom" Width="100" Text="{Binding Name}" />
+                <TextBlock VerticalAlignment="Bottom" Width="100" Text="{Binding Name,Mode=OneTime}" />
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>
@@ -49,7 +49,7 @@
                                     <WrapPanel>
                                         <Image Source="/data/images/airplane.png" VerticalAlignment="Bottom" Width="20"
                                                RenderOptions.BitmapScalingMode="HighQuality" />
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
+                                        <TextBlock Text="{Binding Name,Mode=OneTime}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
                                     </WrapPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -74,13 +74,13 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <ContentControl Content="{Binding Facility.Airline}"
+                                        <ContentControl Content="{Binding Facility.Airline,Mode=OneTime}"
                                                         ContentTemplate="{StaticResource AirlineLink}"
                                                         VerticalAlignment="Bottom" Width="200" />
-                                        <ContentControl Content="{Binding Alliance}"
+                                        <ContentControl Content="{Binding Alliance,Mode=OneTime}"
                                                         ContentTemplate="{StaticResource AllianceItem}"
                                                         VerticalAlignment="Bottom" Width="200" />
-                                        <TextBlock Text="{Binding Facility.Facility.Name}" VerticalAlignment="Bottom"
+                                        <TextBlock Text="{Binding Facility.Facility.Name,Mode=OneTime}" VerticalAlignment="Bottom"
                                                    Width="150" />
                                         <Button Click="btnDeleteFacility_Click"
                                                 ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 3000'}"
@@ -89,10 +89,10 @@
                                             <Button.Style>
                                                 <Style>
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding IsHuman}" Value="False">
+                                                        <DataTrigger Binding="{Binding IsHuman,Mode=OneTime}" Value="False">
                                                             <Setter Property="Button.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
-                                                        <DataTrigger Binding="{Binding IsDelivered}" Value="False">
+                                                        <DataTrigger Binding="{Binding IsDelivered,Mode=OneTime}" Value="False">
                                                             <Setter Property="Button.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
@@ -126,16 +126,16 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <ContentControl Content="{Binding Facility.Airline}"
+                                        <ContentControl Content="{Binding Facility.Airline,Mode=OneTime}"
                                                         ContentTemplate="{StaticResource AirlineLink}"
                                                         VerticalAlignment="Bottom" Width="200" />
-                                        <ContentControl Content="{Binding Alliance}"
+                                        <ContentControl Content="{Binding Alliance,Mode=OneTime}"
                                                         ContentTemplate="{StaticResource AllianceItem}"
                                                         VerticalAlignment="Bottom" Width="200" />
-                                        <TextBlock Text="{Binding Facility.Facility.Name}" VerticalAlignment="Bottom"
+                                        <TextBlock Text="{Binding Facility.Facility.Name,Mode=OneTime}" VerticalAlignment="Bottom"
                                                    Width="150" />
                                         <TextBlock
-                                            Text="{Binding Facility.FinishedDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
+                                            Text="{Binding Facility.FinishedDate,Mode=OneTime,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
                                             VerticalAlignment="Bottom" Width="150" />
                                     </WrapPanel>
                                 </DataTemplate>
@@ -166,12 +166,12 @@
                                     <ComboBox.ItemsSource>
                                         <MultiBinding Converter="{StaticResource TypeFacilitiesConverter}">
                                             <Binding Path="SelectedItem" ElementName="cbNextFacility" />
-                                            <Binding Path="Airport" />
+                                            <Binding Path="Airport" Mode="OneTime" />
                                         </MultiBinding>
                                     </ComboBox.ItemsSource>
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" />
+                                            <TextBlock Text="{Binding Name, Mode=OneTime}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
@@ -181,14 +181,14 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1009'}"
                                     FontWeight="Bold" VerticalAlignment="Bottom" Width="150" />
                                 <TextBlock VerticalAlignment="Bottom"
-                                           Text="{Binding ElementName=cbFacility,Path=SelectedItem.Price,Converter={StaticResource ValueCurrencyConverter}}" />
+                                           Text="{Binding ElementName=cbFacility,Path=SelectedItem.Price,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1010'}"
                                     FontWeight="Bold" VerticalAlignment="Bottom" Width="150" />
                                 <TextBlock VerticalAlignment="Bottom"
-                                           Text="{Binding ElementName=cbFacility,Path=SelectedItem.NumberOfEmployees}" />
+                                           Text="{Binding ElementName=cbFacility,Path=SelectedItem.NumberOfEmployees,Mode=OneTime}" />
                             </WrapPanel>
                             <WrapPanel Margin="0 5 0 0">
                                 <Button
@@ -219,7 +219,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <WrapPanel>
-                                    <ContentControl Content="{Binding Airline}"
+                                    <ContentControl Content="{Binding Airline,Mode=OneTime}"
                                                     ContentTemplate="{StaticResource AirlineLink}"
                                                     VerticalAlignment="Bottom" Width="200" />
                                     <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" Width="150" />
@@ -231,7 +231,7 @@
                                         <Button.Style>
                                             <Style>
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                                    <DataTrigger Binding="{Binding Airline.IsHuman,Mode=OneTime}" Value="False">
                                                         <Setter Property="Button.Visibility" Value="Collapsed" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -276,10 +276,10 @@
                                             <WrapPanel>
                                                 <Image Source="/data/images/human.png" VerticalAlignment="Bottom"
                                                        Width="20" RenderOptions.BitmapScalingMode="HighQuality"
-                                                       Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" />
+                                                       Visibility="{Binding Airline.IsHuman,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}" />
                                                 <Image Source="/data/images/airplane.png" VerticalAlignment="Bottom"
                                                        Width="20" RenderOptions.BitmapScalingMode="HighQuality"
-                                                       Visibility="{Binding Airline.IsSubsidiary,Converter={StaticResource BooleanToVisibility}}"
+                                                       Visibility="{Binding Airline.IsSubsidiary,Mode=OneTime,Converter={StaticResource BooleanToVisibility}}"
                                                        ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 3000'}" />
                                             </WrapPanel>
                                         </DataTemplate>
@@ -290,7 +290,7 @@
                                     Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding Airline}"
+                                            <ContentControl Content="{Binding Airline,Mode=OneTime}"
                                                             ContentTemplate="{StaticResource AirlineLongLink}"
                                                             VerticalAlignment="Bottom" />
                                         </DataTemplate>
@@ -301,7 +301,7 @@
                                     Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Routes}" VerticalAlignment="Bottom" />
+                                            <TextBlock Text="{Binding Routes,Mode=OneTime}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -310,7 +310,7 @@
                                     Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom" />
+                                            <TextBlock Text="{Binding Flights,Mode=OneTime}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -319,7 +319,7 @@
                                     Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Passengers}" VerticalAlignment="Bottom" />
+                                            <TextBlock Text="{Binding Passengers,Mode=OneTime}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -328,7 +328,7 @@
                                     Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding PassengersPerFlight}" VerticalAlignment="Bottom" />
+                                            <TextBlock Text="{Binding PassengersPerFlight,Mode=OneTime}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -344,12 +344,12 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <WrapPanel>
-                                    <ContentControl Content="{Binding Airline}"
+                                    <ContentControl Content="{Binding Airline,Mode=OneTime}"
                                                     ContentTemplate="{StaticResource AirlineLink}"
                                                     VerticalAlignment="Bottom" Width="200" />
-                                    <ProgressBar Width="100" Value="{Binding Reputation}" VerticalAlignment="Bottom"
+                                    <ProgressBar Width="100" Value="{Binding Reputation,Mode=OneTime}" VerticalAlignment="Bottom"
                                                  Height="15" Background="Transparent" BorderBrush="Black" />
-                                    <TextBlock Text="{Binding Reputation}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
+                                    <TextBlock Text="{Binding Reputation,Mode=OneTime}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
                                 </WrapPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

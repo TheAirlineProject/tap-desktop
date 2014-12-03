@@ -23,9 +23,9 @@
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <WrapPanel>
-                                <Image Source="{Binding ImageFile}" Width="20" VerticalAlignment="Bottom"
+                                <Image Source="{Binding ImageFile,Mode=OneTime}" Width="20" VerticalAlignment="Bottom"
                                        RenderOptions.BitmapScalingMode="HighQuality" />
-                                <TextBlock Text="{Binding Name}" Width="150" VerticalAlignment="Bottom"
+                                <TextBlock Text="{Binding Name,Mode=OneTime}" Width="150" VerticalAlignment="Bottom"
                                            Margin="5 0 0 0" />
                             </WrapPanel>
                         </DataTemplate>

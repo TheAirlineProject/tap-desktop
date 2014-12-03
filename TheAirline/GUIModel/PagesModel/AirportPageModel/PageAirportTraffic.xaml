@@ -61,7 +61,7 @@
                                     Width="300" util:GridViewSort.PropertyName="Airport.Profile.Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ListBox ItemsSource="{Binding Aircrafts}" BorderThickness="0"
+                                            <ListBox ItemsSource="{Binding Aircrafts,Mode=OneTime}" BorderThickness="0"
                                                      Style="{StaticResource VerticalListBoxStyle}"
                                                      VerticalAlignment="Bottom">
                                                 <ListBox.ItemTemplate>
@@ -78,7 +78,7 @@
                                     Width="100" util:GridViewSort.PropertyName="Flights">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom" />
+                                            <TextBlock Text="{Binding Flights,Mode=OneTime}" VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

@@ -16,7 +16,7 @@
         <DataTemplate x:Key="DayBarItem">
             <Border Style="{StaticResource RoundedBorderStyle}" BorderBrush="Black" BorderThickness="2">
                 <WrapPanel>
-                    <TextBlock Text="{Binding}" FontWeight="Bold" Width="100" VerticalAlignment="Bottom" />
+                    <TextBlock Text="{Binding Mode=OneTime}" FontWeight="Bold" Width="100" VerticalAlignment="Bottom" />
                     <Border Background="White" Width="960" />
                 </WrapPanel>
             </Border>
@@ -67,10 +67,10 @@
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <WrapPanel>
-                                        <ContentControl Content="{Binding Destination1}"
+                                        <ContentControl Content="{Binding Destination1,Mode=OneTime}"
                                                     ContentTemplate="{StaticResource AirportCountryItem}" VerticalAlignment="Bottom"/>
                                     <TextBlock VerticalAlignment="Bottom" Text=" - "></TextBlock>
-                                        <ContentControl Content="{Binding Destination2}"
+                                        <ContentControl Content="{Binding Destination2,Mode=OneTime}"
                                                     ContentTemplate="{StaticResource AirportCountryItem}" VerticalAlignment="Bottom" />
 
                                 </WrapPanel>
@@ -149,7 +149,7 @@
                                 HorizontalAlignment="Center" FontWeight="Bold" />
                             <WrapPanel>
                                 <TextBlock
-                                    Text="{Binding Airliner.Airliner.Airline.Profile.IATACode,ElementName=pageRoutePlanner}"
+                                    Text="{Binding Airliner.Airliner.Airline.Profile.IATACode,Mode=OneTime,ElementName=pageRoutePlanner}"
                                     VerticalAlignment="Bottom" />
                                 <TextBox Text="0000" Style="{StaticResource NumericTextBox}" Margin="5 0 0 0"
                                          MaxLength="4" VerticalAlignment="Bottom" Width="50" Name="txtFlightNumber" />
@@ -328,7 +328,7 @@
                                             HorizontalAlignment="Center" FontWeight="Bold" Margin="0 5 0 0" />
                                         <WrapPanel HorizontalAlignment="Center">
                                             <TextBlock
-                                                Text="{Binding Airliner.Airliner.Airline.Profile.IATACode,ElementName=pageRoutePlanner}"
+                                                Text="{Binding Airliner.Airliner.Airline.Profile.IATACode,Mode=OneTime,ElementName=pageRoutePlanner}"
                                                 VerticalAlignment="Bottom" />
                                             <TextBox Text="0000" Style="{StaticResource NumericTextBox}"
                                                      Margin="5 0 0 0" MaxLength="4" VerticalAlignment="Bottom"
@@ -596,7 +596,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <ListBox Style="{StaticResource VerticalListBoxStyle}"
-                                                     ItemsSource="{Binding Route.Stopovers}">
+                                                     ItemsSource="{Binding Route.Stopovers,Mode=OneTime}">
                                                 <ListBox.ItemTemplate>
                                                     <DataTemplate>
                                                         <TextBlock
