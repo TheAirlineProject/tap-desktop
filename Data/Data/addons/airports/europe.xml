@@ -7056,7 +7056,7 @@
     </runways>
   </airport>
   <airport name="Pulkovo Airport" icao="ULLI" iata="LED" type="International" season="All_Year">
-    <town town="St Petersburg" country="149" GMT="04:00:00" DST="03:00:00" />
+    <town town="Leningrad" country="149" GMT="04:00:00" DST="03:00:00" />
     <coordinates>
       <latitude value="059°57'00''N" />
       <longitude value="030°03'00''E" />
@@ -7069,6 +7069,9 @@
       <runway name="10L/28R" length="3397" surface="Asphalt" />
       <runway name="10R/28L" length="3780" surface="Asphalt" />
     </runways>
+         <expansions>
+     <expansion type="Town_name" name="St. Petersburg" date="01.01.1991 00:00:00" notify="True"></expansion>
+     </expansions>
   </airport>
   <airport name="Khrabrovo Airport" icao="UMKK" iata="KGD" type="International" season="All_Year">
     <town town="Kaliningrad" country="149" GMT="03:00:00" DST="02:00:00" />
@@ -7161,8 +7164,8 @@
       <runway name="06/24" length="2890" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Volgograd International Airport" icao="URWW" iata="VOG" type="International" season="All_Year">
-    <town town="Volgograd" country="149" GMT="04:00:00" DST="03:00:00" />
+  <airport name="Gumrak Airport" icao="URWW" iata="VOG" type="International" season="All_Year">
+    <town town="Stalingrad" country="149" GMT="04:00:00" DST="03:00:00" />
     <coordinates>
       <latitude value="048°45'00''N" />
       <longitude value="044°30'00''E" />
@@ -7174,6 +7177,10 @@
     <runways>
       <runway name="11/29" length="2500" surface="Asphalt" />
     </runways>
+         <expansions>
+     <expansion type="Town_name" name="Volgograd" date="01.01.1961 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Volgograd International Airport" date="01.01.1961 00:00:00" notify="True"></expansion>
+     </expansions>
   </airport>
   <airport name="Surgut International Airport" icao="USRR" iata="SGC" type="International" season="All_Year">
     <town town="Surgut" country="149" GMT="06:00:00" DST="05:00:00" />

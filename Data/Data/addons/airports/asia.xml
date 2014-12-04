@@ -2965,8 +2965,8 @@ inflationafter="1">
       <runway name="14/32" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Almaty Airport" icao="UAAA" iata="ALA" type="International" season="All_Year">
-    <town town="Almaty" country="236" GMT="06:00:00" DST="06:00:00" />
+    <airport name="Alma-Ata Airport" icao="UAAA" iata="ALA" type="International" season="All_Year">
+    <town town="Alma-Ata" country="236" GMT="06:00:00" DST="06:00:00" />
     <coordinates>
       <latitude value="043°21'07''N" />
       <longitude value="077°02'25''E" />
@@ -2980,7 +2980,9 @@ inflationafter="1">
     <runways>
       <runway name="05L/23R" length="4397" surface="Asphalt" />
     </runways>
-       <expansions>
+       <expansions>  
+       <expansion type="Town_name" name="Almaty" date="01.01.1993 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Almaty Airport" date="01.01.1993 00:00:00" notify="True"></expansion>
      <expansion type="New_runway" name="05R/23L" length="4497" surface="Asphalt"  date="09.30.2008 00:00:00" notify="True"></expansion>
     </expansions>
   </airport>
@@ -2999,8 +3001,8 @@ inflationafter="1">
       <runway name="12L/30R" length="2935" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Aktobe Airport" icao="UATT" iata="AKX" type="Domestic" season="All_Year">
-    <town town="Aktobe" country="236" GMT="05:00:00" DST="05:00:00" />
+    <airport name="Aktyubinsk Airport" icao="UATT" iata="AKX" type="Domestic" season="All_Year">
+    <town town="Aktyubinsk" country="236" GMT="05:00:00" DST="05:00:00" />
     <coordinates>
       <latitude value="050°14'44''N" />
       <longitude value="057°12'24''E" />
@@ -3012,6 +3014,10 @@ inflationafter="1">
     <runways>
       <runway name="13/31" length="3097" surface="Concrete" />
     </runways>
+     <expansions>
+      <expansion type="Town_name" name="Aktobe" date="01.01.1999 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Aktobe Airport" date="01.01.1999 00:00:00" notify="True"></expansion>
+ </expansions>
   </airport>
     <airport name="Balkhash Airport" icao="UAAH" iata="BXH" type="Domestic" season="All_Year">
     <town town="Balkhash" country="236" GMT="06:00:00" DST="06:00:00" />
@@ -3083,8 +3089,8 @@ inflationafter="1">
       <runway name="09/27" length="1600" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Oskemen Airport" icao="UASK" iata="UKK" type="International" season="All_Year">
-    <town town="Oskemen" country="236" GMT="06:00:00" DST="06:00:00" />
+    <airport name="Ust-Kamenogorsk Airport" icao="UASK" iata="UKK" type="International" season="All_Year">
+    <town town="Ust-Kamenogorsk" country="236" GMT="06:00:00" DST="06:00:00" />
     <coordinates>
       <latitude value="050°02'11''N" />
       <longitude value="082°29'39''E" />
@@ -3097,6 +3103,10 @@ inflationafter="1">
       <runway name="12/30" length="2510" surface="Asphalt" />
       <runway name="12L/30R" length="1700" surface="Dirt" />
     </runways>
+    <expansions>
+      <expansion type="Town_name" name="Oskemen" date="01.01.1992 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Oskemen Airport" date="01.01.1992 00:00:00" notify="True"></expansion>
+ </expansions>
   </airport>
    <airport name="Pavlodar Airport" icao="UASP" iata="PWQ" type="International" season="All_Year">
     <town town="Pavlodar" country="236" GMT="06:00:00" DST="06:00:00" />
@@ -3126,8 +3136,8 @@ inflationafter="1">
       <runway name="05/23" length="2496" surface="Asphalt" />
     </runways>
   </airport>
-    <airport name="Shymkent Airport" icao="UAII" iata="CIT" type="International" season="All_Year">
-    <town town="Shymkent" country="236" GMT="06:00:00" DST="06:00:00" />
+    <airport name="Chimkent Airport" icao="UAII" iata="CIT" type="International" season="All_Year">
+    <town town="Chimkent" country="236" GMT="06:00:00" DST="06:00:00" />
     <coordinates>
       <latitude value="042°21'51''N" />
       <longitude value="069°28'44''E" />
@@ -3139,6 +3149,10 @@ inflationafter="1">
     <runways>
       <runway name="10/28" length="2800" surface="Concrete" />
     </runways>
+     <expansions>
+      <expansion type="Town_name" name="Shymkent" date="01.01.1993 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Shymkent Airport" date="01.01.1993 00:00:00" notify="True"></expansion>
+ </expansions>
   </airport>
     <airport name="Zhezkazgan Airport" icao="UAKD" iata="DZN" type="Domestic" season="All_Year">
     <town town="Zhezkazgan" country="236" GMT="06:00:00" DST="06:00:00" />
@@ -3154,15 +3168,22 @@ inflationafter="1">
       <runway name="04/22" length="2600" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="Semey Airport" icao="UASS" iata="PLX" type="Domestic" season="All_Year">
-<town town="Semey" country="236" GMT="06:00:00" DST="06:00:00" />
+  <airport name="Semipalatinsk Airport" icao="UASS" iata="PLX" type="Domestic" season="All_Year">
+<town town="Semipalatinsk" country="236" GMT="06:00:00" DST="06:00:00" />
 <coordinates> 
 <latitude value="05°21'05''N" />
  <longitude value="08°14'04''E" />
- </coordinates> <size value="Very_small" pax="300" /> <terminals> <terminal name="Terminal A" gates="5" /> </terminals>
+ </coordinates> <size value="Very_small" pax="300" /> 
+ <terminals> 
+ <terminal name="Terminal A" gates="5" /> 
+ </terminals>
 <runways>
 <runway name="08/26" length="3096" surface="Concrete" />
 </runways>
+ <expansions>
+      <expansion type="Town_name" name="Semey" date="01.01.2007 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Semey Airport" date="01.01.2007 00:00:00" notify="True"></expansion>
+ </expansions>
 </airport> 
      <airport name="Kokshetau Airport" icao="UACK" iata="KOV" type="Domestic" season="All_Year">
     <town town="Kokshetau" country="236" GMT="06:00:00" DST="06:00:00" />
@@ -3192,8 +3213,8 @@ inflationafter="1">
       <runway name="13/31" length="2900" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Astana International Airport" icao="UACC" iata="TSE" type="International" season="All_Year">
-    <town town="Astana" country="236" GMT="05:00:00" DST="05:00:00" />
+  <airport name="Akmolinsk Airport" icao="UACC" iata="TSE" type="International" season="All_Year">
+    <town town="Akmolinsk" country="236" GMT="05:00:00" DST="05:00:00" />
     <coordinates>
       <latitude value="051°01'20''N" />
       <longitude value="071°28'01''E" />
@@ -3206,9 +3227,17 @@ inflationafter="1">
     <runways>
       <runway name="04/22" length="3500" surface="Asphalt" />
     </runways>
+    <expansions>  
+    <expansion type="Town_name" name="Tselinograd" date="01.01.1961 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Tselinograd Airport" date="01.01.1961 00:00:00" notify="True"></expansion>
+          <expansion type="Town_name" name="Akmola" date="01.01.1992 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Akmola Airport" date="01.01.1992 00:00:00" notify="True"></expansion>
+      <expansion type="Town_name" name="Astana" date="12.10.1997 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Astana International Airport" date="12.10.1997 00:00:00" notify="True"></expansion>
+    </expansions>
   </airport>
     <airport name="Manas International Airport" icao="UAFM" iata="FRU" type="International" season="All_Year">
-    <town town="Bishkek" country="239" GMT="06:00:00" DST="06:00:00" />
+    <town town="Frunze" country="239" GMT="06:00:00" DST="06:00:00" />
     <coordinates>
       <latitude value="43°3'41''N" />
       <longitude value="74°28'39''E" />
@@ -3220,6 +3249,9 @@ inflationafter="1">
     <runways>
       <runway name="08/26" length="4204" surface="Concrete" />
     </runways>
+        <expansions>
+      <expansion type="Town_name" name="Bishkek" date="01.01.1991 00:00:00" notify="True"></expansion>
+  </expansions>
   </airport>
   <!--Azerbaijan (UB**)-->
    <airport name="Heydar Aliyev International Airport" icao="UBBB" iata="GYD" type="International" season="All_Year">
@@ -3378,8 +3410,8 @@ inflationafter="1">
       <runway name="18R/36L" length="2800" surface="Concrete" />
     </runways>
   </airport>
-    <airport name="Turkmenabat Airport" icao="UTAV" iata="CRZ" type="Domestic" season="All_Year">
-    <town town="Türkmenabat" country="238" GMT="05:00:00" DST="05:00:00" />
+    <airport name="Çarjew Airport" icao="UTAV" iata="CRZ" type="Domestic" season="All_Year">
+    <town town="Çarjew" country="238" GMT="05:00:00" DST="05:00:00" />
     <coordinates>
       <latitude value="039°04'59''N" />
       <longitude value="063°36'47''E" />
@@ -3391,9 +3423,13 @@ inflationafter="1">
     <runways>
       <runway name="15/33" length="2750" surface="Asphalt" />
     </runways>
+  <expansions>
+     <expansion type="Town_name" name="Turkmenabat" date="01.01.1999 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Turkmenabat Airport" date="01.01.1999 00:00:00" notify="True"></expansion>
+     </expansions>
   </airport>
-    <airport name="Turkmenbashi Airport" icao="UTAK" iata="KRW" type="International" season="All_Year">
-    <town town="Turkmenbashi" country="238" GMT="05:00:00" DST="05:00:00" />
+    <airport name="Krasnovodsk Airport" icao="UTAK" iata="KRW" type="International" season="All_Year">
+    <town town="Krasnovodsk" country="238" GMT="05:00:00" DST="05:00:00" />
     <coordinates>
       <latitude value="040°03'47''N" />
       <longitude value="053°00'25''E" />
@@ -3405,6 +3441,10 @@ inflationafter="1">
     <runways>
       <runway name="16/34" length="2500" surface="Concrete" />
     </runways>
+                <expansions>
+     <expansion type="Town_name" name="Turkmenbashi" date="01.01.1999 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Turkmenbashi Airport" date="01.01.1999 00:00:00" notify="True"></expansion>
+     </expansions>
   </airport>
       <airport name="Khujand Airport" icao="UTDL" iata="LBD" type="International" season="All_Year">
     <town town="Khujand" country="240" GMT="05:00:00" DST="05:00:00" />
@@ -5487,7 +5527,7 @@ inflationafter="1">
     </runways>
   </airport>
   <airport name="Tan Son Nhat International Airport" icao="VVTS" iata="SGN" type="International" season="All_Year">
-    <town town="Ho Chi Minh City" country="1008" GMT="07:00:00" DST="07:00:00" />
+    <town town="Saigon" country="1008" GMT="07:00:00" DST="07:00:00" />
     <coordinates>
       <latitude value="10°49'8''N" />
       <longitude value="106°39'7''E" />
@@ -5500,6 +5540,9 @@ inflationafter="1">
       <runway name="07L/25R" length="3048" surface="Concrete" />
       <runway name="07R/25L" length="3800" surface="Concrete" />
     </runways>
+             <expansions>
+      <expansion type="Town_name" name="Ho Chi Minh City" date="07.02.1976 00:00:00" notify="True"></expansion>
+ </expansions>
   </airport>
 <airport name="Cat Bi International Airport" icao="VVCI" iata="HPH" type="International" season="All_Year">
     <town town="Hai Phong" country="1007" GMT="07:00:00" DST="07:00:00" />

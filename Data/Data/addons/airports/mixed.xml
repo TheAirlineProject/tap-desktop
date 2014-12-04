@@ -3449,8 +3449,8 @@
       <runway name="06/24" length="1829" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Iqaluit Airport" icao="CYFB" iata="YFB" type="Domestic" season="All_Year">
-    <town town="Iqaluit, NU" country="113" GMT="-04:00:00" DST="-05:00:00" />
+  <airport name="Frobisher Bay Airport" icao="CYFB" iata="YFB" type="Domestic" season="All_Year">
+    <town town="Frobisher Bay, NU" country="113" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="63°45'24''N" />
       <longitude value="68°33'22''W" />
@@ -3462,6 +3462,10 @@
     <runways>
       <runway name="17/35" length="2623" surface="Asphalt" />
     </runways>
+         <expansions>
+      <expansion type="Town_name" name="Iqaluit" date="01.01.1987 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Iqaluit Airport" date="01.01.1987 00:00:00" notify="True"></expansion>
+ </expansions>
   </airport>
   <airport name="Kangiqsualujjuaq (Georges River) Airport" icao="CYLU" iata="XGR" type="Domestic" season="All_Year">
     <town town="Kangiqsualujjuaq, QC" country="113" GMT="-04:00:00" DST="-05:00:00" />
@@ -5442,8 +5446,8 @@
       <runway name="16/34" length="800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Nuuk Airport" icao="BGGH" iata="GOH" type="Domestic" season="All_Year">
-    <town town="Nuuk, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
+  <airport name="Godthaab Airport" icao="BGGH" iata="GOH" type="Domestic" season="All_Year">
+    <town town="Godthaab, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="64°11'27''N" />
       <longitude value="51°40'41''W" />
@@ -5455,6 +5459,10 @@
     <runways>
       <runway name="05/23" length="950" surface="Asphalt" />
     </runways>
+         <expansions>
+      <expansion type="Town_name" name="Nuuk" date="05.01.1979 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Nuuk Airport" date="05.01.1979 00:00:00" notify="True"></expansion>
+ </expansions>
   </airport>
   <airport name="Paamiut Airport" icao="BGPT" iata="JFR" type="Domestic" season="All_Year">
     <town town="Paamiut, GL" country="110" GMT="-02:00:00" DST="-03:00:00" />
@@ -5948,8 +5956,8 @@
       <runway name="14/32" length="1520" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kuressaare Airport" icao="EEKE" iata="URE" type="Domestic" season="All_Year">
-    <town town="Kuressaare" country="117" GMT="03:00:00" DST="02:00:00" />
+  <airport name="Kingissepa Airport" icao="EEKE" iata="URE" type="Domestic" season="All_Year">
+    <town town="Kingissepa" country="117" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
       <latitude value="58°13'47''N" />
       <longitude value="22°30'34''E" />
@@ -5962,6 +5970,10 @@
       <runway name="17/35" length="2000" surface="Asphalt" />
       <runway name="05/23" length="800" surface="Asphalt" />
     </runways>
+             <expansions>
+     <expansion type="Town_name" name="Kuressaare" date="01.01.1988 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Kuressaare Airport" date="01.01.1988 00:00:00" notify="True"></expansion>
+     </expansions>
   </airport>
   <airport name="Pärnu Airport" icao="EEPU" iata="EPU" type="Domestic" season="All_Year">
     <town town="Pärnu" country="117" GMT="03:00:00" DST="02:00:00" />
@@ -7644,8 +7656,8 @@
     </runways>
   </airport>
   <!--Gambia-->
-  <airport name="Banjul International Airport" icao="GBYD" iata="BJL" type="International" season="All_Year">
-    <town town="Banjul" country="301" GMT="00:00:00" DST="00:00:00" />
+  <airport name="Bathurst Airport" icao="GBYD" iata="BJL" type="International" season="All_Year">
+    <town town="Bathurst" country="301" GMT="00:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="13°20'17''N" />
       <longitude value="16°39'8''W" />
@@ -7657,6 +7669,10 @@
     <runways>
       <runway name="14/32" length="3600" surface="Asphalt" />
     </runways>
+         <expansions>
+      <expansion type="Town_name" name="Banjul" date="01.01.1973 00:00:00" notify="True"></expansion>
+        <expansion type="Name" name="Banjul International Airport" date="01.01.1973 00:00:00" notify="True"></expansion>
+ </expansions>
   </airport>
   <!--Georgia-->
   <airport name="Batumi International Airport" icao="UGSB" iata="BUS" type="International" season="All_Year">
