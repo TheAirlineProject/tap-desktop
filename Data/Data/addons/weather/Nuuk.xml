@@ -1,6 +1,6 @@
+﻿
 
-
-<weather type="town" value="Nuuk, GL">
+<weather type="town" value="Godthaab, GL">
   <months>
     <month month="1" precipitation="40">
       <temp min="-10" max="-4" />

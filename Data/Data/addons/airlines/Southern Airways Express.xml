@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Southern Airways Express" iata="9X" color="Silver" country="122" CEO="Stan Little" mentality="Safe" market="Local" preferedairport="MEM" schedule="Charter" >
+  <narrative narrative="Southern Airways Express is a commuter airline based at Memphis. Its other hub is Destin,Florida. It was founded in 2013 and has 10 destinations all in the South. Such as Florida,Mississippi,Alabama,Georgia,Louisiana and its home state. It operates out of mostly general aviation airports, it being the only airline operating at most of them, and is considered by the FAA to be an on demand charter company since their flights carry 10 passengers or less even though most their flights are scheduled. As a result of this they don't have to do as much security screening and baggage inspection required by larger airlines. Its fleet is three Cessna 208's and a Beechcraft King Air 200."/>
+</profile>
+  <info real="True" from="2013" to="2199" />
+  <prefereds aircrafts="Cessna 208B,Beechcraft King Air B200"></prefereds>
+ <focusairports>
+        <focusairport airport="VPS"></focusairport>
+     </focusairports>
+
+
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2016)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="3" late="3"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 2013) late (2016)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="1" late="1"></airliner>
+	     </airliners>
+
+
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

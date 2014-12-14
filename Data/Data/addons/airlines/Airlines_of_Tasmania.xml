@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Airlines of Tasmania" iata="FO" color="Tomato" country="116" CEO="Sean Murphy" mentality="Safe" market="Domestic" preferedairport="HBA" Schedule="Charter" >
+  <narrative narrative="Airlines of Tasmania is just as its name sounds, an airline based at Hobart on the island of Tasmania in Australia. Its main base is primarily used for sightseeing services and pilot training which would be Cambridge Aerodrome in the Cambridge suburb of Hobart. It also has a base at Launceston also on the island. It also operates under the name Par-Avion. It has 4 destinations as of 2011 and focuses on charters. It has sevice out of Melbournes Essendon airport also, its mainland base. As of 2014 its fleet was five Cessna 172's, three BN Islanders,and two each of Cessna 206,Cessna 404 Titan,Beechcraft Duchess,Piper Navajo,Piper Chieftan,and one Aero Commander 500S."/>
+</profile>
+  <info real="True" from="1978" to="2199" />
+  <prefereds aircrafts="Cessna 172 Skyhawk,BN-2A Islander,Cessna 206,Cessna 404 Titan,Beechcraft Duchess,PA-31 Navajo,PA-31T Cheyenne,Aero Commander 500/600,Dornier 228-212"></prefereds>
+     <focusairports>
+	 <focusairport airport="LST"></focusairport>
+	 <focusairport airport="MEB"></focusairport>
+     </focusairports>
+
+	 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (1978) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 172 Skyhawk" early="0" late="5"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1978) late (2014)-->
+	         <airliners>
+	    <airliner type="BN-2A Islander" early="0" late="3"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1978) late (2014)-->
+	         <airliners>
+	    <airliner type="Beechcraft Duchess" early="0" late="2"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1978) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 404 Titan" early="0" late="2"></airliner>
+	     </airliners>
+	     	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1978) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 206" early="0" late="2"></airliner>
+	     </airliners>
+	     	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1978) late (2014)-->
+	         <airliners>
+	    <airliner type="PA-31 Navajo" early="0" late="2"></airliner>
+	     </airliners>
+	          	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1978) late (2014)-->
+	         <airliners>
+	    <airliner type="PA-31T Cheyenne" early="0" late="2"></airliner>
+	     </airliners>
+	     	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1978) late (2014)-->
+	         <airliners>
+	    <airliner type="Aero Commander 500S" early="0" late="1"></airliner>
+	     </airliners>
+
+
+
+
+
+
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

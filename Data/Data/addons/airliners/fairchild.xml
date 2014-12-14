@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
   <airliner manufacturer="Fairchild" name="Fairchild Swearingen Merlin" price="253140"> <!--400000-->
     <type body="Single_Aisle" rangetype="Regional" engine="Turboprop" />
     <specs wingspan="14.10" length="12.85" range="3591" speed="556" fuelcapacity="1550" consumption="0.030"
            runwaylengthrequired="620" />
-    <capacity passengers="19" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <capacity passengers="9" cockpitcrew="2" cabincrew="0" maxclasses="1" />
     <produced from="1965" to="1998" rate="30" />
   </airliner>
   <airliner manufacturer="Fairchild" name="Fairchild Swearingen Merlin IV C" price="330140"> <!--400000-->

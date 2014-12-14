@@ -1854,6 +1854,20 @@
     </runways>
   </airport>
   <!--Australia (Y***)-->
+   <airport name="Lizard Island Airport" icao="YLZI" iata="LZR" type="Domestic" season="All_Year">
+    <town town="Lizard Island, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
+    <coordinates>
+      <latitude value="014°40'24''S" />
+      <longitude value="145°27'18''E" />
+    </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="926" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Brisbane Airport" icao="YBBN" iata="BNE" type="International" season="All_Year">
     <town town="Brisbane, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
@@ -3327,7 +3341,38 @@
       <runway name="13/31" length="1463" surface="Asphalt" />
     </runways>
   </airport>
+   <airport name="Brisbane West Wellcamp Airport" icao="YBWW" iata="WTB" type="Domestic" season="All_Year">
+ <period from="11.17.2014 00:00:00" to="01.01.2199 00:00:00" />   
+ <town town="Toowoomba, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
+    <coordinates>
+      <latitude value="027°33'30''S" />
+      <longitude value="151°47'36''E" />
+    </coordinates>
+    <size value="Very_small" pax="344" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2870" surface="Asphalt" />
+    </runways>
+  </airport>
+
+ <airport name="Coen Airport" icao="YCOE" iata="CUQ" type="Domestic" season="All_Year">
+  <town town="Coen, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
+    <coordinates>
+      <latitude value="013°45'43''S" />
+      <longitude value="143°07'00''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="1209" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Toowoomba Airport" icao="YTWB" iata="TWB" type="Domestic" season="All_Year">
+  <period from="05.28.1928 00:00:00" to="12.31.2014 00:00:00" />
     <town town="Toowoomba, QLD" country="116" GMT="10:00:00" DST="10:00:00" />
     <coordinates>
       <latitude value="027°32'29''S" />

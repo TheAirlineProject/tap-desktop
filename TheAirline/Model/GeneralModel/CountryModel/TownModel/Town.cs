@@ -114,6 +114,7 @@ using TheAirline.Model.AirportModel;
 
         public static bool operator ==(Town a, Town b)
         {
+          
             // If both are null, or both are same instance, return true.
             if (ReferenceEquals(a, b))
             {

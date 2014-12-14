@@ -9,6 +9,7 @@ using TheAirline.Model.GeneralModel.Helpers.DatabaseHelpersModel.SQLite;
 
 namespace TheAirline.Model.GeneralModel.Helpers.DatabaseHelpersModel
 {
+    /*
     //the class for the database helpers
     public class DatabaseHelpers
     {
@@ -44,12 +45,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.DatabaseHelpersModel
         //insert an object in the database
         public static void AddObject(object o)
         {
-            /*
-            if (db == null)
-                SetupDatabase();
-            
-            db.Insert(o);
-             * */
+           
             objects.Add(o);
         }
         //commites the changes to the db
@@ -79,4 +75,5 @@ namespace TheAirline.Model.GeneralModel.Helpers.DatabaseHelpersModel
         }
        
     }
+*/
 }

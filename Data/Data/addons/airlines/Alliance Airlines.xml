@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Alliance Airlines" iata="QQ" logo="QQ2" color="MediumBlue" country="116" CEO="Steve Padgett" mentality="Moderate" market="Domestic" preferedairport="BNE"  schedule="Charter">
+  <narrative narrative="Alliance Airlines is a charter company with its main base at Brisbane,Australia. Other bases include Adelaide,Townsville,Cairns,one of Melbournes smaller airports Essendon,Perth and Darwin. It was founded in 2002 out of assets from Flight West Airlines. Its main customers are the very large and abundant mining industry of Australia and the energy sector. It also does government,defense and corporate charters and does leasing. It is under contract to serve 28 mines as of 2014. It has 6 scheduled charter destinations offered to the public also. Besides chairman Steve Padgett the other co owners are Stephen Bond and Hugh Jones, who is chief executive of Airwork, a New Zealand based maintenence,leasing and cargo carrier which deals in fixed wing and helicopters, which also has a very big presence in Australia. Airwork leases to Alliance often. As of 2014 Alliance has 18 Fokker 100's,9 Fokker 70's,and 7 Fokker 50's. In 2002 it started with two Fokker 100's and two Embraer 120 Brasilias. It has also recently leased a 737-400 but is no longer doing so."/>
+</profile>
+  <info real="True" from="2002" to="2199" />
+  <prefereds aircrafts="Fokker 100,Fokker 70,Fokker 50,Boeing 737-400,EMB 120 Brasilia"></prefereds>
+     <focusairports>
+	 <focusairport airport="ADL"></focusairport>
+	  <focusairport airport="TSV"></focusairport>
+	 <focusairport airport="CNS"></focusairport>
+	  <focusairport airport="MEB"></focusairport>
+	   <focusairport airport="PER"></focusairport>
+	  <focusairport airport="DRW"></focusairport>
+     </focusairports>
+
+	 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2014)-->
+	         <airliners>
+	    <airliner type="Fokker 100" early="2" late="18"></airliner>
+	     </airliners>
+	     	      	  <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2014)-->
+	         <airliners>
+	    <airliner type="Fokker 70" early="0" late="9"></airliner>
+	     </airliners>
+	          	      	  <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2014)-->
+	         <airliners>
+	    <airliner type="Fokker 50" early="0" late="7"></airliner>
+	     </airliners>
+          	      	  <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2014)-->
+	         <airliners>
+	    <airliner type="EMB 120 Brasilia" early="2" late="0"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

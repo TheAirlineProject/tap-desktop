@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Toll Aviation" iata="TFX" color="Orange" country="116" CEO="Brian Kruger" mentality="Moderate" market="Regional" preferedairport="BNE" routefocus="Cargo" >
+  <narrative narrative="Toll Aviation is a cargo airline that is part of Toll Holdings, and ships for Toll Priority. Its base is Bribane with a secondary hub at Adelaide, and a base at Sydney's smaller general aviation airport Bankstown. It was founded in 1989 as Jetcraft Aviation and had that name until 2008 when it was acquired by Toll Holdings. Its initial fleet was two Mitsubishi Mu-2's and a Fairchild Metroliner, which it still has 10 Metroliner and Merlin's. It also has two ATR 42-300's. In the past it has had Cessna 208's,a Beechcraft Baron 58,two Cessna 441 Conquest's, a DHC-7,Piper Aerostar and Piper Navajo,Aero Commander 500,and IAI Westwind. In 1993 it started flying bank documents and general freight on behalf of Security Express, which would turn into Toll Priority, the company that would buy it. Today it does time critical freight,charters and aircraft engineering and maintenance service, ground handling,and other suppoer sevice in the region of Australia,New Zealand and Oceania islands. Helicopters are also availible for charter and for special missions and medical tansport and equipment air lifting. It has a base at all the province capital cities in Australia."/>
+</profile>
+  <info real="True" from="1989" to="2199" />
+  <prefereds aircrafts="Fairchild Swearingen Metroliner,Fairchild Swearingen Merlin,Fairchild Swearingen Merlin IV C,ATR 42-300,Aero Commander 500S,Beechcraft Baron 58,Beechcraft Baron 55,Cessna 208B Super Cargomaster,Cessna 441 Conquest,Mitsubishi MU-2,DHC-7-100,PA-60 Aerostar,PA-31 Navajo,IAI Westwind"></prefereds>
+     <focusairports>
+	 <focusairport airport="ADL"></focusairport>
+         <focusairport airport="SYD"></focusairport>
+	  <focusairport airport="MEL"></focusairport>
+	   <focusairport airport="PER"></focusairport>
+	 <focusairport airport="HBA"></focusairport>
+	  <focusairport airport="DRW"></focusairport>
+     </focusairports>
+
+	 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (1989) late (2014)-->
+	         <airliners>
+	    <airliner type="Fairchild Swearingen Metroliner" early="1" late="9"></airliner>
+	     </airliners>
+	     	      	  <!--the airliners the airline would start with which isn't on a route earyl (1989) late (2014)-->
+	         <airliners>
+	    <airliner type="Fairchild Swearingen Merlin IV C" early="0" late="1"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1989) late (2014)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="0" late="2"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1989) late (2014)-->
+	         <airliners>
+	    <airliner type="Mitsubishi MU-2" early="2" late="0"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

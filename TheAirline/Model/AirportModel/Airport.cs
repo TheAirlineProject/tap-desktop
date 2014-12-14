@@ -85,7 +85,8 @@
                     }
                     else
                     {
-                        ((PropertyInfo)prop).SetValue(this, entry.Value);
+                        if (entry.Name != "weather")
+                            ((PropertyInfo)prop).SetValue(this, entry.Value);
                     }
                 }
             }
@@ -112,6 +113,13 @@
 
             if (version < 3)
                 this.LandingFee = AirportHelpers.GetStandardLandingFee(this);
+
+            if (this.Weather == null)
+            { 
+                this.Weather = new List<Weather>();
+
+                AirportHelpers.CreateAirportWeather(this);
+            }
 
             if (this.Weather.Contains(null))
             {

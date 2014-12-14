@@ -311,6 +311,8 @@ inflationafter="1">
       <runway name="08L/26R" length="3029" surface="Concrete" />
       <runway name="08R/26L" length="3505" surface="Asphalt" />
       <runway name="12/30" length="2225" surface="Asphalt" />
+      <runway name="B" length="24" surface="Concrete" type="Helipad" />
+      <runway name="C" length="34" surface="Concrete" type="Helipad" />
     </runways>
   </airport>
   <airport name="Victoria International Airport" icao="CYYJ" iata="YYJ" type="International" season="All_Year">
@@ -1825,6 +1827,382 @@ inflationafter="1">
       <runway name="09/27" length="1219" surface="Asphalt" />
     </runways>
   </airport>
+    <airport name="Deering Airport" icao="PADE" iata="DRG" type="Domestic" season="All_Year">
+    <town town="Deering, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="066°04'10''N" />
+      <longitude value="162°45'59''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="1006" surface="Gravel" />
+      <runway name="11/29" length="805" surface="Gravel" />
+      </runways>
+  </airport>
+    <airport name="White Mountain Airport" icao="PAWM" iata="WMO" type="Domestic" season="All_Year">
+    <town town="White Mountain, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="064°41'21''N" />
+      <longitude value="163°24'46''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="914" surface="Gravel" />
+      </runways>
+  </airport>
+      <airport name="Napakiak Airport" icao="PANA" iata="WNA" type="Domestic" season="All_Year">
+    <town town="Napakiak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°41'25''N" />
+      <longitude value="161°58'43''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="990" surface="Gravel" />
+      </runways>
+  </airport>
+        <airport name="Mekoryuk Airport" icao="PAMY" iata="MYU" type="Domestic" season="All_Year">
+    <town town="Mekoryuk/Nunivak Island, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°22'17''N" />
+      <longitude value="166°16'14''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="5/23" length="936" surface="Gravel" />
+      </runways>
+  </airport>
+          <airport name="Point Lay LRRS Airport" icao="PPIZ" iata="PIZ" type="Domestic" season="All_Year">
+    <town town="Point Lay, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="069°43'56''N" />
+      <longitude value="163°00'40''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="5/23" length="1073" surface="Gravel" />
+      </runways>
+  </airport>
+            <airport name="Nightmute Airport" icao="PAGT" iata="NME" type="Domestic" season="All_Year">
+    <town town="Nightmute, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°28'16''N" />
+      <longitude value="164°42'03''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="488" surface="Gravel" />
+      </runways>
+  </airport>
+              <airport name="Ouzinkie Airport" icao="PAKZ" iata="KOZ" type="Domestic" season="All_Year">
+    <town town="Ouzinkie/Spruce Island, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="057°56'32''N" />
+      <longitude value="152°27'54''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="8/26" length="1006" surface="Gravel" />
+      </runways>
+  </airport>
+                <airport name="Pilot Station Airport" icao="PAQS" iata="PQS" type="Domestic" season="All_Year">
+    <town town="Pilot Station, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="061°56'04''N" />
+      <longitude value="162°53'58''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="774" surface="Gravel" />
+      </runways>
+  </airport>
+                  <airport name="Nunapitchuk Airport" icao="PANP" iata="NUP" type="Domestic" season="All_Year">
+    <town town="Nunapitchuk, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°54'21''N" />
+      <longitude value="162°26'21''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="622" surface="Gravel" />
+       <runway name="NE/SW" length="914" surface="Water" />
+      </runways>
+  </airport>
+                    <airport name="Old Harbor Airport" icao="PAOZ" iata="OLH" type="Domestic" season="All_Year">
+    <town town="Old Harbor, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="057°13'06''N" />
+      <longitude value="153°16'09''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="838" surface="Gravel" />
+      </runways>
+  </airport>
+     <airport name="Port Lions Airport" icao="PARI" iata="ORI" type="Domestic" season="All_Year">
+     <period from="01.01.1965 00:00:00" to="01.01.2199 00:00:00" />
+    <town town="Port Lions, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="057°03'07''N" />
+      <longitude value="152°50'46''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="671" surface="Gravel" />
+      </runways>
+  </airport>
+                      <airport name="Tuluksak Airport" icao="PATS" iata="TLT" type="Domestic" season="All_Year">
+    <town town="Tuluksak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="061°05'49''N" />
+      <longitude value="160°58'10''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="750" surface="Dirt" />
+      </runways>
+  </airport>
+                        <airport name="Stebbins Airport" icao="PABB" iata="WBB" type="Domestic" season="All_Year">
+    <town town="Stebbins, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="063°30'57''N" />
+      <longitude value="162°16'41''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="5/23" length="914" surface="Gravel" />
+      </runways>
+  </airport>
+                          <airport name="Tununak Airport" icao="PATN" iata="TNK" type="Domestic" season="All_Year">
+    <town town="Tununak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°34'32''N" />
+      <longitude value="165°16'18''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="8/26" length="542" surface="Gravel" />
+      </runways>
+  </airport>
+                            <airport name="Tununak Airport" icao="PATT" iata="WTL" type="Domestic" season="All_Year">
+    <town town="Tuntutuliak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="060°20'07''N" />
+      <longitude value="162°40'01''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="922" surface="Gravel" />
+      </runways>
+  </airport>
+                              <airport name="Goodnews Airport" icao="PAGU" iata="GNU" type="Domestic" season="All_Year">
+    <town town="Goodnews Bay, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="59°07'03''N" />
+      <longitude value="161°34'39''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="5/23" length="864" surface="Gravel" />
+      </runways>
+  </airport>
+    <airport name="Sheldon Point Airport" icao="PAXP" iata="SXP" type="Domestic" season="All_Year">
+    <town town="Sheldon Point, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="62°31'14''N" />
+      <longitude value="164°50'52''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="919" surface="Gravel" />
+      <runway name="9W/27W" length="4572" surface="Water" />
+      <runway name="18W/36W" length="4572" surface="Water" />
+      </runways>
+        <expansions>  
+       <expansion type="Town_name" name="Nunam Iqua, AK" date="12.01.1999 00:00:00" notify="True"></expansion>
+    </expansions>
+  </airport>
+        <airport name="Grant County International Airport (Washington)" icao="KMWH" iata="MWH" type="Domestic" season="All_Year">
+    <town town="Moses Lake, WA" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="047°12'31''N" />
+      <longitude value="119°19'09''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14L/32R" length="4116" surface="Concrete" />
+      <runway name="4/22" length="3048" surface="Concrete" />
+      <runway name="9/27" length="1067" surface="Concrete" />
+      <runway name="18/36" length="1014" surface="Asphalt" />
+      <runway name="14R/32L" length="895" surface="Concrete" />
+    </runways>
+  </airport>
+
+      <airport name="Welke Airport" icao="KSJX" iata="WKE" type="Domestic" season="All_Year">
+    <town town="Beaver Island, MI" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="045°43'16''N" />
+      <longitude value="85°31'13''W" />
+    </coordinates>
+    <size value="Smallest" pax="11" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+     <runway name="9/27" length="766" surface="Asphalt" />
+      <runway name="17/35" length="1067" surface="Dirt" />
+    </runways>
+  </airport>
+
+     <airport name="Manistee County Blacker Airport" icao="KMBL" iata="MBL" type="Domestic" season="All_Year">
+    <town town="Manistee/Ludington, MI" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="044°16'21''N" />
+      <longitude value="86°14'49''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+     <runway name="9/27" length="1677" surface="Asphalt" />
+      <runway name="18/36" length="829" surface="Asphalt" />
+    </runways>
+  </airport>
+
+<airport name="Clovis Municipal Airport" icao="KCVN" iata="CVN" type="Domestic" season="All_Year">
+    <town town="Clovis, NM" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="034°25'31''N" />
+      <longitude value="103°04'45''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="4/22" length="1890" surface="Asphalt" />
+      <runway name="12/30" length="1736" surface="Asphalt" />
+      <runway name="8/26" length="744" surface="Dirt" />
+          </runways>
+  </airport>
+
+
+<airport name="Grant County Airport (New Mexico)" icao="KSVC" iata="SVC" type="Domestic" season="All_Year">
+    <town town="Silver City, NM" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="032°38'12''N" />
+      <longitude value="108°09'23''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="8/26" length="2073" surface="Asphalt" />
+ <runway name="17/35" length="1668" surface="Dirt" />
+      <runway name="12/30" length="1425" surface="Dirt" />
+          <runway name="3/21" length="1383" surface="Dirt" />
+  </runways>
+  </airport>
+<airport name="Venango Regional Airport" icao="KFKL" iata="FKL" type="Domestic" season="All_Year">
+    <town town="Franklin/Oil City, PA" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="041°22'40''N" />
+      <longitude value="79°51'37''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="1585" surface="Asphalt" />
+ <runway name="12/30" length="1095" surface="Asphalt" />
+  </runways>
+  </airport>
+<airport name="Alliance Municipal Airport" icao="KAIA" iata="AIA" type="Domestic" season="All_Year">
+    <town town="Alliance, NE" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <coordinates>
+      <latitude value="042°03'12''N" />
+      <longitude value="102°48'14''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="2805" surface="Asphalt" />
+ <runway name="17/35" length="1924" surface="Asphalt" />
+ <runway name="8/26" length="1890" surface="Asphalt" />  </runways>
+  </airport>
+     <airport name="Nanwalek Airport" icao="PAEB" iata="KEB" type="Domestic" season="All_Year">
+    <town town="Nanwalek, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="59°21'08''N" />
+      <longitude value="151°55'31''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="564" surface="Gravel" />
+      </runways>
+  </airport>
     <airport name="Ruby Airport" icao="PARY" iata="RBY" type="Domestic" season="All_Year">
     <town town="Ruby, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
@@ -2304,7 +2682,7 @@ inflationafter="1">
       <runway name="18/36" length="2591" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Ronald Reagan Washington National Airport" icao="KDCA" iata="DCA" type="International"
+  <airport name="Washington National Airport" icao="KDCA" iata="DCA" type="International"
            season="All_Year">
     <town town="Washington DC" country="122" GMT="-03:00:00" DST="-04:00:00" />
     <coordinates>
@@ -2320,6 +2698,9 @@ inflationafter="1">
       <runway name="4/22" length="1497" surface="Asphalt" />
       <runway name="15/33" length="1586" surface="Asphalt" />
     </runways>
+       <expansions>
+     <expansion type="Name" name="Ronald Reagan Washington National Airport" date="02.06.1998 00:00:00" notify="True"></expansion>
+    </expansions>
   </airport>
   <airport name="Denver International Airport" icao="KDEN" iata="DEN" type="International" season="All_Year">
     <period from="02.28.1995 00:00:00" to="01.01.2199 00:00:00" />
@@ -2365,7 +2746,7 @@ inflationafter="1">
   <airport name="Dallas/Fort Worth International Airport" icao="KDFW" iata="DFW" type="International"
            season="All_Year" landingfee="1.95">
     <period from="01.13.1974 00:00:00" to="01.01.2199 00:00:00" />
-    <town town="Dallas, TX" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Dallas/Fort Worth, TX" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="032°53'47''N" />
       <longitude value="097°02'17''W" />
@@ -2769,7 +3150,7 @@ inflationafter="1">
       <runway name="12/30" length="3200" surface="Concrete" />
     </runways>
   </airport>
-  <airport name="George Bush Intercontinental Airport" icao="KIAH" iata="IAH" type="International"
+  <airport name="Houston Intercontinental Airport" icao="KIAH" iata="IAH" type="International"
            season="All_Year">
     <period from="06.08.1969 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Houston, TX" country="122" GMT="-05:00:00" DST="-06:00:00" />
@@ -2792,6 +3173,9 @@ inflationafter="1">
       <runway name="15L/33R" length="3658" surface="Concrete" />
       <runway name="15R/33L" length="3048" surface="Concrete" />
     </runways>
+      <expansions>
+     <expansion type="Name" name="George Bush Intercontinental Airport" date="04.01.1997 00:00:00" notify="True"></expansion>
+    </expansions>
   </airport>
   <airport name="Wichita Mid-Continent Airport" icao="KICT" iata="ICT" type="Domestic" season="All_Year">
     <town town="Wichita, KS" country="122" GMT="-05:00:00" DST="-06:00:00" />
@@ -2808,6 +3192,10 @@ inflationafter="1">
       <runway name="1R/19L" length="2225" surface="Concrete" />
       <runway name="14/32" length="1921" surface="Concrete" />
     </runways>
+     <expansions>
+     <expansion type="Name" name="Wichita Dwight D. Eisenhower Airport" date="05.31.2015 00:00:00" notify="True"></expansion>
+     <expansion type="New_terminal" name="Terminal 2" gates="12" date="05 31 2015 00:00:00" notify="True"></expansion>
+     </expansions>
   </airport>
   <airport name="New Castle Airport" icao="KILG" iata="ILG" type="Domestic" season="All_Year">
     <town town="Wilmington, DE" country="122" GMT="-04:00:00" DST="-05:00:00" />
@@ -3090,7 +3478,11 @@ inflationafter="1">
       <runway name="4L/22R" length="2522" surface="Concrete" />
       <runway name="4R/22L" length="2515" surface="Concrete" />
       <runway name="18/36" length="1897" surface="Concrete" />
+           <runway name="H1" length="12" surface="Concrete" type="Helipad" />
     </runways>
+     <expansions>
+     <expansion type="Name" name="Bill and Hilary Clinton National Airport" date="03.20.2012 00:00:00" notify="True"></expansion>
+     </expansions>
   </airport>
   <airport name="Lincoln Airport" icao="KLNK" iata="LNK" type="Domestic" season="All_Year">
     <town town="Lincoln, NE" country="122" GMT="-05:00:00" DST="-06:00:00" />
@@ -3155,8 +3547,28 @@ season="All_Year">
       <runway name="09/27" length="2000" surface="Asphalt" />
     </runways>
   </airport>
+    <airport name="Parkwater Airfield" icao="KSFF" iata="SFF" type="Domestic" season="All_Year">
+  <period from="01.01.1913 00:00:00" to="12.31.1945 00:00:00" />
+    <town town="Spokane, WA" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="047°40'59''N" />
+      <longitude value="117°19'21''W" />
+    </coordinates>
+    <size value="Small" pax="500" cargo="Smallest" cargovolume="61" />
+   <terminals>
+      <terminal name="Terminal" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="3L/21R" length="1371" surface="Concrete" />
+      <runway name="3R/21L" length="808" surface="Asphalt" />
+ <runway name="3W/21W" length="1829" surface="Water" />
+    </runways>
+ <expansions>
+<expansion type="Name" name="Felts Field" date="09.01.1927 00:00:00" notify="True"></expansion>
+</expansions>     </airport>
   <airport name="Kansas City International Airport" icao="KMCI" iata="MCI" type="International"
            season="All_Year">
+              <period from="10.23.1972 00:00:00" to="12.31.2199 00:00:00" /> 
     <town town="Kansas City, MO" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="039°17'51''N" />
@@ -3173,6 +3585,22 @@ season="All_Year">
       <runway name="1R/19L" length="2896" surface="Concrete" />
       <runway name="9/27" length="2896" surface="Asphalt" />
     </runways>
+  <airport name="Kansas City Municipal Airport" icao="KMKC" iata="MKC" type="International" season="All_Year">
+  <period from="01.01.1927 00:00:00" to="10.22.1972 00:00:00" />
+    <town town="Kansas City, MO" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="039°07'23''N" />
+      <longitude value="94°35'34''W" />
+    </coordinates>
+    <size value="Medium" pax="2900" cargo="Smallest" cargovolume="0" />
+   <terminals>
+      <terminal name="Terminal" gates="15" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="2081" surface="Concrete" />
+      <runway name="3/21" length="1539" surface="Asphalt" />
+   </runways>
+    </airport>
   </airport>
   <airport name="Orlando International Airport" icao="KMCO" iata="MCO" type="International" season="All_Year">
     <town town="Orlando, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
@@ -3206,6 +3634,21 @@ season="All_Year">
     </terminals>
    <runways>
       <runway name="13/31" length="3048" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Merrill C. Meigs Field Airport" icao="KCGX" iata="CGX" type="Domestic" season="All_Year">
+    <period from="12.10.1948 00:00:00" to="03.30.2003 00:00:00" />
+    <town town="Chicago, IL" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="041°51'36''N" />
+      <longitude value="087°36'31''W" />
+    </coordinates>
+    <size value="Smallest" pax="12" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="1189" surface="Concrete" />
     </runways>
   </airport>
   <airport name="Chicago Municipal Airport" icao="KMDW" iata="MDW" type="International"

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Vietnam Air Services Company" iata="0V" color="Cyan" country="170" CEO="Bui Ngoc Hoang" mentality="Safe" market="Regional" preferedairport="SGN" >
+  <narrative narrative="Vietnam Air Services Company, or VASCO for short, is an airline that is a subsidiary of Vietnam Airlines based at Ho Chi Minh City, formerly Saigon, and has a focus city at Con Dao, an island group or archipleago containing 16 islands in the South China Sea, the largest and the one with the airport being Con Son. As of 2014 it serves 4 other domestic airports. At one time it served Subic Bay airport in the Philippines. As of 2014 it had two ATR 72-200's which it got in 2010. It was founded in 1987 as part of Vietnam Airlines and has been doing flights independently since 2004 although Vietnam Airlines is still the parent."/>
+</profile>
+  <info real="True" from="1987" to="2199" />
+  <prefereds aircrafts="ATR 72-200"></prefereds>
+     <focusairports>
+	 <focusairport airport="VCS"></focusairport>
+     </focusairports>
+                
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-200" early="1" late="2"></airliner>
+	     </airliners>
+     	  
+
+
+</airline>

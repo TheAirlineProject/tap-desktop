@@ -1,6 +1,6 @@
+﻿
 
-
-<weather type="town" value="Iqaluit, NU">
+<weather type="town" value="Frobisher Bay, NU">
   <months>
     <month month="1" precipitation="20">
       <temp min="-31" max="-23" />

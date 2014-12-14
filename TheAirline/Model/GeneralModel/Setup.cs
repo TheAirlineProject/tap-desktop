@@ -430,6 +430,7 @@
         /*! public static method SetupGame().
          * Tries to create game´s environment and base configuration.
          */
+        /*
         private static void SaveDemandForDatabase()
         {
              DatabaseHelpers.SetupDatabase();
@@ -444,7 +445,7 @@
             DatabaseHelpers.CommitToDatabase();// læs fra /data-File og lav Game copy
 
    
-        }
+        }*/
         private static void LoadNicksAirports()
         {
             var countries = new List<string>();
@@ -3195,6 +3196,13 @@
 
                             expansion.Name = expansionName;
                         }
+                        if (expansionType == AirportExpansion.ExpansionType.Town_name)
+                        {
+                            string townName = expansionNode.Attributes["name"].Value;
+
+                            expansion.Name = townName;
+                        }
+
                         if (expansionType == AirportExpansion.ExpansionType.Runway_Length)
                         {
                             string expansionName = expansionNode.Attributes["name"].Value;

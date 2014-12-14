@@ -28,6 +28,7 @@
             this.EducationTime = educationTime;
             this.Rating = rating;
             this.Aircrafts = new List<string>();
+            this.FlownHours = new TimeSpan();
         }
 
         private Pilot(SerializationInfo info, StreamingContext ctxt)
@@ -94,6 +95,8 @@
                 this.Aircrafts = GeneralHelpers.GetPilotAircrafts(this);
                 this.Training = null;
             }
+            if (version < 4)
+                this.FlownHours = new TimeSpan();
         }
 
         #endregion
@@ -125,7 +128,8 @@
             {
             }
         }
-
+        [Versioning("flown")]
+        public TimeSpan FlownHours { get; set; }
         [Versioning("profile")]
         public PilotProfile Profile { get; set; }
 
@@ -141,7 +145,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 3);
+            info.AddValue("version", 4);
 
             Type myType = this.GetType();
 

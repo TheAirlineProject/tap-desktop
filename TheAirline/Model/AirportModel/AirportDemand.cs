@@ -16,27 +16,16 @@ namespace TheAirline.Model.AirportModel
         {
             this.Airport = airport;
         }
+        /*
         public void addDemand(Airport destination, int paxvalue, int cargovalue)
         {
-           // DatabaseHelpers.AddObject(demand);
-
-            /*
-            AirportDestinationDemand demand = getDemand(destination);
-            
-            if (demand != null)
-            {
-                demand.Cargo += cargovalue;
-                demand.Passengers += paxvalue;
-
-                DatabaseHelpers.UpdateObject(demand);
-            }
-            else*/
             DatabaseHelpers.AddObject(new AirportDestinationDemand() { Airport = this.Airport.Profile.IATACode, Destination = destination.Profile.IATACode, Cargo = cargovalue, Passengers = paxvalue });
         }
         public AirportDestinationDemand getDemand(Airport demand)
         {
             return DatabaseHelpers.GetDemand(this.Airport, demand);
         }
+         * */
 
     }
     //the class for an airport destination demand

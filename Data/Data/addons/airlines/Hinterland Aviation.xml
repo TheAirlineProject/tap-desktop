@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Hinterland Aviation" iata="OI" color="RoyalBlue" country="116" CEO="Mark Dorward" mentality="Safe" market="Local" preferedairport="CNS" >
+  <narrative narrative="Hinterland Aviation is based at Cairns,Queensland and has been around since 1984. It as of 2014 has only 2 scheduled destinations to Cooktown and Lizard Island. It also serves the Bloomfield Lodge on the Bloomfield River which its parent company Trailfinders owns. Its other flights are tourism charters and sightseeing related and other charter type flights. In 2014 it had four Cessna 208's,two Cessna 404's,two Cessna 402's,two King Air 200's,and a Cessna 310. It also does aviation engineering in support of the Far North aviation industry. It does medical flights in Papua New Guinea also."/>
+</profile>
+  <info real="True" from="1984" to="2199" />
+  <prefereds aircrafts="Cessna 208B,Cessna 404 Titan,Cessna 402,Cessna 402C,Cessna 310,Beechcraft King Air B200"></prefereds>
+     <focusairports>
+	 <focusairport airport="CTN"></focusairport>
+         <focusairport airport="LZR"></focusairport>
+     </focusairports>
+
+	 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (1984) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="0" late="4"></airliner>
+	     </airliners>
+	     	      	  <!--the airliners the airline would start with which isn't on a route earyl (1984) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 402" early="1" late="1"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1984) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 402C" early="0" late="1"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1984) late (2014)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="0" late="2"></airliner>
+	     </airliners>
+	             	  <!--the airliners the airline would start with which isn't on a route earyl ( 1984) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 404 Titan" early="0" late="2"></airliner>
+	     </airliners>
+	                  	  <!--the airliners the airline would start with which isn't on a route earyl ( 1984) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 310" early="0" late="1"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

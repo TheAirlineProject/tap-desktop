@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Bemidji Airlines" iata="CH"  color="SteelBlue" country="122" CEO="Larry Diffley" mentality="Safe" market="Regional" preferedairport="BJI" routefocus="Mixed" schedule="Business">
+  <narrative narrative="Bemidji Airlines is based at its namesake of Bemidji,Minnesota, a town of about 14,500 people as of a 2013 estimate, in northern Minnesota. It is a cargo airline mostly, but it also does charter passenger and charter cargo service. It is also the main Fixed Base Operator at Bemidji airport. It also has a hub at Minneapolis. Scheduled service outside Minnesota includes the two Dakota's, and Wisconsin. Its charter service also includes Canada. Its fleet in 2007 and 2014 were 10 Beechcraft 99's,3 Fairchild Metroliners,16 Beechcraft Queen Air's,3 Cessna 172 Skyhawks,a Beechcraft Baron 58,a Beechcraft King Air 90,and a Cessna 152."/>
+</profile>
+  <info real="True" from="1946" to="2199" />
+  <prefereds aircrafts="Beechcraft 99,Beechcraft Queen Air B80,Fairchild Swearingen Metroliner,Cessna 172 Skyhawk,Beechcraft Baron 58,Beechcraft King Air 90"></prefereds>
+     <focusairports>
+	 <focusairport airport="MSP"></focusairport>
+     </focusairports>
+                
+</airline>

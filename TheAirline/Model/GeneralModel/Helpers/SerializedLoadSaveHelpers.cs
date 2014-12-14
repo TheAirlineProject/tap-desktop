@@ -1,5 +1,7 @@
 ﻿namespace TheAirline.Model.GeneralModel.Helpers
 {
+    using Newtonsoft.Json;
+    using ServiceStack.Text;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -348,8 +350,10 @@
                 });
 
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
-
+            
             FileSerializer.Serialize(fileName, so);
+            
+            //GameTypeSerializer.Serialize(fileName, so);
 
             sw.Stop();
             Console.WriteLine("Saving: {0} ms", sw.ElapsedMilliseconds);
@@ -445,7 +449,7 @@
     }
 
     [Serializable]
-    public class SaveObject
+    public struct SaveObject
     {
         #region Public Properties
 
@@ -505,7 +509,28 @@
 
         #endregion
     }
+    public class GameTypeSerializer
+    {
+        public static void Serialize(string filename, SaveObject objecttoserialize)
+        {
+            AirlineProfile profile = new AirlineProfile("Test Airline","TA","Black","Peter Jason",false,2014,2199);
 
+            
+            /*
+            string json1 = JsonConvert.SerializeObject(profile);
+           // string json2 = JsonConvert.SerializeObject(objecttoserialize, Formatting.Indented,new JsonSerializerSettings { 
+        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+});
+            string st = TypeSerializer.SerializeToString<SaveObject>(objecttoserialize);*/
+
+            TextWriter stream = File.CreateText(filename);
+
+           // using (BinaryWriter writer = new BinaryWriter(stream))
+            {
+                TypeSerializer.SerializeToWriter(objecttoserialize, stream);
+            }
+        }
+    }
     public static class FileSerializer
     {
         #region Public Methods and Operators

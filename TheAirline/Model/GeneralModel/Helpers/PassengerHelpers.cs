@@ -2938,7 +2938,7 @@
                     int cargo = airport.getDestinationCargoRate(dAirport);
                     int pax = airport.getDestinationPassengersRate(dAirport,AirlinerClass.ClassType.Economy_Class);
 
-                    DatabaseHelpers.AddObject(new AirportDestinationDemand() { Airport = airport.Profile.IATACode, Destination=dAirport.Profile.IATACode,Cargo=cargo,Passengers=pax});
+                //    DatabaseHelpers.AddObject(new AirportDestinationDemand() { Airport = airport.Profile.IATACode, Destination=dAirport.Profile.IATACode,Cargo=cargo,Passengers=pax});
                 }
 
                 counter++;

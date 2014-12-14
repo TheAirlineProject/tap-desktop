@@ -236,7 +236,7 @@
                     Airports.GetAllAirports(
                         a => (new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country) == country &&
                             (a.Profile.Size == GeneralHelpers.Size.Smallest || a.Profile.Size == GeneralHelpers.Size.Very_small
-                            || a.Profile.Size == GeneralHelpers.Size.Smallest));
+                            || a.Profile.Size == GeneralHelpers.Size.Small));
 
                         foreach (Airport cairport in countryAirports)
                             if (!majorAirports.Contains(cairport))
@@ -280,7 +280,7 @@
                             GameObject.GetInstance().HumanAirline.Profile.CEO,
                             GameObject.GetInstance().HumanAirline.Profile.IATACode)));
 
-            DatabaseHelpersModel.DatabaseHelpers.SetupDatabase();
+         //   DatabaseHelpersModel.DatabaseHelpers.SetupDatabase();
 
             Action action = () =>
             {

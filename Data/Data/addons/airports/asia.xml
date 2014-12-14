@@ -6563,7 +6563,7 @@ inflationafter="1">
   </airport>
   <!--Brunei (WB**)-->
   <airport name="Brunei International Airport" icao="WBSB" iata="BWN" type="International" season="All_Year">
-    <town town="Bandar Seri Begawan" country="277" GMT="08:00:00" DST="00:00:00" />
+    <town town="Brunei Town" country="277" GMT="08:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="4°56'39''N" />
       <longitude value="114°55'40''E" />
@@ -6575,7 +6575,8 @@ inflationafter="1">
     <runways>
       <runway name="03/21" length="3658" surface="Asphalt" />
     </runways>
-         <expansions>
+             <expansions>  
+       <expansion type="Town_name" name="Bandar Seri Begawan" date="01.01.1970 00:00:00" notify="True"></expansion>
      <expansion type="New_terminal" name="Terminal B" gates="30" date="01 01 2020 00:00:00" notify="True"></expansion>
    </expansions>
   </airport>

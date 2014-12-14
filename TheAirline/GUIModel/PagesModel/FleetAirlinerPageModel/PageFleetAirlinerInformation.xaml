@@ -127,6 +127,21 @@
                         <TextBlock Text="{Binding Airliner.Airliner.Flown,Mode=OneTime,Converter={StaticResource DistanceToUnitConverter}}"
                            VerticalAlignment="Bottom" />
                     </WrapPanel>
+                  
+                    <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                        <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1017'}"
+                    Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
+                        <TextBlock 
+                           VerticalAlignment="Bottom" >
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0:D2}:{1:D2}" Mode="OneTime">
+                                    <Binding Path="Airliner.Airliner.FlownHours.Hours" />
+                                    <Binding Path="Airliner.Airliner.FlownHours.Minutes" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </WrapPanel>
                     <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                         <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1007'}"

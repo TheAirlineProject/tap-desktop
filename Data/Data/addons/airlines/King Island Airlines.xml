@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="King Island Airlines" iata="KNS" color="Cyan" country="116" CEO="Edward Currie" mentality="Safe" market="Local" preferedairport="KNS"  schedule="Business">
+  <narrative narrative="King Island Airlines is based at its namesake of King Island off the northwest coast of the island of Tasmania, and lies between Tasmania and mainland Australia. Its other base and headquarters is Moorabbin Airport in Melbourne. It has one Embraer 110 Bandeirante and four Piper PA-31s. The only two places it serves are those two airports."/>
+</profile>
+  <info real="True" from="1990" to="2199" />
+  <prefereds aircrafts="PA-31 Navajo,PA-31T Cheyenne,EMB 110 Bandeirante"></prefereds>
+     <focusairports>
+	 <focusairport airport="MBW"></focusairport>
+     </focusairports>
+
+	 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (1990) late (2014)-->
+	         <airliners>
+	    <airliner type="PA-31 Navajo" early="1" late="4"></airliner>
+	     </airliners>
+	     	      	  <!--the airliners the airline would start with which isn't on a route earyl (1990) late (2014)-->
+	         <airliners>
+	    <airliner type="EMB 110 Bandeirante" early="0" late="1"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

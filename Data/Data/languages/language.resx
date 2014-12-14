@@ -5630,4 +5630,13 @@ Good luck.</value>
   <data name="PageAirlineFinances_1022_name" xml:space="preserve">
     <value>Loan Limit</value>
   </data>
+  <data name="PageAirlineEmployees_1017_name" xml:space="preserve">
+    <value>Flown Hours</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_1017_name" xml:space="preserve">
+    <value>Flown Hours</value>
+  </data>
+  <data name="PageShowPilot_1007_name" xml:space="preserve">
+    <value>Flown Hours</value>
+  </data>
 </root>

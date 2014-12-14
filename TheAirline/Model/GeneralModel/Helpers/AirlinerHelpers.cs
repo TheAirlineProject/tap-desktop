@@ -64,7 +64,10 @@
             long kmPerYear = rnd.Next(1000, 100000);
             long km = kmPerYear * age;
 
+            TimeSpan flownHours = MathHelpers.GetFlightTime(km, airliner.Type.CruisingSpeed);
+
             airliner.Flown = km;
+            airliner.FlownHours = flownHours;
 
             var engines = EngineTypes.GetEngineTypes(airliner.Type, GameObject.GetInstance().GameTime.Year);
 
@@ -410,7 +413,10 @@
             long kmPerYear = rnd.Next(100000, 1000000);
             long km = kmPerYear * age;
 
+            TimeSpan flownHours = MathHelpers.GetFlightTime(km, airliner.Type.CruisingSpeed);
+
             airliner.Flown = km;
+            airliner.FlownHours = flownHours;
 
             CreateAirlinerClasses(airliner);
 

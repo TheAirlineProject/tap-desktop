@@ -1,6 +1,6 @@
+﻿
 
-
-<weather type="town" value="Astana">
+<weather type="town" value="Alma-Ata">
   <months>
     <month month="1" precipitation="16">
       <temp min="-19" max="-10" />

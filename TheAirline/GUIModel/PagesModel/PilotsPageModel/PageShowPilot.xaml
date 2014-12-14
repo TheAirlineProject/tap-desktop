@@ -61,6 +61,20 @@
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
                 <g:QuickInfoValue
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1007'}">
+                    <g:QuickInfoValue.Value>
+                        <TextBlock Width="200"
+                                   VerticalAlignment="Bottom" >
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0:D2}:{1:D2}" Mode="OneTime">
+                                    <Binding Path="Pilot.FlownHours.Hours" ElementName="pageShowPilot" />
+                                    <Binding Path="Pilot.FlownHours.Minutes" ElementName="pageShowPilot" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </g:QuickInfoValue.Value>
+                </g:QuickInfoValue>
+                <g:QuickInfoValue
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1005'}">
                     <g:QuickInfoValue.Value>
                         <TextBlock Width="200"

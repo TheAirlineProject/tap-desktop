@@ -20,7 +20,7 @@
     public class FleetAirlinerMVVM : INotifyPropertyChanged
     {
         #region Fields
-      
+
         private Airport _homebase;
 
         private Boolean _isbuyable;
@@ -106,10 +106,13 @@
 
             this.Maintenances = new ObservableCollection<FleetAirlinerMaintenanceMVVM>();
 
-            foreach (AirlinerMaintenanceCheck check in Airliner.Maintenance.Checks)
+            if (this.Airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline)
             {
-                Boolean canperformcheck = this.Airliner.GroundedToDate < GameObject.GetInstance().GameTime;
-                this.Maintenances.Add(new FleetAirlinerMaintenanceMVVM(check.Type, check.LastCheck, airliner.Maintenance.getNextCheck(check.Type),check.Interval,check.CheckCenter,canperformcheck));
+                foreach (AirlinerMaintenanceCheck check in Airliner.Maintenance.Checks)
+                {
+                    Boolean canperformcheck = this.Airliner.GroundedToDate < GameObject.GetInstance().GameTime;
+                    this.Maintenances.Add(new FleetAirlinerMaintenanceMVVM(check.Type, check.LastCheck, airliner.Maintenance.getNextCheck(check.Type), check.Interval, check.CheckCenter, canperformcheck));
+                }
             }
 
             this.IsBuyable = this.Airliner.Airliner.Airline != null && this.Airliner.Airliner.Airline.IsHuman
@@ -120,7 +123,7 @@
             this.IsConvertable = this.Airliner.Airliner.Airline.IsHuman
                                  && this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
                                  && !this.Airliner.HasRoute
-                                 && (this.Airliner.Airliner.Owner!=null || this.Airliner.Airliner.Airline.isHuman())
+                                 && (this.Airliner.Airliner.Owner != null || this.Airliner.Airliner.Airline.isHuman())
                                  && this.Airliner.Purchased == FleetAirliner.PurchasedType.Bought
                                  && this.Airliner.Airliner.Type.IsConvertable;
 
@@ -129,8 +132,8 @@
                 && this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
                 && !this.Airliner.HasRoute;
 
-            
-    
+
+
         }
 
         #endregion
@@ -142,9 +145,9 @@
         #endregion
 
         #region Public Properties
-        public ObservableCollection<FleetAirlinerMaintenanceMVVM> Maintenances{ get; set; }
+        public ObservableCollection<FleetAirlinerMaintenanceMVVM> Maintenances { get; set; }
 
-       
+
         public FleetAirliner Airliner { get; set; }
 
         public Airline Owner { get; set; }
@@ -217,7 +220,7 @@
         public ObservableCollection<Pilot> Pilots { get; set; }
 
         public double BuyPrice { get; set; }
-      
+
         #endregion
 
         #region Public Methods and Operators
@@ -594,7 +597,7 @@
             }
         }
         private DateTime _nextcheck;
-        public DateTime NextCheck 
+        public DateTime NextCheck
         {
             get
             {
@@ -634,7 +637,7 @@
                 this.NotifyPropertyChanged("CanPerformCheck");
             }
         }
-        public FleetAirlinerMaintenanceMVVM(AirlinerMaintenanceType type, DateTime lastcheck,DateTime nextcheck,double interval,AirlinerMaintenanceCenter center,Boolean canperformcheck)
+        public FleetAirlinerMaintenanceMVVM(AirlinerMaintenanceType type, DateTime lastcheck, DateTime nextcheck, double interval, AirlinerMaintenanceCenter center, Boolean canperformcheck)
         {
             this.LastCheck = lastcheck;
             this.NextCheck = nextcheck;

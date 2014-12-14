@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Qatar Airways" iata="QR" color="Purple" country="180" CEO="Akbar Al Baker" mentality="Aggressive"
            market="Global " preferedairport="DOH">
+            <narrative narrative="Qatar Airways is the state-owned flag carrier of Qatar. Headquartered in the Qatar Airways Tower in Doha, the airline operates a hub-and-spoke network, linking over 125 international destinations across Africa, Central Asia, Europe, Far East, South Asia, Middle East, North America, South America and Oceania from its base at Hamad International Airport, using a fleet of more than 100 aircraft." />
   </profile>
   <info real="True" from="1994" to="2199" />
 </airline>

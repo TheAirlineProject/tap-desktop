@@ -10,6 +10,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using TheAirline.Model.PassengerModel;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -282,6 +283,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airliner.Airliner.FlownHours = airliner.Airliner.FlownHours.Add(flightTime);
 
+            foreach (Pilot pilot in airliner.Pilots)
+                pilot.FlownHours = pilot.FlownHours.Add(flightTime);
+
             Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
             Airport dept = airliner.CurrentFlight.Entry.DepartureAirport;
 
@@ -301,7 +305,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double onTimePercent = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time")) / airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
             airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time%"), onTimePercent * 100);
-
 
             if (airliner.CurrentFlight.isCargoFlight())
             {

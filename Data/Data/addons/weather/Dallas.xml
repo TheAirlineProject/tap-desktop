@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<weather type="town" value="Dallas, TX">
+<weather type="town" value="Dallas/Fort Worth, TX">
   <months>
     <month month="1" precipitation="53">
       <temp min="3" max="14" />

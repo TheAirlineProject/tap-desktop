@@ -172,6 +172,23 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn
+                                        Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1017'}"
+                                        Width="200" util:GridViewSort.PropertyName="FlownHours">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock 
+                                   VerticalAlignment="Bottom" >
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0:D2}:{1:D2}" Mode="OneTime">
+                                                            <Binding Path="Pilot.FlownHours.Hours" />
+                                                            <Binding Path="Pilot.FlownHours.Minutes" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
                                         Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1013'}"
                                         Width="200" util:GridViewSort.PropertyName="Aircrafts">
                                         <GridViewColumn.CellTemplate>

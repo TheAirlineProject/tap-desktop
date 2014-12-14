@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Skytrans Airlines" iata="Q6" color="RoyalBlue" country="116" CEO="Simon Wild" mentality="Safe" market="Domestic" preferedairport="CNS"  >
+  <narrative narrative="Skytrans Airlines is based at Cairns with another hub at Brisbane. From these bases it flies to 25 destinations as of October 2014. However 14 of these are ending the last day of 2014, a big reason or the main reason being that it lost the government of Queensland subsidized routes to much bigger rival airline Regional Express. It also does charters, which was its main business plan its first three years after founding in 1990. It as of December 2014 has nine Bombardier Dash 8-100's and three Dash 8-300's. In late 2000 it merged with another small regional airline based at Cairns called AirSwift Aviation."/>
+</profile>
+  <info real="True" from="1990" to="2199" />
+  <prefereds aircrafts="Bombardier Dash 8-100,Bombardier Dash 8-300,Bombardier Dash 8-400,Bombardier Dash 8-400NextGen"></prefereds>
+     <focusairports>
+	 <focusairport airport="BNE"></focusairport>
+     </focusairports>
+
+	 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2014)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-100" early="4" late="9"></airliner>
+	     </airliners>
+	     	      	  <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2014)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="2" late="3"></airliner>
+	     </airliners>
+
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

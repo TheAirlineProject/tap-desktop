@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Sharp Airlines" iata="SH" color="CornflowerBlue" country="116" CEO="Malcolm Sharp" mentality="Safe" market="Domestic" preferedairport="PTJ" schedule="Business" >
+  <narrative narrative="Sharp Airlines is based at Portland,Victoria,Australia. As of 2014 it is also the only airline with service from there, which is to Melbourne Essendon. It also has bases at Adelaide and at Launceston on Tasmania island. It also has a training base at Hamilton,Victoria in addition to serving 2 destinations from there. The other airports it operates at are Port Augusta,SA, Flinders Island off the northeast coast of Tasmania,and King Island off the northwest coast of Tasmania as of 2014. It was founded in 1990. Its first plane or planes were Piper Chieftans, and then upgraded to Fairchild Metroliners of which they have 6 of as of 2014. They also have 3 Cessna 172's,and a Piper PA-34 Seneca. It does most of its flights twice daily every day of the week, some less."/>
+</profile>
+  <info real="True" from="1990" to="2199" />
+  <prefereds aircrafts="Fairchild Swearingen Metroliner,Cessna 172 Skyhawk,PA-34 Seneca,PA-31T Cheyenne"></prefereds>
+     <focusairports>
+	 <focusairport airport="LST"></focusairport>
+         <focusairport airport="ADL"></focusairport>
+	  <focusairport airport="HLT"></focusairport>
+	  <focusairport airport="MEB"></focusairport>
+	  <focusairport airport="FLS"></focusairport>
+	  <focusairport airport="PUG"></focusairport>
+	  <focusairport airport="KNS"></focusairport>
+     </focusairports>
+
+	 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (1990) late (2014)-->
+	         <airliners>
+	    <airliner type="Fairchild Swearingen Metroliner" early="0" late="6"></airliner>
+	     </airliners>
+	     	      	  <!--the airliners the airline would start with which isn't on a route earyl (1990) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 172 Skyhawk" early="0" late="3"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1990) late (2014)-->
+	         <airliners>
+	    <airliner type="PA-34 Seneca" early="0" late="1"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1990) late (2014)-->
+	         <airliners>
+	    <airliner type="PA-31T Cheyenne" early="2" late="0"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>

@@ -1,6 +1,6 @@
+﻿
 
-
-<weather type="town" value="Bishkek">
+<weather type="town" value="Frunze">
   <months>
     <month month="1" precipitation="26">
       <temp min="-7" max="3" />

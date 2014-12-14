@@ -222,7 +222,21 @@
             DateTime result = firstThursday.AddDays(weekNum * 7);
             return result.AddDays(-3);
         }
+        public static TimeSpan GetFlightTime(double distance, double speed)
+        {
+            double dtime = distance / speed;
 
+            int hours = Convert.ToInt32(Math.Floor(dtime));
+
+            double dMinutes = (dtime - hours) * 60;
+
+            int minutes = Convert.ToInt16(Math.Floor(dMinutes));
+
+            //2.5 minutes for takeoff and 2.5 minutes for landing
+            minutes += 5;
+
+            return new TimeSpan(hours, minutes, 0);
+        }
         //returns the coordinates for a route in a distance of a specific lenghth
 
         //returns the flight time between two coordinates with a given speed
@@ -235,18 +249,7 @@
 
             double dist = GetDistance(coordinate1, coordinate2);
 
-            double dtime = dist / speed;
-
-            int hours = Convert.ToInt16(Math.Floor(dtime));
-
-            double dMinutes = (dtime - hours) * 60;
-
-            int minutes = Convert.ToInt16(Math.Floor(dMinutes));
-
-            //2.5 minutes for takeoff and 2.5 minutes for landing
-            minutes += 5;
-
-            return new TimeSpan(hours, minutes, 0);
+            return GetFlightTime(dist, speed);
         }
 
         //returns the flight time for a given airliner type between two coordinates
@@ -261,18 +264,7 @@
 
             double speed = type.CruisingSpeed;
 
-            double dtime = dist / speed;
-
-            int hours = Convert.ToInt16(Math.Floor(dtime));
-
-            double dMinutes = (dtime - hours) * 60;
-
-            int minutes = Convert.ToInt16(Math.Floor(dMinutes));
-
-            //2.5 minutes for takeoff and 2.5 minutes for landing
-            minutes += 5;
-
-            return new TimeSpan(hours, minutes, 0);
+            return GetFlightTime(dist, speed);
         }
 
         public static TimeSpan GetFlightTime(Airport airport1, Airport airport2, AirlinerType type)

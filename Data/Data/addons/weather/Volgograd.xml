@@ -1,6 +1,6 @@
+﻿
 
-
-<weather type="town" value="Volgograd">
+<weather type="town" value="Stalingrad">
   <months>
     <month month="1" precipitation="28">
       <temp min="-9" max="-3" />

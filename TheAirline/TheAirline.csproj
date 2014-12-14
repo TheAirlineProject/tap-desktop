@@ -113,6 +113,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\..\BBM\ServiceStack.Text\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="SharpRaven">
       <HintPath>..\..\..\Users\Christian\Downloads\raven-csharp-master\raven-csharp-master\src\app\SharpRaven\bin\Debug\SharpRaven.dll</HintPath>
     </Reference>

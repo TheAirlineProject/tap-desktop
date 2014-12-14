@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Marshall Islands" iata="CW" color="Black" country="287" CEO="Christopher Loeak" mentality="Safe" market="Domestic" preferedairport="MAJ" >
+  <narrative narrative="Air Marshall Islands is the government owned flag carrier of the Marshall Islands, based at Majuro. It is in the region commonly called the South Pacific and Micronesia. It was founded in 1980 and has as of 2014 a Dash 8-100 and a Dornier 228-212. Another base is Kwajalein also in the Marshall Islands. It is a domestic carrier and serves 6 airports total. Its past planes include a Saab 2000,Hawker Siddeley 748 and a DC-8 combi. "/>
+</profile>
+  <info real="True" from="1980" to="2199" />
+  <prefereds aircrafts="Bombardier Dash 8-100,Dornier 228-212,Saab 2000,HS .748,Douglas DC-8-54CF"></prefereds>
+     <focusairports>
+	 <focusairport airport="KWA"></focusairport>
+     </focusairports>
+
+	 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2018)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-100" early="1" late="1"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 2002) late (2015)-->
+	         <airliners>
+	    <airliner type="Dornier 228-212" early="0" late="1"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1995) late (1999)-->
+	         <airliners>
+	    <airliner type="Saab 2000" early="1" late="0"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 1991) late (1996)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-54CF" early="1" late="0"></airliner>
+	     </airliners>
+
+
+
+	 
+	     	  
+	     	  
+	     	  
+
+
+</airline>
