@@ -152,6 +152,8 @@
             var txtBlock = new TextBlock();
             txtBlock.TextWrapping = TextWrapping.Wrap;
 
+            try { 
+
             char[] delimiterChars = { '[', ']' };
             string[] splittedText = text.Split(delimiterChars);
 
@@ -191,6 +193,11 @@
                     else
                         txtBlock.Inlines.Add(subText);
                 }
+            }
+                }
+            catch (Exception e)
+            {
+
             }
 
          

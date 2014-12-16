@@ -728,30 +728,51 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
         }
+        //returns the income factor for shares
+        private static double GetIncomeFactor(Airline airline)
+        {
+            DateTime lastMonth = GameObject.GetInstance().GameTime.AddMonths(-1);
+            double income = airline.Invoices.getAmount(lastMonth.Year, lastMonth.Month);
+
+            if (income > 10000000)
+                return 10.5;
+            if (income > 5000000)
+                return 7.25;
+            if (income > 2500000)
+                return 4.45;
+            if (income > 1000000)
+                return 2.15;
+            if (income > 500000)
+                return 1.65;
+
+            return 1.10;
+
+        }
         //returns the current price per share for an airline
         public static double GetPricePerAirlineShare(Airline airline)
         {
-            Random rnd = new Random();
-
+            
             double price = 0;
             Airline.AirlineValue value = airline.getAirlineValue();
+
+            double tValue = GetIncomeFactor(airline);
 
             switch (value)
             {
                 case Airline.AirlineValue.Low:
-                    price = 15 + (rnd.NextDouble() * 10);
+                    price = 15 + tValue;// + (rnd.NextDouble() * 10);
                     break;
                 case Airline.AirlineValue.Very_low:
-                    price = 5 + (rnd.NextDouble() * 10);
+                    price = 5 + tValue;// + (rnd.NextDouble() * 10);
                     break;
                 case Airline.AirlineValue.Normal:
-                    price = 25 + (rnd.NextDouble() * 10);
+                    price = 25 + tValue;// + (rnd.NextDouble() * 10);
                     break;
                 case Airline.AirlineValue.High:
-                    price = 40 + (rnd.NextDouble() * 10);
+                    price = 40 + tValue;// + (rnd.NextDouble() * 10);
                     break;
                 case Airline.AirlineValue.Very_high:
-                    price = 55 + (rnd.NextDouble() * 10);
+                    price = 55 + tValue; //+ (rnd.NextDouble() * 10);
                     break;
             }
 

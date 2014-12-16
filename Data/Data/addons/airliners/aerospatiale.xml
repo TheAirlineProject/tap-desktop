@@ -29,4 +29,18 @@
     <capacity passengers="4" cockpitcrew="1" cabincrew="0" maxclasses="1" />
     <produced from="1995" to="2020" rate="40" />
   </airliner>
+      <airliner type="Helicopter" manufacturer="Aerospatiale" name="AS350" price="287000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="10.7" length="10.93" range="662" speed="245" fuelcapacity="322" consumption="0.166"
+           runwaylengthrequired="11" />
+    <capacity passengers="6" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1975" to="2199" rate="40" />
+  </airliner>
+    <airliner type="Helicopter" manufacturer="Aerospatiale" name="AS355" price="361500">
+    <type body="Helicopter" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="10.69" length="12.94" range="703" speed="224" fuelcapacity="326" consumption="0.166"
+           runwaylengthrequired="13" />
+    <capacity passengers="6" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1980" to="2199" rate="30" />
+  </airliner>
 </airliners>

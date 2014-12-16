@@ -59,6 +59,19 @@
                 }
             }
 
+            var destination1 = this.Route.Route.Destination1;
+            var destination2 = this.Route.Route.Destination2;
+
+            var humanContracts = GameObject.GetInstance().HumanAirline.SpecialContracts.Where(s => s.Type.Routes.Exists(r => (r.Departure == destination1 && r.Destination == destination2) || (r.Departure == destination2 && r.Destination == destination1 && r.BothWays)));
+
+            foreach (SpecialContract sc in humanContracts)
+            {
+                int routesCount = sc.Routes.Count(r => r.Destination1 == destination1 && r.Destination2 == destination2 && r.Type == this.Route.Route.Type);
+                int contractRoutesCount = sc.Type.Routes.Count(r => r.RouteType == this.Route.Route.Type && ((r.Departure == destination1 && r.Destination == destination2) || (r.Departure == destination2 && r.Destination == destination1 && r.BothWays)));
+
+                if (contractRoutesCount > routesCount)
+                    this.Contracts.Add(sc);
+            }
      
             this.InitializeComponent();
 
@@ -70,13 +83,17 @@
         #endregion
 
         #region Public Properties
+        public ObservableCollection<SpecialContract> Contracts { get; set; }
 
         public ObservableCollection<MVVMRouteClass> Classes { get; set; }
    
         #endregion
 
         #region Methods
-
+        private void btnContract_Click(object sender, RoutedEventArgs e)
+        {
+            this.cbContract.SelectedItem = null;
+        }
         private void tcMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             this.Route.setFeedback();
@@ -107,6 +124,9 @@
                 airlinerItem.Visibility = Visibility.Collapsed;
             }
 
+            var contract = this.Contracts.FirstOrDefault(c=>c.Routes.Exists(r=>r==this.Route.Route));
+
+            this.cbContract.SelectedItem = contract;
        }
      
         private void btnDeleteRoute_Click(object sender, RoutedEventArgs e)

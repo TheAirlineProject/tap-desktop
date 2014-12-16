@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <airliners>
   <airliner type="Helicopter" manufacturer="MBB" name="BK 117" price="330000">
     <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
@@ -6,5 +6,12 @@
            runwaylengthrequired="10" />
     <capacity passengers="10" cockpitcrew="1" cabincrew="0" maxclasses="1" />
     <produced from="1979" to="2004" rate="15" />
+  </airliner>
+      <airliner manufacturer="MBB" name="HFB 320 Hansa Jet" price="600000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="14.48" length="16.61" range="2413" speed="825" fuelcapacity="21400" consumption="0.066"
+           runwaylengthrequired="900" />
+    <capacity passengers="15" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1967" to="1982" rate="3" />
   </airliner>
 </airliners>

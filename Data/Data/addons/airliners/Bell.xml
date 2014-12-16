@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <airliners>
   <airliner type="Helicopter" manufacturer="Bell" name="Bell 412" price="429000">
     <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
@@ -20,5 +20,26 @@
            runwaylengthrequired="15" />
     <capacity passengers="17" cockpitcrew="2" cabincrew="0" maxclasses="1" />
     <produced from="1979" to="1993" rate="7" />
+  </airliner>
+          <airliner type="Helicopter" manufacturer="Bell" name="Bell 206" price="125000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="10.16" length="12.11" range="693" speed="200" fuelcapacity="290" consumption="0.25"
+           runwaylengthrequired="12" />
+    <capacity passengers="4" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1962" to="2010" rate="114" />
+  </airliner>
+  <airliner type="Helicopter" manufacturer="Bell" name="Bell 206  LongRanger" price="200000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="10.16" length="12.87" range="693" speed="200" fuelcapacity="290" consumption="0.25"
+           runwaylengthrequired="12" />
+    <capacity passengers="7" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1975" to="2010" rate="47" />
+  </airliner>
+        <airliner type="Helicopter" manufacturer="Bell" name="Bell 407" price="350500">
+    <type body="Helicopter" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="10.67" length="12.70" range="598" speed="246" fuelcapacity="318" consumption="0.166"
+           runwaylengthrequired="12" />
+    <capacity passengers="6" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1996" to="2199" rate="68" />
   </airliner>
 </airliners>

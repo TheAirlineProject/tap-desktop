@@ -1,6 +1,48 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
+  <airliner manufacturer="Beechcraft" name="Beechcraft Duchess" price="23000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.58" length="8.86" range="1445" speed="285" fuelcapacity="380" consumption="0.33"
+           runwaylengthrequired="646" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1978" to="1982" rate="87" />
+  </airliner>
+  <airliner manufacturer="Beechcraft" name="Beechcraft Musketeer" price="14000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="9.98" length="7.82" range="1174" speed="178" fuelcapacity="216" consumption="0.33"
+           runwaylengthrequired="646" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1963" to="1983" rate="208" />
+  </airliner>
+  <airliner manufacturer="Beechcraft" name="Beechcraft Baron 55" price="57000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.53" length="8.53" range="1537" speed="341" fuelcapacity="515" consumption="0.20"
+           runwaylengthrequired="427" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1961" to="1983" rate="159" />
+  </airliner>
+  <airliner manufacturer="Beechcraft" name="Beechcraft Baron 58" price="141000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.53" length="8.87" range="2571" speed="328" fuelcapacity="734" consumption="0.20"
+           runwaylengthrequired="700" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1969" to="2199" rate="100" />
+  </airliner>
+  <airliner manufacturer="Beechcraft" name="Beechcraft Travel Air" price="50700"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.53" length="7.90" range="1867" speed="309" fuelcapacity="318" consumption="0.25"
+           runwaylengthrequired="530" />
+    <capacity passengers="4" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1958" to="1968" rate="65" />
+  </airliner>
+  <airliner manufacturer="Beechcraft" name="Beechcraft Duke" price="124000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.97" length="10.31" range="2274" speed="330" fuelcapacity="690" consumption="0.25"
+           runwaylengthrequired="762" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1968" to="1983" rate="37" />
+  </airliner>
     <airliner manufacturer="Beechcraft" name="Beechcraft Bonanza" price="104774">     
     <type body="Single_Aisle" rangetype="Regional" engine="Turboprop" />
     <specs wingspan="10.21" length="8.38" range="1713" speed="326" fuelcapacity="280" consumption="0.20"

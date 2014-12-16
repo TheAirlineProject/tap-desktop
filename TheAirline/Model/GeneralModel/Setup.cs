@@ -4175,6 +4175,7 @@
                 SpecialContractTypes.AddType(scType);
 
             }
+         
         }
         //loads the random events
         private static void LoadRandomEvents()

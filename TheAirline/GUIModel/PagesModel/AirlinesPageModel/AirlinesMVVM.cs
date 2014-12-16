@@ -193,7 +193,11 @@
 
             this.Stocks = stocks;
 
-            this.IsBuyable = this.Airline.Shares.Count(s => s.Airline == null || s.Airline != GameObject.GetInstance().HumanAirline) == 0 && !this.Airline.IsHuman;
+            int humanStocks = this.Airline.Shares.Count(s => s.Airline == GameObject.GetInstance().HumanAirline);
+
+            double humanStocksPercent = Convert.ToDouble(humanStocks) / Convert.ToDouble(this.Airline.Shares.Count());
+
+            this.IsBuyable = humanStocksPercent >= 0.50  && !this.Airline.IsHuman;
         }
         public void purchaseShares()
         {

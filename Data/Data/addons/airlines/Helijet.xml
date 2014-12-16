@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Helijet" iata="JB" color="SteelBlue" country="113" CEO="Alistair Maclennan" mentality="Moderate" market="Regional" preferedairport="YVR" routefocus="Helicopter">
+  <narrative narrative="Helijet is a helicopter airline based at Vancouver,British Columbia. It has been around since 1986 and has scheduled service to 4 other airports in British Columbia and does a great deal of charter service to places like fishing lodges. It also caters to film,TV,tour guide,and industrial uses. It is also British Columbia's largest air medical service provider. It has also served Seattle's Boeing Field before. As of 2013 it had 10 Sikorsky S-76's,3 Bell 206 LongRangers,and an AS350. It has two Learjet 31 fixed wing planes but those are only used for medical flights. Its first helicopter in 1986 was a Bell 412 and it has had AS355 and S-61's in the past. Beechcraft 1900D fixed wing was also a past aircraft."/>
+</profile>
+  <info real="True" from="1986" to="2199" />
+  <prefereds aircrafts="Sikorsky S-76,Bell 206 LongRanger,AS350,AS355,Bell 412,Bell 206"></prefereds>
+
+                
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Bell 412" early="1" late="0"></airliner>
+	     </airliners>
+	     	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Bell 206 LongRanger" early="0" late="3"></airliner>
+	     </airliners>
+	          	         <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="AS350" early="0" late="1"></airliner>
+	     </airliners>
+	          	         <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Sikorsky S-76" early="0" late="10"></airliner>
+	     </airliners>
+     	  
+
+
+</airline>

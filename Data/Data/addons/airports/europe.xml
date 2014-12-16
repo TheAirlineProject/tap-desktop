@@ -203,7 +203,8 @@
     </runways>
   </airport>
   <airport name="Berlin Tempelhof Airport" icao="EDDI" iata="THF" type="International" season="All_Year">
-    <town town="Berlin" country="1002" GMT="02:00:00" DST="01:00:00" />
+       <period from="04.08.1923 00:00:00" to="10.30.2008 00:00:00" />
+  <town town="Berlin" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="52°28'25''N" />
       <longitude value="13°24'6''E" />
@@ -2001,7 +2002,7 @@
     </runways>
   </airport>
   <airport name="Oslo-Fornebu Airport" icao="ENFB" iata="FBU" type="International" season="All_Year">
-     <period from="10.07.1998 00:00:00" to="09.01.1938 00:00:00" />
+     <period from="09.01.1938 00:00:00" to="10.07.1998 00:00:00" />
     <town town="Oslo" country="139" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="59°53'38''N" />

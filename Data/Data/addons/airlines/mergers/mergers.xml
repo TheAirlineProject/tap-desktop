@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <mergers>
+  <merger name="ATA Airlines has bought Chicago Express Airlines and have made them a subsidiary." airline1="TZ" airline2="C8" type="Subsidiary" date="06.01.1999 00:00:00"></merger>
   <merger name="Vietnam Airlines has founded the subsidiary Vietnam Air Services Company or VASCO for short." airline1="VN" airline2="0V" type="Subsidiary" date="01.01.1987 00:00:00"></merger>
 <merger name="World Airways has acquired Key Airlines." airline1="WO" airline2="KWY" type="Subsidiary" date="1.01.1987 00:00:00"></merger>
 <merger name="Key Airlines is independant from World Airways now." airline1="WO" airline2="KWY" type="Independant" date="1.01.1992 00:00:00"></merger>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Spanair" iata="JK" color="DarkOrange" country="123" CEO="Mike Szucs" mentality="Moderate" market="Global" preferedairport="BCN" >
+  <narrative narrative="Spanair was based at Barcelona and was around from 1986-88 to January 2012. Founded in 1986 but started service in 1988. Its other focus cities were Madrid,Palma de Mallorca and Tenerife North of the Canary Islands. It did scheduled service throughout Europe, serving about 40 European destinations outside of Spain at its demise. Domestic wise it served 14 airports outside of its hub and focus cities. It served 8 in Africa, most in North Africa, but also West Africa. Tel Aviv,Israel was also served. It also did worldwide charters for tour companies. It was a Star Alliance member from 2003 to the end. Scandanavian Airlines SAS was the main share holder until 2007 when it sold most of its 94% stake to a group of local Barcelona and Catelonia area investors, retaining 19.9%.It was launched in 1986 as a venture for SAS also, and did charters only at first. But 1991 it launched scheduled flights to the US,Mexico and the Dominican Republic. March 1994 it started domestic service. Long haul flights were done with Boeing 767-300ER's. Its fleet consisted mostly of A320's, of which it had 19 at the end, and 5 A321's, and it had 3 MD-83's and one each of MD-82 and MD-87's, having in the past more of the MD types of planes. Other planes it had over it history for short times include Boeing 757's,Fokker 100's,Boeing 717's and MD-81s'."/>
+  <logos>
+      <logo from="1987" to="2009" path="JK1987-2009"></logo>
+      </logos>
+</profile>
+  <info real="True" from="1987" to="2012" />
+  <prefereds aircrafts="Airbus A320-200,Airbus A321-200,MD-83 (DC-9-83),MD-82 (DC-9-82),MD-87 (DC-9-87),Boeing 767-300ER,Boeing 717-200,Boeing 757-200,Fokker 100,MD-81 (DC-9-81)"></prefereds>
+  <focusairports>
+        <focusairport airport="MAD"></focusairport>
+	<focusairport airport="PMI"></focusairport>
+        <focusairport airport="TFN"></focusairport>
+     </focusairports>
+
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2011)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="3" late="19"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2011)-->
+	         <airliners>
+	    <airliner type="Airbus A321-200" early="3" late="5"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2011)-->
+	         <airliners>
+	    <airliner type="Boeing 717-200" early="4" late="0"></airliner>
+	     </airliners>
+	        	     	         <!--the airliners the airline would start with which isn't on a route earyl (1991) late (2003)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300ER" early="2" late="0"></airliner>
+	     </airliners>
+	             	     	         <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2009)-->
+	         <airliners>
+	    <airliner type="Fokker 100" early="3" late="0"></airliner>
+	     </airliners>
+	     	  
+	        	     	         <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2011)-->
+	         <airliners>
+	    <airliner type="MD-82 (DC-9-82)" early="9" late="1"></airliner>
+	     </airliners>
+	           	     	         <!--the airliners the airline would start with which isn't on a route earyl (1988) late (2011)-->
+	         <airliners>
+	    <airliner type="MD-83 (DC-9-83)" early="7" late="1"></airliner>
+	     </airliners>
+	            	     	         <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2011)-->
+	         <airliners>
+	    <airliner type="MD-87 (DC-9-87)" early="9" late="3"></airliner>
+	     </airliners>
+	      <logos>
+      <logo from="1987" to="2009" path="JK1987-2009"></logo>
+             </logos>
+
+	     	  
+</airline>

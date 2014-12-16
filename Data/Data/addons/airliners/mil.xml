@@ -21,4 +21,19 @@
     <capacity passengers="63" cockpitcrew="5" cabincrew="1" maxclasses="1" />
     <produced from="1983" to="2199" rate="2" />
   </airliner>
+  <airliner type="Helicopter" manufacturer="Mil" name="Mi-2" price="440000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="14.50" length="11.40" range="440" speed="180" fuelcapacity="600" consumption="0.125"
+           runwaylengthrequired="12" />
+    <capacity passengers="8" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1965" to="1998" rate="87" />
+  </airliner>
+
+    <airliner type="Helicopter" manufacturer="Mil" name="Mi-6" price="4433500">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="35.00" length="33.18" range="1035" speed="250" fuelcapacity="6135" consumption="0.011"
+           runwaylengthrequired="18" />
+    <capacity passengers="90" cockpitcrew="6" cabincrew="0" maxclasses="1" />
+    <produced from="1960" to="1981" rate="22" />
+  </airliner>
 </airliners>

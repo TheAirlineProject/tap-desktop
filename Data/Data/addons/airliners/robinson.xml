@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+    <airliner type="Helicopter" manufacturer="Robinson" name="Robinson R44" price="57500">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="10.10" length="11.65" range="560" speed="200" fuelcapacity="190" consumption="0.33"
+           runwaylengthrequired="12" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1993" to="2199" rate="281" />
+  </airliner>
+      <airliner type="Helicopter" manufacturer="Robinson" name="Robinson R66" price="108000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="10.06" length="11.66" range="601" speed="231" fuelcapacity="230" consumption="0.25"
+           runwaylengthrequired="12" />
+    <capacity passengers="4" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="2010" to="2199" rate="101" />
+  </airliner>
+</airliners>

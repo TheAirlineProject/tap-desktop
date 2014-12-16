@@ -1,4 +1,4 @@
-      <airliners>
+﻿      <airliners>
 
    <airliner manufacturer="Cirrus" name="Vision SF50" price="260000"> 
     <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
@@ -7,5 +7,25 @@
     <capacity passengers="6" cockpitcrew="1" cabincrew="0" maxclasses="1" />
     <produced from="2015" to="2199" rate="125" />
       </airliner>
-      
+             <airliner manufacturer="Cirrus" name="Cirrus SR20" price="41000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.68" length="7.92" range="1454" speed="288" fuelcapacity="212" consumption="0.25"
+           runwaylengthrequired="596" />
+    <capacity passengers="4" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1999" to="2199" rate="180" />
+      </airliner>
+               <airliner manufacturer="Cirrus" name="Cirrus SR22" price="85500"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.68" length="7.92" range="2167" speed="340" fuelcapacity="348" consumption="0.25"
+           runwaylengthrequired="480" />
+    <capacity passengers="4" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="2001" to="2199" rate="180" />
+      </airliner>
+                     <airliner manufacturer="Cirrus" name="Cirrus SR22T" price="98500"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.68" length="7.92" range="1937" speed="396" fuelcapacity="348" consumption="0.25"
+           runwaylengthrequired="251" />
+    <capacity passengers="4" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="2010" to="2199" rate="25" />
+      </airliner> 
       </airliners>

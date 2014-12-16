@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Chicago Express Airlines" iata="C8" color="DarkOliveGreen" country="122" CEO="Edward Halley" mentality="Moderate" market="Local" preferedairport="MDW">
+  <narrative narrative="Chicago Express Airlines was around from 1993 to 2005 and in its last 5 years starting June 1st,1999 were part of ATA Airlines and operated as ATA Connection for a time. It was based at Midway Airport and attempted a hub at Indianapolis later in its life. It operated at 2 other Illinois airports, 4 in Indiana,2 in Iowa,1 in Kentucky,3 in Michigan,2 in Ohio and 2 in Wisconsin. ATA terminated Chicago Express March 28,2005. Its fleet at the end were 16 Saab 340B's, all ex American Eagle planes. Prior to 1999-2000 it used Jetstream 31's."/>
+</profile>
+  <info real="True" from="1993" to="2005" />
+  <prefereds aircrafts="Saab 340B,BAe Jetstream 31"></prefereds>
+ <focusairports>
+         <focusairport airport="IND"></focusairport>
+     </focusairports>
+
+
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2016)-->
+	         <airliners>
+	    <airliner type="Saab 340B" early="1" late="16"></airliner>
+	     </airliners>
+
+	     	   
+	     	  
+	     	  
+
+
+</airline>

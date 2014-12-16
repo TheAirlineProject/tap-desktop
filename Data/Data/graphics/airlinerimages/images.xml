@@ -78,14 +78,25 @@
 <airlinerimage image="P180" types="P180 Avanti"></airlinerimage>
 <airlinerimage image="CV50" types="Vision SF50"></airlinerimage>
 <airlinerimage image="4AT" types="Ford Trimotor"></airlinerimage>
+<airlinerimage image="R44" types="Robinson R44"></airlinerimage>
+<airlinerimage image="R66" types="Robinson R66"></airlinerimage>
+<airlinerimage image="MI6" types="Mi-6"></airlinerimage>
+<airlinerimage image="MI2" types="Mi-2"></airlinerimage>
 <airlinerimage image="L049" types="L-049 Constellation"></airlinerimage>
 <airlinerimage image="L649" types="L-649 Constellation"></airlinerimage>
 <airlinerimage image="L749" types="L-749 Constellation"></airlinerimage>
 <airlinerimage image="L1049" types="L-1049 Super Constellation"></airlinerimage>
 <airlinerimage image="L1649" types="L-1649 Starliner"></airlinerimage>
+<airlinerimage image="HFB320" types="HFB 320 Hansa Jet"></airlinerimage>
+<airlinerimage image="MU2" types="Mitsubishi MU-2"></airlinerimage>
 <airlinerimage image="AAN2" types="Antonov An-2"></airlinerimage>
 <airlinerimage image="AN26" types="Antonov An-26"></airlinerimage>
+<airlinerimage image="C320" types="Cessna 320 Skynight"></airlinerimage>
+<airlinerimage image="C310" types="Cessna 310"></airlinerimage>
 <airlinerimage image="AN12" types="Antonov An-12 Cargo,Antonov An-12 Passenger"></airlinerimage>
   <airlinerimage image="IL14" types="Il-14,Il-14M"></airlinerimage>
-    <airlinerimage image="SE161" types="SE 161 Languedoc"></airlinerimage>
+    <airlinerimage image="SE161" types="SE 161 Languedoc"></airlinerimage>    
+    <airlinerimage image="SR20" types="Cirrus SR20"></airlinerimage>
+        <airlinerimage image="SR22" types="Cirrus SR22"></airlinerimage>
+            <airlinerimage image="SR22T" types="Cirrus SR22T"></airlinerimage>
 </airlinerimages>

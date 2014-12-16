@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Aeroamerica" iata="EO" logo="EO2" color="Gold" country="122" CEO="Richard Heaton" mentality="Moderate" market="Global" preferedairport="BFI" schedule="Charter" >
+  <narrative narrative="Aeroamerica was for most of its life from 1974-1982 a charter carrier, doing scheduled service. Its base was Seattle Boeing Field with a hub at Berlin Tegel for 5-6 years,and secondary hubs at Seattle-Tacoma,Spokane,Portland Oregon,and Boston. Its West Berlin base was created shortly after founding in 1973, in its first year of operation in 1974 having taken over a charter contract from Modern Air Transport and signed a 5 year deal with Berliner Flugring, the largest package tour operator of West Berlin,to conduct flights to the Mediterranean and Canary Islands. It was the largest charter airline at Tegel for a year or two at least. It also did wet leasing which inludes a plane and its crew to other airlines, and sub leasing. In August 1978  after aquiring more 720's and 707's it started operation in domestic service, opening its first route in a route in Washington state from Seattle-Tacoma to the eastern Washington city of Spokane and it was met with success. The next year service  between Seattle and Portland and Honolulu started. In January 1979 the tour company did not renew its contract and by November the Berlin base was closed. The FAA revoked its AOC from June 30,1980 to August 19,1980 for stemming from problems regarding legal action brought on to them by an aircraft lessor and British Airways for unpaid bills and the seizure of one of their planes at Berlin and filing for bankruptcy in American court. In July 1982 it started Seattle to Reno service but would cease operation soon in late 1982. Its fleet was mostly 707 and 720's, of which in 1979 it had 9 707's and 8 720's, and an Aero Commander 500/600. In 1974 it started with 6 second hand 720's. Other planes it used over its history were BAC One Eleven 400,Douglas DC-7,and Douglas DC-8 types."/>
+</profile>
+  <info real="True" from="1974" to="1983" />
+  <prefereds aircrafts="Boeing 720B (707-020B),Boeing 720 (707-020),Boeing 707-320B,Boeing 707-320,Boeing 707-220,Boeing 707-120B,Boeing 707-120,Aero Commander 500/600,BAC One-Eleven 500,BAC One-Eleven 475,BAC One-Eleven 400,Douglas DC-7,Douglas DC-7B"></prefereds>
+ <focusairports>
+         <focusairport airport="TXL"></focusairport>
+         <focusairport airport="SEA"></focusairport>
+	 <focusairport airport="GEG"></focusairport>
+	 <focusairport airport="PDX"></focusairport>
+	 <focusairport airport="BOS"></focusairport>
+	 <focusairport airport="HNL"></focusairport>
+     </focusairports>
+     <!--the airliners the airline would start with which isn't on a route earyl (1974) late (1979)-->
+	         <airliners>
+	    <airliner type="Boeing 720B (707-020B)" early="3" late="5"></airliner>
+	     </airliners>
+	          <!--the airliners the airline would start with which isn't on a route earyl (1974) late (1979)-->
+	         <airliners>
+	    <airliner type="Boeing 720 (707-020)" early="3" late="3"></airliner>
+	     </airliners>
+	          <!--the airliners the airline would start with which isn't on a route earyl (1974) late (1979)-->
+	         <airliners>
+	    <airliner type="Boeing 707-120B" early="0" late="4"></airliner>
+	     </airliners>
+	               <!--the airliners the airline would start with which isn't on a route earyl (1974) late (1979)-->
+	         <airliners>
+	    <airliner type="Boeing 707-320B" early="0" late="5"></airliner>
+	     </airliners>
+	                  <!--the airliners the airline would start with which isn't on a route earyl (1974) late (1979)-->
+	         <airliners>
+	    <airliner type="Aero Commander 500/600" early="0" late="1"></airliner>
+	     </airliners>
+	  
+
+
+
+
+
+	     	  
+	     	  
+
+
+</airline>

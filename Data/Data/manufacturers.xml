@@ -62,6 +62,8 @@
   <manufacturer name="SNCASE" shortname="SNCASE" country="140" />
     <manufacturer name="Canadair Ltd." shortname="Canadair" country="113" />
   <manufacturer name="Helio Aircraft Company" shortname="Helio" country="122" />
+    <manufacturer name="Robinson Helicopter Company" shortname="Robinson" country="122" />
+      <manufacturer name="Mitsubishi Aircraft Corporation" shortname="Mitsubishi" country="171" />
    <!--engines-->
   <manufacturer name="CFM International" shortname="CFM" country="140" />
   <manufacturer name="Engine Alliance" shortname="EA" country="140" />
