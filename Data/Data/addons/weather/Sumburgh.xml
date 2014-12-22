@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Sumburgh, SCT">
+  <months>
+    <month month="1" precipitation="118">
+      <temp min="2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="92">
+      <temp min="2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="100">
+      <temp min="3" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="53">
+      <temp min="4" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="41">
+      <temp min="6" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="54">
+      <temp min="8" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="41">
+      <temp min="10" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="58">
+      <temp min="11" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="81">
+      <temp min="9" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="104">
+      <temp min="7" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="119">
+      <temp min="4" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="125">
+      <temp min="2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

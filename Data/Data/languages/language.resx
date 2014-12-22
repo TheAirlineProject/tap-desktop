@@ -5639,4 +5639,10 @@ Good luck.</value>
   <data name="PageShowPilot_1007_name" xml:space="preserve">
     <value>Flown Hours</value>
   </data>
+  <data name="PageShowRoute_1008_name" xml:space="preserve">
+    <value>Special Contract</value>
+  </data>
+  <data name="PageAirlineFleet_1018_name" xml:space="preserve">
+    <value>Condition</value>
+  </data>
 </root>

@@ -160,15 +160,15 @@ namespace TheAirline.Model.GeneralModel
         [Versioning("bothways")]
         public Boolean BothWays { get; set; }
         [Versioning("passengers")]
-        public long PassengersPerDay { get; set; }
+        public long DemandPerDay { get; set; }
         [Versioning("type")]
         public Route.RouteType RouteType { get; set; }
-        public SpecialContractRoute(Airport destination1, Airport destination2, long passengers,Route.RouteType routetype, Boolean bothways)
+        public SpecialContractRoute(Airport destination1, Airport destination2, long demand,Route.RouteType routetype, Boolean bothways)
         {
             this.Departure = destination1;
             this.Destination = destination2;
             this.BothWays = bothways;
-            this.PassengersPerDay = passengers;
+            this.DemandPerDay = demand;
             this.RouteType = routetype;
        
         }
@@ -279,6 +279,8 @@ namespace TheAirline.Model.GeneralModel
        public AirlinerClass.ClassType ClassType { get; set; }
        [Versioning("seats")]
        public int MinSeats { get; set; }
+        [Versioning("cargo")]
+       public int Cargo { get; set; }
        [Versioning("destination")]
        public Airport Destination { get; set; }
        [Versioning("departure")]

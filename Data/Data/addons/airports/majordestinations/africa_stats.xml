@@ -18,8 +18,11 @@
   </majordestination>
 <majordestination airport="AGA">
     <destinations>
+      <destination airport="DUB" pax="13" />
       <destination airport="LGW" pax="75"  />
        <destination airport="LHR" pax="24"  />
+         <destination airport="MAN" pax="38" />
+	 <destination airport="STN" pax="9" />
     </destinations>
   </majordestination>
     <majordestination airport="ALG">
@@ -34,7 +37,9 @@
   </majordestination>
       <majordestination airport="BJL">
     <destinations>
+       <destination airport="BHX" pax="10"  />
        <destination airport="LGW" pax="77"  />
+         <destination airport="MAN" pax="23" />
     </destinations>
   </majordestination>
         <majordestination airport="BVB">
@@ -42,9 +47,16 @@
        <destination airport="LGW" pax="46"  />
     </destinations>
   </majordestination>
+          <majordestination airport="BVC">
+    <destinations>
+       <destination airport="BHX" pax="22"  />
+       <destination airport="MAN" pax="44"  />
+    </destinations>
+  </majordestination>
       <majordestination airport="CAI">
     <destinations>
       <destination airport="LHR" pax="356"  />
+        <destination airport="MAN" pax="24" />
         </destinations>
 	</majordestination>
   <majordestination airport="CMN">
@@ -66,11 +78,17 @@
     <majordestination airport="DJE">
     <destinations>
        <destination airport="LGW" pax="17"  />
+         <destination airport="MAN" pax="9" />
     </destinations>
   </majordestination>
   <majordestination airport="EBB">
     <destinations>
        <destination airport="LHR" pax="49"  />
+    </destinations>
+  </majordestination>
+    <majordestination airport="FEZ">
+    <destinations>
+       <destination airport="STN" pax="27"  />
     </destinations>
   </majordestination>
   <majordestination airport="FNA">
@@ -86,7 +104,10 @@
   </majordestination>
     <majordestination airport="HRG">
     <destinations>
+     <destination airport="BHX" pax="18"  />
+      <destination airport="EMA" pax="5" />
        <destination airport="LGW" pax="141"  />
+         <destination airport="MAN" pax="98" />
     </destinations>
   </majordestination>
   <majordestination airport="JNB">
@@ -113,11 +134,17 @@
     <destinations>
       <destination airport="LGW" pax="28"  />
       <destination airport="LHR" pax="5"  />
+        <destination airport="MAN" pax="15" />
         </destinations>
 	</majordestination>
 	    <majordestination airport="MBA">
     <destinations>
        <destination airport="LGW" pax="27"  />
+    </destinations>
+  </majordestination>
+  	    <majordestination airport="MIR">
+    <destinations>
+       <destination airport="DUB" pax="4"  />
     </destinations>
   </majordestination>
   <majordestination airport="MRU">
@@ -128,7 +155,23 @@
   </majordestination>
     <majordestination airport="NBE">
     <destinations>
+    <destination airport="BFS" pax="6"  />
+     <destination airport="BHX" pax="81"  />
+     <destination airport="BOH" pax="9" />
+     <destination airport="BRS" pax="51" />  
+     <destination airport="CWL" pax="33" />
+      <destination airport="DSA" pax="18" />
+    <destination airport="EDI" pax="10"  />
+      <destination airport="EMA" pax="70" />
+      <destination airport="EXT" pax="6" />
+    <destination airport="GLA" pax="51" />
+    <destination airport="LBA" pax="9" />
        <destination airport="LGW" pax="148"  />
+       <destination airport="LTN" pax="13"  />
+         <destination airport="MAN" pax="153" />
+	 <destination airport="NCL" pax="46" />
+	  <destination airport="NWI" pax="11" />
+	  <destination airport="STN" pax="23"  />
     </destinations>
   </majordestination>
   <majordestination airport="NBO">
@@ -138,12 +181,19 @@
   </majordestination>
     <majordestination airport="RAK">
     <destinations>
+        <destination airport="BHX" pax="12"  />
+	<destination airport="BRS" pax="2" />
+	 <destination airport="DUB" pax="16" />
        <destination airport="LGW" pax="317"  />
+       <destination airport="LTN" pax="55"  />
+         <destination airport="MAN" pax="78" />
+	 <destination airport="STN" pax="78"  />
     </destinations>
   </majordestination>
     <majordestination airport="RMF">
     <destinations>
        <destination airport="LGW" pax="18"  />
+         <destination airport="MAN" pax="15" />
     </destinations>
   </majordestination>
   <majordestination airport="ROB">
@@ -151,20 +201,44 @@
        <destination airport="LHR" pax="15"  />
     </destinations>
   </majordestination>
+          <majordestination airport="SID">
+    <destinations>
+       <destination airport="BHX" pax="22"  />
+       <destination airport="MAN" pax="22"  />
+    </destinations>
+  </majordestination>
     <majordestination airport="SSH">
     <destinations>
+    <destination airport="BFS" pax="6"  />
+     <destination airport="BHX" pax="134"  />
+     <destination airport="BOH" pax="6" />
+     <destination airport="BRS" pax="32" />
+       <destination airport="CWL" pax="27" />
+        <destination airport="DSA" pax="24" />
+	<destination airport="DUB" pax="4"  />
+    <destination airport="EDI" pax="13"  />
+      <destination airport="EMA" pax="41" />
+      <destination airport="EXT" pax="15" />
+    <destination airport="GLA" pax="54" />
+    <destination airport="LBA" pax="15" />
        <destination airport="LGW" pax="379"  />
+       <destination airport="LTN" pax="119"  />
+         <destination airport="MAN" pax="320" />
+	 <destination airport="NCL" pax="59" />
+	 <destination airport="STN" pax="48"  />
     </destinations>
   </majordestination>
     <majordestination airport="TCP">
     <destinations>
        <destination airport="LGW" pax="30"  />
+         <destination airport="MAN" pax="7" />
     </destinations>
   </majordestination>
 <majordestination airport="TIP">
     <destinations>
       <destination airport="LGW" pax="24"  />
        <destination airport="LHR" pax="36"  />
+         <destination airport="MAN" pax="21" />
     </destinations>
   </majordestination>
   <majordestination airport="TNG">
@@ -177,6 +251,7 @@
     <destinations>
       <destination airport="LGW" pax="38"  />
       <destination airport="LHR" pax="58"  />
+        <destination airport="MAN" pax="9" />
         </destinations>
 	</majordestination>
 </majordestinations>

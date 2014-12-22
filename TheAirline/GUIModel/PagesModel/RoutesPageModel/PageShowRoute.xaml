@@ -139,7 +139,7 @@
                                 </Style.Triggers>
                             </Style>
                         </WrapPanel.Style>
-                        <TextBlock VerticalAlignment="Bottom" Width="100" FontWeight="Bold" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1021'}"></TextBlock>
+                        <TextBlock VerticalAlignment="Bottom" Width="100" FontWeight="Bold" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 1008'}"></TextBlock>
 
                      
                         <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" VerticalAlignment="Bottom"

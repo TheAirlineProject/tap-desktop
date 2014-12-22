@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Heli Air Monaco" iata="YO" color="Firebrick" country="314" CEO="Jacques Crovetto" mentality="Safe" market="Local" preferedairport="MCM"  routefocus="Helicopter">
+  <narrative narrative="Heli Air Monaco is the flag carrier of Monaco, which only has a heliport in its territory and is served by the nearby Nice Airport in France. Heli Air Monaco flys between Nice Airport and the Monaco Heliport an average of 24 times a day. It carries 90-95% of the total passengers that pass through the heliport. It does charters at times to other nearby places such as the Alps,Corsica,Italy and Switzerland. It was founed in 1976 at the same time the heliport opened. "/>
+</profile>
+  <info real="True" from="1976" to="2199" />
+  <prefereds aircrafts="EC130,AS350,EC120 Colibri,SA365 Dauphin 2,Bell 206 JetRanger"></prefereds>
+
+	     	  
+	     	  
+
+
+</airline>

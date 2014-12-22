@@ -95,6 +95,10 @@
         #endregion
 
         #region Methods
+        private void btnCloseDemandInfo_Click(object sender, RoutedEventArgs e)
+        {
+            this.SelectedAirport = null;
+        }
         private void btnDemandInfo_Click(object sender, RoutedEventArgs e)
         {
             var airport = (DemandMVVM)((Button)sender).Tag;

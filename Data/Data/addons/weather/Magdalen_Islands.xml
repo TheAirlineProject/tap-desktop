@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Magdalen Islands, QC">
+  <months>
+    <month month="1" precipitation="100">
+      <temp min="-10" max="-3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="75">
+      <temp min="-12" max="-4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="84">
+      <temp min="-7" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="75">
+      <temp min="-2" max="4" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="64">
+      <temp min="3" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="62">
+      <temp min="9" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="62">
+      <temp min="14" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="75">
+      <temp min="14" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="76">
+      <temp min="11" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="95">
+      <temp min="5" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="102">
+      <temp min="0" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="119">
+      <temp min="-5" max="0" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

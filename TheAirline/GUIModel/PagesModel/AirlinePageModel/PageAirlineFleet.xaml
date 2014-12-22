@@ -110,11 +110,26 @@
                                 </filter:SortableGridViewColumn>
                                 <filter:SortableGridViewColumn
                                     Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1002'}"
-                                    CanFilter="False" SortPropertyName="Name" Width="150">
+                                    CanFilter="False" SortPropertyName="Name" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <ContentControl Content="{Binding}" VerticalAlignment="Bottom"
                                                             ContentTemplate="{StaticResource FleetAirlinerLink}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </filter:SortableGridViewColumn>
+                                <filter:SortableGridViewColumn
+                                    Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1018'}"
+                                    CanFilter="False" SortPropertyName="Airliner.Condition" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ProgressBar Minimum="0" Maximum="100" Width="90" Height="15" Margin="0 2 0 2" Background="Transparent" HorizontalAlignment="Center" Value="{Binding Airliner.Condition}" VerticalAlignment="Bottom"
+                                                ToolTipService.ShowDuration="60000">
+                                                <ProgressBar.ToolTip>
+                                                    <TextBlock Text="{Binding Airliner.Condition,StringFormat='{}{0:F0}%'}" VerticalAlignment="Bottom"></TextBlock>
+                                                </ProgressBar.ToolTip>
+                                            </ProgressBar>
+    
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </filter:SortableGridViewColumn>

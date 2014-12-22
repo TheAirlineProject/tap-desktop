@@ -23,6 +23,7 @@
         #region Fields
 
         private readonly HumanRouteMVVM Route;
+        private SpecialContract SelectedContract;
 
         #endregion
 
@@ -59,11 +60,13 @@
                 }
             }
 
+            this.Contracts = new ObservableCollection<SpecialContract>();
+
             var destination1 = this.Route.Route.Destination1;
             var destination2 = this.Route.Route.Destination2;
 
             var humanContracts = GameObject.GetInstance().HumanAirline.SpecialContracts.Where(s => s.Type.Routes.Exists(r => (r.Departure == destination1 && r.Destination == destination2) || (r.Departure == destination2 && r.Destination == destination1 && r.BothWays)));
-
+          
             foreach (SpecialContract sc in humanContracts)
             {
                 int routesCount = sc.Routes.Count(r => r.Destination1 == destination1 && r.Destination2 == destination2 && r.Type == this.Route.Route.Type);
@@ -126,7 +129,9 @@
 
             var contract = this.Contracts.FirstOrDefault(c=>c.Routes.Exists(r=>r==this.Route.Route));
 
-            this.cbContract.SelectedItem = contract;
+            this.SelectedContract = contract;
+
+            this.cbContract.SelectedItem = this.SelectedContract;
        }
      
         private void btnDeleteRoute_Click(object sender, RoutedEventArgs e)
@@ -172,6 +177,19 @@
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            SpecialContract contract = null;
+             
+            if (this.Contracts.Count > 0 && this.cbContract.SelectedItem != null)
+            {
+                contract = (SpecialContract)this.cbContract.SelectedItem;
+            }
+
+            if (contract != null && contract != this.SelectedContract)
+                contract.Routes.Add(this.Route.Route);
+
+            if (contract != this.SelectedContract)
+                contract.Routes.Remove(this.Route.Route);
+
             //passenger route
             if (this.Route.Route is PassengerRoute)
             {
@@ -214,6 +232,8 @@
                 ((CombiRoute)this.Route.Route).PricePerUnit = cargoPrice;
             }
         }
+
+
 
         #endregion
 

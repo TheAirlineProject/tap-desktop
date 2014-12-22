@@ -6,6 +6,11 @@
        <destination airport="LHR" pax="151"  />
     </destinations>
   </majordestination>
+  <majordestination airport="BNE">
+    <destinations>
+       <destination airport="TPE" pax="105"  />
+    </destinations>
+  </majordestination>
 <majordestination airport="MEL">
     <destinations>
        <destination airport="LHR" pax="231"  />
@@ -14,6 +19,7 @@
 <majordestination airport="SYD">
     <destinations>
        <destination airport="LHR" pax="513"  />
+       <destination airport="TPE" pax="88" />
     </destinations>
   </majordestination>
 </majordestinations>

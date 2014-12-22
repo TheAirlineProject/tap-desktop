@@ -38,7 +38,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         centersList.Add(center, (int)(center.Reputation * (20000 - center.MonthlyPrice)));
 
                     return AIHelpers.GetRandomItem(centersList);
-                  
+
                 }
             }
             return centers.First();
@@ -52,11 +52,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 foreach (SpecialContractRoute scr in sc.Type.Routes)
                 {
-                    var routes = sc.Routes.Where(r => r.HasAirliner && ((r.Destination1 == scr.Departure && r.Destination2 == scr.Destination) || (scr.BothWays && r.Destination2 == scr.Departure && r.Destination1 == scr.Destination)));
+                    var routes = sc.Routes.Where(r => r.HasAirliner && r.Type == scr.RouteType && ((r.Destination1 == scr.Departure && r.Destination2 == scr.Destination) || (scr.BothWays && r.Destination2 == scr.Departure && r.Destination1 == scr.Destination)));
                     if (cr.Type == ContractRequirement.RequirementType.ClassType)
                     {
-                        if (routes.FirstOrDefault(r => ((PassengerRoute)r).getRouteAirlinerClass(cr.ClassType) != null) == null)
-                            isOk = false;
+                        if (scr.RouteType == Route.RouteType.Cargo)
+                        {
+
+                        }
+                        if (scr.RouteType == Route.RouteType.Passenger)
+                        {
+                            if (routes.FirstOrDefault(r => ((PassengerRoute)r).getRouteAirlinerClass(cr.ClassType) != null) == null)
+                                isOk = false;
+                        }
                     }
                     else if (cr.Type == ContractRequirement.RequirementType.Destination)
                     {
@@ -160,7 +167,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static FleetAirliner BuyAirliner(Airline airline, Airliner airliner, Airport airport, double discount)
         {
-            
+
             FleetAirliner fAirliner = AddAirliner(airline, airliner, airport, false);
 
             double price = airliner.getPrice() * ((100 - discount) / 100);
@@ -172,7 +179,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static FleetAirliner AddAirliner(Airline airline, Airliner airliner, Airport airport, Boolean leased)
         {
-            
+
             if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
             {
                 lock (airline.Profile.Country.TailNumbers)
@@ -373,7 +380,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airline.Airline.removeSubsidiaryAirline(airline);
 
             airline.Airline = null;
-      
+
             if (!Airlines.ContainsAirline(airline))
                 Airlines.AddAirline(airline);
         }
@@ -486,7 +493,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             AirlineProfile profile = new AirlineProfile(name, iata, airline.Profile.Color, airline.Profile.CEO, true, GameObject.GetInstance().GameTime.Year, 2199);
             profile.Country = homebase.Profile.Country;
 
-            SubsidiaryAirline sAirline = new SubsidiaryAirline(airline, profile, mentality, market, airline.License, routefocus,airline.Schedule);
+            SubsidiaryAirline sAirline = new SubsidiaryAirline(airline, profile, mentality, market, airline.License, routefocus, airline.Schedule);
 
             AddSubsidiaryAirline(airline, sAirline, money, homebase);
 
@@ -751,7 +758,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the current price per share for an airline
         public static double GetPricePerAirlineShare(Airline airline)
         {
-            
+
             double price = 0;
             Airline.AirlineValue value = airline.getAirlineValue();
 
@@ -808,7 +815,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         Invoice.InvoiceType.Airline_Expenses,
         -buyingPrice);
 
-   
+
         }
         //sell an amount of the shares for an airline in another airline
         public static void SellShares(Airline airline, Airline shareAirline)
@@ -816,12 +823,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double sellingPrice = AirlineHelpers.GetPricePerAirlineShare(shareAirline) * 300000;
 
             shareAirline.Shares.First(s => s.Airline == airline).Airline = null;
-     
-                AirlineHelpers.AddAirlineInvoice(
-            airline,
-            GameObject.GetInstance().GameTime,
-            Invoice.InvoiceType.Airline_Expenses,
-            sellingPrice);
+
+            AirlineHelpers.AddAirlineInvoice(
+        airline,
+        GameObject.GetInstance().GameTime,
+        Invoice.InvoiceType.Airline_Expenses,
+        sellingPrice);
         }
         public static void CreateStandardAirlineShares(Airline airline)
         {
@@ -1001,7 +1008,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     if (AIHelpers.IsRouteInCorrectArea(airport1, airport2))
                     {
-                        if (!FlightRestrictions.HasRestriction(airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport2.Profile.Country, airport1.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline, airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime))
+                        if (!FlightRestrictions.HasRestriction(airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport2.Profile.Country, airport1.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline, airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime) && FlightRestrictions.IsAllowed(airport1, airport2, GameObject.GetInstance().GameTime))
                             status = RouteOkStatus.Ok;
                         else
                             status = RouteOkStatus.Restrictions;

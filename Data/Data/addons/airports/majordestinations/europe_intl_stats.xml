@@ -1,46 +1,10 @@
 
 
 <majordestinations>
-  <majordestination airport="AMS">
-    <destinations>
-      <destination airport="LHR" pax="1406" />
-      <destination airport="BCN" pax="1331" />
-      <destination airport="MAD" pax="1165" />
-      <destination airport="CDG" pax="1050" />
-      <destination airport="FCO" pax="914" />
-      <destination airport="CPH" pax="831" />
-      <destination airport="FRA" pax="850" />
-      <destination airport="AYT" pax="725" />
-      <destination airport="MUN" pax="675" />
-      <destination airport="ZRH" pax="665" />
-      <destination airport="MAN" pax="629" />
-      <destination airport="OSL" pax="596" />
-      <destination airport="GVA" pax="593" />
-      <destination airport="ARN" pax="564" />
-      <destination airport="EDI" pax="563" />
-      <destination airport="MXP" pax="551" />
-      <destination airport="IST" pax="527" />
-      <destination airport="VIE" pax="526" />
-      <destination airport="DXB" pax="525" />
-      <destination airport="LIS" pax="479" />
-      <destination airport="HKG" pax="411" />
-      <destination airport="NBO" pax="409" />
-      <destination airport="CUR" pax="408" />
-      <destination airport="KUL" pax="395" />
-      <destination airport="YYZ" pax="385" />
-      <destination airport="TLV" pax="382" />
-      <destination airport="BKK" pax="383" />
-      <destination airport="SIN" pax="325" />
-      <destination airport="PVG" pax="325" />
-      <destination airport="PBM" pax="267" />
-      <destination airport="MEX" pax="192" cargo="30" />
-    </destinations>
-  </majordestination>
   <majordestination airport="CDG">
-    <destinations> 
+    <destinations> ams
       <destination airport="MAD" pax="2117" />
       <destination airport="FCO" pax="1744" />
-      <destination airport="LHR" pax="1625" />
       <destination airport="BCN" pax="1591" />
       <destination airport="LIN" pax="1535" />
       <destination airport="YUL" pax="1233" />
@@ -65,11 +29,6 @@
 <majordestination airport="MAD">
     <destinations>
          <destination airport="MEX" pax="488" cargo="75" />
-    </destinations>
-  </majordestination>
-    <majordestination airport="AMS">
-    <destinations>
-      <destination airport="MEX" pax="192" cargo="30" />
     </destinations>
   </majordestination>
     <majordestination airport="FRA">

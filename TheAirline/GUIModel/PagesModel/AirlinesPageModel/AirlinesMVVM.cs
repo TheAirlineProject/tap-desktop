@@ -197,7 +197,11 @@
 
             double humanStocksPercent = Convert.ToDouble(humanStocks) / Convert.ToDouble(this.Airline.Shares.Count());
 
-            this.IsBuyable = humanStocksPercent >= 0.50  && !this.Airline.IsHuman;
+            double missingStocks = 1- humanStocks;
+
+            double buyingPrice = this.Airline.getValue() * 100000 * missingStocks;
+
+            this.IsBuyable = humanStocksPercent >= 0.50 && !this.Airline.IsHuman && GameObject.GetInstance().HumanAirline.Money > buyingPrice;
         }
         public void purchaseShares()
         {

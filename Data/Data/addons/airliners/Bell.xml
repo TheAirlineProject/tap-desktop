@@ -1,5 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <airliners>
+    <airliner type="Helicopter" manufacturer="Bell" name="Bell 427" price="366000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="11.28" length="11.42" range="730" speed="256" fuelcapacity="1135" consumption="0.14"
+           runwaylengthrequired="12" />
+    <capacity passengers="7" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1998" to="2010" rate="20" />
+  </airliner>
+    <airliner type="Helicopter" manufacturer="Bell" name="Bell 429 GlobalRanger" price="965000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="10.97" length="12.70" range="722" speed="273" fuelcapacity="1200" consumption="0.14"
+           runwaylengthrequired="13" />
+    <capacity passengers="7" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="2009" to="2199" rate="25" />
+  </airliner>
   <airliner type="Helicopter" manufacturer="Bell" name="Bell 412" price="429000">
     <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
     <specs wingspan="14.00" length="17.10" range="745" speed="226" fuelcapacity="1249" consumption="0.077"

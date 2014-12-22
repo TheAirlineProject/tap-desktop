@@ -218,6 +218,11 @@
                 </Style>
             </StackPanel.Style>
             <Separator></Separator>
+            <Button Width="20" VerticalAlignment="Bottom" Tag="{Binding}" HorizontalAlignment="Left"
+                                                Background="Transparent" Click="btnCloseDemandInfo_Click">
+              <Image Source="/data/images/delete.png" 
+                                                   RenderOptions.BitmapScalingMode="HighQuality" />
+            </Button>
             <TextBlock Text="{Binding SelectedAirport.Destination.Profile.Name,ElementName=pageAirportDemand}" FontSize="12" TextDecorations="Underline" FontWeight="Bold"></TextBlock>
             
             <WrapPanel Style="{StaticResource WrapPanelStyle}">

@@ -825,7 +825,7 @@
             //SaveAirportsToCSV();
 
             //SaveDemandForDatabase();
-            
+
 
             var airportNoCountry = Airports.GetAllAirports(a => a.Profile.Country.Uid == null);
             var airlineNoCountry = Airlines.GetAirlines(a => a.Profile.Country.Uid == null);
@@ -987,36 +987,36 @@
 
             SetupMainGame();
         }
-        private static void SetupHistoricAirliners() 
+        private static void SetupHistoricAirliners()
         {
-     
-            foreach (AirlinerHistory history in AirlinerHistories.GetHistories().Where(h=>h.StartDate <= GameObject.GetInstance().GameTime && h.EndDate>= GameObject.GetInstance().GameTime))
+
+            foreach (AirlinerHistory history in AirlinerHistories.GetHistories().Where(h => h.StartDate <= GameObject.GetInstance().GameTime && h.EndDate >= GameObject.GetInstance().GameTime))
             {
-               
+
                 Airliner airliner = AirlinerHelpers.CreateAirlinerFromYear(history.StartDate.Year, history.Type);
 
                 //airliner.TailNumber = history.SerialNumber;
 
                 Airliners.AddAirliner(airliner);
 
-                var airlines = history.AirlineHistories.Where(h => h.Date <= GameObject.GetInstance().GameTime).OrderBy(h=>h.Date);
+                var airlines = history.AirlineHistories.Where(h => h.Date <= GameObject.GetInstance().GameTime).OrderBy(h => h.Date);
 
                 foreach (AirlinerAirlineHistory historyAirline in airlines)
                 {
                     if (historyAirline.Airline == null)
                     {
                         string reg = airliner.Type.Manufacturer.Country.TailNumbers.getNextTailNumber();
-                        airliner.History.Add(new AirlinerRegistrationHistory(historyAirline.Date,historyAirline.Title,airliner.Type.Manufacturer.Logo,reg));
+                        airliner.History.Add(new AirlinerRegistrationHistory(historyAirline.Date, historyAirline.Title, airliner.Type.Manufacturer.Logo, reg));
 
                         airliner.TailNumber = reg;
                     }
                     else
                     {
                         string reg = historyAirline.Airline.Profile.Country.TailNumbers.getNextTailNumber();
-                        airliner.History.Add(new AirlinerRegistrationHistory(historyAirline.Date,historyAirline.Airline.Profile.Name,historyAirline.Airline.Profile.Logo,reg));
+                        airliner.History.Add(new AirlinerRegistrationHistory(historyAirline.Date, historyAirline.Airline.Profile.Name, historyAirline.Airline.Profile.Logo, reg));
 
                         airliner.TailNumber = reg;
-            
+
                     }
 
                     if (airlines.Last() == historyAirline)
@@ -1027,11 +1027,11 @@
 
                             airliner.History.Remove(airliner.History.Last());
                         }
-          
+
                     }
                 }
             }
-            AirlinerHistories.Clear(); 
+            AirlinerHistories.Clear();
         }
         public static void SetupMergers()
         {
@@ -1217,12 +1217,12 @@
                 }
                 else
                 {
-                    Console.WriteLine(airline.Profile.Name + " (" + airline.Profile.IATACode + ") has no logo in the game: " + logoName );
+                    Console.WriteLine(airline.Profile.Name + " (" + airline.Profile.IATACode + ") has no logo in the game: " + logoName);
                     airline.Profile.AddLogo(
                         new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
                 }
             }
-         }
+        }
 
 
         private static void CreateAirlineStartData(Airline airline, AirlineStartData startData)
@@ -1420,7 +1420,7 @@
                     double valueSpan = Convert.ToDouble(airliners.AirlinersLate - airliners.AirlinersEarly);
                     double span = valueSpan / Convert.ToDouble(totalSpan);
 
-                    int historicAirlines = AirlinerHistories.GetHistories().Count(h=>h.getAirline(GameObject.GetInstance().GameTime) == airline);
+                    int historicAirlines = AirlinerHistories.GetHistories().Count(h => h.getAirline(GameObject.GetInstance().GameTime) == airline);
 
                     int numbers = Math.Max(1, (Convert.ToInt16(span * yearSpan) / startDataFactor) - historicAirlines);
 
@@ -1661,7 +1661,7 @@
                 Airport airportDestination = null;
 
                 int counter = 0;
-               
+
                 Route.RouteType focus = airline.AirlineRouteFocus;
 
                 if (focus == Route.RouteType.Mixed)
@@ -1684,7 +1684,7 @@
                     counter++;
                 }
 
-            
+
 
                 if (airportDestination == null || !airliner.HasValue)
                 {
@@ -3445,7 +3445,7 @@
                     foreach (XmlElement currencyElement in currenciesList)
                     {
                         string currencySymbol = currencyElement.Attributes["symbol"].Value;
-                        
+
                         double currencyRate = Convert.ToDouble(
                             currencyElement.Attributes["rate"].Value,
                             CultureInfo.GetCultureInfo("en-US").NumberFormat);
@@ -3609,16 +3609,16 @@
         }
         private static void LoadAirlinerHistories()
         {
-             var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airliners\\historic");
+            var dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airliners\\historic");
 
-                foreach (FileInfo file in dir.GetFiles("*.xml"))
-                {
-                    LoadAirlinerHistories(file.FullName);
-                }
+            foreach (FileInfo file in dir.GetFiles("*.xml"))
+            {
+                LoadAirlinerHistories(file.FullName);
+            }
         }
         private static void LoadAirlinerHistories(string file)
         {
-          
+
             var doc = new XmlDocument();
             doc.Load(file);
 
@@ -3627,7 +3627,7 @@
             XmlNodeList historiesList = root.SelectNodes("//airliner");
 
             foreach (XmlElement element in historiesList)
-            { 
+            {
                 AirlinerType type = AirlinerTypes.GetType(element.Attributes["type"].Value);
 
                 if (type == null)
@@ -3637,18 +3637,18 @@
 
                 string serial = element.Attributes["serial"].Value;
 
-                DateTime enddate = new DateTime(2199,12,31);
+                DateTime enddate = new DateTime(2199, 12, 31);
 
-                if (element.HasAttribute("enddate")) 
+                if (element.HasAttribute("enddate"))
                 {
                     enddate = Convert.ToDateTime(element.Attributes["enddate"].Value, new CultureInfo("en-US", false));
                 }
 
-                AirlinerHistory history = new AirlinerHistory(type,serial,enddate);
+                AirlinerHistory history = new AirlinerHistory(type, serial, enddate);
 
                 XmlNodeList airlinesList = element.SelectNodes("histories/history");
 
-              
+
 
                 foreach (XmlElement airlineElement in airlinesList)
                 {
@@ -3656,10 +3656,10 @@
 
                     Airline historyAirline = Airlines.GetAirline(airline);
 
-                   
-                    DateTime airlineDate =  Convert.ToDateTime(airlineElement.Attributes["date"].Value, new CultureInfo("en-US", false));
 
-                    history.AirlineHistories.Add(new AirlinerAirlineHistory(airlineDate,historyAirline,airline));
+                    DateTime airlineDate = Convert.ToDateTime(airlineElement.Attributes["date"].Value, new CultureInfo("en-US", false));
+
+                    history.AirlineHistories.Add(new AirlinerAirlineHistory(airlineDate, historyAirline, airline));
                 }
 
                 AirlinerHistories.AddHistory(history);
@@ -3696,6 +3696,7 @@
 
                     BaseUnit from, to;
                     Airline airline = null;
+                    Airport airport = null;
 
                     string fromtype = countriesElement.Attributes["fromtype"].Value;
                     string totype = countriesElement.Attributes["totype"].Value;
@@ -3717,6 +3718,12 @@
                     {
                         from = Unions.GetUnion(countriesElement.Attributes["from"].Value);
                     }
+                    else if (fromtype == "I")
+                    {
+                        from = to;
+
+                        airport = Airports.GetAirport(countriesElement.Attributes["from"].Value);
+                    }
                     else
                     {
                         from = to;
@@ -3734,6 +3741,9 @@
 
                     if (type == FlightRestriction.RestrictionType.AllowAirline || type == FlightRestriction.RestrictionType.Airline)
                         restriction.Airline = airline;
+
+                    if (type == FlightRestriction.RestrictionType.AllowAirport)
+                        restriction.Airport = airport;
 
                 }
             }
@@ -4037,10 +4047,10 @@
                     : true;
 
                 Boolean isMajor = manufacturer.HasAttribute("ismajor")
-                    ? Convert.ToBoolean(manufacturer.Attributes["ismajor"].Value) 
+                    ? Convert.ToBoolean(manufacturer.Attributes["ismajor"].Value)
                     : true;
 
-                Manufacturers.AddManufacturer(new Manufacturer(name, shortname, country, isReal,isMajor));
+                Manufacturers.AddManufacturer(new Manufacturer(name, shortname, country, isReal, isMajor));
             }
         }
         /*loads the special contracts*/
@@ -4107,7 +4117,7 @@
                     Airport departure = Airports.GetAirport(routeElement.Attributes["departure"].Value);
                     Airport destination = Airports.GetAirport(routeElement.Attributes["destination"].Value);
                     Boolean bothways = Convert.ToBoolean(routeElement.Attributes["bothways"].Value);
-                    long passengers = Convert.ToInt64(routeElement.Attributes["passengers"].Value);
+                    long demand = 0;
 
                     Route.RouteType routetype = Route.RouteType.Passenger;
 
@@ -4115,7 +4125,13 @@
                         routetype = (Route.RouteType)
                         Enum.Parse(typeof(Route.RouteType), routeElement.Attributes["type"].Value);
 
-                    SpecialContractRoute scRoute = new SpecialContractRoute(departure, destination, passengers, routetype, bothways);
+                    if (routetype == Route.RouteType.Passenger)
+                        demand = Convert.ToInt64(routeElement.Attributes["passengers"].Value);
+
+                    if (routetype == Route.RouteType.Cargo)
+                        demand = Convert.ToInt64(routeElement.Attributes["cargo"].Value);
+
+                    SpecialContractRoute scRoute = new SpecialContractRoute(departure, destination, demand, routetype, bothways);
                     scType.Routes.Add(scRoute);
 
                 }
@@ -4158,24 +4174,32 @@
                     {
                         ContractRequirement parameter = new ContractRequirement(ContractRequirement.RequirementType.ClassType);
 
-                        var type =
-                    (AirlinerClass.ClassType)
-                        Enum.Parse(typeof(AirlinerClass.ClassType), parameterElement.Attributes["classtype"].Value);
+                        if (parameterElement.Attributes["classtype"].Value == "Cargo")
+                        {
+                            int cargo = Convert.ToInt32(parameterElement.Attributes["mincargo"].Value);
 
-                        int seats = Convert.ToInt32(parameterElement.Attributes["minseats"].Value);
+                            scType.Requirements.Add(parameter);
+                        }
+                        else
+                        {
+                            var type =
+                        (AirlinerClass.ClassType)
+                            Enum.Parse(typeof(AirlinerClass.ClassType), parameterElement.Attributes["classtype"].Value);
 
-                        parameter.ClassType = type;
-                        parameter.MinSeats = seats;
+                            int seats = Convert.ToInt32(parameterElement.Attributes["minseats"].Value);
 
-                        scType.Requirements.Add(parameter);
+                            parameter.ClassType = type;
+                            parameter.MinSeats = seats;
 
+                            scType.Requirements.Add(parameter);
+                        }
                     }
                 }
 
                 SpecialContractTypes.AddType(scType);
 
             }
-         
+
         }
         //loads the random events
         private static void LoadRandomEvents()
@@ -5020,7 +5044,7 @@
 
 
                 });
-     
+
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 airline.Money = GameObject.GetInstance().StartMoney;

@@ -1,15 +1,16 @@
 ﻿namespace TheAirline.Model.PassengerModel
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Runtime.Serialization;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.CountryModel;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 
     /*
      * The class for flight restrictions with no flights between two countries or unions
@@ -102,6 +103,8 @@
 
             Aircrafts,
 
+            AllowAirport,
+
             Maintenance
         }
 
@@ -130,6 +133,8 @@
         [Versioning("airline",Version=2)]
         public Airline Airline { get; set; }
 
+        [Versioning("airport",Version=2)]
+        public Airport Airport { get; set; }
         #endregion
 
         #region Public Methods and Operators
@@ -258,6 +263,7 @@
                    || HasRestriction(country2, country1, date, FlightRestriction.RestrictionType.Flights);
         }
 
+       
         //returns if there is flight restrictions for airlines to one of the destinations
         public static Boolean HasRestriction(Airline airline, Country dest1, Country dest2, DateTime date)
         {
@@ -274,6 +280,27 @@
 
             return dest1Restriction
                    || dest2Restriction;
+        }
+        public static Boolean IsAllowed(Airport airport1, Airport airport2, DateTime date)
+        {
+            var restrictionsAirport1 = GetRestrictions().Where(r => r.Airport != null && r.Airport == airport1 && (date >= r.StartDate && date <= r.EndDate) && r.Type == FlightRestriction.RestrictionType.AllowAirport);
+            var restrictionsAirport2 = GetRestrictions().Where(r => r.Airport != null && r.Airport == airport2 && (date >= r.StartDate && date <= r.EndDate) && r.Type == FlightRestriction.RestrictionType.AllowAirport);
+
+            if (restrictionsAirport1.Count() == 0 && restrictionsAirport2.Count() == 0)
+                return true;
+
+            if (restrictionsAirport1.Count() > 0)
+            {
+                return restrictionsAirport1.Any(r => r.To == airport2.Profile.Country);
+            }
+
+            if (restrictionsAirport2.Count() > 0)
+            {
+                return restrictionsAirport2.Any(r => r.To == airport1.Profile.Country);
+     
+            }
+
+            return true;
         }
         //returns if an airline is allowed
         public static Boolean IsAllowed(Airline airline, BaseUnit to, DateTime date)

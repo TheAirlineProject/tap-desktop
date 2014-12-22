@@ -2209,6 +2209,17 @@
       <es-ES name="Republic of Kosovo" />
     </translations>
   </country>
+      <country uid="314" shortname="MON" region="116" flag="Monaco" tailformat="3A-\\s3">
+    <translations>
+      <en-US name="Monaco" />
+      <de-DE name="Monaco" />
+      <en-GB name="Monaco" />
+      <nl-NL name="Monaco" />
+      <zh-CN name="Monaco" />
+      <da-DK name="Monaco" />
+      <es-ES name="Monaco" />
+    </translations>
+  </country>
   <!--Territories-->
   <country uid="246" shortname="CUW" region="117" flag="Curacao" tailformat="PJ-\\s3">
     <territoryof uid="179" />

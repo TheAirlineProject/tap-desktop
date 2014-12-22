@@ -30,7 +30,7 @@
         }
         public static double GetCalculatedWeight(double wingspan, double lenght, long fuel)
         {
-            return (wingspan*lenght*4) + fuel;
+            return (wingspan * lenght * 4) + fuel;
         }
         public static void CreateAirlinerClasses(Airliner airliner)
         {
@@ -45,8 +45,9 @@
         }
         public static Airliner CreateAirlinerFromYear(int year, AirlinerType type)
         {
-           
+
             Guid id = Guid.NewGuid();
+
 
             int countryNumber = rnd.Next(Countries.GetCountries().Count() - 1);
             Country country = Countries.GetCountries()[countryNumber];
@@ -88,9 +89,14 @@
             List<AirlinerType> types =
              AirlinerTypes.GetTypes(t => t.Produced.From.Year < year && t.Produced.To.Year > year);
 
-            int typeNumber = rnd.Next(types.Count);
-            AirlinerType type = types[typeNumber];
+            var typeRates = new Dictionary<AirlinerType, int>();
 
+            foreach (AirlinerType atype in types)
+                typeRates.Add(atype, atype.ProductionRate);
+
+            AirlinerType type = AIHelpers.GetRandomItem(typeRates);
+
+          
             return CreateAirlinerFromYear(year, type);
         }
 
@@ -385,12 +391,16 @@
                     {
                         return t.Range >= minRange && t.Produced.From.Year < GameObject.GetInstance().GameTime.AddYears(-5).Year
                                && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-35);
-                    });
+                    }); 
+            
+            var typeRates = new Dictionary<AirlinerType, int>();
 
-            int typeNumber = rnd.Next(types.Count);
-            AirlinerType type = types[typeNumber];
+            foreach (AirlinerType atype in types)
+                typeRates.Add(atype,atype.ProductionRate);
+             
+            AirlinerType type = AIHelpers.GetRandomItem(typeRates);
 
-            int countryNumber = rnd.Next(Countries.GetCountries().Count() - 1);
+               int countryNumber = rnd.Next(Countries.GetCountries().Count() - 1);
             Country country = Countries.GetCountries()[countryNumber];
 
             int builtYear = rnd.Next(
@@ -403,11 +413,7 @@
                 country.TailNumbers.getNextTailNumber(),
                 new DateTime(builtYear, 1, 1));
 
-            if (airliner.TailNumber.Length < 2)
-            {
-                typeNumber = 0;
-            }
-
+          
             int age = MathHelpers.CalculateAge(airliner.BuiltDate, GameObject.GetInstance().GameTime);
 
             long kmPerYear = rnd.Next(100000, 1000000);

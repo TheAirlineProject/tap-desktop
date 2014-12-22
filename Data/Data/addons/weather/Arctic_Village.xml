@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Arctic Village, AK">
+  <months>
+    <month month="1" precipitation="7">
+      <temp min="-28" max="-19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="1">
+      <temp min="-25" max="-15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="0">
+      <temp min="-24" max="-10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="31">
+      <temp min="-11" max="2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="37">
+      <temp min="0" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="39">
+      <temp min="10" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="26">
+      <temp min="11" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="69">
+      <temp min="6" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="183">
+      <temp min="0" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="81">
+      <temp min="-9" max="-1" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="2">
+      <temp min="-21" max="-13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="31">
+      <temp min="-28" max="-18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

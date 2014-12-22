@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
+    <airliner type="Helicopter" manufacturer="Airbus" name="EC130" price="463000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="10.69" length="10.68" range="610" speed="240" fuelcapacity="322" consumption="0.143"
+           runwaylengthrequired="11" />
+    <capacity passengers="7" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="2001" to="2199" rate="50" />
+  </airliner>
 
   <airliner manufacturer="Airbus" name="Airbus A300B1" price="15915680"> <!--35500000-->
 

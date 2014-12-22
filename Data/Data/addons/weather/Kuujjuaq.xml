@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Kuujjuaq, QC">
+  <months>
+    <month month="1" precipitation="31">
+      <temp min="-29" max="-19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="32">
+      <temp min="-29" max="-18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="36">
+      <temp min="-23" max="-11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="30">
+      <temp min="-13" max="-2" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="31">
+      <temp min="-4" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="54">
+      <temp min="2" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="71">
+      <temp min="6" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="74">
+      <temp min="6" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="86">
+      <temp min="2" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="62">
+      <temp min="-3" max="5" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="50">
+      <temp min="-11" max="-3" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="41">
+      <temp min="-22" max="-12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

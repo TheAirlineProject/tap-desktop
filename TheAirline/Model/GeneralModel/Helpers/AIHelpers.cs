@@ -774,6 +774,9 @@
                     a =>
                         airline.Airports.Find(ar => ar.Profile.Town == a.Profile.Town) == null
                         && AirlineHelpers.HasAirlineLicens(airline, airport, a)
+                        && FlightRestrictions.IsAllowed(
+                        airport,a,
+                        GameObject.GetInstance().GameTime)
                         && !FlightRestrictions.HasRestriction(
                             a.Profile.Country,
                             airport.Profile.Country,

@@ -1617,10 +1617,20 @@
                     {
                         foreach (SpecialContractRoute route in sc.Type.Routes)
                         {
-                            PassengerHelpers.ChangePaxDemand(route.Departure, route.Destination, (int)route.PassengersPerDay);
+                            if (route.RouteType == Route.RouteType.Passenger)
+                            {
+                                PassengerHelpers.ChangePaxDemand(route.Departure, route.Destination, (int)route.DemandPerDay);
 
-                            if (route.BothWays)
-                                PassengerHelpers.ChangePaxDemand(route.Destination, route.Departure, (int)route.PassengersPerDay);
+                                if (route.BothWays)
+                                    PassengerHelpers.ChangePaxDemand(route.Destination, route.Departure, (int)route.DemandPerDay);
+                            }
+                            if (route.RouteType == Route.RouteType.Cargo)
+                            {
+                                PassengerHelpers.ChangeCargoDemand(route.Departure, route.Destination, (int)route.DemandPerDay);
+
+                                if (route.BothWays)
+                                    PassengerHelpers.ChangeCargoDemand(route.Destination, route.Departure, (int)route.DemandPerDay);
+                            }
 
                         }
                     }
@@ -1632,10 +1642,20 @@
                         {
                             foreach (SpecialContractRoute route in sc.Type.Routes)
                             {
-                                PassengerHelpers.ChangePaxDemand(route.Departure, route.Destination, -(int)route.PassengersPerDay);
+                                if (route.RouteType == Route.RouteType.Passenger)
+                                {
+                                    PassengerHelpers.ChangePaxDemand(route.Departure, route.Destination, -(int)route.DemandPerDay);
 
-                                if (route.BothWays)
-                                    PassengerHelpers.ChangePaxDemand(route.Destination, route.Departure, -(int)route.PassengersPerDay);
+                                    if (route.BothWays)
+                                        PassengerHelpers.ChangePaxDemand(route.Destination, route.Departure, -(int)route.DemandPerDay);
+                                }
+                                if (route.RouteType == Route.RouteType.Cargo)
+                                {
+                                    PassengerHelpers.ChangeCargoDemand(route.Departure, route.Destination, -(int)route.DemandPerDay);
+
+                                    if (route.BothWays)
+                                        PassengerHelpers.ChangeCargoDemand(route.Destination, route.Departure, -(int)route.DemandPerDay);
+                                }
 
                             }
                         }
@@ -1920,7 +1940,7 @@
 
                 int monthsSinceLast = MathHelpers.GetAgeMonths(sct.LastDate);
 
-                int monthsFrequency = 12 / sct.Frequency;
+                int monthsFrequency = 12 / sct.Frequency;s
 
                 //mf = 12, ms = 1 => procent = lille, mf = 6, ms = 6 => procent = medium, mf = 1, ms = 12 => procent = høj
 

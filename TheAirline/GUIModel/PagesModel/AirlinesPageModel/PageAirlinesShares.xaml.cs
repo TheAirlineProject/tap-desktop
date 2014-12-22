@@ -92,9 +92,16 @@
 
         private void btnBuyAirline_Click(object sender, RoutedEventArgs e)
         {
+          
             AirlinesMVVM airline = (AirlinesMVVM)((Button)sender).Tag;
 
-            double buyingPrice = airline.Airline.getValue() * 100000 * 1.10;
+            int humanStocks = airline.Airline.Shares.Count(s => s.Airline == GameObject.GetInstance().HumanAirline);
+
+            double humanStocksPercent = Convert.ToDouble(humanStocks) / Convert.ToDouble(airline.Airline.Shares.Count());
+
+            double missingStocks = 1- humanStocks;
+
+            double buyingPrice = airline.Airline.getValue() * 100000 * missingStocks;
 
             WPFMessageBoxResult result = WPFMessageBox.Show(
                 Translator.GetInstance().GetString("MessageBox", "2113"),

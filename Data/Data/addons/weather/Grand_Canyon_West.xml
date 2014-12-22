@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Grand Canyon West, AZ">
+  <months>
+    <month month="1" precipitation="25">
+      <temp min="6" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="30">
+      <temp min="7" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="21">
+      <temp min="9" max="29" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="6">
+      <temp min="13" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="3">
+      <temp min="18" max="38" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="1">
+      <temp min="22" max="41" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="9">
+      <temp min="26" max="43" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="22">
+      <temp min="25" max="43" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="10">
+      <temp min="23" max="40" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="15">
+      <temp min="17" max="35" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="13">
+      <temp min="12" max="23" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="18">
+      <temp min="5" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

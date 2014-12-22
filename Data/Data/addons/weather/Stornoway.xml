@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Stornoway, SCT">
+  <months>
+    <month month="1" precipitation="141">
+      <temp min="2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="105">
+      <temp min="2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="113">
+      <temp min="2" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="71">
+      <temp min="3" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="57">
+      <temp min="6" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="64">
+      <temp min="8" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="73">
+      <temp min="10" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="82">
+      <temp min="10" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="113">
+      <temp min="8" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="135">
+      <temp min="6" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="144">
+      <temp min="3" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="136">
+      <temp min="2" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

@@ -851,7 +851,38 @@
       <runway name="08/26" length="1969" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Robin Hood Doncaster Sheffield Airport" icao="EGCN" iata="DSA" type="International" season="All_Year">
+   <airport name="Tresco Heliport" icao="EGHT" iata="TSO" type="Domestic" season="All_Year">
+ <period from="04.26.1983 00:00:00" to="10.31.2012 00:00:00" />
+    <town town="Tresco, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="049°56'44''N" />
+      <longitude value="006°19'53''W" />
+    </coordinates>
+    <size value="Smallest" pax="41" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="30" surface="Grass" type="Helipad" />
+      </runways>
+  </airport>
+ <airport name="Penzance Heliport" icao="EGHK" iata="PZE" type="Domestic" season="All_Year">
+	   <period from="05.01.1964 00:00:00" to="10.31.2012 00:00:00" />
+    <town town="Penzance, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="050°07'41''N" />
+      <longitude value="005°31'06''W" />
+    </coordinates>
+    <size value="Smallest" pax="75" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="8/26" length="373" surface="Concrete" type="Helipad" />
+      </runways>
+        </airport>
+   <airport name="Robin Hood Doncaster Sheffield Airport" icao="EGCN" iata="DSA" type="International" season="All_Year">
+      <period from="04/28/2005 12:00:00 AM" to="1/1/2199 12:00:00 AM" />
     <town town="Doncaster / Sheffield, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="53°28'49''N" />
@@ -863,6 +894,21 @@
     </terminals>
     <runways>
       <runway name="02/20" length="2895" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Sheffield City Airport" icao="EGSY" iata="SZD" type="International" season="All_Year">
+ <period from="1/1/1997 12:00:00 AM" to="4/30/2008 12:00:00 AM" />
+    <town town="Sheffield, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="53°23'39''N" />
+      <longitude value="1°23'19''W" />
+    </coordinates>
+    <size value="Smallest" pax="13" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="1211" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="RAF Mt. Pleasant" icao="EGYP" iata="MPN" type="International" season="All_Year">
@@ -1178,6 +1224,7 @@
     </runways>
   </airport>
   <airport name="Manston, Kent's International Airport" icao="EGMH" iata="MSE" type="International" season="All_Year">
+     <period from="09.01.1989 00:00:00" to="05.15.2014 00:00:00" />
     <town town="Manston, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="51°20'32''N" />
@@ -1390,6 +1437,7 @@
     <runways>
       <runway name="15/33" length="523" surface="Asphalt" />
       <runway name="09/27" length="600" surface="Asphalt" />
+            <runway name="18/36" length="400" surface="Grass" type="Helipad" />
     </runways>
   </airport>
   <airport name="Port Stanley Airport" icao="SFAL" iata="PSY" type="Domestic" season="All_Year">
@@ -1985,6 +2033,20 @@
     </terminals>
     <runways>
       <runway name="17/35" length="2990" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Kristiansund Airport, Kvernberget" icao="ENKB" iata="KSU" type="International" season="All_Year">
+    <town town="Kristiansund" country="139" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="63°06'43''N" />
+      <longitude value="7°49'34''E" />
+    </coordinates>
+    <size value="Very_small" pax="393" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal 1" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="1840" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="Bodø Airport" icao="ENBO" iata="BOO" type="International" season="All_Year">
@@ -3808,6 +3870,30 @@
       <runway name="12R/30L" length="3718" surface="Asphalt" />
     </runways>
   </airport>
+  <!--Monaco (LN**)-->
+      <airport name="Monaco Heliport" icao="LNMC" iata="MCM" type="International" season="All_Year">
+ <period from="1/1/1976 12:00:00 AM" to="1/1/2199 12:00:00 AM" />
+    <town town="Monaco" country="314" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="043°43'35''N" />
+      <longitude value="075°25'14''E" />
+    </coordinates>
+    <size value="Smallest" pax="115" />
+    <terminals>
+      <terminal name="Terminal" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="H1" length="13" surface="Concrete" type="Helipad" />
+      <runway name="H2" length="13" surface="Concrete" type="Helipad" /> 
+      <runway name="H3" length="12" surface="Concrete" type="Helipad" />
+      <runway name="H4" length="12" surface="Concrete" type="Helipad" /> 
+      <runway name="H5" length="12" surface="Concrete" type="Helipad" />
+      <runway name="H6" length="12" surface="Concrete" type="Helipad" /> 
+      <runway name="H7" length="12" surface="Concrete" type="Helipad" />
+      <runway name="H8" length="12" surface="Concrete" type="Helipad" />
+    </runways>
+  </airport>
+
   <!--France (LF**)-->
    <airport name="Ajaccio–Napoléon Bonaparte Airport" icao="LFKJ" iata="AJA" type="International" season="All_Year">
     <town town="Ajaccio" country="140" GMT="02:00:00" DST="01:00:00" />
@@ -3821,6 +3907,21 @@
     </terminals>
     <runways>
       <runway name="02/20" length="2407" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Lille Airport" icao="LFQQ" iata="LIL" type="International" season="All_Year">
+    <town town="Lille" country="140" GMT="02:00:00" DST="01:00:00" />
+    <coordinates>
+      <latitude value="50°33'48''N" />
+      <longitude value="3°5'13''E" />
+    </coordinates>
+    <size value="Small" pax="1400" cargo="Medium" cargovolume="38" />
+    <terminals>
+      <terminal name="Terminal 1" gates="25" />
+       </terminals>
+    <runways>
+      <runway name="8/26" length="2825" surface="Asphalt" />
+      <runway name="2/20" length="1580" surface="Asphalt" />
     </runways>
   </airport>
   <airport name="EuroAirport Basel-Mulhouse-Freiburg Airport" icao="LFSB" iata="BSL" type="International" season="All_Year">
@@ -3987,6 +4088,8 @@
     <runways>
       <runway name="04L/22R" length="2570" surface="Concrete" />
       <runway name="04R/22L" length="2960" surface="Concrete" />
+            <runway name="H1" length="29" surface="Concrete" type="Helipad" />
+                  <runway name="H3" length="29" surface="Concrete" type="Helipad" />
     </runways>
   </airport>
   <airport name="Paris-Charles de Gaulle Airport" icao="LFPG" iata="CDG" type="International" season="All_Year">
@@ -5257,8 +5360,7 @@
       <terminal name="Terminal" gates="2" />
     </terminals>
     <runways>
-      <runway name="05/23" length="2377" surface="Asphalt" />
-      <runway name="13/31" length="3544" surface="Asphalt" />
+      <runway name="10/28"  length="174" surface="Concrete" type="Helipad"></runway>
     </runways>
   </airport>
  <airport name="Malta International Airport" icao="LMML" iata="MLA" type="International" season="All_Year">

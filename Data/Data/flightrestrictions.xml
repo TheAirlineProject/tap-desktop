@@ -150,7 +150,10 @@
         <restriction type="AllowAirline" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
     <countries fromtype="A" from="PR" totype="U" to="101"></countries>
   </restriction>
- 
+  <!--restrictions from an airport to other airports-->
+  <restriction type="AllowAirport" start="01.01.1975 00:00:00" end="12.31.2199 00:00:00">
+<countries fromtype="I" from="ECN" totype="C" to="161"></countries>   
+  </restriction>
   <!--
 	<restriction type="Flights" start="01.01.1962 00:00:00" end="06.22.2012 00:00:00">
 <countries fromtype="C" from="130" totype="C" to="140"></countries>

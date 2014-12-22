@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Kingston upon Hull, ENG">
+  <months>
+    <month month="1" precipitation="55">
+      <temp min="2" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="44">
+      <temp min="2" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="49">
+      <temp min="3" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="51">
+      <temp min="5" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="50">
+      <temp min="7" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="67">
+      <temp min="10" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="56">
+      <temp min="12" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="61">
+      <temp min="12" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="61">
+      <temp min="10" max="19" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="61">
+      <temp min="7" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="63">
+      <temp min="4" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="63">
+      <temp min="2" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>
