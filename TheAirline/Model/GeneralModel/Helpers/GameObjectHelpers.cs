@@ -259,7 +259,7 @@
             airline.MarketFocus = startData.Focus;
 
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
-
+            
             if (startData.IsPaused)
             {
                 GameObjectWorker.GetInstance().startPaused();
@@ -1221,8 +1221,8 @@
             //    airport =>
             foreach (var airport in Airports.GetAllActiveAirports())
             {
-                if (GameObject.GetInstance().GameTime.Day == 15 || GameObject.GetInstance().GameTime.Day == 1)
-                    AirportHelpers.CreateAirportWeather(airport);
+               // if (GameObject.GetInstance().GameTime.Day == 15 || GameObject.GetInstance().GameTime.Day == 1)
+                 //   AirportHelpers.CreateAirportWeather(airport);
                 
                 
                 airport.clearDestinationCargoStatistics();
@@ -1832,7 +1832,7 @@
 
                     if (merger.NewName != null && merger.NewName.Length > 1)
                     {
-                        merger.Airline1.Profile.Name = merger.NewName;
+                        merger.Airline1.Profile.Names.Add(new AirlineName(){Name= merger.NewName, From=new DateTime(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month,GameObject.GetInstance().GameTime.Day)});
                     }
                 }
                 if (merger.Type == AirlineMerger.MergerType.Independant)
@@ -1940,7 +1940,7 @@
 
                 int monthsSinceLast = MathHelpers.GetAgeMonths(sct.LastDate);
 
-                int monthsFrequency = 12 / sct.Frequency;s
+                int monthsFrequency = 12 / sct.Frequency;
 
                 //mf = 12, ms = 1 => procent = lille, mf = 6, ms = 6 => procent = medium, mf = 1, ms = 12 => procent = høj
 

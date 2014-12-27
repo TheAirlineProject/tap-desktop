@@ -16,6 +16,8 @@
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+    using TheAirline.GUIModel.ObjectsModel;
+    using System.Windows.Controls;
 
     public partial class standardEvents
     {
@@ -124,12 +126,14 @@
 
         private void btnPause_Click(object sender, RoutedEventArgs e)
         {
-            GameObjectWorker.GetInstance().pause();
+            GUIObject gObject = (GUIObject)((Button)sender).Tag;
+            gObject.setPaused(true);
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            GameObjectWorker.GetInstance().restart();
+            GUIObject gObject = (GUIObject)((Button)sender).Tag;
+            gObject.setPaused(false);
         }
 
         #endregion

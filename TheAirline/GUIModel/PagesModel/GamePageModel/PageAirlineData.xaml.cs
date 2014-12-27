@@ -212,7 +212,7 @@
                 Airport airport in
                     Airports.GetAllActiveAirports()
                         .Where(a => aCountries.Contains(new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country))
-                        .OrderBy(a => a.Profile.Name))
+                        .OrderBy(a => new AirportNameConverter().Convert(a)))
             {
                 this.AllAirports.Add(airport);
             }
@@ -232,4 +232,5 @@
         }
         #endregion
     }
+  
 }

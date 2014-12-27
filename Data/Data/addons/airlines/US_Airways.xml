@@ -8,6 +8,17 @@
 <airport   preferedairport="PIT" date="6.1.1952 00:00:00" ></airport>
 <airport  preferedairport="CLT" date="11.01.2004 00:00:00"></airport>
 </airports>  
+<logos>
+<logo from="1937" to="1979" path="Allegheny"></logo>
+<logo from="1979" to="1997" path="USAir"></logo>
+<logo from="1997" to="2199" path="US"></logo>
+</logos>
+<names>
+<name value="All American Aviation" from="1.1.1937 00:00:00"></name>
+<name value="Allegheny Airlines" from="1.1.1952 00:00:00"></name>
+<name value="USAir" from="1.1.1979 00:00:00"></name>
+<name value="US Airways" from="1.1.1997 00:00:00"></name>
+</names>
    </profile>
   <info real="True" from="1937" to="2199"></info>
 </airline>

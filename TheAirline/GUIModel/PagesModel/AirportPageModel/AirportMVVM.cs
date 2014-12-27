@@ -54,6 +54,7 @@
             this.Terminals = new ObservableCollection<AirportTerminalMVVM>();
             this.BuildingTerminals = new ObservableCollection<AirportTerminalMVVM>();
             this.UnservedRoutes = new ObservableCollection<UnservedRouteMVVM>();
+            this.UnservedRoutesIntl = new ObservableCollection<UnservedRouteMVVM>();
 
             this.Type = this.Airport.Profile.Type;
 
@@ -83,20 +84,23 @@
                 this.Cooperations.Add(cooperation);
             }
 
-            
+            AirportHelpers.CreateAirportWeather(this.Airport);
             //AirportHelpers.CreateAirportWeather(this.Airport);
 
-            Weather currentWeather = this.Airport.Weather.First(w=>w.Date.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
-
-            int weatherIndex = this.Airport.Weather.IndexOf(currentWeather);
+            Weather currentWeather = this.Airport.Weather.FirstOrDefault(w=>w.Date.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
 
             this.Weather = new ObservableCollection<Weather>();
 
-            this.Airport.Weather.GetRange(weatherIndex,5).ForEach(w => this.Weather.Add(w)); 
-            
-            if (!GameObject.GetInstance().DayRoundEnabled)
+            if (currentWeather != null)
             {
-                this.CurrentWeather = this.Weather[weatherIndex].Temperatures[GameObject.GetInstance().GameTime.Hour];
+                int weatherIndex = this.Airport.Weather.IndexOf(currentWeather);
+
+                this.Airport.Weather.GetRange(weatherIndex, 5).ForEach(w => this.Weather.Add(w));
+
+                if (!GameObject.GetInstance().DayRoundEnabled)
+                {
+                    this.CurrentWeather = this.Weather[weatherIndex].Temperatures[GameObject.GetInstance().GameTime.Hour];
+                }
             }
 
             this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
@@ -129,7 +133,11 @@
 
             foreach (Airport destination in internationalDemand)
             {
-                double runway = destination.Runways.Max(r => r.Length);
+                double runway;
+                if (destination.Runways.Count == 0)
+                    runway = 0;
+                else
+                    runway = destination.Runways.Max(r => r.Length);
 
                 DemandMVVM demand = new DemandMVVM(
                         destination,
@@ -139,12 +147,15 @@
                 this.IntlDemands.Add(demand);
   
                 if (AirportHelpers.GetNumberOfAirportsRoutes(this.Airport,destination) == 0 && demand.Passengers > 10)
-                    this.UnservedRoutes.Add(new UnservedRouteMVVM(this.Airport, destination,demand.Passengers));
+                    this.UnservedRoutesIntl.Add(new UnservedRouteMVVM(this.Airport, destination,demand.Passengers));
             }
 
             foreach (Airport destination in domesticDemand)
-            {
-                double runway = destination.Runways.Max(r => r.Length);
+            { 
+                double runway = 0;
+
+                if (destination.Runways.Count > 0)
+                    runway = destination.Runways.Max(r => r.Length);
 
                 DemandMVVM demand = new DemandMVVM(
                         destination,
@@ -159,7 +170,8 @@
             }
 
             this.UnservedRoutes = new ObservableCollection<UnservedRouteMVVM>(this.UnservedRoutes.OrderByDescending(r=>r.EstimatedDemand).Take(Math.Min(10,this.UnservedRoutes.Count)));
-
+            this.UnservedRoutesIntl = new ObservableCollection<UnservedRouteMVVM>(this.UnservedRoutesIntl.OrderByDescending(r=>r.EstimatedDemand).Take(Math.Min(10,this.UnservedRoutesIntl.Count)));
+            
             this.AirportFacilities = new ObservableCollection<AirportFacility>();
             this.Airport.getAirportFacilities()
                 .FindAll(f => f.Airline == null && f.Facility.TypeLevel != 0)
@@ -476,6 +488,8 @@
         public double TerminalPrice { get; set; }
 
         public ObservableCollection<UnservedRouteMVVM> UnservedRoutes { get; set; }
+
+        public ObservableCollection<UnservedRouteMVVM> UnservedRoutesIntl { get; set; }
 
         public ObservableCollection<AirportTerminalMVVM> Terminals { get; set; }
 

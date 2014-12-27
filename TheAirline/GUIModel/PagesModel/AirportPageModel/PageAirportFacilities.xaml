@@ -181,14 +181,14 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1009'}"
                                     FontWeight="Bold" VerticalAlignment="Bottom" Width="150" />
                                 <TextBlock VerticalAlignment="Bottom"
-                                           Text="{Binding ElementName=cbFacility,Path=SelectedItem.Price,Mode=OneTime,Converter={StaticResource ValueCurrencyConverter}}" />
+                                           Text="{Binding ElementName=cbFacility,Path=SelectedItem.Price,Converter={StaticResource ValueCurrencyConverter}}" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1010'}"
                                     FontWeight="Bold" VerticalAlignment="Bottom" Width="150" />
                                 <TextBlock VerticalAlignment="Bottom"
-                                           Text="{Binding ElementName=cbFacility,Path=SelectedItem.NumberOfEmployees,Mode=OneTime}" />
+                                           Text="{Binding ElementName=cbFacility,Path=SelectedItem.NumberOfEmployees}" />
                             </WrapPanel>
                             <WrapPanel Margin="0 5 0 0">
                                 <Button

@@ -335,9 +335,9 @@
 
             WeatherAverage average =
                 WeatherAverages.GetWeatherAverages(
-                    w => w.Airport != null && w.Airport == airport && w.Month == GameObject.GetInstance().GameTime.Month)
+                    w => ((w.Airport != null && w.Airport == airport) || (w.Town != null && w.Town == airport.Profile.Town) || (w.Country != null && w.Country == airport.Profile.Town.Country)) && w.Month == GameObject.GetInstance().GameTime.Month)
                     .FirstOrDefault();
-
+            /*
             if (average == null)
             {
                 average =
@@ -355,17 +355,17 @@
                             w.Country != null && w.Country == airport.Profile.Town.Country
                             && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
             }
-           
+           **/
             if (average == null)
             {
-                CreateMonthlyAirportWeather(airport,30);
+                CreateMonthlyAirportWeather(airport,5);
             }
             else
             {
                 var lAirport = new List<Airport>();
                 lAirport.Add(airport);
 
-                CreateAirportsWeather(lAirport, average,30);
+                CreateAirportsWeather(lAirport, average,5); 
             }
         }
 
@@ -1013,13 +1013,7 @@
 
         private static Weather CreateDayWeather(Airport airport, DateTime date, Weather previousWeather)
         {
-            WeatherAverage average = WeatherAverages.GetWeatherAverage(date.Month, airport);
-
-            if (average != null)
-            {
-                return CreateDayWeather(date, previousWeather, average);
-            }
-
+           
             var precipitationValues = (Weather.Precipitation[])Enum.GetValues(typeof(Weather.Precipitation));
             var coverValues = (Weather.CloudCover[])Enum.GetValues(typeof(Weather.CloudCover));
             var windDirectionValues = (Weather.WindDirection[])Enum.GetValues(typeof(Weather.WindDirection));

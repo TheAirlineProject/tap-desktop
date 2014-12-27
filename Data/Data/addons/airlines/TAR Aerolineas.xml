@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="TAR Aerolineas" iata="LCT" color="Red" country="157" CEO="Eduardo Castellanos" mentality="Moderate" market="Domestic" preferedairport="QRO"  >
+  <narrative narrative="TAR Aerolineas is based at Queretaro,Mexico and was founded in 2012 and started service in March 2014. By the end of 2014 14 domestic destinations were being served. The fleet consists of three Embraer ERJ 145 LR's with 11 more on order as of December 2014. It has a focus city at Guadalajara also."/>
+</profile>
+  <info real="True" from="2013" to="2199" />
+  <prefereds aircrafts="Embraer ERJ145 LR"></prefereds>
+ <focusairports>
+	 <focusairport airport="GDL"></focusairport>
+     </focusairports>
+     <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2018)-->
+	         <airliners>
+	    <airliner type="Embraer ERJ145 LR" early="3" late="14"></airliner>
+	     </airliners>
+
+
+
+
+	     	  
+	     	  
+
+
+</airline>

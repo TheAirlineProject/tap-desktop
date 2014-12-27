@@ -16,6 +16,7 @@
     <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter" />
     <c:TimeSpanConverter x:Key="TimeSpanConverter"></c:TimeSpanConverter>
     <c:WeightToUnitConverter x:Key="WeightToUnitConverter"></c:WeightToUnitConverter>
+    <c:AirportNameConverter x:Key="AirportNameConverter"></c:AirportNameConverter>
 
     <Style TargetType="WrapPanel" x:Key="WrapPanelStyle">
         <Setter Property="Background">
@@ -547,7 +548,7 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 </ContentControl.ContentTemplate>
             </ContentControl>
             
-            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name,Mode=OneTime}" />
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Converter={StaticResource AirportNameConverter},Mode=OneTime}" />
 
         </DockPanel>
     </DataTemplate>
@@ -658,14 +659,14 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
     <!--route templates-->
     <DataTemplate x:Key="RouteFlagItem">
         <WrapPanel VerticalAlignment="Bottom">
-            <Image Source="{Binding Destination1.Profile.Country.Flag,Mode=OneTime}" VerticalAlignment="Bottom"
+            <Image Source="{Binding Destination1.Profile.Country.Flag}" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" Height="20" />
             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0"
                        ToolTipService.ShowDuration="60000">
                 <TextBlock.ToolTip>
                     <TextBlock VerticalAlignment="Bottom" FontWeight="Bold">
                         <TextBlock.Text>
-                            <MultiBinding StringFormat="{}{0(2)}-{1(3)}" Mode="OneTime">
+                            <MultiBinding StringFormat="{}{0(2)}-{1(3)}">
                                 <Binding Path="Destination1.Profile.Name" />
                                 <Binding Path="Destination2.Profile.Name" />
                                 <Binding Path="Destination1.Profile.IATACode" />
@@ -676,13 +677,13 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                     </TextBlock>
                 </TextBlock.ToolTip>
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="{}{0}-{1}" Mode="OneTime">
+                    <MultiBinding StringFormat="{}{0}-{1}">
                         <Binding Path="Destination1" Converter="{StaticResource AirportCodeConverter}" />
                         <Binding Path="Destination2" Converter="{StaticResource AirportCodeConverter}" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
-            <Image Source="{Binding Destination2.Profile.Country.Flag,Mode=OneTime}" VerticalAlignment="Bottom"
+            <Image Source="{Binding Destination2.Profile.Country.Flag}" VerticalAlignment="Bottom"
                    RenderOptions.BitmapScalingMode="HighQuality" Height="20" />
 
         </WrapPanel>

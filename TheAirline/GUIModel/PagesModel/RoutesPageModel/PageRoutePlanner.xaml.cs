@@ -65,8 +65,8 @@
             var routeType =
                 (Route.RouteType)
                     Enum.Parse(typeof(Route.RouteType), this.Airliner.Airliner.Type.TypeAirliner.ToString(), true);
-            ;
-            
+         
+
             foreach (
                 Route route in
                     this.Airliner.Airliner.Airline.Routes.Where(
@@ -942,6 +942,7 @@
 
                     TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0, delayMinutes, 0));
 
+                    
                     var lastDepartureHour = (int)(latestStartTime - (minFlightTime.TotalHours * interval * 2));
 
                     this.StartTimes.Clear();

@@ -5645,4 +5645,10 @@ Good luck.</value>
   <data name="PageAirlineFleet_1018_name" xml:space="preserve">
     <value>Condition</value>
   </data>
+  <data name="PageAirportAdvisory_1001_name" xml:space="preserve">
+    <value>Domestic</value>
+  </data>
+  <data name="PageAirportAdvisory_1002_name" xml:space="preserve">
+    <value>Intl.</value>
+  </data>
 </root>

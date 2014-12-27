@@ -7,11 +7,33 @@
     using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
     //the class for the GUI object
-    public class GUIObject 
+    public class GUIObject : INotifyPropertyChanged
     {
+        public GUIObject()
+        {
+            this.IsPaused = GameObjectWorker.GetInstance().IsPaused;
+        }
+        #region Public Events
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+        #region private properties
+        private Boolean _ispaused;
+        #endregion
         #region Public Properties
-       
+        public Boolean IsPaused
+        {
+            get
+            {
+                return this._ispaused;
+            }
+            set
+            {
+                this._ispaused = value;
+                this.NotifyPropertyChanged("IsPaused");
+            }
+        }
         public GameObject GameObject
         {
             get
@@ -23,7 +45,7 @@
                 ;
             }
         }
-
+       
         public GameObjectWorker GameWorker
         {
             get
@@ -51,12 +73,27 @@
         #endregion
 
         #region Methods
-      
+      public void setPaused(Boolean paused)
+        {
+          this.IsPaused = paused;
+
+          if (paused)
+              GameObjectWorker.GetInstance().pause();
+          else
+              GameObjectWorker.GetInstance().restart();
+        }
         private GameObject getGameObject()
         {
             return GameObject.GetInstance();
         }
-
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         #endregion
     }
 }

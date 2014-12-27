@@ -2253,7 +2253,7 @@
     </runways>
   </airport>
   <airport name="Lord Howe Island Airport" icao="YLHI" iata="LDH" type="Domestic" season="All_Year">
-    <town town="Lord Howe Island, NSW" country="116" GMT="13:00:00" DST="13:00:00" />
+    <town town="Lord Howe Island, NSW" country="116" GMT="10:30:00" DST="11:00:00" />
     <coordinates>
       <latitude value="031°32'17''S" />
       <longitude value="159°04'37''E" />

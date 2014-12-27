@@ -64,7 +64,6 @@
 
             var countries = new List<Country>();
 
-
             foreach (string sCountry in sCountries.Split(';'))
             {
                 countries.Add(Countries.GetCountry(sCountry));
@@ -188,6 +187,21 @@
 
                 airline.Profile.AddLogo(new AirlineLogo(logoFromYear, logoToYear, logoPath));
             }
+
+            
+                XmlNodeList namesList = profileElement.SelectNodes("names/name");
+
+                if (namesList.Count > 0)
+                    airline.Profile.Names.Clear();
+
+                foreach (XmlElement nameElement in namesList)
+                {
+                    string airlineName = nameElement.Attributes["value"].Value;
+                    DateTime airlineToDate = DateTime.Parse(nameElement.Attributes["from"].Value, new CultureInfo("de-DE"));
+
+                    airline.Profile.Names.Add(new AirlineName() { Name = airlineName, From = airlineToDate });
+                }
+            
 
             if (profileElement.HasAttribute("preferedairport"))
             {
@@ -832,9 +846,6 @@
 
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
-
-
-
 
             /*
             System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
@@ -4048,8 +4059,9 @@
 
                 Boolean isMajor = manufacturer.HasAttribute("ismajor")
                     ? Convert.ToBoolean(manufacturer.Attributes["ismajor"].Value)
-                    : true;
+                    : false;
 
+               
                 Manufacturers.AddManufacturer(new Manufacturer(name, shortname, country, isReal, isMajor));
             }
         }
@@ -5034,7 +5046,7 @@
 
                     }
 
-                    AirportHelpers.CreateAirportWeather(airport);
+                    //AirportHelpers.CreateAirportWeather(airport);
 
                     //creates the already existing expansions
                     var expansions = airport.Profile.Expansions.Where(e => GameObject.GetInstance().GameTime > e.Date);

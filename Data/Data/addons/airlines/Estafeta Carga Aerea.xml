@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Estafeta Carga Aerea" iata="E7" color="Red" country="157" CEO="Eduardo Castellanos" mentality="Safe" market="Regional" preferedairport="SLP"  routefocus="Cargo">
+  <narrative narrative="Estafeta Carga Aerea is a cargo airline based at San Luis Potosi,Mexico. In 2005 it had 14 domestic destinations and Miami,USA. In 2014 its fleet was four 737-300's and 2 CRJ100's. It was founded in 2000."/>
+</profile>
+  <info real="True" from="2000" to="2199" />
+  <prefereds aircrafts="Boeing 737-300,Bombardier CRJ100,Boeing 737-200C"></prefereds>
+     <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2014)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="3" late="4"></airliner>
+	     </airliners>
+	          <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2014)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ100" early="2" late="2"></airliner>
+	     </airliners>
+
+
+
+
+	     	  
+	     	  
+
+
+</airline>

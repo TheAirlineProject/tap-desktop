@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Libo County">
+  <months>
+    <month month="1" precipitation="25">
+      <temp min="7" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="27">
+      <temp min="9" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="49">
+      <temp min="12" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="85">
+      <temp min="16" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="189">
+      <temp min="19" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="262">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="211">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="123">
+      <temp min="22" max="33" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="82">
+      <temp min="20" max="31" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="70">
+      <temp min="16" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="40">
+      <temp min="12" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="19">
+      <temp min="8" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

@@ -620,7 +620,7 @@
                     }
                     else
                     {
-                        airliners =
+                       airliners =
                             Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
                                 .FindAll(
                                     a =>

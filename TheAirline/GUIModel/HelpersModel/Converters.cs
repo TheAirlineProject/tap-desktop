@@ -146,6 +146,42 @@
             throw new NotImplementedException();
         }
     }
+    //the converter for the airport name
+    public class AirportNameConverter : IValueConverter
+    {
+        public object Convert(object value)
+        {
+            return Convert(value, null, null, null);
+        }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!(value is Airport))
+                return value;
+
+            Airport airport = (Airport)value;
+
+            string name = airport.Profile.Name;
+
+            var nameExpansions = airport.Profile.Expansions.Where(e => e.Type == AirportExpansion.ExpansionType.Name);
+
+            if (nameExpansions.Count() == 0)
+                return airport.Profile.Name;
+
+            nameExpansions = nameExpansions.OrderBy(e => e.Date);
+
+            foreach (var nameExpansion in nameExpansions)
+                if (nameExpansion.Date < GameObject.GetInstance().GameTime)
+                    name = nameExpansion.Name;
+
+            return name;
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for a value to the current currency
     public class ValueCurrencyConverter : IValueConverter
     {
@@ -246,13 +282,17 @@
         }
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value is TimeSpan)
+            {
+                TimeSpan ts = (TimeSpan)value;
 
-            TimeSpan ts = (TimeSpan)value;
-    
-            if (System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern.Contains("H"))
-                return new DateTime(1960,1,1).Add(ts).ToString("HH:mm");
-            else
-                return new DateTime(1960, 1, 1).Add(ts).ToString("h:mm tt");
+                if (System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern.Contains("H"))
+                    return new DateTime(1960, 1, 1).Add(ts).ToString("HH:mm");
+                else
+                    return new DateTime(1960, 1, 1).Add(ts).ToString("h:mm tt");
+            }
+
+            return value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

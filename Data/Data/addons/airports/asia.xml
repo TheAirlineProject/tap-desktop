@@ -983,7 +983,22 @@ inflationafter="1">
     </runways>
   </airport>
   <!--Japan (RJ**)-->
-   <airport name="Hiroshima Airport" icao="RJOA" iata="HIJ" type="International" season="All_Year">
+  <airport name="Iwakuni Kintaikyo Airport" icao="RJOI" iata="IWK" type="Domestic" season="All_Year">
+    <town town="Iwakuni" country="171" GMT="09:00:00" DST="09:00:00" />
+    <coordinates>
+      <latitude value="34°08'42''N" />
+      <longitude value="132°14'39''E" />
+    </coordinates>
+    <size value="Very_small" pax="356" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="2/20" length="2440" surface="Concrete" />
+ <runway name="2H/20H" length="365" surface="Concrete" type="Helipad" />
+    </runways>
+  </airport>
+    <airport name="Hiroshima Airport" icao="RJOA" iata="HIJ" type="International" season="All_Year">
      <period from="01.01.1993 00:00:00" to="12.31.2199 00:00:00" />
     <town town="Hiroshima" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
@@ -5943,7 +5958,7 @@ inflationafter="1">
     </runways>
   </airport>
   <airport name="Lombok International Airport" icao="WADL" iata="AMI" type="International" season="All_Year">
-    <period from="4/1/1955 12:00:00 AM" to="9/11/2011 12:00:00 AM" />
+    <period from="4/1/1955 12:00:00 AM" to="9/30/2011 12:00:00 AM" />
     <town town="Mataram" country="162" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="8°45'26''S" />
@@ -6682,6 +6697,146 @@ inflationafter="1">
     </runways>
   </airport>
   <!--Malaysia (WB**, WM**)-->
+    <airport name="Tanjung Manis Airport" icao="WBTM" iata="TGC" type="Domestic" season="All_Year">
+    <town town="Tanjung Manis" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="002°10'40''N" />
+      <longitude value="111°12'07''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="05/23" length="1500" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Long Seridan Airport" icao="WBGI" iata="ODN" type="Domestic" season="All_Year">
+    <town town="Long Seridan" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="003°58'34''N" />
+      <longitude value="115°03'48''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="548" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Bario Kelabit Airport" icao="WBGZ" iata="BBN" type="Domestic" season="All_Year">
+    <town town="Bario" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="003°44'13''N" />
+      <longitude value="115°28'10''E" />
+    </coordinates>
+    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="670" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Mulu Airport" icao="WBMU" iata="MZV" type="Domestic" season="All_Year">
+    <town town="Mulu" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="004°03'02''N" />
+      <longitude value="114°48'33''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="1195" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Kudat Airport" icao="WBKT" iata="KUD" type="Domestic" season="All_Year">
+    <town town="Kudat" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="006°55'27''N" />
+      <longitude value="116°49'51''E" />
+    </coordinates>
+    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="4/22" length="730" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Lawas Airport" icao="WBGW" iata="LWY" type="Domestic" season="All_Year">
+    <town town="Lawas" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="004°50'57''N" />
+      <longitude value="115°24'10''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="686" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Long Akah Airport" icao="WBGL" iata="LKH" type="Domestic" season="All_Year">
+    <town town="Long Akah" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="003°18'47''N" />
+      <longitude value="114°46'59''E" />
+    </coordinates>
+    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="680" surface="Asphalt" />
+   </runways>
+  </airport>
+  <airport name="Long Lellang Airport" icao="WBGF" iata="LGL" type="Domestic" season="All_Year">
+    <town town="Long Lellang" country="173" GMT="08:00:00" DST="08:00:00"/>
+    <coordinates>
+      <latitude value="003°27'34''N" />
+      <longitude value="115°10'43''E" />
+    </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="4/22" length="780" surface="Asphalt" />
+   </runways>
+  </airport>
+<airport name="Marudi Airport" icao="WBGM" iata="MUR" type="Domestic" season="All_Year">
+    <town town="Marudi" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="004°10'39''N" />
+      <longitude value="114°19'19''E" />
+    </coordinates>
+    <size value="Smallest" pax="25" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="10/28" length="800" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Mukah Airport" icao="WBGK" iata="MKM" type="Domestic" season="All_Year">
+    <town town="Mukah" country="173" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="002°54'25''N" />
+      <longitude value="112°04'30''E" />
+    </coordinates>
+    <size value="Smallest" pax="15" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="8/26" length="1097" surface="Asphalt" />
+    </runways>
+  </airport>
    <airport name="Labuan Airport" icao="WBKL" iata="LBU" type="Domestic" season="All_Year">
     <town town="Labuan" country="173" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
@@ -7114,6 +7269,21 @@ inflationafter="1">
       <runway name="08/26" length="3000" surface="Concrete" />
     </runways>
   </airport> 
+    <airport name="Libo/Qiannan Airport" icao="ZULB" iata="LLB" type="Domestic" season="All_Year">
+<period from="09.01.2007 00:00:00" to="01.01.2199 00:00:00" />
+    <town town="Libo County" country="148" GMT="08:00:00" DST="08:00:00" />
+    <coordinates>
+      <latitude value="025°27'09''N" />
+      <longitude value="107°57'42''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" />
+    <terminals>
+      <terminal name="Terminal" gates="2" cargo="Smallest" cargovolume="0" />
+    </terminals>
+        <runways>
+      <runway name="18/36" length="2300" surface="Concrete" />
+    </runways>
+  </airport>
             <airport name="Jixi Xingkaihu Airport" icao="ZYJX" iata="JXA" type="Domestic" season="All_Year">
     <town town="Jixi" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>

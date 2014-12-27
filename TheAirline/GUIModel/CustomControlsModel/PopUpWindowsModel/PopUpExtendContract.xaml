@@ -23,7 +23,7 @@
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpExtendContract 1002'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="200"></TextBlock>
-                <TextBlock Text="{Binding NumberOfGates,Mode=OneTime,ElementName=popUpExtendContract}" Name="txtGates" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding NumberOfGates,ElementName=popUpExtendContract}" Name="txtGates" VerticalAlignment="Bottom"></TextBlock>
                 <Button Width="20" VerticalAlignment="Bottom" Click="btnAddGate_Click" Margin="5 0 0 0" Tag="{Binding}" Background="Transparent">
                     <Button.Style>
                         <Style TargetType="Button">

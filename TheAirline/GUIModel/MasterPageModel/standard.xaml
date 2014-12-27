@@ -120,12 +120,12 @@
                     </Button.Style>
                     <Image Source="/data/images/back.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
-                <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnPause_Click"
+                <Button Background="#3772A1" Width="32" Margin="5 0 0 0" Click="btnPause_Click" Tag="{Binding Source={StaticResource gameObject}}"
                         ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3002'}">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding GameWorker.IsPaused,Mode=OneTime,Source={StaticResource gameObject}}"
+                                <DataTrigger Binding="{Binding IsPaused,Source={StaticResource gameObject}}"
                                              Value="True">
                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                 </DataTrigger>
@@ -134,12 +134,12 @@
                     </Button.Style>
                     <Image Source="/data/images/pause.png" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Button>
-                <Button Background="#3772A1" Margin="5 0 0 0" Width="32" Click="btnStart_Click"
+                <Button Background="#3772A1" Margin="5 0 0 0" Width="32" Click="btnStart_Click" Tag="{Binding Source={StaticResource gameObject}}"
                         ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3003'}">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding GameWorker.IsPaused,Mode=OneTime,Source={StaticResource gameObject}}"
+                                <DataTrigger Binding="{Binding IsPaused,Source={StaticResource gameObject}}"
                                              Value="False">
                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                 </DataTrigger>

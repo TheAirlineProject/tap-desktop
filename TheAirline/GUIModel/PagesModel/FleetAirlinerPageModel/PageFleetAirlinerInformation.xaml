@@ -136,7 +136,7 @@
                            VerticalAlignment="Bottom" >
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0:D2}:{1:D2}" Mode="OneTime">
-                                    <Binding Path="Airliner.Airliner.FlownHours.Hours" />
+                                    <Binding Path="Airliner.Airliner.FlownHours.TotalHours" />
                                     <Binding Path="Airliner.Airliner.FlownHours.Minutes" />
                                 </MultiBinding>
                             </TextBlock.Text>

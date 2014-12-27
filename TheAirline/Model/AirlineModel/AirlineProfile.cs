@@ -12,6 +12,15 @@
     using TheAirline.Model.GeneralModel;
 
     [Serializable]
+    public struct AirlineName
+    {
+        [Versioning("name")]
+        public string Name { get; set; }
+        [Versioning("from")]
+        public DateTime From { get; set; }
+     
+    }
+    [Serializable]
     //the profile for an airline
     public class AirlineProfile : ISerializable
     {
@@ -26,7 +35,10 @@
             int founded,
             int folded)
         {
-            this.Name = name;
+            this.Names = new List<AirlineName>();
+
+            this.Names.Add(new AirlineName(){From = new DateTime(this.Founded), Name = name});
+
             this.IATACode = iata;
             this.CEO = ceo;
             this.Color = color;
@@ -162,7 +174,7 @@
         {
             get
             {
-                return this.GetCurrentLogo();
+                return this.getCurrentLogo();
             }
             private set
             {
@@ -176,9 +188,20 @@
         [Versioning("logos")]
         public List<AirlineLogo> Logos { get; set; }
 
-        [Versioning("name")]
-        public string Name { get; set; }
+       public string Name 
+        { 
+            get
+            {
+                return this.getCurrentName();
+            }
+            private set
+            {
+                ;
+            }
+        }
 
+        [Versioning("names")]
+        public List<AirlineName> Names { get; set; }
         [Versioning("narrative")]
         public string Narrative { get; set; }
 
@@ -275,7 +298,22 @@
 
             return this.PreferedAirports.Values.Last();
         }
-        private string GetCurrentLogo()
+        private string getCurrentName()
+        {
+            if (this.Names.Count == 1)
+                return this.Names[0].Name;
+
+            var names = this.Names.OrderBy(e => e.From).ToList();
+
+            for (int i=0; i<names.Count() -1;i++)
+                if (names[i].From < GameObject.GetInstance().GameTime && names[i+1].From >= GameObject.GetInstance().GameTime)
+                    return names[i].Name;
+          
+                          
+            return names[names.Count-1].Name;
+
+        }
+        private string getCurrentLogo()
         {
             var ret =
                 this.Logos.Find(

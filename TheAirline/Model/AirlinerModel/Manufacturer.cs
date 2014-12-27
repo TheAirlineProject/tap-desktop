@@ -20,7 +20,9 @@
             this.ShortName = shortname;
             this.Country = country;
             this.IsReal = isReal;
-            this.IsMajor = IsMajor;
+            this.IsMajor = isMajor;
+
+          
         }
 
         private Manufacturer(SerializationInfo info, StreamingContext ctxt)

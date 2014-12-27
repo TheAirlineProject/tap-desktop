@@ -1,6 +1,7 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -88,7 +89,7 @@
 
             if (o != null)
             {
-                var airlines = (List<Airline>)o;
+                var airlines = (ObservableCollection<Airline>)o;
 
                 foreach (Airline airline in airlines)
                 {

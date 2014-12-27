@@ -8,42 +8,85 @@
 	Title="PageAirportAdvisory">
 
   <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-    <StackPanel>
-            <TextBlock
+        <StackPanel>
+      <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportAdvisory 1000'}"
                     VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
-            <ListBox ItemsSource="{Binding UnservedRoutes}" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" Background="Transparent"
+
+        <TabControl Background="Transparent" BorderThickness="0">
+            <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportAdvisory 1001'}">
+                <StackPanel>
+                     <ListBox ItemsSource="{Binding UnservedRoutes}" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" Background="Transparent"
                       VirtualizingStackPanel.VirtualizationMode="Recycling"  ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="25"></ColumnDefinition>
-                                <ColumnDefinition Width="400"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                       
-                            <Rectangle Width="25" Grid.Column="0">
-                                <Rectangle.Fill>
-                                    
-                                    <LinearGradientBrush EndPoint="0.95,1" StartPoint="0.95,0">
-                                        <GradientStop Color="Gold" Offset="0" />
-                                        <GradientStop Color="Yellow" Offset="1" />
-                                    </LinearGradientBrush>
-                                </Rectangle.Fill>
-                                   <!-- <SolidColorBrush Color="Gold"></SolidColorBrush>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25"></ColumnDefinition>
+                                        <ColumnDefinition Width="400"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Rectangle Width="25" Grid.Column="0">
+                                        <Rectangle.Fill>
+
+                                            <LinearGradientBrush EndPoint="0.95,1" StartPoint="0.95,0">
+                                                <GradientStop Color="Gold" Offset="0" />
+                                                <GradientStop Color="Yellow" Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                        <!-- <SolidColorBrush Color="Gold"></SolidColorBrush>
                                 </Rectangle.Fill>-->
-                            </Rectangle>
-                                <StackPanel Margin="5 0 0 0" Grid.Column="1">
-                                <ContentControl Content="{Binding Destination,Mode=OneTime}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryNormalLink}" FontSize="16" FontWeight="Black"></ContentControl>
-                                <TextBlock Text="{Binding Destination,Mode=OneTime,Converter={StaticResource AirportCodeConverter}}" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="Gray"></TextBlock>
-                                    <TextBlock Text="{Binding Text,Mode=OneTime}" VerticalAlignment="Bottom" TextWrapping="Wrap"></TextBlock>
-                                </StackPanel>
+                                    </Rectangle>
+                                    <StackPanel Margin="5 0 0 0" Grid.Column="1">
+                                        <ContentControl Content="{Binding Destination,Mode=OneTime}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryNormalLink}" FontSize="16" FontWeight="Black"></ContentControl>
+                                        <TextBlock Text="{Binding Destination,Mode=OneTime,Converter={StaticResource AirportCodeConverter}}" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                                        <TextBlock Text="{Binding Text,Mode=OneTime}" VerticalAlignment="Bottom" TextWrapping="Wrap"></TextBlock>
+                                    </StackPanel>
 
-                        </Grid>
+                                </Grid>
 
-                    </DataTemplate>
-                </ListBox.ItemTemplate>                
-            </ListBox>
-    </StackPanel>
-  </ScrollViewer>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportAdvisory 1002'}">
+                <StackPanel>
+                     <ListBox ItemsSource="{Binding UnservedRoutesIntl}" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" Background="Transparent"
+                      VirtualizingStackPanel.VirtualizationMode="Recycling"  ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25"></ColumnDefinition>
+                                        <ColumnDefinition Width="400"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Rectangle Width="25" Grid.Column="0">
+                                        <Rectangle.Fill>
+
+                                            <LinearGradientBrush EndPoint="0.95,1" StartPoint="0.95,0">
+                                                <GradientStop Color="Gold" Offset="0" />
+                                                <GradientStop Color="Yellow" Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                        <!-- <SolidColorBrush Color="Gold"></SolidColorBrush>
+                                </Rectangle.Fill>-->
+                                    </Rectangle>
+                                    <StackPanel Margin="5 0 0 0" Grid.Column="1">
+                                        <ContentControl Content="{Binding Destination,Mode=OneTime}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryNormalLink}" FontSize="16" FontWeight="Black"></ContentControl>
+                                        <TextBlock Text="{Binding Destination,Mode=OneTime,Converter={StaticResource AirportCodeConverter}}" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                                        <TextBlock Text="{Binding Text,Mode=OneTime}" VerticalAlignment="Bottom" TextWrapping="Wrap"></TextBlock>
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </TabItem>       
+        </TabControl>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

@@ -98,12 +98,14 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
         }
         private void btnAddGate_Click(object sender, RoutedEventArgs e)
         {
-           
-            this.NumberOfGates++;
+
+            this.NumberOfGates = this.NumberOfGates + 1;
 
             int diffGates = this.NumberOfGates - this.Contract.NumberOfGates;
                       
             this.HasFreeGates = this.Contract.Airport.Terminals.getFreeGates(this.Contract.TerminalType) - diffGates > 0;
+
+        
 
           
         }
