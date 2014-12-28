@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airliners>
+     <airliner manufacturer="Aero" name="Aero Commander 500/600" price="120000"> 
+    <type body="Narrow_Body" rangetype="Short_range" engine="Turboprop" />
+    <specs wingspan="14.95" length="11.22" range="2000" speed="346" fuelcapacity="590" consumption="0.16"
+           runwaylengthrequired="369" />
+    <capacity passengers="7" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1952" to="1986" rate="90" />
+  </airliner>
+</airliners>

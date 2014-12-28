@@ -149,6 +149,11 @@
                 symbol = "Y";
             }
 
+            if (aClass.Type == AirlinerClass.ClassType.Premium_Economy_Class)
+            {
+                symbol = "W";
+            }
+
             return string.Format("{0}{1}", aClass.SeatingCapacity, symbol);
         }
 

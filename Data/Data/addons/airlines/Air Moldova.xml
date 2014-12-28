@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Moldova" iata="9U" color="Yellow" country="232" CEO="Mircea Maleca" mentality="Safe" market="Global" preferedairport="KIV">
+    <narrative narrative="Air Moldova is based at Chisinau,Moldova, the capital and largest city. As of late 2013 they served about 30 destinations. This includes 6 in Italy,6 in Russia,3 in Greece,3 in Turkey,and one each in the UK,Ukraine,Spain,Romania,Portugal,Ireland,Germany,France,Cyprus,Egypt and one to Vienna,Austria thats starts in 2015. 2 of the Greece ones are charter, and 2 in Turkey are seasonal along with 2 in Russia and the one in Egypt. Its fleet as of December 2014 was two A320's,two Embraer 190s and an Embraer 120 Brasilia. There is also an A321 on lease. Past planes include Tupolev 154's,and 134's and Yak 40's and leased MD-82's. The airline was founded from the part of Aeroflot that ran the Moldova sector during the Soviet Union in 1993."></narrative>
+  </profile>
+  <info real="True" from="1993" to="2199" />
+   <prefereds aircrafts="Airbus A320-200,Embraer E-190,Airbus A321-200,EMB 120 Brasilia,Yak-42D,Yak-42,Yak-40,Tupolev Tu-154M,Tupolev Tu-134B,Tupolev Tu-134A,Tupolev Tu-154B,MD-82 (DC-9-82) "></prefereds>
+
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2014)-->
+	         <airliners>
+	    <airliner type="Embraer E-190" early="1" late="2"></airliner>
+	     </airliners>
+	     	      	  <!--the airliners the airline would start with which isn't on a route earyl (2003) late (2014)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="1" late="2"></airliner>
+	     </airliners>
+	        	      	  <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2014)-->
+	         <airliners>
+	    <airliner type="EMB 120 Brasilia" early="1" late="1"></airliner>
+	     </airliners>
+
+ </airline>

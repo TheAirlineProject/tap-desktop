@@ -4955,25 +4955,25 @@
     <value>Are you sure you want to hire a new student?</value>
   </data>
   <data name="MessageBox_2811_name" xml:space="preserve">
-    <value>Hire Student</value>
+    <value>Neem Student Aan</value>
   </data>
   <data name="PageAirlineFleet_1014_name" xml:space="preserve">
     <value>Pilots Demand</value>
   </data>
   <data name="PageAirlineFleet_1015_name" xml:space="preserve">
-    <value>Pilots</value>
+    <value>Piloten</value>
   </data>
   <data name="PageShowFlightSchool_1015_name" xml:space="preserve">
-    <value>Hire Student</value>
+    <value>Naam Student Aan</value>
   </data>
   <data name="PageShowFlightSchool_1016_name" xml:space="preserve">
-    <value>Select Instructor</value>
+    <value>Selecteer Instructeur</value>
   </data>
   <data name="PageShowFlightSchool_1017_name" xml:space="preserve">
     <value>Train for Airliner</value>
   </data>
   <data name="PageManufacturer_1016_name" xml:space="preserve">
-    <value>Delivery Date</value>
+    <value>Aflever Datum</value>
   </data>
   <data name="PageShowFlightSchool_1018_name" xml:space="preserve">
     <value>Airliner Family</value>
@@ -4982,40 +4982,40 @@
     <value>Employee Wages</value>
   </data>
   <data name="PageRoutePlanner_1026_name" xml:space="preserve">
-    <value>Airliners</value>
+    <value>Vliegtuigen</value>
   </data>
   <data name="PageRoutePlanner_206_name" xml:space="preserve">
     <value>Inverse Timetable</value>
   </data>
   <data name="PageShowRoute_1005_name" xml:space="preserve">
-    <value>Distance</value>
+    <value>Afstand</value>
   </data>
   <data name="PageAirlineEmployees_1015_name" xml:space="preserve">
-    <value>Pilots Needed</value>
+    <value>Piloten Nodig</value>
   </data>
   <data name="PageAirportTraffic_1006_name" xml:space="preserve">
-    <value>Distance</value>
+    <value>Afstand</value>
   </data>
   <data name="PageAirportTraffic_1007_name" xml:space="preserve">
-    <value>Airline</value>
+    <value>Luchtvaartmaatschappij</value>
   </data>
   <data name="PageAirportTraffic_1008_name" xml:space="preserve">
-    <value>Aircrafts</value>
+    <value>Vliegtuigen</value>
   </data>
   <data name="PageShowAirports_1012_name" xml:space="preserve">
-    <value>Longest Runway</value>
+    <value>Langste Ladingsbaan</value>
   </data>
   <data name="MessageBox_2812_message" xml:space="preserve">
     <value>Are you sure you want to close your flight school at {0}?</value>
   </data>
   <data name="MessageBox_2812_name" xml:space="preserve">
-    <value>Close Flight School</value>
+    <value>Sluit Luchtvaart School</value>
   </data>
   <data name="PageFlightSchools_1009_name" xml:space="preserve">
     <value>Move Instructors and Aircrafts</value>
   </data>
   <data name="PageAirlineEmployees_1016_name" xml:space="preserve">
-    <value>Aircraft</value>
+    <value>Vliegtuig</value>
   </data>
   <data name="PageAirlineInfo_1036_name" xml:space="preserve">
     <value>Airline Country</value>
@@ -5027,13 +5027,13 @@
     <value>Can&apos;t Build Facility</value>
   </data>
   <data name="PageAirportDemand_1001_name" xml:space="preserve">
-    <value>Search for Airport</value>
+    <value>Zoek naar Luchthaven</value>
   </data>
   <data name="PageAirport_2003_name" xml:space="preserve">
     <value>Airport Demand</value>
   </data>
   <data name="PageHumanRoutes_1011_name" xml:space="preserve">
-    <value>Distance</value>
+    <value>Afstand</value>
   </data>
   <data name="PageAirlineInfo_1037_name" xml:space="preserve">
     <value>Cabine</value>
@@ -5048,7 +5048,7 @@
     <value>Airliner on route</value>
   </data>
   <data name="PageAirlineInfo_1041_name" xml:space="preserve">
-    <value>Fleet Status</value>
+    <value>Vloot Status</value>
   </data>
   <data name="PageAirlineInfo_1042_name" xml:space="preserve">
     <value>On List</value>
@@ -5069,7 +5069,7 @@
     <value>DOB History</value>
   </data>
   <data name="PageAirlineFinances_1019_name" xml:space="preserve">
-    <value>Last 90 Days</value>
+    <value>Laatste 90 Dagen</value>
   </data>
   <data name="PageAirlineFinances_1020_name" xml:space="preserve">
     <value>Daily Operating Profit </value>
@@ -5087,16 +5087,16 @@
     <value>Landing / 1000 kg.</value>
   </data>
   <data name="PageAirportInfo_1048_name" xml:space="preserve">
-    <value>Fuel Price</value>
+    <value>Brandstof Prijs</value>
   </data>
   <data name="PageAirportInfo_1049_name" xml:space="preserve">
     <value>Terminal Type</value>
   </data>
   <data name="PageAirportInfo_1050_name" xml:space="preserve">
-    <value>Passenger</value>
+    <value>Passagier</value>
   </data>
   <data name="PageAirportInfo_1051_name" xml:space="preserve">
-    <value>Cargo</value>
+    <value>Vracht</value>
   </data>
   <data name="PageAirportInfo_1052_name" xml:space="preserve">
     <value>Total Pax Gates</value>
@@ -5108,19 +5108,19 @@
     <value>Gates</value>
   </data>
   <data name="PageAirportsOverview_1000_name" xml:space="preserve">
-    <value>Country</value>
+    <value>Land</value>
   </data>
   <data name="PageAirportsOverview_1001_name" xml:space="preserve">
-    <value>Airports</value>
+    <value>Luchthavens</value>
   </data>
   <data name="PageAirports_2003_name" xml:space="preserve">
-    <value>Overview</value>
+    <value>Overzicht</value>
   </data>
   <data name="PageAirportInfo_1055_name" xml:space="preserve">
     <value>Handling Type</value>
   </data>
   <data name="PageShowAirports_1014_name" xml:space="preserve">
-    <value>Cargo</value>
+    <value>Vracht</value>
   </data>
   <data name="MessageBox_3006_message" xml:space="preserve">
     <value>You already have a route between {0} and {1}</value>
@@ -5144,7 +5144,7 @@
     <value>Helihaven</value>
   </data>
   <data name="AirlinerTypeSpecifications_1016_name" xml:space="preserve">
-    <value>Engine</value>
+    <value>Motor</value>
   </data>
   <data name="PageAssignAirliners_1004_name" xml:space="preserve">
     <value>Select Airliner For Replacement</value>
@@ -5153,31 +5153,31 @@
     <value>Show Map</value>
   </data>
   <data name="PopUpAirlinerSeatsConfiguration_1004_name" xml:space="preserve">
-    <value>Engine</value>
+    <value>Motor</value>
   </data>
   <data name="PopUpAirlinerSeatsConfiguration_1005_name" xml:space="preserve">
-    <value>Select Engine</value>
+    <value>Selecteer Motor</value>
   </data>
   <data name="PopUpAirlinerSeatsConfiguration_1006_name" xml:space="preserve">
-    <value>Manufacturer</value>
+    <value>Fabrikant</value>
   </data>
   <data name="PopUpAirlinerSeatsConfiguration_1007_name" xml:space="preserve">
     <value>Model</value>
   </data>
   <data name="PopUpAirlinerSeatsConfiguration_1008_name" xml:space="preserve">
-    <value>Engine Type</value>
+    <value>Type motor</value>
   </data>
   <data name="PopUpAirlinerSeatsConfiguration_1009_name" xml:space="preserve">
-    <value>Noise Level</value>
+    <value>Geluidsniveau</value>
   </data>
   <data name="PopUpAirlinerSeatsConfiguration_1010_name" xml:space="preserve">
     <value>Ceiling</value>
   </data>
   <data name="PopUpAirlinerSeatsConfiguration_1011_name" xml:space="preserve">
-    <value>Max Speed</value>
+    <value>Max. Snelheid</value>
   </data>
   <data name="PopUpAirlinerSeatsConfiguration_1012_name" xml:space="preserve">
-    <value>Price</value>
+    <value>Prijs</value>
   </data>
   <data name="News_1016_message" xml:space="preserve">
     <value>You failed to fulfil your contract {0}. It will cost you a penalty fee of {1}</value>
@@ -5195,10 +5195,10 @@
     <value>Special Contracts</value>
   </data>
   <data name="PageAssignAirliners_1006_name" xml:space="preserve">
-    <value>Name</value>
+    <value>Naam</value>
   </data>
   <data name="PageAssignAirliners_1007_name" xml:space="preserve">
-    <value>Airline</value>
+    <value>Luchtvaartmaatschappij</value>
   </data>
   <data name="PageAssignAirliners_1008_name" xml:space="preserve">
     <value>From Date</value>

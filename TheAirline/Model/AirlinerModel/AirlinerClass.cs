@@ -94,6 +94,9 @@
             [EnumMember(Value = "Economy")]
             Economy_Class = 1921,
 
+            [EnumMember(Value = "PEconomy")]
+            Premium_Economy_Class = 1991,
+
             [EnumMember(Value = "Business")]
             Business_Class = 1976,
 

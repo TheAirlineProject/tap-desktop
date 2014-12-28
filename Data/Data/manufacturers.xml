@@ -65,6 +65,7 @@
     <manufacturer name="Robinson Helicopter Company" shortname="Robinson" country="122" />
       <manufacturer name="Mitsubishi Aircraft Corporation" shortname="Mitsubishi" country="171" />
        <manufacturer name="MD Helicopters" shortname="MDH" country="122" />  
+<manufacturer name="Aero Commander" shortname="Aero" country="122" />
 
    <!--engines-->
   <manufacturer name="CFM International" shortname="CFM" country="140" />

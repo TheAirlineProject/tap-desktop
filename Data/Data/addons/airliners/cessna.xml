@@ -99,4 +99,110 @@ runwaylengthrequired="335" />
     <capacity passengers="6" cockpitcrew="1" cabincrew="0" maxclasses="1" />
     <produced from="1962" to="1968" rate="82" />
   </airliner>
+  
+     <airliner manufacturer="Cessna" name="Cessna 195" price="16900">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.02" length="8.33" range="1287" speed="274" fuelcapacity="280" consumption="0.25"
+           runwaylengthrequired="400" />
+    <capacity passengers="4" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1947" to="1954" rate="148" />
+  </airliner>
+ <airliner manufacturer="Cessna" name="Cessna 185 Skywagon" price="10750">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="10.92" length="7.85" range="1333" speed="269" fuelcapacity="318" consumption="0.20"
+           runwaylengthrequired="436" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1961" to="1985" rate="177" />
+  </airliner>
+<airliner manufacturer="Cessna" name="Cessna 182 Skylane" price="52000"> <!--398100-->
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.00" length="8.84" range="1722" speed="269" fuelcapacity="246" consumption="0.33"
+           runwaylengthrequired="274" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1956" to="2199" rate="401" />
+  </airliner>
+  <airliner manufacturer="Cessna" name="Cessna 180 Skywagon" price="13250">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="10.92" length="7.85" range="1648" speed="263" fuelcapacity="333" consumption="0.20"
+           runwaylengthrequired="436" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1953" to="1981" rate="214" />
+  </airliner>
+  <airliner manufacturer="Cessna" name="Cessna 177 Cardinal" price="18000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="10.82" length="8.44" range="1120" speed="230" fuelcapacity="186" consumption="0.25"
+           runwaylengthrequired="274" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1968" to="1978" rate="390" />
+  </airliner>
+  <airliner manufacturer="Cessna" name="Cessna 175 Skylark" price="6750"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="10.97" length="8.08" range="962" speed="190" fuelcapacity="197" consumption="0.33"
+           runwaylengthrequired="408" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1958" to="1962" rate="421" />
+  </airliner>
+<airliner manufacturer="Cessna" name="Cessna 172 Skyhawk" price="9000"> <!--70000-->
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.00" length="8.28" range="1289" speed="226" fuelcapacity="212" consumption="0.33"
+           runwaylengthrequired="274" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1956" to="2199" rate="742" />
+  </airliner>
+<airliner manufacturer="Cessna" name="Cessna 170" price="6000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.00" length="7.61" range="869" speed="193" fuelcapacity="160" consumption="0.33"
+           runwaylengthrequired="555" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1948" to="1956" rate="575" />
+  </airliner>
+  <airliner manufacturer="Cessna" name="Cessna 350" price="73000"> <!--535000-->
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.00" length="7.67" range="2584" speed="283" fuelcapacity="371" consumption="0.33"
+           runwaylengthrequired="396" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1998" to="2010" rate="30" />
+  </airliner> 
+<airliner manufacturer="Cessna" name="Cessna 210 Centurion" price="82000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.20" length="8.59" range="1500" speed="364" fuelcapacity="341" consumption="0.20"
+           runwaylengthrequired="658" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1957" to="1985" rate="288" />
+  </airliner> 
+<airliner manufacturer="Cessna" name="Cessna Pressurized 210 Centurion" price="100000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.20" length="8.59" range="1824" speed="370" fuelcapacity="341" consumption="0.20"
+           runwaylengthrequired="658" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1970" to="1985" rate="55" />
+  </airliner>  
+            <airliner manufacturer="Cessna" name="Cessna 400 Corvalis TT" price="80000"> <!--620000-->
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.00" length="7.67" range="2038" speed="435" fuelcapacity="371" consumption="0.33"
+           runwaylengthrequired="396" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="2004" to="2199" rate="30" />
+  </airliner> 
+            <airliner manufacturer="Cessna" name="Cessna 411" price="246000"> <!--1909000-->
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="12.15" length="10.20" range="2090" speed="360" fuelcapacity="1137" consumption="0.166"
+           runwaylengthrequired="544" />
+    <capacity passengers="6" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1962" to="1968" rate="43" />
+  </airliner>              
+<airliner manufacturer="Cessna" name="Cessna 421 Golden Eagle" price="325000"> <!--2522000-->
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="12.53" length="11.09" range="2755" speed="444" fuelcapacity="1500" consumption="0.166"
+           runwaylengthrequired="544" />
+    <capacity passengers="6" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1967" to="1985" rate="101" />
+  </airliner>              
+  <airliner manufacturer="Cessna" name="Cessna 425 Conquest I" price="336000"> <!--2607000-->
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="13.50" length="10.90" range="2480" speed="400" fuelcapacity="1100" consumption="0.143"
+           runwaylengthrequired="544" />
+    <capacity passengers="7" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1981" to="1986" rate="39" />
+  </airliner>
 </airliners>

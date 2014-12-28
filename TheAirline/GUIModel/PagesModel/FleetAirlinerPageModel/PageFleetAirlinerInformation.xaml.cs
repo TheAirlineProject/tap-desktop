@@ -69,7 +69,9 @@
             cbClasses.HorizontalAlignment = HorizontalAlignment.Left;
             cbClasses.Width = 200;
 
-            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+            var types = new List<AirlinerClass.ClassType>(){AirlinerClass.ClassType.Economy_Class,AirlinerClass.ClassType.Premium_Economy_Class,AirlinerClass.ClassType.Business_Class,AirlinerClass.ClassType.First_Class};
+
+            foreach (AirlinerClass.ClassType type in types)
             {
                 Boolean hasClass = this.Airliner.Classes.ToList().Exists(c => c.Type == type);
                 if ((int)type <= GameObject.GetInstance().GameTime.Year && !hasClass)
@@ -349,7 +351,27 @@
                     Translator.GetInstance().GetString("MessageBox", "2019", "message"),
                     WPFMessageBoxButtons.Ok);
         }
+        private void btnDeleteClass_Click(object sender, RoutedEventArgs e)
+        {
+            AirlinerClassMVVM aClass = (AirlinerClassMVVM)((Button)sender).Tag;
 
+             WPFMessageBoxResult result = WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2020"),
+                    string.Format(
+                        Translator.GetInstance().GetString("MessageBox", "2020", "message"),
+                       new TextUnderscoreConverter().Convert(aClass.Type)),
+                    WPFMessageBoxButtons.YesNo);
+
+             if (result == WPFMessageBoxResult.Yes)
+             {
+                 this.Airliner.Classes.Remove(aClass);
+
+                 this.Airliner.Classes[0].RegularSeatingCapacity += aClass.RegularSeatingCapacity;
+                 this.Airliner.Classes[0].Seating += aClass.RegularSeatingCapacity;
+                 this.Airliner.Classes[0].MaxSeats += aClass.RegularSeatingCapacity;
+                 this.Airliner.Classes[0].MaxSeatsCapacity += aClass.RegularSeatingCapacity;
+             }
+        }
         private void btnUndoChanges_Click(object sender, RoutedEventArgs e)
         {
             var allclasses = new List<AirlinerClassMVVM>(this.Airliner.Classes);

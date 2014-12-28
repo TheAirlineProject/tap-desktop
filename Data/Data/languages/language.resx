@@ -5651,4 +5651,10 @@ Good luck.</value>
   <data name="PageAirportAdvisory_1002_name" xml:space="preserve">
     <value>Intl.</value>
   </data>
+  <data name="MessageBox_2020_message" xml:space="preserve">
+    <value>Are you sure you want to remove {0} from this airliner?</value>
+  </data>
+  <data name="MessageBox_2020_name" xml:space="preserve">
+    <value>Delete Airliner Class</value>
+  </data>
 </root>

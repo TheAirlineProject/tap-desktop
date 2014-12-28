@@ -41,7 +41,7 @@
         </DataTemplate>
         <DataTemplate x:Key="ClassItem">
             <WrapPanel>
-                <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="100">
+                <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="150">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                         <Style.Triggers>
@@ -55,7 +55,7 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <ComboBox Width="100" ItemsSource="{Binding FreeClassTypes,ElementName=popUpAirlinerSeatsConfiguration}" SelectedItem="{Binding Type,Mode=TwoWay}">
+                <ComboBox Width="150" ItemsSource="{Binding FreeClassTypes,ElementName=popUpAirlinerSeatsConfiguration}" SelectedItem="{Binding Type,Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>

@@ -80,6 +80,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 if (this.Classes.Count < 3)
                 {
                     this.FreeClassTypes.Clear();
+                    this.FreeClassTypes.Add(AirlinerClass.ClassType.Premium_Economy_Class);
                     this.FreeClassTypes.Add(AirlinerClass.ClassType.Business_Class);
                     this.FreeClassTypes.Add(AirlinerClass.ClassType.First_Class);
 
@@ -131,10 +132,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.CanAddNewClass = this.Classes.Count < (this.Type is AirlinerPassengerType ? ((AirlinerPassengerType)this.Type).MaxAirlinerClasses : ((AirlinerCombiType)this.Type).MaxAirlinerClasses);
 
-
+     
             if (this.Classes.Count < 3)
             {
                 this.FreeClassTypes.Clear();
+                this.FreeClassTypes.Add(AirlinerClass.ClassType.Premium_Economy_Class);
                 this.FreeClassTypes.Add(AirlinerClass.ClassType.Business_Class);
                 this.FreeClassTypes.Add(AirlinerClass.ClassType.First_Class);
 
@@ -160,6 +162,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.FreeClassTypes.Clear();
 
+            this.FreeClassTypes.Add(AirlinerClass.ClassType.Premium_Economy_Class);
             this.FreeClassTypes.Add(AirlinerClass.ClassType.Business_Class);
             this.FreeClassTypes.Add(AirlinerClass.ClassType.First_Class);
         }

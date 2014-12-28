@@ -98,5 +98,21 @@
     <airlinerimage image="SE161" types="SE 161 Languedoc"></airlinerimage>    
     <airlinerimage image="SR20" types="Cirrus SR20"></airlinerimage>
         <airlinerimage image="SR22" types="Cirrus SR22"></airlinerimage>
-            <airlinerimage image="SR22T" types="Cirrus SR22T"></airlinerimage>
-</airlinerimages>
+            <airlinerimage image="SR22T" types="Cirrus SR22T"></airlinerimage>  
+  <airlinerimage image="AC500" types="Aero Commander 500/600"></airlinerimage>
+    <airlinerimage image="C195" types="Cessna 195"></airlinerimage>
+     <airlinerimage image="C185" types="Cessna 185 Skywagon"></airlinerimage>
+      <airlinerimage image="C182" types="Cessna 182 Skylane"></airlinerimage>
+       <airlinerimage image="C180" types="Cessna 180 Skywagon"></airlinerimage>
+   <airlinerimage image="C177" types="Cessna 177 Cardinal"></airlinerimage>
+       <airlinerimage image="C175" types="Cessna 175 Skylark"></airlinerimage>
+     <airlinerimage image="C172" types="Cessna 172 Skyhawk"></airlinerimage>
+      <airlinerimage image="C170" types="Cessna 170"></airlinerimage>
+       <airlinerimage image="C350" types="Cessna 350"></airlinerimage>
+   <airlinerimage image="C210" types="Cessna 210 Centurionl"></airlinerimage>
+     <airlinerimage image="CP210" types="Cessna Pressurized 210 Centurion"></airlinerimage>
+       <airlinerimage image="C400" types="Cessna 400 Corvalis TT"></airlinerimage>
+   <airlinerimage image="C411" types="Cessna 411"></airlinerimage>
+  <airlinerimage image="C421" types="Cessna 421 Golden Eagle"></airlinerimage>
+     <airlinerimage image="C425" types="Cessna 425 Conquest I"></airlinerimage>
+ </airlinerimages>
