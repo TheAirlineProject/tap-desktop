@@ -112,7 +112,7 @@
                 folded = Convert.ToInt16(infoElement.Attributes["to"].Value);
             }
 
-            var license = Airline.AirlineLicense.Domestic;
+            var license = Airline.AirlineLicense.Regional;
 
             if (market == Airline.AirlineFocus.Global)
             {
@@ -1657,8 +1657,10 @@
             }
             else
             {
+                
                 List<Airport> airportDestinations = AIHelpers.GetDestinationAirports(airline, airportHomeBase);
 
+               
                 if (airportDestinations.Count == 0)
                 {
                     airportDestinations =
@@ -1678,7 +1680,6 @@
                 if (focus == Route.RouteType.Mixed)
                     focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
 
-
                 while ((airportDestination == null || airliner == null || !airliner.HasValue)
                        && airportDestinations.Count > counter)
                 {
@@ -1693,9 +1694,14 @@
                         true);
 
                     counter++;
+
+                    if (airline.Profile.IATACode == "AC2")
+                    {
+                        Boolean bln = airportDestinations.Exists(a => a.Profile.IATACode == "NCE");
+                        int counterDestinations = airportDestinations.Count;
+                    }
+
                 }
-
-
 
                 if (airportDestination == null || !airliner.HasValue)
                 {

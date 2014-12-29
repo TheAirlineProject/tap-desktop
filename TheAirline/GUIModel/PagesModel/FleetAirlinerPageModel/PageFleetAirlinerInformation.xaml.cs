@@ -31,8 +31,7 @@
 
             this.DataContext = this.Airliner;
             this.Loaded += this.PageFleetAirlinerInformation_Loaded;
-
-
+       
             this.InitializeComponent();
         }
 

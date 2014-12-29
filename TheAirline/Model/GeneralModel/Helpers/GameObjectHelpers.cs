@@ -152,6 +152,7 @@
             {
                 Setup.SetupMainGame(startData.Opponents, startData.NumberOfOpponents);
             }
+
             var heliports = Airports.GetAirports(a => a.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad));
 
             if (startData.InternationalAirports)

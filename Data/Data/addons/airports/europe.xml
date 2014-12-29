@@ -3876,7 +3876,7 @@
     <town town="Monaco" country="314" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="043°43'35''N" />
-      <longitude value="075°25'14''E" />
+      <longitude value="07°25'14''E" />
     </coordinates>
     <size value="Smallest" pax="115" />
     <terminals>
@@ -5164,6 +5164,7 @@
     </runways>
   </airport>
   <airport name="Rome Ciampino Airport" icao="LIRA" iata="CIA" type="International" season="All_Year">
+  <period from="01.01.1916 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Rome" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="41°47'57''N" />
@@ -5179,6 +5180,7 @@
     </runways>
   </airport>
   <airport name="Leonardo da Vinci-Fiumicino Airport" icao="LIRF" iata="FCO" type="International" season="All_Year">
+  <period from="01.15.1961 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Rome" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="41°48'46''N" />

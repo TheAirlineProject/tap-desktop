@@ -334,8 +334,7 @@
                 this.FlightSchool.Aircrafts.GroupBy(a => a.Type)
                     .Select(group => new { Type = group.Key, Count = group.Sum(g => g.Type.MaxNumberOfStudents) })
                     .ToDictionary(g => g.Type, g => g.Count);
-            ;
-
+            
             foreach (PilotStudent ps in this.FlightSchool.Students)
             {
                 types[ps.Aircraft.Type]--;

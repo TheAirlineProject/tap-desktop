@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="SkyTaxi" iata="TE" color="Tomato" country="135" CEO="G. Rybczynski" mentality="Safe" market="Global" preferedairport="WRO" routefocus="Mixed" schedule="Charter">
+  <narrative narrative="SkyTaxi is a passenger and cargo airline that does charters based at Wroclaw,Poland. They as of October 2013 they had three Saab 340's and a Polish version of the Piper Seneca. It was founded in 2000."/>
+</profile>
+  <info real="True" from="2000" to="2199" />
+  <prefereds aircrafts="Saab 340B,PA-34 Seneca"></prefereds>
+
+
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2014)-->
+	         <airliners>
+	    <airliner type="Saab 340B" early="1" late="3"></airliner>
+	     </airliners>
+	     	      	  <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2014)-->
+	         <airliners>
+	    <airliner type="PA-34 Seneca" early="0" late="1"></airliner>
+	     </airliners>
+
+
+	     	   
+	     	  
+	     	  
+
+
+</airline>

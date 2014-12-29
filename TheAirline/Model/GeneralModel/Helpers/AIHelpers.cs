@@ -648,7 +648,7 @@
 
                 if (airlineLoanTotal < maxLoanTotal)
                 {
-                    List<Airliner> loanAirliners;
+                    List<Airliner> loanAirliners = new List<Airliner>();
 
                     if (airlineAircrafts.Count > 0)
                     {
@@ -680,7 +680,8 @@
                                             && distance < a.Range && airlineAircrafts.Contains(a.Type) && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
                         }
                     }
-                    else
+                    
+                    if (loanAirliners.Count == 0)
                     {
                         if (focus == Route.RouteType.Cargo)
                         {
@@ -792,6 +793,13 @@
                             a.Profile.Country,
                             airport.Profile.Country,
                             GameObject.GetInstance().GameTime));
+
+            if (airline.AirlineRouteFocus == Route.RouteType.Helicopter)
+                airports = airports.Where(a => a.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad)).ToList();
+
+            if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                airports = airports.Where(a => a.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo)).ToList();
+
             List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
 
             Airline.AirlineFocus marketFocus = airline.MarketFocus;

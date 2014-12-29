@@ -693,11 +693,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airline.License == Airline.AirlineLicense.Short_Haul && (MathHelpers.GetDistance(airport1, airport2) < 2000 || isInUnion) && continentsOk)
                 return true;
 
+            if (airline.License == Airline.AirlineLicense.Regional && (continent1 == continent2 || isInUnion) && continentsOk)
+                return true;
+
             if (airline.License == Airline.AirlineLicense.Domestic && airport1.Profile.Country == airport2.Profile.Country && continentsOk)
                 return true;
 
-            if (airline.License == Airline.AirlineLicense.Regional && (continent1 == continent2 || isInUnion) && continentsOk)
-                return true;
+         
 
             return false;
         }

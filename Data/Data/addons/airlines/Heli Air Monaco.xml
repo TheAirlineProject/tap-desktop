@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Heli Air Monaco" iata="YO" color="Firebrick" country="314" CEO="Jacques Crovetto" mentality="Safe" market="Local" preferedairport="MCM"  routefocus="Helicopter">
@@ -6,9 +6,5 @@
 </profile>
   <info real="True" from="1976" to="2199" />
   <prefereds aircrafts="EC130,AS350,EC120 Colibri,SA365 Dauphin 2,Bell 206 JetRanger"></prefereds>
-
-	     	  
-	     	  
-
 
 </airline>
