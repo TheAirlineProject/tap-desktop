@@ -61,7 +61,7 @@
                 </StackPanel.Style>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1028'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="200"></TextBlock>
-                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="500"
+                    <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="500"
                                       Name="cbSpecialRoute" IsSynchronizedWithCurrentItem="True"
                                       ItemsSource="{Binding SpecialContractRoutes,ElementName=pageRoutePlanner}" >
                         <ComboBox.ItemTemplate>
@@ -129,7 +129,7 @@
                             <TextBlock
                                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1000'}"
                                 HorizontalAlignment="Center" FontWeight="Bold" />
-                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="150"
+                            <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="150"
                                       IsSynchronizedWithCurrentItem="True" SelectionChanged="cbRegion_SelectionChanged"
                                       DisplayMemberPath="Name" SelectedValuePath="Name" Name="cbRegion"
                                       ItemsSource="{Binding AllRegions,ElementName=pageRoutePlanner}" />
@@ -138,7 +138,7 @@
                             <TextBlock
                                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1001'}"
                                 HorizontalAlignment="Center" FontWeight="Bold" />
-                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}"
+                            <ComboBox Style="{StaticResource ComboBoxTransparentStyle}"
                                       SelectionChanged="cbRoute_SelectionChanged" VerticalAlignment="Bottom"
                                       ItemTemplate="{StaticResource RouteFlagItem}" Width="150" Name="cbRoute"
                                       ItemsSource="{Binding Routes,ElementName=pageRoutePlanner}" />
@@ -169,7 +169,7 @@
                             <TextBlock
                                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1003'}"
                                 HorizontalAlignment="Center" FontWeight="Bold" />
-                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="75"
+                            <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="75"
                                       IsSynchronizedWithCurrentItem="True" Name="cbStartTime"
                                       ItemsSource="{Binding StartTimes,ElementName=pageRoutePlanner}">
                                 <ComboBox.ItemTemplate>
@@ -195,7 +195,7 @@
                                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1004'}"
                                 HorizontalAlignment="Center" FontWeight="Bold" />
                             <WrapPanel>
-                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbIntervalType"
+                                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Name="cbIntervalType"
                                           Width="75" SelectionChanged="cbIntervalType_SelectionChanged"
                                           IsSynchronizedWithCurrentItem="True"
                                           ItemsSource="{Binding IntervalTypes,ElementName=pageRoutePlanner}">
@@ -208,7 +208,7 @@
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
-                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbInterval"
+                                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Name="cbInterval"
                                           Width="50" Margin="5 0 0 0" IsSynchronizedWithCurrentItem="True"
                                           SelectedIndex="0"
                                           ItemsSource="{Binding Intervals,ElementName=pageRoutePlanner}" />
@@ -229,7 +229,7 @@
                                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1005'}"
                                 HorizontalAlignment="Center" FontWeight="Bold" />
                             <WrapPanel>
-                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbDelayMinutes"
+                                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Name="cbDelayMinutes"
                                           Width="100" SelectionChanged="cbDelayMinutes_SelectionChanged"
                                           IsSynchronizedWithCurrentItem="True"
                                           ItemsSource="{Binding StopoverMinutes,ElementName=pageRoutePlanner}">

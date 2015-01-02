@@ -129,7 +129,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <ListBox Style="{StaticResource VerticalListBoxStyle}"
-                                             ItemTemplate="{DynamicResource RouteItem}"
+                                             ItemTemplate="{StaticResource RouteItem}"
                                              ItemsSource="{Binding Routes}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

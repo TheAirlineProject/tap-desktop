@@ -151,7 +151,7 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1003'}"
                                     FontWeight="Bold" VerticalAlignment="Bottom" Width="150" />
                                 <ComboBox VerticalAlignment="Bottom" Name="cbNextFacility"
-                                          Style="{DynamicResource ComboBoxTransparentStyle}"
+                                          Style="{StaticResource ComboBoxTransparentStyle}"
                                           IsSynchronizedWithCurrentItem="True"
                                           ItemsSource="{Binding FacilityTypes,ElementName=pageAirportFacilities}"
                                           Width="100" />
@@ -161,7 +161,7 @@
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1004'}"
                                     FontWeight="Bold" VerticalAlignment="Bottom" Width="150" />
                                 <ComboBox VerticalAlignment="Bottom" Name="cbFacility" Width="200"
-                                          Style="{DynamicResource ComboBoxTransparentStyle}"
+                                          Style="{StaticResource ComboBoxTransparentStyle}"
                                           IsSynchronizedWithCurrentItem="True">
                                     <ComboBox.ItemsSource>
                                         <MultiBinding Converter="{StaticResource TypeFacilitiesConverter}">

@@ -60,7 +60,7 @@
                 <TextBlock Text="To all our contributors and testers who are helping us with the game"
                            HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20" />
 
-                <Button Style="{DynamicResource StandardButtonStyle}"
+                <Button Style="{StaticResource StandardButtonStyle}"
                         Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 202'}"
                         Width="NaN" Click="btnStartMenu_Click" HorizontalAlignment="Center" Margin="0 10 0 0" />
             </StackPanel>

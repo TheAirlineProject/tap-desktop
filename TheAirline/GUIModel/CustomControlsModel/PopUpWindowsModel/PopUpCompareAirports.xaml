@@ -45,7 +45,7 @@
                 <WrapPanel Grid.Column="1">
                     <StackPanel>
                     <StackPanel Height="30">
-                        <ComboBox IsSynchronizedWithCurrentItem="True" SelectionChanged="cbAirport_SelectionChanged" VerticalAlignment="Bottom" Name="cbAirport" Width="200" Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding}">
+                        <ComboBox IsSynchronizedWithCurrentItem="True" SelectionChanged="cbAirport_SelectionChanged" VerticalAlignment="Bottom" Name="cbAirport" Width="200" Style="{StaticResource ComboBoxTransparentStyle}" ItemsSource="{Binding}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <ContentControl Content="{Binding Airport,Mode=OneTime}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryItem}"></ContentControl>

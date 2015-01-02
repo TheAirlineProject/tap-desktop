@@ -49,7 +49,7 @@
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
-                    <ListBox Background="Transparent" ItemTemplate="{DynamicResource StatisticsItem}"
+                    <ListBox Background="Transparent" ItemTemplate="{StaticResource StatisticsItem}"
                              BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                              ItemsSource="{Binding Converter={StaticResource routeStatisticsConverter}}" />
 
@@ -68,7 +68,7 @@
                         <TextBox Text="{Binding FarePrice,StringFormat={}{0:0.##}}"
                                  Style="{StaticResource NumericTextBox}" VerticalAlignment="Bottom" Width="100" />
                     </WrapPanel>
-                    <ListBox Background="Transparent" ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0"
+                    <ListBox Background="Transparent" ItemTemplate="{StaticResource FacilityItem}" BorderThickness="0"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                              ItemsSource="{Binding Facilities}" />
                 </StackPanel>
@@ -111,7 +111,7 @@
                     FontWeight="Bold" VerticalAlignment="Center" Width="100" />
                         <ListBox Background="Transparent" BorderThickness="0"
                          ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
-                         ItemTemplate="{DynamicResource StopoverItem}" ItemsSource="{Binding Route.Stopovers,Mode=OneTime}" />
+                         ItemTemplate="{StaticResource StopoverItem}" ItemsSource="{Binding Route.Stopovers,Mode=OneTime}" />
 
                     </WrapPanel>
                     <WrapPanel Style="{StaticResource WrapPanelStyle}">
@@ -142,7 +142,7 @@
                         <TextBlock VerticalAlignment="Bottom" Width="100" FontWeight="Bold" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 1008'}"></TextBlock>
 
                      
-                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" VerticalAlignment="Bottom"
+                        <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" VerticalAlignment="Bottom"
                                       Width="300"
                                       Name="cbContract"
                                       ItemsSource="{Binding Path=Contracts,ElementName=pageShowRoute}">
@@ -173,7 +173,7 @@
                     Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0" />
                         <ListBox Background="Transparent" Style="{StaticResource VerticalListBoxStyle}" Name="lbClasses"
                          ItemsSource="{Binding Path=Classes,ElementName=pageShowRoute}"
-                         ItemTemplate="{DynamicResource ClassItem}" />
+                         ItemTemplate="{StaticResource ClassItem}" />
                     </StackPanel>
                     <StackPanel>
                         <StackPanel.Style>
@@ -201,11 +201,11 @@
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 1001'}"
                 Margin="0 10 0 0" Style="{StaticResource SmallHeaderStyle}" />
                     <ListBox Background="Transparent" Style="{StaticResource VerticalListBoxStyle}"
-                     ItemTemplate="{DynamicResource RouteStatisticsItem}" ItemsSource="{Binding Legs,Mode=OneTime}" />
+                     ItemTemplate="{StaticResource RouteStatisticsItem}" ItemsSource="{Binding Legs,Mode=OneTime}" />
                     <TextBlock
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 1002'}"
                 Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0" />
-                    <ListBox Background="Transparent" ItemTemplate="{DynamicResource InvoiceItem}"
+                    <ListBox Background="Transparent" ItemTemplate="{StaticResource InvoiceItem}"
                      ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                      ItemsSource="{Binding Invoices}" />
                     <WrapPanel Margin="0 10 0 0">

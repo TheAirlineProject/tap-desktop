@@ -78,7 +78,7 @@
                     <g:QuickInfoValue.Value>
                         <WrapPanel>
                             <Image Name="imgLogo" RenderOptions.BitmapScalingMode="HighQuality" Height="32" />
-                            <Button Style="{DynamicResource StandardButtonStyle}" Click="btnLogo_Click" Height="20"
+                            <Button Style="{StaticResource StandardButtonStyle}" Click="btnLogo_Click" Height="20"
                                     Content=".." VerticalAlignment="Bottom" Margin="5 0 0 0" />
                         </WrapPanel>
                     </g:QuickInfoValue.Value>
@@ -87,8 +87,8 @@
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1005'}">
                     <g:QuickInfoValue.Value>
                         <ComboBox Name="cbColor" Width="300" SelectedIndex="0"
-                                  ItemTemplate="{DynamicResource ColorItem}"
-                                  Style="{DynamicResource ComboBoxTransparentStyle}"
+                                  ItemTemplate="{StaticResource ColorItem}"
+                                  Style="{StaticResource ComboBoxTransparentStyle}"
                                   ItemsSource="{Binding Colors,ElementName=pageNewAirline}" />
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
@@ -96,8 +96,8 @@
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1010'}">
                     <g:QuickInfoValue.Value>
                         <ComboBox Name="cbCountry" Width="300" SelectedIndex="0"
-                                  ItemTemplate="{DynamicResource CountryLongFlagItem}"
-                                  Style="{DynamicResource ComboBoxTransparentStyle}"
+                                  ItemTemplate="{StaticResource CountryLongFlagItem}"
+                                  Style="{StaticResource ComboBoxTransparentStyle}"
                                   ItemsSource="{Binding AllCountries,ElementName=pageNewAirline}"
                                   SelectionChanged="cbCountry_SelectionChanged" />
                     </g:QuickInfoValue.Value>
@@ -106,15 +106,15 @@
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1006'}">
                     <g:QuickInfoValue.Value>
                         <ComboBox Name="cbAirport" Width="300" SelectedIndex="0"
-                                  ItemTemplate="{DynamicResource AirportCountryItem}"
-                                  Style="{DynamicResource ComboBoxTransparentStyle}" />
+                                  ItemTemplate="{StaticResource AirportCountryItem}"
+                                  Style="{StaticResource ComboBoxTransparentStyle}" />
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
             </ListBox>
             <WrapPanel Margin="0 10 0 0">
-                <Button Style="{DynamicResource StandardButtonStyle}" Click="btnCreateAirline_Click"
+                <Button Style="{StaticResource StandardButtonStyle}" Click="btnCreateAirline_Click"
                         Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 201'}" />
-                <Button Style="{DynamicResource StandardButtonStyle}" Click="btnCreateAndSave_Click"
+                <Button Style="{StaticResource StandardButtonStyle}" Click="btnCreateAndSave_Click"
                         Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 200'}"
                         Margin="5 0 0 0" />
 

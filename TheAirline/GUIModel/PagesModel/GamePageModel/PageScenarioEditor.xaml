@@ -36,7 +36,7 @@
         <DataTemplate x:Key="NoLeftContent" />
         <DataTemplate x:Key="EditorContent">
             <StackPanel HorizontalAlignment="Center">
-                <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageScenarioEditor 1029'}"
                                     Width="100" VerticalAlignment="Bottom" FontWeight="Bold" />
@@ -52,14 +52,14 @@
                         </TextBox.Style>
                     </TextBox>
                 </WrapPanel>
-                <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageScenarioEditor 1029'}"
                                     Width="100" VerticalAlignment="Bottom" FontWeight="Bold" />
                     <Slider Minimum="1960" Maximum="{Binding LastStartYear,Mode=OneTime,Source={StaticResource object}}" Value="1960" Width="300" TickFrequency="1" Name="slStartYear" IsSnapToTickEnabled="True"></Slider>
                     <TextBlock Text="{Binding Value,ElementName=slStartYear}" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
                 </WrapPanel>
-                <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageScenarioEditor 1029'}"
                                     Width="100" VerticalAlignment="Bottom" FontWeight="Bold" />
@@ -67,7 +67,7 @@
                     <Slider Minimum="{Binding Value,ElementName=slStartYear}" Maximum="2199" Width="300" TickFrequency="1" Name="slEndYear" IsSnapToTickEnabled="True"></Slider>
                     <TextBlock Text="{Binding Value,ElementName=slEndYear}" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
                 </WrapPanel>
-                <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageScenarioEditor 1029'}"
                                     Width="100" VerticalAlignment="Bottom" FontWeight="Bold" />
@@ -83,14 +83,14 @@
                         </TextBox.Style>
                     </TextBox>
                 </WrapPanel>
-                <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageScenarioEditor 1029'}"
                                     Width="100" VerticalAlignment="Bottom" FontWeight="Bold" />
                     <Slider Minimum="1000000" Maximum="1000000000" IsSnapToTickEnabled="True" Width="300" TickFrequency="10000000" VerticalAlignment="Bottom" Name="slStartMoney"></Slider>
                     <TextBlock Text="{Binding Value,ElementName=slStartMoney,StringFormat={}{0:N0}}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 </WrapPanel>
-                <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
                     <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageScenarioEditor 1029'}"
                                     Width="100" VerticalAlignment="Bottom" FontWeight="Bold" />
@@ -107,7 +107,7 @@
                     </TextBox>
                 </WrapPanel>
 
-                <Button Style="{DynamicResource StandardButtonStyle}"
+                <Button Style="{StaticResource StandardButtonStyle}"
                         Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 202'}"
                         Width="NaN" HorizontalAlignment="Center" Margin="0 10 0 0" />
             </StackPanel>

@@ -15,7 +15,7 @@
                     Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageSearchAirports 1005'}"
                     VerticalAlignment="Bottom" Width="150" />
                 <ComboBox Name="cbRegion" SelectionChanged="cbRegion_SelectionChanged"
-                          Style="{DynamicResource ComboBoxTransparentStyle}" Width="250" VerticalAlignment="Bottom"
+                          Style="{StaticResource ComboBoxTransparentStyle}" Width="250" VerticalAlignment="Bottom"
                           SelectedIndex="0" DisplayMemberPath="Name" SelectedValuePath="Name" />
 
             </WrapPanel>
@@ -23,7 +23,7 @@
                 <TextBlock
                     Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageSearchAirports 1006'}"
                     VerticalAlignment="Bottom" Width="150" />
-                <ComboBox Name="cbCountry" Style="{DynamicResource ComboBoxTransparentStyle}" Width="250"
+                <ComboBox Name="cbCountry" Style="{StaticResource ComboBoxTransparentStyle}" Width="250"
                           VerticalAlignment="Bottom" SelectedIndex="0"
                           ItemTemplate="{StaticResource CountryLongFlagItem}" />
             </WrapPanel>
@@ -40,7 +40,7 @@
                     VerticalAlignment="Bottom" Width="150" />
                 <TextBox Width="100" VerticalAlignment="Bottom" Name="txtText" UndoLimit="10" />
             </WrapPanel>
-            <Button Style="{DynamicResource StandardButtonStyle}"
+            <Button Style="{StaticResource StandardButtonStyle}"
                     Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='General 109'}"
                     Width="NaN" Margin="0 5 0 0" HorizontalAlignment="Left" Click="btnSearch_Click" />
         </StackPanel>

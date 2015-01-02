@@ -34,7 +34,7 @@
         <StackPanel>
             <ListBox Background="Transparent" BorderThickness="0"
                          ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
-                         ItemTemplate="{DynamicResource EventItem}"
+                         ItemTemplate="{StaticResource EventItem}"
                          ItemsSource="{Binding Path=Contracts,ElementName=popUpSpecialContracts}" />
         </StackPanel>
     </ScrollViewer>

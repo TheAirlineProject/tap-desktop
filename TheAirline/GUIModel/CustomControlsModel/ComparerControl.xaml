@@ -12,14 +12,14 @@
             <ColumnDefinition Width="100"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ComboBox Grid.Column="0"  Style="{DynamicResource ComboBoxTransparentStyle}" SelectedItem="{Binding SelectedCompareType,ElementName=compareControl}" ItemsSource="{Binding Compares,ElementName=compareControl}">
+        <ComboBox Grid.Column="0"  Style="{StaticResource ComboBoxTransparentStyle}" SelectedItem="{Binding SelectedCompareType,ElementName=compareControl}" ItemsSource="{Binding Compares,ElementName=compareControl}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter}}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox Grid.Column="1" IsSynchronizedWithCurrentItem="True" Name="cbValues" Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding Values,ElementName=compareControl}"></ComboBox>
+        <ComboBox Grid.Column="1" IsSynchronizedWithCurrentItem="True" Name="cbValues" Style="{StaticResource ComboBoxTransparentStyle}" ItemsSource="{Binding Values,ElementName=compareControl}"></ComboBox>
 
     </Grid>
 </UserControl>

@@ -9,10 +9,10 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Name="pageFlights"
       Title="PageFlights">
-    <!-- <ContentControl ContentTemplate="{DynamicResource AirlineLargeLogoLink}" Content="{Binding Airliner.Airliner.Airline}" Width="200"></ContentControl>
+    <!-- <ContentControl ContentTemplate="{StaticResource AirlineLargeLogoLink}" Content="{Binding Airliner.Airliner.Airline}" Width="200"></ContentControl>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Destination.FlightCode}" Width="75"></TextBlock>
-                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding DepartureAirport}" Width="300"/>
-                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Destination.Airport}" Width="300"/>
+                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryLink}" Content="{Binding DepartureAirport}" Width="300"/>
+                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryLink}" Content="{Binding Destination.Airport}" Width="300"/>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Time,StringFormat={}{0:hh\\:mm}}" Width="75"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding TimeTable.Route,Converter={StaticResource stopoverConverter}}" Width="75"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding TimeTable.Route.Type}"></TextBlock>
@@ -29,7 +29,7 @@
                                         util:GridViewSort.PropertyName="Airliner.Airliner.Airline.Profile.Name">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ContentControl ContentTemplate="{DynamicResource AirlineLargeLogoLink}"
+                                    <ContentControl ContentTemplate="{StaticResource AirlineLargeLogoLink}"
                                                     Content="{Binding Airliner.Airliner.Airline,Mode=OneTime}"
                                                     VerticalAlignment="Bottom" />
                                 </DataTemplate>
@@ -50,7 +50,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <ContentControl VerticalAlignment="Bottom"
-                                                    ContentTemplate="{DynamicResource AirportCountryLink}"
+                                                    ContentTemplate="{StaticResource AirportCountryLink}"
                                                     Content="{Binding DepartureAirport,Mode=OneTime}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -61,7 +61,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <ContentControl VerticalAlignment="Bottom"
-                                                    ContentTemplate="{DynamicResource AirportCountryLink}"
+                                                    ContentTemplate="{StaticResource AirportCountryLink}"
                                                     Content="{Binding Destination.Airport,Mode=OneTime}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -117,7 +117,7 @@
                     Tag="Sunday" />
             </TabControl>
                 <ComboBox Width="200" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource AirlineItem}" SelectionChanged="cbAirline_SelectionChanged"
-                          ItemsSource="{Binding AllAirlines,ElementName=pageFlights}" HorizontalAlignment="Left" Style="{DynamicResource ComboBoxTransparentStyle}" Margin="0 0 5 0"></ComboBox>
+                          ItemsSource="{Binding AllAirlines,ElementName=pageFlights}" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTransparentStyle}" Margin="0 0 5 0"></ComboBox>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>

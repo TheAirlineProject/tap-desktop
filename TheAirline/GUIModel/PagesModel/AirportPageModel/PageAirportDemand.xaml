@@ -229,7 +229,7 @@
                 <TextBlock
                     Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportDemand 1003'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <ContentControl ContentTemplate="{DynamicResource CountryLongFlagItem}"
+                <ContentControl ContentTemplate="{StaticResource CountryLongFlagItem}"
                                                 Content="{Binding SelectedAirport.Destination.Profile.Country,ElementName=pageAirportDemand}"></ContentControl>
                 <TextBlock Text="{Binding SelectedAirport.Destination.Profile.Type}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>

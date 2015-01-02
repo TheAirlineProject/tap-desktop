@@ -45,7 +45,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Style="{DynamicResource StandardButtonStyle}"
+        <Button Style="{StaticResource StandardButtonStyle}"
                 Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateDifficulty 200'}"
                 Width="NaN" Margin="0 5 0 0" HorizontalAlignment="Left" Click="btnCreate_Click" />
 

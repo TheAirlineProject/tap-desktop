@@ -22,7 +22,7 @@
                 <g:QuickInfoValue.Value>
                     <WrapPanel>
                        
-                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0"
+                        <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" SelectedIndex="0"
                               ItemTemplate="{StaticResource AirlineCountryItem}" Width="300"
                               SelectionChanged="cbAirline_SelectionChanged" Name="cbAirline" />
                         <Button VerticalAlignment="Bottom" Tag="{Binding}" Height="24" Width="24" Margin="5 0 0 0"
@@ -92,7 +92,7 @@
             <g:QuickInfoValue
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1007'}">
                 <g:QuickInfoValue.Value>
-                    <ComboBox x:Name="cbAirport" Width="300" Style="{DynamicResource ComboBoxTransparentStyle}"
+                    <ComboBox x:Name="cbAirport" Width="300" Style="{StaticResource ComboBoxTransparentStyle}"
                               ItemTemplate="{StaticResource AirportCountryItem}" IsSynchronizedWithCurrentItem="True"
                               ItemsSource="{Binding AllAirports,ElementName=pageAirlineData}" />
                 </g:QuickInfoValue.Value>
@@ -100,7 +100,7 @@
             <g:QuickInfoValue
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1009'}">
                 <g:QuickInfoValue.Value>
-                    <ComboBox Name="cbTimeZone" Width="300" Style="{DynamicResource ComboBoxTransparentStyle}"
+                    <ComboBox Name="cbTimeZone" Width="300" Style="{StaticResource ComboBoxTransparentStyle}"
                               DisplayMemberPath="DisplayName" SelectedValuePath="DisplayName"
                               SelectedItem="{Binding SelectedItem.Profile.TimeZone,ElementName=cbAirport}"
                               ItemsSource="{Binding AllTimeZones,ElementName=pageAirlineData}" />
@@ -124,16 +124,16 @@
             </TextBlock.Style>
         </TextBlock>
         <WrapPanel Margin="0 10 0 0">
-            <Button Style="{DynamicResource StandardButtonStyle}"
+            <Button Style="{StaticResource StandardButtonStyle}"
                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 201'}"
                     Width="NaN" Click="btnCreateGame_Click" />
-            <Button Style="{DynamicResource StandardButtonStyle}"
+            <Button Style="{StaticResource StandardButtonStyle}"
                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 119'}"
                     Width="NaN" Click="btnBack_Click" Margin="5 0 0 0" />
-            <Button Style="{DynamicResource StandardButtonStyle}"
+            <Button Style="{StaticResource StandardButtonStyle}"
                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 202'}"
                     Width="NaN" Click="btnStartMenu_Click" Margin="5 0 0 0" />
-            <Button Style="{DynamicResource StandardButtonStyle}"
+            <Button Style="{StaticResource StandardButtonStyle}"
                     Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 204'}"
                     Width="NaN" Click="btnLoadAirline_Click" Margin="5 0 0 0" />
 

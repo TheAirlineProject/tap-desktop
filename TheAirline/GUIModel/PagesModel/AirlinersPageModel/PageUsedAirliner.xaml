@@ -27,7 +27,7 @@
                             Width="100" VerticalAlignment="Bottom" FontWeight="Bold" />
                         <TextBlock Text="{Binding SeatingCapacity,Mode=OneTime}" VerticalAlignment="Bottom" />
                     </WrapPanel>
-                    <ListBox ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" Background="Transparent"
+                    <ListBox ItemTemplate="{StaticResource FacilityItem}" BorderThickness="0" Background="Transparent"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                              ItemsSource="{Binding AllFacilities,Mode=OneTime}" />
                 </StackPanel>
@@ -133,7 +133,7 @@
                            Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1005'}"
                            VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
                 <ListBox Style="{StaticResource VerticalListBoxStyle}" Background="Transparent" Name="lbClasses"
-                         ItemsSource="{Binding Classes,Mode=OneTime}" ItemTemplate="{DynamicResource ClassItem}" />
+                         ItemsSource="{Binding Classes,Mode=OneTime}" ItemTemplate="{StaticResource ClassItem}" />
             </StackPanel>
             <TextBlock
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1006'}"
@@ -149,7 +149,7 @@
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1007'}"
                             Width="150" VerticalAlignment="Bottom" FontWeight="Bold" />
 
-                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}"
+                        <ComboBox Style="{StaticResource ComboBoxTransparentStyle}"
                                   IsSynchronizedWithCurrentItem="True"
                                   ItemTemplate="{StaticResource AirportCountryItem}" Width="300" Name="cbHomebase"
                                   ItemsSource="{Binding Path=Homebases,ElementName=pageUsedAirliner}" />

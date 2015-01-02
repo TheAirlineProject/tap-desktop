@@ -40,11 +40,11 @@
                         <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirports 1004'}"
                             FontWeight="Bold" FontSize="14" />
-                        <ComboBox Name="cbRegion" Style="{DynamicResource ComboBoxTransparentStyle}"
+                        <ComboBox Name="cbRegion" Style="{StaticResource ComboBoxTransparentStyle}"
                                   HorizontalAlignment="Stretch" SelectionChanged="cbRegion_SelectionChanged"
                                   VerticalAlignment="Bottom" SelectedIndex="0" DisplayMemberPath="Name"
                                   SelectedValuePath="Name" />
-                        <ComboBox Name="cbCountry" Style="{DynamicResource ComboBoxTransparentStyle}"
+                        <ComboBox Name="cbCountry" Style="{StaticResource ComboBoxTransparentStyle}"
                                   HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SelectedIndex="0" 
                                   ItemTemplate="{StaticResource CountryLongFlagItem}" SelectionChanged="cbCountry_SelectionChanged" />
                         <ComboBox Name="cbState" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
@@ -117,11 +117,11 @@
                             </TextBox.Style>
                         </TextBox>
                         <WrapPanel Margin="0 5 0 0">
-                            <Button Style="{DynamicResource StandardButtonStyle}" Click="btnSearch_Click"
+                            <Button Style="{StaticResource StandardButtonStyle}" Click="btnSearch_Click"
                                     IsDefault="True"
                                     Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='General 109'}"
                                     Width="NaN" />
-                            <Button Style="{DynamicResource StandardButtonStyle}" Click="btnClear_Click"
+                            <Button Style="{StaticResource StandardButtonStyle}" Click="btnClear_Click"
                                     Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='General 110'}"
                                     Width="NaN" Margin="5 0 0 0" />
                         </WrapPanel>

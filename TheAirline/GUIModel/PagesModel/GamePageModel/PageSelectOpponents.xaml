@@ -41,7 +41,7 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                             <WrapPanel Margin="0 10 0 0">
-                                <Button Style="{DynamicResource StandardButtonStyle}"
+                                <Button Style="{StaticResource StandardButtonStyle}"
                                         Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 201'}"
                                         Width="NaN" Click="btnCreateGame_Click" />
                             </WrapPanel>

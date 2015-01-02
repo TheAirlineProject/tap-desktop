@@ -31,12 +31,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border CornerRadius="2" Grid.Row="0" BorderBrush="{x:Null}" 
-                Background="{DynamicResource BlueGradientBrush}">
+                Background="{StaticResource BlueGradientBrush}">
            <!-- <ContentControl  FontWeight="Bold" Foreground="Black" Visibility="{Binding ElementName=DayControl, Path=DayVisibility}">-->
             <TextBlock Text="{Binding ElementName=DayControl, Path=Day}" Visibility="{Binding ElementName=DayControl, Path=DayVisibility}" Foreground="Black" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
          <!--   </ContentControl>-->
         </Border>
-        <StackPanel Grid.Row="1" x:Name="DayAppointmentsStack" HorizontalAlignment="Stretch" Background="{DynamicResource AppointmentBackgroundBrush}" 
+        <StackPanel Grid.Row="1" x:Name="DayAppointmentsStack" HorizontalAlignment="Stretch" Background="{StaticResource AppointmentBackgroundBrush}" 
                     VerticalAlignment="Stretch">
         </StackPanel>
     </Grid>

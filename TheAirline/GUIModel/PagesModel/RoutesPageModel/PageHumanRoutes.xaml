@@ -27,7 +27,7 @@
                     <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}"
                                FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
                   
-                    <ListBox Margin="0 5 0 0" Background="Transparent" ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0"
+                    <ListBox Margin="0 5 0 0" Background="Transparent" ItemTemplate="{StaticResource FacilityItem}" BorderThickness="0"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                              ItemsSource="{Binding Facilities}" />
                 </StackPanel>
@@ -100,7 +100,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <ListBox Style="{StaticResource VerticalListBoxStyle}"
-                                             ItemTemplate="{DynamicResource StopoverItem}"
+                                             ItemTemplate="{StaticResource StopoverItem}"
                                              ItemsSource="{Binding Route.Stopovers}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -264,11 +264,11 @@
                 </StackPanel.Style>
                 <ListBox Background="Transparent" Style="{StaticResource VerticalListBoxStyle}" Name="lbClasses"
                          ItemsSource="{Binding Path=Classes,ElementName=pageHumanRoutes}"
-                         ItemTemplate="{DynamicResource ClassItem}" />
+                         ItemTemplate="{StaticResource ClassItem}" />
                 <WrapPanel Margin="0 5 0 0">
                     <TextBlock
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1012'}" VerticalAlignment="Bottom"></TextBlock>
-                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Margin="5 0 0 0"
+                    <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Margin="5 0 0 0"
                           Width="100" VerticalAlignment="Bottom" Name="cbChangePrice" IsSynchronizedWithCurrentItem="True"
                           ItemsSource="{Binding PriceChanges,ElementName=pageHumanRoutes}" >
                         <ComboBox.ItemTemplate>

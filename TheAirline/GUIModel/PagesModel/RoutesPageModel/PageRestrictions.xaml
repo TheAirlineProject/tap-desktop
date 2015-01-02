@@ -14,7 +14,7 @@
         <DataTemplate x:Key="BannedItem">
             <WrapPanel>
    
-                  <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource CountryLongFlagItem}"
+                  <ContentControl VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"
                                 Content="{Binding FromCountry,Mode=OneTime}">
                     <ContentControl.ToolTip>
                         <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
@@ -23,7 +23,7 @@
                     </ContentControl.ToolTip>
                 </ContentControl>
                 <TextBlock Text=">" VerticalAlignment="Bottom" Margin="5 0 5 0" FontWeight="Bold" />
-                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource CountryLongFlagItem}"
+                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"
                                 Content="{Binding ToCountry,Mode=OneTime}">
                     <ContentControl.ToolTip>
                         <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
@@ -99,7 +99,7 @@
                             </ContentControl.ToolTip>
                         </ContentControl>
                         <TextBlock Text=">" VerticalAlignment="Bottom" Margin="5 0 5 0" FontWeight="Bold" />
-                        <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource CountryLongFlagItem}"
+                        <ContentControl VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"
                                 Content="{Binding To,Mode=OneTime}">
                             <ContentControl.ToolTip>
                                 <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
@@ -130,14 +130,14 @@
                     Style="{StaticResource SmallHeaderStyle}" />
                 <ListBox Background="Transparent" BorderThickness="0"
                          ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
-                         ItemTemplate="{DynamicResource RestrictionItem}"
+                         ItemTemplate="{StaticResource RestrictionItem}"
                          ItemsSource="{Binding Path=Restrictions,ElementName=pageRestrictions}" />
             <TextBlock Margin="0 5 0 0"
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRestrictions 1001'}"
                     Style="{StaticResource SmallHeaderStyle}" />
             <ListBox Background="Transparent" BorderThickness="0"
                          ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
-                         ItemTemplate="{DynamicResource BannedItem}"
+                         ItemTemplate="{StaticResource BannedItem}"
                          ItemsSource="{Binding Path=BannedAirlines,ElementName=pageRestrictions}" />
         </StackPanel>
         </ScrollViewer>

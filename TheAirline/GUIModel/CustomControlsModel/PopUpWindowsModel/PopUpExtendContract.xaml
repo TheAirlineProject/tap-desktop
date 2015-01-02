@@ -13,7 +13,7 @@
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpExtendContract 1005'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="200"></TextBlock>
-                <ComboBox ItemsSource="{Binding ContractTypes,Mode=OneTime,ElementName=popUpExtendContract}" Style="{DynamicResource ComboBoxTransparentStyle}" Width="125" VerticalAlignment="Bottom" Name="cbType">
+                <ComboBox ItemsSource="{Binding ContractTypes,Mode=OneTime,ElementName=popUpExtendContract}" Style="{StaticResource ComboBoxTransparentStyle}" Width="125" VerticalAlignment="Bottom" Name="cbType">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter},Mode=OneTime}" VerticalAlignment="Bottom"></TextBlock>
@@ -46,7 +46,7 @@
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpExtendContract 1004'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="200"></TextBlock>
-                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" IsChecked="{Binding AutoRenew}" Name="cbAutoRenew" VerticalAlignment="Bottom"></CheckBox>
+                <CheckBox Style="{StaticResource ImageCheckBoxStyle}" IsChecked="{Binding AutoRenew}" Name="cbAutoRenew" VerticalAlignment="Bottom"></CheckBox>
             </WrapPanel>
             <WrapPanel Margin="0 10 0 0">
                 <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" IsDefault="True" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 100'}" Style="{StaticResource StandardButtonStyle}" Click="btnOk_Click"/>

@@ -218,7 +218,7 @@
                       Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1014'}"
                       Style="{StaticResource ExpanderStyle}">
                         <StackPanel>
-                            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1009'}"
                             VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
@@ -228,7 +228,7 @@
                             Text="{Binding Value,ElementName=slAmount,Converter={StaticResource ValueCurrencyConverter}}"
                             VerticalAlignment="Bottom" />
                             </WrapPanel>
-                            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1012'}"
                             VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
@@ -237,7 +237,7 @@
                                 <TextBlock Text="{Binding Value,ElementName=slLenght,StringFormat={}{0} years}"
                                    VerticalAlignment="Bottom" />
                             </WrapPanel>
-                            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1010'}"
                             VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
@@ -251,13 +251,13 @@
                                 </TextBlock>
                             </WrapPanel>
                             
-                            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1013'}"
                             VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
                                 <TextBlock Text="{Binding LoanRate,StringFormat={}{0} %}" VerticalAlignment="Bottom" />
                             </WrapPanel>
-                            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock
                             Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1022'}"
                             VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />

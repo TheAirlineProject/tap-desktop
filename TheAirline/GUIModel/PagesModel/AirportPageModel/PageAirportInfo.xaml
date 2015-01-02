@@ -324,7 +324,7 @@
                         Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
                     <ListBox Background="Transparent" BorderThickness="0"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
-                             ItemTemplate="{DynamicResource WeatherItem}" ItemsSource="{Binding Weather}" />
+                             ItemTemplate="{StaticResource WeatherItem}" ItemsSource="{Binding Weather}" />
 
                 </StackPanel>
             </ScrollViewer>
@@ -591,7 +591,7 @@
                                 </RadioButton>
                             </WrapPanel>
                             <WrapPanel Margin="0 5 0 0">
-                                <Button Style="{DynamicResource StandardButtonStyle}"
+                                <Button Style="{StaticResource StandardButtonStyle}"
                                         Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 200'}"
                                         Click="btnBuildTerminal_Click" />
                             </WrapPanel>
@@ -812,7 +812,7 @@
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1046'}"
                                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" VerticalAlignment="Bottom"
+                                <CheckBox Style="{StaticResource ImageCheckBoxStyle}" VerticalAlignment="Bottom"
                                           Name="cbAutoRenew" IsChecked="True" />
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
@@ -882,7 +882,7 @@
                     </StackPanel>
                     <WrapPanel Margin="0 5 0 0"
                                Visibility="{Binding CanBuildHub,Converter={StaticResource BooleanToVisibility}}">
-                        <Button Style="{DynamicResource StandardButtonStyle}"
+                        <Button Style="{StaticResource StandardButtonStyle}"
                                 Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 202'}"
                                 Click="btnCreateHub_Click" />
                     </WrapPanel>

@@ -29,7 +29,7 @@
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1000'}"
                         VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
-                    <ListBox Background="Transparent" ItemTemplate="{DynamicResource ScoreItem}" BorderThickness="0"
+                    <ListBox Background="Transparent" ItemTemplate="{StaticResource ScoreItem}" BorderThickness="0"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                              ItemsSource="{Binding AirlineRatings,ElementName=pageAirlineRatings}" />
                 

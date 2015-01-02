@@ -263,7 +263,7 @@
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1016'}"
                                     Width="150" FontWeight="Bold" VerticalAlignment="Bottom" />
-                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}"
+                                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}"
                                           DisplayMemberPath="Profile.Name" SelectedValuePath="Profile.Name" Width="200"
                                           Name="cbInstructor"
                                           ItemsSource="{Binding Path=Instructors,ElementName=pageShowFlightSchool}" />
@@ -272,7 +272,7 @@
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowFlightSchool 1017'}"
                                     Width="150" FontWeight="Bold" VerticalAlignment="Bottom" />
-                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="200"
+                                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="200"
                                           Name="cbTrainAircraft"
                                           ItemsSource="{Binding Path=AirlinerFamilies,ElementName=pageShowFlightSchool}" />
                             </WrapPanel>

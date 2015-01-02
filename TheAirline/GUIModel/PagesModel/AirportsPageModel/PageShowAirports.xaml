@@ -41,7 +41,7 @@
                 <TextBlock
                     Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1006'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbAirlines"
+                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Name="cbAirlines"
                           IsSynchronizedWithCurrentItem="True" Width="250"
                           SelectionChanged="cbAirline_SelectionChanged" ItemTemplate="{StaticResource AirlineItem}"
                           ItemsSource="{Binding AllAirlines,ElementName=pageShowAirports}" VerticalAlignment="Bottom" />
@@ -50,7 +50,7 @@
                 <TextBlock
                     Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1009'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" IsSynchronizedWithCurrentItem="True"
+                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" IsSynchronizedWithCurrentItem="True"
                           Width="250" SelectionChanged="cbAircraft_SelectionChanged" DisplayMemberPath="Name"
                           SelectedValuePath="Name" VerticalAlignment="Bottom"
                           ItemsSource="{Binding HumanAircrafts,ElementName=pageShowAirports}" />
@@ -59,7 +59,7 @@
                 <TextBlock
                     Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1015'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" 
+                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" 
                           Width="250" VerticalAlignment="Bottom" Name="cbAirportDistance" IsSynchronizedWithCurrentItem="True"
                           ItemsSource="{Binding HumanAirports,ElementName=pageShowAirports}" >
                     <ComboBox.ItemTemplate>
@@ -181,7 +181,7 @@
                         CanFilter="True" SortPropertyName="Airport.Profile.Town.CurrentCountry.Name" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}"
+                                <ContentControl ContentTemplate="{StaticResource CountryFlagItem}"
                                                 Content="{Binding Airport.Profile.Town.Country,Mode=OneTime}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

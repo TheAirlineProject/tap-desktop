@@ -33,7 +33,7 @@
                 <h:QuickInfoValue
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1001'}">
                     <h:QuickInfoValue.Value>
-                        <ComboBox Name="cbHeadquarter" Style="{DynamicResource ComboBoxTransparentStyle}"
+                        <ComboBox Name="cbHeadquarter" Style="{StaticResource ComboBoxTransparentStyle}"
                                   IsSynchronizedWithCurrentItem="True"
                                   ItemTemplate="{StaticResource AirportCountryItem}" Width="250" />
                     </h:QuickInfoValue.Value>
@@ -43,14 +43,14 @@
                     <h:QuickInfoValue.Value>
                         <WrapPanel>
                             <Image Name="imgLogo" RenderOptions.BitmapScalingMode="HighQuality" Height="32" />
-                            <Button Style="{DynamicResource StandardButtonStyle}" Click="btnLogo_Click" Height="20"
+                            <Button Style="{StaticResource StandardButtonStyle}" Click="btnLogo_Click" Height="20"
                                     Content=".." VerticalAlignment="Bottom" Margin="5 0 0 0" />
                         </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
             </ListBox>
             <WrapPanel Margin="0 5 0 0">
-                <Button Style="{DynamicResource StandardButtonStyle}" Click="btnCreate_Click"
+                <Button Style="{StaticResource StandardButtonStyle}" Click="btnCreate_Click"
                         Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 200'}" />
 
             </WrapPanel>

@@ -14,7 +14,7 @@
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel HorizontalAlignment="Center">
-            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1000'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
@@ -32,7 +32,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </WrapPanel>
-            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1001'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
@@ -44,7 +44,7 @@
                            VerticalAlignment="Bottom" Margin="5 0 0 0" />
             </WrapPanel>
 
-            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1002'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
@@ -72,7 +72,7 @@
                 </RadioButton>
 
             </WrapPanel>
-            <WrapPanel Style="{DynamicResource WrapPanelStyle}"
+            <WrapPanel Style="{StaticResource WrapPanelStyle}"
                        Visibility="{Binding HourRoundEnabled,Converter={StaticResource BooleanToVisibility}}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1003'}"
@@ -80,42 +80,42 @@
                 <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Name="cbHours" VerticalAlignment="Bottom"
                           ItemsSource="{Binding GameMinutes}" SelectedItem="{Binding SelectedGameMinutes}" />
             </WrapPanel>
-            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1004'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" Name="cbShortenCurrency"
+                <CheckBox Style="{StaticResource ImageCheckBoxStyle}" Name="cbShortenCurrency"
                           VerticalAlignment="Bottom" IsChecked="{Binding ShortenCurrency}" />
             </WrapPanel>
-            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1005'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" Name="cbLandings" VerticalAlignment="Bottom"
+                <CheckBox Style="{StaticResource ImageCheckBoxStyle}" Name="cbLandings" VerticalAlignment="Bottom"
                           IsChecked="{Binding MailsOnLandings}" />
             </WrapPanel>
-            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1006'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" Name="cbWeather" VerticalAlignment="Bottom"
+                <CheckBox Style="{StaticResource ImageCheckBoxStyle}" Name="cbWeather" VerticalAlignment="Bottom"
                           IsChecked="{Binding MailsOnBadWeather}" />
             </WrapPanel>
-            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1007'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" Name="cbAirlineDestinations"
+                <CheckBox Style="{StaticResource ImageCheckBoxStyle}" Name="cbAirlineDestinations"
                           VerticalAlignment="Bottom" IsChecked="{Binding MailsOnAirlineDestinations}" />
             </WrapPanel>
-            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1014'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" Name="cbMaintenance"
+                <CheckBox Style="{StaticResource ImageCheckBoxStyle}" Name="cbMaintenance"
                           VerticalAlignment="Bottom" IsChecked="{Binding MailsOnAirlineDestinations}" />
             </WrapPanel>
-            <WrapPanel Style="{DynamicResource WrapPanelStyle}" IsEnabled="False">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}" IsEnabled="False">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1008'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
@@ -137,7 +137,7 @@
                              GroupName="AutoSave" />
 
             </WrapPanel>
-            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1013'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />

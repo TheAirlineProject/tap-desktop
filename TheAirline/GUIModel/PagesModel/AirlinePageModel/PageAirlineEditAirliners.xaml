@@ -30,7 +30,7 @@
                                     <!--   <TextBlock Text="{Binding SelectedFacility.Name}" VerticalAlignment="Bottom"></TextBlock>
                                    -->
                                     <ComboBox SelectedItem="{Binding SelectedFacility}"
-                                              Style="{DynamicResource ComboBoxTransparentStyle}"
+                                              Style="{StaticResource ComboBoxTransparentStyle}"
                                               VerticalAlignment="Bottom" ItemsSource="{Binding Facilities}" Width="200">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -79,7 +79,7 @@
                                Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEditAirliners 1001'}" />
                     <ListBox Style="{StaticResource VerticalListBoxStyle}" Background="Transparent"
                              ItemsSource="{Binding Classes,ElementName=pageAirlineEditAirliners}" Name="lbClasses"
-                             ItemTemplate="{DynamicResource ClassItem}" />
+                             ItemTemplate="{StaticResource ClassItem}" />
                     <WrapPanel Margin="0 5 0 0">
                         <Button Click="btnLoadConfiguration_Click" Style="{StaticResource StandardButtonStyle}"
                                 Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEditAirliners 201'}" />

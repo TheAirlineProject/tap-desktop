@@ -21,7 +21,7 @@
             <StackPanel Width="150">
                 <TextBlock Text="{Binding Type,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                            HorizontalAlignment="Center" FontWeight="Bold" Height="20" />
-                <ListBox Background="Transparent" ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0"
+                <ListBox Background="Transparent" ItemTemplate="{StaticResource FacilityItem}" BorderThickness="0"
                          ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                          ItemsSource="{Binding Facilities,Mode=OneTime}" />
             </StackPanel>
@@ -284,7 +284,7 @@
                                 <ListBox Style="{StaticResource VerticalListBoxStyle}" Background="Transparent"
                                          Name="lbClasses"
                                          ItemsSource="{Binding Classes,ElementName=pageAirlineServices}"
-                                         ItemTemplate="{DynamicResource ClassItem}" />
+                                         ItemTemplate="{StaticResource ClassItem}" />
 
                             </WrapPanel>
                         </StackPanel>

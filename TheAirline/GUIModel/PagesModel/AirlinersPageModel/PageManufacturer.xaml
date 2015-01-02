@@ -13,11 +13,11 @@
             <WrapPanel>
                 <TextBlock Text="{Binding Type.Name,Mode=OneTime}" VerticalAlignment="Bottom" Width="200" />
                 <!--   <TextBlock Text="{Binding Amount}" VerticalAlignment="Bottom" Width="50"></TextBlock> -->
-                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedItem="{Binding Amount}" Width="50"
+                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" SelectedItem="{Binding Amount}" Width="50"
                           SelectionChanged="cbNumberOfAirliners_SelectionChanged" Tag="{Binding}"
                           ItemsSource="{Binding NumberOfAirliners,ElementName=pageManufacturer}"
                           VerticalAlignment="Bottom" />
-                <ComboBox Margin="25 0 0 0" Style="{DynamicResource ComboBoxTransparentStyle}"
+                <ComboBox Margin="25 0 0 0" Style="{StaticResource ComboBoxTransparentStyle}"
                           SelectedItem="{Binding Homebase}" IsSynchronizedWithCurrentItem="True"
                           ItemTemplate="{StaticResource AirportCountryItem}" Width="300"
                           ItemsSource="{Binding Homebases}" />
@@ -173,7 +173,7 @@
                     <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1008'}"
                         Style="{StaticResource SmallHeaderStyle}" />
-                    <ListBox ItemTemplate="{DynamicResource OrderItem}" Background="Transparent" BorderThickness="0"
+                    <ListBox ItemTemplate="{StaticResource OrderItem}" Background="Transparent" BorderThickness="0"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                              ItemsSource="{Binding Orders.Orders,ElementName=pageManufacturer}" />
                     <WrapPanel>
@@ -252,7 +252,7 @@
                                 <TextBlock
                                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1014'}"
                                     Width="150" FontWeight="Bold" VerticalAlignment="Bottom" />
-                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0"
+                                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" SelectedIndex="0"
                                           ItemStringFormat="{}{0} years" Name="cbContractLenth"
                                           VerticalAlignment="Bottom" Width="100">
                                     <ComboBoxItem Content="3" Tag="3" />

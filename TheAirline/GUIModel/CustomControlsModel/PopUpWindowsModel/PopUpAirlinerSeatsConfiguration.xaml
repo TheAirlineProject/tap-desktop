@@ -194,7 +194,7 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                     </WrapPanel>
-                        <ContentControl Content="{Binding SelectedItem,ElementName=cbEngine}" ContentTemplate="{DynamicResource EngineItem}" Margin="0 5 0 0" VerticalAlignment="Bottom"></ContentControl>
+                        <ContentControl Content="{Binding SelectedItem,ElementName=cbEngine}" ContentTemplate="{StaticResource EngineItem}" Margin="0 5 0 0" VerticalAlignment="Bottom"></ContentControl>
                         </StackPanel>
                 </TabItem>
             </TabControl>
