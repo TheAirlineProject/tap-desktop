@@ -69,7 +69,7 @@
             this.SpecialContracts = new List<SpecialContract>();
             this.MaintenanceCenters = new List<MaintenanceCenter>();
             this.Maintenances = new Dictionary<AirlinerMaintenanceType, AirlinerMaintenanceCenter>();
-        
+
             this.createStandardAdvertisement();
 
             this.Pilots = new List<Pilot>();
@@ -205,7 +205,7 @@
 
             Long_Haul
         }
-        public enum AirlineRouteSchedule 
+        public enum AirlineRouteSchedule
         {
             Regular,
 
@@ -244,7 +244,7 @@
         [Versioning("advertisements")]
         public Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType> Advertisements { get; set; }
 
-        [Versioning("schedule",Version=9)]
+        [Versioning("schedule", Version = 9)]
         public AirlineRouteSchedule Schedule { get; set; }
 
         [Versioning("routefocus")]
@@ -255,8 +255,8 @@
         [Versioning("airports")]
         public List<Airport> Airports { get; set; }
 
-        [Versioning("maintenances",Version=8)]
-        public Dictionary<AirlinerMaintenanceType,AirlinerMaintenanceCenter> Maintenances { get; set; } 
+        [Versioning("maintenances", Version = 8)]
+        public Dictionary<AirlinerMaintenanceType, AirlinerMaintenanceCenter> Maintenances { get; set; }
 
         [Versioning("alliances")]
         public List<Alliance> Alliances { get; set; }
@@ -384,7 +384,7 @@
         [Versioning("reputation")]
         public int Reputation { get; set; }
 
-     
+
         public List<Route> Routes
         {
             get
@@ -472,7 +472,7 @@
             {
                 object propValue;
 
-               
+
 
                 if (member is FieldInfo)
                 {
@@ -512,7 +512,7 @@
             }
             foreach (AirlinerMaintenanceType type in this.Maintenances.Keys)
             {
-                AirlinerMaintenanceCheck check = airliner.Maintenance.Checks.Find(c=>c.Type == type);
+                AirlinerMaintenanceCheck check = airliner.Maintenance.Checks.Find(c => c.Type == type);
 
                 if (check != null)
                 {
@@ -525,7 +525,7 @@
                 }
 
             }
-            
+
         }
 
         //remove a fleet airliner from the airlines fleet
@@ -610,12 +610,15 @@
 
         public void addRoute(Route route)
         {
-            var routes = new List<Route>(this.Routes);
-
-            lock (this._Routes)
+            if (route != null)
             {
-                this._Routes.Add(route);
-                route.Airline = this;
+                var routes = new List<Route>(this.Routes);
+
+                lock (this._Routes)
+                {
+                    this._Routes.Add(route);
+                    route.Airline = this;
+                }
             }
             /*
                 foreach (string flightCode in route.TimeTable.Entries.Select(e => e.Destination.FlightCode).Distinct())
@@ -1083,7 +1086,7 @@
         #endregion
 
         #region Methods
-      
+
         private void createStandardAdvertisement()
         {
             if (this.Advertisements == null)
@@ -1106,9 +1109,11 @@
 
         private List<Route> getRoutes()
         {
-            var routes = new List<Route>(this._Routes);
+            List<Route> routes;
 
-             return routes;
+            lock (this._Routes) routes = new List<Route>(this._Routes);
+         
+            return routes;
         }
 
         #endregion
@@ -1153,7 +1158,7 @@
 
         public static void AddAirline(Airline airline)
         {
-     
+
             if (airline != null)
                 airlines.Add(airline);
         }

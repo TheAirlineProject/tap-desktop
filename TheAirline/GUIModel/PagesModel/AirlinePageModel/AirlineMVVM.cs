@@ -111,10 +111,11 @@
 
             this.UnassignedPilots = this.Pilots.Count(p => p.Pilot.Airliner == null);
             this.PilotsToRetire = this.Pilots.Count(p => p.Pilot.Profile.Age == Pilot.RetirementAge - 1);
-
+            
             FeeTypes.GetTypes(FeeType.eFeeType.Wage)
                 .FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year)
                 .ForEach(f => this.Wages.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
+
             FeeTypes.GetTypes(FeeType.eFeeType.Discount)
                 .FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year)
                 .ForEach(f => this.Discounts.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
@@ -224,10 +225,8 @@
                 }
             }
 
-            this.ActiveQuantity = new ObservableCollection<AirlinerQuantityMVVM>();
-            
-            ActiveQuantity.OrderBy(a => a.Type.Name).ToList().ForEach(a=>this.ActiveQuantity.Add(a));
-
+            this.ActiveQuantity = new ObservableCollection<AirlinerQuantityMVVM>(this.ActiveQuantity.OrderBy(a=>a.Type.Name).ToList());
+          
             this.HasAlliance = this.Alliance != null || this.Codeshares.Count > 0;
 
             FillFleetStatusReport();

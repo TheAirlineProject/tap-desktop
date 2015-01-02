@@ -47,14 +47,15 @@
                         Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 202'}"
                         Style="{StaticResource StartMenuButtonStyle}" Click="btnSettings_Click" />
                 <Button Margin="0 5 0 0"
+                        Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 206'}" 
+                        Style="{StaticResource StartMenuButtonStyle}" Click="btnScenarioEditor_Click" Visibility="Collapsed"/>
+                <Button Margin="0 5 0 0"
                         Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 203'}"
                         Style="{StaticResource StartMenuButtonStyle}" Click="btnCredits_Click" />
                 <Button Margin="0 5 0 0"
                         Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 204'}"
                         Style="{StaticResource StartMenuButtonStyle}" Click="btnExitGame_Click" />
-                <Button Margin="0 5 0 0"
-                        Content="Test Page" Visibility="Collapsed"
-                        Style="{StaticResource StartMenuButtonStyle}" Click="btnTest_Click" />
+              
 
 
             </StackPanel>

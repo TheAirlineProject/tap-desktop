@@ -572,6 +572,13 @@
         {
             var routes = new List<Route>(Airlines.GetAllAirlines().Where(a=>a.Routes != null).SelectMany(a => a.Routes));
 
+            if (routes.Exists(r=>r == null))
+            {
+                var airlines = Airlines.GetAllAirlines().Where(a => a.Routes.Exists(r => r == null));
+
+                var isHuman = airlines.Count();
+            }
+
             return
                 routes.Count(
                     r =>

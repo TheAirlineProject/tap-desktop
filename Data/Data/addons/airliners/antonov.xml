@@ -89,7 +89,7 @@
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
     <specs wingspan="38" length="33.10" range="4650" speed="670" fuelcapacity="19200" consumption="0.042"
            runwaylengthrequired="720" />
-    <capacity cockpitcrew="5" Cargo="20" />
+    <capacity cockpitcrew="5" cargo="20" />
     <produced from="1959" to="1973" rate="32" />
   </airliner>
   <airliner type="Cargo" manufacturer="Antonov" name="Antonov An-124" price="37512740"> <!--59600000-->

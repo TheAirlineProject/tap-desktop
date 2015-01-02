@@ -363,7 +363,10 @@
                          Invoice.InvoiceType.Purchases,
                          price);
 
-                        var contract = this.Airport.Contracts.First(f => f.Airline == terminal.Airline && f.NumberOfGates == terminal.Gates);
+                        var contract = this.Airport.Contracts.FirstOrDefault(f => f.Airline == terminal.Airline && f.NumberOfGates == terminal.Gates);
+
+                        if (contract == null)
+                            contract = this.Airport.Contracts.FirstOrDefault(f => f.Airline == terminal.Airline);
 
                         terminal.Airline = null;
 

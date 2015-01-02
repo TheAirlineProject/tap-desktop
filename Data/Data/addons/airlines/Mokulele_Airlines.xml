@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Mokulele Airlines" iata="MW" color="DarkRed" country="122" CEO="Scott Durgin" mentality="Moderate" market="Domestic" preferedairport="KOA">
   <narrative narrative="Mokulele Airlines is based in Hawaii at Kona on the island of Hawaii and Kahului on the island of Maui. It was founded in 1994 by Rebecca Kawehi Inaba, the first airline in Hawaii to be founded by a native Hawaiian woman. Its first operations were with Piper Navajo Chieftans flying sightseeing flights around the island of Hawaii and Maui. Today it has 13 Cessna 208's and has 2 newer models of that on order. It has also operated at least one Embraer 170 under its name for Shuttle America. They serve 9 destinations in the Hawaiian Islands, including new service to Kalaeloa on Oahu which started July 1,2014, the first service that airport has ever seen. At one time it operated under the name go!Express in an agreement with Mesa Airlines. It has a cargo division and has operated for Aloha Cargo Express under contract. Republic Airlines who operates its own brand and Shuttle America among others bought 50% of the company in 2009."/>
 </profile>
   <info real="True" from="1994" to="2199"></info>
-  <startdata>
-     <prefereds aircrafts="Cessna 208B,Cessna 207,Cessna 206"></prefereds>
-     </startdata>
+       <prefereds aircrafts="Cessna 208B,Cessna 207,Cessna 206"></prefereds>
    </airline>
 

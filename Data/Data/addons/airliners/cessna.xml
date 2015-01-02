@@ -86,14 +86,14 @@ runwaylengthrequired="335" />
     <produced from="1993" to="2019" rate="36" />
   </airliner>
        <airliner manufacturer="Cessna" name="Cessna 310" price="67000"> <!--186500-->
-    <type body="Narrow_Body" rangetype="Short_range" engine="Turboprop" />
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
     <specs wingspan="10.67" length="8.23" range="1946" speed="343" fuelcapacity="386" consumption="0.25"
            runwaylengthrequired="428" />
     <capacity passengers="4" cockpitcrew="1" cabincrew="0" maxclasses="1" />
     <produced from="1954" to="1980" rate="214" />
   </airliner>
        <airliner manufacturer="Cessna" name="Cessna 320 Skynight" price="87000"> 
-    <type body="Narrow_Body" rangetype="Short_range" engine="Turboprop" />
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
     <specs wingspan="10.67" length="8.23" range="2108" speed="412" fuelcapacity="447" consumption="0.16"
            runwaylengthrequired="405" />
     <capacity passengers="6" cockpitcrew="1" cabincrew="0" maxclasses="1" />

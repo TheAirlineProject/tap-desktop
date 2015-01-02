@@ -2026,7 +2026,7 @@ inflationafter="1">
       <runway name="8/26" length="542" surface="Gravel" />
       </runways>
   </airport>
-                            <airport name="Tununak Airport" icao="PATT" iata="WTL" type="Domestic" season="All_Year">
+                            <airport name="Tuntutuliak Airport" icao="PATT" iata="WTL" type="Domestic" season="All_Year">
     <town town="Tuntutuliak, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
       <latitude value="060°20'07''N" />
@@ -4966,6 +4966,7 @@ season="All_Year">
     </terminals>
     <runways>
       <runway name="04/22" length="2135" surface="Asphalt" />
+       <runway name="09/27" length="1219" surface="Concrete" />
     </runways>
   </airport>
   <airport name="Seattle-Tacoma International Airport" icao="KSEA" iata="SEA" type="International"

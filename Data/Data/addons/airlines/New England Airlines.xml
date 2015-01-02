@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="New England Airlines" iata="EJ" color="MediumVioletRed" country="122" CEO="William Bendokas" mentality="Safe" market="Domestic" preferedairport="WST">
+  <narrative narrative="New England Airlines is based at Westerly and Block Island both in the state of Rhode Island. Its only scheduled route is in fact Westerly-Block Island. On most summer days it operates the route from 7:30AM to 6:30PM with a flight half past every hour from WST to BID and on the hour from BID to WST. Thusday goes to 7:30PM and Friday 8:30PM. Every other season is every other hour and from 8 to 6. It was founded in 1970 and has the same owners that founded it. As of 2014 it had three Britten Norman Islanders, three Piper Cherokee Sixes and a Piper Cherokee. They will do charters to Block Island from anywhere in the lower 48 states, but mostly in the area of their namesake of New England and New York."/>
+</profile> 
+  <info real="True" from="1970" to="2199" />
+  <prefereds aircrafts="BN-2A Islander,PA-32 Cherokee Six,PA-28 Cherokee"></prefereds>
+     <focusairports>
+	 <focusairport airport="BID"></focusairport>
+     </focusairports>
+
+	 
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (1970) late (2014)-->
+	         <airliners>
+	    <airliner type="BN-2A Islander" early="1" late="3"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1970) late (2014)-->
+	         <airliners>
+	    <airliner type="PA-32 Cherokee Six" early="0" late="3"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 1970) late (2014)-->
+	         <airliners>
+	    <airliner type="PA-28 Cherokee" early="0" late="1"></airliner>
+	     </airliners>
+	     	  
+	     	  
+<routes>
+	<route destination1="WST" destination2="BID" opened="1970" closed="2199"/>
+</routes>
+
+</airline>

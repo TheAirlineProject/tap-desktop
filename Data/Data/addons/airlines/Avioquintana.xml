@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Avioquintana" iata="AQT" color="MediumBlue" country="157" CEO="Jesus Santana" mentality="Safe" market="Domestic" preferedairport="CUN" schedule="Charter">
+  <narrative narrative="Avioquintana is a private charter airline based at Cancun with a secondary hub at Chetumal. It has one Fairchild Metroliner and one Embraer 120 Brasilia as of 2006. It was founded in 1997. It operates domestically."/>
+</profile>
+  <info real="True" from="1997" to="2199" />
+  <prefereds aircrafts="EMB 120 Brasilia,Fairchild Swearingen Metroliner"></prefereds>
+ <focusairport airport="CTM"></focusairport>
+ 
+  
+     <!--the airliners the airline would start with which isn't on a route earyl (1997) late (2014)-->
+	         <airliners>
+	    <airliner type="Fairchild Swearingen Metroliner" early="1" late="1"></airliner>
+	     </airliners>
+	          <!--the airliners the airline would start with which isn't on a route earyl (1997) late (2014)-->
+	         <airliners>
+	    <airliner type="EMB 120 Brasilia" early="0" late="1"></airliner>
+	     </airliners>
+	     	  
+	     	  
+
+	     	  
+	     	  
+
+
+</airline>

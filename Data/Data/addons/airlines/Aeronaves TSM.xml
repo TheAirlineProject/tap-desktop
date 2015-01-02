@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Aeronaves TSM" iata="VTM" color="Orange" country="157" CEO="Eduardo Castellanos" mentality="Moderate" market="Domestic" preferedairport="SLW"  routefocus="Mixed" schedule="Charter">
+  <narrative narrative="Aeronaves TSM is a cargo and passenger charter airline based at Saltillo,Mexico. Its other bases are Queretaro,Monterrey,Nuevo Laredo,Hermosillo,and Toluca. It operates at 67 Mexican airports and does over 3,000 charter flights a year. Its cargo division is ran on behalf of DHL Aviation. It was founded in 1995. Its fleet has 30 Fairchild Metroliners for cargo and 2 for passengers,six DC-9's for cargo,five Convair 640's for cargo,three MD-80s for cargo two Cessna Citation II's for passengers and a Hawker 800 for Passengers."/>
+</profile>
+  <info real="True" from="1995" to="2199" />
+  <prefereds aircrafts="Fairchild Swearingen Metroliner,Douglas DC-9-30,Convair 240,Convair 440,MD-82 (DC-9-82),Cessna 560XL,Cessna 680,Cessna Citation X"></prefereds>
+   <focusairports>
+         <focusairport airport="QRO"></focusairport>
+         <focusairport airport="MTY"></focusairport>
+	 <focusairport airport="NLD"></focusairport>
+         <focusairport airport="HMO"></focusairport>
+	 <focusairport airport="TLC"></focusairport>
+     </focusairports>
+  
+     <!--the airliners the airline would start with which isn't on a route earyl (1995) late (2014)-->
+	         <airliners>
+	    <airliner type="Fairchild Swearingen Metroliner" early="1" late="32"></airliner>
+	     </airliners>
+	          <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2014)-->
+	         <airliners>
+	    <airliner type="Convair 240" early="5" late="5"></airliner>
+	     </airliners>
+	     	               <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2014)-->
+	         <airliners>
+	    <airliner type="DC-9-30" early="2" late="6"></airliner>
+	     </airliners>
+	               <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2018)-->
+	         <airliners>
+	    <airliner type="MD-82" early="1" late="3"></airliner>
+	     </airliners>
+	                    <!--the airliners the airline would start with which isn't on a route earyl (1995) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna Citation X" early="0" late="3"></airliner>
+	     </airliners>
+
+
+
+
+
+
+	     	  
+	     	  
+
+
+</airline>

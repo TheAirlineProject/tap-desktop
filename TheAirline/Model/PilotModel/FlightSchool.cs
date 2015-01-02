@@ -54,6 +54,10 @@
 
             foreach (SerializationEntry entry in info)
             {
+                if (entry.Name == "students")
+                {
+                    string ffff = "";
+                }
                 MemberInfo prop =
                     propsAndFields.FirstOrDefault(
                         p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
@@ -90,6 +94,8 @@
                     }
                 }
             }
+
+           
             this.Students.RemoveAll(s => s == null);
       
         }
@@ -175,6 +181,11 @@
                 }
 
                 var att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+
+                if (att.Name.ToLower() == "students")
+                {
+                    Console.WriteLine("JJJ");
+                }
 
                 info.AddValue(att.Name, propValue);
             }

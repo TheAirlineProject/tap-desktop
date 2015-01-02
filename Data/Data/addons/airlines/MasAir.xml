@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="MasAir" iata="M7" color="DarkGreen" country="157" CEO="Alejandro Quintana" mentality="Safe" market="Global" preferedairport="MEX" routefocus="Cargo">
+  <narrative narrative="MasAir is a cargo airline which is based at Mexico City and is a part of LAN Airlines which owns 39.5% of them. It started having an interest in MasAir starting in December 2000 when a 25% stake was purchased. As of late 2014 it had one 767-300 on lease from LAN. It has also used DC-8's in the past. Its secondary hubs are Los Angeles and Miami in the US and flies to places like Guadalajara,Mexico, Bogota and Medellin in Columbia and Quito in Ecuador."/>
+</profile>
+  <info real="True" from="1992" to="2199" />
+  <prefereds aircrafts="Boeing 767-300F,Douglas DC-8-62F"></prefereds>
+<focusairports>
+       <focusairport airport="LAX"></focusairport>
+       <focusairport airport="MIA"></focusairport>
+     </focusairports>
+ <!--the airliners the airline would start with which isn't on a route earyl ( 2001) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300F" early="1" late="1"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl ( 1998) late (2005)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-62F" early="1" late="0"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+
+  
+     
+
+
+</airline>

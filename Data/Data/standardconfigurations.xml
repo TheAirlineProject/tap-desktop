@@ -74,4 +74,12 @@
       <class type="First_Class" seating="10" regularseating="20" Audio="103" Video="115" Seat="107"></class>
     </classes>
   </configuration>
+   <configuration type="Airliner" name="Later Standard (4 classes)" id="204" minimumseats="100">
+    <classes>
+      <class type="Economy_Class" seating="40" regularseating="40" Audio="102" Video="114" Seat="104"></class>
+        <class type="Premium_Economy_Class" seating="10" regularseating="15" Audio="103" Video="115" Seat="105"></class>
+      <class type="Business_Class" seating="10" regularseating="20" Audio="103" Video="115" Seat="106"></class>
+      <class type="First_Class" seating="10" regularseating="20" Audio="103" Video="115" Seat="107"></class>
+    </classes>
+  </configuration>
 </configurations>

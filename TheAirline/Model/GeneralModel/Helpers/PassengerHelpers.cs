@@ -226,12 +226,13 @@
         }
         public static void CreateDestinationDemand(Airport airport)
         {
+           
             var destAirports = Airports.GetAllAirports(a => (a.Profile.Size == GeneralHelpers.Size.Large || a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Very_large || a.Profile.Size == GeneralHelpers.Size.Medium || a.Profile.Country.Region == airport.Profile.Country.Region) && a != airport);
 
             Parallel.ForEach(destAirports, dairport =>
             {
                 if (airport.Profile.Town != dairport.Profile.Town
-                    && MathHelpers.GetDistance(airport, dairport) > 50)
+                    && MathHelpers.GetDistance(airport, dairport) > 15)
                 {
                     airport.Statics.addDistance(
                         dairport,
@@ -329,7 +330,7 @@
                         a != airport && a.Profile.Town != airport.Profile.Town
                         && MathHelpers.GetDistance(
                             a.Profile.Coordinates.convertToGeoCoordinate(),
-                            airport.Profile.Coordinates.convertToGeoCoordinate()) > 50);
+                            airport.Profile.Coordinates.convertToGeoCoordinate()) > 15);
             //Parallel.ForEach(airports, dAirport =>
             foreach (Airport dAirport in airports)
             {
@@ -355,6 +356,7 @@
 
         public static void CreateDestinationPassengers(Airport airport, Airport dAirport)
         {
+           
             //short_haul, long_haul, demand both ways
             Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
 
@@ -3117,6 +3119,7 @@
                 
                 CreateDestinationCargo(airportCurrent, airportDestination);
                 CreateDestinationCargo(airportDestination, airportCurrent);
+              
             }
 
             double passengerDemand = (demand

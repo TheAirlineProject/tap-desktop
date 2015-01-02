@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Magnicharters" iata="UJ" logo="UJ2" color="Indigo" country="157" CEO="Eduardo Castellanos" mentality="Safe" market="Regional" preferedairport="MEX" >
+  <narrative narrative="Magnicharters is based at Mexico City with focus airports at Monterrey,Leon and Guadalajara. Outside of these 4 they operate at 7 other Mexican airports and 2 in the US, Las Vegas and Orlando. Despite there name they do fly these on a scheduled basis but do also offer charters. Its main focus is the beach resorts of Mexico like Cancun,San Jose del Cabo,Puerto Vallarta,Acapulco,Mazatlan,Huatulco and Ixtapa, the other 7 Mexican airports it serves. As of December 2014 its fleet had nine 737-300's and one 737-500.In the past it has had 737-200 Adv.'s, 737-200's and for a very short time in 1996 two 737-100's. The company was founded in 1994 and started service in January 1995."/>
+</profile>
+  <info real="True" from="1995" to="2199" />
+  <prefereds aircrafts="Boeing 737-300,Boeing 737-200 Adv.,Boeing 737-500,Boeing 737-100,Boeing 737-200"></prefereds>
+   <focusairports>
+         <focusairport airport="MTY"></focusairport>
+         <focusairport airport="BJX"></focusairport>
+	 <focusairport airport="GDL"></focusairport>
+     </focusairports>
+  
+     <!--the airliners the airline would start with which isn't on a route earyl (2003) late (2014)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="1" late="9"></airliner>
+	     </airliners>
+	          <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2017)-->
+	         <airliners>
+	    <airliner type="Boeing 737-500" early="1" late="1"></airliner>
+	     </airliners>
+	          <!--the airliners the airline would start with which isn't on a route earyl (1995) late (2008)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200 Adv." early="1" late="0"></airliner>
+	     </airliners>
+
+
+
+
+	     	  
+	     	  
+
+
+</airline>

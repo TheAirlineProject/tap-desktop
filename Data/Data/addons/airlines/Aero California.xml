@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Aero California" iata="JR" color="Brown" country="157" CEO="Guillermo Sanchez" mentality="Safe" market="Regional" preferedairport="LAP">
+  <narrative narrative="Aero California was based at La Paz,Mexico on the Baja California Peninsula. It also had a hub at Mexico City and focus cities at Tijuana,Guadalajara and Hermosillo. It began in 1960 as an air taxi using Cessna's and Beechcrafts. By the early 80s demand for domestic flights was large enough and they upgraded to DC-3's and Convair's. 1989 saw the introduction of flights to the US, starting with Los Angeles. In 1995 it had upgraded to an all jet fleet of DC-9-15's and DC-9-30's. It had about 11 DC-9-15's. The airlines service was suspended on July 23,2008 after a labor dispute and strike. As of 2014 their license was still valid and they could start flying again if things are settled, but it has however been 6-7 years and is unlikely to ever happen. At the end it had about 22 DC-9-30's and 9 or so DC-9-15's. Most of these planes were still in storage some time after the suspension of operations. It had 17 domestic destinations at the end. "/>
+</profile>
+  <info real="True" from="1960" to="2009" />
+  <prefereds aircrafts="Douglas DC-9-30,Douglas DC-9-15,Douglas DC-3,Convair 240,Convair 440,Beechcraft Baron 55,Beechcraft Duke,Beechcraft Bonanza,Cessna 180,Cessna 182 Skylane,Cessna 175,Cessna 170,Cessna 195,Beechcraft Travel Air"></prefereds>
+<focusairports>
+       <focusairport airport="TIJ"></focusairport>
+         <focusairport airport="HMO"></focusairport>
+	  <focusairport airport="MEX"></focusairport>
+	    <focusairport airport="GDL"></focusairport>
+     </focusairports>
+
+
+  
+     <!--the airliners the airline would start with which isn't on a route earyl (1995) late (2008)-->
+	         <airliners>
+	    <airliner type="Douglas DC-9-30" early="5" late="22"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (1982) late (1995)-->
+	         <airliners>
+	    <airliner type="Douglas DC-9-15" early="1" late="11"></airliner>
+	     </airliners>
+
+	     	  
+
+	     	  
+	     	  
+
+
+</airline>

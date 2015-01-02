@@ -23,9 +23,9 @@
 
         #region Methods
 
-        private void btnTest_Click(object sender, RoutedEventArgs e)
+        private void btnScenarioEditor_Click(object sender, RoutedEventArgs e)
         {
-            PageNavigator.NavigateTo(new PageTest());
+            PageNavigator.NavigateTo(new PageScenarioEditor());
             //PageNavigator.NavigateTo(new PageSelectAirports());
         }
 

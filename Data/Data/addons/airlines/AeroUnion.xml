@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="AeroUnion" iata="6R" color="Crimson" country="157" CEO="Luis Ramos" mentality="Safe" market="Regional" preferedairport="MEX" routefocus="Cargo">
+  <narrative narrative="AeroUnion is a cargo airline based at Mexico City. It also goes to Guadalajara and in the US it goes to Los Angeles and Chicago. It started service in July 2001. As of 2014 it had five A300 freighters and it was leasing two 767-200's."/>
+</profile>
+  <info real="True" from="2001" to="2199" />
+  <prefereds aircrafts="Airbus A300C4-620,Boeing 767-200"></prefereds>
+
+ 
+  
+     <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2014)-->
+	         <airliners>
+	    <airliner type="Airbus A300C4-620" early="1" late="5"></airliner>
+	     </airliners>
+
+	     	  
+
+	     	  
+	     	  
+
+
+</airline>

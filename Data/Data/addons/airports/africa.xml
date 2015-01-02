@@ -3148,6 +3148,7 @@
       <terminal name="Terminal 2" gates="24" />
       <terminal name="Terminal 3" gates="46" />
       <terminal name="Terminal 4" gates="16" />
+      <terminal name="Egypt Air Terminal" gates="20" type="Cargo" />
     </terminals>
     <runways>
       <runway name="05L/23R" length="3301" surface="Asphalt" />

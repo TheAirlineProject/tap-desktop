@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Aereo Calafia" iata="CFV" color="Navy" country="157" CEO="Eduardo Castellanos" mentality="Safe" market="Domestic" preferedairport="CSL">
+  <narrative narrative="Aereo Calafia ia based at Cabo San Lucas. It has a focus city at Los Mochis. It operates at 8 Baja California Peninsula airports including Cedros Island, and 8 on the main part of Mexico all along the Pacific and Gulf of California coast. As of 2009 it had 6 Cessna 208's, a Cessna 206 and a Embraer 120 Brasilia. It was founded in 1993. It also does charters and tours."/>
+</profile>
+  <info real="True" from="1993" to="2199" />
+  <prefereds aircrafts="Cessna 208B,Cessna 206,EMB 120 Brasilia"></prefereds>
+   <focusairports>
+         <focusairport airport="LMM"></focusairport>
+     </focusairports>
+  
+     <!--the airliners the airline would start with which isn't on a route earyl (1993) late (2014)-->
+	         <airliners>
+	    <airliner type="Cssna 208B" early="0" late="6"></airliner>
+	     </airliners>
+	          <!--the airliners the airline would start with which isn't on a route earyl (1993) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 206" early="1" late="1"></airliner>
+	     </airliners>
+	     	               <!--the airliners the airline would start with which isn't on a route earyl (1993) late (2014)-->
+	         <airliners>
+	    <airliner type="EMB 120 Brasilia" early="0" late="1"></airliner>
+	     </airliners>
+
+
+
+
+
+	     	  
+	     	  
+
+
+</airline>

@@ -191,6 +191,10 @@
                         {
                             configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("203");
                         }
+                        if (numOfClasses == 4)
+                        {
+                            configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("204");
+                        }
                     }
                     else
                     {
@@ -206,7 +210,14 @@
                         {
                             configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("201");
                         }
+                        if (numOfClasses == 4)
+                        { 
+                            configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("204");
+                        }
                     }
+
+                    if (configuration == null)
+                        configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("200");
 
                     foreach (AirlinerClassConfiguration aClass in configuration.Classes)
                     {

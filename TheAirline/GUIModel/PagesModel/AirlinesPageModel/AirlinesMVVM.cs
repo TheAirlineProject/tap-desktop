@@ -239,10 +239,14 @@
                 if (airline.Key != "Free")
                 {
                     Airline sAirline = Airlines.GetAirlines(a => a.Profile.Name == airline.Key).FirstOrDefault();
-                    ResourceDictionary rd = new ResourceDictionary();
 
-                    rd.Add("Brush" + i, new StringToBrushConverter().Convert(sAirline.Profile.Color, null, null, null) as SolidColorBrush);
-                    collection.Add(rd);
+                    if (sAirline != null)
+                    {
+                        ResourceDictionary rd = new ResourceDictionary();
+
+                        rd.Add("Brush" + i, new StringToBrushConverter().Convert(sAirline.Profile.Color, null, null, null) as SolidColorBrush);
+                        collection.Add(rd);
+                    }
 
                     i++;
                 }

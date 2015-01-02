@@ -144,7 +144,7 @@ namespace TheAirline.Model.AirlinerModel
             if (check == null)
                 this.Checks.Add(new AirlinerMaintenanceCheck(type, lastcheck));
             else
-                this.Checks.FirstOrDefault(c => c.Type == type).LastCheck = lastcheck;
+                check.LastCheck = lastcheck;
         }
         //returns the interval where the next check needs be performed of a specific type
         public Period<DateTime> getNextMaintenanceInterval(AirlinerMaintenanceType type)

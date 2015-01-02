@@ -614,6 +614,7 @@
                 var airports = GameObject.GetInstance()
                     .HumanAirline.Airports.Where(a => a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Cargo)).OrderByDescending(
                         a => a == GameObject.GetInstance().HumanAirline.Airports[0])
+                    .ThenBy(a=>a.hasHub(GameObject.GetInstance().HumanAirline))
                     .ThenBy(a => a.Profile.Country.Name)
                     .ThenBy(a => a.Profile.Name);
 
@@ -627,6 +628,7 @@
                 var airports = GameObject.GetInstance()
                    .HumanAirline.Airports.Where(a => a.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad) && a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
                        a => a == GameObject.GetInstance().HumanAirline.Airports[0])
+                   .ThenBy(a=>a.hasHub(GameObject.GetInstance().HumanAirline))
                    .ThenBy(a => a.Profile.Country.Name)
                    .ThenBy(a => a.Profile.Name);
 
@@ -645,6 +647,7 @@
                 var airports = GameObject.GetInstance()
                       .HumanAirline.Airports.Where(a => a.Runways.Exists(r => r.Type == Runway.RunwayType.Regular) && a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
                           a => a == GameObject.GetInstance().HumanAirline.Airports[0])
+                          .ThenBy(a=>a.hasHub(GameObject.GetInstance().HumanAirline))
                       .ThenBy(a => a.Profile.Country.Name)
                       .ThenBy(a => a.Profile.Name);
 

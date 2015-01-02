@@ -840,6 +840,7 @@
 
             //SaveDemandForDatabase();
 
+            var aircraftClasses = AirlinerTypes.GetTypes(t=>t is AirlinerPassengerType && (((AirlinerPassengerType)t).MaxAirlinerClasses == 0 || ((AirlinerPassengerType)t).MaxAirlinerClasses>3));
 
             var airportNoCountry = Airports.GetAllAirports(a => a.Profile.Country.Uid == null);
             var airlineNoCountry = Airlines.GetAirlines(a => a.Profile.Country.Uid == null);
@@ -1424,6 +1425,7 @@
                 startData.Airliners,
                 airliners =>
                 {
+              
                     AirlinerType type = AirlinerTypes.GetType(airliners.Type);//B747-200
 
                     int totalSpan = 2010 - 1960;
@@ -1442,6 +1444,7 @@
 
                         Console.WriteLine(tAirline + " " + typeNull);
                     }
+                
                     if (type != null && type.Produced.From <= GameObject.GetInstance().GameTime)
                     {
                         for (int i = 0; i < Math.Max(numbers, airliners.AirlinersEarly); i++)
@@ -1626,7 +1629,6 @@
 
         private static void CreateComputerRoutes(Airline airline, int iterations = 0)
         {
-            Console.WriteLine("Creating routes for " + airline.Profile.Name + " iteration: " + iterations);
             Boolean leaseAircraft = airline.Profile.PrimaryPurchasing == AirlineProfile.PreferedPurchasing.Leasing;
 
             Airport airportHomeBase = FindComputerHomeBase(airline);
@@ -1645,7 +1647,7 @@
             {
                 airportHomeBase.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
             }
-
+          
             AirlineStartData startData = AirlineStartDatas.GetAirlineStartData(airline);
 
             //creates the start data for an airline
@@ -1654,6 +1656,8 @@
                 AirportHelpers.RentGates(airportHomeBase, airline, AirportContract.ContractType.Full);
 
                 CreateAirlineStartData(airline, startData);
+
+            
             }
             else
             {
@@ -1695,12 +1699,8 @@
 
                     counter++;
 
-                    if (airline.Profile.IATACode == "AC2")
-                    {
-                        Boolean bln = airportDestinations.Exists(a => a.Profile.IATACode == "NCE");
-                        int counterDestinations = airportDestinations.Count;
-                    }
-
+                  
+                   
                 }
 
                 if (airportDestination == null || !airliner.HasValue)
@@ -1841,9 +1841,10 @@
                         AIHelpers.CreateCargoRouteTimeTable(route, fAirliner);
                     }
                 }
-                Console.WriteLine("Finished creating routes for " + airline.Profile.Name);
+               
 
             }
+    
         }
 
         /*! creates the time zones.
@@ -2211,6 +2212,11 @@
             var list = new Dictionary<Airport, int>();
             airports.ForEach(
                 a => list.Add(a, ((int)a.Profile.Size) * (AirportHelpers.GetAirportsNearAirport(a, 1000).Count) + 1));
+
+            if (list.Count == 0)
+            {
+                string s = "jjj";
+            }
 
             return AIHelpers.GetRandomItem(list);
         }
@@ -3766,7 +3772,7 @@
             }
             catch (Exception e)
             {
-
+                string s = e.ToString();
             }
         }
 

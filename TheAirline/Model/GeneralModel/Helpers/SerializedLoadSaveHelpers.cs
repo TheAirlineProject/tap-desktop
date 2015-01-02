@@ -76,13 +76,14 @@
 
                     Airports.Clear();
 
+                   
                     foreach (Airport airport in deserializedSaveObject.airportsList)
                     {
                         airport.Statics = new AirportStatics(airport);
                         Airports.AddAirport(airport);
                     }
 
-                    foreach (string iata in deserializedSaveObject.airportsfromstringList)
+                    foreach (string iata in deserializedSaveObject.airportsfromstringList) 
                     {
                         Airport airport = airports.FirstOrDefault(a => a.Profile.IATACode == iata);
 
@@ -552,7 +553,7 @@
 
             catch (Exception err)
             {
-                TAPLogger.LogEvent(err.StackTrace, "Exception on loading game");
+                TAPLogger.LogEvent(err.ToString(), "Exception on loading game");
         
             }
 
@@ -594,7 +595,7 @@
             }
             catch (Exception e)
             {
-                TAPLogger.LogEvent(e.StackTrace, "Exception on saving game");
+                TAPLogger.LogEvent(e.ToString(), "Exception on saving game");
         
             }
             finally

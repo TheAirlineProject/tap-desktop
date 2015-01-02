@@ -2,35 +2,35 @@
 
 <airliners>
 <airliner manufacturer="Mitsubishi" name="NAMC YS-11" price="1050000"> 
-    <type body="Narrow_Body" rangetype="Short_range" engine="Turboprop" />
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
     <specs wingspan="26.30" length="32.00" range="2200" speed="454" fuelcapacity="5820" consumption="0.015"
            runwaylengthrequired="1280" />
     <capacity passengers="64" cockpitcrew="2" cabincrew="2" maxclasses="1" />
     <produced from="1962" to="1974" rate="13" />
   </airliner>
      <airliner manufacturer="Mitsubishi" name="Mitsubishi MU-2" price="225000"> 
-    <type body="Narrow_Body" rangetype="Short_range" engine="Turboprop" />
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
     <specs wingspan="11.94" length="12.01" range="3046" speed="560" fuelcapacity="1385" consumption="0.16"
            runwaylengthrequired="550" />
     <capacity passengers="14" cockpitcrew="2" cabincrew="0" maxclasses="1" />
     <produced from="1964" to="1986" rate="31" />
   </airliner>
        <airliner manufacturer="Mitsubishi" name="MRJ 90" price="5336000"> 
-    <type body="Narrow_Body" rangetype="Short_range" engine="Jet" />
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
     <specs wingspan="29.20" length="35.80" range="1670" speed="828" fuelcapacity="71800" consumption="0.01"
            runwaylengthrequired="1490" />
     <capacity passengers="92" cockpitcrew="2" cabincrew="2" maxclasses="2" />
     <produced from="2017" to="2199" rate="100" />
   </airliner>
          <airliner manufacturer="Mitsubishi" name="MRJ 90ER" price="7668000"> 
-    <type body="Narrow_Body" rangetype="Short_range" engine="Jet" />
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
     <specs wingspan="29.20" length="35.80" range="2400" speed="828" fuelcapacity="103000" consumption="0.01"
            runwaylengthrequired="1600" />
     <capacity passengers="92" cockpitcrew="2" cabincrew="2" maxclasses="2" />
     <produced from="2017" to="2199" rate="25" />
   </airliner>
            <airliner manufacturer="Mitsubishi" name="MRJ 90LR" price="10575000"> 
-    <type body="Narrow_Body" rangetype="Short_range" engine="Jet" />
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
     <specs wingspan="29.20" length="35.80" range="3310" speed="828" fuelcapacity="142000" consumption="0.01"
            runwaylengthrequired="1740" />
     <capacity passengers="92" cockpitcrew="2" cabincrew="2" maxclasses="2" />

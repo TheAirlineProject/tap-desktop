@@ -56,6 +56,8 @@
 
         private AirlineProfile(SerializationInfo info, StreamingContext ctxt)
         {
+            this.Names = new List<AirlineName>();
+
             int version = info.GetInt16("version");
 
             IEnumerable<FieldInfo> fields =
@@ -73,6 +75,11 @@
 
             foreach (SerializationEntry entry in info)
             {
+                if (entry.Name == "name")
+                {
+                    this.Names.Add(new AirlineName() { Name = entry.Value.ToString(), From = new DateTime(this.Folded,1,1) });
+              
+                }
                 MemberInfo prop =
                     propsAndFields.FirstOrDefault(
                         p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
@@ -231,7 +238,7 @@
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 4);
+            info.AddValue("version", 5);
 
             Type myType = this.GetType();
 

@@ -458,27 +458,27 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 AirportHelpers.RentGates(airportHomeBase, sAirline, AirportContract.ContractType.Full_Service, terminaltype, 2);
                 //sets all the facilities at an airport to none for all airlines
-                foreach (Airport airport in Airports.GetAllAirports())
-                {
-
-                    foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
-                    {
-                        AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
-
-                        airport.addAirportFacility(sAirline, noneFacility, GameObject.GetInstance().GameTime);
-                    }
-
-                }
-
-
-                AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
-                AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
-
-                airportHomeBase.addAirportFacility(sAirline, serviceFacility, GameObject.GetInstance().GameTime);
-                airportHomeBase.addAirportFacility(sAirline, checkinFacility, GameObject.GetInstance().GameTime);
+              
 
             }
 
+            foreach (Airport airport in Airports.GetAllAirports())
+            {
+
+                foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
+                {
+                    AirportFacility noneFacility = AirportFacilities.GetFacilities(type).FirstOrDefault(f=>f.TypeLevel == 0);//.Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
+
+                    airport.addAirportFacility(sAirline, noneFacility, GameObject.GetInstance().GameTime);
+                }
+
+            }
+            
+            AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
+            AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+            airportHomeBase.addAirportFacility(sAirline, serviceFacility, GameObject.GetInstance().GameTime);
+            airportHomeBase.addAirportFacility(sAirline, checkinFacility, GameObject.GetInstance().GameTime);
             foreach (AirlinePolicy policy in airline.Policies)
                 sAirline.addAirlinePolicy(policy);
 

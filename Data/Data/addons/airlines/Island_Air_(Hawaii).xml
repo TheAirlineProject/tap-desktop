@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Island Air" iata="WP" color="Green" country="122" CEO=" David Pflieger" mentality="Safe" market="Domestic" preferedairport="HNL">
   <narrative narrative="Island Air in Hawaii is based at Honolulu with another hub at Kahului on Maui. They currently serve 4 Hawaiian destinations outside of Honolulu. Their current fleet is five ATR 72-210's and they have two Dash 8 Q400 Next Gen's on order with an option for four more. Delivery begins late 2014. They have a frequnt flyer program agreement with United and have thier own program also. They flew for Hawaiian Airlines for a while under codeshare, until Hawaiian started flying its own ATR service to the same destinations. They began as Princeville Airways in 1980 and were founded by Colorado based Consilidated Oil and Gas. They flew out of Princeville on the island of Kauai with two Twin Otters. In 1987 Aloha Air bought them to serve the airports their larger 737s could not go to. This was when they got their name of Island Air. In 2004 it was bought by Gavarnie Holding LLC, making it an independant airline once again, the third largest in Hawaii. In 2013 the owner of Oracle Corporation, Larry Ellison, boought the airline. Soon after they began using the ATR's to replace the aging fleet of Dash 8 100s.  "/>
 </profile>
   <info real="True" from="1980" to="2199"></info>
-  <startdata>
-     <prefereds aircrafts="ATR 72-210,Bombardier Dash 8-100,Bombardier Dash 8-200,Bombardier Dash 8-300,Bombardier Dash 8-400"></prefereds>
-     </startdata>
+       <prefereds aircrafts="ATR 72-210,Bombardier Dash 8-100,Bombardier Dash 8-200,Bombardier Dash 8-300,Bombardier Dash 8-400"></prefereds>
+
    </airline>
 

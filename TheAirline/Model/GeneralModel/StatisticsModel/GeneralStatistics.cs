@@ -123,20 +123,24 @@
 
         public void addStatisticsValue(int year, StatisticsType type, double value)
         {
-            StatisticsValue item = this.StatValues.Find(s => s.Year == year && s.Stat.Shortname == type.Shortname);
+            lock (this.StatValues)
+            {
+                StatisticsValue item = this.StatValues.Find(s => s.Year == year && s.Stat.Shortname == type.Shortname);
 
-            if (item == null)
-            {
-                this.StatValues.Add(new StatisticsValue(year, type, value));
-            }
-            else
-            {
-                item.Value += value;
+                if (item == null)
+                {
+                    this.StatValues.Add(new StatisticsValue(year, type, value));
+                }
+                else
+                {
+                    item.Value += value;
+                }
             }
         }
 
         public void clear()
         {
+          
             lock (this.StatValues)
             {
                 this.StatValues.Clear();
@@ -146,11 +150,15 @@
         //returns the value for a statistics type for a year
         public double getStatisticsValue(int year, StatisticsType type)
         {
-            var stats = new List<StatisticsValue>(this.StatValues);
+            StatisticsValue item;
+            lock (this.StatValues)
+            {
+                var stats = new List<StatisticsValue>(this.StatValues); 
 
-            StatisticsValue item =
-                stats.FirstOrDefault(s => s.Stat != null && s.Year == year && s.Stat.Shortname == type.Shortname);
+                item =
+                    stats.FirstOrDefault(s => s.Stat != null && s.Year == year && s.Stat.Shortname == type.Shortname);
 
+            }
             if (item == null)
             {
                 return 0;
@@ -161,13 +169,17 @@
         //returns the total value for a statistics type
         public double getStatisticsValue(StatisticsType type)
         {
-            if (this.StatValues != null
-                && this.StatValues.Exists(s => s.Stat != null && s.Stat.Shortname == type.Shortname))
+            double sum = 0;
+            lock (this.StatValues)
             {
-                return this.StatValues.Where(s => s.Stat != null && s.Stat.Shortname == type.Shortname)
-                    .Sum(s => s.Value);
+                if (this.StatValues != null
+                    && this.StatValues.Exists(s => s.Stat != null && s.Stat.Shortname == type.Shortname))
+                {
+                    sum = this.StatValues.Where(s => s.Stat != null && s.Stat.Shortname == type.Shortname)
+                        .Sum(s => s.Value);
+                }
             }
-            return 0;
+            return sum;
         }
 
         //adds the value for a statistics type for a year
@@ -175,7 +187,12 @@
         //returns all years with statistics
         public List<int> getYears()
         {
-            return this.StatValues.Select(s => s.Year).Distinct().ToList();
+            List<int> years = new List<int>();
+            
+            lock (this.StatValues)
+                years = this.StatValues.Select(s => s.Year).Distinct().ToList();
+
+            return years;
         }
 
         public void setStatisticsValue(int year, StatisticsType type, double value)
@@ -184,7 +201,7 @@
 
             if (item == null)
             {
-                this.StatValues.Add(new StatisticsValue(year, type, value));
+                lock (this.StatValues) this.StatValues.Add(new StatisticsValue(year, type, value));
             }
             else
             {

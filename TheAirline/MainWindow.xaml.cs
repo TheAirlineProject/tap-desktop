@@ -87,6 +87,19 @@ namespace TheAirline
 
                 file.Close();
             }
+            if (e.Key == Key.F6)
+            {
+                string text = DateTime.Now.ToShortDateString() + "\n";
+
+                foreach (var o in System.Windows.Application.Current.Resources)
+                    text += o + "\n";
+               
+                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\current_resources.log", true);
+
+                file.WriteLine(text);
+
+                file.Close();
+            }
             if (e.Key == Key.F8)
             {
                 string text = string.Format("Gameobjectworker paused: {0}\n", GameObjectWorker.GetInstance().isPaused());

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="MAYAir" iata="7M" color="Cyan" country="157" CEO="Luis Alfonso Chong Anaya" mentality="Safe" market="Domestic" preferedairport="CUN">
+  <narrative narrative="MAYAir is based at Cancun with a major focus on Cozumel also. The other places it serves are Merida,Villahermosa,and Veracruz. It was founded in 1994. It has done the Cancun to Cozumel island short hop since 2008. It does this about 7-8 times a day. It uses four Dornier 228's. It is part of the Lomas Travel Group, which it became part of in 2008. Its flights are offered as part of travel packages in conjunction with this."/>
+</profile>
+  <info real="True" from="1994" to="2199" />
+  <prefereds aircrafts="Dornier 228-212"></prefereds>
+ <focusairport airport="CZM"></focusairport>
+ 
+  
+     <!--the airliners the airline would start with which isn't on a route earyl (1994) late (2014)-->
+	         <airliners>
+	    <airliner type="Dornier 228-212" early="1" late="4"></airliner>
+	     </airliners>
+	     	  
+	     	  
+
+
+</airline>

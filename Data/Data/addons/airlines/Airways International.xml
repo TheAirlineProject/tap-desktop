@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Airways International" iata="HO" color="Firebrick" country="122" CEO="Izad Djahanshahi" mentality="Safe" market="Local" preferedairport="MIA"  >
+  <narrative narrative="Airways International was based at Miami with a secondary hub at Fort Lauderdale and a focus city at West Palm Beach. It was in operation from around 1984 to 1999. Near the end it flew to Key West,Marathon Key and Ocean Reef in Florida and around 9 airports in the Bahamas. Its planes were Short 330's,Convair 440's and 240's,Cessna 402's and Piper Aztecs."/>
+</profile>
+  <info real="True" from="1983" to="1999" />
+  <prefereds aircrafts="Short 330,Convair 440,Convair 240,Cessna 402,Cessna 402C,PA-23 Aztec"></prefereds>
+ <focusairports>
+         <focusairport airport="FLL"></focusairport>
+         <focusairport airport="PBI"></focusairport>
+     </focusairports>
+
+
+
+
+
+	     	  
+	     	  
+
+
+</airline>

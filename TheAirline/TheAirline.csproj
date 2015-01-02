@@ -485,6 +485,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageScenarioEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageSelectAirports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -849,6 +853,9 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageNews.xaml.cs">
       <DependentUpon>PageNews.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageScenarioEditor.xaml.cs">
+      <DependentUpon>PageScenarioEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectAirports.xaml.cs">
       <DependentUpon>PageSelectAirports.xaml</DependentUpon>
     </Compile>
@@ -873,6 +880,7 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageTest.xaml.cs">
       <DependentUpon>PageTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\ScenarioEditorMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\OptionsPageModel\OptionsMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageLoadGame.xaml.cs">
       <DependentUpon>PageLoadGame.xaml</DependentUpon>

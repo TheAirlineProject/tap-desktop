@@ -5657,4 +5657,13 @@ Good luck.</value>
   <data name="MessageBox_2020_name" xml:space="preserve">
     <value>Delete Airliner Class</value>
   </data>
+  <data name="PageFrontMenu_206_name" xml:space="preserve">
+    <value>Scenario Editor</value>
+  </data>
+  <data name="News_1021_message" xml:space="preserve">
+    <value>Your flight {0} from [LI airport={1}] to [LI airport={2}] has been cancelled for the current flight due to bad condition of the airliner</value>
+  </data>
+  <data name="News_1021_name" xml:space="preserve">
+    <value>Cancelled Flight</value>
+  </data>
 </root>

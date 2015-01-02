@@ -508,6 +508,12 @@
             }
              score += facilities.Where(f => f.Airline == airline).Sum(f => f.Facility.ServiceLevel * 10);
             
+            if (airline.Routes.Exists(r=>r==null))
+            {
+                string aName = airline.Profile.Name;
+                Boolean isHuman = airline.IsHuman;
+            }
+
             IEnumerable<Route> airportRoutes =
                 airline.Routes.Where(r => r.Destination1 == this || r.Destination2 == this);
             score += 7 * airportRoutes.Count();
@@ -583,9 +589,11 @@
         {
             var facilities = new List<AirportFacility>();
 
-            var tFacilities = new List<AirlineAirportFacility>(this.Facilities);
+
             lock (this.Facilities)
             {
+               var tFacilities = new List<AirlineAirportFacility>(this.Facilities);
+         
                 facilities = (from f in tFacilities
                     where
                         f.Airline == airline && f.Facility.Type == type

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Aereo Servicio Guerrero" iata="ASG" color="Gold" country="157" CEO="Luis Alfonso Chong Anaya" mentality="Safe" market="Domestic" preferedairport="HMO">
+  <narrative narrative="Aereo Servicio Guerrero is based at Hermosillo,Mexico. It was founded in 1997. It serves 13 destinations outside of Hermosillo all in the area of th Baja California Peninsula and Mexican coast along the
+  Gulf of California. It has three Cessna 208's, and two Cessna 402's."/>
+</profile>
+  <info real="True" from="1997" to="2199" />
+  <prefereds aircrafts="Cessna 208B,Cessna 402,Cessna 402C"></prefereds>
+
+  
+     <!--the airliners the airline would start with which isn't on a route earyl (1997) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="0" late="3"></airliner>
+	     </airliners>
+	          <!--the airliners the airline would start with which isn't on a route earyl (1997) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 402" early="1" late="1"></airliner>
+	     </airliners>
+	     	               <!--the airliners the airline would start with which isn't on a route earyl (1997) late (2014)-->
+	         <airliners>
+	    <airliner type="Cessna 402C" early="0" late="1"></airliner>
+	     </airliners>
+
+
+
+
+
+	     	  
+	     	  
+
+
+</airline>

@@ -99,6 +99,7 @@
     </runways>
   </airport>
   <airport name="Berlin Schönefeld Airport" icao="EDDB" iata="SXF" type="International" season="All_Year">
+  <period from="04.08.1923 00:00:00" to="12.31.2015 00:00:00" />
     <town town="Berlin" country="1001" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="52°22'43''N" />
@@ -219,6 +220,7 @@
     </runways>
   </airport>
   <airport name="Berlin Tegel Airport" icao="EDDT" iata="TXL" type="International" season="All_Year">
+         <period from="04.08.1923 00:00:00" to="12.31.2015 00:00:00" />
     <town town="Berlin" country="1002" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="52°33'34''N" />

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Lineas Aereas Allegro" iata="LL" color="ForestGreen" country="157" CEO="Jorge Rodriguez" mentality="Moderate" market="Regional" preferedairport="MTY">
+  <narrative narrative="Lineas Aereas Allegro was based at Monterrey,Mexico with another base at Cancun. It was around from 1992 to 2004. It did scheduled and charter service and operated in the US and Canada also. 18 destinations were in the US, with destinations in all regions of the lower 48 states, and a few in Canada like Calgary and Saint Johns. There were 6 domestic ones outside of Monterrey and Cancun. The Dominican Republic spot of Punta Cana was another place served and Liberia,Costa Rica was another. Over its life it had 25 different 727-200's,13 different MD-82 and 83's, and 3 different DC-9-14's. At its height it served 212 total flights a week domestic and internationally."/>
+</profile>
+  <info real="True" from="1992" to="2004" />
+  <prefereds aircrafts="Boeing 727-200,Boeing 727-200 Adv.,MD-83 (DC-9-83),MD-82 (DC-9-82),Douglas DC-9-15"></prefereds>
+<focusairports>
+       <focusairport airport="CUN"></focusairport>
+     </focusairports>
+
+
+  
+     
+
+
+</airline>

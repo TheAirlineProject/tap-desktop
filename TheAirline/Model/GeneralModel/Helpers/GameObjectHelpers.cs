@@ -261,14 +261,7 @@
 
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
             
-            if (startData.IsPaused)
-            {
-                GameObjectWorker.GetInstance().startPaused();
-            }
-            else
-            {
-                GameObjectWorker.GetInstance().start();
-            }
+          
 
             GameObject.GetInstance()
                 .NewsBox.addNews(
@@ -292,11 +285,28 @@
 
                 Console.WriteLine("Demand has been created in {0} ms.", swPax.ElapsedMilliseconds);
 
+                if (startData.IsPaused)
+                {
+                    GameObjectWorker.GetInstance().startPaused();
+
+                    var gameObject = System.Windows.Application.Current.Resources["gameObject"];
+
+                    if (gameObject != null)
+                        ((GUIObject)gameObject).IsPaused = true; 
+               
+               
+                }
+                else
+                {
+                    GameObjectWorker.GetInstance().start();
+                }
 
                 swPax.Stop();
             };
 
             Task.Factory.StartNew(action);
+
+           
             //Task.Run(action);
             //Task t2 = Task.Factory.StartNew(action, "passengers");
         }
@@ -590,7 +600,6 @@
                 var sw = new Stopwatch();
                 sw.Start();
 
-
                 DoDailyUpdate();
 
                 if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime))
@@ -603,20 +612,20 @@
                 {
                     DoYearlyUpdate();
                 }
-                Parallel.ForEach(
-                    Airlines.GetAllAirlines(),
-                    airline =>
+                //Parallel.ForEach(
+                  //  Airlines.GetAllAirlines(),
+                    //airline =>
+                foreach (Airline airline in Airlines.GetAllAirlines())
                     {
-
                         var balance = airline.Money;
 
                         if (!airline.IsHuman)
                         {
                             AIHelpers.UpdateCPUAirline(airline);
                         }
-
-                        DayTurnHelpers.SimulateAirlineFlights(airline);
-
+                      
+                         DayTurnHelpers.SimulateAirlineFlights(airline);
+                                          
                         double income = airline.Invoices.MonthlyInvoices.Where(i => i.Day == GameObject.GetInstance().GameTime.Day && i.Month == GameObject.GetInstance().GameTime.Month && i.Year == GameObject.GetInstance().GameTime.Year && i.Amount > 0).Sum(i => i.Amount);
                         double expenses = airline.Invoices.MonthlyInvoices.Where(i => i.Day == GameObject.GetInstance().GameTime.Day && i.Month == GameObject.GetInstance().GameTime.Month && i.Year == GameObject.GetInstance().GameTime.Year && i.Amount < 0).Sum(i => i.Amount);
 
@@ -625,9 +634,13 @@
                                 GameObject.GetInstance().GameTime,
                                 new KeyValuePair<double, double>(Math.Abs(income), Math.Abs(expenses))));
 
-                    });
+                     
+      
+                    }//);
 
-                sw.Stop();
+                 sw.Stop();
+
+                 Console.WriteLine("Turn time: {0} ms.", sw.ElapsedMilliseconds);
 
                 GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddDays(1);
             }

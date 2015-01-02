@@ -278,6 +278,14 @@ using TheAirline.Model.GeneralModel.CountryModel;
             var dest1Restriction = HasRestriction(airline.Profile.Country, dest2, date, FlightRestriction.RestrictionType.Airlines);
             var dest2Restriction = HasRestriction(airline.Profile.Country, dest1, date, FlightRestriction.RestrictionType.Airlines);
 
+            if (dest1Restriction || dest2Restriction)
+            {
+                var allowed1 = IsAllowed(airline, dest1, date);
+                var allowed2 = IsAllowed(airline, dest2, date);
+
+                string ssss = "";
+            }
+
             return dest1Restriction
                    || dest2Restriction;
         }
@@ -285,6 +293,8 @@ using TheAirline.Model.GeneralModel.CountryModel;
         {
             var restrictionsAirport1 = GetRestrictions().Where(r => r.Airport != null && r.Airport == airport1 && (date >= r.StartDate && date <= r.EndDate) && r.Type == FlightRestriction.RestrictionType.AllowAirport);
             var restrictionsAirport2 = GetRestrictions().Where(r => r.Airport != null && r.Airport == airport2 && (date >= r.StartDate && date <= r.EndDate) && r.Type == FlightRestriction.RestrictionType.AllowAirport);
+
+          
 
             if (restrictionsAirport1.Count() == 0 && restrictionsAirport2.Count() == 0)
                 return true;
@@ -323,7 +333,8 @@ using TheAirline.Model.GeneralModel.CountryModel;
                             && (r.To == to || (r.To is Union && ((Union)r.To).isMember(toCountry, date)))
                             && (date >= r.StartDate && date <= r.EndDate) && r.Type == FlightRestriction.RestrictionType.AllowAirline);
 
-     
+
+           
             return restrictions.Count > 0;
         }
         #endregion

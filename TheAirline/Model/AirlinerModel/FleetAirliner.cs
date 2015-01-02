@@ -265,7 +265,8 @@
         //adds a route to the airliner
         public void addRoute(Route route)
         {
-            this.Routes.Add(route);
+            if (route!=null)
+                this.Routes.Add(route);
         }
 
         public void removePilot(Pilot pilot)

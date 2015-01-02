@@ -37,6 +37,8 @@
             this.IsPaused = false;
             this.IsFinish = false;
             this.IsError = false;
+
+
         }
 
         #endregion
@@ -48,7 +50,6 @@
         #endregion
 
         #region Public Properties
-
         public Boolean IsError { get; set; }
 
         public Boolean IsFinish { get; set; }
@@ -161,25 +162,28 @@
             {
                 try
                 {
-                    this.IsFinish = false;
+                   this.IsFinish = false;
 
                     var sw = new Stopwatch();
 
                     sw.Start();
+              
                     GameObjectHelpers.SimulateTurn();
                     sw.Stop();
-                    //Console.WriteLine(GameObject.GetInstance().GameTime.ToShortDateString() + " took " + sw.ElapsedMilliseconds + " ms. to run");
-
+               
                     long waittime = (int)Settings.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
-                  
+
                     if (waittime > 0)
                     {
                         Thread.Sleep((int)waittime);
                     }
+
+                 
+          
                 }
                 catch (Exception ex)
                 {
-                    TAPLogger.LogEvent(ex.StackTrace, "Exception in GameObjectWorker.cs");
+                    TAPLogger.LogEvent(ex.ToString(), "Exception in GameObjectWorker.cs");
                 /*
                     System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairline.log");
                     file.WriteLine("{0}: {1} {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), ex.StackTrace);

@@ -657,8 +657,8 @@
             }
          
             if (center != null)
-            {
-                this.Center = center.Airport != null ? this.Centers.First(c=>c.Airport == center.Airport) : this.Centers.First(c=>c.Center == center.Center); 
+            { 
+                this.Center = center.Airport != null ? this.Centers.FirstOrDefault(c=>c.Airport == center.Airport) : this.Centers.FirstOrDefault(c=>c.Center == center.Center); 
             }
 
         }

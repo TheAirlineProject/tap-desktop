@@ -33,45 +33,50 @@
             var sw = new Stopwatch();
             sw.Start();
 
+
             foreach (
-                FleetAirliner airliner in airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped)) //Parallel.ForEach(
-                //    airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped),
-                //    airliner =>
-            {
-                if (airliner.CurrentFlight != null)
-                {
-                    //Boolean stopoverRoute = airliner.CurrentFlight.Entry.MainEntry != null;
-
-                    SimulateLanding(airliner);
-                }
-
-                IOrderedEnumerable<RouteTimeTableEntry> dayEntries =
-                    airliner.Routes.Where(r => r.StartDate <= GameObject.GetInstance().GameTime)
-                        .SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek))
-                        .Where(
-                            e =>
-                                e.Airliner == airliner
-                                && (e.TimeTable.Route.Season == Weather.Season.All_Year
-                                    || e.TimeTable.Route.Season
-                                    == GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime)))
-                        .OrderBy(e => e.Time);
-
-                if (GameObject.GetInstance().GameTime > airliner.GroundedToDate)
-                {
-                    foreach (RouteTimeTableEntry entry in dayEntries)
+              FleetAirliner airliner in airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped)) 
+            //Parallel.ForEach(
+                  // airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped),
+                  //  airliner =>
                     {
-                        if (entry.TimeTable.Route.HasStopovers)
+                        if (airliner.CurrentFlight != null)
                         {
-                            SimulateStopoverFlight(entry);
+
+                            //Boolean stopoverRoute = airliner.CurrentFlight.Entry.MainEntry != null;
+
+                            SimulateLanding(airliner);
                         }
-                        else
+
+                        IOrderedEnumerable<RouteTimeTableEntry> dayEntries =
+                            airliner.Routes.Where(r => r.StartDate <= GameObject.GetInstance().GameTime)
+                                .SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek))
+                                .Where(
+                                    e =>
+                                        e.Airliner == airliner
+                                        && (e.TimeTable.Route.Season == Weather.Season.All_Year
+                                            || e.TimeTable.Route.Season
+                                            == GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime)))
+                                .OrderBy(e => e.Time);
+
+                        if (GameObject.GetInstance().GameTime > airliner.GroundedToDate)
                         {
-                            SimulateFlight(entry);
+                            foreach (RouteTimeTableEntry entry in dayEntries)
+                            {
+                                if (entry.TimeTable.Route.HasStopovers)
+                                {
+                                    SimulateStopoverFlight(entry);
+                                }
+                                else
+                                {
+                                    SimulateFlight(entry);
+
+                         
+                                }
+                            }
+                            //CheckForService(airliner);
                         }
-                    }
-                    //CheckForService(airliner);
-                }
-            } //);
+                    }//);
 
             sw.Stop();
         }
@@ -94,7 +99,7 @@
         private static void CreatePassengersHappiness(FleetAirliner airliner)
         {
             int serviceLevel = 0;
-                //airliner.Route.DrinksFacility.ServiceLevel + airliner.Route.FoodFacility.ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Audio).ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Seat).ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Video).ServiceLevel;
+            //airliner.Route.DrinksFacility.ServiceLevel + airliner.Route.FoodFacility.ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Audio).ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Seat).ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Video).ServiceLevel;
             int happyValue = airliner.CurrentFlight.IsOnTime ? 10 : 20;
             happyValue -= (serviceLevel / 25);
             for (int i = 0; i < airliner.CurrentFlight.getTotalPassengers(); i++)
@@ -113,132 +118,140 @@
         //simulates a flight
         private static void SimulateFlight(RouteTimeTableEntry entry)
         {
-            FleetAirliner airliner = entry.Airliner;
+         
+                FleetAirliner airliner = entry.Airliner;
 
-            if (entry.TimeTable.Route.HasStopovers || airliner.CurrentFlight is StopoverFlight)
-            {
-                if (airliner.CurrentFlight == null || ((StopoverFlight)airliner.CurrentFlight).IsLastTrip)
+                if (entry.TimeTable.Route.HasStopovers || airliner.CurrentFlight is StopoverFlight)
                 {
-                    airliner.CurrentFlight = new StopoverFlight(entry);
-                }
-
-                ((StopoverFlight)airliner.CurrentFlight).setNextEntry();
-            }
-            else
-            {
-                airliner.CurrentFlight = new Flight(entry);
-            }
-
-            KeyValuePair<FleetAirlinerHelpers.DelayType, int> delayedMinutes =
-                FleetAirlinerHelpers.GetDelayedMinutes(airliner);
-
-            //cancelled/delay
-            if (delayedMinutes.Value
-                >= Convert.ToInt16(airliner.Airliner.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue))
-            {
-                if (airliner.Airliner.Airline.IsHuman)
-                {
-                    Flight flight = airliner.CurrentFlight;
-
-                    switch (delayedMinutes.Key)
+                    if (airliner.CurrentFlight == null || ((StopoverFlight)airliner.CurrentFlight).IsLastTrip)
                     {
-                        case FleetAirlinerHelpers.DelayType.Airliner_problems:
-                            GameObject.GetInstance()
-                                .NewsBox.addNews(
-                                    new News(
-                                        News.NewsType.Flight_News,
-                                        GameObject.GetInstance().GameTime,
-                                        Translator.GetInstance().GetString("News", "1004"),
-                                        string.Format(
-                                            Translator.GetInstance().GetString("News", "1004", "message"),
-                                            flight.Entry.Destination.FlightCode,
-                                            flight.Entry.DepartureAirport.Profile.IATACode,
-                                            flight.Entry.Destination.Airport.Profile.IATACode)));
-                            break;
-                        case FleetAirlinerHelpers.DelayType.Bad_weather:
-                            GameObject.GetInstance()
-                                .NewsBox.addNews(
-                                    new News(
-                                        News.NewsType.Flight_News,
-                                        GameObject.GetInstance().GameTime,
-                                        Translator.GetInstance().GetString("News", "1005"),
-                                        string.Format(
-                                            Translator.GetInstance().GetString("News", "1005", "message"),
-                                            flight.Entry.Destination.FlightCode,
-                                            flight.Entry.DepartureAirport.Profile.IATACode,
-                                            flight.Entry.Destination.Airport.Profile.IATACode)));
-                            break;
-                        case FleetAirlinerHelpers.DelayType.Maintenance:
-                             GameObject.GetInstance()
-                                .NewsBox.addNews(
-                                    new News(
-                                        News.NewsType.Flight_News,
-                                        GameObject.GetInstance().GameTime,
-                                        Translator.GetInstance().GetString("News", "1021"),
-                                        string.Format(
-                                            Translator.GetInstance().GetString("News", "1021", "message"),
-                                            flight.Entry.Destination.FlightCode,
-                                            flight.Entry.DepartureAirport.Profile.IATACode,
-                                            flight.Entry.Destination.Airport.Profile.IATACode)));
-                            break;
+                        airliner.CurrentFlight = new StopoverFlight(entry);
                     }
+
+                    ((StopoverFlight)airliner.CurrentFlight).setNextEntry();
                 }
-                airliner.Airliner.Airline.Statistics.addStatisticsValue(
-                    GameObject.GetInstance().GameTime.Year,
-                    StatisticsTypes.GetStatisticsType("Cancellations"),
-                    1);
-
-                double cancellationPercent =
-                    airliner.Airliner.Airline.Statistics.getStatisticsValue(
-                        GameObject.GetInstance().GameTime.Year,
-                        StatisticsTypes.GetStatisticsType("Cancellations"))
-                    / (airliner.Airliner.Airline.Statistics.getStatisticsValue(
-                        GameObject.GetInstance().GameTime.Year,
-                        StatisticsTypes.GetStatisticsType("Arrivals"))
-                       + airliner.Airliner.Airline.Statistics.getStatisticsValue(
-                           GameObject.GetInstance().GameTime.Year,
-                           StatisticsTypes.GetStatisticsType("Cancellations")));
-                airliner.Airliner.Airline.Statistics.setStatisticsValue(
-                    GameObject.GetInstance().GameTime.Year,
-                    StatisticsTypes.GetStatisticsType("Cancellation%"),
-                    cancellationPercent * 100);
-
-                airliner.CurrentFlight = null;
-            }
-            else
-            {
-                airliner.CurrentFlight.addDelayMinutes(delayedMinutes.Value);
-
-                if (airliner.CurrentFlight.Entry.MainEntry == null)
+                else
                 {
-                    if (airliner.CurrentFlight.isPassengerFlight())
-                    {
-                        var classes = new List<AirlinerClass>(airliner.Airliner.Classes);
-                        foreach (AirlinerClass aClass in classes)
-                        {
-                            var rac = ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type);
-                            airliner.CurrentFlight.Classes.Add(
-                                new FlightAirlinerClass(
-                                    ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass
-                                        (aClass.Type),
-                                    PassengerHelpers.GetFlightPassengers(airliner, aClass.Type)));
+                    airliner.CurrentFlight = new Flight(entry);
+                }
 
-                            //airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type),0));
+                KeyValuePair<FleetAirlinerHelpers.DelayType, int> delayedMinutes =
+                    FleetAirlinerHelpers.GetDelayedMinutes(airliner);
+
+                //cancelled/delay
+                if (delayedMinutes.Value
+                    >= Convert.ToInt16(airliner.Airliner.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue))
+                {
+                    if (airliner.Airliner.Airline.IsHuman)
+                    {
+                        Flight flight = airliner.CurrentFlight;
+
+                        switch (delayedMinutes.Key)
+                        {
+                            case FleetAirlinerHelpers.DelayType.Airliner_problems:
+                                GameObject.GetInstance()
+                                    .NewsBox.addNews(
+                                        new News(
+                                            News.NewsType.Flight_News,
+                                            GameObject.GetInstance().GameTime,
+                                            Translator.GetInstance().GetString("News", "1004"),
+                                            string.Format(
+                                                Translator.GetInstance().GetString("News", "1004", "message"),
+                                                flight.Entry.Destination.FlightCode,
+                                                flight.Entry.DepartureAirport.Profile.IATACode,
+                                                flight.Entry.Destination.Airport.Profile.IATACode)));
+                                break;
+                            case FleetAirlinerHelpers.DelayType.Bad_weather:
+                                GameObject.GetInstance()
+                                    .NewsBox.addNews(
+                                        new News(
+                                            News.NewsType.Flight_News,
+                                            GameObject.GetInstance().GameTime,
+                                            Translator.GetInstance().GetString("News", "1005"),
+                                            string.Format(
+                                                Translator.GetInstance().GetString("News", "1005", "message"),
+                                                flight.Entry.Destination.FlightCode,
+                                                flight.Entry.DepartureAirport.Profile.IATACode,
+                                                flight.Entry.Destination.Airport.Profile.IATACode)));
+                                break;
+                            case FleetAirlinerHelpers.DelayType.Maintenance:
+                                GameObject.GetInstance()
+                                   .NewsBox.addNews(
+                                       new News(
+                                           News.NewsType.Flight_News,
+                                           GameObject.GetInstance().GameTime,
+                                           Translator.GetInstance().GetString("News", "1021"),
+                                           string.Format(
+                                               Translator.GetInstance().GetString("News", "1021", "message"),
+                                               flight.Entry.Destination.FlightCode,
+                                               flight.Entry.DepartureAirport.Profile.IATACode,
+                                               flight.Entry.Destination.Airport.Profile.IATACode)));
+                                break;
                         }
                     }
-                    if (airliner.CurrentFlight.isCargoFlight())
+                    airliner.Airliner.Airline.Statistics.addStatisticsValue(
+                        GameObject.GetInstance().GameTime.Year,
+                        StatisticsTypes.GetStatisticsType("Cancellations"),
+                        1);
+
+                    double cancellationPercent =
+                        airliner.Airliner.Airline.Statistics.getStatisticsValue(
+                            GameObject.GetInstance().GameTime.Year,
+                            StatisticsTypes.GetStatisticsType("Cancellations"))
+                        / (airliner.Airliner.Airline.Statistics.getStatisticsValue(
+                            GameObject.GetInstance().GameTime.Year,
+                            StatisticsTypes.GetStatisticsType("Arrivals"))
+                           + airliner.Airliner.Airline.Statistics.getStatisticsValue(
+                               GameObject.GetInstance().GameTime.Year,
+                               StatisticsTypes.GetStatisticsType("Cancellations")));
+                    airliner.Airliner.Airline.Statistics.setStatisticsValue(
+                        GameObject.GetInstance().GameTime.Year,
+                        StatisticsTypes.GetStatisticsType("Cancellation%"),
+                        cancellationPercent * 100);
+
+                    airliner.CurrentFlight = null;
+                }
+                else
+                {
+                    airliner.CurrentFlight.addDelayMinutes(delayedMinutes.Value);
+
+                    if (airliner.CurrentFlight.Entry.MainEntry == null)
                     {
-                        airliner.CurrentFlight.Cargo = PassengerHelpers.GetFlightCargo(airliner);
+                        if (airliner.CurrentFlight.isPassengerFlight())
+                        {
+                           
+                            var classes = new List<AirlinerClass>(airliner.Airliner.Classes);
+
+                     
+                            foreach (AirlinerClass aClass in classes)
+                            {
+                                var rac = ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type);
+                                airliner.CurrentFlight.Classes.Add(
+                                    new FlightAirlinerClass(
+                                        ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass
+                                            (aClass.Type),
+                                        PassengerHelpers.GetFlightPassengers(airliner, aClass.Type)));
+
+                                //airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type),0));
+                            }
+                            
+                     
+                        }
+                        if (airliner.CurrentFlight.isCargoFlight())
+                        {
+                            airliner.CurrentFlight.Cargo = PassengerHelpers.GetFlightCargo(airliner);
+                        }
+                    }
+                    //SetTakeoffStatistics(airliner);
+
+                    if (airliner.CurrentFlight.ExpectedLanding.ToShortDateString()
+                        == GameObject.GetInstance().GameTime.ToShortDateString())
+                    {
+                        SimulateLanding(airliner);
                     }
                 }
-                //SetTakeoffStatistics(airliner);
-
-                if (airliner.CurrentFlight.ExpectedLanding.ToShortDateString()
-                    == GameObject.GetInstance().GameTime.ToShortDateString())
-                {
-                    SimulateLanding(airliner);
-                }
-            }
+            
+           
         }
 
         //simulates the service of a flight
@@ -352,9 +365,9 @@
             airliner.Data.addOperatingValue(new OperatingValue("In-flight Services", GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, feesIncome));
 
             airliner.Data.addOperatingValue(new OperatingValue("Fuel Expenses", GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, -fuelExpenses));
-          
 
-            double expenses = fuelExpenses + AirportHelpers.GetLandingFee(dest,airliner.Airliner) + tax;
+
+            double expenses = fuelExpenses + AirportHelpers.GetLandingFee(dest, airliner.Airliner) + tax;
 
             if (double.IsNaN(expenses))
             {
@@ -368,7 +381,7 @@
 
             FleetAirlinerHelpers.SetFlightStats(airliner);
 
-            long airportIncome = Convert.ToInt64(AirportHelpers.GetLandingFee(dest,airliner.Airliner));
+            long airportIncome = Convert.ToInt64(AirportHelpers.GetLandingFee(dest, airliner.Airliner));
             dest.Income += airportIncome;
 
             Airline airline = airliner.Airliner.Airline;
@@ -428,7 +441,7 @@
 
                 wages = cabinCrew * flighttime.TotalHours
                         * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cabin Wage"));
-                    // +(airliner.CurrentFlight.Entry.TimeTable.Route.getTotalCabinCrew() * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cabin kilometer rate")) * fdistance) + (airliner.Airliner.Type.CockpitCrew * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cockpit kilometer rate")) * fdistance);
+                // +(airliner.CurrentFlight.Entry.TimeTable.Route.getTotalCabinCrew() * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cabin kilometer rate")) * fdistance) + (airliner.Airliner.Type.CockpitCrew * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cockpit kilometer rate")) * fdistance);
                 //wages
                 AirlineHelpers.AddAirlineInvoice(
                     airline,
