@@ -360,6 +360,16 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </filter:SortableGridViewColumn>
+                                    <filter:SortableGridViewColumn
+                                    Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1019'}"
+                                    CanFilter="False" SortPropertyName="Airliner.Airline" Width="200">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ContentControl Content="{Binding Airliner.Airline}" VerticalAlignment="Bottom"
+                                                        ContentTemplate="{StaticResource AirlineLongLink}" Width="200" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </filter:SortableGridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </filter:FilterableListView>

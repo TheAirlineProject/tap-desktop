@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="Air Arabia" iata="G9" color="Black" country="156" CEO="Adel Ali" mentality="Safe" market="Global"
            preferedairport="SHJ">
+               <narrative narrative="Air Arabia was established on 3 February 2003 by an Amiri decree issued by Dr. Sultan bin Mohamed Al-Qasimi, the Ruler of Sharjah and member of the Supreme Council of the United Arab Emirates, becoming the first low-fare airline in the region." />
   </profile>
   <info real="True" from="2003" to="2199" />
 </airline>

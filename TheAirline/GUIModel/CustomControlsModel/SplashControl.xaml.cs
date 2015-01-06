@@ -34,6 +34,10 @@ namespace TheAirline.GUIModel.CustomControlsModel
         public SplashControl()
         {
             InitializeComponent();
+
+        
         }
+
+       
     }
 }

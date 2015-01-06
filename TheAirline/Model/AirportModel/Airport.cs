@@ -276,14 +276,18 @@
         public void addAirportFacility(Airline airline, AirportFacility facility, DateTime finishedDate)
         {
             //this.Facilities.RemoveAll(f => f.Airline == airline && f.Facility.Type == facility.Type);
-            this.Facilities.Add(new AirlineAirportFacility(airline, this, facility, finishedDate));
+
+            lock (this.Facilities)
+                this.Facilities.Add(new AirlineAirportFacility(airline, this, facility, finishedDate));
         }
 
         //sets the facility for an airline
         public void addAirportFacility(AirlineAirportFacility facility)
         {
             //this.Facilities.RemoveAll(f => f.Airline == facility.Airline && f.Facility.Type == facility.Facility.Type);
-            this.Facilities.Add(facility);
+
+            lock (this.Facilities)
+                this.Facilities.Add(facility);
         }
 
         public void addCargoDestinationStatistics(Airport destination, double cargo)
@@ -416,22 +420,27 @@
 
         public void clearFacilities()
         {
-            this.Facilities = new List<AirlineAirportFacility>();
+            lock (this.Facilities)
+                this.Facilities = new List<AirlineAirportFacility>();
         }
 
         //cleares the list of facilities for an airline
         public void clearFacilities(Airline airline)
         {
-            this.Facilities.RemoveAll(f => f.Airline == airline);
+            lock (this.Facilities)
+                this.Facilities.RemoveAll(f => f.Airline == airline);
         }
         //returns if an airline is building a facility
         public Boolean isBuildingFacility(Airline airline, AirportFacility.FacilityType type)
         {
-             var facilities = new List<AirlineAirportFacility>(this.Facilities);
+            Boolean isFacility = false;
              lock (this.Facilities)
              {
-                 return facilities.Exists(f => f.Airline == airline && f.Facility.Type == type && f.FinishedDate > GameObject.GetInstance().GameTime);
+               
+                 isFacility =  this.Facilities.Exists(f => f.Airline == airline && f.Facility.Type == type && f.FinishedDate > GameObject.GetInstance().GameTime);
              }
+
+             return isFacility;
        
         }
         public AirlineAirportFacility getAirlineAirportFacility(Airline airline, AirportFacility.FacilityType type)
@@ -459,7 +468,9 @@
 
         public AirportFacility getAirlineBuildingFacility(Airline airline, AirportFacility.FacilityType type)
         {
-            AirlineAirportFacility facility =
+            AirlineAirportFacility facility = null;
+
+            lock (this.Facilities)
                 this.Facilities.FirstOrDefault(
                     f =>
                         f.Airline == airline && f.Facility.Type == type
@@ -554,7 +565,12 @@
         //returns all facilities
         public List<AirlineAirportFacility> getAirportFacilities()
         {
-            return this.Facilities;
+            var facilities = new List<AirlineAirportFacility>();
+
+            lock (this.Facilities)
+                facilities = new List<AirlineAirportFacility>(this.Facilities);
+
+            return facilities;
         }
 
         public AirportFacility getAirportFacility(
@@ -827,7 +843,12 @@
         //returns if the airport has a facility for any airline
         public Boolean hasAirlineFacility()
         {
-            return this.Facilities.Exists(f => f.Airline != null && f.Facility.TypeLevel > 0);
+            Boolean hasFacility = false;
+
+            lock (this.Facilities)
+                hasFacility =  this.Facilities.Exists(f => f.Airline != null && f.Facility.TypeLevel > 0);
+
+            return hasFacility;
         }
 
         public Boolean hasAsHomebase(Airline airline)
@@ -925,7 +946,8 @@
         //removes the facility for an airline
         public void removeFacility(Airline airline, AirportFacility facility)
         {
-            this.Facilities.RemoveAll(f => f.Airline == airline && f.Facility.Type == facility.Type);
+            lock (this.Facilities)
+                this.Facilities.RemoveAll(f => f.Airline == airline && f.Facility.Type == facility.Type);
         }
 
         //clears the list of facilites

@@ -576,6 +576,7 @@
     </runways>
   </airport>
   <airport name="Niederrhein Airport" icao="EDLV" iata="NRN" type="International" season="All_Year">
+      <period from="1/1/2003 12:00:00 AM" to="1/1/2199 12:00:00 AM" />
     <town town="Weeze / Duisburg" country="1002" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="51°36'8''N" />

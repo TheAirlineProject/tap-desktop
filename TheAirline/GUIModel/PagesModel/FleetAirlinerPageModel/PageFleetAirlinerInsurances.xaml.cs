@@ -50,9 +50,9 @@
             {
                 var fMaintenance = this.Airliner.Airliner.Maintenance.Checks.First(c => c.Type == maintenance.Type);
 
-                if (fMaintenance.CheckCenter != null)
+                if (fMaintenance.CheckCenter != null) 
                 {
-                    maintenance.Center =fMaintenance.CheckCenter.Airport != null ? maintenance.Centers.First(c => c.Airport == fMaintenance.CheckCenter.Airport) : maintenance.Centers.First(c => c.Center == fMaintenance.CheckCenter.Center);
+                    maintenance.Center = fMaintenance.CheckCenter.Airport != null ? maintenance.Centers.FirstOrDefault(c => c.Airport == fMaintenance.CheckCenter.Airport) : maintenance.Centers.FirstOrDefault(c => c.Center == fMaintenance.CheckCenter.Center);
                 }
             }
         }

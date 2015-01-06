@@ -9558,7 +9558,7 @@
       <runway name="12/30" length="2560" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Federico Fellini International Airport" icao="LIPR" iata="RMI" type="International" season="All_Year">
+  <airport name="Federico Fellini International Airport" icao="LIPR" iata="RMI" type="International" season="Summer">
     <town town="Rimini" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="44°1'10''N" />

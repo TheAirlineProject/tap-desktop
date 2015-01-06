@@ -17,9 +17,9 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0" Width="400">
+                <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                        <StackPanel>
+                        <StackPanel Width="400">
                             <TextBlock
                                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSelectOpponents 1000'}"
                                 VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
@@ -45,16 +45,16 @@
                                         Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 201'}"
                                         Width="NaN" Click="btnCreateGame_Click" />
                             </WrapPanel>
-                            <c:SplashControl Visibility="Collapsed" Text="Creating...." HorizontalAlignment="Center"
+                            <c:SplashControl Visibility="Collapsed" Text="Creating...." HorizontalAlignment="Center" Loaded="SplashControl_Loaded"
                                              VerticalAlignment="Center" x:Name="scCreating" />
 
                         </StackPanel>
                     </ScrollViewer>
                 </Border>
-                <Border Style="{StaticResource RoundedBorderStyle}" Margin="5 0 0 0" Grid.Column="1" Width="400">
+                <Border Style="{StaticResource RoundedBorderStyle}" Margin="5 0 0 0" Grid.Column="1">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
-                        <StackPanel>
+                        <StackPanel Width="400">
                             <TextBlock
                                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSelectOpponents 1001'}"
                                 VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />

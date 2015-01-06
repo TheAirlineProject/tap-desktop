@@ -155,6 +155,8 @@
             if (this.cbYear != null && this.cbRegion != null && cbContinent != null && this.cbYear.SelectedItem != null && this.cbRegion.SelectedItem != null
                 && this.cbContinent.SelectedItem != null)
             {
+                Boolean majorAirlines = cbMajorAirlines.IsChecked.Value;
+
                 int index = cbOpponents.SelectedIndex;
                 
                 var year = (int)this.cbYear.SelectedItem;
@@ -166,7 +168,8 @@
                         airline =>
                             (airline.Profile.Country.Region == region || (region.Uid == "100" && continent.Uid == "100")
                              || (region.Uid == "100" && continent.hasRegion(airline.Profile.Country.Region)))
-                            && airline.Profile.Founded <= year && airline.Profile.Folded > year && (airline.MarketFocus ==  Airline.AirlineFocus.Global || !cbMajorAirlines.IsChecked.Value));
+                             && (!majorAirlines || airline.MarketFocus == Airline.AirlineFocus.Global)
+                            && airline.Profile.Founded <= year && airline.Profile.Folded > year);
 
                 this.cbOpponents.Items.Clear();
 

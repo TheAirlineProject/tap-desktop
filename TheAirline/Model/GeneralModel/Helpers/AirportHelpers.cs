@@ -335,9 +335,9 @@
 
             WeatherAverage average =
                 WeatherAverages.GetWeatherAverages(
-                    w => ((w.Airport != null && w.Airport == airport) || (w.Town != null && w.Town == airport.Profile.Town) || (w.Country != null && w.Country == airport.Profile.Town.Country)) && w.Month == GameObject.GetInstance().GameTime.Month)
+                    w => (w.Airport != null && w.Airport == airport)) //|| (w.Town != null && w.Town == airport.Profile.Town) || (w.Country != null && w.Country == airport.Profile.Town.Country)) && w.Month == GameObject.GetInstance().GameTime.Month)
                     .FirstOrDefault();
-            /*
+            
             if (average == null)
             {
                 average =
@@ -355,7 +355,7 @@
                             w.Country != null && w.Country == airport.Profile.Town.Country
                             && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
             }
-           **/
+           
             if (average == null)
             {
                 CreateMonthlyAirportWeather(airport,5);

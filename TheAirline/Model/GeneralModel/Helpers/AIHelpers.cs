@@ -1360,15 +1360,22 @@
                 var fleet =
                     new List<FleetAirliner>(
                         airline.Fleet.FindAll(
-                            a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute));
+                            a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute
+                            && a.Airliner.Status == Airliner.StatusTypes.Normal && a.Airliner.Airline == a.Airliner.Owner));
                 int max = fleet.Count;
 
-                Boolean outlease = max > 0 && rnd.Next(1000 / max) == 0;
+                Boolean outlease =  max > 0 && rnd.Next(1000 / max) == 0;
 
                 if (outlease)
                 {
                     var sFleet = fleet.OrderBy(f => f.Airliner.BuiltDate.Year);
-                    sFleet.ToList()[0].Airliner.Status = Airliner.StatusTypes.Leasing;
+
+                    if (sFleet.Count() > 0)
+                    {
+                        sFleet.ToList()[0].Airliner.Status = Airliner.StatusTypes.Leasing;
+
+                       //Console.WriteLine("{0} has outleased {1}", airline.Profile.Name, sFleet.ToList()[0].Airliner.TailNumber);
+                    }
                 }
 
                 fleet =
@@ -1992,7 +1999,9 @@
 
                             if (fAirliner == null)
                             {
-                                if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name
+                                Country tailnumberCountry = Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber);
+
+                                if (tailnumberCountry == null || tailnumberCountry.Name 
                                     != airline.Profile.Country.Name)
                                 {
                                     airliner.Value.Key.TailNumber =

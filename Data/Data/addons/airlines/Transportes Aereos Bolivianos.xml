@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Transportes Aereos Bolivianos" iata="2L" color="SlateBlue" country="211" CEO="Marcelo Bautista" mentality="Safe" market="Global" preferedairport="VVI" routefocus="Cargo">
+  <narrative narrative="TAB for short, is a cargo airline based in Bolivia that is ran by the air force of Bolivia. Its base is Viru Viru airport in Santa Cruz de la Sierra. It was founded in 1977 and its original base was La Paz using C-130 military transports. In 1992 it shut down but in 1999 it was reopened with a new base at Santa Cruz and a HQ at Cochabamba. In May 2011 it was flying to 3 domestic airports and Miami in the US,and Lima,Peru and Caracas,Venezuela on a scheduled basis.It still uses a military C-130 Hercules but also as of May 2011 has three DC-10's. The civilian Hercules is the L-100-30. "/>
+</profile>
+  <info real="True" from="1999" to="2199" />
+  <prefereds aircrafts="Lockheed L-100-30,MD DC-10-30F,MD DC-10-10F"></prefereds>
+  <airports>
+<airport  preferedairport="LPB" date="1.01.1977 00:00:00"></airport>
+<airport   preferedairport="VVI" date="1.01.1999 00:00:00"></airport>
+</airports>
+<focusairports>
+       <focusairport airport="LPB"></focusairport>
+       <focusairport airport="VVI"></focusairport>
+     </focusairports>
+ <!--the airliners the airline would start with which isn't on a route earyl ( 1977) late (2015)-->
+	         <airliners>
+	    <airliner type="Lockheed L-100-30" early="3" late="1"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl ( 1977) late (2015)-->
+	         <airliners>
+	    <airliner type="MD DC-10-10F" early="0" late="2"></airliner>
+	     </airliners>
+	     	      <!--the airliners the airline would start with which isn't on a route earyl ( 1977) late (2015)-->
+	         <airliners>
+	    <airliner type="MD DC-10-30F" early="0" late="1"></airliner>
+	     </airliners>
+ 
+     
+
+
+</airline>

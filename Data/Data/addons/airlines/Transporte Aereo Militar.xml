@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Transporte Aereo Militar" iata="TAM" color="Yellow" country="211" CEO="Walter Arze Rojas" mentality="Safe" market="Domestic" preferedairport="LPB">
+  <narrative narrative="Transporte Aereo Militar or TAM, is a domestic Bolivian airline owned by the countries air force. It was established in 1945 to serve rural communities and now also competes with other airlines on key Bolivian domestic routes. It has 4 regular service destinations and offers flights to 31 total domestic airports, the other 27 being charters by request. Its main base is La Paz at El Alto airport with Trinidad and Santa Cruz de la Sierra's El Trompillo airport being other hubs. Rurrenabaque is a focus city. In 2014 it had six British Aerospace 146-200's, four Boeing 737-200 Adv.s and a 300, a Boeing 727-200 Adv., two Xian MA60's,two Casa 212 Aviocars, and a Fokker F27. In storage was a Convair 240 series plane and being preserved was a C-47, the military version of the DC-3."/>
+</profile>
+  <info real="True" from="1945" to="2199" />
+  <prefereds aircrafts="BAe 146-200,Boeing 737-200 Adv.,C212 Aviocar,Xian MA60,Boeing 727-200 Adv.,Fokker F27,Boeing 737-300,Douglas DC-3,Convair 240,Convair 440"></prefereds>
+<focusairports>
+       <focusairport airport="TDD"></focusairport>
+       <focusairport airport="SRZ"></focusairport>
+       <focusairport airport="RBQ"></focusairport>
+     </focusairports>
+ <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2015)-->
+	         <airliners>
+	    <airliner type="BAe 146-200" early="2" late="6"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200 Adv." early="3" late="4"></airliner>
+	     </airliners>
+	     	      <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	      <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 727-200 Adv." early="1" late="1"></airliner>
+	     </airliners>
+	          	     	      <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2015)-->
+	         <airliners>
+	    <airliner type="Xian MA60" early="0" late="2"></airliner>
+	     </airliners>
+	      	     	      <!--the airliners the airline would start with which isn't on a route earyl (1975) late (2015)-->
+	         <airliners>
+	    <airliner type="C212 Aviocar" early="0" late="2"></airliner>
+	     </airliners>
+	      	     	      <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2015)-->
+	         <airliners>
+	    <airliner type="Fokker F27" early="0" late="1"></airliner>
+	     </airliners>
+	      	     	      <!--the airliners the airline would start with which isn't on a route earyl (1945) late (2015)-->
+	         <airliners>
+	    <airliner type="Douglas DC-3" early="1" late="0"></airliner>
+	     </airliners>
+	      	     	      <!--the airliners the airline would start with which isn't on a route earyl (1950) late (2015)-->
+	         <airliners>
+	    <airliner type="Convair 240" early="1" late="0"></airliner>
+	     </airliners>
+
+
+
+</airline>

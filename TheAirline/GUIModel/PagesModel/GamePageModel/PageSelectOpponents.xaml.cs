@@ -1,25 +1,26 @@
 ﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Input;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.GUIModel.MasterPageModel;
-    using TheAirline.GUIModel.ObjectsModel;
-    using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using TheAirline.GUIModel.CustomControlsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.MasterPageModel;
+using TheAirline.GUIModel.ObjectsModel;
+using TheAirline.GUIModel.PagesModel.AirlinePageModel;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
     /// <summary>
     ///     Interaction logic for PageSelectOpponents.xaml
     /// </summary>
     public partial class PageSelectOpponents : Page
     {
+        private SplashControl scCreating;
         #region Constructors and Destructors
 
         public PageSelectOpponents(StartDataObject sdo)
@@ -60,7 +61,10 @@
         #endregion
 
         #region Methods
-
+        private void SplashControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            scCreating = (SplashControl)sender;
+        }
         private void btnCreateGame_Click(object sender, RoutedEventArgs e)
         {
             var airlines = new List<Airline>();
@@ -72,19 +76,13 @@
 
             this.StartData.Opponents = airlines;
 
-            var smp = this.Content as StandardMasterPage;
-
-            //var frmContent = UIHelpers.FindChild<Frame>(this, "scCreating");
-
-            // SplashControl scCreating = UIHelpers.FindChild<SplashControl>(smp, "scCreating"); 
-
-            //scCreating.Visibility = System.Windows.Visibility.Visible;
+            scCreating.Visibility = System.Windows.Visibility.Visible;
 
             var bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (y, x) => { GameObjectHelpers.CreateGame(this.StartData); };
             bgWorker.RunWorkerCompleted += (y, x) =>
             {
-                //  scCreating.Visibility = System.Windows.Visibility.Collapsed;
+                scCreating.Visibility = System.Windows.Visibility.Collapsed;
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
 

@@ -3549,7 +3549,7 @@ Good luck.</value>
     <value>Load Configuration</value>
   </data>
   <data name="PageAirline_2000_name" xml:space="preserve">
-    <value>Rating &amp; Statistics</value>
+    <value>Ratings &amp; Statistics</value>
   </data>
   <data name="PageAirline_2001_name" xml:space="preserve">
     <value>Employees</value>
@@ -5634,7 +5634,7 @@ Good luck.</value>
     <value>Flown Hours</value>
   </data>
   <data name="PageFleetAirlinerInformation_1017_name" xml:space="preserve">
-    <value>Flown Hours</value>
+    <value>Flown Hours (DD:HH:MM)</value>
   </data>
   <data name="PageShowPilot_1007_name" xml:space="preserve">
     <value>Flown Hours</value>
@@ -5665,5 +5665,20 @@ Good luck.</value>
   </data>
   <data name="News_1021_name" xml:space="preserve">
     <value>Cancelled Flight</value>
+  </data>
+  <data name="PageAirlineFleet_1019_name" xml:space="preserve">
+    <value>At Airline</value>
+  </data>
+  <data name="PageAirlineRatings_1016_name" xml:space="preserve">
+    <value>Routes Ratings</value>
+  </data>
+  <data name="PageAirlineRatings_1017_name" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="PageAirlineRatings_1018_name" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="PageAirlineRatings_1019_name" xml:space="preserve">
+    <value>Type</value>
   </data>
 </root>

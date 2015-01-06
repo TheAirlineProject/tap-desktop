@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Hawaiian Airlines" iata="HA" color="DeepPink" country="122" CEO="Mark Dunkerley" mentality="Aggressive" market="Global" preferedairport="HNL">
+    <narrative narrative="Hawaiian Airlines is the main airline of the US island chain state of Hawaii. Its base is the states largest city of Honolulu on Oahu island. Its second hub is at Kahului on Maui. It is the 8th largest commercial airline of the US. As of March 2014 27 destinations including Honolulu and Kalahui were being served. 11 of these were on the mainland US, 5 in Hawaii and Pago Pago in American Samoa. International ones were 4 in Japan,2 in Australia, Beijing,China Seoul,South Korea Auckland New Zealand, and Papeete,French Polynesia.As of November 2014 its fleet was 19 A330-200's with 3 on order and an option for 5 more. 18 Boeing 717's, 9 767-300ER's and two 767-300's.  The two non ER 300's retire in 2015. And the two oldest ER 300's do also. Its brand 'Ohana which is ran by Spokane,Washington based Empire Airlines uses 3 ATR 42-500's. 'Ohana began in March 2014 doing inter island flights. Other orders include 16-25 Airbus A321neo's and 6-12 A330-800neo's which is the A330-200 replacement. It was founded in 1929 as Inter-Island Airways and just flew within Hawaii until 1941 when it changed its name to Hawaiian Airlines on October 1st. Past planes include 39 DC-9's. 5 DC-9-10's from 1966-1971, 12 DC-9-30's from 1968-around 1975 and 22 DC-9-50's from 1975 to 2001. 5 MD-81's were used in the 80's. 14 DC-10's from 1994-2003.5 Lockheed TriStars from 85-94. 3 DC-8's from 1983-1993. 6 Dash 7's from 81' to 94'. 13 Convairs from 53' to 73'. 4 DC-6's from 58-69. 13 DC-3's from 41-66.Its first plane was a Bellanca Pacemaker which was reqcquired in 2009 and restored. Sikorsky 38's and 43's were also used from 1929-1946. " />
+<names>
+<name value="Inter-Island Airways" from="1.1.1929 00:00:00"></name>
+<name value="Hawaiian Airlines" from="10.1.1941 00:00:00"></name>
+</names>
+<logos>
+      <logo from="1929" to="1941" path="HA1929-1941"></logo>
+      <logo from="1941" to="1964" path="HA1941-1964"></logo>
+      <logo from="1964" to="1973" path="HA1964-1973"></logo>
+      <logo from="1973" to="2000" path="HA1973-2000"></logo>
+    </logos>
+</profile>
+   <info real="True" from="1929" to="2199"></info>
+   <prefereds aircrafts="Airbus A330-200,Boeing 717-200,Boeing 767-300ER,Boeing 767-300,Douglas DC-10-10,Airbus A321neo,Douglas DC-9-30,MD-81 (DC-9-81),Douglas DC-9-15,MD DC-9-50,Douglas DC-8-63,Lockheed L-1011-500,Douglas DC-3,Douglas DC-6,DHC-7-100,Convair 240"></prefereds>
+   <focusairports>
+	 <focusairport airport="OGG"></focusairport>
+     </focusairports>
+<logos>
+      <logo from="1929" to="1941" path="HA1929-1941"></logo>
+      <logo from="1941" to="1964" path="HA1941-1964"></logo>
+      <logo from="1964" to="1973" path="HA1964-1973"></logo>
+      <logo from="1973" to="2000" path="HA1973-2000"></logo>
+    </logos>
+    <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 717-200" early="11" late="18"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300ER" early="3" late="9"></airliner>
+	     </airliners>
+	      	  <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2016)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300" early="2" late="0"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2016)-->
+	         <airliners>
+	    <airliner type="Airbus A330-200" early="3" late="22"></airliner>
+	     </airliners>
+	          	  <!--the airliners the airline would start with which isn't on a route earyl (1966) late (1973)-->
+	         <airliners>
+	    <airliner type="Douglas DC-9-15" early="2" late="0"></airliner>
+	     </airliners>
+	           	  <!--the airliners the airline would start with which isn't on a route earyl (1968) late (1977)-->
+	         <airliners>
+	    <airliner type="Douglas DC-9-30" early="2" late="0"></airliner>
+	     </airliners>
+	     	  <!--the airliners the airline would start with which isn't on a route earyl (1981) late (1994)-->
+	         <airliners>
+	    <airliner type="MD-81 (DC-9-81)" early="2" late="0"></airliner>
+	     </airliners>
+	          	  <!--the airliners the airline would start with which isn't on a route earyl (1984) late (1994)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-63" early="3" late="0"></airliner>
+	     </airliners>
+	     	          	  <!--the airliners the airline would start with which isn't on a route earyl (1994) late (2004)-->
+	         <airliners>
+	    <airliner type="Douglas DC-10-10" early="7" late="0"></airliner>
+	     </airliners>
+	          	          	  <!--the airliners the airline would start with which isn't on a route earyl (1976) late (1995)-->
+	         <airliners>
+	    <airliner type="MD DC-9-50" early="3" late="0"></airliner>
+	     </airliners>
+	      	          	  <!--the airliners the airline would start with which isn't on a route earyl (1985) late (1995)-->
+	         <airliners>
+	    <airliner type="Lockheed L-1011-500" early="5" late="0"></airliner>
+	     </airliners>
+	      	          	  <!--the airliners the airline would start with which isn't on a route earyl (1953) late (1974)-->
+	         <airliners>
+	    <airliner type="Convair 240" early="13" late="0"></airliner>
+	     </airliners>
+	      	          	  <!--the airliners the airline would start with which isn't on a route earyl (1958) late (1970)-->
+	         <airliners>
+	    <airliner type="Douglas DC-6" early="4" late="0"></airliner>
+	     </airliners>
+	      	          	  <!--the airliners the airline would start with which isn't on a route earyl (1941) late (1967)-->
+	         <airliners>
+	    <airliner type="Douglas DC-3" early="13" late="0"></airliner>
+	     </airliners>
+	      	          	  <!--the airliners the airline would start with which isn't on a route earyl (1981) late (1995)-->
+	         <airliners>
+	    <airliner type="DHC-7-100" early="6" late="0"></airliner>
+	     </airliners>
+	           	          	  <!--the airliners the airline would start with which isn't on a route earyl (2016) late (2021)-->
+	         <airliners>
+	    <airliner type="Airbus A321neo" early="5" late="25"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</airline>

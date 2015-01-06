@@ -217,7 +217,10 @@
             }
 
             var country = (Country)this.cbCountry.SelectedItem;
-            string color = ((PropertyInfo)this.cbColor.SelectedItem).Name;
+            string color = "DarkBlue";
+                
+            if (this.cbColor.SelectedItem != null)
+                color = ((PropertyInfo)this.cbColor.SelectedItem).Name;
 
             var profile = new AirlineProfile(name, iata, color, ceo, false, 1950, 2199);
             profile.Countries = new List<Country> { country };

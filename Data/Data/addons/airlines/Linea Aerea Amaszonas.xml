@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Linea Aerea Amaszonas" iata="Z8" color="Lime" country="211" CEO="Sergio de Urioste" mentality="Safe" market="Regional" preferedairport="LPB">
+  <narrative narrative="Amaszonas is based at La Paz,Bolivia's El Alto airport with a focus city at Santa Cruz de la Sierra,Bolivia and a Brazil focus city at Campo Grande. As of December 2014 it was serving 10 domestic airports
+besides its hub and focus, along with 2 in Peru,and one each in Brazil,Chile,Argentina,Paraguay,and Uruguay. It has 7 CRJ200's as of November 2014. It was founded in 1998 and began service in 2000 doing charters with Cessna 208's and Fairchild Metroliners. In 2012 following the demise of AeroSur it got three CRJ's and began scheduled service. It has got 4 more since."/>
+</profile>
+  <info real="True" from="1999" to="2199" />
+  <prefereds aircrafts="Bombardier CRJ200,Cessna 208B,Fairchild Swearingen Metroliner"></prefereds>
+<focusairports>
+       <focusairport airport="VVI"></focusairport>
+       <focusairport airport="CGR"></focusairport>
+     </focusairports>
+ <!--the airliners the airline would start with which isn't on a route earyl ( 2012) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ200" early="3" late="7"></airliner>
+	     </airliners>
+ 
+     
+
+
+</airline>

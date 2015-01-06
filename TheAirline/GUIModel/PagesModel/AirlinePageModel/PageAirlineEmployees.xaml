@@ -179,7 +179,7 @@
                                                 <TextBlock 
                                    VerticalAlignment="Bottom" >
                                                     <TextBlock.Text>
-                                                        <MultiBinding StringFormat="{}{0:D2}:{1:D2}" Mode="OneTime">
+                                                        <MultiBinding StringFormat="{}{0:0,0}:{1:01}" Mode="OneTime">
                                                             <Binding Path="Pilot.FlownHours.TotalHours" />
                                                             <Binding Path="Pilot.FlownHours.Minutes" />
                                                         </MultiBinding>

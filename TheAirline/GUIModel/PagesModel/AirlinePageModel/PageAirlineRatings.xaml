@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+       xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
       mc:Ignorable="d"
       Name="pageAirlineRatings"
       d:DesignHeight="300" d:DesignWidth="300"
@@ -17,24 +18,63 @@
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0">
-
-                <StackPanel>
-                    <TextBlock
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock
                         Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1000'}"
                         VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
-                    <ListBox Background="Transparent" ItemTemplate="{StaticResource ScoreItem}" BorderThickness="0"
+                        <ListBox Background="Transparent" ItemTemplate="{StaticResource ScoreItem}" BorderThickness="0"
                              ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                              ItemsSource="{Binding AirlineRatings,ElementName=pageAirlineRatings}" />
-                
+                        <TextBlock VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"
+                               Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1016'}" />
+                        <ListView VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" BorderThickness="0"
+                              Background="Transparent" ItemsSource="{Binding Routes}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1019'}"
+                                    Width="100" util:GridViewSort.PropertyName="Route.Type">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Route.Type,Mode=OneTime}" VerticalAlignment="Bottom"></TextBlock>
 
-                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1017'}"
+                                    Width="150" util:GridViewSort.PropertyName="Route.Destination1.Profile.Name">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ContentControl Content="{Binding Route,Mode=OneTime}" VerticalAlignment="Bottom"
+                                                            ContentTemplate="{StaticResource RouteFlagItem}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn
+                                    Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1018'}"
+                                    Width="100" util:GridViewSort.PropertyName="Score">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Score,Mode=OneTime,StringFormat={}{0:0.#;-;-}}" VerticalAlignment="Bottom"></TextBlock>
+
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+
+                    </StackPanel>
+                </ScrollViewer>
             </Border>
             <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="1" Margin="5 0 0 0">
                 <StackPanel>
@@ -93,5 +133,5 @@
                 </StackPanel>
             </Border>
         </Grid>
-    </ScrollViewer>
+ 
 </Page>

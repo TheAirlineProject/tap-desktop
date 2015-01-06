@@ -35,6 +35,9 @@
    <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
     <countries fromtype="C" from="251" totype="U" to="101"></countries>
   </restriction>
+     <restriction type="Airlines" start="01.01.2015 00:00:00" end="12.31.2199 00:00:00">
+    <countries fromtype="C" from="125" totype="U" to="101"></countries>
+  </restriction>
       <restriction type="Airlines" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
     <countries fromtype="C" from="187" totype="U" to="101"></countries>
   </restriction>

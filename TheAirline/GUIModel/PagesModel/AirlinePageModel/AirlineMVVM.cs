@@ -64,7 +64,7 @@
             this.DeliveredFleet = new ObservableCollection<FleetAirliner>();
             foreach (
                 FleetAirliner airliner in
-                    this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && a.Airliner.Status == Airliner.StatusTypes.Normal))
+                    this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && a.Airliner.Airline == this.Airline && a.Airliner.Status == Airliner.StatusTypes.Normal))
             {
                 this.DeliveredFleet.Add(airliner);
             }
@@ -77,7 +77,7 @@
 
             foreach (
              FleetAirliner airliner in
-                 this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && a.Airliner.Status == Airliner.StatusTypes.Leasing))
+                 this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && (a.Airliner.Status == Airliner.StatusTypes.Leasing || (a.Airliner.Owner != a.Airliner.Airline && a.Airliner.Owner == this.Airline))))
             {
                 this.OutleasedFleet.Add(airliner);
             }
@@ -545,6 +545,7 @@
 
             this.DeliveredFleet.Add(airliner);
             this.OutleasedFleet.Remove(airliner);
+
         }
         //adds a subsidiary airline
         public void addSubsidiaryAirline(SubsidiaryAirline airline)
@@ -1521,7 +1522,7 @@
         }
 
 }
-
+  
     //the mvvm class for a loan
     public class LoanMVVM : INotifyPropertyChanged
     {
@@ -1641,12 +1642,19 @@
 
         public AirlineRouteMVVM(Route route)
         {
+            
             this.Route = route;
 
+            this.Score = -1;
+            
             if (this.Route.Type == Route.RouteType.Passenger)
             {
                 this.PriceIndex =
                     ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).FarePrice;
+
+                if (this.Route.HasAirliner)
+                    this.Score = RouteHelpers.GetRouteTotalScore(this.Route);
+
             }
             else if (this.Route.Type == Route.RouteType.Cargo)
             {
@@ -1672,6 +1680,7 @@
 
         public double PriceIndex { get; set; }
 
+        public double Score{ get; set; }
         public Route Route { get; set; }
 
         #endregion

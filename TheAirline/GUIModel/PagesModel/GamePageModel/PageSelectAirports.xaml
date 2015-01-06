@@ -48,7 +48,7 @@
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSelectAirports 1001'}" FontWeight="Bold" FontSize="14" VerticalAlignment="Bottom"></TextBlock>
                         <TextBlock Text="{Binding NumberOfAirports, ElementName=pageSelectAirports}" FontSize="14" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
                     </WrapPanel>
-                    <c:SplashControl Visibility="Collapsed" Text="Creating...." HorizontalAlignment="Center"
+                    <c:SplashControl Visibility="Collapsed" Text="Creating...." HorizontalAlignment="Center" Loaded="SplashControl_Loaded"
                          VerticalAlignment="Center" x:Name="scCreating" />
                     <Separator></Separator>
                 </StackPanel>

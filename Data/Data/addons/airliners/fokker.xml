@@ -6,7 +6,7 @@
     <specs wingspan="29.00" length="25.06" range="1826" speed="518" fuelcapacity="4560" consumption="0.052"
            runwaylengthrequired="1020" />
     <capacity passengers="48" cockpitcrew="2" cabincrew="1" maxclasses="1" />
-    <produced from="1955" to="1975" rate="18" />
+    <produced from="1958" to="1987" rate="20" />
   </airliner>
   <airliner manufacturer="Fokker" name="Fokker F28-1000" price="5214000">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />

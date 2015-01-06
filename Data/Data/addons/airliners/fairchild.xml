@@ -29,4 +29,18 @@
     <capacity passengers="34" cockpitcrew="2" cabincrew="1" maxclasses="1" />
     <produced from="1999" to="2015" rate="18" />
   </airliner>
+    <airliner manufacturer="Fairchild" name="Fairchild FH-227" price="1100000">
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="29.00" length="25.50" range="1826" speed="435" fuelcapacity="4560" consumption="0.018"
+           runwaylengthrequired="1020" />
+    <capacity passengers="56" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1958" to="1987" rate="3" />
+  </airliner>
+   <airliner manufacturer="Fairchild" name="Fairchild F-27" price="950000">
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="29.00" length="25.06" range="1826" speed="518" fuelcapacity="4560" consumption="0.052"
+           runwaylengthrequired="1020" />
+    <capacity passengers="48" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1958" to="1987" rate="4" />
+  </airliner>
 </airliners>

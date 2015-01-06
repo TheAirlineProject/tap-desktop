@@ -115,4 +115,5 @@
    <airlinerimage image="C411" types="Cessna 411"></airlinerimage>
   <airlinerimage image="C421" types="Cessna 421 Golden Eagle"></airlinerimage>
      <airlinerimage image="C425" types="Cessna 425 Conquest I"></airlinerimage>
+      <airlinerimage image="F27" types="Fokker F27,Fairchild F-27"></airlinerimage>
  </airlinerimages>

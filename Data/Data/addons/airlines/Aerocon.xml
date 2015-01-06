@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Aerocon" iata="A4" color="Orange" country="211" CEO="Nelson Kinn" mentality="Moderate" market="Domestic" preferedairport="TDD">
+  <narrative narrative="Aerocon is a domestic Bolivian carrier with its operations base at Trinidad and its HQ at Santa Cruz de la Sierras second smaller El Trompillo airport. At January 2013 it was operating at 14 domestic airports. It has a fleet of nine Fairchild Metroliner 19 seaters. It was founded in 2005."/>
+</profile>
+  <info real="True" from="2005" to="2199" />
+  <prefereds aircrafts="Fairchild Swearingen Metroliner"></prefereds>
+<focusairports>
+       <focusairport airport="SRZ"></focusairport>
+     </focusairports>
+ <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2015)-->
+	         <airliners>
+	    <airliner type="Fairchild Swearingen Metroliner" early="1" late="9"></airliner>
+	     </airliners>
+
+
+</airline>

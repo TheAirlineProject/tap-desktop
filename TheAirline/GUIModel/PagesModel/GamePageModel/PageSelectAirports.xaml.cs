@@ -32,7 +32,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         public StartDataObject StartData{ get; set; }
         public ObservableCollection<Country> AllCountries { get; set; }
         private ObservableCollection<Country> SelectedCountries;
-
+        private SplashControl scCreating;
         private int _numberofairports;
         public int NumberOfAirports
         {
@@ -125,6 +125,10 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                 this.NumberOfAirports = count + intlAirports;
             }
         }
+         private void SplashControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            scCreating = (SplashControl)sender;
+        }
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageStartMenu());
@@ -140,8 +144,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             }
             else
             {
-                var scCreating = UIHelpers.FindChild<SplashControl>(this, "scCreating");
-
+                
                 if (scCreating != null)
                     scCreating.Visibility = Visibility.Visible;
 
