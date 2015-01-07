@@ -4716,112 +4716,112 @@ Sok sikert!</value>
     <value>Repülőgép átalakítása</value>
   </data>
   <data name="MessageBox_2015_message" xml:space="preserve">
-    <value>Nincs elég pénze átalakítani e repülőgépet teherszállító repülőgéppé</value>
+    <value>You don&apos;t have enough money to convert the airliner to a cargo airliner</value>
   </data>
   <data name="MessageBox_2015_name" xml:space="preserve">
-    <value>A repülőgép nem alakítható át</value>
+    <value>Can&apos;t convert airliner</value>
   </data>
   <data name="PageFleetAirlinerInformation_205_name" xml:space="preserve">
-    <value>Átalakítás teherszállítóvá</value>
+    <value>Convert to Cargo</value>
   </data>
   <data name="PageCreateRoute_1018_name" xml:space="preserve">
-    <value>Kevert útvonal</value>
+    <value>Mixed Route</value>
   </data>
   <data name="PageShowAlliance_1010_name" xml:space="preserve">
-    <value>Szövetség útvonalai</value>
+    <value>Alliance Routes</value>
   </data>
   <data name="MessageBox_2407_message" xml:space="preserve">
-    <value>Biztosan szeretne aláírni codeshare egyezményt {0}-vel?</value>
+    <value>Are you sure you want to make a codeshare agreement with {0}?</value>
   </data>
   <data name="MessageBox_2407_name" xml:space="preserve">
-    <value>Codeshare egyezmény aláírása</value>
+    <value>Make codeshare agreement</value>
   </data>
   <data name="MessageBox_2408_message" xml:space="preserve">
-    <value>{0} nem szeretne aláírni codeshare egyezményt önnel.</value>
+    <value>{0} don&apos;t want to make a codeshare agreement with you.</value>
   </data>
   <data name="MessageBox_2408_name" xml:space="preserve">
-    <value>Egyezmény aláírása lehetetlen</value>
+    <value>Can&apos;t make agreement</value>
   </data>
   <data name="PageAirlineInfo_1034_name" xml:space="preserve">
-    <value>Codesharing egyezmények</value>
+    <value>Codesharings</value>
   </data>
   <data name="PageAirlineInfo_1035_name" xml:space="preserve">
-    <value>Szövetségek és codesharing egyezmények</value>
+    <value>Alliances and Codesharing Agreements</value>
   </data>
   <data name="PopUpCodeshareAgreement_1000_name" xml:space="preserve">
-    <value>Egyezmény típusának választása</value>
+    <value>Select Agreement Type</value>
   </data>
   <data name="PopUpCodeshareAgreement_1001_name" xml:space="preserve">
-    <value>Mindkét irányban</value>
+    <value>Both Ways</value>
   </data>
   <data name="PopUpCodeshareAgreement_1002_name" xml:space="preserve">
-    <value>Egy irányban</value>
+    <value>One Way</value>
   </data>
   <data name="MessageBox_2611_message" xml:space="preserve">
-    <value>Biztosan fel szeretné bontani a codesharing egyezményt ezzel: {0}?</value>
+    <value>Are you sure you want to terminate the codeshare agreement with {0}?</value>
   </data>
   <data name="MessageBox_2611_name" xml:space="preserve">
-    <value>Egyezmény felbontása</value>
+    <value>Terminate agreement</value>
   </data>
   <data name="PageShowAlliances_1002_name" xml:space="preserve">
-    <value>Codesharing egyezmények</value>
+    <value>Codeshare Agreements</value>
   </data>
   <data name="PageShowAlliances_1003_name" xml:space="preserve">
-    <value>Szövetségek</value>
+    <value>Alliances</value>
   </data>
   <data name="PageShowAlliances_1004_name" xml:space="preserve">
-    <value>Légitársaság 1</value>
+    <value>Airline 1</value>
   </data>
   <data name="PageShowAlliances_1005_name" xml:space="preserve">
-    <value>Légitársaság 2</value>
+    <value>Airline 2</value>
   </data>
   <data name="PageShowAlliances_1006_name" xml:space="preserve">
-    <value>Típus</value>
+    <value>Type</value>
   </data>
   <data name="PageCreateRoute_1019_name" xml:space="preserve">
-    <value>Összekötő útvonalak</value>
+    <value>Connecting Routes</value>
   </data>
   <data name="PageHumanRoutes_1008_name" xml:space="preserve">
-    <value>Codesharing útvonalak</value>
+    <value>Codesharing Routes</value>
   </data>
   <data name="PageHumanRoutes_1009_name" xml:space="preserve">
-    <value>Codesharing légitársaság</value>
+    <value>Codesharing Airline</value>
   </data>
   <data name="PopUpShowConnectingRoutes_1000_name" xml:space="preserve">
-    <value>Összekötő útvonalak</value>
+    <value>Connecting Routes</value>
   </data>
   <data name="PageAirportFacilities_1011_name" xml:space="preserve">
-    <value>Folyamatban levő légitársasági szolgáltatások</value>
+    <value>Airline Facilities in Progress</value>
   </data>
   <data name="PageAirportFacilities_1012_name" xml:space="preserve">
-    <value>Légitársaság megítélése</value>
+    <value>Airline Reputations</value>
   </data>
   <data name="PageAirportFacilities_1013_name" xml:space="preserve">
-    <value>Útvonalak</value>
+    <value>Routes</value>
   </data>
   <data name="PageAirportInfo_1043_name" xml:space="preserve">
-    <value>Folyamatban levő terminálok</value>
+    <value>Terminals in Progress</value>
   </data>
   <data name="PageAirportInfo_1044_name" xml:space="preserve">
-    <value>Szállítás napja</value>
+    <value>Delivery Date</value>
   </data>
   <data name="PageAirportInfo_1045_name" xml:space="preserve">
-    <value>Kapuk</value>
+    <value>Gates</value>
   </data>
   <data name="MessageBox_2231_message" xml:space="preserve">
-    <value>Biztosan meg szeretné szakítani az együttműködését {0} társasággal?</value>
+    <value>Are you sure you want to delete your cooperation with this {0}?</value>
   </data>
   <data name="MessageBox_2231_name" xml:space="preserve">
-    <value>Együttműködés megszakítása</value>
+    <value>Delete cooperation</value>
   </data>
   <data name="PageAirportFacilities_1014_name" xml:space="preserve">
     <value>Együttműködések</value>
   </data>
   <data name="MessageBox_2232_message" xml:space="preserve">
-    <value>Nincs elég pénze az együttműködést létrehozni</value>
+    <value>You don&apos;t have enough money to create this cooperation</value>
   </data>
   <data name="MessageBox_2232_name" xml:space="preserve">
-    <value>Nincs elég pénze</value>
+    <value>Not enough money</value>
   </data>
   <data name="PageAirlineFleet_1013_name" xml:space="preserve">
     <value>Együttműködések</value>
@@ -4842,55 +4842,55 @@ Sok sikert!</value>
     <value>Havi költség</value>
   </data>
   <data name="PageHumanRoutes_1010_name" xml:space="preserve">
-    <value>Útvonal típusa</value>
+    <value>Route Type</value>
   </data>
   <data name="MessageBox_2409_message" xml:space="preserve">
-    <value>Egyéni légitársaság be lett töltve!</value>
+    <value>The custom airline has been loaded!</value>
   </data>
   <data name="MessageBox_2409_name" xml:space="preserve">
-    <value>Légitársaság betöltve</value>
+    <value>Airline Loaded</value>
   </data>
   <data name="PageNewAirline_200_name" xml:space="preserve">
-    <value>Légitársaság létrehozása és mentése</value>
+    <value>Create and Save Airline</value>
   </data>
   <data name="PageNewGame_204_name" xml:space="preserve">
-    <value>Egyéni légitársaság betöltése</value>
+    <value>Load Custom Airline</value>
   </data>
   <data name="PageAirliners_2003_name" xml:space="preserve">
-    <value>Játékos flottája</value>
+    <value>Human Fleet</value>
   </data>
   <data name="PageAirlinersHumanFleet_1000_name" xml:space="preserve">
-    <value>Kiszálított flotta</value>
+    <value>Delivered Fleet</value>
   </data>
   <data name="PageAirlinersHumanFleet_1001_name" xml:space="preserve">
-    <value>Rendelt flotta</value>
+    <value>Ordered Fleet</value>
   </data>
   <data name="PageAirportInfo_1046_name" xml:space="preserve">
-    <value>Szerződés automatikus újítása</value>
+    <value>Autorenew Contract</value>
   </data>
   <data name="PageAirlineEditAirliners_1000_name" xml:space="preserve">
-    <value>Kiválasztott repülőgépek</value>
+    <value>Selected Airliners</value>
   </data>
   <data name="PageAirlineFleet_200_name" xml:space="preserve">
-    <value>Repülőgép(ek) módosítása</value>
+    <value>Edit Airliner(s)</value>
   </data>
   <data name="PageAirline_2006_name" xml:space="preserve">
-    <value>Repülőgépek módosítása</value>
+    <value>Edit Airliners</value>
   </data>
   <data name="PageAirlineEditAirliners_1001_name" xml:space="preserve">
-    <value>Repülőgépek szolgáltatásai</value>
+    <value>Airliners Facilities</value>
   </data>
   <data name="MessageBox_2128_message" xml:space="preserve">
-    <value>Biztosan szeretné alkalmazni a változásokat a repülőgép(ei)re?</value>
+    <value>Are you sure, you want to apply the changes to your airliner(s)?</value>
   </data>
   <data name="MessageBox_2128_name" xml:space="preserve">
-    <value>Változások alkalmazása</value>
+    <value>Apply Changes</value>
   </data>
   <data name="PageAirlineEditAirliners_200_name" xml:space="preserve">
-    <value>Változások alkalmazása</value>
+    <value>Apply Changes</value>
   </data>
   <data name="PageAirlineEditAirliners_201_name" xml:space="preserve">
-    <value>Beállítás betöltése</value>
+    <value>Load Configuration</value>
   </data>
   <data name="PageAirlineFleet_201_name" xml:space="preserve">
     <value>Útvonaltérkép</value>
@@ -4899,31 +4899,31 @@ Sok sikert!</value>
     <value>Kiválasztott ellenfelek</value>
   </data>
   <data name="PageSelectOpponents_1001_name" xml:space="preserve">
-    <value>Szabad ellenfelek</value>
+    <value>Available Opponents</value>
   </data>
   <data name="PopUpExtendContract_1000_name" xml:space="preserve">
-    <value>Repülőtérszerződés-hosszabbítás</value>
+    <value>Extend Airport Contract</value>
   </data>
   <data name="PopUpExtendContract_1001_name" xml:space="preserve">
-    <value>Repülőtér</value>
+    <value>Airport</value>
   </data>
   <data name="PopUpExtendContract_1002_name" xml:space="preserve">
-    <value>Beszállókapuk száma</value>
+    <value>Number of Gates</value>
   </data>
   <data name="PopUpExtendContract_1003_name" xml:space="preserve">
-    <value>Lejárat Dátuma</value>
+    <value>Expire Date</value>
   </data>
   <data name="PopUpExtendContract_1004_name" xml:space="preserve">
-    <value>Szerződés automatikus újítása</value>
+    <value>Autorenew Contract</value>
   </data>
   <data name="PageAirlineEmployees_1013_name" xml:space="preserve">
-    <value>Repülőgépeken gyakorlott</value>
+    <value>Trained in Aircrafts</value>
   </data>
   <data name="PagePilots_1009_name" xml:space="preserve">
-    <value>Repülőgépeken gyakorlott</value>
+    <value>Trained in Aircrafts</value>
   </data>
   <data name="PageShowPilot_1006_name" xml:space="preserve">
-    <value>Repülőgépeken gyakorlott</value>
+    <value>Trained in Aircrafts</value>
   </data>
   <data name="MessageBox_2129_message" xml:space="preserve">
     <value>Are you sure you want to pay {0} for a substitute pilot in {1} days?</value>

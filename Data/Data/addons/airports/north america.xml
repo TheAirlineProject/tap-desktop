@@ -9102,7 +9102,7 @@ season="All_Year">
       <runway name="14/32" length="1524" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Melbourne International Airport" icao="KMLB" iata="MLB" type="Domestic" season="All_Year">
+  <airport name="Melbourne International Airport" icao="KMLB" iata="MLB" type="International" season="All_Year">
     <town town="Melbourne, FL" country="122" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="028°06'10''N" />

@@ -66,6 +66,7 @@
       <manufacturer name="Mitsubishi Aircraft Corporation" shortname="Mitsubishi" country="171" />
        <manufacturer name="MD Helicopters" shortname="MDH" country="122" />  
 <manufacturer name="Aero Commander" shortname="Aero" country="122" />
+  <manufacturer name="Xi'an Aircraft Industrial Corporation" shortname="Xian" country="148" />
 
    <!--engines-->
   <manufacturer name="CFM International" shortname="CFM" country="140" />

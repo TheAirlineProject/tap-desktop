@@ -86,6 +86,18 @@
 
 
         }
+        private void btnShuffleAirport_Click(object sender, RoutedEventArgs e)
+        {
+            Random rnd = new Random();
+
+            var view = (ListCollectionView)CollectionViewSource.GetDefaultView(cbAirport.ItemsSource);
+
+            Airport airport = (Airport)view.GetItemAt(rnd.Next(view.Count));
+
+            cbAirport.SelectedItem = airport;
+
+
+        }
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             var frmContent = UIHelpers.FindChild<Frame>((Page)this.Tag, "frmContent");

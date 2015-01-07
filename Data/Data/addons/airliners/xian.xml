@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airliners>
+    <airliner manufacturer="Xian" name="Xian MA60" price="1480000"> <!--11500000-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="29.20" length="24.71" range="1600" speed="430" fuelcapacity="4175" consumption="0.0166"
+           runwaylengthrequired="1400" />
+    <capacity passengers="60" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="2000" to="2199" rate="19" />
+  </airliner>
+</airliners>

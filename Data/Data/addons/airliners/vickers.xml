@@ -15,10 +15,24 @@
 <produced from="1965" to="1972" rate="8"/>
 </airliner>
   <airliner manufacturer="Vickers" name="Vickers Viscount 800" price="2770550">
-    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
     <specs wingspan="28.56" length="26.11" range="2220" speed="530" fuelcapacity="5900" consumption="0.036"
            runwaylengthrequired="2400" />
     <capacity passengers="75" cockpitcrew="2" cabincrew="3" maxclasses="2" />
-    <produced from="1950" to="1963" rate="28" />
+    <produced from="1950" to="1963" rate="32" />
+  </airliner>
+  <airliner manufacturer="Vickers" name="Vickers VC1 Viking" price="520000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="27.20" length="19.86" range="2740" speed="338" fuelcapacity="15000" consumption="0.012"
+           runwaylengthrequired="777" />
+    <capacity passengers="36" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1946" to="1954" rate="18" />
+  </airliner>
+<airliner manufacturer="Vickers" name="Vickers Vanguard" price="2000000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="36.10" length="37.50" range="2945" speed="650" fuelcapacity="22500" consumption="0.01"
+           runwaylengthrequired="2000" />
+    <capacity passengers="139" cockpitcrew="2" cabincrew="3" maxclasses="2" />
+    <produced from="1960" to="1964" rate="9" />
   </airliner>
 </airliners>

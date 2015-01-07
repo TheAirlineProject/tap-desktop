@@ -6291,7 +6291,7 @@
   <airport name="Çanakkale Airport" icao="LTBH" iata="CKZ" type="Domestic" season="All_Year">
     <town town="Çanakkale" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
-      <latitude value="30°8'15''N" />
+      <latitude value="40°8'15''N" />
       <longitude value="26°25'36''E" />
     </coordinates>
     <size value="Smallest" pax="8" cargo="Smallest" cargovolume="0" />
@@ -6782,8 +6782,8 @@
   <airport name="Trabzon Airport" icao="LTCG" iata="TZX" type="International" season="All_Year">
     <town town="Trabzon" country="161" GMT="03:00:00" DST="02:00:00" />
     <coordinates>
-      <latitude value="40°99'51''N" />
-      <longitude value="39°78'97''E" />
+      <latitude value="40°59'42''N" />
+      <longitude value="39°47'23''E" />
     </coordinates>
     <size value="Small" pax="2626" cargo="Smallest" cargovolume="0" />
     <terminals>

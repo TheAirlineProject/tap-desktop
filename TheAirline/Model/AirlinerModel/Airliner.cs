@@ -385,10 +385,14 @@
         //returns the airliner class for the airliner
         public AirlinerClass getAirlinerClass(AirlinerClass.ClassType type)
         {
+            if (this.Classes.Count == 0)
+                return null;
+
             if (this.Classes.Exists(c => c.Type == type))
             {
                 return this.Classes.Find(c => c.Type == type);
             }
+
             return this.Classes[0];
         }
 

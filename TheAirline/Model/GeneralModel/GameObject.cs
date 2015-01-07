@@ -53,6 +53,7 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
             this.FinancePageEnabled = false;
             this.DayRoundEnabled = true;
             this.Contracts = new ObservableCollection<SpecialContractType>();
+            this.IsLoaded = false;
         }
 
         private GameObject(SerializationInfo info, StreamingContext ctxt)
@@ -124,7 +125,7 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
         #endregion
 
         #region Public Properties
-
+        public Boolean IsLoaded { get; set; }
         [Versioning("currencycountry")]
         public Country CurrencyCountry { get; set; }
 

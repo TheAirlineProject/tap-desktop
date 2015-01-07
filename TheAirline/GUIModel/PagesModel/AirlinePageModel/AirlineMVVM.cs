@@ -113,8 +113,8 @@
             this.PilotsToRetire = this.Pilots.Count(p => p.Pilot.Profile.Age == Pilot.RetirementAge - 1);
             
             FeeTypes.GetTypes(FeeType.eFeeType.Wage)
-                .FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year)
-                .ForEach(f => this.Wages.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
+                .FindAll(f => f!= null && f.FromYear <= GameObject.GetInstance().GameTime.Year)
+                .ForEach(f => this.Wages.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f)))); 
 
             FeeTypes.GetTypes(FeeType.eFeeType.Discount)
                 .FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year)

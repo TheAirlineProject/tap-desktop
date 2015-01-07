@@ -848,6 +848,11 @@
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
+            var intlsWithoutIntl = Airports.GetAirports(a => a.Profile.Name.Contains("International") && a.Profile.Type == AirportProfile.AirportType.Domestic);
+
+            //foreach (var intlAirport in intlsWithoutIntl)
+            //    Console.WriteLine("{0} is not an international airport", intlAirport.Profile.Name);
+            int ff = intlsWithoutIntl.Count;
             /*
             System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
 

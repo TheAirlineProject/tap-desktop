@@ -39,6 +39,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             messages.Add("Version", TheAirline.Properties.Settings.Default.Version);
             messages.Add("Human", GameObject.GetInstance().HumanAirline.Profile.Name);
             messages.Add("Gametime", GameObject.GetInstance().GameTime.ToShortDateString());
+            messages.Add("Loaded",GameObject.GetInstance().IsLoaded.ToString());
             messages.Add("Location", location);
 
             if (ravenClient != null)

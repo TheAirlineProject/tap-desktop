@@ -30,7 +30,7 @@
             foreach (Airport intlAirport in intlAirports)
                 demand += airport.getDestinationPassengersRate(intlAirport, AirlinerClass.ClassType.Economy_Class);
          
-            if (demand > 5000)
+            if (demand > 1000)
                 return true;
             else
                 return false;

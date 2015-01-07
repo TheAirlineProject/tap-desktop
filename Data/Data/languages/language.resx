@@ -3549,7 +3549,7 @@ Good luck.</value>
     <value>Load Configuration</value>
   </data>
   <data name="PageAirline_2000_name" xml:space="preserve">
-    <value>Ratings &amp; Statistics</value>
+    <value>Rating &amp; Statistics</value>
   </data>
   <data name="PageAirline_2001_name" xml:space="preserve">
     <value>Employees</value>
@@ -5629,56 +5629,5 @@ Good luck.</value>
   </data>
   <data name="PageAirlineFinances_1022_name" xml:space="preserve">
     <value>Loan Limit</value>
-  </data>
-  <data name="PageAirlineEmployees_1017_name" xml:space="preserve">
-    <value>Flown Hours</value>
-  </data>
-  <data name="PageFleetAirlinerInformation_1017_name" xml:space="preserve">
-    <value>Flown Hours (DD:HH:MM)</value>
-  </data>
-  <data name="PageShowPilot_1007_name" xml:space="preserve">
-    <value>Flown Hours</value>
-  </data>
-  <data name="PageShowRoute_1008_name" xml:space="preserve">
-    <value>Special Contract</value>
-  </data>
-  <data name="PageAirlineFleet_1018_name" xml:space="preserve">
-    <value>Condition</value>
-  </data>
-  <data name="PageAirportAdvisory_1001_name" xml:space="preserve">
-    <value>Domestic</value>
-  </data>
-  <data name="PageAirportAdvisory_1002_name" xml:space="preserve">
-    <value>Intl.</value>
-  </data>
-  <data name="MessageBox_2020_message" xml:space="preserve">
-    <value>Are you sure you want to remove {0} from this airliner?</value>
-  </data>
-  <data name="MessageBox_2020_name" xml:space="preserve">
-    <value>Delete Airliner Class</value>
-  </data>
-  <data name="PageFrontMenu_206_name" xml:space="preserve">
-    <value>Scenario Editor</value>
-  </data>
-  <data name="News_1021_message" xml:space="preserve">
-    <value>Your flight {0} from [LI airport={1}] to [LI airport={2}] has been cancelled for the current flight due to bad condition of the airliner</value>
-  </data>
-  <data name="News_1021_name" xml:space="preserve">
-    <value>Cancelled Flight</value>
-  </data>
-  <data name="PageAirlineFleet_1019_name" xml:space="preserve">
-    <value>At Airline</value>
-  </data>
-  <data name="PageAirlineRatings_1016_name" xml:space="preserve">
-    <value>Routes Ratings</value>
-  </data>
-  <data name="PageAirlineRatings_1017_name" xml:space="preserve">
-    <value>Route</value>
-  </data>
-  <data name="PageAirlineRatings_1018_name" xml:space="preserve">
-    <value>Score</value>
-  </data>
-  <data name="PageAirlineRatings_1019_name" xml:space="preserve">
-    <value>Type</value>
   </data>
 </root>

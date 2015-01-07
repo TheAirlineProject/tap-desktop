@@ -245,6 +245,8 @@
             int instructorsPool = 75 * Airlines.GetAllAirlines().Count;
             GeneralHelpers.CreateInstructors(instructorsPool);
 
+            GameObject.GetInstance().IsLoaded = true;
+
             //creates some airliners for the game
             AirlinerHelpers.CreateStartUpAirliners();
 
