@@ -112,6 +112,8 @@
             this.UnassignedPilots = this.Pilots.Count(p => p.Pilot.Airliner == null);
             this.PilotsToRetire = this.Pilots.Count(p => p.Pilot.Profile.Age == Pilot.RetirementAge - 1);
             
+            var feesString = this.Airline.Fees.ToString();
+
             FeeTypes.GetTypes(FeeType.eFeeType.Wage)
                 .FindAll(f => f!= null && f.FromYear <= GameObject.GetInstance().GameTime.Year)
                 .ForEach(f => this.Wages.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f)))); 

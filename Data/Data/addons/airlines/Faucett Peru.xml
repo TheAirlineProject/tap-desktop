@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Faucett Peru" iata="CF" color="Red" country="182" CEO="Elmer J. Faucett" mentality="Safe" market="Global" preferedairport="LIM">
+  <narrative narrative="Faucett Peru was around from 1928 to 1997 and was based at Lima. At the time of its closure it served 16 domestic airports, and Miami in the US. In 1938 it had seven of its own built Stinson type, the Faucett F-19, which they built themselves to their specifications. It was an 8 seater inluding the 2 pilots. 1952 saw them having a 4800km (3,000 miles) long route network and in 1955 it carried 136,456 passengers and had 307 employees. In 1960 they had eight DC-3's and four DC-4's and four F-19's. Soon they got a DC-6B. At this time the network was 10248 kms (6368 miles) long. 1968 saw the addition of 727's and in 1971 BAC One Elevens. The Miami route was done with a DC-8 which was the only international route ever operated. Other planes it had include 737-200's and at least one 100, and A300B4's. It is said to be the first airline of Peru which was also one of its slogans."/>
+</profile>
+  <info real="True" from="1928" to="1997" />
+  <prefereds aircrafts="Faucett F-19,Douglas DC-3,Douglas DC-4-1009,Douglas DC-6B,Boeing 727-100,BAC One-Eleven 200,Douglas DC-8-51,Boeing 737-200 Adv.,Boeing 737-100,Douglas DC-8-61,Boeing 737-200"></prefereds>
+
+ <!--the airliners the airline would start with which isn't on a route earyl (1982) late (1995)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-51" early="1" late="0"></airliner>
+	     </airliners>
+ <!--the airliners the airline would start with which isn't on a route earyl (1938) late (1960)-->
+	         <airliners>
+	    <airliner type="Faucett F-19" early="7" late="4"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (1950) late (1970)-->
+	         <airliners>
+	    <airliner type="Douglas DC-3" early="8" late="0"></airliner>
+	     </airliners>
+	     	      <!--the airliners the airline would start with which isn't on a route earyl (1955) late (1970)-->
+	         <airliners>
+	    <airliner type="Douglas DC-4-1009" early="4" late="0"></airliner>
+	     </airliners>
+	     	     	      <!--the airliners the airline would start with which isn't on a route earyl (1961) late (1971)-->
+	         <airliners>
+	    <airliner type="Douglas DC-6B" early="1" late="0"></airliner>
+	     </airliners>
+
+</airline>

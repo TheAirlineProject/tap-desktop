@@ -393,7 +393,11 @@
             }
             set
             {
-                this._Routes = value;
+                if (this._Routes != null)
+                    lock (this._Routes)
+                        this._Routes = value;
+                else
+                    this._Routes = value;
             }
         }
 

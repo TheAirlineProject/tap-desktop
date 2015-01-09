@@ -260,8 +260,8 @@
             airline.MarketFocus = startData.Focus;
 
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
-            
-          
+
+
 
             GameObject.GetInstance()
                 .NewsBox.addNews(
@@ -274,7 +274,7 @@
                             GameObject.GetInstance().HumanAirline.Profile.CEO,
                             GameObject.GetInstance().HumanAirline.Profile.IATACode)));
 
-         //   DatabaseHelpersModel.DatabaseHelpers.SetupDatabase();
+            //   DatabaseHelpersModel.DatabaseHelpers.SetupDatabase();
 
             Action action = () =>
             {
@@ -292,9 +292,9 @@
                     var gameObject = System.Windows.Application.Current.Resources["gameObject"];
 
                     if (gameObject != null)
-                        ((GUIObject)gameObject).IsPaused = true; 
-               
-               
+                        ((GUIObject)gameObject).IsPaused = true;
+
+
                 }
                 else
                 {
@@ -306,7 +306,7 @@
 
             Task.Factory.StartNew(action);
 
-           
+
             //Task.Run(action);
             //Task t2 = Task.Factory.StartNew(action, "passengers");
         }
@@ -613,34 +613,34 @@
                     DoYearlyUpdate();
                 }
                 //Parallel.ForEach(
-                  //  Airlines.GetAllAirlines(),
-                    //airline =>
+                //  Airlines.GetAllAirlines(),
+                //airline =>
                 foreach (Airline airline in Airlines.GetAllAirlines())
+                {
+                    var balance = airline.Money;
+
+                    if (!airline.IsHuman)
                     {
-                        var balance = airline.Money;
+                        AIHelpers.UpdateCPUAirline(airline);
+                    }
 
-                        if (!airline.IsHuman)
-                        {
-                            AIHelpers.UpdateCPUAirline(airline);
-                        }
-                      
-                         DayTurnHelpers.SimulateAirlineFlights(airline);
-                                          
-                        double income = airline.Invoices.MonthlyInvoices.Where(i => i.Day == GameObject.GetInstance().GameTime.Day && i.Month == GameObject.GetInstance().GameTime.Month && i.Year == GameObject.GetInstance().GameTime.Year && i.Amount > 0).Sum(i => i.Amount);
-                        double expenses = airline.Invoices.MonthlyInvoices.Where(i => i.Day == GameObject.GetInstance().GameTime.Day && i.Month == GameObject.GetInstance().GameTime.Month && i.Year == GameObject.GetInstance().GameTime.Year && i.Amount < 0).Sum(i => i.Amount);
+                    DayTurnHelpers.SimulateAirlineFlights(airline);
 
-                        airline.DailyOperatingBalanceHistory.Add(
-                            new KeyValuePair<DateTime, KeyValuePair<double, double>>(
-                                GameObject.GetInstance().GameTime,
-                                new KeyValuePair<double, double>(Math.Abs(income), Math.Abs(expenses))));
+                    double income = airline.Invoices.MonthlyInvoices.Where(i => i.Day == GameObject.GetInstance().GameTime.Day && i.Month == GameObject.GetInstance().GameTime.Month && i.Year == GameObject.GetInstance().GameTime.Year && i.Amount > 0).Sum(i => i.Amount);
+                    double expenses = airline.Invoices.MonthlyInvoices.Where(i => i.Day == GameObject.GetInstance().GameTime.Day && i.Month == GameObject.GetInstance().GameTime.Month && i.Year == GameObject.GetInstance().GameTime.Year && i.Amount < 0).Sum(i => i.Amount);
 
-                     
-      
-                    }//);
+                    airline.DailyOperatingBalanceHistory.Add(
+                        new KeyValuePair<DateTime, KeyValuePair<double, double>>(
+                            GameObject.GetInstance().GameTime,
+                            new KeyValuePair<double, double>(Math.Abs(income), Math.Abs(expenses))));
 
-                 sw.Stop();
 
-                 Console.WriteLine("Turn time: {0} ms.", sw.ElapsedMilliseconds);
+
+                }//);
+
+                sw.Stop();
+
+                Console.WriteLine("Turn time: {0} ms.", sw.ElapsedMilliseconds);
 
                 GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddDays(1);
             }
@@ -746,69 +746,72 @@
 
             string summary = "[HEAD=Routes Summary]\n";
 
-            IOrderedEnumerable<Route> routes =
-                airline.Routes.OrderByDescending(
-                    r =>
-                        r.getBalance(GameObject.GetInstance().GameTime.AddMonths(-1), GameObject.GetInstance().GameTime));
-            Airport homeAirport = airline.Airports[0];
-
-            foreach (Route route in routes)
+            if (airline.Airports.Count == 0)
             {
-                double monthBalance = route.getBalance(
-                    GameObject.GetInstance().GameTime.AddMonths(-1),
-                    GameObject.GetInstance().GameTime);
-                summary += string.Format(
-                    "[WIDTH=100 {0}-{1}]Balance in month: {2}\n",
-                    new AirportCodeConverter().Convert(route.Destination1),
-                    new AirportCodeConverter().Convert(route.Destination2),
-                    new ValueCurrencyConverter().Convert(monthBalance));
+                Airport homeAirport = airline.Airports[0];
+
+                IOrderedEnumerable<Route> routes =
+            airline.Routes.OrderByDescending(
+                r =>
+                    r.getBalance(GameObject.GetInstance().GameTime.AddMonths(-1), GameObject.GetInstance().GameTime));
+
+                foreach (Route route in routes)
+                {
+                    double monthBalance = route.getBalance(
+                        GameObject.GetInstance().GameTime.AddMonths(-1),
+                        GameObject.GetInstance().GameTime);
+                    summary += string.Format(
+                        "[WIDTH=100 {0}-{1}]Balance in month: {2}\n",
+                        new AirportCodeConverter().Convert(route.Destination1),
+                        new AirportCodeConverter().Convert(route.Destination2),
+                        new ValueCurrencyConverter().Convert(monthBalance));
+                }
+
+                summary += "\n\n";
+
+                summary += "[HEAD=Destinations Advice]\n";
+
+                Airport largestDestination;
+
+                if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                {
+                    largestDestination =
+                        homeAirport.getDestinationDemands()
+                            .Where(
+                                a =>
+                                    a != null && GeneralHelpers.IsAirportActive(a)
+                                    && !airline.Routes.Exists(
+                                        r =>
+                                            (r.Destination1 == homeAirport && r.Destination2 == a)
+                                            || (r.Destination2 == homeAirport && r.Destination1 == a)))
+                            .OrderByDescending(a => homeAirport.getDestinationCargoRate(a))
+                            .FirstOrDefault();
+                }
+                else
+                {
+                    largestDestination =
+                        homeAirport.getDestinationDemands()
+                            .Where(
+                                a =>
+                                    a != null && GeneralHelpers.IsAirportActive(a)
+                                    && !airline.Routes.Exists(
+                                        r =>
+                                            (r.Destination1 == homeAirport && r.Destination2 == a)
+                                            || (r.Destination2 == homeAirport && r.Destination1 == a)))
+                            .OrderByDescending(
+                                a => homeAirport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class))
+                            .FirstOrDefault();
+                }
+
+                if (largestDestination != null)
+                {
+                    summary +=
+                        string.Format(
+                            "The largest destination in terms of demand from [LI airport={0}] where you don't have a route, is [LI airport={1}]",
+                            homeAirport.Profile.IATACode,
+                            largestDestination.Profile.IATACode);
+                }
             }
-
-            summary += "\n\n";
-
-            summary += "[HEAD=Destinations Advice]\n";
-
-            Airport largestDestination;
-
-            if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
-            {
-                largestDestination =
-                    homeAirport.getDestinationDemands()
-                        .Where(
-                            a =>
-                                a != null && GeneralHelpers.IsAirportActive(a)
-                                && !airline.Routes.Exists(
-                                    r =>
-                                        (r.Destination1 == homeAirport && r.Destination2 == a)
-                                        || (r.Destination2 == homeAirport && r.Destination1 == a)))
-                        .OrderByDescending(a => homeAirport.getDestinationCargoRate(a))
-                        .FirstOrDefault();
-            }
-            else
-            {
-                largestDestination =
-                    homeAirport.getDestinationDemands()
-                        .Where(
-                            a =>
-                                a != null && GeneralHelpers.IsAirportActive(a)
-                                && !airline.Routes.Exists(
-                                    r =>
-                                        (r.Destination1 == homeAirport && r.Destination2 == a)
-                                        || (r.Destination2 == homeAirport && r.Destination1 == a)))
-                        .OrderByDescending(
-                            a => homeAirport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class))
-                        .FirstOrDefault();
-            }
-
-            if (largestDestination != null)
-            {
-                summary +=
-                    string.Format(
-                        "The largest destination in terms of demand from [LI airport={0}] where you don't have a route, is [LI airport={1}]",
-                        homeAirport.Profile.IATACode,
-                        largestDestination.Profile.IATACode);
-            }
-
             summary += "\n[HEAD=Fleet Summary]\n";
 
             int fleetSize = GameObject.GetInstance().HumanAirline.DeliveredFleet.Count;
@@ -866,14 +869,14 @@
             {
                 SerializedLoadSaveHelpers.SaveGame("autosave");
             }
-    /*
-            if (GameObject.GetInstance().GameTime.Day == 8)
-            {
-                GameObject.GetInstance().HumanAirline.Profile.PreferedAirport = null;
-                string prefAirport = GameObject.GetInstance().HumanAirline.Profile.PreferedAirport.Profile.Name;
-            }*/
+            /*
+                    if (GameObject.GetInstance().GameTime.Day == 8)
+                    {
+                        GameObject.GetInstance().HumanAirline.Profile.PreferedAirport = null;
+                        string prefAirport = GameObject.GetInstance().HumanAirline.Profile.PreferedAirport.Profile.Name;
+                    }*/
             //Clearing stats as an RAM work-a-round
-           
+
             List<Airline> humanAirlines = Airlines.GetAirlines(a => a.IsHuman);
 
             //Console.WriteLine(GameObject.GetInstance().GameTime.ToShortDateString() + ": " + DateTime.Now.Subtract(LastTime).TotalMilliseconds + " ms." + " : routes: " + totalRoutes + " airliners on route: " + totalAirlinersOnRoute);
@@ -1235,13 +1238,13 @@
             //    airport =>
             foreach (var airport in Airports.GetAllActiveAirports())
             {
-               // if (GameObject.GetInstance().GameTime.Day == 15 || GameObject.GetInstance().GameTime.Day == 1)
-                 //   AirportHelpers.CreateAirportWeather(airport);
-                
-                
+                // if (GameObject.GetInstance().GameTime.Day == 15 || GameObject.GetInstance().GameTime.Day == 1)
+                //   AirportHelpers.CreateAirportWeather(airport);
+
+
                 airport.clearDestinationCargoStatistics();
                 airport.clearDestinationPassengerStatistics();
-             
+
                 /*
                 if (Settings.GetInstance().MailsOnBadWeather
                     && humanAirlines.SelectMany(a => a.Airports.FindAll(aa => aa == airport)).Count() > 0
@@ -1608,7 +1611,7 @@
             //    airline =>
             foreach (var airline in Airlines.GetAllAirlines())
             {
-                 AirlineHelpers.CheckInsuranceSettlements(airline);
+                AirlineHelpers.CheckInsuranceSettlements(airline);
 
                 var airliners = new List<FleetAirliner>(airline.Fleet.Where(f => f.Airliner.BuiltDate <= GameObject.GetInstance().GameTime));
 
@@ -1676,10 +1679,10 @@
                     }
                 }
 
-                  if (GameObject.GetInstance().GameTime.Day % 7 == 0)
-            {
+                if (GameObject.GetInstance().GameTime.Day % 7 == 0)
+                {
                     airline.OverallScore += StatisticsHelpers.GetWeeklyScore(airline);
-             }
+                }
 
                 lock (airline.Fleet)
                 {
@@ -1846,7 +1849,7 @@
 
                     if (merger.NewName != null && merger.NewName.Length > 1)
                     {
-                        merger.Airline1.Profile.Names.Add(new AirlineName(){Name= merger.NewName, From=new DateTime(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month,GameObject.GetInstance().GameTime.Day)});
+                        merger.Airline1.Profile.Names.Add(new AirlineName() { Name = merger.NewName, From = new DateTime(GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, GameObject.GetInstance().GameTime.Day) });
                     }
                 }
                 if (merger.Type == AirlineMerger.MergerType.Independant)
@@ -1895,9 +1898,9 @@
                             "Airline news",
                             merger.Name));
             }
-          
 
-          
+
+
             //checks for new special contract types
             var randomSpecialContracts = SpecialContractTypes.GetRandomTypes();
             var fixedSpecialContracts = SpecialContractTypes.GetTypes().FindAll(s => s.IsFixedDate && GameObject.GetInstance().GameTime.ToShortDateString() == s.Period.From.AddMonths(-1).ToShortDateString());
@@ -2124,7 +2127,7 @@
             //check if pilots are retireing
             int retirementAge = Pilot.RetirementAge;
 
-             //Parallel.ForEach(
+            //Parallel.ForEach(
             //    Airlines.GetAllAirlines(),
             //    airline =>
             foreach (var airline in Airlines.GetAllAirlines())
@@ -2431,7 +2434,7 @@
                     if (pilot.Airliner != null)
                     {
                         pilot.Airliner.Data.addOperatingValue(new OperatingValue("Salary", GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, -salary));
-    
+
                     }
                 }
 
@@ -2475,7 +2478,7 @@
                         Invoice.InvoiceType.Airline_Expenses,
                         -facility.MonthlyCost);
                 }
-              
+
                 foreach (FleetAirliner airliner in
                     airline.Fleet.FindAll(
                         (delegate(FleetAirliner a) { return a.Purchased == FleetAirliner.PurchasedType.Leased; })))
@@ -2496,7 +2499,7 @@
                     }
 
                     airliner.Data.addOperatingValue(new OperatingValue("Leasing Expenses", GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, -airliner.Airliner.LeasingPrice));
-    
+
                 }
 
                 foreach (Airport airport in airline.Airports)
@@ -2689,7 +2692,7 @@
                         }
                     }
                 }
-           
+
                 AirlineInsuranceHelpers.CheckExpiredInsurance(airline);
                 if (airline.InsurancePolicies != null)
                 {
@@ -2720,10 +2723,10 @@
             {
                 if (AirportHelpers.GetAirportRoutes(airport).Count > 0)
                 {
-                      double airportRoutes = AirportHelpers.GetAirportRoutes(airport).Count;
-                         double growth = Math.Min(0.5 * airportRoutes, 2);
+                    double airportRoutes = AirportHelpers.GetAirportRoutes(airport).Count;
+                    double growth = Math.Min(0.5 * airportRoutes, 2);
 
-                        PassengerHelpers.ChangePaxDemand(airport, growth);
+                    PassengerHelpers.ChangePaxDemand(airport, growth);
                 }
 
                 if (airport.Terminals.getInusePercent(Terminal.TerminalType.Passenger) > 90)
@@ -2731,24 +2734,24 @@
                     AirportHelpers.CheckForExtendGates(airport);
                 }
 
-                int daysInMonth = DateTime.DaysInMonth(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month);
+                int daysInMonth = DateTime.DaysInMonth(GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month);
 
                 //AirportHelpers.CreateAirportWeather(airport,daysInMonth);
 
-                   foreach (Cooperation cooperation in airport.Cooperations)
-                    {
-                        AirlineHelpers.AddAirlineInvoice(
-                            cooperation.Airline,
-                            GameObject.GetInstance().GameTime,
-                            Invoice.InvoiceType.Purchases,
-                            -cooperation.Type.MonthlyPrice);
-                    }
+                foreach (Cooperation cooperation in airport.Cooperations)
+                {
+                    AirlineHelpers.AddAirlineInvoice(
+                        cooperation.Airline,
+                        GameObject.GetInstance().GameTime,
+                        Invoice.InvoiceType.Purchases,
+                        -cooperation.Type.MonthlyPrice);
+                }
 
                 if (airport.Runways.Count > 0 && airport.Runways.Select(r => r.Length).Max() < longestRequiredRunwayLenght / 2)
                 {
-                      AirportHelpers.CheckForExtendRunway(airport);
+                    AirportHelpers.CheckForExtendRunway(airport);
                 }
-              
+
             }
 
             if (GameObject.GetInstance().Scenario != null)

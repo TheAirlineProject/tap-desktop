@@ -209,7 +209,7 @@
 
     <capacity passengers="220" cockpitcrew="2" cabincrew="4" maxclasses="2" />
 
-    <produced from="1994" to="2199" rate="220" />
+    <produced from="1994" to="2000" rate="220" />
 
   </airliner>
 
@@ -401,7 +401,7 @@
 
     <capacity passengers="853" cockpitcrew="2" cabincrew="17" maxclasses="3" />
 
-    <produced from="2007" to="2025" rate="12" />
+    <produced from="2007" to="2025" rate="19" />
 
   </airliner>
 

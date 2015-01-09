@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Aspen Airways" iata="ASP" color="Orange" country="122" CEO="Bill Ringsby" mentality="Safe" market="Domestic" preferedairport="DEN">
+  <narrative narrative="Aspen Airways was based at Denver Stapleton airport from 1952 to 1991, and was part of Air Wisconson is last year or two. Its secondary base was Aspen. Despite this its name comes from the aspen tree much like the towns name. In 1952 it was founded to fly personell between Denver and Aspen,CO by Walter Paepcke as a flight departemnt for the Aspen Institute of Humanistic Studies. It used surplus DC-3s. 1962 saw Bill Ringsby buy it. In the late 60s a Convair 240 leased from Alaska Airlines was used. By 1970 four Convair 440's were in its fleet. There was also a Fairchild F27 but it did not perform well at the high altitude airports served by the airline. It also had DH Heron,Aero Commander 500 and Piper Navajo planes. 1985 they got two new BAe-100's bringing the first jet service to Aspen. It also opened new Denver routes with these to the North Texas cities of Amarillo and Lubbock. September of 1985 is when they became part of United Express. Flights from Denver to Dallas,Los Angeles,San Francisco,Houston,Chicago and Long Beach were  served by the BAe planes of which they would have 4 of by 1990. Lake Tahoe airport in California also became a focal point at one point in its life, in 1980 it served San Jose,Los Angeles,Burbank and San Francisco with Convairs from there. That airport stopped getting service in 1999. Other Denver destinations included Sioux Falls and Waterloo,Iowa, Sheridan and Gilette,Wyoming, and in Colorado it did Colorado Springs,Gunnison,Montrose,and Durango and also Farmington,New Mexico. In late 1989 or about the start of 1990 they were looking for a buyer and Air Wisconsin got Aspen Airways and made them a subsidiary. In this deal Air Wisconsin got all of their Aspen routes, common stock and planes, Mesa Airlines got the Denver hub and routes except ASE-DEN,its stations and ground equipment. As part of Air Wisconsin the Aspen shuttle was done 14 times a day both ways. In 1991 it was fully merged with Wisconsin. Over its life it served about 30 domestic airports."/>
+</profile>
+  <info real="True" from="1952" to="1991" />
+  <prefereds aircrafts="BAe 146-200,Douglas DC-3,Convair 240,Convair 440,Aero Commander 500/600,DH 114 Heron,Fairchild F27,PA-31 Navajo"></prefereds>
+<focusairports>
+       <focusairport airport="ASE"></focusairport>
+     </focusairports>
+ <!--the airliners the airline would start with which isn't on a route earyl (1985) late (1990)-->
+	         <airliners>
+	    <airliner type="BAe 146-200" early="2" late="4"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (1969) late (1990)-->
+	         <airliners>
+	    <airliner type="Convair 440" early="4" late="4"></airliner>
+	     </airliners>
+	     	      <!--the airliners the airline would start with which isn't on a route earyl (1952) late (1975)-->
+	         <airliners>
+	    <airliner type="Douglas DC-3" early="4" late="0"></airliner>
+	     </airliners>
+	          	      <!--the airliners the airline would start with which isn't on a route earyl (1965) late (1972)-->
+	         <airliners>
+	    <airliner type="Fairchild F27" early="1" late="0"></airliner>
+	     </airliners>
+	     	          	      <!--the airliners the airline would start with which isn't on a route earyl (1965) late (1972)-->
+	         <airliners>
+	    <airliner type="DH 114 Heron" early="2" late="0"></airliner>
+	     </airliners>
+	     	     	          	      <!--the airliners the airline would start with which isn't on a route earyl (1964) late (1972)-->
+	         <airliners>
+	    <airliner type="PA-31 Navajo" early="2" late="0"></airliner>
+	     </airliners>
+	       	     	          	      <!--the airliners the airline would start with which isn't on a route earyl (1965) late (1974)-->
+	         <airliners>
+	    <airliner type="Aero Commander 500/600" early="1" late="0"></airliner>
+	     </airliners>
+	     <routes>
+	     	<route destination1="DEN" destination2="ASE" opened="1952" closed="1991" />
+		<route destination1="DEN" destination2="COS" opened="1964" closed="1990" />
+		<route destination1="DEN" destination2="AMA" opened="1985" closed="1990" />
+		<route destination1="DEN" destination2="LBB" opened="1985" closed="1990" />
+		 <route destination1="ASE" destination2="LAX" opened="1985" closed="1991" />
+		<route destination1="ASE" destination2="DFW" opened="1985" closed="1991" />
+		<route destination1="ASE" destination2="SFO" opened="1985" closed="1991" />
+	        <route destination1="ASE" destination2="IAH" opened="1985" closed="1991" />
+		<route destination1="ASE" destination2="ORD" opened="1985" closed="1991" />
+		<route destination1="ASE" destination2="LGB" opened="1985" closed="1991" />
+	         <route destination1="SJC" destination2="TVL" opened="1975" closed="1989" />
+		<route destination1="LAX" destination2="TVL" opened="1975" closed="1989" />
+		<route destination1="DEN" destination2="SHR" opened="1975" closed="1990" />
+		<route destination1="DEN" destination2="GCC" opened="1977" closed="1990" />
+	        <route destination1="DEN" destination2="ALO" opened="1979" closed="1990" />
+		<route destination1="DEN" destination2="SUX" opened="1973" closed="1990" />
+		<route destination1="DEN" destination2="MTJ" opened="1981" closed="1990" />
+	         <route destination1="DEN" destination2="GUC" opened="1969" closed="1990" />
+		<route destination1="DEN" destination2="FMN" opened="1976" closed="1990" />
+		
+		
+	        </routes>
+
+</airline>

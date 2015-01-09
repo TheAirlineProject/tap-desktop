@@ -36,12 +36,7 @@
     <capacity cockpitcrew="2" cargo="23" />
     <produced from="1964" to="1992" rate="17" />
   </airliner>
-  <airliner manufacturer="Lockheed" name="L-2000" price="56975180">
-<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
-<specs wingspan="35.36" length="83.26" range="7500" speed="2814" fuelcapacity="155250" consumption="0.083" runwaylengthrequired="3000" />
-<capacity passengers="250" cockpitcrew="3" cabincrew="5" maxclasses="2" />
-<produced from="1978" to="2005" rate="3" />
-</airliner>
+
 <airliner manufacturer="Lockheed" name="L-049 Constellation" price="960000">
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
     <specs wingspan="37.49" length="29.03" range="5057" speed="504" fuelcapacity="25000" consumption="0.041"

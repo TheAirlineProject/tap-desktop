@@ -32,6 +32,8 @@
                 this.cbContinent.Items.Add(continent);
             }
 
+            this.cbRegion.Items.Clear();
+
             foreach (Region region in Regions.GetAllRegions())
             {
                 this.cbRegion.Items.Add(region);
@@ -99,6 +101,7 @@
 
             if (selectedContinent.Uid == "100")
             {
+                var regions = Regions.GetAllRegions();
                 foreach (Region region in Regions.GetAllRegions().OrderBy(r => r.Name))
                 {
                     this.cbRegion.Items.Add(region);

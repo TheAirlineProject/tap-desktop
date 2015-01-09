@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Andes Lineas Aereas" iata="OY" color="DarkRed" country="106" CEO="Hector Bonafert" mentality="Safe" market="Regional" preferedairport="SLA">
+  <narrative narrative="Andes Lineas Aereas is based at Salta,Argentina with a focus city at Buenos Aires Jorge Newbery. It was founded in 2006 and serves 3 domestic airports besides the hub and focus. It also does charters and seasonal service to 6 other domestic airports,11 in Brazil,and one each in Uruguay and Venezuela. Its fleet in February 2014 was five MD-83's,an MD-82 and an MD-87. They have also used CRJ900's for a short time."/>
+</profile>
+  <info real="True" from="2006" to="2199" />
+  <prefereds aircrafts="MD-83 (DC-9-83),MD-87 (DC-9-87),MD-82 (DC-9-82),Bombardier CRJ900"></prefereds>
+<focusairports>
+       <focusairport airport="AEP"></focusairport>
+     </focusairports>
+ <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2015)-->
+	         <airliners>
+	    <airliner type="MD-82 (DC-9-82)" early="2" late="1"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (1980) late (2015)-->
+	         <airliners>
+	    <airliner type="MD-83 (DC-9-83)" early="1" late="5"></airliner>
+	     </airliners>
+	     	      <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2015)-->
+	         <airliners>
+	    <airliner type="MD-87 (DC-9-87)" early="1" late="1"></airliner>
+	     </airliners>
+
+</airline>

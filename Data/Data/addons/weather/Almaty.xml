@@ -1,6 +1,6 @@
+﻿
 
-
-<weather type="town" value="Almaty">
+<weather type="town" value="Alma-Ata">
   <months>
     <month month="1" precipitation="37">
       <temp min="-9" max="1" />

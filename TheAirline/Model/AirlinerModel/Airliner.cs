@@ -175,9 +175,10 @@
                 if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
                 {
                     return string.Format(
-                        "{0}F | {1}C | {2}Y",
+                        "{0}F | {1}C | {2}W | {3}Y",
                         this.GetSeatingCapacity(AirlinerClass.ClassType.First_Class),
                         this.GetSeatingCapacity(AirlinerClass.ClassType.Business_Class),
+                                 this.GetSeatingCapacity(AirlinerClass.ClassType.Premium_Economy_Class),
                         this.GetSeatingCapacity(AirlinerClass.ClassType.Economy_Class));
                 }
 
@@ -187,10 +188,11 @@
                 }
 
                 return string.Format(
-                    "{0}F | {1}C | {2}Y | {3} t",
+                    "{0}F | {1}C | {2}W | {3}Y | {4} t",
                     this.GetSeatingCapacity(AirlinerClass.ClassType.First_Class),
                     this.GetSeatingCapacity(AirlinerClass.ClassType.Business_Class),
-                    this.GetSeatingCapacity(AirlinerClass.ClassType.Economy_Class),
+                      this.GetSeatingCapacity(AirlinerClass.ClassType.Premium_Economy_Class),
+                     this.GetSeatingCapacity(AirlinerClass.ClassType.Economy_Class),
                     this.getCargoCapacity());
             }
         }
@@ -508,12 +510,15 @@
 
         public static void AddAirliner(Airliner airliner)
         {
-            lock (airliners)
+            if (airliner != null)
             {
-                //if (airliners.Exists(a => a.ID == airliner.ID))
-                //  throw new Exception("Airliner element already exists exception");
+                lock (airliners)
+                {
+                    //if (airliners.Exists(a => a.ID == airliner.ID))
+                    //  throw new Exception("Airliner element already exists exception");
 
-                airliners.Add(airliner);
+                    airliners.Add(airliner);
+                }
             }
         }
 

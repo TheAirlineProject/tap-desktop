@@ -1486,7 +1486,10 @@
                     newAirlinersInterval = 1000000;
                     break;
             }
-            Boolean newAirliners = rnd.Next(newAirlinersInterval * (airliners / 2) * airlinersWithoutRoute) == 0;
+
+            int coeff = newAirlinersInterval * (airliners / 2) * airlinersWithoutRoute;
+
+            Boolean newAirliners = coeff > 0 && rnd.Next(newAirlinersInterval * (airliners / 2) * airlinersWithoutRoute) == 0; 
 
             if (newAirliners && airline.Profile.PrimaryPurchasing != AirlineProfile.PreferedPurchasing.Leasing)
             {

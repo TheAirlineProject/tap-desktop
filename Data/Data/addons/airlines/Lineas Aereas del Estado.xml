@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Lineas Aereas del Estado" iata="5U" color="Indigo" country="106" CEO="Mario Miguel Callejo" mentality="Moderate" market="Domestic" preferedairport="CRD">
+  <narrative narrative="Lineas Aereas del Estado, or LADE, is an Argentina based airline that is ran by the air force. It is a domestic airline and has its base at Comodoro Rivadavia with other hubs at Buenos Aires Jorge Newbery and El Calafate. In 2008 it was serving 30 domestic airports. Its fleet in 2012 was four Saab 340B's and a Twin Otter 100. The Presidential Fleet which is not normally assigned to LADE was a 757-200,and two Fokker F28's, one a 1000 the other a 4000. Lockheed Hercules planes are used for cargo sometimes. The airline was founded in 1940 to operate to remote areas not deemed profitable by other airlines. Its fleet in 1960 included DC-3's, DC-4's and Vickers Vikings. In 1980 its fleet was 11 F27's,5 Fokker F28-1000's.,and 7 Twin Otter 100's. The 707-320B has also been used having had at least 2 of those. "/>
+</profile>
+  <info real="True" from="1940" to="2199" />
+  <prefereds aircrafts="Saab 340B,DHC-6-100 Twin Otter,Fokker F28-1000,Fokker F27,Douglas DC-3,Douglas DC-4-1009,Vickers VC1 Viking,Boeing 707-320B,Fokker F28-4000,Boeing 757-200"></prefereds>
+<focusairports>
+       <focusairport airport="AEP"></focusairport>
+       <focusairport airport="FTE"></focusairport>
+     </focusairports>
+ <!--the airliners the airline would start with which isn't on a route earyl (1980) late (2015)-->
+	         <airliners>
+	    <airliner type="Fokker F27" early="11" late="0"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (1980) late (2015)-->
+	         <airliners>
+	    <airliner type="DHC-6-100 Twin Otter" early="7" late="1"></airliner>
+	     </airliners>
+	     	      <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2015)-->
+	         <airliners>
+	    <airliner type="Saab 340B" early="1" late="4"></airliner>
+	     </airliners>
+	     	     	      <!--the airliners the airline would start with which isn't on a route earyl (1980) late (2015)-->
+	         <airliners>
+	    <airliner type="Fokker F28-1000" early="5" late="1"></airliner>
+	     </airliners>
+
+
+</airline>

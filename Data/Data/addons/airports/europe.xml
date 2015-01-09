@@ -1893,7 +1893,7 @@
       <runway name="07/25" length="928" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Hans Christian Andersen Airport" icao="EKOD" iata="ODE" type="International" season="All_Year">
+  <airport name="Odense Airport" icao="EKOD" iata="ODE" type="International" season="All_Year">
     <town town="Odense" country="110" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="55°28'36''N" />
@@ -1907,6 +1907,10 @@
       <runway name="06/24" length="2000" surface="Asphalt" />
       <runway name="13/31" length="695" surface="Grass" />
     </runways>
+             <expansions>
+        <expansion type="Name" name="Hans Christian Andersen Airport" date="05.01.2013 00:00:00" notify="True"></expansion>
+     </expansions>
+
   </airport>
   <airport name="Bornholm Airport" icao="EKRN" iata="RNN" type="Domestic" season="All_Year">
     <town town="Rønne" country="110" GMT="01:00:00" DST="01:00:00" />
@@ -3600,20 +3604,6 @@
       <runway name="12/30" length="2750" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Robert Atty Bessing Airport" icao="WRLM" iata="MLN" type="Domestic" season="All_Year">
-    <town town="Melilla Island" country="123" GMT="08:00:00" DST="08:00:00" />
-    <coordinates>
-      <latitude value="2°50'11''N" />
-      <longitude value="117°22'25''E" />
-    </coordinates>
-    <size value="Very_small" pax="290" cargo="Smallest" cargovolume="0" />
-    <terminals>
-      <terminal name="Terminal" gates="5" />
-    </terminals>
-    <runways>
-      <runway name="15/33" length="1428" surface="Asphalt" />
-    </runways>
-  </airport>
   <airport name="Menorca Airport" icao="LEMH" iata="MAH" type="International" season="All_Year">
     <town town="Menorca Island" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
@@ -3658,8 +3648,8 @@
       <runway name="11/29" length="2200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Palma De Mallorca Airport" icao="LEPA" iata="PMI" type="International" season="All_Year">
-    <town town="Palma De Mallorca" country="123" GMT="02:00:00" DST="01:00:00" />
+  <airport name="Palma de Mallorca Airport" icao="LEPA" iata="PMI" type="International" season="All_Year">
+    <town town="Palma de Mallorca" country="123" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="39°33'0''N" />
       <longitude value="2°44'0''E" />

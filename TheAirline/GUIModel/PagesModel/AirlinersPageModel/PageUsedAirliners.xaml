@@ -18,6 +18,14 @@
         <StackPanel Grid.Row="0">
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock
+                    Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1009'}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <CheckBox Style="{StaticResource ImageCheckBoxStyle}" VerticalAlignment="Bottom"
+                          Name="cbMajorManufacturers" Checked="cbMajorManufacturers_Checked"
+                          Unchecked="cbMajorManufacturers_Unchecked" />
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
                     Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1003'}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
                 <CheckBox Style="{StaticResource ImageCheckBoxStyle}" VerticalAlignment="Bottom"
@@ -32,6 +40,7 @@
                           Name="cbExistingFleet" Checked="cbExistingFleet_Checked"
                           Unchecked="cbExistingFleet_Unchecked" />
             </WrapPanel>
+          
         </StackPanel>
         <StackPanel Grid.Row="1" Name="panelListView">
         <filter:FilterableListView x:Name="lvAirliners"

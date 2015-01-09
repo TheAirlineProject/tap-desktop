@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Sol Lineas Aereas" iata="8R" color="Orange" country="106" CEO="Horacio Angeli" mentality="Safe" market="Regional" preferedairport="ROS">
+  <narrative narrative="Sol Lineas Aereas is based at Rosario,Argentina and started operations in August 2006. It has a secondary hub at Buenos Aires Jorge Newbery. As of 2015 its fleet consists of Saab 340's. As of November 2014 it was serving 9 domestic destinations besides its hub and focus, one of these was seasonally. It also serves one in Uruguay on a seasonal bases."/>
+</profile>
+  <info real="True" from="2006" to="2199" />
+  <prefereds aircrafts="Saab 340B"></prefereds>
+<focusairports>
+       <focusairport airport="AEP"></focusairport>
+     </focusairports>
+
+</airline>

@@ -3,8 +3,12 @@
 <airline>
   <profile name="Air Wisconsin" iata="ZW" color="DarkBlue" country="122" CEO="Jim Rankin" mentality="Moderate"
            market="Regional" preferedairport="ATW">
+
     <narrative
       narrative="Air Wisconsin Airlines Corporation is a regional airline based at Outagamie County Regional Airport in the town of Greenville, Wisconsin, United States, near Appleton. Air Wisconsin is the largest privately held regional airline in the United States." />
+           <logos>
+<logo from="1964" to="1994" path="ZW1964-1994"></logo>
+</logos>  
   </profile>
   <info real="True" from="1965" to="2001"></info>
 </airline>

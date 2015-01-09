@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Aeroperu" iata="PL" color="MidnightBlue" country="182" CEO="Alberto Garcia" mentality="Moderate" market="Global" preferedairport="LIM">
+  <narrative narrative="Aeroperu was the flag carrier of Peru from 1973 to 1999. Its base was Lima. At the end in 1999 it was serving 9 domestic destinations,one in Panama,two in Mexico,one in Chile,one in Brazil,one in Bolivia and one in Argentina.  However over its life it served 26 domestic destinations, three in the US, two in Venezuela,four in Columbia,three in Bolivia,two in Brazil and one in Paraguay which it had terminated somewhere along the line. From 1993 to the end Aeromexico owned about 70% of it and it was a subsidiary. It spent $54 million dollars for those shares. Delta Air Lines also had a 35% stake starting in 1998. Planes it had included three Fokker F28's at the start which it had got from SATCO, an earlier airline ran by the army. A 727 joined the fleet shortly after and they ordered two Fokker F27's. 1974 saw the addition of two DC-8's and the launch of international routes. At the end it had three 757's and some 727's. And in 1998 the last of the F28's was retired and Lockheed Tristar also. From 1993-1997 DC-10-15's were used having three of them in 1993. Most of its routes were taken over by LAN Peru. For a time near the end Bogota,Columbia was also a focus city."/>
+</profile>
+  <info real="True" from="1973" to="1999" />
+  <prefereds aircrafts="Boeing 727-200 Adv.,Boeing 727-200,Boeing 727-100,Fokker F27,Fokker F28-1000,Fokker F28-3000,Douglas DC-8-61,Douglas DC-8-51,MD DC-10-15,Boeing 757-200,Lockeed L-1011-1,Douglas DC-8-63,Fokker F28-2000,Fokker F28-4000"></prefereds>
+<focusairports>
+       <focusairport airport="BOG"></focusairport>
+     </focusairports>
+ <!--the airliners the airline would start with which isn't on a route earyl (1993) late (1998)-->
+	         <airliners>
+	    <airliner type="MD DC-10-15" early="3" late="0"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (1973) late (1998)-->
+	         <airliners>
+	    <airliner type="Fokker F28-1000" early="3" late="0"></airliner>
+	     </airliners>
+	     	      <!--the airliners the airline would start with which isn't on a route earyl (1974) late (1995)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-51" early="2" late="0"></airliner>
+	     </airliners>
+	     	     	      <!--the airliners the airline would start with which isn't on a route earyl (1981) late (1995)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-61" early="4" late="0"></airliner>
+	     </airliners>
+	     	     	     	      <!--the airliners the airline would start with which isn't on a route earyl (1994) late (1998)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="2" late="3"></airliner>
+	     </airliners>
+	         	     	     	      <!--the airliners the airline would start with which isn't on a route earyl (1974) late (1998)-->
+	         <airliners>
+	    <airliner type="Boeing 727-200" early="1" late="1"></airliner>
+	     </airliners>
+	           	     	     	      <!--the airliners the airline would start with which isn't on a route earyl (1974) late (1985)-->
+	         <airliners>
+	    <airliner type="Fokker F27" early="2" late="0"></airliner>
+	     </airliners>
+
+</airline>

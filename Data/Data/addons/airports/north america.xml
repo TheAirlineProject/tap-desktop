@@ -607,6 +607,37 @@ inflationafter="1">
       <runway name="16/34" length="884" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Lake Tahoe Airport" icao="KTVL" iata="TVL" type="Domestic" season="All_Year">
+        <period from="1/1/1959 12:00:00 AM" to="1/1/2000 12:00:00 AM" />
+    <town town="South Lake Tahoe, CA" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="038°53'38''N" />
+      <longitude value="119°59'43''W" />
+    </coordinates>
+    <size value="Smallest" pax="25" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2604" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Reading Regional Airport" icao="KRDG" iata="RDG" type="Domestic" season="All_Year">
+        <period from="4/1/1938 12:00:00 AM" to="9/3/2004 12:00:00 AM" />
+    <town town="Reading, PA" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <coordinates>
+      <latitude value="040°22'43''N" />
+      <longitude value="75°57'55''W" />
+    </coordinates>
+    <size value="Smallest" pax="35" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="1935" surface="Asphalt" />
+  <runway name="18/36" length="1570" surface="Asphalt" />
+    </runways>
+  </airport>
  <airport name="Bradford Regional Airport" icao="KBFD" iata="BFD" type="Domestic" season="All_Year">
     <town town="Bradford, PA" country="122" GMT="-05:00:00" DST="-04:00:00" />
     <coordinates>

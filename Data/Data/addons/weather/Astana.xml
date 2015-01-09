@@ -1,6 +1,6 @@
 ﻿
 
-<weather type="town" value="Alma-Ata">
+<weather type="town" value="Akmolinsk">
   <months>
     <month month="1" precipitation="16">
       <temp min="-19" max="-10" />

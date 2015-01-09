@@ -5630,4 +5630,22 @@ Good luck.</value>
   <data name="PageAirlineFinances_1022_name" xml:space="preserve">
     <value>Loan Limit</value>
   </data>
+  <data name="PageAirlineFleet_1018_name" xml:space="preserve">
+    <value>Condition</value>
+  </data>
+  <data name="PageAirlineRatings_1016_name" xml:space="preserve">
+    <value>Routes Ratings</value>
+  </data>
+  <data name="PageAirlineRatings_1017_name" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="PageAirlineRatings_1018_name" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="PageAirlineRatings_1019_name" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="PageUsedAirliners_1009_name" xml:space="preserve">
+    <value>Show Only Major Manufacturers</value>
+  </data>
 </root>
