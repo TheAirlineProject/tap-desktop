@@ -41,7 +41,7 @@
 
             int maxYear = DateTime.Now.Year + 1;
 
-            for (int i = 1960; i < maxYear; i++)
+            for (int i = GameObject.StartYear; i < maxYear; i++) 
             {
                 this.cbYear.Items.Insert(0, i);
             }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Miami Air International" iata="BSK" color="PaleGreen" country="122" CEO="James Proia" mentality="Safe" market="Global" preferedairport="MIA" routefocus="Mixed" schedule="Charter">
+  <narrative narrative="Miami Air International is a global charter airline based at Miami International. Its current primary customers are the military,sports teams,cruise lines,tour operators and incentive groups. It has also done cargo service before. At September 2014 it had four 737-800's and two 737-400's. In the past it has used 727's both for cargo and passengers. The 737-400's are in full first class layout and are used mostly for sports teams in the sports of hockey,basketball and baseball. It was founded in August 1990 and started operation in October 1991 using leased 727-200's. It was founded by George Lyall who used to work at Pan Am and Eastern Air Lines, and by Ross Fischer who did Syste Operations at People Express and Eastern. Many employees were also part of these airlines before coming to Miami Air. In 2000 it had 8 727's which it owned and its revenues were in excess of $100 million. In 2000 a majority stake in it was bought by Eagle Global Logistics and started doing cargo service out of Austin,Texas. In late 2001 FedEx took over the cargo contract and Miami Air started shifting focus to passenger service getting 737-800s and phased out the 727s. For a year in late 2000 to late 2001 it had two MD-87's. In 2002 it was bought by TSI Holding Company."/>
+</profile>
+  <info real="True" from="1991" to="2199" />
+  <prefereds aircrafts="Boeing 737-800,Boeing 737-400,Boeing 737 MAX 8,Boeing 727-100C,Boeing 727-200 Adv.,MD-87 (DC-9-87)"></prefereds>
+ <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-800" early="2" late="4"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="2" late="2"></airliner>
+	     </airliners>
+	     	      <!--the airliners the airline would start with which isn't on a route earyl (1991) late (2002)-->
+	         <airliners>
+	    <airliner type="Boeing 727-100C" early="2" late="0"></airliner>
+	     </airliners>
+	          	      <!--the airliners the airline would start with which isn't on a route earyl (1991) late (2013)-->
+	         <airliners>
+	    <airliner type="Boeing 727-200 Adv." early="2" late="0"></airliner>
+	     </airliners>
+          	      <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2002)-->
+	         <airliners>
+	    <airliner type="MD-87 (DC-9-87)" early="2" late="0"></airliner>
+	     </airliners>
+
+
+
+</airline>

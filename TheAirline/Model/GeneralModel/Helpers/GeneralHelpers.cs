@@ -208,11 +208,14 @@
                 Instructors.AddInstructor(instructor);
             }
         }
-
-        public static void CreatePilots(int count, string airlinerFamily)
+        public static void CreatePilots(int count, string airlinerFamily,Country country)
         {
-            List<Town> towns = Towns.GetTowns();
+            List<Town> towns = Towns.GetTowns().Where(t=>t.Country == country).ToList();
 
+            CreatePilots(count, airlinerFamily, towns);
+        }
+        private static void CreatePilots(int count, string airlinerFamily,List<Town> towns)
+        {
             var rnd = new Random();
             for (int i = 0; i < count; i++)
             {
@@ -244,6 +247,12 @@
 
                 Pilots.AddPilot(pilot);
             }
+        }
+        public static void CreatePilots(int count, string airlinerFamily)
+        {
+            List<Town> towns = Towns.GetTowns();
+
+            CreatePilots(count, airlinerFamily, towns);
         }
 
         //creates a number of pilots
@@ -452,7 +461,7 @@
         //the converter for a price based on inflation
         public static double GetInflationPrice(double price)
         {
-            Inflation baseInflation = Inflations.GetInflation(Inflations.BaseYear);
+            Inflation baseInflation = Inflations.GetInflation(GameObject.StartYear);
             Inflation currentInflation = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year);
 
             double modifier = currentInflation.Modifier / baseInflation.Modifier;

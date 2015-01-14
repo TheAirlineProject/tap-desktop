@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airliners>
+     <airliner manufacturer="Stinson" name="Faucett F-19" price="62000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="17.80" length="10" range="700" speed="250" fuelcapacity="180" consumption="0.166"
+           runwaylengthrequired="500" />
+    <capacity passengers="6" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1934" to="1946" rate="3" />
+  </airliner>
+</airliners>

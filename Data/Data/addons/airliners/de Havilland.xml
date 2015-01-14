@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
+ <airliner manufacturer="DH" name="DH 89 Dragon Rapide" price="45000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="14.6" length="10.50" range="920" speed="205" fuelcapacity="750" consumption="0.125"
+           runwaylengthrequired="700" />
+    <capacity passengers="8" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1934" to="1945" rate="61" />
+  </airliner>
   <airliner manufacturer="DH" name="DH 114 Heron" price="75149">
     <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
     <specs wingspan="21.8" length="14.79" range="1473" speed="295" fuelcapacity="1190" consumption="0.061"

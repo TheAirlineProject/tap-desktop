@@ -130,7 +130,9 @@
 
         public void addStatisticsValue(RouteAirlinerClass aClass, StatisticsType type, int value)
         {
-            RouteStatisticsItem item = this.Stats.Find(
+            RouteStatisticsItem item;
+
+            lock (this.Stats)   item = this.Stats.Find(
                 i => i.Type.Shortname == type.Shortname && i.RouteClass == aClass);
 
             if (item == null)
@@ -156,13 +158,15 @@
         //clears the list
         public void clear()
         {
-            this.Stats.Clear();
+            lock (this.Stats) this.Stats.Clear();
         }
 
         //returns the value for a statistics type for a route class
         public long getStatisticsValue(RouteAirlinerClass aClass, StatisticsType type)
         {
-            RouteStatisticsItem item =
+            RouteStatisticsItem item;
+
+            lock (this.Stats) item =
                 this.Stats.Find(i => i.Type.Shortname == type.Shortname && i.RouteClass.Type == aClass.Type);
 
             if (item == null)
@@ -205,7 +209,9 @@
         //sets the value for a statistics type to a route class
         public void setStatisticsValue(RouteAirlinerClass aClass, StatisticsType type, int value)
         {
-            RouteStatisticsItem item = this.Stats.Find(
+            RouteStatisticsItem item;
+
+            lock (this.Stats) item = this.Stats.Find(
                 i => i.Type.Shortname == type.Shortname && i.RouteClass == aClass);
 
             if (item == null)

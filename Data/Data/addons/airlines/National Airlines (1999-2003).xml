@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="National Airlines" iata="N7" color="Black" country="122" CEO="Michael Conway" mentality="Moderate" market="Domestic" preferedairport="LAS">
+  <narrative narrative="This National Airlines had its hub at Las Vegas and was around from 1999 to its grounding on November 6,2002, the day of its last flight. It was created to attract visitors from the East Coast and was headed by Harrah's Entertainment and Rio Hotel and Casino's who each contributed $15 million to the startup.Wexford Capital, owners of Republic Airways Holdings also contributed several million. They first flew on May 27,1999 and had 11 757's by the end of 1999. At the end they had 19 of them. On December 6,2000 it field for bankruptcy protection and ceased the 11 months later on November 6,2002. At the end it was the fourth largest Las Vegas carrier and carried 1.85 million passengers in 2002 before the end. It served 13 destinations outside of Las Vegas: San Francisco,Los Angeles,both Chicago airports,Miami,Newark,New York JFK,Reno,Philadelphia,Dallas-Ft. Worth, both Washington DC airports and Seattle. All of the 757's had 175 seats, 153 economy and 22 first class."/>
+</profile>
+  <info real="True" from="1999" to="2003" />
+  <prefereds aircrafts="Boeing 757-200"></prefereds>
+ <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2002)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="11" late="19"></airliner>
+	     </airliners>
+
+ <routes>
+	     	<route destination1="LAS" destination2="SFO" opened="1999" closed="2003" />
+		<route destination1="LAS" destination2="LAX" opened="1999" closed="2003" />
+		<route destination1="LAS" destination2="RNO" opened="1999" closed="2003" />
+		<route destination1="LAS" destination2="ORD" opened="1999" closed="2003" />
+		<route destination1="LAS" destination2="DFW" opened="1999" closed="2003" />
+		<route destination1="LAS" destination2="IAD" opened="2000" closed="2003" />
+		<route destination1="LAS" destination2="MDW" opened="2000" closed="2003" />
+		<route destination1="LAS" destination2="SEA" opened="2000" closed="2003" />
+		<route destination1="LAS" destination2="JFK" opened="2000" closed="2003" />
+		<route destination1="LAS" destination2="EWR" opened="2000" closed="2003" />
+		<route destination1="LAS" destination2="MIA" opened="2001" closed="2003" />
+		<route destination1="LAS" destination2="PHL" opened="2001" closed="2003" />
+		<route destination1="LAS" destination2="DCA" opened="2001" closed="2003" />
+		
+	        </routes>
+
+
+
+
+</airline>

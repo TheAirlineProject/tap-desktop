@@ -12,14 +12,14 @@
     <specs wingspan="13.01" length="10.57" range="2739" speed="393" fuelcapacity="1446" consumption="0.166"
            runwaylengthrequired="430" />
     <capacity passengers="6" cockpitcrew="2" cabincrew="0" maxclasses="1" />
-    <produced from="1994" to="2199" rate="18" />
+    <produced from="1974" to="1985" rate="69" />
   </airliner>
    <airliner manufacturer="Piper" name="PA-42 Cheyenne" price="561000"> <!--4263000-->
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
     <specs wingspan="14.53" length="13.23" range="4207" speed="523" fuelcapacity="14456" consumption="0.111"
            runwaylengthrequired="447" />
     <capacity passengers="9" cockpitcrew="2" cabincrew="0" maxclasses="1" />
-    <produced from="1979" to="2199" rate="6" />
+    <produced from="1979" to="1993" rate="13" />
   </airliner>
      <airliner manufacturer="Piper" name="PA-46 Malibu" price="384000"> <!--2918000-->
     <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />

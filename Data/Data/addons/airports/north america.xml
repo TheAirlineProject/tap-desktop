@@ -2715,7 +2715,7 @@ inflationafter="1">
   </airport>
   <airport name="Washington National Airport" icao="KDCA" iata="DCA" type="International"
            season="All_Year">
-    <town town="Washington DC" country="122" GMT="-03:00:00" DST="-04:00:00" />
+    <town town="Washington DC" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
       <latitude value="038°51'08''N" />
    <longitude value="077°02'16''W" />
@@ -7517,6 +7517,147 @@ season="All_Year">
       <runway name="07/25" length="2956" surface="Asphalt" />
     </runways>
   </airport>
+  <airport name="Caye Caulker Airport" icao="MZCC" iata="CUK" type="Domestic" season="All_Year">
+    <town town="Caye Caulker" country="197" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="17°44'06''N" />
+      <longitude value="88°01'46''W" />
+    </coordinates>
+    <size value="Smallest" pax="20" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="9/27" length="823" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Belize City Municipal Airport" icao="MZZZ" iata="TZA" type="Domestic" season="All_Year">
+    <town town="Belize City" country="197" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="17°30'59''N" />
+      <longitude value="88°11'30''W" />
+    </coordinates>
+    <size value="Smallest" pax="90" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="10" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="556" surface="Concrete" />
+    </runways>
+  </airport>
+<airport name="Hector Silva Airstrip" icao="MZBP" iata="BCV" type="Domestic" season="All_Year">
+    <town town="Belmopan" country="197" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="17°16'10''N" />
+      <longitude value="88°46'34''W" />
+    </coordinates>
+    <size value="Smallest" pax="25" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="1100" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Big Creek Airport" icao="MZBK" iata="BGK" type="Domestic" season="All_Year">
+    <town town="Big Creek/Savanah" country="197" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="16°31'00''N" />
+      <longitude value="88°25'00''W" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="985" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Caye Chapel Airport" icao="MZYC" iata="CYC" type="Domestic" season="All_Year">
+    <town town="Caye Chapel" country="197" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="17°42'03''N" />
+      <longitude value="88°02'28''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="9/27" length="648" surface="Grass" />
+    </runways>
+  </airport>
+<airport name="Corozal Airport" icao="MZZH" iata="CZH" type="Domestic" season="All_Year">
+    <town town="Corozal" country="197" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="18°22'56''N" />
+      <longitude value="88°24'39''W" />
+    </coordinates>
+    <size value="Smallest" pax="53" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="1920" surface="Concrete" />
+    </runways>
+  </airport>
+<airport name="Independence Airport" icao="MZIB" iata="INB" type="Domestic" season="All_Year">
+    <town town="Independence" country="197" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="16°31'19''N" />
+      <longitude value="88°24'38''W" />
+    </coordinates>
+    <size value="Smallest" pax="50" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="8" />
+    </terminals>
+    <runways>
+      <runway name="9/27" length="829" surface="Grass" />
+    </runways>
+  </airport>
+<airport name="Placencia Airport" icao="MZPL" iata="PLJ" type="Domestic" season="All_Year">
+    <town town="Placencia" country="197" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="16°32'13''N" />
+      <longitude value="88°21'42''W" />
+    </coordinates>
+    <size value="Smallest" pax="20" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="8/26" length="520" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Punta Gorda Airport" icao="MZPD" iata="PND" type="Domestic" season="All_Year">
+    <town town="Punta Gorda" country="197" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="16°06'08''N" />
+      <longitude value="88°48'29''W" />
+    </coordinates>
+    <size value="Smallest" pax="20" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="700" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Matthew Spain Airport" icao="MZQS" iata="SQS" type="Domestic" season="All_Year">
+    <town town="San Ignacio" country="197" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="17°11'09''N" />
+      <longitude value="89°00'35''W" />
+    </coordinates>
+    <size value="Smallest" pax="20" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="9/27" length="671" surface="Asphalt" />
+    </runways>
+  </airport>
+
   <!--Caribbean (T***)-->
   <!--Antigua & Barbuda (TA**)-->
 <airport name="V. C. Bird International Airport" icao="TAPA" iata="ANU" type="International" season="Summer">

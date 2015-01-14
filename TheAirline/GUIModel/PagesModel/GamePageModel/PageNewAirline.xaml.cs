@@ -289,7 +289,7 @@
             root.AppendChild(info);
 
             info.SetAttribute("real", false.ToString());
-            info.SetAttribute("from", "1960");
+            info.SetAttribute("from", GameObject.StartYear.ToString());
             info.SetAttribute("to", "2199");
 
             xmlDoc.Save(path);

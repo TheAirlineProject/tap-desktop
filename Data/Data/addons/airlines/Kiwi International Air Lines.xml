@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Kiwi International Air Lines" iata="KP" logo="KP2" color="MediumOrchid" country="122" CEO="Charles C. Edwards" mentality="Moderate" market="Regional" preferedairport="EWR">
+  <narrative narrative="Kiwi International Air Line was based at Newark and was around from 1992 to 1999. Secondary hubs were Atlanta and Miami. It started September 21,1992 and ceased March 24,1999. It began life  when Robert Iverson was backed by Kelso and Company to purchase the Pan Am Shuttle, but lost to Delta Air Lines.Its intention was to use that Pan Am subsidiarys structure and network to form a new airline to get new jobs for former Eastern Airlines and Pan Am employees using their money to help. So instead a new airline was formed under the newly formed Kiwi Aquisition Group and Iverson raised $2 million from pilots with the promise of them getting a $50,000 salary as a captain. They called themsleves the Kiwis because that is a flightless bird, and they were no longer flying. The name stuck and it became the airlines name too. Its first flight was September 21,1992 and they had two former Lufthansa 737-200's. Its two initial routes were Newark to Chicago Midway and Newark to Orlando. After one year  it had 15 planes and 1200 employees and made $116,000,000. Much of its fleet were 727-200's. It got many positive reviews, even winning the title Best Airline in America by Conde Nast Traveler magazine, and the President's Award from the Inflight Catering Association. CEO Iverson was given an award by Aviation Week and Space Technology and entered an agreement with Richard Branson t provide feeder service for his Virgin airlines, and Branson said Kiwi was his favorite US airline. Iverson left in February 1995. On September 30,1996 it filed for bankruptcy and stopped scheduled service October 15th. In July 1997 a judge agreed to liquidate Kiwi in a $16.5 million deal, Joe Logan of Aviation Holdings and Dr. Charles C. Edards, an entrepreneur and orthopedic surgeon with 30 business enterprises in his past bought its assets. Edwards would add some routes, Newark to Tampa,Newark to Boston,Boston to Palm Beach,Chicago Miday to Tampa,Atlanta to Tampa and seasonally Orlando to San Juan,Puerto Rico. He also ended Atlanta to Palm Beach. At the end of 1998 it had a net loss of $20.6 million. In March 1999 it was doing charters to 6 cities with 4 leased jets with 500 employees. In December 1999 a judge approved liquidation of the airline and it officially ceased."/>
+</profile>
+  <info real="True" from="1992" to="2000" />
+  <prefereds aircrafts="Boeing 737-200,Boeing 727-200 Adv.,Boeing 727-200"></prefereds>
+
+  <focusairports>
+	 <focusairport airport="ATL"></focusairport>
+	 <focusairport airport="MIA"></focusairport>
+     </focusairports>
+      <!--the airliners the airline would start with which isn't on a route earyl (1992) late (1999)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200" early="2" late="0"></airliner>
+	     </airliners>
+	           <!--the airliners the airline would start with which isn't on a route earyl (1993) late (1998)-->
+	         <airliners>
+	    <airliner type="Boeing 727-200 Adv." early="13" late="4"></airliner>
+	     </airliners>
+
+ <routes>
+		<route destination1="EWR" destination2="MCO" opened="1992" closed="1999" />
+		<route destination1="EWR" destination2="MDW" opened="1992" closed="1999" />
+		<route destination1="ATL" destination2="PBI" opened="1993" closed="1997" />
+		<route destination1="MCO" destination2="SJU" opened="1997" closed="1999" season="Summer" />
+		<route destination1="MDW" destination2="TPA" opened="1997" closed="1999" />
+		<route destination1="BOS" destination2="PBI" opened="1997" closed="1999" />
+		<route destination1="EWR" destination2="BOS" opened="1997" closed="1999" />
+		<route destination1="EWR" destination2="TPA" opened="1997" closed="1999" />
+		
+	        </routes>
+
+
+
+
+</airline>

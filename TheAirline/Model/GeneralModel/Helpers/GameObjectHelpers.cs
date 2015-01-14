@@ -612,10 +612,15 @@
                 {
                     DoYearlyUpdate();
                 }
-                //Parallel.ForEach(
-                //  Airlines.GetAllAirlines(),
-                //airline =>
-                foreach (Airline airline in Airlines.GetAllAirlines())
+
+                var allAirlines = new List<Airline>(Airlines.GetAllAirlines());
+              
+                /*Parallel.ForEach(
+                  allAirlines,
+                airline =>
+                */
+                
+                foreach (Airline airline in allAirlines)
                 {
                     var balance = airline.Money;
 
@@ -663,8 +668,10 @@
                     DoYearlyUpdate();
                 }
 
+                var allAirlines = new List<Airline>(Airlines.GetAllAirlines());
+
                 Parallel.ForEach(
-                    Airlines.GetAllAirlines(),
+                    allAirlines,
                     airline =>
                     {
                         if (GameObject.GetInstance().GameTime.Minute == 0

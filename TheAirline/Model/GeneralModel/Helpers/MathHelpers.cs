@@ -179,6 +179,9 @@
         //gets the distance between two airports in kilometers
         public static double GetDistance(Airport airport1, Airport airport2)
         {
+            if (airport1 == null || airport2 == null)
+                throw new Exception("One of the airports in MathHelpers.GetDistance(airport1,airport2) is null");
+
             if (airport1.Statics == null)
             {
                 airport1.Statics = new AirportStatics(airport1);

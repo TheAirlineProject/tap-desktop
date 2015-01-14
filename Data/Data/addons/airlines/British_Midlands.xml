@@ -3,6 +3,8 @@
 <airline>
   <profile name="British Midland International" iata="BD" color="Blue" country="130" CEO="Peter Simpson"
            mentality="Aggressive" market="Global" preferedairport="LHR">
-  </profile>
+              <narrative
+      narrative="The airline dates back to before World War II (WWII) when Captain Roy Harben established Air Schools Limited in 1938 as a school for training pilots of the Royal Air Force Volunteer Reserve. Captain Harben had been approached by the Derby Corporation to run a new aerodrome under construction near Burnaston, which was planned to eventually become an airport. Sir Kingsley Wood, the Secretary of State for Air, officially opened the aerodrome as Derby Municipal Airport on 17 June 1939. Military flying training continued at the airport throughout the war.." />
+   </profile>
   <info real="True" from="1938" to="2012"></info>
 </airline>

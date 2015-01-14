@@ -7239,7 +7239,7 @@ inflationafter="1">
 </runways>
 </airport> 
 <airport name="Kallang Airport" icao="WSAP" iata="SIN" type="International" season="All_Year">
-<period from="08.22.1955 00:00:00" to="08.20.1955 00:00:00" />
+<period from="06.13.1937 00:00:00" to="08.21.1955 00:00:00" />
 <town town="Singapore" country="174" GMT="08:00:00" DST="08:00:00"/>
 <coordinates>
 <latitude value="001°18'26''N"/>

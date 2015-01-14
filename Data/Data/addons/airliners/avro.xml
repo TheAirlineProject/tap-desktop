@@ -1,0 +1,16 @@
+<airliners>
+<airliner manufacturer="Avro" name="Avro York" price="1749000">
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="31.10" length="23.90" range="4800" speed="450" fuelcapacity="11900" consumption="0.012"
+           runwaylengthrequired="1375" />
+    <capacity passengers="56" cockpitcrew="4" cabincrew="1" maxclasses="1" />
+    <produced from="1943" to="1949" rate="37" />
+  </airliner>
+<airliner manufacturer="Avro" name="Avro Lancastrian" price="1357000">
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
+    <specs wingspan="31.10" length="23.40" range="6677" speed="474" fuelcapacity="14540" consumption="0.11"
+           runwaylengthrequired="1300" />
+    <capacity passengers="9" cockpitcrew="5" cabincrew="0" maxclasses="1" />
+    <produced from="1943" to="1945" rate="23" />
+  </airliner>
+</airliners>

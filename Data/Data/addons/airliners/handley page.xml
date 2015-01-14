@@ -7,4 +7,11 @@
     <capacity passengers="56" cockpitcrew="2" cabincrew="1" maxclasses="1" />
     <produced from="1959" to="1968" rate="6" />
   </airliner>
+  <airliner manufacturer="HP" name="Hermes" price="1617000">
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="34.45" length="29.52" range="3242" speed="437" fuelcapacity="9450" consumption="0.012"
+           runwaylengthrequired="1600" />
+    <capacity passengers="82" cockpitcrew="5" cabincrew="2" maxclasses="2" />
+    <produced from="1950" to="1951" rate="15" />
+  </airliner>
 </airliners>

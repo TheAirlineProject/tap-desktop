@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
+<airliner manufacturer="Beechcraft" name="Beechcraft Model 18" price="87100">     
+<type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="14.53" length="10.41" range="1900" speed="345" fuelcapacity="1733" consumption="0.09"
+           runwaylengthrequired="800" />
+    <capacity passengers="11" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1937" to="1970" rate="265" />
+    </airliner>
   <airliner manufacturer="Beechcraft" name="Beechcraft Duchess" price="23000"> 
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
     <specs wingspan="11.58" length="8.86" range="1445" speed="285" fuelcapacity="380" consumption="0.33"

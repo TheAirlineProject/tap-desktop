@@ -1132,6 +1132,38 @@
       <runway name="09/27" length="1508" surface="Concrete" />
     </runways>
   </airport>
+    <airport name="RAF Northolt" icao="EGWU" iata="NHT" type="International" season="All_Year">
+      <period from="1/1/1946 12:00:00 AM" to="4/30/1954 12:00:00 AM" />
+    <town town="London, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="51°33'11''N" />
+      <longitude value="0°25'06''E" />
+    </coordinates>
+    <size value="Medium" pax="4000" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="1687" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="London Croydon Airport" icao="EGCR" iata="GCR" type="International" season="All_Year">
+      <period from="3/29/1920 12:00:00 AM" to="10/1/1959 12:00:00 AM" />
+    <town town="London, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="51°21'23''N" />
+      <longitude value="0°7'02''E" />
+    </coordinates>
+    <size value="Medium" pax="3618" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="20" />
+    </terminals>
+    <runways>
+      <runway name="NW/SE" length="1200" surface="Grass" />
+      <runway name="E/W" length="1100" surface="Grass" />
+      <runway name="NE/SW" length="1000" surface="Grass" />
+    </runways>
+  </airport>
   <airport name="Gatwick Airport" icao="EGKK" iata="LGW" type="International" season="All_Year">
     <town town="London, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>

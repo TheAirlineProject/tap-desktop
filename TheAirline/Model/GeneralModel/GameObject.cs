@@ -18,7 +18,7 @@ using TheAirline.Model.GeneralModel.ScenarioModel;
     {
         #region Constants
 
-        public const int StartYear = 1960;
+        public const int StartYear = 1946;
 
         #endregion
 

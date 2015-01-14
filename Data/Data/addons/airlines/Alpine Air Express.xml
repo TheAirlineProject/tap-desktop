@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Alpine Air Express" iata="5A" color="Maroon" country="122" CEO="Jeff Bost" mentality="Safe" market="Domestic" preferedairport="PVU" routefocus="Cargo">
+  <narrative narrative="Alpine Air Express is a cargo airline based at Provo,Utah with another base at Billings,Montana. It was founded in 1972. Most of its service is out of Billings. It flies from Bilings to other Montana places, such as Missoula,Great Falls,Helena,Bozeman,Butte,Kalispell,and Wolf Point. It also flies to Denver from Billings. It has operated in Hawaii, doing inter island flights. Its fleet in 2007 was 13 Beechcraft 99's,12 Beechcraft 1900C's and one 1900D. They have 15 destinations overall and also fly in the Dakota's and Minnesota. Flights here include Grand Forks to Bismarck,Bismarck to Sioux Falls,Sioux Falls to Rapid City, and Fargo to Sioux Falls and Sioux Falls to Thief River Falls in Minnesota.They also did passenger service at the start and aircraft maintenance and had a flight school, but now just focus on cargo service. It had a failed enter into the Chile freight market in South America and stopped that in 2005, with the three 1900C's being brought back to the US."/>
+</profile>
+  <info real="True" from="1972" to="2199" />
+  <prefereds aircrafts="Beechcraft 1900C,Beechcraft 99,Raytheon 1900D,Beechcraft 1900D,PA-42 Cheyenne,PA-31T Cheyenne"></prefereds>
+
+  <focusairports>
+	 <focusairport airport="BIL"></focusairport>
+     </focusairports>
+      <!--the airliners the airline would start with which isn't on a route earyl (1972) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900C" early="0" late="12"></airliner>
+	     </airliners>
+	           <!--the airliners the airline would start with which isn't on a route earyl (1972) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 99" early="5" late="13"></airliner>
+	     </airliners>
+	     	           <!--the airliners the airline would start with which isn't on a route earyl (1972) late (2015)-->
+	         <airliners>
+	    <airliner type="Raytheon 1900D" early="0" late="1"></airliner>
+	     </airliners>
+
+ <routes>
+		<route destination1="BIL" destination2="FCA" opened="1972" closed="2199" />
+		<route destination1="BIL" destination2="MSO" opened="1972" closed="2199" />
+		<route destination1="BIL" destination2="HLN" opened="1972" closed="2199" />
+		<route destination1="BIL" destination2="GTF" opened="1972" closed="2199" />
+		<route destination1="BIL" destination2="BZN" opened="1972" closed="2199" />
+	        <route destination1="BIL" destination2="DEN" opened="1973" closed="2199" />
+		<route destination1="BIL" destination2="BTM" opened="1974" closed="2199" />
+		<route destination1="BIL" destination2="OLF" opened="1975" closed="2199" />
+	       <route destination1="GFK" destination2="BIS" opened="1976" closed="2199" />
+		<route destination1="BIS" destination2="FSD" opened="1977" closed="2199" />
+		<route destination1="FSD" destination2="RAP" opened="1978" closed="2199" />
+		<route destination1="FSD" destination2="FAR" opened="1979" closed="2199" />
+		<route destination1="FSD" destination2="TVF" opened="1980" closed="2199" />
+		<route destination1="HNL" destination2="LIH" opened="1982" closed="2005" />
+		
+	        </routes>
+
+
+
+
+</airline>

@@ -659,8 +659,18 @@ VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
     <!--route templates-->
     <DataTemplate x:Key="RouteFlagItem">
         <WrapPanel VerticalAlignment="Bottom">
-            <Image Source="{Binding Destination1.Profile.Country.Flag}" VerticalAlignment="Bottom"
-                   RenderOptions.BitmapScalingMode="HighQuality" Height="20" />
+            <ContentControl Content="{Binding Destination1.Profile.Country,Mode=OneTime,Converter={StaticResource CountryCurrentCountryConverter}}"
+                        VerticalAlignment="Bottom">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Image Source="{Binding Flag,Mode=OneTime}" Width="20" Height="20" VerticalAlignment="Bottom"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
+                        </DockPanel>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+        
             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0"
                        ToolTipService.ShowDuration="60000">
                 <TextBlock.ToolTip>

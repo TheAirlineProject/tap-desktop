@@ -25,9 +25,5 @@
       <airliner type="Boeing 777-300ER" early="0" late="6"></airliner>
     </airliners>
   </startdata>
-  <subsidiaries>
-    <subsidiary name="British Midland International" IATA="BD" homebase="LHR" mentality="Moderate" market="Regional"
-                logo="BD">
-    </subsidiary>
-  </subsidiaries>
+
 </airline>

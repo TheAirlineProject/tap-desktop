@@ -94,6 +94,12 @@
             foreach (AirlinerType atype in types)
                 typeRates.Add(atype, atype.ProductionRate);
 
+            if (types.Count == 0)
+            {
+                return null;
+            }
+
+
             AirlinerType type = AIHelpers.GetRandomItem(typeRates);
 
           
@@ -392,7 +398,8 @@
 
             Airliner airliner = CreateAirlinerFromYear(GameObject.GetInstance().GameTime.AddYears(-years).Year);
 
-            airliner.Status = Airliner.StatusTypes.Leasing;
+            if (airliner != null)
+                airliner.Status = Airliner.StatusTypes.Leasing;
 
             return airliner;
         }

@@ -527,7 +527,7 @@
                         long cargo = Convert.ToInt32(columns[14].Replace("\"", ""));
 
                         var paxValues = new List<PaxValue>();
-                        paxValues.Add(new PaxValue(1960, 2199, size, pax));
+                        paxValues.Add(new PaxValue(GameObject.StartYear, 2199, size, pax));
 
                         airport.Profile.Town = eTown;
                         airport.Profile.PaxValues = paxValues;
@@ -545,7 +545,7 @@
                             string[] temp = t.Split('%');
 
                             if (temp.Length == 2)
-                                airport.addTerminal(new Terminal(airport, temp[0], Convert.ToInt16(temp[1]), new DateTime(1960, 1, 1), Terminal.TerminalType.Passenger));
+                                airport.addTerminal(new Terminal(airport, temp[0], Convert.ToInt16(temp[1]), new DateTime(GameObject.StartYear, 1, 1), Terminal.TerminalType.Passenger));
 
                         }
 
@@ -661,9 +661,9 @@
                             long cargo = Convert.ToInt32(columns[14].Replace("\"", ""));
 
                             var paxValues = new List<PaxValue>();
-                            paxValues.Add(new PaxValue(1960, 2199, size, pax));
+                            paxValues.Add(new PaxValue(GameObject.StartYear, 2199, size, pax));
 
-                            airport = new Airport(new AirportProfile(name, iata, icao, type, new Period<DateTime>(new DateTime(1959, 12, 31), new DateTime(2199, 12, 31)), eTown, gmt, dst, pos, cargosize, cargo, season));
+                            airport = new Airport(new AirportProfile(name, iata, icao, type, new Period<DateTime>(new DateTime(GameObject.StartYear-1, 12, 31), new DateTime(2199, 12, 31)), eTown, gmt, dst, pos, cargosize, cargo, season));
                             airport.Profile.PaxValues = paxValues;
 
                             string terminalsString = columns[15].Replace("\"", "");
@@ -675,7 +675,7 @@
                             {
                                 string[] temp = t.Split('%');
 
-                                airport.addTerminal(new Terminal(airport, temp[0], Convert.ToInt16(temp[1]), new DateTime(1960, 1, 1), Terminal.TerminalType.Passenger));
+                                airport.addTerminal(new Terminal(airport, temp[0], Convert.ToInt16(temp[1]), new DateTime(GameObject.StartYear, 1, 1), Terminal.TerminalType.Passenger));
 
                             }
 
@@ -1433,8 +1433,8 @@
               
                     AirlinerType type = AirlinerTypes.GetType(airliners.Type);//B747-200
 
-                    int totalSpan = 2010 - 1960;
-                    int yearSpan = GameObject.GetInstance().GameTime.Year - 1960;
+                    int totalSpan = 2010 - GameObject.StartYear;
+                    int yearSpan = GameObject.GetInstance().GameTime.Year - GameObject.StartYear;
                     double valueSpan = Convert.ToDouble(airliners.AirlinersLate - airliners.AirlinersEarly);
                     double span = valueSpan / Convert.ToDouble(totalSpan);
 
@@ -2634,6 +2634,7 @@
                         ? Convert.ToInt16(producedElement.Attributes["rate"].Value)
                         : 10;
 
+              
                     var from = new DateTime(fromYear, 1, 2);
                     var to = new DateTime(toYear, 12, 31);
 
@@ -2952,7 +2953,7 @@
                     }
                     else
                     {
-                        airportPeriod = new Period<DateTime>(new DateTime(1959, 12, 31), new DateTime(2199, 12, 31));
+                        airportPeriod = new Period<DateTime>(new DateTime(GameObject.StartYear -1, 12, 31), new DateTime(2199, 12, 31));
                     }
 
                     var townElement = (XmlElement)airportElement.SelectSingleNode("town");
@@ -3175,7 +3176,7 @@
                             terminalType = Terminal.TerminalType.Passenger;
 
                         airport.Terminals.addTerminal(
-                            new Terminal(airport, null, terminalName, terminalGates, new DateTime(1950, 1, 1), terminalType));
+                            new Terminal(airport, null, terminalName, terminalGates, new DateTime(GameObject.StartYear, 1, 1), terminalType));
                     }
 
                     XmlNodeList runwaysList = airportElement.SelectNodes("runways/runway");
@@ -3351,15 +3352,18 @@
                         memberNode.Attributes["joined"].Value,
                         new CultureInfo("en-US", false));
 
-                    var member = new AllianceMember(memberAirline, joinedDate);
-                    if (memberNode.HasAttribute("exited"))
+                    if (memberAirline != null)
                     {
-                        member.ExitedDate = Convert.ToDateTime(
-                            memberNode.Attributes["exited"].Value,
-                            new CultureInfo("en-US", false));
-                    }
+                        var member = new AllianceMember(memberAirline, joinedDate);
+                        if (memberNode.HasAttribute("exited"))
+                        {
+                            member.ExitedDate = Convert.ToDateTime(
+                                memberNode.Attributes["exited"].Value,
+                                new CultureInfo("en-US", false));
+                        }
 
-                    alliance.addMember(member);
+                        alliance.addMember(member);
+                    }
                 }
 
                 Alliances.AddAlliance(alliance);

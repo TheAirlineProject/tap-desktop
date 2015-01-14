@@ -510,14 +510,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == airliner.Airliner.Airline.Profile.Country && p.Aircrafts.Contains(airliner.Airliner.Type.AirlinerFamily));
 
                 if (pilots.Count == 0)
-                    pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == airliner.Airliner.Airline.Profile.Country.Region && p.Aircrafts.Contains(airliner.Airliner.Type.AirlinerFamily));
+                    pilots = Pilots.GetUnassignedPilots(p => !FlightRestrictions.HasRestriction(airliner.Airliner.Airline.Profile.Country, p.Profile.Town.Country, GameObject.GetInstance().GameTime) && p.Profile.Town.Country.Region == airliner.Airliner.Airline.Profile.Country.Region && p.Aircrafts.Contains(airliner.Airliner.Type.AirlinerFamily));
 
                 if (pilots.Count == 0)
-                    pilots = Pilots.GetUnassignedPilots(p => p.Aircrafts.Contains(airliner.Airliner.Type.AirlinerFamily));
+                    pilots = Pilots.GetUnassignedPilots(p => !FlightRestrictions.HasRestriction(airliner.Airliner.Airline.Profile.Country, p.Profile.Town.Country, GameObject.GetInstance().GameTime) && p.Aircrafts.Contains(airliner.Airliner.Type.AirlinerFamily));
 
                 if (pilots.Count == 0)
                 {
-                    GeneralHelpers.CreatePilots(4, airliner.Airliner.Type.AirlinerFamily);
+                    GeneralHelpers.CreatePilots(4, airliner.Airliner.Type.AirlinerFamily,airliner.Airliner.Airline.Profile.Country);
                     HireAirlinerPilots(airliner);
                 }
 

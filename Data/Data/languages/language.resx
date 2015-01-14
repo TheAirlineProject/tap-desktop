@@ -5648,4 +5648,13 @@ Good luck.</value>
   <data name="PageUsedAirliners_1009_name" xml:space="preserve">
     <value>Show Only Major Manufacturers</value>
   </data>
+  <data name="PageAirlineEmployees_1017_name" xml:space="preserve">
+    <value>Flown Hours (HH:MM)</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_1017_name" xml:space="preserve">
+    <value>Flown Hours (DD:HH:MM)</value>
+  </data>
+  <data name="PageShowPilot_1007_name" xml:space="preserve">
+    <value>Flown Hours (HH:MM)</value>
+  </data>
 </root>

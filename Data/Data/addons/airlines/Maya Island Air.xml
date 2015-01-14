@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Maya Island Air" iata="MY" color="Chartreuse" country="197" CEO="Pedro Jimenez" mentality="Safe" market="Regional" preferedairport="BZE">
+  <narrative narrative="Maya Island Air ihas its hub  at Philip S.W. Goldson Airport in Belize City,Belize. Its corporate HQ and second hub is the cities second airport Belize City Municipal. It flies to 8 other Belize airports,along with Guatemala City, Cancun in Mexico and San Pedro Sula in Honduras. At October 2013 it had seven Cessna 208B's,three BN Islanders and a Cessna 182. It started out in 1962 to take over for the defunct British Honduras Airways that ceased in 1961. "/>
+</profile>
+  <info real="True" from="1962" to="2199" />
+  <prefereds aircrafts="Cessna 208B,BN-2A Islander,Cessna 182 Skylane"></prefereds>
+
+  <focusairports>
+	 <focusairport airport="TZA"></focusairport>
+     </focusairports>
+      <!--the airliners the airline would start with which isn't on a route earyl (1984) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="0" late="7"></airliner>
+	     </airliners>
+	           <!--the airliners the airline would start with which isn't on a route earyl (1965) late (2015)-->
+	         <airliners>
+	    <airliner type="BN-2A Islander" early="0" late="3"></airliner>
+	     </airliners>
+	     	           <!--the airliners the airline would start with which isn't on a route earyl (1962) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 182 Skylane" early="1" late="1"></airliner>
+	     </airliners>
+
+ <routes>
+		<route destination1="BZE" destination2="GUA" />
+		<route destination1="BZE" destination2="SAP" />
+		<route destination1="BZE" destination2="CUN"  />
+	        <route destination1="BZE" destination2="CZH" />
+		<route destination1="BZE" destination2="SPR" />
+		<route destination1="BZE" destination2="PLJ" />
+		<route destination1="BZE" destination2="PND"  />
+	        <route destination1="BZE" destination2="CUK" />
+		<route destination1="BZE" destination2="CYC" />
+		<route destination1="BZE" destination2="PND"  />
+		<route destination1="TZA" destination2="SPR" />
+		<route destination1="TZA" destination2="CUK" />
+		<route destination1="TZA" destination2="PLJ"  />
+	        <route destination1="TZA" destination2="BGK" />
+		<route destination1="TZA" destination2="CYC" />
+		<route destination1="TZA" destination2="PND" />
+	        </routes>
+
+
+
+
+</airline>

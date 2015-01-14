@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Tropic Air" iata="9N" color="DarkRed" country="197" CEO="Steven Schulte" mentality="Safe" market="Regional" preferedairport="BZE">
+  <narrative narrative="Tropic Air is based at Philip S. W. Goldson airport in Belize City. It also has a strong presence at Belize City's other aiport,Municipal Airport. It was founded in 1979. It serves 16 destinations. International ones include San Pedro Sula,Honduras, Roatan,Honduras, Flores,Guatemala, Cancun,Mexico, and Merida,Mexico. It has 10 Cessna 208's, 2 Gippsland GA8 Airvans,a Cessna 182 and a 172,a King Air 100 and they lease a Twin Otter seasonally a lot."/>
+</profile>
+  <info real="True" from="1979" to="2199" />
+  <prefereds aircrafts="Cessna 208B,GA8 Airvan,Cessna 182 Skylane,Cessna 172 Skyhawk,Beechcraft King Air B200,DHC-6-300 Twin Otter"></prefereds>
+
+  <focusairports>
+	 <focusairport airport="TZA"></focusairport>
+     </focusairports>
+      <!--the airliners the airline would start with which isn't on a route earyl (1984) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="0" late="10"></airliner>
+	     </airliners>
+	           <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2015)-->
+	         <airliners>
+	    <airliner type="GA8 Airvan" early="0" late="2"></airliner>
+	     </airliners>
+	     	           <!--the airliners the airline would start with which isn't on a route earyl (1979) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 182 Skylane" early="1" late="1"></airliner>
+	     <airliner type="Cessna 172 Skyhawk" early="1" late="1"></airliner>
+	      <airliner type="Beechcraft King Air B200" early="1" late="1"></airliner>
+	     </airliners>
+
+ <routes>
+		<route destination1="BZE" destination2="BCV" />
+		<route destination1="BZE" destination2="SAP" />
+		<route destination1="BZE" destination2="FRS"  />
+		<route destination1="BZE" destination2="CUN"  />
+	        <route destination1="BZE" destination2="CZH" />
+		<route destination1="BZE" destination2="SPR" />
+		<route destination1="BZE" destination2="PLJ" />
+		<route destination1="BZE" destination2="PND"  />
+	        <route destination1="BZE" destination2="CUK" />
+		<route destination1="BZE" destination2="PND"  />
+		<route destination1="BZE" destination2="MID"  />
+		<route destination1="BZE" destination2="RTB"  />
+		<route destination1="TZA" destination2="SPR"  />
+		<route destination1="TZA" destination2="BCV" />
+		<route destination1="TZA" destination2="CUK" />
+		<route destination1="TZA" destination2="PLJ"  />
+	        <route destination1="TZA" destination2="BGK" />
+		<route destination1="TZA" destination2="SQS"  />
+		<route destination1="TZA" destination2="CYC" />
+		<route destination1="TZA" destination2="PND" />
+	        </routes>
+
+
+
+
+</airline>

@@ -5,4 +5,23 @@
 	<capacity passengers="62" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
 	<produced from="1946" to="1950" rate="14"/>
   </airliner>
+  <airliner manufacturer="Canadair" name="Canadair CL-44J" price="5950000">
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop"/>
+	<specs wingspan="43.37" length="49.28" weight="95000" range="7000" speed="646" fuelcapacity="16100" consumption="0.005" runwaylengthrequired="2000"/>
+	<capacity passengers="189" cockpitcrew="3" cabincrew="4" maxclasses="3"/>
+	<produced from="1964" to="1965" rate="2"/>
+  </airliner>
+<airliner manufacturer="Canadair" name="Canadair CL-44D4-8" price="6340000">
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop"/>
+	<specs wingspan="43.37" length="41.73" weight="95000" range="8990" speed="646" fuelcapacity="20700" consumption="0.006" runwaylengthrequired="2000"/>
+	<capacity passengers="160" cockpitcrew="3" cabincrew="3" maxclasses="3"/>
+	<produced from="1964" to="1964" rate="2"/>
+  </airliner>
+  <airliner type="Cargo" manufacturer="Canadair" name="CL-44D4" price="6340000"> 
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
+    <specs wingspan="43.37" length="41.73" weight="95000" range="8990" speed="646" fuelcapacity="20700" consumption="0.006"
+           runwaylengthrequired="2000" />
+    <capacity cockpitcrew="4" cargo="30" />
+    <produced from="1960" to="1964" rate="5" />
+  </airliner>
 </airliners>

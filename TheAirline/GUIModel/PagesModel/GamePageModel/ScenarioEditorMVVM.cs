@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
@@ -24,7 +25,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             {
                 var startYears = new ObservableCollection<int>();
 
-                for (int i = 1960; i < DateTime.Now.Year + 1; i++)
+                for (int i = GameObject.StartYear; i < DateTime.Now.Year + 1; i++)
                     startYears.Add(i);
 
                 return startYears;

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Pace Airlines" iata="Y5" color="RoyalBlue" country="122" CEO="Bob Brooks" mentality="Safe" market="Regional" preferedairport="ACY" schedule="Charter">
+  <narrative narrative="Pace Airlines was a charter airline around from 1996 to September 2009. Its base was Winston-Salem,North Carolina with focus cities at Atlantic City,NJ and Dallas Love Field,TX. Its first plane was a 737-200. Its initial model was to charter for sports teams,entertainers and corporations in a first class configuration with 44 seats. Its first major contract came after Darrell Richardson became president who had been CEO of Mesaba Airlines from 1995 to his hiring in January 2000. It called for Pace to operate six 737-300s for Vacation Express on a scheduled charter to Orlando Sanford from Baltimore,Washington Dulles,Cincinatti,Indianapolis,Louisville,Charlotte, and Atlanta. At the SFB hub flights would take the vacationers to Saint Marteen,Punta Cana,Cancun,Coasta Rica,and Montego Bay. In December 2002 Robert Brooks bought it, the owner of Hooters restaraunts. He turned Pace into the Hooters Air brand and based its flight ops at Myrtle Beach,South Carolina. It was aimed at golfers for the areas 100+ golf courses and had two Hooters girls on each flight. Initial routes were to Atlanta and Baltimore, over time Newark,Columbus Ohio, and Gary Indiana were added to name some. In February 2005 service was introduced at Rockford,IL to Denver and Las Vegas. This only lasted until December when it stopped. Hooters ceased at the start of 2006. Pace itself only lasted until September 2009 when it too ceased. At the end it had three 737-200 Adv.s which is what Hooters used. It had 7 737-300's from 2002 and it didnt have any by 2008. It had a 757-200 which also was used by Hooters and was gone by 2008."/>
+</profile>
+  <info real="True" from="1996" to="2010" />
+  <prefereds aircrafts="Boeing 737-300,Boeing 737-200 Adv.,Boeing 737-400,Boeing 757-200.,Boeing 767-200,Boeing 737-200"></prefereds>
+   <focusairports>
+	 <focusairport airport="DAL"></focusairport>
+	  <focusairport airport="SFB"></focusairport>
+     </focusairports>
+    
+ <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2008)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="1" late="0"></airliner>
+	      <airliner type="Boeing 737-300" early="7" late="0"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (1998) late (2009)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200 Adv." early="1" late="3"></airliner>
+		     </airliners>
+		     	      <!--the airliners the airline would start with which isn't on a route earyl (1996) late (2009)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200" early="1" late="0"></airliner>
+		     </airliners>
+
+
+
+
+
+
+
+
+
+</airline>

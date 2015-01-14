@@ -450,13 +450,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (airliner.CurrentFlight.isPassengerFlight())
             {
+                if (airliner.Airliner.Type is AirlinerPassengerType)
+                {
+                    int pax = airliner.CurrentFlight.getTotalPassengers();
 
-                int pax = airliner.CurrentFlight.getTotalPassengers();
+                    double basePrice = fuelPrice * distance * ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity * airliner.Airliner.FuelConsumption * 0.55;
+                    double paxPrice = fuelPrice * distance * airliner.Airliner.FuelConsumption * airliner.CurrentFlight.getTotalPassengers() * 0.45;
+                    double seatsPrice = airliner.CurrentFlight.Classes.Sum(c => (airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses - 1) * c.Passengers);
+                    return basePrice + paxPrice + seatsPrice;
+                }
+                else 
+                {
+                    int pax = airliner.CurrentFlight.getTotalPassengers();
 
-                double basePrice = fuelPrice * distance * ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity * airliner.Airliner.FuelConsumption * 0.55;
-                double paxPrice = fuelPrice * distance * airliner.Airliner.FuelConsumption * airliner.CurrentFlight.getTotalPassengers() * 0.45;
-                double seatsPrice = airliner.CurrentFlight.Classes.Sum(c => (airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses - 1) * c.Passengers);
-                return basePrice + paxPrice + seatsPrice;
+                    double basePrice = fuelPrice * distance * ((AirlinerCombiType)airliner.Airliner.Type).MaxSeatingCapacity * airliner.Airliner.FuelConsumption * 0.55;
+                    double paxPrice = fuelPrice * distance * airliner.Airliner.FuelConsumption * airliner.CurrentFlight.getTotalPassengers() * 0.45;
+                    double seatsPrice = airliner.CurrentFlight.Classes.Sum(c => (airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses - 1) * c.Passengers);
+                    return basePrice + paxPrice + seatsPrice;
+                }
+               
 
             }
             else

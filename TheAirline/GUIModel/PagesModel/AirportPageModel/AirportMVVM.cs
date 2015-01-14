@@ -125,6 +125,7 @@
                     a =>
                         new CountryCurrentCountryConverter().Convert(a.Profile.Country)
                         != new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country));
+            
             IEnumerable<Airport> domesticDemand =
                 demands.Where(
                     a =>

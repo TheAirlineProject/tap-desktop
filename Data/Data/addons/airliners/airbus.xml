@@ -144,7 +144,7 @@
 
     <capacity passengers="156" cockpitcrew="2" cabincrew="3" maxclasses="2" />
 
-    <produced from="1994" to="2013" rate="220" />
+    <produced from="1994" to="2015" rate="220" />
 
   </airliner>
 
@@ -349,7 +349,7 @@
 
     <capacity passengers="375" cockpitcrew="2" cabincrew="8" maxclasses="3" />
 
-    <produced from="2013" to="2022" rate="10" />
+    <produced from="2016" to="2027" rate="10" />
 
   </airliner>
 
@@ -362,7 +362,7 @@
 
     <capacity passengers="420" cockpitcrew="2" cabincrew="8" maxclasses="3" />
 
-    <produced from="2016" to="2027" rate="10" />
+    <produced from="2014" to="2023" rate="40" />
 
   </airliner>
 
@@ -375,7 +375,7 @@
 
     <capacity passengers="420" cockpitcrew="2" cabincrew="8" maxclasses="3" />
 
-    <produced from="2016" to="2027" rate="10" />
+    <produced from="2016" to="2027" rate="35" />
 
   </airliner>
 
@@ -388,7 +388,7 @@
 
     <capacity passengers="550" cockpitcrew="2" cabincrew="11" maxclasses="4" />
 
-    <produced from="2017" to="2033" rate="10" />
+    <produced from="2017" to="2033" rate="20" />
 
   </airliner>
 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Transportes Aereos Guatemaltecos" iata="TGU" color="Silver" country="194" CEO="Jose Antonio Gonzales Aparicio" mentality="Safe" market="Regional" preferedairport="GUA" routefocus="Mixed">
+  <narrative narrative="TAG for short. TAG operates passenger and cargo service from Guatemala City primarily to Guatemalan and Honduras airports. Its secondary hub is Flores. It was founded in 1969. Other regular destinations are San Pedro Sula and Tegucigalpa in Honduras, while charters are offered to 7 other domestic airports and include other Central American places like El Salvador and Belize, along with the Mexican cities of Cancun,Chetumal,Mexico City and Acapulco. Its current fleet is five Embraer 110 Bandeirantes,three Saab 340's,two Piper 34 Senecas,a Beechcraft King Air and a Bell 206 helicopter. In the past it has had three LET-410's,one BAe Jetstream 31 and a DC-3. It also does ambulance and agricultural flights."/>
+</profile>
+  <info real="True" from="1969" to="2199" />
+  <prefereds aircrafts="EMB 110 Bandeirante,Saab 340B,Let L-410,PA-34 Seneca,BAe Jetstream 31,Douglas DC-3,Beechcraft King Air B200"></prefereds>
+
+  <focusairports>
+	 <focusairport airport="FRS"></focusairport>
+     </focusairports>
+      <!--the airliners the airline would start with which isn't on a route earyl (1969) late (2015)-->
+	         <airliners>
+	    <airliner type="EMB 110 Bandeirante" early="0" late="5"></airliner>
+	     </airliners>
+	           <!--the airliners the airline would start with which isn't on a route earyl (1969) late (2015)-->
+	         <airliners>
+	    <airliner type="Saab 340B" early="0" late="3"></airliner>
+	     </airliners>
+	     	           <!--the airliners the airline would start with which isn't on a route earyl (1969) late (2015)-->
+	         <airliners>
+	    <airliner type="PA-34 Seneca" early="0" late="2"></airliner>
+	     </airliners>
+	     	           <!--the airliners the airline would start with which isn't on a route earyl (1969) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="0" late="1"></airliner>
+	     </airliners>
+	     	           <!--the airliners the airline would start with which isn't on a route earyl (1969) late (2015)-->
+	         <airliners>
+	    <airliner type="BAe Jetstream 31" early="1" late="0"></airliner>
+	     </airliners>
+	     	     	           <!--the airliners the airline would start with which isn't on a route earyl (1972) late (2015)-->
+	         <airliners>
+	    <airliner type="Douglas DC-3" early="1" late="0"></airliner>
+	     </airliners>
+	          	     	           <!--the airliners the airline would start with which isn't on a route earyl (1988) late (2015)-->
+	         <airliners>
+	    <airliner type="Let L-410" early="3" late="0"></airliner>
+	     </airliners>
+
+ <routes>
+		<route destination1="GUA" destination2="FRS" />
+		<route destination1="GUA" destination2="SAP" />
+		<route destination1="GUA" destination2="TGU"  />
+	
+	        </routes>
+
+
+
+
+</airline>

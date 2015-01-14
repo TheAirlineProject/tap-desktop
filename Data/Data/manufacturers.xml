@@ -67,6 +67,8 @@
        <manufacturer name="MD Helicopters" shortname="MDH" country="122" />  
 <manufacturer name="Aero Commander" shortname="Aero" country="122" />
   <manufacturer name="Xi'an Aircraft Industrial Corporation" shortname="Xian" country="148" />
+  <manufacturer name="Avro Aircraft" shortname="Avro" country="130" />
+    <manufacturer name="Stinson Aircraft Company" shortname="Stinson" country="122" />
 
    <!--engines-->
   <manufacturer name="CFM International" shortname="CFM" country="140" />

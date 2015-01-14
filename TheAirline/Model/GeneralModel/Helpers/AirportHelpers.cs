@@ -275,7 +275,7 @@
         public static GeneralHelpers.Size ConvertAirportPaxToSize(double size)
         {
             
-            int decade = (GameObject.GetInstance().GameTime.Year - 1960) / 10 * 10 + 1960;
+            int decade = (GameObject.GetInstance().GameTime.Year - GameObject.StartYear) / 10 * 10 + GameObject.StartYear;
 
             double coeff = 1;
 

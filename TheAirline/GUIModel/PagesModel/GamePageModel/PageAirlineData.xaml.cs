@@ -59,10 +59,7 @@
                         && ((this.StartData.MajorAirlines && airline.MarketFocus == Airline.AirlineFocus.Global) || !this.StartData.MajorAirlines)).OrderBy(a => a.Profile.Name).ToList().ForEach(a=>airlines.Add(a));
 
             this.cbAirline.ItemsSource = airlines;
-        }
-
-       
-
+       }
         #endregion
 
         #region Public Properties
@@ -83,8 +80,6 @@
             Airline airline = (Airline)view.GetItemAt(rnd.Next(view.Count));
 
             cbAirline.SelectedItem = airline;
-
-
         }
         private void btnShuffleAirport_Click(object sender, RoutedEventArgs e)
         {
@@ -113,7 +108,7 @@
             this.StartData.HomeCountry = (Country)this.cbCountry.SelectedItem;
             this.StartData.TimeZone = (GameTimeZone)this.cbTimeZone.SelectedItem;
             this.StartData.LocalCurrency = this.cbLocalCurrency.IsChecked.Value
-                                           && this.StartData.HomeCountry.HasLocalCurrency;
+                                           && this.StartData.HomeCountry.HasLocalCurrency; 
 
             if (this.StartData.SelectedCountries != null)
             {

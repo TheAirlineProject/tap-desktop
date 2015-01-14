@@ -2,6 +2,7 @@
 
 <mergers>
 <merger name="The Air Wisconsin subsidiary Aspen Airways has been fully merged into Air Wisconsin." airline1="ZW" airline2="ASP" type="Merger" date="1.01.1991 00:00:00"></merger>
+<merger name="Pace Airlines is starting another brand called Hooters Air." airline1="Y5" airline2="H1" type="Subsidiary" date="1.01.2003 00:00:00"></merger>
 <merger name="Air Wisconsin has aquired Aspen Airways." airline1="ZW" airline2="ASP" type="Subsidiary" date="1.01.1990 00:00:00"></merger>
 <merger name="Aeromexico has bought most of Aeroperu and has made them a subsidiary." airline1="AM" airline2="PL" type="Subsidiary" date="1.01.1993 00:00:00"></merger>
   <merger name="MasAir cargo airlines has been partly bought by LAN Airlines and is now a major partner and a subsidiary of LAN." airline1="LA" airline2="M7" type="Subsidiary" date="12.16.2000 00:00:00"></merger>

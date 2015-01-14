@@ -141,7 +141,7 @@
     {
         #region Static Fields
 
-        public static int BaseYear = 1960;
+        //public static int BaseYear = 1960;
 
         private static readonly List<Inflation> inflations = new List<Inflation>();
 

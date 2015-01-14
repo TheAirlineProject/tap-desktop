@@ -1,10 +1,138 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
-  <profile name="Icelandair" iata="FI" color="MidnightBlue" country="121" CEO="Bikir Holm Guonason" mentality="Safe"
-           market="Regional" preferedairport="KEF">
-   <narrative narrative="Icelandair is the main airline of Iceland, headquartered at Reykjavík Airport in Reykjavík. It traces its roots back to 1937, when Flugfélag Akureyrar was founded in Akureyri on the north coast of Iceland. Flight operations started in 1938 with a single floatplane of the type Waco YKS-7." />
+  <profile name="Icelandair" iata="FI" color="MidnightBlue" country="121" CEO="Bikir Holm Guonason" mentality="Moderate" market="Global" preferedairport="KEF">
+   <narrative narrative="Icelandair is the main airline of Iceland, headquartered at Reykjavík Airport in Reykjavík and its hub at Keflavik Airport south of there. It traces its roots back to 1937, when Flugfélag Akureyrar was founded in Akureyri on the north coast of Iceland. Flight operations started in 1938 with a single floatplane of the type Waco YKS-7. In 1940 it moved to Reykjavik after its plane had crashed, but it acquired another of the same type. Its new name here would be Flugfog islands, which means Flight Company of Iceland. It would use the name Iceland Airways on international flights. In 1942 it got a Beechcraft 18 and two de Havilland Dragon Rapide's, in 1944 it got a Catalina sea plane.July 1945 saw the start of the first service to cross the Atlantic from Iceland to Largs in Scotland. Regular flights to Prestwick in Scotland and Copenhagen,Denmark started in 1946 with B-24 Liberators leased from Scottish Airlines. 1946 also saw the reception of six DC-3s for domestic use. It used these until 1972.  Loftleioir, also known as Icelandic Airways, was a major competitor on domestic routes until 1952 which it had been founded in 1944. The Icelandic government were afraid the two airlines would kill each other in competition so attempted to merge them, this didn't work out. The government instead split up the domestic routes, but Loftleioir decided to pull out of the domestic market and focus on international flying. While Flugfelag became the sole main domestic carrier it still did international flights too. It was in the 50s it started using the name Icelandair for out of Iceland flights. 1948 saw the introduction of Douglas C-54 Skymasters and in 1957 two Vickers Viscounts. 1967 is when the first jet came, a 727. It got another in 1971. In 1973 after an energy crisis which worsened the economic conditions a merger was attempted with Icelandic Airlines again, this time with success. The combined fleet gave Flugfelag the Icelandic Airlines DC-8s,and by 1979 all of the assetts of Icelandic Airlines belonged to them, which is when the name was changed  to Icelandair. Icelandair also has a cargo division, and has Air Iceland which was founded in 1997 which serves domestic,Greenland and the Faroe Islands. Icelandair's fleet in September 2014 was 23 757-200's, one 757-300, and on order it had 9 737 MAX 8's, 7 737 MAX 9's, and 4 787-8's. In the past it has also used 737-300 and 400's,767-300ER,DC-6,DC-10,Fokker 27,Fokker 50 and Canadair CL-44 type planes. It is the only passenger versions made for civil use, and the CL-44J was a special requested stretched version that carried 189 people with a reduced range where the CL-44D4-8 held 160.  As of September 2014 Icelandair itself served 2 domestic airports including the hub, in Norway 4 and 3 of them are seasonally,4 in the UK with Birmingham making it 5 starting on 2015,9 in the US however Portland,OR will be a new seaonal starting in 2015 making it 10, 3 of the others are also seasonal.4 in Canada, 2 are seasonal. Brussels,Belgium is seasonal. In Denmark Copenhagen and Billund, Billund being seasonal. Helsinki,Finland. Paris,France. 3 in Germany, Frankfurt being the regular one. Milan,Italy seasonally. Amsterdam regularly. In Spain Barcelona is regular and Madrid is seasonal. Sweden has Stockholm regularly and Gothenburg seasonally. And finally 2  in Switzerland, both seasonal. " />
+   <names>
+<name value="Flugfélag Islands" from="1.1.1937 00:00:00"></name>
+<name value="Icelandair" from="1.1.1979 00:00:00"></name>
+</names>
+<logos>
+      <logo from="1937" to="1979" path="F11937-1979"></logo>
+    </logos>
    </profile>
  
   <info real="True" from="1937" to="2199" />
+    <prefereds aircrafts="Boeing 757-200,Boeing 757-300,Douglas DC-8-63,Boeing 737-400,Boeing 767-300ER,Douglas DC-3,Fokker 50,Fokker F27,Douglas DC-6,DH 89 Dragon Rapide,Boeing 737 MAX 8,Boeing 737 MAX 9,Boeing 727-100,Boeing 727-200,Boeing 727-200 Adv.,Vickers Viscount 800,Douglas DC-4-1009,Douglas DC-10-10,Canadair CL-44J,Canadair CL-44D4-8"></prefereds>
+          <!--the airliners the airline would start with which isn't on a route earyl (1994) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="1" late="20"></airliner>
+	     </airliners>
+	               <!--the airliners the airline would start with which isn't on a route earyl (2002) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 757-300" early="1" late="1"></airliner>
+	     </airliners>
+	     	               <!--the airliners the airline would start with which isn't on a route earyl (1989) late (2003)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="2" late="0"></airliner>
+	     </airliners>
+	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1984) late (1991)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-63" early="3" late="0"></airliner>
+	     </airliners>
+	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (2003) late (2012)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300ER" early="1" late="0"></airliner>
+	     </airliners>
+	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1942) late (1960)-->
+	         <airliners>
+	    <airliner type="DH 89 Dragon Rapide" early="2" late="0"></airliner>
+	     </airliners>
+	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1942) late (1960)-->
+	         <airliners>
+	    <airliner type="Beechcraft Model 18" early="1" late="0"></airliner>
+	     </airliners>
+	     	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1946) late (1973)-->
+	         <airliners>
+	    <airliner type="Douglas DC-3" early="6" late="0"></airliner>
+	     </airliners>
+	          	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1957) late (1971)-->
+	         <airliners>
+	    <airliner type="Vickers Viscount 800" early="2" late="0"></airliner>
+	     </airliners>
+	     	          	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1970) late (1981)-->
+	         <airliners>
+	    <airliner type="Douglas DC-10-10" early="1" late="0"></airliner>
+	     </airliners>
+	     	          	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1956) late (1972)-->
+	         <airliners>
+	    <airliner type="Douglas DC-6" early="1" late="0"></airliner>
+	     </airliners>
+	     	          	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1937) late (1958)-->
+	         <airliners>
+	    <airliner type="Douglas DC-4-1009" early="1" late="0"></airliner>
+	     </airliners>
+	        	          	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1964) late (1971)-->
+	         <airliners>
+	    <airliner type="Canadair CL-44J" early="4" late="0"></airliner>
+	     </airliners>
+	             	          	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1964) late (1971)-->
+	         <airliners>
+	    <airliner type="Canadair CL-44D4-8" early="2" late="0"></airliner>
+	     </airliners>
+	             	          	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1967) late (1990)-->
+	         <airliners>
+	    <airliner type="Boeing 727-100" early="2" late="0"></airliner>
+	     </airliners>
+	             	          	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1968) late (1993)-->
+	         <airliners>
+	    <airliner type="Fokker F27" early="4" late="0"></airliner>
+	     </airliners>
+	                  	          	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (1992) late (1998)-->
+	         <airliners>
+	    <airliner type="Fokker 50" early="2" late="0"></airliner>
+	     </airliners>
+	     	                  	          	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (2015) late (2019)-->
+	         <airliners>
+	    <airliner type="Boeing 787-8" early="1" late="4"></airliner>
+	     </airliners>
+	         	                  	          	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (2016) late (2020)-->
+	         <airliners>
+	    <airliner type="Boeing 737 MAX 8" early="1" late="9"></airliner>
+	     </airliners>
+	             	                  	          	     	     	     	     	     	               <!--the airliners the airline would start with which isn't on a route earyl (2016) late (2020)-->
+	         <airliners>
+	    <airliner type="Boeing 737 MAX 9" early="1" late="7"></airliner>
+	     </airliners>
+   <routes>
+		<route destination1="KEF" destination2="AEY" />
+		<route destination1="KEF" destination2="CPH" />
+		<route destination1="KEF" destination2="GLA"  />
+		<route destination1="KEF" destination2="OSL"  />
+	        <route destination1="KEF" destination2="LHR" />
+		<route destination1="KEF" destination2="AMS" />
+		<route destination1="KEF" destination2="JFK" />
+		<route destination1="KEF" destination2="EWR" />
+		<route destination1="KEF" destination2="LGW"  /> 
+	        <route destination1="KEF" destination2="ARN" />
+		<route destination1="KEF" destination2="CDG"  />
+		<route destination1="KEF" destination2="MAN"  />
+		<route destination1="KEF" destination2="FRA"  />
+		<route destination1="KEF" destination2="HEL"  />
+		<route destination1="KEF" destination2="YYZ" />
+		<route destination1="KEF" destination2="BCN" />
+		<route destination1="KEF" destination2="IAD"  />
+	        <route destination1="KEF" destination2="BOS" />
+		<route destination1="KEF" destination2="SEA"  />
+		<route destination1="KEF" destination2="DEN" />
+		<route destination1="KEF" destination2="MUC" />
+		<route destination1="KEF" destination2="BGO" />
+		<route destination1="KEF" destination2="BRU" />
+		<route destination1="KEF" destination2="YEG"  />
+		<route destination1="KEF" destination2="YHZ"  />
+	        <route destination1="KEF" destination2="SVG" />
+		<route destination1="KEF" destination2="TRD" />
+		<route destination1="KEF" destination2="MAD" />
+		<route destination1="KEF" destination2="MXP" />
+		<route destination1="KEF" destination2="HAM"  />
+	        <route destination1="KEF" destination2="BLL" />
+		<route destination1="KEF" destination2="ZRH"  />
+		<route destination1="KEF" destination2="GVA"  />
+		<route destination1="KEF" destination2="GOT"  />
+		<route destination1="KEF" destination2="MSP"  />
+		<route destination1="KEF" destination2="SFB" />
+		<route destination1="KEF" destination2="ANC" />
+		<route destination1="KEF" destination2="BHX"  />
+	        <route destination1="KEF" destination2="PDX" />
+	        </routes>
 </airline>

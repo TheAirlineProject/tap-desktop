@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <inflations>
+  <inflation year="1946" fuelprice="0.115" inflation="0.0146" pricemodifier="0.660" />
+  <inflation year="1947" fuelprice="0.095" inflation="0.0107" pricemodifier="0.750" />
+  <inflation year="1948" fuelprice="0.097" inflation="0.0120" pricemodifier="0.810" />
+  <inflation year="1949" fuelprice="0.099" inflation="0.0124" pricemodifier="0.800" />
+  <inflation year="1950" fuelprice="0.100" inflation="0.0128" pricemodifier="0.810" />
+  <inflation year="1951" fuelprice="0.124" inflation="0.0159" pricemodifier="0.880" />
+  <inflation year="1952" fuelprice="0.121" inflation="0.0301" pricemodifier="0.900" />
+  <inflation year="1953" fuelprice="0.102" inflation="0.0278" pricemodifier="0.900" />
+  <inflation year="1954" fuelprice="0.100" inflation="0.0427" pricemodifier="0.910" />
+  <inflation year="1955" fuelprice="0.098" inflation="0.0546" pricemodifier="0.900" />
+  <inflation year="1956" fuelprice="0.102" inflation="0.0584" pricemodifier="0.920" />
+  <inflation year="1957" fuelprice="0.104" inflation="0.0430" pricemodifier="0.950" />
+  <inflation year="1958" fuelprice="0.107" inflation="0.0327" pricemodifier="0.980" />
+  <inflation year="1959" fuelprice="0.103" inflation="0.0616" pricemodifier="0.980" />
   <inflation year="1960" fuelprice="0.119" inflation="0.0146" pricemodifier="1.000" />
   <inflation year="1961" fuelprice="0.082" inflation="0.0107" pricemodifier="1.010" />
   <inflation year="1962" fuelprice="0.082" inflation="0.0120" pricemodifier="1.020" />

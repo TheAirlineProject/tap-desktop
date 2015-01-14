@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Hooters Air" iata="H1" color="Orange" country="122" CEO="Bob Brooks" mentality="Moderate" market="Regional" preferedairport="MYR" schedule="Charter">
+  <narrative narrative="Hooters Air was started in 2003 when the owner of Hooters of America bought Pace Airlines and made Hooters a brand used by Pace Airlines. It was in essence a subsidiary of Pace. It was created as a way to advertise the restaraunt chain but also to cater to golfers and the 100+ golf courses in the Myrtle Beach,South Carolina area. Its flights were done as public charters, both ad hoc and scheduled. When a flight was done public it used its own IATA H1, opposed to Pace's Y5. Two hooters girls in their traditional attire would help the other inflight crew. Although billed a low fare carrier it had 34 seating pitch, and since it was golfer aimed it was called Club Class. Its planes were white and orange with the Hooters Owl on the tail. On April 17,2006 it officially ceased. Pace itself would go on to cease in September 2009. At the end Hooters served Fort Lauderdale and St. Petersburg in Florida,Allentown in PA,and Newark in NJ. Terminated before this were 13 airports in 11 states, and San Juan in the terriory of Puerto Rico, it also served Nassau in the Bahamas. Its planes which were Pace owned at the end were four 737-300's,two 737-200 Adv., and one 757-200. It at the start had the 757 and the two 200 series 737's, the 300s came in 2004 and 2005. "/>
+</profile>
+  <info real="True" from="2003" to="2006" />
+  <prefereds aircrafts="Boeing 737-300,Boeing 737-200 Adv.,Boeing 757-200"></prefereds>
+ <!--the airliners the airline would start with which isn't on a route earyl (2003) late (2005)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200" early="1" late="1"></airliner>
+	      <airliner type="Boeing 737-200 Adv." early="2" late="2"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2005)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="1" late="4"></airliner>
+		     </airliners>
+
+
+
+
+
+
+
+
+</airline>

@@ -75,7 +75,9 @@
          <airlinerimage image="B212" types="Bell 212"></airlinerimage>
             <airlinerimage image="B214" types="Bell 214ST"></airlinerimage>
 <airlinerimage image="DHC6" types="DHC-6-300 Twin Otter"></airlinerimage>
+<airlinerimage image="DH89" types="DH 89 Dragon Rapide"></airlinerimage>
 <airlinerimage image="P180" types="P180 Avanti"></airlinerimage>
+<airlinerimage image="BM18" types="Beechcraft Model 18"></airlinerimage>
 <airlinerimage image="CV50" types="Vision SF50"></airlinerimage>
 <airlinerimage image="4AT" types="Ford Trimotor"></airlinerimage>
 <airlinerimage image="AAN2" types="Antonov An-2"></airlinerimage>
@@ -85,4 +87,6 @@
     <airlinerimage image="VC1" types="Vickers VC1 Viking"></airlinerimage>
   <airlinerimage image="Vanguard" types="Vickers Vanguard"></airlinerimage>
     <airlinerimage image="MA60" types="Xian MA60"></airlinerimage>
+        <airlinerimage image="Avro York" types="Avro York"></airlinerimage>
+            <airlinerimage image="Avro Lancastrian" types="Avro Lancastrian"></airlinerimage>
 </airlinerimages>
