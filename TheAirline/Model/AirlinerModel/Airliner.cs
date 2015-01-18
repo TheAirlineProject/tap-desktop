@@ -468,9 +468,13 @@
         public int getTotalSeatCapacity()
         {
             int capacity = 0;
-            foreach (AirlinerClass aClass in this.Classes)
+
+            lock (this.Classes)
             {
-                capacity += aClass.SeatingCapacity;
+                foreach (AirlinerClass aClass in this.Classes)
+                {
+                    capacity += aClass.SeatingCapacity;
+                }
             }
 
             return capacity;

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="TAM Airlines Paraguay" iata="PZ" logo="JJ" color="Red" country="213" CEO="Libano Barroso" mentality="Safe" market="Global" preferedairport="ASU">
+    <narrative narrative="Known as LAP- Lineas Aereas Paraguays, before 1996, when it was acquired by TAM of the LATAM Airlines Group. It was called TAM Mercosur from 1998 to 2008. Its role at its founding in 1963 was to be the flag carrier of Paraguay. Its initial fleet was three Convair 240's. Out of its Asuncion base it flew to regional cities like Rio de Janeiro,Buenos Aires,Montevideo,Sao Paulo and Curitiba. In 1969 it got three Lockheed L-188 Electras to replace the Convairs. 1970 saw the start of service to Santa Cruz,Bolivia and Resistencia and Salta both in Argentina. It got a former military C-47 this year too, the military version of the DC-3.1972 it started flights to La Paz,Bolivia, 1973 to Lima,Peru, and in 1978 to Santiago,Chile. 1978 is when it got its first jet, two 707-320's and service to the US began with Miami. 1979 Europe was reached with Madrid,Spain and Frankfurt,Germany. Another 707 was bought in 1982 and service to Brussels,Belgium started. Mexico City and Panama City were tested for a few months but not for long.In 1984 it got a DC-8-63 and in 1988 it got a DC-8-61. In 1992 it got a DC-10-30. In 1994 it was losing money and it was sold to a Ecuadorian-Paraguayan Consortium and restarted in February 1995 with two 737-200 Adv.s. It got three A320's and an A310-300, Miami was a route for the A310 and regional routes for the A320's. It was out of Europe at this time. In 1996 it was sold to TAM of Brazil and took the name TAM Mercosur until 2008 when it was changed to TAM Airlines Paraguay. It also had 2 Fokker 100's a short time after its TAM buy. TAM owns 94.98% of the airline while the Paraguay government owns the rest. It has five A320's assinged to it by TAM as of December 2012. It serves about 8 destinations. This includes the domestic destination Minga Guazu, which is also a focus city." />
+<names>
+<name value="Lineas Aereas Paraguayas" from="1.1.1963 00:00:00"></name>
+<name value="TAM Mercosur" from="1.1.1996 00:00:00"></name>
+<name value="TAM Airlines Paraguay" from="1.1.2008 00:00:00"></name>
+</names>
+<logos>
+      <logo from="1963" to="1996" path="PZ1963-1996"></logo>
+       <logo from="1996" to="2008" path="PZ1996-2008"></logo>
+    </logos>
+</profile>
+   <info real="True" from="1963" to="2199"></info>
+   <prefereds aircrafts="Airbus A320-200,Convair 240,Lockheed L-188A,Douglas DC-3,Boeing 707-320,Douglas DC-8-63,Douglas DC-8-61,Douglas DC-10-30,Boeing 737-200 Adv.,Airbus A310-300,Fokker 100"></prefereds>
+<focusairports>
+        <focusairport airport="AGT"></focusairport>
+     </focusairports>
+
+    
+
+        <!--the airliners the airline would start with which isn't on a route earyl (1963) late (1970)-->
+	         <airliners>
+	    <airliner type="Convair 240" early="3" late="0"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (1969) late (1995)-->
+	         <airliners>
+	    <airliner type="Lockheed L-188A" early="3" late="0"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl (1970) late (1990)-->
+	         <airliners>
+	    <airliner type="Douglas DC-3" early="1" late="0"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl (1992) late (1998)-->
+	         <airliners>
+	    <airliner type="Douglas DC-10-30" early="1" late="0"></airliner>
+	     </airliners>
+	          	  <!--the airliners the airline would start with which isn't on a route earyl (1984) late (1996)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-63" early="1" late="0"></airliner>
+	     </airliners>
+	     	          	  <!--the airliners the airline would start with which isn't on a route earyl (1988) late (1996)-->
+	         <airliners>
+	    <airliner type="Douglas DC-8-61" early="1" late="0"></airliner>
+	     </airliners>
+	          	          	  <!--the airliners the airline would start with which isn't on a route earyl (1996) late (1999)-->
+	         <airliners>
+	    <airliner type="Fokker 100" early="2" late="0"></airliner>
+	     </airliners>
+	             	          	  <!--the airliners the airline would start with which isn't on a route earyl (1994) late (1999)-->
+	         <airliners>
+	    <airliner type="Airbus A310-300" early="1" late="0"></airliner>
+	     </airliners>
+	     	             	          	  <!--the airliners the airline would start with which isn't on a route earyl (1978) late (1995)-->
+	         <airliners>
+	    <airliner type="Boeing 707-320" early="3" late="0"></airliner>
+	     </airliners>
+	     	     	             	          	  <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2015)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="1" late="5"></airliner>
+	     </airliners>
+	     	     	     	             	          	  <!--the airliners the airline would start with which isn't on a route earyl (1995) late (1998)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200 Adv." early="2" late="0"></airliner>
+	     </airliners>
+	     
+ <routes>
+		<route destination1="ASU" destination2="AEP" opened="1963" closed="2199"  />
+		<route destination1="ASU" destination2="SDU" opened="1963" closed="2199"  />
+		<route destination1="ASU" destination2="GRU" opened="1963" closed="2199"  />
+	        <route destination1="ASU" destination2="MVD" opened="1964" closed="2199"  />
+		<route destination1="ASU" destination2="CWB" opened="1965" closed="2199"  />
+		<route destination1="ASU" destination2="VVI" opened="1970" closed="2199"  />
+		<route destination1="ASU" destination2="SLA" opened="1970" closed="1995"  />
+	       <route destination1="ASU" destination2="MIA" opened="1978" closed="2199"  />
+		<route destination1="ASU" destination2="SCL" opened="1978" closed="2199"  />
+		<route destination1="ASU" destination2="LIM" opened="1973" closed="1995"  />
+		<route destination1="ASU" destination2="LBP" opened="1972" closed="1995"  />
+		<route destination1="ASU" destination2="FRA" opened="1979" closed="1995"  />
+		<route destination1="ASU" destination2="MAD" opened="1979" closed="1995"  />
+	        <route destination1="ASU" destination2="BRU" opened="1982" closed="1995"  />
+		<route destination1="ASU" destination2="AGT" opened="1963" closed="2199"  />
+		<route destination1="GRU" destination2="AGT" opened="2000" closed="2199"  />
+
+
+
+	        </routes>
+
+
+
+
+
+
+
+
+
+</airline>

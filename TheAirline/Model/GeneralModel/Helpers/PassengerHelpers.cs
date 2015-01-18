@@ -166,8 +166,7 @@
             foreach (Airport airport in airports)
             {
                 CreateDestinationDemand(airport);
-            
-                /*
+                            /*
                 if (airport.getDestinationPassengersSum() == 0)
                 {
                     List<Airport> subAirports =
@@ -3098,6 +3097,7 @@
                         || (r.Destination1 == airportCurrent || r.Destination1 == airportDestination)
                         && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent));
 
+        
             if (currentRoute == null)
             {
                 return 0;
@@ -3196,7 +3196,7 @@
                 airlines = new List<Airline>(Airlines.GetAllAirlines());
             }
 
-            foreach (Airline airline in Airlines.GetAllAirlines())
+            foreach (Airline airline in airlines)
             {
                 var aRoutes = new List<Route>(airline.Routes);
 
@@ -3263,7 +3263,8 @@
 
             IDictionary<Airline, double> airlineScores = new Dictionary<Airline, double>();
 
-            foreach (Airline airline in Airlines.GetAllAirlines())
+           
+            foreach (Airline airline in airlines)
             {
                 airlineScores.Add(airline, airportCurrent.getAirlineReputation(airline));
             }

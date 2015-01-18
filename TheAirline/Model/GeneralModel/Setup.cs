@@ -283,8 +283,15 @@
                 {
                     string dest1 = routeElement.Attributes["destination1"].Value;
                     string dest2 = routeElement.Attributes["destination2"].Value;
-                    int opened = Convert.ToInt16(routeElement.Attributes["opened"].Value);
-                    int closed = Convert.ToInt16(routeElement.Attributes["closed"].Value);
+
+                    int opened = founded;
+                    int closed = 2199;
+
+                    if (routeElement.HasAttribute("opened"))
+                        opened = Convert.ToInt16(routeElement.Attributes["opened"].Value);
+                    
+                    if (routeElement.HasAttribute("closed"))
+                        closed = Convert.ToInt16(routeElement.Attributes["closed"].Value);
 
                     Route.RouteType routetype = airline.AirlineRouteFocus;
 

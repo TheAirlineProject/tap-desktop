@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Avianca Brazil" iata="O6" logo="AV" color="Red" country="138" CEO="Jose Efromovich" mentality="Moderate" market="Regional" preferedairport="GRU">
+    <narrative narrative="Avianca Brazil, or Oceanair, is a part of the Avianca group, since 2004, and has used the Avianca Brazil name since 2010. Its corporate name is still however officially Oceanair. Avianca is based in Columbia, while Oceanair/Avianca Brazil is based at Sao Paulos Guarulhos,Brazil and at Brasilia. Other focus airports are Rio de Janeiro Galeao,Rio de Janeiro Santos Dumont,Sao Paulo Conhongas and Salvador da Bahia. Even though it is part of Avianca, its owners Synergy Group are the ones who bought Avianca and lead the way to Oceanair joining Avianca, Avianca did not buy Oceanair. This purchase took place in 2004. Oceanair had been around since 1998 before then. Founded as a taxi service for oil companies in the Campos Basin, it started scheduled service in 2002. It as of late 2014 had 14 Airbus A318's,15 A320's,4 A319's with one on order,12 Fokker 100's and on order three A330-200's and ten A350-900's. From 2001 to 2008 it had 5 Embraer Brasilia's and it had 3 Fokker 50's from 2003 to around 2011. As of late 2014 it served 24 Brazilian airports and Bogota,Columbia. In 2013 it was the 4th largest Brazilian airline in terms of passengers flown per kilometer, making up 7.7% of the domestic market. The only difference between the livery of the Columbian branch and Brazilian one is the flag of the country under the cockpit window. It is one of the 11 subsidiaries of Avianca as of early 2015. " />
+<names>
+<name value="Oceanair" from="1.1.1998 00:00:00"></name>
+<name value="Avianca Brazil" from="1.1.2010 00:00:00"></name>
+</names>
+<logos>
+      <logo from="1998" to="2010" path="O61998-2010"></logo>
+    </logos>
+</profile>
+   <info real="True" from="1998" to="2199"></info>
+   <prefereds aircrafts="Airbus A320-200,Airbus A318-100,Fokker 100,Airbus A319-100,Airbus A330-200,Airbus A350-900,Fokker 50,Boeing 767-300ER,Airbus A320neo,Airbus A319neo,EMB 120 Brasilia"></prefereds>
+<startdata>
+  <focusairports>
+        <focusairport airport="BSB"></focusairport>
+	 <focusairport airport="GIG"></focusairport>
+         <focusairport airport="SDU"></focusairport>
+	  <focusairport airport="CGH"></focusairport>
+	    <focusairport airport="SSA"></focusairport>
+     </focusairports>
+
+        <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2015)-->
+	         <airliners>
+	    <airliner type="Airbus A319-100" early="3" late="5"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="4" late="15"></airliner>
+	    <airliner type="Airbus A318-100" early="5" late="14"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl ( 2006) late (2015)-->
+	         <airliners>
+	    <airliner type="Fokker 100" early="8" late="12"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl ( 2003) late (2011)-->
+	         <airliners>
+	    <airliner type="Fokker 50" early="3" late="0"></airliner>
+	     </airliners>
+	          	  <!--the airliners the airline would start with which isn't on a route earyl ( 2015) late (2017)-->
+	         <airliners>
+	    <airliner type="Airbus A330-200" early="1" late="3"></airliner>
+	     </airliners>
+	     	          	  <!--the airliners the airline would start with which isn't on a route earyl ( 2016) late (2020)-->
+	         <airliners>
+	    <airliner type="Airbus A350-900" early="1" late="10"></airliner>
+	     </airliners>
+	          	          	  <!--the airliners the airline would start with which isn't on a route earyl ( 2001) late (2009)-->
+	         <airliners>
+	    <airliner type="EMB 120 Brasilia" early="5" late="0"></airliner>
+	     </airliners>
+	     
+ <routes>
+		<route destination1="GRU" destination2="GIG" />
+		<route destination1="GRU" destination2="BSB" />
+	        <route destination1="GRU" destination2="BOG" />
+		<route destination1="GRU" destination2="BSB" />
+		<route destination1="BSB" destination2="GIG"  />
+		<route destination1="BSB" destination2="CGH"  />
+	        <route destination1="BSB" destination2="SDU" />
+		<route destination1="CGH" destination2="SDU"  />
+		<route destination1="GRU" destination2="CNF"  />
+		<route destination1="GRU" destination2="PLU" />
+		<route destination1="GRU" destination2="CGB" />
+		<route destination1="GRU" destination2="CWB"  />
+	        <route destination1="GRU" destination2="FLN" />
+		<route destination1="GRU" destination2="FOR"  />
+		<route destination1="GRU" destination2="GYN" />
+		<route destination1="GRU" destination2="JDO" />
+	        <route destination1="GRU" destination2="NAT"  />
+		<route destination1="GRU" destination2="POA" />
+		<route destination1="GRU" destination2="REC" />
+		 <route destination1="GRU" destination2="SSA"  />
+		<route destination1="GRU" destination2="PNZ"  />
+	        <route destination1="GRU" destination2="PFB" />
+		<route destination1="BSB" destination2="AJU" />
+	        <route destination1="BSB" destination2="CNF"  />
+		<route destination1="BSB" destination2="XAP" />
+		<route destination1="BSB" destination2="CGB" />
+		 <route destination1="BSB" destination2="FLN"  />
+		<route destination1="BSB" destination2="FOR"  />
+	        <route destination1="BSB" destination2="IOS" />
+		<route destination1="BSB" destination2="JPA"  />
+		<route destination1="BSB" destination2="JDO" />
+		<route destination1="BSB" destination2="NAT" />
+	       <route destination1="BSB" destination2="POA"  />
+		<route destination1="BSB" destination2="SSA" />
+		<route destination1="BSB" destination2="POA" />
+		<route destination1="GIG" destination2="FLN"  />
+		<route destination1="GIG" destination2="FOR" />
+		<route destination1="GIG" destination2="JPA" />
+	       <route destination1="GIG" destination2="SSA"  />
+		<route destination1="GIG" destination2="REC" />
+		<route destination1="CGH" destination2="FLN" />
+		<route destination1="CGH" destination2="XAP" />
+		<route destination1="SDU" destination2="SSA" />
+		<route destination1="SDU" destination2="CNF" />
+	        <route destination1="SSA" destination2="REC"  />
+		<route destination1="SSA" destination2="FOR" />
+		<route destination1="SSA" destination2="IOS" />
+		<route destination1="SSA" destination2="PNZ"  />
+		<route destination1="SSA" destination2="MCZ" />
+		<route destination1="SSA" destination2="AJU" />
+	       <route destination1="REC" destination2="FOR" />
+	        <route destination1="REC" destination2="NAY"  />
+		<route destination1="REC" destination2="PNZ" />
+		<route destination1="FOR" destination2="BOG" />
+		<route destination1="FOR" destination2="JDO"  />
+		<route destination1="CGB" destination2="CWB" />
+		<route destination1="CGB" destination2="CGR" />
+		<route destination1="CWB" destination2="POA" />
+		<route destination1="CWB" destination2="CGR" />
+		<route destination1="CWB" destination2="PVH"  />
+		<route destination1="POA" destination2="FLN" />
+
+
+	        </routes>
+
+
+
+
+
+
+
+
+  </startdata>
+</airline>

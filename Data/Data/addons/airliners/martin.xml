@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airliners>
+  <airliner manufacturer="Martin" name="Martin 2-0-2" price="265500">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="28.42" length="21.74" range="1022" speed="286" fuelcapacity="2200" consumption="0.025"
+           runwaylengthrequired="477" />
+    <capacity passengers="40" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1947" to="1948" rate="24" />
+  </airliner>
+  <airliner manufacturer="Martin" name="Martin 4-0-4" price="769000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="28.56" length="22.73" range="2961" speed="451" fuelcapacity="6400" consumption="0.025"
+           runwaylengthrequired="600" />
+    <capacity passengers="40" cockpitcrew="3" cabincrew="1" maxclasses="1" />
+    <produced from="1951" to="1953" rate="26" />
+  </airliner>
+</airliners>

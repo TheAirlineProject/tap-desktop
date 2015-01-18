@@ -133,7 +133,7 @@
                 info.AddValue(att.Name, propValue);
             }
         }
-
+      
         public double getValue(FeeType type)
         {
             lock (this.Fees)

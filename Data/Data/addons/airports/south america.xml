@@ -807,6 +807,7 @@
   </airport>
   <airport name="Tancredo Neves International Airport" icao="SBCF" iata="CNF" type="International"
            season="All_Year">
+             <period from="01.31.1984 00:00:00" to="01.01.2199 00:00:00" /> 
     <town town="Belo Horizonte" country="138" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="019°37'26''S" />
@@ -2080,7 +2081,9 @@
       <runway name="5/23" length="1275" surface="Asphalt" />
     </runways>
   </airport>
-   <airport name="Augusto Severo Airport" icao="SBNT" iata="NAT" type="International" season="All_Year">     <period from="01.01.1940 00:00:00" to="05.30.2014 00:00:00" /> <town town="Natal" country="138" GMT="-03:00:00" DST="-03:00:00" />
+   <airport name="Augusto Severo Airport" icao="SBNT" iata="NAT" type="International" season="All_Year">     
+   <period from="01.01.1940 00:00:00" to="05.30.2014 00:00:00" /> 
+   <town town="Natal" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="005°54'30''S" />
       <longitude value="035°14'57''W" />
@@ -2097,7 +2100,8 @@
     </runways>
   </airport>
   <airport name="Greater Natal International Airport" icao="SBSG" iata="NAT" type="International" season="All_Year">   
-  <period from="05.31.2014 00:00:00" to="01.01.2199 00:00:00" /> <town town="Natal" country="138" GMT="-03:00:00" DST="-03:00:00" />
+  <period from="05.31.2014 00:00:00" to="01.01.2199 00:00:00" /> 
+  <town town="Natal" country="138" GMT="-03:00:00" DST="-03:00:00" />
     <coordinates>
       <latitude value="005°46'05''S" />
       <longitude value="035°22'34''W" />

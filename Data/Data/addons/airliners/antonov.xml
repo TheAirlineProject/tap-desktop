@@ -17,7 +17,7 @@
   </airliner>
   <airliner manufacturer="Antonov" name="Antonov An-24" price="1900000">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
-    <specs wingspan="29.2" length="23.53" range="2761" speed="450" fuelcapacity="6200" consumption="0.045"
+    <specs wingspan="29.2" length="23.53" range="2761" speed="450" fuelcapacity="6200" consumption="0.077"
            runwaylengthrequired="650" />
     <capacity passengers="50" cockpitcrew="2" cabincrew="2" maxclasses="2" />
     <produced from="1960" to="1979" rate="68" />

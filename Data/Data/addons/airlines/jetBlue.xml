@@ -1,13 +1,20 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
-  <profile name="jetBlue" iata="B6" color="Blue" country="122" CEO="David Barger" mentality="Aggressive"
-           market="Global" preferedairport="JFK">
-    <narrative
-      narrative="jetBlue is an American Low-Cost Airline founded by David Neeleman and is headquartered in Long Island, New York. Operating a fleet of 126 Airbus A320-200 and 53 Embraer E190 aircraft, jetBlue serves 75 destinations in 12 countries." />
+  <profile name="jetBlue" iata="B6" color="Blue" country="122" CEO="David Barger" mentality="Aggressive" market="Global" preferedairport="JFK">
+    <narrative narrative="jetBlue is an American Low-Cost Airline founded by David Neeleman, a former Southwest Airlines employee,in 1998 and is headquartered in Long Island, New York. Operating a fleet of 130 Airbus A320-200,9 A321, and 60 Embraer E190 aircraft, jetBlue serves 88 destinations in 12 countries. At January 2015 it had 24 A321's on order,and 30 A320neo's and 30 A321neo's and 24 E190's . About 66 of its destinations are domestic. This includes 2 in the US Virgin Islands and 3 in Puerto Rico. Also served are 6 in the Dominican Republic,3 in Columbia,2 in Costa Rica,2 in Jamaica and one each in Aruba,Bahamas,Barbados,Bermuda,Cayman Islands,Curacao,Haiti,Mexico,Peru,Saint Lucia,Sint Marteen,Trinidad and Tobago and the Turks and Caicos. Its focus cities are Fort Lauderdale,Boston,Long Beach,San Juan,and Orlando.Its first day of service was February 11,2000 from JFK to FLL and Buffalo." />
   </profile>
      <info real="True" from="1999" to="2199"></info>
   <startdata>
+     <prefereds aircrafts="Airbus A320-200,Embraer E-190,Airbus A321-200,Airbus A321-200,Airbus A320neo,Airbus A321neo"></prefereds>
+
+  <focusairports>
+        <focusairport airport="FLL"></focusairport>
+	 <focusairport airport="BOS"></focusairport>
+         <focusairport airport="LGB"></focusairport>
+	  <focusairport airport="SJU"></focusairport>
+	    <focusairport airport="MCO"></focusairport>
+     </focusairports>
     <!--some random routes from an origin-->
     <random_routes>
       <routes origin="JFK" destinations="100" minimumsize="Smallest">
@@ -25,9 +32,22 @@
         </countries>
       </routes>
     </random_routes>
-    <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+    <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2015)-->
     <airliners>
-      <airliner type="Boeing 737-300" early="0" late="10"></airliner>
+      <airliner type="Airbus A320-200" early="10" late="130"></airliner>
+    </airliners>
+        <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2018)-->
+    <airliners>
+      <airliner type="Airbus A321-200" early="4" late="33"></airliner>
+    </airliners>
+            <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2018)-->
+    <airliners>
+      <airliner type="Embraer E-190" early="7" late="84"></airliner>
+    </airliners>
+                <!--the airliners the airline would start with which isn't on a route earyl (2018) late (2025)-->
+    <airliners>
+     <airliner type="Airbus A321neo" early="1" late="30"></airliner>
+      <airliner type="Airbus A320neo" early="1" late="30"></airliner>
     </airliners>
   </startdata>
 </airline>

@@ -1,6 +1,34 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
+ <airliner manufacturer="Lockheed" name="Lockheed Model 10 Electra" price="435000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="16.80" length="11.80" range="1150" speed="306" fuelcapacity="2050" consumption="0.10"
+           runwaylengthrequired="400" />
+    <capacity passengers="10" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1935" to="1941" rate="21" />
+  </airliner>
+    <airliner manufacturer="Lockheed" name="Lockheed Model 12 Electra Junior" price="398000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="15.09" length="11.07" range="1300" speed="346" fuelcapacity="2300" consumption="0.166"
+           runwaylengthrequired="350" />
+    <capacity passengers="6" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1936" to="1941" rate="22" />
+  </airliner>
+    <airliner manufacturer="Lockheed" name="Lockheed Model 14 Super Electra" price="563600">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="19.96" length="13.51" range="1370" speed="346" fuelcapacity="2440" consumption="0.071"
+           runwaylengthrequired="560" />
+    <capacity passengers="14" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1937" to="1943" rate="51" />
+  </airliner>
+      <airliner manufacturer="Lockheed" name="Lockheed Model 18 Lodestar" price="1190000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="19.96" length="15.19" range="4025" speed="322" fuelcapacity="4750" consumption="0.055"
+           runwaylengthrequired="720" />
+    <capacity passengers="18" cockpitcrew="3" cabincrew="0" maxclasses="1" />
+    <produced from="1940" to="1943" rate="156" />
+  </airliner>
   <airliner manufacturer="Lockheed" name="Lockeed L-1011-1" price="16628530"> <!--21800000-->
     <type body="Wide_Body" rangetype="Medium_Range" engine="Jet" />
     <specs wingspan="47.35" length="54.15" range="7420" speed="963" fuelcapacity="97944" consumption="0.033"

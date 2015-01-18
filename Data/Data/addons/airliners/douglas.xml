@@ -3,7 +3,7 @@
 <airliners>
   <airliner manufacturer="Douglas" name="Douglas DC-3" price="3100000">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
-    <specs wingspan="29.0" length="19.7" range="3400" speed="333" fuelcapacity="3736" consumption="0.096"
+    <specs wingspan="29.0" length="19.7" range="3400" speed="333" fuelcapacity="3736" consumption="0.090"
            runwaylengthrequired="1800" />
     <capacity passengers="32" cockpitcrew="2" cabincrew="1" maxclasses="1" />
     <produced from="1937" to="1942" rate="100" />
@@ -17,16 +17,16 @@
   </airliner>
   <airliner manufacturer="Douglas" name="Douglas DC-6" price="3800000">
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
-    <specs wingspan="35.81" length="30.66" range="7377" speed="501" fuelcapacity="15111" consumption="0.037"
+    <specs wingspan="35.81" length="30.66" range="7377" speed="501" fuelcapacity="15111" consumption="0.032"
            runwaylengthrequired="2600" />
-    <capacity passengers="56" cockpitcrew="3" cabincrew="2" maxclasses="1" />
+    <capacity passengers="86" cockpitcrew="3" cabincrew="2" maxclasses="1" />
     <produced from="1946" to="1958" rate="58" />
   </airliner>
   <airliner manufacturer="Douglas" name="Douglas DC-6B" price="4200000">
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
-    <specs wingspan="35.81" length="32.18" range="4830" speed="507" fuelcapacity="15111" consumption="0.058"
+    <specs wingspan="35.81" length="32.18" range="5251" speed="507" fuelcapacity="15111" consumption="0.043"
            runwaylengthrequired="2600" />
-    <capacity passengers="62" cockpitcrew="3" cabincrew="2" maxclasses="1" />
+    <capacity passengers="107" cockpitcrew="3" cabincrew="2" maxclasses="1" />
     <produced from="1946" to="1958" rate="58" />
   </airliner>
   <airliner manufacturer="Douglas" name="Douglas DC-7" price="4500000">
@@ -129,7 +129,7 @@
   </airliner>
     <airliner manufacturer="Douglas" name="Douglas DC-4-1009" price="3500000">
 	<type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop"/>
-	<specs wingspan="35.8" length="28.6" range="6839" speed="365" fuelcapacity="7949" consumption="0.097" runwaylengthrequired="2000"/>
+	<specs wingspan="35.8" length="28.6" range="6839" speed="365" fuelcapacity="7949" consumption="0.065" runwaylengthrequired="2000"/>
 	<capacity passengers="86" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
 	<produced from="1945" to="1947" rate="40"/>
   </airliner>

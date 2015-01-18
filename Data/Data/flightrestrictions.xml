@@ -143,9 +143,10 @@
      <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
     <countries fromtype="C" from="115" totype="C" to="122"></countries>
   </restriction>
+  <!--
    <restriction type="Airlines" start="01.01.1920 00:00:00" end="12.31.2199 00:00:00">
     <countries fromtype="C" from="109" totype="C" to="122"></countries>
-  </restriction>
+  </restriction>-->
   <!--which airlines to allow-->
       <restriction type="AllowAirline" start="03.22.2006 00:00:00" end="12.31.2199 00:00:00">
     <countries fromtype="A" from="GA" totype="U" to="101"></countries>

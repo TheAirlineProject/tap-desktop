@@ -2178,7 +2178,7 @@
             sAirline.Profile.Logos.Clear();
             sAirline.Profile.AddLogo(new AirlineLogo(futureAirline.Logo));
             sAirline.Profile.Color = airline.Profile.Color;
-
+         
             CreateNewRoute(sAirline);
 
             GameObject.GetInstance()

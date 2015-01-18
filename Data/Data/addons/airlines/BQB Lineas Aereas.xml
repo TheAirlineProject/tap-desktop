@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="BQB Lineas Aereas" iata="5Q" color="Goldenrod" country="212" CEO="Juan Carlos Lopez Mena" mentality="Safe" market="Regional" preferedairport="MVD" schedule="Business">
+  <narrative narrative="BQB Lineas Aereas is based at Montevideo,Uruguay and was founded in 2010. Its first routes were between Montevideo and Salto which it does twice a weel and between Montevideo and Rivera three times a week, both routes are domestic. As of November 2014 it no longer does those flights, but now it does  a domestic flight to Punta del Este. International destinations are Asuncion,Paraguay, Buenos Aires,Argentina, and Florianopolis,Brazil which is done seasonally. For a time it served the Brazilian cities of Sao Paulo,Rio de Janeiro,Porto Alegre,Foz do Iguacu and Curitiba. In January 2015 it had four ATR 72-500's, it had 2 at the start in 2010. It had one A319 in storage. It leased an A320 from November 2013 to April 2014."/>
+</profile>
+  <info real="True" from="2010" to="2199" />
+  <prefereds aircrafts="ATR 72-500,Airbus A319-100,Airbus A320-200,ATR 72-600,Airbus A319neo,Airbus A320neo"></prefereds>
+      <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-500" early="2" late="4"></airliner>
+	     </airliners>
+
+
+
+ <routes>
+		<route destination1="MVD" destination2="STY" opened="2010" closed="2014" />
+		<route destination1="MVD" destination2="PDP" opened="2012" closed="2199" />
+		<route destination1="MVD" destination2="ROS"  opened="2010" closed="2014" />
+		<route destination1="MVD" destination2="ASU"  opened="2014" closed="2199"  />
+		<route destination1="MVD" destination2="AEP"  opened="2014" closed="2199"  />
+	        <route destination1="MVD" destination2="FLN"  opened="2014" closed="2199" season="summer" />
+	        </routes>
+
+
+
+
+</airline>

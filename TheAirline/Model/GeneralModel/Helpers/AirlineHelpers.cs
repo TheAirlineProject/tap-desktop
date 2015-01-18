@@ -381,6 +381,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airline.Airline = null;
 
+            if (airline.Fees == null)
+                airline.Fees = new AirlineFees();
+
             if (!Airlines.ContainsAirline(airline))
                 Airlines.AddAirline(airline);
         }
@@ -448,8 +451,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             sAirline.Money = money;
             sAirline.StartMoney = money;
 
-            sAirline.Fees = new AirlineFees();
-
             AirlineHelpers.CreateStandardAirlineShares(sAirline);
 
             airline.addSubsidiaryAirline(sAirline);
@@ -479,6 +480,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airportHomeBase.addAirportFacility(sAirline, serviceFacility, GameObject.GetInstance().GameTime);
             airportHomeBase.addAirportFacility(sAirline, checkinFacility, GameObject.GetInstance().GameTime);
+
             foreach (AirlinePolicy policy in airline.Policies)
                 sAirline.addAirlinePolicy(policy);
 

@@ -31,6 +31,8 @@
             {
                 this.Profile.AddLogo(logo);
             }
+
+            this.Fees = new AirlineFees();
         }
 
         private SubsidiaryAirline(SerializationInfo info, StreamingContext ctxt)

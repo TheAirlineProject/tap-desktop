@@ -753,9 +753,9 @@
 
             string summary = "[HEAD=Routes Summary]\n";
 
-            if (airline.Airports.Count == 0)
+            if (airline.Airports.Count > 0)
             {
-                Airport homeAirport = airline.Airports[0];
+                Airport homeAirport = airline.Airports[0]; 
 
                 IOrderedEnumerable<Route> routes =
             airline.Routes.OrderByDescending(
@@ -2509,7 +2509,12 @@
 
                 }
 
-                foreach (Airport airport in airline.Airports)
+                var airlineAirports = new List<Airport>();
+
+                lock (airline.Airports) 
+                    airlineAirports = new List<Airport>(airline.Airports);
+
+                foreach (Airport airport in airlineAirports)
                 {
                     var contracts = new List<AirportContract>(airport.getAirlineContracts(airline));
 

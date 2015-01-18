@@ -5657,4 +5657,10 @@ Good luck.</value>
   <data name="PageShowPilot_1007_name" xml:space="preserve">
     <value>Flown Hours (HH:MM)</value>
   </data>
+  <data name="PageAirportAdvisory_1001_name" xml:space="preserve">
+    <value>Domestic</value>
+  </data>
+  <data name="PageAirportAdvisory_1002_name" xml:space="preserve">
+    <value>International</value>
+  </data>
 </root>

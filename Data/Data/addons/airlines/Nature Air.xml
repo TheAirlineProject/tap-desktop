@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Nature Air" iata="5C" logo="5C2" color="Red" country="192" CEO="Alex Khajavi" mentality="Safe" market="Regional" preferedairport="SJO">
+  <narrative narrative="Nature Air is based at San Jose,Costa Rica, at Juan Santamaria airport. It was founded in 1990 as Travel Air and was rebranded in 2000 as Nature Air by the tourism consulting company Naturegate. They are said to be the first carbon neutral airline. It tallies the total amount of carbon burned from the fuel each year in all operations, both in air and ground,then donates  annual funds to a forest financing division of the Environment Ministry, which is focused on preserving rainforest land on the Osa Peninsula. It also produces biodiesel fuel, which is what 90% of the ground vehicles and generators use, made from recycled vegetable oil from its employees,and local hotels and restaraunts. It flies to 14 domestic destinations, including the other airport of San Jose, Tobia Bolanos, of which it is the only one providing scheduled service at. It also flys to Managua,Nicaragua and Bocas del Toro,Panama. It has four Twin Otter 300's and two Cessna 208B's. "/>
+</profile>
+  <info real="True" from="1990" to="2199" />
+  <prefereds aircrafts="DHC-6-300 Twin Otter,Cessna 208B"></prefereds>
+      <!--the airliners the airline would start with which isn't on a route earyl (1990) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="0" late="2"></airliner>
+	     </airliners>
+	           <!--the airliners the airline would start with which isn't on a route earyl (1990) late (2015)-->
+	         <airliners>
+	    <airliner type="DHC-6-300 Twin Otter" early="1" late="4"></airliner>
+	     </airliners>
+
+
+ <routes>
+		<route destination1="SJO" destination2="LIR" />
+		<route destination1="SJO" destination2="MGA" />
+		<route destination1="SJO" destination2="XQP" />
+		<route destination1="SJO" destination2="NOB"  />
+		<route destination1="SJO" destination2="PJM"  />
+	        <route destination1="SJO" destination2="TMU" />
+		<route destination1="SJO" destination2="PBP" />
+		<route destination1="SJO" destination2="TTQ" />
+		<route destination1="SJO" destination2="GLF"  />
+	        <route destination1="SJO" destination2="OTR" />
+		<route destination1="SJO" destination2="PMZ"  />
+		<route destination1="SJO" destination2="TNO"  />
+		<route destination1="SJO" destination2="DRK"  />
+		<route destination1="SJO" destination2="BOC" />
+		<route destination1="SYQ" destination2="LIR"  />
+		<route destination1="SYQ" destination2="TNO" />
+		<route destination1="LIR" destination2="TNO" />
+	        </routes>
+
+
+
+
+</airline>

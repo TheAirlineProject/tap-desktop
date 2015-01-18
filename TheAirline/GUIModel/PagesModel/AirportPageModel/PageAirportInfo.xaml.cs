@@ -370,11 +370,12 @@
 
                         terminal.Airline = null;
 
-                        contract.Contract.YearlyPayment = AirportHelpers.GetYearlyContractPayment(
-              this.Airport.Airport,
-              AirportContract.ContractType.Full,
-              terminal.Gates,
-              20);
+                        if (contract != null)
+                            contract.Contract.YearlyPayment = AirportHelpers.GetYearlyContractPayment(
+                  this.Airport.Airport,
+                  AirportContract.ContractType.Full,
+                  terminal.Gates,
+                  20);
 
 
 

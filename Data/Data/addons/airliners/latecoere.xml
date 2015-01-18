@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airliners>
+    <airliner manufacturer="Latecoere" name="Latecoere 28" price="685000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="19.25" length="13.63" range="4685" speed="200" fuelcapacity="2900" consumption="0.125"
+           runwaylengthrequired="500" />
+    <capacity passengers="8" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1927" to="1932" rate="10" />
+  </airliner>
+</airliners>

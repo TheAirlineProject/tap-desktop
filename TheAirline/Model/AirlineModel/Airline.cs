@@ -35,6 +35,7 @@
             Route.RouteType routeFocus,
             AirlineRouteSchedule schedule)
         {
+            this.Fees = new AirlineFees();
             this.Scores = new AirlineScores();
             this.Shares = new AirlineShare[10];
             this.Airports = new List<Airport>();
@@ -729,8 +730,10 @@
         {
             var codes = new List<string>();
 
-            IEnumerable<string> rCodes =
-                this.Routes.SelectMany(r => r.TimeTable.Entries).Select(e => e.Destination.FlightCode).Distinct();
+            IEnumerable<string> rCodes;
+            
+            lock (this.Routes)
+                rCodes = this.Routes.SelectMany(r => r.TimeTable.Entries).Select(e => e.Destination.FlightCode).Distinct();
 
             for (int i = 0; i < 1000; i++)
             {
@@ -739,6 +742,19 @@
                 if (!rCodes.Contains(code))
                 {
                     codes.Add(code);
+                }
+            }
+
+            if (codes.Count < 2)
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    string code = string.Format("{0}{1:10000}", this.Profile.IATACode, i);
+
+                    if (!rCodes.Contains(code))
+                    {
+                        codes.Add(code);
+                    }
                 }
             }
 
@@ -1113,11 +1129,11 @@
 
         private List<Route> getRoutes()
         {
-            List<Route> routes;
-
-            lock (this._Routes) routes = new List<Route>(this._Routes);
+           
+            lock (this._Routes)
+                return this._Routes;
          
-            return routes;
+      
         }
 
         #endregion

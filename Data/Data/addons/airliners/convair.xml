@@ -24,14 +24,14 @@
   </airliner>
     <airliner manufacturer="Convair" name="Convair 240" price="1500000">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
-    <specs wingspan="27.97" length="22.76" range="1931" speed="451" fuelcapacity="3785" consumption="0.023"
+    <specs wingspan="27.97" length="22.76" range="1931" speed="451" fuelcapacity="3785" consumption="0.071"
            runwaylengthrequired="842" />
-    <capacity passengers="44" cockpitcrew="2" cabincrew="1" maxclasses="2" />
+    <capacity passengers="40" cockpitcrew="2" cabincrew="1" maxclasses="2" />
     <produced from="1947" to="1954" rate="169" />
   </airliner>
       <airliner manufacturer="Convair" name="Convair 440" price="1775000">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
-    <specs wingspan="27.97" length="22.76" range="1931" speed="451" fuelcapacity="5867" consumption="0.019"
+    <specs wingspan="27.97" length="22.76" range="1931" speed="451" fuelcapacity="5867" consumption="0.075"
            runwaylengthrequired="1425" />
     <capacity passengers="52" cockpitcrew="2" cabincrew="1" maxclasses="2" />
     <produced from="1947" to="1954" rate="15" />

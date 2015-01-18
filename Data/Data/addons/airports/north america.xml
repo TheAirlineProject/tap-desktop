@@ -7363,6 +7363,146 @@ season="All_Year">
    </expansions>
   </airport>
   <!--Costa Rica (MR**)-->
+  <airport name="Punta Islita Airport" icao="MRIA" iata="PBP" type="Domestic" season="All_Year">
+    <town town="Punta Islita" country="192" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="9°51'00''N" />
+      <longitude value="85°22'00''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="800" surface="Gravel" />
+    </runways>
+  </airport>
+<airport name="Quepos La Managua Airport" icao="MQRP" iata="XQP" type="Domestic" season="All_Year">
+    <town town="Quepos" country="192" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="9°26'35''N" />
+      <longitude value="84°07'47''W" />
+    </coordinates>
+    <size value="Smallest" pax="12" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="1100" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Tambor Airport" icao="MRTR" iata="TMU" type="Domestic" season="All_Year">
+    <town town="Tambor" country="192" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="9°44'00''N" />
+      <longitude value="85°01'00''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="700" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Tortuguero Airport" icao="MRAO" iata="TTQ" type="Domestic" season="All_Year">
+    <town town="Tortuguero" country="192" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="10°34'08''N" />
+      <longitude value="83°30'53''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="02/20" length="950" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Palmar Sur Airport" icao="MRPM" iata="PMZ" type="Domestic" season="All_Year">
+    <town town="Palmar Sur" country="192" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="8°57'04''N" />
+      <longitude value="83°28'07''W" />
+    </coordinates>
+    <size value="Smallest" pax="8" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="03/21" length="1400" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Nosara Airport" icao="MRNS" iata="NOB" type="Domestic" season="All_Year">
+    <town town="Nosara" country="192" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="9°58'35''N" />
+      <longitude value="85°39'11''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="1000" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Golfito Airport" icao="MRGF" iata="GLF" type="Domestic" season="All_Year">
+    <town town="Golfito" country="192" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="8°39'00''N" />
+      <longitude value="83°11'00''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="1400" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Coto 47 Airport" icao="MRCC" iata="OTR" type="Domestic" season="All_Year">
+    <town town="Coto 47" country="192" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="8°36'00''N" />
+      <longitude value="82°58'00''W" />
+    </coordinates>
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="1000" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Tobia Bolanos International Airport" icao="MRPV" iata="SYQ" type="International" season="All_Year">
+    <town town="San Jose" country="192" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="9°57'26''N" />
+      <longitude value="84°08'22''W" />
+    </coordinates>
+    <size value="Smallest" pax="15" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="09/27" length="1566" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Barra del Colorado Airport" icao="MRBC" iata="BCL" type="Domestic" season="All_Year">
+    <town town="Barra del Colorado" country="192" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="10°46'00''N" />
+      <longitude value="83°35'00''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="1000" surface="Concrete" />
+    </runways>
+  </airport>
    <airport name="Liberia International Airport" icao="MRLB" iata="LIR" type="International" season="All_Year">
     <town town="Liberia" country="192" GMT="-06:00:00" DST="-06:00:00" />
     <coordinates>

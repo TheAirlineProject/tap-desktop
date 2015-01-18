@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+<airliner manufacturer="Junkers" name="F.13" price="73000">     
+<type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="14.80" length="9.59" range="1400" speed="160" fuelcapacity="1000" consumption="0.69"
+           runwaylengthrequired="440" />
+    <capacity passengers="4" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1919" to="1932" rate="23" />
+    </airliner>
+<airliner manufacturer="Junkers" name="Ju 52" price="180000">   
+<type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="29.25" length="18.90" range="950" speed="222" fuelcapacity="2800" consumption="0.69"
+           runwaylengthrequired="1200" />
+    <capacity passengers="17" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1931" to="1952" rate="220" />
+    </airliner>
+</airliners>
