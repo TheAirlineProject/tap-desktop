@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Thunder Airlines" iata="THU"  color="Silver" country="113" CEO="Robert Mackie" mentality="Safe" market="Domestic" preferedairport="YQT" rouefocus="Mixed" schedule="Business">
+    <narrative narrative="Thunder Airlines is based out of Thunder Bay,Ontario and was founded in 1994. It provides service to the Ontario towns and cities of Attawapiskat,Fort Albany,Kashechewan,Moosonee,Timmins and Peawanuck on a scheduled basis. Timmins is its secondary base. It also does charters and cargo service. As of March 2014 it had seven Beechraft King Air 100's,five Mitsubishi MU-2's and a Cessna 208B." />
+</profile>
+   <info real="True" from="1994" to="2199"></info>
+   <prefereds aircrafts="Beechcraft King Air 90,Mistsubishi MU-2,Cessna 208B"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YTS"></focusairport>
+		 <focusairport airport="YMO"></focusairport>
+		 <focusairport airport="ZKE"></focusairport>
+		   <focusairport airport="YFA"></focusairport>
+		     <focusairport airport="YAT"></focusairport>
+		       <focusairport airport="YPO"></focusairport>
+     </focusairports>
+        <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2015)-->
+	         <airliners>
+	    <airliner type="Mitsubishi MU-2" early="1" late="5"></airliner>
+	     </airliners>
+        <!--the airliners the airline would start with which isn't on a route earyl (1994) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="0" late="1"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (1994) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air 90" early="1" late="7"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+</airline>

@@ -2029,6 +2029,7 @@
     </runways>
   </airport>
   <airport name="Thisted Airport" icao="EKTS" iata="TED" type="Domestic" season="All_Year">
+   <period from="10.08.1970 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Thisted" country="110" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="57°4'7''N" />
@@ -2069,6 +2070,15 @@
     <terminals>
       <terminal name="Terminal 1" gates="14" />
       <terminal name="Terminal 2" gates="21" />
+          <runway name="H1" length="28" surface="Concrete" type="Helipad" />
+      <runway name="H2" length="28" surface="Concrete" type="Helipad" /> 
+      <runway name="H3" length="28" surface="Concrete" type="Helipad" />
+      <runway name="H4" length="28" surface="Concrete" type="Helipad" /> 
+      <runway name="H5" length="32" surface="Concrete" type="Helipad" />
+      <runway name="H6" length="32" surface="Concrete" type="Helipad" /> 
+      <runway name="H7" length="32" surface="Concrete" type="Helipad" />
+      <runway name="H8" length="26" surface="Concrete" type="Helipad" />
+            <runway name="H9" length="26" surface="Concrete" type="Helipad" />
     </terminals>
     <runways>
       <runway name="17/35" length="2990" surface="Asphalt" />
@@ -2483,6 +2493,7 @@
     </runways>
   </airport>
   <airport name="Gothenburg City Airport" icao="ESGP" iata="GSE" type="International" season="All_Year">
+     <period from="01.01.1977 00:00:00" to="01.18.2015 00:00:00" />
     <town town="Gothenburg" country="168" GMT="01:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="57°46'28''N" />

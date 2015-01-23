@@ -29,6 +29,7 @@
         #region Fields
 
         private string _routeinformationtext;
+        private Boolean _forhelicopters;
 
         private Route.RouteType _routetype;
 
@@ -109,7 +110,18 @@
         #endregion
 
         #region Public Properties
-
+        public Boolean ForHelicopters 
+        {
+            get
+            {
+                return this._forhelicopters;
+            }
+            set
+            {
+                this._forhelicopters = value;
+                this.NotifyPropertyChanged("ForHelicopters");
+            }
+        }
         public ObservableCollection<Airport> Airports { get; set; }
 
         public ObservableCollection<MVVMRouteClass> Classes { get; set; }
@@ -351,8 +363,11 @@
                 var destination1 = (Airport)this.cbDestination1.SelectedItem;
                 var destination2 = (Airport)this.cbDestination2.SelectedItem;
 
+             
                 if (destination1 != null && destination2 != null)
                 {
+                    this.ForHelicopters = destination1.Runways.Exists(r => r.Type == Model.AirportModel.Runway.RunwayType.Helipad) && destination2.Runways.Exists(r => r.Type == Model.AirportModel.Runway.RunwayType.Helipad);
+
                     foreach (MVVMRouteClass rClass in this.Classes)
                     {
                         rClass.FarePrice = PassengerHelpers.GetPassengerPrice(destination1, destination2)
@@ -539,23 +554,7 @@
                         double cargoPrice = Convert.ToDouble(this.txtCargoPrice.Text);
                         route = new CargoRoute(id.ToString(), destination1, destination2, startDate, cargoPrice);
                     }
-                    else if (this.RouteType == Route.RouteType.Helicopter)
-                    {
-                        route = new HelicopterRoute(id.ToString(), destination1, destination2, startDate, 0);
-
-                        foreach (MVVMRouteClass rac in this.Classes.Where(c => c.IsUseable))
-                        {
-                            ((HelicopterRoute)route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
-
-                            foreach (MVVMRouteFacility facility in rac.Facilities)
-                            {
-                                ((HelicopterRoute)route).getRouteAirlinerClass(rac.Type)
-                                    .addFacility(facility.SelectedFacility);
-                            }
-                        }
-
-
-                    }
+                   
                     else if (this.RouteType == Route.RouteType.Mixed)
                     {
                         double cargoPrice = Convert.ToDouble(this.txtCargoPrice.Text);
@@ -623,29 +622,11 @@
                     this.Airports.Add(airport);
                 }
             }
-            else if (this.RouteType == Route.RouteType.Helicopter)
-            {
-                var airports = GameObject.GetInstance()
-                   .HumanAirline.Airports.Where(a => a.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad) && a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
-                       a => a == GameObject.GetInstance().HumanAirline.Airports[0])
-                   .ThenBy(a=>a.hasHub(GameObject.GetInstance().HumanAirline))
-                   .ThenBy(a => a.Profile.Country.Name)
-                   .ThenBy(a => a.Profile.Name);
-
-                foreach (Airport airport in airports)
-                {
-                    this.Airports.Add(airport);
-                }
-
-                foreach (MVVMRouteClass rc in this.Classes)
-                    rc.IsUseable = rc.Type == AirlinerClass.ClassType.Economy_Class;
-
-
-            }
+          
             else
             {
                 var airports = GameObject.GetInstance()
-                      .HumanAirline.Airports.Where(a => a.Runways.Exists(r => r.Type == Runway.RunwayType.Regular) && a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
+                      .HumanAirline.Airports.Where(a => a.getAirlineContracts(GameObject.GetInstance().HumanAirline).Exists(c => c.TerminalType == Terminal.TerminalType.Passenger)).OrderByDescending(
                           a => a == GameObject.GetInstance().HumanAirline.Airports[0])
                           .ThenBy(a=>a.hasHub(GameObject.GetInstance().HumanAirline))
                       .ThenBy(a => a.Profile.Country.Name)

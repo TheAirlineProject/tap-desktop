@@ -891,13 +891,13 @@
 
             if (focus == Route.RouteType.Cargo)
                 return (from a in airports
-                 where
-                     routes.Find(r => r.Destination1 == a || r.Destination2 == a) == null
-                     && (a.Terminals.getFreeGates(terminaltype) > 0 || AirportHelpers.HasFreeGates(a, airline, terminaltype))
-                 orderby
-                     ((int)airport.getDestinationCargoRate(a))
-                     + ((int)a.getDestinationCargoRate(airport)) descending
-                 select a).ToList();
+                        where
+                            routes.Find(r => r.Destination1 == a || r.Destination2 == a) == null
+                            && (a.Terminals.getFreeGates(terminaltype) > 0 || AirportHelpers.HasFreeGates(a, airline, terminaltype))
+                        orderby
+                            ((int)airport.getDestinationCargoRate(a))
+                            + ((int)a.getDestinationCargoRate(airport)) descending
+                        select a).ToList();
             else
                 return (from a in airports
                         where
@@ -1042,8 +1042,8 @@
                     () => { CheckForSubsidiaryAirline(airline); },
                     () => { CheckForAirlineAirportFacilities(airline); },
                     () => { CheckForStocksHandling(airline); },
-                    () => { CheckForMaintenance(airline); },
-                    () => { CheckForOrderOfAirliners(airline); }); //close parallel.invoke
+                    () => { CheckForMaintenanceAndConvertable(airline); });
+                //  () => { CheckForOrderOfAirliners(airline); }); //close parallel.invoke
             }
             catch (Exception e)
             {
@@ -1172,7 +1172,7 @@
             }
         }
         //checks for maintenance for the airline
-        private static void CheckForMaintenance(Airline airline)
+        private static void CheckForMaintenanceAndConvertable(Airline airline)
         {
             int highestServiceLevel = AirlinerMaintenanceTypes.GetMaintenanceTypes().Max(m => m.Requirement.TypeLevel);
             var hasChecksForAll = airline.Airports.FirstOrDefault(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel >= highestServiceLevel);
@@ -1185,29 +1185,35 @@
 
             }
 
-            foreach (FleetAirliner airliner in airline.Fleet.Where(f => f.Maintenance.Checks.Exists(c => !c.canPerformCheck())))
+            foreach (FleetAirliner airliner in airline.Fleet)
             {
-                foreach (AirlinerMaintenanceCheck check in airliner.Maintenance.Checks.Where(c => !c.canPerformCheck()))
-                {
-                    if (hasChecksForAll != null)
-                    {
-                        var airport = airline.Airports.First(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel >= check.Type.Requirement.TypeLevel);
-                        check.CheckCenter = new AirlinerMaintenanceCenter(check.Type);
-                        check.CheckCenter.Airport = airport;
+                 CheckForConvertToCargo(airliner);
 
-                    }
-                    else
+                if (airliner.Maintenance.Checks.Exists(c => !c.canPerformCheck()))
+                {
+                    foreach (AirlinerMaintenanceCheck check in airliner.Maintenance.Checks.Where(c => !c.canPerformCheck()))
                     {
-                        check.CheckCenter = new AirlinerMaintenanceCenter(check.Type);
-                        check.CheckCenter.Center = airline.MaintenanceCenters.First();
+                        if (hasChecksForAll != null)
+                        {
+                            var airport = airline.Airports.First(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel >= check.Type.Requirement.TypeLevel);
+                            check.CheckCenter = new AirlinerMaintenanceCenter(check.Type);
+                            check.CheckCenter.Airport = airport;
+
+                        }
+                        else
+                        {
+                            check.CheckCenter = new AirlinerMaintenanceCenter(check.Type);
+                            check.CheckCenter.Center = airline.MaintenanceCenters.First();
+                        }
                     }
                 }
             }
+
+
         }
         //checks for building airport facilities for the airline
         private static void CheckForAirlineAirportFacilities(Airline airline)
         {
-
             int minRoutesForTicketOffice = 3 + (int)airline.Mentality;
             List<Airport> airports =
                 airline.Airports.FindAll(
@@ -1355,39 +1361,51 @@
         //checks for any airliners without routes
         private static void CheckForAirlinersWithoutRoutes(Airline airline)
         {
+            var fleet = new List<FleetAirliner>();
+
             lock (airline.Fleet)
             {
-                var fleet =
-                    new List<FleetAirliner>(
-                        airline.Fleet.FindAll(
-                            a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute
-                            && a.Airliner.Status == Airliner.StatusTypes.Normal && a.Airliner.Airline == a.Airliner.Owner));
-                int max = fleet.Count;
-
-                Boolean outlease =  max > 0 && rnd.Next(1000 / max) == 0;
-
-                if (outlease)
-                {
-                    var sFleet = fleet.OrderBy(f => f.Airliner.BuiltDate.Year);
-
-                    if (sFleet.Count() > 0)
-                    {
-                        sFleet.ToList()[0].Airliner.Status = Airliner.StatusTypes.Leasing;
-
-                       //Console.WriteLine("{0} has outleased {1}", airline.Profile.Name, sFleet.ToList()[0].Airliner.TailNumber);
-                    }
-                }
-
                 fleet =
-                    new List<FleetAirliner>(
-                        airline.Fleet.FindAll(
-                            a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute));
+              new List<FleetAirliner>(
+                  airline.Fleet.FindAll(
+                      a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute));
+            }
+            //samle alle checked for eks airliners/airports
+          
+            int max = fleet.Count(f => f.Airliner.Status == Airliner.StatusTypes.Normal && f.Airliner.Airline == f.Airliner.Owner);
 
-                if (fleet.Count > 0)
-                    CreateNewRoute(airline);
+            Boolean outlease = max > 0 && rnd.Next(1000 / max) == 0;
+
+            if (outlease)
+            {
+                var sFleet = fleet.OrderBy(f => f.Airliner.BuiltDate.Year);
+
+                if (sFleet.Count() > 0)
+                {
+                    sFleet.ToList()[0].Airliner.Status = Airliner.StatusTypes.Leasing;
+
+                    //Console.WriteLine("{0} has outleased {1}", airline.Profile.Name, sFleet.ToList()[0].Airliner.TailNumber);
+                }
+            }
+
+
+
+            if (fleet.Count > 0)
+                CreateNewRoute(airline);
+
+        }
+        //checks for if an airliner should be converted to cargo
+        private static void CheckForConvertToCargo(FleetAirliner airliner)
+        {
+            Boolean isConvertable = airliner.Airliner.Type.IsConvertable;
+
+            Boolean convertToCargo = rnd.Next(1000) == 0;
+
+            if (isConvertable && convertToCargo)
+            {
+                FleetAirlinerHelpers.ConvertPassengerToCargoAirliner(airliner);
             }
         }
-
         private static void CheckForInviteToAlliance(Airline airline)
         {
             Alliance alliance = airline.Alliances[0];
@@ -1489,7 +1507,7 @@
 
             int coeff = newAirlinersInterval * (airliners / 2) * airlinersWithoutRoute;
 
-            Boolean newAirliners = coeff > 0 && rnd.Next(newAirlinersInterval * (airliners / 2) * airlinersWithoutRoute) == 0; 
+            Boolean newAirliners = coeff > 0 && rnd.Next(newAirlinersInterval * (airliners / 2) * airlinersWithoutRoute) == 0;
 
             if (newAirliners && airline.Profile.PrimaryPurchasing != AirlineProfile.PreferedPurchasing.Leasing)
             {
@@ -1539,6 +1557,7 @@
 
         private static void CheckForUpdateRoute(Airline airline)
         {
+
             int totalHours = rnd.Next(24 * 7, 24 * 13);
             foreach (
                 Route route in
@@ -1876,7 +1895,7 @@
                         {
                             double price = PassengerHelpers.GetPassengerPrice(airport, destination);
 
-                            route = new HelicopterRoute(
+                            route = new PassengerRoute(
                                 id.ToString(),
                                 airport,
                                 destination,
@@ -1887,7 +1906,7 @@
 
                             foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                             {
-                                ((HelicopterRoute)route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
+                                ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price
                                                                                                                    * GeneralHelpers
                                                                                                                        .ClassToPriceFactor
                                                                                                                        (
@@ -1896,7 +1915,7 @@
 
                                 foreach (RouteFacility facility in classConfiguration.getFacilities())
                                 {
-                                    ((HelicopterRoute)route).getRouteAirlinerClass(classConfiguration.Type)
+                                    ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type)
                                         .addFacility(facility);
                                 }
                             }
@@ -2004,7 +2023,7 @@
                             {
                                 Country tailnumberCountry = Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber);
 
-                                if (tailnumberCountry == null || tailnumberCountry.Name 
+                                if (tailnumberCountry == null || tailnumberCountry.Name
                                     != airline.Profile.Country.Name)
                                 {
                                     airliner.Value.Key.TailNumber =
@@ -2178,7 +2197,7 @@
             sAirline.Profile.Logos.Clear();
             sAirline.Profile.AddLogo(new AirlineLogo(futureAirline.Logo));
             sAirline.Profile.Color = airline.Profile.Color;
-         
+
             CreateNewRoute(sAirline);
 
             GameObject.GetInstance()

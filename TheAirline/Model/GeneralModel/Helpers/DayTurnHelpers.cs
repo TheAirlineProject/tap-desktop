@@ -33,12 +33,12 @@
             var sw = new Stopwatch();
             sw.Start();
 
-            /*
+            
             foreach (
               FleetAirliner airliner in airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped)) 
-            */Parallel.ForEach(
-                   airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped),
-                    airliner =>
+           // Parallel.ForEach(
+             //      airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped),
+               //     airliner =>
                     {
                         if (airliner.CurrentFlight != null)
                         {
@@ -76,7 +76,7 @@
                             }
                             //CheckForService(airliner);
                         }
-                    });
+                    }//);
 
             sw.Stop();
         }

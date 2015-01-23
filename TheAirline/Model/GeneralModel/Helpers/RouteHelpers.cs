@@ -11,11 +11,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
     /*the class for some general route helpers*/
     public class RouteHelpers
     {
+        /*returns if a route has helipads*/
+        public static Boolean HasHelipads(Route route)
+        {
+            return route.Destination1.Runways.Exists(r => r.Type == AirportModel.Runway.RunwayType.Helipad) && route.Destination2.Runways.Exists(r => r.Type == AirportModel.Runway.RunwayType.Helipad) && !route.Stopovers.Exists(s => !s.Stopover.Runways.Exists(r => r.Type == AirportModel.Runway.RunwayType.Helipad));
+
+        }
         /*returns the price score for the route*/
         public static double GetRoutePriceScore(Route route)
         {
+             RouteAirlinerClass firstClass = ((PassengerRoute)route).Classes[0];
+
             double basePrice = PassengerHelpers.GetPassengerPrice(route.Destination1, route.Destination2);
-            double price = ((PassengerRoute)route).getFarePrice(AirlinerClass.ClassType.Economy_Class);
+            double price = ((PassengerRoute)route).getFarePrice(firstClass.Type);
             double priceFactor = price / basePrice;
             double priceLevel = 10 * priceFactor;
             return Math.Max(1, 16 - priceLevel);
@@ -25,8 +33,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             if (route.HasAirliner)
             {
+                 RouteAirlinerClass firstClass = ((PassengerRoute)route).Classes[0];
+
                 TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, route.getAirliners()[0].Airliner.Type);
-                AirlinerFacility seats = route.getAirliners()[0].Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Seat);
+                AirlinerFacility seats = route.getAirliners()[0].Airliner.getAirlinerClass(firstClass.Type).getFacility(AirlinerFacility.FacilityType.Seat);
                 var seatfacilities = AirlinerFacilities.GetFacilities(AirlinerFacility.FacilityType.Seat).Where(f => f.FromYear >= GameObject.GetInstance().GameTime.Year).OrderBy(f => f.ServiceLevel);
                 int facilitynumber = seatfacilities.Count() - seatfacilities.ToList().IndexOf(seats) - 1; //max == 6
                 double seatlevel;
@@ -56,8 +66,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             if (route.HasAirliner)
             {
+                 RouteAirlinerClass firstClass = ((PassengerRoute)route).Classes[0];
+
                 TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, route.getAirliners()[0].Airliner.Type);
-                RouteFacility food = ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(RouteFacility.FacilityType.Food);
+                RouteFacility food = firstClass.getFacility(RouteFacility.FacilityType.Food);
                 double foodlevel;
                 if (flightTime.Hours < 1)
                 {
@@ -164,8 +176,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             if (route.HasAirliner)
             {
+                RouteAirlinerClass firstClass = ((PassengerRoute)route).Classes[0];
+
                 TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, route.getAirliners()[0].Airliner.Type);
-                AirlinerFacility inflight = route.getAirliners()[0].Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Video);
+                AirlinerFacility inflight = route.getAirliners()[0].Airliner.getAirlinerClass(firstClass.Type).getFacility(AirlinerFacility.FacilityType.Video);
                 var videofacilities = AirlinerFacilities.GetFacilities(AirlinerFacility.FacilityType.Video).Where(f => f.FromYear >= GameObject.GetInstance().GameTime.Year).OrderBy(f => f.ServiceLevel);
                 int facilitynumber = videofacilities.Count() - videofacilities.ToList().IndexOf(inflight) - 1;
                 double inflightlevel;
@@ -193,7 +207,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         /*returns the wifi score for the route*/
         public static double GetRouteWifiScore(Route route)
         {
-            RouteFacility wifi = ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(RouteFacility.FacilityType.WiFi);
+             RouteAirlinerClass firstClass = ((PassengerRoute)route).Classes[0];
+
+            RouteFacility wifi = ((PassengerRoute)route).getRouteAirlinerClass(firstClass.Type).getFacility(RouteFacility.FacilityType.WiFi);
             if (wifi != null)
             {
                 if (wifi.Name == "None")

@@ -113,6 +113,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="Seatplanner">
+      <HintPath>..\..\..\Users\Christian\Documents\Visual Studio 2013\Projects\Seatplanner\Seatplanner\bin\Debug\Seatplanner.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\..\..\BBM\ServiceStack.Text\ServiceStack.Text.dll</HintPath>
     </Reference>
@@ -234,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpRouteFlights.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpSeatConfiguration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -657,6 +664,9 @@
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpRouteFlights.xaml.cs">
       <DependentUpon>PopUpRouteFlights.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpSeatConfiguration.xaml.cs">
+      <DependentUpon>PopUpSeatConfiguration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpShowConnectingRoutes.xaml.cs">
       <DependentUpon>PopUpShowConnectingRoutes.xaml</DependentUpon>
     </Compile>
@@ -962,6 +972,7 @@
     <Compile Include="Model\AirlinerModel\AirlinerInsurance.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerRegistrationHistory.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerScheduleConfiguration.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerSeatModels.cs" />
     <Compile Include="Model\AirlinerModel\EngineType.cs" />
     <Compile Include="Model\AirlinerModel\MaintenanceCenter.cs" />
     <Compile Include="Model\AirportModel\AirportDemand.cs" />

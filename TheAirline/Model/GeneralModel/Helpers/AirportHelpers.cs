@@ -570,6 +570,7 @@
 
         public static int GetNumberOfAirportsRoutes(Airport airport1, Airport airport2)
         {
+            
             var routes = new List<Route>(Airlines.GetAllAirlines().Where(a => a.Routes != null).SelectMany(a => a.Routes));
                       
             return

@@ -171,7 +171,6 @@
 
         [Versioning("body")]
         public BodyType Body { get; set; }
-
               
         public int Capacity
         {

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+<airliner type="Bombardier CRJ100">
+  <groups rows="13">
+   <group seats="2" type="Seat"/>
+   <group seats="1" type="Empty"/>
+   <group seats="2" type="Seat"></group>
+  </groups>
+  <empties>
+    <empty row="13" seat="3"></empty>
+    <empty row="13" seat="4"></empty>
+  </empties>
+</airliner>
+<airliner type="Bombardier CRJ700">
+  <groups rows="18">
+   <group seats="2" type="Seat"/>
+   <group seats="1" type="Empty"/>
+   <group seats="2" type="Seat"></group>
+  </groups>
+  <empties>
+    <empty row="18" seat="3"></empty>
+    <empty row="18" seat="4"></empty>
+  </empties>
+</airliner>
+</airliners>
+

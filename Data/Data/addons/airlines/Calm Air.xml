@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Calm Air" iata="MO"  color="Black" country="113" CEO="Carl Arnold Lawrence Morberg" mentality="Safe" market="Domestic" preferedairport="YTH" rouefocus="Mixed" schedule="Business">
+    <narrative narrative="Calm Air is based at Thompson,Manitoba,Canada and does both passenger service and cargo service. It has another hub at Winnipeg,Manitoba and secondary hubs at Churchill,MB and Rankin Inlet,Nunavut. It operates at 8 Nunavut airports and 6 in Manitoba as well as Yellowknife,Edmonton and Ottawa. It was founded in 1962 as a charter airline in Saskatchewan. As of October 2014 its fleet was nine ATR 42-300's, two are combi and one is able to haul fuel. Four ATR 72-200's, 2 for cargo or fuel and 2 for passengers. Five Hawker 748's one of which is for cargo and two Dornier 328JET's both for passengers." />
+</profile>
+   <info real="True" from="1962" to="2199"></info>
+   <prefereds aircrafts="ATR 42-300,HS.748,ATR 72-200,Fairchild-Dornier 328JET"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YWG"></focusairport>
+		 <focusairport airport="YYQ"></focusairport>
+		 <focusairport airport="YRT"></focusairport>
+     </focusairports>
+        <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="4" late="9"></airliner>
+	     </airliners>
+        <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2015)-->
+	         <airliners>
+	    <airliner type="Fairchild-Dornier 328JET" early="2" late="2"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-200" early="2" late="4"></airliner>
+	     </airliners>
+	         <!--the airliners the airline would start with which isn't on a route earyl (1962) late (2015)-->
+	         <airliners>
+	    <airliner type="HS.748" early="1" late="5"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+
+</airline>

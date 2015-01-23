@@ -176,15 +176,8 @@
                     {
                         RouteAirlinerClass raClass;
 
-                        if (route.Route is HelicopterRoute)
-                        {
-                            raClass = ((HelicopterRoute)route.Route).getRouteAirlinerClass(rClass.Type);
-                        }
-                        else
-                        {
-                            raClass = ((PassengerRoute)route.Route).getRouteAirlinerClass(rClass.Type);
-                        }
-
+                        raClass = ((PassengerRoute)route.Route).getRouteAirlinerClass(rClass.Type);
+                        
                         raClass.FarePrice = raClass.FarePrice * (1 + (value / 100));
 
                         foreach (MVVMRouteFacility rFacility in rClass.Facilities)

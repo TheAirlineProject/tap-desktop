@@ -41,30 +41,29 @@
         </DataTemplate>
         <DataTemplate x:Key="ClassItem">
             <WrapPanel>
+                <!--
                 <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="150">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                         <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=FreeClassTypes.Count,ElementName=popUpAirlinerSeatsConfiguration}" Value="2">
+                                <DataTrigger Binding="{Binding Visibility,ElementName=cbClass}" Value="Visible">
                                 <Setter Property="TextBlock.Visibility" Value="Collapsed" />
                             </DataTrigger>
-                                <DataTrigger Binding="{Binding CanDelete,Mode=OneTime}" Value="False">
-                                    <Setter Property="TextBlock.Visibility" Value="Visible" />
-                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>
-                </TextBlock>
-                <ComboBox Width="150" ItemsSource="{Binding FreeClassTypes,ElementName=popUpAirlinerSeatsConfiguration}" SelectedItem="{Binding Type,Mode=TwoWay}">
+                </TextBlock>-->
+                <ComboBox Width="150" Style="{StaticResource ComboBoxTransparentStyle}" ItemsSource="{Binding ClassTypes}" SelectionChanged="cbClass_SelectionChanged" Tag="{Binding}"  Name="cbClass" SelectedItem="{Binding Type}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+                    <!--
                     <ComboBox.Style>
                         <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxTransparentStyle}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=FreeClassTypes.Count,ElementName=popUpAirlinerSeatsConfiguration}" Value="0">
+                                <DataTrigger Binding="{Binding ClassTypes.Count}" Value="0">
                                     <Setter Property="ComboBox.Visibility" Value="Collapsed" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding CanDelete,Mode=OneTime}" Value="False">
@@ -72,7 +71,7 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </ComboBox.Style>
+                    </ComboBox.Style>-->
                 </ComboBox>
                 <TextBlock Margin="5 0 5 0" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1000'}" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Seating}" VerticalAlignment="Bottom" Width="50">

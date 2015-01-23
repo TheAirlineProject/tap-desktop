@@ -1651,8 +1651,9 @@
             
             if (this.Route.Type == Route.RouteType.Passenger)
             {
+                RouteAirlinerClass firstClass = ((PassengerRoute)this.Route).Classes[0];
                 this.PriceIndex =
-                    ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).FarePrice;
+                    firstClass.FarePrice;
 
                 if (this.Route.HasAirliner)
                     this.Score = RouteHelpers.GetRouteTotalScore(this.Route);
@@ -1664,16 +1665,12 @@
             }
             else if (this.Route.Type == Route.RouteType.Mixed)
             {
+                 RouteAirlinerClass firstClass = ((CombiRoute)this.Route).Classes[0];
                 this.PriceIndex =
-                    ((CombiRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).FarePrice
+                    firstClass.FarePrice
                     + ((CombiRoute)this.Route).PricePerUnit;
             }
-            else if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter)
-            {
-                this.PriceIndex =
-                ((HelicopterRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).FarePrice;
-
-            }
+          
         }
 
         #endregion

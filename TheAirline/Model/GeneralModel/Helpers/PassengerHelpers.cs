@@ -3103,10 +3103,10 @@
                 return 0;
             }
 
-            //double basicPrice = GetPassengerPrice(currentRoute.Destination1, currentRoute.Destination2, type);
-            //double routePrice = ((PassengerRoute)currentRoute).getFarePrice(type);
+            double basicPrice = GetPassengerPrice(currentRoute.Destination1, currentRoute.Destination2, type);
+            double routePrice = ((PassengerRoute)currentRoute).getFarePrice(type);
 
-            //double priceDiff = basicPrice / routePrice;
+            double priceDiff = basicPrice / routePrice;
 
             double routeScoreFactor = RouteHelpers.GetRouteTotalScore(currentRoute) / 10;
 
@@ -3278,7 +3278,7 @@
 
             double reputationPercent = reputation / 100;
 
-            double routePriceDiff = 1;// priceDiff < 0.75 ? priceDiff : 1;
+            double routePriceDiff = priceDiff > 1.25 ? 1.25 : priceDiff;
 
             routePriceDiff *= GameObject.GetInstance().Difficulty.PriceLevel;
 

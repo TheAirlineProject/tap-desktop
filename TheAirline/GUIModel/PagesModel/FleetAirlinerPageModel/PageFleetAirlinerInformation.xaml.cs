@@ -8,6 +8,7 @@
     using System.Windows.Controls;
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.GUIModel.PagesModel.AirlinePageModel;
     using TheAirline.Model.AirlinerModel;
@@ -134,7 +135,12 @@
                             .SelectedFacility.SeatUses);
             }
         }
+        private void btnSeatConfiguration_Click(object sender, RoutedEventArgs e)
+        {
+            FleetAirlinerMVVM airliner = (FleetAirlinerMVVM)((Button)sender).Tag;
 
+            PopUpSeatConfiguration.ShowPopUp(airliner.Airliner.Airliner);
+        }
         private void btnAddPilot_Click(object sender, RoutedEventArgs e)
         {
             var cbPilots = new ComboBox();

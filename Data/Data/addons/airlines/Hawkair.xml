@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Hawkair" iata="BHA"  color="MediumBlue" country="113" CEO="Jay Dilley" mentality="Safe" market="Local" preferedairport="YXT">
+    <narrative narrative="Hawkair is based at Terrace,British Columbia and was founded in 1994. As of early 2015 it has 4 routes it serves. Terrace-Vancouver,Prince Rupert-Vancouver,Smithers-Vancouver and Dawson Creek-Vancouver. It as of the same time had two Dash 8-300's and two Dash 8-100's. It has operated a King Air 200 and two Fairchild Swearingens in the past and a Bristol Freighter. It was founded as a cargo airline in Terrace but started schedule passenger service in 2000. There are six British Columbia airports it served at one time but no longer and two in Alberta also." />
+</profile>
+   <info real="True" from="1994" to="2199"></info>
+   <prefereds aircrafts="Bombardier Dash 8-100,Bombardier Dash 8-300,Fairchild Swearingen Metroliner,Beechcraft King Air B200"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YVR"></focusairport>
+		 <focusairport airport="YPR"></focusairport>
+		 <focusairport airport="YYD"></focusairport>
+     </focusairports>
+        <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-100" early="2" late="2"></airliner>
+	     </airliners>
+        <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="2" late="2"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (1994) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="1" late="0"></airliner>
+	     </airliners>
+	         <!--the airliners the airline would start with which isn't on a route earyl (1995) late (2015)-->
+	         <airliners>
+	    <airliner type="Fairchild Swearingen Metroliner" early="2" late="0"></airliner>
+	     </airliners>
+
+
+<routes>
+		<route destination1="YXT" destination2="YVR" opened="2000" closed="2199"/>
+		<route destination1="YVR" destination2="YPR" opened="2001" closed="2199"/>
+		<route destination1="YVR" destination2="YYQ" opened="2002" closed="2199"/>
+		<route destination1="YVR" destination2="YYD" opened="2007" closed="2199"/>
+	        </routes>
+
+
+
+
+
+
+
+
+
+</airline>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Orca Airways" iata="ORK"  color="MediumBlue" country="113" CEO="Andrew Naysmith" mentality="Safe" market="Local" preferedairport="YVR" rouefocus="Mixed">
+    <narrative narrative="Orca Airways is based at Vancouver International and provides service to many airports on Vancouver Island. Its secondary hub is Tofino on the island and it also flies to 3 other airports on the island in addition to the mainland city of Abbotsford also in British Columbia. Those being the regular served destinations, but it also does charter service and cargo service. That list of places served is accurate as of May 2014. Its fleet is 16 Piper Navajo/Chieftans, the largest operator of the type in Canada, along with three Fairchild Metroliner and Merlin types and a  Beechcraft King Air 100. It was founded in 2005." />
+</profile>
+   <info real="True" from="2005" to="2199"></info>
+   <prefereds aircrafts="PA-31 Navajo,Fairchild Swearingen Metroliner,Beechcraft King Air B200"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YAZ"></focusairport>
+     </focusairports>
+        <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2015)-->
+	         <airliners>
+	    <airliner type="PA-31 Navajo" early="4" late="16"></airliner>
+	     </airliners>
+        <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2015)-->
+	         <airliners>
+	    <airliner type="Fairchild Swearingen Metroliner" early="0" late="3"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="0" late="1"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+</airline>

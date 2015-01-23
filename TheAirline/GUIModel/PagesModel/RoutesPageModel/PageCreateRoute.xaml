@@ -78,9 +78,7 @@
                             <RadioButton GroupName="RouteType"
                                          Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1018'}"
                                          Margin="5 0 0 0" Tag="Mixed" Checked="rbRouteType_Checked" />
-                            <RadioButton GroupName="RouteType"
-                                         Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1020'}"
-                                         Margin="5 0 0 0" Tag="Helicopter" Checked="rbRouteType_Checked" />
+                     
                         </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
@@ -265,6 +263,36 @@
                         </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1023'}">
+                    <h:QuickInfoValue.Value>
+                        <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                            <Image Source="/data/images/tickgrey.png" Width="20" 
+                                   RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" >
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ForHelicopters,ElementName=pageCreateRoute}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <Image Source="/data/images/tick.png" Width="20" 
+                                   RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" >
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ForHelicopters,ElementName=pageCreateRoute}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </WrapPanel>
+                    </h:QuickInfoValue.Value>
+                </h:QuickInfoValue>
                 <h:QuickInfoValue
                     Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1021'}">
                     <h:QuickInfoValue.Style>
@@ -277,6 +305,7 @@
                             </Style.Triggers>
                         </Style>
                     </h:QuickInfoValue.Style>
+               
                     <h:QuickInfoValue.Value>
                         <WrapPanel>
                             <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" VerticalAlignment="Bottom"

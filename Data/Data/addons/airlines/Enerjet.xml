@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Enerjet" iata="ENJ"  color="Yellow" country="113" CEO="Tim Morgan" mentality="Safe" market="Regional" preferedairport="YYC" schedule="Charter">
+    <narrative narrative="Enerjet is a charter airline based at Calgary,Alberta. It started operations in 2009 and currently acts mainly as a transport for Alberta oil sand workers. It did for a time fly to holiday spots in the Caribbean and Mexico from Calgary,Edmonton,Toronto,Winnipeg and Vancouver. One of the nine founders,Tim Morgan,was a former WestJet Senior Vice-President. As of May 2014 it has three 737-700's." />
+</profile>
+   <info real="True" from="2009" to="2199"></info>
+   <prefereds aircrafts="Boeing 737-700,Boeing 737 MAX 7"></prefereds>
+<focusairports>
+        <focusairport airport="YEG"></focusairport>
+	 <focusairport airport="YYZ"></focusairport>
+         <focusairport airport="YWG"></focusairport>
+	  <focusairport airport="YVR"></focusairport>
+     </focusairports>
+
+ 
+        <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-700" early="1" late="3"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+</airline>

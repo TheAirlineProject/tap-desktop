@@ -1,8 +1,8 @@
- <airliners>
+﻿ <airliners>
 
  <airliner manufacturer="Ford" name="Ford Trimotor" price="53500">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
-    <specs wingspan="23.72" length="15.32" range="885" speed="145" fuelcapacity="715" consumption="0.10"
+    <specs wingspan="23.72" length="15.32" range="901" speed="196" fuelcapacity="1344" consumption="0.10"
            runwaylengthrequired="1600" />
     <capacity passengers="10" cockpitcrew="2" cabincrew="1" maxclasses="1" />
     <produced from="1926" to="1933" rate="28" />

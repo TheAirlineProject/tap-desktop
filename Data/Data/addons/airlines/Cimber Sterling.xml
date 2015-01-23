@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Cimber Sterling" iata="QI"  color="Maroon" country="110" CEO="Jan Palmer" mentality="Moderate" market="Regional" preferedairport="CPH">
+    <narrative narrative="Cimber Sterling, or Cimber Air before its late December 2008 acquisition of the other Danish airline Sterling, was based at Copenhagen Airport and was founded in 1950. Its other base was Billund with another small base at Aalborg. At the end in 2012 it was serving 25 destinations. 6 in Denmark,5 in Spain,4 in Sweden,3 in Italy,2 in France and one each in Bulgaria,Czech Republic,Greece,Portugal and Turkey. Previous destinations included Israel,Australia,Austria,Croatia,Ireland,Serbia,the UK,Ukraine, and 2 others in Spain. At the end its fleet was 8 CRJ200's,3 ATR 72-500's,3 ATR 72-200's,and 3 ATR 42-500's. It also leased 6 737-770's much of the time it was Cimber Sterling. 4 of the CRJ200s and an ATR 72 would go on to be the starting fleet of Cimber A/S. Other planes in its past are the Aeropostiale N 262,Gulfstream I and Fokker VFW 614. The 614 was a jet and Cimber had 2,and only 16 of the type were ever made. From May 1998 to March 2003 SAS held a 26% stake in it, it sold it back. Cimber did many codesharing flights for SAS. Which is exatly what its succesor does and are in fact owned by SAS after being bought in December 2014." />
+<names>
+<name value="Cimber Air" from="1.1.1950 00:00:00"></name>
+<name value="Cimber Sterling" from="1.1.2009 00:00:00"></name>
+</names>
+<logos>
+      <logo from="1950" to="2009" path="QA"></logo>
+    </logos>
+</profile>
+   <info real="True" from="1950" to="2012"></info>
+   <prefereds aircrafts="Bombardier CRJ200,ATR 72-200,ATR 42-300,ATR 42-500,ATR 72-210,Boeing 737-700,Aerospatiale N 262,Gulfstream I,Fokker VFW 614"></prefereds>
+<startdata>
+  <focusairports>
+        <focusairport airport="BLL"></focusairport>
+	 <focusairport airport="AAL"></focusairport>
+     </focusairports>
+
+        <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2011)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ200" early="3" late="8"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (1987) late (2011)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="1" late="0"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl (1997) late (2011)-->
+	         <airliners>
+	    <airliner type="ATR 42-500" early="1" late="3"></airliner>
+	     </airliners>
+	     	        	  <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2011)-->
+	         <airliners>
+	    <airliner type="ATR 72-200" early="7" late="3"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2011)-->
+	         <airliners>
+	    <airliner type="ATR 72-500" early="1" late="3"></airliner>
+	     </airliners>
+	             	  <!--the airliners the airline would start with which isn't on a route earyl (1975) late (1995)-->
+	         <airliners>
+	    <airliner type="Fokker VFW 614" early="2" late="0"></airliner>
+	     </airliners>
+
+	     
+
+
+  </startdata>
+</airline>

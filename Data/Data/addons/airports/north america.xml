@@ -1873,6 +1873,104 @@ inflationafter="1">
       <runway name="11/29" length="805" surface="Gravel" />
       </runways>
   </airport>
+     <airport name="Hana Airport" icao="PHHN" iata="HNM" type="Domestic" season="All_Year">
+    <town town="Hana, HI" country="122" GMT="-10:00:00" DST="-11:00:00" />
+    <coordinates>
+      <latitude value="020°47'44''N" />
+      <longitude value="156°00'52''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="8/26" length="1099" surface="Asphalt" />
+    </runways>
+  </airport>
+    <airport name="Teller Airport" icao="PATE" iata="TLA" type="Domestic" season="All_Year">
+    <town town="Teller, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="065°14'25''N" />
+      <longitude value="166°20'22''W" />
+    </coordinates>
+    <size value="Smallest" pax="2" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="914" surface="Gravel" />
+    </runways>
+  </airport>
+    <airport name="Wales Airport" icao="PAIW" iata="WAA" type="Domestic" season="All_Year">
+    <town town="Wales, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="065°37'21''N" />
+      <longitude value="168°05'42''W" />
+    </coordinates>
+    <size value="Smallest" pax="2" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="1219" surface="Gravel" />
+    </runways>
+  </airport>
+    <airport name="Platinum Airport" icao="PAPM" iata="PTU" type="Domestic" season="All_Year">
+    <town town="Platinum, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="059°00'41''N" />
+      <longitude value="161°49'10''W" />
+    </coordinates>
+    <size value="Smallest" pax="2" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="1006" surface="Gravel" />
+    </runways>
+  </airport>
+    <airport name="Koyukuk Airport" icao="PFKU" iata="KYU" type="Domestic" season="All_Year">
+    <town town="Koyukuk, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="064°52'33''N" />
+      <longitude value="157°43'50''W" />
+    </coordinates>
+    <size value="Smallest" pax="2" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="6/24" length="1219" surface="Gravel" />
+    </runways>
+  </airport>
+    <airport name="Hughes Airport" icao="PAHU" iata="HUS" type="Domestic" season="All_Year">
+    <town town="Hughes, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="066°02'21''N" />
+      <longitude value="154°15'53''W" />
+    </coordinates>
+    <size value="Smallest" pax="2" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="1030" surface="Gravel" />
+    </runways>
+  </airport>
+    <airport name="Holy Cross Airport" icao="PAHC" iata="HCR" type="Domestic" season="All_Year">
+    <town town="Holy Cross, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <coordinates>
+      <latitude value="062°11'18''N" />
+      <longitude value="159°46'30''W" />
+    </coordinates>
+    <size value="Smallest" pax="2" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="1/19" length="1219" surface="Gravel" />
+    </runways>
+  </airport>
     <airport name="White Mountain Airport" icao="PAWM" iata="WMO" type="Domestic" season="All_Year">
     <town town="White Mountain, AK" country="122" GMT="-08:00:00" DST="-09:00:00" />
     <coordinates>
@@ -3738,7 +3836,7 @@ season="All_Year">
       <runway name="17/35" length="2819" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Miami International Airport" icao="KMIA" iata="MIA" type="International" season="Summer" landingfee="0.50">
+  <airport name="Miami International Airport" icao="KMIA" iata="MIA" type="International" season="All_Year" landingfee="0.50">
     <town town="Miami, FL" country="122" GMT="-04:00:00" DST="-05:00:00" />
  <coordinates>
       <latitude value="025°47'35''N" />

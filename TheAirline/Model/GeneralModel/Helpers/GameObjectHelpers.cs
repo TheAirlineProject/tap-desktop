@@ -1468,8 +1468,10 @@
                             for (int i = 0; i < contract.NumberOfGates; i++)
                             {
                                 Gate gate =
-                                    airport.Terminals.getGates().Where(g => g.Airline == contract.Airline).First();
-                                gate.Airline = null;
+                                    airport.Terminals.getGates().Where(g => g.Airline == contract.Airline).FirstOrDefault();
+
+                                if (gate != null)
+                                    gate.Airline = null;
                             }
 
                             if (contract.Airline.IsHuman)
@@ -1969,6 +1971,8 @@
                 //mf = 12, ms = 1 => procent = lille, mf = 6, ms = 6 => procent = medium, mf = 1, ms = 12 => procent = høj
 
                 int value = 100 - (monthsSinceLast - monthsFrequency);
+
+                if (value == 0) value = 1;
 
                 Boolean createContract = !GameObject.GetInstance().Contracts.Contains(sct) && GameObject.GetInstance().GameTime >= sct.from && rnd.Next(value) == 0;
 

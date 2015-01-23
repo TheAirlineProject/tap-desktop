@@ -420,35 +420,42 @@
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is Union)
+            try
             {
-                return value;
-            }
-
-            var country = (Country)value;
-
-            if (country is TerritoryCountry)
-            {
-                return ((TerritoryCountry)country).MainCountry;
-            }
-            if (!(country is TemporaryCountry))
-            {
-                TemporaryCountry tempCountry = TemporaryCountries.GetTemporaryCountry(
-                    country,
-                    GameObject.GetInstance().GameTime);
-
-                if (tempCountry == null)
+                if (value is Union)
                 {
-                    return country;
+                    return value;
                 }
-                if (tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime, country) == null)
+
+                var country = (Country)value;
+
+                if (country is TerritoryCountry)
                 {
-                    return country;
+                    return ((TerritoryCountry)country).MainCountry;
                 }
-                return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime, country);
+                if (!(country is TemporaryCountry))
+                {
+                    TemporaryCountry tempCountry = TemporaryCountries.GetTemporaryCountry(
+                        country,
+                        GameObject.GetInstance().GameTime);
+
+                    if (tempCountry == null)
+                    {
+                        return country;
+                    }
+                    if (tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime, country) == null)
+                    {
+                        return country;
+                    }
+                    return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime, country);
+                }
+                return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime, country);
+                //return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;
             }
-            return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime, country);
-            //return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;
+            catch (Exception)
+            {
+                throw new InvalidCastException("There is an error converting the following value to a country: " + value);
+            }
         }
 
         public object Convert(object value)

@@ -10,7 +10,7 @@
   </airliner>
   <airliner manufacturer="Douglas" name="Douglas DC-2" price="1350000">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
-    <specs wingspan="25.9" length="19.1" range="1750" speed="304" fuelcapacity="1900" consumption="0.071"
+    <specs wingspan="25.9" length="19.1" range="1705" speed="304" fuelcapacity="1931" consumption="0.081"
            runwaylengthrequired="915" />
     <capacity passengers="14" cockpitcrew="2" cabincrew="0" maxclasses="1" />
     <produced from="1934" to="1939" rate="40" />

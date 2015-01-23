@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Northern Thunderbird Air" iata="NTA"  color="SteelBlue" country="113" CEO="George Smithers" mentality="Safe" market="Domestic" preferedairport="YXS" schedule="Charter">
+    <narrative narrative="Northern Thunderbird Air is a charter airline based at Prince George,BC with secondary hubs at Smithers and Vancouver. It operates at 6 other British Columbia airports and Calgary and Edmonton in Alberta. It is the sister airline of Central Mountain Air and its planes are duel registered with them. That is a scheduled and charter airline based out of Calgary,Vanoucver and Prince George. NTA was founded in 1971 after Northern Mountain and Thuderbird merged. As of September 2014 it had three Beechcraft 1900C's, two 1900D's and a Cessna 208. Its King Air is used for medical purposes. It has had Beechcraft Model 18's,DH Beavers and Grumman Goose's and some helicopters before too." />
+</profile>
+   <info real="True" from="1971" to="2199"></info>
+   <prefereds aircrafts="Beechcraft 1900C,Beechcraft 1900D,Cessna 208B,DHC-2 Beaver,Beechcraft Model 18"></prefereds>
+<focusairports>
+        <focusairport airport="YYD"></focusairport>
+        <focusairport airport="YVR"></focusairport>
+     </focusairports>
+
+ 
+        <!--the airliners the airline would start with which isn't on a route earyl (1971) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900C" early="0" late="3"></airliner>
+	     </airliners>
+	             <!--the airliners the airline would start with which isn't on a route earyl (1971) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900D" early="0" late="2"></airliner>
+	     </airliners>
+	     	             <!--the airliners the airline would start with which isn't on a route earyl (1971) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="0" late="1"></airliner>
+	     </airliners>
+
+
+
+
+
+</airline>

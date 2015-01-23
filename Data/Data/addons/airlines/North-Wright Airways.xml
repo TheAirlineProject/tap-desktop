@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="North-Wright Airways" iata="HW"  color="Red" country="113" CEO="Warren Wright" mentality="Safe" market="Domestic" preferedairport="YVQ" schedule="Business">
+    <narrative narrative="North-Wright Airways is based at Norman Wells,Northwest Territories and was founded in 1986. It has roughly 16 routes or so among 8 airports. It serves Deline,Inuvik,Fort Good Hope, Yellowknife and Tulita  all in the Northwest Territories on a regular basis, and Aklavik when the ferry isn't running to there. Colville Lake is served as on demand charter.Most routes are done twice a day. And most are done every day but Sunday. It also does seaplane service. In November 2013 it had many planes, all props. Four Cessna 207s,three Cessna 206's,two 208B's,two Twin Otter 300's and a 100,two Beechcraft 99's,two Pilatus Turbo Porters,three Cessna 172 Skyhawk's,two Cessna 185's,a Cessna Skymaster,a BN Islander and a Helio Courier. Some sources also say a Beechcraft 1900D. 49% of it is owned by founder Warren Wright and his wife." />
+</profile>
+   <info real="True" from="1986" to="2199"></info>
+   <prefereds aircrafts="Cessna 207,Cessna 206,Cessna 172 Skyhawk,Cessna 208B,DHC-6-300 Twin Otter,Pilatus PC-6 Turbo-Porter,Beechcraft 99,DHC-6-100 Twin Otter,BN-2A Islander,Helio Courier,Cessna Skymaster,Cessna 185 Skywagon,Beechcraft 1900D"></prefereds>
+<focusairports>
+          <focusairport airport="YEV"></focusairport>
+        <focusairport airport="YWJ"></focusairport>
+	 <focusairport airport="YGH"></focusairport>
+         <focusairport airport="ZFN"></focusairport>
+     </focusairports>
+
+ 
+        <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 207" early="1" late="4"></airliner>
+	     </airliners>
+	             <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 206" early="1" late="3"></airliner>
+	     </airliners>
+	     	             <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="0" late="2"></airliner>
+	     </airliners>
+	     	     	             <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 172 Skyhawk" early="1" late="3"></airliner>
+	     </airliners>
+	     	     	     	             <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 99" early="0" late="2"></airliner>
+	     </airliners>
+	  	     	          	     	     	             <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 185 Skywagon" early="0" late="2"></airliner>
+	     </airliners>
+	               	     	     	             <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="DHC-6-100 Twin Otter" early="1" late="1"></airliner>
+	     </airliners>
+	                    	     	     	             <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="DHC-6-300 Twin Otter" early="0" late="2"></airliner>
+	     </airliners>
+	                  	     	     	             <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Helio Courier" early="0" late="1"></airliner>
+	     </airliners>
+	                  	     	     	             <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna Skymaster" early="0" late="1"></airliner>
+	     </airliners>
+	                  	     	     	             <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="BN-2A Islander" early="0" late="1"></airliner>
+	     </airliners>
+	                  	     	     	             <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Pilatus PC-6 Turbo-Porter" early="0" late="2"></airliner>
+	     </airliners>
+
+
+
+
+
+
+<routes>
+		<route destination1="YVQ" destination2="YGH" />
+		<route destination1="YVQ" destination2="YZF" />
+		<route destination1="YVQ" destination2="YWJ" />
+		<route destination1="YVQ" destination2="ZFN" />
+	        <route destination1="YVQ" destination2="YEV" />
+		<route destination1="YWJ" destination2="YGH" />
+		<route destination1="YWJ" destination2="ZFN" />
+		<route destination1="YWJ" destination2="YZF" />
+                <route destination1="YWJ" destination2="YEV" />
+		<route destination1="YGH" destination2="ZFN" />
+		<route destination1="YGH" destination2="YEV" />
+		<route destination1="ZFN" destination2="YZF" />
+		<route destination1="ZFN" destination2="YEV" />
+		<route destination1="YEV" destination2="LAK" />
+	        </routes>
+
+
+
+
+</airline>

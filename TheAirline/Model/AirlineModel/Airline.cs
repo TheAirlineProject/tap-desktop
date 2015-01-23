@@ -730,10 +730,10 @@
         {
             var codes = new List<string>();
 
-            IEnumerable<string> rCodes;
+            List<string> rCodes;
             
             lock (this.Routes)
-                rCodes = this.Routes.SelectMany(r => r.TimeTable.Entries).Select(e => e.Destination.FlightCode).Distinct();
+                rCodes = new List<string>(this.Routes.SelectMany(r => r.TimeTable.Entries).Select(e => e.Destination.FlightCode).Distinct());
 
             for (int i = 0; i < 1000; i++)
             {

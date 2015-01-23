@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="First Air" iata="7F"  color="Orange" country="113" CEO="Brock Friesen" mentality="Moderate" market="Domestic" preferedairport="YOW" rouefocus="Mixed">
+    <narrative narrative="First Air is is based at Ottawa where its large hanger and maintenance and cargo facility is. It is a hybrid airline that does passenger and cargo. Its hubs are Yellowknife,Northwest Territories, Iqaluit,Nunavut and Rankin Inlet,Nunavut. It operates scheduled service at 34 Canadian airports. 23 of these are in Nunavut,2 in Quebec,6 in Northwest Territories,and one each in Ontario,Alberta,Manitoba and British Columbia. Vancouver,BC is a seasonal charter. Most of its fleet is availible for worldwide charters. It is also known for providing its planes for aid such as the 2010 Haiti earthquake relief effort. It was founded in 1946 as Bradley Air Services, and ts founder was Russel Bradley. Its offical name is still this but it uses the name First Air. It began scheduled service in 1973. Its fleet as of January 2015 was 9 ATR 42-300's, which have been converted for combi passenger and cargo use. 2 ATR 72-210's also combi's. Six 737-200 Adv.s, three for passengers and three for cargo. Three 737-400's, two combi and one passenger. And two Lockheed L-100-300's for cargo. It had a few 767-200's from the late 90's until its last one in 2014." />
+</profile>
+   <info real="True" from="1946" to="2199"></info>
+   <prefereds aircrafts="ATR 42-300,Boeing 737-200 Adv.,Boeing 737-200C,ATR 72-210,Boeing 737-400,Boeing 737-400M,Lockheed L-100-30,Boeing 767-200"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YZF"></focusairport>
+		 <focusairport airport="YFB"></focusairport>
+		 <focusairport airport="YRT"></focusairport>
+     </focusairports>
+        <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="4" late="9"></airliner>
+	     </airliners>
+        <!--the airliners the airline would start with which isn't on a route earyl (1997) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200 Adv." early="1" late="6"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-210" early="2" late="2"></airliner>
+	     </airliners>
+	         <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="1" late="1"></airliner>
+	     </airliners>
+	              <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400M" early="2" late="2"></airliner>
+	     </airliners>
+	     	              <!--the airliners the airline would start with which isn't on a route earyl (1998) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 767-200" early="1" late="0"></airliner>
+	     </airliners>
+	     	     	              <!--the airliners the airline would start with which isn't on a route earyl (1990) late (2015)-->
+	         <airliners>
+	    <airliner type="Lockheed L-100-30" early="0" late="2"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+
+
+
+</airline>

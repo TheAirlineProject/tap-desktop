@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
+<airliner manufacturer="Fokker" name="Fokker VFW 614" price="2238000"> <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="21.50" length="20.60" range="1195" speed="675" fuelcapacity="8600" consumption="0.051"
+           runwaylengthrequired="800" />
+    <capacity passengers="44" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1975" to="1976" rate="8" />
+  </airliner>
       <airliner manufacturer="Fokker" name="Fokker Super Universal" price="336000">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
     <specs wingspan="15.44" length="11.25" range="1100" speed="210" fuelcapacity="1700" consumption="0.166"

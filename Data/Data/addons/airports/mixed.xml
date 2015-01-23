@@ -3019,6 +3019,21 @@
       <runway name="8/26" length="1199" surface="Gravel" />
        </runways>
   </airport>
+    <airport name="Aklavik/Freddie Carmichael Airport" icao="CYKD" iata="LAK" type="Domestic" season="All_Year">
+<period from="01.01.1959 00:00:00" to="12.31.2199 00:00:00" />
+    <town town="Aklavik, NT" country="113" GMT="-07:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="68°13'24''N" />
+      <longitude value="135°00'20''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="915" surface="Gravel" />
+       </runways>
+  </airport>
                      <airport name="Fort Simpson Airport" icao="CYFS" iata="YFS" type="Domestic" season="All_Year">
     <town town="Fort Simpson, NT" country="113" GMT="-07:00:00" DST="-06:00:00" />
     <coordinates>

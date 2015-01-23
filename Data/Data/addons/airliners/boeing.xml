@@ -1,7 +1,29 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
-
+        <airliner manufacturer="Boeing" name="Boeing 247" price="149000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="22.60" length="15.70" range="1200" speed="304" fuelcapacity="2140" consumption="0.055"
+           runwaylengthrequired="500" />
+    <capacity passengers="10" cockpitcrew="3" cabincrew="0" maxclasses="1" />
+    <produced from="1933" to="1935" rate="25" />
+  </airliner>
+  
+        <airliner manufacturer="Boeing" name="Boeing 307 Stratoliner" price="650000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="32.63" length="22.60" range="2820" speed="344" fuelcapacity="5000" consumption="0.055"
+           runwaylengthrequired="1000" />
+    <capacity passengers="38" cockpitcrew="4" cabincrew="1" maxclasses="1" />
+    <produced from="1940" to="1940" rate="10" />
+  </airliner>
+  
+          <airliner manufacturer="Boeing" name="Boeing 377 Stratocruiser" price="2017000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="43.05" length="33.63" range="6760" speed="483" fuelcapacity="12000" consumption="0.055"
+           runwaylengthrequired="2000" />
+    <capacity passengers="114" cockpitcrew="4" cabincrew="3" maxclasses="2" />
+    <produced from="1949" to="1950" rate="28" />
+  </airliner>
   <airliner manufacturer="Boeing" name="Boeing 720 (707-020)" price="3800000">
 
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />

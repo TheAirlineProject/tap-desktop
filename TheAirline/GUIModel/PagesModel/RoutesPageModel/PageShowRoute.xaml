@@ -128,6 +128,35 @@
                         <TextBlock Text="{Binding Route.Season,Mode=OneTime,Converter={StaticResource TextUnderscoreConverter}}"
                            VerticalAlignment="Bottom" />
                     </WrapPanel>
+                    <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                        <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 1008'}"
+                    FontWeight="Bold" VerticalAlignment="Center" Width="100" />
+                        <Image Source="/data/images/tickgrey.png" Width="20" Margin="10 0 0 0"
+                                   RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" >
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ForHelicopters}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <Image Source="/data/images/tick.png" Width="20" Margin="10 0 0 0"
+                                   RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" >
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ForHelicopters}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </WrapPanel> 
                     <WrapPanel>
                         <WrapPanel.Style>
                             <Style BasedOn="{StaticResource WrapPanelStyle}" TargetType="WrapPanel">

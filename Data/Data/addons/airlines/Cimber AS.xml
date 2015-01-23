@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Cimber A/S" iata="QA"  color="Maroon" country="110" CEO="Jacob Krogsgaard" mentality="Safe" market="Regional" preferedairport="CPH">
+    <narrative narrative="Cimber A/S is based at Copenhagen Airport and was founded in 2012 in the ashes of the old bankrupt  Cimber Sterling, known as Cimber Air before it bought parts of Sterling in 2008. Scandanavian Airlines had a contract with it to have Cimber do flights for them and in December 2014 just as it looked like Cimber A/S would be shut down because SAS didn't renew the contract it was announced SAS would buy out 100% of Cimber A/S. It does regional flights and has six CRJ200's and an ATR 72-200. It had 4 CRJ200's in 2012." />
+</profile>
+   <info real="True" from="2012" to="2199"></info>
+   <prefereds aircrafts="Bombardier CRJ200,ATR 72-200"></prefereds>
+
+    
+
+        <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ200" early="4" late="6"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-200" early="1" late="1"></airliner>
+	     </airliners>
+
+	     
+
+
+
+
+
+
+
+
+
+</airline>

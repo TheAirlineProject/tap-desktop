@@ -42,6 +42,8 @@
             this.Classes = new ObservableCollection<AirlinerClassMVVM>();
             this.Owner = (this.Airliner.Airliner.Owner != null && this.Airliner.Airliner.Airline != this.Airliner.Airliner.Owner) ? this.Airliner.Airliner.Owner : null;
 
+            this.SeatModel = AirlinerSeatModels.GetSeatModel(this.Airliner.Airliner.Type);
+
             AirlinerClass tClass;
 
             if (this.Airliner.Airliner.Classes.Count == 0)
@@ -147,7 +149,7 @@
         #region Public Properties
         public ObservableCollection<FleetAirlinerMaintenanceMVVM> Maintenances { get; set; }
 
-
+        public Seatplanner.SeatPlannerModel SeatModel { get; set; }
         public FleetAirliner Airliner { get; set; }
 
         public Airline Owner { get; set; }

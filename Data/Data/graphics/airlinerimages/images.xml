@@ -89,4 +89,6 @@
     <airlinerimage image="MA60" types="Xian MA60"></airlinerimage>
         <airlinerimage image="Avro York" types="Avro York"></airlinerimage>
             <airlinerimage image="Avro Lancastrian" types="Avro Lancastrian"></airlinerimage>
+              <airlinerimage image="Cessna Skymaster" types="Cessna Skymaster"></airlinerimage>
+     <airlinerimage image="VFW614" types="Fokker VFW 614"></airlinerimage>
 </airlinerimages>

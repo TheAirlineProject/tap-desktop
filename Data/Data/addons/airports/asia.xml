@@ -996,7 +996,7 @@ inflationafter="1">
     <runways>
       <runway name="2/20" length="2440" surface="Concrete" />
  <runway name="2H/20H" length="365" surface="Concrete" type="Helipad" />
-    </runways>
+       </runways>
   </airport>
     <airport name="Hiroshima Airport" icao="RJOA" iata="HIJ" type="International" season="All_Year">
      <period from="01.01.1993 00:00:00" to="12.31.2199 00:00:00" />

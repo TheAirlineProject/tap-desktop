@@ -233,6 +233,7 @@
 
         //returns the service level for a specific class
     }
+    /*
     [Serializable]
     //the class for a helicopter route
     public class HelicopterRoute : PassengerRoute
@@ -343,6 +344,7 @@
 
               base.GetObjectData(info, context);
           }
-          #endregion
-    }
+      
+     #endregion
+    }*/
 }

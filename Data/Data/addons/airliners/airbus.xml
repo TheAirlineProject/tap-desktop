@@ -8,48 +8,35 @@
     <capacity passengers="7" cockpitcrew="1" cabincrew="0" maxclasses="1" />
     <produced from="2001" to="2199" rate="50" />
   </airliner>
-
-  <airliner manufacturer="Airbus" name="Airbus A300B1" price="15915680"> <!--35500000-->
-
-    <type body="Wide_Body" rangetype="Medium_Range" engine="Jet" />
-
-    <specs wingspan="44.85" length="54.08" range="3430" speed="847" fuelcapacity="62900" consumption="0.035"
-           runwaylengthrequired="2500" />
-
-    <capacity passengers="375" cockpitcrew="3" cabincrew="5" maxclasses="2" />
-
-    <produced from="1972" to="1974" rate="2" />
-
-  </airliner>
   <airliner manufacturer="Airbus" name="Airbus A300B2" price="16014380"> <!--35500000-->
 
     <type body="Wide_Body" rangetype="Medium_Range" engine="Jet" />
 
-    <specs wingspan="44.85" length="54.08" range="3430" speed="847" fuelcapacity="62900" consumption="0.035"
+    <specs wingspan="44.85" length="54.08" range="3430" speed="847" fuelcapacity="62900" consumption="0.037"
            runwaylengthrequired="2500" />
 
     <capacity passengers="345" cockpitcrew="3" cabincrew="5" maxclasses="2" />
 
-    <produced from="1974" to="1984" rate="17" />
+    <produced from="1973" to="1984" rate="17" />
 
   </airliner>
   <airliner manufacturer="Airbus" name="Airbus A300B4" price="16114380"> <!--35500000-->
 
     <type body="Wide_Body" rangetype="Medium_Range" engine="Jet" />
 
-    <specs wingspan="44.85" length="54.08" range="6670" speed="829" fuelcapacity="62900" consumption="0.035"
+    <specs wingspan="44.85" length="54.08" range="6670" speed="829" fuelcapacity="62900" consumption="0.029"
            runwaylengthrequired="2500" />
 
     <capacity passengers="345" cockpitcrew="3" cabincrew="5" maxclasses="2" />
 
-    <produced from="1978" to="1985" rate="17" />
+    <produced from="1975" to="1984" rate="17" />
 
   </airliner>
   <airliner manufacturer="Airbus" name="Airbus A300-600" price="17711740"> <!--59600000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
 
-    <specs wingspan="44.85" length="54.08" range="6850" speed="875" fuelcapacity="62000" consumption="0.034"
+    <specs wingspan="44.85" length="54.08" range="6850" speed="875" fuelcapacity="62000" consumption="0.025"
            runwaylengthrequired="2240" />
 
     <capacity passengers="361" cockpitcrew="2" cabincrew="5" maxclasses="2" />
@@ -67,7 +54,7 @@
 
     <capacity cockpitcrew="2" cargo="109" />
 
-    <produced from="1982" to="2006" rate="17" />
+    <produced from="1982" to="1985" rate="17" />
 
   </airliner>
   <airliner type="Cargo" manufacturer="Airbus" name="Airbus A300-600F" price="17711740"> <!--59600000-->
@@ -79,7 +66,7 @@
 
     <capacity cockpitcrew="2" cargo="116" />
 
-    <produced from="1983" to="2006" rate="17" />
+    <produced from="1986" to="2006" rate="17" />
 
   </airliner>
 
@@ -87,7 +74,7 @@
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
 
-    <specs wingspan="44.85" length="54.08" range="7540" speed="829" fuelcapacity="68150" consumption="0.034"
+    <specs wingspan="44.85" length="54.08" range="7540" speed="829" fuelcapacity="68150" consumption="0.025"
            runwaylengthrequired="2300" />
 
     <capacity passengers="361" cockpitcrew="2" cabincrew="5" maxclasses="2" />
@@ -100,12 +87,12 @@
 
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
 
-    <specs wingspan="43.9" length="46.66" range="6800" speed="850" fuelcapacity="55200" consumption="0.034"
+    <specs wingspan="43.9" length="46.66" range="6800" speed="850" fuelcapacity="55200" consumption="0.031"
            runwaylengthrequired="2150" />
 
-    <capacity passengers="280" cockpitcrew="2" cabincrew="5" maxclasses="2" />
+    <capacity passengers="265" cockpitcrew="2" cabincrew="5" maxclasses="2" />
 
-    <produced from="1983" to="2007" rate="17" />
+    <produced from="1982" to="1989" rate="17" />
 
   </airliner>
 
@@ -113,10 +100,10 @@
 
     <type body="Narrow_Body" rangetype="Long_Range" engine="Jet" />
 
-    <specs wingspan="43.9" length="46.66" range="9600" speed="850" fuelcapacity="75470" consumption="0.034"
+    <specs wingspan="43.9" length="46.66" range="9600" speed="850" fuelcapacity="62900" consumption="0.025"
            runwaylengthrequired="2150" />
 
-    <capacity passengers="280" cockpitcrew="2" cabincrew="5" maxclasses="2" />
+    <capacity passengers="265" cockpitcrew="2" cabincrew="5" maxclasses="2" />
 
     <produced from="1985" to="2007" rate="17" />
 
@@ -144,7 +131,7 @@
 
     <capacity passengers="156" cockpitcrew="2" cabincrew="3" maxclasses="2" />
 
-    <produced from="1994" to="2015" rate="220" />
+    <produced from="1994" to="2018" rate="220" />
 
   </airliner>
 
@@ -152,12 +139,12 @@
 
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
 
-    <specs wingspan="34.10" length="33.84" range="7800" speed="828" fuelcapacity="24210" consumption="0.014"
+    <specs wingspan="34.10" length="33.84" range="7800" speed="828" fuelcapacity="24210" consumption="0.019"
            runwaylengthrequired="1480" />
 
-    <capacity passengers="156" cockpitcrew="2" cabincrew="3" maxclasses="2" />
+    <capacity passengers="160" cockpitcrew="2" cabincrew="3" maxclasses="2" />
 
-    <produced from="2015" to="2199" rate="220" />
+    <produced from="2016" to="2199" rate="220" />
 
   </airliner>
 
@@ -178,12 +165,12 @@
 
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
 
-    <specs wingspan="34.10" length="37.57" range="5600" speed="828" fuelcapacity="30190" consumption="0.030"
+    <specs wingspan="34.10" length="37.57" range="5700" speed="828" fuelcapacity="24210" consumption="0.024"
            runwaylengthrequired="1560" />
 
     <capacity passengers="180" cockpitcrew="2" cabincrew="3" maxclasses="2" />
 
-    <produced from="1989" to="2199" rate="220" />
+    <produced from="1989" to="2018" rate="220" />
 
   </airliner>
   <airliner manufacturer="Airbus" name="Airbus A320neo" image="Airbus A320" price="12120070"> <!--72200000-->
@@ -217,24 +204,24 @@
 
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
 
-    <specs wingspan="34.10" length="44.51" range="5600" speed="828" fuelcapacity="30030" consumption="0.024"
+    <specs wingspan="34.10" length="44.51" range="5600" speed="828" fuelcapacity="24050" consumption="0.020"
            runwaylengthrequired="1895" />
 
     <capacity passengers="220" cockpitcrew="2" cabincrew="4" maxclasses="2" />
 
-    <produced from="1996" to="2199" rate="220" />
+    <produced from="1996" to="2018" rate="220" />
 
   </airliner>
   <airliner manufacturer="Airbus" name="Airbus A321neo" image="Airbus A321" price="13220070"> <!--72200000-->
 
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
 
-    <specs wingspan="34.10" length="44.51" range="6760" speed="828" fuelcapacity="30030" consumption="0.019"
+    <specs wingspan="34.10" length="44.51" range="6760" speed="828" fuelcapacity="24050" consumption="0.015"
            runwaylengthrequired="2145" />
 
-    <capacity passengers="236" cockpitcrew="2" cabincrew="4" maxclasses="2" />
+    <capacity passengers="240" cockpitcrew="2" cabincrew="4" maxclasses="2" />
 
-    <produced from="2017" to="2199" rate="220" />
+    <produced from="2016" to="2199" rate="220" />
 
   </airliner>
       <airliner manufacturer="Airbus" name="Airbus A321neoLR" image="Airbus A321" price="11656000"> <!--63658000-->
@@ -249,20 +236,20 @@
     <produced from="2018" to="2199" rate="50" />
 
   </airliner>
-  <airliner manufacturer="Airbus" name="Airbus A330-200" image="Airbus A330-200" price="26366440"> <!--145200000-->
+  <airliner manufacturer="Airbus" name="Airbus A330-200" image="Airbus A330-200" family="Airbus A330"  price="26366440"> <!--145200000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
 
-    <specs wingspan="60.30" length="58.82" range="13430" speed="871" fuelcapacity="139090" consumption="0.027"
+    <specs wingspan="60.30" length="58.82" range="13430" speed="871" fuelcapacity="139090" consumption="0.026"
            runwaylengthrequired="2490" />
 
-    <capacity passengers="380" cockpitcrew="2" cabincrew="8" maxclasses="3" />
+    <capacity passengers="406" cockpitcrew="2" cabincrew="8" maxclasses="3" />
 
-    <produced from="1993" to="2018" rate="46" />
+    <produced from="1993" to="2020" rate="46" />
 
   </airliner>
 
-  <airliner type="Cargo" manufacturer="Airbus" name="Airbus A330-200F" image="Airbus A330-200" price="26366440"> <!--145200000-->
+  <airliner type="Cargo" manufacturer="Airbus" name="Airbus A330-200F"  family="Airbus A330"  image="Airbus A330-200" price="26366440"> <!--145200000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
 
@@ -271,23 +258,50 @@
 
     <capacity cockpitcrew="2" cargo="475" />
 
-    <produced from="1998" to="2018" rate="46" />
+    <produced from="1998" to="2020" rate="46" />
 
   </airliner>
 
-  <airliner manufacturer="Airbus" name="Airbus A330-300" image="A333" price="29259040"> <!--146500000-->
+  <airliner manufacturer="Airbus" name="Airbus A330-300"  family="Airbus A330"  image="A333" price="29259040"> <!--146500000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
 
-    <specs wingspan="60.30" length="63.69" range="10830" speed="871" fuelcapacity="97530" consumption="0.020"
+    <specs wingspan="60.30" length="63.69" range="10550" speed="871" fuelcapacity="97530" consumption="0.021"
            runwaylengthrequired="2610" />
 
     <capacity passengers="440" cockpitcrew="2" cabincrew="9" maxclasses="3" />
 
-    <produced from="1994" to="2015" rate="46" />
+    <produced from="1993" to="2020" rate="46" />
 
   </airliner>
+    <airliner manufacturer="Airbus" name="Airbus A330-300HGW" image="A333" family="Airbus A330" price="30259040"> <!--146500000-->
 
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+
+    <specs wingspan="60.30" length="63.69" range="11480" speed="871" fuelcapacity="139090" consumption="0.028"
+           runwaylengthrequired="2610" />
+
+    <capacity passengers="440" cockpitcrew="2" cabincrew="9" maxclasses="3" />
+
+    <produced from="1999" to="2020" rate="6" />
+
+  </airliner>
+      <airliner manufacturer="Airbus" name="Airbus A330-800neo" image="A333" family="Airbus A330" price="30459040"> <!--146500000-->
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <specs wingspan="58.85" length="64" range="13800" speed="871" fuelcapacity="139090" consumption="0.024"
+           runwaylengthrequired="2610" />
+    <capacity passengers="412" cockpitcrew="2" cabincrew="9" maxclasses="3" />
+    <produced from="2017" to="2199" rate="6" />
+  </airliner>
+  
+     <airliner manufacturer="Airbus" name="Airbus A330-900neo" image="A333" family="Airbus A330" price="31059040"> <!--146500000-->
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+    <specs wingspan="64" length="63.69" range="11500" speed="871" fuelcapacity="139090" consumption="0.019"
+           runwaylengthrequired="2610" />
+    <capacity passengers="440" cockpitcrew="2" cabincrew="9" maxclasses="3" />
+    <produced from="2017" to="2199" rate="6" />
+  </airliner>
+  
   <airliner manufacturer="Airbus" name="Airbus A340-200" price="28676770"> <!--140000000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
@@ -295,9 +309,9 @@
     <specs wingspan="60.3" length="59.39" range="15000" speed="871" fuelcapacity="155040" consumption="0.025"
            runwaylengthrequired="3000" />
 
-    <capacity passengers="420" cockpitcrew="2" cabincrew="6" maxclasses="3" />
+    <capacity passengers="400" cockpitcrew="2" cabincrew="6" maxclasses="3" />
 
-    <produced from="1993" to="2011" rate="21" />
+    <produced from="1993" to="1997" rate="21" />
 
   </airliner>
 
@@ -305,12 +319,24 @@
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
 
-    <specs wingspan="60.3" length="63.60" range="13700" speed="871" fuelcapacity="147850" consumption="0.025"
+    <specs wingspan="60.3" length="63.60" range="12400" speed="871" fuelcapacity="140640" consumption="0.026"
            runwaylengthrequired="3000" />
 
     <capacity passengers="440" cockpitcrew="2" cabincrew="6" maxclasses="3" />
 
     <produced from="1993" to="2011" rate="21" />
+
+  </airliner>
+    <airliner manufacturer="Airbus" name="Airbus A340-300HGW" price="31919130"> <!--152900000-->
+
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+
+    <specs wingspan="60.3" length="63.60" range="12400" speed="871" fuelcapacity="140640" consumption="0.025"
+           runwaylengthrequired="3000" />
+
+    <capacity passengers="440" cockpitcrew="2" cabincrew="6" maxclasses="3" />
+
+    <produced from="1996" to="2011" rate="5" />
 
   </airliner>
 
@@ -326,12 +352,25 @@
     <produced from="2002" to="2011" rate="21" />
 
   </airliner>
+  
+    <airliner manufacturer="Airbus" name="Airbus A340-500HGW" price="36468580"> <!--209500000-->
+
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+
+    <specs wingspan="63.45" length="67.90" range="17000" speed="881" fuelcapacity="222000" consumption="0.035"
+           runwaylengthrequired="3300" />
+
+    <capacity passengers="375" cockpitcrew="2" cabincrew="7" maxclasses="3" />
+
+    <produced from="2008" to="2011" rate="3" />
+
+  </airliner>
 
   <airliner manufacturer="Airbus" name="Airbus A340-600" price="36196120"> <!--220000000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
 
-    <specs wingspan="63.45" length="75.30" range="14350" speed="881" fuelcapacity="195880" consumption="0.026"
+    <specs wingspan="63.45" length="75.30" range="14350" speed="881" fuelcapacity="195880" consumption="0.031"
            runwaylengthrequired="3300" />
 
     <capacity passengers="520" cockpitcrew="2" cabincrew="8" maxclasses="3" />
@@ -339,7 +378,18 @@
     <produced from="2002" to="2011" rate="21" />
 
   </airliner>
+  <airliner manufacturer="Airbus" name="Airbus A340-600HGW" price="36896120"> <!--220000000-->
 
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+
+    <specs wingspan="63.45" length="75.30" range="14600" speed="881" fuelcapacity="204500" consumption="0.032"
+           runwaylengthrequired="3300" />
+
+    <capacity passengers="520" cockpitcrew="2" cabincrew="8" maxclasses="3" />
+
+    <produced from="2008" to="2011" rate="2" />
+
+  </airliner>
   <airliner manufacturer="Airbus" name="Airbus A350-800" price="30699010"> <!--245500000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
@@ -352,7 +402,18 @@
     <produced from="2016" to="2027" rate="10" />
 
   </airliner>
+  <airliner manufacturer="Airbus" name="Airbus A350-800HGW" price="34699010"> <!--245500000-->
 
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+
+    <specs wingspan="64.80" length="60.54" range="15300" speed="903" fuelcapacity="129000" consumption="0.019"
+           runwaylengthrequired="2750" />
+
+    <capacity passengers="440" cockpitcrew="2" cabincrew="8" maxclasses="3" />
+
+    <produced from="2017" to="2027" rate="3" />
+
+  </airliner>
   <airliner manufacturer="Airbus" name="Airbus A350-900" price="34725520"> <!--277700000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
@@ -365,20 +426,18 @@
     <produced from="2014" to="2023" rate="40" />
 
   </airliner>
-
-  <airliner manufacturer="Airbus" name="Airbus A350-900R" price="35555720"> <!--277700000-->
+  <airliner manufacturer="Airbus" name="Airbus A350-900HGW" price="39725520"> <!--277700000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
 
-    <specs wingspan="64.80" length="66.89" range="19100" speed="903" fuelcapacity="138000" consumption="0.022"
+    <specs wingspan="64.80" length="66.89" range="14350" speed="903" fuelcapacity="138000" consumption="0.022"
            runwaylengthrequired="2810" />
 
-    <capacity passengers="420" cockpitcrew="2" cabincrew="8" maxclasses="3" />
+    <capacity passengers="440" cockpitcrew="2" cabincrew="8" maxclasses="3" />
 
-    <produced from="2016" to="2027" rate="35" />
+    <produced from="2015" to="2023" rate="2" />
 
   </airliner>
-
   <airliner manufacturer="Airbus" name="Airbus A350-1000" price="35270025"> <!--320600000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
@@ -391,12 +450,23 @@
     <produced from="2017" to="2033" rate="20" />
 
   </airliner>
+  <airliner manufacturer="Airbus" name="Airbus A350-1000HGW" price="36470025"> <!--320600000-->
 
+    <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
+
+    <specs wingspan="64.80" length="73.88" range="14800" speed="903" fuelcapacity="156000" consumption="0.022"
+           runwaylengthrequired="2880" />
+
+    <capacity passengers="475" cockpitcrew="2" cabincrew="11" maxclasses="4" />
+
+    <produced from="2016" to="2033" rate="3" />
+
+  </airliner>
   <airliner manufacturer="Airbus" name="Airbus A380-800" price="49678710"> <!--347900000-->
 
     <type body="Wide_Body" rangetype="Long_Range" engine="Jet" />
 
-    <specs wingspan="79.75" length="72.73" range="15400" speed="945" fuelcapacity="320000" consumption="0.024"
+    <specs wingspan="79.75" length="72.73" range="15700" speed="945" fuelcapacity="323546" consumption="0.024"
            runwaylengthrequired="2900" />
 
     <capacity passengers="853" cockpitcrew="2" cabincrew="17" maxclasses="3" />

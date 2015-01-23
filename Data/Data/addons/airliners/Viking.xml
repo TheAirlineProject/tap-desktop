@@ -8,4 +8,11 @@
     <capacity passengers="19" cockpitcrew="2" cabincrew="0" maxclasses="1" />
     <produced from="2008" to="2199" rate="9" />
     </airliner>
+      <airliner manufacturer="Viking Air" name="DHC-2T Turbo Beaver" price="125000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="14.63" length="10.66" weight="2722" range="972" speed="253" fuelcapacity="704" consumption="0.10"
+  runwaylengthrequired="312" />
+    <capacity passengers="10" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="2006" to="2199" rate="50" />
+    </airliner>
     </airliners>

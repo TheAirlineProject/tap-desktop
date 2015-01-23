@@ -25,7 +25,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     public partial class PopUpAirlinerSeatsConfiguration : PopUpWindow, INotifyPropertyChanged
     {
         public ObservableCollection<AirlinerClassMVVM> Classes { get; set; }
-        public ObservableCollection<AirlinerClass.ClassType> FreeClassTypes { get; set; }
         public ObservableCollection<EngineType> Engines { get; set; }
         public EngineType SelectedEngine { get; set; }
         public Boolean CanSetSeats { get; set; }
@@ -48,7 +47,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         public PopUpAirlinerSeatsConfiguration(AirlinerType type, List<AirlinerClass> classes, EngineType engine)
         {
-            this.FreeClassTypes = new ObservableCollection<AirlinerClass.ClassType>();
             this.Classes = new ObservableCollection<AirlinerClassMVVM>();
             this.Type = type;
             this.Engines = new ObservableCollection<EngineType>();
@@ -73,18 +71,18 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     foreach (AirlinerFacility facility in aClass.getFacilities())
                         nClass.Facilities.Where(f => f.Type == facility.Type).First().SelectedFacility = facility;
 
+
+                    foreach (AirlinerClass.ClassType cType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+                    {
+                        if (!this.Classes.Any(c => c.Type == cType))
+                            nClass.ClassTypes.Add(cType);
+                    }
                 }
 
                 this.CanAddNewClass = this.Classes.Count < (this.Type is AirlinerPassengerType ? ((AirlinerPassengerType)this.Type).MaxAirlinerClasses : ((AirlinerCombiType)this.Type).MaxAirlinerClasses);
 
-                if (this.Classes.Count < 3)
-                {
-                    this.FreeClassTypes.Clear();
-                    this.FreeClassTypes.Add(AirlinerClass.ClassType.Premium_Economy_Class);
-                    this.FreeClassTypes.Add(AirlinerClass.ClassType.Business_Class);
-                    this.FreeClassTypes.Add(AirlinerClass.ClassType.First_Class);
+  
 
-                }
             }
             this.Loaded += PopUpAirlinerSeatsConfiguration_Loaded;
 
@@ -127,23 +125,20 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             int maxseats = this.Classes[0].RegularSeating - 1;
 
+            foreach (AirlinerClassMVVM aClass in this.Classes)
+                aClass.ClassTypes.Remove(nextType);
+
             AirlinerClassMVVM newClass = new AirlinerClassMVVM(nextType, seating, maxseats, true);
             this.Classes.Add(newClass);
 
-            this.CanAddNewClass = this.Classes.Count < (this.Type is AirlinerPassengerType ? ((AirlinerPassengerType)this.Type).MaxAirlinerClasses : ((AirlinerCombiType)this.Type).MaxAirlinerClasses);
-
-     
-            if (this.Classes.Count < 3)
+       
+            foreach (AirlinerClass.ClassType cType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
-                this.FreeClassTypes.Clear();
-                this.FreeClassTypes.Add(AirlinerClass.ClassType.Premium_Economy_Class);
-                this.FreeClassTypes.Add(AirlinerClass.ClassType.Business_Class);
-                this.FreeClassTypes.Add(AirlinerClass.ClassType.First_Class);
-
+                if (!this.Classes.Any(c => c.Type == cType))
+                    newClass.ClassTypes.Add(cType);
             }
-            else
-                this.FreeClassTypes.Clear();
 
+            this.CanAddNewClass = this.Classes.Count < (this.Type is AirlinerPassengerType ? ((AirlinerPassengerType)this.Type).MaxAirlinerClasses : ((AirlinerCombiType)this.Type).MaxAirlinerClasses);
 
         }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -160,11 +155,17 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.CanAddNewClass = true;
 
-            this.FreeClassTypes.Clear();
+            foreach (AirlinerClassMVVM oClass in this.Classes)
+            {
+                aClass.ClassTypes.Add(aClass.Type);
+            }
 
-            this.FreeClassTypes.Add(AirlinerClass.ClassType.Premium_Economy_Class);
-            this.FreeClassTypes.Add(AirlinerClass.ClassType.Business_Class);
-            this.FreeClassTypes.Add(AirlinerClass.ClassType.First_Class);
+            /*
+            foreach (AirlinerClass.ClassType cType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+            {
+                if (!this.Classes.Any(c => c.Type == cType))
+                    this.FreeClassTypes.Add(cType);
+            }*/
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -177,7 +178,24 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
 
         }
+        private void cbClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            AirlinerClass.ClassType aType = (AirlinerClass.ClassType)((ComboBox)sender).SelectedItem;
+            AirlinerClassMVVM aClass = (AirlinerClassMVVM)((ComboBox)sender).Tag;
 
+            foreach (AirlinerClassMVVM tClass in this.Classes)
+            {
+                if (tClass != aClass)
+                {
+                    foreach (object o in e.RemovedItems)
+                        tClass.ClassTypes.Add((AirlinerClass.ClassType)o);
+
+                    foreach (object o in e.AddedItems)
+                        tClass.ClassTypes.Remove((AirlinerClass.ClassType)o);
+ 
+                }
+            }
+        }
         private void tcMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             foreach (AirlinerClassMVVM aClass in this.Classes)
@@ -193,10 +211,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     aClass.Facilities.Where(f => f.Type == facType).First().SelectedFacility = facility;
                 }
 
-               
-             }
 
-            
+            }
+
+
 
         }
 
@@ -231,22 +249,24 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         private void slSeats_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            
+
             var tab_main = UIHelpers.FindChild<TabControl>(this, "tcMenu");
-      
-            AirlinerClassMVVM aClass = (AirlinerClassMVVM)((Slider)sender).Tag; 
-        
-            if (aClass.Type != AirlinerClass.ClassType.Economy_Class && tab_main.SelectedIndex == 0)
+
+            AirlinerClassMVVM aClass = (AirlinerClassMVVM)((Slider)sender).Tag;
+
+            Boolean isFirst = this.Classes.IndexOf(aClass) == 0;
+
+            if (!isFirst && tab_main.SelectedIndex == 0)
             {
                 int diff = (int)(e.NewValue - e.OldValue);
 
                 double currentUse = aClass.Facilities.First(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses;
 
-                aClass.RegularSeating += (int)(diff * currentUse);            
+                aClass.RegularSeating += (int)(diff * currentUse);
 
-                this.Classes[0].RegularSeating -= (int)(diff*currentUse);
+                this.Classes[0].RegularSeating -= (int)(diff * currentUse);
                 this.Classes[0].Seating -= (int)(diff * currentUse);
-    
+
                 if (this.Classes.Count == 3)
                 {
                     if (this.Classes[1] == aClass)
@@ -265,7 +285,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     else
                     {
                         this.Classes[1].TotalMaxSeats -= diff;
-                        
+
                         var sFacility = this.Classes[1].Facilities.First(f => f.Type == AirlinerFacility.FacilityType.Seat);
 
                         AirlinerFacility acFacility = sFacility.SelectedFacility;
@@ -322,12 +342,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 this.AClass.Seating = seats;
                 this.AClass.MaxSeats = (int)(this.AClass.TotalMaxSeats / this.SelectedFacility.SeatUses);
 
-              
+
             }
         }
     }
     public class AirlinerClassMVVM : INotifyPropertyChanged
     {
+        public ObservableCollection<AirlinerClass.ClassType> ClassTypes { get; set; }
         public ObservableCollection<AirlinerClassFacilityMVVM> Facilities { get; set; }
 
         public Boolean CanDelete { get; set; }
@@ -360,12 +381,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.TotalMaxSeats = maxseats;
             this.RegularSeating = seating;
             this.Facilities = new ObservableCollection<AirlinerClassFacilityMVVM>();
+            this.ClassTypes = new ObservableCollection<AirlinerClass.ClassType>();
+
+            this.ClassTypes.Add(type);
 
             foreach (AirlinerFacility.FacilityType facType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
             {
-                AirlinerClassFacilityMVVM facility = new AirlinerClassFacilityMVVM(this,facType);
+                AirlinerClassFacilityMVVM facility = new AirlinerClassFacilityMVVM(this, facType);
 
-                foreach (AirlinerFacility fac in AirlinerFacilities.GetFacilities(facType).Where(f=>f.FromYear <= GameObject.GetInstance().GameTime.Year))
+                foreach (AirlinerFacility fac in AirlinerFacilities.GetFacilities(facType).Where(f => f.FromYear <= GameObject.GetInstance().GameTime.Year))
                     facility.Facilities.Add(fac);
 
                 this.Facilities.Add(facility);

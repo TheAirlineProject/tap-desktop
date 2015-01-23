@@ -3,8 +3,8 @@
 <airliners>
   <airliner manufacturer="Comac" name="Shanghai Y-10" price="3231122"> <!--7700000-->
     <type body="Narrow_Body" rangetype="Long_Range" engine="Jet" />
-    <specs wingspan="42.24" length="42.93" range="8230" speed="639" fuelcapacity="216840" consumption="0.093"
-           runwaylengthrequired="2000" />
+    <specs wingspan="42.24" length="42.93" range="5560" speed="917" fuelcapacity="63750" consumption="0.064"
+           runwaylengthrequired="3190" />
     <capacity passengers="178" cockpitcrew="5" cabincrew="2" maxclasses="2" />
     <produced from="1980" to="1984" rate="13" />
   </airliner>

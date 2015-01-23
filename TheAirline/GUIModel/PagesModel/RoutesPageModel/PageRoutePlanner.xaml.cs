@@ -65,12 +65,14 @@
             var routeType =
                 (Route.RouteType)
                     Enum.Parse(typeof(Route.RouteType), this.Airliner.Airliner.Type.TypeAirliner.ToString(), true);
-         
+
+            if (this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
+                routeType = Route.RouteType.Passenger;
 
             foreach (
                 Route route in
                     this.Airliner.Airliner.Airline.Routes.Where(
-                        r => r.getDistance() <= this.Airliner.Airliner.Range && r.Type == routeType))
+                        r => r.getDistance() <= this.Airliner.Airliner.Range && r.Type == routeType || (routeType == Route.RouteType.Helicopter && r.Type == Route.RouteType.Helicopter && RouteHelpers.HasHelipads(r))))
             {
                 this.Routes.Add(route);
             }
@@ -89,7 +91,7 @@
             foreach (
                 Route route in
                     this.Airliner.Airliner.Airline.Routes.Where(
-                        r => r.getDistance() <= this.Airliner.Airliner.Range && r.Type == routeType))
+                        r => r.getDistance() <= this.Airliner.Airliner.Range && r.Type == routeType || (routeType == Route.RouteType.Helicopter && r.Type == Route.RouteType.Helicopter && RouteHelpers.HasHelipads(r))))
             {
                 this.AllRoutes.Add(new RoutePlannerItemMVVM(route, this.Airliner.Airliner.Type));
             }

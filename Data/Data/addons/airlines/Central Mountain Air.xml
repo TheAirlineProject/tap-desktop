@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Central Mountain Air" iata="9M"  color="LightSeaGreen" country="113" CEO="Douglas McCrea" mentality="Safe" market="Domestic" preferedairport="YYD">
+    <narrative narrative="Central Mountain Air is based at Smithers,BC with hubs at Calgary,Alberta, Prince George,BC and Vancouver,BC. It serves 13 British Columbia airports and 5 in Alberta. As of September 2014 it has fourteen Beechcraft 1900D's,three Dornier 328-110's and two Dash 8-300's. Its sister airline is the charter airline Northern Thunderbird Air who's planes are duel registered. Central Mountain also does charters. For a time it operated as part of Air Canada Express from Calgary to Cranbrook,Lethbridge and Medicine Hat all in Alberta. It ran this from 1997 to 2011. It still codeshares with Air Canada. Central Mountain was founded in 1987 while its sister was founded in 1971." />
+</profile>
+   <info real="True" from="1987" to="2199"></info>
+   <prefereds aircrafts="Beechcraft 1900D,Dornier 328-110,Bombardier Dash 8-300"></prefereds>
+<focusairports>
+        <focusairport airport="YXS"></focusairport>
+        <focusairport airport="YYC"></focusairport>
+	  <focusairport airport="YVR"></focusairport>
+     </focusairports>
+
+ 
+        <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2015)-->
+	         <airliners>
+	    <airliner type="Dornier 328-110" early="1" late="3"></airliner>
+	     </airliners>
+	             <!--the airliners the airline would start with which isn't on a route earyl (1987) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900D" early="0" late="14"></airliner>
+	     </airliners>
+	     	             <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="1" late="2"></airliner>
+	     </airliners>
+
+
+
+
+
+</airline>

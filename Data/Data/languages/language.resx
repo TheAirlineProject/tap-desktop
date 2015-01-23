@@ -5663,4 +5663,19 @@ Good luck.</value>
   <data name="PageAirportAdvisory_1002_name" xml:space="preserve">
     <value>International</value>
   </data>
+  <data name="PageFleetAirlinerInformation_1018_name" xml:space="preserve">
+    <value>Cabin Configuration</value>
+  </data>
+  <data name="News_1021_message" xml:space="preserve">
+    <value>Your flight {0} from [LI airport={1}] to [LI airport={2}] has been cancelled for the current flight due to bad maintenance of the airliner</value>
+  </data>
+  <data name="News_1021_name" xml:space="preserve">
+    <value>Cancelled Flight</value>
+  </data>
+  <data name="PageShowRoute_1008_name" xml:space="preserve">
+    <value>Helipads</value>
+  </data>
+  <data name="PageCreateRoute_1023_name" xml:space="preserve">
+    <value>Helipads</value>
+  </data>
 </root>

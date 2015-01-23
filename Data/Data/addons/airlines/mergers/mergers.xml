@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <mergers>
+<merger name="Northern Thunderbird Air is now a sister airline to Central Mountain Air." airline1="9M" airline2="NTA" type="Subsidiary" date="1.01.1987 00:00:00"></merger>
+<merger name="Scandanavian Airlines Group has invested 100% into Cimber A/S." airline1="SK" airline2="QA" type="Subsidiary" date="12.01.2014 00:00:00"></merger>
 <merger name="LAP, Lineas Aereas Paraguayas, has been acquired by TAM and are now a subsidiary." airline1="JJ" airline2="PZ" type="Subsidiary" date="1.01.1996 00:00:00"></merger>
 <merger name="The owner of Oceanair in Brazil has bought Avianca of Columbia. Oceanair is made into a subsidiary of its parents newly owned airline." airline1="AV" airline2="O6" type="Subsidiary" date="1.01.2004 00:00:00"></merger>
 <merger name="The Air Wisconsin subsidiary Aspen Airways has been fully merged into Air Wisconsin." airline1="ZW" airline2="ASP" type="Merger" date="1.01.1991 00:00:00"></merger>

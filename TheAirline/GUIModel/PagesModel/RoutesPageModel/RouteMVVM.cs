@@ -50,6 +50,8 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 
             this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
 
+            this.ForHelicopters = this.Route.Destination1.Runways.Exists(r=>r.Type == Model.AirportModel.Runway.RunwayType.Helipad) && this.Route.Destination2.Runways.Exists(r=>r.Type == Model.AirportModel.Runway.RunwayType.Helipad) && !this.Route.Stopovers.Exists(s => !s.Stopover.Runways.Exists(r => r.Type == Model.AirportModel.Runway.RunwayType.Helipad));
+
             setFeedback();
         }
         //sets the feedback values
@@ -152,6 +154,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
         public ObservableCollection<MonthlyInvoice> Invoices { get; set; }
 
         public Boolean IsEditable { get; set; }
+        public Boolean ForHelicopters { get; set; }
 
         public ObservableCollection<Route> Legs { get; set; }
 

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Creebec" iata="YN"  color="Orange" country="113" CEO="Matthew Happyjack" mentality="Safe" market="Domestic" preferedairport="YVO" rouefocus="Mixed" schedule="Business">
+    <narrative narrative="Air Creebec is named for the Cree Native tribe of Canada, who also own it. It is based at Val-d'Or,Quebec with another hub at Montreal and Waskaganish,Quebec. A secondary hub is at Timmins,Ontario. It operates at 9 Quebec airports and 6 in Ontario. It has about 11 Dash 8's, some are the 100 series and some the 300. It has one Beechcraft 1900D. Its two Hawker 748s are for cargo only and its four King Air 100's are for medical evac. It was founded in 1982. From 1982 to 1988 it was also 49% owned by the defunct airline Austin Airways when the Cree obtained the rest from Austin." />
+</profile>
+   <info real="True" from="1982" to="2199"></info>
+   <prefereds aircrafts="Bombardier Dash 8-300,Bombardier Dash 8-100,HS.748,Beechcraft 1900D"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YUL"></focusairport>
+		 <focusairport airport="YKQ"></focusairport>
+		 <focusairport airport="YTS"></focusairport>
+     </focusairports>
+        <!--the airliners the airline would start with which isn't on a route earyl (1983) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-100" early="1" late="6"></airliner>
+	     </airliners>
+        <!--the airliners the airline would start with which isn't on a route earyl (1990) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="1" late="5"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (1991) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900D" early="0" late="1"></airliner>
+	     </airliners>
+	         <!--the airliners the airline would start with which isn't on a route earyl (1982) late (2015)-->
+	         <airliners>
+	    <airliner type="HS.748" early="1" late="2"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+
+</airline>

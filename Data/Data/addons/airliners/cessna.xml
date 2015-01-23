@@ -8,6 +8,13 @@
     <capacity passengers="10" cockpitcrew="2" cabincrew="0" maxclasses="1" />
     <produced from="1977" to="1987" rate="36" />
   </airliner>
+     <airliner manufacturer="Cessna" name="Cessna Skymaster" price="201000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="11.58" length="9.07" range="1200" speed="360" fuelcapacity="500" consumption="0.20"
+           runwaylengthrequired="486" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1963" to="1982" rate="150" />
+  </airliner>
      <airliner manufacturer="Cessna" name="Cessna 404 Titan" price="370000"> <!--2812000-->
     <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
     <specs wingspan="14.12" length="12.04" range="3410" speed="400" fuelcapacity="1317" consumption="0.10"

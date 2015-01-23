@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Hana, HI">
+  <months>
+    <month month="1" precipitation="263">
+      <temp min="17" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="292">
+      <temp min="17" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="322">
+      <temp min="18" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="269">
+      <temp min="18" max="27" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="210">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="208">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="285">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="245">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="254">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="258">
+      <temp min="20" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="352">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="304">
+      <temp min="18" max="27" />
+      <wind min="Calm" max="Violent_Storm" />
+    </month>
+  </months>
+</weather>
