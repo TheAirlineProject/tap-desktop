@@ -145,7 +145,9 @@
 
             Mixed,
 
-            Helicopter
+            Helicopter,
+
+            Helicopter_Cargo
         }
 
         public enum TypeRange

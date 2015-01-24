@@ -64,11 +64,10 @@
     <capacity cockpitcrew="2" cargo="23" />
     <produced from="1964" to="1992" rate="17" />
   </airliner>
-
 <airliner manufacturer="Lockheed" name="L-049 Constellation" price="960000">
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
-    <specs wingspan="37.49" length="29.03" range="5057" speed="504" fuelcapacity="25000" consumption="0.041"
-           runwaylengthrequired="1400" />
+    <specs wingspan="37.49" length="29.03" range="3747" speed="504" fuelcapacity="18056" consumption="0.037"
+           runwaylengthrequired="1463" />
     <capacity passengers="81" cockpitcrew="4" cabincrew="2" maxclasses="2" />
     <produced from="1942" to="1946" rate="22" />
   </airliner>

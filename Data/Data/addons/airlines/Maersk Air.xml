@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Maersk Air" iata="DM"  color="Cyan" country="110" CEO="Finn Rassmussen" mentality="Safe" market="Regional" preferedairport="CPH">
+    <narrative narrative="Maersk Air operated from 1969 to 2005 from bases at Copenhagen,Billund and Esbjerg in Denmark. It was owned by the conglomerate of the same name,A.P. Moller-Maersk Group, which as of 1996 is the largest container shipping company and supply vessel operator in the world and largest company in Denmark, and have ventures in many industries including oil. It also had a few subsidiaries, Star Air a cargo airline which is still around and founded in 1987, Maersk Air UK based at Birmingham from 1993 to 2003 and Maersk Commuter from 1981 to 1990. Maersk Commuter was the first airline to break the SAS Airlines monopoly on international traffic out of Denmark. It was also part of Danair, a collection of SAS,Maersk and Cimber Air that had a monopoly on the domestic market under agreements on who would do what routes. It got its start in 1969 when it bought Falck Air, which included two DH Herons and 2 HS 748's. It started service from Copenhagen to Stauning. It ordered some F27's shortly after. It then started the short hop from CPH to Odense. 1971 saw the start of a Copenhagen-Faroe Islands route and Thisted, both of which were ended in 1976 and handed to Cimber. In 1973 it bought five Boeing 720B's for charter use and bought some travel agencies. From 75 to 99 it had several helicopters used in the transport of workers to and from offshore oil rigs for its parents subsidiary Maersk Oil. In 1984 it bought an airline called Air Business inheriting its Esbjerg-Stavanger,Norway flight. It was made into Maersk Commuter which stopped in 1990. It also got two Short 360's and the Embraer Bandeirante of Air Business. 1984 service to London Southend started with Dash 7's from Billund with two roundtrips a day, but had to provide a train ticket with the airline ticket as Southend is too far from London proper to be marketed as London unless one is provided. The route was not a success and only got 12,000 people a year. In 1988 it opened Billund-Cologne,Germany with a Fokker 50. In 1990 with new 737-500's it started BLL-AMS,BLL-BRU,BLL-LGW,BLL-ARN and BLL-SVG and CPH-LGW. From 1996 to 2003 it had a 33% stake or so in Estonian Air leasing two Fokker 50's and getting two 737-500's from Maersk. BLL-FRA started in 1993. 1994 CPH-Kristiansand.Six 737-500s were in at this time. 1997 CPH-Milan,CPH-Geneva and CPH-Stockholm was started in response to SAS competing on its Billund routes. In 1998 the 737-700 was delivered, and Maersk was the European launch customer. 15 of them would be bought. In 2005 the airline was sold to Sterling, which itself would be bought by CImber shortly after. And Cimber would be bought by SAS in late 2014. Other planes it had were 11 CRJ200's." />
+</profile> 
+   <info real="True" from="1969" to="2006"></info>
+   <prefereds aircrafts="Boeing 737-500,Boeing 737-300,Boeing 737-700,Boeing 737-200 Adv.,Bombardier CRJ200,Fokker F27,Fokker 50,Boeing 720B (707-020B),DHC-7-100,HS.748,Boeing 737-400,DH 114 Heron,Short 360,EMB 110 Bandeirante"></prefereds>
+<startdata>
+  <focusairports>
+                 <focusairport airport="BLL"></focusairport>
+	         <focusairport airport="EBJ"></focusairport>
+     </focusairports>
+        <!--the airliners the airline would start with which isn't on a route earyl (1969) late (1970)-->
+	         <airliners>
+	    <airliner type="DH 114 Heron" early="2" late="0"></airliner>
+	     </airliners>
+        <!--the airliners the airline would start with which isn't on a route earyl (1969) late (1983)-->
+	         <airliners>
+	    <airliner type="HS.748" early="5" late="0"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (1969) late (1998)-->
+	         <airliners>
+	    <airliner type="Fokker F27" early="10" late="0"></airliner>
+	     </airliners>
+   	  <!--the airliners the airline would start with which isn't on a route earyl (1973) late (1983)-->
+	         <airliners>
+	    <airliner type="Boeing 720B (707-020B)" early="5" late="0"></airliner>
+	     </airliners>
+	     	        	  <!--the airliners the airline would start with which isn't on a route earyl (1981) late (1991)-->
+	         <airliners>
+	    <airliner type="DHC-7-100" early="5" late="0"></airliner>
+	     </airliners>
+	        	  <!--the airliners the airline would start with which isn't on a route earyl (1985) late (2000)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="22" late="0"></airliner>
+	     </airliners>
+	             	  <!--the airliners the airline would start with which isn't on a route earyl (1988) late (2002)-->
+	         <airliners>
+	    <airliner type="Fokker 50" early="9" late="0"></airliner>
+	     </airliners>
+	     	             	  <!--the airliners the airline would start with which isn't on a route earyl (1993) late (1998)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="3" late="0"></airliner>
+	     </airliners>
+	     	     	             	  <!--the airliners the airline would start with which isn't on a route earyl (1990) late (2005)-->
+	         <airliners>
+	    <airliner type="Boeing 737-500" early="24" late="2"></airliner>
+	     </airliners>
+	     	     	     	             	  <!--the airliners the airline would start with which isn't on a route earyl (1998) late (2005)-->
+	         <airliners>
+	    <airliner type="Boeing 737-700" early="15" late="2"></airliner>
+	     </airliners>
+	      	     	     	             	  <!--the airliners the airline would start with which isn't on a route earyl (1998) late (2005)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ200" early="11" late="0"></airliner>
+	     </airliners>
+
+
+	     <routes>
+		<route destination1="CPH" destination2="FAE" opened="1971" closed="2005" />
+		<route destination1="CPH" destination2="TED"  opened="1971" closed="1976" />
+	        <route destination1="CPH" destination2="STA"   opened="1970" closed="1976" />
+		<route destination1="CPH" destination2="ODE"    opened="1970" closed="2005"/>
+		<route destination1="EBJ" destination2="SVG" opened="1981" closed="1990"  />
+		<route destination1="BLL" destination2="SEN" opened="1984" closed="2005"  />
+	        <route destination1="BLL" destination2="CGN" opened="1988" closed="2005" />
+		<route destination1="BLL" destination2="AMS" opened="1990" closed="2005"  />
+		<route destination1="BLL" destination2="LGW"  opened="1990" closed="2005"  />
+		<route destination1="BLL" destination2="ARN"  opened="1990" closed="2005" />
+		<route destination1="BLL" destination2="BRU"  opened="1990" closed="2005" />
+		<route destination1="BLL" destination2="SVG"   opened="1990" closed="2005" />
+	        <route destination1="CPH" destination2="LGW"   opened="1990" closed="2005"/>
+		<route destination1="BLL" destination2="FRA"  opened="1993" closed="2005"  />
+		<route destination1="CPH" destination2="KRS"  opened="1994" closed="2005" />
+		<route destination1="CPH" destination2="GVA"  opened="1997" closed="2005" />
+	        <route destination1="CPH" destination2="ARN"  opened="1997" closed="2005"  />
+		<route destination1="CPH" destination2="MXP"   opened="1997" closed="2005"/>
+
+
+
+	        </routes>
+
+
+
+
+
+
+
+
+
+
+
+  </startdata>
+</airline>

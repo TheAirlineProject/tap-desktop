@@ -278,9 +278,7 @@
                             <DataTrigger Binding="{Binding Route.Type,Mode=OneTime}" Value="Cargo">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Route.Type,Mode=OneTime}" Value="Helicopter">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
+                 
                             <DataTrigger Binding="{Binding Route.Type,Mode=OneTime}" Value="Mixed">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>

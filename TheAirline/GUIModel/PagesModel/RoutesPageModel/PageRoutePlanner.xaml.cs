@@ -67,12 +67,15 @@
                     Enum.Parse(typeof(Route.RouteType), this.Airliner.Airliner.Type.TypeAirliner.ToString(), true);
 
             if (this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
-                routeType = Route.RouteType.Passenger;
+                routeType = Route.RouteType.Helicopter_Passenger;
+
+            if (this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
+                routeType = Route.RouteType.Helicopter_Cargo;
 
             foreach (
                 Route route in
                     this.Airliner.Airliner.Airline.Routes.Where(
-                        r => r.getDistance() <= this.Airliner.Airliner.Range && r.Type == routeType || (routeType == Route.RouteType.Helicopter && r.Type == Route.RouteType.Helicopter && RouteHelpers.HasHelipads(r))))
+                    r => r.getDistance() <= this.Airliner.Airliner.Range && r.Type == routeType || (routeType == Route.RouteType.Helicopter_Cargo && r.Type == Route.RouteType.Cargo && RouteHelpers.HasHelipads(r)) || (routeType == Route.RouteType.Helicopter_Passenger && r.Type == Route.RouteType.Passenger && RouteHelpers.HasHelipads(r))))
             {
                 this.Routes.Add(route);
             }
@@ -91,7 +94,7 @@
             foreach (
                 Route route in
                     this.Airliner.Airliner.Airline.Routes.Where(
-                        r => r.getDistance() <= this.Airliner.Airliner.Range && r.Type == routeType || (routeType == Route.RouteType.Helicopter && r.Type == Route.RouteType.Helicopter && RouteHelpers.HasHelipads(r))))
+                     r => r.getDistance() <= this.Airliner.Airliner.Range && r.Type == routeType || (routeType == Route.RouteType.Passenger && r.Type == Route.RouteType.Helicopter_Cargo && RouteHelpers.HasHelipads(r)) || (routeType == Route.RouteType.Passenger && r.Type == Route.RouteType.Helicopter_Passenger && RouteHelpers.HasHelipads(r))))
             {
                 this.AllRoutes.Add(new RoutePlannerItemMVVM(route, this.Airliner.Airliner.Type));
             }

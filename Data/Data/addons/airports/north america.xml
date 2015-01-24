@@ -2,6 +2,92 @@
 <!--must be placed in \data\addons\airports-->
 <airports>
   <!--Canada (C***)-->
+  <airport name="Rigolet Airport" icao="CCZ2" iata="YRG" type="Domestic" season="All_Year">
+    <town town="Rigolet, NL" country="113" GMT="-04:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="54°10'46''N" />
+      <longitude value="58°27'26''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="761" surface="Gravel" />
+       </runways>
+  </airport>
+<airport name="Postville Airport" icao="CCD4" iata="YSO" type="Domestic" season="All_Year">
+    <town town="Postville, NL" country="113" GMT="-04:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="54°54'37''N" />
+      <longitude value="59°47'07''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="6/24" length="785" surface="Gravel" />
+       </runways>
+  </airport>
+<airport name="Williams Harbour Airport" icao="CCA6" iata="YWM" type="Domestic" season="All_Year">
+    <town town="Williams Harbour, NL" country="113" GMT="-04:00:00" DST="-03:00:00" />
+    <coordinates>
+      <latitude value="52°34'03''N" />
+      <longitude value="55°47'06''W" />
+    </coordinates>
+    <size value="Smallest" pax="2" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="693" surface="Gravel" />
+       </runways>
+  </airport>
+<airport name="Port Hope Simpson Airport" icao="CCP4" iata="YHA" type="Domestic" season="All_Year">
+    <town town="Port Hope Simpson, NL" country="113" GMT="-03:30:00" DST="-02:30:00" />
+    <coordinates>
+      <latitude value="52°31'41''N" />
+      <longitude value="56°17'07''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="761" surface="Gravel" />
+       </runways>
+  </airport>
+<airport name="Mary's Harbour Airport" icao="CYMH" iata="YMH" type="Domestic" season="All_Year">
+    <town town="Mary's Harbour, NL" country="113" GMT="-03:30:00" DST="-02:30:00" />
+    <coordinates>
+      <latitude value="52°18'10''N" />
+      <longitude value="55°50'52''W" />
+    </coordinates>
+    <size value="Smallest" pax="2" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="776" surface="Gravel" />
+       </runways>
+  </airport>
+
+<airport name="Uranium City Airport" icao="CYBE" iata="YBE" type="Domestic" season="All_Year">
+    <town town="Uranium City, SK" country="113" GMT="-06:00:00" DST="-06:00:00" />
+    <coordinates>
+      <latitude value="59°33'41''N" />
+      <longitude value="108°28'53''W" />
+    </coordinates>
+    <size value="Smallest" pax="3" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="6/24" length="1199" surface="Gravel" />
+       </runways>
+  </airport>
+
   <airport name="Calgary International Airport" icao="CYYC" iata="YYC" type="International" season="All_Year">
     <town town="Calgary, AB" country="113" GMT="-06:00:00" DST="-07:00:00" />
     <coordinates>

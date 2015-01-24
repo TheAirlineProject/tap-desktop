@@ -35,7 +35,7 @@
             <g:QuickInfoValue
                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1021'}">
                 <g:QuickInfoValue.Value>
-                    <TextBlock Text="{Binding SelectedItem.AirlineRouteFocus,ElementName=cbAirline}" />
+                    <TextBlock Text="{Binding SelectedItem.AirlineRouteFocus,Converter={StaticResource TextUnderscoreConverter},ElementName=cbAirline}" />
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
             <g:QuickInfoValue

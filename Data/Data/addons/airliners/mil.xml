@@ -16,7 +16,7 @@
   </airliner>
   <airliner type="Helicopter" manufacturer="Mil" name="Mi-26P" price="3465000">
     <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
-    <specs wingspan="32.00" length="40.03" range="800" speed="255" fuelcapacity="11600" consumption="0.016"
+    <specs wingspan="32.00" length="40.03" range="1920" speed="255" fuelcapacity="11600" consumption="0.016"
            runwaylengthrequired="18" />
     <capacity passengers="63" cockpitcrew="5" cabincrew="1" maxclasses="1" />
     <produced from="1983" to="2199" rate="2" />
@@ -28,10 +28,37 @@
     <capacity passengers="8" cockpitcrew="1" cabincrew="0" maxclasses="1" />
     <produced from="1965" to="1998" rate="87" />
   </airliner>
-
+  <airliner type="Helicopter_Cargo" manufacturer="Mil" name="Mi-6 Cargo" price="4433500">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="35.00" length="33.18" range="1035" speed="250" fuelcapacity="6315" consumption="0.011"
+           runwaylengthrequired="18" />
+    <capacity cockpitcrew="6" cargo="12"/>
+    <produced from="1960" to="1981" rate="20" />
+  </airliner>
+  <airliner type="Helicopter_Cargo" manufacturer="Mil" name="Mi-26 Cargo" price="7389000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="32.00" length="40.03" range="1920" speed="255" fuelcapacity="11600" consumption="0.016"
+           runwaylengthrequired="18" />
+    <capacity cockpitcrew="5" cargo="20" />
+    <produced from="1983" to="2199" rate="10" />
+</airliner>
+<airliner type="Helicopter_Cargo" manufacturer="Mil" name="Mi-10 Cargo" price="3066000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="35.00" length="32.86" range="500" speed="228" fuelcapacity="4400" consumption="0.055"
+           runwaylengthrequired="18" />
+    <capacity cockpitcrew="4" cargo="18" />
+    <produced from="1963" to="1977" rate="3" />
+</airliner>
+  <airliner type="Helicopter" manufacturer="Mil" name="Mi-10 Passenger" price="3066000">
+    <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="35.00" length="32.86" range="500" speed="228" fuelcapacity="4400" consumption="0.035"
+           runwaylengthrequired="18" />
+    <capacity passengers="28" cockpitcrew="4" cabincrew="0" maxclasses="1" />
+    <produced from="1963" to="1977" rate="2" />
+  </airliner>
     <airliner type="Helicopter" manufacturer="Mil" name="Mi-6" price="4433500">
     <type body="Helicopter" rangetype="Short_Range" engine="Jet" />
-    <specs wingspan="35.00" length="33.18" range="1035" speed="250" fuelcapacity="6135" consumption="0.011"
+    <specs wingspan="35.00" length="33.18" range="1035" speed="250" fuelcapacity="6315" consumption="0.011"
            runwaylengthrequired="18" />
     <capacity passengers="90" cockpitcrew="6" cabincrew="0" maxclasses="1" />
     <produced from="1960" to="1981" rate="22" />

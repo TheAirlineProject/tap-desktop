@@ -30,7 +30,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
             this.ShowCargoInformation = this.Route.Type == Route.RouteType.Cargo
                                         || this.Route.Type == Route.RouteType.Mixed;
             this.ShowPassengersInformation = this.Route.Type == Route.RouteType.Passenger
-                                             || this.Route.Type == Route.RouteType.Mixed || this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter;
+                                             || this.Route.Type == Route.RouteType.Mixed;
 
             this.IsEditable = true;
             // !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
@@ -183,7 +183,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
             this.Balance = this.Route.Balance;
             this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
 
-            if (route.Type == Route.RouteType.Passenger || route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter)
+            if (route.Type == Route.RouteType.Passenger)
             {
                 RouteAirlinerClass raClass =
                     ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
@@ -606,7 +606,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
             var route = (Route)value;
             var stats = new List<KeyValuePair<string, object>>();
 
-            if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Helicopter)
+            if (route.Type == Route.RouteType.Passenger)
             {
                 RouteAirlinerClass raClass =
                     ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);

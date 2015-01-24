@@ -496,7 +496,28 @@
                                         && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && distance < a.Range && airlineAircrafts.Contains(a.Type));
                     }
                 }
-                else if (focus == Route.RouteType.Helicopter)
+                else if (focus == Route.RouteType.Helicopter_Cargo)
+                {
+                    if (doLeasing)
+                    {
+                        airliners =
+                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
+                                .FindAll(
+                                    a =>
+                                        a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                                       && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && airlineAircrafts.Contains(a.Type));
+                    }
+                    else
+                    {
+                        airliners =
+                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
+                                .FindAll(
+                                    a =>
+                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                                       && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && distance < a.Range && airlineAircrafts.Contains(a.Type));
+                    }
+                }
+                else if (focus == Route.RouteType.Helicopter_Passenger)
                 {
                     if (doLeasing)
                     {
@@ -579,7 +600,7 @@
                                         && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
                     }
                 }
-                else if (focus == Route.RouteType.Helicopter)
+                else if (focus == Route.RouteType.Helicopter_Passenger)
                 {
                     if (doLeasing)
                     {
@@ -593,6 +614,26 @@
                     {
                         airliners =
                             Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
+                                .FindAll(
+                                    a =>
+                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                                        && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+                    }
+                }
+                else if (focus == Route.RouteType.Helicopter_Cargo)
+                {
+                    if (doLeasing)
+                    {
+                        airliners =
+                            Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
+                                .FindAll(
+                                    a =>
+                                        a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+                    }
+                    else
+                    {
+                        airliners =
+                            Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
                                 .FindAll(
                                     a =>
                                         a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
@@ -661,10 +702,19 @@
                                             a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                             && distance < a.Range && airlineAircrafts.Contains(a.Type) && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
                         }
-                        else if (focus == Route.RouteType.Helicopter)
+                        else if (focus == Route.RouteType.Helicopter_Cargo)
                         {
                             loanAirliners =
-                               Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
+                               Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
+                                   .FindAll(
+                                       a =>
+                                           a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                                           && distance < a.Range && airlineAircrafts.Contains(a.Type) && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+                        }
+                        else if (focus == Route.RouteType.Helicopter_Passenger)
+                        {
+                            loanAirliners =
+                               Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
                                    .FindAll(
                                        a =>
                                            a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
@@ -692,7 +742,7 @@
                                             a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                             && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
                         }
-                        else if (focus == Route.RouteType.Helicopter)
+                        else if (focus == Route.RouteType.Helicopter_Passenger)
                         {
                             loanAirliners =
                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
@@ -700,6 +750,16 @@
                                        a =>
                                            a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                            && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+                        }
+                        else if (focus == Route.RouteType.Helicopter_Cargo)
+                        {
+                            loanAirliners =
+                           Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
+                               .FindAll(
+                                   a =>
+                                       a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                                       && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+                 
                         }
                         else
                         {
@@ -794,10 +854,10 @@
                             airport.Profile.Country,
                             GameObject.GetInstance().GameTime));
 
-            if (airline.AirlineRouteFocus == Route.RouteType.Helicopter)
+            if (airline.AirlineRouteFocus == Route.RouteType.Helicopter_Passenger || airline.AirlineRouteFocus == Route.RouteType.Helicopter_Mixed || airline.AirlineRouteFocus == Route.RouteType.Helicopter_Cargo)
                 airports = airports.Where(a => a.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad)).ToList();
 
-            if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+            if (airline.AirlineRouteFocus == Route.RouteType.Cargo || airline.AirlineRouteFocus == Route.RouteType.Helicopter_Cargo)
                 airports = airports.Where(a => a.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo)).ToList();
 
             List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
@@ -808,8 +868,10 @@
             if (focus == Route.RouteType.Mixed)
                 focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
 
+            if (focus == Route.RouteType.Helicopter_Mixed)
+                focus = rnd.Next(3) == 0 ? Route.RouteType.Helicopter_Cargo : Route.RouteType.Helicopter_Passenger;
 
-            Terminal.TerminalType terminaltype = focus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+            Terminal.TerminalType terminaltype = (focus == Route.RouteType.Cargo || focus == Route.RouteType.Helicopter_Cargo) ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
             if (airline.Airports.Count < 4)
             {
@@ -1105,7 +1167,7 @@
             IEnumerable<Route> sameRoutes =
                 oRoutes.Where(
                     r =>
-                        (r.Type == Route.RouteType.Mixed || r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Helicopter)
+                        (r.Type == Route.RouteType.Mixed || r.Type == Route.RouteType.Passenger)
                         && ((r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2)
                         || (r.Destination2 == route.Destination1 && r.Destination1 == route.Destination2)));
 
@@ -1570,7 +1632,7 @@
 
                     Route.RouteType routeType = route.Type;
 
-                    if (routeType == Route.RouteType.Mixed || routeType == Route.RouteType.Passenger || routeType == Route.RouteType.Helicopter)
+                    if (routeType == Route.RouteType.Mixed || routeType == Route.RouteType.Passenger)
                     {
                         if (balance < -1000)
                         {
@@ -1819,6 +1881,9 @@
             if (focus == Route.RouteType.Mixed)
                 focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
 
+            if (focus == Route.RouteType.Helicopter_Mixed)
+                focus = rnd.Next(3) == 0 ? Route.RouteType.Helicopter_Cargo : Route.RouteType.Helicopter_Passenger;
+
             Airport airport = GetRouteStartDestination(airline, focus);
 
             if (airport != null)
@@ -1891,7 +1956,7 @@
                                 }
                             }
                         }
-                        if (focus == Route.RouteType.Helicopter)
+                        if (focus == Route.RouteType.Helicopter_Passenger)
                         {
                             double price = PassengerHelpers.GetPassengerPrice(airport, destination);
 
@@ -1919,6 +1984,15 @@
                                         .addFacility(facility);
                                 }
                             }
+                        }
+                        if (focus == Route.RouteType.Helicopter_Cargo)
+                        {
+                            route = new CargoRoute(
+                                id.ToString(),
+                                airport,
+                                destination,
+                                GameObject.GetInstance().GameTime,
+                                PassengerHelpers.GetCargoPrice(airport, destination));
                         }
                         if (focus == Route.RouteType.Cargo)
                         {
@@ -2089,7 +2163,7 @@
 
                             //NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1001"), airline.Profile.Name, new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2))));
 
-                            if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed || route.Type == Route.RouteType.Helicopter)
+                            if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed)
                             {
                                 if (airline.Schedule == Airline.AirlineRouteSchedule.Charter)
                                     CreateCharterRouteTimeTable(route, fAirliner);
@@ -2300,8 +2374,10 @@
 
             if (focus == Route.RouteType.Cargo)
                 type = AirlinerType.TypeOfAirliner.Cargo;
-            else if (focus == Route.RouteType.Helicopter)
+            else if (focus == Route.RouteType.Helicopter_Passenger)
                 type = AirlinerType.TypeOfAirliner.Helicopter;
+            else if (focus == Route.RouteType.Helicopter_Cargo)
+                type = AirlinerType.TypeOfAirliner.Helicopter_Cargo;
             else if (focus == Route.RouteType.Mixed)
                 type = AirlinerType.TypeOfAirliner.Mixed;
             else if (focus == Route.RouteType.Passenger)
@@ -2592,23 +2668,34 @@
                 if (focus == Route.RouteType.Mixed)
                     focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
 
-
+                if (focus == Route.RouteType.Helicopter_Mixed)
+                    focus = rnd.Next(3) == 0 ? Route.RouteType.Helicopter_Cargo : Route.RouteType.Helicopter_Passenger;
+                
                 if (focus == Route.RouteType.Cargo)
                 {
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter);
-
-                }
+                    types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo);
+                 }
 
                 if (focus == Route.RouteType.Passenger)
                 {
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter);
+                    types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo);
 
                 }
-                if (focus == Route.RouteType.Helicopter)
+
+                if (focus == Route.RouteType.Helicopter_Passenger)
                 {
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
+                    types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
+                    types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo);
+                }
+                if (focus == Route.RouteType.Helicopter_Cargo)
+                {
+                    types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
+                    types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter);
                     types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
                 }
 

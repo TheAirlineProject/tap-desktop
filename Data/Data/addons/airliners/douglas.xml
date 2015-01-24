@@ -31,16 +31,16 @@
   </airliner>
   <airliner manufacturer="Douglas" name="Douglas DC-7" price="4500000">
     <type body="Narrow_Body" rangetype="Long_Range" engine="Turboprop" />
-    <specs wingspan="35.81" length="33.20" range="5737" speed="578" fuelcapacity="20865" consumption="0.044"
-           runwaylengthrequired="2900" />
-    <capacity passengers="82" cockpitcrew="3" cabincrew="2" maxclasses="1" />
+    <specs wingspan="35.81" length="33.20" range="6605" speed="576" fuelcapacity="20865" consumption="0.030"
+           runwaylengthrequired="1847" />
+    <capacity passengers="99" cockpitcrew="3" cabincrew="2" maxclasses="1" />
     <produced from="1953" to="1958" rate="66" />
   </airliner>
   <airliner manufacturer="Douglas" name="Douglas DC-7C" price="5100000">
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
-    <specs wingspan="38.86" length="34.21" range="6114" speed="578" fuelcapacity="22340" consumption="0.035"
-           runwaylengthrequired="2900" />
-    <capacity passengers="105" cockpitcrew="3" cabincrew="4" maxclasses="2" />
+    <specs wingspan="38.86" length="34.21" range="7403" speed="570" fuelcapacity="22340" consumption="0.040"
+           runwaylengthrequired="2344" />
+    <capacity passengers="99" cockpitcrew="3" cabincrew="4" maxclasses="2" />
     <produced from="1954" to="1958" rate="66" />
   </airliner>
   <airliner manufacturer="Douglas" name="Douglas DC-8-10" price="4600000">

@@ -88,8 +88,11 @@
 
             if (profileElement.HasAttribute("routefocus"))
             {
-                routeFocus =
-                    (Route.RouteType)Enum.Parse(typeof(Route.RouteType), profileElement.Attributes["routefocus"].Value);
+                if (profileElement.Attributes["routefocus"].Value == "Helicopter")
+                    routeFocus = Route.RouteType.Helicopter_Passenger;
+                else
+                    routeFocus =
+                        (Route.RouteType)Enum.Parse(typeof(Route.RouteType), profileElement.Attributes["routefocus"].Value);
             }
 
             var narrativeElement = (XmlElement)profileElement.SelectSingleNode("narrative");
@@ -255,9 +258,12 @@
 
                     if (subsidiaryElement.HasAttribute("routefocus"))
                     {
-                        airlineRouteFocus =
-                            (Route.RouteType)
-                                Enum.Parse(typeof(Route.RouteType), subsidiaryElement.Attributes["routefocus"].Value);
+                        if (subsidiaryElement.Attributes["routefocus"].Value == "Helicopter")
+                            airlineRouteFocus = Route.RouteType.Helicopter_Passenger;
+                        else
+                            airlineRouteFocus =
+                                (Route.RouteType)
+                                    Enum.Parse(typeof(Route.RouteType), subsidiaryElement.Attributes["routefocus"].Value);
                     }
 
                     airline.FutureAirlines.Add(
@@ -297,9 +303,12 @@
 
                     if (routeElement.HasAttribute("routetype"))
                     {
-                        routetype =
-                            (Route.RouteType)
-                                Enum.Parse(typeof(Route.RouteType), routeElement.Attributes["routetype"].Value);
+                        if (routeElement.Attributes["routetype"].Value == "Helicopter")
+                            routetype = Route.RouteType.Helicopter_Passenger;
+                        else
+                            routetype =
+                             (Route.RouteType)
+                                 Enum.Parse(typeof(Route.RouteType), routeElement.Attributes["routetype"].Value);
                     }
 
                     var sdr = new StartDataRoute(dest1, dest2, opened, closed, routetype);
@@ -337,9 +346,12 @@
 
                     if (routeElement.HasAttribute("routetype"))
                     {
-                        routetype =
-                            (Route.RouteType)
-                                Enum.Parse(typeof(Route.RouteType), routeElement.Attributes["routetype"].Value);
+                        if (routeElement.Attributes["routetype"].Value == "Helicopter")
+                            routetype = Route.RouteType.Helicopter_Passenger;
+                        else
+                            routetype =
+                                (Route.RouteType)
+                                    Enum.Parse(typeof(Route.RouteType), routeElement.Attributes["routetype"].Value);
                     }
 
                     var routes = new StartDataRoutes(origin, destinations, minimumsize, routetype);
@@ -1270,7 +1282,10 @@
             if (focus == Route.RouteType.Mixed)
                 focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
 
-            Terminal.TerminalType terminaltype = focus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+            if (focus == Route.RouteType.Helicopter_Mixed)
+                focus = rnd.Next(3) == 0 ? Route.RouteType.Helicopter_Cargo : Route.RouteType.Helicopter_Passenger;
+
+            Terminal.TerminalType terminaltype = (focus == Route.RouteType.Cargo || focus == Route.RouteType.Helicopter_Cargo) ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
             //creates the routes
             List<StartDataRoute> sRoutes = startroutes.GetRange(0, startroutes.Count / startDataFactor);
             Parallel.ForEach(
@@ -1284,14 +1299,14 @@
                     {
                         if (dest1.getAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0
                             && dest1.getAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0
-                            && airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                            && (airline.AirlineRouteFocus == Route.RouteType.Cargo || airline.AirlineRouteFocus == Route.RouteType.Helicopter_Cargo))
                         {
                             dest1.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
                         }
 
                         if (dest2.getAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0
                             && dest2.getAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0
-                            && airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                            && (airline.AirlineRouteFocus == Route.RouteType.Cargo || airline.AirlineRouteFocus == Route.RouteType.Helicopter_Cargo))
                         {
                             dest2.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
                         }
@@ -1313,7 +1328,8 @@
                         double price = PassengerHelpers.GetPassengerPrice(dest1, dest2);
 
                         if (startRoute.RouteType == Route.RouteType.Mixed
-                            || startRoute.RouteType == Route.RouteType.Passenger)
+                            || startRoute.RouteType == Route.RouteType.Passenger
+                            || startRoute.RouteType == Route.RouteType.Helicopter_Passenger)
                         {
                             route = new PassengerRoute(
                                 id.ToString(),
@@ -1323,7 +1339,7 @@
                                 price);
                         }
 
-                        if (startRoute.RouteType == Route.RouteType.Cargo)
+                        if (startRoute.RouteType == Route.RouteType.Cargo || startRoute.RouteType == Route.RouteType.Helicopter_Cargo)
                         {
                             route = new CargoRoute(
                                 id.ToString(),
@@ -1404,7 +1420,8 @@
                             route.LastUpdated = GameObject.GetInstance().GameTime;
 
                             if (startRoute.RouteType == Route.RouteType.Mixed
-                                || startRoute.RouteType == Route.RouteType.Passenger)
+                                || startRoute.RouteType == Route.RouteType.Passenger
+                                || startRoute.RouteType == Route.RouteType.Helicopter_Passenger)
                             {
                                 AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
 
@@ -1425,7 +1442,7 @@
 
                                 AIHelpers.CreateRouteTimeTable(route, fAirliner);
                             }
-                            if (startRoute.RouteType == Route.RouteType.Cargo)
+                            if (startRoute.RouteType == Route.RouteType.Cargo || startRoute.RouteType == Route.RouteType.Helicopter_Cargo)
                             {
                                 AIHelpers.CreateCargoRouteTimeTable(route, fAirliner);
                             }
@@ -1517,7 +1534,10 @@
                         if (focus == Route.RouteType.Mixed)
                             focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
 
-                        Terminal.TerminalType terminalType = focus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+                        if (focus == Route.RouteType.Helicopter_Mixed)
+                            focus = rnd.Next(3) == 0 ? Route.RouteType.Helicopter_Cargo : Route.RouteType.Helicopter_Passenger;
+
+                        Terminal.TerminalType terminalType = (focus == Route.RouteType.Cargo || focus == Route.RouteType.Helicopter_Cargo) ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
                         for (int i = 0;
                             i < Math.Min(routes.Destinations / startDataFactor, origin.Terminals.getFreeGates(terminalType));
@@ -1548,7 +1568,8 @@
                             double price = PassengerHelpers.GetPassengerPrice(origin, destination);
 
                             if (routes.RouteType == Route.RouteType.Mixed
-                                || routes.RouteType == Route.RouteType.Passenger)
+                                || routes.RouteType == Route.RouteType.Passenger
+                                || routes.RouteType == Route.RouteType.Helicopter_Passenger)
                             {
                                 route = new PassengerRoute(
                                     id.ToString(),
@@ -1558,7 +1579,7 @@
                                     price);
                             }
 
-                            if (routes.RouteType == Route.RouteType.Cargo)
+                            if (routes.RouteType == Route.RouteType.Cargo || routes.RouteType == Route.RouteType.Helicopter_Cargo)
                             {
                                 route = new CargoRoute(
                                     id.ToString(),
@@ -1607,7 +1628,8 @@
                                 route.LastUpdated = GameObject.GetInstance().GameTime;
 
                                 if (routes.RouteType == Route.RouteType.Passenger
-                                    || routes.RouteType == Route.RouteType.Mixed)
+                                    || routes.RouteType == Route.RouteType.Mixed
+                                    || routes.RouteType == Route.RouteType.Helicopter_Passenger)
                                 {
                                     AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
 
@@ -1628,7 +1650,7 @@
 
                                     AIHelpers.CreateRouteTimeTable(route, fAirliner);
                                 }
-                                if (routes.RouteType == Route.RouteType.Cargo)
+                                if (routes.RouteType == Route.RouteType.Cargo || routes.RouteType == Route.RouteType.Helicopter_Cargo)
                                 {
                                     AIHelpers.CreateCargoRouteTimeTable(route, fAirliner);
                                 }
@@ -1656,7 +1678,7 @@
             airportHomeBase.addAirportFacility(airline, serviceFacility, GameObject.GetInstance().GameTime);
             airportHomeBase.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
-            if (airline.AirlineRouteFocus == Route.RouteType.Cargo || airline.AirlineRouteFocus == Route.RouteType.Mixed)
+            if (airline.AirlineRouteFocus == Route.RouteType.Cargo || airline.AirlineRouteFocus == Route.RouteType.Mixed || airline.AirlineRouteFocus == Route.RouteType.Helicopter_Cargo)
             {
                 airportHomeBase.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
             }
@@ -1696,6 +1718,9 @@
 
                 if (focus == Route.RouteType.Mixed)
                     focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
+
+                if (focus == Route.RouteType.Helicopter_Mixed)
+                    focus = rnd.Next(3) == 0 ? Route.RouteType.Helicopter_Cargo : Route.RouteType.Helicopter_Passenger;
 
                 while ((airportDestination == null || airliner == null || !airliner.HasValue)
                        && airportDestinations.Count > counter)
@@ -1772,7 +1797,7 @@
                             }
                         }
                     }
-                    if (focus == Route.RouteType.Helicopter)
+                    if (focus == Route.RouteType.Helicopter_Passenger)
                     {
                         route = new PassengerRoute(
                           id.ToString(),
@@ -1799,7 +1824,8 @@
                             }
                         }
                     }
-                    if (focus == Route.RouteType.Cargo)
+                    
+                    if (focus == Route.RouteType.Cargo || focus == Route.RouteType.Helicopter_Cargo)
                     {
                         route = new CargoRoute(
                             id.ToString(),
@@ -2644,7 +2670,8 @@
                     {
                         if (airlinerType == AirlinerType.TypeOfAirliner.Cargo
                             || airlinerType == AirlinerType.TypeOfAirliner.Mixed
-                            || airlinerType == AirlinerType.TypeOfAirliner.Helicopter)
+                            || airlinerType == AirlinerType.TypeOfAirliner.Helicopter
+                            || airlinerType == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
                         {
                             isConvertable = false;
                         }
@@ -2765,6 +2792,36 @@
                             new Period<DateTime>(from, to),
                             prodRate,
                             isConvertable);
+                    }
+                    if (airlinerType == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
+                    {
+                        int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
+                        double cargo = Convert.ToDouble(
+                            capacityElement.Attributes["cargo"].Value,
+                            CultureInfo.GetCultureInfo("en-US").NumberFormat);
+                        type = new AirlinerCargoType(
+                            manufacturer,
+                            name,
+                            family,
+                            cockpitcrew,
+                            cargo,
+                            speed,
+                            range,
+                            wingspan,
+                            length,
+                            weight,
+                            fuel,
+                            price,
+                            runwaylenght,
+                            fuelcapacity,
+                            body,
+                            rangeType,
+                            engine,
+                            new Period<DateTime>(from, to),
+                            prodRate,
+                            isConvertable);
+
+                        type.TypeAirliner = AirlinerType.TypeOfAirliner.Helicopter_Cargo;
                     }
                     if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
                     {

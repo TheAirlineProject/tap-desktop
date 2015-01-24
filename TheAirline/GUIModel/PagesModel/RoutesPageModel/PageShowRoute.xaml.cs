@@ -36,16 +36,6 @@
             this.Route = new HumanRouteMVVM(route);
             this.DataContext = this.Route;
 
-            if (this.Route.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Helicopter)
-            {
-                
-                 RouteAirlinerClass rClass = ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
-                 var mClass = new MVVMRouteClass(AirlinerClass.ClassType.Economy_Class, rClass.Seating, rClass.FarePrice);
-                
-                 this.Classes.Add(mClass);
-
-             
-            }
             if (this.Route.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Passenger || this.Route.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Mixed)
             {
                  foreach (AirlinerClass.ClassType cType in AirlinerClass.GetAirlinerTypes())

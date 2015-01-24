@@ -116,9 +116,11 @@
 
             Passenger,
 
-            Helicopter,
+            Helicopter_Passenger,
 
-            HelicopterMixed
+            Helicopter_Mixed,
+
+            Helicopter_Cargo
         }
 
         #endregion
