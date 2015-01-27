@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Alkan Air" iata="AKN"  color="DarkSlateGray" country="113" CEO="Barry Watson" mentality="Safe" market="Regional" preferedairport="YXY" schedule="Charter"> 
+  <narrative narrative="Alkan Air is a charter airline based at Whitehorse,Yukon. It serves northern Canada and western, and Alaska. It was founded in 1977 and its name is inspired by the Alaska Highway also knownas Al-Can that runs outside Whitehorse. It started with a Cessna 206 on wheels and a Cessna Skymaster with floats for water or skis for snow and ice. In 1987 float and ski service were dropped. It also started just focusing on charter  flights around this time having been one of Yukon's main scheduled airlines. In 1994 it started building a fleet of Beechcraft King Air's of which it has 5 of now. It also has a Cessna 206 still,a DHC Twin Otter,three Cessna 208's,a Piper Navajo,a Cessna 172 Skyhawk and a DHC-3 Otter. It also does air ambulance service." />
+</profile>
+   <info real="True" from="1977" to="2199"></info>
+   <prefereds aircrafts="Beechcraft King Air B200,Cessna 208B,Cessna 206,DHC-6-300 Twin Otter,Cessna 172 Skyhawk,PA-31 Navajo,DHC-2T Turbo Beaver,DHC-3 Otter,Cessna Skymaster"></prefereds>
+
+        <!--the airliners the airline would start with which isn't on a route earyl (1977) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 206" early="1" late="1"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (1994) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="3" late="5"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (1977) late (2015)-->
+	         <airliners>
+	    <airliner type="DHC-3 Otter" early="0" late="1"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1983) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="0" late="3"></airliner>
+	     </airliners>
+	          	     	         <!--the airliners the airline would start with which isn't on a route earyl (1977) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 172 Skyhawk" early="0" late="1"></airliner>
+	     </airliners>
+	     	          	     	         <!--the airliners the airline would start with which isn't on a route earyl (1977) late (2015)-->
+	         <airliners>
+	    <airliner type="DHC-6-300 Twin Otter" early="0" late="1"></airliner>
+	     </airliners>
+	     	          	     	         <!--the airliners the airline would start with which isn't on a route earyl (1977) late (2015)-->
+	         <airliners>
+	    <airliner type="PA-31 Navajo" early="0" late="1"></airliner>
+	     </airliners>
+	     	     	          	     	         <!--the airliners the airline would start with which isn't on a route earyl (1977) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna Skymaster" early="1" late="0"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</airline>

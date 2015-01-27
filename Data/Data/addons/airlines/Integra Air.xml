@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Integra Air" iata="AII"  color="Red" country="113" CEO="Brent Gateman" mentality="Safe" market="Local" preferedairport="YQL" schedule="Business">
+    <narrative narrative="Integra Air is a very small airline based out of Lethbridge,Alberta. It's only scheduled route as of 2015 is Lethbridge-Edmonton, but it also does charters. In September 2005 it did scheduled service to Vancouver and Abbotsford both in British Columbia but stopped after just a month after not being able to compete with Air Canada. It began in 1998 and it started the Edmonton route at the same time. It also does Medivac service in Alberta,southern Saskatchewan and southeast British Columbia. It has four Beechcraft King Air 200's,three BAe Jetstream 31's and a Piper PA-31T Cheyenne." />
+</profile>
+   <info real="True" from="1998" to="2199"></info>
+   <prefereds aircrafts="Beechcraft King Air B200,BAe Jetstream 31,PA-31T Cheyenne"></prefereds>
+
+
+    <!--the airliners the airline would start with which isn't on a route earyl (1998) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="1" late="4"></airliner>
+	     </airliners>
+	         <!--the airliners the airline would start with which isn't on a route earyl (1998) late (2015)-->
+	         <airliners>
+	    <airliner type="BAe Jetstream 31" early="1" late="3"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (1998) late (2015)-->
+	         <airliners>
+	    <airliner type="PA-31T Cheyenne" early="0" late="1"></airliner>
+	     </airliners>
+
+
+
+
+<routes>
+                <route destination1="YQL" destination2="YEG" opened="1998" closed="2199" />
+		<route destination1="YQL" destination2="YXX" opened="2005" closed="2006" />
+                <route destination1="YQL" destination2="YVR" opened="2005" closed="2006" />
+        </routes>
+
+
+
+
+
+
+
+
+
+</airline>

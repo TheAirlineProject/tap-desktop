@@ -7,6 +7,34 @@
     <capacity passengers="7" cockpitcrew="2" cabincrew="0" maxclasses="1" />
     <produced from="1967" to="1984" rate="232" />
   </airliner>
+            <airliner manufacturer="Piper Aircraft" name="PA-28 Cherokee" price="23500"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="9.20" length="7.16" range="976" speed="200" fuelcapacity="182" consumption="0.333"
+           runwaylengthrequired="243" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1961" to="2199" rate="618" />
+     </airliner>
+            <airliner manufacturer="Piper Aircraft" name="PA-24 Comanche" price="28000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="10.97" length="7.62" range="1778" speed="293" fuelcapacity="227" consumption="0.333"
+           runwaylengthrequired="333" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1958" to="1972" rate="324" />
+     </airliner>
+              <airliner manufacturer="Piper Aircraft" name="PA-44 Seminole" price="85400"> <!--663500-->
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="11.77" length="8.41" range="1630" speed="287" fuelcapacity="416" consumption="0.33"
+           runwaylengthrequired="426" />
+    <capacity passengers="3" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1979" to="2199" rate="100" />
+     </airliner>
+            <airliner manufacturer="Piper Aircraft" name="PA-23 Aztec" price="130000"> 
+    <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
+    <specs wingspan="11.34" length="9.52" range="2258" speed="331" fuelcapacity="670" consumption="0.20"
+           runwaylengthrequired="603" />
+    <capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1" />
+    <produced from="1954" to="1981" rate="249" />
+     </airliner>
  <airliner manufacturer="Piper" name="PA-31T Cheyenne" price="365000"> <!--2774000-->
     <type body="Narrow_Body" rangetype="Regional" engine="Turboprop" />
     <specs wingspan="13.01" length="10.57" range="2739" speed="393" fuelcapacity="1446" consumption="0.166"

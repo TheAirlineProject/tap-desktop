@@ -33,6 +33,8 @@
                     this.Airliner = this.Entry.Airliner;
                     this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry);
                     this.ScheduledFlightTime = this.FlightTime;
+
+                  
                 }
 
                 this.IsOnTime = true;

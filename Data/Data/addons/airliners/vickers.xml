@@ -14,11 +14,11 @@
 <capacity passengers="174" cockpitcrew="3" cabincrew="4" maxclasses="2"/>
 <produced from="1965" to="1972" rate="8"/>
 </airliner>
-  <airliner manufacturer="Vickers" name="Vickers Viscount 800" price="2770550">
+  <airliner manufacturer="Vickers" name="Vickers Viscount 800" price="1500000">
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
-    <specs wingspan="28.56" length="26.11" range="2220" speed="530" fuelcapacity="5900" consumption="0.036"
-           runwaylengthrequired="2400" />
-    <capacity passengers="75" cockpitcrew="2" cabincrew="3" maxclasses="2" />
+    <specs wingspan="28.56" length="26.11" range="2628" speed="571" fuelcapacity="8630" consumption="0.044"
+           runwaylengthrequired="1890" />
+    <capacity passengers="70" cockpitcrew="2" cabincrew="3" maxclasses="2" />
     <produced from="1950" to="1963" rate="32" />
   </airliner>
   <airliner manufacturer="Vickers" name="Vickers VC1 Viking" price="520000">

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Alta Flights" iata="ALZ"  color="MediumBlue" country="113" CEO="Chris Evans" mentality="Safe" market="Domestic" preferedairport="YEG" routefocus="Mixed" schedule="Charter"> <narrative narrative="Alta Flights is a charter airline based out of Edmonton,Alberta. It also has a hub at Calgary,Alberta.It began life in 1986. From 2001 to 2006 it did scheduled service before reverting back to charters only. It's fleet consists of four BAe Jetstream 31's,six Beechcraft King Air's,five Fairchild Metroliner's,five Cessna 172 Skyhawk's,and three Cessna 208's. It does cargo too." />
+</profile>
+   <info real="True" from="1986" to="2199"></info>
+   <prefereds aircrafts="BAe Jetstream 31,Beechcraft King Air B200,Fairchild Swearingen Metroliner,Cessna 208B,Cessna 172 Skyhawk"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YYC"></focusairport>
+     </focusairports>
+
+        <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="BAe Jetstream 31" early="1" late="4"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="2" late="6"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Fairchild Swearingen Metroliner" early="1" late="5"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="0" late="3"></airliner>
+	     </airliners>
+	          	     	         <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 172 Skyhawk" early="0" late="5"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</airline>

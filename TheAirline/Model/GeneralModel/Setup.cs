@@ -208,8 +208,11 @@
 
             if (profileElement.HasAttribute("preferedairport"))
             {
+                
                 Airport preferedAirport = Airports.GetAirport(profileElement.Attributes["preferedairport"].Value);
                 airline.Profile.PreferedAirports.Add(new DateTime(1900, 1, 1), preferedAirport);
+
+              
             }
             else
             {
@@ -226,6 +229,11 @@
                         airline.Profile.PreferedAirports.Add(prederedAirportDate, preferedAirport);
                     }
                 }
+            }
+
+            if (airline.Profile.PreferedAirports.Count == 0)
+            {
+                Console.WriteLine(airline.Profile.Name + " has no prefered airports");
             }
 
             XmlNodeList subsidiariesList = root.SelectNodes("subsidiaries/subsidiary");

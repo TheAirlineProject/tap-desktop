@@ -118,6 +118,9 @@
                                 <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime,ElementName=popUpAirlinerSeatsConfiguration}" Value="Helicopter">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
+                                <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime,ElementName=popUpAirlinerSeatsConfiguration}" Value="Helicopter_Cargo">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </TabItem.Style>
@@ -135,6 +138,9 @@
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime,ElementName=popUpAirlinerSeatsConfiguration}" Value="Helicopter">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Type.TypeAirliner,Mode=OneTime,ElementName=popUpAirlinerSeatsConfiguration}" Value="Helicopter_Cargo">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>

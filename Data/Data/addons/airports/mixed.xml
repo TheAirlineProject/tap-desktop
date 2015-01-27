@@ -3361,6 +3361,27 @@
       <runway name="13/31" length="2713" surface="Asphalt" />
     </runways>
   </airport>
+    <airport name="Boundary Bay Airport" icao="CZBB" iata="YDT" type="Domestic" season="All_Year">
+  <period from="07.11.1983 00:00:00" to="12.31.2199 00:00:00" />  
+  <town town="Vancouver, BC" country="113" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="49°04'27''N" />
+      <longitude value="123°00'27''W" /> </coordinates>
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="7/25" length="1709" surface="Asphalt" />
+  <runway name="12/30" length="1143" surface="Asphalt" />
+    <runway name="FATO A" length="23" surface="Grass" type="Helipad" />   
+    <runway name="FATO B" length="27" surface="Grass" type="Helipad" />  
+    <runway name="Pad 2" length="18" surface="Concrete" type="Helipad" />  
+    <runway name="Pad 3" length="16" surface="Concrete" type="Helipad" /> 
+<runway name="Pad 4" length="21" surface="Concrete" type="Helipad" /> 
+<runway name="Pad 5" length="21" surface="Concrete" type="Helipad" />  
+</runways>
+  </airport>
   <airport name="Greater Sudbury Airport" icao="CYSB" iata="YSB" type="Domestic" season="All_Year">
     <town town="Garson, ON" country="113" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>

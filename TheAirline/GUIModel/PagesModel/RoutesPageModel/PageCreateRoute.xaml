@@ -74,10 +74,10 @@
                                          Tag="Passenger" IsChecked="True" Checked="rbRouteType_Checked" />
                             <RadioButton GroupName="RouteType"
                                          Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1009'}"
-                                         Margin="5 0 0 0" Tag="Cargo" Checked="rbRouteType_Checked" />
+                                         Margin="5 0 0 0" Tag="Cargo" Name="rbRouteCargo" Checked="rbRouteType_Checked" />
                             <RadioButton GroupName="RouteType"
                                          Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1018'}"
-                                         Margin="5 0 0 0" Tag="Mixed" Checked="rbRouteType_Checked" />
+                                         Margin="5 0 0 0" Tag="Mixed" Name="rbRouteMixed" Checked="rbRouteType_Checked" />
                      
                         </WrapPanel>
                     </h:QuickInfoValue.Value>

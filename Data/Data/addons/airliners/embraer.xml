@@ -50,6 +50,13 @@
     <capacity passengers="88" cockpitcrew="2" cabincrew="2" maxclasses="2" />
     <produced from="2002" to="2019" rate="77" />
   </airliner>
+    <airliner manufacturer="Embraer" name="Embraer E-175E2" price="6030070"> <!--32000000-->
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <specs wingspan="26.00" length="32.30" range="3556" speed="870" fuelcapacity="6760" consumption="0.023"
+           runwaylengthrequired="1350" />
+    <capacity passengers="88" cockpitcrew="2" cabincrew="2" maxclasses="2" />
+    <produced from="2018" to="2199" rate="50" />
+  </airliner>
   <airliner manufacturer="Embraer" name="Embraer E-190" price="7120130"> <!--41500000-->
     <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
     <specs wingspan="28.72" length="36.24" range="3334" speed="890" fuelcapacity="9000" consumption="0.024"
@@ -57,11 +64,25 @@
     <capacity passengers="114" cockpitcrew="2" cabincrew="3" maxclasses="2" />
     <produced from="2005" to="2019" rate="77" />
   </airliner>
+  <airliner manufacturer="Embraer" name="Embraer E-190E2" price="6906234"> <!--41500000-->
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <specs wingspan="26.20" length="36.24" range="5186" speed="870" fuelcapacity="9000" consumption="0.024"
+           runwaylengthrequired="1250" />
+    <capacity passengers="106" cockpitcrew="2" cabincrew="3" maxclasses="2" />
+    <produced from="2018" to="2199" rate="25" />
+  </airliner>
   <airliner manufacturer="Embraer" name="Embraer E-195" price="7120130"> <!--47000000-->
     <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
     <specs wingspan="28.72" length="38.54" range="2593" speed="890" fuelcapacity="9000" consumption="0.028"
            runwaylengthrequired="1275" />
     <capacity passengers="122" cockpitcrew="2" cabincrew="3" maxclasses="2" />
     <produced from="2005" to="2019" rate="77" />
+  </airliner>
+    <airliner manufacturer="Embraer" name="Embraer E-195E2" price="7782398"> <!--47000000-->
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <specs wingspan="28.72" length="41.50" range="3704" speed="870" fuelcapacity="9000" consumption="0.028"
+           runwaylengthrequired="1950" />
+    <capacity passengers="132" cockpitcrew="2" cabincrew="3" maxclasses="2" />
+    <produced from="2018" to="2199" rate="20" />
   </airliner>
 </airliners>

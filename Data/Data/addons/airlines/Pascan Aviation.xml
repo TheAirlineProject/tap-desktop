@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Pascan Aviation" iata="P6"  color="MediumTurquoise" country="113" CEO="Serge Charron" mentality="Moderate" market="Domestic" preferedairport="YHU" routefocus="Mixed" schedule="Business"> <narrative narrative="Pascan Aviation is based out of Montreal's Saint Hubert Airport, and is a hybrid passenger/cargo airline founed in 1999. It serves 12 airports in Quebec,2 in Labrador and 1 in New Brunswick as of December 2013. This includes about 14 routes out of Saint Hubert, but it has many out of most of the airports it serves 5-10 at most, including Quebec City,Baie-Comeu,Mont-Joli,Goose Bay,Wabush,Bonaventure,Val-d'Or,Rouyn-Noranda,Sept-Illes,Bagotville,Magdalen Islands,Havre-Saint-Pierre,Bathurst,Ottawa-Gatineau,Roberval,and Port-Menier. It has 12 BAe Jetstream 32's in a combi configuration,five Beechcraft King Air's,four Pilatus 12's,three ATR 42-300's,and two Piper Navajo's at July 2014. It also does charters and runs an FBO at Saint Hubert." />
+</profile>
+   <info real="True" from="1999" to="2199"></info>
+   <prefereds aircrafts="BAe Jetstream 31,Beechcraft King Air B200,Pilatus PC-12,ATR 42-300,PA-31 Navajo"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YQB"></focusairport>
+		  <focusairport airport="YBC"></focusairport>
+		   <focusairport airport="YYY"></focusairport>
+                   <focusairport airport="YVB"></focusairport>
+		     <focusairport airport="YWK"></focusairport>
+		       <focusairport airport="YZV"></focusairport>
+		       <focusairport airport="YGV"></focusairport>
+		       <focusairport airport="YUY"></focusairport>
+		           <focusairport airport="YGR"></focusairport>
+		       <focusairport airport="YYR"></focusairport>
+			     <focusairport airport="YVO"></focusairport>
+			     <focusairport airport="YBG"></focusairport>
+			       <focusairport airport="YRJ"></focusairport>
+			        <focusairport airport="ZBF"></focusairport>
+			       <focusairport airport="YPN"></focusairport>
+     </focusairports>
+
+        <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2015)-->
+	         <airliners>
+	    <airliner type="BAe Jetstream 31" early="3" late="12"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="1" late="5"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2015)-->
+	         <airliners>
+	    <airliner type="Pilatus PC-12" early="1" late="4"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2015)-->
+	         <airliners>
+	    <airliner type="PA-31 Navajo" early="1" late="2"></airliner>
+	     </airliners>
+	          	     	         <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="2" late="3"></airliner>
+	     </airliners>
+
+
+
+
+
+<routes>
+                <route destination1="YHU" destination2="YQB" />
+		<route destination1="YHU" destination2="YYR" />
+                <route destination1="YHU" destination2="YGV"  />
+		<route destination1="YHU" destination2="YGR" />
+		<route destination1="YHU" destination2="YUY" />
+                <route destination1="YHU" destination2="YBC"  />
+	        <route destination1="YHU" destination2="YYY" />
+                <route destination1="YHU" destination2="YBG"  />
+		<route destination1="YHU" destination2="YVO"  />
+	       <route destination1="YHU" destination2="YWK" />
+                <route destination1="YHU" destination2="YZV"  />
+		<route destination1="YHU" destination2="YVB"  />
+	         <route destination1="YHU" destination2="YRJ"  />
+		 <route destination1="YHU" destination2="YND"  />
+		<route destination1="YQB" destination2="YYY"  />
+		<route destination1="YQB" destination2="YBC"  />
+		<route destination1="YQB" destination2="YZV"  />
+		<route destination1="YQB" destination2="YWK"  />
+		<route destination1="YQB" destination2="YVB"  />
+		<route destination1="YQB" destination2="YGR"  />
+		<route destination1="YQB" destination2="YND"  />
+		<route destination1="YBC" destination2="YYR"  />
+		<route destination1="YBC" destination2="YWK"  />
+		<route destination1="YBC" destination2="YVO"  />
+		<route destination1="YBC" destination2="YVB"  />
+		<route destination1="YBC" destination2="YUY"  />
+		<route destination1="YBC" destination2="YGR"  />
+		<route destination1="YYY" destination2="YYR"  />
+		<route destination1="YYY" destination2="YUY"  />
+		<route destination1="YYY" destination2="YWK"  />
+		<route destination1="YYY" destination2="YVO"  />
+		<route destination1="YYY" destination2="YGR"  />
+		<route destination1="YYY" destination2="YGV"  />
+		<route destination1="YYY" destination2="YVB"  />
+		<route destination1="YYY" destination2="YZV"  />'
+		<route destination1="YVB" destination2="YGR"  />
+		<route destination1="YVB" destination2="YWK"  />
+		<route destination1="YVB" destination2="YZV"  />
+		<route destination1="YVB" destination2="ZBF"  />
+		<route destination1="YWK" destination2="YYR"  />
+		<route destination1="YWK" destination2="YBG"  />
+		<route destination1="YWK" destination2="YZV"  />
+		<route destination1="YWK" destination2="YVO"  />
+		<route destination1="YWK" destination2="YRJ"  />
+	        <route destination1="YZV" destination2="YYR"  />
+		<route destination1="YZV" destination2="YGR"  />
+		<route destination1="YZV" destination2="YBG"  />
+		<route destination1="YZV" destination2="YVO"  />
+		<route destination1="YZV" destination2="YRJ"  />
+		<route destination1="YZV" destination2="YUY"  />
+		<route destination1="YZV" destination2="YGV"  />
+		<route destination1="YZV" destination2="YPN"  />
+	        <route destination1="YGV" destination2="YRJ"  />
+		<route destination1="YGV" destination2="YBG"  />
+		<route destination1="YZV" destination2="YPN"  />
+		<route destination1="YUY" destination2="YVO"  />
+		<route destination1="ZBF" destination2="YGR"  />
+        </routes>
+
+
+
+
+
+
+
+
+
+</airline>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Provincial Airlines" iata="PB"  color="OrangeRed" country="113" CEO="John Pierre" mentality="Safe" market="Domestic" preferedairport="YYT" routefocus="Mixed">
+    <narrative narrative="Provincial Airlines is based at St. John's,Newfoundland and Labrador with other bases at Goose Bay in the same province and Halifax,Nova Scotia. Another hub is Montreal Trudeau. It is the largest regional airline of Eastern Canada. It does passengers,cargo and air ambulace service. It began in 1974 as a charter and flight training airline, scheduled service began in 1980. It is part of the company Provincial Aerospace Ltd. As of October 2014 it serves 12 airports in Newfoundland and Labrador,5 in Quebec and one each in Nova Scotia and New Brunswick. It and its parent lease and operate some of their planes for foreign governments. Like three Dash 8-100's are operated for the Dutch Caribbean Coast Guard,two Dash 8-300's for offshore surveillance in the United Arab Emirates,a Beechcraft King Air 200 for the Emergency Health Services of Nova Scotia,two Fairchild Metroliners for offshore surveillance in Trinidad and Tobago,and 2 Bombardier business jets for Malaysian Maritime Enforcement Agency. All in all it has five Dash 8-100's,five Dash 8-300's,nine Beechcraft King Air's,three Fairchild Metroliners,three Saab 340's,a DHC-3 Otter,five DHC-6 Twin Otters,and several business jets like a Cessna Citation X. Planes it has bad before include Piper Navajo's, Britten Norman Islanders and Convair 240/440 types." />
+</profile>
+   <info real="True" from="1974" to="2199"></info>
+   <prefereds aircrafts="Beechcraft King Air B200,DHC-6-300 Twin Otter,Bombardier Dash 8-100,Bombardier Dash 8-300,Saab 340B,DHC-3 Otter,Fairchild Swearingen Metroliner,Cessna Citation X,BN-2A Islander,PA-31 Navajo,Convair 440"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YYR"></focusairport>
+		 <focusairport airport="YUL"></focusairport>
+		 <focusairport airport="YHZ"></focusairport>
+     </focusairports>
+        <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-100" early="1" late="5"></airliner>
+	     </airliners>
+        <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="1" late="5"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (1974) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="0" late="9"></airliner>
+	     </airliners>
+	         <!--the airliners the airline would start with which isn't on a route earyl (1974) late (2015)-->
+	         <airliners>
+	    <airliner type="Fairchild Swearingen Metroliner" early="0" late="3"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2015)-->
+	         <airliners>
+	    <airliner type="Saab 340B" early="2" late="4"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1996) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna Citation X" early="0" late="4"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1974) late (2015)-->
+	         <airliners>
+	    <airliner type="DHC-3 Otter" early="0" late="1"></airliner>
+	     </airliners>
+	     	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1974) late (2015)-->
+	         <airliners>
+	    <airliner type="DHC-6-300 Twin Otter" early="0" late="2"></airliner>
+	     </airliners>
+	     	     	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1974) late (2015)-->
+	         <airliners>
+	    <airliner type="DHC-6-100 Twin Otter" early="0" late="2"></airliner>
+	     </airliners>
+	     	     	     	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1974) late (2015)-->
+	         <airliners>
+	    <airliner type="PA-31 Navajo" early="2" late="0"></airliner>
+	     </airliners>
+	     	     	     	     	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1974) late (2015)-->
+	         <airliners>
+	    <airliner type="BN-2A Islander" early="2" late="0"></airliner>
+	     </airliners>
+
+
+
+
+<routes>
+                <route destination1="YYT" destination2="YUL" />
+		<route destination1="YYT" destination2="YWK" />
+                <route destination1="YYT" destination2="YYR" />
+                <route destination1="YYT" destination2="YDF" />
+		<route destination1="YYT" destination2="YBX" />
+		<route destination1="YYT" destination2="YDP" />
+		<route destination1="YYT" destination2="YCL"/>
+		<route destination1="YYT" destination2="ZUM" />
+		<route destination1="YYT" destination2="YHZ"/>
+		<route destination1="YYT" destination2="YAY" />
+		<route destination1="YYT" destination2="YQB" />
+		<route destination1="YYT" destination2="YZV" />
+		<route destination1="YYT" destination2="YHO" />
+		<route destination1="YYT" destination2="YMN" />
+		<route destination1="YYT" destination2="YJT" />
+		<route destination1="YYR" destination2="YWK" />
+		<route destination1="YYR" destination2="YDF" />
+		<route destination1="YYR" destination2="YBX" />
+		<route destination1="YYR" destination2="YAY" />
+		<route destination1="YYR" destination2="ZUM" />
+		<route destination1="YYR" destination2="YHO" />
+		<route destination1="YYR" destination2="YMN" />
+		<route destination1="YYR" destination2="YDP" />
+		<route destination1="YYR" destination2="YSO" />
+		<route destination1="YUL" destination2="YQB" />
+		<route destination1="YUL" destination2="YZV" />
+		<route destination1="YUL" destination2="YWK" />
+		<route destination1="YHZ" destination2="YCL" />
+		<route destination1="YHZ" destination2="YWK" />
+		<route destination1="YHZ" destination2="YKL" />
+		<route destination1="YBX" destination2="YAY" />
+		<route destination1="YCL" destination2="YWK" />
+		<route destination1="YCL" destination2="YKL" />
+		<route destination1="ZUM" destination2="YWK" />
+		<route destination1="YDF" destination2="YWK" />
+		<route destination1="YDF" destination2="ZUM" />
+		<route destination1="YHO" destination2="YDP" />
+		<route destination1="YHO" destination2="YMN" />
+		<route destination1="YHO" destination2="YSO" />
+		<route destination1="YMN" destination2="YSO" />
+		<route destination1="YMN" destination2="YDP" />
+		<route destination1="YDP" destination2="YSO" />
+		<route destination1="YQB" destination2="YWK" />
+		<route destination1="YQB" destination2="YZV" />
+		<route destination1="YZV" destination2="YWK" />
+		<route destination1="YKL" destination2="YWK" />
+		<route destination1="YAY" destination2="YWK" />
+		<route destination1="YJT" destination2="YDF" />
+	        </routes>
+
+
+
+
+
+
+
+
+
+</airline>

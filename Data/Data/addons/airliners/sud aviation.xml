@@ -1,18 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
   <airliner manufacturer="Sud Aviation" name="Sud Aviation Caravelle I" price="2200000">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
-    <specs wingspan="34.30" length="31.01" range="1700" speed="805" fuelcapacity="7500" consumption="0.055"
-           runwaylengthrequired="2000" />
+    <specs wingspan="34.30" length="31.01" range="2667" speed="734" fuelcapacity="18927" consumption="0.055"
+           runwaylengthrequired="1798" />
     <capacity passengers="80" cockpitcrew="3" cabincrew="2" maxclasses="2" />
     <produced from="1959" to="1967" rate="14" />
   </airliner>
   <airliner manufacturer="Sud Aviation" name="Sud Aviation Caravelle 10B" price="2500000">
-    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
-    <specs wingspan="34.30" length="33.01" range="1700" speed="805" fuelcapacity="7500" consumption="0.055"
-           runwaylengthrequired="2000" />
-    <capacity passengers="105" cockpitcrew="3" cabincrew="2" maxclasses="2" />
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
+    <specs wingspan="34.30" length="33.01" range="4074" speed="832" fuelcapacity="18549" consumption="0.048"
+           runwaylengthrequired="2097" />
+    <capacity passengers="94" cockpitcrew="3" cabincrew="2" maxclasses="2" />
     <produced from="1964" to="1967" rate="6" />
   </airliner>
 </airliners>

@@ -29,19 +29,50 @@
       <destination airport="YYZ" pax="67" />
     </destinations>
   </majordestination>
+        <majordestination airport="CCS">
+    <destinations>
+        <destination airport="FCO" pax="126"  />
+                   </destinations>
+  </majordestination>
+      <majordestination airport="CGH">
+    <destinations>
+        <destination airport="GIG" pax="938"  />
+       <destination airport="SDU" pax="3438"  />
+               </destinations>
+  </majordestination>
     <majordestination airport="EZE">
     <destinations>
+       <destination airport="FCO" pax="278"  />
        <destination airport="LHR" pax="175"  />
+       <destination airport="SYD" pax="52"  />
                </destinations>
   </majordestination>
     <majordestination airport="GIG">
     <destinations>
+        <destination airport="CGH" pax="938"  />
+	<destination airport="FCO" pax="106"  />
+        <destination airport="GRU" pax="1016"  />
        <destination airport="LHR" pax="208"  />
                </destinations>
   </majordestination>
     <majordestination airport="GRU">
     <destinations>
+       <destination airport="FCO" pax="208"  />
+      <destination airport="GIG" pax="1016"  />
        <destination airport="LHR" pax="412"  />
+       <destination airport="MXP" pax="135" />
+        <destination airport="SDU" pax="703"  />
+               </destinations>
+  </majordestination>
+        <majordestination airport="SCL">
+    <destinations>
+       <destination airport="SYD" pax="153"  />
+               </destinations>
+  </majordestination>
+      <majordestination airport="SDU">
+    <destinations>
+       <destination airport="CGH" pax="3438"  />
+        <destination airport="GRU" pax="703"  />
                </destinations>
   </majordestination>
 </majordestinations>

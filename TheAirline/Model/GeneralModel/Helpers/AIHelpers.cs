@@ -226,7 +226,10 @@
             foreach (RouteTimeTableEntry e in timeTable.Entries)
             {
                 e.Airliner = airliner;
+
             }
+
+        
 
             return timeTable;
         }
@@ -799,6 +802,7 @@
         public static Airport GetDestinationAirport(Airline airline, Airport airport)
         {
             List<Airport> airports = GetDestinationAirports(airline, airport);
+
             if (airports.Count == 0)
             {
                 return null;
@@ -834,6 +838,7 @@
                 Airports.GetAirports(
                     a =>
                         airline.Airports.Find(ar => ar.Profile.Town == a.Profile.Town) == null
+                        && !airline.Routes.Exists(r=>(r.Destination1 == a && r.Destination2 == airport) || (r.Destination2 == a && r.Destination1 == airport))                        
                         && AirlineHelpers.HasAirlineLicens(airline, airport, a)
                         && FlightRestrictions.IsAllowed(
                         airport, a,
@@ -865,6 +870,7 @@
             Airline.AirlineFocus marketFocus = airline.MarketFocus;
 
             Route.RouteType focus = airline.AirlineRouteFocus;
+           
             if (focus == Route.RouteType.Mixed)
                 focus = rnd.Next(3) == 0 ? Route.RouteType.Cargo : Route.RouteType.Passenger;
 
@@ -883,7 +889,6 @@
 
                 marketFocus = focuses[rnd.Next(focuses.Count)];
             }
-
             switch (marketFocus)
             {
                 case Airline.AirlineFocus.Domestic:
@@ -941,6 +946,7 @@
                          Airports.GetAirports(
                              a =>
                                  IsRouteInCorrectArea(airport, a)
+                                 && !airline.Routes.Exists(r => (r.Destination1 == a && r.Destination2 == airport) || (r.Destination2 == a && r.Destination1 == airport))                        
                                  && MathHelpers.GetDistance(
                                      a.Profile.Coordinates.convertToGeoCoordinate(),
                                      airport.Profile.Coordinates.convertToGeoCoordinate()) < 5000
@@ -1249,7 +1255,8 @@
 
             foreach (FleetAirliner airliner in airline.Fleet)
             {
-                 CheckForConvertToCargo(airliner);
+                if (!airliner.HasRoute)
+                    CheckForConvertToCargo(airliner);
 
                 if (airliner.Maintenance.Checks.Exists(c => !c.canPerformCheck()))
                 {
@@ -2006,6 +2013,7 @@
                         Boolean isDeptOk = true;
                         Boolean isDestOk = true;
 
+                      
                         if (!AirportHelpers.HasFreeGates(airport, airline))
                         {
                             isDeptOk = AirportHelpers.RentGates(
@@ -2198,6 +2206,7 @@
                             {
                                 fAirliner.addRoute(route);
                             }
+
                         }
                         else
                         {

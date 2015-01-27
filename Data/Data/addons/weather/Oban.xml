@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Oban, SCT">
+  <months>
+    <month month="1" precipitation="192">
+      <temp min="2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="140">
+      <temp min="2" max="7" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="153">
+      <temp min="3" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="80">
+      <temp min="4" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="67">
+      <temp min="6" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="83">
+      <temp min="9" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="102">
+      <temp min="11" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="119">
+      <temp min="11" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="163">
+      <temp min="9" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="187">
+      <temp min="7" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="182">
+      <temp min="4" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="192">
+      <temp min="3" max="8" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

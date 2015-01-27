@@ -93,7 +93,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             var tab_main = UIHelpers.FindChild<TabControl>(this, "tcMenu");
 
-            if (tab_main != null && (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter || this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo))
+            if (tab_main != null && (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter || this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo || this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo))
             {
                 TabItem infoItem =
                     tab_main.Items.Cast<TabItem>().Where(item => item.Tag.ToString() == "Engine").FirstOrDefault();

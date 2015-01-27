@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Ancona">
+  <months>
+    <month month="1" precipitation="44">
+      <temp min="1" max="9" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="49">
+      <temp min="1" max="10" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="57">
+      <temp min="3" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="59">
+      <temp min="6" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="54">
+      <temp min="11" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="60">
+      <temp min="14" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="47">
+      <temp min="17" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="76">
+      <temp min="17" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="73">
+      <temp min="14" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="76">
+      <temp min="10" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="86">
+      <temp min="5" max="14" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="58">
+      <temp min="2" max="11" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

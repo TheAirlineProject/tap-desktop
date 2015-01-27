@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Morningstar Air Express" iata="MAL"  color="SlateBlue" country="113" CEO="Donald Wheaton" mentality="Safe" market="Domestic" preferedairport="YEG" routefocus="Cargo" schedule="Business"> <narrative narrative="Morningstar Air Express is a cargo airline based out of Edmonton,Alberta. It was founded in 1970. It does flights for FedEx Express. It flies about 18 routes. It operates from Edmonton,Calgary,Vancouver,Victoria,Winnipeg,Montreal-Mirabel,Toronto Pearson,Thunder Bay,Sudbury,Moncton,Quebec City,Timmins,North Bay and Halifax. Its three busiest hubs are Toronto,Montreal-Mirabel and Vancouver followed by Calgary and Winnipeg. At July 2013 its fleet had seven Cessna 208's,five 757-200's and an ATR 72-200. In the past it has had 727-200 Adv.s,an ATR 42-300,Fairchild Metroliners,Fokker F27's,business jets and a HS 125. In the 70's it grew fast with the help of the oil boom of Alberta, at this time it was a Cessna dealer,service and parts center,a fuel dealer, and an FBO full service center. It used Edmonton City Centre Airport until 2010 when it closed. In the 80s it started leasing planes and doing courier's. In July 1990 it started its contract with FedEx." />
+</profile>
+   <info real="True" from="1970" to="2199"></info>
+   <prefereds aircrafts="Cessna 208B Super Cargomaster,Boeing 757-200PF,ATR 72-200,Boeing 727-200 Adv.,ATR 42-300,Fairchild Swearingen Metroliner,Fokker F27"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YVR"></focusairport>
+		  <focusairport airport="YYC"></focusairport>
+		   <focusairport airport="YWG"></focusairport>
+                   <focusairport airport="YYZ"></focusairport>
+		     <focusairport airport="YMX"></focusairport>
+     </focusairports>
+
+        <!--the airliners the airline would start with which isn't on a route earyl (1984) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B Super Cargomaster" early="2" late="7"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200PF" early="3" late="5"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-200" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2012)-->
+	         <airliners>
+	    <airliner type="Boeing 727-200 Adv." early="6" late="0"></airliner>
+	     </airliners>
+	          	     	         <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2014)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="1" late="0"></airliner>
+	     </airliners>
+
+
+
+
+
+<routes>
+                <route destination1="YEG" destination2="YVR" />
+		<route destination1="YVR" destination2="YYC" />
+                <route destination1="YVR" destination2="YYZ"  />
+		<route destination1="YVR" destination2="YYJ" />
+		<route destination1="YVR" destination2="YWG" />
+                <route destination1="YEG" destination2="YYC"  />
+	        <route destination1="YYC" destination2="YYZ" />
+                <route destination1="YYC" destination2="YWG"  />
+		<route destination1="YWG" destination2="YYZ"  />
+	       <route destination1="YWG" destination2="YQT" />
+                <route destination1="YYZ" destination2="YMX"  />
+		<route destination1="YYZ" destination2="YSB"  />
+	         <route destination1="YYZ" destination2="YYB"  />
+		<route destination1="YYZ" destination2="YTS"  />
+		<route destination1="YTS" destination2="YSB"  />
+		<route destination1="YMX" destination2="YQB"  />
+		<route destination1="YMX" destination2="YQM"  />
+		<route destination1="YQM" destination2="YHZ"  />
+        </routes>
+
+
+
+
+
+
+
+
+
+</airline>

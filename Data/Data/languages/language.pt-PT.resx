@@ -3012,7 +3012,7 @@ Boa sorte.</value>
     <value>Criar Rota</value>
   </data>
   <data name="PageRoutes_1005_name" xml:space="preserve">
-    <value>Alocar Aeronaves &amp; Restrições de Voo</value>
+    <value>Alocar Aeronave</value>
   </data>
   <data name="PageRoutes_1006_name" xml:space="preserve">
     <value>Rotas mais Rentáveis</value>
@@ -5490,10 +5490,10 @@ Boa sorte.</value>
     <value>Próxima Verificação</value>
   </data>
   <data name="PageAirlineInsurance_1008_name" xml:space="preserve">
-    <value>Centros de Manutenção</value>
+    <value>Centro de Manutenção Aeronáutica (Nome / Preço Mensal / Taxa)</value>
   </data>
   <data name="PageAirlineInsurance_1009_name" xml:space="preserve">
-    <value>Centros de Manutenção Disponíveis</value>
+    <value>Centros de Manutenção Disponíveis (Nome / Preço Mensal / Taxa)</value>
   </data>
   <data name="PageFleetAirlinerInsurances_1008_name" xml:space="preserve">
     <value>Centro de Manutenção</value>
@@ -5575,5 +5575,86 @@ Boa sorte.</value>
   </data>
   <data name="PopUpExtendContract_1005_name" xml:space="preserve">
     <value>Tipo de Contracto</value>
+  </data>
+  <data name="MessageBox_2135_message" xml:space="preserve">
+    <value>Não podes terminar o contracto com {0} uma vez que está em uso</value>
+  </data>
+  <data name="MessageBox_2135_name" xml:space="preserve">
+    <value>Impossível remover contracto</value>
+  </data>
+  <data name="MessageBox_2136_message" xml:space="preserve">
+    <value>Tens a certeza que queres mudar as classes da aeronave por {0}?</value>
+  </data>
+  <data name="MessageBox_2136_name" xml:space="preserve">
+    <value>Mudar classes</value>
+  </data>
+  <data name="PageAirportDemand_1009_name" xml:space="preserve">
+    <value>Comprimento Máximo da Pista</value>
+  </data>
+  <data name="PageRestrictions_1000_name" xml:space="preserve">
+    <value>Restrições</value>
+  </data>
+  <data name="PageRestrictions_1001_name" xml:space="preserve">
+    <value>Companhias Banidas</value>
+  </data>
+  <data name="PageRoutes_1011_name" xml:space="preserve">
+    <value>Restrições de Voo </value>
+  </data>
+  <data name="MessageBox_2235_message" xml:space="preserve">
+    <value>{0} aceitou construir serviços aduaneiros no aeroporto</value>
+  </data>
+  <data name="MessageBox_2235_name" xml:space="preserve">
+    <value>Construir Serviços Aduaneiros </value>
+  </data>
+  <data name="MessageBox_2236_message" xml:space="preserve">
+    <value>{0} recusou construir serviços aduaneiros no aeroporto</value>
+  </data>
+  <data name="MessageBox_2236_name" xml:space="preserve">
+    <value>Serviços Aduaneiros Recusados</value>
+  </data>
+  <data name="PageAirportAdvisory_1000_name" xml:space="preserve">
+    <value>Rotas não servidas</value>
+  </data>
+  <data name="PageAirport_2004_name" xml:space="preserve">
+    <value>Recomendação</value>
+  </data>
+  <data name="PageAirport_3000_name" xml:space="preserve">
+    <value>A procura diária estimada de {0} para {1} é {2} passageiros. Uma rota com {3} frequências semanais seria uma boa opção.</value>
+  </data>
+  <data name="MessageBox_2019_message" xml:space="preserve">
+    <value>Não tens dinheiro suficiente para aplicar as configurações à aeronave.</value>
+  </data>
+  <data name="MessageBox_2019_name" xml:space="preserve">
+    <value>Sem dinheiro disponível</value>
+  </data>
+  <data name="PageAirlineFinances_1022_name" xml:space="preserve">
+    <value>Limite de Empréstimos</value>
+  </data>
+  <data name="PageAirlineFleet_1018_name" xml:space="preserve">
+    <value>Condição</value>
+  </data>
+  <data name="PageAirlineRatings_1016_name" xml:space="preserve">
+    <value>Avaliação das Rotas</value>
+  </data>
+  <data name="PageAirlineRatings_1017_name" xml:space="preserve">
+    <value>Rota</value>
+  </data>
+  <data name="PageAirlineRatings_1018_name" xml:space="preserve">
+    <value>Avaliação</value>
+  </data>
+  <data name="PageAirlineRatings_1019_name" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="PageUsedAirliners_1009_name" xml:space="preserve">
+    <value>Mostrar Somente Fabricantes Principais</value>
+  </data>
+  <data name="PageAirlineEmployees_1017_name" xml:space="preserve">
+    <value>Horas Voadas (HH:MM)</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_1017_name" xml:space="preserve">
+    <value>Horas Voadas (DD:HH:MM)</value>
+  </data>
+  <data name="PageShowPilot_1007_name" xml:space="preserve">
+    <value>Horas Voadas (HH:M)</value>
   </data>
 </root>

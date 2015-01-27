@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Island Express Air" iata="1X"  color="DarkViolet" country="113" CEO="Gerry Visser" mentality="Safe" market="Local" preferedairport="YXX" schedule="Business"> <narrative narrative="Island Express Air is based at the British Columbia city of Abbotsford, but like its name suggests one of the main places it serves are communities on Vancouver Island. These include Victoria,Nanaimo and Tofino. It also serves three Vancouver area airports, International,Pitt Meadows and Boundary Bay. It does charters also, including to the US like the Seattle area in Washington. It has about 5 destinations out of Abbotsford and 6 out of Victoria for its two main bases. It was founed in 2009. It has as of June 2014 three Piper Navajo's,a Beechcraft King Air and a Piper Cherokee." />
+</profile>
+   <info real="True" from="2009" to="2199"></info>
+   <prefereds aircrafts="PA-31 Navajo,Beechcraft King Air B200,PA-28 Cherokee"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YYJ"></focusairport>
+		  <focusairport airport="YCD"></focusairport>
+		   <focusairport airport="YPK"></focusairport>
+     </focusairports>
+
+        <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="PA-31 Navajo" early="3" late="3"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="0" late="1"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="PA-28 Cherokee" early="1" late="1"></airliner>
+	     </airliners>
+
+
+
+
+<routes>
+                <route destination1="YXX" destination2="YVR" />
+		<route destination1="YXX" destination2="YPK" />
+                <route destination1="YXX" destination2="YYJ"  />
+		<route destination1="YXX" destination2="YCD" />
+		<route destination1="YYJ" destination2="YCD" />
+                <route destination1="YYJ" destination2="YVR"  />
+	        <route destination1="YYJ" destination2="YPK" />
+                <route destination1="YCD" destination2="YVR"  />
+		<route destination1="YYJ" destination2="YAZ"  />
+	       <route destination1="YXX" destination2="YDT" />
+                <route destination1="YYJ" destination2="YDT"  />
+		<route destination1="YCD" destination2="YDT"  />
+        </routes>
+
+
+
+
+
+
+
+
+
+</airline>

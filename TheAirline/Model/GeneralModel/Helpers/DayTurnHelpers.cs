@@ -437,7 +437,8 @@
 
             if (airliner.CurrentFlight.isPassengerFlight())
             {
-                int cabinCrew = ((AirlinerPassengerType)airliner.Airliner.Type).CabinCrew;
+                
+                int cabinCrew = ((AirlinerPassengerType)airliner.Airliner.Type).CabinCrew; 
 
                 wages = cabinCrew * flighttime.TotalHours
                         * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cabin Wage"));

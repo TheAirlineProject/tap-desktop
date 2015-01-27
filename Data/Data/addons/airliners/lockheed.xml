@@ -50,11 +50,11 @@
     <capacity passengers="315" cockpitcrew="3" cabincrew="7" maxclasses="3" />
     <produced from="1979" to="1983" rate="16" />
   </airliner>
-  <airliner manufacturer="Lockheed" name="Lockeed L-188A" price="2000000">
+  <airliner manufacturer="Lockheed" name="Lockeed L-188A" price="2601000">
     <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop" />
-    <specs wingspan="30.81" length="31.85" range="3450" speed="721" fuelcapacity="23000" consumption="0.068"
-           runwaylengthrequired="1330" />
-    <capacity passengers="98" cockpitcrew="3" cabincrew="2" maxclasses="1" />
+    <specs wingspan="30.81" length="31.85" range="5006" speed="652" fuelcapacity="24681" consumption="0.041"
+           runwaylengthrequired="1539" />
+    <capacity passengers="104" cockpitcrew="3" cabincrew="2" maxclasses="1" />
     <produced from="1959" to="1961" rate="42" />
   </airliner>
     <airliner type="Cargo" manufacturer="Lockheed" name="Lockheed L-100-30" price="17512740"> <!--59600000-->
@@ -78,24 +78,24 @@
     <capacity passengers="81" cockpitcrew="3" cabincrew="2" maxclasses="2" />
     <produced from="1946" to="1951" rate="4" />
   </airliner>
-      <airliner manufacturer="Lockheed" name="L-749 Constellation" price="1160000">
+      <airliner manufacturer="Lockheed" name="L-749 Constellation" price="970000">
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
-    <specs wingspan="37.49" length="29.67" range="6112" speed="555" fuelcapacity="28300" consumption="0.041"
+    <specs wingspan="37.49" length="29.67" range="7199" speed="489" fuelcapacity="22372" consumption="0.041"
            runwaylengthrequired="1400" />
     <capacity passengers="81" cockpitcrew="4" cabincrew="2" maxclasses="2" />
     <produced from="1947" to="1951" rate="24" />
   </airliner>
-        <airliner manufacturer="Lockheed" name="L-1049 Super Constellation" price="1415000">
+        <airliner manufacturer="Lockheed" name="L-1049 Super Constellation" price="2070000">
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
-    <specs wingspan="37.49" length="34.62" range="8288" speed="489" fuelcapacity="31700" consumption="0.037"
-           runwaylengthrequired="1400" />
-    <capacity passengers="106" cockpitcrew="4" cabincrew="3" maxclasses="2" />
+    <specs wingspan="37.49" length="34.62" range="7225" speed="499" fuelcapacity="29791" consumption="0.042"
+           runwaylengthrequired="1768" />
+    <capacity passengers="99" cockpitcrew="4" cabincrew="3" maxclasses="2" />
     <produced from="1952" to="1958" rate="43" />
   </airliner>
-          <airliner manufacturer="Lockheed" name="L-1649 Starliner" price="1430000">
+          <airliner manufacturer="Lockheed" name="L-1649 Starliner" price="2500000">
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Turboprop" />
-    <specs wingspan="45.72" length="35.10" range="9000" speed="467" fuelcapacity="32350" consumption="0.037"
-           runwaylengthrequired="1400" />
+    <specs wingspan="45.72" length="35.10" range="8366" speed="520" fuelcapacity="36334" consumption="0.036"
+           runwaylengthrequired="1905" />
     <capacity passengers="99" cockpitcrew="3" cabincrew="2" maxclasses="2" />
     <produced from="1957" to="1958" rate="22" />
   </airliner>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Pisa">
+  <months>
+    <month month="1" precipitation="63">
+      <temp min="2" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="58">
+      <temp min="2" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="60">
+      <temp min="4" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="89">
+      <temp min="7" max="18" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="62">
+      <temp min="10" max="22" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="48">
+      <temp min="14" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="25">
+      <temp min="16" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="50">
+      <temp min="17" max="30" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="102">
+      <temp min="14" max="26" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="140">
+      <temp min="10" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="124">
+      <temp min="6" max="16" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="74">
+      <temp min="3" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

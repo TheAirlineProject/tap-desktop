@@ -452,9 +452,16 @@
             else
             {
                 double enginePrice = this.EngineType.Price;
-                double standardEnginePrice = EngineTypes.GetStandardEngineType(this.Type).Price;
 
-                diffEnginePrice = enginePrice - standardEnginePrice;
+                if (EngineTypes.GetStandardEngineType(this.Type) == null)
+                    diffEnginePrice = 0;
+                else
+                {
+
+                    double standardEnginePrice = EngineTypes.GetStandardEngineType(this.Type).Price;
+
+                    diffEnginePrice = enginePrice - standardEnginePrice;
+                }
             }
 
             basePrice += diffEnginePrice;

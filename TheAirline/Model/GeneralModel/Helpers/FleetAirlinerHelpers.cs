@@ -459,16 +459,24 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     double seatsPrice = airliner.CurrentFlight.Classes.Sum(c => (airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses - 1) * c.Passengers);
                     return basePrice + paxPrice + seatsPrice;
                 }
-                else 
+                else if (airliner.Airliner.Type is AirlinerCombiType)
                 {
                     int pax = airliner.CurrentFlight.getTotalPassengers();
-
+                    
                     double basePrice = fuelPrice * distance * ((AirlinerCombiType)airliner.Airliner.Type).MaxSeatingCapacity * airliner.Airliner.FuelConsumption * 0.55;
                     double paxPrice = fuelPrice * distance * airliner.Airliner.FuelConsumption * airliner.CurrentFlight.getTotalPassengers() * 0.45;
                     double seatsPrice = airliner.CurrentFlight.Classes.Sum(c => (airliner.Airliner.getAirlinerClass(c.AirlinerClass.Type).getFacility(AirlinerFacility.FacilityType.Seat).SeatUses - 1) * c.Passengers);
                     return basePrice + paxPrice + seatsPrice;
                 }
+                else 
+                {
+                    double basePrice = fuelPrice * distance * ((AirlinerCargoType)airliner.Airliner.Type).CargoSize * airliner.Airliner.FuelConsumption * 0.55;
+                    double cargoPrice = fuelPrice * airliner.Airliner.FuelConsumption * airliner.CurrentFlight.Cargo * distance * 0.45;
+
+                    return basePrice + cargoPrice;
+                }
                
+
 
             }
             else
@@ -488,9 +496,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     return basePrice + cargoPrice;
                 }
             }
-
-
-        }
+         }
         //converts a passenger airliner to a cargo airliner
         public static void ConvertPassengerToCargoAirliner(FleetAirliner airliner)
         {

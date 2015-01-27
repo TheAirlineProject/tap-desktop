@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Pacific Coastal Airlines" iata="8P"  color="MediumBlue" country="113" CEO="George Smith" mentality="Safe" market="Local" preferedairport="YVR" schedule="Business"> <narrative narrative="Pacific Coastal Airlines is based at Vancouver International and currently has all of its service within British Columbia. It was founded in 1987 after the merger of Powell Air and the Port Hardy division of Air BC. Port Hardy at the north end of Vancouver Island is its other hub. It serves 16 destinations on about 20 different routes. The longest is Vancouver to Masset at 819KM. The shortest is Vancouver-Victoria at 63KM. It serves Anahim Lake,Bella Bella,Bella Coola,Campbell River,Comox,Cranbrook,Kelowna,Klemtu,Masset,Port Hardy,Powell River,Prince George,Trail,Victoria,Vancouver and Williams Lake. Former destinations are Kamloops,Penticton,Terrace and Calgary,Alberta. At December 2013 its fleet was seven Beechcraft 1900C's,six Saab 340's,four DHC-2 Beaver's,four Grumman Goose seaplane's,two Short 360's,a Beechcraft King Air and a DHC-3 Otter." />
+</profile>
+   <info real="True" from="1987" to="2199"></info>
+   <prefereds aircrafts="Beechcraft 1900C,Saab 340B,DHC-2 Beaver,Short 360,Beechcraft King Air B200,DHC-6-300 Twin Otter"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YZT"></focusairport>
+     </focusairports>
+
+        <!--the airliners the airline would start with which isn't on a route earyl (1987) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900C" early="0" late="7"></airliner>
+	     </airliners>
+    <!--the airliners the airline would start with which isn't on a route earyl (1987) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="1" late="1"></airliner>
+	     </airliners>
+	     	         <!--the airliners the airline would start with which isn't on a route earyl (1987) late (2015)-->
+	         <airliners>
+	    <airliner type="Saab 340B" early="0" late="6"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1987) late (2015)-->
+	         <airliners>
+	    <airliner type="Short 360" early="0" late="2"></airliner>
+	     </airliners>
+	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1987) late (2015)-->
+	         <airliners>
+	    <airliner type="DHC-3 Otter" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	     	         <!--the airliners the airline would start with which isn't on a route earyl (1987) late (2015)-->
+	         <airliners>
+	    <airliner type="DHC-2 Beaver" early="2" late="4"></airliner>
+	     </airliners>
+
+
+
+
+
+<routes>
+                <route destination1="YVR" destination2="YAA" />
+		<route destination1="YVR" destination2="ZEL" />
+                <route destination1="YZT" destination2="ZEL" />
+                <route destination1="ZEL" destination2="YBL" />
+		<route destination1="ZEL" destination2="YQQ" />
+		<route destination1="YVR" destination2="QBC" />
+		<route destination1="YVR" destination2="YBL"/>
+		<route destination1="YVR" destination2="YQQ" />
+		<route destination1="YVR" destination2="YXC"/>
+		<route destination1="YXC" destination2="YLW" />
+		<route destination1="YXC" destination2="YYJ" />
+		<route destination1="YLW" destination2="YZZ" />
+		<route destination1="YVR" destination2="ZMT" />
+		<route destination1="YVR" destination2="YZT" />
+		<route destination1="YVR" destination2="YPW" />
+		<route destination1="YXS" destination2="YYJ" />
+		<route destination1="YVR" destination2="YZZ" />
+		<route destination1="YVR" destination2="YYJ" />
+		<route destination1="YVR" destination2="YWL" />
+	        </routes>
+
+
+
+
+
+
+
+
+
+</airline>

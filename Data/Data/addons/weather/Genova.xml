@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weather type="town" value="Genova">
+  <months>
+    <month month="1" precipitation="102">
+      <temp min="5" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="2" precipitation="74">
+      <temp min="6" max="12" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="3" precipitation="82">
+      <temp min="8" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="4" precipitation="88">
+      <temp min="10" max="17" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="5" precipitation="72">
+      <temp min="14" max="21" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="6" precipitation="58">
+      <temp min="17" max="24" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="7" precipitation="24">
+      <temp min="21" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="8" precipitation="69">
+      <temp min="21" max="28" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="9" precipitation="136">
+      <temp min="18" max="25" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="10" precipitation="171">
+      <temp min="14" max="20" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="11" precipitation="109">
+      <temp min="9" max="15" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+    <month month="12" precipitation="93">
+      <temp min="6" max="13" />
+      <wind min="Calm" max="Near_Gale" />
+    </month>
+  </months>
+</weather>

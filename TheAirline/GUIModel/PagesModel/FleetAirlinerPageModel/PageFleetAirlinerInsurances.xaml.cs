@@ -21,7 +21,6 @@
 
         public PageFleetAirlinerInsurances(FleetAirlinerMVVM airliner)
         {
-
             this.Loaded += PageFleetAirlinerInsurances_Loaded;
 
             this.Airliner = airliner;

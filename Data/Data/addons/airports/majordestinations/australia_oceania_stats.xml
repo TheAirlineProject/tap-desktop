@@ -1,25 +1,535 @@
 
 
 <majordestinations>
-<majordestination airport="AKL">
+<majordestination airport="ABX">
     <destinations>
+       <destination airport="SYD" pax="230"  />
+    </destinations>
+  </majordestination>
+<majordestination airport="ADL">
+    <destinations>
+    <destination airport="AKL" pax="92"  />
+    <destination airport="BNE" pax="762"  />
+    <destination airport="CBR" pax="179"  />
+    <destination airport="CNS" pax="43"  />
+    <destination airport="DPS" pax="88"  />
+    <destination airport="DXB" pax="192"  />
+    <destination airport="HKG" pax="64"  />
+    <destination airport="KUL" pax="230"  />
+     <destination airport="MEL" pax="2242"  />
+     <destination airport="OOL" pax="180"  />
+     <destination airport="PER" pax="624"  />
+     <destination airport="PLO" pax="188"  />
+     <destination airport="SIN" pax="240"  />
+       <destination airport="SYD" pax="1779"  />
+    </destinations>
+  </majordestination>
+  <majordestination airport="AKL">
+    <destinations>
+      <destination airport="ADL" pax="92"  />
+      <destination airport="BNE" pax="891" />
        <destination airport="LHR" pax="151"  />
+        <destination airport="MCY" pax="8"  />
+         <destination airport="MEL" pax="1013" />
+	    <destination airport="NLK" pax="12"  />
+	     <destination airport="OOL" pax="280"  />
+	 <destination airport="PER" pax="175"  />
+       <destination airport="SYD" pax="1464"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="APW">
+    <destinations>
+       <destination airport="BNE" pax="12"  />
+       <destination airport="SYD" pax="30"  />
+    </destinations>
+  </majordestination>
+  <majordestination airport="ARM">
+    <destinations>
+       <destination airport="SYD" pax="21"  />
+    </destinations>
+  </majordestination>
+    <majordestination airport="ASP">
+    <destinations>
+     <destination airport="MEL" pax="142"  />
+       <destination airport="SYD" pax="148"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="AYQ">
+    <destinations>
+       <destination airport="SYD" pax="128"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="BDB">
+    <destinations>
+       <destination airport="BNE" pax="118"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="BME">
+    <destinations>
+       <destination airport="PER" pax="313"  />
     </destinations>
   </majordestination>
   <majordestination airport="BNE">
     <destinations>
+     <destination airport="ADL" pax="762"  />
+      <destination airport="AKL" pax="891" />
+      <destination airport="APW" pax="12" />
+      <destination airport="AUH" pax="91" />
+     <destination airport="BDB" pax="118"  />
+     <destination airport="BKK" pax="159" />
+     <destination airport="CAN" pax="94" />
+     <destination airport="CBR" pax="570"  />
+     <destination airport="CHC" pax="196" />
+      <destination airport="CNS" pax="1228"  />
+      <destination airport="DPS" pax="196" />
+        <destination airport="DRW" pax="382"  />
+	<destination airport="DUD" pax="54" />
+	<destination airport="DXB" pax="351" />
+       <destination airport="EMD" pax="264"  />
+       <destination airport="GLT" pax="470"  />
+        <destination airport="HBA" pax="137"  />
+	<destination airport="HIR" pax="51" />
+	<destination airport="HKG" pax="329" />
+       <destination airport="HTI" pax="153"  />
+       <destination airport="INU" pax="28" />
+       <destination airport="ISA" pax="158"  />
+       <destination airport="KUL" pax="163" />
+     <destination airport="MEL" pax="3276"  />
+      <destination airport="MKY" pax="817"  />
+      <destination airport="MNL" pax="32" />
+      <destination airport="MOV" pax="182"  />
+      <destination airport="NAN" pax="193" />
+      <destination airport="NOU" pax="43" />
+      <destination airport="NTL" pax="584"  />
+     <destination airport="PER" pax="1060"  />
+     <destination airport="POM" pax="180" />
+     <destination airport="PPP" pax="236"  />
+     <destination airport="ROK" pax="639"  />
+     <destination airport="SIN" pax="789" />
+     <destination airport="SON" pax="6" />
+     <destination airport="SYD" pax="4454"  />
        <destination airport="TPE" pax="105"  />
+       <destination airport="TSV" pax="956"  />
+       <destination airport="VLI" pax="73" />
+       <destination airport="WLG" pax="192" />
+       <destination airport="ZQN" pax="54" />
+    </destinations>
+  </majordestination>
+      <majordestination airport="BNK">
+    <destinations>
+       <destination airport="SYD" pax="326"  />
+    </destinations>
+  </majordestination>
+  <majordestination airport="CBR">
+    <destinations>
+    <destination airport="ADL" pax="179"  />
+    <destination airport="BNE" pax="570"  />
+       <destination airport="MEL" pax="973"  />
+       <destination airport="SYD" pax="994"  />
+    </destinations>
+  </majordestination>
+      <majordestination airport="CFS">
+    <destinations>
+       <destination airport="SYD" pax="366"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="CHC">
+    <destinations>
+    <destination airport="BNE" pax="196"  />
+    <destination airport="MEL" pax="264"  />
+     <destination airport="OOL" pax="84"  />
+    <destination airport="PER" pax="15"  />
+       <destination airport="SYD" pax="468"  />
+    </destinations>
+  </majordestination>
+    <majordestination airport="CNS">
+    <destinations>
+    <destination airport="AKL" pax="43"  />
+     <destination airport="BNE" pax="1228"  />
+     <destination airport="HKG" pax="60"  />
+     <destination airport="KIX" pax="90"  />
+     <destination airport="MEL" pax="704"  />
+     <destination airport="NRT" pax="149"  />
+     <destination airport="POM" pax="96"  />
+     <destination airport="PVG" pax="11"  />
+     <destination airport="RAB" pax="5"  />
+       <destination airport="SYD" pax="1007"  />
+    </destinations>
+  </majordestination>
+    <majordestination airport="DBO">
+    <destinations>
+       <destination airport="SYD" pax="193"  />
+    </destinations>
+  </majordestination>
+    <majordestination airport="DRW">
+    <destinations>
+      <destination airport="BNE" pax="382"  />
+        <destination airport="DPS" pax="133"  />
+	  <destination airport="KUL" pax="18"  />
+        <destination airport="MEL" pax="281"  />
+	  <destination airport="MNL" pax="48"  />
+	<destination airport="PER" pax="175"  />
+	  <destination airport="SIN" pax="137"  />
+       <destination airport="SYD" pax="345"  />
+    </destinations>
+  </majordestination>
+      <majordestination airport="DUD">
+    <destinations>
+       <destination airport="BNE" pax="54"  />
+        <destination airport="MEL" pax="4"  />
+	 <destination airport="SYD" pax="5"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="EMD">
+    <destinations>
+       <destination airport="BNE" pax="264"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="GET">
+    <destinations>
+       <destination airport="PER" pax="132"  />
+    </destinations>
+  </majordestination>
+      <majordestination airport="GLT">
+    <destinations>
+       <destination airport="BNE" pax="470"  />
+    </destinations>
+  </majordestination>
+      <majordestination airport="HBA">
+    <destinations>
+     <destination airport="BNE" pax="137"  />
+     <destination airport="MEL" pax="1392"  />
+       <destination airport="SYD" pax="530"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="HIR">
+    <destinations>
+       <destination airport="BNE" pax="51"  />
+    </destinations>
+  </majordestination>
+    <majordestination airport="HTI">
+    <destinations>
+    <destination airport="BNE" pax="153"  />
+      <destination airport="MEL" pax="102"  />
+       <destination airport="SYD" pax="197"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="INU">
+    <destinations>
+       <destination airport="BNE" pax="28"  />
+    </destinations>
+  </majordestination>
+    <majordestination airport="ISA">
+    <destinations>
+       <destination airport="BNE" pax="158"  />
+    </destinations>
+  </majordestination>
+  <majordestination airport="KGI">
+    <destinations>
+       <destination airport="PER" pax="215"  />
+    </destinations>
+  </majordestination>
+    <majordestination airport="KTA">
+    <destinations>
+       <destination airport="PER" pax="685"  />
+    </destinations>
+  </majordestination>
+  <majordestination airport="LST">
+    <destinations>
+       <destination airport="MEL" pax="887"  />
+         <destination airport="SYD" pax="287"  />
+    </destinations>
+  </majordestination>
+      <majordestination airport="MCY">
+    <destinations>
+     <destination airport="AKL" pax="8"  />
+       <destination airport="SYD" pax="408"  />
     </destinations>
   </majordestination>
 <majordestination airport="MEL">
     <destinations>
+     <destination airport="ADL" pax="2242"  />
+       <destination airport="AKL" pax="1013" />
+      <destination airport="ASP" pax="142"  />
+      <destination airport="AUH" pax="193"  />
+      <destination airport="BKK" pax="372"  />
+      <destination airport="BNE" pax="3276"  />
+      <destination airport="BWN" pax="134"  />
+      <destination airport="CAN" pax="250"  />
+      <destination airport="CBR" pax="973"  />
+      <destination airport="CGK" pax="57"  />
+      <destination airport="CHC" pax="264"  />
+      <destination airport="CNS" pax="704"  />
+      <destination airport="CTU" pax="40"  />
+      <destination airport="DOH" pax="169"  />
+      <destination airport="DPS" pax="378"  />
+        <destination airport="DRW" pax="281"  />
+	 <destination airport="DUD" pax="4"  />
+	<destination airport="DXB" pax="534"  />
+	<destination airport="HAN" pax="15"  />
+       <destination airport="HBA" pax="1392"  />
+       <destination airport="HKG" pax="573"  />
+       <destination airport="HKT" pax="31"  />
+         <destination airport="HTI" pax="102"  />
+	   <destination airport="KUL" pax="900" />
        <destination airport="LHR" pax="231"  />
+        <destination airport="LST" pax="887"  />
+	 <destination airport="MKY" pax="420"  />
+	 <destination airport="MNL" pax="58"  />
+	   <destination airport="MQL" pax="199"  />
+	   <destination airport="NRT" pax="14"  />
+	 <destination airport="NTL" pax="435"  />
+        <destination airport="OOL" pax="1714"  />
+	<destination airport="PEK" pax="43"  />
+	 <destination airport="PER" pax="2914"  />
+	 <destination airport="PVG" pax="214"  />
+	 <destination airport="SGN" pax="134"  />
+	   <destination airport="SIN" pax="1125" />
+        <destination airport="SYD" pax="8280"  />
+	<destination airport="VLI" pax="7"  />
+	<destination airport="WLG" pax="190"  />
+	<destination airport="ZQN" pax="86"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="MKY">
+    <destinations>
+       <destination airport="BNE" pax="817"  />
+        <destination airport="MEL" pax="420"  />
+       <destination airport="SYD" pax="472"  />
+    </destinations>
+  </majordestination>
+            <majordestination airport="MOV">
+    <destinations>
+       <destination airport="BNE" pax="182"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="MQL">
+    <destinations>
+       <destination airport="MEL" pax="199"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="NAN">
+    <destinations>
+    <destination airport="BNE" pax="193"  />
+       <destination airport="SYD" pax="454"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="NLK">
+    <destinations>
+       <destination airport="AKL" pax="12"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="NOU">
+    <destinations>
+    <destination airport="BNE" pax="43"  />
+       <destination airport="SYD" pax="99"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="NTL">
+    <destinations>
+       <destination airport="BNE" pax="584"  />
+        <destination airport="MEL" pax="435"  />
+    </destinations>
+  </majordestination>
+  <majordestination airport="OOL">
+    <destinations>
+     <destination airport="ADL" pax="212"  />
+      <destination airport="AKL" pax="280"  />
+       <destination airport="CHC" pax="84"  />
+        <destination airport="KIX" pax="58"  />
+        <destination airport="KUL" pax="192"  />
+     <destination airport="MEL" pax="1714"  />
+      <destination airport="NRT" pax="127"  />
+      <destination airport="SIN" pax="135"  />
+       <destination airport="SYD" pax="2589"  />
+    </destinations>
+  </majordestination>
+  <majordestination airport="PER">
+    <destinations>
+    <destination airport="ADL" pax="624"  />
+    <destination airport="AKL" pax="175"  />
+    <destination airport="BKI" pax="17"  />
+    <destination airport="BKK" pax="127"  />
+     <destination airport="BME" pax="313"  />
+     <destination airport="BNE" pax="1060"  />
+     <destination airport="CAN" pax="50"  />
+     <destination airport="CGK" pax="70"  />
+     <destination airport="CHC" pax="15"  />
+     <destination airport="DOH" pax="160"  />
+       <destination airport="DPS" pax="832" />
+     <destination airport="DRW" pax="175"  />
+     <destination airport="DXB" pax="517"  />
+      <destination airport="GET" pax="132"  />
+      <destination airport="HKG" pax="207"  />
+      <destination airport="HKT" pax="65"  />
+      <destination airport="JNB" pax="136"  />
+      <destination airport="KGI" pax="215"  />
+     <destination airport="KTA" pax="685"  />
+     <destination airport="KUL" pax="539"  />
+     <destination airport="LOP" pax="38"  />
+     <destination airport="MEL" pax="2914"  />
+     <destination airport="MNL" pax="4"  />
+     <destination airport="MRU" pax="51"  />
+     <destination airport="PHE" pax="477"  />
+       <destination airport="SIN" pax="1052" />
+       <destination airport="SYD" pax="1805"  />
+         <destination airport="ZNE" pax="407"  />
+        </destinations>
+  </majordestination>
+          <majordestination airport="PHE">
+    <destinations>
+       <destination airport="PER" pax="477"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="PLO">
+    <destinations>
+       <destination airport="ADL" pax="188"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="POM">
+    <destinations>
+    <destination airport="BNE" pax="180"  />
+     <destination airport="CNS" pax="96"  />
+       <destination airport="SYD" pax="19"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="PPP">
+    <destinations>
+       <destination airport="BNE" pax="236"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="PQQ">
+    <destinations>
+       <destination airport="SYD" pax="191"  />
+    </destinations>
+  </majordestination>
+            <majordestination airport="RAB">
+    <destinations>
+       <destination airport="CNS" pax="5"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="RAR">
+    <destinations>
+       <destination airport="SYD" pax="17"  />
+    </destinations>
+  </majordestination>
+    <majordestination airport="ROK">
+    <destinations>
+       <destination airport="BNE" pax="639"  />
+    </destinations>
+  </majordestination>
+        <majordestination airport="SON">
+    <destinations>
+       <destination airport="BNE" pax="6"  />
     </destinations>
   </majordestination>
 <majordestination airport="SYD">
     <destinations>
+    <destination airport="ABX" pax="230"  />
+     <destination airport="ADL" pax="1779"  />
+        <destination airport="AKL" pax="1464"  />
+	 <destination airport="APW" pax="30" />
+       <destination airport="ARM" pax="21"  />
+      <destination airport="ASP" pax="148"  />
+      <destination airport="AUH" pax="397"  />
+      <destination airport="AYQ" pax="128"  />
+         <destination airport="BKK" pax="538"  />
+     <destination airport="BNE" pax="4454"  />
+      <destination airport="BNK" pax="326"  />
+      <destination airport="CAN" pax="336"  />
+      <destination airport="CBR" pax="994"  />
+        <destination airport="CFS" pax="366"  />
+	 <destination airport="CGK" pax="142" />
+	   <destination airport="CHC" pax="468"  />
+	    <destination airport="CKG" pax="21" />
+       <destination airport="CNS" pax="1007"  />
+       <destination airport="DBO" pax="193"  />
+        <destination airport="DEL" pax="53" />
+       <destination airport="DPS" pax="349"  />
+       <destination airport="DRW" pax="345"  />
+        <destination airport="DUD" pax="5"  />
+          <destination airport="DXB" pax="757"  />
+	   <destination airport="EZE" pax="52" />
+	   <destination airport="FRA" pax="336" />
+	    <destination airport="HAN" pax="22" />
+        <destination airport="HBA" pax="530"  />
+	   <destination airport="HKG" pax="946"  />
+	    <destination airport="HKT" pax="74" />
+	  <destination airport="HTI" pax="197"  />
+	  <destination airport="ICN" pax="332" />
+	   <destination airport="JNB" pax="177" />
+	     <destination airport="KUL" pax="770"  />
        <destination airport="LHR" pax="513"  />
+         <destination airport="LST" pax="287"  />
+       <destination airport="MCY" pax="408"  />
+        <destination airport="MKY" pax="472"  />
+          <destination airport="MEL" pax="8280"  />
+	   <destination airport="MNL" pax="183" />
+	     <destination airport="NAN" pax="454"  />
+	      <destination airport="NKG" pax="26" />
+	      <destination airport="NOU" pax="99" />
+	     <destination airport="NRT" pax="380"  />
+	   <destination airport="OOL" pax="2589"  />
+	    <destination airport="PEK" pax="168" />
+	    <destination airport="PER" pax="1805"  />
+	     <destination airport="POM" pax="19" />
+	    <destination airport="PQQ" pax="191"  />
+	    <destination airport="PVG" pax="388"  />
+	     <destination airport="RAR" pax="17" />
+	      <destination airport="SCL" pax="153" />
+	     <destination airport="SGN" pax="134" />
+	       <destination airport="SIN" pax="1377"  />
+	       <destination airport="TBU" pax="22" />
        <destination airport="TPE" pax="88" />
+       <destination airport="TSV" pax="175"  />
+        <destination airport="VLI" pax="75" />
+       <destination airport="WGA" pax="186"  />
+       <destination airport="WLG" pax="324" />
+       <destination airport="YVR" pax="131" />
+       <destination airport="YYZ" pax="35" />
+        <destination airport="ZQN" pax="165" />
+    </destinations>
+  </majordestination>
+            <majordestination airport="TBU">
+    <destinations>
+       <destination airport="SYD" pax="22"  />
+    </destinations>
+  </majordestination>
+  <majordestination airport="TSV">
+    <destinations>
+       <destination airport="BNE" pax="956"  />
+       <destination airport="SYD" pax="175"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="VLI">
+    <destinations>
+    <destination airport="BNE" pax="73"  />
+    <destination airport="MEL" pax="7"  />
+       <destination airport="SYD" pax="75"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="WGA">
+    <destinations>
+       <destination airport="SYD" pax="186"  />
+    </destinations>
+  </majordestination>
+            <majordestination airport="WLG">
+    <destinations>
+    <destination airport="BNE" pax="192"  />
+    <destination airport="MEL" pax="190"  />
+       <destination airport="SYD" pax="324"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="ZNE">
+    <destinations>
+       <destination airport="PER" pax="407"  />
+    </destinations>
+  </majordestination>
+          <majordestination airport="ZQN">
+    <destinations>
+    <destination airport="BNE" pax="54"  />
+    <destination airport="MEL" pax="86"  />
+       <destination airport="SYD" pax="165"  />
     </destinations>
   </majordestination>
 </majordestinations>

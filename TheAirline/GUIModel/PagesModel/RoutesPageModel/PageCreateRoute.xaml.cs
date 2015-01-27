@@ -208,6 +208,11 @@
             this.createGrouping(this.cbDestination2);
             this.createGrouping(this.cbStopover1);
             this.createGrouping(this.cbStopover2);
+
+            if (GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Cargo || GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Helicopter_Cargo)
+                rbRouteCargo.IsChecked = true;
+            else if (GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Mixed || GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Mixed)
+                rbRouteMixed.IsChecked = true;
         }
 
         //creates the grouping for a combobox
@@ -373,6 +378,8 @@
                         rClass.FarePrice = PassengerHelpers.GetPassengerPrice(destination1, destination2)
                                            * GeneralHelpers.ClassToPriceFactor(rClass.Type);
                     }
+
+                    txtCargoPrice.Text = string.Format("{0:0.##}", PassengerHelpers.GetCargoPrice(destination1, destination2)); 
 
                     this.txtDistance.Text =
                         new DistanceToUnitConverter().Convert(MathHelpers.GetDistance(destination1, destination2))

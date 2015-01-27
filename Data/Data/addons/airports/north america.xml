@@ -16,6 +16,116 @@
       <runway name="11/29" length="761" surface="Gravel" />
        </runways>
   </airport>
+  <airport name="Roberval Airport" icao="CYRJ" iata="YRJ" type="Domestic" season="All_Year">
+    <town town="Roberval, QC" country="113" GMT="-05:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="48°31'12''N" />
+      <longitude value="72°15'57''W" />
+    </coordinates>
+    <size value="Smallest" pax="7" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+     <runway name="16/34" length="1524" surface="Asphalt" />
+       </runways>
+  </airport>
+<airport name="Gatineau-Ottawa Executive Airport" icao="CYND" iata="YND" type="Domestic" season="All_Year">
+    <town town="Gatineau, QC" country="113" GMT="-05:00:00" DST="-04:00:00" />
+    <coordinates>
+      <latitude value="45°31'18''N" />
+      <longitude value="75°33'49''W" />
+    </coordinates>
+    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+     <runway name="9/27" length="1829" surface="Asphalt" />
+       </runways>
+  </airport>
+   <airport name="Anahim Lake Airport" icao="CAJ4" iata="YAA" type="Domestic" season="All_Year">
+    <town town="Anahim Lake, BC" country="113" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="52°47'05''N" />
+      <longitude value="125°18'13''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="1415" surface="Asphalt" />
+          </runways>
+  </airport>
+   <airport name="Port Alberni Airport" icao="CBS8" iata="YPB" type="Domestic" season="All_Year">
+    <town town="Port Alberni, BC" country="113" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="49°19'19''N" />
+      <longitude value="124°55'52''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="1205" surface="Asphalt" />
+          </runways>
+  </airport>
+   <airport name="Powell River Airport" icao="CYPW" iata="YPW" type="Domestic" season="All_Year">
+    <town town="Powell River, BC" country="113" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="49°50'03''N" />
+      <longitude value="124°30'01''W" />
+    </coordinates>
+    <size value="Smallest" pax="40" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="9/27" length="1104" surface="Asphalt" />
+          </runways>
+  </airport>
+   <airport name="Trail Airport" icao="CAD4" iata="YZZ" type="Domestic" season="All_Year">
+    <town town="Trail, BC" country="113" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="49°03'20''N" />
+      <longitude value="117°36'33''W" />
+    </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="16/34" length="1220" surface="Asphalt" />
+          </runways>
+  </airport>
+   <airport name="Texada/Gillies Bay Airport" icao="CYGB" iata="YGB" type="Domestic" season="All_Year">
+    <town town="Texada Island, BC" country="113" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="49°41'39''N" />
+      <longitude value="124°31'04''W" /> </coordinates>
+    <size value="Smallest" pax="4" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="914" surface="Asphalt" />
+          </runways>
+  </airport>
+ <airport name="Qualicum Beach Airport" icao="CAT4" iata="XQU" type="Domestic" season="All_Year">
+    <town town="Qualicum Beach, BC" country="113" GMT="-07:00:00" DST="-08:00:00" />
+    <coordinates>
+      <latitude value="49°20'14''N" />
+      <longitude value="124°23'38''W" /> </coordinates>
+    <size value="Smallest" pax="6" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="11/29" length="1086" surface="Asphalt" />
+        </runways>
+  </airport>
 <airport name="Postville Airport" icao="CCD4" iata="YSO" type="Domestic" season="All_Year">
     <town town="Postville, NL" country="113" GMT="-04:00:00" DST="-03:00:00" />
     <coordinates>
