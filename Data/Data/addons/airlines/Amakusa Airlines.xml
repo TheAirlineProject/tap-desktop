@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Amakusa Airlines" iata="AHX"  color="MintCream" country="171" CEO="Toru Okushima" mentality="Safe" market="Local" preferedairport="AXJ"> 
+  <narrative narrative="Amakusa Airlines is based at Amakusa, an island off the west coast of Kyushu Island. It is the only airline serving it as of January 2015, and as of May 2014 the routes being served were to Kumamoto and Fukuoka both on Kyushu. It uses a single Bombardier Dash 8-100. It also served Kumamoto-Matsuyama from 2004 to 2008 and Kumamoto-Kobe from 2008 to 2010. The airline started operations on March 23,2000." />
+</profile>
+   <info real="True" from="2000" to="2199"></info>
+   <prefereds aircrafts="Bombardier Dash 8-100"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-100" early="1" late="1"></airliner>
+	     </airliners>
+
+
+
+<routes>
+                <route destination1="AXJ" destination2="KMJ" opened="2000" closed="2199" />
+		<route destination1="AXJ" destination2="FUK" opened="2000" closed="2199" />
+		<route destination1="KMJ" destination2="MYJ" opened="2004" closed="2008" />
+		<route destination1="KMJ" destination2="UKB" opened="2008" closed="2010" />
+        </routes>
+
+<focusairports>
+                 <focusairport airport="KMJ"></focusairport>
+     </focusairports>
+
+ 
+
+
+</airline>

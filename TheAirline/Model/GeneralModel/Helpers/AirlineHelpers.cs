@@ -183,7 +183,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static FleetAirliner AddAirliner(Airline airline, Airliner airliner, Airport airport, Boolean leased)
         {
 
-            if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
+            if (Countries.GetCountryFromTailNumber(airliner.TailNumber) != null && Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
             {
                 lock (airline.Profile.Country.TailNumbers)
                 {
@@ -379,6 +379,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             if (airline.Profile.CEO == airline.Airline.Profile.CEO)
                 airline.Profile.CEO = string.Format("{0} {1}", Names.GetInstance().getRandomFirstName(airline.Profile.Country), Names.GetInstance().getRandomLastName(airline.Profile.Country));
+
+            airline.Mentality = Airline.AirlineMentality.Moderate;
 
             airline.Airline.removeSubsidiaryAirline(airline);
 

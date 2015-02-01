@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="J-Air" iata="XM" logo="XM2"  color="Red" country="171" CEO="Tsuyoshi Yamamura" mentality="Moderate" market="Domestic" preferedairport="ITM"> 
+  <narrative narrative="J-Air is a subsidiary of Japan Airlines and is based at Osaka Itami Airport with focus cities at Fukuoka and Tokyo Haneda. As of January 2013 it serves 18 domestic airports besides the base and focus cities. At August 2014 it had 15 Embraer E-170's and 9 Bombardier CRJ200's. It intends to order about 15 more Embraer E-Jets soon and has 32 Mistsubishi MRJ's on order. In the past it has used the turbo props Embraer 110 Bandeirante and BAe Jetstream 31. It was founded in 1996. Before 1996 it was the JAL Flight Academy which began in 1989. In April 1991 a new division of the academy was created to serve scheduled routes. In 1996 the flight academy was restructured and J-Air was born. " />
+</profile>
+   <info real="True" from="1996" to="2199"></info>
+   <prefereds aircrafts="Embraer E-170,Embraer E-175,Embraer E-190,Embraer E-195,Embraer E-175E2,Embraer E-190E2,Embraer E-195E2,Bombardier CRJ200,BAe Jetstream 31,EMB 110 Bandeirante,MRJ 90"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ200" early="1" late="9"></airliner>
+	     </airliners>
+	       <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="Embraer E-170" early="5" late="15"></airliner>
+	     </airliners>
+	     	       <!--the airliners the airline would start with which isn't on a route earyl (2017) late (2023)-->
+	         <airliners>
+	    <airliner type="MRJ 90" early="1" late="32"></airliner>
+	     </airliners>
+<focusairports>
+                 <focusairport airport="FUK"></focusairport>
+		 <focusairport airport="HND"></focusairport>
+     </focusairports>
+
+ 
+
+
+</airline>

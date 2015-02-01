@@ -119,7 +119,9 @@
         {
             Jet,
 
-            Turboprop
+            Turboprop,
+
+            Radial
         }
 
         #endregion

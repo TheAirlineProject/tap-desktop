@@ -13,6 +13,7 @@
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
+    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Model.PassengerModel;
     using TheAirline.Model.PilotModel;
@@ -40,8 +41,7 @@
                 this.Contracts.Add(new SpecialContractMVVM(sc,startdate,enddate));
             }
 
-
-
+        
             this.Airliners = new ObservableCollection<FleetAirlinerMVVM>();
             foreach (
                 FleetAirliner airliner in
@@ -63,7 +63,6 @@
         public ObservableCollection<FleetAirlinerMVVM> Airliners { get; set; }
 
         public ObservableCollection<SpecialContractMVVM> Contracts { get; set; }
-
         #endregion
 
         #region Methods

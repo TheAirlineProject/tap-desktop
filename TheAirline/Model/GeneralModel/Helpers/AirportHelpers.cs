@@ -30,12 +30,38 @@
             foreach (Airport intlAirport in intlAirports)
                 demand += airport.getDestinationPassengersRate(intlAirport, AirlinerClass.ClassType.Economy_Class);
          
-            if (demand > 1000)
+            if (demand > 0)
                 return true;
             else
                 return false;
 
             
+        }
+        public static Boolean WillKeepCustomsService(Airport airport)
+        {
+            int demand = 0;
+            var intlAirports = airport.getDestinationDemands().Where(a => a.Profile.Country.ShortName != airport.Profile.Country.ShortName);
+
+            foreach (Airport intlAirport in intlAirports)
+                demand += airport.getDestinationPassengersRate(intlAirport, AirlinerClass.ClassType.Economy_Class);
+
+            return demand > 500;
+        }
+        public static int GetIntlRoutesForCustoms(Airport airport)
+        {
+            var intlAirports = airport.getDestinationDemands().Count(a => a.Profile.Country.ShortName != airport.Profile.Country.ShortName);
+
+            if (intlAirports < 2)
+                return 1;
+            if (intlAirports < 5)
+                return 3;
+            if (intlAirports < 10)
+                return 4;
+            if (intlAirports < 15)
+                return 5;
+
+            return 6;
+
         }
         public static double GetFuelPrice(Airport airport)
         {
@@ -571,7 +597,10 @@
         public static int GetNumberOfAirportsRoutes(Airport airport1, Airport airport2)
         {
             
-            var routes = new List<Route>(Airlines.GetAllAirlines().Where(a => a.Routes != null).SelectMany(a => a.Routes));
+            List<Route> routes;
+            
+            lock (Airlines.GetAllAirlines())
+                routes = new List<Route>(Airlines.GetAllAirlines().Where(a => a.Routes != null).SelectMany(a => a.Routes));
                       
             return
                 routes.Count(
@@ -701,6 +730,7 @@
         //sets the airport expansion to an airport
         public static void SetAirportExpansion(Airport airport, AirportExpansion expansion, Boolean onStartUp = false)
         {
+           
             if (expansion.Type == AirportExpansion.ExpansionType.Town_name)
             {
                  if (expansion.NotifyOnChange && !onStartUp)
@@ -762,10 +792,13 @@
             }
             if (expansion.Type == AirportExpansion.ExpansionType.Runway_Length)
             {
+
                 Runway runway = airport.Runways.FirstOrDefault(r => r.Name == expansion.Name);
 
                 if (runway != null)
                 {
+                    runway.Length = expansion.Length;
+
                     if (expansion.NotifyOnChange && !onStartUp)
                     {
                         GameObject.GetInstance()
@@ -856,7 +889,7 @@
 
 
         }
-        //returns if an airline has enough free slots at an airport
+        //returns if an airline as enough free slots at an airport
 
         //returns the yearly payment for a number of gates
         public static double GetYearlyContractPayment(

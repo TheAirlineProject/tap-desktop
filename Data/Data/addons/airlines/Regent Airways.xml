@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Regent Airways" iata="RX"  color="Gold" country="216" CEO="Mashruf Habib" mentality="Safe" market="Regional" preferedairport="DAC"> 
+  <narrative narrative="Regent Airways is a regional airline based at Dhaka,Bangladesh and started service in November 2010. It started with two Bombardier Dash 8-300's which it still has in addition to two 737-700's and a DHC-6-400 new generation Twin Otter. Its secondary base is Chittagong. It also serves the domestic airports of Cox's Bazar and Jessore. 2013 saw many new international flights. These were Dhaka-Kuala Lumpur,Dhaka-Bangkok,Dhaka-Kolkata,Chittagong-Kolkata,Dhaka-Singapore and in 2014 Chittagong-Bangkok. It wants to open flights to Hong Kong,Guangzhou in China,Kathmandu in Nepal,Doha in Qatar and Muscat in Oman in the near future also." />
+</profile>
+   <info real="True" from="2010" to="2199"></info>
+   <prefereds aircrafts="Boeing 737-700,Bombardier Dash 8-300,DHC-6-400 Twin Otter,Boeing 737 MAX 7"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="2" late="2"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-700" early="2" late="2"></airliner>
+	     </airliners>
+	     	        <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2015)-->
+	         <airliners>
+	    <airliner type="DHC-6-400 Twin Otter" early="1" late="1"></airliner>
+	     </airliners>
+<focusairports>
+                 <focusairport airport="CGP"></focusairport>
+     </focusairports>
+<routes>
+               <route destination1="DAC" destination2="CXB" opened="2010" closed="2199" />
+	       <route destination1="DAC" destination2="JSR" opened="2010" closed="2199" />
+	       <route destination1="DAC" destination2="CGP" opened="2010" closed="2199" />
+                <route destination1="DAC" destination2="KUL" opened="2013" closed="2199" />
+		<route destination1="DAC" destination2="BKK" opened="2013" closed="2199" />
+		<route destination1="CGP" destination2="CCU" opened="2013" closed="2199" />
+		<route destination1="DAC" destination2="CCU" opened="2013" closed="2199" />
+	         <route destination1="DAC" destination2="SIN" opened="2013" closed="2199" />
+	        <route destination1="CGP" destination2="BKK" opened="2014" closed="2199" />
+	       <route destination1="DAC" destination2="HKG" opened="2015" closed="2199" />
+		<route destination1="DAC" destination2="CAN" opened="2015" closed="2199" />
+		<route destination1="DAC" destination2="KTM" opened="2016" closed="2199" />
+	         <route destination1="DAC" destination2="DOH" opened="2016" closed="2199" />
+	        <route destination1="DAC" destination2="MCT" opened="2017" closed="2199" />
+
+		
+        </routes>
+
+
+
+
+
+</airline>

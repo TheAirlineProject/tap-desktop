@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Donghai Airlines" iata="J5"  color="BlueViolet" country="148" CEO="Cheng Tang" mentality="Safe" market="Regional" preferedairport="SZX" routefocus="Mixed"> 
+  <narrative narrative="Donghai Airlines is a duel passenger and cargo airline based at Shenzhen,China. Sometimes it is referred to as Donghai Shenzhen Airlines. It is a subsidiary of Sichuan Airlines. The passenger routes include Shenzhen to Haikou on Hainan Island,Dalian,Harbin and Hailar, the last three of which are in eastern China. Cargo routes include Shenzhen to Chengdu,Shanghai Pudong,Wuxi,Manila in the Philippines,and the very short 38km (24 mile) hop to the south to Hong Kong. From Hong Kong Chendu is also served, and from Wuxi it serves Beijing Capital and Quanzhou. Its fleet at January 2015 was seven 737-300's all for cargo, and four 737-800's which are for passengers, and which three were delivered in 2014 and one at the start of 2015. It also has some business jets, Bombardier Challenger 300's and 600's. The company was founded in 2002 but did not take off until late 2006 about. " />
+</profile>
+   <info real="True" from="2006" to="2199"></info>
+   <prefereds aircrafts="Boeing 737-800,Boeing 737-300,Boeing 737 MAX 8,Boeing 737 MAX 7,Boeing 737 MAX 9"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-800" early="3" late="4"></airliner>
+	     </airliners>
+	       <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="2" late="7"></airliner>
+	     </airliners>
+<routes>
+                <route destination1="SZX" destination2="HAK" opened="2014" closed="2199" />
+		<route destination1="SZX" destination2="DLC" opened="2014" closed="2199"/>
+	        <route destination1="SZX" destination2="HRB" opened="2014" closed="2199" />
+	        <route destination1="SZX" destination2="HLD" opened="2015" closed="2199" />
+		<route destination1="SZX" destination2="CTU" opened="2006" closed="2199" routefocus="Cargo" />
+		<route destination1="SZX" destination2="PVG" opened="2006" closed="2199" routefocus="Cargo"/>
+	        <route destination1="SZX" destination2="MNL"  opened="2010" closed="2199" routefocus="Cargo" />
+	        <route destination1="SZX" destination2="HKG"  opened="2010" closed="2199" routefocus="Cargo"/>
+		<route destination1="SZX" destination2="WUX"  opened="2009" closed="2199" routefocus="Cargo"/>
+	        <route destination1="HKG" destination2="CTU"  opened="2013" closed="2199" routefocus="Cargo"/>
+		<route destination1="WUX" destination2="JJN"  opened="2013" closed="2199" routefocus="Cargo" />
+		<route destination1="WUX" destination2="PEK"  opened="2012" closed="2199" routefocus="Cargo"/>
+        </routes>
+ 
+
+
+</airline>

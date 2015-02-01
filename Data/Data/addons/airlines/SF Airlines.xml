@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="SF Airlines" iata="O3"  color="Black" country="148" CEO="Ping Wen" mentality="Moderate" market="Regional" preferedairport="SZX" routefocus="Cargo"> 
+  <narrative narrative="SF Airlines is a cargo airline based at Shenzhen,China. SF stands for ShunFeng. Its first flight was December 31,2009. It had one 757-200 at the start and now it has 12 as of January 2015. It also has four 737-300's and three 737-400's. It also intends to get some 767-300ER's. From Shenzhen it flies to Shanghai Pudong,Beijing Capital,Chengdu,Wuhan,Hangzhou,Nantong,Zhengzhou and Wenzhou. From Shanghai Pudong it flies to Beijing and Harbin. From Hong Kong it flies to Xiamen and Ningbo. Those are the confirmed flights as of January 2015 but it may serve more and do the occaisional charter also." />
+</profile>
+   <info real="True" from="2009" to="2199"></info>
+   <prefereds aircrafts="Boeing 757-200PF,Boeing 737-300,Boeing 737-400,Boeing 767-300ER,Boeing 757-200"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="2" late="3"></airliner>
+	     </airliners>
+	       <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="2" late="4"></airliner>
+	     </airliners>
+	     	       <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 757-200PF" early="1" late="12"></airliner>
+	     </airliners>
+<focusairports>
+                 <focusairport airport="PVG"></focusairport>
+		 <focusairport airport="HKG"></focusairport>
+	         <focusairport airport="PEK"></focusairport>
+     </focusairports>
+<routes>
+                <route destination1="SZX" destination2="PVG" opened="2009" closed="2199" />
+		<route destination1="SZX" destination2="CGO" opened="2010" closed="2199"/>
+	        <route destination1="SZX" destination2="PEK" opened="2011" closed="2199" />
+	        <route destination1="SZX" destination2="CTU" opened="2011" closed="2199" />
+		<route destination1="SZX" destination2="WUH" opened="2011" closed="2199"/>
+		<route destination1="SZX" destination2="WNZ" opened="2011" closed="2199" />
+	        <route destination1="SZX" destination2="NTG"  opened="2012" closed="2199" />
+	        <route destination1="SZX" destination2="HGH"  opened="2012" closed="2199" />
+	        <route destination1="PVG" destination2="PEK"  opened="2012" closed="2199"/>
+		<route destination1="PVG" destination2="HRB" opened="2012" closed="2199" />
+		<route destination1="HKG" destination2="XMN" opened="2013" closed="2199" />
+		<route destination1="HKG" destination2="NGB" opened="2013" closed="2199" />
+        </routes>
+ 
+
+
+</airline>

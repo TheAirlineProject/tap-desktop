@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Japan" iata="NQ"  color="DarkBlue" country="171" CEO="Katsuhiro Ogami" mentality="Moderate" market="Global" preferedairport="NRT" routefocus="Mixed"> 
+  <narrative narrative="Air Japan, not to be confused with Japan Airlines, is a subsidiary of All Nippon Airlines based at Tokyo Narita. It is a passenger and cargo airline. It came to be in its current form in 2001. Before that in 1990 it was a charter division of ANA called World Air Network. It ceased in 1995. In 2000 the part of the company that was World Air Network was renamed Air Japan and it started scheduled service in 2001. At January 2013 it was serving four domestic airports. The international destinations for cargo only were Xiamen,China and Seoul-Incheon,South Korea. The passenger ones and some also for cargo were Bangkok,Dalian in China,Ho Chi Minh in Vietnam,Honolulu in Hawaii USA,Qingdao in China,Shanghai Pudong,Singapore,and Taipei Taoyuan. It had at January 2015 30 767-300's. About 9 were for cargo and 21 were for passengers, and all but two of them were the 767-300ER. It uses mainline ANA planes in ANA livery and has pilots that are on both airlines payrolls flying." />
+</profile>
+   <info real="True" from="2001" to="2199"></info>
+   <prefereds aircrafts="Boeing 767-300ER,Boeing 767-300,Boeing 767-300F"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300F" early="4" late="9"></airliner>
+	     </airliners>
+	       <!--the airliners the airline would start with which isn't on a route earyl (2001) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 767-300ER" early="4" late="21"></airliner>
+	     </airliners>
+
+<focusairports>
+                 <focusairport airport="HND"></focusairport>
+		  </focusairports>
+
+<routes>
+            	<route destination1="HND" destination2="OKA" opened="2001" closed="2199"/>
+	        <route destination1="NRT" destination2="HNL" opened="2001" closed="2199" />
+	        <route destination1="HND" destination2="HNL" opened="2001" closed="2199" />
+		 <route destination1="NRT" destination2="PVG" opened="2002" closed="2199" />
+		 <route destination1="KIX" destination2="PVG" opened="2002" closed="2199" />
+		 <route destination1="NRT" destination2="SIN" opened="2003" closed="2199" />
+	        <route destination1="HND" destination2="SIN" opened="2003" closed="2199" />
+		 <route destination1="NRT" destination2="TPE" opened="2004" closed="2199" />
+		 <route destination1="NRT" destination2="SGN" opened="2004" closed="2199" />
+	        <route destination1="NRT" destination2="DLC" opened="2005" closed="2199" />
+		 <route destination1="NRT" destination2="TAO" opened="2005" closed="2199" />
+		 <route destination1="KIX" destination2="TAO" opened="2006" closed="2199" />
+	        <route destination1="HND" destination2="KIX" opened="2006" closed="2199" />
+		  <route destination1="NRT" destination2="BKK" opened="2007" closed="2199" />
+		 <route destination1="HND" destination2="BKK" opened="2008" closed="2199" />
+		<route destination1="NRT" destination2="OKA" opened="2001" closed="2199" routefocus="Passenger,Cargo" />
+		<route destination1="NRT" destination2="KIX" opened="2001" closed="2199" routefocus="Cargo"/>
+	        <route destination1="NRT" destination2="ICN"  opened="2001" closed="2199" routefocus="Cargo" />
+	        <route destination1="NRT" destination2="XMN"  opened="2001" closed="2199" routefocus="Cargo"/>
+		<route destination1="KIX" destination2="XMN"  opened="2003" closed="2199" routefocus="Cargo"/>
+	        <route destination1="OKA" destination2="ICN"  opened="2005" closed="2199" routefocus="Cargo"/>
+		<route destination1="KIX" destination2="ICN"  opened="2007" closed="2199" routefocus="Cargo" />
+		<route destination1="NGO" destination2="OKA"  opened="2009" closed="2199" routefocus="Cargo"/>
+		<route destination1="NGO" destination2="HKG"  opened="2011" closed="2199" routefocus="Cargo"/>
+        </routes>
+ 
+
+
+</airline>

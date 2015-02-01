@@ -526,7 +526,8 @@
             }
 
             IEnumerable<Route> airportRoutes =
-                airline.Routes.Where(r => r.Destination1 == this || r.Destination2 == this);
+                new List<Route>(airline.Routes.Where(r => r.Destination1 == this || r.Destination2 == this));
+            
             score += 7 * airportRoutes.Count();
             score += 6
                      * airportRoutes.Where(r => r.Type == Route.RouteType.Passenger)

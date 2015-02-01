@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Sunshine" iata="YI"  color="Red" country="122" CEO="Tony Lopez" mentality="Safe" market="Regional" preferedairport="SJU" routefocus="Mixed"> 
+  <narrative narrative="Air Sunshine is an airline based at San Juan,Puerto Rico that does passengers and cargo. Its corporate HQ is Fort Lauderdale,Florida along with its main base, however it has no flights operating from there as of January 2015. It serves 8 Caribbean destinations from San Juan alone. Its main route network of 9 airports are all mostly connected having flights between each of them in most cases, both cargo and passenger flights. The only current route unconnected to the rest is the only destination from Kingston,Jamaica to Guantanamo,Cuba and likewise the other way around. The other places it serves are Anguilla,Tortola,Viques also an island part of the US by Purto Rico,St. Thomas,St. Croix,Sint Marteen,Dominica,Nevis,and Virgin Gorda. It was founded in 1982 and has six Cessna 402C's,two Saab 340's and a Beechcraft 1900. It serves charters throughout the Caribbean also from its airports of operations." />
+</profile>
+   <info real="True" from="1982" to="2199"></info>
+   <prefereds aircrafts="Cessna 402C,Beechcraft 1900D,Saab 340B"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (1982) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 402C" early="4" late="6"></airliner>
+	     </airliners>
+	       <!--the airliners the airline would start with which isn't on a route earyl (1982) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900D" early="0" late="1"></airliner>
+	     </airliners>
+	     	       <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2015)-->
+	         <airliners>
+	    <airliner type="Saab 340B" early="0" late="2"></airliner>
+	     </airliners>
+
+<routes>
+                <route destination1="SJU" destination2="STT" routefocus="Passenger,Cargo" />
+		<route destination1="SJU" destination2="EIS" routefocus="Passenger,Cargo"/>
+	        <route destination1="SJU" destination2="VQS" routefocus="Passenger,Cargo" />
+	        <route destination1="SJU" destination2="VIJ" routefocus="Passenger,Cargo" />
+		<route destination1="SJU" destination2="AXA" routefocus="Passenger,Cargo"/>
+		<route destination1="SJU" destination2="DOM" routefocus="Passenger,Cargo" />
+	        <route destination1="SJU" destination2="SXM"  routefocus="Passenger,Cargo" />
+	        <route destination1="SJU" destination2="NEV"  routefocus="Passenger,Cargo" />
+	        <route destination1="STT" destination2="VIJ"  routefocus="Passenger,Cargo"/>
+		<route destination1="STT" destination2="AXA" routefocus="Passenger,Cargo" />
+	        <route destination1="STT" destination2="EIS" routefocus="Passenger,Cargo" />
+	        <route destination1="STT" destination2="DOM"  routefocus="Passenger,Cargo"/>
+		<route destination1="STT" destination2="NEV" routefocus="Passenger,Cargo"/>
+		<route destination1="STT" destination2="SXM" routefocus="Passenger,Cargo"/>
+	        <route destination1="AXA" destination2="STX"  routefocus="Passenger,Cargo"/>
+	        <route destination1="AXA" destination2="EIS"  routefocus="Passenger,Cargo"/>
+		<route destination1="EIS" destination2="SXM"  routefocus="Passenger,Cargo"/>
+	        <route destination1="EIS" destination2="DOM"  routefocus="Passenger,Cargo"/>
+		<route destination1="EIS" destination2="NEV" routefocus="Passenger,Cargo"/>
+		<route destination1="SXM" destination2="DOM" routefocus="Passenger,Cargo"/>
+	        <route destination1="SXM" destination2="NEV" routefocus="Passenger,Cargo" />
+	        <route destination1="NEV" destination2="DOM" routefocus="Passenger,Cargo" />
+	        <route destination1="NEV" destination2="VIJ" routefocus="Passenger,Cargo" />
+                <route destination1="DOM" destination2="VIJ" routefocus="Passenger,Cargo" />
+		<route destination1="KIN" destination2="GAO" />
+        </routes>
+ 
+
+
+</airline>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Asian Wings Airways" iata="YJ"  color="Maroon" country="278" CEO="Maung Maung Shwe Moe" mentality="Moderate" market="Regional" preferedairport="RGN"> 
+  <narrative narrative="Asian Wings Airways is based at Yangon,Myanmar (Burma) and started operations in January 2011. Mandalay is also a hub. It serves about 15 domestic airports besides the two hubs and also Chiang Mai and U-Tapao in Thailand. In June 2014 it had four ATR 72-500's and an A321-100. In 2013 All Nippon Airways of Japan bought 49% of it for 3 billion Japanese Yen. Th other main owner and operator is called Sun Far Travels and Tours Company, Limited." />
+</profile>
+   <info real="True" from="2011" to="2199"></info>
+   <prefereds aircrafts="ATR 72-500,Airbus A321-100,Airbus A321-200,Airbus A321neo"></prefereds>
+	     	        <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-500" early="2" late="4"></airliner>
+	     </airliners>
+	     	        <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2015)-->
+	         <airliners>
+	    <airliner type="Airbus A321-100" early="1" late="1"></airliner>
+	     </airliners>
+
+<focusairports>
+                 <focusairport airport="MDL"></focusairport>
+     </focusairports>
+
+
+
+</airline>

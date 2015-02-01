@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<engines>
+  <engine manufacturer="Pratt &amp; Whitney" model="R-1830 Twin Wasp" >
+	  <specs type="Radial" noise="High" consumptionModifier="1.01" price="1290000" />
+	  <performance maxspeed="333" ceiling="11200" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Douglas DC-3" />
+	  <produced from="1932" to="1951" />
+  </engine>
+</engines>

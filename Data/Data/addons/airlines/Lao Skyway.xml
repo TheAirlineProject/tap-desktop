@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Lao Skyway" iata="LLL"  color="Red" country="279" CEO="Dr. Somphone Douangdara" mentality="Safe" market="Domestic" preferedairport="VTE"> <narrative narrative="Lao Skyway, once called Lao Air, was founded in 2002 and provides domestic service to seven airports besides its Vientiane hub. At first it was a helicopter airline then in 2003 it got a Cessna 208 and another in 2005. April 2007 saw the start of scheduled service. It also now has at least one Xian MA60." />
+</profile>
+   <info real="True" from="2002" to="2199"></info>
+   <prefereds aircrafts="Cessna 208B,Xian MA60"></prefereds>
+<routes>
+                <route destination1="VTE" destination2="ZBY" />
+        </routes>
+
+</airline>

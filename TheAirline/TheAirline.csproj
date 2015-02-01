@@ -975,6 +975,7 @@
     <Compile Include="Model\AirlinerModel\AirlinerSeatModels.cs" />
     <Compile Include="Model\AirlinerModel\EngineType.cs" />
     <Compile Include="Model\AirlinerModel\MaintenanceCenter.cs" />
+    <Compile Include="Model\AirportModel\AirportAgreement.cs" />
     <Compile Include="Model\AirportModel\AirportDemand.cs" />
     <Compile Include="Model\AirportModel\AirportExpansion.cs" />
     <Compile Include="Model\GeneralModel\Helpers\DatabaseHelpersModel\DatabaseHelpers.cs" />

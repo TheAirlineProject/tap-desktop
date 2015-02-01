@@ -97,7 +97,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
                 this.Feedbacks.Add(new RouteFeedbackMVVM(videoFacility.Name, "tv.png", inflightScore, getFeedbackText("inflight", inflightScore)));
                 this.Feedbacks.Add(new RouteFeedbackMVVM(bagText,"luggage.png",luggageScore,getFeedbackText("luggage",luggageScore)));
 
-                if ((int)RouteFacility.FacilityType.WiFi <= GameObject.GetInstance().GameTime.Year)
+                if ((int)RouteFacility.FacilityType.WiFi <= GameObject.GetInstance().GameTime.Year && wifiFacility!=null)
                 {
                     double wifiScore = RouteHelpers.GetRouteWifiScore(this.Route);
                     this.Feedbacks.Add(new RouteFeedbackMVVM(wifiFacility.Name, "wifi.png", wifiScore, getFeedbackText("wifi", wifiScore)));

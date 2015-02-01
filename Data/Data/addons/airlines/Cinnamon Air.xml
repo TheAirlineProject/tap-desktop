@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Cinnamon Air" iata="C7"  color="MediumOrchid" country="153" CEO="Susantha Ratnayake" mentality="Safe" market="Domestic" preferedairport="CMB" schedule="Business"> <narrative narrative="Cinnamon Air is a domestic Sri Lankan airline that started operations in 2013. Its base is Colombo Bandaranaike. It serves 9 other domestic airports, including some water ones. 2 of its 3 Cessna 208's are seaplane configured. It does codesharing with SriLankan Airlines." />
+</profile>
+   <info real="True" from="2013" to="2199"></info>
+   <prefereds aircrafts="Cessna 208B"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="3" late="3"></airliner>
+	     </airliners>
+
+<routes>
+                <route destination1="CMB" destination2="KCT" />
+		<route destination1="CMB" destination2="TRR" />
+	        <route destination1="CMB" destination2="GIU"  />
+	        <route destination1="CMB" destination2="BTC"  />
+	        <route destination1="CMB" destination2="HRI"  />
+	        <route destination1="CMB" destination2="JAF"  />
+		
+        </routes>
+
+
+
+
+
+</airline>

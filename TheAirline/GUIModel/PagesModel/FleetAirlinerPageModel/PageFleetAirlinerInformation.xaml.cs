@@ -360,7 +360,7 @@
         {
             AirlinerClassMVVM aClass = (AirlinerClassMVVM)((Button)sender).Tag;
 
-             WPFMessageBoxResult result = WPFMessageBox.Show(
+            WPFMessageBoxResult result = WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2020"),
                     string.Format(
                         Translator.GetInstance().GetString("MessageBox", "2020", "message"),

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<airline>
+  <profile name="Mesa Airlines" iata="YV" color="Purple" country="122" CEO="Jonathan G. Ornstein" mentality="Aggressive" market="Regional" >
+    <narrative narrative="Mesa Airlines is an airline based at Phoenix and flies for several other airline brands such as American Eagle,US Airways Express and United Express from bases in Phoenix,Dallas Ft. Worth,Los Angeles,Charlotte,Chicago O' Hare and Washington Dulles. It also operated the go! brand in Hawaii from 2005 to 2014. It serves about 180 destinations in the Western Hemisphere. In January 2015 it had 57 or 58 CRJ900's,20 CRJ700's,one CRJ100, and United is letting them use 19 Embraer 175's with 11 more on order. Around the same time it also had at least 2,200 employees. From around 2000 to 2005 it used Embraer ERJ 145's having at least 21 of them,from 1996 to 2011 it used Dash 8-200's having at least 16,and Embraer 120 Brasilia's. Other past planes include Fokker 70's, Beechcraft 1900D's and King Air's. The airline got its start in 1980 in Farmington,New Mexico as a division of JB Aviation. In 1982 it started using the name Mesa Air Shuttle and began building its Albuquerque hub and eventually expanded to Phoenix over the next five years. In 1992 it started codeshaing with America West and started doing the America West Express brand serving 12 cities from the Phoenix hub on routes Mesa was already doing themselves. It was using Fokker 70's at this time. Desert Sun Airlines was a dvision of Mesa and they were merged into the main part in 1997. In 2003 Mesa took over Freedom Airlines operations and had many CRJ900's transferred to them. Mesa was already flying for US Airways Express since 1997 from Philadelphia and Charlotte when US Airways and America West merged in 2005. However the America West contract is the one that had them stay after the merger since the US Airways one was not renamed a few months before the merger.In 1990 it took over most of Aspen Airways Denver routes but was unable to gain the codeshare Aspen had with United. Not until they leased some EMbraer Brasilias did they enter an agreement. In 1995 California Pacific and its LAX hub were merged into the United Express Mesa operation. Shortly after it expanded into Seattle and Portland. In 1989 it entered into the midwest with Skyway Airlines operating as Midwest Connect for Midwest Express Airlines from Milwaukee and Rockford,Illinois. That airline lasted until 2008. In 1991 it began a Florida operation called FloridaGulf Airlines from Tampa using Beechcraft 1900s. It expanded to Orlando and New Orleans and even evntually northeast to Boston. By 1997 it had 44 1900's and 9 Embraer 120's. and hen it was merged into Air Midwest."></narrative>
+ <airports>
+<airport  preferedairport="ABQ" date="1.01.1980 00:00:00"></airport>
+<airport   preferedairport="PHX" date="1.01.1992 00:00:00"></airport>
+</airports>
+  </profile>
+  <info real="True" from="1980" to="2199" />
+   <prefereds aircrafts="Bombardier CRJ900,Bombardier CRJ900LR,Bombardier CRJ700,Bombardier CRJ200,Bombardier CRJ100,Bombardier Dash 8-200,Embraer ERJ145 LR,Embraer E-175,EMB 120 Brasilia,Fokker 70,Beechcraft 1900D"></prefereds>
+   <focusairports>
+         <focusairport airport="PHX"></focusairport>
+         <focusairport airport="DFW"></focusairport>
+         <focusairport airport="LAX"></focusairport>
+	 <focusairport airport="CLT"></focusairport>
+         <focusairport airport="ORD"></focusairport>
+	 <focusairport airport="IAD"></focusairport>
+	 <focusairport airport="DEN"></focusairport>
+     </focusairports>
+    <!--the airliners the airline would start with which isn't on a route earyl (2003) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ900" early="10" late="50"></airliner>
+	     </airliners>
+	     	     <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2015)-->
+	     	         <airliners>
+	    <airliner type="Bombardier CRJ900LR" early="8" late="8"></airliner>
+	     </airliners>
+	     <!--the airliners the airline would start with which isn't on a route earyl (2003) late (2015)-->
+	     	         <airliners>
+	    <airliner type="Bombardier CRJ700" early="6" late="20"></airliner>
+	     </airliners>
+	     	     	     <!--the airliners the airline would start with which isn't on a route earyl (1997) late (2015)-->
+	     	         <airliners>
+	    <airliner type="Bombardier CRJ200" early="20" late="0"></airliner>
+	     </airliners>
+	     	     <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2015)-->
+	     	         <airliners>
+	    <airliner type="Bombardier CRJ100" early="6" late="1"></airliner>
+	     </airliners>
+	          <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2007)-->
+	     	         <airliners>
+	    <airliner type="Embraer ERJ145 LR" early="21" late="0"></airliner>
+	     </airliners>
+	     	          <!--the airliners the airline would start with which isn't on a route earyl (1993) late (2000)-->
+	     	         <airliners>
+	    <airliner type="EMB 120 Brasilia" early="10" late="0"></airliner>
+	     </airliners>
+	     	     	          <!--the airliners the airline would start with which isn't on a route earyl (1990) late (2005)-->
+	     	         <airliners>
+	    <airliner type="Beechcraft 1900D" early="60" late="0"></airliner>
+	     </airliners>
+	     	     	          <!--the airliners the airline would start with which isn't on a route earyl (1996) late (2015)-->
+	     	         <airliners>
+	    <airliner type="Bombardier Dash 8-200" early="12" late="0"></airliner>
+	     </airliners>
+	     	     	     	          <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2018)-->
+	     	         <airliners>
+	    <airliner type="Embraer E-175" early="19" late="30"></airliner>
+	     </airliners>
+	     
+ </airline>

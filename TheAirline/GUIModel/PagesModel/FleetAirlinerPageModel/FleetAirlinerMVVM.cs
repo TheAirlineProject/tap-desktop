@@ -705,7 +705,17 @@
         {
             try
             {
-                return (System.Convert.ToInt16(values[0]) == System.Convert.ToInt16(values[1]));
+                int maxClasses = 0;
+
+                foreach (AirlinerClass.ClassType cType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+                {
+                    if ((int)cType <= GameObject.GetInstance().GameTime.Year)
+                    {
+                        maxClasses++;
+                    }
+                }
+
+                return (Math.Min(maxClasses,System.Convert.ToInt16(values[0])) == System.Convert.ToInt16(values[1]));
             }
             catch (Exception)
             {

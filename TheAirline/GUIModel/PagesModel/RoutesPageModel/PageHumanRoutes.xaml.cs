@@ -12,6 +12,7 @@
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.AirlinerModel.RouteModel;
+    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
 
     /// <summary>
@@ -48,13 +49,21 @@
             this.PriceChanges = new ObservableCollection<double>() { -90, -75, -50, -45, -35, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 35, 45, 50, 75, 100 };
             this.Classes = new ObservableCollection<MVVMRouteClass>();
 
+            this.Agreements = new ObservableCollection<AirportAgreement>();
+
+            foreach (AirportAgreement agreement in
+                GameObject.GetInstance().HumanAirline.Agreements)
+            {
+                this.Agreements.Add(agreement);
+            }
+
             this.InitializeComponent();
         }
 
         #endregion
 
         #region Public Properties
-
+        public ObservableCollection<AirportAgreement> Agreements { get; set; }
         public ObservableCollection<Route> CodesharingRoutes { get; set; }
         public ObservableCollection<RouteMVVM> SelectedRoutes { get; set; }
         public ObservableCollection<double> PriceChanges { get; set; }

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+  <airliners>
+  <airliner manufacturer="Learjet" name="Learjet 60" price="1714000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="13.34" length="17.88" range="4461" speed="778" fuelcapacity="4148" consumption="0.125"
+           runwaylengthrequired="1250" />
+    <capacity passengers="8" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1993" to="2199" rate="20" />
+  </airliner> 
+<airliner manufacturer="Learjet" name="Learjet 55" price="1709000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="13.35" length="16.80" range="4010" speed="744" fuelcapacity="3729" consumption="0.10"
+           runwaylengthrequired="1200" />
+    <capacity passengers="10" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1981" to="1990" rate="15" />
+  </airliner> 
+<airliner manufacturer="Learjet" name="Learjet 45" price="1438000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="14.58" length="17.68" range="3167" speed="804" fuelcapacity="2532" consumption="0.111"
+           runwaylengthrequired="1300" />
+    <capacity passengers="9" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1998" to="2013" rate="30" />
+  </airliner> 
+ <airliner manufacturer="Learjet" name="Learjet 40" price="1188000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="14.56" length="16.93" range="3026" speed="793" fuelcapacity="2420" consumption="0.143"
+           runwaylengthrequired="1300" />
+    <capacity passengers="7" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2004" to="2199" rate="25" />
+  </airliner> 
+ <airliner manufacturer="Learjet" name="Learjet 36" price="2205000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="12.04" length="14.83" range="5295" speed="774" fuelcapacity="4150" consumption="0.125"
+           runwaylengthrequired="1200" />
+    <capacity passengers="8" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1974" to="1994" rate="4" />
+  </airliner>
+ <airliner manufacturer="Learjet" name="Learjet 35" price="1875000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="12.04" length="14.83" range="4500" speed="774" fuelcapacity="3524" consumption="0.125"
+           runwaylengthrequired="1200" />
+    <capacity passengers="8" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1974" to="1994" rate="32" />
+  </airliner>
+ <airliner manufacturer="Learjet" name="Learjet 31ER" price="1475000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="13.36" length="14.83" range="3539" speed="829" fuelcapacity="4085" consumption="0.125"
+           runwaylengthrequired="1200" />
+    <capacity passengers="8" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1990" to="2003" rate="10" />
+  </airliner>
+ <airliner manufacturer="Learjet" name="Learjet 31" price="1259000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="13.36" length="14.83" range="3021" speed="829" fuelcapacity="3485" consumption="0.125"
+           runwaylengthrequired="1200" />
+    <capacity passengers="8" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1988" to="2003" rate="25" />
+  </airliner>
+ <airliner manufacturer="Learjet" name="Learjet 25" price="1189000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="10.84" length="14.50" range="2853" speed="859" fuelcapacity="3445" consumption="0.125"
+           runwaylengthrequired="1200" />
+    <capacity passengers="8" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1967" to="1982" rate="23" />
+  </airliner>
+ <airliner manufacturer="Learjet" name="Learjet 24" price="1015000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="10.84" length="13.18" range="2728" speed="774" fuelcapacity="3180" consumption="0.166"
+           runwaylengthrequired="1005" />
+    <capacity passengers="6" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1966" to="1977" rate="22" />
+  </airliner>
+ <airliner manufacturer="Learjet" name="Learjet 23" price="1095000"> 
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="10.84" length="13.18" range="2945" speed="834" fuelcapacity="3425" consumption="0.166"
+           runwaylengthrequired="1080" />
+    <capacity passengers="6" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1964" to="1966" rate="35" />
+  </airliner>
+        </airliners>

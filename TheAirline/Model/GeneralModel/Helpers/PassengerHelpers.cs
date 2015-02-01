@@ -3269,6 +3269,9 @@
                 airlineScores.Add(airline, airportCurrent.getAirlineReputation(airline));
             }
 
+            if (!airlineScores.Any(a => a.Key == airliner.Airliner.Airline))
+                throw new ArgumentNullException("The airline for the airliner does not exist: " + airliner.Airliner.Airline == null ? "Null" : airliner.Airliner.Airline.Profile.Name);
+
             double reputation = StatisticsHelpers.GetRatingScale(airlineScores)[airliner.Airliner.Airline];
 
             if (reputation < 76)

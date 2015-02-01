@@ -62,16 +62,17 @@
 
             this.Routes = new ObservableCollection<Route>();
 
-            var routeType =
-                (Route.RouteType)
-                    Enum.Parse(typeof(Route.RouteType), this.Airliner.Airliner.Type.TypeAirliner.ToString(), true);
+            Route.RouteType routeType;
 
             if (this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
                 routeType = Route.RouteType.Helicopter_Passenger;
 
-            if (this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
+            else if (this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
                 routeType = Route.RouteType.Helicopter_Cargo;
-
+            else
+                routeType =
+                    (Route.RouteType)
+                        Enum.Parse(typeof(Route.RouteType), this.Airliner.Airliner.Type.TypeAirliner.ToString(), true);
             foreach (
                 Route route in
                     this.Airliner.Airliner.Airline.Routes.Where(
@@ -121,7 +122,7 @@
 
             this.SpecialContractRoutes = new ObservableCollection<Route>();
 
-            var humanSpecialRoutes = GameObject.GetInstance().HumanAirline.SpecialContracts.Where(s => !s.Type.IsFixedDate).SelectMany(s => s.Routes.Where(r=>!r.HasAirliner));
+            var humanSpecialRoutes = GameObject.GetInstance().HumanAirline.SpecialContracts.Where(s => !s.Type.IsFixedDate).SelectMany(s => s.Routes.Where(r => !r.HasAirliner));
 
             foreach (Route sRoute in humanSpecialRoutes)
                 this.SpecialContractRoutes.Add(sRoute);
@@ -238,7 +239,7 @@
         private void EntryAdded_Event(object sender, RoutedEventArgs e)
         {
             var item = e.OriginalSource as TimelineDropItem;
-           
+
         }
 
         private void EntryChanged_Event(object sender, RoutedEventArgs e)
@@ -569,7 +570,7 @@
 
             switch (interval)
             {
-                    //SFO -> ATH: 767-200ER
+                //SFO -> ATH: 767-200ER
                 case "Manual":
                     this.addEntries(this.getSelectedDays());
                     break;
@@ -615,7 +616,7 @@
         }
         private void btnLoadTimetable_Click(object sender, RoutedEventArgs e)
         {
-             ComboBox cbConfigurations = new ComboBox();
+            ComboBox cbConfigurations = new ComboBox();
             cbConfigurations.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
             cbConfigurations.SelectedValuePath = "Name";
             cbConfigurations.DisplayMemberPath = "Name";
@@ -641,7 +642,7 @@
                 AirlinerType originType = configuration.AirlinerType;
                 AirlinerType destType = this.Airliner.Airliner.Type;
 
-                Boolean canFlyRoute = originType.TypeAirliner == destType.TypeAirliner && TimeTableHelpers.IsTimeTableValid(this.Airliner,configuration.Entries);
+                Boolean canFlyRoute = originType.TypeAirliner == destType.TypeAirliner && TimeTableHelpers.IsTimeTableValid(this.Airliner, configuration.Entries);
 
                 if (canFlyRoute)
                 {
@@ -657,7 +658,7 @@
                     Translator.GetInstance().GetString("MessageBox", "2707", "message"),
                     WPFMessageBoxButtons.Ok);
                 }
-               
+
             }
         }
         private void btnCopyTimetable_Click(object sender, RoutedEventArgs e)
@@ -670,7 +671,7 @@
             txtName.Width = 350;
             txtName.Background = Brushes.Transparent;
             txtName.Foreground = Brushes.White;
-            txtName.Text = string.Format("Route schedule (Aircraft: {0} with {1} entries)",aircraft, entries);
+            txtName.Text = string.Format("Route schedule (Aircraft: {0} with {1} entries)", aircraft, entries);
             txtName.HorizontalAlignment = HorizontalAlignment.Left;
 
             if (PopUpSingleElement.ShowPopUp(
@@ -701,9 +702,9 @@
             this.Airliner.addRoute(route);
             this.Airliner.Status = FleetAirliner.AirlinerStatus.On_charter;
 
-            
 
-       
+
+
         }
         private void btnSave_Click(Object sender, RoutedEventArgs e)
         {
@@ -727,7 +728,7 @@
             foreach (RouteTimeTableEntry entry in deleteEntries)
             {
                 entry.TimeTable.removeEntry(entry);
-          
+
                 if (entry.TimeTable.Entries.Count(en => en.Airliner == this.Airliner) == 0 || entry.TimeTable.Entries.Count == 0)
                 {
                     this.Airliner.removeRoute(entry.TimeTable.Route);
@@ -735,7 +736,7 @@
             }
 
             this.Airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
- 
+
         }
 
         private void btnSwap_Click(object sender, RoutedEventArgs e)
@@ -842,7 +843,7 @@
                 }
 
                 var flightsPerDay = (int)Math.Floor((maxHours * 60) / (2 * minFlightTime.TotalMinutes));
-                    //Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
+                //Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
 
                 if (intervalType == IntervalType.Week)
                 {
@@ -905,7 +906,7 @@
                 }
 
                 var flightsPerDay = (int)Math.Floor((maxHours * 60) / (2 * minFlightTime.TotalMinutes));
-                    //Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
+                //Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
 
                 if (intervalType == IntervalType.Week)
                 {
@@ -940,14 +941,14 @@
                     var interval = (int)((ComboBox)sender).SelectedItem;
 
                     int latestStartTime = 22;
-                    
+
                     TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
 
                     var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
 
                     TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0, delayMinutes, 0));
 
-                    
+
                     var lastDepartureHour = (int)(latestStartTime - (minFlightTime.TotalHours * interval * 2));
 
                     this.StartTimes.Clear();
@@ -1037,7 +1038,7 @@
                 }
 
                 var flightsPerDay = (int)Math.Floor((maxHours * 60) / (2 * minFlightTime.TotalMinutes));
-                    //Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
+                //Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
 
                 if (intervalType == IntervalType.Week)
                 {
@@ -1066,7 +1067,7 @@
                 {
                     var interval = (int)((ComboBox)sender).SelectedItem;
 
-                    int latestStartTime = 22; 
+                    int latestStartTime = 22;
 
                     TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
 
@@ -1100,14 +1101,14 @@
 
                     int maxHours = 22 - 06; //from 06.00 to 22.00<
 
-                  
+
                     if (opsType == OpsType.Whole_Day)
                     {
                         maxHours = 24;
                     }
 
                     var flightsPerDay = (int)Math.Floor((maxHours * 60) / (2 * minFlightTime.TotalMinutes));
-                  
+
                     if (intervalType == IntervalType.Week)
                     {
                         flightsPerDay = 7;
@@ -1116,12 +1117,12 @@
 
                     this.Intervals.Clear();
 
-                     for (int i = 0; i < Math.Max(1, flightsPerDay); i++)
-                {
-                    this.Intervals.Add(i + 1);
-                }
+                    for (int i = 0; i < Math.Max(1, flightsPerDay); i++)
+                    {
+                        this.Intervals.Add(i + 1);
+                    }
 
-                    
+
                 }
             }
         }
@@ -1129,7 +1130,7 @@
         private void clearTimeTable()
         {
             var entries = new ObservableCollection<RouteTimeTableEntry>(this.Entries);
-            
+
             foreach (RouteTimeTableEntry entry in entries)
             {
                 this.Entries.Remove(entry);

@@ -34,11 +34,11 @@
             sw.Start();
 
             
-            foreach (
-              FleetAirliner airliner in airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped)) 
-           // Parallel.ForEach(
-             //      airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped),
-               //     airliner =>
+         //   foreach (
+           //   FleetAirliner airliner in airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped)) 
+           Parallel.ForEach(
+                   airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped),
+                    airliner =>
                     {
                         if (airliner.CurrentFlight != null)
                         {
@@ -76,7 +76,7 @@
                             }
                             //CheckForService(airliner);
                         }
-                    }//);
+                    });
 
             sw.Stop();
         }
@@ -437,7 +437,9 @@
 
             if (airliner.CurrentFlight.isPassengerFlight())
             {
-                
+                if (airliner.Airliner.Type is AirlinerCargoType)
+                    throw new Exception(string.Format("{0} is using a cargo airliner on a passenger route", airliner.Airliner.Airline.Profile.Name));
+
                 int cabinCrew = ((AirlinerPassengerType)airliner.Airliner.Type).CabinCrew; 
 
                 wages = cabinCrew * flighttime.TotalHours

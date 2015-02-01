@@ -71,19 +71,19 @@
                 () =>
                 {
                     Setup.LoadAirports();
-                    
+
                     List<Airport> airports = Airports.GetAllAirports();
 
                     Airports.Clear();
 
-                   
+
                     foreach (Airport airport in deserializedSaveObject.airportsList)
                     {
                         airport.Statics = new AirportStatics(airport);
                         Airports.AddAirport(airport);
                     }
 
-                    foreach (string iata in deserializedSaveObject.airportsfromstringList) 
+                    foreach (string iata in deserializedSaveObject.airportsfromstringList)
                     {
                         Airport airport = airports.FirstOrDefault(a => a.Profile.IATACode == iata);
 
@@ -187,7 +187,7 @@
                 {
                     GameObject.SetInstance(deserializedSaveObject.instance);
                     Settings.SetInstance(deserializedSaveObject.settings);
-                }, ()=>
+                }, () =>
                     {
                         if (deserializedSaveObject.mergerslist != null)
                         {
@@ -223,7 +223,7 @@
                 rClassConfiguration.Facilities = new List<RouteFacility>();
             }
 
-        
+
             Setup.SetupLoadedGame();
             //Maybe this helps? But i doubt this is the best way
             Action action = () =>
@@ -236,9 +236,9 @@
                 //Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
                 swPax.Stop();
 
-              };
+            };
 
-           
+
             //create some pilots for the game
             int pilotsPool = 100 * Airlines.GetAllAirlines().Count;
             GeneralHelpers.CreatePilots(pilotsPool);
@@ -353,9 +353,9 @@
                 });
 
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
-            
+
             FileSerializer.Serialize(fileName, so);
-            
+
             //GameTypeSerializer.Serialize(fileName, so);
 
             sw.Stop();
@@ -500,7 +500,7 @@
 
         [Versioning("routefacilities")]
         public List<RouteFacility> routefacilitieslist { get; set; }
-        
+
         [Versioning("mergers")]
         public List<AirlineMerger> mergerslist { get; set; }
         public string savetype { get; set; }
@@ -516,9 +516,9 @@
     {
         public static void Serialize(string filename, SaveObject objecttoserialize)
         {
-            AirlineProfile profile = new AirlineProfile("Test Airline","TA","Black","Peter Jason",false,2014,2199);
+            AirlineProfile profile = new AirlineProfile("Test Airline", "TA", "Black", "Peter Jason", false, 2014, 2199);
 
-            
+
             /*
             string json1 = JsonConvert.SerializeObject(profile);
            // string json2 = JsonConvert.SerializeObject(objecttoserialize, Formatting.Indented,new JsonSerializerSettings { 
@@ -528,7 +528,7 @@
 
             TextWriter stream = File.CreateText(filename);
 
-           // using (BinaryWriter writer = new BinaryWriter(stream))
+            // using (BinaryWriter writer = new BinaryWriter(stream))
             {
                 TypeSerializer.SerializeToWriter(objecttoserialize, stream);
             }
@@ -556,7 +556,7 @@
             catch (Exception err)
             {
                 TAPLogger.LogEvent(err.ToString(), "Exception on loading game");
-        
+
             }
 
             finally
@@ -577,15 +577,17 @@
                 throw new ArgumentNullException("objectToSerialize cannot be null");
             }
 
-            Stream stream = null;
 
             try
             {
-                stream = File.Open(filename, FileMode.Create);
+                using (FileStream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
+                {
 
-                var bFormatter = new BinaryFormatter();
+                    var bFormatter = new BinaryFormatter();
 
-                bFormatter.Serialize(stream, objectToSerialize);
+                    bFormatter.Serialize(stream, objectToSerialize);
+                }
+
 
                 /*
                  var serializer = new DataContractSerializer(objectToSerialize.GetType(), null, 
@@ -598,15 +600,9 @@
             catch (Exception e)
             {
                 TAPLogger.LogEvent(e.ToString(), "Exception on saving game");
-        
+
             }
-            finally
-            {
-                if (stream != null)
-                {
-                    stream.Close();
-                }
-            }
+           
         }
 
         #endregion

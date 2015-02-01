@@ -61,6 +61,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 AirlinerClass economyClass = classes.Find(c => c.Type == AirlinerClass.ClassType.Economy_Class);
 
+                int totalMaxClasses = 0;
+
                 foreach (AirlinerClass aClass in classes)
                 {
 
@@ -71,17 +73,21 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     foreach (AirlinerFacility facility in aClass.getFacilities())
                         nClass.Facilities.Where(f => f.Type == facility.Type).First().SelectedFacility = facility;
 
-
+                  
                     foreach (AirlinerClass.ClassType cType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
                     {
-                        if (!this.Classes.Any(c => c.Type == cType))
-                            nClass.ClassTypes.Add(cType);
+                        if ((int)cType <= GameObject.GetInstance().GameTime.Year)
+                        {
+                            totalMaxClasses++;
+                            if (!this.Classes.Any(c => c.Type == cType))
+                                nClass.ClassTypes.Add(cType);
+                        }
                     }
                 }
 
-                this.CanAddNewClass = this.Classes.Count < (this.Type is AirlinerPassengerType ? ((AirlinerPassengerType)this.Type).MaxAirlinerClasses : ((AirlinerCombiType)this.Type).MaxAirlinerClasses);
+                this.CanAddNewClass = this.Classes.Count < (this.Type is AirlinerPassengerType ? Math.Min(totalMaxClasses,((AirlinerPassengerType)this.Type).MaxAirlinerClasses) : Math.Min(totalMaxClasses,((AirlinerCombiType)this.Type).MaxAirlinerClasses));
 
-  
+
 
             }
             this.Loaded += PopUpAirlinerSeatsConfiguration_Loaded;
@@ -105,7 +111,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+           
             int seating = Math.Min(5, this.Classes[0].Seating - 1);
 
 
@@ -119,8 +125,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
-                if (!this.Classes.ToList().Exists(c => c.Type == type) && ((int)type <= GameObject.GetInstance().GameTime.Year))
-                    nextType = type;
+                if ((int)type <= GameObject.GetInstance().GameTime.Year)
+                    if (!this.Classes.ToList().Exists(c => c.Type == type) && ((int)type <= GameObject.GetInstance().GameTime.Year))
+                        nextType = type;
             }
 
             int maxseats = this.Classes[0].RegularSeating - 1;
@@ -131,14 +138,20 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             AirlinerClassMVVM newClass = new AirlinerClassMVVM(nextType, seating, maxseats, true);
             this.Classes.Add(newClass);
 
-       
+            int totalMaxClasses = 0;
+
             foreach (AirlinerClass.ClassType cType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
-                if (!this.Classes.Any(c => c.Type == cType))
-                    newClass.ClassTypes.Add(cType);
-            }
+                if ((int)cType <= GameObject.GetInstance().GameTime.Year)
+                {
+                    totalMaxClasses++;
 
-            this.CanAddNewClass = this.Classes.Count < (this.Type is AirlinerPassengerType ? ((AirlinerPassengerType)this.Type).MaxAirlinerClasses : ((AirlinerCombiType)this.Type).MaxAirlinerClasses);
+                    if (!this.Classes.Any(c => c.Type == cType))
+                        newClass.ClassTypes.Add(cType);
+                }
+            }
+        
+            this.CanAddNewClass = this.Classes.Count < (this.Type is AirlinerPassengerType ? Math.Min(totalMaxClasses,((AirlinerPassengerType)this.Type).MaxAirlinerClasses) : Math.Min(totalMaxClasses,((AirlinerCombiType)this.Type).MaxAirlinerClasses));
 
         }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -180,19 +193,22 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         private void cbClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            AirlinerClass.ClassType aType = (AirlinerClass.ClassType)((ComboBox)sender).SelectedItem;
-            AirlinerClassMVVM aClass = (AirlinerClassMVVM)((ComboBox)sender).Tag;
-
-            foreach (AirlinerClassMVVM tClass in this.Classes)
+            if (((ComboBox)sender).SelectedItem != null)
             {
-                if (tClass != aClass)
-                {
-                    foreach (object o in e.RemovedItems)
-                        tClass.ClassTypes.Add((AirlinerClass.ClassType)o);
+                AirlinerClass.ClassType aType = (AirlinerClass.ClassType)((ComboBox)sender).SelectedItem;
+                AirlinerClassMVVM aClass = (AirlinerClassMVVM)((ComboBox)sender).Tag;
 
-                    foreach (object o in e.AddedItems)
-                        tClass.ClassTypes.Remove((AirlinerClass.ClassType)o);
- 
+                foreach (AirlinerClassMVVM tClass in this.Classes)
+                {
+                    if (tClass != aClass)
+                    {
+                        foreach (object o in e.RemovedItems)
+                            tClass.ClassTypes.Add((AirlinerClass.ClassType)o);
+
+                        foreach (object o in e.AddedItems)
+                            tClass.ClassTypes.Remove((AirlinerClass.ClassType)o);
+
+                    }
                 }
             }
         }

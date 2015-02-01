@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <mergers>
+<merger name="Sichuan Airlines now has a subsidiary in Shenzhen called Donghai Airlines that does cargo and passengers." airline1="3U" airline2="J5" type="Subsidiary" date="1.01.2006 00:00:00"></merger>
+<merger name="Air China now has the subsidiary Dalian Airlines, based at Dalian." airline1="CA" airline2="CCD" type="Subsidiary" date="1.01.2011 00:00:00"></merger>
+<merger name="All Nippon Airlines now has the subsidiary Air Japan." airline1="NH" airline2="NQ" type="Subsidiary" date="1.01.2001 00:00:00"></merger>
+<merger name="Myanma now has a subsidiary called Myanmar Airways International." airline1="UB" airline2="8M" type="Subsidiary" date="1.01.1993 00:00:00"></merger>
+<merger name="Myanmar Airways International is now independant from Myanma." airline1="UB" airline2="8M" type="Independant" date="1.01.2001 00:00:00"></merger>
+<merger name="Japan Airlines has started the subsidiary J-Air." airline1="JL" airline2="XM" type="Subsidiary" date="1.01.1996 00:00:00"></merger>
+<merger name="All Nippon Airways has started the subsidiary ANA Wings." airline1="NH" airline2="EH" type="Subsidiary" date="1.01.2010 00:00:00"></merger>
+<merger name="All Nippon Airways has invested 3 billion yen into Asian Wings Airways giving it a 49% stake and making it a subsidiary." airline1="NH" airline2="YJ" type="Subsidiary" date="6.01.2013 00:00:00"></merger>
+<merger name="Air Georgian and Regional 1 are now owned by the same company making R1 a subsidiary." airline1="ZX" airline2="TSH" type="Subsidiary" date="11.15.2013 00:00:00"></merger>
 <merger name="Northern Thunderbird Air is now a sister airline to Central Mountain Air." airline1="9M" airline2="NTA" type="Subsidiary" date="1.01.1987 00:00:00"></merger>
 <merger name="Scandanavian Airlines Group has invested 100% into Cimber A/S." airline1="SK" airline2="QA" type="Subsidiary" date="12.01.2014 00:00:00"></merger>
 <merger name="LAP, Lineas Aereas Paraguayas, has been acquired by TAM and are now a subsidiary." airline1="JJ" airline2="PZ" type="Subsidiary" date="1.01.1996 00:00:00"></merger>

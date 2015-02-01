@@ -1,5 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <airliners>
+  <airliner manufacturer="Tupolev" name="Tupolev Tu-104B" price="2002000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="34.54" length="40.06" range="3415" speed="800" fuelcapacity="33125" consumption="0.097" runwaylengthrequired="2200" />
+    <capacity passengers="100" cockpitcrew="5" cabincrew="2" maxclasses="2" />
+    <produced from="1959" to="1960" rate="47" />
+  </airliner>
+   <airliner manufacturer="Tupolev" name="Tupolev Tu-104A" price="1190000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="34.54" length="38.85" range="3880" speed="800" fuelcapacity="33125" consumption="0.122" runwaylengthrequired="2350" />
+    <capacity passengers="70" cockpitcrew="5" cabincrew="2" maxclasses="2" />
+    <produced from="1957" to="1960" rate="20" />
+  </airliner>
+    <airliner manufacturer="Tupolev" name="Tupolev Tu-104" price="1190000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="38.85" length="34.54" range="3400" speed="750" fuelcapacity="33150" consumption="0.195" runwaylengthrequired="1970" />
+    <capacity passengers="50" cockpitcrew="5" cabincrew="2" maxclasses="2" />
+    <produced from="1956" to="1957" rate="15" />
+  </airliner>
 <airliner manufacturer="Tupolev" name="Tupolev Tu-124" price="1600000"> <!--2100000-->
 <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
 <specs wingspan="25.55" length="30.60" range="2100" speed="800" fuelcapacity="12650" consumption="0.052" runwaylengthrequired="2600"/>

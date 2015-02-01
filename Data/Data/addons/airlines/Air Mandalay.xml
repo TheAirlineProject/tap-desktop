@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Mandalay" iata="6T"  color="MediumVioletRed" country="278" CEO="Michael Chang" mentality="Safe" market="Domestic" preferedairport="RGN"> 
+  <narrative narrative="Air Mandalay existed from October 1994 to December 2014. Its main base was Yangon and its second base was its namesake of Mandalay. In 2011 it was serving 11 domestic destinations besides its hubs. Charters were offered to Singapore and Chiang Mai,Thailand also. Its fleet at the end was two ATR 72-210's and an ATR 42-300. It had 6 pre-ordered Mitsubishi MRJ90's." />
+</profile>
+   <info real="True" from="1994" to="2015"></info>
+   <prefereds aircrafts="ATR 72-210,ATR 42-300,ATR 72-200"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (1994) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="1" late="1"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (1994) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-210" early="2" late="2"></airliner>
+	     </airliners>
+
+<focusairports>
+                 <focusairport airport="MDL"></focusairport>
+     </focusairports>
+
+
+
+
+
+
+</airline>

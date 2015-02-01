@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Dalian Airlines" iata="CCD" logo="CA"  color="Red" country="148" CEO="Cai Jianjiang" mentality="Safe" market="Regional" preferedairport="DLC"> 
+  <narrative narrative="Dalian Airlines is a subsidiary of Air China based at its namesake of Dalian. It started in December 2011 on the Dalian-Shenzhen route and had two 737-800's assigned to it at the start. As of January 2015 it  now has seven 737-800's, six of which are leased from Air China. Air China owns 80% of it. This airline was originally slated to be a part of Hainan Airlines but a disagreement lead to them joining with Air China. At January 2015 from Dalian it was serving Shenzhen still, and Beijing Capital,Shanghai Pudong,Hangzhou,Nanjing,Sanya on Hainan Island and Taiyuan. There are plans for expansion to South Korea and Japan." />
+</profile>
+   <info real="True" from="2011" to="2199"></info>
+   <prefereds aircrafts="Boeing 737-800,Boeing 737 MAX 8"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-800" early="2" late="7"></airliner>
+	     </airliners>
+<routes>
+                <route destination1="DLC" destination2="SZX" opened="2011" closed="2199" />
+		<route destination1="DLC" destination2="PEK" opened="2011" closed="2199"/>
+		<route destination1="DLC" destination2="PVG" opened="2012" closed="2199"/>
+	        <route destination1="DLC" destination2="HGH" opened="2012" closed="2199" />
+	        <route destination1="DLC" destination2="NKG" opened="2013" closed="2199" />
+		<route destination1="DLC" destination2="SYX" opened="2013" closed="2199"/>
+		<route destination1="DLC" destination2="TYN" opened="2014" closed="2199"/>
+        </routes>
+ 
+
+
+</airline>

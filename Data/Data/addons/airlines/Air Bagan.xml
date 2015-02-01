@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Bagan" iata="W9"  color="MediumSpringGreen" country="278" CEO="Htoo Thet Htwe" mentality="Safe" market="Regional" preferedairport="RGN"> 
+  <narrative narrative="Air Bagan is based at Yangon,Myanmar (Burma) with another base at Mandalay. It started in 2004. It serves 14 domestic destinations besides the hubs and an international one to Chiang Mai,Thailand. International destinations that it used to do were Bangkok,Singapore,Osaka in Japan,Seoul in South Korea,Chennai in India and Kunming in China which were all started in 2007 but have since been suspended. It had two A310-200's for these services. At September 2014 it had an ATR 72-500 and 72-210 and two ATR 42-300's and a Fokker 100." />
+</profile>
+   <info real="True" from="2004" to="2199"></info>
+   <prefereds aircrafts="ATR 72-500,ATR 72-600,ATR 72-210,ATR 42-300,Fokker 100,Airbus A310-200"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2015)-->
+	         <airliners>
+	    <airliner type="Fokker 100" early="1" late="1"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 42-300" early="1" late="2"></airliner>
+	     </airliners>
+	     	        <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-500" early="1" late="1"></airliner>
+	     </airliners>
+	     	        <!--the airliners the airline would start with which isn't on a route earyl (2005) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-210" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	        <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2015)-->
+	         <airliners>
+	    <airliner type="Airbus A310-200" early="2" late="0"></airliner>
+	     </airliners>
+<focusairports>
+                 <focusairport airport="MDL"></focusairport>
+     </focusairports>
+
+<routes>
+               <route destination1="RGN" destination2="NYU"  />
+	       <route destination1="RGN" destination2="NYT"  />
+	       <route destination1="RGN" destination2="MDL"  />
+	       <route destination1="RGN" destination2="AKY"  />
+	       <route destination1="RGN" destination2="MGZ"  />
+               <route destination1="RGN" destination2="SNW"  />
+		<route destination1="RGN" destination2="KMV"  />
+		<route destination1="RGN" destination2="TVY"  />
+		<route destination1="RGN" destination2="BSX"  />
+		<route destination1="RGN" destination2="KAW"  />
+		<route destination1="RGN" destination2="HEH"  />
+		<route destination1="RGN" destination2="KET"  />
+		<route destination1="RGN" destination2="LSH"  />
+		<route destination1="RGN" destination2="MYT"  />
+		<route destination1="RGN" destination2="PDU"  />
+		<route destination1="RGN" destination2="THL"  />
+		<route destination1="RGN" destination2="CNX"  />
+		<route destination1="MDL" destination2="NYT"  />
+		<route destination1="MDL" destination2="HEH"  />
+		<route destination1="MDL" destination2="NYU"  />
+		<route destination1="MDL" destination2="BMO"  />
+		<route destination1="MDL" destination2="KMV"  />
+		<route destination1="MDL" destination2="KET"  />
+		<route destination1="MDL" destination2="LSH"  />
+		<route destination1="MDL" destination2="MYT"  />
+		<route destination1="MDL" destination2="HOX"  />
+		<route destination1="MDL" destination2="THL"  />
+		<route destination1="RGN" destination2="SIN" opened="2007" closed="2012"  />
+		<route destination1="RGN" destination2="BKK" opened="2007" closed="2012"  />
+		<route destination1="RGN" destination2="CMB" opened="2007" closed="2012"  />
+		<route destination1="RGN" destination2="KIX" opened="2007" closed="2012"  />
+		<route destination1="RGN" destination2="ICN" opened="2007" closed="2012"  />
+		<route destination1="RGN" destination2="KMG" opened="2007" closed="2012"  />
+		<route destination1="RGN" destination2="MAA" opened="2007" closed="2012"  />
+
+		
+        </routes>
+
+
+
+
+</airline>

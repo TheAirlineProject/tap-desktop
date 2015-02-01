@@ -2,7 +2,7 @@
 
 <airline>
   <profile name="CanJet Airlines" iata="C6" color="DarkBlue" country="113" CEO="Kenneth C. Rowe" mentality="Moderate"
-           market="Domestic" preferedairport="YHZ">
+           market="Global" preferedairport="YHZ" schedule="Charter">
     <narrative
       narrative="CanJet Airlines is a low-cost charter airline based in Enfield and in the Halifax Regional Municipality, Nova Scotia, Canada at the Halifax International Airport. It operates contract and ad hoc charters throughout Canada and the United States" />
   </profile>

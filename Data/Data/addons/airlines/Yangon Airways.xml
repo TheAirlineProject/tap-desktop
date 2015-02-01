@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Yangon Airways" iata="YH"  color="LimeGreen" country="278" CEO="Tin Soe" mentality="Moderate" market="Domestic" preferedairport="RGN"> 
+  <narrative narrative="Yangon Airways is an airline based at its namesake of Yangon,Myanmar (Burma). It has another base at Mandalay. At 2011 it served about 12-13 destinations besides its two bases all domestic ones. At 2008 it made up 41% of the domestic market share. At September 2013 it had two ATR 72-210's and one ATR 72-500, the 500 had just been delivered. The airline had its start in 1996. Operations were suspended from December 2010 to October 16,2011 but resumed. It also does charters." />
+</profile>
+   <info real="True" from="1996" to="2199"></info>
+   <prefereds aircrafts="ATR 72-210,ATR 72-500,ATR 72-200,ATR 72-600"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-210" early="2" late="2"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-500" early="1" late="1"></airliner>
+	     </airliners>
+
+<focusairports>
+                 <focusairport airport="MDL"></focusairport>
+     </focusairports>
+<routes>
+               <route destination1="RGN" destination2="MDL"  />
+	       <route destination1="RGN" destination2="NYT"  />
+	       <route destination1="RGN" destination2="HEH"  />
+	       <route destination1="RGN" destination2="NYU"  />
+              <route destination1="RGN" destination2="MYT"  />
+		<route destination1="RGN" destination2="MGZ"  />
+		<route destination1="RGN" destination2="TVY"  />
+		<route destination1="RGN" destination2="KET"  />
+		<route destination1="RGN" destination2="THL"  />
+		<route destination1="MDL" destination2="NYU"  />
+		<route destination1="MDL" destination2="HEH"  />
+		<route destination1="MDL" destination2="NYT"  />
+		<route destination1="MDL" destination2="LSH"  />
+		<route destination1="MDL" destination2="THL"  />
+		<route destination1="MDL" destination2="KET"  />
+		<route destination1="MDL" destination2="MYT"  />
+		<route destination1="MDL" destination2="KMV"  />
+		<route destination1="MDL" destination2="BMO"  />
+
+		
+        </routes>
+
+
+
+
+
+</airline>

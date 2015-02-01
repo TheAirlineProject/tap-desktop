@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
-  <profile name="Air Italy" iata="I9" color="LimeGreen" country="115" CEO="Giuseppe Gentile" mentality="Moderate" market="Global" preferedairport="NAP" >
+  <profile name="Air Italy" iata="I9" color="LimeGreen" country="141" CEO="Giuseppe Gentile" mentality="Moderate" market="Global" preferedairport="NAP" >
   <narrative narrative="Air Italy is an airline that has been a subsidiary of Meridiana since July 18,2011. It was founded in 2005 and did scheduled flights for tour operators in Europe to places like Brazil
   and Kenya as well as independant short haul flights. It was based at Naples,Turin,Verona,and Milan Malpensa. It started doing Meridiana flights in 2013 and no longer has a route network of their own.'
   It had two short lived subsidiaries that did charters, Air Italy Egypt from 2006-2009 and Air Poland from 2007-2012. As of July 2014 they had a 767-300ER, a 767-200ER,two 737-700's,two 737-300's and one 737-800. Past planes

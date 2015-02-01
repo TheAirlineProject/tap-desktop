@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Golden Myanmar Airlines" iata="GMR"  color="Gold" country="278" CEO="Khin Maung Aye" mentality="Moderate" market="Regional" preferedairport="MDL"> 
+  <narrative narrative="Golden Myanmar Airlines started operation in 2013 and is based at Mandalay with another base at Yangon. It serves about 8 domestic airports besides the bases and international wise it serves Singapore from Mandalay and Yangon,and Imphal,India from Mandalay,from yangon it also serves Bangkok and Chiang Mai,Thailand. Charters from Yangon are availible to Gaya,India, London-Heathrow,Paris CDG,San Francisco,and New York JFK. Its first two planes were A320-200's which it still has as of January 2015, and in 2014 it got two ATR 72-600's. " />
+</profile>
+   <info real="True" from="2013" to="2199"></info>
+   <prefereds aircrafts="Airbus A320-200,ATR 72-600,Airbus A320neo"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2015)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="2" late="2"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-600" early="2" late="2"></airliner>
+	     </airliners>
+
+<focusairports>
+                 <focusairport airport="RGN"></focusairport>
+     </focusairports>
+<routes>
+               <route destination1="MDL" destination2="RGN"  />
+	       <route destination1="MDL" destination2="BMO"  />
+	       <route destination1="MDL" destination2="KET"  />
+	       <route destination1="MDL" destination2="HEH"  />
+               <route destination1="MDL" destination2="NYU"  />
+		<route destination1="MDL" destination2="THL"  />
+		<route destination1="MDL" destination2="NYT"  />
+		<route destination1="MDL" destination2="SIN"  />
+		<route destination1="MDL" destination2="IMF"  />
+		<route destination1="RGN" destination2="NYT"  />
+		<route destination1="RGN" destination2="BKK"  />
+		<route destination1="RGN" destination2="SIN"  />
+		<route destination1="RGN" destination2="CNX"  />
+
+		
+        </routes>
+
+
+
+
+
+</airline>

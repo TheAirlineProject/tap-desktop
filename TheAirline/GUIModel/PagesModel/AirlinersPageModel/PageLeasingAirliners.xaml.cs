@@ -212,7 +212,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
                         foreach (AirlinerMVVM airliner in selectedAirliners)
                         {
-                            if (Countries.GetCountryFromTailNumber(airliner.Airliner.TailNumber).Name
+                            Country country = Countries.GetCountryFromTailNumber(airliner.Airliner.TailNumber);
+                            if (country==null || country.Name 
                                 != GameObject.GetInstance().HumanAirline.Profile.Country.Name)
                             {
                                 airliner.Airliner.TailNumber =

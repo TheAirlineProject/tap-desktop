@@ -70,6 +70,7 @@
             this.SpecialContracts = new List<SpecialContract>();
             this.MaintenanceCenters = new List<MaintenanceCenter>();
             this.Maintenances = new Dictionary<AirlinerMaintenanceType, AirlinerMaintenanceCenter>();
+            this.Agreements = new List<AirportAgreement>();
 
             this.createStandardAdvertisement();
 
@@ -174,6 +175,9 @@
 
                 if (this.MaintenanceCenters == null)
                     this.MaintenanceCenters = new List<MaintenanceCenter>();
+
+                if (this.Agreements == null)
+                    this.Agreements = new List<AirportAgreement>();
             }
             catch (Exception e)
             {
@@ -252,7 +256,8 @@
         public Route.RouteType AirlineRouteFocus { get; set; }
 
         //0-100 with 0-9 as very_low, 10-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 
-
+        [Versioning("agreements")]
+        public List<AirportAgreement> Agreements { get; set; }
         [Versioning("airports")]
         public List<Airport> Airports { get; set; }
 
@@ -556,7 +561,14 @@
         {
             this.Codeshares.Add(share);
         }
-
+        public void addAirportAgreement(AirportAgreement agreement)
+        {
+            this.Agreements.Add(agreement);
+        }
+        public void removeAirportAgreement(AirportAgreement agreement)
+        {
+            this.Agreements.Remove(agreement);
+        }
         //removes an airport from the airline
 
         //adds a facility to the airline
@@ -617,8 +629,7 @@
         {
             if (route != null)
             {
-                var routes = new List<Route>(this.Routes);
-
+             
                 lock (this._Routes)
                 {
                     this._Routes.Add(route);

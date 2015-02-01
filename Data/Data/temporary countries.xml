@@ -246,4 +246,19 @@
       </tempcountries>
     </history>
   </country>
+  <country uid="1012" shortname="RHO" region="104" flag="Rhodesia" tailformat="NP-\\s3" type="ManyToOne">
+    <translations>
+      <en-US name="Rhodesia" />
+      <de-DE name="Rhodesia" />
+      <en-GB name="Rhodesia" />
+      <nl-NL name="Rhodesia" />
+      <zh-CN name="Rhodesia" />
+      <da-DK name="Rhodesia" />
+      <es-ES name="Rhodesia" />
+    </translations>
+    <period start="01.01.1965 00:00:00" end="02.27.1979 00:00:00">
+    </period>
+    <history before="255" after="255">
+    </history>
+  </country>
 </countries>

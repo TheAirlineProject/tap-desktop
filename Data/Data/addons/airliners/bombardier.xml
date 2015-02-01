@@ -1,6 +1,27 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
+ <airliner manufacturer="Bombardier" name="Challenger 800" price="4000000"> 
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <specs wingspan="21.21" length="26.77" range="6659" speed="850" fuelcapacity="5150" consumption="0.053"
+           runwaylengthrequired="884" />
+    <capacity passengers="14" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="2001" to="2199" rate="15" />
+  </airliner>
+ <airliner manufacturer="Bombardier" name="Challenger 600" price="3126000"> 
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <specs wingspan="19.61" length="20.85" range="7458" speed="850" fuelcapacity="5150" consumption="0.053"
+           runwaylengthrequired="884" />
+    <capacity passengers="19" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="1978" to="2199" rate="25" />
+  </airliner>
+ <airliner manufacturer="Bombardier" name="Challenger 300" price="2750000"> 
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <specs wingspan="19.46" length="20.93" range="5741" speed="850" fuelcapacity="3950" consumption="0.053"
+           runwaylengthrequired="792" />
+    <capacity passengers="16" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2001" to="2199" rate="27" />
+  </airliner>
   <airliner manufacturer="Bombardier" name="Bombardier CRJ100" price="3417720"> <!--16200000-->
     <type body="Narrow_Body" rangetype="Regional" engine="Jet" />
     <specs wingspan="21.21" length="26.77" range="2050" speed="809" fuelcapacity="5300" consumption="0.052"

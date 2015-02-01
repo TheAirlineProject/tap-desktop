@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Novoair" iata="VQ"  color="Chocolate" country="216" CEO="Fayzur Rahman" mentality="Moderate" market="Domestic" preferedairport="DAC"> 
+  <narrative narrative="Novoair is a domestic Bangladesh airline that started operations in 2013. As of June 2014 it was serving Chittagong,Jessore,Cox's Bazar and Sylhet from its Dhaka hub. In its first year of operation it did 4,500 flights and carried at least 150,000 people. It launched the nations first domestic frequent flyer program called Smiles. It uses three Embraer 145's. It is also the first airline in Bangladesh to use Embraer planes made in Brazil. It plans on expanding to other regional cities like Kolkata,India, Bangalore,India Yangon,Myanmar Kathmandu,Nepal and Chiang Mai,Thailand but it has not done so yet as of January 2015." />
+</profile>
+   <info real="True" from="2013" to="2199"></info>
+   <prefereds aircrafts="Embraer ERJ145 LR"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2015)-->
+	         <airliners>
+	    <airliner type="Embraer ERJ145 LR" early="3" late="3"></airliner>
+	     </airliners>
+
+<routes>
+                <route destination1="DAC" destination2="JSR" />
+		<route destination1="DAC" destination2="CGP" />
+	        <route destination1="DAC" destination2="CXB"  />
+	        <route destination1="DAC" destination2="ZYL"  />
+
+		
+        </routes>
+
+
+
+
+
+</airline>

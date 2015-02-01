@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="US-Bangla Airlines" iata="BS"  color="MediumBlue" country="216" CEO="Abdullah Al Mamun" mentality="Moderate" market="Domestic" preferedairport="DAC"> 
+  <narrative narrative="US-Bangla Airlines is based out of Dhaka,Bangladesh and does domestic flights. It serves 5 domestic airports from its hub. As of 2014 it does the Chittagong route four times a day. The Cox's Bazar and Jessore route once a day. The Sylhet one three times a week,and the same for Saidpur. It started operations in 2014. It has two Bombardier Dash 8-400's. Its name comes from the United States-Bangladesh joint venture company, known as the US-Bangla Group, who owns it." />
+</profile>
+   <info real="True" from="2014" to="2199"></info>
+   <prefereds aircrafts="Bombardier Dash 8-400"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-400" early="2" late="2"></airliner>
+	     </airliners>
+
+<routes>
+                <route destination1="DAC" destination2="JSR" />
+		<route destination1="DAC" destination2="CGP" />
+	        <route destination1="DAC" destination2="CXB"  />
+	        <route destination1="DAC" destination2="SPD"  />
+	        <route destination1="DAC" destination2="ZYL"  />
+
+		
+        </routes>
+
+
+
+
+
+</airline>

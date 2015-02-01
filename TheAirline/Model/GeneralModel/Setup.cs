@@ -398,8 +398,10 @@
             }
             catch (Exception e)
             {
+                Console.WriteLine("Error reading some of the airports");
                 TAPLogger.LogEvent(e.StackTrace, "Exception on loading airports");
             }
+
             Airports.LargestAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Largest).Count;
             Airports.VeryLargeAirports =
                 Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Very_large).Count;
@@ -876,11 +878,7 @@
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
-            var intlsWithoutIntl = Airports.GetAirports(a => a.Profile.Name.Contains("International") && a.Profile.Type == AirportProfile.AirportType.Domestic);
-
-            //foreach (var intlAirport in intlsWithoutIntl)
-            //    Console.WriteLine("{0} is not an international airport", intlAirport.Profile.Name);
-            int ff = intlsWithoutIntl.Count;
+         
             /*
             System.IO.StreamWriter aFile = new System.IO.StreamWriter("c:\\bbm\\airports.csv");
 
@@ -3304,7 +3302,7 @@
                             terminalType = Terminal.TerminalType.Passenger;
 
                         airport.Terminals.addTerminal(
-                            new Terminal(airport, null, terminalName, terminalGates, new DateTime(GameObject.StartYear, 1, 1), terminalType));
+                            new Terminal(airport, null, terminalName, terminalGates, new DateTime(GameObject.StartYear, 1, 1).AddDays(-1), terminalType));
                     }
 
                     XmlNodeList runwaysList = airportElement.SelectNodes("runways/runway");
@@ -5190,7 +5188,7 @@
 
                         if (!airport.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo))
                         {
-                            airport.Terminals.addTerminal(new Terminal(airport, "Cargo Terminal", ((int)airport.Profile.Cargo) + 5, GameObject.GetInstance().GameTime, Terminal.TerminalType.Cargo));
+                            airport.Terminals.addTerminal(new Terminal(airport, "Cargo Terminal", ((int)airport.Profile.Cargo) + 5, GameObject.GetInstance().GameTime.AddDays(-1), Terminal.TerminalType.Cargo));
                         }
 
                     }
@@ -5206,7 +5204,9 @@
 
                 });
 
-            foreach (Airline airline in Airlines.GetAllAirlines())
+            var allAirlines = new List<Airline>(Airlines.GetAllAirlines());
+
+            foreach (Airline airline in allAirlines)
             {
                 airline.Money = GameObject.GetInstance().StartMoney;
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="SkyLink Express" iata="SLQ"  color="Blue" country="113" CEO="Dan Rocheleau" mentality="Safe" market="Regional" preferedairport="YVR" routefocus="Cargo"> <narrative narrative="SkyLink Express is a feeder cargo airline with hubs at Vancouver,Winnipeg,Hamilton,Montreal-Mirabel,Halifax,Moncton,and St. John's. It also operates in the US. Its corporate HQ is Toronto. It started in 1994. It has done feeder service for many of the top names in the business, like UPS,FedEx,DHL,Canada Post,Purolator and are currently as of 2009 in a partnership with another cargo airline Cargojet. It has 9 Beechcraft 1900C's of which it is the second largest operator of in North America and has been using them since 1996. It also has 8 Cessna 208's which it has been using since the start. It also has facilities at Quebec City and Windsor,Ontario. On demand charters are also done. It has 30+ destinations." />
+</profile>
+   <info real="True" from="1994" to="2199"></info>
+   <prefereds aircrafts="Cessna 208B Super Cargomaster,Beechcraft 1900C"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YWG"></focusairport>
+		 <focusairport airport="YHM"></focusairport>
+		 <focusairport airport="YMX"></focusairport>
+		 <focusairport airport="YHZ"></focusairport>
+		 <focusairport airport="YQM"></focusairport>
+		 <focusairport airport="YYT"></focusairport>
+		  <focusairport airport="YYZ"></focusairport>
+		   <focusairport airport="YQB"></focusairport>
+		    <focusairport airport="YQG"></focusairport>
+     </focusairports>
+
+
+
+<!--the airliners the airline would start with which isn't on a route earyl (1996) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900C" early="4" late="9"></airliner>
+	     </airliners>
+	     <!--the airliners the airline would start with which isn't on a route earyl (1994) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B Super Cargomaster" early="4" late="8"></airliner>
+	     </airliners>
+
+
+
+</airline>

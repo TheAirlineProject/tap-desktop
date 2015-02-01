@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
+            xmlns:g="clr-namespace:System.Globalization;assembly=mscorlib"
       Name="pageHumanRoutes"
       mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300"
@@ -41,8 +42,68 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
+                <StackPanel>
+                    <StackPanel.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Agreements.Count,ElementName=pageHumanRoutes}"
+                                         Value="0">
+                                    <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1010'}"
+                    Style="{StaticResource SmallHeaderStyle}" />
+                    <ListView util:GridViewSort.AutoSort="True" VerticalAlignment="Stretch"
+                      Background="Transparent" BorderThickness="0"
+                      ItemsSource="{Binding Path=Agreements,ElementName=pageHumanRoutes}">
+                        <ListView.View>
+                            <GridView>
+
+                                <GridViewColumn util:GridViewSort.PropertyName="Airport.Profile.Name"
+                                        Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1011'}"
+                                        Width="250">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl Content="{Binding Airport,Mode=OneTime}" ContentTemplate="{StaticResource AirportCountryNormalLink}" VerticalAlignment="Bottom"></ContentControl>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn util:GridViewSort.PropertyName="Routes"
+                                        Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1012'}"
+                                        Width="75">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Routes}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn util:GridViewSort.PropertyName="StartDate"
+                                        Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1008'}"
+                                        Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding StartDate,Mode=OneTime,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn util:GridViewSort.PropertyName="EndDate"
+                                        Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1009'}"
+                                        Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding EndDate,Mode=OneTime,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
                 <ListView util:GridViewSort.AutoSort="True" x:Name="RoutesList" VerticalAlignment="Stretch"
-                      Background="Transparent" BorderThickness="0" ItemsSource="{Binding}">
+                      Background="Transparent" BorderThickness="0" ItemsSource="{Binding}" Margin="0 10 0 0">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="" Width="60">

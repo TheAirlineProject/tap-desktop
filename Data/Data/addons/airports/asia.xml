@@ -1154,6 +1154,7 @@ inflationafter="1">
   </airport>
   <airport name="Chūbu Centrair International Airport" icao="RJGG" iata="NGO" type="International"
            season="All_Year">
+           <period from="02.17.2005 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Nagoya" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="034°51'30''N" />
@@ -2201,6 +2202,7 @@ inflationafter="1">
   </airport>
   <!--South Korea (RK**)-->
   <airport name="Incheon International Airport" icao="RKSI" iata="ICN" type="International" season="All_Year">
+  <period from="03.29.2001 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Seoul" country="165" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="037°28'08''N" />
@@ -2215,6 +2217,7 @@ inflationafter="1">
       <runway name="15L/33R" length="3750" surface="Asphalt" />
       <runway name="15R/33L" length="3750" surface="Asphalt" />
       <runway name="16/34" length="4000" surface="Asphalt" />
+      <runway name="H1" length="19" surface="Concrete" type="Helipad" />
     </runways>
   </airport>
 
@@ -2437,7 +2440,8 @@ inflationafter="1">
     </runways>
   </airport>
   <!--Philippines (RP**)-->
- <airport name="Laguindingan Airport" icao="RPMY" iata="CGY" type="Domestic" season="All_Year"> <period from="06.15.2013 00:00:00" to="01.01.2199 00:00:00" />
+ <airport name="Laguindingan Airport" icao="RPMY" iata="CGY" type="Domestic" season="All_Year"> 
+ <period from="06.15.2013 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Cagayan de Oro/Illigan City" country="131" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="008°36'43''N" />
@@ -9556,6 +9560,7 @@ inflationafter="1">
   </airport>
   <airport name="Shanghai Pudong International Airport" icao="ZSPD" iata="PVG" type="International"
            season="All_Year"  landingfee="1.83">
+               <period from="10.01.1999 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Shanghai" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="031°08'36''N" />
@@ -10335,7 +10340,7 @@ inflationafter="1">
   </airport>
   <!--Bhutan-->
  <airport name="Paro Airport" icao="VQPR" iata="PBH" type="International" season="All_Year">
-    <town town="Paro" country="252" GMT="06:00:00" DST="00:00:00" />
+    <town town="Paro" country="252" GMT="06:00:00" DST="07:00:00" />
     <coordinates>
       <latitude value="27°24'32''N" />
       <longitude value="89°25'25''E" />

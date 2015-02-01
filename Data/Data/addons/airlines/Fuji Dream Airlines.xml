@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Fuji Dream Airlines" iata="JH"  color="Red" country="171" CEO="Yohei Suzuki" mentality="Moderate" market="Domestic" preferedairport="FSZ"> 
+  <narrative narrative="Fuji Dream Airlines is based at Shizuoka which is in view of Mt. Fuji. It started in 2009. Its secondary hub is Nagoya Airfield, with focus cities at Matsumoto and Fukuoka. In total as of March 2015 it serves 14 total domestic airports. Besides the bases and focus they are Aomori,Hanamaki,Izumo,Kagoshima,Kochi,Kitakyushu,Kumamoto,Niigata,Sapporo,and Yamagata. In January 2015 its fleet were five Embraer E-175's and three E-170's. Each plane is painted in a unique color. They are red,blue,green,pink,orange,yellow,tea green, and purple." />
+</profile>
+   <info real="True" from="2009" to="2199"></info>
+   <prefereds aircrafts="Embraer E-175,Embraer E-170,Embraer E-175E2"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2010) late (2015)-->
+	         <airliners>
+	    <airliner type="Embraer E-175" early="2" late="5"></airliner>
+	     </airliners>
+	       <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="Embraer E-170" early="2" late="3"></airliner>
+	     </airliners>
+<focusairports>
+                 <focusairport airport="NKM"></focusairport>
+		 <focusairport airport="MMJ"></focusairport>
+		 <focusairport airport="FUK"></focusairport>
+     </focusairports>
+
+ 
+
+
+</airline>

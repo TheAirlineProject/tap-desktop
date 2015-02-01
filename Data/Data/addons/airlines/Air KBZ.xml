@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air KBZ" iata="K7"  color="Yellow" country="278" CEO="U Moe San Aung" mentality="Moderate" market="Domestic" preferedairport="RGN"> 
+  <narrative narrative="Air KBZ is a domestic airline of Myanmar based at Yangon. It began operations on April 2,2011. It is owned by Kanbawza Bank, one of the five major private banks of Myanmar. Its other base is Mandalay and it serves about 16 domestic airports besides the two bases. At June 2014 it had six ATR 72-500's and two ATR 72-600's. There were two 600's on order also." />
+</profile>
+   <info real="True" from="2011" to="2199"></info>
+   <prefereds aircrafts="ATR 72-500,ATR 72-600"></prefereds>
+	     	        <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-500" early="3" late="6"></airliner>
+	     </airliners>
+	     	        <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2017)-->
+	         <airliners>
+	    <airliner type="ATR 72-600" early="2" late="4"></airliner>
+	     </airliners>
+
+<focusairports>
+                 <focusairport airport="MDL"></focusairport>
+     </focusairports>
+
+
+
+
+</airline>

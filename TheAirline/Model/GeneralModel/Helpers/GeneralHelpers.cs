@@ -216,6 +216,9 @@
         }
         private static void CreatePilots(int count, string airlinerFamily,List<Town> towns)
         {
+            if (towns.Count == 0)
+                towns = Towns.GetTowns();
+
             var rnd = new Random();
             for (int i = 0; i < count; i++)
             {

@@ -2105,7 +2105,7 @@
                             {
                                 Country tailnumberCountry = Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber);
 
-                                if (tailnumberCountry == null || tailnumberCountry.Name
+                                if (tailnumberCountry != null && tailnumberCountry.Name
                                     != airline.Profile.Country.Name)
                                 {
                                     airliner.Value.Key.TailNumber =

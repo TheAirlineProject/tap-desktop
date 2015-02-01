@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="KD Air" iata="XC"  color="White" country="113" CEO="Norman Johnson" mentality="Safe" market="Local" preferedairport="YVR"> <narrative narrative="KD Air is based at Vancouver,BC at the International airport. It does flights from Vancouver to the communities of Qualicum Beach and Tofino on Vancouver Island and to Texada Island, which lays in the Strait of Georgia between the mainland and Vancouver Island. It does a ground shuttle from Qualicum Beach to Port Alberni. It has Piper Navajo's and Cessna 172 Skyhawk's. It also does charters. It was founded in 1990." />
+</profile>
+   <info real="True" from="1990" to="2199"></info>
+   <prefereds aircrafts="Cessna 172 Skyhawk,PA-31 Navajo,PA-31T Cheyenne"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="XQU"></focusairport>
+     </focusairports>
+
+
+
+
+
+
+<routes>
+                <route destination1="YVR" destination2="XQU" />
+		<route destination1="YVR" destination2="YAZ" />
+	        <route destination1="YVR" destination2="YGB"  />
+	        <route destination1="XQU" destination2="YGB"  />
+        </routes>
+
+
+
+
+
+
+
+
+
+</airline>

@@ -225,11 +225,20 @@
         {
             if (AirportHelpers.WillBuildCustomersService(this.Airport.Airport))
             {
-                WPFMessageBox.Show(
-                   Translator.GetInstance().GetString("MessageBox", "2235"),
-                   string.Format(Translator.GetInstance().GetString("MessageBox", "2235", "message"), this.Airport.Airport.Profile.Name),
-                   WPFMessageBoxButtons.Ok);
-                this.Airport.setType(AirportProfile.AirportType.International);
+                int routes = AirportHelpers.GetIntlRoutesForCustoms(this.Airport.Airport);
+
+                WPFMessageBoxResult result = WPFMessageBox.Show(
+                       Translator.GetInstance().GetString("MessageBox", "2235"),
+                       string.Format(Translator.GetInstance().GetString("MessageBox", "2235", "message"), this.Airport.Airport.Profile.Name, routes, GameObject.GetInstance().GameTime.AddMonths(1).ToShortDateString(), GameObject.GetInstance().GameTime.AddMonths(13).ToShortDateString()),
+                       WPFMessageBoxButtons.YesNo);
+           
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                   
+                    this.Airport.setType(AirportProfile.AirportType.International);
+
+                    GameObject.GetInstance().HumanAirline.addAirportAgreement(new AirportAgreement(this.Airport.Airport,AirportAgreement.AgreementType.IntlRoutes,GameObject.GetInstance().GameTime.AddMonths(1),GameObject.GetInstance().GameTime.AddMonths(13),routes));
+                }
             }
             else
                 WPFMessageBox.Show(

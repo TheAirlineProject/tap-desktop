@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Sky Regional Airlines" iata="RS"  color="Orange" country="113" CEO="William Trudeau" mentality="Moderate" market="Regional" preferedairport="YYZ"> <narrative narrative="Sky Regional Airlines has its hub at Toronto Pearson and its corporate HQ at Toronto Billy Bishop. It is an affiliate of Air Canada Express and has their planes painted in the colors of that airline. It began service in 2011 flying between Toronto Bishop and Montreal Trudeau, which is still the only route served at YTZ by Air Canada Express as of January 2015. It started with five Dash 8-400's and now has those and fifteen Embraer E-175's that Air Canada transferred to it. That was done in 2013. The same year it started using some of those planes to serve the US, to New York LaGuardia,Boston,Washington Reagan,Philadelphia,Chicago O' Hare,Newark and Dallas-Ft. Worth. It also serves many Canadian destinations from Pearson and Trudeau, such as Ottawa,Winnipeg,Moncton,Halifax,Regina and Saskatoon. The Montreal-Moncton route started in 2012." />
+</profile>
+   <info real="True" from="2011" to="2199"></info>
+   <prefereds aircrafts="Embraer E-175,Embraer E-175E2,Bombardier Dash 8-400,Bombardier Dash 8-400NextGen"></prefereds>
+
+
+<focusairports>
+                 <focusairport airport="YUL"></focusairport>
+		 <focusairport airport="YTZ"></focusairport>
+     </focusairports>
+
+	     	     <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-400" early="5" late="5"></airliner>
+	     </airliners>
+	     	     	     <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2015)-->
+	         <airliners>
+	    <airliner type="Embraer E-175" early="15" late="15"></airliner>
+	     </airliners>
+<routes>
+                <route destination1="YTZ" destination2="YUL" opened="2011" closed="2199" />
+		<route destination1="YYZ" destination2="YWG" opened="2011" closed="2199" />
+		<route destination1="YYZ" destination2="YOW" opened="2011" closed="2199" />
+		<route destination1="YYZ" destination2="YHZ" opened="2011" closed="2199" />
+		<route destination1="YYZ" destination2="YXE" opened="2011" closed="2199" />
+		<route destination1="YYZ" destination2="YQR" opened="2011" closed="2199" />
+		<route destination1="YUL" destination2="YQM" opened="2012" closed="2199" />
+		<route destination1="YYZ" destination2="ORD" opened="2013" closed="2199" />
+		<route destination1="YYZ" destination2="LGA" opened="2013" closed="2199" />
+		<route destination1="YYZ" destination2="BOS" opened="2013" closed="2199" />
+		<route destination1="YYZ" destination2="EWR" opened="2013" closed="2199" />
+		<route destination1="YYZ" destination2="DCA" opened="2013" closed="2199" />
+		<route destination1="YYZ" destination2="PHL" opened="2013" closed="2199" />
+		<route destination1="YYZ" destination2="DFW" opened="2013" closed="2199" />
+		<route destination1="YUL" destination2="YHZ" opened="2013" closed="2199" />	
+		<route destination1="YUL" destination2="YOW" opened="2013" closed="2199" />
+		<route destination1="YUL" destination2="DCA" opened="2013" closed="2199" />
+	        <route destination1="YUL" destination2="YWG" opened="2013" closed="2199" />
+	        <route destination1="YUL" destination2="ORD" opened="2013" closed="2199" />
+                <route destination1="YUL" destination2="EWR" opened="2013" closed="2199" />
+
+        </routes>
+
+</airline>

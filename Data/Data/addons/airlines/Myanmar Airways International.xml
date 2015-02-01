@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Myanmar Airways International" iata="8M"  color="MidnightBlue" country="278" CEO="Si Thu" mentality="Safe" market="Regional" preferedairport="RGN"> 
+  <narrative narrative="Myanmar Airways International is based at Yangon,Myanmar (Burma) and was once part of Myanmar Airways, now called Myanmar National Airlines starting in December 2014. International was spun off from Myanma in 1993 to handle the international flights while Myanma would do the domestic ones. The original entity was founded in 1946 as the Union of Burma Airways. The International branch was a joint venture between Myanma and Highsonic Enterprises of Singapore and support from Royal Bruineu Airlines was also part of it.  Much of the management team were ex Singapore Airlines staff and ran by UK Civil Aviation Authority standards. It had two 737-400's from around the beginning to as late as August 2001. Eventually it broke off from Myanma and in January 2001 a new company called Region Air Myanmar got 49% of it, an 11% stake was bought by a local business man and his company. In 2009 it got two A320-200's and in 2013 it got 3 A319's which it still has 2 of. It also has one ATR 72-500 which they have had since 2007. An MD-82 was a common plane in its fleet from 2003 to around 2010. Other planes it has leased for short times include a 757-200,737-300,737-800,A321,and Fokker 100. At January 2014 the regulary scheduled places it was serving were 3 domestic airports,two in Cambodia,one in China,one in India,one in Malaysia,one in Japan,one in South Korea,Singapore,one in Thailand,and one in Indonesia. Charters to seven other Japanese airports are availible and also Busan,South Korea. It has codeshares with Asiana Airlines,Garuda Indonesia,Korean Air and Malaysia Airlines." />
+</profile>
+   <info real="True" from="1993" to="2199"></info>
+   <prefereds aircrafts="Airbus A320-200,Airbus A319-100,ATR 72-500,Airbus A320neo,Airbus A319neo,ATR 72-600,Boeing 737-400,MD-82 (DC-9-82)"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2015)-->
+	         <airliners>
+	    <airliner type="Airbus A319-100" early="3" late="2"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="2" late="2"></airliner>
+	     </airliners>
+	     	        <!--the airliners the airline would start with which isn't on a route earyl (1994) late (2003)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="2" late="0"></airliner>
+	     </airliners>
+	     	     	        <!--the airliners the airline would start with which isn't on a route earyl (2003) late (2010)-->
+	         <airliners>
+	    <airliner type="MD-82 (DC-9-82)" early="1" late="0"></airliner>
+	     </airliners>
+	     	     	     	        <!--the airliners the airline would start with which isn't on a route earyl (2007) late (2015)-->
+	         <airliners>
+	    <airliner type="ATR 72-500" early="1" late="1"></airliner>
+	     </airliners>
+
+<focusairports>
+                 <focusairport airport="MDL"></focusairport>
+     </focusairports>
+
+
+
+<random_routes>
+      <routes origin="RGN" destinations="20" minimumsize="Smallest">
+        <countries>
+          <country value="294"></country>
+          <country value="175"></country>
+          <country value="152"></country>
+          <country value="174"></country>
+          <country value="173"></country>
+          <country value="148"></country>
+	   <country value="165"></country>
+	   <country value="171"></country>
+        </countries>
+      </routes>
+            <routes origin="MDL" destinations="2" minimumsize="Smallest">
+        <countries>
+          <country value="152"></country>
+          <country value="165"></country>
+        </countries>
+      </routes>
+    </random_routes>
+ 
+
+
+</airline>

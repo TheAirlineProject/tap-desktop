@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="R1 Airlines" iata="TSH"  color="Black" country="113" CEO="John Binder" mentality="Safe" market="Domestic" preferedairport="YYC"  schedule="Charter"> 
+  <narrative narrative="R1 Airlines, formerly Regional 1,are a charter airline based at Calgary,Alberta. It started in August 2003 and did scheduled service until September 2005. It served Red Deer,Alberta and in British Columbia it served Vancouver,Kelowna,Kamloops and Victoria. Its main charter customers are the oil and gas industry,mining,humanitarian missions in places like the Congo,the construction industry,energy and utilities and forestry. At October 2014 its fleet was three Dash 8-200's,three Dash 8-100's, a Dash 8-300,four CRJ200's and a Beehchcraft 1900D. It had a BAe 146-200 at one time and a CRJ100 fo a while also. On November 15,2013 it entered a joint venture with Air Georgian, and are now owned by the same company. This gives R1 access to that airlines planes and maintenance centers all over Canada too." />
+  <names>
+<name value="Regional 1" from="1.1.2003 00:00:00"></name>
+<name value="R1 Airlines" from="15.11.2013 00:00:00"></name>
+</names>
+</profile>
+   <info real="True" from="2003" to="2199"></info>
+   <prefereds aircrafts="Bombardier Dash 8-200,Bombardier Dash 8-300,Bombardier Dash 8-100,Bombardier CRJ200,Bombardier CRJ100,Beechcraft 1900D"></prefereds>
+
+
+<focusairports>
+                 <focusairport airport="YLW"></focusairport>
+		 <focusairport airport="YKA"></focusairport>
+		 <focusairport airport="YQF"></focusairport>
+		 <focusairport airport="YVR"></focusairport>
+		 <focusairport airport="YYJ"></focusairport>
+     </focusairports>
+
+<!--the airliners the airline would start with which isn't on a route earyl (2003) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900D" early="0" late="1"></airliner>
+	     </airliners>
+	     <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-100" early="1" late="3"></airliner>
+	     </airliners>
+	     	     <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-300" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	     <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier Dash 8-200" early="2" late="3"></airliner>
+	     </airliners>
+	     	     	     <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ200" early="1" late="4"></airliner>
+	     </airliners>
+
+</airline>

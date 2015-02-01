@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Nolinor Aviation" iata="NRL"  color="Gold" country="113" CEO="Jeremy Johnson" mentality="Safe" market="Regional" preferedairport="YMX" routefocus="Mixed" schedule="Charter"> <narrative narrative="Nolinor Aviation is a duel passenger and cargo charter airline based at Montreal-Mirabel. Other primary bases of operation are Montreal-Trudeau,Winnipeg,Waterloo,and Val-d'Or. It started in 1997 and mainly served hunters and fishers but soon began service to all sorts of passengers and started doing cargo. In 2001 it got a Convair 580 for cargo use and began doing that throughout north Canada and into the US. In 2004 it got two more and in 2006 it got a passenger version. It now has 5 total as of June 2014. In 2007 it got two 737-200 Adv. combi's and in 2011 a full cargo version. It got another combi soon after.In 2014 it got a Learjet 31 corporate jet. It also has the right permissions to maintain its own planes." />
+</profile>
+   <info real="True" from="1997" to="2199"></info>
+   <prefereds aircrafts="Boeing 737-200 Adv.,Convair 440,Learjet 31,Boeing 737-200C"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YUL"></focusairport>
+		 <focusairport airport="YWG"></focusairport>
+		 <focusairport airport="YKF"></focusairport>
+		 <focusairport airport="YVO"></focusairport>
+     </focusairports>
+
+
+
+<!--the airliners the airline would start with which isn't on a route earyl (2007) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200 Adv." early="2" late="3"></airliner>
+	     </airliners>
+	     <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200C" early="1" late="1"></airliner>
+	     </airliners>
+	     <!--the airliners the airline would start with which isn't on a route earyl (1997) late (2015)-->
+	         <airliners>
+	    <airliner type="Convair 440" early="1" late="5"></airliner>
+	     </airliners>
+	     	     <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2015)-->
+	         <airliners>
+	    <airliner type="Learjet 31" early="1" late="1"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+
+
+</airline>

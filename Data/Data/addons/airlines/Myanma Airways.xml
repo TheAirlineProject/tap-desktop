@@ -2,9 +2,13 @@
 
 <airline>
   <profile name="Myanma Airways" iata="UB" color="Orange" country="278" CEO="Than Tun" mentality="Moderate"
-           market="Regional" preferedairport="RGN">
+           market="Domestic" preferedairport="RGN">
     <narrative
       narrative="Myanma Airways is the sole national flag carrier and state-owned airline of Myanmar, based in Yangon. It operates scheduled services to all major domestic destinations. Its main base is Yangon International Airport" />
+<names>
+<name value="Myanma Airways" from="1.1.1948 00:00:00"></name>
+<name value="Myanmar National Airlines" from="12.1.2014 00:00:00"></name>
+</names>  
   </profile>
   <info real="True" from="1948" to="2199"></info>
 </airline>

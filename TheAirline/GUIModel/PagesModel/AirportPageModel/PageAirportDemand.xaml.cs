@@ -210,7 +210,6 @@
                 }
                 else
                 {
-
                     if (!hasCheckin && contractType == AirportContract.ContractType.Full)
                     {
                         AirportFacility checkinFacility =
@@ -230,30 +229,34 @@
 
                     terminalType = Terminal.TerminalType.Passenger;
                     gates = paxGates;
-
-                
                 }
 
                 double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport, contractType, gates, 2);
 
-                var contract = new AirportContract(
-                    GameObject.GetInstance().HumanAirline,
-                    airport,
-                    contractType,
-                    terminalType,
-                    GameObject.GetInstance().GameTime,
-                    gates,
-                    2,
-                    yearlyPayment,
-                    true);
-
-                AirportHelpers.AddAirlineContract(contract);
-
+                int rentedGates = 0;
                 for (int i = 0; i < gates; i++)
                 {
-                    Gate gate = airport.Terminals.getGates().Where(g => g.Airline == null).First();
-                    gate.Airline = GameObject.GetInstance().HumanAirline;
+                    Gate gate = airport.Terminals.getGates().Where(g => g.Airline == null).FirstOrDefault();
+
+                    if (gate != null)
+                    {
+                        rentedGates++;
+                        gate.Airline = GameObject.GetInstance().HumanAirline;
+                    }
                 }
+
+                var contract = new AirportContract(
+                  GameObject.GetInstance().HumanAirline,
+                  airport,
+                  contractType,
+                  terminalType,
+                  GameObject.GetInstance().GameTime,
+                  rentedGates,
+                  2,
+                  yearlyPayment,
+                  true);
+
+                AirportHelpers.AddAirlineContract(contract);
 
                 demand.Contracted = true;
             }

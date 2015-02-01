@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Northwestern Air" iata="J3"  color="Tomato" country="113" CEO="Terry Harrold" mentality="Safe" market="Domestic" preferedairport="YSM" schedule="Business"> <narrative narrative="Northwestern Air is based out of Fort Smith in Northwest Territories by the border to Alberta. It also has a base at Red Deer,Alberta. It serves Yellowknife,NT, Hay River,NT Edmonton,AB Fort Chipewyan,AB Fort McMurray,AB Grande Prarie,AB High Level,AB and Kelowna,BC on 11 routes as of January 2015. Its fleet has eight BAe Jetstream 31's and a Beechcraft 99. It was founded in 1965 as a leasing company and started flying itself in 1968 and in 1984 it started scheduled service. It also does charters. It does about 106 scheduled flights a week. It has used Cessna 208's in the past also." />
+</profile>
+   <info real="True" from="1965" to="2199"></info>
+   <prefereds aircrafts="BAe Jetstream 31,Beechcraft 99,Cessna 208B"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YQF"></focusairport>
+     </focusairports>
+
+
+
+<!--the airliners the airline would start with which isn't on a route earyl (1969) late (2015)-->
+	         <airliners>
+	    <airliner type="BAe Jetstream 31" early="1" late="8"></airliner>
+	     </airliners>
+	     <!--the airliners the airline would start with which isn't on a route earyl (1968) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 99" early="1" late="1"></airliner>
+	     </airliners>
+
+	     <routes>
+                <route destination1="YSM" destination2="YZF" />
+		<route destination1="YSM" destination2="YEG" />
+	        <route destination1="YSM" destination2="YHY"  />
+	        <route destination1="YSM" destination2="YPY"  />
+		<route destination1="YQF" destination2="YMM" />
+		<route destination1="YQF" destination2="YLW" />
+	        <route destination1="YQF" destination2="YQU"  />
+	        <route destination1="YEG" destination2="YMM"  />
+	        <route destination1="YEG" destination2="YOJ" />
+		<route destination1="YOJ" destination2="YHY" />
+	        <route destination1="YMM" destination2="YPY"  />
+		
+        </routes>
+
+
+
+
+
+
+
+
+
+
+
+</airline>

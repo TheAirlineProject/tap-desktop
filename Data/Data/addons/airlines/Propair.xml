@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Propair" iata="PRO"  color="DarkBlue" country="113" CEO="Emilien Pronovost" mentality="Safe" market="Local" preferedairport="YUY" routefocus="Mixed" schedule="Charter"> <narrative narrative="Propair is a charter passenger and cargo and medevac airline based at Rouyn-Noranda,Quebec. It serves mostly Quebec and Ontario and the north east US. It has a FBO at its base and at Montreal-Trudeau also. It was founded in 1954 after Emilien Pronovost bought La Sarre Air Service. The comapny grew over the years and was passed to his 2 daughters and 2 sons. An airline called Air Fecteau was bought and merged also. As its name might suggest it has only prop planes, at May 2012 it had ten Beechcraft King Air's, a Beechcraft 1900C and a Grumman Gulfstream I. It has also had Fairchild Metroliners before too." />
+</profile>
+   <info real="True" from="1954" to="2199"></info>
+   <prefereds aircrafts="Beechcraft King Air B200,Beechcraft 1900C,Gulfstream I,Fairchild Swearingen Metroliner"></prefereds>
+
+
+<focusairports>
+                 <focusairport airport="YUL"></focusairport>
+     </focusairports>
+
+<!--the airliners the airline would start with which isn't on a route earyl (1984) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900C" early="0" late="1"></airliner>
+	     </airliners>
+	     <!--the airliners the airline would start with which isn't on a route earyl (1975) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="4" late="10"></airliner>
+	     </airliners>
+	     	     <!--the airliners the airline would start with which isn't on a route earyl (1959) late (2015)-->
+	         <airliners>
+	    <airliner type="Gulfstream I" early="1" late="1"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+
+
+
+</airline>

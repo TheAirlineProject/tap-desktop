@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Nor-Alta Aviation" iata="LT" logo="LT2" color="Orange" country="113" CEO="Jake Fehr" mentality="Safe" market="Local" preferedairport="YOJ" routefocus="Mixed" schedule="Charter"> 
+  <narrative narrative="Nor-Alta Aviation is a charter passenger and cargo airline based at Fort Vermilion and High Level,Alberta with another hub at Fort McMurray. It also does air ambulance service. Its main area of service is the Little Red River Cree Nation and other northern Alberta communities. It was founded in 1986. Usual chartered destinations outside of the hubs include Fort Chipewyan,Grande Prarie and Edmonton all in Alberta and fishing lodges and oil camps. At January 2011 its fleet was four Cessna 206's, a Cessna 208,four Beechcraft King Air's and a Piper Navajo." />
+</profile>
+   <info real="True" from="1986" to="2199"></info>
+   <prefereds aircrafts="Cessna 206,Beechcraft King Air B200,Cessna 208B,PA-31 Navajo"></prefereds>
+
+  <focusairports>
+                 <focusairport airport="YMM"></focusairport>
+     </focusairports>
+
+
+
+<!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 206" early="2" late="4"></airliner>
+	     </airliners>
+	     <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air B200" early="2" late="4"></airliner>
+	     </airliners>
+	     	     <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="0" late="1"></airliner>
+	     </airliners>
+	     	     	     <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="PA-31 Navajo" early="0" late="1"></airliner>
+	     </airliners>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</airline>

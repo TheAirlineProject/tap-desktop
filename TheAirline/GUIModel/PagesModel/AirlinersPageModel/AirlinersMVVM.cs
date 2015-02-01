@@ -354,7 +354,7 @@
             this._classes = new List<AirlinerClass>();
             this.Homebases = new ObservableCollection<Airport>();
 
-            if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger || this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
+            if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger || this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter || this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Mixed)
             {
                 var eClass = new AirlinerClass(
                     AirlinerClass.ClassType.Economy_Class,

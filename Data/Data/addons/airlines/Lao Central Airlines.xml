@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Lao Central Airlines" iata="LF"  color="YellowGreen" country="279" CEO=" Od Phongsavanh" mentality="Safe" market="Regional" preferedairport="VTE" schedule="Business"> <narrative narrative="Lao Central Airlines is a regional airline based at Vientiane,Laos. It was founded in 2010 as Phongsavanh Airlines and changed names in 2012. As of 2013 some of the places it was serving from its hub include Bangkok,Thailand Phnom Penh,Cambodia Hanoi,Vietnam Kuala Lumpur,Malaysia Kunming,China Naypyidaw,Myanmar and Singapore. Domestically it also serves Luang Prabang. Its fleet as of 2013 was two Boeing 737-400's and a Sukoi Superjet 100-95LR, with 2 more on order with options for 6 more of the same type or another variant." />
+</profile>
+   <info real="True" from="2010" to="2199"></info>
+   <prefereds aircrafts="Sukhoi 100-95,Sukhoi 100-95LR,Boeing 737-400"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="2" late="2"></airliner>
+	     </airliners>
+   <!--the airliners the airline would start with which isn't on a route earyl (2013) late (2020)-->
+	         <airliners>
+	    <airliner type="Sukhoi 100-95LR" early="1" late="3"></airliner>
+	     </airliners>
+
+<routes>
+                <route destination1="VTE" destination2="BKK" />
+	        <route destination1="VTE" destination2="KUL" />
+	        <route destination1="VTE" destination2="PNH" />
+	        <route destination1="VTE" destination2="NYT" />               
+		<route destination1="VTE" destination2="HAN" />
+	        <route destination1="VTE" destination2="KMG" />
+		<route destination1="VTE" destination2="SIN" />
+	        <route destination1="VTE" destination2="LPQ" />
+		<route destination1="VTE" destination2="BKI" />
+	        <route destination1="VTE" destination2="PEN" />
+		<route destination1="VTE" destination2="JHB" />
+	        <route destination1="VTE" destination2="IPH" />
+		<route destination1="VTE" destination2="MKZ" />
+        </routes>
+
+</airline>
