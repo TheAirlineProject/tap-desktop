@@ -3,6 +3,7 @@
     using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+    using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -29,10 +30,8 @@ using TheAirline.Model.GeneralModel.Helpers;
 
             this.SelectedAirlines = new ObservableCollection<Airline>();
             this.Opponents = new ObservableCollection<Airline>();
-            
-            foreach (
-                Airline airline in
-                    Airlines.GetAirlines(
+
+            var airlines = Airlines.GetAirlines(
                         a =>
                             a.Profile.Founded <= this.StartData.Year && a.Profile.Folded > this.StartData.Year
                             && a != this.StartData.Airline
@@ -40,7 +39,10 @@ using TheAirline.Model.GeneralModel.Helpers;
                                 || (this.StartData.Continent != null
                                     && (this.StartData.Continent.Uid == "100"
                                         || this.StartData.Continent.hasRegion(a.Profile.Country.Region))))
-                                        && ((this.StartData.MajorAirlines && a.MarketFocus == Airline.AirlineFocus.Global) || !this.StartData.MajorAirlines)))
+                                        && ((this.StartData.MajorAirlines && a.MarketFocus == Airline.AirlineFocus.Global) || !this.StartData.MajorAirlines)).OrderBy(a => a.Profile.Name);
+            foreach (
+                Airline airline in airlines
+                   )
             {
                 this.Opponents.Add(airline);
             }

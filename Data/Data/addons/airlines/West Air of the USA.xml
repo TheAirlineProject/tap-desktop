@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="West Air" iata="PCM"  color="MidnightBlue" country="122" CEO="Beth Wood" mentality="Moderate" market="Local" preferedairport="LAS" routefocus="Cargo"> 
+  <narrative narrative="West Air, not to be confused with the airline of the same name in China,is a cargo airline based at Las Vegas,Nevada,USA. It does feeder service for FedEx Express in California,Nevada and Utah. Its bases outside of Las Vegas are Ontario in the LA area,Oakland,San Diego and Sacramento. It was founded in 1988. At August 2012 it had 32 Cessna 208B's. In total it serves 22 destinations." />
+</profile>
+   <info real="True" from="1988" to="2199"></info>
+   <prefereds aircrafts="Cessna 208B Super Cargomaster"></prefereds>
+
+             <focusairports>
+                 <focusairport airport="ONT"></focusairport>
+		 <focusairport airport="SAN"></focusairport>
+	         <focusairport airport="OAK"></focusairport>
+		 <focusairport airport="SMF"></focusairport>
+		 <focusairport airport="FAT"></focusairport>
+		  </focusairports>
+
+
+
+ <!--the airliners the airline would start with which isn't on a route earyl (1988) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B Super Cargomaster" early="6" late="32"></airliner>
+	     </airliners>
+
+</airline>

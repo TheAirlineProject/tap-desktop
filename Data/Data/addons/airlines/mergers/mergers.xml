@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <mergers>
+<merger name="United has decided to stop using the Ted brand and has merged them back into United mainline." airline1="UA" airline2="UAL" type="Merger" date="1.06.2009 00:00:00"></merger>
+<merger name="United now has the subsidiary Ted." airline1="UA" airline2="UAL" type="Subsidiary" date="1.01.2004 00:00:00"></merger>
+<merger name="Mesa Airlines now has the subsidiary Go! based at Honolulu,Hawaii." airline1="YV" airline2="ASH" type="Subsidiary" date="1.01.2006 00:00:00"></merger>
+<merger name="Cape Air now has a subisidiary called Nantucket Airlines based at Nantucket island,MA." airline1="9K" airline2="ACK" type="Subsidiary" date="1.01.1989 00:00:00"></merger>
 <merger name="Sichuan Airlines now has a subsidiary in Shenzhen called Donghai Airlines that does cargo and passengers." airline1="3U" airline2="J5" type="Subsidiary" date="1.01.2006 00:00:00"></merger>
 <merger name="Air China now has the subsidiary Dalian Airlines, based at Dalian." airline1="CA" airline2="CCD" type="Subsidiary" date="1.01.2011 00:00:00"></merger>
 <merger name="All Nippon Airlines now has the subsidiary Air Japan." airline1="NH" airline2="NQ" type="Subsidiary" date="1.01.2001 00:00:00"></merger>

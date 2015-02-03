@@ -18,6 +18,12 @@
     <capacity passengers="50" cockpitcrew="5" cabincrew="2" maxclasses="2" />
     <produced from="1956" to="1957" rate="15" />
   </airliner>
+    <airliner manufacturer="Tupolev" name="Tupolev Tu-114 Rossiya" price="2002000">
+    <type body="Narrow_Body" rangetype="Long_Range" engine="Turboprop" />
+    <specs wingspan="51.10" length="54.10" range="8057" speed="770" fuelcapacity="76000" consumption="0.041" runwaylengthrequired="2700" />
+    <capacity passengers="224" cockpitcrew="5" cabincrew="6" maxclasses="2" />
+    <produced from="1961" to="1963" rate="11" />
+  </airliner>
 <airliner manufacturer="Tupolev" name="Tupolev Tu-124" price="1600000"> <!--2100000-->
 <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
 <specs wingspan="25.55" length="30.60" range="2100" speed="800" fuelcapacity="12650" consumption="0.052" runwaylengthrequired="2600"/>

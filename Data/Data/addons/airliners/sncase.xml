@@ -7,4 +7,10 @@
 	<capacity passengers="33" cockpitcrew="4" cabincrew="1" maxclasses="2"/>
 	<produced from="1945" to="1948" rate="33"/>
   </airliner>
+    <airliner manufacturer="SNCASE" name="SE 2010 Armagnac" price="1002000">
+    <type body="Wide_Body" rangetype="Medium_Range" engine="Turboprop" />
+    <specs wingspan="48.95" length="39.63" range="3822" speed="435" fuelcapacity="30590" consumption="0.049" runwaylengthrequired="2255" />
+    <capacity passengers="160" cockpitcrew="4" cabincrew="4" maxclasses="1" />
+    <produced from="1952" to="1952" rate="9" />
+  </airliner>
 </airliners>

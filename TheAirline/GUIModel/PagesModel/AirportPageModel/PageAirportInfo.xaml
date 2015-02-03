@@ -376,7 +376,7 @@
                                     Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Airline.Profile.Name,Mode=OneTime,FallbackValue='Airport'}"
+                                            <TextBlock Text="{Binding Airline.Profile.Name,FallbackValue='Airport'}"
                                                        VerticalAlignment="Bottom" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

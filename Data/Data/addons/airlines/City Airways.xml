@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="City Airways" iata="E8"  color="BlueViolet" country="175" CEO="Preecha Metharom" mentality="Safe" market="Regional" preferedairport="DMK" schedule="Business"> 
+  <narrative narrative="City Airways is based at Bangkok's older Don Mueang Airport and started in 2012. Its second base is Phuket also in Thailand. At Janaury 2015 it was flying to Hong Kong from each base and has a 737-400 and a leased 737-800 with 5 on order. It plans on opening routes to Chinese cities like Guiyang,Hefei,Nanjing,and Nanchang when it has enough planes." />
+</profile>
+   <info real="True" from="2012" to="2199"></info>
+   <prefereds aircrafts="Boeing 737-400,Boeing 737-800,Boeing 737 MAX 8"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="1" late="1"></airliner>
+	     </airliners>
+   <!--the airliners the airline would start with which isn't on a route earyl (2015) late (2018)-->
+	         <airliners>
+	    <airliner type="Boeing 737-800" early="1" late="5"></airliner>
+	     </airliners>
+
+<focusairports>
+                 <focusairport airport="HKT"></focusairport>
+     </focusairports>
+<routes>
+                <route destination1="DMK" destination2="HKG" opened="2012" closed="2199"/>
+		<route destination1="HKT" destination2="HKG"  opened="2015" closed="2199" />
+		<route destination1="DMK" destination2="KWE" opened="2016" closed="2199"/>
+		<route destination1="DMK" destination2="HFE"  opened="2016" closed="2199" />
+	        <route destination1="DMK" destination2="KHN" opened="2017" closed="2199"/>
+		<route destination1="DMK" destination2="NKG"  opened="2017" closed="2199" />
+		<route destination1="HKT" destination2="KWE"  opened="2018" closed="2199" />
+        </routes>
+ 
+
+
+</airline>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Aviacon Zitotrans" iata="ZR"  color="Blue" country="149" CEO="Viktor Pajari" mentality="Safe" market="Global" preferedairport="SVX" routefocus="Cargo" schedule="Charter"> 
+  <narrative narrative="Aviacon Zitotrans is a cargo charter airline based out of Koltsovo Airport in Yekaterinburg,Russia. It operates worldwide. It claims to have operated at over 700 airfields in 144 countries. At 2012 it had six Il-76TD's. It was founed in 1995. It even operates flights in Canada for the Canadian Military." />
+</profile>
+   <info real="True" from="1995" to="2199"></info>
+   <prefereds aircrafts="Il-76TD"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (1995) late (2015)-->
+	         <airliners>
+	    <airliner type="Il-76TD" early="1" late="6"></airliner>
+	     </airliners>
+
+
+</airline>

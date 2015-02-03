@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Island Airlines" iata="IS"  color="Tomato" country="122" CEO="William McGrath" mentality="Safe" market="Local" preferedairport="HYA"> 
+  <narrative narrative="Island Airlines is based at Hyannis,Massachusetts and serves only one route, the 50km hop to the island of Nantucket. It was founded in 1991. It does do charters throughout the northeast under the name Ocean Wings Air Charter. Its main planes are five Cessna 402's and three Cessna 208B's. For charters it has three Beechcraft King Air's, a Cessna 402 and a Cessna 414." />
+</profile>
+   <info real="True" from="1991" to="2199"></info>
+   <prefereds aircrafts="Cessna 402C,Cessna 208B"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (1991) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 402C" early="1" late="6"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B" early="1" late="3"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (1991) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 414" early="0" late="1"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (1991) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft King Air 90" early="0" late="3"></airliner>
+	     </airliners>
+
+
+
+
+
+<routes>
+                <route destination1="HYA" destination2="ACK" opened="1991" closed="2199"/>
+        </routes>
+ 
+
+
+</airline>

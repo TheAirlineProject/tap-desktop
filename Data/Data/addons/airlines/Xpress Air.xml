@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Xpress Air" iata="XN"  color="Yellow" country="162" CEO="Boyke Soebroto" mentality="Moderate" market="Regional" preferedairport="UPG"> 
+  <narrative narrative="Xpress Air or Express Air is an airline based at Makassar,Indonesia with another hub at Jakarta's Soenarno-Hatta Airport. In January 2015 it was serving about 34 domestic airports besides the hubs and two in Malaysia. It also had five 737-300's,three 737-200's,two 737-500's and six Dornier 328-100's. It was founded in 2003 and started then also." />
+</profile>
+   <info real="True" from="2003" to="2199"></info>
+   <prefereds aircrafts="Boeing 737-300,Boeing 737 MAX 8,Boeing 737-200 Adv.,Boeing 737-500,Boeing 737 MAX 7,Dornier 328-100"></prefereds>
+   <focusairports>
+                 <focusairport airport="CGK"></focusairport>
+     </focusairports>
+	        <!--the airliners the airline would start with which isn't on a route earyl (2003) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200 Adv." early="1" late="2"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="Dornier 328-100" early="5" late="6"></airliner>
+	     </airliners>
+	     	        <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="1" late="5"></airliner>
+	     </airliners>
+	     	     	        <!--the airliners the airline would start with which isn't on a route earyl (2009) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-500" early="1" late="2"></airliner>
+	     </airliners>
+
+
+
+</airline>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Ted" iata="UAL"  color="DarkBlue" country="122" CEO="Glenn Tilton" mentality="Aggressive" market="Regional" preferedairport="DEN"> 
+  <narrative narrative="Ted was a brand used by United from February 12th,2004 to January 6th, 2009. Its hub was Denver with secondary hubs at Chicago O'Hare,San Francisco and Washington Dulles with a focus city at Los Angeles. It operated a fleet of 57 Airbus A320's. At the end it was flying to these places besides its hubs: In California it was Ontario and Oakland. In Nevada Las Vegas and Reno,in Florida Miami, Orlando and Tampa but Palm Beach and Fort  Lauderdale were served prior too,in Lousisana New Orleans,in Arizona Phoenix, and San Juan in Puerto Rico, and in Mexico it served Cancun,Los Cabos,Puerto Vallarta,Cozumel and Ixtapa." />
+</profile>
+   <info real="True" from="2004" to="2009"></info>
+   <prefereds aircrafts="Airbus A320-200"></prefereds>
+<focusairports>
+                 <focusairport airport="ORD"></focusairport>
+		 <focusairport airport="SFO"></focusairport>
+		 <focusairport airport="IAD"></focusairport>
+		 <focusairport airport="LAX"></focusairport>
+     </focusairports>
+
+<routes>
+                <route destination1="DEN" destination2="ONT" opened="2004" closed="2009"/>
+	        <route destination1="DEN" destination2="MIA" opened="2004" closed="2009"/>
+	        <route destination1="DEN" destination2="MCO" opened="2004" closed="2009"/>
+	        <route destination1="DEN" destination2="TPA" opened="2004" closed="2009"/>
+	        <route destination1="DEN" destination2="LAS" opened="2004" closed="2009"/>
+		<route destination1="DEN" destination2="MSY" opened="2004" closed="2009"/>
+		<route destination1="DEN" destination2="PHX" opened="2004" closed="2009"/>
+	        <route destination1="DEN" destination2="RNO" opened="2004" closed="2009"/>
+		<route destination1="DEN" destination2="SJD" opened="2004" closed="2009"/>
+		<route destination1="DEN" destination2="CUN" opened="2004" closed="2009"/>
+		<route destination1="DEN" destination2="PVR" opened="2004" closed="2009"/>
+		<route destination1="DEN" destination2="ZIH" opened="2004" closed="2009"/>
+		<route destination1="DEN" destination2="FLL" opened="2004" closed="2007"/>
+		<route destination1="ORD" destination2="MCO" opened="2004" closed="2009"/>
+		<route destination1="ORD" destination2="TPA" opened="2004" closed="2009"/>
+		<route destination1="ORD" destination2="CUN" opened="2004" closed="2009"/>
+		<route destination1="ORD" destination2="SJU" opened="2004" closed="2009"/>
+		<route destination1="ORD" destination2="PBI" opened="2004" closed="2007"/>
+		<route destination1="SFO" destination2="LAS" opened="2004" closed="2009"/>
+		<route destination1="SFO" destination2="PHX" opened="2004" closed="2009"/>
+		<route destination1="SFO" destination2="PVR" opened="2004" closed="2009"/>
+		<route destination1="SFO" destination2="SJD" opened="2004" closed="2009"/>
+		<route destination1="IAD" destination2="SJU" opened="2004" closed="2009"/>
+		<route destination1="IAD" destination2="MCO" opened="2004" closed="2009"/>
+		<route destination1="IAD" destination2="PBI" opened="2004" closed="2007"/>
+		<route destination1="IAD" destination2="CUN" opened="2004" closed="2009"/>
+		<route destination1="IAD" destination2="TPA" opened="2004" closed="2009"/>
+		<route destination1="IAD" destination2="FLL" opened="2004" closed="2007"/>
+		<route destination1="LAX" destination2="LAS" opened="2004" closed="2009"/>
+		<route destination1="LAX" destination2="ZIH" opened="2004" closed="2009"/>
+		<route destination1="DEN" destination2="CZM" opened="2007" closed="2009"/>
+        </routes>
+   <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2008)-->
+	         <airliners>
+	    <airliner type="Airbus A320-200" early="50" late="57"></airliner>
+	     </airliners>
+
+
+
+
+</airline>

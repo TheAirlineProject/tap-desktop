@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Southern Air" iata="9S"  color="Black" country="122" CEO="Daniel McHugh" mentality="Safe" market="Global" preferedairport="CVG" routefocus="Cargo"> 
+  <narrative narrative="Southern Air is a cargo airline with hubs at Cincinatti/Northern Kentucky,Anchorage in Alaska and at Leipzig/Halle in Germany. At January 2015 it had four 777F's which operate under contract for DHL since 2011.  It has two 747-400F's and a 747-400ERF and four 737-400's. It has used the 200 series 747 in the past mostly and had a few 300's also. It has contracts with Korean Airlines,Lufthansa Cargo,MASkargo,Ethiopian Airlines,Saudia,TNT,UPS seasonally,Centurian Air Crago and the US Department of Defense in also as mentioned before DHL. It was founded in March 1999 from assets of Southern Air Transport. In September 2007 it merged with Seattle based cargo airline Cargo 360 after Southern's owner Oak Hill Capital Partners bouth that airline." />
+</profile>
+   <info real="True" from="1999" to="2199"></info>
+   <prefereds aircrafts="Boeing 777F,Boeing 747-400F,Boeing 747-400ERF,Beoing 747-8F,Boeing 737-400,Boeing 737 MAX 8,Boeing 747-200F,Boeing 747-300"></prefereds>
+
+             <focusairports>
+                 <focusairport airport="ANC"></focusairport>
+		 <focusairport airport="LEJ"></focusairport>
+		  <focusairport airport="BAH"></focusairport>
+		  </focusairports>
+
+
+
+ <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 777F" early="1" late="4"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (2011) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 747-400F" early="2" late="2"></airliner>
+	     </airliners>
+	     	      <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 747-400ERF" early="1" late="1"></airliner>
+	     </airliners>
+	     	     	      <!--the airliners the airline would start with which isn't on a route earyl (2014) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="4" late="4"></airliner>
+	     </airliners>
+	     	     	     	      <!--the airliners the airline would start with which isn't on a route earyl (2000) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 747-200F" early="2" late="0"></airliner>
+	     </airliners>
+
+
+</airline>

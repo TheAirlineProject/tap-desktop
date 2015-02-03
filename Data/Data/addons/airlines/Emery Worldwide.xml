@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Emery Worldwide" iata="EB"  color="DarkGreen" country="122" CEO="John Colvin Emery Sr." mentality="Aggressive" market="Global" preferedairport="DAY" routefocus="Cargo"> 
+  <narrative narrative="Emery Worldwide, a cargo airline, was around from 1946 until August 13,2001 when it was grounded and never took off again, and in December of the same year was liquidated. It main hub was Dayton,Ohio. It also had one at Amsterdam in the Netherlands. It was the first freight forwarder to recieve a carrier certificate from the US Government and was the largest one for 40 years. In 1987 it acquired Purolator Courier and in 1989 Emery was acquired by Consolidated Freightways. Both Consilidated and Purolator are still around as of February 2015, Consilidated is now known as Con-way.Emery's succesor Menlo Worldwide Forwarding was bought by UPS at the end of 2004 and UPS still uses the Emery Worldwide name for the air freight portion of the UPS Supply Chain Solutions. Jets it used included many versions of the DC-8,DC-10,DC-9 and Boeing 727." />
+</profile>
+   <info real="True" from="1946" to="2002"></info>
+   <prefereds aircrafts="Douglas DC-8-54CF,Douglas DC-8-62F,Douglas DC-8-32,MD DC-8-71,MD DC-8-73,MD DC-10-10F,MD DC-10-15,MD DC-10-30F,Douglas DC-9-15,Boeing 727-100C,Boeing 727-200 Adv.,Boeing 727-200"></prefereds>
+<focusairports>
+                 <focusairport airport="AMS"></focusairport>
+     </focusairports>
+
+
+
+
+</airline>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Incheon" iata="KJ"  color="Silver" country="165" CEO="Jun Lee" mentality="Safe" market="Global" preferedairport="ICN" routefocus="Cargo" schedule="Business"> 
+  <narrative narrative="Air Incheon is a cargo airline based at Seoul-Incheon and started in 2013. It has two 737-400's. As of January 2015 its routes were from Seoul-Incheon to Tokyo Narita,Yantai in China and Yuzhno-Sakhalinsk on Sakhalin Island of Russia. It also does charters." />
+</profile>
+   <info real="True" from="2013" to="2199"></info>
+   <prefereds aircrafts="Boeing 737-400,Boeing 737 MAX 8"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-400" early="2" late="2"></airliner>
+	     </airliners>
+<routes>
+                <route destination1="ICN" destination2="NRT" opened="2013" closed="2199"/>
+		<route destination1="ICN" destination2="YNT"  opened="2013" closed="2199" />
+		<route destination1="ICN" destination2="UUS" opened="2014" closed="2199"/>
+        </routes>
+ 
+
+
+</airline>

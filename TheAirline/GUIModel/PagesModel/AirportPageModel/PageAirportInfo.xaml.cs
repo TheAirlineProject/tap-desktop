@@ -378,6 +378,7 @@
                             contract = this.Airport.Contracts.FirstOrDefault(f => f.Airline == terminal.Airline);
 
                         terminal.Airline = null;
+                        terminal.Terminal.Airline = null;
 
                         if (contract != null)
                             contract.Contract.YearlyPayment = AirportHelpers.GetYearlyContractPayment(

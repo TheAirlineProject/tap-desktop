@@ -157,9 +157,6 @@
                 if (version < 7)
                     this.MaintenanceCenters = new List<MaintenanceCenter>();
 
-                if (version < 8)
-                    this.Maintenances = new Dictionary<AirlinerMaintenanceType, AirlinerMaintenanceCenter>();
-
                 if (version < 9)
                     this.Schedule = AirlineRouteSchedule.Regular;
 

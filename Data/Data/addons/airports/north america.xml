@@ -2416,7 +2416,6 @@ inflationafter="1">
       <runway name="14R/32L" length="895" surface="Concrete" />
     </runways>
   </airport>
-
       <airport name="Welke Airport" icao="KSJX" iata="WKE" type="Domestic" season="All_Year">
     <town town="Beaver Island, MI" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>
@@ -2432,7 +2431,6 @@ inflationafter="1">
       <runway name="17/35" length="1067" surface="Dirt" />
     </runways>
   </airport>
-
      <airport name="Manistee County Blacker Airport" icao="KMBL" iata="MBL" type="Domestic" season="All_Year">
     <town town="Manistee/Ludington, MI" country="122" GMT="-04:00:00" DST="-05:00:00" />
     <coordinates>

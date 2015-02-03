@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Island Airways" iata="CVX"  color="White" country="122" CEO="Paul Welke" mentality="Safe" market="Local" preferedairport="CVX"> 
+  <narrative narrative="Island Airways is based at Charlevoix,Michigan in northern Michigan and its only route is to Beaver Island which is a 50km flight. It has been serving this route as far back as its roots in 1945 as McPhilips Flying Service. In 1975 Welke Aviation started in competition and they merged in 1983. By 1989 Paul Welke had took over the company 100%. Its two plane types it uses are BN Islanders and Piper PA-23 Aztecs/Apaches." />
+</profile>
+   <info real="True" from="1945" to="2199"></info>
+   <prefereds aircrafts="BN-2A Islander,PA-23 Aztec"></prefereds>
+
+
+<routes>
+                <route destination1="CVX" destination2="WKE" opened="1945" closed="2199"/>
+        </routes>
+ 
+
+
+</airline>

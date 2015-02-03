@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Go!" iata="ASH"  color="CornflowerBlue" country="122" CEO="Jonathan G. Ornstein" mentality="Moderate" market="Local" preferedairport="HNL"> 
+  <narrative narrative="Go! was a subsidiary of Phoenix based Mesa Airlines that does mostly flying for other airline brands such as US Airways Express and United Express. Go! however was not flown for those brands but rather its own. It was a Hawaiian airline that flew between only airports in Hawaii. It commenced service in 2006 and ceased on April 1,2014. There was also Go! Express which was operated by Molokulele Airlines with Cessna 208 Caravans to Kapalua,Molokai and Lanai. This agreement ended on March 24,2009 and Island Air took the brand over but this time it was just the Go! Express name being applied to flights Island Air already did. Go! itself had five Bombardier CRJ 200's at the start in September 2006 but the number dropped to 2 by October 2012. After the end of Go! Mesa Airlines simply put the planes into service on routes in the mainland US." />
+</profile>
+   <info real="True" from="2006" to="2014"></info>
+   <prefereds aircrafts="Bombardier CRJ200"></prefereds>
+
+
+<routes>
+                <route destination1="HNL" destination2="OGG" opened="2006" closed="2014"/>
+	        <route destination1="HNL" destination2="KOA" opened="2006" closed="2014"/>
+	        <route destination1="HNL" destination2="LIH" opened="2006" closed="2014"/>
+	        <route destination1="HNL" destination2="ITO" opened="2006" closed="2014"/>
+	       <route destination1="OGG" destination2="KOA" opened="2006" closed="2014"/>
+        </routes>
+   <!--the airliners the airline would start with which isn't on a route earyl (2006) late (2013)-->
+	         <airliners>
+	    <airliner type="Bombardier CRJ200" early="5" late="2"></airliner>
+	     </airliners>
+
+
+
+
+</airline>

@@ -1,6 +1,41 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
+<airliner manufacturer="Embraer" name="Embraer Legacy 500" price="2368000"> <!--18400000-->
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="20.24" length="20.52" range="5788" speed="792" fuelcapacity="4874" consumption="0.0833"
+ runwaylengthrequired="1711" />
+    <capacity passengers="12" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="2014" to="2199" rate="3" />
+  </airliner>
+<airliner manufacturer="Embraer" name="Embraer Legacy 600" price="33533000"> <!--27450000-->
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="21.17" length="26.33" range="6060" speed="792" fuelcapacity="5103" consumption="0.0833"
+ runwaylengthrequired="1711" />
+    <capacity passengers="12" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="2002" to="2199" rate="18" />
+  </airliner>
+<airliner manufacturer="Embraer" name="Embraer Phenom 300" price="1118000"> <!--8140000-->
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="16.20" length="15.90" range="3650" speed="792" fuelcapacity="3442" consumption="0.166"
+ runwaylengthrequired="928" />
+    <capacity passengers="6" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2009" to="2199" rate="30" />
+  </airliner>
+<airliner manufacturer="Embraer" name="Embraer Phenom 100" price="566000"> <!--4400000-->
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+    <specs wingspan="12.30" length="12.80" range="2182" speed="675" fuelcapacity="1584" consumption="0.166"
+ runwaylengthrequired="928" />
+    <capacity passengers="6" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2007" to="2199" rate="38" />
+  </airliner>
+<airliner manufacturer="Embraer" name="Embraer Lineage 1000" price="6339500"> <!--49250000-->
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
+    <specs wingspan="28.72" length="36.24" range="8334" speed="890" fuelcapacity="22500" consumption="0.052"
+ runwaylengthrequired="1500" />
+    <capacity passengers="19" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="2009" to="2019" rate="2" />
+  </airliner>
   <airliner manufacturer="Embraer" name="EMB 110 Bandeirante" price="333330"> <!--500000-->
     <type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop" />
     <specs wingspan="15.33" length="15.10" range="1964" speed="341" fuelcapacity="2100" consumption="0.059"

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Cardig Air" iata="8F"  color="Purple" country="162" CEO="Boyke Soebroto" mentality="Safe" market="Global" preferedairport="CGK" routefocus="Cargo" schedule="Business"> 
+  <narrative narrative="Cardig Air is a cargo airline based at Jakarta,Indonesia. Its main base is Soekarno-Hatta Airport however at January 2015 its scheduled flights to Singapore and Balikpapen are from Halim Perdabakusuma Airport. It also does a scheduled flight between Jayapura and Wamena on the Indonesian side of the island of Papua. It does offer charters to many places though, including 21 domestic wise,three in Malaysia,Brunei,Hong Kong,East Timor,Japan,Islamabad in Pakistan,Singapore,U-Tapao in Thailand,Dubai in the UAE,Ho Chi Minh in Vietnam and in Europe Luxembourg and Amsterdam and in Australia Darwin and Christmas Island. It has three leased 737-300's. In the past it had 737-200C's." />
+</profile>
+   <info real="True" from="2004" to="2199"></info>
+   <prefereds aircrafts="Boeing 737-300,Boeing 737 MAX 8,Boeing 737-200C"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (2008) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="2" late="3"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (2004) late (2015)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200C" early="2" late="0"></airliner>
+	     </airliners>
+<routes>
+                <route destination1="SIN" destination2="HLP" opened="2004" closed="2199"/>
+		<route destination1="SIN" destination2="BPN"  opened="2008" closed="2199" />
+		<route destination1="BPN" destination2="HLP" opened="2012" closed="2199"/>
+		<route destination1="DJJ" destination2="WMX" opened="2013" closed="2199"/>
+        </routes>
+ 
+
+
+</airline>

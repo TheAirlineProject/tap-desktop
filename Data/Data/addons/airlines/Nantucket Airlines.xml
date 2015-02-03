@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Nantucket Airlines" iata="ACK"  color="PaleTurquoise" country="122" CEO="Linda Markham" mentality="Safe" market="Local" preferedairport="ACK"> 
+  <narrative narrative="Nantucket Airlines is a subsidiary of Cape Air based at the island of Nantucket in Massachusetts. Its main route is the short hop to the mainland in Hyannis,MA in addition to flying to Boston from Nantucket also. It has 5 Cessna 402C's painted in its own livery but it does use Cape Air planes at times too and it is not uncommon to see ACK planes being used on other Cape Air routes in New England either." />
+</profile>
+   <info real="True" from="1989" to="2199"></info>
+   <prefereds aircrafts="Cessna 402C"></prefereds>
+   <!--the airliners the airline would start with which isn't on a route earyl (1989) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 402C" early="2" late="5"></airliner>
+	     </airliners>
+
+
+<routes>
+                <route destination1="ACK" destination2="HYA" opened="1989" closed="2199"/>
+		<route destination1="ACK" destination2="BOS"  opened="1989" closed="2199" />
+        </routes>
+ 
+
+
+</airline>

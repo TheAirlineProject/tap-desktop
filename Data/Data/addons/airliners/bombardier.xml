@@ -1,6 +1,27 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airliners>
+<airliner manufacturer="Bombardier" name="Bombardier Global 6000" price="7290000"> <!--53027000-->
+    <type body="Single_Aisle" rangetype="Long_Range" engine="Jet" />
+    <specs wingspan="28.65" length="29.5" range="12408" speed="904" fuelcapacity="28965" consumption="0.123"
+           runwaylengthrequired="1689" />
+    <capacity passengers="19" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1996" to="2016" rate="15" />
+  </airliner>
+     <airliner manufacturer="Bombardier" name="Bombardier Global 8000" price="8109000"> <!--58980000-->
+    <type body="Single_Aisle" rangetype="Long_Range" engine="Jet" />
+    <specs wingspan="31.70" length="33.9" range="23291" speed="902" fuelcapacity="21523" consumption="0.123"
+           runwaylengthrequired="1335" />
+    <capacity passengers="19" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="2017" to="2199" rate="15" />
+  </airliner>
+     <airliner manufacturer="Bombardier" name="Bombardier Global 7000" price="7493000"> <!--54500000-->
+    <type body="Single_Aisle" rangetype="Long_Range" engine="Jet" />
+    <specs wingspan="31.70" length="33.9" range="13520" speed="902" fuelcapacity="21523" consumption="0.123"
+           runwaylengthrequired="1335" />
+    <capacity passengers="19" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="2016" to="2199" rate="20" />
+  </airliner>
  <airliner manufacturer="Bombardier" name="Challenger 800" price="4000000"> 
     <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" />
     <specs wingspan="21.21" length="26.77" range="6659" speed="850" fuelcapacity="5150" consumption="0.053"

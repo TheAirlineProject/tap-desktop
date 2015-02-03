@@ -8,6 +8,7 @@
       mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PageAirportDemand">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
      <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -313,5 +314,5 @@
             </WrapPanel>
         </StackPanel>
         </Grid>
-
+    </ScrollViewer>
 </Page>

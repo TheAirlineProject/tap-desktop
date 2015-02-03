@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Castle Aviation" iata="CSJ"  color="Red" country="122" CEO="Michael Grossman" mentality="Safe" market="Domestic" preferedairport="CAK" routefocus="Cargo" schedule="Charter"> 
+  <narrative narrative="Castle Aviation is a charter cargo airline based at Akron,Ohio. It specializes in priority freight. It started in 1986. It uses seven Cessna 208B's and three Piper Aerostar's as of January 2015. It also has an aircraft maintenance division and a passenger charter division. It for a time between 2004 and 2008 had a Saab 340 and was the first airline to use that plane for cargo." />
+</profile>
+   <info real="True" from="1986" to="2199"></info>
+   <prefereds aircrafts="Cessna 208B Super Cargomaster,PA-60 Aerostar"></prefereds>
+
+
+
+ <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="Cessna 208B Super Cargomaster" early="1" late="7"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (1986) late (2015)-->
+	         <airliners>
+	    <airliner type="PA-60 Aerostar" early="1" late="3"></airliner>
+	     </airliners>
+</airline>

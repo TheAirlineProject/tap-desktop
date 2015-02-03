@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Saturn Airways" iata="SAT" color="Maroon" country="122" CEO="Rick Jackson" mentality="Safe" market="Global" preferedairport="OAK" routefocus="Mixed" schedule="Charter">
+    <narrative narrative="Saturn Airways was charter passenger and cargo airline based at Oakland,CA from 1948 to 1976. It was called All American Airways in its first ten or eleven years. It operated Curtiss Commandos at the start and then DC-6's in 1959. The DC-7C was acquired in 1963 and were used on transatlantic charters. In 1965 it acquired American Air Export and Import Company Airlines of Miami which also did cargo charters. In 1967 and 68 it got two DC-8-61's that were converted to freighters. It also had three 50 series DC-8s by 1972. Lockheed L-188 Electras and Lockheed Hercules were also used. It was merged into Trans International Airlines in December 1976. " />
+<names>
+<name value="All American Airways" from="1.1.1948 00:00:00"></name>
+<name value="Saturn Airways" from="1.1.1959 00:00:00"></name>
+</names>
+</profile>
+   <info real="True" from="1948" to="1977"></info>
+   <prefereds aircrafts="Douglas DC-6,Douglas DC-6B,Douglas DC-7C,Douglas DC-8-62F,Douglas DC-8-61,Lockheed L-188A,Lockheed L-100-30,C-46 Commando"></prefereds>
+<logos>
+      <logo from="1948" to="1959" path="SAT1949-1959"></logo>
+    </logos>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</airline>

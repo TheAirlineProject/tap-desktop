@@ -146,8 +146,7 @@
             airline.Profile.LogoName = logoImage;
 
             XmlNodeList focusArportsList = root.SelectNodes("focusairports/focusairport");
-
-
+            
             foreach (XmlElement focusAirportElement in focusArportsList)
             {
                 Airport focusAirport = Airports.GetAirport(focusAirportElement.Attributes["airport"].Value);
@@ -1188,7 +1187,8 @@
         public static void CreateMaintenanceCenters()
         {
             MaintenanceCenters.AddCenter(new MaintenanceCenter("Boeing Gold Care Center", 2000, Countries.GetCountry("122"), 75, 5.95));
-            MaintenanceCenters.AddCenter(new MaintenanceCenter("Lufthansa Technik", 1750, Countries.GetCountry("1002"), 65, 5.75));
+            MaintenanceCenters.AddCenter(new MaintenanceCenter("Lufthansa Technik", 1750, Countries.GetCountry("1002"), 70, 5.75));
+            MaintenanceCenters.AddCenter(new MaintenanceCenter("Haitec Aircraft Maintenance", 1580, Countries.GetCountry("1002"), 60, 5.65));
             MaintenanceCenters.AddCenter(new MaintenanceCenter("Nigeria Aircraft Center", 1000, Countries.GetCountry("145"), 25, 3.65));
         }
         /*! creates the airliner maintenance types
