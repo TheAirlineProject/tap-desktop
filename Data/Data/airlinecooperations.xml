@@ -37,6 +37,18 @@
       <es-ES name="Travel Agency" />
     </translations>
   </cooperation>
+    <cooperation uid="103" minsize="Small" price="12000" fromyear="1979" monthlyprice="7500" servicelevel="50"
+               incomeperpax="0.03">
+    <translations>
+      <en-US name="Taxi Service" />
+      <de-DE name="Taxi Service" />
+      <en-GB name="Taxi Service" />
+      <nl-NL name="Taxi Service" />
+      <zh-CN name="Taxi Service" />
+      <da-DK name="Taxi Service" />
+      <es-ES name="Taxi Service" />
+    </translations>
+  </cooperation>
   <!--
 <cooperation uid="103" minsize="Small" price="35000" fromyear="2000" monthlyprice="12500" servicelevel="70" incomeperpax="0.08">
     <translations>

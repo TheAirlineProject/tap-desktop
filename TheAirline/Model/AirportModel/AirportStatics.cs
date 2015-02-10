@@ -94,8 +94,11 @@
         {
             var demands = new List<DestinationDemand>();
 
-            demands.AddRange(this.CargoDemand);
-            demands.AddRange(this.PassengerDemand);
+            lock (this.CargoDemand)
+                demands.AddRange(this.CargoDemand);
+
+            lock (this.PassengerDemand)
+                demands.AddRange(this.PassengerDemand);
 
             return demands;
         }

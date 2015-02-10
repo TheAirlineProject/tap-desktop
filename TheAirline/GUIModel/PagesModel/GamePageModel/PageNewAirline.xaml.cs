@@ -236,6 +236,7 @@
                 profile,
                 Airline.AirlineMentality.Aggressive,
                 Airline.AirlineFocus.Local,
+                true,
                 Airline.AirlineLicense.Domestic,
                 focus,
                 Airline.AirlineRouteSchedule.Regular);

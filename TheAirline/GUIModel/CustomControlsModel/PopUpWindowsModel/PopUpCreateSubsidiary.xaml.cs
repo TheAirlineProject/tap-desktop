@@ -138,6 +138,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
                 profile,
                 Model.AirlineModel.Airline.AirlineMentality.Safe,
                 Model.AirlineModel.Airline.AirlineFocus.Local,
+                true,
                 Model.AirlineModel.Airline.AirlineLicense.Domestic,
                 focus,
                 Model.AirlineModel.Airline.AirlineRouteSchedule.Regular);

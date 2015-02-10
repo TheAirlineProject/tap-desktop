@@ -202,6 +202,7 @@
                     airline.Airline.Profile,
                     airline.Airline.Mentality,
                     airline.Airline.MarketFocus,
+                    airline.Airline.OperateOnlyFromHome,
                     airline.Airline.License,
                     airline.Airline.AirlineRouteFocus,
                     airline.Airline.Schedule);

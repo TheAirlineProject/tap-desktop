@@ -980,6 +980,7 @@
     <Compile Include="Model\AirportModel\AirportExpansion.cs" />
     <Compile Include="Model\GeneralModel\Helpers\DatabaseHelpersModel\DatabaseHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\DatabaseHelpersModel\SQLite.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\GameMemoryCache.cs" />
     <Compile Include="Model\GeneralModel\Helpers\RouteHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\TAPLogger.cs" />
     <Compile Include="Model\GeneralModel\OperatingData.cs" />

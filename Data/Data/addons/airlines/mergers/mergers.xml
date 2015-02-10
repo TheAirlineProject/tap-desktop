@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <mergers>
+<merger name="Ethiopian Airlines has a cargo division." airline1="ET" airline2="ETH" type="Subsidiary" date="1.01.1945 00:00:00"></merger>
+<merger name="EVA Air now has the subsidiary Uni Air." airline1="BR" airline2="B7" type="Subsidiary" date="1.01.1996 00:00:00"></merger>
+<merger name="TransAsia now has the subsidiary V Air." airline1="GE" airline2="VAX" type="Subsidiary" date="1.01.2014 00:00:00"></merger>
+<merger name="Maersk Air now has the subsidiary Maersk Air UK." airline1="DM" airline2="VB" type="Subsidiary" date="1.01.1993 00:00:00"></merger>
 <merger name="United has decided to stop using the Ted brand and has merged them back into United mainline." airline1="UA" airline2="UAL" type="Merger" date="1.06.2009 00:00:00"></merger>
 <merger name="United now has the subsidiary Ted." airline1="UA" airline2="UAL" type="Subsidiary" date="1.01.2004 00:00:00"></merger>
 <merger name="Mesa Airlines now has the subsidiary Go! based at Honolulu,Hawaii." airline1="YV" airline2="ASH" type="Subsidiary" date="1.01.2006 00:00:00"></merger>
@@ -119,34 +123,22 @@
 <merger name="Shenzhen Airlines has founded the subsidiary Kunming Airlines." airline1="ZH" airline2="KY" type="Subsidiary" date="01.01.2009 00:00:00"></merger>
 <merger name="China Southern has been founded and has opened a cargo division." airline1="CZ" airline2="CZ2" type="Subsidiary" date="01.01.1988 00:00:00"></merger>
 <merger name="Hainan Airlines has founded the subsidiary Deer Jet, which will be later renamed Beijing Capital Airlines" airline1="HU" airline2="JD" type="Subsidiary" date="01.01.1995 00:00:00"></merger>
-
 <merger name="Hainan Airlines has founded the subsidiary Shilin Airlines, which will soon be renamed Lucky Air, they are based at Kunming,China." airline1="HU" airline2="8L" type="Subsidiary" date="01.01.2004 00:00:00"></merger>
-
 <merger name="Hainan Airlines has founded the subsidiary West Air. It is based at Chongqing,China." airline1="HU" airline2="PN" type="Subsidiary" date="01.01.2007 00:00:00"></merger>
-
 <merger name="Hainan Airlines has founded the subsidiary Tianjin Airlines, which was originally called Grand China Express Air. It is based at Tianjin,China." airline1="HU" airline2="GS" type="Subsidiary" date="01.01.2007 00:00:00"></merger>
-
 <merger name="Hainan Airlines has founded the cargo subsidiary Yangtze River Express, which is based at Shanghai Pudong,China." airline1="HU" airline2="Y8" type="Subsidiary" date="01.01.2003 00:00:00"></merger>
 <merger name="Hainan Airlines has founded the subsidiary Grand China Air. It's base is Haikou on the island of Hainan also." airline1="HU" airline2="CN" type="Subsidiary" date="01.01.2007 00:00:00"></merger>
 <merger name="Southwest Airlines has acquired Muse Air and changed their name to TranStar." airline1="WN" airline2="MC" type="Subsidiary" date="6.25.1985 00:00:00" subsidiarynewname="TranStar"></merger>
-
 <merger name="Southwest Airlines has fully merged the former Muse Air, now known as TranStar, and will no longer use it as a subsidiary." airline1="WN" airline2="MC" type="Merger" date="8.07.1987 00:00:00"></merger>
 <merger name="Southwest Airlines has bought Orlando,FL based carrier AirTran Airways for $1.4 Billion and willkeep it as a subsidiary until 2015 when it will be fully integrated." airline1="WN" airline2="FL" type="Subsidiary" date="01.01.2011 00:00:00"></merger>
-
 <merger name="AirTran Airways has been fully integrated with Southwest Airlines and no longer uses the AirTran name."
           airline1="DL" airline2="WA" type="Merger" date="01.01.2015 00:00:00"></merger>
 <merger name="KLM has founded the cargo subsidiary KLM Cargo." airline1="KL" airline2="KL2" type="Subsidiary" date="01.01.1919 00:00:00"></merger>
-
 <merger name="Martinair has been founded along with Martinair Cargo," airline1="MP" airline2="MP2" type="Subsidiary" date="01.01.1958 00:00:00"></merger>
-
 <merger name="KLM has purchased Martinair and Martinair Cargo, making them a subsidiary." airline1="KL" airline2="MP" type="Subsidiary" date="01.01.1963 00:00:00"></merger>
-
 <merger name="Aerolineas Argentinas has been founded and has opened a cargo division." airline1="AR" airline2="AR2" type="Subsidiary" date="01.01.1950 00:00:00"></merger>
-
 <merger name="AeroMexico has been founded and has started a cargo subsidiary." airline1="AM" airline2="AM2" type="Subsidiary" date="01.01.1934 00:00:00"></merger>
-
 <merger name="Aeroflot has aquired the airline Donavia and started them as a new entity. They are now a subsidiary of Aeroflot." airline1="SU" airline2="D9" type="Subsidiary" date="01.01.2000 00:00:00"></merger>
-
 <merger name="Aeroflot has founded a subsidiary called Aurora, based in Vladivostok in the Far East." airline1="SU" airline2="HZ" type="Subsidiary" date="01.01.2013 00:00:00"></merger>
 
 <merger name="Aeroflot has founded a cargo subsidiary." airline1="SU" airline2="SU2" type="Subsidiary" date="01.01.1923 00:00:00"></merger>

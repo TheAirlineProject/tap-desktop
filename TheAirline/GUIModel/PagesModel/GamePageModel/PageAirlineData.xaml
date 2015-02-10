@@ -11,9 +11,9 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Name="pageAirlineData"
       Title="PageAirlineData">
-  
 
-    <StackPanel HorizontalAlignment="Center">
+    <ScrollViewer  HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+    <StackPanel>
         <ListBox Background="Transparent" BorderThickness="0"
                  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                  ItemTemplate="{StaticResource QuickInfoItem}">
@@ -149,4 +149,5 @@
 
 
     </StackPanel>
+    </ScrollViewer>
 </Page>

@@ -791,6 +791,7 @@
   <!--Brazil (SB**,SD**, SI**, SJ**, SN**, SS** and SW**)-->
   <airport name="Brasília Presidente Juscelino Kubitschek International Airport" icao="SBBR" iata="BSB" type="International"
            season="All_Year">
+           <period from="05.03.1957 00:00:00" to="01.01.2199 00:00:00" /> 
     <town town="Brasília" country="138" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="015°52'09''S" />
@@ -855,6 +856,7 @@
   </airport>
   <airport name="São Paulo-Guarulhos International Airport" icao="SBGR" iata="GRU" type="International"
            season="All_Year">
+           <period from="01.20.1985 00:00:00" to="01.01.2199 00:00:00" /> 
     <town town="São Paulo" country="138" GMT="-03:00:00" DST="-02:00:00" />
     <coordinates>
       <latitude value="023°26'08''S" />

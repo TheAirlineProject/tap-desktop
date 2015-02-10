@@ -464,6 +464,7 @@
         //the converter for a price based on inflation
         public static double GetInflationPrice(double price)
         {
+            
             Inflation baseInflation = Inflations.GetInflation(GameObject.StartYear);
             Inflation currentInflation = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year);
 

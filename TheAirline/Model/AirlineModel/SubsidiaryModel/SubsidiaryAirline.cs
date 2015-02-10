@@ -20,10 +20,11 @@
             AirlineProfile profile,
             AirlineMentality mentality,
             AirlineFocus market,
+            Boolean onlyFromHome,
             AirlineLicense license,
             Route.RouteType routefocus,
             AirlineRouteSchedule schedule)
-            : base(profile, mentality, market, license, routefocus,schedule)
+            : base(profile, mentality, market,onlyFromHome, license, routefocus,schedule)
         {
             this.Airline = airline;
 

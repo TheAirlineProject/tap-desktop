@@ -59,6 +59,7 @@
 
         public static void NavigateTo(Page page)
         {
+            MainWindow.clearNavigator();
             MainWindow.navigateTo(page);
         }
 

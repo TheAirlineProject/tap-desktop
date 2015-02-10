@@ -18,7 +18,6 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                         <StackPanel Width="400">
                             <TextBlock
                                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSelectOpponents 1000'}"
@@ -49,16 +48,16 @@
                                              VerticalAlignment="Center" x:Name="scCreating" />
 
                         </StackPanel>
-                    </ScrollViewer>
                 </Border>
-                <Border Style="{StaticResource RoundedBorderStyle}" Margin="5 0 0 0" Grid.Column="1">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-
+                <Border Style="{StaticResource RoundedBorderStyle}" Margin="5 0 0 0" Grid.Column="1" Name="brdSelectOpponents">
+               
                         <StackPanel Width="400">
                             <TextBlock
                                 Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSelectOpponents 1001'}"
                                 VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
-                            <ListBox Background="Transparent" BorderThickness="0"
+                            <ListBox Background="Transparent" BorderThickness="0" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"
+                                     ScrollViewer.CanContentScroll="True" ScrollViewer.IsDeferredScrollingEnabled="True"
+                                      Height="{Binding ActualHeight, ElementName=brdSelectOpponents}"
                                      ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                                      ItemsSource="{Binding Opponents,ElementName=pageSelectOpponents}">
                                 <ListBox.ItemTemplate>
@@ -76,7 +75,7 @@
                             </ListBox>
 
                         </StackPanel>
-                    </ScrollViewer>
+    
                 </Border>
 
             </Grid>

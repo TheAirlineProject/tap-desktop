@@ -84,6 +84,11 @@
                 schedule = (Airline.AirlineRouteSchedule)
                     Enum.Parse(typeof(Airline.AirlineRouteSchedule), profileElement.Attributes["schedule"].Value);
 
+            var onlyFromHome = true;
+
+            if (profileElement.HasAttribute("onlyfromhome"))
+                onlyFromHome = Convert.ToBoolean(profileElement.Attributes["onlyfromhome"].Value);
+
             var routeFocus = Route.RouteType.Passenger;
 
             if (profileElement.HasAttribute("routefocus"))
@@ -138,6 +143,7 @@
                 new AirlineProfile(name, iata, color, ceo, isReal, founded, folded),
                 mentality,
                 market,
+                onlyFromHome,
                 license,
                 routeFocus,
                 schedule);

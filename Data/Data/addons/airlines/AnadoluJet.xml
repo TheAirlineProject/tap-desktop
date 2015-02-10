@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
-  <profile name="AnadoluJet" iata="AJA" color="Black" country="161" CEO="Ibrahim DOGAN" mentality="Safe" market="Regional"
+  <profile name="AnadoluJet" iata="AJA" color="Black" country="161" CEO="Ibrahim Dogan" mentality="Safe" market="Regional"
            preferedairport="ESB">
              <narrative
       narrative="AnadoluJet is a Turkish airline with its head office on the property of Esenboğa International Airport in Ankara, operating mainly domestic flights on behalf of Turkish Airlines. The airline was founded on 23 April 2008 as a low-cost branch of the Turkish flag carrier airline Turkish Airlines." />

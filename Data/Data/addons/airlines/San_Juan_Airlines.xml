@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
   <profile name="San Juan Airlines" iata="2G" color="Yellow" country="122" CEO="John Smith" mentality="Safe"
-           market="Regional" preferedairport="FRD">
+           market="Local" preferedairport="FRD">
   <narrative narrative="San Juan Airlines provides service in the place it takes its name from, the San Juan Islands of Washington state. They lay between Washington and Vancouver Island. In addition to serving the islands and western Washington airports that lay on the mainland such as Bellingham, Seattle's Boeing Field and Port Angeles they also serve many communities on Vancouver Island in Canada. Their hub is Anacortes, however since this airport isn't big enough to add to the game yet, being under the threshold for how busy it has to be for now, Friday Harbor has been set as their base for this game. They do serve more routes out of Friday Harbor and the mainland airport of Bellingham anyway. The corporate offices are also at Bellingham. It was founded in the 50's. They have three Cessna 206's and two Cessna 207's. Their parent company is Rugby Aviation, LLC.  "/>
 </profile>
   <info real="True" from="1955" to="2199"></info>

@@ -84,6 +84,7 @@
     </terminals>
     <runways>
       <runway name="05/23" length="3200" surface="Asphalt" />
+            <runway name="5L/23R" length="570" surface="Asphalt" type="Helipad" />
     </runways>
   </airport>
   <airport name="Kunduz Airport" icao="OAUZ" iata="UND" type="Domestic" season="All_Year">
@@ -904,7 +905,7 @@
     </runways>
   </airport>
   <!--Belgium-->
-  <airport name="Antwerp International Airport" icao="EBAW" iata="ANR" type="Domestic" season="All_Year">
+  <airport name="Antwerp International Airport" icao="EBAW" iata="ANR" type="International" season="All_Year">
     <town town="Antwerp" country="107" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="51°11'22''N" />
@@ -5657,7 +5658,7 @@
     </runways>
   </airport>
   <!--East Germany-->
-  <airport name="Heringsdorf Airport" icao="EDAH" iata="HDF" type="Domestic" season="All_Year">
+  <airport name="Heringsdorf Airport" icao="EDAH" iata="HDF" type="Domestic" season="Summer">
     <town town="Garz" country="1001" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="53°52'43''N" />
@@ -11156,7 +11157,7 @@
     </runways>
   </airport>
   <airport name="Samjiyon Airport" icao="ZKSE" iata="YJS" type="Domestic" season="All_Year">
-    <town town="Samjiy?n" country="311" GMT="09:00:00" DST="09:00:00" />
+    <town town="Samjiyon" country="311" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="41°54'25''N" />
       <longitude value="128°24'35''E" />
@@ -12466,6 +12467,20 @@
     </runways>
   </airport>
   <!--Republic of Congo-->
+  <airport name="Oyo Ollombo Airport" icao="FCOD" iata="OLL" type="Domestic" season="All_Year">
+    <town town="Oyo" country="309" GMT="00:00:00" DST="-01:00:00" />
+    <coordinates>
+      <latitude value="1°13'07''S" />
+      <longitude value="15°54'51''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="04/22" length="3285" surface="Concrete" />
+    </runways>
+  </airport>
   <airport name="Bétou Airport" icao="FCOT" iata="BTB" type="Domestic" season="All_Year">
     <town town="Bétou" country="309" GMT="00:00:00" DST="-01:00:00" />
     <coordinates>

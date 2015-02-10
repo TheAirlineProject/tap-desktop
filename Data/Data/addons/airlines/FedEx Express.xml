@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <airline>
-  <profile name="FedEx Express" iata="FX" color="Orange" country="122" CEO="Frederick W. Smith" mentality="Aggressive"
+  <profile name="FedEx Express" iata="FX" color="Orange" country="122" CEO="Frederick W. Smith" mentality="Aggressive" onlyfromhome="False" 
            market="Global" preferedairport="MEM" routefocus="Cargo">
     <narrative
       narrative="FedEx Express is a cargo airline based in Memphis, Tennessee, United States. It is the world's largest airline in terms of freight tons flown and the world's fourth largest in terms of fleet size." />

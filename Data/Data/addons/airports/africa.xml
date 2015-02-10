@@ -3104,6 +3104,62 @@
     </runways>
   </airport>
   <!--Ethiopia (HA**)-->
+  <airport name="Combolcha Airport" icao="HADC" iata="DSE" type="Domestic" season="All_Year">
+    <town town="Kombolcha/Dessie" country="124" GMT="03:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="11°6'40''N" />
+      <longitude value="39°43'30''E" />
+    </coordinates>
+    <size value="Smallest" pax="8" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="17/35" length="2000" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Robe Airport" icao="HAGB" iata="GOB" type="Domestic" season="All_Year">
+    <town town="Robe/Goba" country="124" GMT="03:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="7°7'05''N" />
+      <longitude value="40°02'45''E" />
+    </coordinates>
+    <size value="Smallest" pax="8" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="15/33" length="2370" surface="Dirt" />
+    </runways>
+  </airport>
+<airport name="Wilwal International Airport" icao="HAJJ" iata="JIJ" type="Domestic" season="All_Year">
+    <town town="Jijiga" country="124" GMT="03:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="9°19'51''N" />
+      <longitude value="42°54'40''E" />
+    </coordinates>
+    <size value="Smallest" pax="20" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="3/21" length="2500" surface="Asphalt" />
+    </runways>
+  </airport>
+<airport name="Humera Airport" icao="HAHU" iata="HUE" type="Domestic" season="All_Year">
+    <town town="Humera" country="124" GMT="03:00:00" DST="03:00:00" />
+    <coordinates>
+      <latitude value="13°49'49''N" />
+      <longitude value="36°52'54''E" />
+    </coordinates>
+    <size value="Smallest" pax="8" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="13/31" length="3000" surface="Asphalt" />
+    </runways>
+  </airport>
   <airport name="Bole International Airport" icao="HAAB" iata="ADD" type="International" season="All_Year">
     <town town="Addis Ababa" country="124" GMT="03:00:00" DST="03:00:00" />
     <coordinates>

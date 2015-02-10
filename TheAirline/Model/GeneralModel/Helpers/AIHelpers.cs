@@ -482,21 +482,16 @@
                         if (airliners.Count == 0)
                         {
                             airliners =
-                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
-                                    .FindAll(
-                                        a =>
-                                            a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType && a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
                                            && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && airlineAircrafts.Contains(a.Type));
                         }
                     }
                     else
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
-                                .FindAll(
-                                    a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType &&   a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
                                         && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && distance < a.Range && airlineAircrafts.Contains(a.Type));
+         
                     }
                 }
                 else if (focus == Route.RouteType.Helicopter_Cargo)
@@ -504,20 +499,15 @@
                     if (doLeasing)
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
-                                .FindAll(
-                                    a =>
-                                        a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo &&  a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
                                        && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && airlineAircrafts.Contains(a.Type));
                     }
                     else
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
-                                .FindAll(
-                                    a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo &&   a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
                                        && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && distance < a.Range && airlineAircrafts.Contains(a.Type));
+    
                     }
                 }
                 else if (focus == Route.RouteType.Helicopter_Passenger)
@@ -525,20 +515,16 @@
                     if (doLeasing)
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
-                                .FindAll(
-                                    a =>
-                                        a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter &&   a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
                                        && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && airlineAircrafts.Contains(a.Type));
+
                     }
                     else
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
-                                .FindAll(
-                                    a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter &&    a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
                                        && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && distance < a.Range && airlineAircrafts.Contains(a.Type));
+
                     }
                 }
                 else
@@ -546,29 +532,22 @@
                     if (doLeasing)
                     {
                         airliners =
-                           Airliners.GetAirlinersForLeasing()
-                               .FindAll(
-                                   a => a.Type is AirlinerPassengerType
+                           Airliners.GetAirlinersForLeasing(a => a.Type is AirlinerPassengerType
                                        && a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
                                       && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && airlineAircrafts.Contains(a.Type));
+                                        
 
                         if (airliners.Count == 0)
                         {
                             airliners =
-                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
-                                    .FindAll(
-                                        a =>
-                                            a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
+                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType &&  a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range
                                           && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && airlineAircrafts.Contains(a.Type));
                         }
                     }
                     else
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
-                                .FindAll(
-                                    a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
                                         && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && distance < a.Range && airlineAircrafts.Contains(a.Type));
                     }
                 }
@@ -579,28 +558,24 @@
                 {
                     if (doLeasing)
                     {
-                        airliners = Airliners.GetAirlinersForLeasing()
-                                .FindAll(
-                                    a => a.Type is AirlinerCargoType
+                        airliners = Airliners.GetAirlinersForLeasing(a => a.Type is AirlinerCargoType
                                        && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime) && a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range);
+                                   
 
                         if (airliners.Count == 0)
                         {
                             airliners =
-                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
-                                    .FindAll(
-                                        a =>
-                                            a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType &&  a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+
+                                           
                         }
                     }
                     else
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
-                                .FindAll(
-                                    a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType &&  a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
                                         && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+   
                     }
                 }
                 else if (focus == Route.RouteType.Helicopter_Passenger)
@@ -608,19 +583,16 @@
                     if (doLeasing)
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
-                                .FindAll(
-                                    a =>
+                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter &&
                                         a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+   
                     }
                     else
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
-                                .FindAll(
-                                    a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                            Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter &&  a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
                                         && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+                                           
                     }
                 }
                 else if (focus == Route.RouteType.Helicopter_Cargo)
@@ -628,18 +600,14 @@
                     if (doLeasing)
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
-                                .FindAll(
-                                    a =>
-                                        a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+                            Airliners.GetAirlinersForLeasing(a => a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo &&  a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+                  
+                                       
                     }
                     else
                     {
                         airliners =
-                            Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
-                                .FindAll(
-                                    a =>
-                                        a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                            Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo && a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
                                         && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
                     }
                 }
@@ -647,29 +615,23 @@
                 {
                     if (doLeasing)
                     {
-                        airliners =
-                            Airliners.GetAirlinersForSale()
-                                .FindAll(
-                                    a => a.Type is AirlinerPassengerType
-                                        && a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+                           airliners =
+                               Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType
+                                           && a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
 
                         if (airliners.Count == 0)
                         {
                             airliners =
-                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
-                                    .FindAll(
-                                        a =>
-                                            a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
                         }
                     }
                     else
                     {
                         airliners =
-                             Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
-                                 .FindAll(
-                                     a =>
-                                         a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
+                             Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType &&    a.getPrice() < airline.Money - 1000000 && a.getAge() < 10
                                          && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+        
+                                      
                     }
                 }
             }
@@ -699,38 +661,29 @@
                         if (focus == Route.RouteType.Cargo)
                         {
                             loanAirliners =
-                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
-                                    .FindAll(
-                                        a =>
-                                            a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType &&    a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                             && distance < a.Range && airlineAircrafts.Contains(a.Type) && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+              
                         }
                         else if (focus == Route.RouteType.Helicopter_Cargo)
                         {
                             loanAirliners =
-                               Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
-                                   .FindAll(
-                                       a =>
-                                           a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                               Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo &&    a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                            && distance < a.Range && airlineAircrafts.Contains(a.Type) && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+                                  
                         }
                         else if (focus == Route.RouteType.Helicopter_Passenger)
                         {
                             loanAirliners =
-                               Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
-                                   .FindAll(
-                                       a =>
-                                           a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                               Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter   && a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                            && distance < a.Range && airlineAircrafts.Contains(a.Type) && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
                         }
                         else
                         {
                             loanAirliners =
-                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
-                                    .FindAll(
-                                        a =>
-                                            a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType &&                                  a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                             && distance < a.Range && airlineAircrafts.Contains(a.Type) && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+           
                         }
                     }
 
@@ -739,39 +692,31 @@
                         if (focus == Route.RouteType.Cargo)
                         {
                             loanAirliners =
-                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType)
-                                    .FindAll(
-                                        a =>
-                                            a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType &&    a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                             && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+     
+                                         
                         }
                         else if (focus == Route.RouteType.Helicopter_Passenger)
                         {
                             loanAirliners =
-                               Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter)
-                                   .FindAll(
-                                       a =>
-                                           a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                               Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter &&     a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                            && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+
                         }
                         else if (focus == Route.RouteType.Helicopter_Cargo)
                         {
                             loanAirliners =
-                           Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo)
-                               .FindAll(
-                                   a =>
-                                       a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                           Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType && a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Helicopter_Cargo &&   a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                        && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
-                 
                         }
                         else
                         {
                             loanAirliners =
-                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType)
-                                    .FindAll(
-                                        a =>
-                                            a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
+                                Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType &&    a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal
                                             && distance < a.Range && !FlightRestrictions.HasRestriction(airline, a.Type, GameObject.GetInstance().GameTime));
+
+                                         
                         }
                     }
                     if (loanAirliners.Count > 0)
@@ -979,17 +924,21 @@
 
         public static T GetRandomItem<T>(Dictionary<T, int> list)
         {
-            var tList = new List<T>();
+            int total = list.Values.Sum();
 
-            foreach (T item in list.Keys)
+            int value = rnd.Next(total);
+
+            int t = 0;
+
+            foreach (var item in list)
             {
-                for (int i = 0; i < list[item]; i++)
-                {
-                    tList.Add(item);
-                }
+                t += item.Value;
+
+                if (t > value)
+                    return item.Key;
             }
 
-            return tList[rnd.Next(tList.Count)];
+            return list.Keys.Last();
         }
 
         public static RouteClassesConfiguration GetRouteConfiguration(PassengerRoute route)
@@ -2299,9 +2248,12 @@
         {
             var randomFutureSubs = airline.FutureAirlines.Where(f => f.Date == new DateTime(1900, 1, 1)).ToList();
 
-            FutureSubsidiaryAirline futureAirline = randomFutureSubs[rnd.Next(randomFutureSubs.Count)];
+            if (randomFutureSubs.Count > 0)
+            {
+                FutureSubsidiaryAirline futureAirline = randomFutureSubs[rnd.Next(randomFutureSubs.Count)];
 
-            CreateSubsidiaryAirline(airline, futureAirline);
+                CreateSubsidiaryAirline(airline, futureAirline);
+            }
         }
 
         //checks for the creation of code sharing for an airline
@@ -2433,15 +2385,19 @@
             }
             homeAirports.AddRange(airline.getHubs());
 
-
-
             Terminal.TerminalType terminaltype = focus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
+
+            Boolean onlyFromHome = airline.OperateOnlyFromHome;
+
+            if (onlyFromHome)
+                homeAirports = homeAirports.Where(a => a.Profile.Country == airline.Profile.Country).ToList();
 
             Airport airport = homeAirports.Find(a => AirportHelpers.HasFreeGates(a, airline, terminaltype));
 
             if (airport == null)
             {
                 airport = homeAirports.Find(a => a.Terminals.getFreeGates(terminaltype) > 0);
+                
                 if (airport != null)
                 {
                     if (!AirportHelpers.HasFreeGates(airport, airline))
@@ -2449,8 +2405,9 @@
                 }
                 else
                 {
-                    airport = GetServiceAirport(airline);
-                    if (airport != null)
+                    airport = GetServiceAirport(airline,true);
+                    
+                    if (airport != null && (airport.Profile.Country == airline.Profile.Country || !onlyFromHome))
                     {
                         if (!AirportHelpers.HasFreeGates(airport, airline))
                             AirportHelpers.RentGates(airport, airline, AirportContract.ContractType.Low_Service, terminaltype);
@@ -2461,15 +2418,18 @@
             return airport;
         }
 
-        private static Airport GetServiceAirport(Airline airline)
+        private static Airport GetServiceAirport(Airline airline, Boolean onlyHomeCountry = false)
         {
             AirportFacility facility =
                 AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
 
-            IOrderedEnumerable<Airport> airports =
-                from a in airline.Airports.FindAll(aa => aa.Terminals.getFreeGates(airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0)
-                orderby a.Profile.Size descending
-                select a;
+            var airports = airline.Airports.Where(aa => aa.Terminals.getFreeGates(airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0).OrderBy(a=>a.Profile.Country == airline.Profile.Country).ThenByDescending(a=>a.Profile.Size).ToList();
+               // from a in airline.Airports.FindAll(aa => aa.Terminals.getFreeGates(airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0)
+               // orderby a.Profile.Country == airline.Profile.Country orderby a.Profile.Size descending
+             //   select a;
+
+            if (onlyHomeCountry)
+                airports = airports.FindAll(a => a.Profile.Country == airline.Profile.Country);
 
             if (airports.Count() > 0)
             {

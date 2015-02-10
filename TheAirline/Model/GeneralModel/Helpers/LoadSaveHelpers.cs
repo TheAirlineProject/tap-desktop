@@ -2117,6 +2117,7 @@
                     new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded),
                     mentality,
                     market,
+                    true,
                     license,
                     routefocus,
                     Airline.AirlineRouteSchedule.Regular);
@@ -2130,6 +2131,7 @@
                         new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded),
                         mentality,
                         market,
+                        true,
                         license,
                         routefocus,
                         Airline.AirlineRouteSchedule.Regular);

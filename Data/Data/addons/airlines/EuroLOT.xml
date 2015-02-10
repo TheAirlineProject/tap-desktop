@@ -4,6 +4,6 @@
   <profile name="Eurolot" iata="K2" color="Black" country="135" CEO="Mariusz Dabrowski" mentality="Safe" market="Global" preferedairport="KRK">
   <narrative narrative="Eurolot is an airline based in Poland at Krakow, Gdansk and Warsaw Chopin. It was started in December 1996 as a subsidiary to LOT who it still has close ties with and shares planes and routes with. It however is owned by the State Treasury by 62.1%. When doing a LOT branded flight its hub is Warsaw, but its own hubs are at Krakow and Gdansk. They have 20 destinations all in Europe but have planes to expand to Asia. The planes they had in 2013 were 11 Dash 8-400's,3 A320's and 3 Embraer 175's." />
   </profile>
-  <info real="True" from="1997" to="2199" />
+  <info real="True" from="1997" to="2014" />
      <prefereds aircrafts="Bombardier Dash 8-400,Bombardier Dash 8-400NextGen,Airbus A320-200,Embraer E-175,ATR 42-300,ATR 72-200,ATR 72-500"></prefereds>
 </airline>

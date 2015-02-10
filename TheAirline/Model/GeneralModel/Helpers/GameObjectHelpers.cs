@@ -105,6 +105,8 @@
                 checkinFacility,
                 GameObject.GetInstance().GameTime);
 
+
+
             if (continent.Uid != "100" || region.Uid != "100")
             {
                 List<Airline> airlines =
@@ -112,13 +114,13 @@
                         a =>
                             a.Profile.Country.Region == region
                             || (region.Uid == "100" && continent.hasRegion(a.Profile.Country.Region))
-                            && a.Profile.Founded <= startYear && a.Profile.Folded > startYear);
+                            && a.Profile.Founded <= startYear && a.Profile.Folded >= startYear);
                 List<Airport> airports =
                     Airports.GetAirports(
                         a =>
                             (new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country).Region == region
                             || (region.Uid == "100" && continent.hasRegion((new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country).Region))
-                            && a.Profile.Period.From.Year <= startYear && a.Profile.Period.To.Year > startYear);
+                            && a.Profile.Period.From.Year <= startYear && a.Profile.Period.To.Year >= startYear);
 
                 Airports.Clear();
                 foreach (Airport a in airports)
@@ -1924,6 +1926,7 @@
                         merger.Airline2.Profile,
                         merger.Airline2.Mentality,
                         merger.Airline2.MarketFocus,
+                        merger.Airline2.OperateOnlyFromHome,
                         merger.Airline2.License,
                         merger.Airline2.AirlineRouteFocus,
                         merger.Airline2.Schedule);

@@ -60,7 +60,7 @@
       <latitude value="50°38'14''N" />
       <longitude value="5°26'35''E" />
     </coordinates>
-    <size value="Very_small" pax="315" cargo="Smallest" cargovolume="0" />
+    <size value="Very_small" pax="315" cargo="Medium" cargovolume="675" />
     <terminals>
       <terminal name="Terminal 1" gates="10" />
     </terminals>
@@ -8878,6 +8878,20 @@
     </runways>
   </airport>
   <!--Ukraine (UK**)-->
+      <airport name="Kryvyi Rih International Airport" icao="UKDR" iata="KWG" type="International" season="All_Year">
+    <town town="Kryvyi Rih" country="134" GMT="03:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="048°02'35''N" />
+      <longitude value="033°12'25''E" />
+    </coordinates>
+    <size value="Smallest" pax="6" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="18/36" length="2500" surface="Concrete" />
+    </runways>
+  </airport>
   <airport name="Boryspil International Airport" icao="UKBB" iata="KBP" type="International" season="All_Year">
     <town town="Kiev" country="134" GMT="03:00:00" DST="02:00:00" />
     <coordinates>

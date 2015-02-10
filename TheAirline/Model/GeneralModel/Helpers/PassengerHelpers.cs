@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+ 
     using System.Threading.Tasks;
     using TheAirline.Model.AirlineModel;
     using TheAirline.Model.AirlinerModel;
@@ -366,8 +367,7 @@
 
             String dAirportSize = dAirport.Profile.Size.ToString();
             String airportSize = airport.Profile.Size.ToString();
-            double dist = MathHelpers.GetDistance(dAirport, airport);
-
+          
             if (airport.Profile.MajorDestionations.Keys.Contains(dAirport.Profile.IATACode))
             {
                 estimatedPassengerLevel =
@@ -2913,8 +2913,13 @@
             double value = estimatedPassengerLevel * GetDemandYearFactor(GameObject.GetInstance().GameTime.Year);
 
             double distance = MathHelpers.GetDistance(airport, dAirport);
-
+            
             var rate = (ushort)value;
+
+            if (distance < 50)
+            {
+                rate = (ushort)Math.Max((int)rate, 30);    
+            }
 
             if (rate > 0)
             {
@@ -2990,6 +2995,13 @@
 
         public static double GetFlightCargo(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner)
         {
+            string routeString = string.Format("C{0}{1}{2}", airliner.Airliner.Airline.Profile.IATACode, airportCurrent.Profile.IATACode, airportDestination.Profile.IATACode);
+           
+            object paxValue = (object)GameMemoryCache.GetCacheValue(routeString);
+
+            if (paxValue != null && Convert.ToDouble(paxValue) > 0)
+                return Convert.ToDouble(paxValue);
+
             double destinationFacilityFactor =
                 airportDestination.getAirportFacility(
                     GameObject.GetInstance().HumanAirline,
@@ -3074,6 +3086,11 @@
 
             var cargo = (int)Math.Min(capacity, (capacity * capacityPercent * randomCargo * cargoPriceDiff));
 
+            double seconds = MathHelpers.GetRandomDoubleNumber(118, 122);
+
+       
+            GameMemoryCache.AddCacheValue(routeString, cargo, seconds);
+       
             return cargo;
         }
 
@@ -3083,6 +3100,14 @@
             FleetAirliner airliner,
             AirlinerClass.ClassType type)
         {
+
+            string routeString = string.Format("P{0}{1}{2}",airliner.Airliner.Airline.Profile.IATACode, airportCurrent.Profile.IATACode, airportDestination.Profile.IATACode);
+                   
+            object paxValue = (object)GameMemoryCache.GetCacheValue(routeString);
+
+            if (paxValue != null && Convert.ToInt16(paxValue) > 0)
+                return Convert.ToInt16(paxValue);
+            
             double distance = MathHelpers.GetDistance(airportCurrent, airportDestination);
 
             Route currentRoute =
@@ -3199,7 +3224,7 @@
             foreach (Airline airline in airlines)
             {
                 var aRoutes = new List<Route>(airline.Routes);
-
+                
                 routes.AddRange(
                     aRoutes.Where(r => r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed)
                         .Where(
@@ -3299,6 +3324,11 @@
                 pax = 0;
             }
 
+            double seconds = MathHelpers.GetRandomDoubleNumber(118, 122);
+
+            GameMemoryCache.AddCacheValue(routeString, pax, seconds);
+       
+            
             return pax;
         }
 

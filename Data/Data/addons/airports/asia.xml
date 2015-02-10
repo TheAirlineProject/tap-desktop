@@ -18,6 +18,93 @@
     <runways>
       <runway name="11/29" length="3500" surface="Asphalt" />
     </runways>
+    <expansions>
+        <expansion type="Name" name="Hamid Karzai International Airport" date="10.01.2014 00:00:00" notify="True"></expansion>
+        </expansions>
+  </airport>
+    <airport name="Maymana Airport" icao="OAMN" iata="MMZ" type="Domestic" season="All_Year">
+    <town town="Maymana" country="253" GMT="04:30:00" DST="04:30:00" />
+    <coordinates>
+      <latitude value="35°55'51''N" />
+      <longitude value="64°45'39''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="1664" surface="Gravel" />
+    </runways>
+  </airport>
+  <airport name="Bamyan Airport" icao="OABN" iata="BIN" type="Domestic" season="All_Year">
+    <town town="Bamyan" country="253" GMT="04:30:00" DST="04:30:00" />
+    <coordinates>
+      <latitude value="34°48'35''N" />
+      <longitude value="67°49'06''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="2000" surface="Gravel" />
+    </runways>
+  </airport>
+  <airport name="Farah Airport" icao="OAFR" iata="FAH" type="Domestic" season="All_Year">
+    <town town="Farah" country="253" GMT="04:30:00" DST="04:30:00" />
+    <coordinates>
+      <latitude value="32°21'58''N" />
+      <longitude value="62°09'56''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="2000" surface="Gravel" />
+    </runways>
+  </airport>
+  <airport name="Khost Airport" icao="OAKS" iata="KHT" type="Domestic" season="All_Year">
+    <town town="Khost" country="253" GMT="04:30:00" DST="04:30:00" />
+    <coordinates>
+      <latitude value="33°20'01''N" />
+      <longitude value="69°57'06''E" />
+    </coordinates>
+    <size value="Smallest" pax="5" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="6/24" length="2683" surface="Gravel" />
+    </runways>
+  </airport>
+  <airport name="Zaranj Airport" icao="OAZJ" iata="ZAJ" type="Domestic" season="All_Year">
+    <town town="Zaranj" country="253" GMT="04:30:00" DST="04:30:00" />
+    <coordinates>
+      <latitude value="30°58'10''N" />
+      <longitude value="61°52'00''E" />
+    </coordinates>
+    <size value="Smallest" pax="10" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="14/32" length="2000" surface="Gravel" />
+    </runways>
+  </airport>
+  <airport name="Tarinkot Airport" icao="OATN" iata="TII" type="Domestic" season="All_Year">
+    <town town="Tarinkot" country="253" GMT="04:30:00" DST="04:30:00" />
+    <coordinates>
+      <latitude value="32°36'37''N" />
+      <longitude value="65°51'59''E" />
+    </coordinates>
+    <size value="Smallest" pax="20" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="12/30" length="1829" surface="Concrete" />
+    </runways>
   </airport>
   <!--Bahrain (OB**)-->
   <airport name="Bahrain International Airport" icao="OBII" iata="BAH" type="International" season="All_Year">
@@ -123,6 +210,7 @@
     </runways>
   </airport>
   <airport name="Tehran Imam Khomeini International Airport" icao="OIIE" iata="IKA" type="International" season="All_Year">
+      <period from="05.30.2004 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Tehran" country="177" GMT="04:30:00" DST="03:30:00" />
     <coordinates>
       <latitude value="35°24'58''N" />
@@ -969,7 +1057,7 @@ inflationafter="1">
       <latitude value="025°04'48''N" />
       <longitude value="121°13'56''E" />
     </coordinates>
-    <size value="Large" pax=" 30701" cargo="Smallest" cargovolume="0" />
+    <size value="Large" pax=" 30701" cargo="Very_large" cargovolume="2088" />
     <terminals>
       <terminal name="Terminal 1" gates="50" />
       <terminal name="Terminal 2" gates="50" />
@@ -1331,7 +1419,7 @@ inflationafter="1">
       <runway name="08/26" length="2200" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Naha Airport" icao="ROAH" iata="OKA" type="Domestic" season="All_Year">
+  <airport name="Naha Airport" icao="ROAH" iata="OKA" type="International" season="All_Year">
     <town town="Naha" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="26°11'45''N" />
@@ -1345,7 +1433,7 @@ inflationafter="1">
       <runway name="18/36" length="3000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Miyazaki Airport" icao="RJFM" iata="KMI" type="Domestic" season="All_Year">
+  <airport name="Miyazaki Airport" icao="RJFM" iata="KMI" type="International" season="All_Year">
     <town town="Miyazaki" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="31°52'38''N" />
@@ -1359,7 +1447,7 @@ inflationafter="1">
       <runway name="09/27" length="2500" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Kumamoto Airport" icao="RJFT" iata="KMJ" type="Domestic" season="All_Year">
+  <airport name="Kumamoto Airport" icao="RJFT" iata="KMJ" type="International" season="All_Year">
     <town town="Kumamoto" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="32°50'14''N" />
@@ -1499,7 +1587,7 @@ inflationafter="1">
       <runway name="03/21" length="2000" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Aomori Airport" icao="RJSA" iata="AOJ" type="Domestic" season="All_Year">
+  <airport name="Aomori Airport" icao="RJSA" iata="AOJ" type="International" season="All_Year">
     <town town="Aomori" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="40°44'00''N" />
@@ -1625,7 +1713,7 @@ inflationafter="1">
       <runway name="03/21" length="1800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Saga Airport" icao="RJFS" iata="HSG" type="Domestic" season="All_Year">
+  <airport name="Saga Airport" icao="RJFS" iata="HSG" type="International" season="All_Year">
     <town town="Saga" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="33°08'59''N" />
@@ -1891,7 +1979,7 @@ inflationafter="1">
       <runway name="02/20" length="800" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Fukushima Airport" icao="RJSF" iata="FKS" type="Domestic" season="All_Year">
+  <airport name="Fukushima Airport" icao="RJSF" iata="FKS" type="International" season="All_Year">
     <town town="Fukushima" country="171" GMT="09:00:00" DST="09:00:00" />
     <coordinates>
       <latitude value="37°13'39''N" />
@@ -9335,12 +9423,13 @@ inflationafter="1">
     </runways>
   </airport>
     <airport name="Macau International Airport" icao="VMMC" iata="MFM" type="International" season="All_Year">
+    <period from="11.09.1995 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Macau, MO" country="148" GMT="08:00:00" DST="08:00:00" />
     <coordinates>
       <latitude value="022°08'58''N" />
       <longitude value="113°35'31''E" />
     </coordinates>
-    <size value="Medium" pax="4491" />
+    <size value="Medium" pax="4491" cargo="Small" cargovolume="28" />
     <terminals>
       <terminal name="Terminal A" gates="18" />
       <terminal name="Terminal B" gates="16" />

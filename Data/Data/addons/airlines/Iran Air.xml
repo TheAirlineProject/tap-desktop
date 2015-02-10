@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <airline>
   <profile name="Iran Air" iata="IR" color="Blue" country="177" CEO="Farhad Parvaresh" mentality="Aggressive" market="Global" preferedairport="IKA">
-  <narrative narrative="Iran Air is the flag carrier of Iran, making its hub at both of Tehran's airports, Imam Khomeini Airport and the older Mehrabad Airport. Founded in 1938 it serves 80 destinations around the world. It has 51 planes of mixed types, and has 35 Tu-204's on order as of 2014." />
+  <narrative narrative="Iran Air is the flag carrier of Iran, making its hub at both of Tehran's airports, Imam Khomeini Airport and the older Mehrabad Airport. Founded in 1946 it serves 80 destinations around the world. It has 51 planes of mixed types, and has 35 Tu-204's on order as of 2014." />
   </profile>
-  <info real="True" from="1938" to="2199"></info>
+  <info real="True" from="1946" to="2199"></info>
+  <cooperations>
+<cooperation type="100" airport="IKA" date="01.01.1997 00:00:00" ></cooperation> 
+<cooperation type="100" airport="SYZ" date="01.01.1997 00:00:00" ></cooperation> 
+<cooperation type="100" airport="MHD" date="01.01.1997 00:00:00" ></cooperation> 
+<cooperation type="100" airport="BND" date="01.01.1997 00:00:00" ></cooperation> 
+<cooperation type="100" airport="THR" date="01.01.1997 00:00:00" ></cooperation> 
+  </cooperations>
 </airline>

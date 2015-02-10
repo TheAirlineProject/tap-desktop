@@ -72,7 +72,7 @@
     <manufacturer name="Junkers Flugzeug- und Motorenwerke" shortname="Junkers" country="163" />
     <manufacturer name="Groupe Latecoere" shortname="Latecoere" country="140" />
     <manufacturer name="Glenn L. Martin Company" shortname="Martin" country="122" />
-    
+        <manufacturer name="Curtiss-Wright Corporation" shortname="Curtiss" country="122" />
     
    <!--engines-->
   <manufacturer name="CFM International" shortname="CFM" country="140" />

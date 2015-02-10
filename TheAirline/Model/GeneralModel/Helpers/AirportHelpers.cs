@@ -596,17 +596,16 @@
 
         public static int GetNumberOfAirportsRoutes(Airport airport1, Airport airport2)
         {
-            
-            List<Route> routes;
-            
-            lock (Airlines.GetAllAirlines())
-                routes = new List<Route>(Airlines.GetAllAirlines().Where(a => a.Routes != null).SelectMany(a => a.Routes));
-                      
-            return
-                routes.Count(
+            int count = 0;
+
+            var airlines = new List<Airline>(Airlines.GetAllAirlines());
+
+            count = airlines.Where(a => a.Routes != null).SelectMany(a => a.Routes).Count(
                     r =>
                         (r.Destination1 == airport1 && r.Destination2 == airport2)
                         || (r.Destination1 == airport2 && r.Destination2 == airport1));
+
+            return count;
         }
 
         //checks an airport for extending of runway

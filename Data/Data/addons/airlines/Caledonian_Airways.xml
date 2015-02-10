@@ -2,9 +2,9 @@
 
 <airline>
   <profile name="Caledonian Airways" iata="KG" color="Purple" country="130" CEO="Thomas Owen" mentality="Aggressive"
-           market="Global" preferedairport="LGW">
+           market="Global" preferedairport="LGW" schedule="Charter">
     <narrative
       narrative="Caledonian Airways was a private Scottish charter airline in the 1960s. They flew 11 Boeing 707s and 3 BAC 111-500s to destinations throughout the world as needed." />
   </profile>
-     <info real="True" from="1961" to="1970"></info>
+     <info real="True" from="1961" to="1971"></info>
 </airline>

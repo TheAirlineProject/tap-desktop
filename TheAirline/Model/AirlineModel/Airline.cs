@@ -31,6 +31,7 @@
             AirlineProfile profile,
             AirlineMentality mentality,
             AirlineFocus marketFocus,
+            Boolean onlyFromHome,
             AirlineLicense license,
             Route.RouteType routeFocus,
             AirlineRouteSchedule schedule)
@@ -47,6 +48,7 @@
             this.Codeshares = new List<CodeshareAgreement>();
             this.Statistics = new GeneralStatistics();
             this.Facilities = new List<AirlineFacility>();
+            this.OperateOnlyFromHome = onlyFromHome;
             this.Invoices = new Invoices();
             this.Budget = new AirlineBudget();
             this.BudgetHistory = new Dictionary<DateTime, AirlineBudget>();
@@ -353,7 +355,8 @@
                 ;
             }
         }
-
+        [Versioning("onlyfromhome")]
+        public Boolean OperateOnlyFromHome { get; set; }
         [Versioning("license")]
         public AirlineLicense License { get; set; }
 

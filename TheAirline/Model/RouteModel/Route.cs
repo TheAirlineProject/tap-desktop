@@ -307,7 +307,7 @@
 
             IEnumerable<FleetAirliner> tAll = tx.Union(tMain);
 
-            return tAll.ToList();
+            return new List<FleetAirliner>(tAll);
         }
 
         public double getBalance(DateTime startTime, DateTime endTime)

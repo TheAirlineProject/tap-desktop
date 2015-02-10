@@ -557,6 +557,10 @@
         {
             return airliners.FindAll(a => a.Status == Airliner.StatusTypes.Leasing);
         }
+        public static List<Airliner> GetAirlinersForLeasing(Predicate<Airliner> match)
+        {
+            return airliners.FindAll(match).FindAll(a => a.Status == Airliner.StatusTypes.Leasing);
+        }
         //returns the list of airliners for sale
         public static List<Airliner> GetAirlinersForSale(Predicate<Airliner> match)
         {

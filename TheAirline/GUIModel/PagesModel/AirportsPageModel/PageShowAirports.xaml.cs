@@ -285,9 +285,10 @@ using TheAirline.Model.GeneralModel.Helpers;
                 new AirlineProfile("All Airlines", "99", "Blue", "", false, 1900, 1900),
                 Airline.AirlineMentality.Safe,
                 Airline.AirlineFocus.Domestic,
+                true,
                 Airline.AirlineLicense.Domestic,
-                Route.RouteType.Passenger,
-                Airline.AirlineRouteSchedule.Regular);
+                 Route.RouteType.Passenger,
+                 Airline.AirlineRouteSchedule.Regular);
             dummyAirline.Profile.AddLogo(
                 new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
 
