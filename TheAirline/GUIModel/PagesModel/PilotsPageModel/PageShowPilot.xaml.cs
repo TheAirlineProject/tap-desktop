@@ -1,4 +1,8 @@
-﻿namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
+﻿using TheAirline.Helpers;
+using TheAirline.Models.General;
+using TheAirline.Models.Pilots;
+
+namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 {
     using System.Linq;
     using System.Windows;
@@ -7,8 +11,6 @@
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.PilotModel;
 
     /// <summary>
     ///     Interaction logic for PageShowPilot.xaml

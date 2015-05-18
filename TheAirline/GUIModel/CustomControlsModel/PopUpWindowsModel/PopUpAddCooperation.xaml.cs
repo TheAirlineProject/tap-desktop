@@ -12,10 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.AirlineModel.AirlineCooperationModel;
-using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airlines.AirlineCooperation;
+using TheAirline.Models.Airports;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {

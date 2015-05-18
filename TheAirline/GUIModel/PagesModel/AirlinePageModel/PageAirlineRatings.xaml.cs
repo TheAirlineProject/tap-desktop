@@ -1,11 +1,12 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
+﻿using TheAirline.Models.General;
+using TheAirline.Models.General.Statistics;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
 
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
 
     /// <summary>
     ///     Interaction logic for AirlineRatings.xaml

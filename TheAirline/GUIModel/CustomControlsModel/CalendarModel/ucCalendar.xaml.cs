@@ -12,11 +12,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
-using TheAirline.Model.AirportModel;
+using TheAirline.Infrastructure;
 using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.CountryModel;
-using TheAirline.Model.GeneralModel.HolidaysModel;
-using TheAirline.Model.AirlinerModel;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Countries;
+using TheAirline.Models.General.Holidays;
 
 namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 {

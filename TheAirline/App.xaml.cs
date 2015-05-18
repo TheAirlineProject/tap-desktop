@@ -1,6 +1,8 @@
 using System;
 using NLog;
+using TheAirline.Infrastructure;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Models.General;
 
 /*!
  * /brief Namespace of the project

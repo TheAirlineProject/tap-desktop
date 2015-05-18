@@ -1,4 +1,6 @@
-﻿using TheAirline.Model.GeneralModel.Helpers;
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
@@ -8,7 +10,6 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     using System.Windows.Controls;
 
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
 
     /// <summary>

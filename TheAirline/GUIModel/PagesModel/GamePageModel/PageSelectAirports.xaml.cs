@@ -17,10 +17,11 @@ using TheAirline.GUIModel.CustomControlsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-using TheAirline.Model.AirportModel;
+using TheAirline.Helpers;
 using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.CountryModel;
-using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Countries;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {

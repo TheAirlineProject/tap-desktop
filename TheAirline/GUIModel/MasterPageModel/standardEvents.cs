@@ -1,4 +1,8 @@
-﻿namespace TheAirline.GUIModel.MasterPageModel
+﻿using TheAirline.Helpers.Workers;
+using TheAirline.Infrastructure;
+using TheAirline.Models.General;
+
+namespace TheAirline.GUIModel.MasterPageModel
 {
     using System.Windows;
 
@@ -14,7 +18,6 @@
     using TheAirline.GUIModel.PagesModel.PilotsPageModel;
     using TheAirline.GUIModel.PagesModel.RoutesPageModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
 
     public partial class standardEvents

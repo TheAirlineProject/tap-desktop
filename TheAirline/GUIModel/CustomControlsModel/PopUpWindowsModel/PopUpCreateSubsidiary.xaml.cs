@@ -17,11 +17,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.AirlineModel.SubsidiaryModel;
-using TheAirline.Model.AirportModel;
+using TheAirline.Infrastructure;
 using TheAirline.Model.GeneralModel;
-using TheAirline.Model.RouteModel;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airlines.Subsidiary;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {
@@ -135,9 +137,9 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             var subAirline = new SubsidiaryAirline(
                 GameObject.GetInstance().MainAirline,
                 profile,
-                Model.AirlineModel.Airline.AirlineMentality.Safe,
-                Model.AirlineModel.Airline.AirlineFocus.Local,
-                Model.AirlineModel.Airline.AirlineLicense.Domestic,
+                Airline.AirlineMentality.Safe,
+                Airline.AirlineFocus.Local,
+                Airline.AirlineLicense.Domestic,
                 focus);
 
             subAirline.AddAirport(airport);

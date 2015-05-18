@@ -1,4 +1,8 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
+﻿using TheAirline.Infrastructure;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
     using System;
     using System.Collections.Generic;
@@ -12,7 +16,6 @@
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel;
-    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
 
     using AirlinerClassMVVM = TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel.AirlinerClassMVVM;

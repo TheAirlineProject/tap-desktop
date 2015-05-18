@@ -1,4 +1,9 @@
-﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Infrastructure;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Finances;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
@@ -12,10 +17,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
 
     /// <summary>
     ///     Interaction logic for PageNewAirliners.xaml
@@ -29,7 +31,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             this.AllTypes = new List<AirlinerTypeMVVM>();
             this.SelectedAirliners = new ObservableCollection<AirlinerTypeMVVM>();
 
-            Boolean isMetric = AppSettings.GetInstance().GetLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Metric;
+            Boolean isMetric = AppSettings.GetInstance().GetLanguage().Unit == Infrastructure.Language.UnitSystem.Metric;
          
             this.RangeRanges = new List<FilterValue>
                                {

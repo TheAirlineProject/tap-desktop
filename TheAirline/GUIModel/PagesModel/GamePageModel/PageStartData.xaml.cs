@@ -1,4 +1,8 @@
-﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
+﻿using TheAirline.Models.Airlines;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Countries;
+
+namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     using System;
     using System.Collections.Generic;
@@ -8,9 +12,7 @@
 
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.GUIModel.ObjectsModel;
-    using TheAirline.Model.AirlineModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.CountryModel;
 
     /// <summary>
     ///     Interaction logic for PageStartData.xaml

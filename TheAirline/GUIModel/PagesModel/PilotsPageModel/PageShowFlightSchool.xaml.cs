@@ -1,4 +1,9 @@
-﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Countries.Towns;
+using TheAirline.Models.General.Finances;
+using TheAirline.Models.Pilots;
 
 namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 {
@@ -14,11 +19,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.CountryModel.TownModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.PilotModel;
 
     /// <summary>
     ///     Interaction logic for PageShowFlightSchool.xaml
@@ -123,7 +124,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 Instructor instructor in
                     this.FlightSchool.Instructors.Where(
                         i =>
-                            i.Students.Count < Model.PilotModel.FlightSchool.MaxNumberOfStudentsPerInstructor
+                            i.Students.Count < Models.Pilots.FlightSchool.MaxNumberOfStudentsPerInstructor
                             && i != student.Instructor))
             {
                 cbInstructor.Items.Add(instructor);
@@ -356,7 +357,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
             int studentsCapacity =
                 Math.Min(
-                    this.FlightSchool.Instructors.Count * Model.PilotModel.FlightSchool.MaxNumberOfStudentsPerInstructor,
+                    this.FlightSchool.Instructors.Count * Models.Pilots.FlightSchool.MaxNumberOfStudentsPerInstructor,
                     this.FlightSchool.FlightSchool.TrainingAircrafts.Sum(f => f.Type.MaxNumberOfStudents));
 
             this.FlightSchool.HireStudents = studentsCapacity > this.FlightSchool.Students.Count
@@ -367,7 +368,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
             foreach (
                 Instructor instructor in
                     this.FlightSchool.Instructors.Where(
-                        i => i.Students.Count < Model.PilotModel.FlightSchool.MaxNumberOfStudentsPerInstructor))
+                        i => i.Students.Count < Models.Pilots.FlightSchool.MaxNumberOfStudentsPerInstructor))
             {
                 this.Instructors.Add(instructor);
             }

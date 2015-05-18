@@ -1,4 +1,7 @@
-﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
+﻿using TheAirline.Infrastructure;
+using TheAirline.Models.General;
+
+namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     using System.Collections.Generic;
     using System.IO;

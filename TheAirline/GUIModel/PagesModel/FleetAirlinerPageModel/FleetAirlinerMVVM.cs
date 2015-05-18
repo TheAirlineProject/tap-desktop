@@ -1,4 +1,11 @@
-﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Finances;
+using TheAirline.Models.General.Statistics;
+using TheAirline.Models.Pilots;
 
 namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
@@ -9,13 +16,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
     using System.Windows.Data;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
-    using TheAirline.Model.PilotModel;
 
     public class FleetAirlinerMVVM : INotifyPropertyChanged
     {

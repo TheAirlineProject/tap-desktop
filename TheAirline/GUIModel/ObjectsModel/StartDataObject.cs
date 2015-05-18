@@ -1,12 +1,13 @@
-﻿namespace TheAirline.GUIModel.ObjectsModel
+﻿using TheAirline.Models.Airlines;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Countries;
+
+namespace TheAirline.GUIModel.ObjectsModel
 {
     using System;
     using System.Collections.Generic;
-
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.CountryModel;
 
     //the object for the start data
     public class StartDataObject

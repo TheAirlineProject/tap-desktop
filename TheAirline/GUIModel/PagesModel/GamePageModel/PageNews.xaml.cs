@@ -1,4 +1,9 @@
-﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
+﻿using TheAirline.Models.Airliners;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+
+namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     using System;
     using System.Collections.ObjectModel;
@@ -13,9 +18,6 @@
     using TheAirline.GUIModel.PagesModel.AirlinePageModel;
     using TheAirline.GUIModel.PagesModel.AirportPageModel;
     using TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel;
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
 
     /// <summary>

@@ -1,5 +1,7 @@
-﻿using TheAirline.Model.GeneralModel.Helpers;
-using TheAirline.Model.RouteModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airports;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
@@ -7,9 +9,6 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     using System.Globalization;
     using System.Windows.Data;
     using System.Windows.Media;
-
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
 
     public enum IntervalType

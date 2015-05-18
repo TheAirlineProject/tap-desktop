@@ -1,5 +1,9 @@
-﻿using TheAirline.Model.GeneralModel.Helpers;
-using TheAirline.Model.RouteModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
+using TheAirline.Models.Passengers;
+using TheAirline.Models.Pilots;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
@@ -13,10 +17,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.PassengerModel;
-    using TheAirline.Model.PilotModel;
 
     /// <summary>
     ///     Interaction logic for PageAssignAirliners.xaml

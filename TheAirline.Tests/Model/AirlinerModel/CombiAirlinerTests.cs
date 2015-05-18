@@ -1,10 +1,11 @@
-﻿namespace TheAirline.Tests.Model.AirlinerModel
+﻿using TheAirline.Infrastructure;
+using TheAirline.Models.Airliners;
+
+namespace TheAirline.Tests.Model.AirlinerModel
 {
     using System;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
 
     [TestClass]

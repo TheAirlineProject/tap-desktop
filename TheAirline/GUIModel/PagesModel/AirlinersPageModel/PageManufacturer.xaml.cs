@@ -1,4 +1,7 @@
-﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Finances;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
@@ -13,9 +16,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
 
     /// <summary>
     ///     Interaction logic for PageManufacturer.xaml
@@ -255,7 +256,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
                                         airliner.EngineType = order.Engine;
 
-                                        Model.AirlinerModel.Airliners.AddAirliner(airliner);
+                                        Models.Airliners.Airliners.AddAirliner(airliner);
 
                                         var pType = FleetAirliner.PurchasedType.BoughtDownPayment;
                                         GameObject.GetInstance()
@@ -440,7 +441,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                         order.Type,
                         GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.GetNextTailNumber(),
                         deliveryDate);
-                    Model.AirlinerModel.Airliners.AddAirliner(airliner);
+                    Models.Airliners.Airliners.AddAirliner(airliner);
 
                     var pType = FleetAirliner.PurchasedType.Bought;
                     GameObject.GetInstance().HumanAirline.AddAirliner(pType, airliner, order.Homebase);

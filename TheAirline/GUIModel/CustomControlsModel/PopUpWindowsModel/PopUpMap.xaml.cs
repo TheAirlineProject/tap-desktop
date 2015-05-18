@@ -14,15 +14,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
-using TheAirline.Model.AirportModel;
-using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel;
-using TheAirline.Model.AirlineModel;
 using System.ComponentModel;
 using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.Model.GeneralModel.Helpers;
-using TheAirline.Model.RouteModel;
+using TheAirline.Helpers;
+using TheAirline.Infrastructure;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {

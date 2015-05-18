@@ -1,4 +1,6 @@
-﻿using TheAirline.Model.RouteModel;
+﻿using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
@@ -9,7 +11,6 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     using System.Windows.Controls;
 
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
 
     /// <summary>

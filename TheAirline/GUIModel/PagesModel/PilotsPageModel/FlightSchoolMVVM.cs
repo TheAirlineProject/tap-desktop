@@ -1,10 +1,10 @@
-﻿namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
+﻿using TheAirline.Models.Pilots;
+
+namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 {
     using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
-
-    using TheAirline.Model.PilotModel;
 
     public class FlightSchoolMVVM : INotifyPropertyChanged
     {

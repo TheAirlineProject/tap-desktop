@@ -27,6 +27,8 @@
     <OutputPath>..\bin\$(Configuration)\</OutputPath>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>Full</DebugType>
@@ -91,29 +93,36 @@
     <Reference Include="De.TorstenMandelkow.MetroChart">
       <HintPath>..\Resource\De.TorstenMandelkow.MetroChart.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.SqlServerCompact.6.1.3\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.3.7.0\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=3.2.1.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.3.2.1\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\packages\System.Data.SQLite.Core.1.0.93.0\lib\net45\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.EF6">
-      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.93.0\lib\net45\System.Data.SQLite.EF6.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq">
-      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.93.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Device" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
@@ -124,9 +133,29 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.Toolkit, Version=2.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Extended.Wpf.Toolkit.2.1.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -879,157 +908,158 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\AirlineModel\Airline.cs" />
-    <Compile Include="Model\AirlineModel\AdvertisementType.cs" />
-    <Compile Include="Model\AirlineModel\AirlineBudget.cs" />
-    <Compile Include="Model\AirlineModel\AirlineCooperationModel\Cooperation.cs" />
-    <Compile Include="Model\AirlineModel\AirlineCooperationModel\CooperationType.cs" />
-    <Compile Include="Model\AirlineModel\AirlineFacilitity.cs" />
-    <Compile Include="Model\AirlineModel\AirlineFees.cs" />
-    <Compile Include="Model\AirlineModel\AirlineInsurance.cs" />
-    <Compile Include="Model\AirlineModel\AirlinePolicy.cs" />
-    <Compile Include="Model\AirlineModel\AirlineProfile.cs" />
-    <Compile Include="Model\AirlineModel\AirlineRatings.cs" />
-    <Compile Include="Model\AirlineModel\AirlineScores.cs" />
-    <Compile Include="Model\AirlineModel\AirlineShare.cs" />
-    <Compile Include="Model\AirlineModel\AirlineStartData.cs" />
-    <Compile Include="Model\AirlineModel\CodeshareAgreement.cs" />
-    <Compile Include="Model\AirlinerModel\AirlinerInsurance.cs" />
-    <Compile Include="Model\AirlinerModel\AirlinerScheduleConfiguration.cs" />
-    <Compile Include="Model\AirlinerModel\EngineType.cs" />
-    <Compile Include="Model\AirportModel\AirportExpansion.cs" />
-    <Compile Include="Model\BaseModel.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\RouteHelpers.cs" />
-    <Compile Include="Model\GeneralModel\OperatingData.cs" />
-    <Compile Include="Model\GeneralModel\SpecialContract.cs" />
-    <Compile Include="Model\GeneralModel\SpecialContractType.cs" />
-    <Compile Include="Model\RouteModel\CombiRoute.cs" />
-    <Compile Include="Model\AirportModel\AirportContract.cs" />
-    <Compile Include="Model\AirlineModel\Alliance.cs" />
-    <Compile Include="Model\AirlineModel\AllianceMember.cs" />
-    <Compile Include="Model\AirlineModel\FeeType.cs" />
-    <Compile Include="Model\AirlineModel\SubsidiaryModel\AirlineMerger.cs" />
-    <Compile Include="Model\AirlineModel\SubsidiaryModel\FutureSubsidiaryAirline.cs" />
-    <Compile Include="Model\AirlineModel\SubsidiaryModel\SubsidiaryAirline.cs" />
-    <Compile Include="Model\AirlinerModel\Airliner.cs" />
-    <Compile Include="Model\AirlinerModel\AirlinerClass.cs" />
-    <Compile Include="Model\AirlinerModel\AirlinerConfiguration.cs" />
-    <Compile Include="Model\AirlinerModel\AirlinerFacility.cs" />
-    <Compile Include="Model\AirlinerModel\AirlinerStatistics.cs" />
-    <Compile Include="Model\AirlinerModel\AirlinerType.cs" />
-    <Compile Include="Model\AirlinerModel\AirlinerTypeConfiguration.cs" />
-    <Compile Include="Model\AirlinerModel\FleetAirliner.cs" />
-    <Compile Include="Model\AirlinerModel\Manufacturer.cs" />
-    <Compile Include="Model\AirlinerModel\ManufacturerContract.cs" />
-    <Compile Include="Model\AirlinerModel\AirlinerOrder.cs" />
-    <Compile Include="Model\RouteModel\CargoRoute.cs" />
-    <Compile Include="Model\RouteModel\Flight.cs" />
-    <Compile Include="Model\RouteModel\FlightAirlinerClass.cs" />
-    <Compile Include="Model\RouteModel\Route.cs" />
-    <Compile Include="Model\RouteModel\RouteAirlinerClass.cs" />
-    <Compile Include="Model\RouteModel\RouteConfiguration.cs" />
-    <Compile Include="Model\RouteModel\RouteEntryDestination.cs" />
-    <Compile Include="Model\RouteModel\RouteFacility.cs" />
-    <Compile Include="Model\RouteModel\PassengerRoute.cs" />
-    <Compile Include="Model\RouteModel\RouteStatistics.cs" />
-    <Compile Include="Model\RouteModel\RouteTimeTable.cs" />
-    <Compile Include="Model\RouteModel\RouteTimeTableEntry.cs" />
-    <Compile Include="Model\RouteModel\StopoverFlight.cs" />
-    <Compile Include="Model\RouteModel\StopoverRoute.cs" />
-    <Compile Include="Model\AirportModel\AirlineAirportFacility.cs" />
-    <Compile Include="Model\AirportModel\Airport.cs" />
-    <Compile Include="Model\AirportModel\AirportFacility.cs" />
-    <Compile Include="Model\AirportModel\AirportProfile.cs" />
-    <Compile Include="Model\AirportModel\AirportStatistics.cs" />
-    <Compile Include="Model\AirportModel\AirportStatisticsValue.cs" />
-    <Compile Include="Model\AirportModel\AirportStatics.cs" />
-    <Compile Include="Model\AirportModel\Gate.cs" />
-    <Compile Include="Model\AirportModel\Hub.cs" />
-    <Compile Include="Model\AirportModel\HubType.cs" />
-    <Compile Include="Model\GeneralModel\CalendarItem.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\Continent.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\EventsHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\SerializedLoadSaveHelpers.cs" />
-    <Compile Include="Model\GeneralModel\NewsFeed.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\BudgetHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\ScenarioHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\StatisticsHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\TimeTableHelpers.cs" />
-    <Compile Include="Model\GeneralModel\RandomEvent.cs" />
-    <Compile Include="Model\GeneralModel\ScenarioModel\Scenario.cs" />
-    <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioAirline.cs" />
-    <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioFailure.cs" />
-    <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioObject.cs" />
-    <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioPassengerDemand.cs" />
-    <Compile Include="Model\GeneralModel\StatisticsModel\Ratings.cs" />
-    <Compile Include="Model\AirportModel\Runway.cs" />
-    <Compile Include="Model\AirportModel\Terminal.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\CountryCurrency.cs" />
-    <Compile Include="Model\GeneralModel\DifficultyLevel.cs" />
-    <Compile Include="Model\GeneralModel\AppSettings.cs" />
-    <Compile Include="Model\GeneralModel\Configuration.cs" />
-    <Compile Include="Model\GeneralModel\Coordinates.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\BaseUnit.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\Country.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\CountryTailNumber.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\TownModel\State.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\UnionMember.cs" />
-    <Compile Include="Model\GeneralModel\GameObject.cs" />
-    <Compile Include="Model\GeneralModel\GameTimeZone.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\AIHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\AirlineHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\AirlinerHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\AirportHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\DayTurnHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\FleetAirlinerHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\GameObjectHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\GeneralHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\LoadSaveHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\PerformanceCounter.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\WorkersModel\AIWorker.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\WorkersModel\GameObjectWorker.cs" />
-    <Compile Include="Model\GeneralModel\HistoricEventModel\HistoricEvent.cs" />
-    <Compile Include="Model\GeneralModel\HistoricEventModel\HistoricEventInfluence.cs" />
-    <Compile Include="Model\GeneralModel\HolidaysModel\Holiday.cs" />
-    <Compile Include="Model\GeneralModel\HolidaysModel\HolidayYear.cs" />
-    <Compile Include="Model\GeneralModel\Inflation.cs" />
-    <Compile Include="Model\GeneralModel\InvoicesModel\Invoice.cs" />
-    <Compile Include="Model\GeneralModel\InvoicesModel\Invoices.cs" />
-    <Compile Include="Model\GeneralModel\InvoicesModel\MonthlyInvoice.cs" />
-    <Compile Include="Model\GeneralModel\Language.cs" />
-    <Compile Include="Model\GeneralModel\Loan.cs" />
-    <Compile Include="Model\GeneralModel\Names.cs" />
-    <Compile Include="Model\GeneralModel\NewsBox.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\MathHelpers.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\PassengerHelpers.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\TemporaryCountry.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\Union.cs" />
-    <Compile Include="Model\GeneralModel\Period.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\TownModel\Town.cs" />
-    <Compile Include="Model\GeneralModel\Versioning.cs" />
-    <Compile Include="Model\GeneralModel\WeatherModel\HourlyWeather.cs" />
-    <Compile Include="Model\GeneralModel\WeatherModel\WeatherAverage.cs" />
-    <Compile Include="Model\PassengerModel\DestinationDemand.cs" />
-    <Compile Include="Model\PassengerModel\FlightRestriction.cs" />
-    <Compile Include="Model\PassengerModel\PassengerRouteFinder.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\Region.cs" />
-    <Compile Include="Model\GeneralModel\Settings.cs" />
-    <Compile Include="Model\GeneralModel\Setup.cs" />
-    <Compile Include="Model\GeneralModel\StatisticsModel\GeneralStatistics.cs" />
-    <Compile Include="Model\GeneralModel\StatisticsModel\StatisticsType.cs" />
-    <Compile Include="Model\GeneralModel\StatisticsModel\StatisticsValue.cs" />
-    <Compile Include="Model\GeneralModel\Translator.cs" />
-    <Compile Include="Model\GeneralModel\WeatherModel\Weather.cs" />
-    <Compile Include="Model\PilotModel\FlightSchool.cs" />
-    <Compile Include="Model\PilotModel\Instructor.cs" />
-    <Compile Include="Model\PilotModel\Pilot.cs" />
-    <Compile Include="Model\PilotModel\PilotProfile.cs" />
-    <Compile Include="Model\PilotModel\PilotRating.cs" />
-    <Compile Include="Model\PilotModel\PilotStudent.cs" />
-    <Compile Include="Model\PilotModel\PilotTraining.cs" />
-    <Compile Include="Model\PilotModel\PilotTrainingFacility.cs" />
-    <Compile Include="Model\PilotModel\TrainingAircraft.cs" />
-    <Compile Include="Model\PilotModel\TrainingAircraftType.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Airlines\Airline.cs" />
+    <Compile Include="Models\Airlines\AdvertisementType.cs" />
+    <Compile Include="Models\Airlines\AirlineBudget.cs" />
+    <Compile Include="Models\Airlines\AirlineCooperation\Cooperation.cs" />
+    <Compile Include="Models\Airlines\AirlineCooperation\CooperationType.cs" />
+    <Compile Include="Models\Airlines\AirlineFacilitity.cs" />
+    <Compile Include="Models\Airlines\AirlineFees.cs" />
+    <Compile Include="Models\Airlines\AirlineInsurance.cs" />
+    <Compile Include="Models\Airlines\AirlinePolicy.cs" />
+    <Compile Include="Models\Airlines\AirlineProfile.cs" />
+    <Compile Include="Models\Airlines\AirlineRatings.cs" />
+    <Compile Include="Models\Airlines\AirlineScores.cs" />
+    <Compile Include="Models\Airlines\AirlineShare.cs" />
+    <Compile Include="Models\Airlines\AirlineStartData.cs" />
+    <Compile Include="Models\Airlines\CodeshareAgreement.cs" />
+    <Compile Include="Models\Airliners\AirlinerInsurance.cs" />
+    <Compile Include="Models\Airliners\AirlinerScheduleConfiguration.cs" />
+    <Compile Include="Models\Airliners\EngineType.cs" />
+    <Compile Include="Models\Airports\AirportExpansion.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Helpers\RouteHelpers.cs" />
+    <Compile Include="Models\General\OperatingData.cs" />
+    <Compile Include="Models\General\SpecialContract.cs" />
+    <Compile Include="Models\General\SpecialContractType.cs" />
+    <Compile Include="Models\Routes\CombiRoute.cs" />
+    <Compile Include="Models\Airports\AirportContract.cs" />
+    <Compile Include="Models\Airlines\Alliance.cs" />
+    <Compile Include="Models\Airlines\AllianceMember.cs" />
+    <Compile Include="Models\Airlines\FeeType.cs" />
+    <Compile Include="Models\Airlines\Subsidiary\AirlineMerger.cs" />
+    <Compile Include="Models\Airlines\Subsidiary\FutureSubsidiaryAirline.cs" />
+    <Compile Include="Models\Airlines\Subsidiary\SubsidiaryAirline.cs" />
+    <Compile Include="Models\Airliners\Airliner.cs" />
+    <Compile Include="Models\Airliners\AirlinerClass.cs" />
+    <Compile Include="Models\Airliners\AirlinerConfiguration.cs" />
+    <Compile Include="Models\Airliners\AirlinerFacility.cs" />
+    <Compile Include="Models\Airliners\AirlinerStatistics.cs" />
+    <Compile Include="Models\Airliners\AirlinerType.cs" />
+    <Compile Include="Models\Airliners\AirlinerTypeConfiguration.cs" />
+    <Compile Include="Models\Airliners\FleetAirliner.cs" />
+    <Compile Include="Models\Airliners\Manufacturer.cs" />
+    <Compile Include="Models\Airliners\ManufacturerContract.cs" />
+    <Compile Include="Models\Airliners\AirlinerOrder.cs" />
+    <Compile Include="Models\Routes\CargoRoute.cs" />
+    <Compile Include="Models\Routes\Flight.cs" />
+    <Compile Include="Models\Routes\FlightAirlinerClass.cs" />
+    <Compile Include="Models\Routes\Route.cs" />
+    <Compile Include="Models\Routes\RouteAirlinerClass.cs" />
+    <Compile Include="Models\Routes\RouteConfiguration.cs" />
+    <Compile Include="Models\Routes\RouteEntryDestination.cs" />
+    <Compile Include="Models\Routes\RouteFacility.cs" />
+    <Compile Include="Models\Routes\PassengerRoute.cs" />
+    <Compile Include="Models\Routes\RouteStatistics.cs" />
+    <Compile Include="Models\Routes\RouteTimeTable.cs" />
+    <Compile Include="Models\Routes\RouteTimeTableEntry.cs" />
+    <Compile Include="Models\Routes\StopoverFlight.cs" />
+    <Compile Include="Models\Routes\StopoverRoute.cs" />
+    <Compile Include="Models\Airports\AirlineAirportFacility.cs" />
+    <Compile Include="Models\Airports\Airport.cs" />
+    <Compile Include="Models\Airports\AirportFacility.cs" />
+    <Compile Include="Models\Airports\AirportProfile.cs" />
+    <Compile Include="Models\Airports\AirportStatistics.cs" />
+    <Compile Include="Models\Airports\AirportStatisticsValue.cs" />
+    <Compile Include="Models\Airports\AirportStatics.cs" />
+    <Compile Include="Models\Airports\Gate.cs" />
+    <Compile Include="Models\Airports\Hub.cs" />
+    <Compile Include="Models\Airports\HubType.cs" />
+    <Compile Include="Infrastructure\CalendarItem.cs" />
+    <Compile Include="Models\General\Countries\Continent.cs" />
+    <Compile Include="Helpers\EventsHelpers.cs" />
+    <Compile Include="Helpers\SerializedLoadSaveHelpers.cs" />
+    <Compile Include="Models\General\NewsFeed.cs" />
+    <Compile Include="Helpers\BudgetHelpers.cs" />
+    <Compile Include="Helpers\ScenarioHelpers.cs" />
+    <Compile Include="Helpers\StatisticsHelpers.cs" />
+    <Compile Include="Helpers\TimeTableHelpers.cs" />
+    <Compile Include="Models\General\RandomEvent.cs" />
+    <Compile Include="Models\General\Scenarios\Scenario.cs" />
+    <Compile Include="Models\General\Scenarios\ScenarioAirline.cs" />
+    <Compile Include="Models\General\Scenarios\ScenarioFailure.cs" />
+    <Compile Include="Models\General\Scenarios\ScenarioObject.cs" />
+    <Compile Include="Models\General\Scenarios\ScenarioPassengerDemand.cs" />
+    <Compile Include="Models\General\Statistics\Ratings.cs" />
+    <Compile Include="Models\Airports\Runway.cs" />
+    <Compile Include="Models\Airports\Terminal.cs" />
+    <Compile Include="Models\General\Countries\CountryCurrency.cs" />
+    <Compile Include="Models\General\DifficultyLevel.cs" />
+    <Compile Include="Infrastructure\AppSettings.cs" />
+    <Compile Include="Infrastructure\Configuration.cs" />
+    <Compile Include="Models\General\Coordinates.cs" />
+    <Compile Include="Models\General\Countries\BaseUnit.cs" />
+    <Compile Include="Models\General\Countries\Country.cs" />
+    <Compile Include="Models\General\Countries\CountryTailNumber.cs" />
+    <Compile Include="Models\General\Countries\Towns\State.cs" />
+    <Compile Include="Models\General\Countries\UnionMember.cs" />
+    <Compile Include="Models\General\GameObject.cs" />
+    <Compile Include="Models\General\GameTimeZone.cs" />
+    <Compile Include="Helpers\AIHelpers.cs" />
+    <Compile Include="Helpers\AirlineHelpers.cs" />
+    <Compile Include="Helpers\AirlinerHelpers.cs" />
+    <Compile Include="Helpers\AirportHelpers.cs" />
+    <Compile Include="Helpers\DayTurnHelpers.cs" />
+    <Compile Include="Helpers\FleetAirlinerHelpers.cs" />
+    <Compile Include="Helpers\GameObjectHelpers.cs" />
+    <Compile Include="Helpers\GeneralHelpers.cs" />
+    <Compile Include="Helpers\LoadSaveHelpers.cs" />
+    <Compile Include="Helpers\PerformanceCounter.cs" />
+    <Compile Include="Helpers\Workers\AIWorker.cs" />
+    <Compile Include="Helpers\Workers\GameObjectWorker.cs" />
+    <Compile Include="Models\General\HistoricEvents\HistoricEvent.cs" />
+    <Compile Include="Models\General\HistoricEvents\HistoricEventInfluence.cs" />
+    <Compile Include="Models\General\Holidays\Holiday.cs" />
+    <Compile Include="Models\General\Holidays\HolidayYear.cs" />
+    <Compile Include="Models\General\Inflation.cs" />
+    <Compile Include="Models\General\Finances\Invoice.cs" />
+    <Compile Include="Models\General\Finances\Invoices.cs" />
+    <Compile Include="Models\General\Finances\MonthlyInvoice.cs" />
+    <Compile Include="Infrastructure\Language.cs" />
+    <Compile Include="Models\General\Loan.cs" />
+    <Compile Include="Models\General\Names.cs" />
+    <Compile Include="Models\General\NewsBox.cs" />
+    <Compile Include="Helpers\MathHelpers.cs" />
+    <Compile Include="Helpers\PassengerHelpers.cs" />
+    <Compile Include="Models\General\Countries\TemporaryCountry.cs" />
+    <Compile Include="Models\General\Countries\Union.cs" />
+    <Compile Include="Models\General\Period.cs" />
+    <Compile Include="Models\General\Countries\Towns\Town.cs" />
+    <Compile Include="Infrastructure\Versioning.cs" />
+    <Compile Include="Models\General\Environment\HourlyWeather.cs" />
+    <Compile Include="Models\General\Environment\WeatherAverage.cs" />
+    <Compile Include="Models\Passengers\DestinationDemand.cs" />
+    <Compile Include="Models\Passengers\FlightRestriction.cs" />
+    <Compile Include="Models\Passengers\PassengerRouteFinder.cs" />
+    <Compile Include="Models\General\Countries\Region.cs" />
+    <Compile Include="Infrastructure\Settings.cs" />
+    <Compile Include="Infrastructure\Setup.cs" />
+    <Compile Include="Models\General\Statistics\GeneralStatistics.cs" />
+    <Compile Include="Models\General\Statistics\StatisticsType.cs" />
+    <Compile Include="Models\General\Statistics\StatisticsValue.cs" />
+    <Compile Include="Models\General\Translator.cs" />
+    <Compile Include="Models\General\Environment\Weather.cs" />
+    <Compile Include="Models\Pilots\FlightSchool.cs" />
+    <Compile Include="Models\Pilots\Instructor.cs" />
+    <Compile Include="Models\Pilots\Pilot.cs" />
+    <Compile Include="Models\Pilots\PilotProfile.cs" />
+    <Compile Include="Models\Pilots\PilotRating.cs" />
+    <Compile Include="Models\Pilots\PilotStudent.cs" />
+    <Compile Include="Models\Pilots\PilotTraining.cs" />
+    <Compile Include="Models\Pilots\PilotTrainingFacility.cs" />
+    <Compile Include="Models\Pilots\TrainingAircraft.cs" />
+    <Compile Include="Models\Pilots\TrainingAircraftType.cs" />
     <Compile Include="Properties\AssemblyVersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -1129,12 +1159,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="x64\SQLite.Interop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="x86\SQLite.Interop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Resource Include="Resources\images\add.png" />
     <Resource Include="Resources\images\Airplane.png" />
     <Resource Include="Resources\images\AirplanePin.png" />
@@ -1218,7 +1242,10 @@
   <ItemGroup>
     <Resource Include="Resources\images\transfer.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\images\configuration.png" />
   </ItemGroup>
@@ -1283,6 +1310,13 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>
+    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
+    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,4 +1,6 @@
-﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Finances;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
@@ -9,7 +11,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
 
     /// <summary>
     ///     Interaction logic for PageAirlineFinances.xaml

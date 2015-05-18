@@ -12,10 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
-using TheAirline.Model.RouteModel;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {
@@ -34,7 +35,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
         {
             List<Route> connectingRoutes = new List<Route>();
 
-            var codesharingRoutes = GameObject.GetInstance().HumanAirline.Codeshares.Where(c => c.Airline2 == GameObject.GetInstance().HumanAirline || c.Type == Model.AirlineModel.CodeshareAgreement.CodeshareType.BothWays).Select(c => c.Airline1 == GameObject.GetInstance().HumanAirline ? c.Airline2 : c.Airline1).SelectMany(a => a.Routes);
+            var codesharingRoutes = GameObject.GetInstance().HumanAirline.Codeshares.Where(c => c.Airline2 == GameObject.GetInstance().HumanAirline || c.Type == CodeshareAgreement.CodeshareType.BothWays).Select(c => c.Airline1 == GameObject.GetInstance().HumanAirline ? c.Airline2 : c.Airline1).SelectMany(a => a.Routes);
             var humanConnectingRoutes = GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination1 == destination1 || r.Destination2 == destination1 || r.Destination1 == destination2 || r.Destination2 == destination2);
 
             var codesharingConnectingRoutes = codesharingRoutes.Where(r => r.Destination1 == destination1 || r.Destination2 == destination1 || r.Destination1 == destination2 || r.Destination2 == destination2);

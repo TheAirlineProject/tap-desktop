@@ -1,4 +1,9 @@
-﻿using TheAirline.Model.GeneralModel.CountryModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Infrastructure;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Countries;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
@@ -18,10 +23,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.GUIModel.ObjectsModel;
     using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
 
     /// <summary>
     ///     Interaction logic for PageAirlineData.xaml

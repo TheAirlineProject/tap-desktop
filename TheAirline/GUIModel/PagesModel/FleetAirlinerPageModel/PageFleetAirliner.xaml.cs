@@ -1,11 +1,12 @@
-﻿namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
+﻿using TheAirline.Models.Airliners;
+
+namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
 
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlinerModel;
 
     /// <summary>
     ///     Interaction logic for PageFleetAirliner.xaml

@@ -1,5 +1,6 @@
-﻿using TheAirline.Model.GeneralModel.CountryModel;
-using TheAirline.Model.GeneralModel.Helpers;
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General.Countries;
 
 namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
@@ -11,7 +12,6 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
     using TheAirline.GUIModel.CustomControlsModel;
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
 
     /// <summary>

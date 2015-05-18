@@ -1,4 +1,9 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -9,11 +14,7 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Data;
-
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
 
     //the mvvm class for an airliner type
     public class AirlinerTypeMVVM : INotifyPropertyChanged

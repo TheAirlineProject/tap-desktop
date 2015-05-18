@@ -1,4 +1,6 @@
-﻿using TheAirline.Model.GeneralModel.Helpers;
+﻿using TheAirline.Helpers;
+using TheAirline.Infrastructure;
+using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {

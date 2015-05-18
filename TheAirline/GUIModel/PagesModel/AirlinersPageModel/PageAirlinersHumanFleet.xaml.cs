@@ -1,11 +1,13 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
+﻿using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
 
     /// <summary>

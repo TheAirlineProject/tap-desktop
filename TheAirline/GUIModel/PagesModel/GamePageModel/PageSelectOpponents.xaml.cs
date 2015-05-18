@@ -1,4 +1,8 @@
-﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.General;
+
+namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -11,9 +15,7 @@
     using TheAirline.GUIModel.MasterPageModel;
     using TheAirline.GUIModel.ObjectsModel;
     using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.AirlineModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
 
     /// <summary>
     ///     Interaction logic for PageSelectOpponents.xaml

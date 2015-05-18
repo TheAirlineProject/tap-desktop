@@ -1,12 +1,13 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
+﻿using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Statistics;
+
+namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows.Controls;
-
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
 
     /// <summary>
     ///     Interaction logic for PageAirportsStatistics.xaml

@@ -1,4 +1,6 @@
-﻿using TheAirline.Model.RouteModel;
+﻿using TheAirline.Models.General;
+using TheAirline.Models.General.Statistics;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
@@ -8,7 +10,6 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
     using TheAirline.Model.GeneralModel;
 
     /// <summary>

@@ -1,4 +1,10 @@
-﻿using TheAirline.Model.RouteModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Countries;
+using TheAirline.Models.General.Finances;
+using TheAirline.Models.General.Statistics;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
@@ -12,12 +18,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     using System.Linq;
     using System.Windows.Data;
     using System.Windows.Media;
-    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.CountryModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.InvoicesModel;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
 
     //the mvvm object for a human route
     public class HumanRouteMVVM

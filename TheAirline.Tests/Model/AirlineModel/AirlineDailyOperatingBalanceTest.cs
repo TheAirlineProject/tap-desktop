@@ -1,13 +1,12 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TheAirline.Infrastructure;
+using TheAirline.Models.Airlines;
 
 namespace TheAirline.Tests.Model.AirlineModel
 {
     using System.Collections.Generic;
     using System.ComponentModel;
-
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
     using TheAirline.Tests.Model.AirlinerModel;
 

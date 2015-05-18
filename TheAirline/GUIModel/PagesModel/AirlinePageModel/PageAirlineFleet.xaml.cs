@@ -1,5 +1,11 @@
-﻿using TheAirline.Model.GeneralModel.InvoicesModel;
-using TheAirline.Model.RouteModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airlines.Subsidiary;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Finances;
+using TheAirline.Models.Pilots;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
@@ -11,12 +17,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlineModel.SubsidiaryModel;
-    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.PilotModel;
 
     /// <summary>
     ///     Interaction logic for PageAirlineFleet.xaml

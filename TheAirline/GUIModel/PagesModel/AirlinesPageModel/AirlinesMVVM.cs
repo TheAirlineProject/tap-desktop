@@ -1,15 +1,16 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Statistics;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
-
-    using TheAirline.Model.AirlineModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
 
     //the mvvm object for an airline
     public class AirlinesMVVM : INotifyPropertyChanged

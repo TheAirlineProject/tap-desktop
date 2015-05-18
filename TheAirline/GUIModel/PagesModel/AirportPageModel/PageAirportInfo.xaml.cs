@@ -1,4 +1,8 @@
-﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Environment;
+using TheAirline.Models.General.Finances;
 
 namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
@@ -11,10 +15,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.WeatherModel;
 
     /// <summary>
     ///     Interaction logic for PageAirportInfo.xaml

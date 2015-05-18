@@ -10,8 +10,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {

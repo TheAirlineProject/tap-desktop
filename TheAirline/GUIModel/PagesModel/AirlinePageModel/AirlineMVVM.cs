@@ -1,5 +1,14 @@
-using TheAirline.Model.GeneralModel.InvoicesModel;
-using TheAirline.Model.RouteModel;
+using TheAirline.Helpers;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airlines.AirlineCooperation;
+using TheAirline.Models.Airlines.Subsidiary;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Finances;
+using TheAirline.Models.General.Statistics;
+using TheAirline.Models.Pilots;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
@@ -16,15 +25,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     using System.Windows.Media;
 
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlineModel.AirlineCooperationModel;
-    using TheAirline.Model.AirlineModel.SubsidiaryModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
-    using TheAirline.Model.PilotModel;
 
     //the mvvm object for an airline
     public class AirlineMVVM : INotifyPropertyChanged

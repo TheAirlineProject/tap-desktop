@@ -1,11 +1,13 @@
-﻿namespace TheAirline.Tests.GUIModel.PagesModel.AirlinePageModel
+﻿using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
+
+namespace TheAirline.Tests.GUIModel.PagesModel.AirlinePageModel
 {
     using System;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
 
     [TestClass]

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirportModel;
+using TheAirline.Helpers;
 using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.Helpers;
-using TheAirline.Model.GeneralModel.InvoicesModel;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Finances;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {

@@ -1,4 +1,10 @@
-﻿namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
+﻿using TheAirline.Helpers;
+using TheAirline.Helpers.Workers;
+using TheAirline.Infrastructure;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Holidays;
+
+namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {
     using System.Collections.ObjectModel;
     using System.ComponentModel;
@@ -10,9 +16,6 @@
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.GUIModel.PagesModel.AirlinePageModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
-    using TheAirline.Model.GeneralModel.HolidaysModel;
 
     /// <summary>
     ///     Interaction logic for PageLoadGame.xaml

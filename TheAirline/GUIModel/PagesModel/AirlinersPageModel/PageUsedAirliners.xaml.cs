@@ -1,5 +1,10 @@
-﻿using TheAirline.Model.GeneralModel.CountryModel;
-using TheAirline.Model.GeneralModel.InvoicesModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Infrastructure;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Countries;
+using TheAirline.Models.General.Finances;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
@@ -17,10 +22,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
 
     /// <summary>
     ///     Interaction logic for PageUsedAirliners.xaml
@@ -31,7 +33,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
         public PageUsedAirliners()
         {
-            Boolean isMetric = AppSettings.GetInstance().GetLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Metric;
+            Boolean isMetric = AppSettings.GetInstance().GetLanguage().Unit == Infrastructure.Language.UnitSystem.Metric;
             this.Loaded += this.PageUsedAirliners_Loaded;
             this.Unloaded += this.PageUsedAirliners_Unloaded;
       

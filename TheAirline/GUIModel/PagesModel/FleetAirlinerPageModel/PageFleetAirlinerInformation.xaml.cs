@@ -1,4 +1,9 @@
-﻿using TheAirline.Model.GeneralModel.InvoicesModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Finances;
+using TheAirline.Models.Pilots;
 
 namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
@@ -11,11 +16,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.PilotModel;
 
     /// <summary>
     ///     Interaction logic for PageFleetAirlinerInformation.xaml
@@ -201,7 +202,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                this.Airliner.Airliner.Airliner.Status = Model.AirlinerModel.Airliner.StatusTypes.Leasing;
+                this.Airliner.Airliner.Airliner.Status = Models.Airliners.Airliner.StatusTypes.Leasing;
 
                 PageNavigator.NavigateTo(new PageAirline(this.Airliner.Airliner.Airliner.Airline));
             }

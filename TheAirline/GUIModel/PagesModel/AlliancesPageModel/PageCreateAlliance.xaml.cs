@@ -1,4 +1,9 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
+﻿using TheAirline.Infrastructure;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+
+namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 {
     using System;
     using System.Linq;
@@ -9,8 +14,6 @@
     using Microsoft.Win32;
 
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
 
     /// <summary>

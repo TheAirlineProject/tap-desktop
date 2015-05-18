@@ -12,7 +12,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using TheAirline.Infrastructure;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Models.General;
 
 namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 {

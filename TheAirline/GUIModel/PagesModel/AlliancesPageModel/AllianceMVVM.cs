@@ -1,4 +1,7 @@
-﻿using TheAirline.Model.RouteModel;
+﻿using TheAirline.Models.Airlines;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Statistics;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 {
@@ -7,10 +10,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
-
-    using TheAirline.Model.AirlineModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
 
     //the mvvm object for a codeshare agreement
     public class CodeshareAgreementMVVM

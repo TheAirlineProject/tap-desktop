@@ -7,10 +7,12 @@ using NLog;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.GamePageModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirportModel;
+using TheAirline.Helpers.Workers;
+using TheAirline.Infrastructure;
 using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
 
 namespace TheAirline
 {
@@ -57,9 +59,9 @@ namespace TheAirline
             }
             if (e.Key == Key.F8)
             {
-                string text = string.Format("Gameobjectworker paused: {0}\n", GameObjectWorker.GetInstance().IsPaused);
-                text += string.Format("Gameobjectworker finished: {0}\n", GameObjectWorker.GetInstance().IsFinish);
-                text += string.Format("Gameobjectworker errored: {0}\n", GameObjectWorker.GetInstance().IsError);
+                string text = $"Gameobjectworker paused: {GameObjectWorker.GetInstance().IsPaused}\n";
+                text += $"Gameobjectworker finished: {GameObjectWorker.GetInstance().IsFinish}\n";
+                text += $"Gameobjectworker errored: {GameObjectWorker.GetInstance().IsError}\n";
 
                 Console.WriteLine(text);
 

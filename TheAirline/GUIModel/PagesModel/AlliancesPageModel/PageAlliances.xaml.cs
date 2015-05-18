@@ -1,4 +1,8 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
+﻿using TheAirline.Models.Airlines;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Statistics;
+
+namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 {
     using System;
     using System.Collections.Generic;
@@ -7,9 +11,7 @@
     using System.Windows.Controls;
 
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlineModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.StatisticsModel;
 
     /// <summary>
     ///     Interaction logic for PageAlliances.xaml

@@ -1,4 +1,8 @@
-﻿namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
+﻿using TheAirline.Helpers;
+using TheAirline.Helpers.Workers;
+using TheAirline.Models.General;
+
+namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {
     using System;
     using System.Collections.ObjectModel;
@@ -10,8 +14,6 @@
     using TheAirline.GUIModel.CustomControlsModel;
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
     /// <summary>
     ///     Interaction logic for PageSaveGame.xaml

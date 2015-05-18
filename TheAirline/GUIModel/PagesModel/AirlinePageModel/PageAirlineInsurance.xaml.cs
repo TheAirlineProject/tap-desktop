@@ -1,11 +1,11 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
+﻿using TheAirline.Helpers;
+using TheAirline.Models.Airlines;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
     using System;
     using System.Windows;
     using System.Windows.Controls;
-
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.GeneralModel.Helpers;
 
     /// <summary>
     ///     Interaction logic for PageAirlineInsurance.xaml

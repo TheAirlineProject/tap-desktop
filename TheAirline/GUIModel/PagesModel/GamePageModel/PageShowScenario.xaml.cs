@@ -1,12 +1,13 @@
-﻿namespace TheAirline.GUIModel.PagesModel.GamePageModel
+﻿using TheAirline.Helpers;
+using TheAirline.Models.General.Scenarios;
+
+namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
 
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.ScenarioModel;
 
     /// <summary>
     ///     Interaction logic for PageShowScenario.xaml

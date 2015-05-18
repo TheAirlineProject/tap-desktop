@@ -1,10 +1,12 @@
-﻿namespace TheAirline.GUIModel.ObjectsModel
+﻿using TheAirline.Helpers.Workers;
+using TheAirline.Models.General;
+
+namespace TheAirline.GUIModel.ObjectsModel
 {
     using System;
 
     using TheAirline.GUIModel.HelpersModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
     //the class for the GUI object
     public class GUIObject

@@ -1,5 +1,11 @@
-﻿using TheAirline.Model.GeneralModel.CountryModel;
-using TheAirline.Model.RouteModel;
+﻿using TheAirline.Helpers;
+using TheAirline.Infrastructure;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Countries;
+using TheAirline.Models.General.Environment;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
@@ -19,11 +25,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
     using TheAirline.GUIModel.CustomControlsModel;
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlinerModel;
-    using TheAirline.Model.AirportModel;
     using TheAirline.Model.GeneralModel;
-    using TheAirline.Model.GeneralModel.Helpers;
-    using TheAirline.Model.GeneralModel.WeatherModel;
 
     /// <summary>
     ///     Interaction logic for PageRoutePlanner.xaml

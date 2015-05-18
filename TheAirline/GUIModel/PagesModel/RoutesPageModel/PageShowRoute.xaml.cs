@@ -1,4 +1,6 @@
-﻿using TheAirline.Model.RouteModel;
+﻿using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
@@ -10,7 +12,6 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
     using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
     using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.AirlinerModel;
     using TheAirline.Model.GeneralModel;
 
     /// <summary>
@@ -33,7 +34,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             this.Route = new HumanRouteMVVM(route);
             this.DataContext = this.Route;
 
-            if (this.Route.Route.Type == Model.RouteModel.Route.RouteType.Helicopter)
+            if (this.Route.Route.Type == Models.Routes.Route.RouteType.Helicopter)
             {
                 
                  RouteAirlinerClass rClass = ((PassengerRoute)this.Route.Route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass);
@@ -43,7 +44,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
              
             }
-            if (this.Route.Route.Type == Model.RouteModel.Route.RouteType.Passenger || this.Route.Route.Type == Model.RouteModel.Route.RouteType.Mixed)
+            if (this.Route.Route.Type == Models.Routes.Route.RouteType.Passenger || this.Route.Route.Type == Models.Routes.Route.RouteType.Mixed)
             {
                  foreach (AirlinerClass.ClassType cType in AirlinerClass.GetAirlinerTypes())
                 {

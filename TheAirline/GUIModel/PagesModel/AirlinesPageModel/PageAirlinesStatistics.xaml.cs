@@ -1,11 +1,11 @@
-﻿namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
+﻿using TheAirline.Models.Airlines;
+using TheAirline.Models.Airlines.Subsidiary;
+
+namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 {
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Controls;
-
-    using TheAirline.Model.AirlineModel;
-    using TheAirline.Model.AirlineModel.SubsidiaryModel;
 
     /// <summary>
     ///     Interaction logic for PageAirlinesStatistics.xaml
