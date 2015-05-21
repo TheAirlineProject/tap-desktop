@@ -159,3 +159,5 @@ $RECYCLE.BIN/
 /TheAirline.vshost.exe
 /TheAirline.vshost.exe.config
 /TheAirline.vshost.exe.manifest
+/TheAirline.sln.GhostDoc.xml
+/TheAirline/TheAirline.csproj.DotSettings

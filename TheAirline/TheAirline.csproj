@@ -195,6 +195,10 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="TaskDialog, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFTaskDialog.1.7.1\lib\net40-Client\TaskDialog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -516,7 +520,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\GamePageModel\PageCredits.xaml">
+    <Page Include="Views\Game\PageCredits.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -748,8 +752,10 @@
     <Compile Include="Infrastructure\Adapters\EnterpriseLoggerAdapter.cs" />
     <Compile Include="Infrastructure\AirlineBootstrapper.cs" />
     <Compile Include="Infrastructure\Events\CloseGameEvent.cs" />
+    <Compile Include="Infrastructure\Services\TaskDialogService.cs" />
     <Compile Include="ViewModels\Airline\AirlineMVVM.cs" />
     <Compile Include="ViewModels\Airline\PageAirlineViewModel.cs" />
+    <Compile Include="ViewModels\Game\PageCreditsViewModel.cs" />
     <Compile Include="ViewModels\Game\PageStartMenuViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\Airline\PageAirlineEditAirliners.xaml.cs">
@@ -886,7 +892,7 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageCreateDifficulty.xaml.cs">
       <DependentUpon>PageCreateDifficulty.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\GamePageModel\PageCredits.xaml.cs">
+    <Compile Include="Views\Game\PageCredits.xaml.cs">
       <DependentUpon>PageCredits.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageFlights.xaml.cs">
