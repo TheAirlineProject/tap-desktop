@@ -26,6 +26,13 @@ namespace TheAirline.ViewModels.Game
             ExitCommand = new DelegateCommand<Window>(ExitGame);
         }
 
+        public DelegateCommand<Uri> NavigateCommand { get; }
+        public DelegateCommand<Window> ExitCommand { get; }
+        public Uri NewGameUri => new Uri("/PageStartGameData", UriKind.Relative);
+        public Uri LoadGameUri => new Uri("/PageLoadGame", UriKind.Relative);
+        public Uri SettingsUri => new Uri("/PageSettings", UriKind.Relative);
+        public Uri CreditsUri => new Uri("/PageCredits", UriKind.Relative);
+
         private void Navigate(Uri view)
         {
             _regionManager.RequestNavigate("MainContentRegion", view);
@@ -35,7 +42,7 @@ namespace TheAirline.ViewModels.Game
         {
             _parent = window;
 
-            TaskDialogOptions opts = new TaskDialogOptions
+            var opts = new TaskDialogOptions
             {
                 Owner = window,
                 Title = Translator.GetInstance().GetString("MessageBox", "1003"),
@@ -49,18 +56,10 @@ namespace TheAirline.ViewModels.Game
 
         private void ExitResult(TaskDialogResult results)
         {
-            if(results.Result == TaskDialogSimpleResult.Yes)
+            if (results.Result == TaskDialogSimpleResult.Yes)
             {
                 _parent.Close();
             }
         }
-
-        public DelegateCommand<Uri> NavigateCommand { get; }
-        public DelegateCommand<Window> ExitCommand { get; }
-
-        public Uri NewGameUri => new Uri("/PageStartGameData", UriKind.Relative);
-        public Uri LoadGameUri => new Uri("/PageLoadGame", UriKind.Relative);
-        public Uri SettingsUri => new Uri("/PageSettings", UriKind.Relative);
-        public Uri CreditsUri => new Uri("/PageCredits", UriKind.Relative);
     }
 }
