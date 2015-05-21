@@ -1,15 +1,15 @@
-﻿<Page x:Class="TheAirline.Views.Game.PageStartMenu"
+﻿<UserControl x:Class="TheAirline.Views.Game.PageStartMenu"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      mc:Ignorable="d"
-      d:DesignHeight="300" d:DesignWidth="300"
-      Title="PageStartMenu">
+      xmlns:viewModels="clr-namespace:TheAirline.ViewModels.Game"
+      mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:PageStartMenuViewModel}"
+      d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel HorizontalAlignment="Center">
         <Button
             Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 200'}"
-            Style="{StaticResource StartMenuButtonStyle}" Click="btnNewGame_Click" />
+            Style="{StaticResource StartMenuButtonStyle}" Command="{Binding NavigateCommand}" CommandParameter="{Binding NewGameUri}" />
         <Button Margin="0 5 0 0"
                 Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 201'}"
                 Style="{StaticResource StartMenuButtonStyle}" Click="btnLoadGame_Click" />
@@ -23,4 +23,4 @@
                 Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 204'}"
                 Style="{StaticResource StartMenuButtonStyle}" Click="btnExitGame_Click" />
     </StackPanel>
-</Page>
+</UserControl>

@@ -180,7 +180,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void btnStartMenu_Click(object sender, RoutedEventArgs e)
         {
-            PageNavigator.NavigateTo(new PageStartMenu());
+            //PageNavigator.NavigateTo(new PageStartMenu());
         }
 
         private void cbAirline_SelectionChanged(object sender, SelectionChangedEventArgs e)

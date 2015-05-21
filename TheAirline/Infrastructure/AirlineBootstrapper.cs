@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.Composition.Hosting;
 using System.Windows;
+using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.MefExtensions;
 using Microsoft.Practices.ServiceLocation;
+using TheAirline.Infrastructure.Adapters;
 
 namespace TheAirline.Infrastructure
 {
@@ -17,6 +19,11 @@ namespace TheAirline.Infrastructure
             base.ConfigureAggregateCatalog();
 
             AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(AirlineBootstrapper).Assembly));
+        }
+
+        protected override ILoggerFacade CreateLogger()
+        {
+            return new EnterpriseLoggerAdapter();
         }
 
         protected override void InitializeShell()

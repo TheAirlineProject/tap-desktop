@@ -567,7 +567,7 @@ and change the color of the selected bullet into a darker gray for better highli
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="Border" Style="{StaticResource RoundedBorderStyle}">
                         <WrapPanel>
-                            <Image Source="/Resources\images/plane.png" Width="100"
+                            <Image Source="/Resources/images/plane.png" Width="100"
                                    RenderOptions.BitmapScalingMode="HighQuality" />
                             <ContentPresenter x:Name="Presenter"
                                               Margin="5 0 5 0"

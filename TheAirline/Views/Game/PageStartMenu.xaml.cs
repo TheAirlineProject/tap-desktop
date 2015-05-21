@@ -4,13 +4,14 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.GamePageModel;
 using TheAirline.Models.General;
+using TheAirline.ViewModels.Game;
 
 namespace TheAirline.Views.Game
 {
     /// <summary>
     ///     Interaction logic for PageStartMenu.xaml
     /// </summary>
-    [Export]
+    [Export("PageStartMenu")]
     public partial class PageStartMenu
     {
         #region Constructors and Destructors
@@ -21,6 +22,13 @@ namespace TheAirline.Views.Game
         }
 
         #endregion
+
+        [Import]
+        public PageStartMenuViewModel ViewModel
+        {
+            get { return DataContext as PageStartMenuViewModel; }
+            set { DataContext = value; }
+        }
 
         #region Methods
 

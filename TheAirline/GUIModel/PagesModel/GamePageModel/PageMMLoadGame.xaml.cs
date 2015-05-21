@@ -30,7 +30,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             if (selection == "Back")
             {
-                PageNavigator.NavigateTo(new PageStartMenu());
+                //PageNavigator.NavigateTo(new PageStartMenu());
             }
         }
 

@@ -59,7 +59,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            PageNavigator.NavigateTo(new PageStartMenu());
+            //PageNavigator.NavigateTo(new PageStartMenu());
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

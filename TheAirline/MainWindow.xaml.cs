@@ -1,22 +1,17 @@
 ﻿using System;
 using System.ComponentModel.Composition;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
-using NLog;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-using TheAirline.GUIModel.HelpersModel;
-using TheAirline.GUIModel.PagesModel.GamePageModel;
 using TheAirline.Helpers.Workers;
-using TheAirline.Infrastructure;
 using TheAirline.Infrastructure.Events;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airports;
-using TheAirline.Models.General;
 using TheAirline.ViewModels;
+using Microsoft.Practices.Prism.Logging;
 
 namespace TheAirline
 {
@@ -26,20 +21,23 @@ namespace TheAirline
     [Export]
     public partial class MainWindow
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private ILoggerFacade _logger;
 
         [ImportingConstructor]
-        public MainWindow(IEventAggregator eventAggregator, IRegionManager regionManager)
+        public MainWindow(IEventAggregator eventAggregator, IRegionManager regionManager, ILoggerFacade logger)
         {
             InitializeComponent();
+
+            _logger = logger;
 
             // Subscribes to the CloseGameEvent and closes the window when triggered.
             eventAggregator.GetEvent<CloseGameEvent>().Subscribe(a => Close());
 
             Loaded += (o, args) =>
             {
-                regionManager.RequestNavigate("HeaderContentRegion", new Uri("PageHeader", UriKind.Relative));
-                regionManager.RequestNavigate("MainContentRegion", new Uri("PageStartMenu", UriKind.Relative));
+                _logger.Log("Navigating to default header and start menu.", Category.Debug, Priority.Medium);
+                regionManager.RequestNavigate("HeaderContentRegion", new Uri("/PageHeader", UriKind.Relative));
+                regionManager.RequestNavigate("MainContentRegion", new Uri("/PageStartMenu", UriKind.Relative));
             };
 
             //Setup.SetupGame();
@@ -92,13 +90,15 @@ namespace TheAirline
                         Airport airport = Airports.GetAllAirports()[i];
 
                         //file.WriteLine("Airport demand for {0} of size {1}", airport.Profile.Name, airport.Profile.Size);
-                        Logger.Info("Airport demand for {0} of size {1}", airport.Profile.Name, airport.Profile.Size);
+                        //Logger.Info("Airport demand for {0} of size {1}", airport.Profile.Name, airport.Profile.Size);
+                        _logger.Log($"Airport demand for {airport.Profile.Name} of size {airport.Profile.Size}", Category.Info, Priority.Low);
 
                         foreach (Airport demand in airport.GetDestinationDemands())
                         {
                             //file.WriteLine("    Demand to {0} ({2}) is {1}", demand.Profile.Name, airport.GetDestinationPassengersRate(demand, AirlinerClass.ClassType.EconomyClass),
                             //               demand.Profile.Size);
-                            Logger.Info("Demand to {0} ({2}) is {1}", demand.Profile.Name, airport.GetDestinationPassengersRate(demand, AirlinerClass.ClassType.EconomyClass), demand.Profile.Size);
+                            //Logger.Info("Demand to {0} ({2}) is {1}", demand.Profile.Name, airport.GetDestinationPassengersRate(demand, AirlinerClass.ClassType.EconomyClass), demand.Profile.Size);
+                            _logger.Log($"Demand to {demand.Profile.Name} ({airport.GetDestinationPassengersRate(demand, AirlinerClass.ClassType.EconomyClass)}) is {demand.Profile.Size}", Category.Info, Priority.Low);
                         }
                     }
                 }
@@ -112,51 +112,53 @@ namespace TheAirline
         //clears the navigator
         public void ClearNavigator()
         {
-            frmContent.NavigationService.LoadCompleted += NavigationService_LoadCompleted;
+            //frmContent.NavigationService.LoadCompleted += NavigationService_LoadCompleted;
 
-            // Remove back entries
-            while (frmContent.NavigationService.CanGoBack)
-                frmContent.NavigationService.RemoveBackEntry();
+            //// Remove back entries
+            //while (frmContent.NavigationService.CanGoBack)
+            //    frmContent.NavigationService.RemoveBackEntry();
         }
 
         private void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)
         {
-            frmContent.NavigationService.RemoveBackEntry();
+            //frmContent.NavigationService.RemoveBackEntry();
 
-            frmContent.NavigationService.LoadCompleted -= NavigationService_LoadCompleted;
+            //frmContent.NavigationService.LoadCompleted -= NavigationService_LoadCompleted;
         }
 
         //returns if navigator can go forward
         public bool CanGoForward()
         {
-            return frmContent.NavigationService.CanGoForward;
+            //return frmContent.NavigationService.CanGoForward;
+            return false;
         }
 
         //returns if navigator can go back
         public bool CanGoBack()
         {
-            return frmContent.NavigationService.CanGoBack;
+            //return frmContent.NavigationService.CanGoBack;
+            return false;
         }
 
         //navigates to a new page
         public void NavigateTo(Page page)
         {
-            frmContent.Navigate(page);
-            frmContent.NavigationService.RemoveBackEntry();
+            //frmContent.Navigate(page);
+            //frmContent.NavigationService.RemoveBackEntry();
         }
 
         //moves the navigator forward
         public void NavigateForward()
         {
-            if (frmContent.NavigationService.CanGoForward)
-                frmContent.NavigationService.GoForward();
+            //if (frmContent.NavigationService.CanGoForward)
+            //    frmContent.NavigationService.GoForward();
         }
 
         //moves the navigator back
         public void NavigateBack()
         {
-            if (frmContent.NavigationService.CanGoBack)
-                frmContent.NavigationService.GoBack();
+            //if (frmContent.NavigationService.CanGoBack)
+            //    frmContent.NavigationService.GoBack();
         }
     }
 }

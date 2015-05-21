@@ -37,7 +37,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             var language = (Language)((Hyperlink)sender).Tag;
             AppSettings.GetInstance().SetLanguage(language);
 
-            PageNavigator.NavigateTo(new PageStartMenu());
+            //PageNavigator.NavigateTo(new PageStartMenu());
         }
 
         #endregion
