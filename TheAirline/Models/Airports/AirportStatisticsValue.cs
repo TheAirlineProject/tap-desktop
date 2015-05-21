@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airlines;
 using TheAirline.Models.General.Statistics;
 
 namespace TheAirline.Models.Airports
@@ -12,13 +12,13 @@ namespace TheAirline.Models.Airports
     {
         #region Constructors and Destructors
 
-        public AirportStatisticsValue(Airlines.Airline airline, int year, StatisticsType stat, int value)
+        public AirportStatisticsValue(Airline airline, int year, StatisticsType stat, int value)
             : base(year, stat, value)
         {
             Airline = airline;
         }
 
-        public AirportStatisticsValue(Airlines.Airline airline, int year, StatisticsType stat)
+        public AirportStatisticsValue(Airline airline, int year, StatisticsType stat)
             : this(airline, year, stat, 0)
         {
         }
@@ -33,7 +33,7 @@ namespace TheAirline.Models.Airports
         #region Public Properties
 
         [Versioning("airline")]
-        public Airlines.Airline Airline { get; set; }
+        public Airline Airline { get; set; }
 
         #endregion
 

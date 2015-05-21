@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.Subsidiary;

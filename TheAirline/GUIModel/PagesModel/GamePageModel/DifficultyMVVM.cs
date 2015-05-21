@@ -1,13 +1,10 @@
-﻿using TheAirline.Models.General;
+﻿using System;
+using System.ComponentModel;
+using System.Windows.Media;
+using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
-    using System;
-    using System.ComponentModel;
-    using System.Windows.Media;
-
-    using TheAirline.Model.GeneralModel;
-
     //the mvvm object for a selected new
     public class SelectedNewsMVVM : INotifyPropertyChanged
     {
@@ -29,12 +26,12 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             get
             {
-                return this._selectedNews;
+                return _selectedNews;
             }
             set
             {
-                this._selectedNews = value;
-                this.NotifyPropertyChanged("SelectedNews");
+                _selectedNews = value;
+                NotifyPropertyChanged("SelectedNews");
             }
         }
 
@@ -44,7 +41,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -71,9 +68,9 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         public NewsMVVM(News news)
         {
-            this.News = news;
-            this.IsRead = news.IsRead;
-            this.IsUnRead = !news.IsRead;
+            News = news;
+            IsRead = news.IsRead;
+            IsUnRead = !news.IsRead;
         }
 
         #endregion
@@ -90,13 +87,13 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             get
             {
-                return this._isread;
+                return _isread;
             }
             set
             {
-                this._isread = value;
-                this.IsUnRead = !value;
-                this.NotifyPropertyChanged("IsRead");
+                _isread = value;
+                IsUnRead = !value;
+                NotifyPropertyChanged("IsRead");
             }
         }
 
@@ -104,12 +101,12 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             get
             {
-                return this._isselected;
+                return _isselected;
             }
             set
             {
-                this._isselected = value;
-                this.NotifyPropertyChanged("IsSelected");
+                _isselected = value;
+                NotifyPropertyChanged("IsSelected");
             }
         }
 
@@ -117,12 +114,12 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             get
             {
-                return this._isunread;
+                return _isunread;
             }
             set
             {
-                this._isunread = value;
-                this.NotifyPropertyChanged("IsUnRead");
+                _isunread = value;
+                NotifyPropertyChanged("IsUnRead");
             }
         }
 
@@ -136,15 +133,15 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         public void markAsRead()
         {
-            this.IsRead = true;
-            this.News.IsRead = true;
+            IsRead = true;
+            News.IsRead = true;
             GameObject.GetInstance().NewsBox.HasUnreadNews = GameObject.GetInstance().NewsBox.GetUnreadNews().Count > 0;
         }
 
         public void markAsUnRead()
         {
-            this.IsRead = false;
-            this.News.IsRead = false;
+            IsRead = false;
+            News.IsRead = false;
             GameObject.GetInstance().NewsBox.HasUnreadNews = GameObject.GetInstance().NewsBox.GetUnreadNews().Count > 0;
         }
 
@@ -154,7 +151,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -177,28 +174,28 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         public DifficultyMVVM(string uid, string name, double minValue, double avgValue, double maxValue)
         {
-            this.Name = name;
-            this.UID = uid;
-            this.MinValue = Math.Min(maxValue, minValue);
-            this.MaxValue = Math.Max(minValue, maxValue);
-            this.SelectedValue = avgValue;
-            this.Ticks = new DoubleCollection();
+            Name = name;
+            UID = uid;
+            MinValue = Math.Min(maxValue, minValue);
+            MaxValue = Math.Max(minValue, maxValue);
+            SelectedValue = avgValue;
+            Ticks = new DoubleCollection();
 
             double stepValue = (avgValue - Math.Min(maxValue, minValue)) / 3;
 
             for (double tick = Math.Min(maxValue, minValue); tick < avgValue; tick += stepValue)
             {
-                this.Ticks.Add(tick);
+                Ticks.Add(tick);
             }
 
             stepValue = (Math.Max(maxValue, minValue) - avgValue) / 3;
 
             for (double tick = avgValue; tick <= Math.Max(maxValue, minValue); tick += stepValue)
             {
-                this.Ticks.Add(tick);
+                Ticks.Add(tick);
             }
 
-            this.Reversed = minValue > maxValue;
+            Reversed = minValue > maxValue;
         }
 
         #endregion
@@ -223,12 +220,12 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             get
             {
-                return this._selectedValue;
+                return _selectedValue;
             }
             set
             {
-                this._selectedValue = value;
-                this.NotifyPropertyChanged("SelectedValue");
+                _selectedValue = value;
+                NotifyPropertyChanged("SelectedValue");
             }
         }
 
@@ -242,7 +239,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));

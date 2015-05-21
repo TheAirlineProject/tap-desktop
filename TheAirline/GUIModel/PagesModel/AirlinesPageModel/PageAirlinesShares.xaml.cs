@@ -1,25 +1,22 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.Subsidiary;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Finances;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAirlinesShares.xaml
     /// </summary>
@@ -37,22 +34,22 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         public PageAirlinesShares()
         {
-            this.AllAirlines = new ObservableCollection<AirlinesMVVM>();
+            AllAirlines = new ObservableCollection<AirlinesMVVM>();
             foreach (
                 Airline airline in
                     Airlines.GetAllAirlines().FindAll(a => !a.IsSubsidiary).OrderByDescending(a => a.IsHuman))
             {
-                this.AllAirlines.Add(new AirlinesMVVM(airline));
+                AllAirlines.Add(new AirlinesMVVM(airline));
 
                 foreach (SubsidiaryAirline sAirline in airline.Subsidiaries)
                 {
-                    this.AllAirlines.Add(new AirlinesMVVM(sAirline));
+                    AllAirlines.Add(new AirlinesMVVM(sAirline));
                 }
             }
 
-            this.NumberOfSharesToIssue = 10000;
+            NumberOfSharesToIssue = 10000;
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -71,12 +68,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
         {
             get
             {
-                return this._numberofsharestoissue;
+                return _numberofsharestoissue;
             }
             set
             {
-                this._numberofsharestoissue = value;
-                this.NotifyPropertyChanged("NumberOfSharesToIssue");
+                _numberofsharestoissue = value;
+                NotifyPropertyChanged("NumberOfSharesToIssue");
             }
         }
 
@@ -84,12 +81,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
         {
             get
             {
-                return this._selectedairline;
+                return _selectedairline;
             }
             set
             {
-                this._selectedairline = value;
-                this.NotifyPropertyChanged("SelectedAirline");
+                _selectedairline = value;
+                NotifyPropertyChanged("SelectedAirline");
             }
         }
 
@@ -99,7 +96,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -108,7 +105,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         private void btnBuyAirline_Click(object sender, RoutedEventArgs e)
         {
-            AirlinesMVVM airline = this.SelectedAirline;
+            AirlinesMVVM airline = SelectedAirline;
 
             double buyingPrice = airline.Airline.GetValue() * 100000 * 1.10;
 
@@ -174,7 +171,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         private void btnBuyAsSubsidiary_Click(object sender, RoutedEventArgs e)
         {
-            AirlinesMVVM airline = this.SelectedAirline;
+            AirlinesMVVM airline = SelectedAirline;
 
             double buyingPrice = airline.Airline.GetValue() * 100000 * 1.10;
 
@@ -246,7 +243,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         private void btnIssueShares_Click(object sender, RoutedEventArgs e)
         {
-            int shares = Convert.ToInt32(this.slShares.Value);
+            int shares = Convert.ToInt32(slShares.Value);
 
             double price = AirlineHelpers.GetPricePerAirlineShare(GameObject.GetInstance().HumanAirline);
 
@@ -263,11 +260,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
                 AirlineHelpers.AddAirlineShares(GameObject.GetInstance().HumanAirline, shares, price);
 
                 AirlinesMVVM humanAirline =
-                    this.AllAirlines.First(a => a.Airline == GameObject.GetInstance().HumanAirline);
+                    AllAirlines.First(a => a.Airline == GameObject.GetInstance().HumanAirline);
                 humanAirline.StocksForSale += shares;
                 humanAirline.Stocks += shares;
 
-                this.NumberOfSharesToIssue -= shares;
+                NumberOfSharesToIssue -= shares;
 
                 humanAirline.setOwnershipValues();
             }
@@ -275,7 +272,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         private void btnPurchaseShares_Click(object sender, RoutedEventArgs e)
         {
-            AirlinesMVVM airline = this.SelectedAirline;
+            AirlinesMVVM airline = SelectedAirline;
 
             var cbShares = new ComboBox();
             cbShares.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
@@ -310,7 +307,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         private void btnShowAirline_Click(object sender, RoutedEventArgs e)
         {
-            this.SelectedAirline = (AirlinesMVVM)((Button)sender).Tag;
+            SelectedAirline = (AirlinesMVVM)((Button)sender).Tag;
         }
 
         #endregion

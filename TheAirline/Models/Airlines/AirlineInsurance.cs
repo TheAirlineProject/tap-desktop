@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using TheAirline.Helpers;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;

@@ -1,4 +1,19 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Shapes;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.CustomControlsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airports;
@@ -9,24 +24,6 @@ using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Shapes;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.CustomControlsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageRoutePlanner.xaml
     /// </summary>
@@ -48,84 +45,84 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         public PageRoutePlanner(FleetAirliner airliner)
         {
-            this.ShowSeason = Weather.Season.AllYear;
+            ShowSeason = Weather.Season.AllYear;
 
-            this.Airliner = airliner;
-            this.Entries = new ObservableCollection<RouteTimeTableEntry>();
-            this.Entries.CollectionChanged += this.Entries_CollectionChanged;
+            Airliner = airliner;
+            Entries = new ObservableCollection<RouteTimeTableEntry>();
+            Entries.CollectionChanged += Entries_CollectionChanged;
 
-            this.ViewEntries = new ObservableCollection<RouteTimeTableEntry>();
-            this.ViewEntries.CollectionChanged += this.ViewEntries_CollectionChanged;
+            ViewEntries = new ObservableCollection<RouteTimeTableEntry>();
+            ViewEntries.CollectionChanged += ViewEntries_CollectionChanged;
 
-            this.IsLongRoute = false;
+            IsLongRoute = false;
 
-            this.AllRoutes = new List<RoutePlannerItemMVVM>();
-            this.Intervals = new ObservableCollection<int> { 1, 2, 3, 4, 5, 6 };
+            AllRoutes = new List<RoutePlannerItemMVVM>();
+            Intervals = new ObservableCollection<int> { 1, 2, 3, 4, 5, 6 };
 
-            this.Routes = new ObservableCollection<Route>();
+            Routes = new ObservableCollection<Route>();
 
             var routeType =
                 (Route.RouteType)
-                    Enum.Parse(typeof(Route.RouteType), this.Airliner.Airliner.Type.TypeAirliner.ToString(), true);
+                    Enum.Parse(typeof(Route.RouteType), Airliner.Airliner.Type.TypeAirliner.ToString(), true);
             ;
             
             foreach (
                 Route route in
-                    this.Airliner.Airliner.Airline.Routes.Where(
-                        r => r.GetDistance() <= this.Airliner.Airliner.Range && r.Type == routeType))
+                    Airliner.Airliner.Airline.Routes.Where(
+                        r => r.GetDistance() <= Airliner.Airliner.Range && r.Type == routeType))
             {
-                this.Routes.Add(route);
+                Routes.Add(route);
             }
 
-            this.AllRegions = new List<Region>();
-            this.AllRegions.Add(Regions.GetRegion("100"));
+            AllRegions = new List<Region>();
+            AllRegions.Add(Regions.GetRegion("100"));
 
-            List<Region> routeRegions = this.Routes.Select(r => r.Destination1.Profile.Country.Region).ToList();
-            routeRegions.AddRange(this.Routes.Select(r => r.Destination2.Profile.Country.Region));
+            List<Region> routeRegions = Routes.Select(r => r.Destination1.Profile.Country.Region).ToList();
+            routeRegions.AddRange(Routes.Select(r => r.Destination2.Profile.Country.Region));
 
             foreach (Region region in routeRegions.Distinct())
             {
-                this.AllRegions.Add(region);
+                AllRegions.Add(region);
             }
 
             foreach (
                 Route route in
-                    this.Airliner.Airliner.Airline.Routes.Where(
-                        r => r.GetDistance() <= this.Airliner.Airliner.Range && r.Type == routeType))
+                    Airliner.Airliner.Airline.Routes.Where(
+                        r => r.GetDistance() <= Airliner.Airliner.Range && r.Type == routeType))
             {
-                this.AllRoutes.Add(new RoutePlannerItemMVVM(route, this.Airliner.Airliner.Type));
+                AllRoutes.Add(new RoutePlannerItemMVVM(route, Airliner.Airliner.Type));
             }
 
-            this.OutboundAirports = new List<Airport>();
-            List<Airport> routeAirports = this.Routes.Select(r => r.Destination1).ToList();
-            routeAirports.AddRange(this.Routes.Select(r => r.Destination2));
+            OutboundAirports = new List<Airport>();
+            List<Airport> routeAirports = Routes.Select(r => r.Destination1).ToList();
+            routeAirports.AddRange(Routes.Select(r => r.Destination2));
 
             foreach (Airport airport in routeAirports.Distinct())
             {
-                this.OutboundAirports.Add(airport);
+                OutboundAirports.Add(airport);
             }
 
-            this.StartTimes = new ObservableCollection<TimeSpan>();
+            StartTimes = new ObservableCollection<TimeSpan>();
 
             for (int i = 0; i < 20; i++)
             {
-                this.StartTimes.Add(new TimeSpan(6, i * 15, 0));
+                StartTimes.Add(new TimeSpan(6, i * 15, 0));
             }
 
-            this.StopoverMinutes = new List<int> { 45, 60, 75, 90, 105, 120 };
+            StopoverMinutes = new List<int> { 45, 60, 75, 90, 105, 120 };
 
-            this.setCanTransferSchedule();
+            setCanTransferSchedule();
 
-            this.SpecialContractRoutes = new List<Route>();
+            SpecialContractRoutes = new List<Route>();
 
             var humanSpecialRoutes = GameObject.GetInstance().HumanAirline.SpecialContracts.Where(s => !s.Type.IsFixedDate).SelectMany(s => s.Routes.Where(r=>!r.HasAirliner));
 
             foreach (Route sRoute in humanSpecialRoutes)
-                this.SpecialContractRoutes.Add(sRoute);
+                SpecialContractRoutes.Add(sRoute);
 
-            this.Loaded += this.PageRoutePlanner_Loaded;
+            Loaded += PageRoutePlanner_Loaded;
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -148,12 +145,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             get
             {
-                return this._cantransferschedule;
+                return _cantransferschedule;
             }
             set
             {
-                this._cantransferschedule = value;
-                this.NotifyPropertyChanged("CanTransferSchedule");
+                _cantransferschedule = value;
+                NotifyPropertyChanged("CanTransferSchedule");
             }
         }
         public List<Route> SpecialContractRoutes { get; set; }
@@ -178,12 +175,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             get
             {
-                return this._islongroute;
+                return _islongroute;
             }
             set
             {
-                this._islongroute = value;
-                this.NotifyPropertyChanged("IsLongRoute");
+                _islongroute = value;
+                NotifyPropertyChanged("IsLongRoute");
             }
         }
 
@@ -215,7 +212,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void Entries_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.setViewEntries();
+            setViewEntries();
         }
 
         private void EntryAdded_Event(object sender, RoutedEventArgs e)
@@ -247,13 +244,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 (DayOfWeek)newEntry.StartTime.Days,
                 newEntry.StartTime,
                 oEntry.Destination);
-            nEntry.Airliner = this.Airliner;
+            nEntry.Airliner = Airliner;
             rt.AddEntry(nEntry);
 
-            var tEntries = new List<RouteTimeTableEntry>(this.Entries);
+            var tEntries = new List<RouteTimeTableEntry>(Entries);
             tEntries.Remove(oEntry);
 
-            if (!TimeTableHelpers.IsTimeTableValid(rt, this.Airliner, tEntries))
+            if (!TimeTableHelpers.IsTimeTableValid(rt, Airliner, tEntries))
             {
                 WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2706"),
@@ -262,9 +259,9 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             }
             else
             {
-                this.Entries.Remove(oEntry);
+                Entries.Remove(oEntry);
 
-                this.Entries.Add(nEntry);
+                Entries.Add(nEntry);
             }
         }
 
@@ -274,12 +271,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             var rEntry = (RouteTimeTableEntry)entry.Source;
 
-            this.Entries.Remove(rEntry);
+            Entries.Remove(rEntry);
         }
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -288,7 +285,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void PageRoutePlanner_Loaded(object sender, RoutedEventArgs e)
         {
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -300,23 +297,23 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             foreach (
                 RouteTimeTableEntry entry in
-                    this.Airliner.Routes.SelectMany(r => r.TimeTable.Entries.Where(en => en.Airliner == this.Airliner)))
+                    Airliner.Routes.SelectMany(r => r.TimeTable.Entries.Where(en => en.Airliner == Airliner)))
             {
-                this.Entries.Add(entry);
+                Entries.Add(entry);
             }
 
-            this.setViewEntries();
-            this.setFlightNumbers();
+            setViewEntries();
+            setFlightNumbers();
 
-            this.cbRoute.SelectedIndex = 0;
-            this.cbOutbound.SelectedIndex = 0;
+            cbRoute.SelectedIndex = 0;
+            cbOutbound.SelectedIndex = 0;
         }
 
         private void Rectangle_MouseMove(object sender, MouseEventArgs e)
         {
             // Get the current mouse position
             Point mousePos = e.GetPosition(null);
-            Vector diff = this.startPoint - mousePos;
+            Vector diff = startPoint - mousePos;
 
             if (e.LeftButton == MouseButtonState.Pressed
                 && (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance
@@ -332,7 +329,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void Rectangle_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.startPoint = e.GetPosition(null);
+            startPoint = e.GetPosition(null);
         }
 
         private void ViewEntries_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -344,7 +341,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 foreach (RouteTimeTableEntry entry in e.NewItems)
                 {
                     var sTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, 0);
-                    TimeSpan eTime = sTime.Add(entry.TimeTable.Route.GetFlightTime(this.Airliner.Airliner.Type));
+                    TimeSpan eTime = sTime.Add(entry.TimeTable.Route.GetFlightTime(Airliner.Airliner.Type));
 
                     var g2 = new Guid(entry.TimeTable.Route.Id);
 
@@ -388,7 +385,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 foreach (RouteTimeTableEntry entry in e.OldItems)
                 {
                     var sTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, 0);
-                    TimeSpan eTime = sTime.Add(entry.TimeTable.Route.GetFlightTime(this.Airliner.Airliner.Type));
+                    TimeSpan eTime = sTime.Add(entry.TimeTable.Route.GetFlightTime(Airliner.Airliner.Type));
 
                     string text = string.Format(
                         "{0}-{1}",
@@ -402,14 +399,14 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void addEntries(List<DayOfWeek> days)
         {
-            var route = (Route)this.cbHomebound.SelectedItem;
+            var route = (Route)cbHomebound.SelectedItem;
 
-            var origin = (Airport)this.cbOutbound.SelectedItem;
+            var origin = (Airport)cbOutbound.SelectedItem;
             Airport airport = route.Destination1 == origin ? route.Destination2 : route.Destination1;
 
-            var time = new TimeSpan(this.tpTime.Value.Value.Hour, this.tpTime.Value.Value.Minute, 0);
+            var time = new TimeSpan(tpTime.Value.Value.Hour, tpTime.Value.Value.Minute, 0);
 
-            string flightCode = this.Airliner.Airliner.Airline.Profile.IATACode + this.txtSchedulerFlightNumber.Text;
+            string flightCode = Airliner.Airliner.Airline.Profile.IATACode + txtSchedulerFlightNumber.Text;
 
             var rt = new RouteTimeTable(route);
 
@@ -420,12 +417,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     dayOfWeek,
                     time,
                     new RouteEntryDestination(airport, flightCode));
-                entry.Airliner = this.Airliner;
+                entry.Airliner = Airliner;
 
                 rt.AddEntry(entry);
             }
 
-            if (!TimeTableHelpers.IsRoutePlannerTimeTableValid(rt, this.Airliner, this.Entries.ToList()))
+            if (!TimeTableHelpers.IsRoutePlannerTimeTableValid(rt, Airliner, Entries.ToList()))
             {
                 WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2706"),
@@ -436,52 +433,52 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             {
                 foreach (RouteTimeTableEntry entry in rt.Entries)
                 {
-                    this.Entries.Add(entry);
+                    Entries.Add(entry);
                 }
             }
 
-            this.setFlightNumbers();
+            setFlightNumbers();
         }
 
         private void btnAddGenerator_Click(object sender, RoutedEventArgs e)
         {
-            var route = (Route)this.cbRoute.SelectedItem;
+            var route = (Route)cbRoute.SelectedItem;
 
             RouteTimeTable rt = null;
 
-            var intervalType = (IntervalType)this.cbIntervalType.SelectedItem;
-            int interval = Convert.ToInt16(this.cbInterval.SelectedItem);
-            var opsType = (OpsType)this.cbSchedule.SelectedItem;
-            var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
+            var intervalType = (IntervalType)cbIntervalType.SelectedItem;
+            int interval = Convert.ToInt16(cbInterval.SelectedItem);
+            var opsType = (OpsType)cbSchedule.SelectedItem;
+            var delayMinutes = (int)cbDelayMinutes.SelectedItem;
 
             double maxBusinessRouteTime = new TimeSpan(2, 0, 0).TotalMinutes;
-            var startTime = (TimeSpan)this.cbStartTime.SelectedItem;
+            var startTime = (TimeSpan)cbStartTime.SelectedItem;
 
-            string flightcode1 = this.Airliner.Airliner.Airline.Profile.IATACode + this.txtFlightNumber.Text;
+            string flightcode1 = Airliner.Airliner.Airline.Profile.IATACode + txtFlightNumber.Text;
 
-            int indexOf = this.Airliner.Airliner.Airline.GetFlightCodes().IndexOf(flightcode1);
+            int indexOf = Airliner.Airliner.Airline.GetFlightCodes().IndexOf(flightcode1);
 
             string flightcode2;
 
-            if (indexOf == this.Airliner.Airliner.Airline.GetFlightCodes().Count)
+            if (indexOf == Airliner.Airliner.Airline.GetFlightCodes().Count)
             {
                 flightcode2 = "";
             }
             else
             {
-                flightcode2 = this.Airliner.Airliner.Airline.GetFlightCodes()[indexOf + 1];
+                flightcode2 = Airliner.Airliner.Airline.GetFlightCodes()[indexOf + 1];
             }
 
             if (opsType == OpsType.Business)
             {
                 var flightsPerDay =
                     (int)
-                        (route.GetFlightTime(this.Airliner.Airliner.Type)
-                            .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner))
+                        (route.GetFlightTime(Airliner.Airliner.Type)
+                            .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(Airliner))
                             .TotalMinutes / 2 / maxBusinessRouteTime);
                 rt = AIHelpers.CreateBusinessRouteTimeTable(
                     route,
-                    this.Airliner,
+                    Airliner,
                     Math.Max(1, flightsPerDay),
                     flightcode1,
                     flightcode2);
@@ -490,7 +487,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             {
                 rt = AIHelpers.CreateAirlinerRouteTimeTable(
                     route,
-                    this.Airliner,
+                    Airliner,
                     interval,
                     true,
                     delayMinutes,
@@ -502,7 +499,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             {
                 rt = AIHelpers.CreateAirlinerRouteTimeTable(
                     route,
-                    this.Airliner,
+                    Airliner,
                     interval,
                     false,
                     delayMinutes,
@@ -510,7 +507,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     flightcode1,
                     flightcode2);
             }
-            if (!TimeTableHelpers.IsTimeTableValid(rt, this.Airliner, this.Entries.ToList(), false))
+            if (!TimeTableHelpers.IsTimeTableValid(rt, Airliner, Entries.ToList(), false))
             {
                 WPFMessageBoxResult result = WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2705"),
@@ -519,13 +516,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    this.clearTimeTable();
+                    clearTimeTable();
 
                     foreach (RouteTimeTableEntry entry in rt.Entries)
                     {
-                        if (!TimeTableHelpers.IsRouteEntryInOccupied(entry, this.Airliner))
+                        if (!TimeTableHelpers.IsRouteEntryInOccupied(entry, Airliner))
                         {
-                            this.Entries.Add(entry);
+                            Entries.Add(entry);
                         }
                     }
                 }
@@ -534,14 +531,14 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             {
                 foreach (RouteTimeTableEntry entry in rt.Entries)
                 {
-                    if (!TimeTableHelpers.IsRouteEntryInOccupied(entry, this.Airliner))
+                    if (!TimeTableHelpers.IsRouteEntryInOccupied(entry, Airliner))
                     {
-                        this.Entries.Add(entry);
+                        Entries.Add(entry);
                     }
                 }
             }
 
-            this.setFlightNumbers();
+            setFlightNumbers();
         }
 
         private void btnAddScheduler_Click(object sender, RoutedEventArgs e)
@@ -561,16 +558,16 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             {
                     //SFO -> ATH: 767-200ER
                 case "Manual":
-                    this.addEntries(this.getSelectedDays());
+                    addEntries(getSelectedDays());
                     break;
                 case "Daily":
-                    this.addEntries(Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList());
+                    addEntries(Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList());
                     break;
                 case "TTS":
-                    this.addEntries(new List<DayOfWeek> { DayOfWeek.Thursday, DayOfWeek.Tuesday, DayOfWeek.Saturday });
+                    addEntries(new List<DayOfWeek> { DayOfWeek.Thursday, DayOfWeek.Tuesday, DayOfWeek.Saturday });
                     break;
                 case "EveryOther":
-                    this.addEntries(
+                    addEntries(
                         new List<DayOfWeek>
                         {
                             DayOfWeek.Monday,
@@ -580,13 +577,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                         });
                     break;
                 case "Weekend":
-                    this.addEntries(new List<DayOfWeek> { DayOfWeek.Sunday, DayOfWeek.Saturday });
+                    addEntries(new List<DayOfWeek> { DayOfWeek.Sunday, DayOfWeek.Saturday });
                     break;
                 case "MWF":
-                    this.addEntries(new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday });
+                    addEntries(new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday });
                     break;
                 case "Weekdays":
-                    this.addEntries(
+                    addEntries(
                         new List<DayOfWeek>
                         {
                             DayOfWeek.Monday,
@@ -601,7 +598,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            this.clearTimeTable();
+            clearTimeTable();
         }
         private void btnLoadTimetable_Click(object sender, RoutedEventArgs e)
         {
@@ -629,16 +626,16 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 var configuration = (AirlinerScheduleConfiguration)cbConfigurations.SelectedItem;
 
                 AirlinerType originType = configuration.AirlinerType;
-                AirlinerType destType = this.Airliner.Airliner.Type;
+                AirlinerType destType = Airliner.Airliner.Type;
 
-                Boolean canFlyRoute = originType.TypeAirliner == destType.TypeAirliner && TimeTableHelpers.IsTimeTableValid(this.Airliner,configuration.Entries);
+                Boolean canFlyRoute = originType.TypeAirliner == destType.TypeAirliner && TimeTableHelpers.IsTimeTableValid(Airliner,configuration.Entries);
 
                 if (canFlyRoute)
                 {
-                    this.clearTimeTable();
+                    clearTimeTable();
 
                     foreach (RouteTimeTableEntry entry in configuration.Entries)
-                        this.Entries.Add(entry);
+                        Entries.Add(entry);
                 }
                 else
                 {
@@ -653,8 +650,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         private void btnCopyTimetable_Click(object sender, RoutedEventArgs e)
         {
 
-            var entries = this.Entries.Count;
-            var aircraft = this.Airliner.Airliner.Type.Name;
+            var entries = Entries.Count;
+            var aircraft = Airliner.Airliner.Type.Name;
 
             var txtName = new TextBox();
             txtName.Width = 350;
@@ -668,9 +665,9 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 txtName) == PopUpSingleElement.ButtonSelected.OK && txtName.Text.Trim().Length > 2)
             {
                 string name = txtName.Text.Trim();
-                var configuration = new AirlinerScheduleConfiguration(name, this.Airliner.Airliner.Type);
+                var configuration = new AirlinerScheduleConfiguration(name, Airliner.Airliner.Type);
 
-                foreach (RouteTimeTableEntry entry in this.Entries)
+                foreach (RouteTimeTableEntry entry in Entries)
                     configuration.AddEntry(entry);
 
                 Configurations.AddConfiguration(configuration);
@@ -683,13 +680,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             RouteTimeTable rtt = new RouteTimeTable(route);
 
             RouteTimeTableEntry entry = new RouteTimeTableEntry(rtt, DayOfWeek.Wednesday, new TimeSpan(12, 0, 0), new RouteEntryDestination(route.Destination2, "Charter"));
-            entry.Airliner = this.Airliner;
+            entry.Airliner = Airliner;
             rtt.AddEntry(entry);
 
             route.TimeTable = rtt;
 
-            this.Airliner.AddRoute(route);
-            this.Airliner.Status = FleetAirliner.AirlinerStatus.OnCharter;
+            Airliner.AddRoute(route);
+            Airliner.Status = FleetAirliner.AirlinerStatus.OnCharter;
 
             
 
@@ -699,18 +696,18 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             var oldEntries =
                 new List<RouteTimeTableEntry>(
-                    this.Airliner.Routes.SelectMany(r => r.TimeTable.Entries.Where(en => en.Airliner == this.Airliner)));
+                    Airliner.Routes.SelectMany(r => r.TimeTable.Entries.Where(en => en.Airliner == Airliner)));
 
-            IEnumerable<RouteTimeTableEntry> deleteEntries = oldEntries.Except(this.Entries);
-            IEnumerable<RouteTimeTableEntry> newEntries = this.Entries.Except(oldEntries);
+            IEnumerable<RouteTimeTableEntry> deleteEntries = oldEntries.Except(Entries);
+            IEnumerable<RouteTimeTableEntry> newEntries = Entries.Except(oldEntries);
 
             foreach (RouteTimeTableEntry entry in newEntries)
             {
                 entry.TimeTable.Route.TimeTable.AddEntry(entry);
 
-                if (!this.Airliner.Routes.Contains(entry.TimeTable.Route))
+                if (!Airliner.Routes.Contains(entry.TimeTable.Route))
                 {
-                    this.Airliner.AddRoute(entry.TimeTable.Route);
+                    Airliner.AddRoute(entry.TimeTable.Route);
                 }
             }
 
@@ -718,24 +715,24 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             {
                 entry.TimeTable.RemoveEntry(entry);
           
-                if (entry.TimeTable.Entries.Count(en => en.Airliner == this.Airliner) == 0 || entry.TimeTable.Entries.Count == 0)
+                if (entry.TimeTable.Entries.Count(en => en.Airliner == Airliner) == 0 || entry.TimeTable.Entries.Count == 0)
                 {
-                    this.Airliner.RemoveRoute(entry.TimeTable.Route);
+                    Airliner.RemoveRoute(entry.TimeTable.Route);
                 }
             }
 
-            this.Airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
+            Airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
  
         }
 
         private void btnSwap_Click(object sender, RoutedEventArgs e)
         {
-            var outbound = (Airport)this.cbOutbound.SelectedItem;
-            var route = (Route)this.cbHomebound.SelectedItem;
+            var outbound = (Airport)cbOutbound.SelectedItem;
+            var route = (Route)cbHomebound.SelectedItem;
 
-            this.cbOutbound.SelectedItem = route.Destination1 == outbound ? route.Destination2 : route.Destination1;
+            cbOutbound.SelectedItem = route.Destination1 == outbound ? route.Destination2 : route.Destination1;
 
-            this.cbHomebound.SelectedItem = route;
+            cbHomebound.SelectedItem = route;
         }
 
         private void btnTransfer_Click(object sender, RoutedEventArgs e)
@@ -747,15 +744,15 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             cbAirliners.HorizontalAlignment = HorizontalAlignment.Left;
             cbAirliners.Width = 200;
 
-            long maxDistance = this.Airliner.Airliner.Range;
+            long maxDistance = Airliner.Airliner.Range;
 
-            long requiredRunway = this.Airliner.Airliner.MinRunwaylength;
+            long requiredRunway = Airliner.Airliner.MinRunwaylength;
 
             List<FleetAirliner> airliners =
                 GameObject.GetInstance()
                     .HumanAirline.Fleet.FindAll(
                         a =>
-                            a != this.Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped
+                            a != Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped
                             && a.Routes.Max(r => r.GetDistance()) <= maxDistance);
 
             foreach (FleetAirliner airliner in airliners)
@@ -769,7 +766,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 Translator.GetInstance().GetString("PopUpAirlinerRoutes", "1001"),
                 cbAirliners) == PopUpSingleElement.ButtonSelected.OK && cbAirliners.SelectedItem != null)
             {
-                this.clearTimeTable();
+                clearTimeTable();
 
                 var transferAirliner = (FleetAirliner)cbAirliners.SelectedItem;
 
@@ -779,15 +776,15 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                         RouteTimeTableEntry entry in
                             route.TimeTable.Entries.FindAll(en => en.Airliner == transferAirliner))
                     {
-                        entry.Airliner = this.Airliner;
+                        entry.Airliner = Airliner;
 
-                        this.Entries.Add(entry);
+                        Entries.Add(entry);
                     }
 
-                    if (!this.Airliner.Routes.Contains(route))
+                    if (!Airliner.Routes.Contains(route))
                     {
-                        this.Airliner.AddRoute(route);
-                        this.Routes.Add(route);
+                        Airliner.AddRoute(route);
+                        Routes.Add(route);
                     }
                 }
                 transferAirliner.Routes.Clear();
@@ -796,32 +793,32 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
-            this.clearTimeTable();
+            clearTimeTable();
 
             foreach (
                 RouteTimeTableEntry entry in
-                    this.Airliner.Routes.SelectMany(r => r.TimeTable.Entries.Where(en => en.Airliner == this.Airliner)))
+                    Airliner.Routes.SelectMany(r => r.TimeTable.Entries.Where(en => en.Airliner == Airliner)))
             {
-                this.Entries.Add(entry);
+                Entries.Add(entry);
             }
         }
 
         private void cbDelayMinutes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var route = (Route)this.cbRoute.SelectedItem;
+            var route = (Route)cbRoute.SelectedItem;
 
-            if (route != null && this.cbDelayMinutes != null && this.cbSchedule != null && this.cbIntervalType != null)
+            if (route != null && cbDelayMinutes != null && cbSchedule != null && cbIntervalType != null)
             {
-                TimeSpan routeFlightTime = route.GetFlightTime(this.Airliner.Airliner.Type);
+                TimeSpan routeFlightTime = route.GetFlightTime(Airliner.Airliner.Type);
 
-                var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
+                var delayMinutes = (int)cbDelayMinutes.SelectedItem;
 
                 TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0, delayMinutes, 0));
 
                 int maxHours = 22 - 06; //from 06.00 to 22.00
 
-                var opsType = (OpsType)this.cbSchedule.SelectedItem;
-                var intervalType = (IntervalType)this.cbIntervalType.SelectedItem;
+                var opsType = (OpsType)cbSchedule.SelectedItem;
+                var intervalType = (IntervalType)cbIntervalType.SelectedItem;
 
                 if (opsType == OpsType.Whole_Day)
                 {
@@ -836,49 +833,49 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     flightsPerDay = 6;
                 }
 
-                this.Intervals.Clear();
+                Intervals.Clear();
 
                 for (int i = 0; i < Math.Max(1, flightsPerDay); i++)
                 {
-                    this.Intervals.Add(i + 1);
+                    Intervals.Add(i + 1);
                 }
 
-                if (this.cbInterval != null)
+                if (cbInterval != null)
                 {
-                    this.cbInterval.SelectedIndex = 0;
+                    cbInterval.SelectedIndex = 0;
                 }
             }
         }
 
         private void cbHomebound_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var route = (Route)this.cbHomebound.SelectedItem;
+            var route = (Route)cbHomebound.SelectedItem;
 
             if (route != null)
             {
-                this.IsLongRoute =
-                    MathHelpers.GetFlightTime(route.Destination1, route.Destination2, this.Airliner.Airliner.Type)
-                        .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner.Airliner.Type))
+                IsLongRoute =
+                    MathHelpers.GetFlightTime(route.Destination1, route.Destination2, Airliner.Airliner.Type)
+                        .Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(Airliner.Airliner.Type))
                         .TotalHours > 12;
             }
             else
             {
-                this.IsLongRoute = false;
+                IsLongRoute = false;
             }
         }
 
         private void cbIntervalType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var route = (Route)this.cbRoute.SelectedItem;
+            var route = (Route)cbRoute.SelectedItem;
 
             if (route != null)
             {
-                OpsType opsType = this.cbSchedule == null ? OpsType.Regular : (OpsType)this.cbSchedule.SelectedItem;
-                var intervalType = (IntervalType)this.cbIntervalType.SelectedItem;
+                OpsType opsType = cbSchedule == null ? OpsType.Regular : (OpsType)cbSchedule.SelectedItem;
+                var intervalType = (IntervalType)cbIntervalType.SelectedItem;
 
-                TimeSpan routeFlightTime = route.GetFlightTime(this.Airliner.Airliner.Type);
+                TimeSpan routeFlightTime = route.GetFlightTime(Airliner.Airliner.Type);
 
-                var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
+                var delayMinutes = (int)cbDelayMinutes.SelectedItem;
 
                 TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0, delayMinutes, 0));
 
@@ -897,28 +894,28 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     flightsPerDay = 7;
                 }
 
-                this.Intervals.Clear();
+                Intervals.Clear();
 
                 for (int i = 0; i < Math.Max(1, flightsPerDay); i++)
                 {
-                    this.Intervals.Add(i + 1);
+                    Intervals.Add(i + 1);
                 }
 
-                if (this.cbInterval != null)
+                if (cbInterval != null)
                 {
-                    this.cbInterval.SelectedIndex = 0;
+                    cbInterval.SelectedIndex = 0;
                 }
             }
         }
 
         private void cbInterval_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var route = (Route)this.cbRoute.SelectedItem;
+            var route = (Route)cbRoute.SelectedItem;
 
-            if (this.cbSchedule != null && this.cbIntervalType != null)
+            if (cbSchedule != null && cbIntervalType != null)
             {
-                var opsType = (OpsType)this.cbSchedule.SelectedItem;
-                var intervalType = (IntervalType)this.cbIntervalType.SelectedItem;
+                var opsType = (OpsType)cbSchedule.SelectedItem;
+                var intervalType = (IntervalType)cbIntervalType.SelectedItem;
 
                 if (route != null && intervalType == IntervalType.Day && ((ComboBox)sender).SelectedItem != null)
                 {
@@ -926,15 +923,15 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                     int latestStartTime = 22;
 
-                    TimeSpan routeFlightTime = route.GetFlightTime(this.Airliner.Airliner.Type);
+                    TimeSpan routeFlightTime = route.GetFlightTime(Airliner.Airliner.Type);
 
-                    var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
+                    var delayMinutes = (int)cbDelayMinutes.SelectedItem;
 
                     TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0, delayMinutes, 0));
 
                     var lastDepartureHour = (int)(latestStartTime - (minFlightTime.TotalHours * interval * 2));
 
-                    this.StartTimes.Clear();
+                    StartTimes.Clear();
 
                     int startTime = 6;
 
@@ -947,13 +944,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     {
                         for (int j = 0; j < 60; j += 15)
                         {
-                            this.StartTimes.Add(new TimeSpan(i, j, 0));
+                            StartTimes.Add(new TimeSpan(i, j, 0));
                         }
                     }
 
-                    if (this.cbStartTime != null)
+                    if (cbStartTime != null)
                     {
-                        this.cbStartTime.SelectedIndex = 0;
+                        cbStartTime.SelectedIndex = 0;
                     }
                 }
             }
@@ -964,19 +961,19 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             var outbuound = (Airport)((ComboBox)sender).SelectedItem;
 
             IEnumerable<Route> routes =
-                this.Airliner.Airliner.Airline.Routes.Where(
+                Airliner.Airliner.Airline.Routes.Where(
                     r => r.Destination2 == outbuound || r.Destination1 == outbuound);
 
-            if (this.cbHomebound != null)
+            if (cbHomebound != null)
             {
-                this.cbHomebound.Items.Clear();
+                cbHomebound.Items.Clear();
 
                 foreach (Route route in routes)
                 {
-                    this.cbHomebound.Items.Add(route);
+                    cbHomebound.Items.Add(route);
                 }
 
-                this.cbHomebound.SelectedIndex = 0;
+                cbHomebound.SelectedIndex = 0;
             }
         }
 
@@ -984,9 +981,9 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             var region = (Region)((ComboBox)sender).SelectedItem;
 
-            if (this.cbRoute != null)
+            if (cbRoute != null)
             {
-                var source = this.cbRoute.Items as ICollectionView;
+                var source = cbRoute.Items as ICollectionView;
                 source.Filter = o =>
                 {
                     var r = o as Route;
@@ -1000,18 +997,18 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             var route = (Route)((ComboBox)sender).SelectedItem;
 
-            if (route != null && this.cbDelayMinutes != null && this.cbSchedule != null && this.cbIntervalType != null)
+            if (route != null && cbDelayMinutes != null && cbSchedule != null && cbIntervalType != null)
             {
-                TimeSpan routeFlightTime = route.GetFlightTime(this.Airliner.Airliner.Type);
+                TimeSpan routeFlightTime = route.GetFlightTime(Airliner.Airliner.Type);
 
-                var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
+                var delayMinutes = (int)cbDelayMinutes.SelectedItem;
 
                 TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0, delayMinutes, 0));
 
                 int maxHours = 22 - 06; //from 06.00 to 22.00
 
-                var opsType = (OpsType)this.cbSchedule.SelectedItem;
-                var intervalType = (IntervalType)this.cbIntervalType.SelectedItem;
+                var opsType = (OpsType)cbSchedule.SelectedItem;
+                var intervalType = (IntervalType)cbIntervalType.SelectedItem;
 
                 if (opsType == OpsType.Whole_Day)
                 {
@@ -1026,23 +1023,23 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     flightsPerDay = 7;
                 }
 
-                this.Intervals.Clear();
+                Intervals.Clear();
 
                 for (int i = 0; i < Math.Max(1, flightsPerDay); i++)
                 {
-                    this.Intervals.Add(i + 1);
+                    Intervals.Add(i + 1);
                 }
             }
         }
 
         private void cbSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var route = (Route)this.cbRoute.SelectedItem;
+            var route = (Route)cbRoute.SelectedItem;
 
-            if (this.cbSchedule != null && this.cbIntervalType != null)
+            if (cbSchedule != null && cbIntervalType != null)
             {
-                var opsType = (OpsType)this.cbSchedule.SelectedItem;
-                var intervalType = (IntervalType)this.cbIntervalType.SelectedItem;
+                var opsType = (OpsType)cbSchedule.SelectedItem;
+                var intervalType = (IntervalType)cbIntervalType.SelectedItem;
 
                 if (route != null && intervalType == IntervalType.Day && ((ComboBox)sender).SelectedItem != null)
                 {
@@ -1050,15 +1047,15 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                     int latestStartTime = 22;
 
-                    TimeSpan routeFlightTime = route.GetFlightTime(this.Airliner.Airliner.Type);
+                    TimeSpan routeFlightTime = route.GetFlightTime(Airliner.Airliner.Type);
 
-                    var delayMinutes = (int)this.cbDelayMinutes.SelectedItem;
+                    var delayMinutes = (int)cbDelayMinutes.SelectedItem;
 
                     TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0, delayMinutes, 0));
 
                     var lastDepartureHour = (int)(latestStartTime - (minFlightTime.TotalHours * interval * 2));
 
-                    this.StartTimes.Clear();
+                    StartTimes.Clear();
 
                     int startTime = 6;
 
@@ -1071,13 +1068,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     {
                         for (int j = 0; j < 60; j += 15)
                         {
-                            this.StartTimes.Add(new TimeSpan(i, j, 0));
+                            StartTimes.Add(new TimeSpan(i, j, 0));
                         }
                     }
 
-                    if (this.cbStartTime != null)
+                    if (cbStartTime != null)
                     {
-                        this.cbStartTime.SelectedIndex = 0;
+                        cbStartTime.SelectedIndex = 0;
                     }
                 }
             }
@@ -1085,11 +1082,11 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void clearTimeTable()
         {
-            var entries = new ObservableCollection<RouteTimeTableEntry>(this.Entries);
+            var entries = new ObservableCollection<RouteTimeTableEntry>(Entries);
             
             foreach (RouteTimeTableEntry entry in entries)
             {
-                this.Entries.Remove(entry);
+                Entries.Remove(entry);
             }
         }
 
@@ -1098,31 +1095,31 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             var days = new List<DayOfWeek>();
 
-            if (this.cbMonday.IsChecked.Value)
+            if (cbMonday.IsChecked.Value)
             {
                 days.Add(DayOfWeek.Monday);
             }
-            if (this.cbTuesday.IsChecked.Value)
+            if (cbTuesday.IsChecked.Value)
             {
                 days.Add(DayOfWeek.Tuesday);
             }
-            if (this.cbWednesday.IsChecked.Value)
+            if (cbWednesday.IsChecked.Value)
             {
                 days.Add(DayOfWeek.Wednesday);
             }
-            if (this.cbThursday.IsChecked.Value)
+            if (cbThursday.IsChecked.Value)
             {
                 days.Add(DayOfWeek.Thursday);
             }
-            if (this.cbFriday.IsChecked.Value)
+            if (cbFriday.IsChecked.Value)
             {
                 days.Add(DayOfWeek.Friday);
             }
-            if (this.cbSaturday.IsChecked.Value)
+            if (cbSaturday.IsChecked.Value)
             {
                 days.Add(DayOfWeek.Saturday);
             }
-            if (this.cbSunday.IsChecked.Value)
+            if (cbSunday.IsChecked.Value)
             {
                 days.Add(DayOfWeek.Sunday);
             }
@@ -1138,33 +1135,33 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             if (season == "Winter")
             {
-                this.ShowSeason = Weather.Season.Winter;
+                ShowSeason = Weather.Season.Winter;
             }
 
             if (season == "Summer")
             {
-                this.ShowSeason = Weather.Season.Summer;
+                ShowSeason = Weather.Season.Summer;
             }
 
             if (season == "AllYear")
             {
-                this.ShowSeason = Weather.Season.AllYear;
+                ShowSeason = Weather.Season.AllYear;
             }
 
-            this.setViewEntries();
+            setViewEntries();
         }
 
         private void setCanTransferSchedule()
         {
-            long maxDistance = this.Airliner.Airliner.Range;
+            long maxDistance = Airliner.Airliner.Range;
 
-            long requiredRunway = this.Airliner.Airliner.MinRunwaylength;
+            long requiredRunway = Airliner.Airliner.MinRunwaylength;
 
-            this.CanTransferSchedule =
+            CanTransferSchedule =
                 GameObject.GetInstance()
                     .HumanAirline.Fleet.FindAll(
                         a =>
-                            a != this.Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped
+                            a != Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped
                             && a.Routes.Max(r => r.GetDistance()) <= maxDistance)
                     .Count > 0;
         }
@@ -1175,7 +1172,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             int i = 0;
 
-            while (number == "" || this.Entries.FirstOrDefault(e => e.Destination.FlightCode == number) != null)
+            while (number == "" || Entries.FirstOrDefault(e => e.Destination.FlightCode == number) != null)
             {
                 number = GameObject.GetInstance().HumanAirline.GetNextFlightCode(i);
 
@@ -1184,23 +1181,23 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             number = number.Substring(2);
 
-            this.txtFlightNumber.Text = String.Format("{0:0000}", number);
-            this.txtSchedulerFlightNumber.Text = String.Format("{0:0000}", number);
+            txtFlightNumber.Text = String.Format("{0:0000}", number);
+            txtSchedulerFlightNumber.Text = String.Format("{0:0000}", number);
         }
 
         //sets the view entries
         private void setViewEntries()
         {
-            var entries = new ObservableCollection<RouteTimeTableEntry>(this.ViewEntries);
+            var entries = new ObservableCollection<RouteTimeTableEntry>(ViewEntries);
 
             foreach (RouteTimeTableEntry entry in entries)
             {
-                this.ViewEntries.Remove(entry);
+                ViewEntries.Remove(entry);
             }
 
-            foreach (RouteTimeTableEntry entry in this.Entries.Where(e => e.TimeTable.Route.Season == this.ShowSeason))
+            foreach (RouteTimeTableEntry entry in Entries.Where(e => e.TimeTable.Route.Season == ShowSeason))
             {
-                this.ViewEntries.Add(entry);
+                ViewEntries.Add(entry);
             }
         }
 

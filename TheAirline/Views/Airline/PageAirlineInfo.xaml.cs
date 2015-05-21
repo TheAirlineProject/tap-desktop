@@ -1,4 +1,13 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.Subsidiary;
@@ -6,27 +15,11 @@ using TheAirline.Models.General;
 using TheAirline.Models.General.Finances;
 using TheAirline.Models.Pilots;
 using TheAirline.Models.Routes;
+using TheAirline.ViewModels.Airline;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Text.RegularExpressions;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Input;
-    using System.Windows.Media.Imaging;
-
-    using Microsoft.Win32;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
-    using System.Collections.ObjectModel;
-
     /// <summary>
     ///     Interaction logic for PageAirlineInfo.xaml
     /// </summary>
@@ -37,25 +30,25 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         public PageAirlineInfo(AirlineMVVM airline)
         {
-            this.Airline = airline;
-            this.DataContext = this.Airline;
-            this.AirlineScores = new ObservableCollection<AirlineScoreMVVM>();
+            Airline = airline;
+            DataContext = Airline;
+            AirlineScores = new ObservableCollection<AirlineScoreMVVM>();
         
           
-            this.AirlineScores.Add(
+            AirlineScores.Add(
                new AirlineScoreMVVM(
                    Translator.GetInstance().GetString("PageAirlineRatings", "1012"),
-                   this.Airline.Airline.OverallScore));
-            this.AirlineScores.Add(
+                   Airline.Airline.OverallScore));
+            AirlineScores.Add(
                 new AirlineScoreMVVM(
                     Translator.GetInstance().GetString("PageAirlineRatings", "1014"),
-                    (int)StatisticsHelpers.GetOnTimePercent(this.Airline.Airline)));
-            this.AirlineScores.Add(
+                    (int)StatisticsHelpers.GetOnTimePercent(Airline.Airline)));
+            AirlineScores.Add(
                 new AirlineScoreMVVM(
                     Translator.GetInstance().GetString("PageAirlineRatings", "1015"),
-                    Math.Max(0,(int)(StatisticsHelpers.GetAirlineFillAverage(this.Airline.Airline) * 100))));
+                    Math.Max(0,(int)(StatisticsHelpers.GetAirlineFillAverage(Airline.Airline) * 100))));
 
-            this.InitializeComponent();
+            InitializeComponent();
 
           
         }
@@ -74,12 +67,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void btnCreateSubsidiary_Click(object sender, RoutedEventArgs e)
         {
-            Object o =  PopUpCreateSubsidiary.ShowPopUp(this.Airline.Airline);
+            Object o =  PopUpCreateSubsidiary.ShowPopUp(Airline.Airline);
 
             if (o != null)
             {
                 SubsidiaryAirline subAirline = (SubsidiaryAirline)o;
-                this.Airline.addSubsidiaryAirline(subAirline);
+                Airline.addSubsidiaryAirline(subAirline);
             }
             /*
             string iata = this.txtIATA.Text.ToUpper().Trim();
@@ -164,7 +157,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 {
                     AirlineHelpers.CloseSubsidiaryAirline(airline);
 
-                    this.Airline.removeSubsidiaryAirline(airline);
+                    Airline.removeSubsidiaryAirline(airline);
                 }
             }
         }
@@ -197,7 +190,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 {
                     AirlineHelpers.MakeSubsidiaryAirlineIndependent(airline);
 
-                    this.Airline.removeSubsidiaryAirline(airline);
+                    Airline.removeSubsidiaryAirline(airline);
                 }
             }
         }
@@ -237,10 +230,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                             }
                         }
 
-                        this.Airline.removeAirliner(airliner);
+                        Airline.removeAirliner(airliner);
 
                         AirlineHelpers.AddAirlineInvoice(
-                            this.Airline.Airline,
+                            Airline.Airline,
                             GameObject.GetInstance().GameTime,
                             Invoice.InvoiceType.Purchases,
                             airliner.Airliner.GetPrice());
@@ -275,7 +268,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                             }
                         }
 
-                        this.Airline.removeAirliner(airliner);
+                        Airline.removeAirliner(airliner);
 
                         foreach (Pilot pilot in airliner.Pilots)
                         {
@@ -290,22 +283,22 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void btnTransferFunds_Click(object sender, RoutedEventArgs e)
         {
-            var airline = (Airline)this.cbTransferAirline.SelectedItem;
-            string transferType = (this.cbTransferType.SelectedItem as ComboBoxItem).Content.ToString();
+            var airline = (Airline)cbTransferAirline.SelectedItem;
+            string transferType = (cbTransferType.SelectedItem as ComboBoxItem).Content.ToString();
 
-            double amount = this.slTransfer.Value;
+            double amount = slTransfer.Value;
 
             if (transferType == "From")
             {
                 airline.Money -= amount;
                 GameObject.GetInstance().AddHumanMoney(amount);
-                this.Airline.setMaxTransferFunds(airline);
+                Airline.setMaxTransferFunds(airline);
             }
             else
             {
                 airline.Money += amount;
                 GameObject.GetInstance().AddHumanMoney(-amount);
-                this.Airline.setMaxTransferFunds(this.Airline.Airline);
+                Airline.setMaxTransferFunds(Airline.Airline);
             }
         }
 
@@ -313,7 +306,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             double upgradeLicensPrice = GeneralHelpers.GetInflationPrice(1000000);
 
-            Airline.AirlineLicense nextLicenseType = this.Airline.License + 1;
+            Airline.AirlineLicense nextLicenseType = Airline.License + 1;
 
             WPFMessageBoxResult result = WPFMessageBox.Show(
                 Translator.GetInstance().GetString("MessageBox", "2119"),
@@ -325,11 +318,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                this.Airline.License = nextLicenseType;
-                this.Airline.Airline.License = nextLicenseType;
+                Airline.License = nextLicenseType;
+                Airline.Airline.License = nextLicenseType;
 
                 AirlineHelpers.AddAirlineInvoice(
-                    this.Airline.Airline,
+                    Airline.Airline,
                     GameObject.GetInstance().GameTime,
                     Invoice.InvoiceType.AirlineExpenses,
                     -upgradeLicensPrice);
@@ -338,19 +331,19 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void cbTransferType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (this.cbTransferType != null && this.cbTransferAirline != null
-                && this.cbTransferAirline.SelectedItem != null)
+            if (cbTransferType != null && cbTransferAirline != null
+                && cbTransferAirline.SelectedItem != null)
             {
-                var airline = (Airline)this.cbTransferAirline.SelectedItem;
-                string transferType = (this.cbTransferType.SelectedItem as ComboBoxItem).Content.ToString();
+                var airline = (Airline)cbTransferAirline.SelectedItem;
+                string transferType = (cbTransferType.SelectedItem as ComboBoxItem).Content.ToString();
 
                 if (transferType == "From")
                 {
-                    this.Airline.setMaxTransferFunds(airline);
+                    Airline.setMaxTransferFunds(airline);
                 }
                 else
                 {
-                    this.Airline.setMaxTransferFunds(this.Airline.Airline);
+                    Airline.setMaxTransferFunds(Airline.Airline);
                 }
             }
         }

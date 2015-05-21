@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Models.General.HistoricEvents
 {

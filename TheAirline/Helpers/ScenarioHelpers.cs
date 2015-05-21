@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.Helpers.Workers;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
@@ -14,6 +12,7 @@ using TheAirline.Models.General;
 using TheAirline.Models.General.Scenarios;
 using TheAirline.Models.General.Statistics;
 using TheAirline.Models.Routes;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.Helpers
 {

@@ -1,4 +1,10 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Globalization;
+using System.Windows.Data;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
@@ -6,18 +12,10 @@ using TheAirline.Models.General;
 using TheAirline.Models.General.Finances;
 using TheAirline.Models.General.Statistics;
 using TheAirline.Models.Pilots;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
-    using System;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.Windows.Data;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.GeneralModel;
-
     public class FleetAirlinerMVVM : INotifyPropertyChanged
     {
         #region Fields
@@ -50,23 +48,23 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
         public FleetAirlinerMVVM(FleetAirliner airliner)
         {
-            this.Airliner = airliner;
-            this.Homebase = this.Airliner.Homebase;
-            this.Classes = new ObservableCollection<AirlinerClassMVVM>();
-            this.Owner = (this.Airliner.Airliner.Owner != null && this.Airliner.Airliner.Airline != this.Airliner.Airliner.Owner) ? this.Airliner.Airliner.Owner : null;
+            Airliner = airliner;
+            Homebase = Airliner.Homebase;
+            Classes = new ObservableCollection<AirlinerClassMVVM>();
+            Owner = (Airliner.Airliner.Owner != null && Airliner.Airliner.Airline != Airliner.Airliner.Owner) ? Airliner.Airliner.Owner : null;
 
             AirlinerClass tClass;
 
-            if (this.Airliner.Airliner.Classes.Count == 0)
+            if (Airliner.Airliner.Classes.Count == 0)
             {
                 tClass = null;
             }
             else
             {
-                tClass = this.Airliner.Airliner.Classes[0];
+                tClass = Airliner.Airliner.Classes[0];
             }
 
-            foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
+            foreach (AirlinerClass aClass in Airliner.Airliner.Classes)
             {
                 int maxCapacity;
 
@@ -79,19 +77,19 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                     maxCapacity = tClass.RegularSeatingCapacity;
                 }
 
-                Boolean changeable = this.Airliner.Airliner.Classes.IndexOf(aClass) > 0;
+                Boolean changeable = Airliner.Airliner.Classes.IndexOf(aClass) > 0;
 
                 int maxSeats;
 
-                if (this.Airliner.Airliner.Classes.Count == 3)
+                if (Airliner.Airliner.Classes.Count == 3)
                 {
-                    if (this.Airliner.Airliner.Classes.IndexOf(aClass) == 1)
+                    if (Airliner.Airliner.Classes.IndexOf(aClass) == 1)
                     {
-                        maxSeats = maxCapacity - 1 - this.Airliner.Airliner.Classes[2].RegularSeatingCapacity;
+                        maxSeats = maxCapacity - 1 - Airliner.Airliner.Classes[2].RegularSeatingCapacity;
                     }
                     else
                     {
-                        maxSeats = maxCapacity - 1 - this.Airliner.Airliner.Classes[1].RegularSeatingCapacity;
+                        maxSeats = maxCapacity - 1 - Airliner.Airliner.Classes[1].RegularSeatingCapacity;
                     }
                 }
                 else
@@ -105,39 +103,39 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                     aClass.RegularSeatingCapacity,
                     maxSeats,
                     changeable);
-                this.Classes.Add(amClass);
+                Classes.Add(amClass);
             }
 
-            this.Pilots = new ObservableCollection<Pilot>();
+            Pilots = new ObservableCollection<Pilot>();
 
-            foreach (Pilot pilot in this.Airliner.Pilots)
+            foreach (Pilot pilot in Airliner.Pilots)
             {
-                this.Pilots.Add(pilot);
+                Pilots.Add(pilot);
             }
 
-            this.IsMissingPilots = this.Airliner.Airliner.Type.CockpitCrew > this.Pilots.Count;
+            IsMissingPilots = Airliner.Airliner.Type.CockpitCrew > Pilots.Count;
 
-            this.AMaintenanceInterval = this.Airliner.AMaintenanceInterval;
-            this.BMaintenanceInterval = this.Airliner.BMaintenanceInterval;
-            this.CMaintenanceInterval = this.Airliner.CMaintenanceInterval;
-            this.DMaintenanceInterval = this.Airliner.DMaintenanceInterval;
+            AMaintenanceInterval = Airliner.AMaintenanceInterval;
+            BMaintenanceInterval = Airliner.BMaintenanceInterval;
+            CMaintenanceInterval = Airliner.CMaintenanceInterval;
+            DMaintenanceInterval = Airliner.DMaintenanceInterval;
 
-            this.SchedCMaintenance = this.Airliner.SchedCMaintenance;
-            this.SchedDMaintenance = this.Airliner.SchedDMaintenance;
+            SchedCMaintenance = Airliner.SchedCMaintenance;
+            SchedDMaintenance = Airliner.SchedDMaintenance;
 
-            this.IsBuyable = this.Airliner.Airliner.Airline.IsHuman
-                             && this.Airliner.Purchased == FleetAirliner.PurchasedType.Leased && this.Airliner.Airliner.Owner == null;
-            this.IsConvertable = this.Airliner.Airliner.Airline.IsHuman
-                                 && this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
-                                 && !this.Airliner.HasRoute
-                                 && (this.Airliner.Airliner.Owner!=null || this.Airliner.Airliner.Airline.isHuman())
-                                 && this.Airliner.Purchased == FleetAirliner.PurchasedType.Bought
-                                 && this.Airliner.Airliner.Type.IsConvertable;
+            IsBuyable = Airliner.Airliner.Airline.IsHuman
+                             && Airliner.Purchased == FleetAirliner.PurchasedType.Leased && Airliner.Airliner.Owner == null;
+            IsConvertable = Airliner.Airliner.Airline.IsHuman
+                                 && Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
+                                 && !Airliner.HasRoute
+                                 && (Airliner.Airliner.Owner!=null || Airliner.Airliner.Airline.isHuman())
+                                 && Airliner.Purchased == FleetAirliner.PurchasedType.Bought
+                                 && Airliner.Airliner.Type.IsConvertable;
 
-            this.IsOutleasable = this.Airliner.Airliner.Airline.IsHuman
-                && this.Airliner.Purchased == FleetAirliner.PurchasedType.Bought
-                && this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
-                && !this.Airliner.HasRoute;
+            IsOutleasable = Airliner.Airliner.Airline.IsHuman
+                && Airliner.Purchased == FleetAirliner.PurchasedType.Bought
+                && Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
+                && !Airliner.HasRoute;
 
             
     
@@ -157,12 +155,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this._AMaintenanceInterval;
+                return _AMaintenanceInterval;
             }
             set
             {
-                this._AMaintenanceInterval = value;
-                this.NotifyPropertyChanged("AMaintenanceInterval");
+                _AMaintenanceInterval = value;
+                NotifyPropertyChanged("AMaintenanceInterval");
             }
         }
 
@@ -174,12 +172,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this._BMaintenanceInterval;
+                return _BMaintenanceInterval;
             }
             set
             {
-                this._BMaintenanceInterval = value;
-                this.NotifyPropertyChanged("BMaintenanceInterval");
+                _BMaintenanceInterval = value;
+                NotifyPropertyChanged("BMaintenanceInterval");
             }
         }
 
@@ -187,12 +185,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this._CMaintenanceInterval;
+                return _CMaintenanceInterval;
             }
             set
             {
-                this._CMaintenanceInterval = value;
-                this.NotifyPropertyChanged("CMaintenanceInterval");
+                _CMaintenanceInterval = value;
+                NotifyPropertyChanged("CMaintenanceInterval");
             }
         }
 
@@ -202,12 +200,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this._DMaintenanceInterval;
+                return _DMaintenanceInterval;
             }
             set
             {
-                this._DMaintenanceInterval = value;
-                this.NotifyPropertyChanged("DMaintenanceInterval");
+                _DMaintenanceInterval = value;
+                NotifyPropertyChanged("DMaintenanceInterval");
             }
         }
 
@@ -215,12 +213,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this._homebase;
+                return _homebase;
             }
             set
             {
-                this._homebase = value;
-                this.NotifyPropertyChanged("Homebase");
+                _homebase = value;
+                NotifyPropertyChanged("Homebase");
             }
         }
 
@@ -228,12 +226,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this._isbuyable;
+                return _isbuyable;
             }
             set
             {
-                this._isbuyable = value;
-                this.NotifyPropertyChanged("IsBuyable");
+                _isbuyable = value;
+                NotifyPropertyChanged("IsBuyable");
             }
         }
 
@@ -241,36 +239,36 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this._isconvertable;
+                return _isconvertable;
             }
             set
             {
-                this._isconvertable = value;
-                this.NotifyPropertyChanged("IsConvertable");
+                _isconvertable = value;
+                NotifyPropertyChanged("IsConvertable");
             }
         }
         public Boolean IsOutleasable
         {
             get
             {
-                return this._isoutleasable;
+                return _isoutleasable;
             }
             set
             {
-                this._isoutleasable = value;
-                this.NotifyPropertyChanged("IsOutleasable");
+                _isoutleasable = value;
+                NotifyPropertyChanged("IsOutleasable");
             }
         }
         public Boolean IsMissingPilots
         {
             get
             {
-                return this._ismissingpilots;
+                return _ismissingpilots;
             }
             set
             {
-                this._ismissingpilots = value;
-                this.NotifyPropertyChanged("IsMissingPilots");
+                _ismissingpilots = value;
+                NotifyPropertyChanged("IsMissingPilots");
             }
         }
 
@@ -280,12 +278,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this._SchedCMaintenance;
+                return _SchedCMaintenance;
             }
             set
             {
-                this._SchedCMaintenance = value;
-                this.NotifyPropertyChanged("SchedCMaintenance");
+                _SchedCMaintenance = value;
+                NotifyPropertyChanged("SchedCMaintenance");
             }
         }
 
@@ -293,12 +291,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this._SchedDMaintenance;
+                return _SchedDMaintenance;
             }
             set
             {
-                this._SchedDMaintenance = value;
-                this.NotifyPropertyChanged("SchedDMaintenance");
+                _SchedDMaintenance = value;
+                NotifyPropertyChanged("SchedDMaintenance");
             }
         }
 
@@ -308,31 +306,31 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
         public void addPilot(Pilot pilot)
         {
-            this.Pilots.Add(pilot);
-            this.Airliner.AddPilot(pilot);
+            Pilots.Add(pilot);
+            Airliner.AddPilot(pilot);
 
-            this.IsMissingPilots = this.Airliner.Airliner.Type.CockpitCrew > this.Pilots.Count;
+            IsMissingPilots = Airliner.Airliner.Type.CockpitCrew > Pilots.Count;
         }
 
         //buys the airliner if leased
         public void buyAirliner()
         {
-            this.Airliner.Purchased = FleetAirliner.PurchasedType.Bought;
-            this.IsBuyable = false;
+            Airliner.Purchased = FleetAirliner.PurchasedType.Bought;
+            IsBuyable = false;
 
             AirlineHelpers.AddAirlineInvoice(
                 GameObject.GetInstance().HumanAirline,
                 GameObject.GetInstance().GameTime,
                 Invoice.InvoiceType.Purchases,
-                -this.Airliner.Airliner.GetPrice());
+                -Airliner.Airliner.GetPrice());
         }
 
         //converts the airliner to a cargo airliner
         public void convertToCargo()
         {
-            FleetAirlinerHelpers.ConvertPassengerToCargoAirliner(this.Airliner);
+            FleetAirlinerHelpers.ConvertPassengerToCargoAirliner(Airliner);
 
-            PageNavigator.NavigateTo(new PageAirline(this.Airliner.Airliner.Airline));
+            PageNavigator.NavigateTo(new PageAirline(Airliner.Airliner.Airline));
         }
 
         //adds a pilot to the airliner
@@ -340,10 +338,10 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         //removes a pilot from the airliner
         public void removePilot(Pilot pilot)
         {
-            this.Pilots.Remove(pilot);
-            this.Airliner.RemovePilot(pilot);
+            Pilots.Remove(pilot);
+            Airliner.RemovePilot(pilot);
 
-            this.IsMissingPilots = true;
+            IsMissingPilots = true;
         }
 
         #endregion
@@ -352,7 +350,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -377,10 +375,10 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
         public AirlinerFacilityMVVM(AirlinerFacility.FacilityType type, AirlinerClassMVVM airlinerClass)
         {
-            this.Facilities = new ObservableCollection<AirlinerFacility>();
+            Facilities = new ObservableCollection<AirlinerFacility>();
 
-            this.AirlinerClass = airlinerClass;
-            this.Type = type;
+            AirlinerClass = airlinerClass;
+            Type = type;
         }
 
         #endregion
@@ -399,16 +397,16 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this._selectedFacility;
+                return _selectedFacility;
             }
             set
             {
                 if (value != null)
                 {
-                    AirlinerFacility oldValue = this._selectedFacility;
-                    this._selectedFacility = value;
-                    this.NotifyPropertyChanged("SelectedFacility");
-                    this.setSeating(oldValue);
+                    AirlinerFacility oldValue = _selectedFacility;
+                    _selectedFacility = value;
+                    NotifyPropertyChanged("SelectedFacility");
+                    setSeating(oldValue);
                 }
             }
         }
@@ -421,7 +419,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
 
             if (null != handler)
             {
@@ -431,13 +429,13 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
         private void setSeating(AirlinerFacility oldValue)
         {
-            if (this.Type == AirlinerFacility.FacilityType.Seat && this._selectedFacility != null && oldValue != null)
+            if (Type == AirlinerFacility.FacilityType.Seat && _selectedFacility != null && oldValue != null)
             {
-                this.AirlinerClass.ChangedFacility = true;
-                double diff = oldValue.SeatUses / this._selectedFacility.SeatUses;
-                this.AirlinerClass.Seating = Convert.ToInt16(Convert.ToDouble(this.AirlinerClass.Seating) * diff);
-                this.AirlinerClass.MaxSeats = Convert.ToInt16(Convert.ToDouble(this.AirlinerClass.MaxSeats) * diff);
-                this.AirlinerClass.ChangedFacility = false;
+                AirlinerClass.ChangedFacility = true;
+                double diff = oldValue.SeatUses / _selectedFacility.SeatUses;
+                AirlinerClass.Seating = Convert.ToInt16(Convert.ToDouble(AirlinerClass.Seating) * diff);
+                AirlinerClass.MaxSeats = Convert.ToInt16(Convert.ToDouble(AirlinerClass.MaxSeats) * diff);
+                AirlinerClass.ChangedFacility = false;
             }
         }
 
@@ -464,15 +462,15 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             int maxseats,
             Boolean changeableSeats = false)
         {
-            this.Type = type.Type;
-            this.Seating = seating;
-            this.RegularSeatingCapacity = regularSeating;
-            this.ChangeableSeats = changeableSeats;
-            this.MaxSeats = maxseats;
-            this.MaxSeatsCapacity = maxseats;
-            this.ChangedFacility = false;
+            Type = type.Type;
+            Seating = seating;
+            RegularSeatingCapacity = regularSeating;
+            ChangeableSeats = changeableSeats;
+            MaxSeats = maxseats;
+            MaxSeatsCapacity = maxseats;
+            ChangedFacility = false;
 
-            this.Facilities = new ObservableCollection<AirlinerFacilityMVVM>();
+            Facilities = new ObservableCollection<AirlinerFacilityMVVM>();
 
             foreach (AirlinerFacility.FacilityType facType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
             {
@@ -488,7 +486,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                     : type.GetFacility(facType);
                 facility.SelectedFacility = selectedFacility;
 
-                this.Facilities.Add(facility);
+                Facilities.Add(facility);
             }
         }
 
@@ -512,12 +510,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this._maxseats;
+                return _maxseats;
             }
             set
             {
-                this._maxseats = value;
-                this.NotifyPropertyChanged("MaxSeats");
+                _maxseats = value;
+                NotifyPropertyChanged("MaxSeats");
             }
         }
 
@@ -529,12 +527,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this._seating;
+                return _seating;
             }
             set
             {
-                this._seating = value;
-                this.NotifyPropertyChanged("Seating");
+                _seating = value;
+                NotifyPropertyChanged("Seating");
             }
         }
 
@@ -546,7 +544,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -563,8 +561,8 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
         public FleetAirlinerStatisticsMVVM(FleetAirliner airliner, StatisticsType type)
         {
-            this.Type = type;
-            this.Airliner = airliner;
+            Type = type;
+            Airliner = airliner;
         }
 
         #endregion
@@ -577,7 +575,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this.getChange();
+                return getChange();
             }
             private set
             {
@@ -589,7 +587,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this.getCurrentYear();
+                return getCurrentYear();
             }
             private set
             {
@@ -601,7 +599,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get
             {
-                return this.getLastYear();
+                return getLastYear();
             }
             private set
             {
@@ -621,14 +619,14 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
         private double getChange()
         {
-            double lastYear = this.getLastYear();
+            double lastYear = getLastYear();
 
             if (lastYear == 0)
             {
                 return 1;
             }
 
-            double changePercent = Convert.ToDouble(this.getCurrentYear() - lastYear) / lastYear;
+            double changePercent = Convert.ToDouble(getCurrentYear() - lastYear) / lastYear;
 
             if (double.IsInfinity(changePercent))
             {
@@ -646,12 +644,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             int year = GameObject.GetInstance().GameTime.Year;
 
-            return this.Airliner.Statistics.GetStatisticsValue(year, this.Type);
+            return Airliner.Statistics.GetStatisticsValue(year, Type);
         }
 
         private double getLastYear()
         {
-            return this.Airliner.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, this.Type);
+            return Airliner.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, Type);
         }
 
         #endregion

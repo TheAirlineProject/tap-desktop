@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
       xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.AirlinePageModel"
+      xmlns:airline="clr-namespace:TheAirline.ViewModels.Airline"
       mc:Ignorable="d"
       Name="pageAirlineInfo"
       d:DesignHeight="300" d:DesignWidth="300"
@@ -25,7 +26,7 @@
                 <TextBlock Text="{Binding Score}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
             </WrapPanel>
         </DataTemplate>
-        <local:AirlineInuseConverter x:Key="AirlineInuseConverter" />
+        <airline:AirlineInuseConverter x:Key="AirlineInuseConverter" />
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

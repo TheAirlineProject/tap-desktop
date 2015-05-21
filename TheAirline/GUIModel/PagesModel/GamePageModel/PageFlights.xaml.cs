@@ -1,19 +1,16 @@
-﻿using TheAirline.Models.Airlines;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Models.Airlines;
 using TheAirline.Models.General;
 using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageFlights.xaml
     /// </summary>
@@ -23,14 +20,14 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         public PageFlights()
         {
-            this.AllFlights =
+            AllFlights =
                 Airlines.GetAllAirlines().SelectMany(a => a.Routes.SelectMany(r => r.TimeTable.Entries)).ToList();
 
             IEnumerable<Route> routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes);
 
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.Loaded += this.PageFlights_Loaded;
+            Loaded += PageFlights_Loaded;
         }
 
         #endregion

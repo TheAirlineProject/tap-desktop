@@ -4,7 +4,6 @@ using System.Device.Location;
 using System.Globalization;
 using System.Security.Cryptography;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;

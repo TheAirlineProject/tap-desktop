@@ -7,14 +7,15 @@
       xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
       xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
          xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.AirlinePageModel"
-   
-      Name="pageAirlineFleet"
+         xmlns:airline="clr-namespace:TheAirline.ViewModels.Airline"
+
+         Name="pageAirlineFleet"
       mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PageAirlineFleet">
     <Page.Resources>
-        <local:AirlinerToSubsidiaryConverter x:Key="airlinerToSubsidiaryConverter"></local:AirlinerToSubsidiaryConverter>
-        <local:AirlinerCallBackConverter x:Key="airlinerCallBackConverter"></local:AirlinerCallBackConverter>
+        <airline:AirlinerToSubsidiaryConverter x:Key="airlinerToSubsidiaryConverter"></airline:AirlinerToSubsidiaryConverter>
+        <airline:AirlinerCallBackConverter x:Key="airlinerCallBackConverter"></airline:AirlinerCallBackConverter>
     </Page.Resources>
         <Grid>
         <Grid.ColumnDefinitions>

@@ -1,22 +1,19 @@
-﻿using TheAirline.Helpers;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.MasterPageModel;
+using TheAirline.GUIModel.ObjectsModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.General;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Input;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.GUIModel.MasterPageModel;
-    using TheAirline.GUIModel.ObjectsModel;
-    using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageSelectOpponents.xaml
     /// </summary>
@@ -26,26 +23,26 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         public PageSelectOpponents(StartDataObject sdo)
         {
-            this.StartData = sdo;
+            StartData = sdo;
 
-            this.SelectedAirlines = new ObservableCollection<Airline>();
-            this.Opponents = new ObservableCollection<Airline>();
+            SelectedAirlines = new ObservableCollection<Airline>();
+            Opponents = new ObservableCollection<Airline>();
 
             foreach (
                 Airline airline in
                     Airlines.GetAirlines(
                         a =>
-                            a.Profile.Founded <= this.StartData.Year && a.Profile.Folded > this.StartData.Year
-                            && a != this.StartData.Airline
-                            && (a.Profile.Country.Region == this.StartData.Region
-                                || (this.StartData.Continent != null
-                                    && (this.StartData.Continent.Uid == "100"
-                                        || this.StartData.Continent.HasRegion(a.Profile.Country.Region))))))
+                            a.Profile.Founded <= StartData.Year && a.Profile.Folded > StartData.Year
+                            && a != StartData.Airline
+                            && (a.Profile.Country.Region == StartData.Region
+                                || (StartData.Continent != null
+                                    && (StartData.Continent.Uid == "100"
+                                        || StartData.Continent.HasRegion(a.Profile.Country.Region))))))
             {
-                this.Opponents.Add(airline);
+                Opponents.Add(airline);
             }
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -66,21 +63,21 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             var airlines = new List<Airline>();
 
-            foreach (Airline airline in this.SelectedAirlines)
+            foreach (Airline airline in SelectedAirlines)
             {
                 airlines.Add(airline);
             }
 
-            this.StartData.Opponents = airlines;
+            StartData.Opponents = airlines;
 
-            var smp = this.Content as StandardMasterPage;
+            var smp = Content as StandardMasterPage;
 
             // SplashControl scCreating = UIHelpers.FindChild<SplashControl>(smp, "scCreating"); 
 
             //scCreating.Visibility = System.Windows.Visibility.Visible;
 
             var bgWorker = new BackgroundWorker();
-            bgWorker.DoWork += (y, x) => { GameObjectHelpers.CreateGame(this.StartData); };
+            bgWorker.DoWork += (y, x) => { GameObjectHelpers.CreateGame(StartData); };
             bgWorker.RunWorkerCompleted += (y, x) =>
             {
                 //  scCreating.Visibility = System.Windows.Visibility.Collapsed;
@@ -96,18 +93,18 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             var airline = (Airline)((Image)sender).Tag;
 
-            this.SelectedAirlines.Remove(airline);
-            this.Opponents.Add(airline);
+            SelectedAirlines.Remove(airline);
+            Opponents.Add(airline);
         }
 
         private void imgSelect_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (this.SelectedAirlines.Count < this.StartData.NumberOfOpponents)
+            if (SelectedAirlines.Count < StartData.NumberOfOpponents)
             {
                 var airline = (Airline)((Image)sender).Tag;
 
-                this.SelectedAirlines.Add(airline);
-                this.Opponents.Remove(airline);
+                SelectedAirlines.Add(airline);
+                Opponents.Remove(airline);
             }
         }
 

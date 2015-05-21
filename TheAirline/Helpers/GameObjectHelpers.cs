@@ -9,7 +9,6 @@ using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.Helpers.Workers;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.AirlineCooperation;

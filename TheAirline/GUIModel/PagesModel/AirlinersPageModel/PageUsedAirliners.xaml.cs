@@ -1,4 +1,17 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airports;
@@ -8,22 +21,6 @@ using TheAirline.Models.General.Finances;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Documents;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageUsedAirliners.xaml
     /// </summary>
@@ -34,29 +31,29 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         public PageUsedAirliners()
         {
             Boolean isMetric = AppSettings.GetInstance().GetLanguage().Unit == Infrastructure.Language.UnitSystem.Metric;
-            this.Loaded += this.PageUsedAirliners_Loaded;
-            this.Unloaded += this.PageUsedAirliners_Unloaded;
+            Loaded += PageUsedAirliners_Loaded;
+            Unloaded += PageUsedAirliners_Unloaded;
       
-            this.RangeRanges = new List<FilterValue>
+            RangeRanges = new List<FilterValue>
                                {
                                    new FilterValue("<1500", 0, isMetric ? 1499 : (int)MathHelpers.MilesToKM(1499)),
                                    new FilterValue("1500-2999", isMetric ? 1500 : (int)MathHelpers.MilesToKM(1500), isMetric ? 2999 : (int)MathHelpers.MilesToKM(2999)),
                                    new FilterValue("3000-5999", isMetric ? 3000 : (int)MathHelpers.MilesToKM(3000), isMetric ? 5999 : (int)MathHelpers.MilesToKM(5999)),
                                    new FilterValue("6000+", isMetric ? 600 : (int)MathHelpers.MilesToKM(6000), int.MaxValue)
                                };
-            this.SpeedRanges = new List<FilterValue>
+            SpeedRanges = new List<FilterValue>
                                {
                                    new FilterValue("<400",  0,isMetric ? 399 : (int)MathHelpers.MilesToKM(399)),
                                    new FilterValue("400-599", isMetric ? 400 : (int)MathHelpers.MilesToKM(400), isMetric ? 599 : (int)MathHelpers.MilesToKM(599)),
                                    new FilterValue("600+", isMetric ? 600 : (int)MathHelpers.MilesToKM(600), int.MaxValue)
                                };
-            this.RunwayRanges = new List<FilterValue>
+            RunwayRanges = new List<FilterValue>
                                 {
                                     new FilterValue("<5000", 0, isMetric ? 4999 : (int)MathHelpers.FeetToMeter(4999)),
                                     new FilterValue("5000-7999", isMetric ? 5000 : (int)MathHelpers.FeetToMeter(5000), isMetric ? 7999 : (int)MathHelpers.FeetToMeter(7999)),
                                     new FilterValue("8000+", isMetric ? 8000 : (int)MathHelpers.FeetToMeter(8000), int.MaxValue)
                                 };
-            this.CapacityRanges = new List<FilterValue>
+            CapacityRanges = new List<FilterValue>
                                   {
                                       new FilterValue("<100", 0, 99),
                                       new FilterValue("100-199", 100, 199),
@@ -66,16 +63,16 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                                       new FilterValue("500+", 500, int.MaxValue)
                                   };
 
-            this.AllAirliners = new ObservableCollection<AirlinerMVVM>();
+            AllAirliners = new ObservableCollection<AirlinerMVVM>();
             foreach (
                 Airliner airliner in Airliners.GetAirlinersForSale().OrderByDescending(a => a.BuiltDate.Year).ToList())
             {
-                this.AllAirliners.Add(new AirlinerMVVM(airliner));
+                AllAirliners.Add(new AirlinerMVVM(airliner));
             }
 
-            this.SelectedAirliners = new ObservableCollection<AirlinerMVVM>();
+            SelectedAirliners = new ObservableCollection<AirlinerMVVM>();
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -100,7 +97,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
         private void PageUsedAirliners_Loaded(object sender, RoutedEventArgs e)
         {
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -115,19 +112,19 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 matchingItem.Visibility = Visibility.Collapsed;
             }
 
-            Hashtable filters = ((PageAirliners)this.Tag).AirlinersFilters;
+            Hashtable filters = ((PageAirliners)Tag).AirlinersFilters;
 
             if (filters != null)
             {
-                this.lvAirliners.setCurrentFilters(filters);
+                lvAirliners.setCurrentFilters(filters);
             }
         }
 
         private void PageUsedAirliners_Unloaded(object sender, RoutedEventArgs e)
         {
-            Hashtable filters = this.lvAirliners.getCurrentFilters();
+            Hashtable filters = lvAirliners.getCurrentFilters();
 
-            var parent = (PageAirliners)this.Tag;
+            var parent = (PageAirliners)Tag;
 
             parent.AirlinersFilters = filters;
         }
@@ -137,12 +134,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
 
-            double totalPrice = this.SelectedAirliners.Sum(a => a.Airliner.GetPrice());
+            double totalPrice = SelectedAirliners.Sum(a => a.Airliner.GetPrice());
 
             if (GameObject.GetInstance().HumanAirline.Contract != null)
             {
                 Boolean sameManufaturer =
-                    this.SelectedAirliners.FirstOrDefault(
+                    SelectedAirliners.FirstOrDefault(
                         a => a.Airliner.Type.Manufacturer != GameObject.GetInstance().HumanAirline.Contract.Manufacturer)
                     == null;
 
@@ -193,7 +190,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                     cbHomebase.HorizontalAlignment = HorizontalAlignment.Left;
                     cbHomebase.Width = 300;
 
-                    long minRunway = this.SelectedAirliners.Max(a => a.Airliner.Type.MinRunwaylength);
+                    long minRunway = SelectedAirliners.Max(a => a.Airliner.Type.MinRunwaylength);
 
                     List<Airport> homebases = AirlineHelpers.GetHomebases(
                         GameObject.GetInstance().HumanAirline,
@@ -213,7 +210,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                     {
                         var airport = cbHomebase.SelectedItem as Airport;
 
-                        var selectedAirliners = new List<AirlinerMVVM>(this.SelectedAirliners);
+                        var selectedAirliners = new List<AirlinerMVVM>(SelectedAirliners);
                         foreach (AirlinerMVVM airliner in selectedAirliners)
                         {
                             if (contractedOrder)
@@ -238,8 +235,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                             }
 
                             airliner.IsSelected = false;
-                            this.SelectedAirliners.Remove(airliner);
-                            this.AllAirliners.Remove(airliner);
+                            SelectedAirliners.Remove(airliner);
+                            AllAirliners.Remove(airliner);
                         }
                     }
                     else
@@ -255,7 +252,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
         private void btnCompare_Click(object sender, RoutedEventArgs e)
         {
-            PopUpCompareAirliners.ShowPopUp(this.SelectedAirliners[0].Airliner, this.SelectedAirliners[1].Airliner);
+            PopUpCompareAirliners.ShowPopUp(SelectedAirliners[0].Airliner, SelectedAirliners[1].Airliner);
         }
 
         private void btnLease_Click(object sender, RoutedEventArgs e)
@@ -263,12 +260,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
 
-            double totalLeasingPrice = this.SelectedAirliners.Sum(a => a.Airliner.GetLeasingPrice() * 2);
+            double totalLeasingPrice = SelectedAirliners.Sum(a => a.Airliner.GetLeasingPrice() * 2);
 
             if (GameObject.GetInstance().HumanAirline.Contract != null)
             {
                 Boolean sameManufaturer =
-                    this.SelectedAirliners.FirstOrDefault(
+                    SelectedAirliners.FirstOrDefault(
                         a => a.Airliner.Type.Manufacturer != GameObject.GetInstance().HumanAirline.Contract.Manufacturer)
                     == null;
                 if (sameManufaturer)
@@ -317,7 +314,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                     cbHomebase.HorizontalAlignment = HorizontalAlignment.Left;
                     cbHomebase.Width = 300;
 
-                    long minRunway = this.SelectedAirliners.Max(a => a.Airliner.Type.MinRunwaylength);
+                    long minRunway = SelectedAirliners.Max(a => a.Airliner.Type.MinRunwaylength);
 
                     List<Airport> homebases =
                         GameObject.GetInstance()
@@ -344,7 +341,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                     {
                         var airport = cbHomebase.SelectedItem as Airport;
 
-                        var selectedAirliners = new List<AirlinerMVVM>(this.SelectedAirliners);
+                        var selectedAirliners = new List<AirlinerMVVM>(SelectedAirliners);
                         
                         foreach (AirlinerMVVM airliner in selectedAirliners)
                         {
@@ -373,8 +370,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                                 GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners++;
                             }
 
-                            this.SelectedAirliners.Remove(airliner);
-                            this.AllAirliners.Remove(airliner);
+                            SelectedAirliners.Remove(airliner);
+                            AllAirliners.Remove(airliner);
                         }
                     }
                     else
@@ -393,7 +390,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             var airliner = (AirlinerMVVM)((CheckBox)sender).Tag;
             airliner.IsSelected = true;
 
-            this.SelectedAirliners.Add(airliner);
+            SelectedAirliners.Add(airliner);
         }
 
         private void cbCompare_Unchecked(object sender, RoutedEventArgs e)
@@ -401,13 +398,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             var airliner = (AirlinerMVVM)((CheckBox)sender).Tag;
             airliner.IsSelected = false;
 
-            this.SelectedAirliners.Remove(airliner);
+            SelectedAirliners.Remove(airliner);
         }
 
         private void cbPossibleHomebase_Checked(object sender, RoutedEventArgs e)
         {
             //var homebases = AirlineHelpers.GetHomebases(GameObject.GetInstance().HumanAirline,);
-            var source = this.lvAirliners.Items as ICollectionView;
+            var source = lvAirliners.Items as ICollectionView;
             source.Filter = o =>
             {
                 var a = o as AirlinerMVVM;
@@ -425,26 +422,26 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 return isPossible;
             };
 
-            this.SelectedAirliners.Clear();
+            SelectedAirliners.Clear();
         }
 
         private void cbPossibleHomebase_Unchecked(object sender, RoutedEventArgs e)
         {
-            var source = this.lvAirliners.Items as ICollectionView;
+            var source = lvAirliners.Items as ICollectionView;
             source.Filter = o =>
             {
                 var a = o as AirlinerMVVM;
                 return true;
             };
 
-            this.SelectedAirliners.Clear();
+            SelectedAirliners.Clear();
         }
 
         private void lnkAirliner_Click(object sender, RoutedEventArgs e)
         {
             var airliner = (AirlinerMVVM)((Hyperlink)sender).Tag;
 
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -456,11 +453,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 tab_main.SelectedItem = matchingItem;
             }
 
-            var frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
+            var frmContent = UIHelpers.FindChild<Frame>(Tag as Page, "frmContent");
 
             if (frmContent != null)
             {
-                frmContent.Navigate(new PageUsedAirliner(airliner.Airliner) { Tag = this.Tag });
+                frmContent.Navigate(new PageUsedAirliner(airliner.Airliner) { Tag = Tag });
             }
         }
 

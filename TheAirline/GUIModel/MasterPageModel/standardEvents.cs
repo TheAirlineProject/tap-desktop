@@ -1,25 +1,22 @@
-﻿using TheAirline.Helpers.Workers;
+﻿using System.Windows;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.PagesModel.AirlinersPageModel;
+using TheAirline.GUIModel.PagesModel.AirlinesPageModel;
+using TheAirline.GUIModel.PagesModel.AirportsPageModel;
+using TheAirline.GUIModel.PagesModel.AlliancesPageModel;
+using TheAirline.GUIModel.PagesModel.GamePageModel;
+using TheAirline.GUIModel.PagesModel.OptionsPageModel;
+using TheAirline.GUIModel.PagesModel.PilotsPageModel;
+using TheAirline.GUIModel.PagesModel.RoutesPageModel;
+using TheAirline.Helpers.Workers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.General;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.GUIModel.MasterPageModel
 {
-    using System.Windows;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.GUIModel.PagesModel.AirlinersPageModel;
-    using TheAirline.GUIModel.PagesModel.AirlinesPageModel;
-    using TheAirline.GUIModel.PagesModel.AirportsPageModel;
-    using TheAirline.GUIModel.PagesModel.AlliancesPageModel;
-    using TheAirline.GUIModel.PagesModel.GamePageModel;
-    using TheAirline.GUIModel.PagesModel.OptionsPageModel;
-    using TheAirline.GUIModel.PagesModel.PilotsPageModel;
-    using TheAirline.GUIModel.PagesModel.RoutesPageModel;
-    using TheAirline.Model.GeneralModel;
-    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
-
     public partial class standardEvents
     {
         #region Methods

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.General.Statistics;
 
 namespace TheAirline.Models.Airliners

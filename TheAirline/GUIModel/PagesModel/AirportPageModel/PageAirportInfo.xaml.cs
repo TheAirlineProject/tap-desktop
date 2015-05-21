@@ -1,4 +1,12 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Environment;
@@ -6,17 +14,6 @@ using TheAirline.Models.General.Finances;
 
 namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAirportInfo.xaml
     /// </summary>
@@ -26,17 +23,17 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
         public PageAirportInfo(AirportMVVM airport)
         {
-            this.Airport = airport;
-            this.DataContext = this.Airport;
+            Airport = airport;
+            DataContext = Airport;
 
-            this.ContractTypes = new List<AirportContract.ContractType>();
+            ContractTypes = new List<AirportContract.ContractType>();
 
             foreach (AirportContract.ContractType type in Enum.GetValues(typeof(AirportContract.ContractType)))
             {
-                this.ContractTypes.Add(type);
+                ContractTypes.Add(type);
             }
 
-            this.InitializeComponent();
+            InitializeComponent();
 
             rbTerminalType.IsChecked = true;
             /*
@@ -67,13 +64,13 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
         private void btnBuildTerminal_Click(object sender, RoutedEventArgs e)
         {
-            int gates = Convert.ToInt16(this.slGates.Value);
-            string name = this.txtName.Text.Trim();
+            int gates = Convert.ToInt16(slGates.Value);
+            string name = txtName.Text.Trim();
 
             Terminal.TerminalType terminalType = rbTerminalType.IsChecked.Value ? Terminal.TerminalType.Passenger : Terminal.TerminalType.Cargo;
 
             // chs, 2011-01-11 changed so a message for confirmation are shown9han
-            double price = gates * this.Airport.TerminalGatePrice + this.Airport.TerminalPrice;
+            double price = gates * Airport.TerminalGatePrice + Airport.TerminalPrice;
 
             if (price > GameObject.GetInstance().HumanAirline.Money)
             {
@@ -95,14 +92,14 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                         .GameTime.Add(new TimeSpan(gates * 10 + 60, 0, 0, 0));
 
                     var terminal = new Terminal(
-                        this.Airport.Airport,
+                        Airport.Airport,
                         GameObject.GetInstance().HumanAirline,
                         name,
                         gates,
                         deliveryDate,
                         terminalType);
 
-                    this.Airport.addTerminal(terminal);
+                    Airport.addTerminal(terminal);
 
                     AirlineHelpers.AddAirlineInvoice(
                         GameObject.GetInstance().HumanAirline,
@@ -117,8 +114,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             var terminal = (AirportTerminalMVVM)((Button)sender).Tag;
 
-            long price = terminal.Gates * this.Airport.Airport.GetTerminalGatePrice()
-                         + this.Airport.Airport.GetTerminalPrice();
+            long price = terminal.Gates * Airport.Airport.GetTerminalGatePrice()
+                         + Airport.Airport.GetTerminalPrice();
 
             if (price > GameObject.GetInstance().HumanAirline.Money)
             {
@@ -136,7 +133,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    this.Airport.purchaseTerminal(terminal, GameObject.GetInstance().HumanAirline);
+                    Airport.purchaseTerminal(terminal, GameObject.GetInstance().HumanAirline);
                  
                     AirlineHelpers.AddAirlineInvoice(
                         GameObject.GetInstance().HumanAirline,
@@ -153,7 +150,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             HubType type = HubTypes.GetHubType(HubType.TypeOfHub.Hub); //(HubType)cbHubType.SelectedItem;
 
-            if (AirportHelpers.GetHubPrice(this.Airport.Airport, type) > GameObject.GetInstance().HumanAirline.Money)
+            if (AirportHelpers.GetHubPrice(Airport.Airport, type) > GameObject.GetInstance().HumanAirline.Money)
             {
                 WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2212"),
@@ -166,18 +163,18 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                     Translator.GetInstance().GetString("MessageBox", "2213"),
                     string.Format(
                         Translator.GetInstance().GetString("MessageBox", "2213", "message"),
-                        AirportHelpers.GetHubPrice(this.Airport.Airport, type)),
+                        AirportHelpers.GetHubPrice(Airport.Airport, type)),
                     WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    this.Airport.addHub(new Hub(GameObject.GetInstance().HumanAirline, type));
+                    Airport.addHub(new Hub(GameObject.GetInstance().HumanAirline, type));
 
                     AirlineHelpers.AddAirlineInvoice(
                         GameObject.GetInstance().HumanAirline,
                         GameObject.GetInstance().GameTime,
                         Invoice.InvoiceType.Purchases,
-                        -AirportHelpers.GetHubPrice(this.Airport.Airport, type));
+                        -AirportHelpers.GetHubPrice(Airport.Airport, type));
                 }
             }
         }
@@ -218,12 +215,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             double penaltyFee = ((contract.YearlyPayment / 12) * contract.MonthsLeft) / 10;
 
             List<AirportContract> contracts =
-                this.Airport.Airport.AirlineContracts.Where(
+                Airport.Airport.AirlineContracts.Where(
                     a => a.Airline == GameObject.GetInstance().HumanAirline && a != contract).ToList();
 
             if (
                 !AirportHelpers.CanFillRoutesEntries(
-                    this.Airport.Airport,
+                    Airport.Airport,
                     GameObject.GetInstance().HumanAirline,
                     contracts,
                     Weather.Season.AllYear))
@@ -259,12 +256,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                         Invoice.InvoiceType.Purchases,
                         -penaltyFee);
 
-                    this.Airport.removeAirlineContract(tContract);
+                    Airport.removeAirlineContract(tContract);
 
                     for (int i = 0; i < contract.NumberOfGates; i++)
                     {
                         Gate gate =
-                            this.Airport.Airport.Terminals.GetGates()
+                            Airport.Airport.Terminals.GetGates()
                                 .Where(g => g.Airline == GameObject.GetInstance().HumanAirline)
                                 .FirstOrDefault();
 
@@ -283,12 +280,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 Translator.GetInstance().GetString("MessageBox", "2227"),
                 string.Format(
                     Translator.GetInstance().GetString("MessageBox", "2227", "message"),
-                    this.Airport.Airport.Profile.Name),
+                    Airport.Airport.Profile.Name),
                 WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                this.Airport.removeHub(hub);
+                Airport.removeHub(hub);
             }
         }
 
@@ -296,15 +293,15 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             var terminal = (AirportTerminalMVVM)((Button)sender).Tag;
 
-            int totalRentedGates = this.Airport.Airport.AirlineContracts.Sum(c => c.NumberOfGates);
+            int totalRentedGates = Airport.Airport.AirlineContracts.Sum(c => c.NumberOfGates);
 
-            Boolean isTerminalFree = this.Airport.Airport.Terminals.GetNumberOfGates(terminal.Terminal.Type) - terminal.Gates
+            Boolean isTerminalFree = Airport.Airport.Terminals.GetNumberOfGates(terminal.Terminal.Type) - terminal.Gates
                                      >= totalRentedGates; 
             if (isTerminalFree)
             {
                 // chs, 2011-31-10 changed for the possibility of having delivered and non-delivered terminals
-                long price = (terminal.Gates * this.Airport.Airport.GetTerminalGatePrice()
-                       + this.Airport.Airport.GetTerminalPrice()) / 2;
+                long price = (terminal.Gates * Airport.Airport.GetTerminalGatePrice()
+                       + Airport.Airport.GetTerminalPrice()) / 2;
 
                 //string strRemove;
                 if (terminal.DeliveryDate > GameObject.GetInstance().GameTime)
@@ -316,7 +313,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
                     if (result == WPFMessageBoxResult.Yes)
                     {
-                        this.Airport.removeTerminal(terminal);
+                        Airport.removeTerminal(terminal);
                     }
                 }
                 else
@@ -335,12 +332,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                          Invoice.InvoiceType.Purchases,
                          price);
 
-                        var contract = this.Airport.Contracts.First(f=>f.Airline == terminal.Airline && f.NumberOfGates == terminal.Gates);
+                        var contract = Airport.Contracts.First(f=>f.Airline == terminal.Airline && f.NumberOfGates == terminal.Gates);
                                            
                         terminal.Airline = null;
 
                         contract.Contract.YearlyPayment = AirportHelpers.GetYearlyContractPayment(
-              this.Airport.Airport,
+              Airport.Airport,
               AirportContract.ContractType.Full,
               terminal.Gates,
               20);
@@ -366,19 +363,19 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             Terminal.TerminalType terminalType = rbTerminalContractType.IsChecked.Value ? Terminal.TerminalType.Passenger : Terminal.TerminalType.Cargo;
 
-            int gates = Convert.ToInt16(this.slContractGates.Value);
-            int length = Convert.ToInt16(this.slContractLenght.Value);
+            int gates = Convert.ToInt16(slContractGates.Value);
+            int length = Convert.ToInt16(slContractLenght.Value);
 
             Boolean hasCheckin =
-                this.Airport.Airport.GetAirportFacility(
+                Airport.Airport.GetAirportFacility(
                     GameObject.GetInstance().HumanAirline,
                     AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
-            var contractType = (AirportContract.ContractType)this.cbContractType.SelectedItem;
+            var contractType = (AirportContract.ContractType)cbContractType.SelectedItem;
 
-            Boolean autoRenew = this.cbAutoRenew.IsChecked.Value;
+            Boolean autoRenew = cbAutoRenew.IsChecked.Value;
 
             double yearlyPayment = AirportHelpers.GetYearlyContractPayment(
-                this.Airport.Airport,
+                Airport.Airport,
                 contractType,
                 gates,
                 length);
@@ -387,7 +384,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             var contract = new AirportContract(
                 GameObject.GetInstance().HumanAirline,
-                this.Airport.Airport,
+                Airport.Airport,
                 contractType,
                 terminalType,
                 GameObject.GetInstance().GameTime,
@@ -402,7 +399,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 AirportFacility checkinFacility =
                     AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
-                this.Airport.Airport.AddAirportFacility(
+                Airport.Airport.AddAirportFacility(
                     GameObject.GetInstance().HumanAirline,
                     checkinFacility,
                     GameObject.GetInstance().GameTime);
@@ -427,11 +424,11 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             for (int i = 0; i < gates; i++)
             {
-                Gate gate = this.Airport.Airport.Terminals.GetGates().Where(g => g.Airline == null).First();
+                Gate gate = Airport.Airport.Terminals.GetGates().Where(g => g.Airline == null).First();
                 gate.Airline = GameObject.GetInstance().HumanAirline;
             }
 
-            this.Airport.addAirlineContract(contract);
+            Airport.addAirlineContract(contract);
         }
 
         #endregion

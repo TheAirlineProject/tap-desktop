@@ -1,16 +1,14 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Globalization;
+using System.Windows.Data;
+using System.Windows.Media;
+using TheAirline.Helpers;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airports;
 using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
-    using System;
-    using System.Globalization;
-    using System.Windows.Data;
-    using System.Windows.Media;
-    using TheAirline.Model.GeneralModel;
-
     public enum IntervalType
     {
         Day,
@@ -34,9 +32,9 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         public RoutePlannerItemMVVM(Route route, AirlinerType type)
         {
-            this.Route = route;
+            Route = route;
 
-            var g2 = new Guid(this.Route.Id);
+            var g2 = new Guid(Route.Id);
 
             byte[] bytes = g2.ToByteArray();
 
@@ -47,10 +45,10 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             var brush = new SolidColorBrush(Color.FromRgb(red, green, blue));
             brush.Opacity = 0.4;
 
-            this.Brush = brush;
-            this.FlightTime = MathHelpers.GetFlightTime(this.Route.Destination1, this.Route.Destination2, type);
+            Brush = brush;
+            FlightTime = MathHelpers.GetFlightTime(Route.Destination1, Route.Destination2, type);
 
-            this.Airliners = this.Route.GetAirliners().Count;
+            Airliners = Route.GetAirliners().Count;
         }
 
         #endregion
@@ -75,8 +73,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         public HourItemMVVM(DateTime start, DateTime end)
         {
-            this.Start = start;
-            this.End = end;
+            Start = start;
+            End = end;
         }
 
         #endregion
@@ -97,9 +95,9 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         public RouteEntryVVM(Route route, DayOfWeek day, TimeSpan departure)
         {
-            this.Route = route;
-            this.Day = day;
-            this.DepartureTime = departure;
+            Route = route;
+            Day = day;
+            DepartureTime = departure;
         }
 
         #endregion

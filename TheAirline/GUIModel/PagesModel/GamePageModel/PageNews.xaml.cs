@@ -1,25 +1,22 @@
-﻿using TheAirline.Models.Airliners;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.PagesModel.AirportPageModel;
+using TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel;
+using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
-    using System;
-    using System.Collections.ObjectModel;
-    using System.Globalization;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.GUIModel.PagesModel.AirportPageModel;
-    using TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageNews.xaml
     /// </summary>
@@ -29,18 +26,18 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         public PageNews()
         {
-            this.AllNews = new ObservableCollection<NewsMVVM>();
+            AllNews = new ObservableCollection<NewsMVVM>();
 
             foreach (News news in GameObject.GetInstance().NewsBox.GetNews().OrderByDescending(n => n.Date).ToList())
             {
-                this.AllNews.Add(new NewsMVVM(news));
+                AllNews.Add(new NewsMVVM(news));
             }
 
-            this.SelectedNews = new SelectedNewsMVVM();
+            SelectedNews = new SelectedNewsMVVM();
 
-            this.SelectedNewsList = new ObservableCollection<NewsMVVM>();
+            SelectedNewsList = new ObservableCollection<NewsMVVM>();
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -59,16 +56,16 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void btnDeleteSelected_Click(object sender, RoutedEventArgs e)
         {
-            foreach (NewsMVVM news in this.SelectedNewsList)
+            foreach (NewsMVVM news in SelectedNewsList)
             {
-                this.AllNews.Remove(news);
+                AllNews.Remove(news);
                 GameObject.GetInstance().NewsBox.RemoveNews(news.News);
             }
         }
 
         private void btnDeselectAll_Click(object sender, RoutedEventArgs e)
         {
-            foreach (NewsMVVM news in this.AllNews)
+            foreach (NewsMVVM news in AllNews)
             {
                 news.IsSelected = false;
             }
@@ -77,7 +74,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void btnMarkSelected_Click(object sender, RoutedEventArgs e)
         {
-            foreach (NewsMVVM news in this.SelectedNewsList)
+            foreach (NewsMVVM news in SelectedNewsList)
             {
                 news.markAsRead();
             }
@@ -86,19 +83,19 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         private void btnNo_Click(object sender, RoutedEventArgs e)
         {
             var news = (News)((Button)sender).Tag;
-            this.SelectedNews.SelectedNews = null;
+            SelectedNews.SelectedNews = null;
 
-            NewsMVVM newsMVVM = this.AllNews.First(n => n.News == news);
-            this.AllNews.Remove(newsMVVM);
+            NewsMVVM newsMVVM = AllNews.First(n => n.News == news);
+            AllNews.Remove(newsMVVM);
 
             GameObject.GetInstance().NewsBox.RemoveNews(news);
         }
 
         private void btnSelectAll_Click(object sender, RoutedEventArgs e)
         {
-            foreach (NewsMVVM news in this.AllNews)
+            foreach (NewsMVVM news in AllNews)
             {
-                if (!this.SelectedNewsList.Contains(news))
+                if (!SelectedNewsList.Contains(news))
                 {
                     //this.SelectedNewsList.Add(news);
                     news.IsSelected = true;
@@ -112,10 +109,10 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             news.ExecuteNews();
 
-            this.SelectedNews.SelectedNews = null;
+            SelectedNews.SelectedNews = null;
 
-            NewsMVVM newsMVVM = this.AllNews.First(n => n.News == news);
-            this.AllNews.Remove(newsMVVM);
+            NewsMVVM newsMVVM = AllNews.First(n => n.News == news);
+            AllNews.Remove(newsMVVM);
 
             GameObject.GetInstance().NewsBox.RemoveNews(news);
         }
@@ -123,13 +120,13 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         private void cbNews_Checked(object sender, RoutedEventArgs e)
         {
             var news = (NewsMVVM)((CheckBox)sender).Tag;
-            this.SelectedNewsList.Add(news);
+            SelectedNewsList.Add(news);
         }
 
         private void cbNews_Unchecked(object sender, RoutedEventArgs e)
         {
             var news = (NewsMVVM)((CheckBox)sender).Tag;
-            this.SelectedNewsList.Remove(news);
+            SelectedNewsList.Remove(news);
         }
 
         private void lnkNews_Click(object sender, RoutedEventArgs e)
@@ -137,7 +134,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             var news = (NewsMVVM)((Hyperlink)sender).Tag;
             news.markAsRead();
 
-            this.SelectedNews.SelectedNews = news.News;
+            SelectedNews.SelectedNews = news.News;
         }
 
         #endregion
@@ -161,23 +158,23 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             {
                 if (subText.StartsWith("LI"))
                 {
-                    txtBlock.Inlines.Add(this.getNewsLink(subText));
+                    txtBlock.Inlines.Add(getNewsLink(subText));
                 }
                 else if (subText.StartsWith("HEAD"))
                 {
-                    txtBlock.Inlines.Add(this.getNewsHeader(subText));
+                    txtBlock.Inlines.Add(getNewsHeader(subText));
                 }
                 else if (subText.StartsWith("BOLD"))
                 {
-                    txtBlock.Inlines.Add(this.getNewsBold(subText));
+                    txtBlock.Inlines.Add(getNewsBold(subText));
                 }
                 else if (subText.StartsWith("WIDTH"))
                 {
-                    txtBlock.Inlines.Add(this.getNewsWidthText(subText));
+                    txtBlock.Inlines.Add(getNewsWidthText(subText));
                 }
                 else
                 {
-                    string[] newLines = subText.Split(new string[]{"\\n"},StringSplitOptions.RemoveEmptyEntries);
+                    string[] newLines = subText.Split(new[]{"\\n"},StringSplitOptions.RemoveEmptyEntries);
 
                     if (newLines.Count() > 0)
                     {
@@ -270,7 +267,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             hyperLink.Tag = o;
             hyperLink.TextDecorations = TextDecorations.Underline;
             hyperLink.TargetName = linkType;
-            hyperLink.Click += this.hyperLink_Click;
+            hyperLink.Click += hyperLink_Click;
 
             return hyperLink;
         }

@@ -5,8 +5,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airliners;
+using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.AirlineCooperation;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
@@ -150,7 +150,7 @@ namespace TheAirline.Models.Airports
             }
         }
 
-        public void AddAirportFacility(Airlines.Airline airline, AirportFacility facility, DateTime finishedDate)
+        public void AddAirportFacility(Airline airline, AirportFacility facility, DateTime finishedDate)
         {
             //this.Facilities.RemoveAll(f => f.Airline == airline && f.Facility.Type == facility.Type);
             _facilities.Add(new AirlineAirportFacility(airline, this, facility, finishedDate));
@@ -297,13 +297,13 @@ namespace TheAirline.Models.Airports
         }
 
         //cleares the list of facilities for an airline
-        public void ClearFacilities(Airlines.Airline airline)
+        public void ClearFacilities(Airline airline)
         {
             _facilities.RemoveAll(f => f.Airline == airline);
         }
 
         //returns if an airline is building a facility
-        public bool IsBuildingFacility(Airlines.Airline airline, AirportFacility.FacilityType type)
+        public bool IsBuildingFacility(Airline airline, AirportFacility.FacilityType type)
         {
             var facilities = new List<AirlineAirportFacility>();
             lock (_facilities)
@@ -312,7 +312,7 @@ namespace TheAirline.Models.Airports
             }
         }
 
-        public AirlineAirportFacility GetAirlineAirportFacility(Airlines.Airline airline, AirportFacility.FacilityType type)
+        public AirlineAirportFacility GetAirlineAirportFacility(Airline airline, AirportFacility.FacilityType type)
         {
             List<AirlineAirportFacility> facilities;
             lock (_facilities)
@@ -335,7 +335,7 @@ namespace TheAirline.Models.Airports
             return facilities.FirstOrDefault();
         }
 
-        public AirportFacility GetAirlineBuildingFacility(Airlines.Airline airline, AirportFacility.FacilityType type)
+        public AirportFacility GetAirlineBuildingFacility(Airline airline, AirportFacility.FacilityType type)
         {
             AirlineAirportFacility facility =
                 _facilities.FirstOrDefault(
@@ -349,7 +349,7 @@ namespace TheAirline.Models.Airports
         //adds an airline airport contract to the airport
 
         //returns the contracts for an airline
-        public List<AirportContract> GetAirlineContracts(Airlines.Airline airline)
+        public List<AirportContract> GetAirlineContracts(Airline airline)
         {
             return AirlineContracts.FindAll(a => a.Airline == airline);
         }
@@ -367,7 +367,7 @@ namespace TheAirline.Models.Airports
             return contracts;
         }
 
-        public double GetAirlineReputation(Airlines.Airline airline)
+        public double GetAirlineReputation(Airline airline)
         {
             //The score could be airport facilities for the airline, routes, connecting routes, hotels, service level per route etc
             double score = 0;
@@ -400,7 +400,7 @@ namespace TheAirline.Models.Airports
             return airline.Codeshares.Select(codesharing => (codesharing.Airline1 == airline ? codesharing.Airline2 : codesharing.Airline1).Routes.Count(r => r.Destination2 == this || r.Destination1 == this)).Aggregate(score, (current, codesharingRoutes) => current + 4*codesharingRoutes);
         }
 
-        public List<AirlineAirportFacility> GetAirportFacilities(Airlines.Airline airline)
+        public List<AirlineAirportFacility> GetAirportFacilities(Airline airline)
         {
             List<AirlineAirportFacility> fac;
 
@@ -419,7 +419,7 @@ namespace TheAirline.Models.Airports
         }
 
         public AirportFacility GetAirportFacility(
-            Airlines.Airline airline,
+            Airline airline,
             AirportFacility.FacilityType type,
             Boolean useAirport = false)
         {
@@ -435,12 +435,12 @@ namespace TheAirline.Models.Airports
                        : airportFacility;
         }
 
-        public List<AirportFacility> GetCurrentAirportFacilities(Airlines.Airline airline)
+        public List<AirportFacility> GetCurrentAirportFacilities(Airline airline)
         {
             return (from AirportFacility.FacilityType type in Enum.GetValues(typeof (AirportFacility.FacilityType)) select GetCurrentAirportFacility(airline, type)).ToList();
         }
 
-        public AirportFacility GetCurrentAirportFacility(Airlines.Airline airline, AirportFacility.FacilityType type)
+        public AirportFacility GetCurrentAirportFacility(Airline airline, AirportFacility.FacilityType type)
         {
             List<AirportFacility> facilities;
 
@@ -659,12 +659,12 @@ namespace TheAirline.Models.Airports
             return _facilities.Exists(f => f.Airline != null && f.Facility.TypeLevel > 0);
         }
 
-        public Boolean HasAsHomebase(Airlines.Airline airline)
+        public Boolean HasAsHomebase(Airline airline)
         {
             return airline.Fleet.Any(airliner => airliner.Homebase == this);
         }
 
-        public Boolean HasContractType(Airlines.Airline airline, AirportContract.ContractType type)
+        public Boolean HasContractType(Airline airline, AirportContract.ContractType type)
         {
             return AirlineContracts.Exists(c => c.Airline == airline && c.Type == type);
         }
@@ -688,7 +688,7 @@ namespace TheAirline.Models.Airports
         //returns the facilities being build for an airline
 
         //returns if an airline has any facilities at the airport
-        public Boolean HasFacilities(Airlines.Airline airline)
+        public Boolean HasFacilities(Airline airline)
         {
             Boolean hasFacilities = false;
             foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof (AirportFacility.FacilityType)))
@@ -702,7 +702,7 @@ namespace TheAirline.Models.Airports
         }
 
         //returns if an airline has any facilities besides a specific type
-        public Boolean HasFacilities(Airlines.Airline airline, AirportFacility.FacilityType ftype)
+        public Boolean HasFacilities(Airline airline, AirportFacility.FacilityType ftype)
         {
             Boolean hasFacilities = false;
             foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof (AirportFacility.FacilityType)))
@@ -718,7 +718,7 @@ namespace TheAirline.Models.Airports
             return hasFacilities;
         }
 
-        public Boolean HasHub(Airlines.Airline airline)
+        public Boolean HasHub(Airline airline)
         {
             return Hubs.Exists(h => h.Airline == airline);
         }
@@ -744,7 +744,7 @@ namespace TheAirline.Models.Airports
         //returns if an airline has any airliners with the airport as home base
 
         //removes the facility for an airline
-        public void RemoveFacility(Airlines.Airline airline, AirportFacility facility)
+        public void RemoveFacility(Airline airline, AirportFacility facility)
         {
             _facilities.RemoveAll(f => f.Airline == airline && f.Facility.Type == facility.Type);
         }

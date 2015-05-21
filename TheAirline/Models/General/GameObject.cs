@@ -6,7 +6,6 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.General.Countries;
 using TheAirline.Models.General.Scenarios;

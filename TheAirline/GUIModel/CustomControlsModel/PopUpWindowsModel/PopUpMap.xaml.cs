@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Device.Location;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Device.Location;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
-using TheAirline.Model.GeneralModel;
-using System.ComponentModel;
-using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.Airliners;
@@ -25,6 +21,7 @@ using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 using TheAirline.Models.Routes;
+using Path = System.Windows.Shapes.Path;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -84,7 +81,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.MapSize = mapSize;
 
-            this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
         }
         public PopUpMap(FleetAirliner airliner)
@@ -216,7 +213,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             WrapPanel panelZoomButtons = new WrapPanel();
 
             Button btnZoomIn = new Button();
-            btnZoomIn.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
+            btnZoomIn.SetResourceReference(StyleProperty, "StandardButtonStyle");
             //btnZoomIn.Height = Double.NaN;
             btnZoomIn.Width = 30;
             btnZoomIn.Content = "+";
@@ -226,7 +223,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelZoomButtons.Children.Add(btnZoomIn);
 
             Button btnZoomOut = new Button();
-            btnZoomOut.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
+            btnZoomOut.SetResourceReference(StyleProperty, "StandardButtonStyle");
             //btnZoomOut.Height = Double.NaN;
             btnZoomOut.Width = 30;
             btnZoomOut.Content = "-";
@@ -372,7 +369,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
           int i = 0;
 
-          System.Windows.Shapes.Path flightPath = new System.Windows.Shapes.Path();
+          Path flightPath = new Path();
           flightPath.Stroke = new AirlineBrushConverter().Convert(airline) as SolidColorBrush;
           flightPath.StrokeThickness = 1;
           flightPath.Fill = new AirlineBrushConverter().Convert(airline) as SolidColorBrush;
@@ -647,7 +644,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
            // brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
        
             ContentControl lblAirport = new ContentControl();
-            lblAirport.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryItem");
+            lblAirport.SetResourceReference(ContentTemplateProperty, "AirportCountryItem");
             lblAirport.Content = airport;
 
             brdToolTip.Child = lblAirport;

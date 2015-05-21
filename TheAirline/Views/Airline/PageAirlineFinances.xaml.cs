@@ -1,17 +1,16 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Finances;
+using TheAirline.ViewModels.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Windows;
-    using System.Windows.Controls;
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAirlineFinances.xaml
     /// </summary>
@@ -21,19 +20,19 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         public PageAirlineFinances(AirlineMVVM airline)
         {
-            this.Airline = airline;
-            this.DataContext = this.Airline;
+            Airline = airline;
+            DataContext = Airline;
 
-            this.InitializeComponent();
+            InitializeComponent();
 
             var incomes = new List<KeyValuePair<string, int>>();
             var expenses = new List<KeyValuePair<string, int>>();
 
             int count = 0;
 
-            while (count < this.Airline.Airline.DailyOperatingBalanceHistory.Count && count < 5)
+            while (count < Airline.Airline.DailyOperatingBalanceHistory.Count && count < 5)
             {
-                KeyValuePair<DateTime,KeyValuePair<double,double>> value = this.Airline.Airline.DailyOperatingBalanceHistory[this.Airline.Airline.DailyOperatingBalanceHistory.Count -count -1];
+                KeyValuePair<DateTime,KeyValuePair<double,double>> value = Airline.Airline.DailyOperatingBalanceHistory[Airline.Airline.DailyOperatingBalanceHistory.Count -count -1];
 
                 incomes.Add(new KeyValuePair<string, int>(value.Key.ToShortDateString(), (int)value.Value.Key));
                 expenses.Add(new KeyValuePair<string, int>(value.Key.ToShortDateString(), (int)value.Value.Value));
@@ -47,10 +46,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             string displayName1 = "Income";
             string displayName2 = "Expenses";
 
-            demandSeries.Add(new SeriesData() { DisplayName = displayName1, Items = incomes });
-            demandSeries.Add(new SeriesData() { DisplayName = displayName2, Items = expenses });
+            demandSeries.Add(new SeriesData { DisplayName = displayName1, Items = incomes });
+            demandSeries.Add(new SeriesData { DisplayName = displayName2, Items = expenses });
 
-            this.cccDOR.DataContext = demandSeries;
+            cccDOR.DataContext = demandSeries;
         }
 
         #endregion
@@ -65,17 +64,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void btnApplyLoan_Click(object sender, RoutedEventArgs e)
         {
-            double amount = this.slAmount.Value;
-            int length = Convert.ToInt16(this.slLenght.Value) * 12;
+            double amount = slAmount.Value;
+            int length = Convert.ToInt16(slLenght.Value) * 12;
 
-            var loan = new Loan(GameObject.GetInstance().GameTime, amount, length, this.Airline.LoanRate);
+            var loan = new Loan(GameObject.GetInstance().GameTime, amount, length, Airline.LoanRate);
 
             if (AirlineHelpers.CanApplyForLoan(GameObject.GetInstance().HumanAirline, loan))
             {
-                this.Airline.addLoan(loan);
+                Airline.addLoan(loan);
 
                 AirlineHelpers.AddAirlineInvoice(
-                    this.Airline.Airline,
+                    Airline.Airline,
                     GameObject.GetInstance().GameTime,
                     Invoice.InvoiceType.Loans,
                     loan.Amount);
@@ -96,7 +95,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             double amount = Convert.ToDouble(txtPay.Text);
 
-            if (amount <= 0 || amount > this.Airline.Money)
+            if (amount <= 0 || amount > Airline.Money)
             {
                 WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2104"),
@@ -117,14 +116,14 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     loan.payOnLoan(payingAmount);
 
                     AirlineHelpers.AddAirlineInvoice(
-                        this.Airline.Airline,
+                        Airline.Airline,
                         GameObject.GetInstance().GameTime,
                         Invoice.InvoiceType.Loans,
                         -payingAmount);
 
                     if (loan.PaymentLeft <= 0)
                     {
-                        this.Airline.Loans.Remove(loan);
+                        Airline.Loans.Remove(loan);
                     }
                 }
             }

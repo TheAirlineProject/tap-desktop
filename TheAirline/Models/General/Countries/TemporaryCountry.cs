@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Models.General.Countries
 {
@@ -15,7 +14,7 @@ namespace TheAirline.Models.General.Countries
     {
         #region Constructors and Destructors
 
-        public TemporaryCountry(TemporaryType type, General.Countries.Country country, DateTime startDate, DateTime endDate)
+        public TemporaryCountry(TemporaryType type, Country country, DateTime startDate, DateTime endDate)
             : base(Section, country.Uid, country.ShortName, country.Region, country.TailNumberFormat)
         {
             Type = type;
@@ -50,10 +49,10 @@ namespace TheAirline.Models.General.Countries
         public List<OneToManyCountry> Countries { get; set; }
 
         [Versioning("after")]
-        public General.Countries.Country CountryAfter { get; set; }
+        public Country CountryAfter { get; set; }
 
         [Versioning("before")]
-        public General.Countries.Country CountryBefore { get; set; }
+        public Country CountryBefore { get; set; }
 
         [Versioning("enddate")]
         public DateTime EndDate { get; set; }
@@ -75,7 +74,7 @@ namespace TheAirline.Models.General.Countries
             base.GetObjectData(info, context);
         }
 
-        public General.Countries.Country GetCurrentCountry(DateTime date, General.Countries.Country originalCountry)
+        public Country GetCurrentCountry(DateTime date, Country originalCountry)
         {
             if (Type == TemporaryType.ManyToOne)
             {
@@ -119,7 +118,7 @@ namespace TheAirline.Models.General.Countries
     {
         #region Constructors and Destructors
 
-        public OneToManyCountry(General.Countries.Country country, DateTime startDate, DateTime endDate)
+        public OneToManyCountry(Country country, DateTime startDate, DateTime endDate)
         {
             StartDate = startDate;
             EndDate = endDate;
@@ -135,7 +134,7 @@ namespace TheAirline.Models.General.Countries
         #region Public Properties
 
         [Versioning("country")]
-        public General.Countries.Country Country { get; set; }
+        public Country Country { get; set; }
 
         [Versioning("endate")]
         public DateTime EndDate { get; set; }
@@ -181,18 +180,18 @@ namespace TheAirline.Models.General.Countries
         //returns all temporary countries
         public static List<Country> GetCountries()
         {
-            return Countries.Cast<General.Countries.Country>().ToList();
+            return Countries.Cast<Country>().ToList();
         }
 
         //returns a country
-        public static General.Countries.Country GetCountry(string uid)
+        public static Country GetCountry(string uid)
         {
             TemporaryCountry country = Countries.Find(t => t.Uid == uid);
             return country;
         }
 
         //returns a temporary country which a country is a part of
-        public static TemporaryCountry GetTemporaryCountry(General.Countries.Country country, DateTime date)
+        public static TemporaryCountry GetTemporaryCountry(Country country, DateTime date)
         {
             if (country == null)
             {

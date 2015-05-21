@@ -1,16 +1,13 @@
-﻿using TheAirline.Infrastructure;
-using TheAirline.Models.General;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Infrastructure;
+using TheAirline.Views.Game;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageSettings.xaml
     /// </summary>
@@ -20,9 +17,9 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         public PageSettings()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.Loaded += this.PageSettings_Loaded;
+            Loaded += PageSettings_Loaded;
         }
 
         #endregion

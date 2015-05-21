@@ -1,4 +1,14 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airlines.AirlineCooperation;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
@@ -7,19 +17,6 @@ using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAirportFacilities.xaml
     /// </summary>
@@ -29,18 +26,18 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
         public PageAirportFacilities(AirportMVVM airport)
         {
-            this.Airport = airport;
-            this.DataContext = this.Airport;
+            Airport = airport;
+            DataContext = Airport;
 
-            this.FacilityTypes =
+            FacilityTypes =
                 Enum.GetValues(typeof(AirportFacility.FacilityType)).Cast<AirportFacility.FacilityType>().ToList();
 
             if (!airport.Airport.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo))
-                this.FacilityTypes.Remove(AirportFacility.FacilityType.Cargo);
+                FacilityTypes.Remove(AirportFacility.FacilityType.Cargo);
 
-            this.InitializeComponent();
+            InitializeComponent();
 
-            var view = (CollectionView)CollectionViewSource.GetDefaultView(this.lbFacilities.ItemsSource);
+            var view = (CollectionView)CollectionViewSource.GetDefaultView(lbFacilities.ItemsSource);
             view.SortDescriptions.Clear();
 
             var sortAirlineDescription = new SortDescription(
@@ -68,7 +65,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
         private void btnAddCooperation_Click(object sender, RoutedEventArgs e)
         {
-            object o = PopUpAddCooperation.ShowPopUp(GameObject.GetInstance().HumanAirline, this.Airport.Airport);
+            object o = PopUpAddCooperation.ShowPopUp(GameObject.GetInstance().HumanAirline, Airport.Airport);
 
             if (o != null && o is CooperationType)
             {
@@ -81,7 +78,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                         GameObject.GetInstance().HumanAirline,
                         GameObject.GetInstance().GameTime);
 
-                    this.Airport.addCooperation(cooperation);
+                    Airport.addCooperation(cooperation);
                 }
                 else
                 {
@@ -95,10 +92,10 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
         private void btnBuyFacility_Click(object sender, RoutedEventArgs e)
         {
-            var facility = this.cbFacility.SelectedItem as AirportFacility;
+            var facility = cbFacility.SelectedItem as AirportFacility;
 
             AirportFacility buildingFacility =
-                this.Airport.Airport.GetAirlineBuildingFacility(GameObject.GetInstance().HumanAirline, facility.Type);
+                Airport.Airport.GetAirlineBuildingFacility(GameObject.GetInstance().HumanAirline, facility.Type);
 
             if (facility.Price > GameObject.GetInstance().HumanAirline.Money)
             {
@@ -114,7 +111,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                     
                     double price = facility.Price;
 
-                    if (this.Airport.Airport.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country)
+                    if (Airport.Airport.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country)
                     {
                         price = price * 1.25;
                     }
@@ -125,9 +122,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                         Invoice.InvoiceType.Purchases,
                         -price);
 
-                    this.Airport.addAirlineFacility(facility);
+                    Airport.addAirlineFacility(facility);
 
-                    ICollectionView view = CollectionViewSource.GetDefaultView(this.cbFacility.ItemsSource);
+                    ICollectionView view = CollectionViewSource.GetDefaultView(cbFacility.ItemsSource);
                     view.Refresh();
                 }
                 else
@@ -197,7 +194,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                this.Airport.removeCooperation(cooperation);
+                Airport.removeCooperation(cooperation);
             }
         }
 
@@ -206,32 +203,32 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             var facility = (AirlineAirportFacilityMVVM)((Button)sender).Tag;
 
             Boolean hasHub =
-                this.Airport.Airport.GetHubs().Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
+                Airport.Airport.GetHubs().Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
             Boolean hasCargoRoute =
                 GameObject.GetInstance()
                     .HumanAirline.Routes.Exists(
                         r =>
-                            (r.Destination1 == this.Airport.Airport || r.Destination2 == this.Airport.Airport)
+                            (r.Destination1 == Airport.Airport || r.Destination2 == Airport.Airport)
                             && r.Type == Route.RouteType.Cargo);
-            Boolean airportHasCargoTerminal = this.Airport.Airport.GetCurrentAirportFacility(
+            Boolean airportHasCargoTerminal = Airport.Airport.GetCurrentAirportFacility(
                 null,
                 AirportFacility.FacilityType.Cargo) != null
-                                              && this.Airport.Airport.GetCurrentAirportFacility(
+                                              && Airport.Airport.GetCurrentAirportFacility(
                                                   null,
                                                   AirportFacility.FacilityType.Cargo).TypeLevel > 0;
 
             AirportContract contract =
-                this.Airport.Contracts.Where(a => a.Airline == GameObject.GetInstance().HumanAirline) == null
+                Airport.Contracts.Where(a => a.Airline == GameObject.GetInstance().HumanAirline) == null
                     ? null
-                    : this.Airport.Contracts.Where(a => a.Airline == GameObject.GetInstance().HumanAirline)
+                    : Airport.Contracts.Where(a => a.Airline == GameObject.GetInstance().HumanAirline)
                         .First()
                         .Contract;
 
             Boolean isMinimumServiceFacility = facility.Facility.Facility.TypeLevel == 1
                                                && facility.Facility.Facility.Type
                                                == AirportFacility.FacilityType.Service
-                                               && this.Airport.Airport.HasAsHomebase(
+                                               && Airport.Airport.HasAsHomebase(
                                                    GameObject.GetInstance().HumanAirline)
                                                && (contract == null
                                                    || contract.Type != AirportContract.ContractType.FullService);
@@ -286,7 +283,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    this.Airport.removeAirlineFacility(facility);
+                    Airport.removeAirlineFacility(facility);
                 }
             }
         }
@@ -323,7 +320,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 {
                     double price = facility.Price;
 
-                    if (this.Airport.Airport.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country)
+                    if (Airport.Airport.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country)
                     {
                         price = price * 1.25;
                     }
@@ -334,7 +331,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                         Invoice.InvoiceType.Purchases,
                         -price);
 
-                    this.Airport.addAirlineFacility(facility);
+                    Airport.addAirlineFacility(facility);
                 }
             }
         }

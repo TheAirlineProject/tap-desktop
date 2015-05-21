@@ -1,18 +1,15 @@
-﻿using TheAirline.Models.Airliners;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Models.Airliners;
 using TheAirline.Models.General;
 using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageRoutes.xaml
     /// </summary>
@@ -27,10 +24,10 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             double totalProfit = profitRoutes.Sum(r => r.Balance);
 
-            this.ProfitRoutes = new List<RouteProfitMVVM>();
+            ProfitRoutes = new List<RouteProfitMVVM>();
             foreach (Route route in profitRoutes.Take(Math.Min(5, profitRoutes.Count())))
             {
-                this.ProfitRoutes.Add(new RouteProfitMVVM(route, totalProfit));
+                ProfitRoutes.Add(new RouteProfitMVVM(route, totalProfit));
             }
 
             IOrderedEnumerable<Route> requestedRoutes =
@@ -43,7 +40,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                             + r.Destination2.GetDestinationPassengersRate(
                                 r.Destination1,
                                 AirlinerClass.ClassType.EconomyClass));
-            this.RequestedRoutes = requestedRoutes.Take(Math.Min(5, requestedRoutes.Count())).ToList();
+            RequestedRoutes = requestedRoutes.Take(Math.Min(5, requestedRoutes.Count())).ToList();
 
             IOrderedEnumerable<Route> yearToDateRoutes =
                 GameObject.GetInstance()
@@ -60,10 +57,10 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                             new DateTime(GameObject.GetInstance().GameTime.Year, 1, 1),
                             GameObject.GetInstance().GameTime));
 
-            this.YearToDateProfitRoutes = new List<RouteProfitMVVM>();
+            YearToDateProfitRoutes = new List<RouteProfitMVVM>();
             foreach (Route route in yearToDateRoutes.Take(Math.Min(5, yearToDateRoutes.Count())))
             {
-                this.YearToDateProfitRoutes.Add(new RouteProfitMVVM(route, yearToDateProfit));
+                YearToDateProfitRoutes.Add(new RouteProfitMVVM(route, yearToDateProfit));
             }
 
             DateTime lastMonthStartDate =
@@ -80,25 +77,25 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             double lastMonthProfit = lastMonthProfitRoutes.Sum(r => r.GetBalance(lastMonthStartDate, lastMonthEndDate));
 
-            this.LastMonthProfitRoutes = new List<RouteProfitMVVM>();
+            LastMonthProfitRoutes = new List<RouteProfitMVVM>();
             foreach (Route route in lastMonthProfitRoutes.Take(Math.Min(5, lastMonthProfitRoutes.Count())))
             {
-                this.LastMonthProfitRoutes.Add(new RouteProfitMVVM(route, lastMonthProfit));
+                LastMonthProfitRoutes.Add(new RouteProfitMVVM(route, lastMonthProfit));
             }
 
-            this.IncomePaxRoutes = new List<RouteIncomePerPaxMVVM>();
+            IncomePaxRoutes = new List<RouteIncomePerPaxMVVM>();
             foreach (Route route in GameObject.GetInstance().HumanAirline.Routes)
             {
-                this.IncomePaxRoutes.Add(new RouteIncomePerPaxMVVM(route));
+                IncomePaxRoutes.Add(new RouteIncomePerPaxMVVM(route));
             }
 
-            this.IncomePaxRoutes =
-                this.IncomePaxRoutes.OrderByDescending(r => r.IncomePerPax)
-                    .Take(Math.Min(5, this.IncomePaxRoutes.Count))
+            IncomePaxRoutes =
+                IncomePaxRoutes.OrderByDescending(r => r.IncomePerPax)
+                    .Take(Math.Min(5, IncomePaxRoutes.Count))
                     .ToList();
 
-            this.Loaded += this.PageRoutes_Loaded;
-            this.InitializeComponent();
+            Loaded += PageRoutes_Loaded;
+            InitializeComponent();
         }
 
         #endregion

@@ -1,5 +1,6 @@
 ﻿using TheAirline.Helpers;
 using TheAirline.Models.Airlines;
+using TheAirline.ViewModels.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {

@@ -1,19 +1,16 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Globalization;
+using System.Windows.Data;
+using System.Windows.Media;
+using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.Windows.Data;
-    using System.Windows.Media;
-
-    using TheAirline.Model.GeneralModel;
-
     public class OptionsMVVM : INotifyPropertyChanged
     {
         #region Fields
@@ -42,7 +39,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         public OptionsMVVM()
         {
-            this.setValues();
+            setValues();
         }
 
         #endregion
@@ -75,12 +72,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
         {
             get
             {
-                return this._currentGameSpeed;
+                return _currentGameSpeed;
             }
             set
             {
-                this._currentGameSpeed = value;
-                this.NotifyPropertyChanged("CurrentGameSpeed");
+                _currentGameSpeed = value;
+                NotifyPropertyChanged("CurrentGameSpeed");
             }
         }
 
@@ -90,12 +87,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
         {
             get
             {
-                return this._gameSpeeds;
+                return _gameSpeeds;
             }
             set
             {
-                this._gameSpeeds = value;
-                this.NotifyPropertyChanged("GameSpeeds");
+                _gameSpeeds = value;
+                NotifyPropertyChanged("GameSpeeds");
             }
         }
 
@@ -105,12 +102,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
         {
             get
             {
-                return this._mailsOnAirlineDestinations;
+                return _mailsOnAirlineDestinations;
             }
             set
             {
-                this._mailsOnAirlineDestinations = value;
-                this.NotifyPropertyChanged("MailsOnAirlineDestinations");
+                _mailsOnAirlineDestinations = value;
+                NotifyPropertyChanged("MailsOnAirlineDestinations");
             }
         }
 
@@ -118,12 +115,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
         {
             get
             {
-                return this._mailsOnBadWeather;
+                return _mailsOnBadWeather;
             }
             set
             {
-                this._mailsOnBadWeather = value;
-                this.NotifyPropertyChanged("MailsOnBadWeather");
+                _mailsOnBadWeather = value;
+                NotifyPropertyChanged("MailsOnBadWeather");
             }
         }
 
@@ -131,12 +128,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
         {
             get
             {
-                return this._mailsOnLanding;
+                return _mailsOnLanding;
             }
             set
             {
-                this._mailsOnLanding = value;
-                this.NotifyPropertyChanged("MailsOnLandings");
+                _mailsOnLanding = value;
+                NotifyPropertyChanged("MailsOnLandings");
             }
         }
 
@@ -144,12 +141,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
         {
             get
             {
-                return this._selectedAirportCode;
+                return _selectedAirportCode;
             }
             set
             {
-                this._selectedAirportCode = value;
-                this.NotifyPropertyChanged("SelectedAirportCode");
+                _selectedAirportCode = value;
+                NotifyPropertyChanged("SelectedAirportCode");
             }
         }
 
@@ -157,12 +154,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
         {
             get
             {
-                return this._selectedGameMinutes;
+                return _selectedGameMinutes;
             }
             set
             {
-                this._selectedGameMinutes = value;
-                this.NotifyPropertyChanged("SelectedGameMinutes");
+                _selectedGameMinutes = value;
+                NotifyPropertyChanged("SelectedGameMinutes");
             }
         }
 
@@ -170,12 +167,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
         {
             get
             {
-                return this._selectedLanguage;
+                return _selectedLanguage;
             }
             set
             {
-                this._selectedLanguage = value;
-                this.NotifyPropertyChanged("SelectedLanguage");
+                _selectedLanguage = value;
+                NotifyPropertyChanged("SelectedLanguage");
             }
         }
 
@@ -183,12 +180,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
         {
             get
             {
-                return this._shortenCurrency;
+                return _shortenCurrency;
             }
             set
             {
-                this._shortenCurrency = value;
-                this.NotifyPropertyChanged("ShortenCurrency");
+                _shortenCurrency = value;
+                NotifyPropertyChanged("ShortenCurrency");
             }
         }
 
@@ -200,7 +197,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         public void undoChanges()
         {
-            this.setValues();
+            setValues();
         }
 
         #endregion
@@ -209,7 +206,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -218,19 +215,19 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         private void setValues()
         {
-            this.SelectedLanguage = AppSettings.GetInstance().GetLanguage();
-            this.SelectedAirportCode = Settings.GetInstance().AirportCodeDisplay;
-            this.MailsOnLandings = Settings.GetInstance().MailsOnLandings;
-            this.MailsOnBadWeather = Settings.GetInstance().MailsOnBadWeather;
-            this.ShortenCurrency = Settings.GetInstance().CurrencyShorten;
-            this.MailsOnAirlineDestinations = Settings.GetInstance().MailsOnAirlineRoutes;
-            this.HourRoundEnabled = !GameObject.GetInstance().DayRoundEnabled;
-            this.SelectedGameMinutes = Settings.GetInstance().MinutesPerTurn;
-            this.GameMinutes = new ObservableCollection<int> { 15, 30, 60 };
-            this.CurrentGameSpeed = (int)Settings.GetInstance().GameSpeed;
+            SelectedLanguage = AppSettings.GetInstance().GetLanguage();
+            SelectedAirportCode = Settings.GetInstance().AirportCodeDisplay;
+            MailsOnLandings = Settings.GetInstance().MailsOnLandings;
+            MailsOnBadWeather = Settings.GetInstance().MailsOnBadWeather;
+            ShortenCurrency = Settings.GetInstance().CurrencyShorten;
+            MailsOnAirlineDestinations = Settings.GetInstance().MailsOnAirlineRoutes;
+            HourRoundEnabled = !GameObject.GetInstance().DayRoundEnabled;
+            SelectedGameMinutes = Settings.GetInstance().MinutesPerTurn;
+            GameMinutes = new ObservableCollection<int> { 15, 30, 60 };
+            CurrentGameSpeed = (int)Settings.GetInstance().GameSpeed;
 
-            this.AutoSave = Settings.GetInstance().AutoSave;
-            this.ClearStats = Settings.GetInstance().ClearStats;
+            AutoSave = Settings.GetInstance().AutoSave;
+            ClearStats = Settings.GetInstance().ClearStats;
 
             var cGameSpeeds = new DoubleCollection();
 
@@ -239,7 +236,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
                 cGameSpeeds.Insert(0, (double)speed);
             }
 
-            this.GameSpeeds = cGameSpeeds;
+            GameSpeeds = cGameSpeeds;
         }
 
         #endregion

@@ -1,13 +1,11 @@
-﻿using TheAirline.Models.Airports;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Controls;
+using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows.Controls;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageFleetAirlinerInsurances.xaml
     /// </summary>
@@ -17,12 +15,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
         public PageFleetAirlinerInsurances(FleetAirlinerMVVM airliner)
         {
-            this.Airliner = airliner;
-            this.DataContext = this.Airliner;
-            this.AllAirports = new List<Airport>();
+            Airliner = airliner;
+            DataContext = Airliner;
+            AllAirports = new List<Airport>();
 
             IEnumerable<Airport> airports =
-                this.Airliner.Airliner.Airliner.Airline.Airports.Where(
+                Airliner.Airliner.Airliner.Airline.Airports.Where(
                     a =>
                         a.GetAirlineAirportFacility(
                             GameObject.GetInstance().HumanAirline,
@@ -30,33 +28,33 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
             foreach (Airport airport in airports)
             {
-                this.AllAirports.Add(airport);
+                AllAirports.Add(airport);
             }
 
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.rbDateC.IsChecked = this.Airliner.CMaintenanceInterval == -1;
-            this.rbDateD.IsChecked = this.Airliner.DMaintenanceInterval == -1;
+            rbDateC.IsChecked = Airliner.CMaintenanceInterval == -1;
+            rbDateD.IsChecked = Airliner.DMaintenanceInterval == -1;
 
-            this.rbIntervalC.IsChecked = !this.rbDateC.IsChecked;
-            this.rbIntervalD.IsChecked = !this.rbDateD.IsChecked;
+            rbIntervalC.IsChecked = !rbDateC.IsChecked;
+            rbIntervalD.IsChecked = !rbDateD.IsChecked;
 
-            if (this.rbDateC.IsChecked.Value)
+            if (rbDateC.IsChecked.Value)
             {
-                this.dpMaintenanceC.SelectedDate = this.Airliner.SchedCMaintenance;
-            }
-            else
-            {
-                this.slMaintenanceC.Value = this.Airliner.CMaintenanceInterval;
-            }
-
-            if (this.rbDateD.IsChecked.Value)
-            {
-                this.dpMaintenanceD.SelectedDate = this.Airliner.SchedDMaintenance;
+                dpMaintenanceC.SelectedDate = Airliner.SchedCMaintenance;
             }
             else
             {
-                this.slMaintenanceD.Value = this.Airliner.DMaintenanceInterval;
+                slMaintenanceC.Value = Airliner.CMaintenanceInterval;
+            }
+
+            if (rbDateD.IsChecked.Value)
+            {
+                dpMaintenanceD.SelectedDate = Airliner.SchedDMaintenance;
+            }
+            else
+            {
+                slMaintenanceD.Value = Airliner.DMaintenanceInterval;
             }
         }
 

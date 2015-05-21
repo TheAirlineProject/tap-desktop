@@ -1,19 +1,16 @@
-﻿using TheAirline.Models.Airlines;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Models.Airlines;
 using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Documents;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageShowAlliances.xaml
     /// </summary>
@@ -23,21 +20,21 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
         public PageShowAlliances()
         {
-            this.AllAlliances = Alliances.GetAlliances();
+            AllAlliances = Alliances.GetAlliances();
 
-            this.AllCodesharings = new ObservableCollection<CodeshareAgreementMVVM>();
+            AllCodesharings = new ObservableCollection<CodeshareAgreementMVVM>();
 
             IEnumerable<CodeshareAgreement> codesharings =
                 Airlines.GetAllAirlines().SelectMany(a => a.Codeshares).Distinct();
 
             foreach (CodeshareAgreement agreement in codesharings)
             {
-                this.AllCodesharings.Add(new CodeshareAgreementMVVM(agreement));
+                AllCodesharings.Add(new CodeshareAgreementMVVM(agreement));
             }
 
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.Loaded += this.PageShowAlliances_Loaded;
+            Loaded += PageShowAlliances_Loaded;
         }
 
         #endregion
@@ -54,7 +51,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
         private void PageShowAlliances_Loaded(object sender, RoutedEventArgs e)
         {
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -80,7 +77,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                this.AllCodesharings.Remove(agreement);
+                AllCodesharings.Remove(agreement);
 
                 agreement.Agreement.Airline1.RemoveCodeshareAgreement(agreement.Agreement);
                 agreement.Agreement.Airline2.RemoveCodeshareAgreement(agreement.Agreement);
@@ -90,7 +87,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         private void clName_Click(object sender, RoutedEventArgs e)
         {
             var alliance = (Alliance)((Hyperlink)sender).Tag;
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -104,11 +101,11 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
                 tab_main.SelectedItem = matchingItem;
             }
 
-            var frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
+            var frmContent = UIHelpers.FindChild<Frame>(Tag as Page, "frmContent");
 
             if (frmContent != null)
             {
-                frmContent.Navigate(new PageShowAlliance(alliance) { Tag = this.Tag });
+                frmContent.Navigate(new PageShowAlliance(alliance) { Tag = Tag });
             }
         }
 

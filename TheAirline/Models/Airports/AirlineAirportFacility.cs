@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airlines;
 
 namespace TheAirline.Models.Airports
 {
@@ -11,7 +11,7 @@ namespace TheAirline.Models.Airports
     {
         #region Constructors and Destructors
 
-        public AirlineAirportFacility(Airlines.Airline airline, Models.Airports.Airport airport, AirportFacility facility, DateTime date)
+        public AirlineAirportFacility(Airline airline, Airport airport, AirportFacility facility, DateTime date)
         {
             Airline = airline;
             Facility = facility;
@@ -28,10 +28,10 @@ namespace TheAirline.Models.Airports
         #region Public Properties
 
         [Versioning("airline")]
-        public Airlines.Airline Airline { get; set; }
+        public Airline Airline { get; set; }
 
         [Versioning("airport")]
-        public Models.Airports.Airport Airport { get; set; }
+        public Airport Airport { get; set; }
 
         [Versioning("facility")]
         public AirportFacility Facility { get; set; }

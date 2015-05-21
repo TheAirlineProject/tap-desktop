@@ -1,4 +1,15 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Countries.Towns;
@@ -7,20 +18,6 @@ using TheAirline.Models.Pilots;
 
 namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageShowFlightSchool.xaml
     /// </summary>
@@ -36,9 +33,9 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
         public PageShowFlightSchool(FlightSchool fs)
         {
-            this.FlightSchool = new FlightSchoolMVVM(fs);
-            this.Instructors = new ObservableCollection<Instructor>();
-            this.AirlinerFamilies =
+            FlightSchool = new FlightSchoolMVVM(fs);
+            Instructors = new ObservableCollection<Instructor>();
+            AirlinerFamilies =
                 AirlinerTypes.GetTypes(
                     t =>
                         t.Produced.From.Year <= GameObject.GetInstance().GameTime.Year
@@ -48,11 +45,11 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                     .OrderBy(a => a)
                     .ToList();
 
-            this.DataContext = this.FlightSchool;
+            DataContext = FlightSchool;
 
-            this.setHireStudentsStatus();
+            setHireStudentsStatus();
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -74,7 +71,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
             var cbAircraft = new ComboBox();
             cbAircraft.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
             cbAircraft.HorizontalAlignment = HorizontalAlignment.Left;
-            cbAircraft.ItemTemplate = this.Resources["TrainingAircraftTypeItem"] as DataTemplate;
+            cbAircraft.ItemTemplate = Resources["TrainingAircraftTypeItem"] as DataTemplate;
             cbAircraft.Width = 300;
 
             foreach (
@@ -96,8 +93,8 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 var aircraft = (TrainingAircraftType)cbAircraft.SelectedItem;
                 double price = aircraft.Price;
 
-                this.FlightSchool.addTrainingAircraft(
-                    new TrainingAircraft(aircraft, GameObject.GetInstance().GameTime, this.FlightSchool.FlightSchool));
+                FlightSchool.addTrainingAircraft(
+                    new TrainingAircraft(aircraft, GameObject.GetInstance().GameTime, FlightSchool.FlightSchool));
 
                 AirlineHelpers.AddAirlineInvoice(
                     GameObject.GetInstance().HumanAirline,
@@ -105,7 +102,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                     Invoice.InvoiceType.AirlineExpenses,
                     -price);
 
-                this.setHireStudentsStatus();
+                setHireStudentsStatus();
             }
         }
 
@@ -122,7 +119,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
             foreach (
                 Instructor instructor in
-                    this.FlightSchool.Instructors.Where(
+                    FlightSchool.Instructors.Where(
                         i =>
                             i.Students.Count < Models.Pilots.FlightSchool.MaxNumberOfStudentsPerInstructor
                             && i != student.Instructor))
@@ -139,7 +136,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 student.Instructor.RemoveStudent(student);
                 student.Instructor = (Instructor)cbInstructor.SelectedItem;
 
-                ICollectionView view = CollectionViewSource.GetDefaultView(this.lvStudents.ItemsSource);
+                ICollectionView view = CollectionViewSource.GetDefaultView(lvStudents.ItemsSource);
                 view.Refresh();
             }
         }
@@ -168,7 +165,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    this.FlightSchool.removeInstructor(instructor);
+                    FlightSchool.removeInstructor(instructor);
 
                     instructor.FlightSchool = null;
                 }
@@ -186,25 +183,25 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                this.FlightSchool.removeStudent(student);
+                FlightSchool.removeStudent(student);
                 student.Instructor.RemoveStudent(student);
                 student.Instructor = null;
 
-                this.setHireStudentsStatus();
+                setHireStudentsStatus();
             }
         }
 
         private void btnHire_Click(object sender, RoutedEventArgs e)
         {
-            IEnumerable<TrainingAircraftType> aircraftsTypesFree = this.FlightSchool.Aircrafts.Select(a => a.Type);
+            IEnumerable<TrainingAircraftType> aircraftsTypesFree = FlightSchool.Aircrafts.Select(a => a.Type);
 
             Dictionary<TrainingAircraftType, int> types =
-                this.FlightSchool.Aircrafts.GroupBy(a => a.Type)
+                FlightSchool.Aircrafts.GroupBy(a => a.Type)
                     .Select(group => new { Type = group.Key, Count = group.Sum(g => g.Type.MaxNumberOfStudents) })
                     .ToDictionary(g => g.Type, g => g.Count);
             ;
 
-            foreach (PilotStudent student in this.FlightSchool.Students)
+            foreach (PilotStudent student in FlightSchool.Students)
             {
                 TrainingAircraftType firstAircraft =
                     student.Rating.Aircrafts.OrderBy(a => a.TypeLevel)
@@ -233,9 +230,9 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                List<Town> towns = Towns.GetTowns(this.FlightSchool.FlightSchool.Airport.Profile.Country);
+                List<Town> towns = Towns.GetTowns(FlightSchool.FlightSchool.Airport.Profile.Country);
 
-                Town town = towns[this.rnd.Next(towns.Count)];
+                Town town = towns[rnd.Next(towns.Count)];
                 DateTime birthdate = MathHelpers.GetRandomDate(
                     GameObject.GetInstance().GameTime.AddYears(-35),
                     GameObject.GetInstance().GameTime.AddYears(-23));
@@ -245,8 +242,8 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                     birthdate,
                     town);
 
-                var instructor = (Instructor)this.cbInstructor.SelectedItem;
-                string airlinerFamily = this.cbTrainAircraft.SelectedItem.ToString();
+                var instructor = (Instructor)cbInstructor.SelectedItem;
+                string airlinerFamily = cbTrainAircraft.SelectedItem.ToString();
 
                 var student = new PilotStudent(
                     profile,
@@ -255,14 +252,14 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                     GeneralHelpers.GetPilotStudentRating(instructor, possibleRatings),
                     airlinerFamily);
 
-                TrainingAircraft aircraft = this.getStudentAircraft(student);
+                TrainingAircraft aircraft = getStudentAircraft(student);
 
                 student.Aircraft = aircraft;
 
-                this.FlightSchool.addStudent(student);
+                FlightSchool.addStudent(student);
                 instructor.AddStudent(student);
 
-                this.setHireStudentsStatus();
+                setHireStudentsStatus();
 
                 double studentPrice = GeneralHelpers.GetInflationPrice(PilotStudent.StudentCost);
 
@@ -278,16 +275,16 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
         {
             var aircraft = (TrainingAircraft)((Button)sender).Tag;
 
-            var aircrafts = new List<TrainingAircraft>(this.FlightSchool.Aircrafts);
+            var aircrafts = new List<TrainingAircraft>(FlightSchool.Aircrafts);
             aircrafts.Remove(aircraft);
 
             Dictionary<TrainingAircraftType, int> types =
-                this.FlightSchool.Aircrafts.GroupBy(a => a.Type)
+                FlightSchool.Aircrafts.GroupBy(a => a.Type)
                     .Select(group => new { Type = group.Key, Count = group.Sum(g => g.Type.MaxNumberOfStudents) })
                     .ToDictionary(g => g.Type, g => g.Count);
             ;
 
-            foreach (PilotStudent student in this.FlightSchool.Students)
+            foreach (PilotStudent student in FlightSchool.Students)
             {
                 TrainingAircraftType firstAircraft =
                     student.Rating.Aircrafts.OrderBy(a => a.TypeLevel).First(a => types.ContainsKey(a) && types[a] > 0);
@@ -298,7 +295,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 }
             }
 
-            Boolean canSellAircraft = aircrafts.Sum(a => a.Type.MaxNumberOfStudents) >= this.FlightSchool.Students.Count
+            Boolean canSellAircraft = aircrafts.Sum(a => a.Type.MaxNumberOfStudents) >= FlightSchool.Students.Count
                                       && types[aircraft.Type] > 1;
 
             if (canSellAircraft)
@@ -310,7 +307,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    this.FlightSchool.removeTrainingAircraft(aircraft);
+                    FlightSchool.removeTrainingAircraft(aircraft);
 
                     double price = aircraft.Type.Price * 0.75;
                     AirlineHelpers.AddAirlineInvoice(
@@ -335,12 +332,12 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
         private TrainingAircraft getStudentAircraft(PilotStudent student)
         {
             Dictionary<TrainingAircraftType, int> types =
-                this.FlightSchool.Aircrafts.GroupBy(a => a.Type)
+                FlightSchool.Aircrafts.GroupBy(a => a.Type)
                     .Select(group => new { Type = group.Key, Count = group.Sum(g => g.Type.MaxNumberOfStudents) })
                     .ToDictionary(g => g.Type, g => g.Count);
             ;
 
-            foreach (PilotStudent ps in this.FlightSchool.Students)
+            foreach (PilotStudent ps in FlightSchool.Students)
             {
                 types[ps.Aircraft.Type]--;
             }
@@ -348,7 +345,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
             IOrderedEnumerable<TrainingAircraftType> freeTypes =
                 types.Where(t => t.Value > 0).Select(t => t.Key).OrderBy(t => t.TypeLevel);
 
-            return this.FlightSchool.Aircrafts.First(a => a.Type == freeTypes.First());
+            return FlightSchool.Aircrafts.First(a => a.Type == freeTypes.First());
         }
 
         private void setHireStudentsStatus()
@@ -357,20 +354,20 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
             int studentsCapacity =
                 Math.Min(
-                    this.FlightSchool.Instructors.Count * Models.Pilots.FlightSchool.MaxNumberOfStudentsPerInstructor,
-                    this.FlightSchool.FlightSchool.TrainingAircrafts.Sum(f => f.Type.MaxNumberOfStudents));
+                    FlightSchool.Instructors.Count * Models.Pilots.FlightSchool.MaxNumberOfStudentsPerInstructor,
+                    FlightSchool.FlightSchool.TrainingAircrafts.Sum(f => f.Type.MaxNumberOfStudents));
 
-            this.FlightSchool.HireStudents = studentsCapacity > this.FlightSchool.Students.Count
+            FlightSchool.HireStudents = studentsCapacity > FlightSchool.Students.Count
                                              && GameObject.GetInstance().HumanAirline.Money > studentPrice;
 
-            this.Instructors.Clear();
+            Instructors.Clear();
 
             foreach (
                 Instructor instructor in
-                    this.FlightSchool.Instructors.Where(
+                    FlightSchool.Instructors.Where(
                         i => i.Students.Count < Models.Pilots.FlightSchool.MaxNumberOfStudentsPerInstructor))
             {
-                this.Instructors.Add(instructor);
+                Instructors.Add(instructor);
             }
         }
 

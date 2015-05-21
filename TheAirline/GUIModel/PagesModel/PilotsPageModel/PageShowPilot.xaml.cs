@@ -1,17 +1,14 @@
-﻿using TheAirline.Helpers;
+﻿using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.General;
 using TheAirline.Models.Pilots;
 
 namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 {
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageShowPilot.xaml
     /// </summary>
@@ -21,11 +18,11 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
         public PageShowPilot(Pilot pilot)
         {
-            this.Pilot = pilot;
+            Pilot = pilot;
 
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.Salary = AirlineHelpers.GetPilotSalary(GameObject.GetInstance().HumanAirline, this.Pilot);
+            Salary = AirlineHelpers.GetPilotSalary(GameObject.GetInstance().HumanAirline, Pilot);
         }
 
         #endregion
@@ -42,7 +39,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -62,10 +59,10 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                GameObject.GetInstance().HumanAirline.AddPilot(this.Pilot);
+                GameObject.GetInstance().HumanAirline.AddPilot(Pilot);
             }
 
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {

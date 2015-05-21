@@ -1,77 +1,55 @@
-﻿using TheAirline.Infrastructure;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Infrastructure;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.General;
+using AirlinerClassMVVM = TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel.AirlinerClassMVVM;
 
-namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
+namespace TheAirline.Views.Airline
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Media;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel;
-    using TheAirline.Model.GeneralModel;
-
-    using AirlinerClassMVVM = TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel.AirlinerClassMVVM;
-
     /// <summary>
     ///     Interaction logic for PageAirlineEditAirliners.xaml
     /// </summary>
-    public partial class PageAirlineEditAirliners : Page
+    public partial class PageAirlineEditAirliners
     {
-        #region Fields
-
-        private readonly FleetAirliner Airliner;
-
-        private readonly List<FleetAirliner> Airliners;
-
-        #endregion
-
         #region Constructors and Destructors
 
         public PageAirlineEditAirliners(List<FleetAirliner> airliners)
         {
-            this.Airliners = airliners;
+            Airliners = airliners;
 
-            this.Loaded += this.PageAirlineEditAirliners_Loaded;
+            Loaded += PageAirlineEditAirliners_Loaded;
 
-            this.DataContext = this.Airliners;
+            DataContext = Airliners;
 
-            this.Classes = new ObservableCollection<AirlinerClassMVVM>();
-            this.Airliner = this.getMinimumAirliner();
+            Classes = new ObservableCollection<AirlinerClassMVVM>();
+            Airliner = getMinimumAirliner();
 
-            foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
+            foreach (var aClass in Airliner.Airliner.Classes)
             {
-                int maxCapacity;
+                var maxCapacity = Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger ? ((AirlinerPassengerType) Airliner.Airliner.Type).MaxSeatingCapacity : 100;
 
-                if (this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
-                {
-                    maxCapacity = ((AirlinerPassengerType)this.Airliner.Airliner.Type).MaxSeatingCapacity;
-                }
-                else
-                {
-                    maxCapacity = 100;
-                }
-
-                Boolean changeable = this.Airliner.Airliner.Classes.IndexOf(aClass) > 0;
+                var changeable = Airliner.Airliner.Classes.IndexOf(aClass) > 0;
 
                 int maxSeats;
 
-                if (this.Airliner.Airliner.Classes.Count == 3)
+                if (Airliner.Airliner.Classes.Count == 3)
                 {
-                    if (this.Airliner.Airliner.Classes.IndexOf(aClass) == 1)
+                    if (Airliner.Airliner.Classes.IndexOf(aClass) == 1)
                     {
-                        maxSeats = maxCapacity - 1 - this.Airliner.Airliner.Classes[2].RegularSeatingCapacity;
+                        maxSeats = maxCapacity - 1 - Airliner.Airliner.Classes[2].RegularSeatingCapacity;
                     }
                     else
                     {
-                        maxSeats = maxCapacity - 1 - this.Airliner.Airliner.Classes[1].RegularSeatingCapacity;
+                        maxSeats = maxCapacity - 1 - Airliner.Airliner.Classes[1].RegularSeatingCapacity;
                     }
                 }
                 else
@@ -85,10 +63,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     aClass.RegularSeatingCapacity,
                     maxSeats,
                     changeable);
-                this.Classes.Add(amClass);
+                Classes.Add(amClass);
             }
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -99,18 +77,26 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         #endregion
 
+        #region Fields
+
+        private readonly FleetAirliner Airliner;
+
+        private readonly List<FleetAirliner> Airliners;
+
+        #endregion
+
         //returns the minimum of the selected airliners
 
         #region Methods
 
         private void PageAirlineEditAirliners_Loaded(object sender, RoutedEventArgs e)
         {
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tcMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tcMenu");
 
             if (tab_main != null)
             {
-                TabItem matchingItem =
-                    tab_main.Items.Cast<TabItem>().Where(item => item.Tag.ToString() == "Airliners").FirstOrDefault();
+                var matchingItem =
+                    tab_main.Items.Cast<TabItem>().FirstOrDefault(item => item.Tag.ToString() == "Airliners");
 
                 matchingItem.Visibility = Visibility.Visible;
 
@@ -120,40 +106,40 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show(
+            var result = WPFMessageBox.Show(
                 Translator.GetInstance().GetString("MessageBox", "2128"),
                 string.Format(Translator.GetInstance().GetString("MessageBox", "2128", "message")),
                 WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                foreach (FleetAirliner airliner in this.Airliners)
+                foreach (var airliner in Airliners)
                 {
                     airliner.Airliner.ClearAirlinerClasses();
 
-                    foreach (AirlinerClassMVVM aClass in this.Classes)
+                    foreach (var aClass in Classes)
                     {
                         var newClass = new AirlinerClass(aClass.Type, aClass.Seating);
 
                         airliner.Airliner.AddAirlinerClass(newClass);
 
-                        foreach (AirlinerFacilityMVVM facility in aClass.Facilities)
+                        foreach (var facility in aClass.Facilities)
                         {
                             newClass.ForceSetFacility(facility.SelectedFacility);
                         }
                     }
 
-                    int totalSeats = this.Classes.Sum(c => c.RegularSeatingCapacity);
+                    var totalSeats = Classes.Sum(c => c.RegularSeatingCapacity);
 
-                    int seatingDiff = ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity - totalSeats;
+                    var seatingDiff = ((AirlinerPassengerType) airliner.Airliner.Type).MaxSeatingCapacity - totalSeats;
 
-                    AirlinerClass economyClass =
+                    var economyClass =
                         airliner.Airliner.Classes.Find(c => c.Type == AirlinerClass.ClassType.EconomyClass);
                     economyClass.RegularSeatingCapacity += seatingDiff;
 
-                    AirlinerFacility seatingFacility = economyClass.GetFacility(AirlinerFacility.FacilityType.Seat);
+                    var seatingFacility = economyClass.GetFacility(AirlinerFacility.FacilityType.Seat);
 
-                    var extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
+                    var extraSeats = (int) (seatingDiff/seatingFacility.SeatUses);
 
                     economyClass.SeatingCapacity += extraSeats;
                 }
@@ -162,7 +148,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void btnLoadConfiguration_Click(object sender, RoutedEventArgs e)
         {
-            ComboBox cbConfigurations = new ComboBox();
+            var cbConfigurations = new ComboBox();
             cbConfigurations.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
             cbConfigurations.SelectedValuePath = "Name";
             cbConfigurations.DisplayMemberPath = "Name";
@@ -174,9 +160,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     Configurations.GetConfigurations(Configuration.ConfigurationType.Airliner)
                         .Where(
                             a =>
-                                ((AirlinerConfiguration)a).MinimumSeats <= this.Airliner.Airliner.GetTotalSeatCapacity()
-                                && ((AirlinerConfiguration)a).Classes.Count
-                                <= ((AirlinerPassengerType)this.Airliner.Airliner.Type).MaxAirlinerClasses))
+                                ((AirlinerConfiguration) a).MinimumSeats <= Airliner.Airliner.GetTotalSeatCapacity()
+                                && ((AirlinerConfiguration) a).Classes.Count
+                                <= ((AirlinerPassengerType) Airliner.Airliner.Type).MaxAirlinerClasses))
             {
                 cbConfigurations.Items.Add(confItem);
             }
@@ -187,11 +173,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 Translator.GetInstance().GetString("PageAirlineWages", "1013"),
                 cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
             {
-                this.Classes.Clear();
+                Classes.Clear();
 
-                var configuration = (AirlinerConfiguration)cbConfigurations.SelectedItem;
+                var configuration = (AirlinerConfiguration) cbConfigurations.SelectedItem;
 
-                foreach (AirlinerClassConfiguration aClass in configuration.Classes)
+                foreach (var aClass in configuration.Classes)
                 {
                     var nClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
                     var tClass = new AirlinerClassMVVM(
@@ -200,13 +186,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                         aClass.RegularSeatingCapacity,
                         aClass.RegularSeatingCapacity);
 
-                    foreach (AirlinerFacility facility in aClass.GetFacilities())
+                    foreach (var facility in aClass.GetFacilities())
                     {
                         tClass.Facilities.First(f => f.Type == facility.Type).SelectedFacility = facility;
                     }
 
                     foreach (
-                        AirlinerFacility.FacilityType fType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
+                        AirlinerFacility.FacilityType fType in Enum.GetValues(typeof (AirlinerFacility.FacilityType)))
                     {
                         if (!aClass.Facilities.Exists(f => f.Type == fType))
                         {
@@ -215,20 +201,20 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                         }
                     }
 
-                    this.Classes.Add(tClass);
+                    Classes.Add(tClass);
                 }
-                int seatingDiff = ((AirlinerPassengerType)this.Airliner.Airliner.Type).MaxSeatingCapacity
+                var seatingDiff = ((AirlinerPassengerType) Airliner.Airliner.Type).MaxSeatingCapacity
                                   - configuration.MinimumSeats;
 
-                AirlinerClassMVVM economyClass = this.Classes.First(
+                var economyClass = Classes.First(
                     c => c.Type == AirlinerClass.ClassType.EconomyClass);
 
                 economyClass.RegularSeatingCapacity += seatingDiff;
 
-                AirlinerFacility seatingFacility =
+                var seatingFacility =
                     economyClass.Facilities.First(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility;
 
-                var extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
+                var extraSeats = (int) (seatingDiff/seatingFacility.SeatUses);
 
                 economyClass.Seating += extraSeats;
             }
@@ -236,32 +222,34 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void btnSaveConfiguration_Click(object sender, RoutedEventArgs e)
         {
-            int totalServiceLevel = this.Classes.Sum(c => c.Facilities.Sum(f => f.SelectedFacility.ServiceLevel));
-            var txtName = new TextBox();
-            txtName.Width = 200;
-            txtName.Background = Brushes.Transparent;
-            txtName.Foreground = Brushes.White;
-            txtName.Text = string.Format("Custom configuration ({0} classes)", this.Classes.Count);
-            txtName.HorizontalAlignment = HorizontalAlignment.Left;
+            var totalServiceLevel = Classes.Sum(c => c.Facilities.Sum(f => f.SelectedFacility.ServiceLevel));
+            var txtName = new TextBox
+            {
+                Width = 200,
+                Background = Brushes.Transparent,
+                Foreground = Brushes.White,
+                Text = $"Custom configuration ({Classes.Count} classes)",
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
 
             if (PopUpSingleElement.ShowPopUp(
                 Translator.GetInstance().GetString("PageAirlineEditAirliners", "1002"),
                 txtName) == PopUpSingleElement.ButtonSelected.OK && txtName.Text.Trim().Length > 2)
             {
-                string name = txtName.Text.Trim();
+                var name = txtName.Text.Trim();
                 var configuration = new AirlinerConfiguration(
                     name,
-                    this.getMinimumAirliner().Airliner.GetTotalSeatCapacity(),
+                    getMinimumAirliner().Airliner.GetTotalSeatCapacity(),
                     false);
 
-                foreach (AirlinerClassMVVM type in this.Classes)
+                foreach (var type in Classes)
                 {
                     var classConfiguration = new AirlinerClassConfiguration(
                         type.Type,
                         type.Seating,
                         type.RegularSeatingCapacity);
 
-                    foreach (AirlinerFacilityMVVM facility in type.Facilities)
+                    foreach (var facility in type.Facilities)
                     {
                         classConfiguration.AddFacility(facility.SelectedFacility);
                     }
@@ -275,19 +263,19 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private FleetAirliner getMinimumAirliner()
         {
-            FleetAirliner minAirliner = this.Airliners[0];
+            var minAirliner = Airliners[0];
 
-            foreach (FleetAirliner airliner in this.Airliners)
+            foreach (var airliner in Airliners)
             {
-                if (((AirlinerPassengerType)airliner.Airliner.Type).MaxAirlinerClasses
-                    < ((AirlinerPassengerType)minAirliner.Airliner.Type).MaxAirlinerClasses)
+                if (((AirlinerPassengerType) airliner.Airliner.Type).MaxAirlinerClasses
+                    < ((AirlinerPassengerType) minAirliner.Airliner.Type).MaxAirlinerClasses)
                 {
                     minAirliner = airliner;
                 }
                 else
                 {
-                    if (((AirlinerPassengerType)airliner.Airliner.Type).MaxAirlinerClasses
-                        == ((AirlinerPassengerType)minAirliner.Airliner.Type).MaxAirlinerClasses
+                    if (((AirlinerPassengerType) airliner.Airliner.Type).MaxAirlinerClasses
+                        == ((AirlinerPassengerType) minAirliner.Airliner.Type).MaxAirlinerClasses
                         && airliner.Airliner.Classes[0].SeatingCapacity
                         < minAirliner.Airliner.Classes[0].SeatingCapacity)
                     {

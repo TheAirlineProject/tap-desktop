@@ -1,22 +1,19 @@
-﻿using TheAirline.Helpers;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.CustomControlsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Helpers.Workers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Holidays;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GUIModel.CustomControlsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageLoadGame.xaml
     /// </summary>
@@ -26,13 +23,13 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         public PageLoadGame()
         {
-            this.Saves = new ObservableCollection<string>();
+            Saves = new ObservableCollection<string>();
 
-            this.InitializeComponent();
+            InitializeComponent();
 
             foreach (string savedFile in LoadSaveHelpers.GetSavedGames())
             {
-                this.Saves.Add(savedFile);
+                Saves.Add(savedFile);
             }
         }
 
@@ -48,7 +45,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         private void btnDeleteGame_Click(object sender, RoutedEventArgs e)
         {
-            var file = (string)this.lbSaves.SelectedItem;
+            var file = (string)lbSaves.SelectedItem;
             WPFMessageBoxResult result = WPFMessageBox.Show(
                 Translator.GetInstance().GetString("MessageBox", "1009"),
                 Translator.GetInstance().GetString("MessageBox", "1009", "message"),
@@ -58,7 +55,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             {
                 SerializedLoadSaveHelpers.DeleteSavedGame(file);
 
-                this.Saves.Remove(file);
+                Saves.Remove(file);
             }
         }
 
@@ -70,7 +67,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             {
             }
 
-            var file = (string)this.lbSaves.SelectedItem;
+            var file = (string)lbSaves.SelectedItem;
 
             WPFMessageBoxResult result = WPFMessageBox.Show(
                 Translator.GetInstance().GetString("MessageBox", "1002"),

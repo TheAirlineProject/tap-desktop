@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airlines;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Finances;
 
@@ -81,7 +81,7 @@ namespace TheAirline.Models.Airliners
             return types;
         }
 
-        public void CreateBasicFacilities(Airlines.Airline airline)
+        public void CreateBasicFacilities(Airline airline)
         {
             foreach (AirlinerFacility.FacilityType type in Enum.GetValues(typeof (AirlinerFacility.FacilityType)))
             {
@@ -109,7 +109,7 @@ namespace TheAirline.Models.Airliners
             return null;
         }
 
-        public void SetFacility(Airlines.Airline airline, AirlinerFacility facility)
+        public void SetFacility(Airline airline, AirlinerFacility facility)
         {
             Facilities[facility.Type] = facility;
 

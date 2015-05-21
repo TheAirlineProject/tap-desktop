@@ -1,16 +1,13 @@
-﻿using TheAirline.Infrastructure;
-using TheAirline.Models.General;
+﻿using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Infrastructure;
+using TheAirline.Views.Game;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
-    using System.Collections.Generic;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Documents;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageSelectLanguage.xaml
     /// </summary>
@@ -20,9 +17,9 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         public PageSelectLanguage()
         {
-            this.AllLanguages = Languages.GetLanguages().FindAll(l => l.IsEnabled);
+            AllLanguages = Languages.GetLanguages().FindAll(l => l.IsEnabled);
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion

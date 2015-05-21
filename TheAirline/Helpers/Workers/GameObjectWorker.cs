@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.General;
 
 namespace TheAirline.Helpers.Workers

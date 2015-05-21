@@ -1,4 +1,14 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.General;
 using TheAirline.Models.Passengers;
@@ -7,18 +17,6 @@ using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Documents;
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAssignAirliners.xaml
     /// </summary>
@@ -28,7 +26,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         public PageAssignAirliners()
         {
-            this.Contracts = new List<SpecialContractMVVM>();
+            Contracts = new List<SpecialContractMVVM>();
 
             foreach (SpecialContract sc in
                 GameObject.GetInstance().HumanAirline.SpecialContracts)
@@ -39,28 +37,28 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 if (sc.Type.IsFixedDate)
                     enddate = sc.Type.Period.To;
                 
-                this.Contracts.Add(new SpecialContractMVVM(sc,startdate,enddate));
+                Contracts.Add(new SpecialContractMVVM(sc,startdate,enddate));
             }
 
-            this.Restrictions =
+            Restrictions =
                 FlightRestrictions.GetRestrictions()
                     .FindAll(
                         r =>
                             r.StartDate < GameObject.GetInstance().GameTime
                             && r.EndDate > GameObject.GetInstance().GameTime);
 
-            this.Airliners = new List<FleetAirlinerMVVM>();
+            Airliners = new List<FleetAirlinerMVVM>();
             foreach (
                 FleetAirliner airliner in
                     GameObject.GetInstance()
                         .HumanAirline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && a.Airliner.Status == Airliner.StatusTypes.Normal))
             {
-                this.Airliners.Add(new FleetAirlinerMVVM(airliner));
+                Airliners.Add(new FleetAirlinerMVVM(airliner));
             }
 
-            this.Loaded += this.PageAssignAirliners_Loaded;
+            Loaded += PageAssignAirliners_Loaded;
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -79,7 +77,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void PageAssignAirliners_Loaded(object sender, RoutedEventArgs e)
         {
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -130,7 +128,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             {
                 
                 var transferAirliner = (FleetAirliner)cbAirliners.SelectedItem;
-                FleetAirlinerMVVM fAirlinerMVVM = this.Airliners.First(a => a.Airliner == transferAirliner);
+                FleetAirlinerMVVM fAirlinerMVVM = Airliners.First(a => a.Airliner == transferAirliner);
 
                 foreach (Route route in airliner.Airliner.Routes)
                 {
@@ -234,8 +232,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             var airliner = (FleetAirlinerMVVM)((Hyperlink)sender).Tag;
 
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
-            var frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
+            var frmContent = UIHelpers.FindChild<Frame>(Tag as Page, "frmContent");
 
             if (airliner.Airliner.NumberOfPilots == airliner.Airliner.Airliner.Type.CockpitCrew)
             {
@@ -253,7 +251,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                 if (frmContent != null)
                 {
-                    frmContent.Navigate(new PageRoutePlanner(airliner.Airliner) { Tag = this.Tag });
+                    frmContent.Navigate(new PageRoutePlanner(airliner.Airliner) { Tag = Tag });
                 }
             }
             else
@@ -294,7 +292,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                         if (frmContent != null)
                         {
-                            frmContent.Navigate(new PageRoutePlanner(airliner.Airliner) { Tag = this.Tag });
+                            frmContent.Navigate(new PageRoutePlanner(airliner.Airliner) { Tag = Tag });
                         }
                     }
                 }
@@ -365,7 +363,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                         if (frmContent != null)
                         {
-                            frmContent.Navigate(new PageRoutePlanner(airliner.Airliner) { Tag = this.Tag });
+                            frmContent.Navigate(new PageRoutePlanner(airliner.Airliner) { Tag = Tag });
                         }
                     }
                 }

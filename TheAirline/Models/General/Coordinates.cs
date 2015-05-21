@@ -3,7 +3,6 @@ using System.Device.Location;
 using System.Runtime.Serialization;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Models.General
 {

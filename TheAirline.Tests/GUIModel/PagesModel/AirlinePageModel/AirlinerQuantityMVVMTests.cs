@@ -1,15 +1,11 @@
-﻿using TheAirline.Models.Airliners;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TheAirline.Models.Airliners;
 using TheAirline.Models.General;
+using TheAirline.ViewModels.Airline;
 
 namespace TheAirline.Tests.GUIModel.PagesModel.AirlinePageModel
 {
-    using System;
-
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.GeneralModel;
-
     [TestClass]
     public class AirlinerQuantityMVVMTests
     {
@@ -46,6 +42,7 @@ namespace TheAirline.Tests.GUIModel.PagesModel.AirlinePageModel
                 3040,
                 0,
                 0,
+                0,
                 0.051,
                 90000000,
                 3,
@@ -53,7 +50,7 @@ namespace TheAirline.Tests.GUIModel.PagesModel.AirlinePageModel
                 20000,
                 AirlinerType.BodyType.NarrowBody,
                 AirlinerType.TypeRange.LongRange,
-                AirlinerType.EngineType.Jet,
+                AirlinerType.TypeOfEngine.Jet,
                 new Period<DateTime>(new DateTime(1990, 1, 1), new DateTime(2010, 1, 1)),
                 5,
                 true,

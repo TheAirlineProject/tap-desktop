@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.General.Countries;
 
 namespace TheAirline.Models.General.Holidays

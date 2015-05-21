@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airports;
 
 namespace TheAirline.Models.Airlines
 {
@@ -13,7 +13,7 @@ namespace TheAirline.Models.Airlines
     {
         #region Constructors and Destructors
 
-        public Alliance(DateTime formationDate, string name, Airports.Airport headquarter)
+        public Alliance(DateTime formationDate, string name, Airport headquarter)
         {
             FormationDate = formationDate;
             Name = name;
@@ -34,7 +34,7 @@ namespace TheAirline.Models.Airlines
         public DateTime FormationDate { get; set; }
 
         [Versioning("headquarter")]
-        public Airports.Airport Headquarter { get; set; }
+        public Airport Headquarter { get; set; }
 
         public bool IsHumanAlliance
         {
@@ -106,7 +106,7 @@ namespace TheAirline.Models.Airlines
             airline.Airline.RemoveAlliance(this);
         }
 
-        public void RemoveMember(Models.Airlines.Airline airline)
+        public void RemoveMember(Airline airline)
         {
             AllianceMember member = Members.FirstOrDefault(m => m.Airline == airline);
             Members.Remove(member);
@@ -171,7 +171,7 @@ namespace TheAirline.Models.Airlines
     {
         #region Constructors and Destructors
 
-        public PendingAllianceMember(DateTime date, Alliance alliance, Models.Airlines.Airline airline, AcceptType type)
+        public PendingAllianceMember(DateTime date, Alliance alliance, Airline airline, AcceptType type)
         {
             Alliance = alliance;
             Airline = airline;
@@ -198,7 +198,7 @@ namespace TheAirline.Models.Airlines
 
         #region Public Properties
 
-        public Models.Airlines.Airline Airline { get; set; }
+        public Airline Airline { get; set; }
 
         public Alliance Alliance { get; set; }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airlines;
 using TheAirline.Models.General.Statistics;
 
 namespace TheAirline.Models.Airports
@@ -45,7 +45,7 @@ namespace TheAirline.Models.Airports
             base.GetObjectData(info, context);
         }
 
-        public void AddStatisticsValue(int year, Airlines.Airline airline, StatisticsType type, int value)
+        public void AddStatisticsValue(int year, Airline airline, StatisticsType type, int value)
         {
             AirportStatisticsValue item =
                 Stats.Find(s => s.Year == year && s.Airline == airline && s.Stat.Shortname == type.Shortname);
@@ -61,7 +61,7 @@ namespace TheAirline.Models.Airports
         }
 
         //returns the value for a statistics type for an airline for a year
-        public double GetStatisticsValue(int year, Airlines.Airline airline, StatisticsType type)
+        public double GetStatisticsValue(int year, Airline airline, StatisticsType type)
         {
             AirportStatisticsValue item =
                 Stats.Find(s => s.Year == year && s.Airline == airline && s.Stat.Shortname == type.Shortname);
@@ -87,7 +87,7 @@ namespace TheAirline.Models.Airports
         //adds the value for a statistics type to an airline for a year
 
         //sets the value for a statistics type for an airline for a year
-        public void SetStatisticsValue(int year, Airlines.Airline airline, StatisticsType type, int value)
+        public void SetStatisticsValue(int year, Airline airline, StatisticsType type, int value)
         {
             lock (Stats)
             {

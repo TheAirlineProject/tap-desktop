@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.ComponentModel;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
 using TheAirline.Models.General.Holidays;
@@ -128,7 +119,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 
                         }
                         else
-                            dbcDay.DayVisibility = System.Windows.Visibility.Collapsed;
+                            dbcDay.DayVisibility = Visibility.Collapsed;
 
                         
 

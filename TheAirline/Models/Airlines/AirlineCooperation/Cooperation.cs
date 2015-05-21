@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Models.Airlines.AirlineCooperation
 {
@@ -11,7 +10,7 @@ namespace TheAirline.Models.Airlines.AirlineCooperation
     {
         #region Constructors and Destructors
 
-        public Cooperation(CooperationType type, Models.Airlines.Airline airline, DateTime built)
+        public Cooperation(CooperationType type, Airline airline, DateTime built)
         {
             BuiltDate = built;
             Airline = airline;
@@ -28,7 +27,7 @@ namespace TheAirline.Models.Airlines.AirlineCooperation
         #region Public Properties
 
         [Versioning("airline")]
-        public Models.Airlines.Airline Airline { get; set; }
+        public Airline Airline { get; set; }
 
         [Versioning("built")]
         public DateTime BuiltDate { get; set; }

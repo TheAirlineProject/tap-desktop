@@ -1,16 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAirline", "TheAirline\TheAirline.csproj", "{63A09097-FD0E-4159-A2ED-528EA26FD097}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3698F27D-D600-4EFB-81DF-EB0AD8A1BCE3}"
-	ProjectSection(SolutionItems) = preProject
-		Performance1.psess = Performance1.psess
-		README.html = README.html
-		README.md = README.md
-	EndProjectSection
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Installer", "Installer\Installer.wixproj", "{2134C958-1EBA-4A20-B37B-1D58E86C118F}"
 	ProjectSection(ProjectDependencies) = postProject

@@ -1,6 +1,7 @@
 ﻿using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.GUIModel.MasterPageModel
 {

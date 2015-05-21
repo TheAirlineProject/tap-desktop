@@ -1,17 +1,15 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using TheAirline.Helpers;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Statistics;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Linq;
-    using TheAirline.Model.GeneralModel;
-
     //the mvvm object for an airline
     public class AirlinesMVVM : INotifyPropertyChanged
     {
@@ -29,9 +27,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         public AirlinesMVVM(Airline airline)
         {
-            this.Airline = airline;
-            this.Profit = this.Airline.GetProfit();
-            this.AvgFleetAge = this.Airline.GetAverageFleetAge();
+            Airline = airline;
+            Profit = Airline.GetProfit();
+            AvgFleetAge = Airline.GetAverageFleetAge();
 
             StatisticsType passengersType = StatisticsTypes.GetStatisticsType("Passengers");
             StatisticsType passengersAvgType = StatisticsTypes.GetStatisticsType("Passengers%");
@@ -39,25 +37,25 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
             StatisticsType cargoType = StatisticsTypes.GetStatisticsType("Cargo");
             StatisticsType cargoAvgType = StatisticsTypes.GetStatisticsType("Cargo%");
 
-            this.Passengers = this.Airline.Statistics.GetStatisticsValue(
+            Passengers = Airline.Statistics.GetStatisticsValue(
                 GameObject.GetInstance().GameTime.Year,
                 passengersType);
-            this.PassengersPerFlight = this.Airline.Statistics.GetStatisticsValue(
+            PassengersPerFlight = Airline.Statistics.GetStatisticsValue(
                 GameObject.GetInstance().GameTime.Year,
                 passengersAvgType);
-            this.Flights = this.Airline.Statistics.GetStatisticsValue(
+            Flights = Airline.Statistics.GetStatisticsValue(
                 GameObject.GetInstance().GameTime.Year,
                 arrivalsType);
-            this.Cargo = this.Airline.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year, cargoType);
-            this.CargoPerFlight = this.Airline.Statistics.GetStatisticsValue(
+            Cargo = Airline.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year, cargoType);
+            CargoPerFlight = Airline.Statistics.GetStatisticsValue(
                 GameObject.GetInstance().GameTime.Year,
                 cargoAvgType);
 
-            this.Stocks = this.Airline.Shares.Count;
-            this.StocksForSale = this.Airline.Shares.Count(s => s.Airline == null);
-            this.StockPrice = AirlineHelpers.GetPricePerAirlineShare(this.Airline);
+            Stocks = Airline.Shares.Count;
+            StocksForSale = Airline.Shares.Count(s => s.Airline == null);
+            StockPrice = AirlineHelpers.GetPricePerAirlineShare(Airline);
 
-            this.setOwnershipValues();
+            setOwnershipValues();
         }
 
         #endregion
@@ -84,12 +82,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
         {
             get
             {
-                return this._isbuyable;
+                return _isbuyable;
             }
             set
             {
-                this._isbuyable = value;
-                this.NotifyPropertyChanged("IsBuyable");
+                _isbuyable = value;
+                NotifyPropertyChanged("IsBuyable");
             }
         }
 
@@ -107,12 +105,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
         {
             get
             {
-                return this._stocks;
+                return _stocks;
             }
             set
             {
-                this._stocks = value;
-                this.NotifyPropertyChanged("Stocks");
+                _stocks = value;
+                NotifyPropertyChanged("Stocks");
             }
         }
 
@@ -120,12 +118,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
         {
             get
             {
-                return this._stocksforsale;
+                return _stocksforsale;
             }
             set
             {
-                this._stocksforsale = value;
-                this.NotifyPropertyChanged("StocksForSale");
+                _stocksforsale = value;
+                NotifyPropertyChanged("StocksForSale");
             }
         }
 
@@ -137,51 +135,51 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         public void addOwnership(Airline airline, int shares)
         {
-            AirlineHelpers.SetAirlineShares(this.Airline, airline, shares);
+            AirlineHelpers.SetAirlineShares(Airline, airline, shares);
 
-            this.StocksForSale -= shares;
+            StocksForSale -= shares;
 
-            if (this.OwnershipAirlines.Any(o => o.Airline == airline))
+            if (OwnershipAirlines.Any(o => o.Airline == airline))
             {
-                AirlineSharesMVVM share = this.OwnershipAirlines.First(o => o.Airline == airline);
+                AirlineSharesMVVM share = OwnershipAirlines.First(o => o.Airline == airline);
 
                 share.Shares += shares;
-                share.Percent = Convert.ToDouble(share.Shares) / Convert.ToDouble(this.Stocks) * 100;
+                share.Percent = Convert.ToDouble(share.Shares) / Convert.ToDouble(Stocks) * 100;
             }
             else
             {
-                double percent = Convert.ToDouble(shares) / Convert.ToDouble(this.Stocks) * 100;
+                double percent = Convert.ToDouble(shares) / Convert.ToDouble(Stocks) * 100;
 
-                this.OwnershipAirlines.Add(new AirlineSharesMVVM(airline, shares, percent));
+                OwnershipAirlines.Add(new AirlineSharesMVVM(airline, shares, percent));
             }
 
-            int humanShares = this.Airline.Shares.Count(s => s.Airline == GameObject.GetInstance().HumanAirline);
+            int humanShares = Airline.Shares.Count(s => s.Airline == GameObject.GetInstance().HumanAirline);
 
-            double humanSharesPercent = Convert.ToDouble(humanShares) / Convert.ToDouble(this.Stocks) * 100;
+            double humanSharesPercent = Convert.ToDouble(humanShares) / Convert.ToDouble(Stocks) * 100;
 
-            this.IsBuyable = !this.Airline.IsHuman && humanSharesPercent > 50;
+            IsBuyable = !Airline.IsHuman && humanSharesPercent > 50;
         }
 
         public void setOwnershipValues()
         {
-            this.OwnershipAirlines = new ObservableCollection<AirlineSharesMVVM>();
+            OwnershipAirlines = new ObservableCollection<AirlineSharesMVVM>();
 
             IEnumerable<Airline> airlines =
-                this.Airline.Shares.Where(s => s.Airline != null).Select(s => s.Airline).Distinct();
+                Airline.Shares.Where(s => s.Airline != null).Select(s => s.Airline).Distinct();
 
             foreach (Airline shareAirline in airlines)
             {
-                int shares = this.Airline.Shares.Count(s => s.Airline == shareAirline);
-                double percent = Convert.ToDouble(shares) / Convert.ToDouble(this.Stocks) * 100;
+                int shares = Airline.Shares.Count(s => s.Airline == shareAirline);
+                double percent = Convert.ToDouble(shares) / Convert.ToDouble(Stocks) * 100;
 
-                this.OwnershipAirlines.Add(new AirlineSharesMVVM(shareAirline, shares, percent));
+                OwnershipAirlines.Add(new AirlineSharesMVVM(shareAirline, shares, percent));
             }
 
-            int humanShares = this.Airline.Shares.Count(s => s.Airline == GameObject.GetInstance().HumanAirline);
+            int humanShares = Airline.Shares.Count(s => s.Airline == GameObject.GetInstance().HumanAirline);
 
-            double humanSharesPercent = Convert.ToDouble(humanShares) / Convert.ToDouble(this.Stocks) * 100;
+            double humanSharesPercent = Convert.ToDouble(humanShares) / Convert.ToDouble(Stocks) * 100;
 
-            this.IsBuyable = !this.Airline.IsHuman && humanSharesPercent > 50;
+            IsBuyable = !Airline.IsHuman && humanSharesPercent > 50;
         }
 
         #endregion
@@ -190,7 +188,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -215,9 +213,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         public AirlineSharesMVVM(Airline airline, int shares, double percent)
         {
-            this.Airline = airline;
-            this.Shares = shares;
-            this.Percent = percent;
+            Airline = airline;
+            Shares = shares;
+            Percent = percent;
         }
 
         #endregion
@@ -236,12 +234,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
         {
             get
             {
-                return this._percent;
+                return _percent;
             }
             set
             {
-                this._percent = value;
-                this.NotifyPropertyChanged("Percent");
+                _percent = value;
+                NotifyPropertyChanged("Percent");
             }
         }
 
@@ -249,12 +247,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
         {
             get
             {
-                return this._shares;
+                return _shares;
             }
             set
             {
-                this._shares = value;
-                this.NotifyPropertyChanged("Shares");
+                _shares = value;
+                NotifyPropertyChanged("Shares");
             }
         }
 
@@ -264,7 +262,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));

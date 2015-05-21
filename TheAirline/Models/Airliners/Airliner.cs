@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airlines;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
 
@@ -95,7 +95,7 @@ namespace TheAirline.Models.Airliners
         public int Age => GetAge();
 
         [Versioning("airline")]
-        public Airlines.Airline Airline { get; set; }
+        public Airline Airline { get; set; }
 
         [Versioning("built")]
         public DateTime BuiltDate { get; set; }
@@ -182,7 +182,7 @@ namespace TheAirline.Models.Airliners
         public AirlinerType Type { get; set; }
 
         [Versioning("owner", Version = 4)]
-        public Airlines.Airline Owner { get; set; }
+        public Airline Owner { get; set; }
 
         private int GetSeatingCapacity(AirlinerClass.ClassType classType)
         {

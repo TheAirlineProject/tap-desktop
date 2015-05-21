@@ -1,17 +1,14 @@
-﻿using TheAirline.Models.Airliners;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Models.Airliners;
 using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Documents;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageManufacturers.xaml
     /// </summary>

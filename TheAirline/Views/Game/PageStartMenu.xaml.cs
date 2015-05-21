@@ -1,24 +1,23 @@
-﻿using TheAirline.Models.General;
+﻿using System.ComponentModel.Composition;
+using System.Windows;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.PagesModel.GamePageModel;
+using TheAirline.Models.General;
 
-namespace TheAirline.GUIModel.PagesModel.GamePageModel
+namespace TheAirline.Views.Game
 {
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageStartMenu.xaml
     /// </summary>
-    public partial class PageStartMenu : Page
+    [Export]
+    public partial class PageStartMenu
     {
         #region Constructors and Destructors
 
         public PageStartMenu()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion

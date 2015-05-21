@@ -1,18 +1,15 @@
-﻿using TheAirline.Models.Airlines;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Models.Airlines;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Statistics;
 
 namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAlliances.xaml
     /// </summary>
@@ -22,7 +19,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
         public PageAlliances()
         {
-            this.HumanAlliances = GameObject.GetInstance().HumanAirline.Alliances;
+            HumanAlliances = GameObject.GetInstance().HumanAirline.Alliances;
 
             List<Alliance> alliances =
                 Alliances.GetAlliances()
@@ -35,10 +32,10 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
                                         StatisticsTypes.GetStatisticsType("Passengers"))))
                     .ToList();
 
-            this.LargestAlliances = alliances.Take(Math.Min(5, alliances.Count)).ToList();
-            this.Loaded += this.PageAlliances_Loaded;
+            LargestAlliances = alliances.Take(Math.Min(5, alliances.Count)).ToList();
+            Loaded += PageAlliances_Loaded;
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion

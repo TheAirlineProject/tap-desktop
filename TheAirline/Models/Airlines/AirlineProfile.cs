@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airliners;
+using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
 
@@ -110,7 +110,7 @@ namespace TheAirline.Models.Airlines
         public List<AirlinerType> PreferedAircrafts { get; set; }
 
         [Versioning("preferedairport")]
-        public Airports.Airport PreferedAirport { get; set; }
+        public Airport PreferedAirport { get; set; }
 
         [Versioning("purchasing", Version = 3)]
         public PreferedPurchasing PrimaryPurchasing { get; set; }

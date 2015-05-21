@@ -2,21 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Helpers;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airports;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
@@ -96,7 +88,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
     //the converter for the distance to the selected airport
     public class DistanceConverter : IMultiValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             CompareAirportMVVM airport1 = (CompareAirportMVVM)values[0];
             CompareAirportMVVM airport2 = (CompareAirportMVVM)values[1];
@@ -106,7 +98,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             return new DistanceToUnitConverter().Convert(distance);
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

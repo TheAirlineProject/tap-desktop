@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Xml;
 using NLog;
 using TheAirline.Helpers;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.AirlineCooperation;

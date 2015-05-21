@@ -1,4 +1,12 @@
-﻿using TheAirline.Helpers;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.Subsidiary;
@@ -6,19 +14,11 @@ using TheAirline.Models.General;
 using TheAirline.Models.General.Finances;
 using TheAirline.Models.Pilots;
 using TheAirline.Models.Routes;
+using TheAirline.ViewModels.Airline;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAirlineFleet.xaml
     /// </summary>
@@ -28,11 +28,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         public PageAirlineFleet(AirlineMVVM airline)
         {
-            this.Airline = airline;
-            this.DataContext = this.Airline;
-            this.SelectedAirliners = new ObservableCollection<FleetAirliner>();
+            Airline = airline;
+            DataContext = Airline;
+            SelectedAirliners = new ObservableCollection<FleetAirliner>();
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -49,23 +49,23 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void btnEditAirliners_Click(object sender, RoutedEventArgs e)
         {
-            var frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
+            var frmContent = UIHelpers.FindChild<Frame>(Tag as Page, "frmContent");
 
             if (frmContent != null)
             {
-                frmContent.Navigate(new PageAirlineEditAirliners(this.SelectedAirliners.ToList()) { Tag = this.Tag });
+                frmContent.Navigate(new PageAirlineEditAirliners(SelectedAirliners.ToList()) { Tag = Tag });
             }
         }
 
         private void btnRouteMap_Click(object sender, RoutedEventArgs e)
         {
-            PopUpMap.ShowPopUp(this.Airline.Airline.Routes);
+            PopUpMap.ShowPopUp(Airline.Airline.Routes);
         }
         private void btnCallBackAirliner_Click(object sender, RoutedEventArgs e)
         {
             var airliner = (FleetAirliner)((Button)sender).Tag;
 
-            this.Airline.CallbackAirliner(airliner);
+            Airline.CallbackAirliner(airliner);
 
         }
         private void btnMoveAirliner_Click(object sender, RoutedEventArgs e)
@@ -78,11 +78,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             cbAirlines.HorizontalAlignment = HorizontalAlignment.Left;
             cbAirlines.Width = 200;
 
-            if (this.Airline.Airline.Subsidiaries.Count > 0)
-                foreach (SubsidiaryAirline sAirline in this.Airline.Airline.Subsidiaries)
+            if (Airline.Airline.Subsidiaries.Count > 0)
+                foreach (SubsidiaryAirline sAirline in Airline.Airline.Subsidiaries)
                     cbAirlines.Items.Add(sAirline);
             else
-                cbAirlines.Items.Add(((SubsidiaryAirline)this.Airline.Airline).Airline);
+                cbAirlines.Items.Add(((SubsidiaryAirline)Airline.Airline).Airline);
 
             cbAirlines.SelectedIndex = 0;
 
@@ -93,7 +93,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             {
                 var airline = cbAirlines.SelectedItem as Airline;
 
-                this.Airline.moveAirliner(airliner, airline);
+                Airline.moveAirliner(airliner, airline);
             }
         }
         private void btnSellAirliner_Click(object sender, RoutedEventArgs e)
@@ -131,10 +131,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                             }
                         }
 
-                        this.Airline.removeAirliner(airliner);
+                        Airline.removeAirliner(airliner);
 
                         AirlineHelpers.AddAirlineInvoice(
-                            this.Airline.Airline,
+                            Airline.Airline,
                             GameObject.GetInstance().GameTime,
                             Invoice.InvoiceType.Purchases,
                             airliner.Airliner.GetPrice());
@@ -169,7 +169,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                             }
                         }
 
-                        this.Airline.removeAirliner(airliner);
+                        Airline.removeAirliner(airliner);
 
                         foreach (Pilot pilot in airliner.Pilots)
                         {
@@ -186,14 +186,14 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             var airliner = (FleetAirliner)((CheckBox)sender).Tag;
 
-            this.SelectedAirliners.Add(airliner);
+            SelectedAirliners.Add(airliner);
         }
 
         private void cbAirliner_Unchecked(object sender, RoutedEventArgs e)
         {
             var airliner = (FleetAirliner)((CheckBox)sender).Tag;
 
-            this.SelectedAirliners.Remove(airliner);
+            SelectedAirliners.Remove(airliner);
         }
 
         #endregion

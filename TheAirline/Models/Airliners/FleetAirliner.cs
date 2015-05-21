@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Finances;
 using TheAirline.Models.Pilots;
@@ -18,9 +19,9 @@ namespace TheAirline.Models.Airliners
         public FleetAirliner(
             PurchasedType purchased,
             DateTime purchasedDate,
-            Airlines.Airline airline,
+            Airline airline,
             Airliner airliner,
-            Airports.Airport homebase)
+            Airport homebase)
         {
             Airliner = airliner;
             Purchased = purchased;
@@ -106,7 +107,7 @@ namespace TheAirline.Models.Airliners
         public Flight CurrentFlight { get; set; }
 
         [Versioning("currentposition")]
-        public Airports.Airport CurrentPosition { get; set; }
+        public Airport CurrentPosition { get; set; }
 
         [Versioning("dinterval")]
         public int DMaintenanceInterval { get; set; }
@@ -126,7 +127,7 @@ namespace TheAirline.Models.Airliners
         public bool HasRoute => Routes.Count > 0;
 
         [Versioning("homebase")]
-        public Airports.Airport Homebase { get; set; }
+        public Airport Homebase { get; set; }
 
         [Versioning("insurancepolicies")]
         public List<AirlinerInsurance> InsurancePolicies { get; set; }

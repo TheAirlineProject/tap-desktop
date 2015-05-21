@@ -1,18 +1,15 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageShowOptions.xaml
     /// </summary>
@@ -22,12 +19,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         public PageShowOptions()
         {
-            this.Options = new OptionsMVVM();
-            this.DataContext = this.Options;
+            Options = new OptionsMVVM();
+            DataContext = Options;
 
-            this.Loaded += this.PageShowOptions_Loaded;
+            Loaded += PageShowOptions_Loaded;
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -42,7 +39,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         private void PageShowOptions_Loaded(object sender, RoutedEventArgs e)
         {
-            this.setIntevalValues();
+            setIntevalValues();
         }
 
         private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
@@ -54,24 +51,24 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                AppSettings.GetInstance().SetLanguage((Language)this.cbLanguage.SelectedItem);
+                AppSettings.GetInstance().SetLanguage((Language)cbLanguage.SelectedItem);
 
-                Settings.GetInstance().AirportCodeDisplay = this.rbIATA.IsChecked.Value
+                Settings.GetInstance().AirportCodeDisplay = rbIATA.IsChecked.Value
                     ? Settings.AirportCode.IATA
                     : Settings.AirportCode.ICAO;
-                Settings.GetInstance().MailsOnLandings = this.cbLandings.IsChecked.Value;
-                Settings.GetInstance().MailsOnBadWeather = this.cbWeather.IsChecked.Value;
-                Settings.GetInstance().MailsOnAirlineRoutes = this.cbAirlineDestinations.IsChecked.Value;
-                Settings.GetInstance().CurrencyShorten = this.cbShortenCurrency.IsChecked.Value;
+                Settings.GetInstance().MailsOnLandings = cbLandings.IsChecked.Value;
+                Settings.GetInstance().MailsOnBadWeather = cbWeather.IsChecked.Value;
+                Settings.GetInstance().MailsOnAirlineRoutes = cbAirlineDestinations.IsChecked.Value;
+                Settings.GetInstance().CurrencyShorten = cbShortenCurrency.IsChecked.Value;
 
-                if (this.Options.HourRoundEnabled)
+                if (Options.HourRoundEnabled)
                 {
-                    Settings.GetInstance().MinutesPerTurn = (int)this.cbHours.SelectedItem;
+                    Settings.GetInstance().MinutesPerTurn = (int)cbHours.SelectedItem;
                 }
 
                 var gameSpeed =
                     (GeneralHelpers.GameSpeedValue)
-                        Enum.ToObject(typeof(GeneralHelpers.GameSpeedValue), (int)this.slGameSpeed.Value);
+                        Enum.ToObject(typeof(GeneralHelpers.GameSpeedValue), (int)slGameSpeed.Value);
 
                 Settings.GetInstance().SetGameSpeed(gameSpeed);
 
@@ -101,8 +98,8 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
-            this.Options.undoChanges();
-            this.setIntevalValues();
+            Options.undoChanges();
+            setIntevalValues();
         }
 
         //sets the values of the interval types
@@ -112,7 +109,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
             foreach (RadioButton rbInterval in rbAutoSaves)
             {
-                if (rbInterval.Tag.ToString() == this.Options.AutoSave.ToString())
+                if (rbInterval.Tag.ToString() == Options.AutoSave.ToString())
                 {
                     rbInterval.IsChecked = true;
                 }
@@ -122,7 +119,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
             foreach (RadioButton rbInterval in rbClearings)
             {
-                if (rbInterval.Tag.ToString() == this.Options.ClearStats.ToString())
+                if (rbInterval.Tag.ToString() == Options.ClearStats.ToString())
                 {
                     rbInterval.IsChecked = true;
                 }

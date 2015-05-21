@@ -1,30 +1,27 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using Microsoft.Win32;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.CustomControlsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.ObjectsModel;
+using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
+using TheAirline.Views.Airline;
+using TheAirline.Views.Game;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using Microsoft.Win32;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GUIModel.CustomControlsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.GUIModel.ObjectsModel;
-    using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAirlineData.xaml
     /// </summary>
@@ -40,25 +37,25 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         public PageAirlineData(StartDataObject startData)
         {
-            this.AllTimeZones = TimeZones.GetTimeZones();
-            this.AllAirports = new ObservableCollection<Airport>();
-            this.StartData = startData;
+            AllTimeZones = TimeZones.GetTimeZones();
+            AllAirports = new ObservableCollection<Airport>();
+            StartData = startData;
 
-            GameObject.GetInstance().GameTime = new DateTime(this.StartData.Year, 1, 1);
+            GameObject.GetInstance().GameTime = new DateTime(StartData.Year, 1, 1);
 
-            this.InitializeComponent();
+            InitializeComponent();
 
             List<Airline> airlines =
                 Airlines.GetAirlines(
                     airline =>
-                        (airline.Profile.Country.Region == this.StartData.Region
-                         || (this.StartData.Region.Uid == "100" && this.StartData.Continent.Uid == "100")
-                         || (this.StartData.Region.Uid == "100"
-                             && this.StartData.Continent.HasRegion(airline.Profile.Country.Region)))
-                        && airline.Profile.Founded <= this.StartData.Year
-                        && airline.Profile.Folded > this.StartData.Year).OrderBy(a => a.Profile.Name).ToList();
+                        (airline.Profile.Country.Region == StartData.Region
+                         || (StartData.Region.Uid == "100" && StartData.Continent.Uid == "100")
+                         || (StartData.Region.Uid == "100"
+                             && StartData.Continent.HasRegion(airline.Profile.Country.Region)))
+                        && airline.Profile.Founded <= StartData.Year
+                        && airline.Profile.Folded > StartData.Year).OrderBy(a => a.Profile.Name).ToList();
 
-            this.cbAirline.ItemsSource = airlines;
+            cbAirline.ItemsSource = airlines;
         }
 
         #endregion
@@ -75,28 +72,28 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            var frmContent = UIHelpers.FindChild<Frame>((Page)this.Tag, "frmContent");
+            var frmContent = UIHelpers.FindChild<Frame>((Page)Tag, "frmContent");
 
-            frmContent.Navigate(new PageStartData { Tag = this.Tag });
+            frmContent.Navigate(new PageStartData { Tag = Tag });
         }
 
         private void btnCreateGame_Click(object sender, RoutedEventArgs e)
         {
-            this.StartData.Airline = (Airline)this.cbAirline.SelectedItem;
-            this.StartData.Airport = (Airport)this.cbAirport.SelectedItem;
-            this.StartData.CEO = this.txtCEO.Text;
-            this.StartData.HomeCountry = (Country)this.cbCountry.SelectedItem;
-            this.StartData.TimeZone = (GameTimeZone)this.cbTimeZone.SelectedItem;
-            this.StartData.LocalCurrency = this.cbLocalCurrency.IsChecked.Value
-                                           && this.StartData.HomeCountry.HasLocalCurrency;
+            StartData.Airline = (Airline)cbAirline.SelectedItem;
+            StartData.Airport = (Airport)cbAirport.SelectedItem;
+            StartData.CEO = txtCEO.Text;
+            StartData.HomeCountry = (Country)cbCountry.SelectedItem;
+            StartData.TimeZone = (GameTimeZone)cbTimeZone.SelectedItem;
+            StartData.LocalCurrency = cbLocalCurrency.IsChecked.Value
+                                           && StartData.HomeCountry.HasLocalCurrency;
 
-            if (this.StartData.SelectedCountries != null)
+            if (StartData.SelectedCountries != null)
             {
-                PageNavigator.NavigateTo(new PageSelectAirports(this.StartData));
+                PageNavigator.NavigateTo(new PageSelectAirports(StartData));
             }
-            else if (!this.StartData.RandomOpponents)
+            else if (!StartData.RandomOpponents)
             {
-                PageNavigator.NavigateTo(new PageSelectOpponents(this.StartData));
+                PageNavigator.NavigateTo(new PageSelectOpponents(StartData));
             }
             else
             {
@@ -105,7 +102,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                 scCreating.Visibility = Visibility.Visible;
 
                 var bgWorker = new BackgroundWorker();
-                bgWorker.DoWork += (y, x) => { GameObjectHelpers.CreateGame(this.StartData); };
+                bgWorker.DoWork += (y, x) => { GameObjectHelpers.CreateGame(StartData); };
                 bgWorker.RunWorkerCompleted += (y, x) =>
                 {
                     scCreating.Visibility = Visibility.Collapsed;
@@ -159,24 +156,24 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                 List<Airline> airlines =
                     Airlines.GetAirlines(
                         a =>
-                            (a.Profile.Country.Region == this.StartData.Region
-                             || (this.StartData.Region.Uid == "100" && this.StartData.Continent.Uid == "100")
-                             || (this.StartData.Region.Uid == "100"
-                                 && this.StartData.Continent.HasRegion(a.Profile.Country.Region)))
-                            && a.Profile.Founded <= this.StartData.Year && a.Profile.Folded > this.StartData.Year)
+                            (a.Profile.Country.Region == StartData.Region
+                             || (StartData.Region.Uid == "100" && StartData.Continent.Uid == "100")
+                             || (StartData.Region.Uid == "100"
+                                 && StartData.Continent.HasRegion(a.Profile.Country.Region)))
+                            && a.Profile.Founded <= StartData.Year && a.Profile.Folded > StartData.Year)
                         .OrderBy(a => a.Profile.Name)
                         .ToList();
 
-                this.cbAirline.ItemsSource = airlines;
+                cbAirline.ItemsSource = airlines;
 
                 WPFMessageBox.Show(
                     Translator.GetInstance().GetString("MessageBox", "2409"),
                     Translator.GetInstance().GetString("MessageBox", "2409", "message"),
                     WPFMessageBoxButtons.Ok);
 
-                if (this.cbAirline.Items.Contains(airline))
+                if (cbAirline.Items.Contains(airline))
                 {
-                    this.cbAirline.SelectedItem = airline;
+                    cbAirline.SelectedItem = airline;
                 }
             }
         }
@@ -188,9 +185,9 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void cbAirline_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var airline = (Airline)this.cbAirline.SelectedItem;
+            var airline = (Airline)cbAirline.SelectedItem;
 
-            this.AllAirports.Clear();
+            AllAirports.Clear();
 
             foreach (
                 Airport airport in
@@ -198,16 +195,16 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                         .Where(a => airline.Profile.Countries.Contains(a.Profile.Country))
                         .OrderBy(a => a.Profile.Name))
             {
-                this.AllAirports.Add(airport);
+                AllAirports.Add(airport);
             }
 
-            if (this.AllAirports.Contains(airline.Profile.PreferedAirport))
+            if (AllAirports.Contains(airline.Profile.PreferedAirport))
             {
-                this.cbAirport.SelectedItem = airline.Profile.PreferedAirport;
+                cbAirport.SelectedItem = airline.Profile.PreferedAirport;
             }
             else
             {
-                this.cbAirport.SelectedIndex = 0;
+                cbAirport.SelectedIndex = 0;
             }
         }
 

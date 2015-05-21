@@ -1,4 +1,11 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media;
+using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
@@ -8,15 +15,6 @@ using TheAirline.Models.General.Countries;
 
 namespace TheAirline.GUIModel.HelpersModel
 {
-    using System;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Data;
-    using System.Windows.Media;
-    using TheAirline.Model.GeneralModel;
-
     //the class for the different converters
     //the converter for a string to a brush
     public class StringToBrushConverter : IValueConverter

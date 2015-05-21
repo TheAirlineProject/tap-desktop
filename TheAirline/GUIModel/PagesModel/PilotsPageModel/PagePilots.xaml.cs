@@ -1,11 +1,4 @@
-﻿using TheAirline.Models.Airliners;
-using TheAirline.Models.General;
-using TheAirline.Models.Pilots;
-
-namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
-{
-    using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -14,8 +7,12 @@ using System.Windows.Documents;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
+using TheAirline.Models.Pilots;
 
+namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
+{
     /// <summary>
     ///     Interaction logic for PagePilots.xaml
     /// </summary>
@@ -25,12 +22,12 @@ using TheAirline.GUIModel.HelpersModel;
 
         public PagePilots()
         {
-            this.AllPilots = new ObservableCollection<Pilot>();
-            Pilots.GetUnassignedPilots().ForEach(p => this.AllPilots.Add(p));
+            AllPilots = new ObservableCollection<Pilot>();
+            Pilots.GetUnassignedPilots().ForEach(p => AllPilots.Add(p));
 
-            this.Loaded += this.PagePilots_Loaded;
+            Loaded += PagePilots_Loaded;
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -45,7 +42,7 @@ using TheAirline.GUIModel.HelpersModel;
 
         private void PagePilots_Loaded(object sender, RoutedEventArgs e)
         {
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -74,7 +71,7 @@ using TheAirline.GUIModel.HelpersModel;
             {
                 GameObject.GetInstance().HumanAirline.AddPilot(pilot);
 
-                this.AllPilots.Remove(pilot);
+                AllPilots.Remove(pilot);
 
                 IEnumerable<FleetAirliner> fleetMissingPilots =
                     GameObject.GetInstance().HumanAirline.Fleet.Where(f => f.Pilots.Count < f.Airliner.Type.CockpitCrew && pilot.Aircrafts.Exists(a=>f.Airliner.Type.AirlinerFamily == a));
@@ -85,7 +82,7 @@ using TheAirline.GUIModel.HelpersModel;
                     cbAirliners.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
                     cbAirliners.Width = 200;
                     cbAirliners.HorizontalAlignment = HorizontalAlignment.Left;
-                    cbAirliners.ItemTemplate = this.Resources["pilotAirlinerItem"] as DataTemplate;
+                    cbAirliners.ItemTemplate = Resources["pilotAirlinerItem"] as DataTemplate;
                   
                     foreach (FleetAirliner airliner in fleetMissingPilots)
                     {
@@ -110,7 +107,7 @@ using TheAirline.GUIModel.HelpersModel;
         {
             var pilot = (Pilot)((Hyperlink)sender).Tag;
 
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -124,11 +121,11 @@ using TheAirline.GUIModel.HelpersModel;
                 tab_main.SelectedItem = matchingItem;
             }
 
-            var frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
+            var frmContent = UIHelpers.FindChild<Frame>(Tag as Page, "frmContent");
 
             if (frmContent != null)
             {
-                frmContent.Navigate(new PageShowPilot(pilot) { Tag = this.Tag });
+                frmContent.Navigate(new PageShowPilot(pilot) { Tag = Tag });
             }
         }
 

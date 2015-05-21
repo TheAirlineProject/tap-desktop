@@ -1,14 +1,12 @@
-﻿using TheAirline.Models.Airports;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Controls;
+using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Statistics;
 
 namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows.Controls;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAirportsStatistics.xaml
     /// </summary>
@@ -18,7 +16,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
         public PageAirportsStatistics()
         {
-            this.AllAirports = new List<Airport>();
+            AllAirports = new List<Airport>();
 
             StatisticsType statType = StatisticsTypes.GetStatisticsType("Passengers");
 
@@ -29,10 +27,10 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
             foreach (Airport airport in airports.Take(20))
             {
-                this.AllAirports.Add(airport);
+                AllAirports.Add(airport);
             }
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion

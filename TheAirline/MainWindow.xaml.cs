@@ -1,62 +1,76 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using Microsoft.Practices.Prism.PubSubEvents;
+using Microsoft.Practices.Prism.Regions;
 using NLog;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.GamePageModel;
-using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Helpers.Workers;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Infrastructure.Events;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
+using TheAirline.ViewModels;
 
 namespace TheAirline
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
+    [Export]
     public partial class MainWindow
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public MainWindow()
+        [ImportingConstructor]
+        public MainWindow(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             InitializeComponent();
 
-            Setup.SetupGame();
+            // Subscribes to the CloseGameEvent and closes the window when triggered.
+            eventAggregator.GetEvent<CloseGameEvent>().Subscribe(a => Close());
 
-            if (Settings.GetInstance().Mode == Settings.ScreenMode.Fullscreen)
+            Loaded += (o, args) =>
             {
-                WindowStyle = WindowStyle.None;
-                WindowState = WindowState.Maximized;
-                Focus();
-            }
+                regionManager.RequestNavigate("HeaderContentRegion", new Uri("PageHeader", UriKind.Relative));
+                regionManager.RequestNavigate("MainContentRegion", new Uri("PageStartMenu", UriKind.Relative));
+            };
 
-            PageNavigator.MainWindow = this;
+            //Setup.SetupGame();
 
-            Width = SystemParameters.PrimaryScreenWidth;
-            Height = SystemParameters.PrimaryScreenHeight;
+            //if (Settings.GetInstance().Mode == Settings.ScreenMode.Fullscreen)
+            //{
+            //    WindowStyle = WindowStyle.None;
+            //    WindowState = WindowState.Maximized;
+            //    Focus();
+            //}
 
-            if (AppSettings.GetInstance().HasLanguage())
-                frmContent.Navigate(new PageStartMenu());
-            else
-                frmContent.Navigate(new PageSelectLanguage());
+            //PageNavigator.MainWindow = this;
+
+            //Width = SystemParameters.PrimaryScreenWidth;
+            //Height = SystemParameters.PrimaryScreenHeight;
+
+            //if (AppSettings.GetInstance().HasLanguage())
+            //    frmContent.Navigate(new PageStartMenu());
+            //else
+            //    frmContent.Navigate(new PageSelectLanguage());
+        }
+
+        [Import]
+        public MainWindowViewModel ViewModel
+        {
+            get { return DataContext as MainWindowViewModel; }
+            set { DataContext = value; }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Escape)
-            {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1003"), Translator.GetInstance().GetString("MessageBox", "1003", "message"),
-                                                                WPFMessageBoxButtons.YesNo);
-
-                if (result == WPFMessageBoxResult.Yes)
-                    Close();
-            }
             if (e.Key == Key.F8)
             {
                 string text = $"Gameobjectworker paused: {GameObjectWorker.GetInstance().IsPaused}\n";
@@ -113,13 +127,13 @@ namespace TheAirline
         }
 
         //returns if navigator can go forward
-        public Boolean CanGoForward()
+        public bool CanGoForward()
         {
             return frmContent.NavigationService.CanGoForward;
         }
 
         //returns if navigator can go back
-        public Boolean CanGoBack()
+        public bool CanGoBack()
         {
             return frmContent.NavigationService.CanGoBack;
         }
@@ -143,11 +157,6 @@ namespace TheAirline
         {
             if (frmContent.NavigationService.CanGoBack)
                 frmContent.NavigationService.GoBack();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //social groups + passenger happiness
         }
     }
 }

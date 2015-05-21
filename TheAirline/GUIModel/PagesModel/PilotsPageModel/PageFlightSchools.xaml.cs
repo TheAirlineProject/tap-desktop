@@ -1,4 +1,15 @@
-﻿using TheAirline.Helpers;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Finances;
@@ -6,20 +17,6 @@ using TheAirline.Models.Pilots;
 
 namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageFlightSchools.xaml
     /// </summary>
@@ -29,14 +26,14 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
         public PageFlightSchools()
         {
-            this.AllInstructors = new ObservableCollection<Instructor>();
-            this.FlightSchools = new ObservableCollection<FlightSchool>();
+            AllInstructors = new ObservableCollection<Instructor>();
+            FlightSchools = new ObservableCollection<FlightSchool>();
 
-            Instructors.GetUnassignedInstructors().ForEach(i => this.AllInstructors.Add(i));
-            GameObject.GetInstance().HumanAirline.FlightSchools.ForEach(f => this.FlightSchools.Add(f));
+            Instructors.GetUnassignedInstructors().ForEach(i => AllInstructors.Add(i));
+            GameObject.GetInstance().HumanAirline.FlightSchools.ForEach(f => FlightSchools.Add(f));
 
-            this.Loaded += this.PageFlightSchools_Loaded;
-            this.InitializeComponent();
+            Loaded += PageFlightSchools_Loaded;
+            InitializeComponent();
         }
 
         #endregion
@@ -53,7 +50,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 
         private void PageFlightSchools_Loaded(object sender, RoutedEventArgs e)
         {
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -108,7 +105,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 var fs = new FlightSchool(airport);
 
                 GameObject.GetInstance().HumanAirline.AddFlightSchool(fs);
-                this.FlightSchools.Add(fs);
+                FlightSchools.Add(fs);
 
                 AirlineHelpers.AddAirlineInvoice(
                     GameObject.GetInstance().HumanAirline,
@@ -116,7 +113,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                     Invoice.InvoiceType.AirlineExpenses,
                     -price);
 
-                ICollectionView view = CollectionViewSource.GetDefaultView(this.lvInstructors.ItemsSource);
+                ICollectionView view = CollectionViewSource.GetDefaultView(lvInstructors.ItemsSource);
                 view.Refresh();
             }
         }
@@ -135,7 +132,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
             if (result == WPFMessageBoxResult.Yes)
             {
                 GameObject.GetInstance().HumanAirline.RemoveFlightSchool(fs);
-                this.FlightSchools.Remove(fs);
+                FlightSchools.Remove(fs);
 
                 if (GameObject.GetInstance().HumanAirline.FlightSchools.Count > 0)
                 {
@@ -178,7 +175,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                             nFlightSchool.AddTrainingAircraft(aircraft);
                         }
 
-                        ICollectionView view = CollectionViewSource.GetDefaultView(this.lvFlightSchools.ItemsSource);
+                        ICollectionView view = CollectionViewSource.GetDefaultView(lvFlightSchools.ItemsSource);
                         view.Refresh();
                     }
                     else
@@ -228,9 +225,9 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 flightSchool.AddInstructor(instructor);
                 instructor.FlightSchool = flightSchool;
 
-                this.AllInstructors.Remove(instructor);
+                AllInstructors.Remove(instructor);
 
-                ICollectionView view = CollectionViewSource.GetDefaultView(this.lvFlightSchools.ItemsSource);
+                ICollectionView view = CollectionViewSource.GetDefaultView(lvFlightSchools.ItemsSource);
                 view.Refresh();
             }
         }
@@ -239,7 +236,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
         {
             var fs = (FlightSchool)((Hyperlink)sender).Tag;
 
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -253,11 +250,11 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 tab_main.SelectedItem = matchingItem;
             }
 
-            var frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
+            var frmContent = UIHelpers.FindChild<Frame>(Tag as Page, "frmContent");
 
             if (frmContent != null)
             {
-                frmContent.Navigate(new PageShowFlightSchool(fs) { Tag = this.Tag });
+                frmContent.Navigate(new PageShowFlightSchool(fs) { Tag = Tag });
             }
         }
 

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.Serialization;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines.Subsidiary;
 using TheAirline.Models.Airports;
@@ -34,7 +33,7 @@ namespace TheAirline.Models.Airlines
         {
             Scores = new AirlineScores();
             Shares = new List<AirlineShare>();
-            Airports = new List<Airports.Airport>();
+            Airports = new List<Airport>();
             Fleet = new List<FleetAirliner>();
             Routes = new List<Route>();
             FutureAirlines = new List<FutureSubsidiaryAirline>();
@@ -156,7 +155,7 @@ namespace TheAirline.Models.Airlines
         //0-100 with 0-9 as very_low, 10-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 
 
         [Versioning("airports")]
-        public List<Airports.Airport> Airports { get; set; }
+        public List<Airport> Airports { get; set; }
 
         [Versioning("alliances")]
         public List<Alliance> Alliances { get; set; }
@@ -313,7 +312,7 @@ namespace TheAirline.Models.Airlines
         }
 
         //adds an airliner to the airlines fleet
-        public void AddAirliner(FleetAirliner.PurchasedType type, Airliner airliner, Airports.Airport homeBase)
+        public void AddAirliner(FleetAirliner.PurchasedType type, Airliner airliner, Airport homeBase)
         {
             AddAirliner(new FleetAirliner(type, GameObject.GetInstance().GameTime, this, airliner, homeBase));
         }
@@ -330,7 +329,7 @@ namespace TheAirline.Models.Airlines
         //remove a fleet airliner from the airlines fleet
 
         //adds an airport to the airline
-        public void AddAirport(Airports.Airport airport)
+        public void AddAirport(Airport airport)
         {
             lock (Airports)
             {
@@ -551,9 +550,9 @@ namespace TheAirline.Models.Airlines
          */
         }
 
-        public List<Airports.Airport> GetHubs()
+        public List<Airport> GetHubs()
         {
-            var hubs = new List<Airports.Airport>();
+            var hubs = new List<Airport>();
             lock (Airports)
             {
                 hubs = (from a in Airports where a.GetHubs().Exists(h => h.Airline == this) select a).ToList();
@@ -701,7 +700,7 @@ namespace TheAirline.Models.Airlines
             var facilities = new List<AirlineFacility>(Facilities);
             value += facilities.Sum(facility => facility.Price);
 
-            var airports = new List<Airports.Airport>(Airports);
+            var airports = new List<Airport>(Airports);
             value += airports.SelectMany(airport => new List<AirlineAirportFacility>(airport.GetAirportFacilities(this))).Sum(facility => facility.Facility.Price);
 
             lock (Loans)
@@ -741,7 +740,7 @@ namespace TheAirline.Models.Airlines
             airliner.Airliner.Airline = null;
         }
 
-        public void RemoveAirport(Airports.Airport airport)
+        public void RemoveAirport(Airport airport)
         {
             Airports.Remove(airport);
 
@@ -887,7 +886,7 @@ namespace TheAirline.Models.Airlines
         #endregion
 
         //returns a policy for the airline
-        public bool HasRouteTo(Airports.Airport airport)
+        public bool HasRouteTo(Airport airport)
         {
             return
                 Routes.Any(
@@ -897,7 +896,7 @@ namespace TheAirline.Models.Airlines
         }
 
         //returns a policy for the airline
-        public bool HasAirplaneOnRouteTo(Airports.Airport airport)
+        public bool HasAirplaneOnRouteTo(Airport airport)
         {
             return
                 Routes.Any(

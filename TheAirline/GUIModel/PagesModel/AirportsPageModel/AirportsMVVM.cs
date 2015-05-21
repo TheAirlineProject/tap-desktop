@@ -1,4 +1,10 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Data;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Statistics;
@@ -6,14 +12,6 @@ using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
-    using System;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.Linq;
-    using System.Windows.Data;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     //the mvvm class for an airport
     public class AirportMVVM : INotifyPropertyChanged
     {
@@ -35,15 +33,15 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
         public AirportMVVM(Airport airport)
         {
-            this.Airport = airport;
-            this.IsHuman = GameObject.GetInstance().HumanAirline.Airports.Contains(this.Airport);
-            this.NumberOfFreeGates = this.Airport.Terminals.NumberOfFreeGates;
-            this.NumberOfAirlines = this.Airport.AirlineContracts.Select(c => c.Airline).Distinct().Count();
-            this.NumberOfRoutes = AirportHelpers.GetAirportRoutes(this.Airport).Count;
-            this.LongestRunway = this.Airport.Runways.Count == 0 ? 0 : this.Airport.Runways.Max(r => r.Length);
-            this.HasCargoTerminal = this.Airport.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo);
-            this.HasHelipad = this.Airport.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad);
-            this.HasFreeGates = this.Airport.Terminals.GetFreeGates(GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0;
+            Airport = airport;
+            IsHuman = GameObject.GetInstance().HumanAirline.Airports.Contains(Airport);
+            NumberOfFreeGates = Airport.Terminals.NumberOfFreeGates;
+            NumberOfAirlines = Airport.AirlineContracts.Select(c => c.Airline).Distinct().Count();
+            NumberOfRoutes = AirportHelpers.GetAirportRoutes(Airport).Count;
+            LongestRunway = Airport.Runways.Count == 0 ? 0 : Airport.Runways.Max(r => r.Length);
+            HasCargoTerminal = Airport.Terminals.AirportTerminals.Exists(t => t.Type == Terminal.TerminalType.Cargo);
+            HasHelipad = Airport.Runways.Exists(r => r.Type == Runway.RunwayType.Helipad);
+            HasFreeGates = Airport.Terminals.GetFreeGates(GameObject.GetInstance().HumanAirline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger) > 0;
         }
 
         #endregion
@@ -68,12 +66,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         {
             get
             {
-                return this._distance;
+                return _distance;
             }
             set
             {
-                this._distance = value;
-                this.NotifyPropertyChanged("Distance");
+                _distance = value;
+                NotifyPropertyChanged("Distance");
             }
         }
 
@@ -81,12 +79,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         {
             get
             {
-                return this._isHuman;
+                return _isHuman;
             }
             set
             {
-                this._isHuman = value;
-                this.NotifyPropertyChanged("IsHuman");
+                _isHuman = value;
+                NotifyPropertyChanged("IsHuman");
             }
         }
 
@@ -96,12 +94,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         {
             get
             {
-                return this._numberOfAirlines;
+                return _numberOfAirlines;
             }
             set
             {
-                this._numberOfAirlines = value;
-                this.NotifyPropertyChanged("NumberOfAirlines");
+                _numberOfAirlines = value;
+                NotifyPropertyChanged("NumberOfAirlines");
             }
         }
 
@@ -109,12 +107,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         {
             get
             {
-                return this._numberOfFreeGates;
+                return _numberOfFreeGates;
             }
             set
             {
-                this._numberOfFreeGates = value;
-                this.NotifyPropertyChanged("NumberOfFreeGates");
+                _numberOfFreeGates = value;
+                NotifyPropertyChanged("NumberOfFreeGates");
             }
         }
 
@@ -122,12 +120,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         {
             get
             {
-                return this._numberOfRoutes;
+                return _numberOfRoutes;
             }
             set
             {
-                this._numberOfRoutes = value;
-                this.NotifyPropertyChanged("NumberOfRoutes");
+                _numberOfRoutes = value;
+                NotifyPropertyChanged("NumberOfRoutes");
             }
         }
 
@@ -139,10 +137,10 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         {
             AirportHelpers.AddAirlineContract(contract);
 
-            this.IsHuman = GameObject.GetInstance().HumanAirline.Airports.Contains(this.Airport);
-            this.NumberOfFreeGates = this.Airport.Terminals.NumberOfFreeGates;
-            this.NumberOfAirlines = this.Airport.AirlineContracts.Select(c => c.Airline).Distinct().Count();
-            this.NumberOfRoutes = AirportHelpers.GetAirportRoutes(this.Airport).Count;
+            IsHuman = GameObject.GetInstance().HumanAirline.Airports.Contains(Airport);
+            NumberOfFreeGates = Airport.Terminals.NumberOfFreeGates;
+            NumberOfAirlines = Airport.AirlineContracts.Select(c => c.Airline).Distinct().Count();
+            NumberOfRoutes = AirportHelpers.GetAirportRoutes(Airport).Count;
         }
 
         #endregion
@@ -151,7 +149,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));

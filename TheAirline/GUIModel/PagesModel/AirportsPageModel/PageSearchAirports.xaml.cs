@@ -1,19 +1,16 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GUIModel.CustomControlsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General.Countries;
 
 namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GUIModel.CustomControlsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageSearchAirports.xaml
     /// </summary>
@@ -23,7 +20,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
         public PageSearchAirports()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             List<Country> countries =
                 Airports.GetAllAirports()
@@ -32,7 +29,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
                     .ToList();
             countries.Add(Countries.GetCountry("100"));
 
-            this.cbCountry.ItemsSource = countries.OrderByDescending(c => c.Uid == "100").ThenBy(c => c.Name);
+            cbCountry.ItemsSource = countries.OrderByDescending(c => c.Uid == "100").ThenBy(c => c.Name);
 
             IOrderedEnumerable<Region> regions =
                 countries.Select(c => c.Region)
@@ -41,7 +38,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
                     .OrderByDescending(r => r.Uid == "100")
                     .ThenBy(r => r.Name);
 
-            this.cbRegion.ItemsSource = regions;
+            cbRegion.ItemsSource = regions;
         }
 
         #endregion
@@ -62,12 +59,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            var size = (GeneralHelpers.Size)this.ccAirportSize.SelectedValue;
-            ComparerControl.CompareTypes compareType = this.ccAirportSize.SelectedCompareType;
+            var size = (GeneralHelpers.Size)ccAirportSize.SelectedValue;
+            ComparerControl.CompareTypes compareType = ccAirportSize.SelectedCompareType;
 
-            string text = this.txtText.Text.Trim();
-            var country = (Country)this.cbCountry.SelectedItem;
-            var region = (Region)this.cbRegion.SelectedItem;
+            string text = txtText.Text.Trim();
+            var country = (Country)cbCountry.SelectedItem;
+            var region = (Region)cbRegion.SelectedItem;
 
             IEnumerable<Airport> airports =
                 Airports.GetAllAirports()
@@ -92,17 +89,17 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
                 airports = airports.Where(a => a.Profile.Size < size);
             }
 
-            var frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
+            var frmContent = UIHelpers.FindChild<Frame>(Tag as Page, "frmContent");
 
             if (frmContent != null)
             {
-                frmContent.Navigate(new PageShowAirports(airports.ToList()) { Tag = this.Tag });
+                frmContent.Navigate(new PageShowAirports(airports.ToList()) { Tag = Tag });
             }
         }
 
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var region = (Region)this.cbRegion.SelectedItem;
+            var region = (Region)cbRegion.SelectedItem;
 
             List<Country> countries = region.Uid == "100"
                 ? Airports.GetAllAirports()
@@ -113,7 +110,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
             countries.Add(Countries.GetCountry("100"));
 
-            this.cbCountry.ItemsSource = countries.OrderByDescending(c => c.Uid == "100").ThenBy(c => c.Name);
+            cbCountry.ItemsSource = countries.OrderByDescending(c => c.Uid == "100").ThenBy(c => c.Name);
         }
 
         #endregion

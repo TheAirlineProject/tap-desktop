@@ -1,4 +1,12 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Data;
+using System.Windows.Media;
+using TheAirline.Helpers;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
@@ -8,18 +16,6 @@ using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.Linq;
-    using System.Windows.Data;
-    using System.Windows.Media;
-    using TheAirline.Model.GeneralModel;
-
     //the mvvm object for a human route
     public class HumanRouteMVVM
     {
@@ -27,101 +23,101 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         public HumanRouteMVVM(Route route)
         {
-            this.Route = route;
-            this.ShowCargoInformation = this.Route.Type == Route.RouteType.Cargo
-                                        || this.Route.Type == Route.RouteType.Mixed;
-            this.ShowPassengersInformation = this.Route.Type == Route.RouteType.Passenger
-                                             || this.Route.Type == Route.RouteType.Mixed || this.Route.Type == Route.RouteType.Helicopter;
+            Route = route;
+            ShowCargoInformation = Route.Type == Route.RouteType.Cargo
+                                        || Route.Type == Route.RouteType.Mixed;
+            ShowPassengersInformation = Route.Type == Route.RouteType.Passenger
+                                             || Route.Type == Route.RouteType.Mixed || Route.Type == Route.RouteType.Helicopter;
 
-            this.IsEditable = true;
+            IsEditable = true;
             // !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
 
-            this.Invoices = new List<MonthlyInvoice>();
+            Invoices = new List<MonthlyInvoice>();
 
-            foreach (Invoice.InvoiceType type in this.Route.GetRouteInvoiceTypes())
+            foreach (Invoice.InvoiceType type in Route.GetRouteInvoiceTypes())
             {
-                this.Invoices.Add(new MonthlyInvoice(type, 1950, 1,1, this.Route.GetRouteInvoiceAmount(type)));
+                Invoices.Add(new MonthlyInvoice(type, 1950, 1,1, Route.GetRouteInvoiceAmount(type)));
             }
 
-            this.Legs = new List<Route>();
-            this.Legs.Add(this.Route);
-            this.Legs.AddRange(this.Route.Stopovers.SelectMany(s => s.Legs));
+            Legs = new List<Route>();
+            Legs.Add(Route);
+            Legs.AddRange(Route.Stopovers.SelectMany(s => s.Legs));
 
-            this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
+            Distance = MathHelpers.GetDistance(Route.Destination1, Route.Destination2);
 
             setFeedback();
         }
         //sets the feedback values
         public void setFeedback()
         {
-            this.FeedbackTypes = new Dictionary<string, List<string>>();
+            FeedbackTypes = new Dictionary<string, List<string>>();
 
-            this.FeedbackTypes.Add("plane", new List<string>() { "1000", "1001", "1002" });
-            this.FeedbackTypes.Add("age", new List<string>() { "1003", "1004", "1005" });
-            this.FeedbackTypes.Add("food", new List<string>() { "1006", "1005", "1008" });
-            this.FeedbackTypes.Add("seats", new List<string>() { "1009", "1010", "1011" });
-            this.FeedbackTypes.Add("inflight", new List<string>() { "1012", "1013", "1014" });
-            this.FeedbackTypes.Add("wifi", new List<string>() { "1015", "1016", "1017" });
-            this.FeedbackTypes.Add("price", new List<string>() { "1018", "1019", "1020" });
-            this.FeedbackTypes.Add("score", new List<string>() { "1021", "1022", "1023" });
-            this.FeedbackTypes.Add("luggage",new List<string>() {"1024","1025","1026"});
+            FeedbackTypes.Add("plane", new List<string> { "1000", "1001", "1002" });
+            FeedbackTypes.Add("age", new List<string> { "1003", "1004", "1005" });
+            FeedbackTypes.Add("food", new List<string> { "1006", "1005", "1008" });
+            FeedbackTypes.Add("seats", new List<string> { "1009", "1010", "1011" });
+            FeedbackTypes.Add("inflight", new List<string> { "1012", "1013", "1014" });
+            FeedbackTypes.Add("wifi", new List<string> { "1015", "1016", "1017" });
+            FeedbackTypes.Add("price", new List<string> { "1018", "1019", "1020" });
+            FeedbackTypes.Add("score", new List<string> { "1021", "1022", "1023" });
+            FeedbackTypes.Add("luggage",new List<string> {"1024","1025","1026"});
             
-            this.Feedbacks = new List<RouteFeedbackMVVM>();
+            Feedbacks = new List<RouteFeedbackMVVM>();
 
-            if (this.Route.HasAirliner && this.Route.Type == Route.RouteType.Passenger)
+            if (Route.HasAirliner && Route.Type == Route.RouteType.Passenger)
             {
-                double routeScore = RouteHelpers.GetRouteTotalScore(this.Route);
-                double priceScore = RouteHelpers.GetRoutePriceScore(this.Route);
-                double planeTypeScore = RouteHelpers.GetRoutePlaneTypeScore(this.Route);
-                double ageScore = RouteHelpers.GetPlaneAgeScore(this.Route);
-                double foodScore = RouteHelpers.GetRouteMealScore(this.Route);
-                double seatsScore = RouteHelpers.GetRouteSeatsScore(this.Route);
-                double inflightScore = RouteHelpers.GetRouteInflightScore(this.Route);
-                double luggageScore = RouteHelpers.GetRouteLuggageScore(this.Route);
+                double routeScore = RouteHelpers.GetRouteTotalScore(Route);
+                double priceScore = RouteHelpers.GetRoutePriceScore(Route);
+                double planeTypeScore = RouteHelpers.GetRoutePlaneTypeScore(Route);
+                double ageScore = RouteHelpers.GetPlaneAgeScore(Route);
+                double foodScore = RouteHelpers.GetRouteMealScore(Route);
+                double seatsScore = RouteHelpers.GetRouteSeatsScore(Route);
+                double inflightScore = RouteHelpers.GetRouteInflightScore(Route);
+                double luggageScore = RouteHelpers.GetRouteLuggageScore(Route);
 
                 string priceText = priceScore < 4 ? "High" : ((priceScore >= 4 && priceScore < 7) ? "Medium" : "Low");
                 string bagText = luggageScore >= 7 ? "Free Checked Bag" : "Checked Bag Fee";
 
-                RouteFacility wifiFacility = ((PassengerRoute)this.Route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(RouteFacility.FacilityType.WiFi);
-                RouteFacility foodFacility = ((PassengerRoute)this.Route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(RouteFacility.FacilityType.Food);
-                AirlinerFacility seats = this.Route.GetAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Seat);
-                AirlinerFacility videoFacility = this.Route.GetAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Video);
+                RouteFacility wifiFacility = ((PassengerRoute)Route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(RouteFacility.FacilityType.WiFi);
+                RouteFacility foodFacility = ((PassengerRoute)Route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(RouteFacility.FacilityType.Food);
+                AirlinerFacility seats = Route.GetAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Seat);
+                AirlinerFacility videoFacility = Route.GetAirliners()[0].Airliner.GetAirlinerClass(AirlinerClass.ClassType.EconomyClass).GetFacility(AirlinerFacility.FacilityType.Video);
 
-                this.Feedbacks.Add(new RouteFeedbackMVVM(this.Route.GetAirliners()[0].Airliner.Type.Name, "plane-feedback.png", planeTypeScore, getFeedbackText("plane", planeTypeScore)));
-                this.Feedbacks.Add(new RouteFeedbackMVVM(string.Format("{0} year(s) old", this.Route.GetAirliners()[0].Airliner.Age), "age.png", ageScore, getFeedbackText("age", ageScore)));
-                this.Feedbacks.Add(new RouteFeedbackMVVM(foodFacility.Name, "food.png", foodScore, getFeedbackText("food", foodScore)));
-                this.Feedbacks.Add(new RouteFeedbackMVVM(seats.Name, "seats.png", seatsScore, getFeedbackText("seats", seatsScore)));
-                this.Feedbacks.Add(new RouteFeedbackMVVM(videoFacility.Name, "tv.png", inflightScore, getFeedbackText("inflight", inflightScore)));
-                this.Feedbacks.Add(new RouteFeedbackMVVM(bagText,"luggage.png",luggageScore,getFeedbackText("luggage",luggageScore)));
+                Feedbacks.Add(new RouteFeedbackMVVM(Route.GetAirliners()[0].Airliner.Type.Name, "plane-feedback.png", planeTypeScore, getFeedbackText("plane", planeTypeScore)));
+                Feedbacks.Add(new RouteFeedbackMVVM(string.Format("{0} year(s) old", Route.GetAirliners()[0].Airliner.Age), "age.png", ageScore, getFeedbackText("age", ageScore)));
+                Feedbacks.Add(new RouteFeedbackMVVM(foodFacility.Name, "food.png", foodScore, getFeedbackText("food", foodScore)));
+                Feedbacks.Add(new RouteFeedbackMVVM(seats.Name, "seats.png", seatsScore, getFeedbackText("seats", seatsScore)));
+                Feedbacks.Add(new RouteFeedbackMVVM(videoFacility.Name, "tv.png", inflightScore, getFeedbackText("inflight", inflightScore)));
+                Feedbacks.Add(new RouteFeedbackMVVM(bagText,"luggage.png",luggageScore,getFeedbackText("luggage",luggageScore)));
 
                 if ((int)RouteFacility.FacilityType.WiFi <= GameObject.GetInstance().GameTime.Year)
                 {
-                    double wifiScore = RouteHelpers.GetRouteWifiScore(this.Route);
-                    this.Feedbacks.Add(new RouteFeedbackMVVM(wifiFacility.Name, "wifi.png", wifiScore, getFeedbackText("wifi", wifiScore)));
+                    double wifiScore = RouteHelpers.GetRouteWifiScore(Route);
+                    Feedbacks.Add(new RouteFeedbackMVVM(wifiFacility.Name, "wifi.png", wifiScore, getFeedbackText("wifi", wifiScore)));
                 }
 
 
-                this.Feedbacks.Add(new RouteFeedbackMVVM(priceText, "price.png", priceScore, getFeedbackText("price", priceScore)));
-                this.Feedbacks.Add(new RouteFeedbackMVVM(String.Format("{0:0.0}", routeScore), "number.png", routeScore, getFeedbackText("score", routeScore)));
+                Feedbacks.Add(new RouteFeedbackMVVM(priceText, "price.png", priceScore, getFeedbackText("price", priceScore)));
+                Feedbacks.Add(new RouteFeedbackMVVM(String.Format("{0:0.0}", routeScore), "number.png", routeScore, getFeedbackText("score", routeScore)));
             }
             else
             {
                 string nodataString = Translator.GetInstance().GetString("RouteFeedback", "1100");
-                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "plane-feedback.png", 5, nodataString));
-                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "age.png", 5, nodataString));
-                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "food.png", 5, nodataString));
-                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "seats.png", 5, nodataString));
-                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "tv.png", 5, nodataString));
-                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "luggage.png", 5, nodataString));
+                Feedbacks.Add(new RouteFeedbackMVVM("-", "plane-feedback.png", 5, nodataString));
+                Feedbacks.Add(new RouteFeedbackMVVM("-", "age.png", 5, nodataString));
+                Feedbacks.Add(new RouteFeedbackMVVM("-", "food.png", 5, nodataString));
+                Feedbacks.Add(new RouteFeedbackMVVM("-", "seats.png", 5, nodataString));
+                Feedbacks.Add(new RouteFeedbackMVVM("-", "tv.png", 5, nodataString));
+                Feedbacks.Add(new RouteFeedbackMVVM("-", "luggage.png", 5, nodataString));
 
 
                 if ((int)RouteFacility.FacilityType.WiFi <= GameObject.GetInstance().GameTime.Year)
                 {
-                    this.Feedbacks.Add(new RouteFeedbackMVVM("-", "wifi.png", 5, nodataString));
+                    Feedbacks.Add(new RouteFeedbackMVVM("-", "wifi.png", 5, nodataString));
                 }
 
-                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "price.png", 5, nodataString));
-                this.Feedbacks.Add(new RouteFeedbackMVVM("-", "number.png", 5, nodataString));
+                Feedbacks.Add(new RouteFeedbackMVVM("-", "price.png", 5, nodataString));
+                Feedbacks.Add(new RouteFeedbackMVVM("-", "number.png", 5, nodataString));
             }
 
 
@@ -137,7 +133,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             if (score >= 7)
                 index = 2;
 
-            string uid = this.FeedbackTypes[type][index];
+            string uid = FeedbackTypes[type][index];
 
             return Translator.GetInstance().GetString("RouteFeedback", uid);
 
@@ -174,32 +170,32 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         public RouteMVVM(Route route)
         {
-            this.Route = route;
-            this.FillingDegree = this.Route.FillingDegree;
-            this.Balance = this.Route.Balance;
-            this.Distance = MathHelpers.GetDistance(this.Route.Destination1, this.Route.Destination2);
+            Route = route;
+            FillingDegree = Route.FillingDegree;
+            Balance = Route.Balance;
+            Distance = MathHelpers.GetDistance(Route.Destination1, Route.Destination2);
 
             if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Helicopter)
             {
                 RouteAirlinerClass raClass =
                     ((PassengerRoute)route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass);
 
-                this.Total = route.Statistics.GetStatisticsValue(
+                Total = route.Statistics.GetStatisticsValue(
                     raClass,
                     StatisticsTypes.GetStatisticsType("Passengers"));
-                this.Average = route.Statistics.GetStatisticsValue(
+                Average = route.Statistics.GetStatisticsValue(
                     raClass,
                     StatisticsTypes.GetStatisticsType("Passengers%"));
             }
             if (route.Type == Route.RouteType.Cargo)
             {
-                this.Total = route.Statistics.GetStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
-                this.Average = route.Statistics.GetStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
+                Total = route.Statistics.GetStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
+                Average = route.Statistics.GetStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
             }
 
-            if (this.Average < 0)
+            if (Average < 0)
             {
-                this.Average = 0;
+                Average = 0;
             }
         }
 
@@ -230,10 +226,10 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         public string Feedback { get; set; }
         public RouteFeedbackMVVM(string text, string image, double value, string feedback)
         {
-            this.Text = text;
-            this.Image = "/Data/images/" + image;
-            this.Value = value;
-            this.Feedback = feedback;
+            Text = text;
+            Image = "/Data/images/" + image;
+            Value = value;
+            Feedback = feedback;
         }
     }
     //the mvvm object for a special contract
@@ -244,9 +240,9 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         public DateTime EndDate { get; set; }
         public SpecialContractMVVM(SpecialContract contract, DateTime startdate, DateTime enddate)
         {
-            this.Contract = contract;
-            this.StartDate = startdate;
-            this.EndDate = enddate;
+            Contract = contract;
+            StartDate = startdate;
+            EndDate = enddate;
         }
     }
     //the mvvm object for an airliner
@@ -263,19 +259,19 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         public FleetAirlinerMVVM(FleetAirliner airliner)
         {
-            this.Airliner = airliner;
-            this.HasRoute = this.Airliner.HasRoute;
-            this.Status = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
+            Airliner = airliner;
+            HasRoute = Airliner.HasRoute;
+            Status = Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
                 ? StatusMVVM.Stopped
                 : StatusMVVM.Started;
 
-            if (this.Airliner.Status == FleetAirliner.AirlinerStatus.OnCharter)
-                this.Status = StatusMVVM.Charter;
+            if (Airliner.Status == FleetAirliner.AirlinerStatus.OnCharter)
+                Status = StatusMVVM.Charter;
 
-            this.Routes = new ObservableCollection<Route>();
+            Routes = new ObservableCollection<Route>();
 
-            foreach (Route route in this.Airliner.Routes)
-                this.Routes.Add(route);
+            foreach (Route route in Airliner.Routes)
+                Routes.Add(route);
         }
 
         #endregion
@@ -309,12 +305,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             get
             {
-                return this._hasroute;
+                return _hasroute;
             }
             set
             {
-                this._hasroute = value;
-                this.NotifyPropertyChanged("HasRoute");
+                _hasroute = value;
+                NotifyPropertyChanged("HasRoute");
             }
         }
 
@@ -322,12 +318,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             get
             {
-                return this._status;
+                return _status;
             }
             set
             {
-                this._status = value;
-                this.NotifyPropertyChanged("Status");
+                _status = value;
+                NotifyPropertyChanged("Status");
             }
         }
         public ObservableCollection<Route> Routes { get; set; }
@@ -338,9 +334,9 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         public void setStatus(FleetAirliner.AirlinerStatus status)
         {
-            this.Airliner.Status = status;
+            Airliner.Status = status;
 
-            this.Status = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
+            Status = Airliner.Status == FleetAirliner.AirlinerStatus.Stopped
                 ? StatusMVVM.Stopped
                 : StatusMVVM.Started;
         }
@@ -351,7 +347,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -370,11 +366,11 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             StatisticsType stat = StatisticsTypes.GetStatisticsType("Passengers");
 
-            this.Route = route;
+            Route = route;
 
-            double pax = this.Route.Statistics.GetStatisticsValue(stat);
+            double pax = Route.Statistics.GetStatisticsValue(stat);
 
-            this.IncomePerPax = this.Route.Balance / pax;
+            IncomePerPax = Route.Balance / pax;
         }
 
         #endregion
@@ -395,11 +391,11 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         public RouteProfitMVVM(Route route, double total)
         {
-            this.Route = route;
+            Route = route;
 
-            double balance = this.Route.Balance;
+            double balance = Route.Balance;
 
-            this.Percent = balance / total * 100;
+            Percent = balance / total * 100;
         }
 
         #endregion
@@ -426,14 +422,14 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         public MVVMRouteFacility(RouteFacility.FacilityType type, List<RouteFacility> facilities)
         {
-            this.Facilities = new ObservableCollection<RouteFacility>();
+            Facilities = new ObservableCollection<RouteFacility>();
 
-            this.Type = type;
+            Type = type;
 
             foreach (RouteFacility facility in facilities)
-                this.Facilities.Add(facility);
+                Facilities.Add(facility);
 
-            this.SelectedFacility = this.Facilities.OrderBy(f => f.ServiceLevel).First();
+            SelectedFacility = Facilities.OrderBy(f => f.ServiceLevel).First();
         }
 
         #endregion
@@ -452,12 +448,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             get
             {
-                return this._selectedFacility;
+                return _selectedFacility;
             }
             set
             {
-                this._selectedFacility = value;
-                this.NotifyPropertyChanged("SelectedFacility");
+                _selectedFacility = value;
+                NotifyPropertyChanged("SelectedFacility");
             }
         }
 
@@ -469,7 +465,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -496,11 +492,11 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         public MVVMRouteClass(AirlinerClass.ClassType type, RouteAirlinerClass.SeatingType seating, double fareprice)
         {
-            this.Type = type;
-            this.Seating = seating;
-            this.FarePrice = fareprice;
+            Type = type;
+            Seating = seating;
+            FarePrice = fareprice;
 
-            this.Facilities = new ObservableCollection<MVVMRouteFacility>();
+            Facilities = new ObservableCollection<MVVMRouteFacility>();
 
             foreach (RouteFacility.FacilityType facType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
             {
@@ -515,7 +511,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                     var facility = new MVVMRouteFacility(facType, facs);
 
-                    this.Facilities.Add(facility);
+                    Facilities.Add(facility);
                 }
             }
 
@@ -538,12 +534,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             get
             {
-                return this._fareprice;
+                return _fareprice;
             }
             set
             {
-                this._fareprice = value;
-                this.NotifyPropertyChanged("FarePrice");
+                _fareprice = value;
+                NotifyPropertyChanged("FarePrice");
             }
         }
 
@@ -551,12 +547,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             get
             {
-                return this._isuseable;
+                return _isuseable;
             }
             set
             {
-                this._isuseable = value;
-                this.NotifyPropertyChanged("IsUseable");
+                _isuseable = value;
+                NotifyPropertyChanged("IsUseable");
             }
         }
 
@@ -570,7 +566,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));

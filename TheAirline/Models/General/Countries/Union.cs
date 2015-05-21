@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Models.General.Countries
 {
@@ -67,7 +66,7 @@ namespace TheAirline.Models.General.Countries
         }
 
         //returns if a union has a country as member
-        public bool IsMember(General.Countries.Country country, DateTime date)
+        public bool IsMember(Country country, DateTime date)
         {
             return Members.Find(m => m.Country == country && m.MemberFromDate < date && m.MemberToDate > date)
                    != null;
@@ -111,7 +110,7 @@ namespace TheAirline.Models.General.Countries
         }
 
         //return all unions for a country
-        public static List<Union> GetUnions(General.Countries.Country country, DateTime date)
+        public static List<Union> GetUnions(Country country, DateTime date)
         {
             return
                 unions.FindAll(

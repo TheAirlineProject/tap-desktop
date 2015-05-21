@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">X64</Platform>
@@ -29,6 +29,20 @@
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>Full</DebugType>
@@ -109,12 +123,46 @@
       <HintPath>..\packages\MathNet.Numerics.3.7.0\lib\net40\MathNet.Numerics.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Composition, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Composition.5.0.0\lib\NET45\Microsoft.Practices.Prism.Composition.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Interactivity.5.0.0\lib\NET45\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.MEFExtensions.5.0.0\lib\NET45\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.PubSubEvents, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.PubSubEvents.1.1.0\lib\portable-sl5+windowsphone8+windows8+net40+wpa81\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NLog, Version=3.2.1.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.3.2.1\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.Composition.Registration" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
@@ -123,6 +171,7 @@
     <Reference Include="System.Device" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.ObjectModel" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
@@ -283,39 +332,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineEditAirliners.xaml">
+    <Page Include="Views\Airline\PageAirlineEditAirliners.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineFleet.xaml">
+    <Page Include="Views\Airline\PageAirlineFleet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineInsurance.xaml">
+    <Page Include="Views\Airline\PageAirlineInsurance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineRatings.xaml">
+    <Page Include="Views\Airline\PageAirlineRatings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirline.xaml">
+    <Page Include="Views\Airline\PageAirline.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineEmployees.xaml">
+    <Page Include="Views\Airline\PageAirlineEmployees.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineFinances.xaml">
+    <Page Include="Views\Airline\PageAirlineFinances.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineInfo.xaml">
+    <Page Include="Views\Airline\PageAirlineInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineServices.xaml">
+    <Page Include="Views\Airline\PageAirlineServices.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -499,7 +548,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\GamePageModel\PageStartMenu.xaml">
+    <Page Include="Views\Game\PageHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Game\PageStartMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -676,32 +729,36 @@
     <Compile Include="GUIModel\MasterPageModel\standardTemplatesEvents.cs" />
     <Compile Include="GUIModel\ObjectsModel\GUIObject.cs" />
     <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
-    <Compile Include="GUIModel\PagesModel\AirlinePageModel\AirlineMVVM.cs" />
-    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineEditAirliners.xaml.cs">
+    <Compile Include="Infrastructure\AirlineBootstrapper.cs" />
+    <Compile Include="Infrastructure\Events\CloseGameEvent.cs" />
+    <Compile Include="ViewModels\Airline\AirlineMVVM.cs" />
+    <Compile Include="ViewModels\Airline\PageAirlineViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\Airline\PageAirlineEditAirliners.xaml.cs">
       <DependentUpon>PageAirlineEditAirliners.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineFleet.xaml.cs">
+    <Compile Include="Views\Airline\PageAirlineFleet.xaml.cs">
       <DependentUpon>PageAirlineFleet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineInsurance.xaml.cs">
+    <Compile Include="Views\Airline\PageAirlineInsurance.xaml.cs">
       <DependentUpon>PageAirlineInsurance.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineRatings.xaml.cs">
+    <Compile Include="Views\Airline\PageAirlineRatings.xaml.cs">
       <DependentUpon>PageAirlineRatings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirline.xaml.cs">
+    <Compile Include="Views\Airline\PageAirline.xaml.cs">
       <DependentUpon>PageAirline.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineEmployees.xaml.cs">
+    <Compile Include="Views\Airline\PageAirlineEmployees.xaml.cs">
       <DependentUpon>PageAirlineEmployees.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineFinances.xaml.cs">
+    <Compile Include="Views\Airline\PageAirlineFinances.xaml.cs">
       <DependentUpon>PageAirlineFinances.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineInfo.xaml.cs">
+    <Compile Include="Views\Airline\PageAirlineInfo.xaml.cs">
       <DependentUpon>PageAirlineInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineServices.xaml.cs">
+    <Compile Include="Views\Airline\PageAirlineServices.xaml.cs">
       <DependentUpon>PageAirlineServices.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\AirlinersPageModel\AirlinersMVVM.cs" />
@@ -847,7 +904,10 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageStartData.xaml.cs">
       <DependentUpon>PageStartData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\GamePageModel\PageStartMenu.xaml.cs">
+    <Compile Include="Views\Game\PageHeader.xaml.cs">
+      <DependentUpon>PageHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Game\PageStartMenu.xaml.cs">
       <DependentUpon>PageStartMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\OptionsPageModel\OptionsMVVM.cs" />
@@ -1242,10 +1302,7 @@
   <ItemGroup>
     <Resource Include="Resources\images\transfer.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\images\configuration.png" />
   </ItemGroup>

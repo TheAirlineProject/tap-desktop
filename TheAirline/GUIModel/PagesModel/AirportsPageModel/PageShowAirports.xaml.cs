@@ -1,4 +1,17 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.PagesModel.AirportPageModel;
+using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
@@ -9,21 +22,6 @@ using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Documents;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
-    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.GUIModel.PagesModel.AirportPageModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageShowAirports.xaml
     /// </summary>
@@ -33,12 +31,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
         public PageShowAirports(List<Airport> airports)
         {
-            this.createPage(airports);
+            createPage(airports);
         }
 
         public PageShowAirports()
         {
-            this.createPage(Airports.GetAllActiveAirports());
+            createPage(Airports.GetAllActiveAirports());
         }
 
         #endregion
@@ -65,12 +63,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
         private void btnCompare_Click(object sender, RoutedEventArgs e)
         {
-            List<Airport> airports = this.SelectedAirports.Select(s => s.Airport).ToList();
+            List<Airport> airports = SelectedAirports.Select(s => s.Airport).ToList();
             PopUpCompareAirports.ShowPopUp(airports);
         }
         private void btnShowOnMap_Click(object sender, RoutedEventArgs e)
         {
-            List<Airport> airports = this.AllAirports.Select(a => a.Airport).ToList();
+            List<Airport> airports = AllAirports.Select(a => a.Airport).ToList();
         
             PopUpMap.ShowPopUp(airports);
         }
@@ -173,8 +171,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
                     gate.Airline = GameObject.GetInstance().HumanAirline;
                 }
 
-                if (!this.HumanAirports.Contains(airport.Airport))
-                    this.HumanAirports.Add(airport.Airport);
+                if (!HumanAirports.Contains(airport.Airport))
+                    HumanAirports.Add(airport.Airport);
 
                 airport.IsHuman = true;
             }
@@ -184,9 +182,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         {
             var type = (AirlinerType)((ComboBox)sender).SelectedItem;
 
-            if (this.AirportsList != null)
+            if (AirportsList != null)
             {
-                var source = this.AirportsList.Items as ICollectionView;
+                var source = AirportsList.Items as ICollectionView;
                 source.Filter = o =>
                 {
                     var a = o as AirportMVVM;
@@ -200,9 +198,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         {
             var airline = (Airline)((ComboBox)sender).SelectedItem;
 
-            if (this.AirportsList != null)
+            if (AirportsList != null)
             {
-                var source = this.AirportsList.Items as ICollectionView;
+                var source = AirportsList.Items as ICollectionView;
                 source.Filter = o =>
                 {
                     var a = o as AirportMVVM;
@@ -214,7 +212,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
         private void cbHuman_Checked(object sender, RoutedEventArgs e)
         {
-            var source = this.AirportsList.Items as ICollectionView;
+            var source = AirportsList.Items as ICollectionView;
             source.Filter = o =>
             {
                 var a = o as AirportMVVM;
@@ -224,28 +222,28 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
         private void cbHuman_Unchecked(object sender, RoutedEventArgs e)
         {
-            var source = this.AirportsList.Items as ICollectionView;
+            var source = AirportsList.Items as ICollectionView;
             source.Filter = o =>
             {
                 var a = o as AirportMVVM;
                 return !a.IsHuman || a.IsHuman;
             };
 
-            this.cbAirlines.SelectedIndex = 0;
+            cbAirlines.SelectedIndex = 0;
         }
 
         private void cbSelected_Checked(object sender, RoutedEventArgs e)
         {
             var airport = (AirportMVVM)((CheckBox)sender).Tag;
 
-            this.SelectedAirports.Add(airport);
+            SelectedAirports.Add(airport);
         }
 
         private void cbSelected_Unchecked(object sender, RoutedEventArgs e)
         {
             var airport = (AirportMVVM)((CheckBox)sender).Tag;
 
-            this.SelectedAirports.Remove(airport);
+            SelectedAirports.Remove(airport);
         }
 
         private void clName_Click(object sender, RoutedEventArgs e)
@@ -258,21 +256,21 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
        
         private void createPage(List<Airport> airports)
         {
-            this.HumanAirports = new ObservableCollection<Airport>();
+            HumanAirports = new ObservableCollection<Airport>();
 
             foreach (Airport hAirport in GameObject.GetInstance().HumanAirline.Airports)
-                this.HumanAirports.Add(hAirport);
+                HumanAirports.Add(hAirport);
 
-            this.AllAirlines = new List<Airline>();
-            this.SelectedAirports = new ObservableCollection<AirportMVVM>();
-            this.RoutesRanges = new List<FilterValue>
+            AllAirlines = new List<Airline>();
+            SelectedAirports = new ObservableCollection<AirportMVVM>();
+            RoutesRanges = new List<FilterValue>
                                 {
                                     new FilterValue("0", 0, 0),
                                     new FilterValue("1-9", 1, 9),
                                     new FilterValue("10-24", 10, 24),
                                     new FilterValue("25+", 25, int.MaxValue)
                                 };
-            this.OperatingRanges = new List<FilterValue>
+            OperatingRanges = new List<FilterValue>
                                    {
                                        new FilterValue("0", 0, 0),
                                        new FilterValue("1-5", 1, 5),
@@ -288,7 +286,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             dummyAirline.Profile.AddLogo(
                 new AirlineLogo(AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\default.png"));
 
-            this.AllAirlines.Add(dummyAirline);
+            AllAirlines.Add(dummyAirline);
 
             foreach (
                 Airline airline in
@@ -296,14 +294,14 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
                         .Where(a => a != GameObject.GetInstance().HumanAirline)
                         .OrderBy(a => a.Profile.Name))
             {
-                this.AllAirlines.Add(airline);
+                AllAirlines.Add(airline);
             }
 
-            this.AllAirports = new List<AirportMVVM>();
+            AllAirports = new List<AirportMVVM>();
 
             foreach (Airport airport in airports.OrderBy(a => a.Profile.Name))
             {
-                this.AllAirports.Add(new AirportMVVM(airport));
+                AllAirports.Add(new AirportMVVM(airport));
             }
 
             AirlinerType dummyAircraft = new AirlinerCargoType(
@@ -328,20 +326,20 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
                 0,
                 false);
 
-            this.HumanAircrafts = new List<AirlinerType>();
+            HumanAircrafts = new List<AirlinerType>();
 
-            this.HumanAircrafts.Add(dummyAircraft);
+            HumanAircrafts.Add(dummyAircraft);
 
             foreach (
                 AirlinerType type in GameObject.GetInstance().HumanAirline.Fleet.Select(f => f.Airliner.Type).Distinct()
                 )
             {
-                this.HumanAircrafts.Add(type);
+                HumanAircrafts.Add(type);
             }
 
-            this.InitializeComponent();
+            InitializeComponent();
 
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airlines;
 using TheAirline.Models.General;
 
 namespace TheAirline.Models.Airports
@@ -28,7 +28,7 @@ namespace TheAirline.Models.Airports
         #region Public Properties
 
         [Versioning("airline")]
-        public Airlines.Airline Airline { get; set; }
+        public Airline Airline { get; set; }
 
         [Versioning("date")]
         public DateTime DeliveryDate { get; set; }
@@ -63,7 +63,7 @@ namespace TheAirline.Models.Airports
 
         #region Constructors and Destructors
 
-        public Gates(int numberOfGates, DateTime deliveryDate, Airlines.Airline airline)
+        public Gates(int numberOfGates, DateTime deliveryDate, Airline airline)
         {
             _terminalGates = new List<Gate>();
             for (int i = 0; i < numberOfGates; i++)

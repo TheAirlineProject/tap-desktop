@@ -4,7 +4,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
 using TheAirline.Models.General.Countries.Towns;

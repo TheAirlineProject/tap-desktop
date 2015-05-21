@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airlines;
 
 namespace TheAirline.Models.Airports
 {
@@ -18,7 +18,7 @@ namespace TheAirline.Models.Airports
 
         #region Constructors and Destructors
 
-        public Hub(Airlines.Airline airline, HubType type)
+        public Hub(Airline airline, HubType type)
         {
             Airline = airline;
             Type = type;
@@ -33,7 +33,7 @@ namespace TheAirline.Models.Airports
         #region Public Properties
 
         [Versioning("airline")]
-        public Airlines.Airline Airline { get; set; }
+        public Airline Airline { get; set; }
 
         [Versioning("type")]
         public HubType Type { get; set; }

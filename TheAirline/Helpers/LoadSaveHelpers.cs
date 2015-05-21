@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Xml;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.Subsidiary;
@@ -2255,8 +2254,8 @@ namespace TheAirline.Helpers
                 // Coordinate latitude = Coordinate.Parse(airlineAirlinerNode.Attributes["latitude"].Value);
                 //Coordinate longitude = Coordinate.Parse(airlineAirlinerNode.Attributes["longitude"].Value);
 
-                string[] latitude = airlineAirlinerNode.Attributes["value"].Value.Split(new[] {'°', '\'', '\''});
-                string[] longitude = airlineAirlinerNode.Attributes["value"].Value.Split(new[] {'°', '\'', '\''});
+                string[] latitude = airlineAirlinerNode.Attributes["value"].Value.Split('°', '\'', '\'');
+                string[] longitude = airlineAirlinerNode.Attributes["value"].Value.Split('°', '\'', '\'');
                 var coords = new int[6];
                 foreach (string l in latitude)
                 {

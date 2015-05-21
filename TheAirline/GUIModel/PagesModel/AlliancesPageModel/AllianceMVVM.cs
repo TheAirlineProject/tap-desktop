@@ -1,17 +1,15 @@
-﻿using TheAirline.Models.Airlines;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using TheAirline.Models.Airlines;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Statistics;
 using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Linq;
-    using TheAirline.Model.GeneralModel;
-
     //the mvvm object for a codeshare agreement
     public class CodeshareAgreementMVVM
     {
@@ -19,7 +17,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
         public CodeshareAgreementMVVM(CodeshareAgreement agreement)
         {
-            this.Agreement = agreement;
+            Agreement = agreement;
         }
 
         #endregion
@@ -32,7 +30,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         {
             get
             {
-                return this.Agreement.Airline1.IsHuman || this.Agreement.Airline2.IsHuman;
+                return Agreement.Airline1.IsHuman || Agreement.Airline2.IsHuman;
             }
             private set
             {
@@ -50,8 +48,8 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
         public AllianceMemberMVVM(AllianceMember member, Boolean isremoveable)
         {
-            this.Member = member;
-            this.IsRemoveable = isremoveable;
+            Member = member;
+            IsRemoveable = isremoveable;
         }
 
         #endregion
@@ -86,22 +84,22 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
         public AllianceMVVM(Alliance alliance)
         {
-            this.Alliance = alliance;
-            this.Members = new ObservableCollection<AllianceMemberMVVM>();
-            this.PendingMembers = new ObservableCollection<PendingAllianceMember>();
-            this.AllianceRoutes = new List<AllianceRouteMMVM>();
+            Alliance = alliance;
+            Members = new ObservableCollection<AllianceMemberMVVM>();
+            PendingMembers = new ObservableCollection<PendingAllianceMember>();
+            AllianceRoutes = new List<AllianceRouteMMVM>();
 
-            foreach (AllianceMember member in this.Alliance.Members)
+            foreach (AllianceMember member in Alliance.Members)
             {
-                this.Members.Add(new AllianceMemberMVVM(member, this.Alliance.IsHumanAlliance));
+                Members.Add(new AllianceMemberMVVM(member, Alliance.IsHumanAlliance));
             }
 
-            foreach (PendingAllianceMember member in this.Alliance.PendingMembers)
+            foreach (PendingAllianceMember member in Alliance.PendingMembers)
             {
-                this.PendingMembers.Add(member);
+                PendingMembers.Add(member);
             }
 
-            this.setValues();
+            setValues();
         }
 
         #endregion
@@ -122,12 +120,12 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         {
             get
             {
-                return this._destinations;
+                return _destinations;
             }
             set
             {
-                this._destinations = value;
-                this.NotifyPropertyChanged("Destinations");
+                _destinations = value;
+                NotifyPropertyChanged("Destinations");
             }
         }
 
@@ -135,12 +133,12 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         {
             get
             {
-                return this._fleetsize;
+                return _fleetsize;
             }
             set
             {
-                this._fleetsize = value;
-                this.NotifyPropertyChanged("FleetSize");
+                _fleetsize = value;
+                NotifyPropertyChanged("FleetSize");
             }
         }
 
@@ -148,7 +146,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         {
             get
             {
-                return this.Alliance.IsHumanAlliance;
+                return Alliance.IsHumanAlliance;
             }
             private set
             {
@@ -162,12 +160,12 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         {
             get
             {
-                return this._passengers;
+                return _passengers;
             }
             set
             {
-                this._passengers = value;
-                this.NotifyPropertyChanged("Passengers");
+                _passengers = value;
+                NotifyPropertyChanged("Passengers");
             }
         }
 
@@ -177,12 +175,12 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         {
             get
             {
-                return this._routes;
+                return _routes;
             }
             set
             {
-                this._routes = value;
-                this.NotifyPropertyChanged("Routes");
+                _routes = value;
+                NotifyPropertyChanged("Routes");
             }
         }
 
@@ -190,12 +188,12 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         {
             get
             {
-                return this._servingcountries;
+                return _servingcountries;
             }
             set
             {
-                this._servingcountries = value;
-                this.NotifyPropertyChanged("ServiceCountries");
+                _servingcountries = value;
+                NotifyPropertyChanged("ServiceCountries");
             }
         }
 
@@ -207,24 +205,24 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
         public void addMember(AllianceMember member)
         {
-            this.Members.Add(new AllianceMemberMVVM(member, this.Alliance.IsHumanAlliance));
-            this.Alliance.AddMember(member);
+            Members.Add(new AllianceMemberMVVM(member, Alliance.IsHumanAlliance));
+            Alliance.AddMember(member);
 
-            this.setValues();
+            setValues();
         }
 
         //removes a member from the alliance
         public void removeMember(AllianceMemberMVVM member)
         {
-            this.Members.Remove(member);
-            this.Alliance.RemoveMember(member.Member);
+            Members.Remove(member);
+            Alliance.RemoveMember(member.Member);
 
-            this.setValues();
+            setValues();
         }
 
         public void removeMember(Airline airline)
         {
-            AllianceMemberMVVM member = this.Members.FirstOrDefault(m => m.Member.Airline == airline);
+            AllianceMemberMVVM member = Members.FirstOrDefault(m => m.Member.Airline == airline);
 
             removeMember(member);
         }
@@ -232,8 +230,8 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         //removes a pending member from the alliance
         public void removePendingMember(PendingAllianceMember pending)
         {
-            this.PendingMembers.Remove(pending);
-            this.Alliance.RemovePendingMember(pending);
+            PendingMembers.Remove(pending);
+            Alliance.RemovePendingMember(pending);
         }
 
         #endregion
@@ -242,7 +240,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -253,20 +251,20 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         {
             StatisticsType stat = StatisticsTypes.GetStatisticsType("Passengers");
 
-            foreach (Route route in this.Members.SelectMany(m => m.Member.Airline.Routes))
+            foreach (Route route in Members.SelectMany(m => m.Member.Airline.Routes))
             {
-                this.AllianceRoutes.Add(new AllianceRouteMMVM(route.Airline, route));
+                AllianceRoutes.Add(new AllianceRouteMMVM(route.Airline, route));
             }
 
-            this.Routes = this.Members.Sum(m => m.Member.Airline.Routes.Count);
-            this.Destinations = this.Members.SelectMany(m => m.Member.Airline.Airports).Distinct().Count();
-            this.ServingCountries =
-                this.Members.SelectMany(m => m.Member.Airline.Airports.Select(a => a.Profile.Country))
+            Routes = Members.Sum(m => m.Member.Airline.Routes.Count);
+            Destinations = Members.SelectMany(m => m.Member.Airline.Airports).Distinct().Count();
+            ServingCountries =
+                Members.SelectMany(m => m.Member.Airline.Airports.Select(a => a.Profile.Country))
                     .Distinct()
                     .Count();
-            this.FleetSize = this.Members.Sum(m => m.Member.Airline.Fleet.Count);
-            this.Passengers =
-                this.Members.Sum(
+            FleetSize = Members.Sum(m => m.Member.Airline.Fleet.Count);
+            Passengers =
+                Members.Sum(
                     m =>
                         (int)
                             m.Member.Airline.Statistics.GetStatisticsValue(GameObject.GetInstance().GameTime.Year, stat));
@@ -282,8 +280,8 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
         public AllianceRouteMMVM(Airline airline, Route route)
         {
-            this.Route = route;
-            this.Airline = airline;
+            Route = route;
+            Airline = airline;
         }
 
         #endregion

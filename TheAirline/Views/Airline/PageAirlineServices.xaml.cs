@@ -1,26 +1,24 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Media;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.General;
 using TheAirline.Models.Pilots;
 using TheAirline.Models.Routes;
+using TheAirline.ViewModels.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Media;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAirlineServices.xaml
     /// </summary>
@@ -30,7 +28,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         public PageAirlineServices(AirlineMVVM airline)
         {
-            this.Classes = new ObservableCollection<AirlineClassMVVM>();
+            Classes = new ObservableCollection<AirlineClassMVVM>();
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
@@ -62,17 +60,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                             rClass.Facilities.Add(facility);
                         }
                     }
-                    this.Classes.Add(rClass);
+                    Classes.Add(rClass);
                 }
             }
 
-            this.Airline = airline;
-            this.DataContext = this.Airline;
-            this.Loaded += this.PageAirlineServices_Loaded;
+            Airline = airline;
+            DataContext = Airline;
+            Loaded += PageAirlineServices_Loaded;
 
-            this.InitializeComponent();
+            InitializeComponent();
 
-            var view = (CollectionView)CollectionViewSource.GetDefaultView(this.lvFacilities.ItemsSource);
+            var view = (CollectionView)CollectionViewSource.GetDefaultView(lvFacilities.ItemsSource);
             view.GroupDescriptions.Clear();
             view.SortDescriptions.Clear();
 
@@ -87,11 +85,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             for (int i = 120; i < 300; i += 15)
             {
-                this.cbCancellationPolicy.Items.Add(i);
+                cbCancellationPolicy.Items.Add(i);
             }
 
-            this.cbCancellationPolicy.SelectedItem =
-                this.Airline.Airline.GetAirlinePolicy("Cancellation Minutes").PolicyValue;
+            cbCancellationPolicy.SelectedItem =
+                Airline.Airline.GetAirlinePolicy("Cancellation Minutes").PolicyValue;
         }
 
         #endregion
@@ -106,7 +104,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             get
             {
-                return this.Classes.SelectMany(c => c.Facilities.Select(f => f.Type)).Distinct().ToList();
+                return Classes.SelectMany(c => c.Facilities.Select(f => f.Type)).Distinct().ToList();
             }
             private set
             {
@@ -120,7 +118,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void PageAirlineServices_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach (AirlineClassMVVM rClass in this.Classes)
+            foreach (AirlineClassMVVM rClass in Classes)
             {
                 foreach (AirlineClassFacilityMVVM rFacility in rClass.Facilities)
                 {
@@ -134,7 +132,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void btnBuyTrainingFacility_Click(object sender, RoutedEventArgs e)
         {
-            var facility = (AirlineFacilityMVVM)this.cbTrainingFacilities.SelectedItem;
+            var facility = (AirlineFacilityMVVM)cbTrainingFacilities.SelectedItem;
 
             if (facility.Facility.Price > GameObject.GetInstance().HumanAirline.Money)
             {
@@ -154,7 +152,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    this.Airline.addTrainingFacility(facility);
+                    Airline.addTrainingFacility(facility);
                 }
             }
         }
@@ -181,19 +179,19 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    this.Airline.addFacility(facility);
+                    Airline.addFacility(facility);
 
-                    this.updateClassFacilities();
+                    updateClassFacilities();
                 }
             }
 
-            ICollectionView view = CollectionViewSource.GetDefaultView(this.lvFacilities.ItemsSource);
+            ICollectionView view = CollectionViewSource.GetDefaultView(lvFacilities.ItemsSource);
             view.Refresh();
         }
 
         private void btnCreateConfiguration_Click(object sender, RoutedEventArgs e)
         {
-            foreach (AirlineClassMVVM rClass in this.Classes)
+            foreach (AirlineClassMVVM rClass in Classes)
             {
                 foreach (AirlineClassFacilityMVVM rFacility in rClass.Facilities)
                 {
@@ -202,8 +200,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 }
             }
 
-            this.btnCreate.Visibility = Visibility.Collapsed;
-            this.btnSave.Visibility = Visibility.Visible;
+            btnCreate.Visibility = Visibility.Collapsed;
+            btnSave.Visibility = Visibility.Visible;
         }
 
         private void btnLoadConfiguration_Click(object sender, RoutedEventArgs e)
@@ -228,7 +226,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 Translator.GetInstance().GetString("PageAirlineWages", "1013"),
                 cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
             {
-                foreach (AirlineClassMVVM rClass in this.Classes)
+                foreach (AirlineClassMVVM rClass in Classes)
                 {
                     foreach (AirlineClassFacilityMVVM rFacility in rClass.Facilities)
                     {
@@ -244,7 +242,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     foreach (RouteFacility facility in classConfiguration.GetFacilities())
                     {
                         AirlineClassMVVM aClass =
-                            this.Classes.Where(c => c.Type == classConfiguration.Type).FirstOrDefault();
+                            Classes.Where(c => c.Type == classConfiguration.Type).FirstOrDefault();
 
                         if (aClass != null)
                         {
@@ -259,22 +257,22 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     }
                 }
 
-                this.btnSave.Visibility = Visibility.Visible;
+                btnSave.Visibility = Visibility.Visible;
             }
         }
 
         private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            this.Airline.saveFees();
+            Airline.saveFees();
 
-            var cancellationMinutes = (int)this.cbCancellationPolicy.SelectedItem;
+            var cancellationMinutes = (int)cbCancellationPolicy.SelectedItem;
 
             GameObject.GetInstance().HumanAirline.SetAirlinePolicy("Cancellation Minutes", cancellationMinutes);
         }
 
         private void btnSaveConfiguration_Click(object sender, RoutedEventArgs e)
         {
-            int totalServiceLevel = this.Classes.Sum(c => c.Facilities.Sum(f => f.SelectedFacility.ServiceLevel));
+            int totalServiceLevel = Classes.Sum(c => c.Facilities.Sum(f => f.SelectedFacility.ServiceLevel));
             var txtName = new TextBox();
             txtName.Width = 200;
             txtName.Background = Brushes.Transparent;
@@ -291,7 +289,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 string name = txtName.Text.Trim();
                 var configuration = new RouteClassesConfiguration(name, true);
 
-                foreach (AirlineClassMVVM type in this.Classes)
+                foreach (AirlineClassMVVM type in Classes)
                 {
                     var classConfiguration = new RouteClassConfiguration(type.Type);
 
@@ -305,8 +303,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
                 Configurations.AddConfiguration(configuration);
 
-                this.btnSave.Visibility = Visibility.Collapsed;
-                this.btnCreate.Visibility = Visibility.Visible;
+                btnSave.Visibility = Visibility.Collapsed;
+                btnCreate.Visibility = Visibility.Visible;
             }
         }
 
@@ -325,33 +323,33 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             {
                 if (facility.Facility is PilotTrainingFacility)
                 {
-                    this.Airline.removeTrainingFacility(facility);
+                    Airline.removeTrainingFacility(facility);
                 }
                 else
                 {
-                    this.Airline.removeFacility(facility);
+                    Airline.removeFacility(facility);
 
-                    this.updateClassFacilities();
+                    updateClassFacilities();
                 }
             }
 
-            ICollectionView view = CollectionViewSource.GetDefaultView(this.lvFacilities.ItemsSource);
+            ICollectionView view = CollectionViewSource.GetDefaultView(lvFacilities.ItemsSource);
             view.Refresh();
         }
 
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
-            this.Airline.resetFees();
+            Airline.resetFees();
 
-            this.cbCancellationPolicy.SelectedItem =
-                this.Airline.Airline.GetAirlinePolicy("Cancellation Minutes").PolicyValue;
+            cbCancellationPolicy.SelectedItem =
+                Airline.Airline.GetAirlinePolicy("Cancellation Minutes").PolicyValue;
         }
 
         private void updateClassFacilities()
         {
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
-                AirlineClassMVVM rClass = this.Classes.FirstOrDefault(c => c.Type == type);
+                AirlineClassMVVM rClass = Classes.FirstOrDefault(c => c.Type == type);
 
                 if (rClass != null)
                 {

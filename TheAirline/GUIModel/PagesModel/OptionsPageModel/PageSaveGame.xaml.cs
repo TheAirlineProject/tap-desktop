@@ -1,20 +1,17 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.CustomControlsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Helpers.Workers;
 using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {
-    using System;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GUIModel.CustomControlsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageSaveGame.xaml
     /// </summary>
@@ -24,12 +21,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         public PageSaveGame()
         {
-            this.Saves = new ObservableCollection<string>();
-            this.InitializeComponent();
+            Saves = new ObservableCollection<string>();
+            InitializeComponent();
 
             foreach (string savedFile in LoadSaveHelpers.GetSavedGames())
             {
-                this.Saves.Add(savedFile);
+                Saves.Add(savedFile);
             }
         }
 
@@ -51,7 +48,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -64,7 +61,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
             GameObjectWorker.GetInstance().Cancel();
 
-            string name = this.txtName.Text.Trim();
+            string name = txtName.Text.Trim();
 
             Boolean doSave = true;
 
@@ -111,7 +108,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         private void lbSaves_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.txtName.Text = this.lbSaves.SelectedItem.ToString();
+            txtName.Text = lbSaves.SelectedItem.ToString();
         }
 
         #endregion

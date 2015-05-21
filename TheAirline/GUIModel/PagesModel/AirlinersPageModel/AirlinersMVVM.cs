@@ -1,21 +1,19 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
+using System.Windows;
+using System.Windows.Data;
+using TheAirline.Helpers;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Data;
-    using TheAirline.Model.GeneralModel;
-
     //the mvvm class for an airliner type
     public class AirlinerTypeMVVM : INotifyPropertyChanged
     {

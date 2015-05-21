@@ -7,7 +7,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using TheAirline.Helpers.Workers;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;

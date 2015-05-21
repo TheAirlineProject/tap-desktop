@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Markup;
-using System.Globalization;
-using TheAirline.Model.GeneralModel;
-using System.Runtime.InteropServices;
-using System.Windows.Interop;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.ComponentModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -26,9 +15,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#004A7F")); 
       
-            this.ResizeMode = System.Windows.ResizeMode.NoResize;
+            this.ResizeMode = ResizeMode.NoResize;
 
-            this.WindowStyle = System.Windows.WindowStyle.ToolWindow;
+            this.WindowStyle = WindowStyle.ToolWindow;
 
             this.BorderThickness = new Thickness(2, 2, 2, 2);
             this.BorderBrush = new SolidColorBrush(Colors.Black);

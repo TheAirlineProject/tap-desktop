@@ -1,19 +1,16 @@
-﻿using TheAirline.Models.Airports;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
 
 namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAirports.xaml
     /// </summary>
@@ -23,7 +20,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
         public PageAirports()
         {
-            this.HumanAirports =
+            HumanAirports =
                 GameObject.GetInstance()
                     .HumanAirline.Airports.OrderBy(a => a.Profile.Pax)
                     .ToList()
@@ -31,14 +28,14 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
             var hubs =GameObject.GetInstance().HumanAirline.GetHubs();
 
-            this.HumanHubs =hubs.OrderBy(h=>h.Profile.Pax)
+            HumanHubs =hubs.OrderBy(h=>h.Profile.Pax)
                 .ToList()
                 .GetRange(0,Math.Min(hubs.Count,5));
 
           
-            this.Loaded += this.PageAirports_Loaded;
+            Loaded += PageAirports_Loaded;
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -89,7 +86,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
             if (frmContent != null)
             {
-                frmContent.Navigate(new PageShowAirports { Tag = this.Tag });
+                frmContent.Navigate(new PageShowAirports { Tag = Tag });
             }
         }
 
@@ -123,7 +120,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
             if (frmContent != null)
             {
-                frmContent.Navigate(new PageShowAirports(airports.ToList()) { Tag = this.Tag });
+                frmContent.Navigate(new PageShowAirports(airports.ToList()) { Tag = Tag });
             }
         }
 

@@ -1,4 +1,13 @@
-﻿using TheAirline.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
@@ -8,18 +17,6 @@ using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAirportDemand.xaml
     /// </summary>
@@ -31,12 +28,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             get
             {
-                return this._selectedairport;
+                return _selectedairport;
             }
             set
             {
-                this._selectedairport = value;
-                this.NotifyPropertyChanged("SelectedAirport");
+                _selectedairport = value;
+                NotifyPropertyChanged("SelectedAirport");
             }
         }
      
@@ -49,7 +46,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
@@ -69,12 +66,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
            
 
-            this.Airport = airport;
-            this.DataContext = this.Airport;
+            Airport = airport;
+            DataContext = Airport;
 
-            this.InitializeComponent();
+            InitializeComponent();
 
-            var viewDemandsIntl = (CollectionView)CollectionViewSource.GetDefaultView(this.lvDemandIntl.ItemsSource);
+            var viewDemandsIntl = (CollectionView)CollectionViewSource.GetDefaultView(lvDemandIntl.ItemsSource);
           
             var sortTypeDescription = new SortDescription("Type", ListSortDirection.Ascending);
             viewDemandsIntl.SortDescriptions.Add(sortTypeDescription);
@@ -82,7 +79,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             var sortPassengersDescription = new SortDescription("Passengers", ListSortDirection.Descending);
             viewDemandsIntl.SortDescriptions.Add(sortPassengersDescription);
 
-            var viewDemandsDomestic = (CollectionView)CollectionViewSource.GetDefaultView(this.lvDemandDomestic.ItemsSource);
+            var viewDemandsDomestic = (CollectionView)CollectionViewSource.GetDefaultView(lvDemandDomestic.ItemsSource);
 
             var sortTypeDomesticDescription = new SortDescription("Type", ListSortDirection.Ascending);
             viewDemandsDomestic.SortDescriptions.Add(sortTypeDomesticDescription);
@@ -102,47 +99,47 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             var airport = (DemandMVVM)((Button)sender).Tag;
 
-            this.SelectedAirport = airport;
+            SelectedAirport = airport;
 
             var demandPercent = new List<KeyValuePair<string, int>>();
 
-            int intlDemand = this.Airport.IntlDemands.Sum(d => d.Passengers) + this.Airport.IntlDemands.Sum(d => d.Cargo);
-            int domesticDemand = this.Airport.DomesticDemands.Sum(d => d.Passengers) + this.Airport.DomesticDemands.Sum(d => d.Cargo);
+            int intlDemand = Airport.IntlDemands.Sum(d => d.Passengers) + Airport.IntlDemands.Sum(d => d.Cargo);
+            int domesticDemand = Airport.DomesticDemands.Sum(d => d.Passengers) + Airport.DomesticDemands.Sum(d => d.Cargo);
 
             demandPercent.Add(new KeyValuePair<string,int>(Translator.GetInstance().GetString("PageAirportInfo", "1029"),domesticDemand));
             demandPercent.Add(new KeyValuePair<string,int>(Translator.GetInstance().GetString("PageAirportInfo", "1057"),intlDemand));
 
-            this.pcDemand.DataContext = demandPercent;
+            pcDemand.DataContext = demandPercent;
 
-            this.pcGates.DataContext = this.SelectedAirport.GatesPercent;
+            pcGates.DataContext = SelectedAirport.GatesPercent;
 
             var demands = new List<KeyValuePair<string,int>>();
 
-            demands.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1031"), this.SelectedAirport.Passengers));
-            demands.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1032"), this.SelectedAirport.Cargo));
+            demands.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1031"), SelectedAirport.Passengers));
+            demands.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1032"), SelectedAirport.Cargo));
 
             var demands2 = new List<KeyValuePair<string, int>>();
 
-            demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1031"), this.SelectedAirport.Destination.GetDestinationPassengersRate(this.Airport.Airport, AirlinerClass.ClassType.EconomyClass)));
-            demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1032"), this.SelectedAirport.Destination.GetDestinationCargoRate(this.Airport.Airport)));
+            demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1031"), SelectedAirport.Destination.GetDestinationPassengersRate(Airport.Airport, AirlinerClass.ClassType.EconomyClass)));
+            demands2.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirportInfo", "1032"), SelectedAirport.Destination.GetDestinationCargoRate(Airport.Airport)));
 
             var demandSeries = new List<SeriesData>();
 
-            string displayName1 = string.Format("{0}-{1}", new AirportCodeConverter().Convert(this.Airport.Airport).ToString(), new AirportCodeConverter().Convert(this.SelectedAirport.Destination));
-            string displayName2 = string.Format("{1}-{0}", new AirportCodeConverter().Convert(this.Airport.Airport).ToString(), new AirportCodeConverter().Convert(this.SelectedAirport.Destination));
+            string displayName1 = string.Format("{0}-{1}", new AirportCodeConverter().Convert(Airport.Airport), new AirportCodeConverter().Convert(SelectedAirport.Destination));
+            string displayName2 = string.Format("{1}-{0}", new AirportCodeConverter().Convert(Airport.Airport), new AirportCodeConverter().Convert(SelectedAirport.Destination));
 
-            demandSeries.Add(new SeriesData() { DisplayName = displayName1, Items = demands });
-            demandSeries.Add(new SeriesData() { DisplayName = displayName2, Items = demands2 });
+            demandSeries.Add(new SeriesData { DisplayName = displayName1, Items = demands });
+            demandSeries.Add(new SeriesData { DisplayName = displayName2, Items = demands2 });
          
-            this.cccDemand.DataContext = demandSeries;
+            cccDemand.DataContext = demandSeries;
 
             var routes =  new List<KeyValuePair<string,int>>();
 
-             var airlines = this.SelectedAirport.Destination.AirlineContracts.Select(a=>a.Airline).Distinct();
+             var airlines = SelectedAirport.Destination.AirlineContracts.Select(a=>a.Airline).Distinct();
 
             foreach (Airline airline in airlines)
             {
-                int airlineSeats = airline.Routes.Where(r=>r.Destination1 == this.SelectedAirport.Destination || r.Destination2 == this.SelectedAirport.Destination).Sum(r=>r.TimeTable.Entries.Sum(en=>en.Airliner.Airliner.GetTotalSeatCapacity()));
+                int airlineSeats = airline.Routes.Where(r=>r.Destination1 == SelectedAirport.Destination || r.Destination2 == SelectedAirport.Destination).Sum(r=>r.TimeTable.Entries.Sum(en=>en.Airliner.Airliner.GetTotalSeatCapacity()));
 
                 routes.Add(new KeyValuePair<string,int>(airline.Profile.Name,airlineSeats / 7));
             }
@@ -150,7 +147,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             if (routes.Count == 0)
                 routes.Add(new KeyValuePair<string, int>("None", 0));
 
-            this.pcSeats.DataContext = routes;
+            pcSeats.DataContext = routes;
 
         
        
@@ -262,7 +259,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             string searchText = ((TextBox)e.Source).Text.ToUpper();
 
-            var source = this.lvDemandDomestic.Items as ICollectionView;
+            var source = lvDemandDomestic.Items as ICollectionView;
             source.Filter = o =>
             {
                 if (o != null)

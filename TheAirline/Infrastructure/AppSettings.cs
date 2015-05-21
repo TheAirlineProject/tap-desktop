@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.IO;
 using System.Threading;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.General;
 
 namespace TheAirline.Infrastructure
@@ -17,7 +16,7 @@ namespace TheAirline.Infrastructure
          * stores the path to the Data directory.
          */
 
-        private static readonly string DataPath = BasePath + "\\data\\data";
+        private static readonly string DataPath = BasePath + "\\data";
 
         /*! private static variable basePath.
          * stores the path to the Plugin directory.

@@ -2,26 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TheAirline.GUIModel.CustomControlsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.ObjectsModel;
-using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.Helpers;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
+using TheAirline.Views.Airline;
+using TheAirline.Views.Game;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
@@ -39,19 +31,19 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             get
             {
-                return this._numberofairports;
+                return _numberofairports;
             }
             set
             {
-                this._numberofairports = value;
-                this.NotifyPropertyChanged("NumberOfAirports");
+                _numberofairports = value;
+                NotifyPropertyChanged("NumberOfAirports");
             }
         }
 
         public PageSelectAirports(StartDataObject startdata)
         {
-            this.StartData = startdata;
-            this.SelectedCountries = new List<Country>();
+            StartData = startdata;
+            SelectedCountries = new List<Country>();
 
             List<Country> countries =
             Airports.GetAllAirports()
@@ -59,7 +51,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                 .Distinct()
                 .ToList();
 
-            this.AllCountries = countries.OrderBy(c=>c.Region.Name).ThenBy(c => c.Name).ToList();
+            AllCountries = countries.OrderBy(c=>c.Region.Name).ThenBy(c => c.Name).ToList();
 
             setNumberOfAirports();
 
@@ -81,7 +73,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             Country country = (Country)((CheckBox)sender).Tag;
 
-            this.SelectedCountries.Add(country);
+            SelectedCountries.Add(country);
 
             setNumberOfAirports();
         }
@@ -90,7 +82,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             Country country = (Country)((CheckBox)sender).Tag;
 
-            this.SelectedCountries.Remove(country);
+            SelectedCountries.Remove(country);
 
             setNumberOfAirports();
         }
@@ -98,34 +90,34 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             int count = 0;
 
-            if (this.StartData.MajorAirports)
+            if (StartData.MajorAirports)
             {
                 int majorAirports = Airports.GetAllAirports(a =>
                                 a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Large
                                 || a.Profile.Size == GeneralHelpers.Size.VeryLarge
                                 || a.Profile.Size == GeneralHelpers.Size.Medium).Count;
 
-                foreach (Country country in this.SelectedCountries)
+                foreach (Country country in SelectedCountries)
                 {
                     count += Airports.GetAllAirports(a => (new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country) == country && (a.Profile.Size == GeneralHelpers.Size.Small || a.Profile.Size == GeneralHelpers.Size.Smallest
                                 || a.Profile.Size == GeneralHelpers.Size.VerySmall)).Count;
                 }
 
-                this.NumberOfAirports = count + majorAirports;
+                NumberOfAirports = count + majorAirports;
             }
-            if (this.StartData.InternationalAirports)
+            if (StartData.InternationalAirports)
             {
                 int intlAirports = Airports.GetAllAirports(a =>
                                a.Profile.Type == AirportProfile.AirportType.LongHaulInternational 
                                || a.Profile.Type == AirportProfile.AirportType.ShortHaulInternational).Count;
 
-                foreach (Country country in this.SelectedCountries)
+                foreach (Country country in SelectedCountries)
                 {
                     count += Airports.GetAllAirports(a => (new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country) == country && (a.Profile.Type == AirportProfile.AirportType.Regional
                         || a.Profile.Type == AirportProfile.AirportType.Domestic)).Count;
                 }
 
-                this.NumberOfAirports = count + intlAirports;
+                NumberOfAirports = count + intlAirports;
             }
         }
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -134,12 +126,12 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         }
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Country country in this.SelectedCountries)
-                this.StartData.SelectedCountries.Add(country);
+            foreach (Country country in SelectedCountries)
+                StartData.SelectedCountries.Add(country);
 
-            if (!this.StartData.RandomOpponents)
+            if (!StartData.RandomOpponents)
             {
-                PageNavigator.NavigateTo(new PageSelectOpponents(this.StartData));
+                PageNavigator.NavigateTo(new PageSelectOpponents(StartData));
             }
             else
             {
@@ -149,7 +141,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                     scCreating.Visibility = Visibility.Visible;
 
                 var bgWorker = new BackgroundWorker();
-                bgWorker.DoWork += (y, x) => { GameObjectHelpers.CreateGame(this.StartData); };
+                bgWorker.DoWork += (y, x) => { GameObjectHelpers.CreateGame(StartData); };
                 bgWorker.RunWorkerCompleted += (y, x) =>
                 {
                     if (scCreating != null)
@@ -172,7 +164,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void NotifyPropertyChanged(String propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));

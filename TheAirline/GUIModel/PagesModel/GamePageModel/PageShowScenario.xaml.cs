@@ -1,5 +1,6 @@
 ﻿using TheAirline.Helpers;
 using TheAirline.Models.General.Scenarios;
+using TheAirline.Views.Game;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {

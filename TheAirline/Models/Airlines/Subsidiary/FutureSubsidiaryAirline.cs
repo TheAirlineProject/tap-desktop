@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airports;
 using TheAirline.Models.Routes;
 
 namespace TheAirline.Models.Airlines.Subsidiary
@@ -15,7 +15,7 @@ namespace TheAirline.Models.Airlines.Subsidiary
         public FutureSubsidiaryAirline(
             string name,
             string iata,
-            Airports.Airport airport,
+            Airport airport,
             Airline.AirlineMentality mentality,
             Airline.AirlineFocus market,
             Route.RouteType airlineRouteFocus,
@@ -57,7 +57,7 @@ namespace TheAirline.Models.Airlines.Subsidiary
         public string Name { get; set; }
 
         [Versioning("airport")]
-        public Airports.Airport PreferedAirport { get; set; }
+        public Airport PreferedAirport { get; set; }
 
         #endregion
 

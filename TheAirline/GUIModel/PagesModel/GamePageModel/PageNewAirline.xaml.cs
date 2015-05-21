@@ -1,4 +1,19 @@
-﻿using TheAirline.Infrastructure;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Xml;
+using Microsoft.Win32;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Infrastructure;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
@@ -7,25 +22,6 @@ using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Drawing;
-    using System.Drawing.Imaging;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
-    using System.Text.RegularExpressions;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Xml;
-
-    using Microsoft.Win32;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageNewAirline.xaml
     /// </summary>
@@ -41,23 +37,23 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         public PageNewAirline()
         {
-            this.Colors = new List<PropertyInfo>();
-            this.AllCountries = Countries.GetCountries().OrderBy(c => c.Name).ToList();
+            Colors = new List<PropertyInfo>();
+            AllCountries = Countries.GetCountries().OrderBy(c => c.Name).ToList();
 
             foreach (PropertyInfo c in typeof(Colors).GetProperties())
             {
-                this.Colors.Add(c);
+                Colors.Add(c);
             }
 
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.logoPath = AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\default.png";
-            this.imgLogo.Source = new BitmapImage(new Uri(this.logoPath, UriKind.RelativeOrAbsolute));
+            logoPath = AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\default.png";
+            imgLogo.Source = new BitmapImage(new Uri(logoPath, UriKind.RelativeOrAbsolute));
 
-            this.txtCEO.Text = string.Format(
+            txtCEO.Text = string.Format(
                 "{0} {1}",
-                Names.GetInstance().GetRandomFirstName(this.AllCountries[0]),
-                Names.GetInstance().GetRandomLastName(this.AllCountries[0]));
+                Names.GetInstance().GetRandomFirstName(AllCountries[0]),
+                Names.GetInstance().GetRandomLastName(AllCountries[0]));
         }
 
         #endregion
@@ -74,8 +70,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void btnCreateAirline_Click(object sender, RoutedEventArgs e)
         {
-            string name = this.txtName.Text.Trim();
-            string iata = this.txtIATA.Text.Trim().ToUpper();
+            string name = txtName.Text.Trim();
+            string iata = txtIATA.Text.Trim().ToUpper();
 
             string pattern = @"^[A-Za-z0-9]+$";
             var regex = new Regex(pattern);
@@ -96,7 +92,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
                     if (result == WPFMessageBoxResult.Yes)
                     {
-                        this.createAirline();
+                        createAirline();
                     }
                 }
                 else
@@ -109,7 +105,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
                     if (result == WPFMessageBoxResult.Yes)
                     {
-                        this.createAirline();
+                        createAirline();
                     }
                 }
             }
@@ -124,8 +120,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void btnCreateAndSave_Click(object sender, RoutedEventArgs e)
         {
-            string name = this.txtName.Text.Trim();
-            string iata = this.txtIATA.Text.Trim().ToUpper();
+            string name = txtName.Text.Trim();
+            string iata = txtIATA.Text.Trim().ToUpper();
 
             string pattern = @"^[A-Za-z0-9]+$";
             var regex = new Regex(pattern);
@@ -146,8 +142,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
                     if (result == WPFMessageBoxResult.Yes)
                     {
-                        Airline nAirline = this.createAirline();
-                        this.saveAirline(nAirline);
+                        Airline nAirline = createAirline();
+                        saveAirline(nAirline);
                     }
                 }
                 else
@@ -160,8 +156,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
                     if (result == WPFMessageBoxResult.Yes)
                     {
-                        Airline nAirline = this.createAirline();
-                        this.saveAirline(nAirline);
+                        Airline nAirline = createAirline();
+                        saveAirline(nAirline);
                     }
                 }
             }
@@ -186,20 +182,20 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             if (result == true)
             {
-                this.logoPath = dlg.FileName;
-                this.imgLogo.Source = new BitmapImage(new Uri(this.logoPath, UriKind.RelativeOrAbsolute));
+                logoPath = dlg.FileName;
+                imgLogo.Source = new BitmapImage(new Uri(logoPath, UriKind.RelativeOrAbsolute));
             }
         }
 
         private void cbCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var country = (Country)this.cbCountry.SelectedItem;
+            var country = (Country)cbCountry.SelectedItem;
 
-            this.cbAirport.Items.Clear();
+            cbAirport.Items.Clear();
 
             foreach (Airport airport in Airports.GetAirports(country).OrderBy(a => a.Profile.Name))
             {
-                this.cbAirport.Items.Add(airport);
+                cbAirport.Items.Add(airport);
             }
         }
 
@@ -208,9 +204,9 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         //creates the airline
         private Airline createAirline()
         {
-            string name = this.txtName.Text.Trim();
-            string iata = this.txtIATA.Text.Trim().ToUpper();
-            string ceo = this.txtCEO.Text.Trim();
+            string name = txtName.Text.Trim();
+            string iata = txtIATA.Text.Trim().ToUpper();
+            string ceo = txtCEO.Text.Trim();
 
             Airline tAirline = Airlines.GetAirline(iata);
 
@@ -219,16 +215,16 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                 Airlines.RemoveAirline(tAirline);
             }
 
-            var country = (Country)this.cbCountry.SelectedItem;
-            string color = ((PropertyInfo)this.cbColor.SelectedItem).Name;
+            var country = (Country)cbCountry.SelectedItem;
+            string color = ((PropertyInfo)cbColor.SelectedItem).Name;
 
             var profile = new AirlineProfile(name, iata, color, ceo, false, 1950, 2199);
             profile.Countries = new List<Country> { country };
             profile.Country = country;
-            profile.AddLogo(new AirlineLogo(this.logoPath));
-            profile.PreferedAirport = this.cbAirport.SelectedItem != null ? (Airport)this.cbAirport.SelectedItem : null;
+            profile.AddLogo(new AirlineLogo(logoPath));
+            profile.PreferedAirport = cbAirport.SelectedItem != null ? (Airport)cbAirport.SelectedItem : null;
 
-            Route.RouteType focus = this.rbPassengerType.IsChecked.Value
+            Route.RouteType focus = rbPassengerType.IsChecked.Value
                 ? Route.RouteType.Passenger
                 : Route.RouteType.Cargo;
 

@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Models.General.Countries
 {
@@ -10,7 +9,7 @@ namespace TheAirline.Models.General.Countries
     [Serializable]
     public class CountryTailNumber : BaseModel
     {
-        public CountryTailNumber(General.Countries.Country country)
+        public CountryTailNumber(Country country)
         {
             Country = country;
         }
@@ -23,7 +22,7 @@ namespace TheAirline.Models.General.Countries
         public string LastTailNumber { get; set; }
 
         [Versioning("country")]
-        public General.Countries.Country Country { get; set; }
+        public Country Country { get; set; }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {

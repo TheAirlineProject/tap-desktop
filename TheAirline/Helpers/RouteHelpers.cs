@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using TheAirline.Model.GeneralModel;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.General;

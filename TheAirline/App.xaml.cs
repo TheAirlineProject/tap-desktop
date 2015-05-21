@@ -1,8 +1,7 @@
 using System;
+using System.Windows;
 using NLog;
 using TheAirline.Infrastructure;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Models.General;
 
 /*!
  * /brief Namespace of the project
@@ -21,9 +20,14 @@ namespace TheAirline
         {
             AppSettings.Init();
 
-
-            AppDomain currentDomain = AppDomain.CurrentDomain;
+            var currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += currentDomain_UnhandledException;
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var boot = new AirlineBootstrapper();
+            boot.Run();
         }
 
         private static void currentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

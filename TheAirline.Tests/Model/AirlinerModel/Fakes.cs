@@ -1,13 +1,11 @@
-﻿using TheAirline.Models.Airliners;
+﻿using System;
+using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.General;
 using TheAirline.Models.Routes;
 
 namespace TheAirline.Tests.Model.AirlinerModel
 {
-    using System;
-    using TheAirline.Model.GeneralModel;
-
     internal static class Fakes
     {
         #region Public Methods and Operators
@@ -34,13 +32,14 @@ namespace TheAirline.Tests.Model.AirlinerModel
                 3040,
                 0,
                 0,
+                0,
                 0.062,
                 90000000,
                 2000,
                 20000,
                 AirlinerType.BodyType.WideBody,
                 AirlinerType.TypeRange.LongRange,
-                AirlinerType.EngineType.Turboprop,
+                AirlinerType.TypeOfEngine.Turboprop,
                 new Period<DateTime>(new DateTime(1999, 1, 1), new DateTime(2015, 1, 1)),
                 3,
                 false,
@@ -60,6 +59,7 @@ namespace TheAirline.Tests.Model.AirlinerModel
                 3040,
                 0,
                 0,
+                0,
                 0.051,
                 90000000,
                 3,
@@ -67,7 +67,7 @@ namespace TheAirline.Tests.Model.AirlinerModel
                 20000,
                 AirlinerType.BodyType.NarrowBody,
                 AirlinerType.TypeRange.LongRange,
-                AirlinerType.EngineType.Jet,
+                AirlinerType.TypeOfEngine.Jet,
                 new Period<DateTime>(new DateTime(1990, 1, 1), new DateTime(2010, 1, 1)),
                 5,
                 true,
@@ -89,6 +89,7 @@ namespace TheAirline.Tests.Model.AirlinerModel
                 3040,
                 0,
                 0,
+                0,
                 0.062,
                 90000000,
                 3,
@@ -96,7 +97,7 @@ namespace TheAirline.Tests.Model.AirlinerModel
                 20000,
                 AirlinerType.BodyType.SingleAisle,
                 AirlinerType.TypeRange.MediumRange,
-                AirlinerType.EngineType.Turboprop,
+                AirlinerType.TypeOfEngine.Turboprop,
                 new Period<DateTime>(new DateTime(1999, 1, 1), new DateTime(2015, 1, 1)),
                 3,
                 40,

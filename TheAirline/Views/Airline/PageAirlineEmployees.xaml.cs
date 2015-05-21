@@ -1,19 +1,17 @@
-﻿using TheAirline.Helpers;
+﻿using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Finances;
+using TheAirline.ViewModels.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAirlineEmployees.xaml
     /// </summary>
@@ -23,12 +21,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         public PageAirlineEmployees(AirlineMVVM airline)
         {
-            this.Airline = airline;
-            this.DataContext = this.Airline;
+            Airline = airline;
+            DataContext = Airline;
 
-            this.Airline.resetFees();
+            Airline.resetFees();
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -56,7 +54,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    this.Airline.removePilot(pilot);
+                    Airline.removePilot(pilot);
                 }
             }
             else
@@ -73,14 +71,14 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     pilot.Pilot.Airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
                     pilot.Pilot.Airliner.RemovePilot(pilot.Pilot);
 
-                    this.Airline.removePilot(pilot);
+                    Airline.removePilot(pilot);
                 }
             }
         }
 
         private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            this.Airline.saveFees();
+            Airline.saveFees();
         }
 
         private void btnTrainPilot_Click(object sender, RoutedEventArgs e)
@@ -91,7 +89,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             var cbAirlinerFamily = new ComboBox();
             cbAirlinerFamily.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
-            cbAirlinerFamily.ItemTemplate = this.Resources["TrainingFacility"] as DataTemplate;
+            cbAirlinerFamily.ItemTemplate = Resources["TrainingFacility"] as DataTemplate;
             cbAirlinerFamily.HorizontalAlignment = HorizontalAlignment.Left;
             cbAirlinerFamily.Width = 350;
 
@@ -149,7 +147,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     if (result == WPFMessageBoxResult.Yes)
                     {
                         AirlineHelpers.AddAirlineInvoice(
-                            this.Airline.Airline,
+                            Airline.Airline,
                             GameObject.GetInstance().GameTime,
                             Invoice.InvoiceType.AirlineExpenses,
                             -substitutePrice);
@@ -168,7 +166,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
-            this.Airline.resetFees();
+            Airline.resetFees();
         }
 
         #endregion

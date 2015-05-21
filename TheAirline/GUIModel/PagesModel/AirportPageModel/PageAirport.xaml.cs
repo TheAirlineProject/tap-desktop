@@ -1,17 +1,14 @@
-﻿using TheAirline.Helpers;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Helpers;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageAirport.xaml
     /// </summary>
@@ -27,20 +24,20 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
         public PageAirport(Airport airport)
         {
-            this.Loaded += this.PageAirport_Loaded;
-            this.Airport = new AirportMVVM(airport);
+            Loaded += PageAirport_Loaded;
+            Airport = new AirportMVVM(airport);
 
-            this.Distances = new List<AirportDistanceMVVM>();
+            Distances = new List<AirportDistanceMVVM>();
 
             foreach (
                 Airport destination in
-                    GameObject.GetInstance().HumanAirline.Airports.Where(a => a != this.Airport.Airport))
+                    GameObject.GetInstance().HumanAirline.Airports.Where(a => a != Airport.Airport))
             {
-                this.Distances.Add(
-                    new AirportDistanceMVVM(destination, MathHelpers.GetDistance(destination, this.Airport.Airport)));
+                Distances.Add(
+                    new AirportDistanceMVVM(destination, MathHelpers.GetDistance(destination, Airport.Airport)));
             }
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -57,7 +54,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             var frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
 
-            frmContent.Navigate(new PageAirportInfo(this.Airport) { Tag = this });
+            frmContent.Navigate(new PageAirportInfo(Airport) { Tag = this });
 
             var tab_main = UIHelpers.FindChild<TabControl>(this, "tcMenu");
 
@@ -67,7 +64,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                     tab_main.Items.Cast<TabItem>().Where(item => item.Tag.ToString() == "Overview").FirstOrDefault();
 
                 //matchingItem.IsSelected = true;
-                matchingItem.Header = this.Airport.Airport.Profile.Name;
+                matchingItem.Header = Airport.Airport.Profile.Name;
                 matchingItem.Visibility = Visibility.Visible;
 
                 tab_main.SelectedItem = matchingItem;
@@ -84,27 +81,27 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             if (selection == "Overview" && frmContent != null)
             {
-                frmContent.Navigate(new PageAirportInfo(this.Airport) { Tag = this });
+                frmContent.Navigate(new PageAirportInfo(Airport) { Tag = this });
             }
 
             if (selection == "Facilities" && frmContent != null)
             {
-                frmContent.Navigate(new PageAirportFacilities(this.Airport) { Tag = this });
+                frmContent.Navigate(new PageAirportFacilities(Airport) { Tag = this });
             }
 
             if (selection == "Traffic" && frmContent != null)
             {
-                frmContent.Navigate(new PageAirportTraffic(this.Airport) { Tag = this });
+                frmContent.Navigate(new PageAirportTraffic(Airport) { Tag = this });
             }
 
             if (selection == "Gates" && frmContent != null)
             {
-                frmContent.Navigate(new PageAirportGateSchedule(this.Airport) { Tag = this });
+                frmContent.Navigate(new PageAirportGateSchedule(Airport) { Tag = this });
             }
 
             if (selection == "Demand" && frmContent != null)
             {
-                frmContent.Navigate(new PageAirportDemand(this.Airport) { Tag = this });
+                frmContent.Navigate(new PageAirportDemand(Airport) { Tag = this });
             }
         }
 

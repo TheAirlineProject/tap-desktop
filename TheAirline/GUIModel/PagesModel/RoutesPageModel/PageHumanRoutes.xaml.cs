@@ -1,18 +1,15 @@
-﻿using TheAirline.Models.Airlines;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Models.Airlines;
 using TheAirline.Models.General;
 using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-
-    using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageHumanRoutes.xaml
     /// </summary>
@@ -29,8 +26,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 routes.Add(new RouteMVVM(route));
             }
 
-            this.DataContext = routes;
-            this.Loaded += this.PageHumanRoutes_Loaded;
+            DataContext = routes;
+            Loaded += PageHumanRoutes_Loaded;
 
             IEnumerable<Route> codesharingRoutes =
                 GameObject.GetInstance()
@@ -41,9 +38,9 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     .Select(c => c.Airline1 == GameObject.GetInstance().HumanAirline ? c.Airline2 : c.Airline1)
                     .SelectMany(a => a.Routes);
 
-            this.CodesharingRoutes = codesharingRoutes.ToList();
+            CodesharingRoutes = codesharingRoutes.ToList();
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -58,7 +55,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void PageHumanRoutes_Loaded(object sender, RoutedEventArgs e)
         {
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -78,7 +75,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             var route = (Route)((Button)sender).Tag;
 
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -95,11 +92,11 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 tab_main.SelectedItem = matchingItem;
             }
 
-            var frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
+            var frmContent = UIHelpers.FindChild<Frame>(Tag as Page, "frmContent");
 
             if (frmContent != null)
             {
-                frmContent.Navigate(new PageShowRoute(route) { Tag = this.Tag });
+                frmContent.Navigate(new PageShowRoute(route) { Tag = Tag });
             }
         }
 

@@ -1,21 +1,17 @@
-﻿using TheAirline.Infrastructure;
+﻿using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using Microsoft.Win32;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Infrastructure;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 {
-    using System;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Media.Imaging;
-
-    using Microsoft.Win32;
-
-    using TheAirline.GUIModel.HelpersModel;
-    using TheAirline.Model.GeneralModel;
-
     /// <summary>
     ///     Interaction logic for PageCreateAlliance.xaml
     /// </summary>
@@ -31,14 +27,14 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
         public PageCreateAlliance()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.cbHeadquarter.ItemsSource = GameObject.GetInstance().HumanAirline.Airports;
+            cbHeadquarter.ItemsSource = GameObject.GetInstance().HumanAirline.Airports;
 
-            this.logoPath = AppSettings.GetDataPath() + "\\graphics\\alliancelogos\\default.png";
-            this.imgLogo.Source = new BitmapImage(new Uri(this.logoPath, UriKind.RelativeOrAbsolute));
+            logoPath = AppSettings.GetDataPath() + "\\graphics\\alliancelogos\\default.png";
+            imgLogo.Source = new BitmapImage(new Uri(logoPath, UriKind.RelativeOrAbsolute));
 
-            this.Loaded += this.PageCreateAlliance_Loaded;
+            Loaded += PageCreateAlliance_Loaded;
         }
 
         #endregion
@@ -47,7 +43,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
         private void PageCreateAlliance_Loaded(object sender, RoutedEventArgs e)
         {
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -62,15 +58,15 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         {
             var alliance = new Alliance(
                 GameObject.GetInstance().GameTime,
-                this.txtName.Text.Trim(),
-                (Airport)this.cbHeadquarter.SelectedItem);
-            alliance.Logo = this.logoPath;
+                txtName.Text.Trim(),
+                (Airport)cbHeadquarter.SelectedItem);
+            alliance.Logo = logoPath;
             alliance.AddMember(
                 new AllianceMember(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime));
 
             Alliances.AddAlliance(alliance);
 
-            var tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
@@ -94,8 +90,8 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
             if (result == true)
             {
-                this.logoPath = dlg.FileName;
-                this.imgLogo.Source = new BitmapImage(new Uri(this.logoPath, UriKind.RelativeOrAbsolute));
+                logoPath = dlg.FileName;
+                imgLogo.Source = new BitmapImage(new Uri(logoPath, UriKind.RelativeOrAbsolute));
             }
         }
 
