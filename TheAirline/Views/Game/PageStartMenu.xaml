@@ -4,23 +4,27 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:viewModels="clr-namespace:TheAirline.ViewModels.Game"
+      xmlns:lex="http://wpflocalizeextension.codeplex.com"
+      lex:LocalizeDictionary.DesignCulture="en"
+      lex:ResxLocalizationProvider.DefaultAssembly="TheAirline"
+      lex:ResxLocalizationProvider.DefaultDictionary="language"
       mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:PageStartMenuViewModel}"
       d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel HorizontalAlignment="Center">
-        <Button
-            Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 200'}"
+        <Button x:Name="NewGame"
+            Content="{lex:Loc PageFrontMenu_200_name}"
             Style="{StaticResource StartMenuButtonStyle}" Command="{Binding NavigateCommand}" CommandParameter="{Binding NewGameUri}" />
         <Button Margin="0 5 0 0"
-                Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 201'}"
+                Content="{lex:Loc PageFrontMenu_201_name}"
                 Style="{StaticResource StartMenuButtonStyle}" Command="{Binding NavigateCommand}" CommandParameter="{Binding LoadGameUri}" />
         <Button Margin="0 5 0 0"
-                Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 202'}"
+                Content="{lex:Loc PageFrontMenu_202_name}"
                 Style="{StaticResource StartMenuButtonStyle}" Command="{Binding NavigateCommand}" CommandParameter="{Binding SettingsUri}" />
         <Button Margin="0 5 0 0"
-                Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 203'}"
+                Content="{lex:Loc PageFrontMenu_203_name}"
                 Style="{StaticResource StartMenuButtonStyle}" Command="{Binding NavigateCommand}" CommandParameter="{Binding CreditsUri}" />
         <Button Margin="0 5 0 0"
-                Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 204'}"
+                Content="{lex:Loc PageFrontMenu_204_name}"
                 Style="{StaticResource StartMenuButtonStyle}" Command="{Binding ExitCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" />
     </StackPanel>
 </UserControl>

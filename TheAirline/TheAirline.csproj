@@ -202,6 +202,14 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFLocalizeExtension, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfLocalizeExtension.2.3\lib\net35\WPFLocalizeExtension.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="XAMLMarkupExtensions, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XAMLMarkupExtensions.1.2\lib\net40\XAMLMarkupExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
       <Private>True</Private>
@@ -644,6 +652,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="..\Data\Data\languages\language.Designer.cs">
+      <Link>Data\languagefiles\language.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>language.resx</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -1173,6 +1187,7 @@
     <EmbeddedResource Include="..\Data\Data\languages\language.da-DK.resx">
       <Link>Data\languagefiles\language.da-DK.resx</Link>
       <SubType>Designer</SubType>
+      <DependentOn>language.resx</DependentOn>
     </EmbeddedResource>
     <EmbeddedResource Include="..\Data\Data\languages\language.de-DE.resx">
       <Link>Data\languagefiles\language.de-DE.resx</Link>
@@ -1193,6 +1208,8 @@
     <EmbeddedResource Include="..\Data\Data\languages\language.resx">
       <Link>Data\languagefiles\language.resx</Link>
       <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>language.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="..\Data\Data\languages\language.zh-CN.resx">
       <Link>Data\languagefiles\language.zh-CN.resx</Link>
