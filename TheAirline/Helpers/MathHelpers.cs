@@ -486,7 +486,7 @@ namespace TheAirline.Helpers
         public static void MoveObject(FleetAirliner airliner, double speed)
         {
             double distance = airliner.CurrentFlight.DistanceToDestination;
-            double timepermove = Settings.GetInstance().MinutesPerTurn;
+            double timepermove = Infrastructure.Settings.GetInstance().MinutesPerTurn;
 
             //Making sure that if the game time is not an hour, the plane is not moving an hour forward.
             if (timepermove.Equals(15))

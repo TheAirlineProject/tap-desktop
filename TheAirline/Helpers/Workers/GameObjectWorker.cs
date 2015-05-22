@@ -151,7 +151,7 @@ namespace TheAirline.Helpers.Workers
                     GameObjectHelpers.SimulateTurn();
                     sw.Stop();
 
-                    long waittime = (int) Settings.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
+                    long waittime = (int)Infrastructure.Settings.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
 
                     if (waittime > 0)
                     {

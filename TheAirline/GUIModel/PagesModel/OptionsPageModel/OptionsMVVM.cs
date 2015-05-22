@@ -7,7 +7,9 @@ using System.Windows.Data;
 using System.Windows.Media;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.General;
+using Settings = TheAirline.Properties.Settings;
 
 namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {
@@ -25,7 +27,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
         private Boolean _mailsOnLanding;
 
-        private Settings.AirportCode _selectedAirportCode;
+        private AirportCode _selectedAirportCode;
 
         private int _selectedGameMinutes;
 
@@ -64,9 +66,9 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             }
         }
 
-        public Settings.Intervals AutoSave { get; set; }
+        public Intervals AutoSave { get; set; }
 
-        public Settings.Intervals ClearStats { get; set; }
+        public Intervals ClearStats { get; set; }
 
         public int CurrentGameSpeed
         {
@@ -137,7 +139,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             }
         }
 
-        public Settings.AirportCode SelectedAirportCode
+        public AirportCode SelectedAirportCode
         {
             get
             {
@@ -216,18 +218,18 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
         private void setValues()
         {
             SelectedLanguage = AppSettings.GetInstance().GetLanguage();
-            SelectedAirportCode = Settings.GetInstance().AirportCodeDisplay;
-            MailsOnLandings = Settings.GetInstance().MailsOnLandings;
-            MailsOnBadWeather = Settings.GetInstance().MailsOnBadWeather;
-            ShortenCurrency = Settings.GetInstance().CurrencyShorten;
-            MailsOnAirlineDestinations = Settings.GetInstance().MailsOnAirlineRoutes;
+            SelectedAirportCode = Infrastructure.Settings.GetInstance().AirportCodeDisplay;
+            MailsOnLandings = Infrastructure.Settings.GetInstance().MailsOnLandings;
+            MailsOnBadWeather = Infrastructure.Settings.GetInstance().MailsOnBadWeather;
+            ShortenCurrency = Infrastructure.Settings.GetInstance().CurrencyShorten;
+            MailsOnAirlineDestinations = Infrastructure.Settings.GetInstance().MailsOnAirlineRoutes;
             HourRoundEnabled = !GameObject.GetInstance().DayRoundEnabled;
-            SelectedGameMinutes = Settings.GetInstance().MinutesPerTurn;
+            SelectedGameMinutes = Infrastructure.Settings.GetInstance().MinutesPerTurn;
             GameMinutes = new ObservableCollection<int> { 15, 30, 60 };
-            CurrentGameSpeed = (int)Settings.GetInstance().GameSpeed;
+            CurrentGameSpeed = (int)Infrastructure.Settings.GetInstance().GameSpeed;
 
-            AutoSave = Settings.GetInstance().AutoSave;
-            ClearStats = Settings.GetInstance().ClearStats;
+            AutoSave = Infrastructure.Settings.GetInstance().AutoSave;
+            ClearStats = Infrastructure.Settings.GetInstance().ClearStats;
 
             var cGameSpeeds = new DoubleCollection();
 

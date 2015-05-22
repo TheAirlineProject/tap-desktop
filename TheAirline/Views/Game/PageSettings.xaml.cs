@@ -1,17 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Infrastructure;
-using TheAirline.Views.Game;
+using TheAirline.Infrastructure.Enums;
+using TheAirline.ViewModels.Game;
 
-namespace TheAirline.GUIModel.PagesModel.GamePageModel
+namespace TheAirline.Views.Game
 {
     /// <summary>
     ///     Interaction logic for PageSettings.xaml
     /// </summary>
-    public partial class PageSettings : Page
+    [Export("PageSettings")]
+    public partial class PageSettings
     {
         #region Constructors and Destructors
 
@@ -23,6 +26,13 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         }
 
         #endregion
+
+        [Import]
+        public PageSettingsViewModel ViewModel
+        {
+            get { return DataContext as PageSettingsViewModel; }
+            set { DataContext = value; }
+        }
 
         #region Public Properties
 
@@ -44,22 +54,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void PageSettings_Loaded(object sender, RoutedEventArgs e)
         {
-            var rbFullScreen = UIHelpers.FindChild<RadioButton>(this, "rbFullScreen");
-            rbFullScreen.IsChecked = Settings.GetInstance().Mode == Settings.ScreenMode.Fullscreen;
-
-            var rbWindowed = UIHelpers.FindChild<RadioButton>(this, "rbWindowed");
-            if (!rbFullScreen.IsChecked.Value)
-            {
-                rbWindowed.IsChecked = true;
-            }
-
-            var cbLanguage = UIHelpers.FindChild<ComboBox>(this, "cbLanguage");
-            cbLanguage.SelectedItem = AppSettings.GetInstance().GetLanguage();
-        }
-
-        private void btnBack_Click(object sender, RoutedEventArgs e)
-        {
-            //PageNavigator.NavigateTo(new PageStartMenu());
+            //var cbLanguage = UIHelpers.FindChild<ComboBox>(this, "cbLanguage");
+            //cbLanguage.SelectedItem = AppSettings.GetInstance().GetLanguage();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -68,14 +64,14 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             if (rbFullScreen.IsChecked.Value)
             {
-                Settings.GetInstance().Mode = Settings.ScreenMode.Fullscreen;
+                Settings.GetInstance().Mode = ScreenMode.FullScreen;
                 PageNavigator.MainWindow.WindowStyle = WindowStyle.None;
                 PageNavigator.MainWindow.WindowState = WindowState.Maximized;
                 PageNavigator.MainWindow.Focus();
             }
             else
             {
-                Settings.GetInstance().Mode = Settings.ScreenMode.Windowed;
+                Settings.GetInstance().Mode = ScreenMode.Windowed;
                 PageNavigator.MainWindow.WindowStyle = WindowStyle.ToolWindow;
                 PageNavigator.MainWindow.WindowState = WindowState.Maximized;
                 PageNavigator.MainWindow.Focus();
@@ -95,7 +91,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
             var rbFullScreen = UIHelpers.FindChild<RadioButton>(this, "rbFullScreen");
-            rbFullScreen.IsChecked = Settings.GetInstance().Mode == Settings.ScreenMode.Fullscreen;
+            rbFullScreen.IsChecked = Settings.GetInstance().Mode == ScreenMode.FullScreen;
 
             var rbWindowed = UIHelpers.FindChild<RadioButton>(this, "rbWindowed");
             if (!rbFullScreen.IsChecked.Value)

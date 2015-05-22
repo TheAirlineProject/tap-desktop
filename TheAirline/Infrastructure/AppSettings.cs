@@ -8,6 +8,30 @@ namespace TheAirline.Infrastructure
 {
     public class AppSettings
     {
+        #region Constructors and Destructors
+
+        private AppSettings()
+        {
+            Translator.Init();
+            SetLanguage(Languages.GetLanguages()[0]);
+            Translator.DefaultLanguage = Thread.CurrentThread.CurrentUICulture.ToString();
+
+            _isLanguageSet = false;
+        }
+
+        #endregion
+
+        #region Methods
+
+        private static void CreatePaths(string path)
+        {
+            Directory.CreateDirectory(path);
+            Directory.CreateDirectory(path + "\\saves");
+            //LoadSaveHelpers.CreateBaseXml(path + "\\saves");
+        }
+
+        #endregion
+
         #region Static Fields
 
         private static readonly string BasePath = Environment.CurrentDirectory;
@@ -35,19 +59,6 @@ namespace TheAirline.Infrastructure
         private bool _isLanguageSet;
 
         private Language _language;
-
-        #endregion
-
-        #region Constructors and Destructors
-
-        private AppSettings()
-        {
-            Translator.Init();
-            SetLanguage(Languages.GetLanguages()[0]);
-            Translator.DefaultLanguage = Thread.CurrentThread.CurrentUICulture.ToString();
-
-            _isLanguageSet = false;
-        }
 
         #endregion
 
@@ -85,7 +96,7 @@ namespace TheAirline.Infrastructure
 
         public static string GetCommonApplicationDataPath()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\theairlineproject\\";
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\theairlineproject\\";
 
             if (!Directory.Exists(path))
             {
@@ -145,24 +156,5 @@ namespace TheAirline.Infrastructure
         }
 
         #endregion
-
-        #region Methods
-
-        private static void CreatePaths(string path)
-        {
-            Directory.CreateDirectory(path);
-            Directory.CreateDirectory(path + "\\saves");
-            //LoadSaveHelpers.CreateBaseXml(path + "\\saves");
-        }
-
-        #endregion
-
-        /*! private static variable basePath.
-         * stores the actual defined working directory.
-         */
-
-        //returns the game instance
-
-        //returns the current language
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.Subsidiary;
@@ -24,6 +25,7 @@ using TheAirline.Models.General.Statistics;
 using TheAirline.Models.Passengers;
 using TheAirline.Models.Pilots;
 using TheAirline.Models.Routes;
+using Settings = TheAirline.Properties.Settings;
 
 namespace TheAirline.Helpers
 {
@@ -896,17 +898,17 @@ namespace TheAirline.Helpers
                              gtz => gtz.UTCOffset == TimeSpan.Parse(gameSettingsNode.Attributes["timezone"].Value));
             GameObject.GetInstance().TimeZone = timezone;
 
-            Settings.GetInstance().MailsOnLandings =
+            Infrastructure.Settings.GetInstance().MailsOnLandings =
                 Convert.ToBoolean(gameSettingsNode.Attributes["mailonlandings"].Value);
-            Settings.GetInstance().MailsOnBadWeather =
+            Infrastructure.Settings.GetInstance().MailsOnBadWeather =
                 Convert.ToBoolean(gameSettingsNode.Attributes["mailonbadweather"].Value);
 
-            Settings.GetInstance().AirportCodeDisplay =
-                (Settings.AirportCode)
-                Enum.Parse(typeof (Settings.AirportCode), gameSettingsNode.Attributes["airportcode"].Value);
+            Infrastructure.Settings.GetInstance().AirportCodeDisplay =
+                (AirportCode)
+                Enum.Parse(typeof (AirportCode), gameSettingsNode.Attributes["airportcode"].Value);
             if (gameSettingsNode.HasAttribute("minutesperturn"))
             {
-                Settings.GetInstance().MinutesPerTurn =
+                Infrastructure.Settings.GetInstance().MinutesPerTurn =
                     Convert.ToInt16(gameSettingsNode.Attributes["minutesperturn"].Value);
             }
             AppSettings.GetInstance().SetLanguage(Languages.GetLanguage(gameSettingsNode.Attributes["language"].Value));
@@ -1900,10 +1902,10 @@ namespace TheAirline.Helpers
             gameSettingsNode.SetAttribute("human", GameObject.GetInstance().HumanAirline.Profile.IATACode);
             gameSettingsNode.SetAttribute("mainairline", GameObject.GetInstance().MainAirline.Profile.IATACode);
             gameSettingsNode.SetAttribute("timezone", GameObject.GetInstance().TimeZone.UTCOffset.ToString());
-            gameSettingsNode.SetAttribute("mailonlandings", Settings.GetInstance().MailsOnLandings.ToString());
-            gameSettingsNode.SetAttribute("mailonbadweather", Settings.GetInstance().MailsOnBadWeather.ToString());
-            gameSettingsNode.SetAttribute("airportcode", Settings.GetInstance().AirportCodeDisplay.ToString());
-            gameSettingsNode.SetAttribute("minutesperturn", Settings.GetInstance().MinutesPerTurn.ToString(CultureInfo.InvariantCulture));
+            gameSettingsNode.SetAttribute("mailonlandings", Infrastructure.Settings.GetInstance().MailsOnLandings.ToString());
+            gameSettingsNode.SetAttribute("mailonbadweather", Infrastructure.Settings.GetInstance().MailsOnBadWeather.ToString());
+            gameSettingsNode.SetAttribute("airportcode", Infrastructure.Settings.GetInstance().AirportCodeDisplay.ToString());
+            gameSettingsNode.SetAttribute("minutesperturn", Infrastructure.Settings.GetInstance().MinutesPerTurn.ToString(CultureInfo.InvariantCulture));
             gameSettingsNode.SetAttribute("language", AppSettings.GetInstance().GetLanguage().Name);
             gameSettingsNode.SetAttribute("dayround", GameObject.GetInstance().DayRoundEnabled.ToString());
 

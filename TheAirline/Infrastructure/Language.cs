@@ -7,6 +7,17 @@ namespace TheAirline.Infrastructure
     //the class for a language
     public class Language
     {
+        #region Enums
+
+        public enum UnitSystem
+        {
+            Metric,
+
+            Imperial
+        }
+
+        #endregion
+
         #region Fields
 
         private readonly Dictionary<string, string> _words;
@@ -15,24 +26,13 @@ namespace TheAirline.Infrastructure
 
         #region Constructors and Destructors
 
-        public Language(string name, string cultureInfo, Boolean isEnabled)
+        public Language(string name, string cultureInfo, bool isEnabled)
         {
             Name = name;
             Unit = UnitSystem.Metric;
             CultureInfo = cultureInfo;
             IsEnabled = isEnabled;
             _words = new Dictionary<string, string>();
-        }
-
-        #endregion
-
-        #region Enums
-
-        public enum UnitSystem
-        {
-            Metric,
-
-            Imperial
         }
 
         #endregion
@@ -65,8 +65,6 @@ namespace TheAirline.Infrastructure
         }
 
         #endregion
-
-        //adds a word to the language
     }
 
     //the collection of languages
@@ -100,7 +98,7 @@ namespace TheAirline.Infrastructure
             {
                 return _languages[name];
             }
-            string shortname = name.Substring(name.IndexOf("(", StringComparison.Ordinal));
+            var shortname = name.Substring(name.IndexOf("(", StringComparison.Ordinal));
             return _languages.Values.ToList().Find(l => l.Name.Contains(shortname));
         }
 
@@ -111,9 +109,5 @@ namespace TheAirline.Infrastructure
         }
 
         #endregion
-
-        //clears the list of languages
-
-        //adds a language to the collection
     }
 }

@@ -24,6 +24,8 @@ namespace TheAirline.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.Settings.AddOrUpdate(s => s.Id,
+                new Models.General.Settings {Mode = Infrastructure.Enums.ScreenMode.Windowed});
         }
     }
 }

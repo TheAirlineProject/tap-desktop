@@ -448,7 +448,7 @@ namespace TheAirline.Helpers
                 }
             }
 
-            if (airliner.Airliner.Airline.IsHuman && Settings.GetInstance().MailsOnLandings)
+            if (airliner.Airliner.Airline.IsHuman && Infrastructure.Settings.GetInstance().MailsOnLandings)
             {
                 GameObject.GetInstance()
                           .NewsBox.AddNews(

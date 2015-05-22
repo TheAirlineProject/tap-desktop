@@ -1666,7 +1666,7 @@ namespace TheAirline.Helpers
                                                               || (r.Destination1 == route.Destination2
                                                                   && r.Destination2 == route.Destination1)));
 
-                            if (humanHasRoute && Settings.GetInstance().MailsOnAirlineRoutes)
+                            if (humanHasRoute && Infrastructure.Settings.GetInstance().MailsOnAirlineRoutes)
                             {
                                 if (route != null)
                                     GameObject.GetInstance()
@@ -1698,7 +1698,7 @@ namespace TheAirline.Helpers
                                     ? destination.Profile.Country
                                     : newDestination;
 
-                            if (newDestination != null && Settings.GetInstance().MailsOnAirlineRoutes)
+                            if (newDestination != null && Infrastructure.Settings.GetInstance().MailsOnAirlineRoutes)
                             {
                                 GameObject.GetInstance()
                                           .NewsBox.AddNews(

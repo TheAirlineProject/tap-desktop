@@ -9,6 +9,7 @@ using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.Helpers.Workers;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.AirlineCooperation;
@@ -24,6 +25,7 @@ using TheAirline.Models.General.Statistics;
 using TheAirline.Models.Passengers;
 using TheAirline.Models.Pilots;
 using TheAirline.Models.Routes;
+using Settings = TheAirline.Properties.Settings;
 
 namespace TheAirline.Helpers
 {
@@ -531,7 +533,7 @@ namespace TheAirline.Helpers
                 }
             }
 
-            if (airliner.Airliner.Airline.IsHuman && Settings.GetInstance().MailsOnLandings)
+            if (airliner.Airliner.Airline.IsHuman && Infrastructure.Settings.GetInstance().MailsOnLandings)
             {
                 GameObject.GetInstance()
                           .NewsBox.AddNews(
@@ -605,7 +607,7 @@ namespace TheAirline.Helpers
                 var sw = new Stopwatch();
                 sw.Start();
                 GameObject.GetInstance().GameTime =
-                    GameObject.GetInstance().GameTime.AddMinutes(Settings.GetInstance().MinutesPerTurn);
+                    GameObject.GetInstance().GameTime.AddMinutes(Infrastructure.Settings.GetInstance().MinutesPerTurn);
 
                 CalibrateTime();
 
@@ -652,13 +654,13 @@ namespace TheAirline.Helpers
 
         private static void CalibrateTime()
         {
-            if (Settings.GetInstance().MinutesPerTurn == 60 && GameObject.GetInstance().GameTime.Minute != 0)
+            if (Infrastructure.Settings.GetInstance().MinutesPerTurn == 60 && GameObject.GetInstance().GameTime.Minute != 0)
             {
                 GameObject.GetInstance().GameTime =
                     GameObject.GetInstance().GameTime.AddMinutes(-GameObject.GetInstance().GameTime.Minute);
             }
 
-            if (Settings.GetInstance().MinutesPerTurn == 30 && GameObject.GetInstance().GameTime.Minute == 15)
+            if (Infrastructure.Settings.GetInstance().MinutesPerTurn == 30 && GameObject.GetInstance().GameTime.Minute == 15)
             {
                 GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddMinutes(15);
             }
@@ -799,13 +801,13 @@ namespace TheAirline.Helpers
         private static void DoDailyUpdate()
         {
             //Clear stats when it on daily update
-            if (Settings.GetInstance().ClearStats == Settings.Intervals.Daily)
+            if (Infrastructure.Settings.GetInstance().ClearStats == Intervals.Daily)
             {
                 ClearAllUsedStats();
             }
 
             //Auto save when it on daily
-            if (Settings.GetInstance().AutoSave == Settings.Intervals.Daily)
+            if (Infrastructure.Settings.GetInstance().AutoSave == Intervals.Daily)
             {
                 SerializedLoadSaveHelpers.SaveGame("autosave");
             }
@@ -1119,7 +1121,7 @@ namespace TheAirline.Helpers
             {
                 //AirportHelpers.CreateAirportWeather(airport);
 
-                if (Settings.GetInstance().MailsOnBadWeather
+                if (Infrastructure.Settings.GetInstance().MailsOnBadWeather
                     && humanAirlines.SelectMany(a => a.Airports.FindAll(aa => aa == airport)).Any()
                     && (airport.Weather[airport.Weather.Length - 1].WindSpeed == Weather.eWindSpeed.ViolentStorm
                         || airport.Weather[airport.Weather.Length - 1].WindSpeed == Weather.eWindSpeed.Hurricane))
@@ -1778,13 +1780,13 @@ namespace TheAirline.Helpers
         private static void DoMonthlyUpdate()
         {
             //Clear stats when it on monthly
-            if (Settings.GetInstance().ClearStats == Settings.Intervals.Monthly)
+            if (Infrastructure.Settings.GetInstance().ClearStats == Intervals.Monthly)
             {
                 ClearAllUsedStats();
             }
 
             //Auto save when it on monthly
-            if (Settings.GetInstance().AutoSave == Settings.Intervals.Monthly)
+            if (Infrastructure.Settings.GetInstance().AutoSave == Intervals.Monthly)
             {
                 SerializedLoadSaveHelpers.SaveGame("autosave");
             }
@@ -2548,13 +2550,13 @@ namespace TheAirline.Helpers
         private static void DoYearlyUpdate()
         {
             //Clear stats when it on yearly
-            if (Settings.GetInstance().ClearStats == Settings.Intervals.Yearly)
+            if (Infrastructure.Settings.GetInstance().ClearStats == Intervals.Yearly)
             {
                 ClearAllUsedStats();
             }
 
             //Auto save when it on yearly
-            if (Settings.GetInstance().AutoSave == Settings.Intervals.Yearly)
+            if (Infrastructure.Settings.GetInstance().AutoSave == Intervals.Yearly)
             {
                 SerializedLoadSaveHelpers.SaveGame("autosave");
             }

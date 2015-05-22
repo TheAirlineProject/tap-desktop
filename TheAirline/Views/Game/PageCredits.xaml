@@ -5,34 +5,34 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:game="clr-namespace:TheAirline.ViewModels.Game"
       mc:Ignorable="d" d:DataContext="{d:DesignInstance game:PageCreditsViewModel}"
-      d:DesignHeight="300" d:DesignWidth="300">
-            <StackPanel HorizontalAlignment="Center">
-                <TextBlock Text="Development Team" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+      d:DesignHeight="450" d:DesignWidth="706">
+    <StackPanel HorizontalAlignment="Center">
+        <TextBlock Text="Development Team" VerticalAlignment="Bottom" HorizontalAlignment="Center"
                            FontWeight="Bold" FontSize="32" />
-                <TextBlock Text="Christian" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold"
+        <TextBlock Text="Christian" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold"
                            FontSize="20" />
-                <TextBlock Text="Lead Programmer" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
-                <TextBlock Text="Mike" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20"
+        <TextBlock Text="Lead Programmer" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+        <TextBlock Text="Mike" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20"
                            HorizontalAlignment="Center" />
-                <TextBlock Text="Webmaster" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
-                <TextBlock Text="Rayhan, RobotWillie and Nick" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20"
+        <TextBlock Text="Webmaster" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+        <TextBlock Text="Rayhan, RobotWillie and Nick" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20"
                            HorizontalAlignment="Center" />
-                <TextBlock Text="Main Contributers" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
-                <TextBlock Text="Offical Website" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+        <TextBlock Text="Main Contributers" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+        <TextBlock Text="Offical Website" HorizontalAlignment="Center" VerticalAlignment="Bottom"
                            FontWeight="Bold" FontSize="32" Margin="0 20 0 0" />
-                <TextBlock Text="www.theairlineproject.com" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+        <TextBlock Text="www.theairlineproject.com" VerticalAlignment="Bottom" HorizontalAlignment="Center"
                            FontSize="20" />
-                <TextBlock Text="Forum" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold"
+        <TextBlock Text="Forum" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold"
                            FontSize="32" Margin="0 20 0 0" />
-                <TextBlock Text="www.theairlineproject.com/forum" VerticalAlignment="Bottom"
+        <TextBlock Text="www.theairlineproject.com/forum" VerticalAlignment="Bottom"
                            HorizontalAlignment="Center" FontSize="20" />
-                <TextBlock Text="Thank you" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="32"
+        <TextBlock Text="Thank you" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="32"
                            HorizontalAlignment="Center" Margin="0 20 0 0" />
-                <TextBlock Text="To all our contributors and testers who are helping us with the game"
+        <TextBlock Text="To all our contributors and testers who are helping us with the game"
                            HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20" />
 
-                <Button Style="{DynamicResource StandardButtonStyle}"
+        <Button Style="{DynamicResource StandardButtonStyle}"
                         Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 202'}"
                         Command="{Binding NavigateCommand}" CommandParameter="{Binding StartMenuUri}" HorizontalAlignment="Center" Margin="0 10 0 0" />
-            </StackPanel>
+    </StackPanel>
 </UserControl>

@@ -182,7 +182,7 @@ namespace TheAirline.Helpers
                 () =>
                     {
                         GameObject.SetInstance(deserializedSaveObject.Instance);
-                        Settings.SetInstance(deserializedSaveObject.Settings);
+                        Infrastructure.Settings.SetInstance(deserializedSaveObject.Settings);
                     },
                 () =>
                     {
@@ -322,7 +322,7 @@ namespace TheAirline.Helpers
                 () =>
                     {
                         so.Instance = GameObject.GetInstance();
-                        so.Settings = Settings.GetInstance();
+                        so.Settings = Infrastructure.Settings.GetInstance();
                     },
                 () =>
                     {
@@ -484,7 +484,7 @@ namespace TheAirline.Helpers
         public int SaveVersionNumber { get; set; }
 
         [Versioning("settings")]
-        public Settings Settings { get; set; }
+        public Infrastructure.Settings Settings { get; set; }
 
         #endregion
     }

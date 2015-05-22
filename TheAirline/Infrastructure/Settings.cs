@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using TheAirline.Helpers;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models;
 
 namespace TheAirline.Infrastructure
@@ -19,7 +20,7 @@ namespace TheAirline.Infrastructure
 
         private Settings()
         {
-            AirportCodeDisplay = AirportCode.IATA;
+            AirportCodeDisplay = AirportCode.Iata;
             DifficultyDisplay = Difficulty.Normal;
             GameSpeed = GeneralHelpers.GameSpeedValue.Normal;
             MailsOnLandings = false;
@@ -39,45 +40,7 @@ namespace TheAirline.Infrastructure
 
         #endregion
 
-        #region Enums
-
-        public enum AirportCode
-        {
-            IATA,
-
-            ICAO
-        }
-
-        public enum Difficulty
-        {
-            Easy,
-
-            Normal,
-
-            Hard
-        }
-
-        public enum Intervals
-        {
-            Daily,
-
-            Monthly,
-
-            Yearly,
-
-            Never
-        }
-
-        public enum ScreenMode
-        {
-            Fullscreen,
-
-            Windowed
-        }
-
-        #endregion
-
-        #region Public Properties
+         #region Public Properties
 
         [Versioning("airportcode")]
         public AirportCode AirportCodeDisplay { get; set; }

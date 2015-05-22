@@ -556,7 +556,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\GamePageModel\PageSettings.xaml">
+    <Page Include="Views\Game\PageSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -751,11 +751,23 @@
     <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
     <Compile Include="Infrastructure\Adapters\EnterpriseLoggerAdapter.cs" />
     <Compile Include="Infrastructure\AirlineBootstrapper.cs" />
+    <Compile Include="Infrastructure\Converters\RadioButtonCheckedConverter.cs" />
+    <Compile Include="Infrastructure\Enums\AirportCode.cs" />
+    <Compile Include="Infrastructure\Enums\Difficulty.cs" />
+    <Compile Include="Infrastructure\Enums\GameSpeeds.cs" />
+    <Compile Include="Infrastructure\Enums\Intervals.cs" />
+    <Compile Include="Infrastructure\Enums\ScreenMode.cs" />
     <Compile Include="Infrastructure\Events\CloseGameEvent.cs" />
     <Compile Include="Infrastructure\Services\TaskDialogService.cs" />
+    <Compile Include="Migrations\201505220127065_Settings.cs" />
+    <Compile Include="Migrations\201505220127065_Settings.Designer.cs">
+      <DependentUpon>201505220127065_Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\General\Settings.cs" />
     <Compile Include="ViewModels\Airline\AirlineMVVM.cs" />
     <Compile Include="ViewModels\Airline\PageAirlineViewModel.cs" />
     <Compile Include="ViewModels\Game\PageCreditsViewModel.cs" />
+    <Compile Include="ViewModels\Game\PageSettingsViewModel.cs" />
     <Compile Include="ViewModels\Game\PageStartMenuViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\Airline\PageAirlineEditAirliners.xaml.cs">
@@ -919,7 +931,7 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectOpponents.xaml.cs">
       <DependentUpon>PageSelectOpponents.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\GamePageModel\PageSettings.xaml.cs">
+    <Compile Include="Views\Game\PageSettings.xaml.cs">
       <DependentUpon>PageSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageShowScenario.xaml.cs">
@@ -1197,6 +1209,9 @@
     <EmbeddedResource Include="..\Data\Data\languages\language.tr-TR.resx">
       <Link>Data\languagefiles\language.tr-TR.resx</Link>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505220127065_Settings.resx">
+      <DependentUpon>201505220127065_Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

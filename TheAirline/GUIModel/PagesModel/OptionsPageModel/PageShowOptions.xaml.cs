@@ -6,7 +6,9 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.General;
+using Settings = TheAirline.Properties.Settings;
 
 namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {
@@ -53,24 +55,24 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             {
                 AppSettings.GetInstance().SetLanguage((Language)cbLanguage.SelectedItem);
 
-                Settings.GetInstance().AirportCodeDisplay = rbIATA.IsChecked.Value
-                    ? Settings.AirportCode.IATA
-                    : Settings.AirportCode.ICAO;
-                Settings.GetInstance().MailsOnLandings = cbLandings.IsChecked.Value;
-                Settings.GetInstance().MailsOnBadWeather = cbWeather.IsChecked.Value;
-                Settings.GetInstance().MailsOnAirlineRoutes = cbAirlineDestinations.IsChecked.Value;
-                Settings.GetInstance().CurrencyShorten = cbShortenCurrency.IsChecked.Value;
+                Infrastructure.Settings.GetInstance().AirportCodeDisplay = rbIATA.IsChecked.Value
+                    ? AirportCode.Iata
+                    : AirportCode.Icao;
+                Infrastructure.Settings.GetInstance().MailsOnLandings = cbLandings.IsChecked.Value;
+                Infrastructure.Settings.GetInstance().MailsOnBadWeather = cbWeather.IsChecked.Value;
+                Infrastructure.Settings.GetInstance().MailsOnAirlineRoutes = cbAirlineDestinations.IsChecked.Value;
+                Infrastructure.Settings.GetInstance().CurrencyShorten = cbShortenCurrency.IsChecked.Value;
 
                 if (Options.HourRoundEnabled)
                 {
-                    Settings.GetInstance().MinutesPerTurn = (int)cbHours.SelectedItem;
+                    Infrastructure.Settings.GetInstance().MinutesPerTurn = (int)cbHours.SelectedItem;
                 }
 
                 var gameSpeed =
                     (GeneralHelpers.GameSpeedValue)
                         Enum.ToObject(typeof(GeneralHelpers.GameSpeedValue), (int)slGameSpeed.Value);
 
-                Settings.GetInstance().SetGameSpeed(gameSpeed);
+                Infrastructure.Settings.GetInstance().SetGameSpeed(gameSpeed);
 
                 List<RadioButton> rbAutoSaves = UIHelpers.FindRBChildren(this, "AutoSave");
 
@@ -78,8 +80,8 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
                 {
                     if (rbInterval.IsChecked.Value)
                     {
-                        Settings.GetInstance().AutoSave =
-                            (Settings.Intervals)Enum.Parse(typeof(Settings.Intervals), rbInterval.Tag.ToString(), true);
+                        Infrastructure.Settings.GetInstance().AutoSave =
+                            (Intervals)Enum.Parse(typeof(Intervals), rbInterval.Tag.ToString(), true);
                     }
                 }
 
@@ -89,8 +91,8 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
                 {
                     if (rbInterval.IsChecked.Value)
                     {
-                        Settings.GetInstance().ClearStats =
-                            (Settings.Intervals)Enum.Parse(typeof(Settings.Intervals), rbInterval.Tag.ToString(), true);
+                        Infrastructure.Settings.GetInstance().ClearStats =
+                            (Intervals)Enum.Parse(typeof(Intervals), rbInterval.Tag.ToString(), true);
                     }
                 }
             }

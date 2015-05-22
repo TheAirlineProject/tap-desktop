@@ -7,6 +7,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
@@ -151,7 +152,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
                 if (currency == null)
                 {
-                    if (Settings.GetInstance().CurrencyShorten)
+                    if (Infrastructure.Settings.GetInstance().CurrencyShorten)
                     {
                         if (v >= 1000000000 || v <= -1000000000)
                         {
@@ -173,7 +174,7 @@ namespace TheAirline.GUIModel.HelpersModel
                 }
                 double currencyValue = v * currency.Rate;
 
-                if (Settings.GetInstance().CurrencyShorten)
+                if (Infrastructure.Settings.GetInstance().CurrencyShorten)
                 {
                     if (currencyValue >= 1000000 || currencyValue <= -1000000)
                     {
@@ -590,7 +591,7 @@ namespace TheAirline.GUIModel.HelpersModel
             {
                 var airport = (Airport)value;
 
-                if (Settings.GetInstance().AirportCodeDisplay == Settings.AirportCode.IATA)
+                if (Infrastructure.Settings.GetInstance().AirportCodeDisplay == AirportCode.Iata)
                 {
                     return airport.Profile.IATACode;
                 }

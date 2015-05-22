@@ -24,6 +24,7 @@ using TheAirline.Models.General.Statistics;
 using TheAirline.Models.Passengers;
 using TheAirline.Models.Pilots;
 using TheAirline.Models.Routes;
+using TheAirline.Infrastructure.Enums;
 
 namespace TheAirline.Infrastructure
 {
@@ -4307,7 +4308,7 @@ namespace TheAirline.Infrastructure
                 AppSettings.GetInstance().SetLanguage(Languages.GetLanguage(language));
                 if (screenMode != null)
                     Settings.GetInstance().Mode =
-                        (Settings.ScreenMode) Enum.Parse(typeof (Settings.ScreenMode), screenMode, true);
+                        (ScreenMode) Enum.Parse(typeof (ScreenMode), screenMode, true);
             }
         }
 
