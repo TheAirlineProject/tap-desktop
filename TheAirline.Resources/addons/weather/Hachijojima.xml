@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Hachijojima">
+  <months>
+    <month month="1" precipitation="175">
+      <temp min="7" max="13" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="180">
+      <temp min="7" max="13" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="258">
+      <temp min="9" max="16" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="239">
+      <temp min="13" max="19" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="249">
+      <temp min="16" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="350">
+      <temp min="20" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="189">
+      <temp min="23" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="204">
+      <temp min="24" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="344">
+      <temp min="22" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="457">
+      <temp min="18" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="255">
+      <temp min="14" max="20" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="173">
+      <temp min="10" max="16" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

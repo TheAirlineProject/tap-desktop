@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using TheAirline.Infrastructure;
 
 namespace TheAirline.Models.General.Countries
 {
     //the class for a continent
-    [Serializable]
-    public class Continent : BaseModel
+    public class Continent
     {
         #region Constructors and Destructors
 
@@ -19,33 +15,26 @@ namespace TheAirline.Models.General.Countries
             Regions = new List<Region>();
         }
 
-        private Continent(SerializationInfo info, StreamingContext ctxt) : base(info, ctxt)
+        public Continent()
         {
+            
         }
 
         #endregion
 
         #region Public Properties
 
-        [Versioning("name")]
+        public int Id { get;set; }
+
         public string Name { get; set; }
 
-        [Versioning("regions")]
         public List<Region> Regions { get; set; }
 
-        [Versioning("uid")]
         public string Uid { get; set; }
 
         #endregion
 
         #region Public Methods and Operators
-
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("version", 1);
-
-            base.GetObjectData(info, context);
-        }
 
         //adds a region to the continent
         public void AddRegion(Region region)

@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Kagoshima">
+  <months>
+    <month month="1" precipitation="78">
+      <temp min="4" max="13" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="112">
+      <temp min="5" max="15" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="180">
+      <temp min="8" max="17" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="205">
+      <temp min="12" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="221">
+      <temp min="17" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="452">
+      <temp min="21" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="319">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="223">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="211">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="102">
+      <temp min="17" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="92">
+      <temp min="12" max="21" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="71">
+      <temp min="6" max="16" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

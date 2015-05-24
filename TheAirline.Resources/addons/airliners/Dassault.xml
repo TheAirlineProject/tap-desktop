@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<airliners>
+  <airliner manufacturer="Dassault" name="Dassault Falcon 10" price="7993730"> <!--7700000-->
+    <type body="SingleAisle" rangetype="MediumRange" engine="Jet" />
+    <specs wingspan="13.08" length="13.86" range="3560" speed="912" fuelcapacity="3420" consumption="0.019"
+           runwaylengthrequired="1567" />
+    <capacity passengers="8" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1970" to="1989" rate="75" />
+  </airliner>
+  <airliner manufacturer="Dassault" name="Dassault Falcon 20" price="9910230"> <!--7700000-->
+    <type body="SingleAisle" rangetype="MediumRange" engine="Jet" />
+    <specs wingspan="16.30" length="17.15" range="3350" speed="862" fuelcapacity="5420" consumption="0.025"
+           runwaylengthrequired="1798" />
+    <capacity passengers="14" cockpitcrew="2" cabincrew="1" maxclasses="1" />
+    <produced from="1963" to="1988" rate="173" />
+    <airliner manufacturer="Dassault" name="Dassault Mercure" price="12533880"> <!--7700000-->
+      <type body="NarrowBody" rangetype="ShortRange" engine="Jet" />
+      <specs wingspan="30.55" length="34.84" range="2084" speed="926" fuelcapacity="12420" consumption="0.040"
+             runwaylengthrequired="2300" />
+      <capacity passengers="162" cockpitcrew="3" cabincrew="4" maxclasses="1" />
+      <produced from="1971" to="1975" rate="12" />
+    </airliner>
+  </airliner>
+</airliners>

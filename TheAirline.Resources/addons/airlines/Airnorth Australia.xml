@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Airnorth" iata="TL" color="DarkBlue" country="116" CEO="Michael Bridge" mentality="Moderate" market="Global" preferedairport="DRW">
+    <narrative narrative=" Airnorth of Australia is based in the north of Australia at the main northern city of Darwin. It did charters only for it's first few years and then started scheduled service in 1981. They operate to 16 Australian destinations on scheduled service and charter to 5 mines. They also operate to East Timor and West Timor on behalf of Merpati Nusantara Airlines, making them a global airline since that is considered Asia and are based in Australia/Oceania. Thier 9 planes include four Embraer 170's, four EMB-120's, and three Fairchild Metroliner 23's. They are in a coalition with RegionalLink Airlines, both airlines have each of their logos on their planes but still operate under their own names. " /></profile>
+  <info real="True" from="1978" to="2199" />
+</airline>

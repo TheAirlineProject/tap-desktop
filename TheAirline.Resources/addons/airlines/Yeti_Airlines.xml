@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Yeti Airlines" iata="YT" color="Green" country="251" CEO="Lhakpa Sonam Sherpa" mentality="Aggressive"
+           market="Domestic" preferedairport="KTM">
+             <narrative
+      narrative="Yeti Airlines Domestic Pvt. Ltd. is an airline based in Kathmandu, Nepal. As the first private airline, it was established in May 1998 and received its Air Operators Certificate on 17 August 1998. Yeti Airlines is the parent company of Tara Air. Together the two airlines form the largest domestic flight operator in Nepal. Yeti Airlines operates a fleet of seven aircraft and offers domestic flights to ten destinations." />
+
+  </profile>
+  <info real="True" from="1998" to="2199"></info>
+</airline>
+

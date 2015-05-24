@@ -13,6 +13,7 @@ using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
+using Settings = TheAirline.Infrastructure.Settings;
 
 namespace TheAirline.GUIModel.HelpersModel
 {
@@ -24,11 +25,11 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var color = (string)value;
+            var color = (string) value;
             try
             {
                 TypeConverter colorConverter = new ColorConverter();
-                var c = (Color)colorConverter.ConvertFromString(color);
+                var c = (Color) colorConverter.ConvertFromString(color);
 
                 return new SolidColorBrush(c);
             }
@@ -45,6 +46,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
         #endregion
     }
+
     //the convert for if a value is null
     public class IsNullConverter : IValueConverter
     {
@@ -58,6 +60,7 @@ namespace TheAirline.GUIModel.HelpersModel
             throw new InvalidOperationException("IsNullConverter can only be used OneWay.");
         }
     }
+
     //the converter for an airline to brush
     public class AirlineBrushConverter : IValueConverter
     {
@@ -65,17 +68,17 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value)
         {
-            return this.Convert(value, null, null, null);
+            return Convert(value, null, null, null);
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var airline = (Airline)value;
+            var airline = (Airline) value;
 
             try
             {
                 TypeConverter colorConverter = new ColorConverter();
-                var c = (Color)colorConverter.ConvertFromString(airline.Profile.Color);
+                var c = (Color) colorConverter.ConvertFromString(airline.Profile.Color);
 
                 return new SolidColorBrush(c);
             }
@@ -100,14 +103,14 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var color = (string)value;
+            var color = (string) value;
 
             try
             {
                 TypeConverter colorConverter = new ColorConverter();
-                var baseColor = (Color)colorConverter.ConvertFromString(color);
+                var baseColor = (Color) colorConverter.ConvertFromString(color);
 
-                Color c2 = Color.FromArgb(25, baseColor.R, baseColor.G, baseColor.B);
+                var c2 = Color.FromArgb(25, baseColor.R, baseColor.G, baseColor.B);
 
                 var colorBrush = new LinearGradientBrush();
                 colorBrush.StartPoint = new Point(0, 0);
@@ -141,49 +144,49 @@ namespace TheAirline.GUIModel.HelpersModel
         {
             try
             {
-                double v = Double.Parse(value.ToString());
+                var v = double.Parse(value.ToString());
 
-                if (GameObject.GetInstance().CurrencyCountry == null || Double.IsInfinity(v))
+                if (GameObject.GetInstance().CurrencyCountry == null || double.IsInfinity(v))
                 {
                     return string.Format("{0:C}", value);
                 }
-                CountryCurrency currency =
+                var currency =
                     GameObject.GetInstance().CurrencyCountry.GetCurrency(GameObject.GetInstance().GameTime);
 
                 if (currency == null)
                 {
-                    if (Infrastructure.Settings.GetInstance().CurrencyShorten)
+                    if (Settings.GetInstance().CurrencyShorten)
                     {
                         if (v >= 1000000000 || v <= -1000000000)
                         {
                             return string.Format(
                                 "{0:C} {1}",
-                                v / 1000000000,
+                                v/1000000000,
                                 Translator.GetInstance().GetString("General", "2001"));
                         }
                         if (v >= 1000000 || v <= -1000000)
                         {
                             return string.Format(
                                 "{0:C} {1}",
-                                v / 1000000,
+                                v/1000000,
                                 Translator.GetInstance().GetString("General", "2000"));
                         }
                         return string.Format("{0:C}", value);
                     }
                     return string.Format("{0:C}", value);
                 }
-                double currencyValue = v * currency.Rate;
+                var currencyValue = v*currency.Rate;
 
-                if (Infrastructure.Settings.GetInstance().CurrencyShorten)
+                if (Settings.GetInstance().CurrencyShorten)
                 {
                     if (currencyValue >= 1000000 || currencyValue <= -1000000)
                     {
-                        double sValue = currencyValue / 1000000;
-                        string sFormat = Translator.GetInstance().GetString("General", "2000");
+                        var sValue = currencyValue/1000000;
+                        var sFormat = Translator.GetInstance().GetString("General", "2000");
 
                         if (currencyValue >= 1000000000 || currencyValue <= -1000000000)
                         {
-                            sValue = currencyValue / 1000000000;
+                            sValue = currencyValue/1000000000;
                             sFormat = Translator.GetInstance().GetString("General", "2001");
                         }
 
@@ -213,7 +216,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value)
         {
-            return this.Convert(value, null, null, null);
+            return Convert(value, null, null, null);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -231,7 +234,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Boolean negation = false;
+            var negation = false;
             if (parameter != null && (parameter.ToString() == "!"))
             {
                 negation = true;
@@ -240,7 +243,7 @@ namespace TheAirline.GUIModel.HelpersModel
             var rv = Visibility.Collapsed;
             try
             {
-                bool x = bool.Parse(value.ToString());
+                var x = bool.Parse(value.ToString());
 
                 if (negation)
                 {
@@ -278,7 +281,7 @@ namespace TheAirline.GUIModel.HelpersModel
         {
             try
             {
-                string[] values = parameter.ToString().Split(' ');
+                var values = parameter.ToString().Split(' ');
 
                 if (values.Length == 1)
                 {
@@ -307,14 +310,14 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value)
         {
-            return this.Convert(value, null, null, null);
+            return Convert(value, null, null, null);
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                double amount = double.Parse(value.ToString());
+                var amount = double.Parse(value.ToString());
 
                 if (amount >= 0)
                 {
@@ -348,15 +351,15 @@ namespace TheAirline.GUIModel.HelpersModel
                 return value;
             }
 
-            var country = (Country)value;
+            var country = (Country) value;
 
             if (country is TerritoryCountry)
             {
-                return ((TerritoryCountry)country).MainCountry;
+                return ((TerritoryCountry) country).MainCountry;
             }
             if (!(country is TemporaryCountry))
             {
-                TemporaryCountry tempCountry = TemporaryCountries.GetTemporaryCountry(
+                var tempCountry = TemporaryCountries.GetTemporaryCountry(
                     country,
                     GameObject.GetInstance().GameTime);
 
@@ -370,13 +373,13 @@ namespace TheAirline.GUIModel.HelpersModel
                 }
                 return tempCountry.GetCurrentCountry(GameObject.GetInstance().GameTime, country);
             }
-            return ((TemporaryCountry)country).GetCurrentCountry(GameObject.GetInstance().GameTime, country);
+            return ((TemporaryCountry) country).GetCurrentCountry(GameObject.GetInstance().GameTime, country);
             //return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;
         }
 
         public object Convert(object value)
         {
-            return this.Convert(value, null, null, null);
+            return Convert(value, null, null, null);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -394,7 +397,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value)
         {
-            return this.Convert(value, null, null, null);
+            return Convert(value, null, null, null);
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -409,6 +412,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
         #endregion
     }
+
     //the converter for weight
     public class WeightToUnitConverter : IValueConverter
     {
@@ -416,20 +420,18 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value)
         {
-            return this.Convert(value, null, null, null);
+            return Convert(value, null, null, null);
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-           
-            
-            var weight = (double)value;
+            var weight = (double) value;
 
             if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
                 return string.Format("{0:0} kg", weight);
             }
-        
+
             return string.Format("{0:0} lbs", MathHelpers.KgToPound(weight));
         }
 
@@ -440,6 +442,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
         #endregion
     }
+
     //the converter for the cargo size from an airliner
     public class CargoSizeConverter : IValueConverter
     {
@@ -447,18 +450,18 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value)
         {
-            return this.Convert(value, null, null, null);
+            return Convert(value, null, null, null);
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var cargo = (double)value;
+            var cargo = (double) value;
 
             if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
                 return string.Format("{0:0} m3", cargo);
             }
-            return string.Format("{0:0} cu feet", MathHelpers.MeterToFeet(cargo) * 10);
+            return string.Format("{0:0} cu feet", MathHelpers.MeterToFeet(cargo)*10);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -476,12 +479,12 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value)
         {
-            return this.Convert(value, null, null, null);
+            return Convert(value, null, null, null);
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double v = Double.Parse(value.ToString());
+            var v = double.Parse(value.ToString());
 
             if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
@@ -508,7 +511,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double v = Double.Parse(value.ToString());
+            var v = double.Parse(value.ToString());
 
             if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
@@ -532,7 +535,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double v = Double.Parse(value.ToString());
+            var v = double.Parse(value.ToString());
 
             if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
@@ -559,7 +562,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double v = Double.Parse(value.ToString());
+            var v = double.Parse(value.ToString());
 
             if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Imperial)
             {
@@ -589,9 +592,9 @@ namespace TheAirline.GUIModel.HelpersModel
         {
             if (value is Airport)
             {
-                var airport = (Airport)value;
+                var airport = (Airport) value;
 
-                if (Infrastructure.Settings.GetInstance().AirportCodeDisplay == AirportCode.Iata)
+                if (Settings.GetInstance().AirportCodeDisplay == AirportCode.Iata)
                 {
                     return airport.Profile.IATACode;
                 }
@@ -602,7 +605,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value)
         {
-            return this.Convert(value, null, null, null);
+            return Convert(value, null, null, null);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -620,12 +623,12 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value)
         {
-            return this.Convert(value, null, null, null);
+            return Convert(value, null, null, null);
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var text = (String)value;
+            var text = (string) value;
             try
             {
                 return AppSettings.GetInstance().GetLanguage().Convert(text);
@@ -651,12 +654,12 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public object Convert(object value)
         {
-            return this.Convert(value, null, null, null);
+            return Convert(value, null, null, null);
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double v = Double.Parse(value.ToString());
+            var v = double.Parse(value.ToString());
 
             if (AppSettings.GetInstance().GetLanguage().Unit == Language.UnitSystem.Metric)
             {
@@ -687,7 +690,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
             if (value is Airliner)
             {
-                airliner = (Airliner)value;
+                airliner = (Airliner) value;
             }
             else
             {

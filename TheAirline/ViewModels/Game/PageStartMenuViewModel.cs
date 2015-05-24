@@ -28,7 +28,7 @@ namespace TheAirline.ViewModels.Game
 
         public DelegateCommand<Uri> NavigateCommand { get; }
         public DelegateCommand<Window> ExitCommand { get; }
-        public Uri NewGameUri => new Uri("/PageStartGameData", UriKind.Relative);
+        public Uri NewGameUri => new Uri("/PageStartData", UriKind.Relative);
         public Uri LoadGameUri => new Uri("/PageLoadGame", UriKind.Relative);
         public Uri SettingsUri => new Uri("/PageSettings", UriKind.Relative);
         public Uri CreditsUri => new Uri("/PageCredits", UriKind.Relative);

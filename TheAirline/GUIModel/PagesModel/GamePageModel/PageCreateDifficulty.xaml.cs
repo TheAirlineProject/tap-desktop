@@ -105,7 +105,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             {
                 DifficultyLevels.AddDifficultyLevel(level);
 
-                PageNavigator.NavigateTo(new PageNewGame());
+                //PageNavigator.NavigateTo(new PageNewGame());
             }
         }
 

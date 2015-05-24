@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air Armenia" iata="QN" color="Orange" country="234" CEO="Arsen Avetisian " mentality="Safe" market="Global" preferedairport="EVN">
+    <narrative narrative=" Air Armenia is based at Yerevan's Zvarnots Airport. They were founded in 2003. Their 13 destinations include 8 in Russia, Larnaca,Cyprus, Paris,France, Frankfurt,Germany, and Athens,Greece.  " /></profile>
+  <info real="True" from="2003" to="2199" />
+</airline>

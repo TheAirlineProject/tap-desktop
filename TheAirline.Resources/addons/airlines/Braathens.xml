@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Braathens" iata="BU" logo="BU2" color="Blue" country="139" CEO="Arne A. Jensen " mentality="Aggressive" market="Global" preferedairport="OSL">
+    <narrative narrative="Braathens was a carrier based in Norway at Oslo Gardermoen in it's last years. It was based at Fornebu Oslo Airport from 1949-1998 and at Stockholm-Arlanda in Sweden from 1997-1999. It was based at Gadermoen it's first two years also, 1947-1949. It was controlled by Braganza until 2001 when it was sold to their main competitor airline's company, the SAS Group which controls the Scandanaian Airlines System. They were merged in with SAS's Norway branch. For a long time Braathen's was the largest domestic carrier in Norway. In it's history it served 53 airports in 50 cities, 23 of these being in Norway and 6 in Sweden. International services were done to 24 airports in 22 cities in 17 countries, most of these in Europe, and 7 in Asia. and had 118 planes of 15 models, most of these being 737 types. They had an alliance with KLM form 1997-2001 and with the company that would buy them, SAS, from 2001-2004. " /></profile>
+  <info real="True" from="1946" to="2004" />
+</airline>

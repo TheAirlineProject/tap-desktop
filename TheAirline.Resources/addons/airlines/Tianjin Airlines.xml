@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Tianjin Airlines" iata="GS" color="Yellow" country="148" CEO="Chang Chu" mentality="Aggressive" market="Regional" preferedairport="TSN">
+<narrative narrative="Tianjin Airlines is based out of the city its name comes from, Tianjin, at Binhai International Airport. A young airline that has only been flying since 2007,
+it has a fleet of 80 planes. Fifty Embraer 190's,twenty-three Embraer ERJ-145's and 7 A320's. It serves 80 destinations in mostly China but also has service to South Korea,Mongolia,Cambodia,and Russia."/>
+</profile>
+<info real="True" from="2007" to="2199"></info>
+</airline>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Iran Aseman Airlines" iata="EP" color="Green" country="177" CEO="Hamid Arabnejad" mentality="Aggressive" market="Global" preferedairport="IKA">
+  <narrative narrative="Iran Aseman Airlines makes its bases at both of Tehran's airports and Shiraz Intl. Airport. It's 54 destinations are mostly in the Middle East but include Stockholm,Sweden. They are known as the first airline to provide air ambulance service in the Middle East. They have a mixed fleet of 35 planes,20 of them being Fokker 100's." />
+  </profile>
+  <info real="True" from="1980" to="2199"></info>
+</airline>

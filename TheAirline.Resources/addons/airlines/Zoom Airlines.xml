@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Zoom Airlines" iata="Z4" color="Blue" country="113" CEO="Hugh Boyle" mentality="Moderate"
+           market="Regional" preferedairport="YYZ">
+    <narrative
+      narrative="Zoom Airlines Inc. was founded in May 2002 as a low-fare transatlantic airline. The carrier, based in Canada's capital city, Ottawa, was conceived by two Scottish brothers, John and Hugh Boyle, to fill an opportunity in the Canadian leisure travel market." />
+  </profile>
+  <info real="True" from="2002" to="2008"></info>
+</airline>

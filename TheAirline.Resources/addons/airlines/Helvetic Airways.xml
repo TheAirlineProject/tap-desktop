@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Helvetic Airways" iata="2L" color="Pink" country="164" CEO="Bruno Jans" mentality="Moderate" market="Regional" preferedairport="ZRH">
+    <narrative narrative="Helvetic Airways are a Swiss airline based at Zurich. It was founded in 2003. They fly to 34 destinations under their own name all of which are currently in Europe, and also operate some routes under contract for Swiss International Air Lines. Their current fleet has six Fokkers 100's and one A319." /></profile>
+  <info real="True" from="2003" to="2199" />
+</airline>

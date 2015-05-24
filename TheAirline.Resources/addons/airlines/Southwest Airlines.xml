@@ -1,0 +1,825 @@
+﻿<airline>
+<profile name="Southwest Airlines" iata="WN" color="SteelBlue" country="122" CEO="Gary Kelley" mentality="Aggressive" market="Regional" preferedairport="MDW">
+<narrative narrative="Southwest Airlines traces their roots to the March 16, 1967 incorporation of Air Southwest Co. by Rollin King and Herb Kelleher to provide service within the state of Texas. Southwest Airlines has solely operated Boeing 737s, except for a few years in the 1970s and 1980s, when they operated a few Boeing 727s. They are the largest domestic carrier by passengers carried as of 2011 and have a very large fleet of 596 737's as of 2014. Since they bought airTran they will be taking over airTran's routes to Mexico and the Caribbean beginning in 2014 and will no longer be a domestic only carrier. They serve 96 destinations."/>
+</profile>
+<info real="True" from="1971" to="2199"></info>
+<startdata>
+	  <routes>
+	    <route destination1="DAL" destination2="HOU" opened="1971" closed="2199"/>
+		<route destination1="DAL" destination2="SAT" opened="1971" closed="2199"/>
+		<route destination1="HOU" destination2="SAT" opened="1971" closed="2199"/>
+		<route destination1="HOU" destination2="HRL" opened="1975" closed="2199"/>
+		<route destination1="HOU" destination2="AUS" opened="1977" closed="2199"/>
+		<route destination1="DAL" destination2="AUS" opened="1977" closed="2199"/>
+		<route destination1="HOU" destination2="ELP" opened="1977" closed="2199"/>
+		<route destination1="DAL" destination2="ELP" opened="1977" closed="2199"/>
+		<route destination1="AUS" destination2="HRL" opened="1977" closed="2199"/>
+		<route destination1="DAL" destination2="LBB" opened="1977" closed="2199"/>
+		<route destination1="HOU" destination2="LBB" opened="1977" closed="2199"/>
+		<route destination1="LBB" destination2="ELP" opened="1977" closed="2000"/>
+		<route destination1="AUS" destination2="CRP" opened="1977" closed="1981"/>
+		<route destination1="HOU" destination2="CRP" opened="1977" closed="2199"/>
+		<route destination1="DAL" destination2="CRP" opened="1977" closed="1981"/>
+		<route destination1="AUS" destination2="CRP" opened="1977" closed="1981"/>
+		<route destination1="AUS" destination2="MAF" opened="1977" closed="2000"/>
+		<route destination1="DAL" destination2="MAF" opened="1977" closed="2199"/>
+		<route destination1="HOU" destination2="MAF" opened="1977" closed="2199"/>
+		<route destination1="SAT" destination2="HRL" opened="1977" closed="2000"/>
+		<route destination1="MAF" destination2="ELP" opened="1977" closed="2000"/>
+		<route destination1="DAL" destination2="AMA" opened="1978" closed="2199"/>
+		<route destination1="SAT" destination2="ELP" opened="1982" closed="2199"/>
+		<route destination1="DAL" destination2="BPT" opened="1979" closed="1980"/>
+		<route destination1="DAL" destination2="MSY" opened="1979" closed="2199"/>
+		<route destination1="HOU" destination2="MSY" opened="1979" closed="2199"/>
+		<route destination1="ABQ" destination2="ELP" opened="1980" closed="2005"/>
+		<route destination1="DAL" destination2="ABQ" opened="1980" closed="2199"/>
+		<route destination1="DAL" destination2="OKC" opened="1980" closed="2199"/>
+		<route destination1="DAL" destination2="TUL" opened="1980" closed="2199"/>
+		<route destination1="OKC" destination2="MCI" opened="1982" closed="2000"/>
+		<route destination1="TUL" destination2="MCI" opened="1982" closed="2000"/>
+		<route destination1="HOU" destination2="OKC" opened="1981" closed="2199"/>
+		<route destination1="HOU" destination2="TUL" opened="1981" closed="2199"/>
+		<route destination1="ABQ" destination2="AMA" opened="1982" closed="2000"/>
+		<route destination1="PHX" destination2="HOU" opened="1982" closed="2199"/>
+		<route destination1="PHX" destination2="ELP" opened="1982" closed="2199"/>
+		<route destination1="PHX" destination2="ABQ" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="PHX" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="ABQ" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="SAN" opened="1982" closed="2199"/>
+		<route destination1="PHX" destination2="SAN" opened="1982" closed="2199"/>
+		<route destination1="LAX" destination2="LAS" opened="1982" closed="2199"/>
+		<route destination1="LAX" destination2="PHX" opened="1982" closed="2199"/>
+		<route destination1="SFO" destination2="LAS" opened="1983" closed="1984"/>
+		<route destination1="SFO" destination2="SAN" opened="1984" closed="2001"/>
+		<route destination1="DAL" destination2="HRL" opened="1982" closed="1987"/>
+		<route destination1="DAL" destination2="LIT" opened="1984" closed="2199"/>
+		<route destination1="HOU" destination2="LIT" opened="1984" closed="2199"/>
+		<route destination1="LAX" destination2="ELP" opened="1984" closed="2199"/>
+		<route destination1="LAS" destination2="ELP" opened="1983" closed="2199"/>
+		<route destination1="LBB" destination2="AUS" opened="1983" closed="2199"/>
+		<route destination1="AUS" destination2="ELP" opened="1983" closed="2199"/>
+		<route destination1="PHX" destination2="SAT" opened="1984" closed="2199"/>
+		<route destination1="LAS" destination2="DAL" opened="1984" closed="2199"/>
+		<route destination1="ONT" destination2="PHX" opened="1985" closed="2199"/>
+		<route destination1="STL" destination2="TUL" opened="1985" closed="2199"/>
+		<route destination1="STL" destination2="OKC" opened="1985" closed="2199"/>
+		<route destination1="STL" destination2="LIT" opened="1985" closed="2000"/>
+		<route destination1="MDW" destination2="STL" opened="1985" closed="2199"/>
+		<route destination1="HOU" destination2="STL" opened="1985" closed="2199"/>
+		<route destination1="MDW" destination2="BNA" opened="1987" closed="2199"/>
+		<route destination1="HOU" destination2="BNA" opened="1987" closed="2199"/>
+		<route destination1="PHX" destination2="BNA" opened="1987" closed="2199"/>
+		<route destination1="SFO" destination2="ABQ" opened="1985" closed="2001"/>
+		<route destination1="SFO" destination2="PHX" opened="1985" closed="2001"/>
+		<route destination1="SFO" destination2="ELP" opened="1985" closed="2001"/>
+		<route destination1="PHX" destination2="MSY" opened="1986" closed="2199"/>
+		<route destination1="SAN" destination2="ELP" opened="1986" closed="2000"/>
+		<route destination1="LAX" destination2="SAT" opened="1986" closed="2199"/>
+		<route destination1="LIT" destination2="TUL" opened="1988" closed="1990"/>
+		<route destination1="ABQ" destination2="LBB" opened="1984" closed="1995"/>
+		<route destination1="ABQ" destination2="MAF" opened="1986" closed="2000"/>
+		<route destination1="MDW" destination2="MCI" opened="1985" closed="2199"/>
+		<route destination1="PHX" destination2="STL" opened="1987" closed="2199"/>
+		<route destination1="PHX" destination2="MCI" opened="1987" closed="2199"/>
+		<route destination1="PHX" destination2="OKC" opened="1987" closed="2199"/>
+		<route destination1="PHX" destination2="TUL" opened="1987" closed="2199"/>
+		<route destination1="BNA" destination2="BHM" opened="1987" closed="2000"/>
+		<route destination1="HOU" destination2="BHM" opened="1987" closed="2199"/>
+		<route destination1="MSY" destination2="BHM" opened="1987" closed="2006"/>
+		<route destination1="MDW" destination2="DTW" opened="1987" closed="2199"/>
+		<route destination1="DTW" destination2="STL" opened="1987" closed="2199"/>
+		<route destination1="DTW" destination2="MCI" opened="1987" closed="1990"/>
+		<route destination1="DTW" destination2="IND" opened="1989" closed="1993"/>
+		<route destination1="IND" destination2="STL" opened="1989" closed="2000"/>
+		<route destination1="LAX" destination2="OAK" opened="1989" closed="2199"/>
+		<route destination1="OAK" destination2="ABQ" opened="2001" closed="2199"/>
+		<route destination1="OAK" destination2="LAS" opened="1989" closed="2199"/>
+		<route destination1="OAK" destination2="SAN" opened="2001" closed="2199"/>
+		<route destination1="TPA" destination2="EYW" opened="2012" closed="2014"/>
+		<route destination1="MCO" destination2="EYW" opened="2012" closed="2014"/>
+		<route destination1="MSY" destination2="EYW" opened="2012" closed="2014"/>
+		<route destination1="HOU" destination2="BKG" opened="2013" closed="2014"/>
+		<route destination1="DAL" destination2="BKG" opened="2013" closed="2014"/>
+		<route destination1="MDW" destination2="BKG" opened="2013" closed="2014"/>
+		<route destination1="MDW" destination2="JAN" opened="1997" closed="2014"/>
+		<route destination1="HOU" destination2="JAN" opened="1997" closed="2014"/>
+		<route destination1="MCO" destination2="JAN" opened="1997" closed="2014"/>
+		<route destination1="DAL" destination2="HOU" opened="1971" closed="2199"/>
+		<route destination1="DAL" destination2="SAT" opened="1971" closed="2199"/>
+		<route destination1="HOU" destination2="SAT" opened="1971" closed="2199"/>
+		<route destination1="HOU" destination2="HRL" opened="1975" closed="2199"/>
+		<route destination1="HOU" destination2="AUS" opened="1977" closed="2199"/>
+		<route destination1="DAL" destination2="AUS" opened="1977" closed="2199"/>
+		<route destination1="HOU" destination2="ELP" opened="1977" closed="2199"/>
+		<route destination1="DAL" destination2="ELP" opened="1977" closed="2199"/>
+		<route destination1="AUS" destination2="HRL" opened="1977" closed="2199"/>
+		<route destination1="DAL" destination2="LBB" opened="1977" closed="2199"/>
+		<route destination1="HOU" destination2="LBB" opened="1977" closed="2199"/>
+		<route destination1="LBB" destination2="ELP" opened="1977" closed="2000"/>
+		<route destination1="AUS" destination2="CRP" opened="1977" closed="1981"/>
+		<route destination1="HOU" destination2="CRP" opened="1977" closed="2199"/>
+		<route destination1="DAL" destination2="CRP" opened="1977" closed="1981"/>
+		<route destination1="AUS" destination2="CRP" opened="1977" closed="1981"/>
+		<route destination1="AUS" destination2="MAF" opened="1977" closed="2000"/>
+		<route destination1="DAL" destination2="MAF" opened="1977" closed="2199"/>
+		<route destination1="HOU" destination2="MAF" opened="1977" closed="2199"/>
+		<route destination1="SAT" destination2="HRL" opened="1977" closed="2000"/>
+		<route destination1="MAF" destination2="ELP" opened="1977" closed="2000"/>
+		<route destination1="DAL" destination2="AMA" opened="1978" closed="2199"/>
+		<route destination1="SAT" destination2="ELP" opened="1982" closed="2199"/>
+		<route destination1="DAL" destination2="BPT" opened="1979" closed="1980"/>
+		<route destination1="DAL" destination2="MSY" opened="1979" closed="2199"/>
+		<route destination1="HOU" destination2="MSY" opened="1979" closed="2199"/>
+		<route destination1="ABQ" destination2="ELP" opened="1980" closed="2005"/>
+		<route destination1="DAL" destination2="ABQ" opened="1980" closed="2199"/>
+		<route destination1="DAL" destination2="OKC" opened="1980" closed="2199"/>
+		<route destination1="DAL" destination2="TUL" opened="1980" closed="2199"/>
+		<route destination1="OKC" destination2="MCI" opened="1982" closed="2000"/>
+		<route destination1="TUL" destination2="MCI" opened="1982" closed="2000"/>
+		<route destination1="HOU" destination2="OKC" opened="1981" closed="2199"/>
+		<route destination1="HOU" destination2="TUL" opened="1981" closed="2199"/>
+		<route destination1="ABQ" destination2="AMA" opened="1982" closed="2000"/>
+		<route destination1="PHX" destination2="HOU" opened="1982" closed="2199"/>
+		<route destination1="PHX" destination2="ELP" opened="1982" closed="2199"/>
+		<route destination1="PHX" destination2="ABQ" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="PHX" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="ABQ" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="SAN" opened="1982" closed="2199"/>
+		<route destination1="PHX" destination2="SAN" opened="1982" closed="2199"/>
+		<route destination1="LAX" destination2="LAS" opened="1982" closed="2199"/>
+		<route destination1="LAX" destination2="PHX" opened="1982" closed="2199"/>
+		<route destination1="SFO" destination2="LAS" opened="1983" closed="1984"/>
+	        <route destination1="SFO" destination2="LAS" opened="2007" closed="2199"/>
+		<route destination1="SFO" destination2="SAN" opened="1984" closed="2001"/>
+		<route destination1="SFO" destination2="SAN" opened="2007" closed="2199"/>
+		<route destination1="DAL" destination2="HRL" opened="1982" closed="1987"/>
+		<route destination1="DAL" destination2="LIT" opened="1984" closed="2199"/>
+		<route destination1="HOU" destination2="LIT" opened="1984" closed="2199"/>
+		<route destination1="LAX" destination2="ELP" opened="1984" closed="2199"/>
+		<route destination1="LAS" destination2="ELP" opened="1983" closed="2199"/>
+		<route destination1="LBB" destination2="AUS" opened="1983" closed="2199"/>
+		<route destination1="AUS" destination2="ELP" opened="1983" closed="2199"/>
+		<route destination1="PHX" destination2="SAT" opened="1984" closed="2199"/>
+		<route destination1="LAS" destination2="DAL" opened="1984" closed="2199"/>
+		<route destination1="ONT" destination2="PHX" opened="1985" closed="2199"/>
+		<route destination1="STL" destination2="TUL" opened="1985" closed="2199"/>
+		<route destination1="STL" destination2="OKC" opened="1985" closed="2199"/>
+		<route destination1="STL" destination2="LIT" opened="1985" closed="2000"/>
+		<route destination1="MDW" destination2="STL" opened="1985" closed="2199"/>
+		<route destination1="HOU" destination2="STL" opened="1985" closed="2199"/>
+		<route destination1="MDW" destination2="BNA" opened="1987" closed="2199"/>
+		<route destination1="HOU" destination2="BNA" opened="1987" closed="2199"/>
+		<route destination1="PHX" destination2="BNA" opened="1987" closed="2199"/>
+		<route destination1="SFO" destination2="ABQ" opened="1985" closed="2001"/>
+		<route destination1="SFO" destination2="PHX" opened="1985" closed="2001"/>
+		<route destination1="SFO" destination2="PHX" opened="2007" closed="2199"/>
+		<route destination1="SFO" destination2="STL" opened="2014" closed="2199"/>
+		<route destination1="SFO" destination2="ELP" opened="1985" closed="2001"/>
+		<route destination1="SFO" destination2="ATL" opened="2012" closed="2199"/>
+		<route destination1="SFO" destination2="MDW" opened="2007" closed="2199"/>
+		<route destination1="SFO" destination2="LAX" opened="2007" closed="2199"/>
+		<route destination1="SFO" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="SFO" destination2="SNA" opened="2007" closed="2199"/>
+		<route destination1="PHX" destination2="MSY" opened="1986" closed="2199"/>
+		<route destination1="SAN" destination2="ELP" opened="1986" closed="2000"/>
+		<route destination1="LAX" destination2="SAT" opened="1986" closed="2199"/>
+		<route destination1="LIT" destination2="TUL" opened="1988" closed="1990"/>
+		<route destination1="ABQ" destination2="LBB" opened="1984" closed="1995"/>
+		<route destination1="ABQ" destination2="MAF" opened="1986" closed="2000"/>
+		<route destination1="MDW" destination2="MCI" opened="1985" closed="2199"/>
+		<route destination1="PHX" destination2="STL" opened="1987" closed="2199"/>
+		<route destination1="PHX" destination2="MCI" opened="1987" closed="2199"/>
+		<route destination1="PHX" destination2="OKC" opened="1987" closed="2199"/>
+		<route destination1="PHX" destination2="TUL" opened="1987" closed="2199"/>
+		<route destination1="BNA" destination2="BHM" opened="1987" closed="2000"/>
+		<route destination1="HOU" destination2="BHM" opened="1987" closed="2199"/>
+		<route destination1="MSY" destination2="BHM" opened="1987" closed="2006"/>
+		<route destination1="DAL" destination2="BHM" opened="1990" closed="2199"/>
+		<route destination1="MDW" destination2="DTW" opened="1987" closed="2199"/>
+		<route destination1="DTW" destination2="STL" opened="1987" closed="2199"/>
+		<route destination1="DTW" destination2="MCI" opened="1987" closed="1990"/>
+		<route destination1="DTW" destination2="IND" opened="1989" closed="1993"/>
+		<route destination1="IND" destination2="STL" opened="1989" closed="2000"/>
+		<route destination1="LAX" destination2="OAK" opened="1989" closed="2199"/>
+		<route destination1="OAK" destination2="ABQ" opened="2001" closed="2199"/>
+		<route destination1="OAK" destination2="LAS" opened="1989" closed="2199"/>
+		<route destination1="OAK" destination2="SAN" opened="2001" closed="2199"/>
+		<route destination1="TPA" destination2="EYW" opened="2012" closed="2014"/>
+		<route destination1="MCO" destination2="EYW" opened="2012" closed="2014"/>
+		<route destination1="MSY" destination2="EYW" opened="2012" closed="2014"/>
+		<route destination1="HOU" destination2="BKG" opened="2013" closed="2014"/>
+		<route destination1="DAL" destination2="BKG" opened="2013" closed="2014"/>
+		<route destination1="MDW" destination2="BKG" opened="2013" closed="2014"/>
+		<route destination1="MDW" destination2="JAN" opened="1997" closed="2014"/>
+		<route destination1="HOU" destination2="JAN" opened="1997" closed="2014"/>
+		<route destination1="ATL" destination2="SAN" opened="2013" closed="2199"/>
+		<route destination1="LAS" destination2="DSM" opened="2013" closed="2199"/>
+		<route destination1="MDW" destination2="DSM" opened="2012" closed="2199"/>
+		<route destination1="FLL" destination2="SJU" opened="2013" closed="2199"/>
+		<route destination1="MDW" destination2="JAX" opened="2013" closed="2199"/>
+		<route destination1="BNA" destination2="PIT" opened="2013" closed="2199"/>
+		<route destination1="FLL" destination2="PIT" opened="2013" closed="2199"/>
+		<route destination1="MCO" destination2="MSY" opened="2013" closed="2199"/>
+		<route destination1="HOU" destination2="MCO" opened="2013" closed="2199"/>
+		<route destination1="RSW" destination2="CMH" opened="2013" closed="2199"/>
+		<route destination1="IAD" destination2="LAS" opened="2014" closed="2199"/>
+		<route destination1="IAD" destination2="SAN" opened="2014" closed="2199"/>
+		<route destination1="DCA" destination2="CAK" opened="2014" closed="2199"/>
+		<route destination1="DCA" destination2="IND" opened="2014" closed="2199"/>
+		<route destination1="ATL" destination2="PUJ" opened="2014" closed="2199"/>
+		<route destination1="AUS" destination2="CUN" opened="2014" closed="2199"/>
+		<route destination1="BWI" destination2="PUJ" opened="2014" closed="2199"/>
+		<route destination1="MDW" destination2="CUN" opened="2014" closed="2199"/>
+		<route destination1="MDW" destination2="MBJ" opened="2014" closed="2199"/>
+		<route destination1="MDW" destination2="PUJ" opened="2014" closed="2199"/>
+		<route destination1="SNA" destination2="MEX" opened="2014" closed="2199"/>
+		<route destination1="SAT" destination2="MEX" opened="2014" closed="2199"/>
+		<route destination1="DAL" destination2="BWI" opened="2013" closed="2199"/>
+		<route destination1="DAL" destination2="MDW" opened="2013" closed="2199"/>
+		<route destination1="DAL" destination2="DEN" opened="2013" closed="2199"/>
+		<route destination1="DAL" destination2="LAS" opened="2013" closed="2199"/>
+		<route destination1="DAL" destination2="LAX" opened="2013" closed="2199"/>
+		<route destination1="DAL" destination2="MCO" opened="2013" closed="2199"/>
+		<route destination1="DAL" destination2="ATL" opened="2014" closed="2199"/>
+		<route destination1="DAL" destination2="FLL" opened="2014" closed="2199"/>
+		<route destination1="DAL" destination2="BNA" opened="2014" closed="2199"/>
+		<route destination1="DAL" destination2="LGA" opened="2014" closed="2199"/>
+		<route destination1="DAL" destination2="SNA" opened="2014" closed="2199"/>
+		<route destination1="DAL" destination2="PHX" opened="2014" closed="2199"/>
+		<route destination1="DAL" destination2="SAN" opened="2014" closed="2199"/>
+		<route destination1="DAL" destination2="TPA" opened="2014" closed="2199"/>
+		<route destination1="DAL" destination2="DCA" opened="2014" closed="2199"/>
+		<route destination1="DCA" destination2="MDW" opened="2014" closed="2199"/>
+		<route destination1="DCA" destination2="BNA" opened="2014" closed="2199"/>
+		<route destination1="DCA" destination2="MSY" opened="2014" closed="2199"/>
+		<route destination1="LAX" destination2="STL" opened="2014" closed="2199"/>
+		<route destination1="ATL" destination2="CUN" opened="2014" closed="2199"/>
+		<route destination1="ATL" destination2="NAS" opened="2014" closed="2199"/>
+		<route destination1="BWI" destination2="CUN" opened="2014" closed="2199"/>
+		<route destination1="MKE" destination2="CUN" opened="2014" closed="2199"/>
+		<route destination1="SNA" destination2="SJD" opened="2014" closed="2199"/>
+		<route destination1="DEN" destination2="CUN" opened="2014" closed="2199"/>
+		<route destination1="DEN" destination2="SJD" opened="2014" closed="2199"/>
+		<route destination1="ATL" destination2="AUA" opened="2014" closed="2199"/>
+		<route destination1="ATL" destination2="MBJ" opened="2014" closed="2199"/>
+		<route destination1="BWI" destination2="AUA" opened="2014" closed="2199"/>
+		<route destination1="BWI" destination2="MBJ" opened="2014" closed="2199"/>
+		<route destination1="BWI" destination2="NAS" opened="2014" closed="2199"/>
+		<route destination1="MCO" destination2="AUA" opened="2014" closed="2199"/>
+		<route destination1="MCO" destination2="MBJ" opened="2014" closed="2199"/>
+		<route destination1="LGA" destination2="CAK" opened="2009" closed="2199"/>
+		<route destination1="LGA" destination2="ATL" opened="2012" closed="2199"/>
+		<route destination1="LGA" destination2="MDW" opened="2009" closed="2199"/>
+		<route destination1="LGA" destination2="DEN" opened="2009" closed="2199"/>
+		<route destination1="LGA" destination2="HOU" opened="2009" closed="2199"/>
+		<route destination1="LGA" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="LGA" destination2="BNA" opened="2009" closed="2199"/>
+		<route destination1="LGA" destination2="STL" opened="2009" closed="2199"/>
+		<route destination1="SAN" destination2="SEA" opened="2014" closed="2199"/>
+		<route destination1="SAN" destination2="PDX" opened="2014" closed="2199"/>
+		<route destination1="SAN" destination2="MCO" opened="2014" closed="2199"/>
+		<route destination1="SAN" destination2="MSY" opened="2014" closed="2199"/>
+		<route destination1="ATL" destination2="DCA" opened="2014" closed="2199"/>
+		<route destination1="HOU" destination2="DCA" opened="2013" closed="2199"/>
+		<route destination1="DEN" destination2="PDX" opened="2008" closed="2199"/>
+		<route destination1="DEN" destination2="IND" opened="2008" closed="2199"/>
+		<route destination1="DEN" destination2="SAT" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="GEG" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="CAK" opened="2012" closed="2199"/>
+		<route destination1="DEN" destination2="ABQ" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="AMA" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="ATL" opened="2012" closed="2199"/>
+		<route destination1="DEN" destination2="BWI" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="BOI" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="SAT" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="BOS" opened="2009" closed="2199"/>
+		<route destination1="DEN" destination2="BUR" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="MDW" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="CMH" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="DAY" opened="2012" closed="2199"/>
+		<route destination1="DEN" destination2="DTW" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="FLL" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="GRR" opened="2013" closed="2199"/>
+		<route destination1="DEN" destination2="BDL" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="HOU" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="JAX" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="MCI" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="LAS" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="SDF" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="LAX" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="DEN" destination2="MSP" opened="2009" closed="2199"/>
+		<route destination1="DEN" destination2="BNA" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="MSY" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="EWR" opened="2011" closed="2199"/>
+		<route destination1="DEN" destination2="OAK" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="OKC" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="OMA" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="ONT" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="SNA" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="MCO" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="PHL" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="PHX" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="PIT" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="RDU" opened="2014" closed="2199"/>
+		<route destination1="DEN" destination2="RNO" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="SMF" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="STL" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="SLC" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="SAN" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="SFO" opened="2007" closed="2199"/>
+		<route destination1="DEN" destination2="SJC" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="SEA" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="TPA" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="TUL" opened="2006" closed="2199"/>
+		<route destination1="DEN" destination2="IAD" opened="2006" closed="2199"/>
+		<route destination1="DAL" destination2="ICT" opened="2013" closed="2199"/>
+		<route destination1="ATL" destination2="CAK" opened="2012" closed="2199"/>
+		<route destination1="BOS" destination2="CAK" opened="2012" closed="2199"/>
+		<route destination1="RSW" destination2="CAK" opened="2014" closed="2199"/>
+		<route destination1="MCO" destination2="CAK" opened="2012" closed="2199"/>
+		<route destination1="TPA" destination2="CAK" opened="2012" closed="2199"/>
+	        <route destination1="MDW" destination2="ICT" opened="2013" closed="2199"/>
+	        <route destination1="LAS" destination2="ICT" opened="2013" closed="2199"/>
+	        <route destination1="ATL" destination2="SJU" opened="2013" closed="2199"/>
+		<route destination1="BWI" destination2="SJU" opened="2013" closed="2199"/>
+		<route destination1="HOU" destination2="SJU" opened="2013" closed="2199"/>
+		<route destination1="MCO" destination2="SJU" opened="2013" closed="2199"/>
+		<route destination1="TPA" destination2="SJU" opened="2013" closed="2199"/>
+		<route destination1="BWI" destination2="ROC" opened="2013" closed="2199"/>
+		<route destination1="MDW" destination2="ROC" opened="2013" closed="2199"/>
+		<route destination1="MCO" destination2="ROC" opened="2013" closed="2199"/>
+		<route destination1="TPA" destination2="ROC" opened="2013" closed="2199"/>
+		<route destination1="ATL" destination2="RIC" opened="2014" closed="2199"/>
+		<route destination1="MCO" destination2="RIC" opened="2013" closed="2199"/>
+		<route destination1="BWI" destination2="PWM" opened="2013" closed="2199"/>
+		<route destination1="HOU" destination2="PNS" opened="2013" closed="2199"/>
+		<route destination1="BNA" destination2="PNS" opened="2013" closed="2199"/>
+		<route destination1="BWI" destination2="MEM" opened="2013" closed="2199"/>
+		<route destination1="MDW" destination2="MEM" opened="2013" closed="2199"/>
+		<route destination1="HOU" destination2="MEM" opened="2013" closed="2199"/>
+		<route destination1="MCO" destination2="MEM" opened="2013" closed="2199"/>
+		<route destination1="TPA" destination2="MEM" opened="2013" closed="2199"/>
+		<route destination1="BWI" destination2="GRR" opened="2013" closed="2199"/>
+		<route destination1="MCO" destination2="GRR" opened="2013" closed="2199"/>
+		<route destination1="STL" destination2="GRR" opened="2013" closed="2199"/>
+		<route destination1="TPA" destination2="GRR" opened="2013" closed="2199"/>
+		<route destination1="BWI" destination2="FNT" opened="2013" closed="2199"/>
+		<route destination1="RSW" destination2="FNT" opened="2013" closed="2199"/>
+		<route destination1="MCO" destination2="FNT" opened="2013" closed="2199"/>
+		<route destination1="LAS" destination2="FNT" opened="2013" closed="2199"/>
+		<route destination1="TPA" destination2="FNT" opened="2013" closed="2199"/>
+		<route destination1="BWI" destination2="CLT" opened="2013" closed="2199"/>
+		<route destination1="MDW" destination2="CLT" opened="2013" closed="2199"/>
+		<route destination1="HOU" destination2="CLT" opened="2013" closed="2199"/>
+		<route destination1="MCO" destination2="CLT" opened="2013" closed="2014"/>
+		<route destination1="DCA" destination2="AUS" opened="2012" closed="2199"/>
+		<route destination1="DCA" destination2="RSW" opened="2014" closed="2199"/>
+		<route destination1="DCA" destination2="MCI" opened="2012" closed="2199"/>
+		<route destination1="DCA" destination2="MKE" opened="2012" closed="2199"/>
+		<route destination1="DCA" destination2="STL" opened="2012" closed="2199"/>
+		<route destination1="BWI" destination2="DAY" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="PBI" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="TPA" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="SAT" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="STL" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="RDU" opened="2014" closed="2199"/>
+		<route destination1="ATL" destination2="PHX" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="PIT" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="PHL" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="MCO" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="OKC" opened="2014" closed="2199"/>
+		<route destination1="ATL" destination2="MSY" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="MSP" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="MKE" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="LAX" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="LAS" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="MCI" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="JAX" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="BDL" opened="2014" closed="2199"/>
+		<route destination1="ATL" destination2="FLL" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="DTW" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="MDW" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="BOS" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="BWI" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="AUS" opened="2012" closed="2199"/>
+		<route destination1="ATL" destination2="CMH" opened="2014" closed="2199"/>
+		<route destination1="EWR" destination2="AUS" opened="2011" closed="2199"/>
+		<route destination1="EWR" destination2="MDW" opened="2011" closed="2199"/>
+		<route destination1="EWR" destination2="HOU" opened="2011" closed="2199"/>
+		<route destination1="EWR" destination2="BNA" opened="2011" closed="2199"/>
+		<route destination1="EWR" destination2="MSY" opened="2011" closed="2199"/>
+		<route destination1="EWR" destination2="PHX" opened="2011" closed="2199"/>
+		<route destination1="EWR" destination2="STL" opened="2011" closed="2199"/>
+		<route destination1="GSP" destination2="BWI" opened="2011" closed="2199"/>
+		<route destination1="GSP" destination2="MDW" opened="2011" closed="2199"/>
+		<route destination1="GSP" destination2="HOU" opened="2011" closed="2199"/>
+		<route destination1="BWI" destination2="CHS" opened="2011" closed="2199"/>
+		<route destination1="MDW" destination2="CHS" opened="2011" closed="2199"/>
+		<route destination1="HOU" destination2="CHS" opened="2011" closed="2199"/>
+		<route destination1="BNA" destination2="CHS" opened="2011" closed="2199"/>
+		<route destination1="BWI" destination2="ECP" opened="2010" closed="2199"/>
+		<route destination1="HOU" destination2="ECP" opened="2010" closed="2199"/>
+		<route destination1="BNA" destination2="ECP" opened="2010" closed="2199"/>
+		<route destination1="MDW" destination2="MSP" opened="2009" closed="2199"/>
+		<route destination1="MSP" destination2="MCI" opened="2009" closed="2199"/>
+		<route destination1="MSP" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="MSP" destination2="PHX" opened="2009" closed="2199"/>
+		<route destination1="MSP" destination2="STL" opened="2009" closed="2199"/>
+		<route destination1="BWI" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="BOS" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="FLL" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="MCI" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="LAS" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="LAX" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="MCO" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="PHX" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="SEA" destination2="MKE" opened="2009" closed="2199"/>
+		<route destination1="MKE" destination2="STL" opened="2009" closed="2199"/>
+		<route destination1="MKE" destination2="TPA" opened="2009" closed="2199"/>
+		<route destination1="BOS" destination2="BWI" opened="2009" closed="2199"/>
+		<route destination1="MDW" destination2="BOS" opened="2009" closed="2199"/>
+		<route destination1="HOU" destination2="BOS" opened="2009" closed="2199"/>
+		<route destination1="BOS" destination2="MCI" opened="2009" closed="2199"/>
+		<route destination1="BOS" destination2="BNA" opened="2009" closed="2199"/>
+		<route destination1="BOS" destination2="MCO" opened="2014" closed="2199"/>
+		<route destination1="BOS" destination2="STL" opened="2009" closed="2199"/>
+		<route destination1="MDW" destination2="IAD" opened="2006" closed="2199"/>
+		<route destination1="BWI" destination2="PIT" opened="2005" closed="2199"/>
+		<route destination1="MDW" destination2="PIT" opened="2005" closed="2199"/>
+		<route destination1="PIT" destination2="RSW" opened="2005" closed="2199"/>
+		<route destination1="HOU" destination2="PIT" opened="2005" closed="2199"/>
+		<route destination1="LAS" destination2="PIT" opened="2005" closed="2199"/>
+		<route destination1="MCO" destination2="PIT" opened="2005" closed="2199"/>
+		<route destination1="PHX" destination2="PIT" opened="2005" closed="2199"/>
+		<route destination1="TPA" destination2="PIT" opened="2005" closed="2199"/>
+		<route destination1="MDW" destination2="PHL" opened="2004" closed="2199"/>
+		<route destination1="LAS" destination2="PHL" opened="2004" closed="2199"/>
+		<route destination1="PHL" destination2="RSW" opened="2004" closed="2199"/>
+		<route destination1="PHL" destination2="FLL" opened="2004" closed="2199"/>
+		<route destination1="BNA" destination2="PHL" opened="2004" closed="2199"/>
+		<route destination1="MCO" destination2="PHL" opened="2004" closed="2199"/>
+		<route destination1="PHX" destination2="PHL" opened="2004" closed="2199"/>
+		<route destination1="STL" destination2="PHL" opened="2004" closed="2199"/>
+		<route destination1="PHL" destination2="TPA" opened="2004" closed="2199"/>
+		<route destination1="BWI" destination2="PBI" opened="2001" closed="2199"/>
+		<route destination1="PBI" destination2="ISP" opened="2001" closed="2199"/>
+		<route destination1="BWI" destination2="ORF" opened="2000" closed="2199"/>
+		<route destination1="MCO" destination2="ORF" opened="2000" closed="2199"/>
+		<route destination1="MDW" destination2="ORF" opened="2000" closed="2199"/>
+		<route destination1="BWI" destination2="BUF" opened="2000" closed="2199"/>
+		<route destination1="MDW" destination2="BUF" opened="2000" closed="2199"/>
+		<route destination1="LAS" destination2="BUF" opened="2000" closed="2199"/>
+		<route destination1="MCO" destination2="BUF" opened="2000" closed="2199"/>
+		<route destination1="PHX" destination2="BUF" opened="2000" closed="2199"/>
+		<route destination1="BUF" destination2="TPA" opened="2000" closed="2199"/>
+		<route destination1="BWI" destination2="ALB" opened="2000" closed="2199"/>
+		<route destination1="MDW" destination2="ALB" opened="2000" closed="2199"/>
+		<route destination1="LAS" destination2="ALB" opened="2000" closed="2199"/>
+		<route destination1="MCO" destination2="ALB" opened="2000" closed="2199"/>
+		<route destination1="TPA" destination2="ALB" opened="2000" closed="2199"/>
+		<route destination1="BWI" destination2="RDU" opened="1999" closed="2199"/>
+		<route destination1="MDW" destination2="RDU" opened="1999" closed="2199"/>
+		<route destination1="FLL" destination2="RDU" opened="1999" closed="2199"/>
+		<route destination1="HOU" destination2="RDU" opened="1999" closed="2199"/>
+		<route destination1="LAS" destination2="RDU" opened="1999" closed="2199"/>
+		<route destination1="BNA" destination2="RDU" opened="1999" closed="2199"/>
+		<route destination1="MCO" destination2="RDU" opened="1999" closed="2199"/>
+		<route destination1="PHX" destination2="RDU" opened="1999" closed="2199"/>
+		<route destination1="STL" destination2="RDU" opened="1999" closed="2199"/>
+		<route destination1="TPA" destination2="RDU" opened="1999" closed="2199"/>
+		<route destination1="BWI" destination2="ISP" opened="1999" closed="2199"/>
+		<route destination1="FLL" destination2="ISP" opened="1999" closed="2199"/>
+		<route destination1="MCO" destination2="ISP" opened="1999" closed="2199"/>
+		<route destination1="TPA" destination2="ISP" opened="1999" closed="2199"/>
+		<route destination1="BWI" destination2="BDL" opened="1999" closed="2199"/>
+		<route destination1="MDW" destination2="BDL" opened="1999" closed="2199"/>
+		<route destination1="FLL" destination2="BDL" opened="1999" closed="2199"/>
+		<route destination1="MCO" destination2="BDL" opened="1999" closed="2199"/>
+		<route destination1="TPA" destination2="BDL" opened="1999" closed="2199"/>
+		<route destination1="BWI" destination2="MHT" opened="1998" closed="2199"/>
+		<route destination1="MCO" destination2="MHT" opened="1998" closed="2199"/>
+		<route destination1="TPA" destination2="MHT" opened="1998" closed="2199"/>
+		<route destination1="MDW" destination2="MHT" opened="1998" closed="2199"/>
+		<route destination1="BWI" destination2="JAX" opened="1997" closed="2199"/>
+		<route destination1="FLL" destination2="JAX" opened="1997" closed="2014"/>
+		<route destination1="HOU" destination2="JAX" opened="1997" closed="2199"/>
+		<route destination1="BNA" destination2="JAX" opened="1997" closed="2199"/>
+		<route destination1="OAK" destination2="GEG" opened="1994" closed="2199"/>
+		<route destination1="LAS" destination2="GEG" opened="1994" closed="2199"/>
+		<route destination1="GEG" destination2="BOI" opened="1994" closed="2199"/>
+		<route destination1="PHX" destination2="GEG" opened="1994" closed="2199"/>
+		<route destination1="PDX" destination2="GEG" opened="1994" closed="2012"/>
+		<route destination1="SEA" destination2="GEG" opened="1994" closed="2012"/>
+		<route destination1="TPA" destination2="BNA" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="AUS" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="BWI" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="LAS" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="MDW" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="FLL" opened="1996" closed="2199"/>
+		<route destination1="HOU" destination2="TPA" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="IND" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="MCI" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="CMH" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="BHM" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="PVD" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="PHX" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="MSY" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="SDF" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="STL" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="SAT" opened="1996" closed="2199"/>
+		<route destination1="TPA" destination2="DCA" opened="2014" closed="2199"/>
+		<route destination1="MDW" destination2="PVD" opened="1996" closed="2199"/>
+		<route destination1="BWI" destination2="PVD" opened="1996" closed="2199"/>
+		<route destination1="FLL" destination2="PVD" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="PVD" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="AUS" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="BWI" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="BHM" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="MDW" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="CMH" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="MCI" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="LAS" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="SDF" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="STL" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="PHX" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="MSY" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="BNA" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="LAX" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="SAT" opened="1996" closed="2199"/>
+		<route destination1="MCO" destination2="SAN" opened="1996" closed="2199"/>
+		<route destination1="FLL" destination2="AUS" opened="1996" closed="2199"/>
+		<route destination1="FLL" destination2="BWI" opened="1996" closed="2199"/>
+		<route destination1="FLL" destination2="MDW" opened="1996" closed="2199"/>
+		<route destination1="FLL" destination2="HOU" opened="1996" closed="2199"/>
+		<route destination1="FLL" destination2="IND" opened="1996" closed="2199"/>
+		<route destination1="FLL" destination2="LAS" opened="1996" closed="2199"/>
+		<route destination1="FLL" destination2="BNA" opened="1996" closed="2199"/>
+		<route destination1="FLL" destination2="MSY" opened="1996" closed="2199"/>
+		<route destination1="FLL" destination2="PHX" opened="1996" closed="2199"/>
+		<route destination1="FLL" destination2="STL" opened="1996" closed="2199"/>
+		<route destination1="MDW" destination2="OMA" opened="1995" closed="2199"/>
+		<route destination1="LAS" destination2="OMA" opened="1995" closed="2199"/>
+		<route destination1="PHX" destination2="OMA" opened="1995" closed="2199"/>
+		<route destination1="STL" destination2="OMA" opened="1995" closed="2199"/>
+		<route destination1="MDW" destination2="TUS" opened="1994" closed="2199"/>
+		<route destination1="LAS" destination2="TUS" opened="1994" closed="2199"/>
+		<route destination1="LAX" destination2="TUS" opened="1994" closed="2199"/>
+		<route destination1="SAN" destination2="TUS" opened="1994" closed="2199"/>
+		<route destination1="DEN" destination2="TUS" opened="2006" closed="2199"/>
+		<route destination1="HOU" destination2="SNA" opened="1994" closed="2199"/>
+		<route destination1="LAS" destination2="SNA" opened="1994" closed="2199"/>
+		<route destination1="OAK" destination2="SNA" opened="1994" closed="2199"/>
+		<route destination1="PHX" destination2="SNA" opened="1994" closed="2199"/>
+		<route destination1="SMF" destination2="SNA" opened="1994" closed="2199"/>
+		<route destination1="SJC" destination2="SNA" opened="1994" closed="2199"/>
+		<route destination1="SLC" destination2="BWI" opened="1994" closed="2199"/>
+		<route destination1="MDW" destination2="SLC" opened="1994" closed="2199"/>
+		<route destination1="LAS" destination2="SLC" opened="1994" closed="2199"/>
+		<route destination1="LAX" destination2="SLC" opened="1994" closed="2199"/>
+		<route destination1="OAK" destination2="SLC" opened="1994" closed="2199"/>
+		<route destination1="PHX" destination2="SLC" opened="1994" closed="2199"/>
+		<route destination1="SEA" destination2="SLC" opened="1994" closed="2014"/>
+		<route destination1="PDX" destination2="SLC" opened="1994" closed="2014"/>
+		<route destination1="SEA" destination2="ABQ" opened="1994" closed="2199"/>
+		<route destination1="SEA" destination2="BWI" opened="1994" closed="2199"/>
+		<route destination1="SEA" destination2="HOU" opened="1994" closed="2199"/>
+		<route destination1="SEA" destination2="LAS" opened="1994" closed="2199"/>
+		<route destination1="SEA" destination2="OAK" opened="1994" closed="2199"/>
+		<route destination1="SEA" destination2="PHX" opened="1994" closed="2199"/>
+		<route destination1="SEA" destination2="SMF" opened="1994" closed="2199"/>
+		<route destination1="SEA" destination2="SJC" opened="1994" closed="2199"/>
+		<route destination1="MDW" destination2="PDX" opened="1994" closed="2199"/>
+		<route destination1="MCI" destination2="PDX" opened="1994" closed="2199"/>
+		<route destination1="LAS" destination2="PDX" opened="1994" closed="2199"/>
+		<route destination1="OAK" destination2="PDX" opened="1994" closed="2199"/>
+		<route destination1="PHX" destination2="PDX" opened="1994" closed="2199"/>
+		<route destination1="SMF" destination2="PDX" opened="1994" closed="2199"/>
+		<route destination1="SJC" destination2="PDX" opened="1994" closed="2199"/>
+		<route destination1="LAS" destination2="BOI" opened="1994" closed="2199"/>
+		<route destination1="OAK" destination2="BOI" opened="1994" closed="2199"/>
+		<route destination1="PHX" destination2="BOI" opened="1994" closed="2199"/>
+		<route destination1="AUS" destination2="SJC" opened="1993" closed="2199"/>
+		<route destination1="BUR" destination2="SJC" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="SJC" opened="1993" closed="2199"/>
+		<route destination1="LAS" destination2="SJC" opened="1993" closed="2199"/>
+		<route destination1="LAX" destination2="SJC" opened="1993" closed="2199"/>
+		<route destination1="ONT" destination2="SJC" opened="1993" closed="2199"/>
+		<route destination1="PHX" destination2="SJC" opened="1993" closed="2199"/>
+		<route destination1="SAN" destination2="SJC" opened="1993" closed="2199"/>
+		<route destination1="BWI" destination2="SDF" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="SDF" opened="1993" closed="2199"/>
+		<route destination1="LAS" destination2="SDF" opened="1993" closed="2199"/>
+		<route destination1="PHX" destination2="SDF" opened="1993" closed="2199"/>
+		<route destination1="BWI" destination2="CMH" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="CMH" opened="1992" closed="2199"/>
+		<route destination1="FLL" destination2="CMH" opened="1992" closed="2199"/>
+		<route destination1="LAS" destination2="CMH" opened="1992" closed="2199"/>
+		<route destination1="BNA" destination2="CMH" opened="1992" closed="2199"/>
+		<route destination1="PHX" destination2="CMH" opened="1992" closed="2199"/>
+		<route destination1="STL" destination2="CMH" opened="1992" closed="2199"/>
+		<route destination1="BWI" destination2="CLE" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="CLE" opened="1992" closed="2199"/>
+		<route destination1="LAS" destination2="CLE" opened="1992" closed="2199"/>
+		<route destination1="BNA" destination2="CLE" opened="1992" closed="2199"/>
+		<route destination1="SMF" destination2="BUR" opened="1991" closed="2199"/>
+		<route destination1="MDW" destination2="SMF" opened="1991" closed="2199"/>
+		<route destination1="LAS" destination2="SMF" opened="1991" closed="2199"/>
+		<route destination1="LAX" destination2="SMF" opened="1991" closed="2199"/>
+		<route destination1="SMF" destination2="ONT" opened="1991" closed="2199"/>
+		<route destination1="SMF" destination2="SAN" opened="1991" closed="2199"/>
+		<route destination1="LAS" destination2="RNO" opened="1990" closed="2199"/>
+		<route destination1="LAX" destination2="RNO" opened="1990" closed="2199"/>
+		<route destination1="SAN" destination2="RNO" opened="1990" closed="2199"/>
+		<route destination1="PHX" destination2="RNO" opened="1990" closed="2199"/>
+		<route destination1="LAS" destination2="BUR" opened="1990" closed="2199"/>
+		<route destination1="PHX" destination2="BUR" opened="1990" closed="2199"/>
+		<route destination1="OAK" destination2="BUR" opened="1990" closed="2199"/>
+		<route destination1="BWI" destination2="OAK" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="OAK" opened="1989" closed="2199"/>
+		<route destination1="AUS" destination2="OAK" opened="1989" closed="2199"/>
+		<route destination1="HOU" destination2="OAK" opened="1989" closed="2199"/>
+		<route destination1="MCI" destination2="OAK" opened="1989" closed="2199"/>
+		<route destination1="LAX" destination2="OAK" opened="1989" closed="2199"/>
+		<route destination1="ONT" destination2="OAK" opened="1989" closed="2199"/>
+		<route destination1="PHX" destination2="OAK" opened="1989" closed="2199"/>
+		<route destination1="ATL" destination2="IND" opened="2014" closed="2199"/>
+		<route destination1="BWI" destination2="IND" opened="1993" closed="2199"/>
+		<route destination1="RSW" destination2="IND" opened="1989" closed="2199"/>
+		<route destination1="HOU" destination2="IND" opened="1989" closed="2199"/>
+		<route destination1="MCI" destination2="IND" opened="1989" closed="2199"/>
+		<route destination1="LAS" destination2="IND" opened="1989" closed="2199"/>
+		<route destination1="PHX" destination2="IND" opened="1989" closed="2199"/>
+		<route destination1="BWI" destination2="DTW" opened="1993" closed="2199"/>
+		<route destination1="LAS" destination2="DTW" opened="1987" closed="2199"/>
+		<route destination1="BNA" destination2="DTW" opened="1987" closed="2199"/>
+		<route destination1="PHX" destination2="DTW" opened="1987" closed="2199"/>
+		<route destination1="BWI" destination2="BHM" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="BHM" opened="1987" closed="2199"/>
+		<route destination1="LAS" destination2="BHM" opened="1987" closed="2199"/>
+		<route destination1="BNA" destination2="STL" opened="1986" closed="2199"/>
+		<route destination1="BNA" destination2="SAT" opened="1986" closed="2199"/>
+		<route destination1="BNA" destination2="LAS" opened="1986" closed="2199"/>
+		<route destination1="BNA" destination2="MSY" opened="1986" closed="2199"/>
+		<route destination1="BNA" destination2="BWI" opened="1993" closed="2199"/>
+		<route destination1="BNA" destination2="MCI" opened="1986" closed="2199"/>
+		<route destination1="BNA" destination2="LAX" opened="1986" closed="2199"/>
+		<route destination1="BNA" destination2="SAN" opened="1986" closed="2199"/>
+		<route destination1="BWI" destination2="STL" opened="1993" closed="2199"/>
+		<route destination1="MCI" destination2="STL" opened="1985" closed="2199"/>
+		<route destination1="MSY" destination2="STL" opened="1985" closed="2199"/>
+		<route destination1="SAT" destination2="STL" opened="1985" closed="2199"/>
+		<route destination1="SAN" destination2="STL" opened="1985" closed="2199"/>
+		<route destination1="LAS" destination2="STL" opened="1985" closed="2199"/>
+		<route destination1="MDW" destination2="ONT" opened="1985" closed="2199"/>
+		<route destination1="LAS" destination2="ONT" opened="1985" closed="2199"/>
+		<route destination1="MDW" destination2="BWI" opened="1993" closed="2199"/>
+		<route destination1="BWI" destination2="LIT" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="LIT" opened="1984" closed="2199"/>
+		<route destination1="LAS" destination2="LIT" opened="1984" closed="2199"/>
+		<route destination1="PHX" destination2="LIT" opened="1984" closed="2199"/>
+		<route destination1="BWI" destination2="SAN" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="SAN" opened="1985" closed="2199"/>
+		<route destination1="HOU" destination2="SAN" opened="1982" closed="2199"/>
+		<route destination1="AUS" destination2="SAN" opened="1982" closed="2199"/>
+		<route destination1="ABQ" destination2="SAN" opened="1982" closed="2199"/>
+		<route destination1="SAT" destination2="SAN" opened="1982" closed="2199"/>
+		<route destination1="MCI" destination2="SAN" opened="1982" closed="2199"/>
+		<route destination1="BWI" destination2="PHX" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="PHX" opened="1985" closed="2199"/>
+		<route destination1="PHX" destination2="AUS" opened="1982" closed="2199"/>
+		<route destination1="LAX" destination2="ABQ" opened="1982" closed="2199"/>
+		<route destination1="LAX" destination2="AUS" opened="1982" closed="2199"/>
+		<route destination1="LAX" destination2="BWI" opened="1993" closed="2199"/>
+		<route destination1="LAX" destination2="MDW" opened="1985" closed="2199"/>
+		<route destination1="LAX" destination2="HOU" opened="1982" closed="2199"/>
+		<route destination1="LAX" destination2="MCI" opened="1982" closed="2199"/>
+		<route destination1="LAX" destination2="MSY" opened="1982" closed="2199"/>
+		<route destination1="LAX" destination2="SAT" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="AMA" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="LBB" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="AUS" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="SAT" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="OKC" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="MSY" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="MCI" opened="1985" closed="2199"/>
+		<route destination1="LAS" destination2="HOU" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="MDW" opened="1985" closed="2199"/>
+		<route destination1="LAS" destination2="BWI" opened="1993" closed="2199"/>
+		<route destination1="LAS" destination2="MAF" opened="1982" closed="2199"/>
+		<route destination1="LAS" destination2="TUL" opened="1982" closed="2199"/>
+		<route destination1="BWI" destination2="MCI" opened="1993" closed="2199"/>
+		<route destination1="DAL" destination2="MCI" opened="1982" closed="2199"/>
+		<route destination1="HOU" destination2="MCI" opened="1982" closed="2199"/>
+		<route destination1="ABQ" destination2="MCI" opened="1982" closed="2199"/>
+		<route destination1="MSY" destination2="MCI" opened="1982" closed="2199"/>
+		<route destination1="MDW" destination2="TUL" opened="1985" closed="2199"/>
+		<route destination1="MDW" destination2="OKC" opened="1985" closed="2199"/>
+		<route destination1="BWI" destination2="OKC" opened="1993" closed="2199"/>
+		<route destination1="BWI" destination2="ABQ" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="ABQ" opened="1985" closed="2199"/>
+		<route destination1="BWI" destination2="MSY" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="MSY" opened="1985" closed="2199"/>
+		<route destination1="BWI" destination2="AUS" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="AUS" opened="1985" closed="2199"/>
+		<route destination1="BWI" destination2="SAT" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="SAT" opened="1985" closed="2199"/>
+		<route destination1="BWI" destination2="HOU" opened="1993" closed="2199"/>
+		<route destination1="MDW" destination2="HOU" opened="1985" closed="2199"/>
+		<route destination1="BWI" destination2="DAL" opened="2014" closed="2199"/>
+		<route destination1="MDW" destination2="DAL" opened="2014" closed="2199"/>
+		<route destination1="DEN" destination2="PHX" opened="1983" closed="1986"/>
+		<route destination1="DEN" destination2="ABQ" opened="1983" closed="1986"/>
+		<route destination1="MCI" destination2="RSW" opened="2010" closed="2199" season="summer"/>
+		<route destination1="STL" destination2="ABQ" opened="1993" closed="2199" season="summer"/>
+		<route destination1="STL" destination2="AUS" opened="1993" closed="2199" season="summer"/>
+		<route destination1="BNA" destination2="RSW" opened="2007" closed="2199" season="summer"/>
+		<route destination1="PHX" destination2="CLE" opened="2014" closed="2199" season="summer"/>
+		<route destination1="MDW" destination2="RNO" opened="2005" closed="2199" season="summer"/>
+		<route destination1="RSW" destination2="CLE" opened="1992" closed="2199" season="summer"/>
+		<route destination1="HOU" destination2="PDX" opened="1994" closed="2199" season="summer"/>
+		<route destination1="BWI" destination2="PDX" opened="1994" closed="2199" season="summer"/>
+		<route destination1="PDX" destination2="AUS" opened="1994" closed="2199" season="summer"/>
+		<route destination1="PDX" destination2="ABQ" opened="1994" closed="2199" season="summer"/>
+		<route destination1="SEA" destination2="STL" opened="1994" closed="2199" season="summer"/>
+		<route destination1="SEA" destination2="BNA" opened="1994" closed="2199" season="summer"/>
+		<route destination1="SEA" destination2="MCI" opened="1994" closed="2199" season="summer"/>
+		<route destination1="HOU" destination2="SLC" opened="1994" closed="2199" season="summer"/>
+		<route destination1="FLL" destination2="MCI" opened="1996" closed="2199" season="summer"/>
+		<route destination1="MCO" destination2="LIT" opened="1996" closed="2199" season="summer"/>
+		<route destination1="MCO" destination2="DTW" opened="1996" closed="2199" season="summer"/>
+		<route destination1="MCO" destination2="CLE" opened="1996" closed="2199" season="summer"/>
+		<route destination1="MCO" destination2="ABQ" opened="1996" closed="2199" season="summer"/>
+		<route destination1="RSW" destination2="PVD" opened="1996" closed="2199" season="summer"/>
+		<route destination1="LAS" destination2="PVD" opened="1996" closed="2199" season="summer"/>
+		<route destination1="MDW" destination2="GEG" opened="1994" closed="2199" season="summer"/>
+		<route destination1="LAS" destination2="MHT" opened="1998" closed="2199" season="summer"/>
+		<route destination1="FLL" destination2="MHT" opened="1998" closed="2199" season="summer"/>
+		<route destination1="LAS" destination2="BDL" opened="1999" closed="2199" season="summer"/>
+		<route destination1="RSW" destination2="BDL" opened="1999" closed="2199" season="summer"/>
+		<route destination1="FLL" destination2="ALB" opened="2000" closed="2199" season="summer"/>
+		<route destination1="ALB" destination2="RSW" opened="2000" closed="2199" season="summer"/>
+		<route destination1="TPA" destination2="ORF" opened="2000" closed="2199" season="summer"/>
+		<route destination1="LAS" destination2="ORF" opened="2000" closed="2199" season="summer"/>
+		<route destination1="BUF" destination2="FLL" opened="2001" closed="2199" season="summer"/>
+		<route destination1="BUF" destination2="PBI" opened="2001" closed="2199" season="summer"/>
+		<route destination1="BUF" destination2="RSW" opened="2001" closed="2199" season="summer"/>
+		<route destination1="MDW" destination2="PBI" opened="2001" closed="2199" season="summer"/>
+		<route destination1="PHL" destination2="PBI" opened="2006" closed="2199" season="summer"/>
+		<route destination1="PVD" destination2="PBI" opened="2001" closed="2199" season="summer"/>
+		<route destination1="DEN" destination2="RSW" opened="2006" closed="2199" season="summer"/>
+		<route destination1="PIT" destination2="PBI" opened="2005" closed="2199" season="summer"/>
+		<route destination1="DEN" destination2="RSW" opened="2006" closed="2199" season="summer"/>
+		<route destination1="DEN" destination2="PVD" opened="2006" closed="2199" season="summer"/>
+		<route destination1="MKE" destination2="MSY" opened="2012" closed="2199" season="summer"/>
+		<route destination1="MSP" destination2="RSW" opened="2013" closed="2199" season="summer"/>
+		<route destination1="STL" destination2="ECP" opened="2012" closed="2199" season="summer"/>
+		<route destination1="LAS" destination2="JAX" opened="2014" closed="2199" season="summer"/>
+		<route destination1="MCO" destination2="IND" opened="2014" closed="2199" season="summer"/>
+		<route destination1="MCO" destination2="MSP" opened="2014" closed="2199" season="summer"/>
+		<route destination1="HOU" destination2="SJU" opened="2013" closed="2199" season="summer"/>
+		<route destination1="MDW" destination2="PWM" opened="2014" closed="2199" season="summer"/>
+		<route destination1="MCO" destination2="PWM" opened="2014" closed="2199" season="summer"/>
+		<route destination1="GRR" destination2="RSW" opened="2014" closed="2199" season="summer"/>
+		<route destination1="DAY" destination2="MCO" opened="2014" closed="2199" season="summer"/>
+		<route destination1="TPA" destination2="DAY" opened="2014" closed="2199" season="summer"/>
+		<route destination1="ATL" destination2="SEA" opened="2014" closed="2199" season="summer"/>
+		<route destination1="LAX" destination2="OMA" opened="2014" closed="2199" season="summer"/>
+		<route destination1="DEN" destination2="TUS" opened="2006" closed="2199" season="summer"/>
+		<route destination1="LAX" destination2="BOI" opened="2014" closed="2199" season="summer"/>
+		<route destination1="MDW" destination2="BOI" opened="2005" closed="2199" season="summer"/>
+		
+		
+	        </routes>
+		
+	 	 <!--the airliners the airline would start with which isn't on a route earyl (1971) late (2006)-->
+	         <airliners>
+	    <airliner type="Boeing 737-200" early="3" late="64"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (1984) late (2012)-->
+	         <airliners>
+	    <airliner type="Boeing 737-300" early="0" late="197"></airliner>
+	     </airliners>
+	       <!--the airliners the airline would start with which isn't on a route earyl (1987) late (2014)-->
+	         <airliners>
+	        <airliner type="Boeing 737-500" early="0" late="25"></airliner>
+	     </airliners>
+	     <!--the airliners the airline would start with which isn't on a route earyl (1998) late (2014)-->
+	       <airliners>
+	         <airliner type="Boeing 737-700" early="0" late="450"></airliner>
+	     </airliners>
+	        <!--the airliners the airline would start with which isn't on a route earyl (1998) late (2014)-->
+	       <airliners>
+	         <airliner type="Boeing 737-800" early="0" late="120"></airliner>
+	     </airliners>
+	             <!--the airliners the airline would start with which isn't on a route earyl (2017) late (2027)-->
+	       <airliners>
+	          <airliner type="Boeing 737 MAX 7" early="0" late="30"></airliner>
+	     </airliners>
+	      <!--the airliners the airline would start with which isn't on a route earyl (2017) late (2027)-->
+	       <airliners>
+	                 <airliner type="Boeing 737 MAX 8" early="0" late="361"></airliner>
+	  </airliners>
+	</startdata>
+
+</airline>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="UPS Airlines" iata="5X" logo="5X" color="Brown" country="122" CEO="Mitch Nichols" mentality="Aggressive" market="Global" preferedairport="SDF" routefocus="Cargo">
+  <narrative narrative="UPS is an American cargo company, one of the largest in the world, whose main base is Louisville,Kentucky. The UPS facilities at Louisville Airport are named the Worldport. They also have bases at Hong Kong, Shanghai Pudong, Shenzhen all in China, in Philadelphia, Ontario Airport in the Los Angeles area, Dallas Ft. Worth, Rockford,Illinois, Columbia, South Carolina and Miami in the U.s In Europe their main base is Cologne-Bonn,Germany and in Canada it is Hamilton,Ontario. Their current fleet has 237 planes. 52 A300-600RF's, 75 757-200PF's, 59 767-300F's, 38 MD-11F's, and 13 747-400F's. In they past they also operated 727-100's and 727-200's, 747-200's, and 59 DC-8-71's. They were officially founded in 1988 but trace their roots all the way back to the 20's, it was in 1988 that UPS Airlines was founded and began it's own fleet not having to rely on other carriers or commerical flights to carry their packages around the world. Although they did begin buying planes before their founding, such as the DC-8's, most all of which were used passengers planes converted to freighters. Their home Louisville processed 2,885,978 metric tonnes of cargo in 2013." />
+   </profile>
+   <prefereds aircrafts="Airbus A300-600F,Boeing 727-100C,Boeing 727-200F,Boeing 747-200F,Boeing 747-400F,Boeing 757-200PF,Boeing 767-300F,Douglas DC-8-71F,MD-11F"></prefereds>
+    <info real="True" from="1988" to="2199" />
+</airline>

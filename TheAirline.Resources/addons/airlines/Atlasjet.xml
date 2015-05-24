@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Atlasjet" iata="KK" color="Red" country="161" CEO="Orhan Coskun" mentality="Moderate" market="Global" preferedairport="IST">
+  <narrative narrative="Atlasjet, founded in 2001, is based at Istanbul's Ataturk Airport. Most of its 17 destinations are in Turkey but they also serve other European,Asian and Middle Eastern destinations.They have 18 planes, thirteen of them being A321's and the other being A320's and A319s." />
+  </profile>
+  <info real="True" from="2001" to="2199"></info>
+</airline>

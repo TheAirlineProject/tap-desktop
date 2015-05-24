@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Chongqing Airlines" iata="OQ" color="Blue" country="148" CEO="Si Xianmin" mentality="Aggressive" market="Domestic" preferedairport="CKG">
+<narrative narrative="Chongqing Airlines is based at its namesake city and airport, Chongqing Jiangbei. It is majority owned by China Southern Airlines. They serve 28 destinations in China.
+They ahve a fleey of 11 planes which include A320's and A319's."/>
+</profile>
+<info real="True" from="2007" to="2199"></info>
+</airline>

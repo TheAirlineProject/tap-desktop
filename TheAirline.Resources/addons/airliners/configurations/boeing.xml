@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<configurations>
+  <configuration airliner="Boeing 720 (707-020)" name="Boeing 720 (707-020)" yearfrom="1958" yearto="1962" id="300">
+    <classes>
+      <class type="EconomyClass" seating="149" Audio="100" Video="111" Seat="104"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 720B (707-020B)" name="Boeing 720B (707-020B)" yearfrom="1961" yearto="1967" id="301">
+    <classes>
+      <class type="EconomyClass" seating="149" Audio="100" Video="111" Seat="104"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 737-600" name="Boeing 737-600" yearfrom="1995" yearto="2199" id="302">
+    <classes>
+      <class type="EconomyClass" seating="102" Audio="103" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="8" Audio="103" Video="114" Seat="107"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 737-700" name="Boeing 737-700" yearfrom="1996" yearto="2199" id="303">
+    <classes>
+      <class type="EconomyClass" seating="118" Audio="103" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="8" Audio="103" Video="114" Seat="107"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 737-800" name="Boeing 737-800" yearfrom="1996" yearto="2199" id="304">
+    <classes>
+      <class type="EconomyClass" seating="150" Audio="103" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="12" Audio="103" Video="114" Seat="107"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 737-900" name="Boeing 737-900" yearfrom="2000" yearto="2199" id="305">
+    <classes>
+      <class type="EconomyClass" seating="168" Audio="103" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="12" Audio="103" Video="114" Seat="107"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 737-900ER" name="Boeing 737-900ER" yearfrom="2005" yearto="2199" id="306">
+    <classes>
+      <class type="EconomyClass" seating="168" Audio="103" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="12" Audio="103" Video="114" Seat="107"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 747-400" name="Boeing 747-400 (1989)" yearfrom="1989" yearto="1997" id="307">
+    <classes>
+      <class type="EconomyClass" seating="313" Audio="102" Video="114" Seat="104"></class>
+      <class type="BusinessClass" seating="80" Audio="102" Video="114" Seat="107"></class>
+      <class type="FirstClass" seating="23" Audio="102" Video="114" Seat="108"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 747-400" name="Boeing 747-400 (1998)" yearfrom="1998" yearto="2199" id="308">
+    <classes>
+      <class type="EconomyClass" seating="313" Audio="102" Video="114" Seat="104"></class>
+      <class type="BusinessClass" seating="80" Audio="103" Video="115" Seat="108"></class>
+      <class type="FirstClass" seating="23" Audio="103" Video="115" Seat="109"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 757-200" name="Boeing 757-200 (1983)" yearfrom="1983" yearto="1994" id="309">
+    <classes>
+      <class type="EconomyClass" seating="188" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="12" Audio="102" Video="112" Seat="107"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 757-200" name="Boeing 757-200 (1995)" yearfrom="1995" yearto="2199" id="310">
+    <classes>
+      <class type="EconomyClass" seating="188" Audio="103" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="12" Audio="103" Video="114" Seat="107"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 757-300" name="Boeing 757-300" yearfrom="1999" yearto="2199" id="311">
+    <classes>
+      <class type="EconomyClass" seating="231" Audio="103" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="12" Audio="103" Video="114" Seat="107"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-200" name="Boeing 767-200 (1982)" yearfrom="1982" yearto="1988" id="312">
+    <classes>
+      <class type="EconomyClass" seating="126" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="40" Audio="102" Video="112" Seat="106"></class>
+      <class type="FirstClass" seating="15" Audio="102" Video="112" Seat="107"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-200" name="Boeing 767-200 (1989)" yearfrom="1989" yearto="1997" id="313">
+    <classes>
+      <class type="EconomyClass" seating="126" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="40" Audio="102" Video="114" Seat="107"></class>
+      <class type="FirstClass" seating="15" Audio="102" Video="114" Seat="108"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-200" name="Boeing 767-200 (1998)" yearfrom="1998" yearto="2199" id="314">
+    <classes>
+      <class type="EconomyClass" seating="126" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="40" Audio="103" Video="115" Seat="108"></class>
+      <class type="FirstClass" seating="15" Audio="103" Video="115" Seat="109"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-200ER" name="Boeing 767-200ER (1984)" yearfrom="1984" yearto="1988" id="315">
+    <classes>
+      <class type="EconomyClass" seating="126" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="40" Audio="102" Video="112" Seat="106"></class>
+      <class type="FirstClass" seating="15" Audio="102" Video="112" Seat="107"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-200ER" name="Boeing 767-200ER (1989)" yearfrom="1989" yearto="1997" id="316">
+    <classes>
+      <class type="EconomyClass" seating="126" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="40" Audio="102" Video="114" Seat="107"></class>
+      <class type="FirstClass" seating="15" Audio="102" Video="114" Seat="108"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-200ER" name="Boeing 767-200ER (1998)" yearfrom="1998" yearto="2199" id="317">
+    <classes>
+      <class type="EconomyClass" seating="126" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="40" Audio="103" Video="115" Seat="108"></class>
+      <class type="FirstClass" seating="15" Audio="103" Video="115" Seat="109"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-300" name="Boeing 767-300 (1984)" yearfrom="1984" yearto="1988" id="318">
+    <classes>
+      <class type="EconomyClass" seating="154" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="46" Audio="102" Video="112" Seat="106"></class>
+      <class type="FirstClass" seating="18" Audio="102" Video="112" Seat="107"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-300" name="Boeing 767-300 (1989)" yearfrom="1989" yearto="1997" id="319">
+    <classes>
+      <class type="EconomyClass" seating="154" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="46" Audio="103" Video="114" Seat="107"></class>
+      <class type="FirstClass" seating="18" Audio="103" Video="114" Seat="108"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-300" name="Boeing 767-300 (1998)" yearfrom="1998" yearto="2199" id="320">
+    <classes>
+      <class type="EconomyClass" seating="154" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="46" Audio="103" Video="115" Seat="108"></class>
+      <class type="FirstClass" seating="18" Audio="103" Video="115" Seat="109"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-300ER" name="Boeing 767-300ER (1988)" yearfrom="1988" yearto="1988" id="321">
+    <classes>
+      <class type="EconomyClass" seating="154" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="46" Audio="102" Video="112" Seat="106"></class>
+      <class type="FirstClass" seating="18" Audio="102" Video="112" Seat="107"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-300ER" name="Boeing 767-300ER (1989)" yearfrom="1989" yearto="1997" id="322">
+    <classes>
+      <class type="EconomyClass" seating="154" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="46" Audio="103" Video="114" Seat="107"></class>
+      <class type="FirstClass" seating="18" Audio="103" Video="114" Seat="108"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-300ER" name="Boeing 767-300ER (1998)" yearfrom="1998" yearto="2199" id="323">
+    <classes>
+      <class type="EconomyClass" seating="154" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="46" Audio="103" Video="115" Seat="108"></class>
+      <class type="FirstClass" seating="18" Audio="103" Video="115" Seat="109"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 767-400" name="Boeing 767-400" yearfrom="1998" yearto="2199" id="324">
+    <classes>
+      <class type="EconomyClass" seating="175" Audio="102" Video="112" Seat="104"></class>
+      <class type="BusinessClass" seating="50" Audio="103" Video="115" Seat="108"></class>
+      <class type="FirstClass" seating="20" Audio="103" Video="115" Seat="109"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 777-200" name="Boeing 777-200 (1995)" yearfrom="1995" yearto="1997" id="325">
+    <classes>
+      <class type="EconomyClass" seating="227" Audio="102" Video="114" Seat="104"></class>
+      <class type="BusinessClass" seating="54" Audio="103" Video="115" Seat="108"></class>
+      <class type="FirstClass" seating="24" Audio="103" Video="115" Seat="109"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 777-200" name="Boeing 777-200 (1998)" yearfrom="1998" yearto="2199" id="326">
+    <classes>
+      <class type="EconomyClass" seating="227" Audio="102" Video="114" Seat="104"></class>
+      <class type="BusinessClass" seating="54" Audio="103" Video="115" Seat="108"></class>
+      <class type="FirstClass" seating="24" Audio="103" Video="115" Seat="109"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 777-200ER" name="Boeing 777-200ER (1997)" yearfrom="1997" yearto="1997" id="327">
+    <classes>
+      <class type="EconomyClass" seating="227" Audio="102" Video="114" Seat="104"></class>
+      <class type="BusinessClass" seating="54" Audio="102" Video="114" Seat="107"></class>
+      <class type="FirstClass" seating="24" Audio="102" Video="114" Seat="108"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 777-200ER" name="Boeing 777-200ER (1998)" yearfrom="1998" yearto="2199" id="328">
+    <classes>
+      <class type="EconomyClass" seating="227" Audio="102" Video="114" Seat="104"></class>
+      <class type="BusinessClass" seating="54" Audio="103" Video="115" Seat="108"></class>
+      <class type="FirstClass" seating="24" Audio="103" Video="115" Seat="109"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 777-200LR" name="Boeing 777-200LR" yearfrom="2006" yearto="2199" id="329">
+    <classes>
+      <class type="EconomyClass" seating="227" Audio="102" Video="114" Seat="104"></class>
+      <class type="BusinessClass" seating="54" Audio="103" Video="115" Seat="108"></class>
+      <class type="FirstClass" seating="24" Audio="103" Video="115" Seat="109"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 777-300" name="Boeing 777-300" yearfrom="1998" yearto="2199" id="330">
+    <classes>
+      <class type="EconomyClass" seating="273" Audio="102" Video="114" Seat="104"></class>
+      <class type="BusinessClass" seating="70" Audio="103" Video="115" Seat="108"></class>
+      <class type="FirstClass" seating="22" Audio="103" Video="115" Seat="109"></class>
+    </classes>
+  </configuration>
+  <configuration airliner="Boeing 777-300ER" name="Boeing 777-300ER" yearfrom="2004" yearto="2199" id="331">
+    <classes>
+      <class type="EconomyClass" seating="273" Audio="102" Video="114" Seat="104"></class>
+      <class type="BusinessClass" seating="70" Audio="103" Video="115" Seat="108"></class>
+      <class type="FirstClass" seating="22" Audio="103" Video="115" Seat="109"></class>
+    </classes>
+  </configuration>
+</configurations>

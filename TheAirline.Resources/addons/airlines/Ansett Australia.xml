@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Ansett Australia" iata="AN" color="Blue" country="116" CEO="Peter Abeles" mentality="Aggressive" market="Global" preferedairport="MEL">
+    <narrative narrative="Ansett Australia was a major airline based in Melbourne that ceased operations in March 2002. It was founded in 1936. At the time of it's demise it had 138 planes and served 88 destinations. Most of those were domestic but they also went to a few Asian countries like China and Indonsia, and in Oceania, Fiji and New Zealand. They also owned Ansett New Zealand which they started in 1987, which was sold in 2000 and went on to fail and cease operation in 2001. " /></profile>
+  <info real="True" from="1936" to="2002" />
+</airline>

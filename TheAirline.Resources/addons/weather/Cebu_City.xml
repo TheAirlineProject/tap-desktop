@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Cebu City">
+  <months>
+    <month month="1" precipitation="110">
+      <temp min="24" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="70">
+      <temp min="23" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="20">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="30">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="70">
+      <temp min="26" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="170">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="180">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="110">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="160">
+      <temp min="26" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="200">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="110">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="110">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

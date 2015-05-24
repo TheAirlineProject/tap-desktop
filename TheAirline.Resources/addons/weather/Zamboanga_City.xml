@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Zamboanga City">
+  <months>
+    <month month="1" precipitation="32">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="46">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="37">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="53">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="81">
+      <temp min="24" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="126">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="136">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="114">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="134">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="157">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="99">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="51">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

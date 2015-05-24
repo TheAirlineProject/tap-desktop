@@ -48,7 +48,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 
-                <ContentControl regions:RegionManager.RegionName="HeaderContentRegion" VerticalAlignment="Center" Margin="10 0 0 0" />
+                <ContentControl regions:RegionManager.RegionName="HeaderContentRegion" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 0 0 0" />
             </Grid>
         </Grid>
         

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Air Madagascar" iata="MD" color="Green" country="260" CEO="Heriniaina Razafimahefa" mentality="Moderate" market="Global" preferedairport="TNR"> 
+  <narrative narrative="Air Madagascar is the main airline of the African Island nation of Madagascar and is based at Ivato Airport near Antananarivo, the capital and largest city. It was formed as part of Air France and other French airline TAI in 1947. It became it's own company in 1962 after Madagascar's independance. Of it's 36 destinations, 24 of them are domestic, and include other African,some Asian and some European destinations. They have 9 planes, two A330s, three 737-300's,two ATR-72s and two ATR-42s as of 2013.    " />
+   </profile>
+   <info real="True" from="1962" to="2199" />
+    </airline>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Copa Airlines" iata="CM" logo="CM2" color="Blue" country="191" CEO="Pedro Heilbron" mentality="Aggressive" market="Global" preferedairport="PTY">
+    <narrative narrative="Copa Airlines is the flag carrier of Panama, it was founed in 1944. They fly to 69 destinations in 30 countries in North America,Central America,South America and the Caribbean. They have 92 planes, 48 737-800's, 18 737-700's and 26 Embraer 190's. There are 41 737-800s on order, 18 of those will be replacing the 737-700s. " />
+  </profile>
+  <info real="True" from="1944" to="2199"></info>
+</airline>

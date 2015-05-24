@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Air Greenland" iata="GL" color="Pink" country="110" CEO="Michael Hojgaard" mentality="Moderate" market="Global" preferedairport="SFJ">
+    <narrative narrative="Air Greenland was founded in 1960 by Scandanavian Airline System and a Danish mining company as Gronlandsfly A/S. The SAS Group still owns it to this day. It's hub is Kangerlussuaq Airport and how many operating bases throughout Greenland and at Copenhagen,Denmark. It has 67 destnations, only 17 of these being regular airports, the rest are heliports around Greenland. Besides Greenland and Denmark they fly to Canada and Iceland each on a seasonal basis. Their planes consists of 1 A330,five Dsh 8 Q200s,three Dash 7s, and one King Air B200. They also have 20 helicopters." /></profile>
+  <info real="True" from="1960" to="2199" />
+</airline>

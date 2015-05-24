@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<contracts>
+  <contract name="Summer Olympics 1996" text="The Summer Olympics are coming up! This year, they will be hosted in Atlanta, Georgia. You have been offered the chance to provide airline transportation for officials, athletes, and serious fans. The contract will last 2 months, and you must maintain daily flights from Atlanta to London, Amsterdam, Paris, Moscow, Cairo, Tokyo, Beijing, Sao Paulo, and Dubai. If you successfully complete this contract by serving all the destinations through the whole period, you will receive a $25,000,000 bonus!">
+    <information from="07.01.1996" to="09.01.1996" payment="25000000" bonus="True" penalty="20000000"></information>
+     <routes>
+        <route departure="ATL" destination="LHR" bothways="True" passengers="8000" type="Passenger"/><!--route from ATL to LHR with 8000 pax extra per day-->
+        <route departure="ATL" destination="CDG" bothways="True" passengers="8000"/>
+        <route departure="ATL" destination="AMS" bothways="True" passengers="8000"/>
+        <route departure="ATL" destination="HND" bothways="True" passengers="8000"/>
+        <route departure="ATL" destination="DME" bothways="True" passengers="8000"/>
+        <route departure="ATL" destination="BEJ" bothways="True" passengers="8000"/>
+        <route departure="ATL" destination="DXB" bothways="True" passengers="8000"/>
+        <route departure="ATL" destination="CAI" bothways="True" passengers="8000"/>
+      </routes>
+      <parameters>
+        <parameter departure="ATL" destination="any"></parameter><!--Not served through the whole period-->
+      </parameters>
+  </contract>
+  <contract name="Movie Production Charter" text="A major international film producer would like to charter a one-time flight to their filming destination. They will be flying 300 personnel from Hollywood to Sao Paulo. They have requested a dedicated flight so that they can all travel together.">
+    <information frequency="1" payment="7000000" bonus="True" penalty="5000000"></information>
+      <routes>
+        <route departure="LAX" destination="CGH" bothways="False" passengers="300"/>
+      </routes>
+      <parameters>
+        <parameter classtype="BusinessClass" minseats="48"></parameter><!--minimum 48 business class seats-->
+        <parameter classtype="FirstClass" minseats="22"></parameter>
+      </parameters>
+  </contract>
+  
+</contracts>

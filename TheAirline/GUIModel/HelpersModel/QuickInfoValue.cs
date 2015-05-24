@@ -1,16 +1,16 @@
-﻿namespace TheAirline.GUIModel.HelpersModel
-{
-    using System.ComponentModel;
-    using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 
+namespace TheAirline.GUIModel.HelpersModel
+{
     public class QuickInfoValue : FrameworkElement
     {
         #region Static Fields
 
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
             "Text",
-            typeof(string),
-            typeof(QuickInfoValue));
+            typeof (string),
+            typeof (QuickInfoValue));
 
         #endregion
 
@@ -19,14 +19,8 @@
         [Category("Common Properties")]
         public string Text
         {
-            get
-            {
-                return (string)this.GetValue(TextProperty);
-            }
-            set
-            {
-                this.SetValue(TextProperty, value);
-            }
+            get { return (string) GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
         }
 
         //public string Name { get; set; }

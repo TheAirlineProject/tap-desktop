@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Fly540" iata="5H" color="Orange" country="146" CEO="Don Smith" mentality="Moderate" market="Regional" preferedairport="NBO">
+    <narrative narrative="Fly540 air based out of Nairobi,Kenya at Jomo Kenyatta Airport. They were founed in 2006.  It also has the subsidiaries of Fly540 Ghana and Angola. In 2012 it was sold to Fastjet. Fly540 is expected to eventually be phased out and hand all its flights over to Fastjet but it has not happened yet as of June 2014. They currently serves 10 destinations, including both of Nairobi's airports. Their fleet has  planes. " /></profile>
+  <info real="True" from="2006" to="2199" />
+</airline>

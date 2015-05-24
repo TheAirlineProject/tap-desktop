@@ -4,6 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:game="clr-namespace:TheAirline.ViewModels.Game"
+      xmlns:lex="http://wpflocalizeextension.codeplex.com"
+      lex:LocalizeDictionary.DesignCulture="en"
+      lex:ResxLocalizationProvider.DefaultAssembly="TheAirline"
+      lex:ResxLocalizationProvider.DefaultDictionary="language"
       mc:Ignorable="d" d:DataContext="{d:DesignInstance game:PageCreditsViewModel}"
       d:DesignHeight="450" d:DesignWidth="706">
     <StackPanel HorizontalAlignment="Center">
@@ -32,7 +36,7 @@
                            HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20" />
 
         <Button Style="{DynamicResource StandardButtonStyle}"
-                        Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 202'}"
+                        Content="{lex:Loc PageNewGame_202_name}"
                         Command="{Binding NavigateCommand}" CommandParameter="{Binding StartMenuUri}" HorizontalAlignment="Center" Margin="0 10 0 0" />
     </StackPanel>
 </UserControl>

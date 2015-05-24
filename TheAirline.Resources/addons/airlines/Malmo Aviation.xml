@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Malmö Aviation" iata="TF" color="Yellow" country="168" CEO="Knut A Solberg" mentality="Moderate" market="Regional" preferedairport="MMX">
+  <narrative narrative="Malmö Aviation are based at the place they take thier name from, Malmö,Sweden. They also have a hub at Stockholm-Bromma. It was founded in 1981. All but 4 of its 16 destinations are in Sweden, and those are all in Europe also. It has 11 planes in its fleet as of March 2013. Nine of them are Avro RJ100's, three RJ85's and a single Saab 2000. They have five Bombardier CS100s on order and five CS300s on order to replace the Avros. " />
+  </profile>
+  <info real="True" from="1981" to="2199"></info>
+</airline>

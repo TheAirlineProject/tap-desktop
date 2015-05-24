@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Obihiro">
+  <months>
+    <month month="1" precipitation="43">
+      <temp min="-14" max="-2" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="25">
+      <temp min="-13" max="0" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="42">
+      <temp min="-6" max="4" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="59">
+      <temp min="0" max="12" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="81">
+      <temp min="5" max="18" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="76">
+      <temp min="10" max="21" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="106">
+      <temp min="14" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="139">
+      <temp min="16" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="138">
+      <temp min="12" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="75">
+      <temp min="5" max="16" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="58">
+      <temp min="-2" max="8" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="46">
+      <temp min="-9" max="1" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

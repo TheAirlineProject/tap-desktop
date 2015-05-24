@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Eastern Airways" iata="T3" logo="T3" color="DarkBlue" country="130" CEO="Richard Lake" mentality="Moderate" market="Regional" preferedairport="ABZ">
+    <narrative narrative=" Eastern Airways is an airline based at Aberdeen Airport in Scotland,UK. Not to be confused with the defunct Eastern Air Lines of the U.S.  It was founded in 1997 and serves 12 destinations in the United Kingdom and one in Norway as of November 2013. It also has a base at Newcastle in northern England. As of March 2014 it has 30 planes. 17 BAe Jetstream 41's, 9 Saab 2000's, 2 ERJ 145's and 2 ERJ 135's. They also provide private charter services." /></profile>
+  <info real="True" from="1997" to="2199" />
+</airline>

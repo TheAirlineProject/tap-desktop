@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+  <airliner type="Helicopter" manufacturer="AW" name="AgustaWestland AW139" price="1546171">
+    <type body="Helicopter" rangetype="ShortRange" engine="Jet" />
+    <specs wingspan="12.26" length="13.77" range="1250" speed="306" fuelcapacity="1350" consumption="0.129"
+           runwaylengthrequired="15" />
+    <capacity passengers="15" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2003" to="2024" rate="18" />
+  </airliner>
+  <airliner type="Helicopter" manufacturer="AW" name="AgustaWestland AW189" price="1722102">
+    <type body="Helicopter" rangetype="ShortRange" engine="Jet" />
+    <specs wingspan="14.60" length="17.60" range="370" speed="278" fuelcapacity="2086" consumption="0.135"
+           runwaylengthrequired="18" />
+    <capacity passengers="18" cockpitcrew="2" cabincrew="0" maxclasses="1" />
+    <produced from="2013" to="2030" rate="24" />
+  </airliner>
+</airliners>

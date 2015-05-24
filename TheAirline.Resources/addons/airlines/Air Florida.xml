@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air Florida" iata="QH" color="Green" country="122" CEO="Ed Acker" mentality="Aggressive" market="Global" preferedairport="MIA">
+    <narrative narrative="Air Florida was a low-cost carrier that was around from 1971 to 1984 and was based at Miami. Midway Airlines aquired most of their assets for $53 million while Air Flordia was in Chapter 11 bankruptcy protection, and they also went on to cease operations in 1991. Some pf the planes they flew include: 707's, 727's, 737's, BAC 111's,DC-9's,DC-10's, and L-188 Electra's. 33 total planes at thier demise. Besides serving many domestic cities they also served most of the Caribbean, Central America and even flew to a few places in Europe. " /></profile>
+  <info real="True" from="1971" to="1984" />
+</airline>

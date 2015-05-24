@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air Busan" iata="BX" color="Purple" country="165" CEO="TaeKeun Han" mentality="Aggressive" market="Regional" preferedairport="PUS">
+    <narrative narrative="Air Busan is based at its namesake city of Busan,South Korea at Gimhae Airport. A subisidiary of Asiana Airlines, it is growing and competing against Korean Air and has overtaken Korean air on the amount of people who ride on certain routes out of and into Busan, for example the Busan-Jeju route fills 77% of its seats, more than Korean Air. At present in June 2014, it serves 14 destinations all within Asia and has 12 planes, being A320 types and 737 types." />
+  </profile>
+  <info real="True" from="2007" to="2199" />
+</airline>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Qeshm Air" iata="QB" color="Red" country="177" CEO="Babak Zanjani" mentality="Moderate" market="Regional" preferedairport="GSM">
+  <narrative narrative="Qeshm Air is based at and takes its name from Qeshm Island,Iran in the Persian Gulf. It also has hubs at each of Tehran's two airports and has a secondary hub at Kish Island. They serve 22 destinations combined between Iran,the United Arab Emirates,Turkey, and Iraq." />
+  </profile>
+  <info real="True" from="1993" to="2199"></info>
+</airline>

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using TheAirline.Infrastructure;
+﻿using System.Collections.Generic;
 
 namespace TheAirline.Models.General.Countries
 {
@@ -10,11 +7,8 @@ namespace TheAirline.Models.General.Countries
  * The class needs parameter for the region name
  */
 
-    [Serializable]
-    public class Region : BaseModel
+    public class Region
     {
-        #region Constructors and Destructors
-
         public Region(string section, string uid, double fuelindex)
         {
             Section = section;
@@ -22,38 +16,15 @@ namespace TheAirline.Models.General.Countries
             FuelIndex = fuelindex;
         }
 
-        private Region(SerializationInfo info, StreamingContext ctxt) : base(info, ctxt)
-        {
-            if (Version == 1)
-                FuelIndex = 1;
-        }
-
-        #endregion
-
-        #region Public Properties
+        public int Id { get; set; }
 
         public static string Section { get; set; }
 
         public string Name => Translator.GetInstance().GetString(Section, Uid);
 
-        [Versioning("uid")]
         public string Uid { get; set; }
 
-        [Versioning("fuelindex", Version = 2)]
         public double FuelIndex { get; set; }
-
-        #endregion
-
-        #region Public Methods and Operators
-
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("version", 2);
-
-            base.GetObjectData(info, context);
-        }
-
-        #endregion
     }
 
     //the list of regions

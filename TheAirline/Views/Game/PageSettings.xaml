@@ -7,6 +7,7 @@
              xmlns:enums="clr-namespace:TheAirline.Infrastructure.Enums"
              xmlns:converters="clr-namespace:TheAirline.Infrastructure.Converters"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              lex:LocalizeDictionary.DesignCulture="en"
              lex:ResxLocalizationProvider.DefaultAssembly="TheAirline"
              lex:ResxLocalizationProvider.DefaultDictionary="language"
@@ -14,6 +15,7 @@
              d:DesignHeight="300" Width="410">
     <UserControl.Resources>
         <converters:RadioButtonCheckedConverter x:Key="RadioButtonCheckedConverter" />
+        <converters:LanguageFlagConverter x:Key="LanguageFlagConverter" />
     </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel HorizontalAlignment="Center">
@@ -36,15 +38,18 @@
                 <TextBlock
                     Text="{lex:Loc PageSettings_1003_name}"
                     VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
-                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}"
-                          ItemsSource="{Binding AllLanguages,ElementName=pageSettings}">
+                <ComboBox x:Name="Lang" Style="{StaticResource ComboBoxTransparentStyle}"
+                          ItemsSource="{Binding Languages}" SelectedValue="{Binding Language}" SelectedValuePath="Name">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding ChangeLanguage}" CommandParameter="{Binding ElementName=Lang, Path=SelectedValue}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <WrapPanel>
-                                <Image Source="{Binding ImageFile}" Width="20" VerticalAlignment="Bottom"
-                                       RenderOptions.BitmapScalingMode="HighQuality" />
-                                <TextBlock Text="{Binding Name}" Width="150" VerticalAlignment="Bottom"
-                                           Margin="5 0 0 0" />
+                                <Image Source="{Binding Name, Converter={StaticResource LanguageFlagConverter}}" Width="20" />
+                                <TextBlock Text="{Binding DisplayName}" Width="150" Margin="5 0 0 0" />
                             </WrapPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
@@ -52,11 +57,11 @@
             </WrapPanel>
             <WrapPanel Margin="0 10 0 0">
                 <Button Style="{DynamicResource StandardButtonStyle}"
-                        Content="{lex:Loc PageSettings_200_name}" Click="btnSave_Click" />
+                        Content="{lex:Loc PageSettings_200_name}" Command="{Binding SaveCommand}" />
                 <Button Style="{DynamicResource StandardButtonStyle}"
-                        Content="{lex:Loc PageSettings_201_name}" Click="btnUndo_Click" Margin="5 0 0 0" />
+                        Content="{lex:Loc PageSettings_201_name}" Margin="5 0 0 0" IsEnabled="False" />
                 <Button Style="{DynamicResource StandardButtonStyle}"
-                        Content="{lex:Loc General_119_name}" Margin="5 0 0 0" />
+                        Content="{lex:Loc General_119_name}" Command="{Binding BackCommand}" Margin="5 0 0 0" />
             </WrapPanel>
         </StackPanel>
     </ScrollViewer>

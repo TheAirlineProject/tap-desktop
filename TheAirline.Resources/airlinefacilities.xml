@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airlinefacilities>
+  <airlinefacility uid="100" price="100000" fromyear="1970" monthlycost="10000">
+    <level service="0" luxury="10">
+    </level>
+    <translations>
+      <en-US name="Frequent Flyer Program" shortname="Flyer" />
+      <de-DE name="Werbemaßnahme wechselnde Broschüre" shortname="Broschüre" />
+      <en-GB name="Frequent Flyer Program" shortname="Flyer" />
+      <nl-NL name="Frequent flyer-programma" shortname="Passagier" />
+      <zh-CN name="飞行常客奖励计划" shortname="常客" />
+      <da-DK name="Loyalitetsprogram" shortname="Flyer" />
+      <es-ES name="Programa de Viajero Frecuente" shortname="Folleto" />
+    </translations>
+  </airlinefacility>
+  <airlinefacility uid="101" price="20000" fromyear="1950" monthlycost="8000">
+    <level service="0" luxury="6">
+    </level>
+    <translations>
+      <en-US name="Airline InFlight Magazine" shortname="Magazine" />
+      <de-DE name="Werbemaßnahme Fluglinienzeitschrift" shortname="Zeitschrift" />
+      <en-GB name="Airline InFlight Magazine" shortname="Magazine" />
+      <nl-NL name="Tijdschrift tijdens de vlucht" shortname="Tijdschrift" />
+      <zh-CN name="空中杂志" shortname="杂志" />
+      <da-DK name="InFlight Magasin" shortname="Magasin" />
+      <es-ES name="Revista de Vuelo" shortname="Revista" />
+    </translations>
+  </airlinefacility>
+  <airlinefacility uid="102" price="20000" fromyear="1950" monthlycost="5000">
+    <level service="0" luxury="5">
+    </level>
+    <translations>
+      <en-US name="Newspaper Service" shortname="News" />
+      <de-DE name="Zeitung Service" shortname="Zeitung" />
+      <en-GB name="Newspaper Service" shortname="News" />
+      <nl-NL name="Krant tijdens de vlucht" shortname="Krant" />
+      <zh-CN name="报纸服务" shortname="报纸" />
+      <da-DK name="Avis service" shortname="News" />
+      <es-ES name="Servicio de Prensa" shortname="Prensa" />
+    </translations>
+  </airlinefacility>
+  <airlinefacility uid="103" price="110000" fromyear="1965" monthlycost="12000">
+    <level service="0" luxury="6">
+    </level>
+    <translations>
+      <en-US name="Automated Booking System" shortname="Automated" />
+      <de-DE name="Automated Booking System" shortname="Automated" />
+      <en-GB name="Automated Booking System" shortname="Automated" />
+      <nl-NL name="Automatisch boekingssysteem" shortname="Automatisch" />
+      <zh-CN name="自动预订系统" shortname="自动化" />
+      <da-DK name="Automatisk booking system" shortname="Automatisk" />
+      <es-ES name="Sistema de Reservas Automatizado" shortname="\nAutomatizado" />
+    </translations>
+  </airlinefacility>
+  <airlinefacility uid="104" price="40000" fromyear="1975" monthlycost="14000">
+    <level service="0" luxury="8">
+    </level>
+    <translations>
+      <en-US name="Multi-Access Booking System" shortname="Computer" />
+      <de-DE name="Multi-Access Booking System" shortname="Computer" />
+      <en-GB name="Multi-Access Booking System" shortname="Computer" />
+      <nl-NL name="Multi-accessboekingssysteem" shortname="Computer" />
+      <zh-CN name="多点预订系统" shortname="计算机" />
+      <da-DK name="Multi-bruger booking system" shortname="Computer" />
+      <es-ES name="Sistema de Reserva de Acceso Múltiple" shortname="Ordenador" />
+    </translations>
+  </airlinefacility>
+  <airlinefacility uid="105" price="70000" fromyear="1997" monthlycost="15000">
+    <level service="0" luxury="10">
+    </level>
+    <translations>
+      <en-US name="Online Booking System" shortname="Booking" />
+      <de-DE name="Online Booking System" shortname="Booking" />
+      <en-GB name="Online Booking System" shortname="Booking" />
+      <nl-NL name="Onlineboekingssysteem" shortname="Boeking" />
+      <zh-CN name="在线预订系统" shortname="预订" />
+      <da-DK name="Online booking system" shortname="Booking" />
+      <es-ES name="Sistema de Reserva en Línea" shortname="Reserva" />
+    </translations>
+  </airlinefacility>
+  <airlinefacility uid="106" price="120000" fromyear="2008" monthlycost="13000">
+    <level service="0" luxury="10">
+    </level>
+    <translations>
+      <en-US name="Check-in online" shortname="Online" />
+      <de-DE name="Online einchecken" shortname="Online" />
+      <en-GB name="Check-in online" shortname="Online" />
+      <nl-NL name="Online inchecken" shortname="Online" />
+      <zh-CN name="在线值机" shortname="在线" />
+      <da-DK name="Online check-in" shortname="Online" />
+      <es-ES name="Facturación en Línea" shortname="En línea" />
+    </translations>
+  </airlinefacility>
+  <airlinefacility uid="107" price="140000" fromyear="2010" monthlycost="25000">
+    <level service="0" luxury="10">
+    </level>
+    <translations>
+      <en-US name="In-flight Wi-Fi Access" shortname="Wi-FI" />
+      <de-DE name="In-flight Wi-Fi Access" shortname="Wi-FI" />
+      <en-GB name="In-flight Wi-Fi Access" shortname="Wi-FI" />
+      <nl-NL name="Wi-Fi tijdens de vlucht" shortname="Wi-FI" />
+      <zh-CN name="空中无线网络" shortname="Wi-FI" />
+      <da-DK name="Wi-Fi ombord" shortname="Wi-FI" />
+      <es-ES name="Acceso Wi-Fi en vuelo" shortname="Wi-FI" />
+    </translations>
+  </airlinefacility>
+  <airlinefacility uid="108" price="370000" fromyear="2006" monthlycost="100000">
+    <level service="0" luxury="30">
+    </level>
+    <translations>
+      <en-US name="Executive VIP Service" shortname="VIP" />
+      <de-DE name="Bewirtung Exekutive" shortname="VIP" />
+      <en-GB name="Executive VIP Service" shortname="VIP" />
+      <nl-NL name="Executive VIP-service" shortname="VIP" />
+      <zh-CN name="行政贵宾服务" shortname="VIP" />
+      <da-DK name="Eksklusiv VIP service" shortname="VIP" />
+      <es-ES name="Servicio VIP Ejecutivo" shortname="VIP" />
+    </translations>
+  </airlinefacility>
+  <airlinefacility uid="109" price="90000" fromyear="1950" monthlycost="30000">
+    <level service="2" luxury="0">
+    </level>
+    <translations>
+      <en-US name="Basic Maintenance Center" shortname="Maintenance" />
+      <de-DE name="Missing" shortname="Maintenance" />
+      <en-GB name="Basic Maintenance Center" shortname="Maintenance" />
+      <nl-NL name="Missing" shortname="Maintenance" />
+      <zh-CN name="基本维护中心" shortname="维护" />
+      <da-DK name="Basic Maintenance Center" shortname="Maintenance" />
+      <es-ES name="Missing" shortname="Maintenance" />
+    </translations>
+  </airlinefacility>
+  <airlinefacility uid="110" price="160000" fromyear="1950" monthlycost="45000">
+    <level service="8" luxury="0">
+    </level>
+    <translations>
+      <en-US name="Large Maintenance Center" shortname="Maintenance" />
+      <de-DE name="Missing" shortname="Maintenance" />
+      <en-GB name="Large Maintenance Center" shortname="Maintenance" />
+      <nl-NL name="Missing" shortname="Maintenance" />
+      <zh-CN name="大型维护中心" shortname="维护" />
+      <da-DK name="Large Maintenance Center" shortname="Maintenance" />
+      <es-ES name="Missing" shortname="Maintenance" />
+    </translations>
+  </airlinefacility>
+</airlinefacilities>

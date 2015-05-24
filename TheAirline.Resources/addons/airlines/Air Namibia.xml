@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air Namibia" iata="SW" color="Yellow" country="259" CEO="Theo Miriam Namases " mentality="Moderate" market="Global" preferedairport="WDH">
+    <narrative narrative="Air Namibia is the government owned state carrier of Namibia. It is based at Windhoek Intl. at the countries capital and largest city. It also has a condary hub at Windhoek's smaller Eros Airport and is the only airline operating there. It was founded in 1978. Outside of it's hubs it goes to 15 airports, and the only one outside Africa is Frankfurt in Germany. It's 10 planes are four A319's, two A330's, and four ERJ-135's." /></profile>
+  <info real="True" from="1978" to="2199" />
+</airline>

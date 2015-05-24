@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="NordStar Airlines" iata="Y7" color="Purple" country="149" CEO="Jaroslav Fomin" mentality="Aggressive" market="Global" preferedairport="NSK">
+    <narrative narrative="NordStar, founded in 2009, makes its home at Alykel Airport in Norilsk,Russia. It is also owned by the local Norilsk Nickel mining company. They already serve 45 destinations in Europe and Asia. Their current fleet consists of nine 737-800's and five ATR 42-500's and have five ATR 42-600s on order." />
+  </profile>
+  <info real="True" from="2009" to="2199" />
+</airline>

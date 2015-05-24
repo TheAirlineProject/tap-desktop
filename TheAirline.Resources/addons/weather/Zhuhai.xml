@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Zhuhai">
+  <months>
+    <month month="1" precipitation="33">
+      <temp min="12" max="18" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="2" precipitation="59">
+      <temp min="13" max="18" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="3" precipitation="83">
+      <temp min="16" max="21" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="4" precipitation="217">
+      <temp min="20" max="25" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="5" precipitation="362">
+      <temp min="23" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="340">
+      <temp min="25" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="290">
+      <temp min="26" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="352">
+      <temp min="26" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="194">
+      <temp min="25" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="117">
+      <temp min="22" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="43">
+      <temp min="18" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="35">
+      <temp min="14" max="20" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Jin Air" iata="LJ" color="Purple" country="165" CEO="Jae-Kun Kim" mentality="Aggressive" market="Regional" preferedairport="ICN">
+    <narrative narrative="Jin Air is a low cost South Korean carrier based at Incheon Airport which was founded in 2008. As of 2014 they operate 10 737-800's.  They have 29 destinations with 9 of these being new service to Chinese cities beginning all in 2014 making a total of 15 Chinese cities as part of their service. All their destinations are in Asia." />
+  </profile>
+  <info real="True" from="2008" to="2199" />
+</airline>

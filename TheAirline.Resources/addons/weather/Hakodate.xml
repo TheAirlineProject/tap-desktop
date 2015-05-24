@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Hakodate">
+  <months>
+    <month month="1" precipitation="77">
+      <temp min="-6" max="1" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="59">
+      <temp min="-6" max="2" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="59">
+      <temp min="-3" max="6" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="70">
+      <temp min="2" max="12" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="84">
+      <temp min="7" max="17" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="73">
+      <temp min="12" max="20" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="130">
+      <temp min="16" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="154">
+      <temp min="18" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="153">
+      <temp min="14" max="23" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="100">
+      <temp min="7" max="17" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="108">
+      <temp min="1" max="10" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="85">
+      <temp min="-4" max="4" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

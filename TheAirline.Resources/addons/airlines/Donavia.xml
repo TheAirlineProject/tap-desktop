@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Donavia" iata="D9" color="Gold" country="149" CEO="Mikhail Stepanovich Kritskiy" mentality="Aggressive" market="Global" preferedairport="ROV">
+ <narrative narrative="Donavia is a Aeroflot subsidiary based at Rostov-on-Don Airport. It flies to 20 destinations throughout Russia, Central Asia and Western Asia.
+ It has 11 planes, five A319's,three 737-400's and three 737-500s."></narrative></profile>
+<info real="True" from="2000" to="2199"></info>
+</airline>

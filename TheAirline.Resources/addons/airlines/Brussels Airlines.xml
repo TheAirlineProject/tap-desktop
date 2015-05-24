@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Brussels Airlines" iata="SN" color="Blue" country="107" CEO="Bernard Gustin" mentality="Aggressive" market="Global" preferedairport="BRU">
+    <narrative narrative="Brussels Airlines was formed in 2006 when SN Brussels Airlines and Virgin Express megred. It is the flag carrier of Belgium and makes its home at its namesake city of Brussels. They serve 66 destinations globally and have 45 planes, which include eight A330's, 21 A320 types, a few Dash 8's and 13 Avro Jets which are to be phased out by 2016." />
+  </profile>
+  <info real="True" from="2006" to="2199" />
+</airline>

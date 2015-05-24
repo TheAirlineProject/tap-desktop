@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Sudan Airways" iata="SD" color="Purple" country="223" CEO="Abd Elmahmoud Suleiman Mohammed" mentality="Moderate" market="Global" preferedairport="KRT">
+    <narrative narrative="Sudan Airways is the national airline of Sudan and is based at Khartoum Airport. It was founded in 1946. It has 24 destinations, 10 of these being in Sudan and South Sudan., and a few other African cities and many destinations in the Middle East. Their fleet as of June 2014 is two A300's,two A320's, and three Fokker 50's. " /></profile>
+  <info real="True" from="1946" to="2199" />
+</airline>

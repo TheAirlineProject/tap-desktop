@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Air Georgian" iata="ZX" logo="ZX" color="DarkRed" country="113" CEO="Eric Edmondson" mentality="Moderate" market="Domestic" preferedairport="YYZ">
+    <narrative narrative="Air Georgian began as an airport developer in 1985. It began commercial operations in 1994 and subsequently developed its commercial air carrier business, which as of 2011 represented 87 percent of its total business. In 1997 It became a code share partner of Canadian Airlines, operating under the banner of Ontario Regional. " /></profile>
+  <info real="True" from="1994" to="2199" />
+</airline>

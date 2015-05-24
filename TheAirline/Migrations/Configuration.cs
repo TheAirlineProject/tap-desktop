@@ -1,5 +1,7 @@
 using System.Data.Entity.Migrations;
 using TheAirline.Db;
+using TheAirline.Infrastructure.Enums;
+using TheAirline.Models.General.Countries;
 
 namespace TheAirline.Migrations
 {
@@ -25,7 +27,16 @@ namespace TheAirline.Migrations
             //    );
             //
             context.Settings.AddOrUpdate(s => s.Id,
-                new Models.General.Settings {Mode = Infrastructure.Enums.ScreenMode.Windowed});
+                new Models.General.Settings {Mode = ScreenMode.Windowed});
+
+            context.Continents.AddOrUpdate(
+                c => c.Name,
+                new Continent {Name = "Africa"},
+                new Continent {Name = "Asia"},
+                new Continent {Name = "Australia and Oceania"},
+                new Continent {Name = "Europe"},
+                new Continent {Name = "North America"},
+                new Continent {Name = "South America"});
         }
     }
 }

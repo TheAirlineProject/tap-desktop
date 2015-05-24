@@ -15,5 +15,6 @@ namespace TheAirline.Models.General
         public bool MailsOnBadWeather { get; set; }
         public bool MailsOnLandings { get; set; }
         public ScreenMode Mode { get; set; }
+        public string Language { get; set; }
     }
 }

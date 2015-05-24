@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Uzbekistan Airways" iata="HY" color="Yellow" country="237" CEO="Valeriy Nikolaevich Tyan" mentality="Moderate" market="Regional" preferedairport="TAS">
+ <narrative narrative="Uzbekistan Airways is the national airline of Uzbekistan and makes it hub as Tashkent. They fly to 58 destinations. It's current fleet
+consists of 37 planes which include 10 A320s,9 767's,6 757's,7 Il-114's,and 3 Avro RJ85's. They use 2 A300's as freighters and also have
+2 787's on order."></narrative></profile>
+<info real="True" from="1992" to="2199"></info>
+</airline>

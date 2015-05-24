@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Air Europa" iata="UX" color="BrightRed" country="123" CEO="Juan Josidalgo" mentality="Aggressive" market="Global" preferedairport="MAD">
+    <narrative narrative="Air Europa are Spain's third largest airline after Iberia and Vueling and are based at Madrid. As of 2014 they serve 44 destinations globally. They have 47 planes. This includes 12 A330's ,20 737-800s, and 11 Embraer 195LR's. They have 30 737-800's on order and 20 787-9's on order. " /></profile>
+  <info real="True" from="1986" to="2199" />
+</airline>

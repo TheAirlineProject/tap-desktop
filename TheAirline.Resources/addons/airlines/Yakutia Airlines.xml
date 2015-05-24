@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Yakutia Airlines" iata="R3" color="Dark Blue" country="149" CEO="Fyodorova Olga Nikolaevna" mentality="Aggressive" market="Global" preferedairport="YKS">
+    <narrative narrative="Yakutia Airlines base is at Yakutsk,Russia. Yakutsk is the capital of the Sakha Republic in the Far East. They also have secondary hubs at Irkutsk,Krasnodar, and at Moscow's 
+    Vnukovo Airport. They fly to 40 destinations throughout Asia and Europe and have a fleet of 39 planes." />
+  </profile>
+  <info real="True" from="2002" to="2199" />
+</airline>

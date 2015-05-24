@@ -190,6 +190,7 @@
     <Reference Include="System.ObjectModel" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
@@ -544,7 +545,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\GamePageModel\PageNewGame.xaml">
+    <Page Include="Views\Game\PageNewGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -556,7 +557,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\GamePageModel\PageSelectLanguage.xaml">
+    <Page Include="Views\Game\PageSelectLanguage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -572,7 +573,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\GamePageModel\PageStartData.xaml">
+    <Page Include="Views\Game\PageStartData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -765,6 +766,7 @@
     <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
     <Compile Include="Infrastructure\Adapters\EnterpriseLoggerAdapter.cs" />
     <Compile Include="Infrastructure\AirlineBootstrapper.cs" />
+    <Compile Include="Infrastructure\Converters\LanguageFlagConverter.cs" />
     <Compile Include="Infrastructure\Converters\RadioButtonCheckedConverter.cs" />
     <Compile Include="Infrastructure\Enums\AirportCode.cs" />
     <Compile Include="Infrastructure\Enums\Difficulty.cs" />
@@ -777,11 +779,20 @@
     <Compile Include="Migrations\201505220127065_Settings.Designer.cs">
       <DependentUpon>201505220127065_Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505220451101_Settings1.cs" />
+    <Compile Include="Migrations\201505220451101_Settings1.Designer.cs">
+      <DependentUpon>201505220451101_Settings1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505231912428_Regions.cs" />
+    <Compile Include="Migrations\201505231912428_Regions.Designer.cs">
+      <DependentUpon>201505231912428_Regions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\General\Settings.cs" />
     <Compile Include="ViewModels\Airline\AirlineMVVM.cs" />
     <Compile Include="ViewModels\Airline\PageAirlineViewModel.cs" />
     <Compile Include="ViewModels\Game\PageCreditsViewModel.cs" />
     <Compile Include="ViewModels\Game\PageSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Game\PageStartDataViewModel.cs" />
     <Compile Include="ViewModels\Game\PageStartMenuViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\Airline\PageAirlineEditAirliners.xaml.cs">
@@ -930,7 +941,7 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageNewAirline.xaml.cs">
       <DependentUpon>PageNewAirline.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\GamePageModel\PageNewGame.xaml.cs">
+    <Compile Include="Views\Game\PageNewGame.xaml.cs">
       <DependentUpon>PageNewGame.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageNews.xaml.cs">
@@ -939,7 +950,7 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectAirports.xaml.cs">
       <DependentUpon>PageSelectAirports.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectLanguage.xaml.cs">
+    <Compile Include="Views\Game\PageSelectLanguage.xaml.cs">
       <DependentUpon>PageSelectLanguage.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectOpponents.xaml.cs">
@@ -951,7 +962,7 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageShowScenario.xaml.cs">
       <DependentUpon>PageShowScenario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\GamePageModel\PageStartData.xaml.cs">
+    <Compile Include="Views\Game\PageStartData.xaml.cs">
       <DependentUpon>PageStartData.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Game\PageHeader.xaml.cs">
@@ -1086,7 +1097,7 @@
     <Compile Include="Models\Airports\Gate.cs" />
     <Compile Include="Models\Airports\Hub.cs" />
     <Compile Include="Models\Airports\HubType.cs" />
-    <Compile Include="Infrastructure\CalendarItem.cs" />
+    <Compile Include="Models\General\CalendarItem.cs" />
     <Compile Include="Models\General\Countries\Continent.cs" />
     <Compile Include="Helpers\EventsHelpers.cs" />
     <Compile Include="Helpers\SerializedLoadSaveHelpers.cs" />
@@ -1107,7 +1118,7 @@
     <Compile Include="Models\General\Countries\CountryCurrency.cs" />
     <Compile Include="Models\General\DifficultyLevel.cs" />
     <Compile Include="Infrastructure\AppSettings.cs" />
-    <Compile Include="Infrastructure\Configuration.cs" />
+    <Compile Include="Models\General\Configuration.cs" />
     <Compile Include="Models\General\Coordinates.cs" />
     <Compile Include="Models\General\Countries\BaseUnit.cs" />
     <Compile Include="Models\General\Countries\Country.cs" />
@@ -1229,6 +1240,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505220127065_Settings.resx">
       <DependentUpon>201505220127065_Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505220451101_Settings1.resx">
+      <DependentUpon>201505220451101_Settings1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505231912428_Regions.resx">
+      <DependentUpon>201505231912428_Regions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1358,7 +1375,12 @@
   <ItemGroup>
     <Resource Include="Resources\images\transfer.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TheAirline.Resources\TheAirline.Resources.csproj">
+      <Project>{e489792a-d675-4b1a-8a28-b6e255d9071d}</Project>
+      <Name>TheAirline.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\images\configuration.png" />
   </ItemGroup>

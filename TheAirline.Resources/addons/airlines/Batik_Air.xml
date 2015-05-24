@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<airline>
+  <profile name="Batik Air" iata="ID" color="Brown" country="162" CEO="Achmad Lutfie" mentality="Aggressive"
+           market="Global " preferedairport="CGK">
+    <narrative
+      narrative="Batik Air is a newly born full service airline subsidiary of Lion Air. They served mostly domestic routes. The first airline in Indonesia to (will be) operate Boeing 787" />
+  </profile>
+  <info real="True" from="2013" to="2199" />
+</airline>

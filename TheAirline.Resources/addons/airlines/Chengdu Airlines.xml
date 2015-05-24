@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Chengdu Airlines" iata="EU" color="Gold" country="148" CEO="Lan Xinguo" mentality="Aggressive" market="Domestic" preferedairport="CTU">
+<narrative narrative="Founded in 2004 as United Eagle Airlines, Chengdu Airlines makes its home at Chengdu Shuangliu Airport. It was remaned in 2010. It serves 27 airports
+all in China. It has 12 airplanes consisting of nine A320's and three A319's. It is owned by Sichuan Airlines."/>
+</profile>
+<info real="True" from="2004" to="2199"></info>
+</airline>

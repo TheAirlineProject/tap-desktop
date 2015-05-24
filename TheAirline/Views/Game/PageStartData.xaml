@@ -1,0 +1,189 @@
+﻿<UserControl x:Class="TheAirline.Views.Game.PageStartData"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="en"
+             lex:ResxLocalizationProvider.DefaultAssembly="TheAirline"
+             lex:ResxLocalizationProvider.DefaultDictionary="language"
+             mc:Ignorable="d" Width="564" Height="403">
+    <StackPanel HorizontalAlignment="Center">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!-- Row 1 -->
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="{lex:Loc PageNewGame_1022_name}" />
+            <ComboBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="0 0 0 5"
+                      Style="{DynamicResource ComboBoxTransparentStyle}"
+                      SelectionChanged="cbContinent_SelectionChanged" SelectedIndex="0"
+                      SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" Name="cbContinent" />
+
+            <!-- Row 2 -->
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="{lex:Loc PageNewGame_1012_name}" />
+            <ComboBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="0 0 0 5"
+                      Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0"
+                      SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" Name="cbRegion"
+                      SelectionChanged="cbRegion_SelectionChanged" />
+
+            <!-- Row 3 -->
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="{lex:Loc PageNewGame_1028_name}" />
+            <!--<WrapPanel Grid.Column="1" Grid.Row="2">
+                <RadioButton GroupName="MajorAirports" Name="cbMajorAirports"
+                             Content="{lex:Loc PageNewGame_1034_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             IsChecked="True" />
+                <RadioButton GroupName="MajorAirports" Name="cbAllAirports"
+                             Content="{lex:Loc PageNewGame_1033_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             Margin="5 0 0 0" />
+                <RadioButton GroupName="MajorAirports"
+                             Content="{lex:Loc PageNewGame_1032_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             Margin="5 0 0 0" />
+            </WrapPanel>
+
+            -->
+            <!-- Row 4 -->
+            <!--
+            <TextBlock Grid.Column="0" Grid.Row="3"
+                Text="{lex:Loc PageNewGame_1031_name}" />
+                -->
+            <!--<g:QuickInfoValue.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=cbAllAirports, Path=IsChecked}"
+                                         Value="True">
+                                <Setter Property="g:QuickInfoValue.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </g:QuickInfoValue.Style>-->
+            <WrapPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="0 0 0 5">
+                <RadioButton GroupName="Countries" Name="cbSelectFull"
+                             Content="{lex:Loc General_106_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" />
+                <RadioButton GroupName="Countries"
+                             Content="{lex:Loc General_107_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             Margin="5 0 0 0"
+                             IsChecked="True" />
+            </WrapPanel>
+
+            <!-- Row 5 -->
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="{lex:Loc PageNewGame_1008_name}" />
+            <ComboBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Margin="0 0 0 5"
+                      Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0"
+                      Name="cbYear" SelectionChanged="cbYear_SelectionChanged" />
+
+            <!-- Row 6 -->
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="{lex:Loc PageNewGame_1013_name}" />
+            <ComboBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Margin="0 0 0 5"
+                      Style="{DynamicResource ComboBoxTransparentStyle}" Width="100"
+                      SelectedIndex="0" Name="cbFocus" />
+
+            <!-- Row 7 -->
+            <TextBlock Grid.Column="0" Grid.Row="5" Text="{lex:Loc PageNewGame_1011_name}" />
+            <WrapPanel Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Margin="0 0 0 5">
+                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" DisplayMemberPath="Name"
+                          SelectedValuePath="Name" Width="100" SelectedIndex="0" Name="cbDifficulty" />
+                <Button Content="Custom Difficulty" IsEnabled="False" Style="{StaticResource StandardButtonStyle}"
+                        Margin="5 0 0 0" />
+            </WrapPanel>
+
+            <!-- Row 8 -->
+            <TextBlock Grid.Column="0" Grid.Row="6" Text="{lex:Loc PageNewGame_1010_name}" />
+            <StackPanel Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Margin="0 0 0 5">
+                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" SelectedIndex="0"
+                          Name="cbOpponents" HorizontalAlignment="Left" />
+                <TextBlock Text="{lex:Loc PageNewGame_1027_name}"
+                           VerticalAlignment="Bottom" Foreground="DarkBlue" FontWeight="Bold" />
+            </StackPanel>
+
+            <!-- Row 9 -->
+            <TextBlock Grid.Column="0" Grid.Row="7" Text="{lex:Loc PageNewGame_1020_name}" />
+            <WrapPanel Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" Margin="0 0 0 5">
+                <RadioButton GroupName="Opponents" Content="{lex:Loc PageNewGame_1018_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             IsChecked="True" x:Name="rbRandomOpponents" />
+                <RadioButton GroupName="Opponents" Content="{lex:Loc PageNewGame_1019_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             Margin="5 0 0 0" />
+            </WrapPanel>
+
+            <!-- Row 10 -->
+            <TextBlock Grid.Column="0" Grid.Row="8" Text="{lex:Loc PageNewGame_1017_name}" />
+            <WrapPanel Grid.Column="1" Grid.Row="8" HorizontalAlignment="Left" Margin="0 0 0 5">
+                <RadioButton GroupName="SameRegion" Name="cbSameRegion" Content="{lex:Loc General_106_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             IsChecked="True" />
+                <RadioButton GroupName="SameRegion" Content="{lex:Loc General_107_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             Margin="5 0 0 0" />
+            </WrapPanel>
+
+            <!-- Row 11 -->
+            <TextBlock Grid.Column="0" Grid.Row="9" Text="{lex:Loc PageNewGame_1029_name}" />
+            <WrapPanel Grid.Column="1" Grid.Row="9" HorizontalAlignment="Left" Margin="0 0 0 5">
+                <RadioButton GroupName="Real" Name="cbReal" Content="{lex:Loc General_106_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" />
+                <RadioButton GroupName="Real" Content="{lex:Loc General_107_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             Margin="5 0 0 0" IsChecked="True" />
+            </WrapPanel>
+
+            <!-- Row 12 -->
+            <TextBlock Grid.Column="0" Grid.Row="10" Text="{lex:Loc PageNewGame_1023_name}" />
+            <WrapPanel Grid.Column="1" Grid.Row="10" HorizontalAlignment="Left" Margin="0 0 0 5">
+                <RadioButton GroupName="Gameclock" Content="{lex:Loc PageNewGame_1024_name}" Name="rbDayTurns"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             IsChecked="True" />
+                <RadioButton GroupName="Gameclock" Content="{lex:Loc PageNewGame_1025_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             Margin="5 0 0 0" />
+            </WrapPanel>
+
+            <!-- Row 13 -->
+            <TextBlock Grid.Column="0" Grid.Row="11" Text="{lex:Loc PageNewGame_1026_name}" />
+            <WrapPanel Grid.Column="1" Grid.Row="11" HorizontalAlignment="Left" Margin="0 0 0 5">
+                <RadioButton GroupName="Paused" Name="cbPaused" Content="{lex:Loc General_106_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" />
+                <RadioButton GroupName="Paused" Content="{lex:Loc General_107_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             Margin="5 0 0 0" IsChecked="True" />
+            </WrapPanel>
+        </Grid>
+        <WrapPanel Margin="0 10 0 0">
+            <Button Style="{DynamicResource StandardButtonStyle}" Content="{lex:Loc PageNewGame_203_name}"
+                    Click="btnNext_Click" />
+            <Button Style="{DynamicResource StandardButtonStyle}" Content="{lex:Loc PageNewGame_202_name}"
+                    Click="btnStartMenu_Click" Margin="5 0 0 0" />
+        </WrapPanel>
+
+    </StackPanel>
+</UserControl>

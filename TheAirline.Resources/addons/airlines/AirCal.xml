@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="AirCal" iata="OC" color="Purple" country="122" CEO="John Doe" mentality="Moderate" market="Regional" preferedairport="SNA">
+    <narrative narrative="AirCal also known as Air California, was founded in 1967 and called Santa Ana's Orange County Airport home, now called John Wayne Airport. They were bought by and integrated into American Airlines in 1987. They were the first to serve the Santa Ana-San Francisco route and used a L-188 Electra, it was their initial route. It's IATA code OC reflects the importance of Orange County to AirCal. At the time of their sale in 1987 they flew to 13 destinations, all but one of them being a west coast USA city, that being Vancouver on Canada's west coast. They had 30 planes in 1987. Some of these included 737's of three types, MD-80's, BAe 146-200's, L-188's, and DC-9's. " /></profile>
+  <info real="True" from="1967" to="1987" />
+</airline>

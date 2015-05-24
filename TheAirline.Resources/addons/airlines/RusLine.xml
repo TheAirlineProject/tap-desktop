@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="RusLine" iata="7R" color="Dark Blue" country="149" CEO="Viacheslav Smirnov" mentality="Moderate" market="Global" preferedairport="DME">
+    <narrative narrative="Founded in 1999 as Aerotex Airlines, RusLine has been their name since March 2013. In 2010 thet acquired the assets and brand name of
+    Air Volga which included six CRJ-200's. They use Domodedovo Airport in Moscow as their primary base but have several throughout Russia. They also offer charter services. They offer service to
+30 destinations most of those being in Russia. Their current fleet consists entirely of CRJ-100's and CRJ-200's. " />
+  </profile>
+  <info real="True" from="1999" to="2199" />
+</airline>

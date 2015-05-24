@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Spirit Airlines" iata="NK" color="Black" country="122" CEO="Ben Bal danza" mentality="Safe"
+           market="Global" preferedairport="DTW">
+<narrative narrative="Spirit Airlines, Inc. is an American ultra Low-cost carrier headquartered in Miramar, Florida. Spirit operates scheduled flights throughout the U.S. as well as the Caribbean, Mexico, and Latin America. Major focus cities include; Ft. Lauderdale, Dallas/Fort Worth, Detroit, Las Vegas, Chicago-O'Hare, Houston-Intercontinental, Atlantic City, and Myrtle Beach."/>
+</profile>
+  <info real="True" from="1980" to="2199" />
+</airline>

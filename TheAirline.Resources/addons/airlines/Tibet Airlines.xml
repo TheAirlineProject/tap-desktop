@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Tibet Airlines" iata="TV" color="Green" country="148" CEO="Liu Yanping" mentality="Moderate" market="Domestic" preferedairport="LXA">
+<narrative narrative="Tibet Airlines is very young having only been founded in 2010. It makes is base at Lhasa, the main city and airport in the Tibet Autonomous region of China. As of right now 
+it serves 23 airports in China. It has nine A319's."/>
+</profile>
+<info real="True" from="2010" to="2199"></info>
+</airline>

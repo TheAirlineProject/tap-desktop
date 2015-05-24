@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Air Corsica" iata="XK" color="LightBlue" country="140" CEO="Reynald Ribault" mentality="Moderate" market="Regional" preferedairport="AJA">
+  <narrative narrative="Air Corsica is based at Ajaccio Airport on the French island of Corsica. It was founded in 1989 as Compagnie Corse Mediterranee and got its current name in 2010. It's 17 destinations are mostly in France with a couple in Italy and one in Belgium. it has 11 planes, five of them being A320's and six are ATR-72's. Some of their flights are done under tha Air France brand and Alitalia brand." /> 
+  </profile>
+  <info real="True" from="1989" to="2199"></info>
+</airline>

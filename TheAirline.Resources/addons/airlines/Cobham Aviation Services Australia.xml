@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Cobham Aviation Services Australia" iata="NC" color="Teal" country="116" CEO="Peter Nottage" mentality="Moderate" market="Domestic" preferedairport="ADL">
+    <narrative narrative="Cobham started as National Jet Systems in 1989. It soon started flying on behalf of Australian Airlines to torist destinations in the noth of Australia. When Qantas bought Australian Cobham continued doing this service and now operates some of their flights under the QantasLink brand, under contract until 2018, but also operate to 9 destinations under their own name. They operate at 21 airports for QantasLink. They also have four BAe-146's  that are used for freight for Australian air Express.  Their passengers planes are seven-teen Boeing 717's,six BAe-146's, and five Avro RJ100's. Their hub is Adelaide. " /></profile>
+  <info real="True" from="1989" to="2199" />
+</airline>

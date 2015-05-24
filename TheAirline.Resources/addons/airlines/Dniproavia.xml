@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Dniproavia" iata="Z6" color="Sky Blue" country="134" CEO="Ihor Kolomoyskyi" mentality="Moderate" market="Global" preferedairport="DNK">
+    <narrative narrative="Dniproavia operate out of Dnipropetrovsk,Ukraine. They have 9 destinations in Europe and Asia and have a fleet of 13 ERJ-145's." />
+  </profile>
+  <info real="True" from="1996" to="2199" />
+</airline>

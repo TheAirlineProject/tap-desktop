@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Bahamasair" iata="UP" color="Yellow" country="203" CEO="Joe Beckett" mentality="Moderate"
+           market="Regional" preferedairport="NAS">
+    <narrative
+      narrative="Bahamasair Holdings Limited, operating as Bahamasair, is an airline based in the Bahamasair House in Nassau, Bahamas. It is the national airline and operates domestic scheduled services to 14 destinations and regional scheduled services to destinations in the Caribbean and the United States. Its main base is Lynden Pindling International Airport." />
+  </profile>
+  <info real="True" from="1973" to="2199" />
+</airline>

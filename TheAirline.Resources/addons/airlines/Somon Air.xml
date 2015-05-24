@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Somon Air" iata="SZ" color="Yellow" country="240" CEO="Lloyd Paxton" mentality="Moderate" market="Global" preferedairport="DYU">
+    <narrative narrative="Somon Air is the first private airline of Tajikistan. It is based at Dushanbe Airport in the countries capital. They as of 2014 offer 20 destinations, 13 of them being Russian cities. They also fly to Germany,China,Turkey,Kazakhstan,and the United Arab Emirates. They have 6 planes, two 737-900ER's, two 737-800s, and two 737-300's." /></profile>
+  <info real="True" from="2007" to="2199" />
+</airline>

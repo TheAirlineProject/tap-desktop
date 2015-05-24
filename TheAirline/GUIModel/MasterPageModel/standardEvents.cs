@@ -14,6 +14,7 @@ using TheAirline.Helpers.Workers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.General;
 using TheAirline.Views.Airline;
+using TheAirline.Views.Game;
 
 namespace TheAirline.GUIModel.MasterPageModel
 {
@@ -110,7 +111,7 @@ namespace TheAirline.GUIModel.MasterPageModel
                 while (GameObjectWorker.GetInstance().IsBusy())
                 {
                 }
-                PageNavigator.NavigateTo(new PageNewGame());
+                //PageNavigator.NavigateTo(new PageNewGame());
                 GameObject.RestartInstance();
 
                 Setup.SetupGame();
