@@ -1,17 +1,19 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Navigation;
+using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Helpers.Workers;
+using TheAirline.Infrastructure;
 using TheAirline.Infrastructure.Events;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airports;
 using TheAirline.ViewModels;
-using Microsoft.Practices.Prism.Logging;
+using WPFLocalizeExtension.Engine;
 
 namespace TheAirline
 {
@@ -21,11 +23,14 @@ namespace TheAirline
     [Export]
     public partial class MainWindow
     {
-        private ILoggerFacade _logger;
+        private readonly ILoggerFacade _logger;
+        private readonly LocalizeDictionary _dictionary = LocalizeDictionary.Instance;
 
         [ImportingConstructor]
-        public MainWindow(IEventAggregator eventAggregator, IRegionManager regionManager, ILoggerFacade logger)
+        public MainWindow(IEventAggregator eventAggregator, IRegionManager regionManager, ILoggerFacade logger, AppState state)
         {
+            Uri mainPage;
+
             InitializeComponent();
 
             _logger = logger;
@@ -33,31 +38,39 @@ namespace TheAirline
             // Subscribes to the CloseGameEvent and closes the window when triggered.
             eventAggregator.GetEvent<CloseGameEvent>().Subscribe(a => Close());
 
+            if (state.Mode == Infrastructure.Enums.ScreenMode.FullScreen)
+            {
+                WindowStyle = WindowStyle.None;
+                WindowState = WindowState.Maximized;
+                Focus();
+            }
+
+            if (string.IsNullOrEmpty(state.Language))
+            {
+                mainPage = new Uri("/PageSelectLanguage", UriKind.Relative);
+            }
+            else
+            {
+                _dictionary.SetCultureCommand.Execute(state.Language);
+                mainPage = new Uri("/PageStartMenu", UriKind.Relative);
+            }
+
+            Width = SystemParameters.PrimaryScreenWidth;
+            Height = SystemParameters.PrimaryScreenHeight;
+
             Loaded += (o, args) =>
             {
                 _logger.Log("Navigating to default header and start menu.", Category.Debug, Priority.Medium);
                 regionManager.RequestNavigate("HeaderContentRegion", new Uri("/PageHeader", UriKind.Relative));
-                regionManager.RequestNavigate("MainContentRegion", new Uri("/PageStartMenu", UriKind.Relative));
+                regionManager.RequestNavigate("MainContentRegion", mainPage);
+            };
+
+            Closing += (o, args) =>
+            {
+                state.SaveState();
             };
 
             //Setup.SetupGame();
-
-            //if (Settings.GetInstance().Mode == Settings.ScreenMode.Fullscreen)
-            //{
-            //    WindowStyle = WindowStyle.None;
-            //    WindowState = WindowState.Maximized;
-            //    Focus();
-            //}
-
-            //PageNavigator.MainWindow = this;
-
-            //Width = SystemParameters.PrimaryScreenWidth;
-            //Height = SystemParameters.PrimaryScreenHeight;
-
-            //if (AppSettings.GetInstance().HasLanguage())
-            //    frmContent.Navigate(new PageStartMenu());
-            //else
-            //    frmContent.Navigate(new PageSelectLanguage());
         }
 
         [Import]
@@ -117,13 +130,6 @@ namespace TheAirline
             //// Remove back entries
             //while (frmContent.NavigationService.CanGoBack)
             //    frmContent.NavigationService.RemoveBackEntry();
-        }
-
-        private void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)
-        {
-            //frmContent.NavigationService.RemoveBackEntry();
-
-            //frmContent.NavigationService.LoadCompleted -= NavigationService_LoadCompleted;
         }
 
         //returns if navigator can go forward

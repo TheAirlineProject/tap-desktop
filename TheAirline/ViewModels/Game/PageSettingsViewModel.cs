@@ -6,9 +6,8 @@ using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.Regions;
-using TheAirline.Db;
+using TheAirline.Infrastructure;
 using TheAirline.Infrastructure.Enums;
-using TheAirline.Models.General;
 using WPFLocalizeExtension.Engine;
 
 namespace TheAirline.ViewModels.Game
@@ -16,35 +15,32 @@ namespace TheAirline.ViewModels.Game
     [Export]
     public class PageSettingsViewModel : BindableBase
     {
-        private readonly AirlineContext _context;
         private readonly LocalizeDictionary _dictionary = LocalizeDictionary.Instance;
         private readonly IRegionManager _regionManager;
-        private readonly Settings _settings;
+        private readonly AppState _state;
 
         [ImportingConstructor]
-        public PageSettingsViewModel(IRegionManager regionManager)
+        public PageSettingsViewModel(IRegionManager regionManager, AppState state)
         {
+            _state = state;
             _regionManager = regionManager;
-            _context = new AirlineContext();
 
             SaveCommand = new DelegateCommand<object>(SaveSettings);
             BackCommand = new DelegateCommand<object>(GoBack);
-
-            _settings = _context.Settings.Find(1);
         }
 
         public ScreenMode ScreenMode
         {
-            get { return _settings.Mode; }
-            set { _settings.Mode = value; }
+            get { return _state.Mode; }
+            set { _state.Mode = value; }
         }
 
         public ObservableCollection<CultureInfo> Languages => _dictionary.MergedAvailableCultures;
 
         public string Language
         {
-            get { return _settings.Language; }
-            set { _settings.Language = value; }
+            get { return _state.Language; }
+            set { _state.Language = value; }
         }
 
         public DelegateCommand<object> SaveCommand { get; set; }
@@ -59,7 +55,7 @@ namespace TheAirline.ViewModels.Game
 
         private void SaveSettings(object obj)
         {
-            _context.SaveChanges();
+            _state.SaveState();
             _regionManager.RequestNavigate("MainContentRegion", new Uri("/PageStartMenu", UriKind.Relative));
         }
     }

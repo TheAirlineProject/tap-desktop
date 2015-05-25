@@ -766,6 +766,7 @@
     <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
     <Compile Include="Infrastructure\Adapters\EnterpriseLoggerAdapter.cs" />
     <Compile Include="Infrastructure\AirlineBootstrapper.cs" />
+    <Compile Include="Infrastructure\AppState.cs" />
     <Compile Include="Infrastructure\Converters\LanguageFlagConverter.cs" />
     <Compile Include="Infrastructure\Converters\RadioButtonCheckedConverter.cs" />
     <Compile Include="Infrastructure\Enums\AirportCode.cs" />
@@ -791,6 +792,7 @@
     <Compile Include="ViewModels\Airline\AirlineMVVM.cs" />
     <Compile Include="ViewModels\Airline\PageAirlineViewModel.cs" />
     <Compile Include="ViewModels\Game\PageCreditsViewModel.cs" />
+    <Compile Include="ViewModels\Game\PageSelectLanguageViewModel.cs" />
     <Compile Include="ViewModels\Game\PageSettingsViewModel.cs" />
     <Compile Include="ViewModels\Game\PageStartDataViewModel.cs" />
     <Compile Include="ViewModels\Game\PageStartMenuViewModel.cs" />
