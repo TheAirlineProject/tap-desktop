@@ -16,15 +16,19 @@ namespace TheAirline.Models.General.Countries
             FuelIndex = fuelindex;
         }
 
+        public Region() { }
+
         public int Id { get; set; }
 
         public static string Section { get; set; }
 
-        public string Name => Translator.GetInstance().GetString(Section, Uid);
+        public string Name { get; set; }
 
         public string Uid { get; set; }
 
         public double FuelIndex { get; set; }
+
+        public virtual Continent Continent { get; set; }
     }
 
     //the list of regions

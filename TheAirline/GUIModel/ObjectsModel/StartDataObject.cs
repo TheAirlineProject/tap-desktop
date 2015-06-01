@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
@@ -26,29 +25,29 @@ namespace TheAirline.GUIModel.ObjectsModel
 
         public Country HomeCountry { get; set; }
 
-        public Boolean IsPaused { get; set; }
+        public bool IsPaused { get; set; }
 
-        public Boolean LocalCurrency { get; set; }
+        public bool LocalCurrency { get; set; }
 
-        public Boolean MajorAirports { get; set; }
+        public bool MajorAirports { get; set; }
 
-        public Boolean InternationalAirports { get; set; }
+        public bool InternationalAirports { get; set; }
 
         public int NumberOfOpponents { get; set; }
 
         public List<Airline> Opponents { get; set; }
 
-        public Boolean RandomOpponents { get; set; }
+        public bool RandomOpponents { get; set; }
 
-        public Boolean RealData { get; set; }
+        public bool RealData { get; set; }
 
         public Region Region { get; set; }
 
-        public Boolean SameRegion { get; set; }
+        public bool SameRegion { get; set; }
 
         public GameTimeZone TimeZone { get; set; }
 
-        public Boolean UseDayTurns { get; set; }
+        public bool UseDayTurns { get; set; }
 
         public int Year { get; set; }
 
