@@ -1,8 +1,7 @@
-namespace TheAirline.Migrations
+using System.Data.Entity.Migrations;
+
+namespace TheAirline.Infrastructure.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class Regions1 : DbMigration
     {
         public override void Up()

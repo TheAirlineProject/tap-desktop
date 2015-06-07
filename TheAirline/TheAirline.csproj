@@ -766,6 +766,7 @@
     <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
     <Compile Include="Infrastructure\Adapters\EnterpriseLoggerAdapter.cs" />
     <Compile Include="Infrastructure\AirlineBootstrapper.cs" />
+    <Compile Include="Infrastructure\AirlineBootstrapper.cs" />
     <Compile Include="Infrastructure\AppState.cs" />
     <Compile Include="Infrastructure\Converters\LanguageFlagConverter.cs" />
     <Compile Include="Infrastructure\Converters\RadioButtonCheckedConverter.cs" />
@@ -788,6 +789,11 @@
     <Compile Include="Migrations\201505231912428_Regions.Designer.cs">
       <DependentUpon>201505231912428_Regions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505270508368_Regions1.cs" />
+    <Compile Include="Migrations\201505270508368_Regions1.Designer.cs">
+      <DependentUpon>201505270508368_Regions1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\General\Settings.cs" />
     <Compile Include="ViewModels\Airline\AirlineMVVM.cs" />
     <Compile Include="ViewModels\Airline\PageAirlineViewModel.cs" />
@@ -1051,7 +1057,6 @@
     <Compile Include="Models\Airliners\AirlinerScheduleConfiguration.cs" />
     <Compile Include="Models\Airliners\EngineType.cs" />
     <Compile Include="Models\Airports\AirportExpansion.cs" />
-    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Helpers\RouteHelpers.cs" />
     <Compile Include="Models\General\OperatingData.cs" />
     <Compile Include="Models\General\SpecialContract.cs" />
@@ -1248,6 +1253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505231912428_Regions.resx">
       <DependentUpon>201505231912428_Regions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505270508368_Regions1.resx">
+      <DependentUpon>201505270508368_Regions1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

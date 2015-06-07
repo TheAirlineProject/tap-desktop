@@ -1,6 +1,6 @@
 using System.Data.Entity.Migrations;
 
-namespace TheAirline.Migrations
+namespace TheAirline.Infrastructure.Migrations
 {
     public partial class Settings : DbMigration
     {

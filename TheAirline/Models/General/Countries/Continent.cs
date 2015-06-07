@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TheAirline.Models.General.Countries;
 
 namespace TheAirline.General.Models.Countries
 {

@@ -2,7 +2,7 @@
 using TheAirline.General.Models;
 using TheAirline.General.Models.Countries;
 
-namespace TheAirline.Db
+namespace TheAirline.Infrastructure.Db
 {
     public class AirlineContext : DbContext
     {
