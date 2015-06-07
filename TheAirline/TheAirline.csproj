@@ -659,11 +659,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>language.resx</DependentUpon>
     </Compile>
-    <Compile Include="AirlineBootstrapper.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Db\AirlineContext.cs" />
     <Compile Include="GUIModel\CustomControlsModel\CalendarModel\AppointmentControl.xaml.cs">
       <DependentUpon>AppointmentControl.xaml</DependentUpon>
     </Compile>
@@ -764,8 +764,38 @@
     <Compile Include="GUIModel\MasterPageModel\standardTemplatesEvents.cs" />
     <Compile Include="GUIModel\ObjectsModel\GUIObject.cs" />
     <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
+    <Compile Include="Infrastructure\Adapters\EnterpriseLoggerAdapter.cs" />
+    <Compile Include="Infrastructure\AirlineBootstrapper.cs" />
+    <Compile Include="Infrastructure\AppState.cs" />
+    <Compile Include="Infrastructure\Converters\LanguageFlagConverter.cs" />
+    <Compile Include="Infrastructure\Converters\RadioButtonCheckedConverter.cs" />
+    <Compile Include="Infrastructure\Enums\AirportCode.cs" />
+    <Compile Include="Infrastructure\Enums\Difficulty.cs" />
+    <Compile Include="Infrastructure\Enums\GameSpeeds.cs" />
+    <Compile Include="Infrastructure\Enums\Intervals.cs" />
+    <Compile Include="Infrastructure\Enums\ScreenMode.cs" />
+    <Compile Include="Infrastructure\Events\CloseGameEvent.cs" />
+    <Compile Include="Infrastructure\Services\TaskDialogService.cs" />
+    <Compile Include="Migrations\201505220127065_Settings.cs" />
+    <Compile Include="Migrations\201505220127065_Settings.Designer.cs">
+      <DependentUpon>201505220127065_Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505220451101_Settings1.cs" />
+    <Compile Include="Migrations\201505220451101_Settings1.Designer.cs">
+      <DependentUpon>201505220451101_Settings1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505231912428_Regions.cs" />
+    <Compile Include="Migrations\201505231912428_Regions.Designer.cs">
+      <DependentUpon>201505231912428_Regions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\General\Settings.cs" />
     <Compile Include="ViewModels\Airline\AirlineMVVM.cs" />
     <Compile Include="ViewModels\Airline\PageAirlineViewModel.cs" />
+    <Compile Include="ViewModels\Game\PageCreditsViewModel.cs" />
+    <Compile Include="ViewModels\Game\PageSelectLanguageViewModel.cs" />
+    <Compile Include="ViewModels\Game\PageSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Game\PageStartDataViewModel.cs" />
+    <Compile Include="ViewModels\Game\PageStartMenuViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\Airline\PageAirlineEditAirliners.xaml.cs">
       <DependentUpon>PageAirlineEditAirliners.xaml</DependentUpon>
@@ -1001,6 +1031,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Airlines\Airline.cs" />
     <Compile Include="Models\Airlines\AdvertisementType.cs" />
     <Compile Include="Models\Airlines\AirlineBudget.cs" />
@@ -1020,7 +1051,11 @@
     <Compile Include="Models\Airliners\AirlinerScheduleConfiguration.cs" />
     <Compile Include="Models\Airliners\EngineType.cs" />
     <Compile Include="Models\Airports\AirportExpansion.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Helpers\RouteHelpers.cs" />
+    <Compile Include="Models\General\OperatingData.cs" />
+    <Compile Include="Models\General\SpecialContract.cs" />
+    <Compile Include="Models\General\SpecialContractType.cs" />
     <Compile Include="Models\Routes\CombiRoute.cs" />
     <Compile Include="Models\Airports\AirportContract.cs" />
     <Compile Include="Models\Airlines\Alliance.cs" />
@@ -1064,14 +1099,36 @@
     <Compile Include="Models\Airports\Gate.cs" />
     <Compile Include="Models\Airports\Hub.cs" />
     <Compile Include="Models\Airports\HubType.cs" />
+    <Compile Include="Models\General\CalendarItem.cs" />
+    <Compile Include="Models\General\Countries\Continent.cs" />
     <Compile Include="Helpers\EventsHelpers.cs" />
     <Compile Include="Helpers\SerializedLoadSaveHelpers.cs" />
+    <Compile Include="Models\General\NewsFeed.cs" />
     <Compile Include="Helpers\BudgetHelpers.cs" />
     <Compile Include="Helpers\ScenarioHelpers.cs" />
     <Compile Include="Helpers\StatisticsHelpers.cs" />
     <Compile Include="Helpers\TimeTableHelpers.cs" />
+    <Compile Include="Models\General\RandomEvent.cs" />
+    <Compile Include="Models\General\Scenarios\Scenario.cs" />
+    <Compile Include="Models\General\Scenarios\ScenarioAirline.cs" />
+    <Compile Include="Models\General\Scenarios\ScenarioFailure.cs" />
+    <Compile Include="Models\General\Scenarios\ScenarioObject.cs" />
+    <Compile Include="Models\General\Scenarios\ScenarioPassengerDemand.cs" />
+    <Compile Include="Models\General\Statistics\Ratings.cs" />
     <Compile Include="Models\Airports\Runway.cs" />
     <Compile Include="Models\Airports\Terminal.cs" />
+    <Compile Include="Models\General\Countries\CountryCurrency.cs" />
+    <Compile Include="Models\General\DifficultyLevel.cs" />
+    <Compile Include="Infrastructure\AppSettings.cs" />
+    <Compile Include="Models\General\Configuration.cs" />
+    <Compile Include="Models\General\Coordinates.cs" />
+    <Compile Include="Models\General\Countries\BaseUnit.cs" />
+    <Compile Include="Models\General\Countries\Country.cs" />
+    <Compile Include="Models\General\Countries\CountryTailNumber.cs" />
+    <Compile Include="Models\General\Countries\Towns\State.cs" />
+    <Compile Include="Models\General\Countries\UnionMember.cs" />
+    <Compile Include="Models\General\GameObject.cs" />
+    <Compile Include="Models\General\GameTimeZone.cs" />
     <Compile Include="Helpers\AIHelpers.cs" />
     <Compile Include="Helpers\AirlineHelpers.cs" />
     <Compile Include="Helpers\AirlinerHelpers.cs" />
@@ -1084,11 +1141,38 @@
     <Compile Include="Helpers\PerformanceCounter.cs" />
     <Compile Include="Helpers\Workers\AIWorker.cs" />
     <Compile Include="Helpers\Workers\GameObjectWorker.cs" />
+    <Compile Include="Models\General\HistoricEvents\HistoricEvent.cs" />
+    <Compile Include="Models\General\HistoricEvents\HistoricEventInfluence.cs" />
+    <Compile Include="Models\General\Holidays\Holiday.cs" />
+    <Compile Include="Models\General\Holidays\HolidayYear.cs" />
+    <Compile Include="Models\General\Inflation.cs" />
+    <Compile Include="Models\General\Finances\Invoice.cs" />
+    <Compile Include="Models\General\Finances\Invoices.cs" />
+    <Compile Include="Models\General\Finances\MonthlyInvoice.cs" />
+    <Compile Include="Infrastructure\Language.cs" />
+    <Compile Include="Models\General\Loan.cs" />
+    <Compile Include="Models\General\Names.cs" />
+    <Compile Include="Models\General\NewsBox.cs" />
     <Compile Include="Helpers\MathHelpers.cs" />
     <Compile Include="Helpers\PassengerHelpers.cs" />
+    <Compile Include="Models\General\Countries\TemporaryCountry.cs" />
+    <Compile Include="Models\General\Countries\Union.cs" />
+    <Compile Include="Models\General\Period.cs" />
+    <Compile Include="Models\General\Countries\Towns\Town.cs" />
+    <Compile Include="Infrastructure\Versioning.cs" />
+    <Compile Include="Models\General\Environment\HourlyWeather.cs" />
+    <Compile Include="Models\General\Environment\WeatherAverage.cs" />
     <Compile Include="Models\Passengers\DestinationDemand.cs" />
     <Compile Include="Models\Passengers\FlightRestriction.cs" />
     <Compile Include="Models\Passengers\PassengerRouteFinder.cs" />
+    <Compile Include="Models\General\Countries\Region.cs" />
+    <Compile Include="Infrastructure\Settings.cs" />
+    <Compile Include="Infrastructure\Setup.cs" />
+    <Compile Include="Models\General\Statistics\GeneralStatistics.cs" />
+    <Compile Include="Models\General\Statistics\StatisticsType.cs" />
+    <Compile Include="Models\General\Statistics\StatisticsValue.cs" />
+    <Compile Include="Models\General\Translator.cs" />
+    <Compile Include="Models\General\Environment\Weather.cs" />
     <Compile Include="Models\Pilots\FlightSchool.cs" />
     <Compile Include="Models\Pilots\Instructor.cs" />
     <Compile Include="Models\Pilots\Pilot.cs" />
@@ -1155,6 +1239,15 @@
     <EmbeddedResource Include="..\Data\Data\languages\language.tr-TR.resx">
       <Link>Data\languagefiles\language.tr-TR.resx</Link>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505220127065_Settings.resx">
+      <DependentUpon>201505220127065_Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505220451101_Settings1.resx">
+      <DependentUpon>201505220451101_Settings1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505231912428_Regions.resx">
+      <DependentUpon>201505231912428_Regions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1285,18 +1378,6 @@
     <Resource Include="Resources\images\transfer.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TheAirline.Db\TheAirline.Db.csproj">
-      <Project>{D53BE9EB-6C19-4FA7-817B-7E524CD0A37C}</Project>
-      <Name>TheAirline.Db</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TheAirline.General\TheAirline.General.csproj">
-      <Project>{2e90336d-8583-47d6-abf4-468436b7827b}</Project>
-      <Name>TheAirline.General</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TheAirline.Infrastructure\TheAirline.Infrastructure.csproj">
-      <Project>{7e405444-dfec-4230-9077-1809284ca5ff}</Project>
-      <Name>TheAirline.Infrastructure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TheAirline.Resources\TheAirline.Resources.csproj">
       <Project>{e489792a-d675-4b1a-8a28-b6e255d9071d}</Project>
       <Name>TheAirline.Resources</Name>
@@ -1357,10 +1438,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\images\star_gold.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\General\" />
-    <Folder Include="ViewModels\Game\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
