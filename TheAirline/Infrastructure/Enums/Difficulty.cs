@@ -1,4 +1,4 @@
-﻿namespace TheAirline.General.Enums
+﻿namespace TheAirline.Infrastructure.Enums
 {
     public enum Difficulty
     {

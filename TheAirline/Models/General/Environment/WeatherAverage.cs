@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using TheAirline.General.Models;
-using TheAirline.General.Models.Countries.Towns;
 using TheAirline.Infrastructure;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General.Countries;
+using TheAirline.Models.General.Countries.Towns;
 
 namespace TheAirline.Models.General.Environment
 {

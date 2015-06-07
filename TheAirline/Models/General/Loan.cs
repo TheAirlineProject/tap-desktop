@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using TheAirline.General.Models;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 

@@ -659,6 +659,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>language.resx</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AirlineBootstrapper.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -765,8 +766,6 @@
     <Compile Include="GUIModel\ObjectsModel\GUIObject.cs" />
     <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
     <Compile Include="Infrastructure\Adapters\EnterpriseLoggerAdapter.cs" />
-    <Compile Include="Infrastructure\AirlineBootstrapper.cs" />
-    <Compile Include="Infrastructure\AirlineBootstrapper.cs" />
     <Compile Include="Infrastructure\AppState.cs" />
     <Compile Include="Infrastructure\Converters\LanguageFlagConverter.cs" />
     <Compile Include="Infrastructure\Converters\RadioButtonCheckedConverter.cs" />
@@ -777,6 +776,7 @@
     <Compile Include="Infrastructure\Enums\ScreenMode.cs" />
     <Compile Include="Infrastructure\Events\CloseGameEvent.cs" />
     <Compile Include="Infrastructure\Services\TaskDialogService.cs" />
+    <Compile Include="Infrastructure\Settings.cs" />
     <Compile Include="Migrations\201505220127065_Settings.cs" />
     <Compile Include="Migrations\201505220127065_Settings.Designer.cs">
       <DependentUpon>201505220127065_Settings.cs</DependentUpon>
@@ -1171,7 +1171,6 @@
     <Compile Include="Models\Passengers\FlightRestriction.cs" />
     <Compile Include="Models\Passengers\PassengerRouteFinder.cs" />
     <Compile Include="Models\General\Countries\Region.cs" />
-    <Compile Include="Infrastructure\Settings.cs" />
     <Compile Include="Infrastructure\Setup.cs" />
     <Compile Include="Models\General\Statistics\GeneralStatistics.cs" />
     <Compile Include="Models\General\Statistics\StatisticsType.cs" />

@@ -5,9 +5,10 @@ using System.Globalization;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.Regions;
+using TheAirline.Infrastructure;
 using WPFLocalizeExtension.Engine;
 
-namespace TheAirline.General.ViewModels
+namespace TheAirline.ViewModels.Game
 {
     [Export]
     public class PageSelectLanguageViewModel : BindableBase

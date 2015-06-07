@@ -40,7 +40,7 @@ namespace TheAirline.Infrastructure
 
         #endregion
 
-         #region Public Properties
+        #region Public Properties
 
         [Versioning("airportcode")]
         public AirportCode AirportCodeDisplay { get; set; }

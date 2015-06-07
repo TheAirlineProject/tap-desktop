@@ -136,6 +136,8 @@ namespace TheAirline.Models.Routes
 
     [Serializable]
     //the class for a helicopter route
+    // TODO - Move into its own file - Shouldn't be declared in the same file as another class
+    // TODO - Subtype directly from Route. Possibly create enum for route type.
     public class HelicopterRoute : PassengerRoute
     {
         public HelicopterRoute(

@@ -5,9 +5,9 @@ using Microsoft.Practices.Prism.MefExtensions;
 using Microsoft.Practices.ServiceLocation;
 using TheAirline.Infrastructure.Adapters;
 
-namespace TheAirline
+namespace TheAirline.Infrastructure
 {
-    public class AirlineBootstrapper : MefBootstrapper
+    public sealed class AirlineBootstrapper : MefBootstrapper
     {
         protected override DependencyObject CreateShell()
         {
@@ -30,7 +30,7 @@ namespace TheAirline
         {
             base.InitializeShell();
 
-            Application.Current.MainWindow = (Window) Shell;
+            Application.Current.MainWindow = (Window)Shell;
             Application.Current.MainWindow.Show();
         }
     }

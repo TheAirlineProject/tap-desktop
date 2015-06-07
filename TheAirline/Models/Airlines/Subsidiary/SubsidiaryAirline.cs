@@ -6,6 +6,8 @@ using TheAirline.Models.Routes;
 namespace TheAirline.Models.Airlines.Subsidiary
 {
     //the class for a subsidiary airline for an airline
+
+    // TODO - Replace with a proper reference to an airline object with a subsidiary flag instead of a class. Improper OO design.
     [Serializable]
     public class SubsidiaryAirline : Airline
     {

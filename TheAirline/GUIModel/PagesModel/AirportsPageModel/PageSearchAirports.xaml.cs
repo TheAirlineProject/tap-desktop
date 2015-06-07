@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using TheAirline.General.Models.Countries;
 using TheAirline.GUIModel.CustomControlsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Helpers;

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
 
-namespace TheAirline.General.Models
+namespace TheAirline.Models
 {
     public abstract class BaseModel : ISerializable
     {

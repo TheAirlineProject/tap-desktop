@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Device.Location;
 using System.Runtime.Serialization;
-using TheAirline.General.Models;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 

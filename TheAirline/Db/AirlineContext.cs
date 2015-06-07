@@ -1,10 +1,10 @@
 ﻿using System.Data.Entity;
-using TheAirline.General.Models;
-using TheAirline.General.Models.Countries;
+using TheAirline.Models.General.Countries;
+using Settings = TheAirline.Models.General.Settings;
 
-namespace TheAirline.Infrastructure.Db
+namespace TheAirline.Db
 {
-    public class AirlineContext : DbContext
+    public sealed class AirlineContext : DbContext
     {
         public DbSet<Settings> Settings { get; set; }
         public DbSet<Region> Regions { get; set; }

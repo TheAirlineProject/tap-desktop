@@ -18,7 +18,7 @@ namespace TheAirline.Views.Game
     ///     Interaction logic for PageStartData.xaml
     /// </summary>
     [Export("PageStartData")]
-    public partial class PageStartData
+    public sealed partial class PageStartData
     {
         #region Constructors and Destructors
 

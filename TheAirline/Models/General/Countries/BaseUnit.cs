@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization;
-using TheAirline.Models.General;
-using TheAirline.Models.General.Countries;
+using TheAirline.Infrastructure;
 
-namespace TheAirline.General.Models.Countries
+namespace TheAirline.Models.General.Countries
 {
     //the base unit for countries and union members
     [Serializable]
@@ -75,31 +74,32 @@ namespace TheAirline.General.Models.Countries
                 return false;
             }
             // if one is union and the other is not
-            if ((a is Union && b is Country) || (a is Country && b is Union))
-            {
-                return false;
-            }
+            // - Commented because a base class should not know about its subclasses
+            //if ((a is Union && b is Country) || (a is Country && b is Union))
+            //{
+            //    return false;
+            //}
 
-            if (a is Union && b is Union)
-            {
-                return a.Uid == b.Uid;
-            }
+            //if (a is Union && b is Union)
+            //{
+            //    return a.Uid == b.Uid;
+            //}
 
-            // Return true if the fields match:
-            if (a is TerritoryCountry && b is TerritoryCountry)
-            {
-                return a.Uid == b.Uid || ((TerritoryCountry) a).MainCountry.Uid == b.Uid
-                       || a.Uid == ((TerritoryCountry) b).MainCountry.Uid
-                       || ((TerritoryCountry) a).MainCountry.Uid == ((TerritoryCountry) b).MainCountry.Uid;
-            }
-            if (a is TerritoryCountry)
-            {
-                return a.Uid == b.Uid || ((TerritoryCountry) a).MainCountry.Uid == b.Uid;
-            }
-            if (b is TerritoryCountry)
-            {
-                return a.Uid == b.Uid || a.Uid == ((TerritoryCountry) b).MainCountry.Uid;
-            }
+            //// Return true if the fields match:
+            //if (a is TerritoryCountry && b is TerritoryCountry)
+            //{
+            //    return a.Uid == b.Uid || ((TerritoryCountry) a).MainCountry.Uid == b.Uid
+            //           || a.Uid == ((TerritoryCountry) b).MainCountry.Uid
+            //           || ((TerritoryCountry) a).MainCountry.Uid == ((TerritoryCountry) b).MainCountry.Uid;
+            //}
+            //if (a is TerritoryCountry)
+            //{
+            //    return a.Uid == b.Uid || ((TerritoryCountry) a).MainCountry.Uid == b.Uid;
+            //}
+            //if (b is TerritoryCountry)
+            //{
+            //    return a.Uid == b.Uid || a.Uid == ((TerritoryCountry) b).MainCountry.Uid;
+            //}
 
             return a.Uid == b.Uid; //a.x == b.x && a.y == b.y && a.z == b.z;
         }

@@ -5,6 +5,8 @@ using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.General;
 
+// TODO - Split classes into their own files
+
 namespace TheAirline.Models.Airliners
 {
     //the class for a type of airliner
@@ -322,6 +324,7 @@ namespace TheAirline.Models.Airliners
         #endregion
     }
 
+    // TODO - Derive from AirlinerType directly or possibly create a type field in parent class.
     //the class for a combi airliner type
     [Serializable]
     public class AirlinerCombiType : AirlinerPassengerType

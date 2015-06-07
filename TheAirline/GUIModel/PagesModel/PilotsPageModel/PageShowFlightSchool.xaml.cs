@@ -7,12 +7,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using TheAirline.General.Models.Countries.Towns;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Helpers;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.General;
+using TheAirline.Models.General.Countries.Towns;
 using TheAirline.Models.General.Finances;
 using TheAirline.Models.Pilots;
 

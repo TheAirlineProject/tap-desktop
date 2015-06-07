@@ -3,7 +3,6 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
-using TheAirline.General.Models.Countries;
 using TheAirline.Infrastructure;
 using TheAirline.Models.General.Countries;
 

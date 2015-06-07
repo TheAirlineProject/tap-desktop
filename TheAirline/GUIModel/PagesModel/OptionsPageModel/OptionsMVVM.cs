@@ -5,9 +5,9 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
-using TheAirline.General.Enums;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.General;
 using Settings = TheAirline.Properties.Settings;
 

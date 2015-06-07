@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using TheAirline.General.Models.Countries.Towns;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
+using TheAirline.Models.General.Countries.Towns;
 
 namespace TheAirline.Models.Pilots
 {

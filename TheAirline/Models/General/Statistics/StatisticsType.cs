@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using TheAirline.General.Models;
 using TheAirline.Infrastructure;
 
 namespace TheAirline.Models.General.Statistics

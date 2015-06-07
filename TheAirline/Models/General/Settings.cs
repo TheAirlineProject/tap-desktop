@@ -1,6 +1,6 @@
-﻿using TheAirline.General.Enums;
+﻿using TheAirline.Infrastructure.Enums;
 
-namespace TheAirline.General.Models
+namespace TheAirline.Models.General
 {
     public class Settings
     {

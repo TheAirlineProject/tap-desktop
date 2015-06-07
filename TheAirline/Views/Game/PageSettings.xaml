@@ -7,6 +7,7 @@
              xmlns:converters="clr-namespace:TheAirline.Infrastructure.Converters"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:enums="clr-namespace:TheAirline.Infrastructure.Enums"
              lex:LocalizeDictionary.DesignCulture="en"
              lex:ResxLocalizationProvider.DefaultAssembly="TheAirline"
              lex:ResxLocalizationProvider.DefaultDictionary="language"

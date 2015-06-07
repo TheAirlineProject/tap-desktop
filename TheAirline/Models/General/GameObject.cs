@@ -4,7 +4,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.Serialization;
-using TheAirline.General.Models;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.Airlines;

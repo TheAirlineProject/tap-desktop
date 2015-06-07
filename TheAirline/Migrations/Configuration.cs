@@ -1,9 +1,9 @@
 using System.Data.Entity.Migrations;
-using TheAirline.General.Enums;
-using TheAirline.General.Models.Countries;
-using TheAirline.Infrastructure.Db;
+using TheAirline.Db;
+using TheAirline.Infrastructure.Enums;
+using TheAirline.Models.General.Countries;
 
-namespace TheAirline.Infrastructure.Migrations
+namespace TheAirline.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<AirlineContext>
     {
@@ -27,7 +27,7 @@ namespace TheAirline.Infrastructure.Migrations
             //    );
             //
             context.Settings.AddOrUpdate(s => s.Id,
-                new General.Models.Settings {Mode = ScreenMode.Windowed});
+                new Models.General.Settings {Mode = ScreenMode.Windowed});
 
             var africa = new Continent {Name = "Africa"};
             var asia = new Continent {Name = "Asia"};

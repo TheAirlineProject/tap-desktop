@@ -9,6 +9,7 @@ using TheAirline.Models.General.Statistics;
 namespace TheAirline.Models.Routes
 {
     //the class for a combi route
+    // TODO - Derive from route directly
     [Serializable]
     public class CombiRoute : PassengerRoute
     {

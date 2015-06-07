@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
-using TheAirline.Models.General.Countries;
+using TheAirline.Infrastructure;
 
-namespace TheAirline.General.Models.Countries.Towns
+namespace TheAirline.Models.General.Countries.Towns
 {
     //the class for a state
     [Serializable]

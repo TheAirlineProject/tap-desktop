@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
 using System.Runtime.Serialization;
-using TheAirline.General.Models.Countries;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
 using TheAirline.Models.Airliners;

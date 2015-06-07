@@ -6,11 +6,10 @@ using System.Windows.Input;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
-using TheAirline.Db;
-using TheAirline.General.Enums;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Helpers.Workers;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Infrastructure.Events;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airports;
@@ -23,7 +22,7 @@ namespace TheAirline
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
     [Export]
-    public partial class MainWindow
+    public sealed partial class MainWindow
     {
         private readonly ILoggerFacade _logger;
         private readonly LocalizeDictionary _dictionary = LocalizeDictionary.Instance;

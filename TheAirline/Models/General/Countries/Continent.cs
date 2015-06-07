@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TheAirline.General.Models.Countries
+namespace TheAirline.Models.General.Countries
 {
     //the class for a continent
     public class Continent

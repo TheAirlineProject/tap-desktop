@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using TheAirline.General.Models.Countries;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;

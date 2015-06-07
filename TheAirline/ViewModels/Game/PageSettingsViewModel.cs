@@ -6,10 +6,11 @@ using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.Regions;
-using TheAirline.General.Enums;
+using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using WPFLocalizeExtension.Engine;
 
-namespace TheAirline.General.ViewModels
+namespace TheAirline.ViewModels.Game
 {
     [Export]
     public class PageSettingsViewModel : BindableBase

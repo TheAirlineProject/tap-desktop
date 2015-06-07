@@ -5,21 +5,20 @@ using System.ComponentModel.Composition;
 using System.Data.Entity;
 using System.Linq;
 using TheAirline.Db;
-using TheAirline.General.Enums;
-using TheAirline.General.Models;
-using TheAirline.General.Models.Countries;
-using TheAirline.Infrastructure.Db;
+using TheAirline.Infrastructure.Enums;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Countries;
 using WPFLocalizeExtension.Engine;
 
 namespace TheAirline.Infrastructure
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public class AppState : IDisposable
+    public sealed class AppState : IDisposable
     {
         private readonly AirlineContext _context = new AirlineContext();
         private readonly List<Region> _regions;
-        private readonly Settings _settings;
+        private readonly Models.General.Settings _settings;
 
         public AppState()
         {
