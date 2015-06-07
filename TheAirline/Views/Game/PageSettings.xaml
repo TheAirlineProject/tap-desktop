@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:game="clr-namespace:TheAirline.ViewModels.Game"
-             xmlns:enums="clr-namespace:TheAirline.Infrastructure.Enums"
              xmlns:converters="clr-namespace:TheAirline.Infrastructure.Converters"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using TheAirline.Infrastructure;
 
 namespace TheAirline.Models.Airlines.Subsidiary
 {

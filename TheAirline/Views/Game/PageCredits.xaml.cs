@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.Composition;
-using TheAirline.ViewModels.Game;
+using TheAirline.General.ViewModels;
 
 namespace TheAirline.Views.Game
 {

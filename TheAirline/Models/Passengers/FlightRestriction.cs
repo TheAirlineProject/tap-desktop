@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using TheAirline.General.Models.Countries;
 using TheAirline.Infrastructure;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.General.Countries;

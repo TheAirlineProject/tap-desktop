@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Media;
+using TheAirline.General.Models.Countries;
 using TheAirline.Helpers;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.General;

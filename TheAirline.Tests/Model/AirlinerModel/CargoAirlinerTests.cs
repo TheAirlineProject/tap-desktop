@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TheAirline.Infrastructure;
 using TheAirline.Models.Airliners;
 
 namespace TheAirline.Tests.Model.AirlinerModel

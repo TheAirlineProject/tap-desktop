@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using TheAirline.General.Enums;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
-using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.General;
 using Settings = TheAirline.Properties.Settings;
 

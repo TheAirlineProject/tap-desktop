@@ -6,6 +6,8 @@ using System.Windows.Input;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
+using TheAirline.Db;
+using TheAirline.General.Enums;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Helpers.Workers;
 using TheAirline.Infrastructure;
@@ -38,7 +40,7 @@ namespace TheAirline
             // Subscribes to the CloseGameEvent and closes the window when triggered.
             eventAggregator.GetEvent<CloseGameEvent>().Subscribe(a => Close());
 
-            if (state.Mode == Infrastructure.Enums.ScreenMode.FullScreen)
+            if (state.Mode == ScreenMode.FullScreen)
             {
                 WindowStyle = WindowStyle.None;
                 WindowState = WindowState.Maximized;
