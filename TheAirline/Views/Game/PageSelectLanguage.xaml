@@ -11,13 +11,13 @@
              lex:ResxLocalizationProvider.DefaultAssembly="TheAirline"
              lex:ResxLocalizationProvider.DefaultDictionary="language"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance game:PageSelectLanguageViewModel}"
-             d:DesignHeight="300" d:DesignWidth="300" x:Name="Languages">
+             d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <converters:LanguageFlagConverter x:Key="LanguageFlagConverter" />
         <DataTemplate x:Key="LanguageItem" DataType="{x:Type globalization:CultureInfo}">
             <WrapPanel>
                 <TextBlock VerticalAlignment="Bottom">
-                    <Hyperlink Command="{Binding ElementName=Languages, Path=DataContext.SelectLanguage}" CommandParameter="{Binding Name}">
+                    <Hyperlink Command="{Binding DataContext.SelectLanguage, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding Name}">
                         <WrapPanel>
                             <Image Height="32" Width="32" Source="{Binding Name,Converter={StaticResource LanguageFlagConverter}}"
                                    RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" />

@@ -6,7 +6,7 @@ namespace TheAirline.Views.Game
     /// Interaction logic for PageHeader.xaml
     /// </summary>
     [Export("PageHeader")]
-    public partial class PageHeader
+    public sealed partial class PageHeader
     {
         public PageHeader()
         {

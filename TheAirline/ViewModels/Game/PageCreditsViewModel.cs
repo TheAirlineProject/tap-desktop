@@ -4,7 +4,7 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.Regions;
 
-namespace TheAirline.General.ViewModels
+namespace TheAirline.ViewModels.Game
 {
     [Export]
     public class PageCreditsViewModel : BindableBase

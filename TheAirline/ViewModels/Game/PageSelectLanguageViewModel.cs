@@ -34,6 +34,6 @@ namespace TheAirline.ViewModels.Game
         }
 
         public ObservableCollection<CultureInfo> Languages => _dictionary.MergedAvailableCultures;
-        public DelegateCommand<string> SelectLanguage { get; set; }
+        public DelegateCommand<string> SelectLanguage { get; }
     }
 }

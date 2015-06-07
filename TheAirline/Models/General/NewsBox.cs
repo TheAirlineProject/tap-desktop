@@ -146,15 +146,9 @@ namespace TheAirline.Models.General
 
         #endregion
 
-        #region Delegates
-
-        public delegate void ActionHandler(object o);
-
-        #endregion
-
         #region Public Events
 
-        public event ActionHandler Action;
+        public event Action<object> Action;
 
         #endregion
 

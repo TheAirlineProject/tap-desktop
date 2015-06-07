@@ -10,7 +10,7 @@ namespace TheAirline.Views.Game
     ///     Interaction logic for PageNewGame.xaml
     /// </summary>
     [Export("PageNewGame")]
-    public partial class PageNewGame
+    public sealed partial class PageNewGame
     {
         #region Constructors and Destructors
 

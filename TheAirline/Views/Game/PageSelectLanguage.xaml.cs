@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.Composition;
-using TheAirline.General.ViewModels;
 using TheAirline.ViewModels.Game;
 
 namespace TheAirline.Views.Game
@@ -8,7 +7,7 @@ namespace TheAirline.Views.Game
     ///     Interaction logic for PageSelectLanguage.xaml
     /// </summary>
     [Export("PageSelectLanguage")]
-    public partial class PageSelectLanguage
+    public sealed partial class PageSelectLanguage
     {
         public PageSelectLanguage()
         {

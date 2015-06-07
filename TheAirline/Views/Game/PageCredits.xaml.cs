@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.Composition;
-using TheAirline.General.ViewModels;
+using TheAirline.ViewModels.Game;
 
 namespace TheAirline.Views.Game
 {
@@ -7,7 +7,7 @@ namespace TheAirline.Views.Game
     ///     Interaction logic for PageCredits.xaml
     /// </summary>
     [Export("PageCredits")]
-    public partial class PageCredits
+    public sealed partial class PageCredits
     {
         public PageCredits()
         {

@@ -7,7 +7,7 @@ namespace TheAirline.Views.Game
     ///     Interaction logic for PageStartMenu.xaml
     /// </summary>
     [Export("PageStartMenu")]
-    public partial class PageStartMenu
+    public sealed partial class PageStartMenu
     {
         #region Constructors and Destructors
 
