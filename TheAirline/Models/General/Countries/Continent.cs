@@ -4,7 +4,7 @@ using System.Linq;
 namespace TheAirline.Models.General.Countries
 {
     //the class for a continent
-    public class Continent
+    public sealed class Continent
     {
         #region Constructors and Destructors
 

@@ -13,27 +13,16 @@
     <StackPanel HorizontalAlignment="Center">
         <TextBlock Text="Development Team" VerticalAlignment="Bottom" HorizontalAlignment="Center"
                            FontWeight="Bold" FontSize="32" />
-        <TextBlock Text="Christian" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold"
+        <TextBlock Text="Dieter 'Coder2000' Lunn" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold"
                            FontSize="20" />
         <TextBlock Text="Lead Programmer" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
-        <TextBlock Text="Mike" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20"
-                           HorizontalAlignment="Center" />
-        <TextBlock Text="Webmaster" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
-        <TextBlock Text="Rayhan, RobotWillie and Nick" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20"
-                           HorizontalAlignment="Center" />
-        <TextBlock Text="Main Contributers" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
-        <TextBlock Text="Offical Website" HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                           FontWeight="Bold" FontSize="32" Margin="0 20 0 0" />
-        <TextBlock Text="www.theairlineproject.com" VerticalAlignment="Bottom" HorizontalAlignment="Center"
-                           FontSize="20" />
-        <TextBlock Text="Forum" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold"
-                           FontSize="32" Margin="0 20 0 0" />
-        <TextBlock Text="www.theairlineproject.com/forum" VerticalAlignment="Bottom"
-                           HorizontalAlignment="Center" FontSize="20" />
+        
         <TextBlock Text="Thank you" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="32"
                            HorizontalAlignment="Center" Margin="0 20 0 0" />
         <TextBlock Text="To all our contributors and testers who are helping us with the game"
                            HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20" />
+        
+        <TextBlock Text="Some icons created by Freepik at flaticons.com. Flags from kampongboy92 on deviantArt." Margin="0 200 0 0" />
 
         <Button Style="{DynamicResource StandardButtonStyle}"
                         Content="{lex:Loc PageNewGame_202_name}"

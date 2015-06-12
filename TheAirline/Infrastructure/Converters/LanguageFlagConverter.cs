@@ -14,7 +14,7 @@ namespace TheAirline.Infrastructure.Converters
                 value = "en-us";
             }
 
-            string uri = $"pack://application:,,,/TheAirline.Resources;component/graphics/flags/round/{value}.png";
+            string uri = $"pack://application:,,,/TheAirline.Data;component/Images/Flags/Round/{value}.png";
 
             return new BitmapImage(new Uri(uri));
         }

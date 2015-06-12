@@ -21,7 +21,7 @@
         <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
 
     </Style>
-   
+
     <!--radiobutton-->
     <Style x:Key="RadioButtonLeftSideText" TargetType="{x:Type RadioButton}">
         <Setter Property="Template">
@@ -556,7 +556,7 @@ and change the color of the selected bullet into a darker gray for better highli
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="StartMenuButtonStyle" TargetType="Button">
+    <!--<Style x:Key="StartMenuButtonStyle" TargetType="Button">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
@@ -567,8 +567,10 @@ and change the color of the selected bullet into a darker gray for better highli
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="Border" Style="{StaticResource RoundedBorderStyle}">
                         <WrapPanel>
-                            <Image Source="/Resources/images/plane.png" Width="100"
-                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                            <Image
+                                Source="pack://application:,,,/TheAirline.Resources;component/graphics/buttons/startmenu.png"
+                                Width="25"
+                                RenderOptions.BitmapScalingMode="HighQuality" />
                             <ContentPresenter x:Name="Presenter"
                                               Margin="5 0 5 0"
                                               TextBlock.FontWeight="Bold"
@@ -602,7 +604,7 @@ and change the color of the selected bullet into a darker gray for better highli
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
     <!--combobox-->
     <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
         <Border x:Name="PART_ContentHost" Focusable="False" Background="Transparent" />
@@ -747,7 +749,7 @@ and change the color of the selected bullet into a darker gray for better highli
                             Width="{TemplateBinding Width}"
                             Height="{TemplateBinding Height}">
                         <Border.Background>
-                            <SolidColorBrush Color="#2A4861" Opacity="0.6"/>
+                            <SolidColorBrush Color="#2A4861" Opacity="0.6" />
                         </Border.Background>
                         <ContentPresenter Margin="4"
                                           HorizontalAlignment="Left"
@@ -1233,8 +1235,8 @@ and change the color of the selected bullet into a darker gray for better highli
     <Style TargetType="{x:Type DatePickerTextBox}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="IsReadOnly" Value="True"></Setter>
-        <Setter Property="Focusable" Value="False"></Setter>
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="Focusable" Value="False" />
     </Style>
     <!--FilterableListView-->
     <Style TargetType="c:FilterableListView">
@@ -1500,7 +1502,7 @@ and change the color of the selected bullet into a darker gray for better highli
                       BorderThickness="1" Background="Transparent">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel MaxHeight="400" Orientation="Vertical"></WrapPanel>
+                        <WrapPanel MaxHeight="400" Orientation="Vertical" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.View>
@@ -1518,8 +1520,10 @@ and change the color of the selected bullet into a darker gray for better highli
                                     <WrapPanel>
                                         <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}"
                                                   VerticalAlignment="Bottom" />
-                                        <TextBlock Text="{Binding ItemView,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"
-                                                   Margin="5 0 0 0" />
+                                        <TextBlock
+                                            Text="{Binding ItemView,Converter={StaticResource TextUnderscoreConverter}}"
+                                            VerticalAlignment="Bottom"
+                                            Margin="5 0 0 0" />
                                     </WrapPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -1546,11 +1550,11 @@ and change the color of the selected bullet into a darker gray for better highli
                       BorderThickness="1" Background="Transparent">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel MaxHeight="400" Orientation="Vertical"></WrapPanel>
+                        <WrapPanel MaxHeight="400" Orientation="Vertical" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.View>
-                    
+
                     <GridView>
                         <!-- hide the column header -->
                         <GridView.ColumnHeaderContainerStyle>
@@ -1565,8 +1569,10 @@ and change the color of the selected bullet into a darker gray for better highli
                                     <WrapPanel>
                                         <RadioButton IsChecked="{Binding IsChecked,Mode=TwoWay}"
                                                      VerticalAlignment="Center" GroupName="Item" />
-                                        <TextBlock Text="{Binding ItemView,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"
-                                                   Margin="5 0 0 0" />
+                                        <TextBlock
+                                            Text="{Binding ItemView,Converter={StaticResource TextUnderscoreConverter}}"
+                                            VerticalAlignment="Bottom"
+                                            Margin="5 0 0 0" />
                                     </WrapPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -1645,22 +1651,22 @@ and change the color of the selected bullet into a darker gray for better highli
 
     <!--charts-->
     <Style x:Key="MinimalChartStyle" TargetType="metroChart:ChartBase">
-        
-        <Setter Property="Height" Value="300"/>
-        <Setter Property="Width" Value="300"></Setter>
+
+        <Setter Property="Height" Value="300" />
+        <Setter Property="Width" Value="300" />
         <Setter Property="Background" Value="Transparent" />
-        
-        
+
+
     </Style>
     <Style TargetType="metroChart:ChartTitle" x:Key="ChartTitleStyle">
-        <Setter Property="FontSize" Value="16"></Setter>
+        <Setter Property="FontSize" Value="16" />
         <Setter Property="FontFamily" Value="Calibri" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="metroChart:ChartTitle">
                     <StackPanel Margin="0 0 0 5">
-                        <TextBlock Text="{TemplateBinding Property=Title}"></TextBlock>
-                     </StackPanel>
+                        <TextBlock Text="{TemplateBinding Property=Title}" />
+                    </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

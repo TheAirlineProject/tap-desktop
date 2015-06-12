@@ -12,7 +12,7 @@
              lex:ResxLocalizationProvider.DefaultAssembly="TheAirline"
              lex:ResxLocalizationProvider.DefaultDictionary="language"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance game:PageSettingsViewModel}"
-             d:DesignHeight="300" Width="410">
+             d:DesignHeight="300" d:DesignWidth="410">
     <UserControl.Resources>
         <converters:RadioButtonCheckedConverter x:Key="RadioButtonCheckedConverter" />
         <converters:LanguageFlagConverter x:Key="LanguageFlagConverter" />

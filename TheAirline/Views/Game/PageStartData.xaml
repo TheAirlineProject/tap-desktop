@@ -4,10 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:game="clr-namespace:TheAirline.ViewModels.Game"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:converters="clr-namespace:TheAirline.Infrastructure.Converters"
              lex:LocalizeDictionary.DesignCulture="en"
              lex:ResxLocalizationProvider.DefaultAssembly="TheAirline"
              lex:ResxLocalizationProvider.DefaultDictionary="language"
-             mc:Ignorable="d" Width="564" Height="403">
+             mc:Ignorable="d" d:Width="564" d:Height="403" d:DataContext="{d:DesignInstance game:PageStartDataViewModel}">
+    <UserControl.Resources>
+        <system:Boolean x:Key="True">True</system:Boolean>
+        <system:Boolean x:Key="False">False</system:Boolean>
+        <converters:RadioButtonCheckedConverter x:Key="RadioButtonCheckedConverter" />
+    </UserControl.Resources>
     <StackPanel HorizontalAlignment="Center">
         <Grid>
             <Grid.Resources>
@@ -39,67 +48,40 @@
 
             <!-- Row 1 -->
             <TextBlock Grid.Column="0" Grid.Row="0" Text="{lex:Loc PageNewGame_1022_name}" />
-            <ComboBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="0 0 0 5"
-                      Style="{DynamicResource ComboBoxTransparentStyle}"
-                      SelectionChanged="cbContinent_SelectionChanged" SelectedIndex="0"
-                      SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" Name="cbContinent" />
+            <ComboBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="0 0 0 5" SelectedValue="{Binding ContinentId}"
+                      Style="{DynamicResource ComboBoxTransparentStyle}" DisplayMemberPath="Name" SelectedIndex="0"
+                      SelectedValuePath="Id" Width="200" ItemsSource="{Binding Continents}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding ChangeRegions}" CommandParameter="{Binding SelectedValue, RelativeSource={RelativeSource AncestorType=ComboBox}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
 
             <!-- Row 2 -->
             <TextBlock Grid.Column="0" Grid.Row="1" Text="{lex:Loc PageNewGame_1012_name}" />
             <ComboBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="0 0 0 5"
                       Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0"
-                      SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" Name="cbRegion"
-                      SelectionChanged="cbRegion_SelectionChanged" />
+                      SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" ItemsSource="{Binding Regions}" />
 
             <!-- Row 3 -->
             <TextBlock Grid.Column="0" Grid.Row="2" Text="{lex:Loc PageNewGame_1028_name}" />
-            <!--<WrapPanel Grid.Column="1" Grid.Row="2">
-                <RadioButton GroupName="MajorAirports" Name="cbMajorAirports"
-                             Content="{lex:Loc PageNewGame_1034_name}"
-                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
-                             IsChecked="True" />
-                <RadioButton GroupName="MajorAirports" Name="cbAllAirports"
-                             Content="{lex:Loc PageNewGame_1033_name}"
-                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
-                             Margin="5 0 0 0" />
-                <RadioButton GroupName="MajorAirports"
-                             Content="{lex:Loc PageNewGame_1032_name}"
-                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
-                             Margin="5 0 0 0" />
-            </WrapPanel>
-
-            -->
-            <!-- Row 4 -->
-            <!--
-            <TextBlock Grid.Column="0" Grid.Row="3"
-                Text="{lex:Loc PageNewGame_1031_name}" />
-                -->
-            <!--<g:QuickInfoValue.Style>
-                    <Style>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=cbAllAirports, Path=IsChecked}"
-                                         Value="True">
-                                <Setter Property="g:QuickInfoValue.Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </g:QuickInfoValue.Style>-->
             <WrapPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="0 0 0 5">
-                <RadioButton GroupName="Countries" Name="cbSelectFull"
+                <RadioButton GroupName="Countries"
                              Content="{lex:Loc General_106_name}"
-                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" />
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             IsChecked="{Binding MajorAirports, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource True}}"/>
                 <RadioButton GroupName="Countries"
                              Content="{lex:Loc General_107_name}"
                              Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
-                             Margin="5 0 0 0"
-                             IsChecked="True" />
+                             Margin="5 0 0 0" IsChecked="{Binding MajorAirports, Converter={StaticResource RadioButtonCheckedConverter}, ConverterParameter={StaticResource False}}" />
             </WrapPanel>
 
             <!-- Row 5 -->
             <TextBlock Grid.Column="0" Grid.Row="3" Text="{lex:Loc PageNewGame_1008_name}" />
             <ComboBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Margin="0 0 0 5"
                       Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0"
-                      Name="cbYear" SelectionChanged="cbYear_SelectionChanged" />
+                      ItemsSource="{Binding Years}" SelectedValue="{Binding Year}" />
 
             <!-- Row 6 -->
             <TextBlock Grid.Column="0" Grid.Row="4" Text="{lex:Loc PageNewGame_1013_name}" />
@@ -120,9 +102,9 @@
             <TextBlock Grid.Column="0" Grid.Row="6" Text="{lex:Loc PageNewGame_1010_name}" />
             <StackPanel Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Margin="0 0 0 5">
                 <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" SelectedIndex="0"
-                          Name="cbOpponents" HorizontalAlignment="Left" />
-                <TextBlock Text="{lex:Loc PageNewGame_1027_name}"
-                           VerticalAlignment="Bottom" Foreground="DarkBlue" FontWeight="Bold" />
+                          HorizontalAlignment="Left" ItemsSource="{Binding NumOpponents}" SelectedItem="{Binding SelectedOpponents}" />
+                <!--<TextBlock Text="{lex:Loc PageNewGame_1027_name}"
+                           VerticalAlignment="Bottom" Foreground="DarkBlue" FontWeight="Bold" />-->
             </StackPanel>
 
             <!-- Row 9 -->
@@ -179,10 +161,8 @@
             </WrapPanel>
         </Grid>
         <WrapPanel Margin="0 10 0 0">
-            <Button Style="{DynamicResource StandardButtonStyle}" Content="{lex:Loc PageNewGame_203_name}"
-                    Click="btnNext_Click" />
-            <Button Style="{DynamicResource StandardButtonStyle}" Content="{lex:Loc PageNewGame_202_name}"
-                    Click="btnStartMenu_Click" Margin="5 0 0 0" />
+            <Button Style="{DynamicResource StandardButtonStyle}" Content="{lex:Loc PageNewGame_203_name}" />
+            <Button Style="{DynamicResource StandardButtonStyle}" Content="{lex:Loc PageNewGame_202_name}" Margin="5 0 0 0" />
         </WrapPanel>
 
     </StackPanel>

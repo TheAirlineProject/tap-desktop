@@ -6,7 +6,6 @@ using System.Data.Entity;
 using System.Linq;
 using TheAirline.Db;
 using TheAirline.Infrastructure.Enums;
-using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
 using WPFLocalizeExtension.Engine;
 
@@ -40,6 +39,8 @@ namespace TheAirline.Infrastructure
             get { return _settings.Mode; }
             set { _settings.Mode = value; }
         }
+
+        public AirlineContext Context => _context;
 
         public DbSet<Continent> Continents => _context.Continents;
         public ObservableCollection<Region> Regions => new ObservableCollection<Region>(_regions);
