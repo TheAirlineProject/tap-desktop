@@ -15,17 +15,22 @@ namespace TheAirline.ViewModels.Game
     {
         private readonly AppState _state;
         private readonly IQueryable<Region> _regions;
+        private readonly Region _allRegions;
 
         [ImportingConstructor]
         public PageStartDataViewModel(AppState state)
         {
             _state = state;
 
+            _allRegions = new Region {Name="All Regions", Id=100};
+
             var continents = from continent in _state.Continents orderby continent.Id descending select continent;
             Continents = new ObservableCollection<Continent>(continents.ToList());
 
             _regions = from region in _state.Context.Regions select region;
             Regions = new ObservableCollection<Region>(_regions.ToList());
+            Regions.Insert(0, _allRegions);
+            SelectedRegion = _allRegions;
 
             MajorAirports = false;
 
@@ -35,7 +40,7 @@ namespace TheAirline.ViewModels.Game
             var start = new DateTime(1960, 1, 1);
             var end = DateTime.Now;
 
-            Years = Enumerable.Range(start.Year, (end.Year - start.Year) + 1).ToList();
+            Years = Enumerable.Range(start.Year, (end.Year - start.Year) + 1).OrderByDescending(i => i).ToList();
 
             // DelegateCommand only works with Nullable objects hence the int?.
             ChangeRegions = new DelegateCommand<int?>(UpdateRegions);
@@ -43,10 +48,11 @@ namespace TheAirline.ViewModels.Game
 
         private void UpdateRegions(int? obj)
         {
-            if (obj == 0)
+            if (obj == 7)
             {
                 Regions.Clear();
-                foreach (var region in _regions)
+                Regions.Add(_allRegions);
+                foreach (var region in _regions.ToList())
                 {
                     Regions.Add(region);
                 }
@@ -58,11 +64,14 @@ namespace TheAirline.ViewModels.Game
                 Regions.Clear();
                 var regions = continent.First()?.Regions;
                 if (regions == null) return;
+                Regions.Add(_allRegions);
                 foreach (var region in regions)
                 {
                     Regions.Add(region);
                 }
             }
+
+            SelectedRegion = _allRegions;
         }
 
         public ObservableCollection<Continent> Continents { get; }
@@ -73,7 +82,7 @@ namespace TheAirline.ViewModels.Game
 
         public int ContinentId { get; set; }
 
-        public int RegionId { get; set; }
+        public Region SelectedRegion { get; set; }
 
         public bool MajorAirports { get; set; }
 

@@ -61,8 +61,8 @@
             <!-- Row 2 -->
             <TextBlock Grid.Column="0" Grid.Row="1" Text="{lex:Loc PageNewGame_1012_name}" />
             <ComboBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="0 0 0 5"
-                      Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0"
-                      SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" ItemsSource="{Binding Regions}" />
+                      Style="{DynamicResource ComboBoxTransparentStyle}"
+                      Width="200" DisplayMemberPath="Name" ItemsSource="{Binding Regions}" SelectedItem="{Binding SelectedRegion}" />
 
             <!-- Row 3 -->
             <TextBlock Grid.Column="0" Grid.Row="2" Text="{lex:Loc PageNewGame_1028_name}" />
@@ -81,7 +81,7 @@
             <TextBlock Grid.Column="0" Grid.Row="3" Text="{lex:Loc PageNewGame_1008_name}" />
             <ComboBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Margin="0 0 0 5"
                       Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0"
-                      ItemsSource="{Binding Years}" SelectedValue="{Binding Year}" />
+                      ItemsSource="{Binding Years}" SelectedItem="{Binding Year}" />
 
             <!-- Row 6 -->
             <TextBlock Grid.Column="0" Grid.Row="4" Text="{lex:Loc PageNewGame_1013_name}" />
