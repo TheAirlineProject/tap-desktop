@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
@@ -21,7 +22,7 @@ namespace TheAirline.GUIModel.ObjectsModel
 
         public DifficultyLevel Difficulty { get; set; }
 
-        public Airline.AirlineFocus Focus { get; set; }
+        public AirlineFocus Focus { get; set; }
 
         public Country HomeCountry { get; set; }
 

@@ -749,12 +749,13 @@
     <Compile Include="Infrastructure\AppState.cs" />
     <Compile Include="Infrastructure\Converters\LanguageFlagConverter.cs" />
     <Compile Include="Infrastructure\Converters\RadioButtonCheckedConverter.cs" />
+    <Compile Include="Infrastructure\Enums\AirlineFocus.cs" />
     <Compile Include="Infrastructure\Enums\AirportCode.cs" />
-    <Compile Include="Infrastructure\Enums\Difficulty.cs" />
     <Compile Include="Infrastructure\Enums\GameSpeeds.cs" />
     <Compile Include="Infrastructure\Enums\Intervals.cs" />
     <Compile Include="Infrastructure\Enums\ScreenMode.cs" />
     <Compile Include="Infrastructure\Events\CloseGameEvent.cs" />
+    <Compile Include="Infrastructure\Extensions\EnumListExtension.cs" />
     <Compile Include="Infrastructure\Services\TaskDialogService.cs" />
     <Compile Include="Infrastructure\Settings.cs" />
     <Compile Include="Migrations\201505220127065_Settings.cs" />
@@ -773,7 +774,17 @@
     <Compile Include="Migrations\201505270508368_Regions1.Designer.cs">
       <DependentUpon>201505270508368_Regions1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506140447247_Regions1.cs" />
+    <Compile Include="Migrations\201506140447247_Regions1.Designer.cs">
+      <DependentUpon>201506140447247_Regions1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506150040137_Players.cs" />
+    <Compile Include="Migrations\201506150040137_Players.Designer.cs">
+      <DependentUpon>201506150040137_Players.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\General\Difficulty.cs" />
+    <Compile Include="Models\General\Player.cs" />
     <Compile Include="Models\General\Settings.cs" />
     <Compile Include="ViewModels\Airline\AirlineMVVM.cs" />
     <Compile Include="ViewModels\Airline\PageAirlineViewModel.cs" />
@@ -1235,6 +1246,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505270508368_Regions1.resx">
       <DependentUpon>201505270508368_Regions1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506140447247_Regions1.resx">
+      <DependentUpon>201506140447247_Regions1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506150040137_Players.resx">
+      <DependentUpon>201506150040137_Players.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

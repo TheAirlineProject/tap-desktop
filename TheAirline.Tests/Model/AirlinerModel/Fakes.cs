@@ -1,4 +1,5 @@
 ﻿using System;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.General;
@@ -15,7 +16,7 @@ namespace TheAirline.Tests.Model.AirlinerModel
             return new Airline(
                 new AirlineProfile("test Airline", "TS", "Red", "TestName testSurname", true, 2000, 2199),
                 Airline.AirlineMentality.Moderate,
-                Airline.AirlineFocus.Global,
+                AirlineFocus.Global,
                 Airline.AirlineLicense.LongHaul,
                 Route.RouteType.Passenger);
         }

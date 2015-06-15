@@ -14,6 +14,7 @@ using System.Xml;
 using Microsoft.Win32;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
 using TheAirline.Models.General;
@@ -231,7 +232,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             var airline = new Airline(
                 profile,
                 Airline.AirlineMentality.Aggressive,
-                Airline.AirlineFocus.Local,
+                AirlineFocus.Local,
                 Airline.AirlineLicense.Domestic,
                 focus);
 

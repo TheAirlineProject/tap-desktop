@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.Subsidiary;
@@ -744,23 +745,23 @@ namespace TheAirline.Helpers
                         GameObject.GetInstance().GameTime));
             List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
 
-            Airline.AirlineFocus marketFocus = airline.MarketFocus;
+            AirlineFocus marketFocus = airline.MarketFocus;
 
             Terminal.TerminalType terminaltype = airline.AirlineRouteFocus == Route.RouteType.Cargo ? Terminal.TerminalType.Cargo : Terminal.TerminalType.Passenger;
 
             if (airline.Airports.Count < 4)
             {
-                var focuses = new List<Airline.AirlineFocus> {Airline.AirlineFocus.Local, Airline.AirlineFocus.Local, Airline.AirlineFocus.Local, marketFocus};
+                var focuses = new List<AirlineFocus> {AirlineFocus.Local, AirlineFocus.Local, AirlineFocus.Local, marketFocus};
 
                 marketFocus = focuses[Rnd.Next(focuses.Count)];
             }
 
             switch (marketFocus)
             {
-                case Airline.AirlineFocus.Domestic:
+                case AirlineFocus.Domestic:
                     airports = airports.FindAll(a => a.Profile.Country == airport.Profile.Country);
                     break;
-                case Airline.AirlineFocus.Global:
+                case AirlineFocus.Global:
                     airports =
                         airports.FindAll(
                             a =>
@@ -776,7 +777,7 @@ namespace TheAirline.Helpers
                                 a.Profile.Coordinates.ConvertToGeoCoordinate(),
                                 airport.Profile.Coordinates.ConvertToGeoCoordinate()) > 100);
                     break;
-                case Airline.AirlineFocus.Local:
+                case AirlineFocus.Local:
                     airports =
                         airports.FindAll(
                             a =>
@@ -789,7 +790,7 @@ namespace TheAirline.Helpers
                                 a.Profile.Coordinates.ConvertToGeoCoordinate(),
                                 airport.Profile.Coordinates.ConvertToGeoCoordinate()) >= Route.MinRouteDistance);
                     break;
-                case Airline.AirlineFocus.Regional:
+                case AirlineFocus.Regional:
                     airports =
                         airports.FindAll(
                             a =>
@@ -1490,18 +1491,18 @@ namespace TheAirline.Helpers
         {
             var type = HubType.TypeOfHub.FocusCity;
 
-            if (airline.MarketFocus == Airline.AirlineFocus.Domestic
-                || airline.MarketFocus == Airline.AirlineFocus.Local)
+            if (airline.MarketFocus == AirlineFocus.Domestic
+                || airline.MarketFocus == AirlineFocus.Local)
             {
                 type = HubType.TypeOfHub.FocusCity;
             }
 
-            if (airline.MarketFocus == Airline.AirlineFocus.Global)
+            if (airline.MarketFocus == AirlineFocus.Global)
             {
                 type = HubType.TypeOfHub.Hub;
             }
 
-            if (airline.MarketFocus == Airline.AirlineFocus.Regional)
+            if (airline.MarketFocus == AirlineFocus.Regional)
             {
                 type = HubType.TypeOfHub.RegionalHub;
             }

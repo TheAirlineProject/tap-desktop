@@ -13,6 +13,7 @@ using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
@@ -280,7 +281,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             var dummyAirline = new Airline(
                 new AirlineProfile("All Airlines", "99", "Blue", "", false, 1900, 1900),
                 Airline.AirlineMentality.Safe,
-                Airline.AirlineFocus.Domestic,
+                AirlineFocus.Domestic,
                 Airline.AirlineLicense.Domestic,
                 Route.RouteType.Passenger);
             dummyAirline.Profile.AddLogo(

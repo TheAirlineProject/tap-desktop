@@ -1,6 +1,7 @@
 using System.Data.Entity.Migrations;
 using TheAirline.Db;
 using TheAirline.Infrastructure.Enums;
+using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
 
 namespace TheAirline.Migrations
@@ -9,7 +10,7 @@ namespace TheAirline.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(AirlineContext context)
@@ -37,7 +38,7 @@ namespace TheAirline.Migrations
             var samerica = new Continent {Name = "South America"};
 
             context.Continents.AddOrUpdate(
-                c => c.Name,
+                c => c.Id,
                 new Continent {Name = "All Continents"},
                 africa,
                 asia,
@@ -47,26 +48,59 @@ namespace TheAirline.Migrations
                 samerica);
 
             context.Regions.AddOrUpdate(
-                r => r.Name,
-                new Region {Name = "Australia and New Zealand", Continent = australia},
-                new Region {Name = "Oceania", Continent = australia},
-                new Region {Name = "Central Africa", Continent = africa},
-                new Region {Name = "East Africa", Continent = africa},
-                new Region {Name = "Southern Africa", Continent = africa},
-                new Region {Name = "West Africa", Continent = africa},
-                new Region {Name = "North Africa", Continent = africa},
-                new Region {Name = "Central Asia", Continent = asia},
-                new Region {Name = "East Asia", Continent = asia},
-                new Region {Name = "Southeast Asia", Continent = asia},
-                new Region {Name = "West Asia", Continent = asia},
-                new Region {Name = "Northern Europe", Continent = europe},
-                new Region {Name = "Eastern Europe", Continent = europe},
-                new Region {Name = "Western Europe", Continent = europe},
-                new Region {Name = "Southern Europe", Continent = europe},
-                new Region {Name = "Caribbean", Continent = namerica},
-                new Region {Name = "North America", Continent = namerica},
-                new Region {Name = "Central America", Continent = namerica},
-                new Region {Name = "South America", Continent = samerica});
+                r => r.Id,
+                new Region {Name = "Australia and New Zealand", Continent = australia, FuelIndex = 0.98},
+                new Region {Name = "Oceania", Continent = australia, FuelIndex = 0.98},
+                new Region {Name = "Central Africa", Continent = africa, FuelIndex = 0.97},
+                new Region {Name = "East Africa", Continent = africa, FuelIndex = 0.97},
+                new Region {Name = "Southern Africa", Continent = africa, FuelIndex = 0.97},
+                new Region {Name = "West Africa", Continent = africa, FuelIndex = 0.97},
+                new Region {Name = "North Africa", Continent = africa, FuelIndex = 0.97},
+                new Region {Name = "Central Asia", Continent = asia, FuelIndex = 0.98},
+                new Region {Name = "East Asia", Continent = asia, FuelIndex = 0.98},
+                new Region {Name = "Southeast Asia", Continent = asia, FuelIndex = 0.98},
+                new Region {Name = "West Asia", Continent = asia, FuelIndex = 0.98},
+                new Region {Name = "Northern Europe", Continent = europe, FuelIndex = 1.025},
+                new Region {Name = "Eastern Europe", Continent = europe, FuelIndex = 1.025},
+                new Region {Name = "Western Europe", Continent = europe, FuelIndex = 1.025},
+                new Region {Name = "Southern Europe", Continent = europe, FuelIndex = 1.025},
+                new Region {Name = "Caribbean", Continent = namerica, FuelIndex = 1.005},
+                new Region {Name = "North America", Continent = namerica, FuelIndex = 1.005},
+                new Region {Name = "Central America", Continent = namerica, FuelIndex = 1.04},
+                new Region {Name = "South America", Continent = samerica, FuelIndex = 1.04});
+
+            context.Difficulties.AddOrUpdate(
+                d => d.Id,
+                new Difficulty
+                {
+                    Name = "Easy",
+                    MoneyLevel = 1.5,
+                    LoanLevel = 0.75,
+                    PassengersLevel = 1.5,
+                    PriceLevel = 1,
+                    AiLevel = 1.25,
+                    StartDataLevel = 5
+                },
+                new Difficulty
+                {
+                    Name = "Normal",
+                    MoneyLevel = 1,
+                    LoanLevel = 1,
+                    PassengersLevel = 1.2,
+                    PriceLevel = 1.1,
+                    AiLevel = 1,
+                    StartDataLevel = 2
+                },
+                new Difficulty
+                {
+                    Name = "Hard",
+                    MoneyLevel = 0.5,
+                    LoanLevel = 1.25,
+                    PassengersLevel = 1,
+                    PriceLevel = 1.2,
+                    AiLevel = 0.75,
+                    StartDataLevel = 1
+                });
         }
     }
 }

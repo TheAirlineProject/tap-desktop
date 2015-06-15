@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Routes;
 
 namespace TheAirline.Models.Airlines.Subsidiary

@@ -21,7 +21,7 @@ namespace TheAirline.Infrastructure
         private Settings()
         {
             AirportCodeDisplay = AirportCode.Iata;
-            DifficultyDisplay = Difficulty.Normal;
+            //DifficultyDisplay = Difficulty.Normal;
             GameSpeed = GeneralHelpers.GameSpeedValue.Normal;
             MailsOnLandings = false;
             MailsOnAirlineRoutes = false;
@@ -54,8 +54,8 @@ namespace TheAirline.Infrastructure
         [Versioning("currencyshorten")]
         public bool CurrencyShorten { get; set; }
 
-        [Versioning("difficulty")]
-        public Difficulty DifficultyDisplay { get; set; }
+        //[Versioning("difficulty")]
+        //public Difficulty DifficultyDisplay { get; set; }
 
         [Versioning("gamespeed")]
         public GeneralHelpers.GameSpeedValue GameSpeed { get; private set; }

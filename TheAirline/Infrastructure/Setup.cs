@@ -70,8 +70,8 @@ namespace TheAirline.Infrastructure
                     (Airline.AirlineMentality)
                         Enum.Parse(typeof (Airline.AirlineMentality), profileElement.Attributes["mentality"].Value);
                 var market =
-                    (Airline.AirlineFocus)
-                        Enum.Parse(typeof (Airline.AirlineFocus), profileElement.Attributes["market"].Value);
+                    (AirlineFocus)
+                        Enum.Parse(typeof (AirlineFocus), profileElement.Attributes["market"].Value);
 
                 var routeFocus = Route.RouteType.Passenger;
 
@@ -103,12 +103,12 @@ namespace TheAirline.Infrastructure
 
                 var license = Airline.AirlineLicense.Domestic;
 
-                if (market == Airline.AirlineFocus.Global)
+                if (market == AirlineFocus.Global)
                 {
                     license = mentality == Airline.AirlineMentality.Aggressive ? Airline.AirlineLicense.LongHaul : Airline.AirlineLicense.ShortHaul;
                 }
 
-                if (market == Airline.AirlineFocus.Regional)
+                if (market == AirlineFocus.Regional)
                 {
                     license = Airline.AirlineLicense.Regional;
                 }
@@ -180,8 +180,8 @@ namespace TheAirline.Infrastructure
                                     typeof (Airline.AirlineMentality),
                                     subsidiaryElement.Attributes["mentality"].Value);
                         var subMarket =
-                            (Airline.AirlineFocus)
-                                Enum.Parse(typeof (Airline.AirlineFocus), subsidiaryElement.Attributes["market"].Value);
+                            (AirlineFocus)
+                                Enum.Parse(typeof (AirlineFocus), subsidiaryElement.Attributes["market"].Value);
 
                         string subLogo = AppSettings.GetDataPath() + "\\graphics\\airlinelogos\\"
                                          + subsidiaryElement.Attributes["logo"].Value + ".png";

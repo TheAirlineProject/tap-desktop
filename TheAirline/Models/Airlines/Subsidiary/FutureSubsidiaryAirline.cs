@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airports;
 using TheAirline.Models.Routes;
 
@@ -17,7 +18,7 @@ namespace TheAirline.Models.Airlines.Subsidiary
             string iata,
             Airport airport,
             Airline.AirlineMentality mentality,
-            Airline.AirlineFocus market,
+            AirlineFocus market,
             Route.RouteType airlineRouteFocus,
             string logo)
         {
@@ -48,7 +49,7 @@ namespace TheAirline.Models.Airlines.Subsidiary
         public string Logo { get; set; }
 
         [Versioning("market")]
-        public Airline.AirlineFocus Market { get; set; }
+        public AirlineFocus Market { get; set; }
 
         [Versioning("mentality")]
         public Airline.AirlineMentality Mentality { get; set; }

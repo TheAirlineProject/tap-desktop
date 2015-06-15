@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.Subsidiary;
 using TheAirline.Models.Airports;
@@ -130,7 +131,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
                 GameObject.GetInstance().MainAirline,
                 profile,
                 Airline.AirlineMentality.Safe,
-                Airline.AirlineFocus.Local,
+                AirlineFocus.Local,
                 Airline.AirlineLicense.Domestic,
                 focus);
 

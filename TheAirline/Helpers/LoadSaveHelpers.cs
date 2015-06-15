@@ -1979,7 +1979,7 @@ namespace TheAirline.Helpers
                 (Airline.AirlineMentality)
                 Enum.Parse(typeof (Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
             var market =
-                (Airline.AirlineFocus) Enum.Parse(typeof (Airline.AirlineFocus), airlineNode.Attributes["market"].Value);
+                (AirlineFocus) Enum.Parse(typeof (AirlineFocus), airlineNode.Attributes["market"].Value);
             var license =
                 (Airline.AirlineLicense)
                 Enum.Parse(typeof (Airline.AirlineLicense), airlineNode.Attributes["license"].Value);

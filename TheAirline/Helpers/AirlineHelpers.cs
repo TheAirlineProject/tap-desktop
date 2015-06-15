@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airlines.Subsidiary;
@@ -443,7 +444,7 @@ namespace TheAirline.Helpers
 
 
         //creates a subsidiary airline for an airline
-        public static SubsidiaryAirline CreateSubsidiaryAirline(Airline airline, double money, string name, string iata, Airline.AirlineMentality mentality, Airline.AirlineFocus market,
+        public static SubsidiaryAirline CreateSubsidiaryAirline(Airline airline, double money, string name, string iata, Airline.AirlineMentality mentality, AirlineFocus market,
                                                                 Route.RouteType routefocus, Airport homebase)
         {
             var profile = new AirlineProfile(name, iata, airline.Profile.Color, airline.Profile.CEO, true, GameObject.GetInstance().GameTime.Year, 2199) {Country = homebase.Profile.Country};

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines;
 using TheAirline.Models.Airports;
@@ -3029,24 +3030,24 @@ namespace TheAirline.Helpers
             passengerDemand *= GameObject.GetInstance().Difficulty.PassengersLevel;
             passengerDemand *= routeScoreFactor;
 
-            if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Global && distance > 3000
+            if (airliner.Airliner.Airline.MarketFocus == AirlineFocus.Global && distance > 3000
                 && airportCurrent.Profile.Country != airportDestination.Profile.Country)
             {
                 passengerDemand = passengerDemand*(115/100);
             }
 
-            if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Regional && distance < 1500)
+            if (airliner.Airliner.Airline.MarketFocus == AirlineFocus.Regional && distance < 1500)
             {
                 passengerDemand = passengerDemand*(115/100);
             }
 
-            if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Domestic && distance < 1500
+            if (airliner.Airliner.Airline.MarketFocus == AirlineFocus.Domestic && distance < 1500
                 && airportDestination.Profile.Country == airportCurrent.Profile.Country)
             {
                 passengerDemand = passengerDemand*(115/100);
             }
 
-            if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Local && distance < 1000)
+            if (airliner.Airliner.Airline.MarketFocus == AirlineFocus.Local && distance < 1000)
             {
                 passengerDemand = passengerDemand*(115/100);
             }

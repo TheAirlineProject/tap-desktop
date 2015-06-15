@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using TheAirline.Helpers;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.Airliners;
 using TheAirline.Models.Airlines.Subsidiary;
 using TheAirline.Models.Airports;
@@ -97,17 +98,6 @@ namespace TheAirline.Models.Airlines
         #endregion
 
         #region Enums
-
-        public enum AirlineFocus
-        {
-            Global,
-
-            Regional,
-
-            Domestic,
-
-            Local
-        }
 
         public enum AirlineLicense
         {
