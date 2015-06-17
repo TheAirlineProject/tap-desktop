@@ -6,8 +6,32 @@
              xmlns:g="clr-namespace:TheAirline.GUIModel.HelpersModel"
              xmlns:c="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
              xmlns:game="clr-namespace:TheAirline.ViewModels.Game"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="en"
+             lex:ResxLocalizationProvider.DefaultAssembly="TheAirline"
+             lex:ResxLocalizationProvider.DefaultDictionary="language"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance game:PageAirlineDataViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="175" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="{lex:Loc PageNewGame_1002_name}" />
+    </Grid>
 
 
     <!--<StackPanel HorizontalAlignment="Center">

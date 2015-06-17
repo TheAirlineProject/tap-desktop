@@ -8,84 +8,93 @@ using TheAirline.Infrastructure;
 namespace TheAirline.Models.General.Countries
 {
     //the class for a country
-    [Serializable]
     public class Country : BaseUnit
     {
         #region Constructors and Destructors
 
-        public Country(string section, string uid, string shortName, Region region, string tailNumberFormat)
-            : base(uid, shortName)
+        public Country(string section, string uid, string shortName, Region region, string tailNumberFormat) : base(uid, shortName)
         {
             Section = section;
             Region = region;
             TailNumberFormat = tailNumberFormat;
             TailNumbers = new CountryTailNumber(this);
-            Currencies = new List<CountryCurrency>();
+            //Currencies = new List<CountryCurrency>();
         }
 
-        protected Country(SerializationInfo info, StreamingContext ctxt)
-            : base(info, ctxt)
+        protected Country(SerializationInfo info, StreamingContext ctxt) : base(info, ctxt)
         {
         }
+
+        public Country() { }
 
         #endregion
 
         #region Public Properties
 
+        public int Id { get; set; }
+
         public static string Section { get; set; }
 
-        [Versioning("currencies")]
-        public List<CountryCurrency> Currencies { get; set; }
+        public List<Currency> Currencies { get; set; }
 
         public bool HasLocalCurrency => Currencies.Count > 0;
 
-        public override string Name => Translator.GetInstance().GetString(Section, Uid);
+        //public override string Name => Translator.GetInstance().GetString(Section, Uid);
 
-        [Versioning("region")]
         public Region Region { get; set; }
 
         //the format used for the tail number
-        [Versioning("tailnumberformat")]
         public string TailNumberFormat { get; set; }
 
-        [Versioning("tailnumbers")]
         public CountryTailNumber TailNumbers { get; set; }
+
+        public string IsoName { get; set; }
 
         #endregion
 
-        #region Public Methods and Operators
-
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("version", 1);
-
-            base.GetObjectData(info, context);
-        }
-
-        //adds a currency to the country
-        public void AddCurrency(CountryCurrency currency)
+        //#region Public Methods and Operators
+        ////adds a currency to the country
+        public void AddCurrency(Currency currency)
         {
             Currencies.Add(currency);
         }
 
-        //returns the current currency
-        public CountryCurrency GetCurrency(DateTime date)
+        ////returns the current currency
+        public Currency GetCurrency(DateTime date)
         {
-            if (Currencies.Exists(c => c.DateFrom <= date && c.DateTo > date))
+            if (Currencies.Exists(c => c.From <= date && c.To > date))
             {
-                return Currencies.Find(c => c.DateFrom <= date && c.DateTo > date);
+                return Currencies.Find(c => c.From <= date && c.To > date);
             }
 
             return null;
         }
 
-        #endregion
+        //#endregion
     }
 
     [Serializable]
     //the class for a country which is a territory of another country
     public class TerritoryCountry : Country
     {
+        #region Public Properties
+
+        [Versioning("maincountry")]
+        public Country MainCountry { get; set; }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        //public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        //{
+        //    info.AddValue("version", 1);
+
+        //    base.GetObjectData(info, context);
+        //}
+
+        #endregion
+
         #region Constructors and Destructors
 
         public TerritoryCountry(
@@ -106,28 +115,10 @@ namespace TheAirline.Models.General.Countries
         }
 
         #endregion
-
-        #region Public Properties
-
-        [Versioning("maincountry")]
-        public Country MainCountry { get; set; }
-
-        #endregion
-
-        #region Public Methods and Operators
-
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("version", 1);
-
-            base.GetObjectData(info, context);
-        }
-
-        #endregion
     }
 
     //the collection of countries
-    public class Countries
+    public static class Countries
     {
         #region Static Fields
 
@@ -157,19 +148,23 @@ namespace TheAirline.Models.General.Countries
         //returns the list of countries
         public static List<Country> GetAllCountries()
         {
-            List<Country> tCountries = _countries.Values.ToList();
+            var tCountries = _countries.Values.ToList();
             tCountries.AddRange(TemporaryCountries.GetCountries());
             return tCountries;
         }
 
         public static List<Country> GetCountries()
         {
-            List<Country> netto = _countries.Values.ToList();
+            var netto = _countries.Values.ToList();
             //netto.AddRange(TemporaryCountries.GetCountries());
             netto.Remove(GetCountry("100"));
 
-            var tCountries = (from country in netto where !(country is TerritoryCountry) select (Country) new CountryCurrentCountryConverter().Convert(country)).ToList();
-            tCountries.AddRange(from country in TemporaryCountries.GetCountries() where ((TemporaryCountry) country).Type == TemporaryCountry.TemporaryType.ManyToOne select (Country) new CountryCurrentCountryConverter().Convert(country));
+            var tCountries = (from country in netto
+                              where !(country is TerritoryCountry)
+                              select (Country)new CountryCurrentCountryConverter().Convert(country)).ToList();
+            tCountries.AddRange(from country in TemporaryCountries.GetCountries()
+                                where ((TemporaryCountry)country).Type == TemporaryCountry.TemporaryType.ManyToOne
+                                select (Country)new CountryCurrentCountryConverter().Convert(country));
 
             return tCountries.Distinct().ToList();
         }
@@ -196,17 +191,11 @@ namespace TheAirline.Models.General.Countries
         //returns a country with a specific tailnumberformat
         public static Country GetCountryFromTailNumber(string tailnumber)
         {
-            Country country = GetCountries().Find(co => co.TailNumbers.IsMatch(tailnumber));
+            var country = GetCountries().Find(co => co.TailNumbers.IsMatch(tailnumber));
 
             return country;
         }
 
         #endregion
-
-        //clears the list
-
-        //adds a country to the list
-
-        //returns the number of countries
     }
 }

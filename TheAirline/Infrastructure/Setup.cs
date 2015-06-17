@@ -2958,13 +2958,13 @@ namespace TheAirline.Infrastructure
                                     currencyToDate = Convert.ToDateTime(currencyElement.Attributes["to"].Value);
                                 }
 
-                                country.AddCurrency(
-                                    new CountryCurrency(
-                                        currencyFromDate,
-                                        currencyToDate,
-                                        currencySymbol,
-                                        currencyPosition,
-                                        currencyRate));
+                                //country.AddCurrency(
+                                //    new CountryCurrency(
+                                //        currencyFromDate,
+                                //        currencyToDate,
+                                //        currencySymbol,
+                                //        currencyPosition,
+                                //        currencyRate));
                             }
 
                         if (element.SelectSingleNode("translations") != null)

@@ -17,14 +17,13 @@ namespace TheAirline.Models.General.Countries
 
         public Continent()
         {
-            
         }
 
         #endregion
 
         #region Public Properties
 
-        public int Id { get;set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -85,9 +84,5 @@ namespace TheAirline.Models.General.Countries
         }
 
         #endregion
-
-        //adds a continent to the list
-
-        //clears the list of continents
     }
 }

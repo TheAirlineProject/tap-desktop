@@ -782,7 +782,15 @@
     <Compile Include="Migrations\201506150040137_Players.Designer.cs">
       <DependentUpon>201506150040137_Players.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506171213236_AddCurrencies.cs" />
+    <Compile Include="Migrations\201506171213236_AddCurrencies.Designer.cs">
+      <DependentUpon>201506171213236_AddCurrencies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Seeds\Continents.cs" />
+    <Compile Include="Migrations\Seeds\Countries.cs" />
+    <Compile Include="Migrations\Seeds\Regions.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\General\Countries\Currency.cs" />
     <Compile Include="Models\General\Difficulty.cs" />
     <Compile Include="Models\General\Player.cs" />
     <Compile Include="Models\General\Settings.cs" />
@@ -1253,6 +1261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506150040137_Players.resx">
       <DependentUpon>201506150040137_Players.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506171213236_AddCurrencies.resx">
+      <DependentUpon>201506171213236_AddCurrencies.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

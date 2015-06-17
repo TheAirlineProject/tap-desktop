@@ -175,7 +175,7 @@ namespace TheAirline.GUIModel.HelpersModel
                     }
                     return string.Format("{0:C}", value);
                 }
-                var currencyValue = v*currency.Rate;
+                var currencyValue = v*currency.Exchange;
 
                 if (Settings.GetInstance().CurrencyShorten)
                 {
@@ -190,23 +190,23 @@ namespace TheAirline.GUIModel.HelpersModel
                             sFormat = Translator.GetInstance().GetString("General", "2001");
                         }
 
-                        if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                        if (currency.SymbolOnRight)
                         {
-                            return string.Format("{0:#,0.##} {2} {1}", sValue, currency.CurrencySymbol, sFormat);
+                            return string.Format("{0:#,0.##} {2} {1}", sValue, currency.Symbol, sFormat);
                         }
-                        return string.Format("{1}{0:#,0.##} {2}", sValue, currency.CurrencySymbol, sFormat);
+                        return string.Format("{1}{0:#,0.##} {2}", sValue, currency.Symbol, sFormat);
                     }
-                    if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                    if (currency.SymbolOnRight)
                     {
-                        return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
+                        return string.Format("{0:#,0.##} {1}", currencyValue, currency.Symbol);
                     }
-                    return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
+                    return string.Format("{1}{0:#,0.##}", currencyValue, currency.Symbol);
                 }
-                if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                if (currency.SymbolOnRight)
                 {
-                    return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
+                    return string.Format("{0:#,0.##} {1}", currencyValue, currency.Symbol);
                 }
-                return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
+                return string.Format("{1}{0:#,0.##}", currencyValue, currency.Symbol);
             }
             catch (Exception)
             {

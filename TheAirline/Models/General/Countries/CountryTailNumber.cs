@@ -7,29 +7,20 @@ namespace TheAirline.Models.General.Countries
 {
     //the class for handling the tail numbers for the country
     [Serializable]
-    public class CountryTailNumber : BaseModel
+    public class CountryTailNumber
     {
         public CountryTailNumber(Country country)
         {
             Country = country;
         }
 
-        private CountryTailNumber(SerializationInfo info, StreamingContext ctxt) : base(info, ctxt)
-        {
-        }
+        public CountryTailNumber() { }
 
-        [Versioning("lasttailnumber")]
+        public int Id { get; set; }
+
         public string LastTailNumber { get; set; }
 
-        [Versioning("country")]
         public Country Country { get; set; }
-
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("version", 1);
-
-            base.GetObjectData(info, context);
-        }
 
         //returns if a tail number matches the country
         public bool IsMatch(string tailNumber)

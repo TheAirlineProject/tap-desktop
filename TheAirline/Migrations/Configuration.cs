@@ -1,8 +1,8 @@
 using System.Data.Entity.Migrations;
 using TheAirline.Db;
 using TheAirline.Infrastructure.Enums;
+using TheAirline.Migrations.Seeds;
 using TheAirline.Models.General;
-using TheAirline.Models.General.Countries;
 
 namespace TheAirline.Migrations
 {
@@ -30,44 +30,38 @@ namespace TheAirline.Migrations
             context.Settings.AddOrUpdate(s => s.Id,
                 new Models.General.Settings {Mode = ScreenMode.Windowed});
 
-            var africa = new Continent {Name = "Africa"};
-            var asia = new Continent {Name = "Asia"};
-            var australia = new Continent {Name = "Australia and Oceania"};
-            var europe = new Continent {Name = "Europe"};
-            var namerica = new Continent {Name = "North America"};
-            var samerica = new Continent {Name = "South America"};
-
             context.Continents.AddOrUpdate(
                 c => c.Id,
-                new Continent {Name = "All Continents"},
-                africa,
-                asia,
-                australia,
-                europe,
-                namerica,
-                samerica);
+                Continents.All,
+                Continents.Africa,
+                Continents.Australia,
+                Continents.Asia,
+                Continents.Europe,
+                Continents.NorthAmerica,
+                Continents.SouthAmerica);
 
             context.Regions.AddOrUpdate(
                 r => r.Id,
-                new Region {Name = "Australia and New Zealand", Continent = australia, FuelIndex = 0.98},
-                new Region {Name = "Oceania", Continent = australia, FuelIndex = 0.98},
-                new Region {Name = "Central Africa", Continent = africa, FuelIndex = 0.97},
-                new Region {Name = "East Africa", Continent = africa, FuelIndex = 0.97},
-                new Region {Name = "Southern Africa", Continent = africa, FuelIndex = 0.97},
-                new Region {Name = "West Africa", Continent = africa, FuelIndex = 0.97},
-                new Region {Name = "North Africa", Continent = africa, FuelIndex = 0.97},
-                new Region {Name = "Central Asia", Continent = asia, FuelIndex = 0.98},
-                new Region {Name = "East Asia", Continent = asia, FuelIndex = 0.98},
-                new Region {Name = "Southeast Asia", Continent = asia, FuelIndex = 0.98},
-                new Region {Name = "West Asia", Continent = asia, FuelIndex = 0.98},
-                new Region {Name = "Northern Europe", Continent = europe, FuelIndex = 1.025},
-                new Region {Name = "Eastern Europe", Continent = europe, FuelIndex = 1.025},
-                new Region {Name = "Western Europe", Continent = europe, FuelIndex = 1.025},
-                new Region {Name = "Southern Europe", Continent = europe, FuelIndex = 1.025},
-                new Region {Name = "Caribbean", Continent = namerica, FuelIndex = 1.005},
-                new Region {Name = "North America", Continent = namerica, FuelIndex = 1.005},
-                new Region {Name = "Central America", Continent = namerica, FuelIndex = 1.04},
-                new Region {Name = "South America", Continent = samerica, FuelIndex = 1.04});
+                Seeds.Regions.All,
+                Seeds.Regions.Australia,
+                Seeds.Regions.Oceania,
+                Seeds.Regions.Caribbean,
+                Seeds.Regions.CentralAfrica,
+                Seeds.Regions.CentralAmerica,
+                Seeds.Regions.CentralAsia,
+                Seeds.Regions.EastAfrica,
+                Seeds.Regions.EastAsia,
+                Seeds.Regions.EasternEurope,
+                Seeds.Regions.NorthAfrica,
+                Seeds.Regions.NorthAmerica,
+                Seeds.Regions.NorthernEurope,
+                Seeds.Regions.SouthAmerica,
+                Seeds.Regions.SoutheastAsia,
+                Seeds.Regions.SouthernAfrica,
+                Seeds.Regions.SouthernEurope,
+                Seeds.Regions.WestAfrica,
+                Seeds.Regions.WestAsia,
+                Seeds.Regions.WesternEurope);
 
             context.Difficulties.AddOrUpdate(
                 d => d.Id,

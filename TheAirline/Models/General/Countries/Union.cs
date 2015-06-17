@@ -38,7 +38,8 @@ namespace TheAirline.Models.General.Countries
         [Versioning("members")]
         public List<UnionMember> Members { get; set; }
 
-        public override string Name => Translator.GetInstance().GetString(Section, Uid);
+        //public override string Name => Translator.GetInstance().GetString(Section, Uid);
+        public string Name { get; set; }
 
         [Versioning("obsolete")]
         public DateTime ObsoleteDate { get; set; }

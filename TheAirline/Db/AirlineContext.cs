@@ -12,5 +12,7 @@ namespace TheAirline.Db
         public DbSet<Continent> Continents { get; set; }
         public DbSet<Difficulty> Difficulties { get; set; }
         public DbSet<Player> Players { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<Country> Countries { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace TheAirline.Models.General.Countries
         #region Constructors and Destructors
 
         public TemporaryCountry(TemporaryType type, Country country, DateTime startDate, DateTime endDate)
-            : base(Section, country.Uid, country.ShortName, country.Region, country.TailNumberFormat)
+            //: base(Section, country.Uid, country.ShortName, country.Region, country.TailNumberFormat)
         {
             Type = type;
             StartDate = startDate;
@@ -67,12 +67,12 @@ namespace TheAirline.Models.General.Countries
 
         #region Public Methods and Operators
 
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("version", 1);
+        //public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        //{
+        //    info.AddValue("version", 1);
 
-            base.GetObjectData(info, context);
-        }
+        //    base.GetObjectData(info, context);
+        //}
 
         public Country GetCurrentCountry(DateTime date, Country originalCountry)
         {

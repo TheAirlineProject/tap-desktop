@@ -23,6 +23,8 @@ namespace TheAirline.Models.General.Countries
         {
         }
 
+        public BaseUnit() { }
+
         #endregion
 
         #region Public Properties
@@ -41,7 +43,8 @@ namespace TheAirline.Models.General.Countries
             set { _flag = value; }
         }
 
-        public virtual string Name => Translator.GetInstance().GetString(Country.Section, Uid);
+        //public virtual string Name => Translator.GetInstance().GetString(Country.Section, Uid);
+        public string Name { get; set; }
 
         [Versioning("shortname")]
         public string ShortName { get; set; }
