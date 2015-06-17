@@ -92,13 +92,13 @@
             <TextBlock Grid.Column="0" Grid.Row="4" Text="{lex:Loc PageNewGame_1013_name}" />
             <ComboBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Margin="0 0 0 5"
                       Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" SelectedIndex="0"
-                      ItemsSource="{Binding Source={extensions:EnumList {x:Type enums:AirlineFocus}}}" />
+                      ItemsSource="{Binding Source={extensions:EnumList {x:Type enums:AirlineFocus}}}" SelectedItem="{Binding SelectedFocus}" />
 
             <!-- Row 7 -->
             <TextBlock Grid.Column="0" Grid.Row="5" Text="{lex:Loc PageNewGame_1011_name}" />
             <WrapPanel Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Margin="0 0 0 5">
                 <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" DisplayMemberPath="Name"
-                          SelectedValuePath="Name" Width="100" SelectedIndex="0" ItemsSource="{Binding Difficulties}" />
+                          Width="100" SelectedIndex="0" ItemsSource="{Binding Difficulties}" SelectedItem="{Binding SelectedDifficulty}" />
                 <Button Content="Custom Difficulty" IsEnabled="False" Style="{StaticResource StandardButtonStyle}"
                         Margin="5 0 0 0" />
             </WrapPanel>

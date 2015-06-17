@@ -5,24 +5,30 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.Regions;
 using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.General;
 using TheAirline.Models.General.Countries;
+using Region = TheAirline.Models.General.Countries.Region;
 
 namespace TheAirline.ViewModels.Game
 {
     [Export]
-    public sealed class PageStartDataViewModel : BindableBase
+    public sealed class PageStartDataViewModel : BindableBase, INavigationAware
     {
         private readonly Region _allRegions;
+        private readonly IRegionManager _regionManager;
         private readonly IQueryable<Region> _regions;
         private readonly AppState _state;
+        private Player _player;
         private Region _selectedRegion;
 
         [ImportingConstructor]
-        public PageStartDataViewModel(AppState state)
+        public PageStartDataViewModel(AppState state, IRegionManager regionManager)
         {
             _state = state;
+            _regionManager = regionManager;
 
             _allRegions = new Region {Name = "All Regions", Id = 100};
 
@@ -56,6 +62,7 @@ namespace TheAirline.ViewModels.Game
 
             // DelegateCommand only works with Nullable objects hence the int?.
             ChangeRegions = new DelegateCommand<Continent>(UpdateRegions);
+            Navigate = new DelegateCommand<Uri>(ChangePages);
         }
 
         public ObservableCollection<Continent> Continents { get; }
@@ -80,6 +87,56 @@ namespace TheAirline.ViewModels.Game
         public bool GameTurn { get; set; }
         public bool PausedOnStart { get; set; }
         public bool SameRegion { get; set; }
+        public DelegateCommand<Uri> Navigate { get; set; }
+        public Uri StartMenu => new Uri("/PageStartMenu", UriKind.Relative);
+        public Uri NewAirline => new Uri("/PageAirlineData", UriKind.Relative);
+        public AirlineFocus SelectedFocus { get; set; }
+        public Difficulty SelectedDifficulty { get; set; }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            if (navigationContext.Uri.Equals(NewAirline))
+            {
+                navigationContext.Parameters.Add("player", _player.Id);
+            }
+        }
+
+        private void ChangePages(Uri obj)
+        {
+            if (obj.Equals(NewAirline))
+            {
+                _player = new Player
+                {
+                    Continent = Continent,
+                    Region = SelectedRegion,
+                    MajorAirports = MajorAirports,
+                    StartYear = Year,
+                    Focus = SelectedFocus,
+                    Difficulty = SelectedDifficulty,
+                    NumOfOpponents = SelectedOpponents,
+                    RandomOpponents = RandomOpponents,
+                    SameRegion = SameRegion,
+                    RealData = RealData,
+                    UseDays = GameTurn,
+                    Paused = PausedOnStart
+                };
+
+                _state.Context.Players.Add(_player);
+                _state.SaveState();
+            }
+
+            _regionManager.RequestNavigate("MainContentRegion", obj);
+        }
 
         private void UpdateRegions(Continent obj)
         {
