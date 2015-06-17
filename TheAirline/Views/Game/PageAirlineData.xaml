@@ -1,19 +1,16 @@
-﻿<Page x:Class="TheAirline.GUIModel.PagesModel.GamePageModel.PageAirlineData"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:g="clr-namespace:TheAirline.GUIModel.HelpersModel"
-      xmlns:c="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
-      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-      xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-      mc:Ignorable="d"
-      d:DesignHeight="300" d:DesignWidth="300"
-      Name="pageAirlineData"
-      Title="PageAirlineData">
+﻿<UserControl x:Class="TheAirline.Views.Game.PageAirlineData"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:g="clr-namespace:TheAirline.GUIModel.HelpersModel"
+             xmlns:c="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
+             xmlns:game="clr-namespace:TheAirline.ViewModels.Game"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance game:PageAirlineDataViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
 
 
-    <StackPanel HorizontalAlignment="Center">
+    <!--<StackPanel HorizontalAlignment="Center">
         <ListBox Background="Transparent" BorderThickness="0"
                  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"
                  ItemTemplate="{StaticResource QuickInfoItem}">
@@ -135,5 +132,5 @@
                          VerticalAlignment="Center" x:Name="scCreating" />
 
 
-    </StackPanel>
-</Page>
+    </StackPanel>-->
+</UserControl>

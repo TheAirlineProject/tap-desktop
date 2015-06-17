@@ -497,7 +497,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml">
+    <Page Include="Views\Game\PageAirlineData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -788,6 +788,7 @@
     <Compile Include="Models\General\Settings.cs" />
     <Compile Include="ViewModels\Airline\AirlineMVVM.cs" />
     <Compile Include="ViewModels\Airline\PageAirlineViewModel.cs" />
+    <Compile Include="ViewModels\Game\PageAirlineDataViewModel.cs" />
     <Compile Include="ViewModels\Game\PageCreditsViewModel.cs" />
     <Compile Include="ViewModels\Game\PageSelectLanguageViewModel.cs" />
     <Compile Include="ViewModels\Game\PageSettingsViewModel.cs" />
@@ -919,7 +920,7 @@
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\DifficultyMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\GamePageModel\GameVersionMVVM.cs" />
-    <Compile Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml.cs">
+    <Compile Include="Views\Game\PageAirlineData.xaml.cs">
       <DependentUpon>PageAirlineData.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageCalendar.xaml.cs">

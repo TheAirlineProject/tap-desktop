@@ -41,7 +41,7 @@
                     </Style>
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="TimelineEntry">
+                    <DataTemplate DataType="local:TimelineEntry">
                         <Border MouseDown="tlEntry_MouseDown" PreviewMouseLeftButtonDown="timeline_PreviewMouseLeftButtonDown" MouseMove="timeline_MouseMove" Drop="timeline_Drop" Tag="{Binding}"  Style="{StaticResource RoundedBorderStyle}" Background="{Binding Brush}" BorderBrush="Black" BorderThickness="1" Height="20" ToolTipService.ShowDuration="60000" ToolTip="{Binding ToolTip}">
                             <TextBlock Background="Transparent" VerticalAlignment="Bottom" FontWeight="Bold" TextAlignment="Center" Text="{Binding Text}">
                                 <TextBlock.Width>
