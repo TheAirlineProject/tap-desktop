@@ -1,5 +1,5 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Logging;
-using Microsoft.Practices.Prism.Logging;
+using Prism.Logging;
 
 namespace TheAirline.Infrastructure.Adapters
 {

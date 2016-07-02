@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows.Input;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.PubSubEvents;
+using Prism.Events;
+using Prism.Mvvm;
 using TaskDialogInterop;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Infrastructure.Events;

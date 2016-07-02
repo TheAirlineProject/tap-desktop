@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewModels="clr-namespace:TheAirline.ViewModels"
-        xmlns:regions="http://www.codeplex.com/CompositeWPF"
+        xmlns:regions="http://prismlibrary.com/"
         mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}">
     <Window.InputBindings>
         <KeyBinding Key="Escape" Command="{Binding CloseCommand}" />

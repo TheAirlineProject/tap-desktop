@@ -31,6 +31,9 @@
         </Grid.RowDefinitions>
         
         <TextBlock Grid.Column="0" Grid.Row="0" Text="{lex:Loc PageNewGame_1002_name}" />
+        <ComboBox Grid.Row="0" Grid.Column="1" Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" ItemTemplate="{StaticResource AirlineCountryItem}" />
+
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="{lex:Loc PageNewGame_1021_name}" />
     </Grid>
 
 

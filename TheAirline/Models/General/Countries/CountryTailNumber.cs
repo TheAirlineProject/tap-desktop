@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Runtime.Serialization;
-using TheAirline.Infrastructure;
 
 namespace TheAirline.Models.General.Countries
 {
@@ -14,7 +12,9 @@ namespace TheAirline.Models.General.Countries
             Country = country;
         }
 
-        public CountryTailNumber() { }
+        public CountryTailNumber()
+        {
+        }
 
         public int Id { get; set; }
 
@@ -25,13 +25,13 @@ namespace TheAirline.Models.General.Countries
         //returns if a tail number matches the country
         public bool IsMatch(string tailNumber)
         {
-            string countryID = Country.TailNumberFormat.Split('-')[0];
-            string numberFormat = Country.TailNumberFormat.Split('-')[1];
+            var countryID = Country.TailNumberFormat.Split('-')[0];
+            var numberFormat = Country.TailNumberFormat.Split('-')[1];
 
-            int length = 0; //Convert.ToInt16(numberFormat.Substring(numberFormat.Length - 1));
+            var length = 0; //Convert.ToInt16(numberFormat.Substring(numberFormat.Length - 1));
 
-            int sIndex = numberFormat.IndexOf('s');
-            int dIndex = numberFormat.IndexOf('d');
+            var sIndex = numberFormat.IndexOf('s');
+            var dIndex = numberFormat.IndexOf('d');
 
 
             if (sIndex != -1)
@@ -39,8 +39,8 @@ namespace TheAirline.Models.General.Countries
             if (dIndex != -1)
                 length += Convert.ToInt16(numberFormat.Substring(dIndex + 1, 1));
 
-            string tailID = tailNumber.Split('-')[0];
-            string tailFormat = tailNumber.Split('-')[1];
+            var tailID = tailNumber.Split('-')[0];
+            var tailFormat = tailNumber.Split('-')[1];
 
             return tailID == countryID && tailFormat.Length == length;
         }
@@ -48,8 +48,8 @@ namespace TheAirline.Models.General.Countries
         //returns the tail number for digits
         private string getTailNumber(int number, int digits)
         {
-            string format = "{0:";
-            for (int i = 0; i < digits; i++)
+            var format = "{0:";
+            for (var i = 0; i < digits; i++)
                 format += "0";
             format += "}";
             return string.Format(format, number);
@@ -61,7 +61,7 @@ namespace TheAirline.Models.General.Countries
             int i;
             if (lastCode == null)
             {
-                string code = "";
+                var code = "";
                 for (i = 0; i < chars; i++)
                     code += "A";
                 return code;
@@ -76,13 +76,13 @@ namespace TheAirline.Models.General.Countries
                     i++;
             }
 
-            char replaceChar = lastCode[lastCode.Length - 1 - i];
+            var replaceChar = lastCode[lastCode.Length - 1 - i];
             replaceChar++;
 
             if (i == 0)
                 return lastCode.Substring(0, chars - i - 1) + replaceChar + lastCode.Substring(chars - i);
-            string postfix = "";
-            for (int j = 0; j < i; j++)
+            var postfix = "";
+            for (var j = 0; j < i; j++)
                 postfix += "A";
 
             return lastCode.Substring(0, chars - i - 1) + replaceChar + postfix;
@@ -96,8 +96,8 @@ namespace TheAirline.Models.General.Countries
 
             try
             {
-                string countryID = Country.TailNumberFormat.Split('-')[0];
-                string numberFormat = Country.TailNumberFormat.Split('-')[1];
+                var countryID = Country.TailNumberFormat.Split('-')[0];
+                var numberFormat = Country.TailNumberFormat.Split('-')[1];
 
                 int length = Convert.ToInt16(numberFormat.Substring(numberFormat.Length - 1));
 
@@ -114,19 +114,21 @@ namespace TheAirline.Models.General.Countries
                     }
                     else
                     {
-                        string t = LastTailNumber.Split('-')[1].Substring(0, dLenght);
-                        string s = LastTailNumber.Split('-')[1].Substring(sLenght, dLenght);
-                        string postfix = LastTailNumber.Split('-')[1];
-                        string lastCode = dLenght < sLenght ? LastTailNumber.Split('-')[1].Substring(dLenght, sLenght) : LastTailNumber.Split('-')[1].Substring(0, sLenght);
+                        var t = LastTailNumber.Split('-')[1].Substring(0, dLenght);
+                        var s = LastTailNumber.Split('-')[1].Substring(sLenght, dLenght);
+                        var postfix = LastTailNumber.Split('-')[1];
+                        var lastCode = dLenght < sLenght
+                            ? LastTailNumber.Split('-')[1].Substring(dLenght, sLenght)
+                            : LastTailNumber.Split('-')[1].Substring(0, sLenght);
 
                         int lastNumber = dLenght < sLenght ? Convert.ToInt16(t) : Convert.ToInt16(s);
-                        int number = lastNumber + 1;
+                        var number = lastNumber + 1;
 
-                        int nLenght = number.ToString(CultureInfo.InvariantCulture).Length;
+                        var nLenght = number.ToString(CultureInfo.InvariantCulture).Length;
 
-                        string sNumber = nLenght > dLenght ? getTailNumber(lastCode, sLenght) : lastCode;
-                        string dNumber = nLenght > dLenght ? getTailNumber(0, dLenght) : getTailNumber(number, dLenght);
-                        string code = getTailNumber(lastCode, sLenght);
+                        var sNumber = nLenght > dLenght ? getTailNumber(lastCode, sLenght) : lastCode;
+                        var dNumber = nLenght > dLenght ? getTailNumber(0, dLenght) : getTailNumber(number, dLenght);
+                        var code = getTailNumber(lastCode, sLenght);
 
                         if (dLenght < sLenght)
                             LastTailNumber = countryID + "-" + dNumber + sNumber;
@@ -151,7 +153,9 @@ namespace TheAirline.Models.General.Countries
                 }
                 if (numberFormat.Contains("\\s") && !numberFormat.Contains("\\d"))
                 {
-                    LastTailNumber = countryID + "-" + getTailNumber(LastTailNumber == null ? LastTailNumber : LastTailNumber.Split('-')[1], length);
+                    LastTailNumber = countryID + "-" +
+                                     getTailNumber(
+                                         LastTailNumber == null ? LastTailNumber : LastTailNumber.Split('-')[1], length);
                     /*
                     if (LastTailNumber == null)
                     {

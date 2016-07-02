@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Globalization;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Regions;
 using TheAirline.Infrastructure;
 using WPFLocalizeExtension.Engine;
 

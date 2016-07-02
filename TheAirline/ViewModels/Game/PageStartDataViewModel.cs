@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Regions;
 using TheAirline.Infrastructure;
 using TheAirline.Infrastructure.Enums;
 using TheAirline.Models.General;
@@ -62,7 +62,7 @@ namespace TheAirline.ViewModels.Game
 
             // DelegateCommand only works with Nullable objects hence the int?.
             ChangeRegions = new DelegateCommand<Continent>(UpdateRegions);
-            Navigate = new DelegateCommand<Uri>(ChangePages);
+            NavigateCommand = new DelegateCommand<Uri>(ChangePages);
         }
 
         public ObservableCollection<Continent> Continents { get; }
@@ -87,15 +87,15 @@ namespace TheAirline.ViewModels.Game
         public bool GameTurn { get; set; }
         public bool PausedOnStart { get; set; }
         public bool SameRegion { get; set; }
-        public DelegateCommand<Uri> Navigate { get; set; }
-        public Uri StartMenu => new Uri("/PageStartMenu", UriKind.Relative);
-        public Uri NewAirline => new Uri("/PageAirlineData", UriKind.Relative);
+        public DelegateCommand<Uri> NavigateCommand { get; }
+        public Uri StartMenuUri => new Uri("/PageStartMenu", UriKind.Relative);
+        public Uri NewAirlineUri => new Uri("/PageAirlineData", UriKind.Relative);
         public AirlineFocus SelectedFocus { get; set; }
         public Difficulty SelectedDifficulty { get; set; }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            throw new NotImplementedException();
+            
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
@@ -105,7 +105,7 @@ namespace TheAirline.ViewModels.Game
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            if (navigationContext.Uri.Equals(NewAirline))
+            if (navigationContext.Uri.Equals(NewAirlineUri))
             {
                 navigationContext.Parameters.Add("player", _player.Id);
             }
@@ -113,7 +113,7 @@ namespace TheAirline.ViewModels.Game
 
         private void ChangePages(Uri obj)
         {
-            if (obj.Equals(NewAirline))
+            if (obj.Equals(NewAirlineUri))
             {
                 _player = new Player
                 {

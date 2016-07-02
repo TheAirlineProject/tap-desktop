@@ -14,7 +14,7 @@ namespace TheAirline
     {
         static App()
         {
-            AppSettings.Init();
+            //AppSettings.Init();
         }
 
         protected override void OnStartup(StartupEventArgs e)

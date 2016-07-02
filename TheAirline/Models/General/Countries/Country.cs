@@ -17,7 +17,7 @@ namespace TheAirline.Models.General.Countries
             Section = section;
             Region = region;
             TailNumberFormat = tailNumberFormat;
-            TailNumbers = new CountryTailNumber(this);
+            //TailNumbers = new CountryTailNumber(this);
             //Currencies = new List<CountryCurrency>();
         }
 

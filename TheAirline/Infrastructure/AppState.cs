@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Linq;
 using TheAirline.Db;
 using TheAirline.Infrastructure.Enums;
 using WPFLocalizeExtension.Engine;
@@ -14,7 +15,7 @@ namespace TheAirline.Infrastructure
 
         public AppState()
         {
-            _settings = Context.Settings.Find(1);
+            _settings = Context.Settings.First();
 
             var dict = LocalizeDictionary.Instance;
             dict.IncludeInvariantCulture = false;

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.Composition;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Regions;
 
 namespace TheAirline.ViewModels.Game
 {

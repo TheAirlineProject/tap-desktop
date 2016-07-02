@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.Composition.Hosting;
 using System.Windows;
-using Microsoft.Practices.Prism.Logging;
-using Microsoft.Practices.Prism.MefExtensions;
 using Microsoft.Practices.ServiceLocation;
+using Prism.Logging;
+using Prism.Mef;
 using TheAirline.Infrastructure.Adapters;
 
 namespace TheAirline.Infrastructure

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.Linq;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Mvvm;
+using Prism.Regions;
 using TheAirline.Infrastructure;
 using TheAirline.Models.General;
 
