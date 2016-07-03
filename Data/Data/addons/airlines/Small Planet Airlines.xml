@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Small Planet Airlines" iata="S5" color="Yellow" country="103" CEO="Vytautas Kaikaris"
+           mentality="Moderate" market="Regional" preferedairport="VNO">
+    <narrative
+      narrative="Small Planet Airlines is a charter airline, established in 2007. Its man base is Vilnius Airport, with divisions in Poland, France and the United Kingdom. Small Planet Airlines currently operates a fleet of 9 aircraft (2 Boeing 737-300, and 7 Airbus 320) and has chartered to more than 120 destinations in Europe, MENA and Asia regions" />
+  </profile>
+  <info real="True" from="2007" to="2199"></info>
+</airline>

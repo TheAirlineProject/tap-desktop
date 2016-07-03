@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Ibex Airlines" iata="FW" logo="FW" color="Pink" country="171" CEO="Hiroyuki Hattori" mentality="Safe" market="Domestic" preferedairport="SDJ">
+    <narrative narrative="Ibex Airlines was founded in 1999 as Fairinc and it was changed to it's current name in 2004. It's main base is Sendai. As of April 2014 they serve 11 Japanese airports. They have 9 planes. Five CRJ700NG's, two CRJ200ER's and two CRJ100ER's and three CRJ700NG's on order. All Nippon Airlines is in agreement to provide services to them, in flight operations,flight crew provision, and maintenance and engineering services. They operate as ANA Connection and both their own logo and that of ANA Connection is on their planes." />
+  </profile>
+  <info real="True" from="1999" to="2199"></info>
+</airline>

@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using TheAirline.Model.AirlinerModel;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using TheAirline.Model.GeneralModel;
 using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -80,7 +73,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Height = 150;
 
-            this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
 
             StackPanel panelClasses = new StackPanel();
@@ -95,7 +88,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             lblNewClass = new ContentControl();
             lblNewClass.Margin = new Thickness(0, 5, 0, 0);
             lblNewClass.ContentTemplate = this.Resources["NewClassItem"] as DataTemplate;
-            lblNewClass.Content = AirlinerClass.ClassType.First_Class;
+            lblNewClass.Content = AirlinerClass.ClassType.FirstClass;
 
             panelClasses.Children.Add(lblNewClass);
 
@@ -105,20 +98,20 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
 
             Button btnOk = new Button();
-            btnOk.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
+            btnOk.SetResourceReference(StyleProperty, "StandardButtonStyle");
             btnOk.Height = 16;
             btnOk.Width = Double.NaN;
-            btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnOk.HorizontalAlignment = HorizontalAlignment.Left;
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             btnOk.Content = "OK";
        
             panelButtons.Children.Add(btnOk);
 
             Button btnCancel = new Button();
-            btnCancel.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
+            btnCancel.SetResourceReference(StyleProperty, "StandardButtonStyle");
             btnCancel.Height = 16;
             btnCancel.Width = Double.NaN;
-            btnCancel.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnCancel.HorizontalAlignment = HorizontalAlignment.Left;
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
             btnCancel.Content = "Cancel";
@@ -168,7 +161,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     FreeClasses.Add(type);
             }
             
-            AirlinerClass.ClassType nextClass = FreeClasses.Count > 0 ?  FreeClasses[0] : AirlinerClass.ClassType.Economy_Class;
+            AirlinerClass.ClassType nextClass = FreeClasses.Count > 0 ?  FreeClasses[0] : AirlinerClass.ClassType.EconomyClass;
 
             MaxSeats = maxCapacity - this.Classes.Count;
 
@@ -182,9 +175,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
               AirlinerClass aClass = new AirlinerClass(this.CurrentClass, seating);
 
-            aClass.forceSetFacility(this.Classes[0].getFacility(AirlinerFacility.FacilityType.Audio));
-            aClass.forceSetFacility(this.Classes[0].getFacility(AirlinerFacility.FacilityType.Seat));
-            aClass.forceSetFacility(this.Classes[0].getFacility(AirlinerFacility.FacilityType.Video));
+            aClass.ForceSetFacility(this.Classes[0].GetFacility(AirlinerFacility.FacilityType.Audio));
+            aClass.ForceSetFacility(this.Classes[0].GetFacility(AirlinerFacility.FacilityType.Seat));
+            aClass.ForceSetFacility(this.Classes[0].GetFacility(AirlinerFacility.FacilityType.Video));
             
             this.Classes.Add(aClass);
 
@@ -229,7 +222,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     //the converter for the "free" classes
     public class FreeClassesConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             ObservableCollection<AirlinerClass.ClassType> list = new ObservableCollection<AirlinerClass.ClassType>();
             foreach (AirlinerClass.ClassType type in PopUpAirlinerConfiguration.FreeClasses)
@@ -238,7 +231,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             return list;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
@@ -246,7 +239,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     //the converter for returning the amount of passengers
     public class NumberOfPassengersConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             ObservableCollection<int> list = new ObservableCollection<int>();
              for (int i = 1; i < PopUpAirlinerConfiguration.MaxSeats; i++)
@@ -254,7 +247,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
            return list;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
         }

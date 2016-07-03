@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Malev Hungarian Airlines" iata="MA" logo="MA" color="Purple" country="159" CEO="Lient Limburger" mentality="Aggressive" market="Global" preferedairport="BUD">
+    <narrative narrative=" Malebv was the flag carrier of Hungary from 1946-2012. It was based at Budapest. At the time of it's collapse they served 50 destinations, most of them in Europe with some in Africa and the Middle East. And had 57 destinations they had terminated before the closure, many in Asia and some in North America included.  They had 23 planes at the end, 18 737's, 1 767, and 4 Dash 8 Q400's. 22 of them are still stored until they will most likely be liquidated as the Metropolitan Court of Budapest has ordered as the fate of the airline.  " /></profile>
+  <info real="True" from="1946" to="2012" />
+</airline>

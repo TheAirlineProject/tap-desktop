@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!--Template
+  <engine manufacturer="" model="" >
+	  <specs type="" noise="" consumptionModifier="" price="" />
+	  <performance maxSpeed="" ceiling="" runwaylengthrequiredModifier="" rangeModifier="" />
+	  <aircraft models="" />
+	  <produced from="" to="" />
+  </engine>
+<engines>
+-->
+<engines>
+ <engine manufacturer="Rolls-Royce" model="Olympus 593" >
+	  <specs type="Jet" noise="VeryHigh" consumptionModifier="1" price="9105100" />
+	  <performance maxspeed="2158" ceiling="18300" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Aerospatiale-BAC Concorde" />
+	  <produced from="1976" to="2003" />
+  </engine>
+  <engine manufacturer="TurboMeca" model="Bastan VIC" >
+	  <specs type="Turboprop" noise="Medium" consumptionModifier="1" price="262655" />
+	  <performance maxspeed="360" ceiling="7300" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="Aerospatiale N 262" />
+	  <produced from="1964" to="1976" />
+  </engine>
+  <engine manufacturer="TurboMeca" model="Arriel 1" >
+	  <specs type="Jet" noise="Medium" consumptionModifier="1" price="570400" />
+	  <performance maxspeed="268" ceiling="5865" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="SA365 Dauphin 2" />
+	  <produced from="1976" to="2018" />
+  </engine>
+  <engine manufacturer="TurboMeca" model="Arrius" >
+	  <specs type="Turboprop" noise="Low" consumptionModifier="1" price="240000" />
+	  <performance maxspeed="250" ceiling="5182" runwaylengthrequiredModifier="1" rangeModifier="1" />
+	  <aircraft models="EC120 Colibri" />
+	  <produced from="1995" to="2020" />
+  </engine>
+  </engines>

@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.ComponentModel;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Infrastructure;
 
 namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 {
@@ -43,7 +36,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
     public class CalendarItemToBrush : IValueConverter
     {
         //også under match, results, + stats
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Brush brush = Brushes.DarkBlue;
 
@@ -56,17 +49,17 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
                     brush = new SolidColorBrush(Colors.DarkBlue);
                     brush.Opacity = 0.5;
                 }
-                if (item.Type == CalendarItem.ItemType.Airliner_Order)
+                if (item.Type == CalendarItem.ItemType.AirlinerOrder)
                 {
                     brush = new SolidColorBrush(Colors.DarkRed);
                     brush.Opacity = 0.5;
                 }
-                if (item.Type == CalendarItem.ItemType.Airport_Opening)
+                if (item.Type == CalendarItem.ItemType.AirportOpening)
                 {
                     brush = new SolidColorBrush(Colors.DarkGreen);
                     brush.Opacity = 0.5;
                 }
-                if (item.Type == CalendarItem.ItemType.Airport_Closing)
+                if (item.Type == CalendarItem.ItemType.AirportClosing)
                 {
                     brush = new SolidColorBrush(Colors.Orange);
                     brush.Opacity = 0.5;
@@ -75,7 +68,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
             return brush;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return value;
         }

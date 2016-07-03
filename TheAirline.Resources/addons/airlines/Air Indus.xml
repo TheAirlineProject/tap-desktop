@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Air Indus" iata="I6" color="Red" country="202" CEO="Abdul Wahab" mentality="Moderate" market="Domestic" preferedairport="KHI">
+  <narrative narrative="Air Indus is a newer airline founded in 2010 and is based at Karchi Jinnah Intl. in Pakistan. As of 2014 they only serve domestic routes but have hopes to expand beyond Pakistan. As of now they serve 10 domestic routes with a fleet of three 737-300's and have five new planes on order." />
+  </profile>
+  <info real="True" from="2010" to="2199"></info>
+</airline>

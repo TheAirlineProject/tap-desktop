@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Myanma Airways" iata="UB" color="Orange" country="278" CEO="Than Tun" mentality="Moderate"
+           market="Regional" preferedairport="RGN">
+    <narrative
+      narrative="Myanma Airways is the sole national flag carrier and state-owned airline of Myanmar, based in Yangon. It operates scheduled services to all major domestic destinations. Its main base is Yangon International Airport" />
+  </profile>
+  <info real="True" from="1948" to="2199"></info>
+</airline>

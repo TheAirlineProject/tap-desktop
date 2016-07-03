@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="TheAirline.Views.Game.PageStartMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:TheAirline.ViewModels.Game"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="en"
+             lex:ResxLocalizationProvider.DefaultAssembly="TheAirline"
+             lex:ResxLocalizationProvider.DefaultDictionary="language"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:PageStartMenuViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style x:Key="StartMenuButtonStyle" TargetType="Button">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
+            <Setter Property="MinHeight" Value="25" />
+            <Setter Property="MinWidth" Value="200" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border" Style="{StaticResource RoundedBorderStyle}">
+                            <WrapPanel>
+                                <Image
+                                    Source="pack://application:,,,/TheAirline.Data;component/Images/Buttons/startmenu.png"
+                                    Width="25" RenderOptions.BitmapScalingMode="HighQuality" />
+                                <ContentPresenter x:Name="Presenter"
+                                                  Margin="5 0 5 0"
+                                                  TextBlock.FontWeight="Bold"
+                                                  TextBlock.FontSize="20"
+                                                  VerticalAlignment="Bottom"
+                                                  RecognizesAccessKey="True" />
+                            </WrapPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#004A7F" Opacity="0.5" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="#004A7F" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Border" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="LightGray" Opacity="0.5" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="Presenter" Property="TextBlock.FontStyle" Value="Italic" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel HorizontalAlignment="Center">
+        <Button x:Name="NewGame"
+                Content="{lex:Loc PageFrontMenu_200_name}"
+                Style="{StaticResource StartMenuButtonStyle}" Command="{Binding NavigateCommand}"
+                CommandParameter="{Binding NewGameUri}" />
+        <Button Style="{StaticResource StartMenuButtonStyle}" Content="New Scenario" Margin="0 5 0 0" IsEnabled="False" />
+        <Button Margin="0 5 0 0"
+                Content="{lex:Loc PageFrontMenu_201_name}"
+                Style="{StaticResource StartMenuButtonStyle}" Command="{Binding NavigateCommand}"
+                CommandParameter="{Binding LoadGameUri}" />
+        <Button Margin="0 5 0 0"
+                Content="{lex:Loc PageFrontMenu_202_name}"
+                Style="{StaticResource StartMenuButtonStyle}" Command="{Binding NavigateCommand}"
+                CommandParameter="{Binding SettingsUri}" />
+        <Button Margin="0 5 0 0"
+                Content="{lex:Loc PageFrontMenu_203_name}"
+                Style="{StaticResource StartMenuButtonStyle}" Command="{Binding NavigateCommand}"
+                CommandParameter="{Binding CreditsUri}" />
+        <Button Margin="0 5 0 0"
+                Content="{lex:Loc PageFrontMenu_204_name}"
+                Style="{StaticResource StartMenuButtonStyle}" Command="{Binding ExitCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" />
+    </StackPanel>
+</UserControl>

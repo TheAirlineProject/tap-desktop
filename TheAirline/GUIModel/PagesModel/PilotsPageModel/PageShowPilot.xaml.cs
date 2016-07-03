@@ -1,80 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.Helpers;
-using TheAirline.Model.PilotModel;
+using TheAirline.Helpers;
+using TheAirline.Models.General;
+using TheAirline.Models.Pilots;
 
 namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
 {
     /// <summary>
-    /// Interaction logic for PageShowPilot.xaml
+    ///     Interaction logic for PageShowPilot.xaml
     /// </summary>
     public partial class PageShowPilot : Page
     {
-        public Pilot Pilot { get; set; }
-        public double Salary { get; set; }
+        #region Constructors and Destructors
+
         public PageShowPilot(Pilot pilot)
         {
-            this.Pilot = pilot;
+            Pilot = pilot;
 
             InitializeComponent();
 
-            this.Salary = AirlineHelpers.GetPilotSalary(GameObject.GetInstance().HumanAirline,this.Pilot);
-
-            
+            Salary = AirlineHelpers.GetPilotSalary(GameObject.GetInstance().HumanAirline, Pilot);
         }
+
+        #endregion
+
+        #region Public Properties
+
+        public Pilot Pilot { get; set; }
+
+        public double Salary { get; set; }
+
+        #endregion
+
+        #region Methods
+
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
-                var matchingItem =
-     tab_main.Items.Cast<TabItem>()
-       .Where(item => item.Tag.ToString() == "Pilots")
-       .FirstOrDefault();
+                TabItem matchingItem =
+                    tab_main.Items.Cast<TabItem>().Where(item => item.Tag.ToString() == "Pilots").FirstOrDefault();
 
                 tab_main.SelectedItem = matchingItem;
             }
         }
+
         private void btnHire_Click(object sender, RoutedEventArgs e)
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2801"), Translator.GetInstance().GetString("MessageBox", "2801", "message"), WPFMessageBoxButtons.YesNo);
-
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+                Translator.GetInstance().GetString("MessageBox", "2801"),
+                Translator.GetInstance().GetString("MessageBox", "2801", "message"),
+                WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                GameObject.GetInstance().HumanAirline.addPilot(this.Pilot);
-
-               
+                GameObject.GetInstance().HumanAirline.AddPilot(Pilot);
             }
 
-            TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
-                var matchingItem =
-     tab_main.Items.Cast<TabItem>()
-       .Where(item => item.Tag.ToString() == "Pilots")
-       .FirstOrDefault();
+                TabItem matchingItem =
+                    tab_main.Items.Cast<TabItem>().Where(item => item.Tag.ToString() == "Pilots").FirstOrDefault();
 
                 tab_main.SelectedItem = matchingItem;
             }
         }
+
+        #endregion
     }
 }

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Cargolux Airlines" iata="CV" color="Red" country="119" CEO="Frank Reimen" mentality="Moderate"
+           market="Global" preferedairport="LUX" routefocus="Cargo">
+    <narrative
+      narrative="Cargolux Airlines was established in March 1970 by Luxair, the Salen Shipping Group, Loftleiðir and various private interests in Luxembourg. It started operations in May 1970 with one Canadair CL-44 freighter with services from Luxembourg to Hong Kong. Over the next two years, the airline grew, as did its public visibility." />
+  </profile>
+  <prefereds aircrafts="Boeing 747-400ERF,Boeing 747-400F,Boeing 747-8F"></prefereds>
+  <info real="True" from="1970" to="2199" />
+</airline>

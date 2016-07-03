@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="S7 Airlines" iata="S7" color="Green" country="149" CEO="Vladimir Obyedkov" mentality="Aggressive" market="Global" preferedairport="OVB">
+    <narrative narrative="Founded in 1992 as Siberia Airlines, S7 Airlines base is Tolmachevo Airport in the Siberian city of Novosibirsk, Russia's third largest city and Siberia's largest. S7 Airlines overtook Aeroflot
+    as Russia's largest airline in 2004 as far as domestic routes go, and in 2008 also became the leading Russian airline in number of passngers carried. They operate to 87 destinations throughout Europe and Asia 
+    and have a fleet of 56 planes. Most them them being A320 family planes along with some 737's and two 767's." />
+  </profile>
+  <info real="True" from="1992" to="2199" />
+</airline>

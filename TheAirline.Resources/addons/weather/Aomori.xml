@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Aomori">
+  <months>
+    <month month="1" precipitation="145">
+      <temp min="-5" max="2" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="116">
+      <temp min="-5" max="2" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="70">
+      <temp min="-2" max="6" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="61">
+      <temp min="3" max="13" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="79">
+      <temp min="8" max="19" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="82">
+      <temp min="13" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="103">
+      <temp min="17" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="129">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="120">
+      <temp min="14" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="106">
+      <temp min="8" max="18" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="132">
+      <temp min="2" max="11" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="149">
+      <temp min="-2" max="5" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

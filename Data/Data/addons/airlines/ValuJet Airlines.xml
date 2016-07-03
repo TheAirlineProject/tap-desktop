@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="ValuJet Airlines" iata="J7" color="LightBlue" country="122" CEO="Maurice Gallagher" mentality="Aggressive" market="Regional" preferedairport="ATL">
+    <narrative narrative=" ValuJet were a low-cost airline based in Atlanta with other hubs at Boston,Miami,Orlando,Philadelphia and Washington Dulles. It was founded in 1992 and began operation in October 1993. They flew to 22 cities in the U.S and Montreal in Canada. They were a favorite for many people for their low cost such as the $39 fare between Atlanta and Jacksonville,FL. At their demise they had 42 DC-9-32's, 4 MD-82's, and 2 DC-9-31's. In 1997 they merged with the smaller AirWays Corp., now known as AirTran, and used the AirTran name despite being the bigger airline to get away from the tarnished ValuJet name that resulted from the crash of Flight 592 in the Florida Everglades. AirTran would go on to be bought by Southwest Airlines in 2011 and cease using their name a few years later." /></profile>
+  <info real="True" from="1992" to="1997" />
+</airline>

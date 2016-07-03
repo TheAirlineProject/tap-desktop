@@ -1,168 +1,195 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.InvoicesModel;
-using TheAirline.Model.GeneralModel.StatisticsModel;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
     /// <summary>
-    /// Interaction logic for PageShowRoute.xaml
+    ///     Interaction logic for PageShowRoute.xaml
     /// </summary>
     public partial class PageShowRoute : Page
     {
-        private HumanRouteMVVM Route;
-        public ObservableCollection<MVVMRouteClass> Classes { get; set; }
-      
+        #region Fields
+
+        private readonly HumanRouteMVVM Route;
+
+        #endregion
+
+        #region Constructors and Destructors
+
         public PageShowRoute(Route route)
         {
+            Classes = new ObservableCollection<MVVMRouteClass>();
 
-            this.Classes = new ObservableCollection<MVVMRouteClass>();
+            Route = new HumanRouteMVVM(route);
+            DataContext = Route;
 
-            this.Route = new HumanRouteMVVM(route);
-            this.DataContext = this.Route;
-             
-            
-             foreach (AirlinerClass.ClassType type in AirlinerClass.GetAirlinerTypes())
+            if (Route.Route.Type == Models.Routes.Route.RouteType.Helicopter)
             {
-                if (this.Route.Route is PassengerRoute)
-                {
-                   RouteAirlinerClass rClass = ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(type);
-                    MVVMRouteClass mClass = new MVVMRouteClass(type, rClass.Seating, rClass.FarePrice);
+                
+                 RouteAirlinerClass rClass = ((PassengerRoute)Route.Route).GetRouteAirlinerClass(AirlinerClass.ClassType.EconomyClass);
+                 var mClass = new MVVMRouteClass(AirlinerClass.ClassType.EconomyClass, rClass.Seating, rClass.FarePrice);
+                
+                 Classes.Add(mClass);
 
-                    this.Classes.Add(mClass);
+             
+            }
+            if (Route.Route.Type == Models.Routes.Route.RouteType.Passenger || Route.Route.Type == Models.Routes.Route.RouteType.Mixed)
+            {
+                 foreach (AirlinerClass.ClassType cType in AirlinerClass.GetAirlinerTypes())
+                {
+                    if ((int)cType <= GameObject.GetInstance().GameTime.Year)
+                    {
+                          RouteAirlinerClass rClass = ((PassengerRoute)Route.Route).GetRouteAirlinerClass(cType);
+                          var mClass = new MVVMRouteClass(cType, rClass.Seating, rClass.FarePrice);
+
+                          Classes.Add(mClass);
+                    }
                 }
             }
-            
           
+
             InitializeComponent();
-                 
-        
-            this.Loaded += PageShowRoute_Loaded;
+
+            Loaded += PageShowRoute_Loaded;
+
+
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        public ObservableCollection<MVVMRouteClass> Classes { get; set; }
+
+        #endregion
+
+        #region Methods
+
+        private void tcMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Route.setFeedback();
         }
 
         private void PageShowRoute_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            if (!this.Route.Route.IsCargoRoute)
+            if (!Route.Route.IsCargoRoute)
             {
-
-
-                foreach (MVVMRouteClass rClass in this.Classes)
+                foreach (MVVMRouteClass rClass in Classes)
                 {
                     foreach (MVVMRouteFacility rFacility in rClass.Facilities)
                     {
-                        var facility = ((PassengerRoute)this.Route.Route).Classes.Find(c => c.Type == rClass.Type).Facilities.Find(f => f.Type == rFacility.Type);
+                        RouteFacility facility =
+                            ((PassengerRoute)Route.Route).Classes.Find(c => c.Type == rClass.Type)
+                                .Facilities.Find(f => f.Type == rFacility.Type);
                         rFacility.SelectedFacility = facility;
-                    
                     }
-
                 }
             }
-            TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
 
             if (tab_main != null)
             {
-               
+                TabItem airlinerItem =
+                    tab_main.Items.Cast<TabItem>().Where(item => item.Tag.ToString() == "Airliner").FirstOrDefault();
 
-                var airlinerItem = tab_main.Items.Cast<TabItem>()
-       .Where(item => item.Tag.ToString() == "Airliner")
-       .FirstOrDefault();
+                airlinerItem.Visibility = Visibility.Collapsed;
+            }
+        }
 
-                airlinerItem.Visibility = System.Windows.Visibility.Collapsed;
+        private void btnDeleteRoute_Click(object sender, RoutedEventArgs e)
+        {
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+                Translator.GetInstance().GetString("MessageBox", "2503"),
+                string.Format(
+                    Translator.GetInstance().GetString("MessageBox", "2503", "message"),
+                    Route.Route.Destination1.Profile.Name,
+                    Route.Route.Destination2.Profile.Name),
+                WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                var contract = GameObject.GetInstance().HumanAirline.SpecialContracts.Find(s => s.Routes.Contains(Route.Route));
+
+                if (contract != null)
+                {
+                    contract.Routes.Remove(Route.Route);
+                }
+
+                GameObject.GetInstance().HumanAirline.RemoveRoute(Route.Route);
+
+                if (Route.Route.HasAirliner)
+                {
+                    Route.Route.GetAirliners().ForEach(a => a.RemoveRoute(Route.Route));
+                }
+
+                var tab_main = UIHelpers.FindChild<TabControl>(Tag as Page, "tabMenu");
+
+                if (tab_main != null)
+                {
+                    TabItem matchingItem =
+                        tab_main.Items.Cast<TabItem>().Where(item => item.Tag.ToString() == "Routes").FirstOrDefault();
+
+                    tab_main.SelectedItem = matchingItem;
+                }
             }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             //passenger route
-            if (this.Route.Route is PassengerRoute )
+            if (Route.Route is PassengerRoute)
             {
-                
-                foreach (MVVMRouteClass rac in this.Classes)
+                foreach (MVVMRouteClass rac in Classes)
                 {
-                    ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
+                    ((PassengerRoute)Route.Route).GetRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
 
-                    ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(rac.Type).Facilities.Clear();
+                    ((PassengerRoute)Route.Route).GetRouteAirlinerClass(rac.Type).Facilities.Clear();
 
                     foreach (MVVMRouteFacility facility in rac.Facilities)
-                        ((PassengerRoute)this.Route.Route).getRouteAirlinerClass(rac.Type).addFacility(facility.SelectedFacility);
-
+                    {
+                        ((PassengerRoute)Route.Route).GetRouteAirlinerClass(rac.Type)
+                            .AddFacility(facility.SelectedFacility);
+                    }
                 }
             }
-            //cargo route
-            else if (this.Route.Route is CargoRoute)
+                //cargo route
+            else if (Route.Route is CargoRoute)
             {
                 double cargoPrice = Convert.ToDouble(txtCargoPrice.Text);
-                ((CargoRoute)this.Route.Route).PricePerUnit = cargoPrice;
-    
+                ((CargoRoute)Route.Route).PricePerUnit = cargoPrice;
             }
-            //mixed route
-            else if (this.Route.Route is CombiRoute)
+                //mixed route
+            else if (Route.Route is CombiRoute)
             {
-                foreach (MVVMRouteClass rac in this.Classes)
+                foreach (MVVMRouteClass rac in Classes)
                 {
-                    ((CombiRoute)this.Route.Route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
+                    ((CombiRoute)Route.Route).GetRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
 
-                    ((CombiRoute)this.Route.Route).getRouteAirlinerClass(rac.Type).Facilities.Clear();
+                    ((CombiRoute)Route.Route).GetRouteAirlinerClass(rac.Type).Facilities.Clear();
 
                     foreach (MVVMRouteFacility facility in rac.Facilities)
-                        ((CombiRoute)this.Route.Route).getRouteAirlinerClass(rac.Type).addFacility(facility.SelectedFacility);
-
+                    {
+                        ((CombiRoute)Route.Route).GetRouteAirlinerClass(rac.Type)
+                            .AddFacility(facility.SelectedFacility);
+                    }
                 }
 
                 double cargoPrice = Convert.ToDouble(txtCargoPrice.Text);
-                ((CombiRoute)this.Route.Route).PricePerUnit = cargoPrice;
+                ((CombiRoute)Route.Route).PricePerUnit = cargoPrice;
             }
         }
 
-        private void btnDeleteRoute_Click(object sender, RoutedEventArgs e)
-        {
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2503"), string.Format(Translator.GetInstance().GetString("MessageBox", "2503", "message"), this.Route.Route.Destination1.Profile.Name, this.Route.Route.Destination2.Profile.Name), WPFMessageBoxButtons.YesNo);
+        #endregion
 
-            if (result == WPFMessageBoxResult.Yes)
-            {
-                GameObject.GetInstance().HumanAirline.removeRoute(this.Route.Route);
-
-               
-                if (this.Route.Route.HasAirliner)
-                    this.Route.Route.getAirliners().ForEach(a => a.removeRoute(this.Route.Route));
-
-                TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
-
-                if (tab_main != null)
-                {
-                    var matchingItem =
-         tab_main.Items.Cast<TabItem>()
-           .Where(item => item.Tag.ToString() == "Routes")
-           .FirstOrDefault();
-
-                    tab_main.SelectedItem = matchingItem;
-                }
-
-
-            }
-        }
-
+     
     }
-  
+
 }
-
-

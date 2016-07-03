@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Tuguegarao City">
+  <months>
+    <month month="1" precipitation="31">
+      <temp min="19" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="23">
+      <temp min="19" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="28">
+      <temp min="21" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="28">
+      <temp min="23" max="35" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="114">
+      <temp min="23" max="36" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="141">
+      <temp min="23" max="35" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="177">
+      <temp min="23" max="34" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="237">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="225">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="248">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="223">
+      <temp min="21" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="178">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Mandarin Airlines" iata="AE" color="Gold" country="172" CEO="Hwa-Yu Wang" mentality="Moderate" market="Regional" preferedairport="TSA">
+<narrative narrative="Mandarain Airlines main bases are Taipei Songshan, Taipei's older airport, and Taichung Airport. They fly to 34 destinations in Taiwan,China,Japan,Malaysia,the Philippines,
+South Korea and Vietnam. They have a modest fleet of 8 ERJ-190's."/>
+</profile>
+<info real="True" from="1991" to="2199"></info>
+</airline>

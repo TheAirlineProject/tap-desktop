@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="JetLite" iata="S2" color="Yellow" country="152" CEO="Subrata Roy" mentality="Aggressive"
+           market="Global" preferedairport="BOM">
+            <narrative
+      narrative="JetKonnect formerly Jet Airways Konnect, a marketing name for Jet Lite (India) Limited, is an airline based in Mumbai, India. Owned by Jet Airways, the airline operates scheduled services connecting metropolitan centres in India." />
+  </profile>
+     <info real="True" from="2007" to="2012"></info>
+  <!--<fleet>
+    <Boeing 737-700="9"/>
+    <Boeing 737-800="8"/>
+    <Boeing 737-900ER="2"/>
+  </fleet> -->
+</airline>

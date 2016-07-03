@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Yonago">
+  <months>
+    <month month="1" precipitation="148">
+      <temp min="0" max="8" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="137">
+      <temp min="0" max="8" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="125">
+      <temp min="2" max="12" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="120">
+      <temp min="7" max="18" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="117">
+      <temp min="12" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="188">
+      <temp min="17" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="245">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="155">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="225">
+      <temp min="18" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="140">
+      <temp min="11" max="21" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="132">
+      <temp min="7" max="16" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="125">
+      <temp min="3" max="11" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

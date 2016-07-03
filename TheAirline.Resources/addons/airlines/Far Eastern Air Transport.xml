@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Far Eastern Air Transport" iata="FE" color="Black" country="172" CEO="Alex Lou" mentality="Moderate" market="Regional" preferedairport="TSA">
+<narrative narrative="Founded in 1957 FAT makes its hub at the older Taipei Songshan Airport. They went bankrput in 2008 but resumed operation in 2011. They currently have 8 planes, all MD-80 types. They
+serve 10 destinations and offer some charter services."/>
+</profile>
+<info real="True" from="1957" to="2199"></info>
+</airline>

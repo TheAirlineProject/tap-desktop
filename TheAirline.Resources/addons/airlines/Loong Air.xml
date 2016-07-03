@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Loong Air" iata="GJ" color="Black" country="148" CEO="Liu Qihong" mentality="Aggressive" market="Domestic" preferedairport="HGH">
+<narrative narrative="Just founded in 2013 Loong Airlines make their home at Hangzhou Xiaoshan Airport. It was once a cargo airline called Zhejiang Loong International Cargo Airline Co. Ltd. They fly to 7 destinations and
+plan to add 3 more soon. They have five A320's and have nine on order. They also still have 3 737-300 freighters."/>
+</profile>
+<info real="True" from="2013" to="2199"></info>
+</airline>

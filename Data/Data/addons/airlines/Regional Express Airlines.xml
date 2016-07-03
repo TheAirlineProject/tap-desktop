@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Regional Express Airlines" iata="ZL" color="Orange" country="116" CEO="Jim Davis" mentality="Aggressive" market="Domestic" preferedairport="SYD">
+    <narrative narrative="Regional Express Airlines is the biggest local Australian airline outside of the Qantas group. Their corporate headquarters in the the vicinity of Sydney Airport but they have four operating bases. Besides Sydney they also are based at Adelaide,Melbourne and Townsville. Out of these four bases they serve 36 destinations all in Australia. They do it with their 46 Saab 340B's. They have their own flight school based at Wagga Wagga Airport." />
+  </profile>
+  <info real="True" from="2002" to="2199" />
+</airline>

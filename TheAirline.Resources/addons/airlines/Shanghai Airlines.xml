@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Shanghai Airlines" iata="FM" color="Red" country="148" CEO="Fan Hongxi" mentality="Aggressive" market="Regional" preferedairport="SHA">
+<narrative narrative="Making its home at both of Shanghai,China's large airports, Hongqiao and Pudong, Shanghai Airlines offers 140 destinations throughout China
+and Asia. Their fleet consists of 73 planes, including thirty-nine 737's, seven 767's, eight 757's, four A330's and a few CRJ-200's. Their logo features a white crane on a red vertical tail fin.
+They are owned by China Eastern Airlines and are an affiliate of the SkyTeam alliance."/>
+</profile>
+<info real="True" from="1985" to="2199"></info>
+</airline>

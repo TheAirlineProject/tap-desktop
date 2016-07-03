@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="TheAirline.Views.Game.PageSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:game="clr-namespace:TheAirline.ViewModels.Game"
+             xmlns:converters="clr-namespace:TheAirline.Infrastructure.Converters"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:enums="clr-namespace:TheAirline.Infrastructure.Enums"
+             lex:LocalizeDictionary.DesignCulture="en"
+             lex:ResxLocalizationProvider.DefaultAssembly="TheAirline"
+             lex:ResxLocalizationProvider.DefaultDictionary="language"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance game:PageSettingsViewModel}"
+             d:DesignHeight="300" d:DesignWidth="410">
+    <UserControl.Resources>
+        <converters:RadioButtonCheckedConverter x:Key="RadioButtonCheckedConverter" />
+        <converters:LanguageFlagConverter x:Key="LanguageFlagConverter" />
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel HorizontalAlignment="Center">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{lex:Loc PageSettings_1002_name}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <RadioButton GroupName="Screen"
+                             Content="{lex:Loc PageSettings_1000_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             IsChecked="{Binding ScreenMode, Converter={StaticResource RadioButtonCheckedConverter},ConverterParameter={x:Static enums:ScreenMode.FullScreen}}"/>
+                <RadioButton GroupName="Screen"
+                             Content="{lex:Loc PageSettings_1001_name}"
+                             Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"
+                             Margin="5 0 0 0"
+                             IsChecked="{Binding ScreenMode, Converter={StaticResource RadioButtonCheckedConverter},ConverterParameter={x:Static enums:ScreenMode.Windowed}}" />
+
+            </WrapPanel>
+            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                <TextBlock
+                    Text="{lex:Loc PageSettings_1003_name}"
+                    VerticalAlignment="Bottom" FontWeight="Bold" Width="150" />
+                <ComboBox x:Name="Lang" Style="{StaticResource ComboBoxTransparentStyle}"
+                          ItemsSource="{Binding Languages}" SelectedValue="{Binding Language}" SelectedValuePath="Name">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding ChangeLanguage}" CommandParameter="{Binding ElementName=Lang, Path=SelectedValue}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <Image Source="{Binding Name, Converter={StaticResource LanguageFlagConverter}}" Width="20" />
+                                <TextBlock Text="{Binding DisplayName}" Width="150" Margin="5 0 0 0" />
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </WrapPanel>
+            <WrapPanel Margin="0 10 0 0">
+                <Button Style="{DynamicResource StandardButtonStyle}"
+                        Content="{lex:Loc PageSettings_200_name}" Command="{Binding SaveCommand}" />
+                <Button Style="{DynamicResource StandardButtonStyle}"
+                        Content="{lex:Loc PageSettings_201_name}" Margin="5 0 0 0" IsEnabled="False" />
+                <Button Style="{DynamicResource StandardButtonStyle}"
+                        Content="{lex:Loc General_119_name}" Command="{Binding BackCommand}" Margin="5 0 0 0" />
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

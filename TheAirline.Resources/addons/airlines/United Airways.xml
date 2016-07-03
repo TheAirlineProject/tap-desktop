@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="United Airways" iata="4H" color="Green" country="216" CEO="Capt. Tasbirul Ahmed Choudhury" mentality="Moderate" market="Global" preferedairport="DAC">
+    <narrative narrative="United Airways is based at Dhaka,Bangladesh at Shahjalal Airport. It was founded in 2005 and commened operations in July 2007. It's secondary hub is at Shah Amanat Airport in Chittagong,Bangladesh. Besides these 2 airports it also flies to six other Bangladesh cities along with Kolkota,India, Kathmandu,Nepal, Kulala Lumpur,Malaysia, Muscat,Oman, Jeddah, Saudi Arabia, and Doha,Qatar. Their 11 planes include five MD-83's, three ATR-72 200's, two A310's and one Dah 8-100." /></profile>
+  <info real="True" from="2005" to="2199" />
+</airline>

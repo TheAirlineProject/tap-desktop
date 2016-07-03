@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-  <profile name="WOW air" iata="X9" color="Purple" country="121" CEO="Skúli Mogensen" mentality="Safe" market="Global" preferedairport="KEF"></profile>
-  <info real="True" from="2011" to="2199" />
-</airline>

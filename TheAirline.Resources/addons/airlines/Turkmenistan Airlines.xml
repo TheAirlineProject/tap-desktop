@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Turkmenistan Airlines" iata="T5" color="Green" country="238" CEO="Merdan Ayazov " mentality="Moderate" market="Regional" preferedairport="ASB">
+    <narrative narrative="Turkmenistan Airlines  is the flag carrier airline of Turkmenistan, headquartered in Ashgabat. The airline connects its home base of Ashgabat with destinations in Russia, Europe and Asia. This includes 23 destinations. They
+    operate a fleet of 25 aircraft including 17 various Boeing types and 8 Il-76TD's used for cargo. " />
+  </profile>
+  <info real="True" from="1992" to="2199" />
+</airline>

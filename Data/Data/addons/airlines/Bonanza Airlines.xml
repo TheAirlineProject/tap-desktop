@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Bonanza Air Lines" iata="BO" color="Orange" country="122" CEO="Edmund Converse" mentality="Moderate" market="Regional" preferedairport="LAS">
+    <narrative narrative="The company started in 1945, based in Las Vegas and then known as Bonanza Air Services in Las Vegas. The company was part of a Civil Aeronautics Authority effort to develop 'local service airlines.' Interstate flights started in December 1949 and Bonanza didn't appear in the Official Airline Guide until then." />
+  </profile>
+  <info real="True" from="1945" to="1968" />
+</airline>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Pacific Southwest Airlines" iata="PS" color="Orange" country="122" CEO="Kenny Friedkin"
+           mentality="Aggressive" market="Regional" preferedairport="LAX">
+           <narrative narrative="Pacific Southwest Airlines was a United States airline headquartered in San Diego, California that operated from 1949 to 1988. It was one of the first large discount airlines in the United States. PSA was known by their slogan 'The World's Friendliest Airline' and for the iconic smile painted on the nose of their airplanes, the PSA Grinningbirds."/>
+
+  </profile>
+       <info real="True" from="1949" to="1987"></info>
+</airline>

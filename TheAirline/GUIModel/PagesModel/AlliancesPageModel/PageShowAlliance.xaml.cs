@@ -1,155 +1,196 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Helpers;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.General;
+using TheAirline.Models.Routes;
 
 namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 {
     /// <summary>
-    /// Interaction logic for PageShowAlliance.xaml
+    ///     Interaction logic for PageShowAlliance.xaml
     /// </summary>
     public partial class PageShowAlliance : Page
     {
-        private AllianceMVVM Alliance;
+        #region Fields
+
+        private readonly AllianceMVVM Alliance;
+
+        #endregion
+
+        #region Constructors and Destructors
+
         public PageShowAlliance(Alliance alliance)
         {
-            this.Alliance = new AllianceMVVM(alliance);
-                      
-            this.DataContext = this.Alliance;
+            Alliance = new AllianceMVVM(alliance);
+
+            DataContext = Alliance;
 
             InitializeComponent();
         }
-        private void btnExit_Click(object sender, RoutedEventArgs e)
-        {
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2602"), string.Format(Translator.GetInstance().GetString("MessageBox", "2602", "message"), this.Alliance.Alliance.Name), WPFMessageBoxButtons.YesNo);
 
-            if (result == WPFMessageBoxResult.Yes)
-            {
-                this.Alliance.removeMember(GameObject.GetInstance().HumanAirline);
-            }
+        #endregion
 
-            if (this.Alliance.Members.Count == 0 && this.Alliance.PendingMembers.Count == 0)
-            {
-                Alliances.RemoveAlliance(this.Alliance.Alliance);
-            }
+        #region Methods
 
-            Frame frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
-
-            if (frmContent != null)
-            {
-                frmContent.Navigate(new PageShowAlliances() { Tag = this.Tag });
-
-            }
-        }
-        private void btnInvite_Click(object sender, RoutedEventArgs e)
-        {
-           object o = PopUpInviteAlliance.ShowPopUp(this.Alliance.Alliance);
-
-            if (o != null)
-            {
-                List<Airline> airlines = (List<Airline>)o;
-
-                foreach (Airline airline in airlines)
-                {
-                    if (AIHelpers.DoAcceptAllianceInvitation(airline, this.Alliance.Alliance))
-                    {
-                        WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2605"), string.Format(Translator.GetInstance().GetString("MessageBox", "2605", "message"), airline.Profile.Name, this.Alliance.Alliance.Name), WPFMessageBoxButtons.Ok);
-                        this.Alliance.addMember(new AllianceMember(airline, GameObject.GetInstance().GameTime));
-                    }
-                    else
-                    {
-                        WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2606"), string.Format(Translator.GetInstance().GetString("MessageBox", "2606", "message"), airline.Profile.Name, this.Alliance.Alliance.Name), WPFMessageBoxButtons.Ok);
-
-                    }
-
-
-                }
-
-        
-
-            }
-        }
-        private void btnJoin_Click(object sender, RoutedEventArgs e)
-        {
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2601"), string.Format(Translator.GetInstance().GetString("MessageBox", "2601", "message"), this.Alliance.Alliance.Name), WPFMessageBoxButtons.YesNo);
-
-            if (result == WPFMessageBoxResult.Yes)
-            {
-                if (AIHelpers.CanJoinAlliance(GameObject.GetInstance().HumanAirline, this.Alliance.Alliance))
-                {
-                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2607"), string.Format(Translator.GetInstance().GetString("MessageBox", "2607", "message"), GameObject.GetInstance().HumanAirline.Profile.Name, this.Alliance.Alliance.Name), WPFMessageBoxButtons.Ok);
-
-                    this.Alliance.addMember(new AllianceMember(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime));
-                }
-                else
-                {
-                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2608"), string.Format(Translator.GetInstance().GetString("MessageBox", "2608", "message"), GameObject.GetInstance().HumanAirline.Profile.Name, this.Alliance.Alliance.Name), WPFMessageBoxButtons.Ok);
-
-                }
-            }
-        }
-        private void btnRouteMap_Click(object sender, RoutedEventArgs e)
-        {
-            var routes = this.Alliance.Members.SelectMany(m => m.Member.Airline.Routes);
-            PopUpMap.ShowPopUp(routes.ToList());
-  
-        }
         private void btnAccept_Click(object sender, RoutedEventArgs e)
         {
-            PendingAllianceMember member = (PendingAllianceMember)((Button)sender).Tag;
+            var member = (PendingAllianceMember)((Button)sender).Tag;
 
-            this.Alliance.addMember(new AllianceMember(member.Airline, GameObject.GetInstance().GameTime));
-            this.Alliance.removePendingMember(member);
-
+            Alliance.addMember(new AllianceMember(member.Airline, GameObject.GetInstance().GameTime));
+            Alliance.removePendingMember(member);
         }
 
         private void btnDecline_Click(object sender, RoutedEventArgs e)
         {
-            PendingAllianceMember member = (PendingAllianceMember)((Button)sender).Tag;
+            var member = (PendingAllianceMember)((Button)sender).Tag;
 
-            this.Alliance.removePendingMember(member);
+            Alliance.removePendingMember(member);
+        }
 
-       
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+                Translator.GetInstance().GetString("MessageBox", "2602"),
+                string.Format(
+                    Translator.GetInstance().GetString("MessageBox", "2602", "message"),
+                    Alliance.Alliance.Name),
+                WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                Alliance.removeMember(GameObject.GetInstance().HumanAirline);
+            }
+
+            if (Alliance.Members.Count == 0 && Alliance.PendingMembers.Count == 0)
+            {
+                Alliances.RemoveAlliance(Alliance.Alliance);
+            }
+
+            var frmContent = UIHelpers.FindChild<Frame>(Tag as Page, "frmContent");
+
+            if (frmContent != null)
+            {
+                frmContent.Navigate(new PageShowAlliances { Tag = Tag });
+            }
+        }
+
+        private void btnInvite_Click(object sender, RoutedEventArgs e)
+        {
+            object o = PopUpInviteAlliance.ShowPopUp(Alliance.Alliance);
+
+            if (o != null)
+            {
+                var airlines = (List<Airline>)o;
+
+                foreach (Airline airline in airlines)
+                {
+                    if (AIHelpers.DoAcceptAllianceInvitation(airline, Alliance.Alliance))
+                    {
+                        WPFMessageBox.Show(
+                            Translator.GetInstance().GetString("MessageBox", "2605"),
+                            string.Format(
+                                Translator.GetInstance().GetString("MessageBox", "2605", "message"),
+                                airline.Profile.Name,
+                                Alliance.Alliance.Name),
+                            WPFMessageBoxButtons.Ok);
+                        Alliance.addMember(new AllianceMember(airline, GameObject.GetInstance().GameTime));
+                    }
+                    else
+                    {
+                        WPFMessageBox.Show(
+                            Translator.GetInstance().GetString("MessageBox", "2606"),
+                            string.Format(
+                                Translator.GetInstance().GetString("MessageBox", "2606", "message"),
+                                airline.Profile.Name,
+                                Alliance.Alliance.Name),
+                            WPFMessageBoxButtons.Ok);
+                    }
+                }
+            }
+        }
+
+        private void btnJoin_Click(object sender, RoutedEventArgs e)
+        {
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+                Translator.GetInstance().GetString("MessageBox", "2601"),
+                string.Format(
+                    Translator.GetInstance().GetString("MessageBox", "2601", "message"),
+                    Alliance.Alliance.Name),
+                WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                if (AIHelpers.CanJoinAlliance(GameObject.GetInstance().HumanAirline, Alliance.Alliance))
+                {
+                    WPFMessageBox.Show(
+                        Translator.GetInstance().GetString("MessageBox", "2607"),
+                        string.Format(
+                            Translator.GetInstance().GetString("MessageBox", "2607", "message"),
+                            GameObject.GetInstance().HumanAirline.Profile.Name,
+                            Alliance.Alliance.Name),
+                        WPFMessageBoxButtons.Ok);
+
+                    Alliance.addMember(
+                        new AllianceMember(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime));
+                }
+                else
+                {
+                    WPFMessageBox.Show(
+                        Translator.GetInstance().GetString("MessageBox", "2608"),
+                        string.Format(
+                            Translator.GetInstance().GetString("MessageBox", "2608", "message"),
+                            GameObject.GetInstance().HumanAirline.Profile.Name,
+                            Alliance.Alliance.Name),
+                        WPFMessageBoxButtons.Ok);
+                }
+            }
         }
 
         private void btnRemoveFromAlliance_Click(object sender, RoutedEventArgs e)
         {
-            AllianceMemberMVVM member = (AllianceMemberMVVM)((Button)sender).Tag;
+            var member = (AllianceMemberMVVM)((Button)sender).Tag;
 
-            if (AIHelpers.CanRemoveFromAlliance(GameObject.GetInstance().HumanAirline,member.Member.Airline,this.Alliance.Alliance))
+            if (AIHelpers.CanRemoveFromAlliance(
+                GameObject.GetInstance().HumanAirline,
+                member.Member.Airline,
+                Alliance.Alliance))
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2609"), string.Format(Translator.GetInstance().GetString("MessageBox", "2609", "message"), member.Member.Airline.Profile.Name), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2609"),
+                    string.Format(
+                        Translator.GetInstance().GetString("MessageBox", "2609", "message"),
+                        member.Member.Airline.Profile.Name),
+                    WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-
-                    this.Alliance.removeMember(member);
+                    Alliance.removeMember(member);
                 }
             }
             else
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2610"), string.Format(Translator.GetInstance().GetString("MessageBox", "2610", "message"), member.Member.Airline.Profile.Name), WPFMessageBoxButtons.Ok);
-
-           
-
-
+            {
+                WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2610"),
+                    string.Format(
+                        Translator.GetInstance().GetString("MessageBox", "2610", "message"),
+                        member.Member.Airline.Profile.Name),
+                    WPFMessageBoxButtons.Ok);
+            }
         }
+
+        private void btnRouteMap_Click(object sender, RoutedEventArgs e)
+        {
+            IEnumerable<Route> routes = Alliance.Members.SelectMany(m => m.Member.Airline.Routes);
+            PopUpMap.ShowPopUp(routes.ToList());
+        }
+
+        #endregion
     }
 }

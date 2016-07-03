@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Royal Jordanian" iata="RJ" color="Gold" country="120" CEO="Nasser Lozi" mentality="Aggressive" market="Global" preferedairport="AMM">
+    <narrative narrative="Royal Jordanian was founded as Alia Airlines in 1963, named after King Hussein's daughter, Princess Alia. They are the flag carrier of Jordan and are based at Amman. They are currently part of the OneWorld alliance of airlines. They fly to 59 destinations around the world and have 33 planes." />
+  </profile>
+  <info real="True" from="1963" to="2199" />
+</airline>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Armavia" iata="U8" color="Orange" country="234" CEO="Norayr Belluyan " mentality="Safe" market="Global" preferedairport="EVN">
+    <narrative narrative=" Armavia was Armenia's flag carrier from 1996 to 2013 when it went bankrupt. Based at Zvarnots Airport in Yerevan. They served 20 destinations in 10 countries, 11 of these were in Russia. They had 11 planes at the end, 3  737-500's,2 A320's, 1 A319, 3 CRJ200LR's, 1 Sukoi Superjet 100, and a Yak-42D. " /></profile>
+  <info real="True" from="1996" to="2013" />
+</airline>

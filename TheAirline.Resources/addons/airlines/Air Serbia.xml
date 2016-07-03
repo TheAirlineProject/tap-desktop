@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Air Serbia" iata="JU" color="DarkBlue" country="104" CEO="Dane Kondic" mentality="Moderate"
+           market="Regional" preferedairport="BEG">
+    <narrative
+      narrative="Originally founded in 1927 as Aeroput, Air Serbia (stylized as AirSERBIA) is the flag carrier and largest airline of Serbia. The airline was formerly known as Jat Airways until it was renamed in 2013. Air Serbia commenced operations under its new name on 26 October 2013." />
+  </profile>
+  <info real="True" from="1927" to="2199"></info>
+
+  <startdata>
+    <airliners>
+      <airliner type="Boeing 737-300" early="10" late="4"></airliner>
+      <airliner type="Airbus A320-200" early="0" late="2"></airliner>
+      <airliner type="Airbus A319-100" early="0" late="9"></airliner>
+      <airliner type="ATR 72-210" early="4" late="3"></airliner>
+      <airliner type="ATR 72-500" early="0" late="2"></airliner>
+    </airliners>
+  </startdata>
+
+
+</airline>

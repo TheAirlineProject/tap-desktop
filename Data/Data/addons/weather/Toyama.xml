@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Toyama">
+  <months>
+    <month month="1" precipitation="260">
+      <temp min="-1" max="6" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="172">
+      <temp min="-1" max="7" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="159">
+      <temp min="2" max="11" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="122">
+      <temp min="7" max="18" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="134">
+      <temp min="12" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="183">
+      <temp min="17" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="240">
+      <temp min="21" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="168">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="220">
+      <temp min="19" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="161">
+      <temp min="12" max="21" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="234">
+      <temp min="7" max="16" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="247">
+      <temp min="2" max="10" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

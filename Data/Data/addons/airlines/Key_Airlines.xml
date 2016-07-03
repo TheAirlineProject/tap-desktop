@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Key Airlines" iata="KWY" color="Black" country="122" CEO="Peter Hanson" mentality="Aggressive"
+           market="Local" preferedairport="SLC">
+            <narrative
+      narrative="Key Airlines, originally known as 'Sun Valley Airlines', began as a commuter and charter air carrier in the western United States flying turboprop and prop aircraft. In later years, Key Airlines operated a hub in Savannah, Georgia with scheduled passenger flights operated with mainline jet aircraft to international and domestic destinations.." />
+  </profile>
+     <info real="True" from="1968" to="1993"></info>
+</airline>

@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<airline>
-  <profile name="Valuair" iata="VF" color="LightGreen" country="174" CEO="Barathan Pasupathi" mentality="Safe" market="Local" preferedairport="SIN"></profile>
-  <info real="True" from="2004" to="2199" />
-</airline>

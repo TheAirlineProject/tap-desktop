@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-<profile name="Dragonair" iata="KA" color="Firebrick" country="176" CEO="Kuang-Piu Chao" mentality="Aggressive" market="Regional" preferedairport="HKG">
-<narrative narrative="The airline was established in Hong Kong on 24 May 1985 on the initiative of Kuang-Piu Chao, the airline's present honorary chairman, as a subsidiary of Hong Kong Macau International Investment Co. It started operations in July 1985 with a Boeing 737-200 service from Kai Tak International Airport to Kota Kinabalu International Airport in Malaysia."/>
-</profile>
-<info real="True" from="1985" to="2199"></info>
-</airline>

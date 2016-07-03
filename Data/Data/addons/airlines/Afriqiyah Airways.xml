@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Afriqiyah Airways" iata="8U" color="LightBlue" country="125" CEO="Saeed Al-Barouni" mentality="Aggressive" market="Global" preferedairport="TIP">
+    <narrative narrative="Afriqiyah Airways is the second flag carrier of Libya, based at Tripoli. Founded in 2001 it's name is the Arabic word for Africa. It is planned that it will merge with Libyan Airlines sometime in the near future but there are no exact plans yet or dates set.  They serve 19 destinations in Africa,Europe and the Middle East. They as of February 2014 have 13 planes. Seven A320's, three A319's, three A330's, and one A340, and have ten A350-900's on order." /></profile>
+  <info real="True" from="2001" to="2199" />
+</airline>

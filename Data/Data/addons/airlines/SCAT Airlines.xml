@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="SCAT Airlines" iata="DV" color="Teal" country="236" CEO="Vladimir Denissov" mentality="Moderate" market="Global" preferedairport="CIT">
+    <narrative narrative="SCAT Airlines, an acronym for Special Cargo Air Transport, is an airline that is based at Shymkent in Kazakstan. It is the main airline serving the city of Shymkent. They offer servive to 33 destinations in Asia and the former Sovier Union. Their fleet of  planes include 16 AN-24 turboprops, five CRJ-200s, and a Yak-42. They lease some 737's and also have four 757's and a 767 which are operated by their Susidairy charter airline Sunday Airlines which was recently started." />
+  </profile>
+  <info real="True" from="1997" to="2199" />
+</airline>

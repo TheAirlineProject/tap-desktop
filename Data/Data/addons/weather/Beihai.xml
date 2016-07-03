@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Beihai">
+  <months>
+    <month month="1" precipitation="34">
+      <temp min="11" max="19" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="2" precipitation="42">
+      <temp min="13" max="19" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="3" precipitation="59">
+      <temp min="16" max="23" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="4" precipitation="93">
+      <temp min="20" max="27" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="5" precipitation="157">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="297">
+      <temp min="26" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="379">
+      <temp min="26" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="394">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="197">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="95">
+      <temp min="21" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="38">
+      <temp min="17" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="20">
+      <temp min="13" max="21" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

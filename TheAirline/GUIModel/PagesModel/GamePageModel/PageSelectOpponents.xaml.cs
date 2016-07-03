@@ -1,106 +1,113 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TheAirline.GUIModel.CustomControlsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.MasterPageModel;
 using TheAirline.GUIModel.ObjectsModel;
-using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Helpers;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.General;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     /// <summary>
-    /// Interaction logic for PageSelectOpponents.xaml
+    ///     Interaction logic for PageSelectOpponents.xaml
     /// </summary>
     public partial class PageSelectOpponents : Page
     {
-        public StartDataObject StartData { get; set; }
-        public ObservableCollection<Airline> SelectedAirlines { get; set; }
-        public ObservableCollection<Airline> Opponents { get; set; }
+        #region Constructors and Destructors
+
         public PageSelectOpponents(StartDataObject sdo)
         {
-            this.StartData = sdo;
+            StartData = sdo;
 
-            this.SelectedAirlines = new ObservableCollection<Airline>();
-            this.Opponents = new ObservableCollection<Airline>();
-         
-            foreach (Airline airline in Airlines.GetAirlines(a => a.Profile.Founded <= this.StartData.Year && a.Profile.Folded > this.StartData.Year && a != this.StartData.Airline && (a.Profile.Country.Region == this.StartData.Region || (this.StartData.Continent != null && (this.StartData.Continent.Uid == "100" || this.StartData.Continent.hasRegion(a.Profile.Country.Region))))))
-                this.Opponents.Add(airline);
+            SelectedAirlines = new ObservableCollection<Airline>();
+            Opponents = new ObservableCollection<Airline>();
+
+            foreach (
+                Airline airline in
+                    Airlines.GetAirlines(
+                        a =>
+                            a.Profile.Founded <= StartData.Year && a.Profile.Folded > StartData.Year
+                            && a != StartData.Airline
+                            && (a.Profile.Country.Region == StartData.Region
+                                || (StartData.Continent != null
+                                    && (StartData.Continent.Uid == "100"
+                                        || StartData.Continent.HasRegion(a.Profile.Country.Region))))))
+            {
+                Opponents.Add(airline);
+            }
 
             InitializeComponent();
         }
 
-        private void imgSelect_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (this.SelectedAirlines.Count < this.StartData.NumberOfOpponents)
-            {
-                Airline airline = (Airline)((Image)sender).Tag;
+        #endregion
 
-                this.SelectedAirlines.Add(airline);
-                this.Opponents.Remove(airline);
-            }
-        }
+        #region Public Properties
 
-        private void imgDeselect_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Airline airline = (Airline)((Image)sender).Tag;
+        public ObservableCollection<Airline> Opponents { get; set; }
 
-            this.SelectedAirlines.Remove(airline);
-            this.Opponents.Add(airline);
-       
-        }
+        public ObservableCollection<Airline> SelectedAirlines { get; set; }
+
+        public StartDataObject StartData { get; set; }
+
+        #endregion
+
+        #region Methods
 
         private void btnCreateGame_Click(object sender, RoutedEventArgs e)
         {
-            List<Airline> airlines = new List<Airline>();
+            var airlines = new List<Airline>();
 
-            foreach (Airline airline in this.SelectedAirlines)
+            foreach (Airline airline in SelectedAirlines)
+            {
                 airlines.Add(airline);
+            }
 
-            this.StartData.Opponents = airlines;
+            StartData.Opponents = airlines;
 
-            StandardMasterPage smp = this.Content as StandardMasterPage;
-       
-           // SplashControl scCreating = UIHelpers.FindChild<SplashControl>(smp, "scCreating"); 
+            var smp = Content as StandardMasterPage;
+
+            // SplashControl scCreating = UIHelpers.FindChild<SplashControl>(smp, "scCreating"); 
 
             //scCreating.Visibility = System.Windows.Visibility.Visible;
 
-            BackgroundWorker bgWorker = new BackgroundWorker();
-            bgWorker.DoWork += (y, x) =>
-            {
-                GameObjectHelpers.CreateGame(this.StartData);
-
-            };
+            var bgWorker = new BackgroundWorker();
+            bgWorker.DoWork += (y, x) => { GameObjectHelpers.CreateGame(StartData); };
             bgWorker.RunWorkerCompleted += (y, x) =>
             {
-              //  scCreating.Visibility = System.Windows.Visibility.Collapsed;
+                //  scCreating.Visibility = System.Windows.Visibility.Collapsed;
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
 
                 PageNavigator.ClearNavigator();
-       
-
             };
             bgWorker.RunWorkerAsync();
-
-        
-          
         }
+
+        private void imgDeselect_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var airline = (Airline)((Image)sender).Tag;
+
+            SelectedAirlines.Remove(airline);
+            Opponents.Add(airline);
+        }
+
+        private void imgSelect_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (SelectedAirlines.Count < StartData.NumberOfOpponents)
+            {
+                var airline = (Airline)((Image)sender).Tag;
+
+                SelectedAirlines.Add(airline);
+                Opponents.Remove(airline);
+            }
+        }
+
+        #endregion
     }
 }

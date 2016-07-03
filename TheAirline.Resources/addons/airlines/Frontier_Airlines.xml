@@ -1,0 +1,23 @@
+﻿<airline>
+<profile name="Frontier Airlines" iata="F9" color="ForestGreen" country="122" CEO="David Siegel" mentality="Aggressive" market="Regional" preferedairport="DEN">
+  <narrative narrative="Frontier Airlines is a US budget airline operating out of Denver since 1994. They operate flights to over 70 destinations on a fleet of 70 consisting of 35 Airbus A319's and about 20 A320's and used to operate 11 A318's and 737-200's and 737-300's. They have 20 Airbus A319neo's on order and 60 A320neo's on order. Greats Lakes Airlines operates Embraer EMB120's and Beechcraft 1990D's in Frontiers name also.." />
+</profile>
+<info real="True" from="1994" to="2199"></info>
+<startdata>
+	
+	<prefereds aircrafts="Airbus A319-100,Airbus A319neo,Airbus A320-200,Airbus A320neo"></prefereds>
+	
+	         <airliners>
+		 
+           <airliner type="Airbus A318-100" early="11" late="0"></airliner>
+	     <airliner type="Airbus A319-100" early="0" late="35"></airliner>
+	     <airliner type="Airbus A319neo" early="0" late="20"></airliner>
+	    <airliner type="Airbus A320-200" early="0" late="21"></airliner>
+	    <airliner type="Airbus A320neo" early="0" late="60"></airliner>
+	    <airliner type="Boeing 737-200" early="0" late="12"></airliner>
+	     <airliner type="Boeing 737-300" early="0" late="20"></airliner>
+
+	  </airliners>
+	</startdata>
+
+</airline>

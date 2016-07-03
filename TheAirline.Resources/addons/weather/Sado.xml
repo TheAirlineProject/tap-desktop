@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Sado">
+  <months>
+    <month month="1" precipitation="138">
+      <temp min="0" max="6" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="102">
+      <temp min="0" max="5" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="90">
+      <temp min="2" max="9" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="102">
+      <temp min="6" max="15" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="99">
+      <temp min="11" max="19" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="125">
+      <temp min="15" max="23" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="161">
+      <temp min="20" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="137">
+      <temp min="22" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="161">
+      <temp min="18" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="127">
+      <temp min="12" max="20" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="159">
+      <temp min="7" max="14" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="162">
+      <temp min="3" max="9" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

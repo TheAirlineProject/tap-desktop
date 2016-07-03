@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Hagåtña, GU">
+  <months>
+    <month month="1" precipitation="101">
+      <temp min="24" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="96">
+      <temp min="24" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="60">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="72">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="109">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="197">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="291">
+      <temp min="25" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="406">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="345">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="298">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="205">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="159">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

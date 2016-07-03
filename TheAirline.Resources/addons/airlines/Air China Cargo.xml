@@ -1,0 +1,21 @@
+<airline>
+  <profile name="Air China Cargo" iata="CA2" logo="CA" color="Red" country="148" CEO="Cai Jianjiang" mentality="Moderate" market="Global" preferedairport="PEK" routefocus="Cargo">
+  <narrative narrative="Air China Cargo is the cargo divison of Air China and is based at Beijing Capital Airport. It is owned 51% by Air China, 25% by CITIC Pacific, and 24% by Beijing Capital International and has about 4,000 employees. It was founded in 2003. They are consolidated with Cathay Pacific Cargo. They fly to 20 cities in 10 countries, including 5 domestic and 5 in the U.S. They have 11 planes. 3 777F's, 2 757-200PF's, 3 747F's and 3 747-400BCF's. They have 5 777F's on order and are to get 2 more 757-200PF's from their parent Air China. This information is accurate as of April 2014." />
+   </profile>
+   <prefereds aircrafts="Boeing 747-400ERF,Boeing 747-400F,Boeing 747-8F,Boeing 757-200PF,Boeing 777F"></prefereds>
+    <info real="True" from="2003" to="2199" />
+    
+    
+     <airliners>
+	       
+	         <airliner type="Boeing 747-400F" early="3" late="6"></airliner>
+	        <airliner type="Boeing 757-200PF" early="2" late="4"></airliner>
+		 <airliner type="Boeing 777F" early="3" late="8"></airliner>
+
+	 
+	  </airliners>
+	  
+    
+    
+    
+</airline>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Polar Air Cargo" iata="PO" logo="PO" color="DarkBlue" country="122" CEO="William J. Flynn" mentality="Moderate" market="Global" preferedairport="ANC" routefocus="Cargo">
+  <narrative narrative="Polar Air Cargo is a cargo carrier who is 51% owned by Atlas Air and fly under thhe Atlas Air name with some planes. It was founded in 1993 and it's main base is Anchorage,Alaska. They have hubs at Incheon,South Korea, Los Angeles, and Northern Kentucky/Cincinatti Airport. Besides worldwide scheduled servive they also do cargo charters. They also fly under the DHL Express banner and some planes are painted in the full DHL livery. They have 13 planes as of May 2014, four 747-8F's, seven 747-400F's, and two 767-300ERF's." />
+   </profile>
+   <prefereds aircrafts="Boeing 747-400F,Boeing 747-8F,Boeing 767-300F"></prefereds>
+    <info real="True" from="1993" to="2199" />
+</airline>

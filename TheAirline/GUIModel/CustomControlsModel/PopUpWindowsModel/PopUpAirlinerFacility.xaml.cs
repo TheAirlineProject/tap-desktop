@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.General;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -47,19 +38,19 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Height = 120;
 
-            this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             StackPanel mainPanel = new StackPanel();
             mainPanel.Margin = new Thickness(10, 10, 10, 10);
           
             cbFacility = new ComboBox();
             cbFacility.ItemTemplate = this.Resources["AirlinerFacilityItem"] as DataTemplate;
-            cbFacility.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbFacility.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
         
             foreach (AirlinerFacility facility in AirlinerFacilities.GetFacilities(this.Type,GameObject.GetInstance().GameTime.Year))
                 cbFacility.Items.Add(facility);
 
-            cbFacility.SelectedItem = this.AirlinerClass.getFacility(this.Type);
+            cbFacility.SelectedItem = this.AirlinerClass.GetFacility(this.Type);
 
             mainPanel.Children.Add(cbFacility);
 
@@ -76,21 +67,21 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
 
             Button btnOk = new Button();
-            btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnOk.SetResourceReference(StyleProperty, "RoundedButton");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;
             btnOk.Content = "OK";
-            btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnOk.SetResourceReference(BackgroundProperty, "ButtonBrush");
+            btnOk.HorizontalAlignment = HorizontalAlignment.Left;
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             panelButtons.Children.Add(btnOk);
 
             Button btnCancel = new Button();
-            btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnCancel.SetResourceReference(StyleProperty, "RoundedButton");
             btnCancel.Height = Double.NaN;
             btnCancel.Width = Double.NaN;
             btnCancel.Content = "Cancel";
-            btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnCancel.SetResourceReference(BackgroundProperty, "ButtonBrush");
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
 

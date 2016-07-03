@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-  <profile name="Croatian Airlines" iata="OU" color="Red" country="120" CEO="Krešimir Kučko" mentality="Moderate" market="Regional" preferedairport="ZAG">
-    <narrative narrative="Croatia Airlines is the government-owned national airline and flag carrier of the Republic of Croatia. Based in Buzin, Zagreb, the airline is a member of Star Alliance and operates domestic and international services. Its main base is Zagreb Airport, with focus cities being Dubrovnik, Split, and Zadar." />
-  </profile>
-  <info real="True" from="1989" to="2199"></info>
-</airline>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Nippon Cargo Airlines" iata="KZ" logo="KZ" color="Blue" country="171" CEO="Tetsufumi Otsuki" mentality="Moderate" market="Global" preferedairport="NRT" routefocus="Cargo">
+    <narrative narrative="Nippon Cargo Airlines was founded in 1978 but didn't commence operations until 1985. It's base is Tokyo Narita. Other hubs are Kansai Airport near Osaka and Naha,Okinawa.Focus cities are Anchorage,Alaska and Hong Kong. 9 Asian aiports are served,6 in the U.S, and 3 in Europe.  It was the first all cargo airline in Japan. Initially it was a joint venture between the shiiping company Nippon Yusen and All Nippon Airlines, ANA sold their part to Nippon Yusen in 2005 so now they are 100% owned by Nippon Yusen. Nippon Yusen in turn is a part of Mistubishi. They have 7 747-400F's and 5 747-8F's with 9 on order as of January 2013. They had 10 747-200F's in the past." />
+  </profile>
+  <prefereds aircrafts="Boeing 747-200F,Boeing 747-400F,Boeing 747-8F"></prefereds>
+  <info real="True" from="1984" to="2199" />
+</airline>

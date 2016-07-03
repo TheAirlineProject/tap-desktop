@@ -1,0 +1,50 @@
+
+<airline>
+  <profile name="China Eastern Airlines" iata="MU" color="Blue" country="148" CEO="Liu Shaoyang" mentality="Aggressive" market="Global " preferedairport="SHA">
+    <narrative narrative="China Eastern is a major Chinese airline in operation out of Shanghai since 1988. They operate a fleet of 300 aircraft to 110 domestic and international locations. Their fleet is a broad mix of Boeing, Airbus, Bombardier, and Embraer." />
+  </profile>
+  <info real="True" from="1988" to="2199" />
+  
+  <prefereds aircrafts="Airbus A300-600,Airbus A319-100,Airbus A320-200,Airbus A321-200,Airbus A330-200,Airbus A330-300,Boeing 737-300,Boeing 737-700,Boeing 737-800,Boeing 777-300ER,BAe 146-200,Comac C919,Embraer ERJ145 LR,Fokker 100,MD-82 (DC-9-82)"></prefereds>
+  
+       <airliners>
+	       
+	       
+	         <airliner type="Airbus A300-600" early="0" late="16"></airliner>
+	         <airliner type="Airbus A310-200" early="0" late="6"></airliner>
+		 <airliner type="Airbus A310-300" early="0" late="2"></airliner>
+	        <airliner type="Airbus A319-100" early="0" late="28"></airliner>
+		<airliner type="Airbus A320-200" early="0" late="230"></airliner>
+		<airliner type="Airbus A321-200" early="0" late="35"></airliner>
+		<airliner type="Airbus A330-200" early="0" late="30"></airliner>
+		<airliner type="Airbus A330-300" early="0" late="15"></airliner>
+		<airliner type="Airbus A340-300" early="0" late="5"></airliner>
+		<airliner type="Airbus A340-600" early="5" late="5"></airliner>
+		<airliner type="Boeing 737-200" early="0" late="1"></airliner>
+		<airliner type="Boeing 737-300" early="0" late="26"></airliner>
+		<airliner type="Boeing 737-700" early="0" late="47"></airliner>
+		<airliner type="Boeing 737-800" early="0" late="70"></airliner>
+		<airliner type="Boeing 767-300" early="0" late="3"></airliner>
+		<airliner type="Boeing 777-300ER" early="0" late="20"></airliner>
+		<airliner type="Bombardier CRJ200" early="1" late="0"></airliner>
+		<airliner type="BAe 146-200" early="0" late="13"></airliner>
+		<airliner type="Comac C919" early="5" late="20"></airliner>
+		<airliner type="Embraer ERJ145 LR" early="0" late="10"></airliner>
+		<airliner type="Fokker 100" early="0" late="10"></airliner>
+		<airliner type="MD-11" early="0" late="6"></airliner>
+		<airliner type="MD-82 (DC-9-82)" early="0" late="15"></airliner>
+		<airliner type="MD-83 (DC-9-83)" early="0" late="1"></airliner>
+		<airliner type="MD-90-30" early="0" late="9"></airliner>
+		
+		
+
+
+	 
+	  </airliners>
+	  
+    
+    
+    
+  
+  
+</airline>

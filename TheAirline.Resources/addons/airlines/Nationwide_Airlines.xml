@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Nationwide Airlines" iata="CE" color="Yellow" country="158" CEO="Vernon Bricknell"
+           mentality="Aggressive" market="Local" preferedairport="JNB">
+            <narrative
+      narrative="Nationwide Airlines is an airline based in Lanseria, South Africa. It operates scheduled domestic and international services. Its main base is OR Tambo International Airport, Johannesburg." />
+  </profile>
+     <info real="True" from="1995" to="2008"></info>
+</airline>

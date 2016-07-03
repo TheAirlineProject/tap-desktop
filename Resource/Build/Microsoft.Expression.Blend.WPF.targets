@@ -1,0 +1,9 @@
+﻿<!--
+***********************************************************************************************
+Microsoft.Expression.Blend.WPF.targets
+Copyright (C) Microsoft Corporation. All rights reserved.
+***********************************************************************************************
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\SubsetFontWPF.targets" />
+</Project>

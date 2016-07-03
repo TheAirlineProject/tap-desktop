@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Odate">
+  <months>
+    <month month="1" precipitation="150">
+      <temp min="-4" max="2" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="105">
+      <temp min="-4" max="3" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="76">
+      <temp min="-2" max="7" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="83">
+      <temp min="3" max="14" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="90">
+      <temp min="8" max="19" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="81">
+      <temp min="13" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="120">
+      <temp min="18" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="127">
+      <temp min="19" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="157">
+      <temp min="15" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="119">
+      <temp min="8" max="18" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="143">
+      <temp min="3" max="12" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="154">
+      <temp min="-2" max="5" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

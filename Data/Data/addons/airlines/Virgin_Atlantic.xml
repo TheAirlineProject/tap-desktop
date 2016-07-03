@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Virgin Atlantic" iata="VS" color="Red" country="130" CEO="Stephen Murphy" mentality="Aggressive"
+           market="Global" preferedairport="LHR">
+  </profile>
+  <info real="True" from="1984" to="2199"></info>
+</airline>

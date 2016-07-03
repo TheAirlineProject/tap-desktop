@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Saratov Airlines" iata="6W" color="Dark Blue" country="149" CEO="Igor Tretyakov" mentality="Moderate" market="Regional" preferedairport="RTW">
+    <narrative narrative="Saratov Airlines is the main airline of Saratov,Russia at Tsentralny Airport serving 6 destinations from there to other Russian cities. There is also
+    service to Armenia and charter service to Prague,Czech Republic. They have 10 Yak-42s and 2 Embraer E195's. They have been in operation since 1931." />
+  </profile>
+  <info real="True" from="1931" to="2199" />
+</airline>

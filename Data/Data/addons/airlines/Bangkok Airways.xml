@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Bangkok Airways" iata="PG" color="Bronze" country="175" CEO="Capt. Puttipong Prasarttong-Osoth" mentality="Aggressive" market="Regional" preferedairport="BKK">
+    <narrative narrative="Bangkok Airways is based out of the place it takes its name from, Bangkok,Thailand. Founded in 1969 as Sahakol Air. They have been repsonsible for building up Thailand's infrastructure and economy by building three airports they funded themsleves, Koh Samui Airport, Trat Airport and Sukhothai Airport. They fly to 23 destinations all of which are in Asia. Their fleet of 27 planes consists of twelve A319's, seven A320's and eight ATR 72-500's." />
+  </profile>
+  <info real="True" from="1968" to="2199" />
+</airline>

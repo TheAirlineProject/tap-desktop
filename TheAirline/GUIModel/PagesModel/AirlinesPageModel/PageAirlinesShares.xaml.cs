@@ -3,78 +3,129 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.GUIModel.PagesModel.AirlinePageModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.AirlineModel.SubsidiaryModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Helpers;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airlines.Subsidiary;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Finances;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 {
     /// <summary>
-    /// Interaction logic for PageAirlinesShares.xaml
+    ///     Interaction logic for PageAirlinesShares.xaml
     /// </summary>
     public partial class PageAirlinesShares : Page, INotifyPropertyChanged
     {
-        public ObservableCollection<AirlinesMVVM> AllAirlines { get; set; }
+        #region Fields
+
         private int _numberofsharestoissue;
-        public int NumberOfSharesToIssue
-        {
-            get { return _numberofsharestoissue; }
-            set { _numberofsharestoissue = value; NotifyPropertyChanged("NumberOfSharesToIssue"); }
-        }
+
         private AirlinesMVVM _selectedairline;
-        public AirlinesMVVM SelectedAirline
-        {
-            get { return _selectedairline; }
-            set { _selectedairline = value; NotifyPropertyChanged("SelectedAirline"); }
-        }
+
+        #endregion
+
+        #region Constructors and Destructors
+
         public PageAirlinesShares()
         {
-            this.AllAirlines = new ObservableCollection<AirlinesMVVM>();
-            foreach (Airline airline in Airlines.GetAllAirlines().FindAll(a => !a.IsSubsidiary).OrderByDescending(a => a.IsHuman))
+            AllAirlines = new ObservableCollection<AirlinesMVVM>();
+            foreach (
+                Airline airline in
+                    Airlines.GetAllAirlines().FindAll(a => !a.IsSubsidiary).OrderByDescending(a => a.IsHuman))
             {
-                this.AllAirlines.Add(new AirlinesMVVM(airline));
+                AllAirlines.Add(new AirlinesMVVM(airline));
 
                 foreach (SubsidiaryAirline sAirline in airline.Subsidiaries)
-                    this.AllAirlines.Add(new AirlinesMVVM(sAirline));
+                {
+                    AllAirlines.Add(new AirlinesMVVM(sAirline));
+                }
             }
 
-            this.NumberOfSharesToIssue = 10000;
+            NumberOfSharesToIssue = 10000;
 
             InitializeComponent();
         }
 
-        private void btnShowAirline_Click(object sender, RoutedEventArgs e)
-        {
-            this.SelectedAirline = (AirlinesMVVM)((Button)sender).Tag;
+        #endregion
 
+        #region Public Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Public Properties
+
+        public ObservableCollection<AirlinesMVVM> AllAirlines { get; set; }
+
+        public int NumberOfSharesToIssue
+        {
+            get
+            {
+                return _numberofsharestoissue;
+            }
+            set
+            {
+                _numberofsharestoissue = value;
+                NotifyPropertyChanged("NumberOfSharesToIssue");
+            }
         }
+
+        public AirlinesMVVM SelectedAirline
+        {
+            get
+            {
+                return _selectedairline;
+            }
+            set
+            {
+                _selectedairline = value;
+                NotifyPropertyChanged("SelectedAirline");
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         private void btnBuyAirline_Click(object sender, RoutedEventArgs e)
         {
-            AirlinesMVVM airline = this.SelectedAirline;
+            AirlinesMVVM airline = SelectedAirline;
 
-            double buyingPrice = airline.Airline.getValue() * 100000 * 1.10;
+            double buyingPrice = airline.Airline.GetValue() * 100000 * 1.10;
 
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2113"), string.Format(Translator.GetInstance().GetString("MessageBox", "2113", "message"), airline.Airline.Profile.Name, buyingPrice), WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+                Translator.GetInstance().GetString("MessageBox", "2113"),
+                string.Format(
+                    Translator.GetInstance().GetString("MessageBox", "2113", "message"),
+                    airline.Airline.Profile.Name,
+                    buyingPrice),
+                WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2114"), string.Format(Translator.GetInstance().GetString("MessageBox", "2114", "message"), airline.Airline.Profile.Name, buyingPrice), WPFMessageBoxButtons.YesNo);
+                result = WPFMessageBox.Show(
+                    Translator.GetInstance().GetString("MessageBox", "2114"),
+                    string.Format(
+                        Translator.GetInstance().GetString("MessageBox", "2114", "message"),
+                        airline.Airline.Profile.Name,
+                        buyingPrice),
+                    WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
@@ -84,9 +135,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
                         subAirline.Profile.CEO = GameObject.GetInstance().HumanAirline.Profile.CEO;
 
                         subAirline.Airline = GameObject.GetInstance().HumanAirline;
-                        airline.Airline.removeSubsidiaryAirline(subAirline);
-                        GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(subAirline);
-
+                        airline.Airline.RemoveSubsidiaryAirline(subAirline);
+                        GameObject.GetInstance().HumanAirline.AddSubsidiaryAirline(subAirline);
                     }
                 }
                 else
@@ -97,15 +147,21 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
                         subAirline.Airline = null;
 
-                        airline.Airline.removeSubsidiaryAirline(subAirline);
+                        airline.Airline.RemoveSubsidiaryAirline(subAirline);
                     }
                 }
                 if (airline.Airline.License > GameObject.GetInstance().HumanAirline.License)
+                {
                     GameObject.GetInstance().HumanAirline.License = airline.Airline.License;
+                }
 
                 AirlineHelpers.SwitchAirline(airline.Airline, GameObject.GetInstance().HumanAirline);
 
-                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -buyingPrice);
+                AirlineHelpers.AddAirlineInvoice(
+                    GameObject.GetInstance().HumanAirline,
+                    GameObject.GetInstance().GameTime,
+                    Invoice.InvoiceType.AirlineExpenses,
+                    -buyingPrice);
 
                 Airlines.RemoveAirline(airline.Airline);
 
@@ -115,11 +171,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
         private void btnBuyAsSubsidiary_Click(object sender, RoutedEventArgs e)
         {
-            AirlinesMVVM airline = this.SelectedAirline;
+            AirlinesMVVM airline = SelectedAirline;
 
-            double buyingPrice = airline.Airline.getValue() * 100000 * 1.10;
+            double buyingPrice = airline.Airline.GetValue() * 100000 * 1.10;
 
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2113"), string.Format(Translator.GetInstance().GetString("MessageBox", "2113", "message"), airline.Airline.Profile.Name, buyingPrice), WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+                Translator.GetInstance().GetString("MessageBox", "2113"),
+                string.Format(
+                    Translator.GetInstance().GetString("MessageBox", "2113", "message"),
+                    airline.Airline.Profile.Name,
+                    buyingPrice),
+                WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
             {
@@ -133,19 +195,31 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
                     subAirline.Airline = null;
 
-                    airline.Airline.removeSubsidiaryAirline(subAirline);
+                    airline.Airline.RemoveSubsidiaryAirline(subAirline);
                 }
 
                 if (airline.Airline.License > GameObject.GetInstance().HumanAirline.License)
+                {
                     GameObject.GetInstance().HumanAirline.License = airline.Airline.License;
+                }
 
-                SubsidiaryAirline sAirline = new SubsidiaryAirline(GameObject.GetInstance().HumanAirline, airline.Airline.Profile, airline.Airline.Mentality, airline.Airline.MarketFocus, airline.Airline.License, airline.Airline.AirlineRouteFocus);
+                var sAirline = new SubsidiaryAirline(
+                    GameObject.GetInstance().HumanAirline,
+                    airline.Airline.Profile,
+                    airline.Airline.Mentality,
+                    airline.Airline.MarketFocus,
+                    airline.Airline.License,
+                    airline.Airline.AirlineRouteFocus);
 
                 AirlineHelpers.SwitchAirline(airline.Airline, sAirline);
 
-                GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(sAirline);
+                GameObject.GetInstance().HumanAirline.AddSubsidiaryAirline(sAirline);
 
-                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -buyingPrice);
+                AirlineHelpers.AddAirlineInvoice(
+                    GameObject.GetInstance().HumanAirline,
+                    GameObject.GetInstance().GameTime,
+                    Invoice.InvoiceType.AirlineExpenses,
+                    -buyingPrice);
 
                 Airlines.RemoveAirline(airline.Airline);
                 Airlines.AddAirline(sAirline);
@@ -154,7 +228,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
                 sAirline.Profile.Color = oldColor;
 
                 foreach (AirlinePolicy policy in airline.Airline.Policies)
-                    sAirline.addAirlinePolicy(policy);
+                {
+                    sAirline.AddAirlinePolicy(policy);
+                }
 
                 sAirline.Money = airline.Airline.Money;
                 sAirline.StartMoney = airline.Airline.Money;
@@ -162,74 +238,78 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
                 sAirline.Fees = new AirlineFees();
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
-
-
             }
         }
+
         private void btnIssueShares_Click(object sender, RoutedEventArgs e)
         {
             int shares = Convert.ToInt32(slShares.Value);
 
-            double price =  AirlineHelpers.GetPricePerAirlineShare(GameObject.GetInstance().HumanAirline);
+            double price = AirlineHelpers.GetPricePerAirlineShare(GameObject.GetInstance().HumanAirline);
 
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2127"), string.Format(Translator.GetInstance().GetString("MessageBox", "2127", "message"), shares, new ValueCurrencyConverter().Convert(price)), WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(
+                Translator.GetInstance().GetString("MessageBox", "2127"),
+                string.Format(
+                    Translator.GetInstance().GetString("MessageBox", "2127", "message"),
+                    shares,
+                    new ValueCurrencyConverter().Convert(price)),
+                WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
             {
+                AirlineHelpers.AddAirlineShares(GameObject.GetInstance().HumanAirline, shares, price);
 
-
-                AirlineHelpers.AddAirlineShares(GameObject.GetInstance().HumanAirline, shares,price);
-
-                AirlinesMVVM humanAirline = this.AllAirlines.First(a => a.Airline == GameObject.GetInstance().HumanAirline);
+                AirlinesMVVM humanAirline =
+                    AllAirlines.First(a => a.Airline == GameObject.GetInstance().HumanAirline);
                 humanAirline.StocksForSale += shares;
                 humanAirline.Stocks += shares;
 
-                this.NumberOfSharesToIssue -= shares;
+                NumberOfSharesToIssue -= shares;
 
                 humanAirline.setOwnershipValues();
             }
-
         }
+
         private void btnPurchaseShares_Click(object sender, RoutedEventArgs e)
         {
-            AirlinesMVVM airline = this.SelectedAirline;
+            AirlinesMVVM airline = SelectedAirline;
 
-            ComboBox cbShares = new ComboBox();
-            cbShares.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbShares.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            var cbShares = new ComboBox();
+            cbShares.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
+            cbShares.HorizontalAlignment = HorizontalAlignment.Left;
             cbShares.Width = 200;
 
             int dValue = Convert.ToInt16(Convert.ToDouble(airline.StocksForSale) / 10);
 
             for (int i = 0; i <= airline.StocksForSale; i += dValue)
+            {
                 cbShares.Items.Add(i);
+            }
 
             cbShares.SelectedIndex = 0;
 
-            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlinesShares", "1000"), cbShares) == PopUpSingleElement.ButtonSelected.OK && cbShares.SelectedItem != null)
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlinesShares", "1000"), cbShares)
+                == PopUpSingleElement.ButtonSelected.OK && cbShares.SelectedItem != null)
             {
                 int numberOfShares = Convert.ToInt32(cbShares.SelectedItem);
 
                 double amount = numberOfShares * airline.StockPrice;
 
-                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -amount);
+                AirlineHelpers.AddAirlineInvoice(
+                    GameObject.GetInstance().HumanAirline,
+                    GameObject.GetInstance().GameTime,
+                    Invoice.InvoiceType.AirlineExpenses,
+                    -amount);
 
                 airline.addOwnership(GameObject.GetInstance().HumanAirline, numberOfShares);
             }
-
         }
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String propertyName)
+
+        private void btnShowAirline_Click(object sender, RoutedEventArgs e)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            SelectedAirline = (AirlinesMVVM)((Button)sender).Tag;
         }
 
-
-
-
+        #endregion
     }
 }

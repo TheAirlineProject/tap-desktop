@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Luxair" iata="LG" logo="LG" color="SkyBlue" country="119" CEO="Adrien Ney" mentality="Moderate" market="Global" preferedairport="LUX">
+    <narrative narrative=" Luxair is the flag carrier of the Grand Duchy of Luxembourg. They serve 20 all year round destinations and 39 seasonal destinations. Besides Luxembourg Findel Airport it also has a focus city at Saarbrucken Airport nearby in Germany. They also do charters. Besides Europe they also fly to North Africa and the Middle East. They have 18 planes as of January 2014, 6 ERJ 145's, 6 Dash 8 Q400's, 3 737-800's, and 3 737-700's. They have one 737-800 on order and a Dash 8 Q400 on order." /></profile>
+  <info real="True" from="1961" to="2199" />
+</airline>

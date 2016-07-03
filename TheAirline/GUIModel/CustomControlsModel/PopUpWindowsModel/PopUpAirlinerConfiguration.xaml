@@ -9,7 +9,7 @@
         <local:NumberOfPassengersConverter x:Key="numberOfPassengersConverter"></local:NumberOfPassengersConverter>
         <local:FreeClassesConverter x:Key="freeClassesConverter"></local:FreeClassesConverter>   
         <DataTemplate x:Key="UnderscoreItem">
-            <TextBlock Text="{Binding Converter={StaticResource textUnderscoreConverter}}"></TextBlock>
+            <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter}}"></TextBlock>
         </DataTemplate>
            <DataTemplate x:Key="NewClassItem">
             <WrapPanel VerticalAlignment="Bottom" Margin="2 0 0 0">

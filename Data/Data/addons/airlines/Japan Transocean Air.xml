@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Japan Transocean Air" iata="NU" logo="NU" color="DarkRed" country="171" CEO="Takeshi Ichinosawa" mentality="Moderate" market="Domestic" preferedairport="OKA">
+    <narrative narrative="Japan Transocean Air was founded as Southwest Air Lines in 1967 and got it's current name in 1993. It is a domestic carrier and it's main base is Naha Airport at the largest city on Okinawa island and of the Ryukyu Islands. They also have a focus city at Ishigaki Airport on Ishigaki Island. It is owned 51.1% by Japan Airlines and 17% by Naha Airport Terminal and 12.9% by the Okinawa Prefecture and variours others. They own 72.9% of Ryukyu Air Commuter which primarily only operates in the Ryukyu Islands. They have flown Convair 240s and NAMC YS-11's, and their current fleet is 13 737-400's. They will replace these with the 12 737-800s they have on order. They serve 15 destinations throughout Japan. They have the primary maintenance crew for all the Japan Airlines Group 737-400's. " /></profile>
+  <info real="True" from="1967" to="2199" />
+</airline>

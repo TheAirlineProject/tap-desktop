@@ -1,141 +1,154 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirportModel;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Views.Airline;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     /// <summary>
-    /// Interaction logic for PageNews.xaml
+    ///     Interaction logic for PageNews.xaml
     /// </summary>
     public partial class PageNews : Page
     {
-        public ObservableCollection<NewsMVVM> AllNews { get; set; }
-        public SelectedNewsMVVM SelectedNews { get; set; }
-        public ObservableCollection<NewsMVVM> SelectedNewsList { get; set; }
+        #region Constructors and Destructors
+
         public PageNews()
         {
-            this.AllNews = new ObservableCollection<NewsMVVM>();
-           
-            foreach (News news in GameObject.GetInstance().NewsBox.getNews().OrderByDescending(n => n.Date).ToList())
-                this.AllNews.Add(new NewsMVVM(news));
+            AllNews = new ObservableCollection<NewsMVVM>();
 
-            this.SelectedNews = new SelectedNewsMVVM();
+            foreach (News news in GameObject.GetInstance().NewsBox.GetNews().OrderByDescending(n => n.Date).ToList())
+            {
+                AllNews.Add(new NewsMVVM(news));
+            }
 
-            this.SelectedNewsList = new ObservableCollection<NewsMVVM>();
+            SelectedNews = new SelectedNewsMVVM();
+
+            SelectedNewsList = new ObservableCollection<NewsMVVM>();
 
             InitializeComponent();
-
         }
 
-        private void lnkNews_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+        #region Public Properties
+
+        public ObservableCollection<NewsMVVM> AllNews { get; set; }
+
+        public SelectedNewsMVVM SelectedNews { get; set; }
+
+        public ObservableCollection<NewsMVVM> SelectedNewsList { get; set; }
+
+        #endregion
+
+        #region Methods
+
+        private void btnDeleteSelected_Click(object sender, RoutedEventArgs e)
         {
-            NewsMVVM news = (NewsMVVM)((Hyperlink)sender).Tag;
-            news.markAsRead();
-
-            this.SelectedNews.SelectedNews = news.News;
-     
+            foreach (NewsMVVM news in SelectedNewsList)
+            {
+                AllNews.Remove(news);
+                GameObject.GetInstance().NewsBox.RemoveNews(news.News);
+            }
         }
+
+        private void btnDeselectAll_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (NewsMVVM news in AllNews)
+            {
+                news.IsSelected = false;
+            }
+            //this.SelectedNewsList.Clear();
+        }
+
+        private void btnMarkSelected_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (NewsMVVM news in SelectedNewsList)
+            {
+                news.markAsRead();
+            }
+        }
+
+        private void btnNo_Click(object sender, RoutedEventArgs e)
+        {
+            var news = (News)((Button)sender).Tag;
+            SelectedNews.SelectedNews = null;
+
+            NewsMVVM newsMVVM = AllNews.First(n => n.News == news);
+            AllNews.Remove(newsMVVM);
+
+            GameObject.GetInstance().NewsBox.RemoveNews(news);
+        }
+
         private void btnSelectAll_Click(object sender, RoutedEventArgs e)
         {
-            foreach (NewsMVVM news in this.AllNews)
+            foreach (NewsMVVM news in AllNews)
             {
-                if (!this.SelectedNewsList.Contains(news))
+                if (!SelectedNewsList.Contains(news))
                 {
                     //this.SelectedNewsList.Add(news);
                     news.IsSelected = true;
                 }
             }
         }
-        private void btnDeselectAll_Click(object sender, RoutedEventArgs e)
+
+        private void btnYes_Click(object sender, RoutedEventArgs e)
         {
-            foreach (NewsMVVM news in this.AllNews)
-            {
-                news.IsSelected = false;
-            }
-            //this.SelectedNewsList.Clear();
+            var news = (News)((Button)sender).Tag;
+
+            news.ExecuteNews();
+
+            SelectedNews.SelectedNews = null;
+
+            NewsMVVM newsMVVM = AllNews.First(n => n.News == news);
+            AllNews.Remove(newsMVVM);
+
+            GameObject.GetInstance().NewsBox.RemoveNews(news);
         }
+
         private void cbNews_Checked(object sender, RoutedEventArgs e)
         {
-            NewsMVVM news = (NewsMVVM)((CheckBox)sender).Tag;
-            this.SelectedNewsList.Add(news);
+            var news = (NewsMVVM)((CheckBox)sender).Tag;
+            SelectedNewsList.Add(news);
         }
 
         private void cbNews_Unchecked(object sender, RoutedEventArgs e)
         {
-            NewsMVVM news = (NewsMVVM)((CheckBox)sender).Tag;
-            this.SelectedNewsList.Remove(news);
+            var news = (NewsMVVM)((CheckBox)sender).Tag;
+            SelectedNewsList.Remove(news);
         }
 
-        private void btnDeleteSelected_Click(object sender, RoutedEventArgs e)
+        private void lnkNews_Click(object sender, RoutedEventArgs e)
         {
-            foreach (NewsMVVM news in this.SelectedNewsList)
-            {
-                this.AllNews.Remove(news);
-                GameObject.GetInstance().NewsBox.removeNews(news.News);
-            }
+            var news = (NewsMVVM)((Hyperlink)sender).Tag;
+            news.markAsRead();
+
+            SelectedNews.SelectedNews = news.News;
         }
 
-        private void btnMarkSelected_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (NewsMVVM news in this.SelectedNewsList)
-                news.markAsRead();
-       
-        }
-
-        private void btnNo_Click(object sender, RoutedEventArgs e)
-        {
-            News news = (News)((Button)sender).Tag;
-            this.SelectedNews.SelectedNews = null;
-
-            NewsMVVM newsMVVM = this.AllNews.First(n => n.News == news);
-            this.AllNews.Remove(newsMVVM);
-
-            GameObject.GetInstance().NewsBox.removeNews(news);
-        }
-
-        private void btnYes_Click(object sender, RoutedEventArgs e)
-        {
-            News news = (News)((Button)sender).Tag;
-
-            news.executeNews();
-
-            this.SelectedNews.SelectedNews = null;
-
-            NewsMVVM newsMVVM = this.AllNews.First(n => n.News == news);
-            this.AllNews.Remove(newsMVVM);
-
-            GameObject.GetInstance().NewsBox.removeNews(news);
-        }
+        #endregion
     }
+
     public class NewsTextConverter : IValueConverter
     {
+        #region Public Methods and Operators
 
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string text = value.ToString();
-
-            TextBlock txtBlock = new TextBlock();
+       
+            var txtBlock = new TextBlock();
             txtBlock.TextWrapping = TextWrapping.Wrap;
 
             char[] delimiterChars = { '[', ']' };
@@ -144,64 +157,82 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             foreach (string subText in splittedText)
             {
                 if (subText.StartsWith("LI"))
+                {
                     txtBlock.Inlines.Add(getNewsLink(subText));
+                }
                 else if (subText.StartsWith("HEAD"))
+                {
                     txtBlock.Inlines.Add(getNewsHeader(subText));
+                }
                 else if (subText.StartsWith("BOLD"))
+                {
                     txtBlock.Inlines.Add(getNewsBold(subText));
+                }
                 else if (subText.StartsWith("WIDTH"))
+                {
                     txtBlock.Inlines.Add(getNewsWidthText(subText));
+                }
                 else
-                    txtBlock.Inlines.Add(subText);
+                {
+                    string[] newLines = subText.Split(new[]{"\\n"},StringSplitOptions.RemoveEmptyEntries);
+
+                    if (newLines.Count() > 0)
+                    {
+                        for (int i = 0; i < newLines.Count(); i++)
+                        {
+                            txtBlock.Inlines.Add(newLines[i]);
+
+                            if (i < newLines.Count() - 1)
+                                txtBlock.Inlines.Add(new LineBreak());
+                        }
+                       
+                    }
+                    else
+                        txtBlock.Inlines.Add(subText);
+                }
             }
 
+         
             return txtBlock;
-
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
+
         //creates a text for a specific width
-        private TextBlock getNewsWidthText(string text)
-        {
-            int lWidth = 6;
-            int space = text.IndexOf(' ');
 
-            string tWidth = text.Substring(lWidth, space - lWidth +1);
-
-            int width = Int16.Parse(tWidth);
-
-            TextBlock txt = new TextBlock();
-            txt.Text = text.Substring(space);
-            txt.Width = width;
-
-            return txt;
-        }
         //creates the bold text for a news text
+
+        #region Methods
+
         private TextBlock getNewsBold(string text)
         {
             text = text.Replace("BOLD=", "");
 
-            TextBlock txt = new TextBlock();
+            var txt = new TextBlock();
             txt.Text = text;
             txt.FontWeight = FontWeights.Bold;
 
             return txt;
         }
+
         //creates the header for a news text
         private TextBlock getNewsHeader(string text)
         {
             text = text.Replace("HEAD=", "");
 
-            TextBlock txtHeader = new TextBlock();
+            var txtHeader = new TextBlock();
             txtHeader.Text = text;
             txtHeader.FontWeight = FontWeights.Bold;
             txtHeader.FontSize = 24;
-            
+
             return txtHeader;
         }
+
         //creates the link for a news link
         private Hyperlink getNewsLink(string text)
         {
@@ -221,27 +252,46 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                     objectText = ((Airport)o).Profile.Name;
                     break;
                 case "airliner":
-                    o = Airlines.GetAllAirlines().SelectMany(a => a.Fleet).ToList().Find(f => f.Airliner.TailNumber == linkObject);
+                    o =
+                        Airlines.GetAllAirlines()
+                            .SelectMany(a => a.Fleet)
+                            .ToList()
+                            .Find(f => f.Airliner.TailNumber == linkObject);
                     objectText = ((FleetAirliner)o).Name;
                     break;
             }
 
+            var run = new Run(objectText);
 
-            Run run = new Run(objectText);
-
-            Hyperlink hyperLink = new Hyperlink(run);
+            var hyperLink = new Hyperlink(run);
             hyperLink.Tag = o;
             hyperLink.TextDecorations = TextDecorations.Underline;
             hyperLink.TargetName = linkType;
-            hyperLink.Click += new RoutedEventHandler(hyperLink_Click);
+            hyperLink.Click += hyperLink_Click;
 
             return hyperLink;
+        }
+
+        private TextBlock getNewsWidthText(string text)
+        {
+            int lWidth = 6;
+            int space = text.IndexOf(' ');
+
+            string tWidth = text.Substring(lWidth, space - lWidth + 1);
+
+            int width = Int16.Parse(tWidth);
+
+            var txt = new TextBlock();
+            txt.Text = text.Substring(space);
+            txt.Width = width;
+
+            return txt;
         }
 
         private void hyperLink_Click(object sender, RoutedEventArgs e)
         {
             object o = ((Hyperlink)sender).Tag;
-            string linkType = (string)((Hyperlink)sender).TargetName;
+            string linkType = ((Hyperlink)sender).TargetName;
 
             switch (linkType)
             {
@@ -255,8 +305,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                     PageNavigator.NavigateTo(new PageFleetAirliner((FleetAirliner)o));
                     break;
             }
-
-
         }
+
+        #endregion
     }
 }

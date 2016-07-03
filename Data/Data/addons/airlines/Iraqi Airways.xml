@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Iraqi Airways" iata="IA" color="Green" country="127" CEO="Saad Al-Khafaji" mentality="Aggressive" market="Global" preferedairport="BGW">
+  <narrative narrative="Iraqi Airways is the flag carrier of Iraq based at Baghdad Intl. Airport. Founded in 1945 it is one of the oldest airlines in the Middle East. It currently serves 30 destinations throughout the Middle East,Asia and Europe. It is renewing its aging fleet of 26 planes and has 40 on order as of April 2014, including 25 737-800s,10 787's and 6 CS300's." />
+  </profile>
+  <info real="True" from="1945" to="2199"></info>
+</airline>

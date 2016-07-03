@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Changzhou">
+  <months>
+    <month month="1" precipitation="45">
+      <temp min="0" max="7" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="2" precipitation="54">
+      <temp min="1" max="9" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="3" precipitation="89">
+      <temp min="5" max="13" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="4" precipitation="81">
+      <temp min="11" max="20" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="5" precipitation="102">
+      <temp min="16" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="189">
+      <temp min="21" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="172">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="116">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="92">
+      <temp min="20" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="69">
+      <temp min="14" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="53">
+      <temp min="8" max="16" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="30">
+      <temp min="2" max="10" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

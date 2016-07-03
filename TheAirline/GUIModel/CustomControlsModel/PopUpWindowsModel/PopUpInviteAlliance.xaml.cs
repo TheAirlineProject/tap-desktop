@@ -1,19 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {
@@ -44,7 +36,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 
             this.Height = 500;
 
-            this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             StackPanel panelMain = new StackPanel();
 
@@ -74,7 +66,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
                 CheckBox cbAirline = new CheckBox();
                 cbAirline.IsChecked = false;
                 cbAirline.Tag = airline;
-                cbAirline.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+                cbAirline.VerticalAlignment = VerticalAlignment.Bottom;
                 cbAirline.Checked += new RoutedEventHandler(cbAirline_Checked);
                 cbAirline.Unchecked += new RoutedEventHandler(cbAirline_Unchecked);
 
@@ -99,7 +91,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 
             Button btnOk = new Button();
             btnOk.Uid = "100";
-            btnOk.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
+            btnOk.SetResourceReference(StyleProperty, "StandardButtonStyle");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;
             btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
@@ -109,7 +101,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 
             Button btnCancel = new Button();
             btnCancel.Uid = "101";
-            btnCancel.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
+            btnCancel.SetResourceReference(StyleProperty, "StandardButtonStyle");
             btnCancel.Height = Double.NaN;
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
             btnCancel.Width = Double.NaN;

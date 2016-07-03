@@ -1,0 +1,32 @@
+﻿<airline>
+<profile name="China Airlines" iata="CI" color="Salmon" country="172" CEO="Zhang Jiazhu" mentality="Aggressive" market="Global" preferedairport="TPE">
+  <narrative narrative="China Airlines is the flag carrier of the Republic of China (Taiwan). They fly to 112 worldwide destinations on a mixed fleet of Boeing and Airbus aircraft. " />
+</profile>
+   <info real="True" from="1959" to="2199"></info>
+<prefereds aircrafts="Airbus A300-600,Airbus A300B4,Airbus A330-300,Airbus A340-300,Airbus A350-900,Boeing 737-200,Boeing 737-400,Boeing 737-800,Boeing 747-100,Boeing 747-200B,Boeing 747-400,Boeing 747SP"></prefereds>
+       
+  <airliners>
+	       	<airliner type="Airbus A300-600" early="0" late="5"></airliner>
+		<airliner type="Airbus A300B4" early="0" late="6"></airliner>
+		<airliner type="Airbus A320-200" early="2" late="0"></airliner>
+		<airliner type="Airbus A330-300" early="0" late="23"></airliner>
+		<airliner type="Airbus A340-300" early="0" late="7"></airliner>
+		<airliner type="Airbus A350-900" early="5" late="20"></airliner>
+		<airliner type="Boeing 737-200" early="0" late="5"></airliner>
+		<airliner type="Boeing 737-400" early="0" late="6"></airliner>
+		<airliner type="Boeing 737-800" early="6" late="19"></airliner>
+		<airliner type="Boeing 747-100" early="0" late="4"></airliner>
+		<airliner type="Boeing 747-200B" early="0" late="7"></airliner>
+		<airliner type="Boeing 747-400" early="0" late="13"></airliner>
+		<airliner type="Boeing 747SP" early="3" late="6"></airliner>
+		<airliner type="Boeing 767-200ER" early="2" late="0"></airliner>
+	 
+ </airliners>
+
+
+
+
+</airline> 
+
+
+

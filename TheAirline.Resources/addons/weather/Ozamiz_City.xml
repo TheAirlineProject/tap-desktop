@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Ozamiz City">
+  <months>
+    <month month="1" precipitation="63">
+      <temp min="21" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="62">
+      <temp min="21" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="47">
+      <temp min="21" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="45">
+      <temp min="22" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="111">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="209">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="211">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="179">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="224">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="176">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="144">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="124">
+      <temp min="22" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

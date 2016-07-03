@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-using TheAirline.Model.AirlinerModel;
-using TheAirline.Model.AirportModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Helpers;
+using TheAirline.Models.Airliners;
+using TheAirline.Models.Airports;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Finances;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {
@@ -34,19 +32,19 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 
             this.Height = 100;
 
-            this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-            this.WindowStyle = System.Windows.WindowStyle.SingleBorderWindow;
+            this.WindowStyle = WindowStyle.SingleBorderWindow;
 
             StackPanel mainPanel = new StackPanel();
             mainPanel.Margin = new Thickness(10, 10, 10, 10);
             cbAirport = new ComboBox();
             cbAirport.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
-            cbAirport.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbAirport.SetResourceReference(StyleProperty, "ComboBoxTransparentStyle");
             cbAirport.IsSynchronizedWithCurrentItem = true;
-            cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbAirport.HorizontalAlignment = HorizontalAlignment.Left;
 
-            List<Airport> airports = this.Airliner.Airliner.Airline.Airports.FindAll(a => (a.getCurrentAirportFacility(this.Airliner.Airliner.Airline, AirportFacility.FacilityType.Service).TypeLevel > 0 || a.hasContractType(this.Airliner.Airliner.Airline,AirportContract.ContractType.Full_Service)) && a.Profile.Period.From <= GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime);
+            List<Airport> airports = this.Airliner.Airliner.Airline.Airports.FindAll(a => (a.GetCurrentAirportFacility(this.Airliner.Airliner.Airline, AirportFacility.FacilityType.Service).TypeLevel > 0 || a.HasContractType(this.Airliner.Airliner.Airline,AirportContract.ContractType.FullService)) && a.Profile.Period.From <= GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime);
             
             if (airports.Count == 0)
                 airports = this.Airliner.Airliner.Airline.Airports.FindAll(a => a.Profile.Period.From <= GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime);
@@ -73,12 +71,12 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
 
             Button btnOk = new Button();
-            btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnOk.SetResourceReference(StyleProperty, "RoundedButton");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;
             btnOk.Content = "OK";
-            btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnOk.SetResourceReference(BackgroundProperty, "ButtonBrush");
+            btnOk.HorizontalAlignment = HorizontalAlignment.Left;
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             panelButtons.Children.Add(btnOk);
 
@@ -92,10 +90,10 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             Airport airport = (Airport)cbAirport.SelectedItem;
             this.Selected = airport;
 
-            if (((Airport)this.Selected).getCurrentAirportFacility(this.Airliner.Airliner.Airline, AirportFacility.FacilityType.Service).TypeLevel == 0)
+            if (((Airport)this.Selected).GetCurrentAirportFacility(this.Airliner.Airliner.Airline, AirportFacility.FacilityType.Service).TypeLevel == 0)
             {
                 AirportFacility facility = Hub.MinimumServiceFacility;
-                airport.addAirportFacility(this.Airliner.Airliner.Airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
+                airport.AddAirportFacility(this.Airliner.Airliner.Airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
 
                 double price = facility.Price;
 

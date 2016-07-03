@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Corsair International" iata="SS" logo="SS2" color="Dark Blue" country="140" CEO="Pascal de Izaguirre" mentality="Moderate" market="Global" preferedairport="ORY">
+    <narrative narrative="Corsair Interntional are the second largest French airline. It was founded in 1981 by the Corsican Rossi family. They are based at Paris Orly Airport. They are owned by TUI Travel. They currently fly to 15 destinations and have 7 planes. There destinations are mostly Fench Overseas Territories and former French colonies, such as Reunion Island, Senegal, the Ivory Coast, and Martinque to name a few. They have four A330's and three 747-400's."/>
+  </profile>
+  <info real="True" from="1981" to="2199" />
+</airline>

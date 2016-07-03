@@ -1,95 +1,129 @@
 ﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AlliancesPageModel.PageShowAlliances"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      mc:Ignorable="d" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
       Name="pageShowAlliances"
       d:DesignHeight="300" d:DesignWidth="300"
-	Title="PageShowAlliances">
+      Title="PageShowAlliances">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel>
-            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1003'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <TextBlock
+                Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1003'}"
+                VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
 
-            <ListView VerticalAlignment="Stretch" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding ElementName=pageShowAlliances, Path=AllAlliances}">
-            <ListView.View>
-                <GridView>
-                        
-                        <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1000'}" Width="250">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <WrapPanel>
-                                    <Image Source="{Binding Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <ListView VerticalAlignment="Stretch" BorderThickness="0" Background="Transparent"
+                      ItemsSource="{Binding ElementName=pageShowAlliances, Path=AllAlliances}">
+                <ListView.View>
+                    <GridView>
 
-                                    <TextBlock Margin="5 0 0 0" VerticalAlignment="Bottom">
-                            <Hyperlink Tag="{Binding}" Click="clName_Click">
-                                <Run Text="{Binding Name}"></Run>
-                            </Hyperlink>
-                                </TextBlock>
-                                </WrapPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
+                        <GridViewColumn
+                            Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1000'}"
+                            Width="250">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <Image Source="{Binding Logo}" Width="20" Height="20"
+                                               VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" />
 
-                    </GridViewColumn>
-                    <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1001'}" Width="350">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <ContentControl ContentTemplate="{StaticResource AirportCountryLink}" Content="{Binding Headquarter}"></ContentControl>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Image Source="/data/images/human.png" Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <StackPanel Margin="0 10 0 0">
-            <StackPanel.Style>
+                                        <TextBlock Margin="5 0 0 0" VerticalAlignment="Bottom">
+                                            <Hyperlink Tag="{Binding}" Click="clName_Click">
+                                                <Run Text="{Binding Name}" />
+                                            </Hyperlink>
+                                        </TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+
+                        </GridViewColumn>
+                        <GridViewColumn
+                            Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1001'}"
+                            Width="350">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl ContentTemplate="{StaticResource AirportCountryLink}"
+                                                    Content="{Binding Headquarter}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="/data/images/human.png"
+                                           Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}"
+                                           Width="20" Height="20" VerticalAlignment="Bottom"
+                                           RenderOptions.BitmapScalingMode="HighQuality" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Margin="0 10 0 0">
+                <StackPanel.Style>
                     <Style TargetType="StackPanel">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding AllCodesharings.Count,ElementName=pageShowAlliances}" Value="0">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                    </Style.Triggers>
+                            <DataTrigger Binding="{Binding AllCodesharings.Count,ElementName=pageShowAlliances}"
+                                         Value="0">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
                     </Style>
                 </StackPanel.Style>
-                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1002'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                <ListView VerticalAlignment="Stretch" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding ElementName=pageShowAlliances, Path=AllCodesharings}">
+                <TextBlock
+                    Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1002'}"
+                    VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" />
+                <ListView VerticalAlignment="Stretch" BorderThickness="0" Background="Transparent"
+                          ItemsSource="{Binding ElementName=pageShowAlliances, Path=AllCodesharings}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1000'}" Width="40">
+                            <GridViewColumn
+                                Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1000'}"
+                                Width="40">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button  Visibility="{Binding IsHuman,Converter={StaticResource BooleanToVisibility}}" VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Background="Transparent" Click="btnDelete_Click">
-                                            <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                        <Button
+                                            Visibility="{Binding IsHuman,Converter={StaticResource BooleanToVisibility}}"
+                                            VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0"
+                                            Background="Transparent" Click="btnDelete_Click">
+                                            <Image Source="/Data/images/delete.png" Height="16" Width="16"
+                                                   RenderOptions.BitmapScalingMode="HighQuality" />
                                         </Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1004'}" Width="200">
+                            <GridViewColumn
+                                Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1004'}"
+                                Width="200">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <ContentControl ContentTemplate="{StaticResource AirlineLink}" Content="{Binding Agreement.Airline1}" VerticalAlignment="Bottom"></ContentControl>
+                                        <ContentControl ContentTemplate="{StaticResource AirlineLink}"
+                                                        Content="{Binding Agreement.Airline1}"
+                                                        VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1005'}" Width="200">
+                            <GridViewColumn
+                                Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1005'}"
+                                Width="200">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <ContentControl ContentTemplate="{StaticResource AirlineLink}" Content="{Binding Agreement.Airline2}" VerticalAlignment="Bottom"></ContentControl>
+                                        <ContentControl ContentTemplate="{StaticResource AirlineLink}"
+                                                        Content="{Binding Agreement.Airline2}"
+                                                        VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1006'}" Width="100">
+                            <GridViewColumn
+                                Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliances 1006'}"
+                                Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Agreement.Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock
+                                            Text="{Binding Agreement.Type,Converter={StaticResource TextUnderscoreConverter}}"
+                                            VerticalAlignment="Bottom" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -97,7 +131,7 @@
                     </ListView.View>
                 </ListView>
             </StackPanel>
-       </StackPanel>
+        </StackPanel>
     </ScrollViewer>
-     
+
 </Page>

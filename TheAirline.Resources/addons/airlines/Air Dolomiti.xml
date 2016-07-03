@@ -1,0 +1,8 @@
+﻿<airline>
+  <profile name="Air Dolomiti" iata="EN" color="Turquoise" country="141" CEO="Michael Kraus" mentality="Moderate"
+           market="Regional" preferedairport="VRN">
+    <narrative
+      narrative="Air Dolomiti was established in 30 December 1989 by the Linee Aeree Europee (L.A.E). It started airline operations in January 1991 with a Trieste-Genoa route and in 1992 started international services with flights from Verona to Munich. After several years of co-operation, Lufthansa acquired a 26% stake in January 1999 and increased it to 52% in April 2003 and 100% in July 2003." />
+  </profile>
+  <info real="True" from="1989" to="2199"></info>
+</airline>

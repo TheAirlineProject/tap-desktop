@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-using TheAirline.Model.AirportModel;
+using TheAirline.Models.Airports;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {
@@ -56,7 +56,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             this.ExpireDate = this.Contract.ExpireDate;
             this.NumberOfGates = this.Contract.NumberOfGates;
 
-            this.HasFreeGates = this.Contract.Airport.Terminals.getFreeGates() > 0;
+            this.HasFreeGates = this.Contract.Airport.Terminals.GetFreeGates(this.Contract.TerminalType) > 0;
 
             InitializeComponent();
         }
@@ -85,7 +85,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
             int diffGates = this.NumberOfGates - this.Contract.NumberOfGates;
 
           
-            this.HasFreeGates = this.Contract.Airport.Terminals.getFreeGates() - diffGates > 0;
+            this.HasFreeGates = this.Contract.Airport.Terminals.GetFreeGates(this.Contract.TerminalType) - diffGates > 0;
 
           
         }

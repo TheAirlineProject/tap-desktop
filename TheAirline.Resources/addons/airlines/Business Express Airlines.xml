@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Business Express Airlines" iata="HQ" logo="HQ" color="DarkBlue" country="122" CEO="John Smith" mentality="Aggressive" market="Regional" preferedairport="BOS">
+    <narrative narrative=" Business Express was founded in 1982 as Atlantic Air and changed names in 1985 to help attract business commuter's. It's primary base was Boston Logan and also had hubs at LaGaurdia and JFK, both in New York City. In 1986 they aquired Pilgrim Airlines which was based in Groton/New London,Connecticut and helped them expand to New York and Washington D.C. They were under the Delta Connection banner under Delta Air Lines and operated under the Northwest Airlink codeshare also. In December 1998 they were purchased by AMR Eagle Holding Corp., who owned American Eagle and Executive Airlines. THey had been operating under the banner of American Connection 16 months prior to this. It's operations were transferred to American Eagle in 2000 and it ceased to exist. It served 35 U.S airports, all in the eastern U.S and 8 in eastern Canada. Planes they used included Avro RJ70's, BAe 146-200's, Fokker F28 and F27's, Saab 340's, Short 360's, Beechcraft 1900's, Piper Navajos, Beechcraft 99's and Twin Otters.  " /></profile>
+  <info real="True" from="1982" to="2000" />
+</airline>

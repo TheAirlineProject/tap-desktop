@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Akita">
+  <months>
+    <month month="1" precipitation="114">
+      <temp min="-3" max="3" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="92">
+      <temp min="-3" max="3" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="93">
+      <temp min="-1" max="7" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="118">
+      <temp min="5" max="14" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="123">
+      <temp min="10" max="19" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="128">
+      <temp min="15" max="23" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="178">
+      <temp min="19" max="27" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="182">
+      <temp min="21" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="178">
+      <temp min="16" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="161">
+      <temp min="9" max="18" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="184">
+      <temp min="3" max="12" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="164">
+      <temp min="-1" max="6" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

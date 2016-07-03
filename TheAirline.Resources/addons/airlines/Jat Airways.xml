@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Jat Airways" iata="JU" logo="JU2" color="DarkBlue" country="104" CEO="Velibor Vukašinović " mentality="Moderate" market="Regional" preferedairport="BEG">
+<narrative narrative="Originally founded in 1927 as Aeroput, Jat Airways was the flag carrier and largest  Serbia and Montenegro until it was renamed in 2013. Air Serbia commenced operations under its new name on 26 October 2013."/>
+</profile>
+<info real="True" from="2003" to="2013"></info>
+  <startdata>
+    <airliners>
+      <airliner type="Boeing 737-300" early="10" late="4"></airliner>
+      <airliner type="ATR 72-210" early="4" late="3"></airliner>
+      <airliner type="ATR 72-500" early="0" late="2"></airliner>
+    </airliners>
+  </startdata> 
+</airline>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Lucky Air" iata="8L" color="Red" country="148" CEO="Ma Guohua" mentality="Moderate" market="Domestic" preferedairport="KMG">
+<narrative narrative="Lucky Air make their base at Kunming,China in the Yunnan Province. Originally called Shilin Airlines they changed their name to Lucky Air in 2005, ad were founded in July 2004. It operates to
+40 destinations and has a fleet of 21 aircraft, fourteen 737's, four A320's and three A319's. They are owned by Hainan Airlines and have a subsidary of thier own, West Air."/>
+</profile>
+<info real="True" from="2004" to="2199"></info>
+</airline>

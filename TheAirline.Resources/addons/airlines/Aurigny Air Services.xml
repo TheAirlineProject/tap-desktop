@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Aurigny Air Services" iata="GR" logo="GR2" color="Yellow" country="130" CEO="Mark Darby" mentality="Moderate" market="Regional" preferedairport="GCI">
+    <narrative narrative="Aurigny Air Servies is the flag carrier of Guernsey, the island Britsh Crown dependency off the coast or Normandy France. It was founded in 1968 and is one of the oldest airlines in Britain and one of the longest serving regional airlines in the world. It's name comes from the word for one of the islands of Guernsey, Alderney, the locals call it Aurigny. However the airline is based at Guernsey Island itself. It serves 11 destinations all within the UK and the British Dependencies and France. It's 10 planes consists of three ATR-72's, six Britten-Norman Trislanders and one Embraer 195." />
+  </profile>
+  <info real="True" from="1968" to="2199" />
+</airline>

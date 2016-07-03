@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Tassili Airlines" iata="SF" logo="SF" color="DarkGreen" country="142" CEO="Hocine Chekired" mentality="Safe" market="Global" preferedairport="ALG">
+    <narrative narrative=" Tassili Airlines is an Algerian airline based at Algiers and were founded in 1997. As of June 2013 they operate at 13 domestic airports and fly to Rome and Saint-Etienne,France. They also charter for the Algerian oil industry, and in fact are owned  51% by the state owned oil and gas company Sonatrach. The other 49% of the airline is owned by Air Algerie. They have 12 planes as of June 2013, four 737-800's, four Dash 8 Q400's, and four Dash 8 Q200's. They have three Embraer 190's on order." /></profile>
+  <info real="True" from="1997" to="2199" />
+</airline>

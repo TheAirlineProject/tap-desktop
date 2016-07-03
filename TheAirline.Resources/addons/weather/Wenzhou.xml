@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Wenzhou">
+  <months>
+    <month month="1" precipitation="58">
+      <temp min="5" max="12" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="2" precipitation="83">
+      <temp min="5" max="13" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="3" precipitation="145">
+      <temp min="8" max="16" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="4" precipitation="162">
+      <temp min="13" max="21" />
+      <wind min="Calm" max="Storm" />
+    </month>
+    <month month="5" precipitation="203">
+      <temp min="18" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="246">
+      <temp min="22" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="178">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="250">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="205">
+      <temp min="22" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="95">
+      <temp min="17" max="25" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="75">
+      <temp min="12" max="20" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="43">
+      <temp min="7" max="15" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

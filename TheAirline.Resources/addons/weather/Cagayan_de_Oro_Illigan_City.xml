@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Cagayan de Oro/Illigan City">
+  <months>
+    <month month="1" precipitation="51">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="64">
+      <temp min="22" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="36">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="55">
+      <temp min="24" max="34" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="74">
+      <temp min="24" max="34" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="195">
+      <temp min="24" max="34" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="182">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="148">
+      <temp min="23" max="34" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="179">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="153">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="128">
+      <temp min="23" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="85">
+      <temp min="23" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

@@ -5,6 +5,40 @@
         Title="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1003'}" Height="325" Width="800" WindowStartupLocation="CenterScreen" Background="#004A7F">
  
     <Window.Resources>
+        <DataTemplate x:Key="EngineItem">
+            <StackPanel>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1006'}"  Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <Image Source="{Binding Manufacturer.Logo}" VerticalAlignment="Bottom"
+                       RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
+                    <TextBlock Text="{Binding Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                </WrapPanel>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1007'}"  Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Model}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1008'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Engine}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1009'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Noise,Converter={StaticResource TextUnderscoreConverter}}"  VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1010'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Ceiling}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1011'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding MaxSpeed,Converter={StaticResource SpeedToUnitConverter}}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1012'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Price,Converter={StaticResource ValueCurrencyConverter}}" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+            </StackPanel>
+        </DataTemplate>
         <DataTemplate x:Key="ClassItem">
             <WrapPanel>
                 <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="100">
@@ -76,13 +110,37 @@
         <StackPanel>
             <TabControl Background="Transparent" BorderThickness="0" Name="tcMenu" SelectionChanged="tcMenu_SelectionChanged">
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1001'}" Tag="Classes">
-                    <StackPanel Margin="0 10 0 0">
+                    <TabItem.Style>
+                        <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Type.TypeAirliner,ElementName=popUpAirlinerSeatsConfiguration}" Value="Cargo">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Type.TypeAirliner,ElementName=popUpAirlinerSeatsConfiguration}" Value="Helicopter">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TabItem.Style>
+                        <StackPanel Margin="0 10 0 0">
                         <ListBox ItemsSource="{Binding Classes, ElementName=popUpAirlinerSeatsConfiguration}" Background="Transparent" BorderThickness="0" VerticalAlignment="Bottom" ItemTemplate="{StaticResource ClassItem}"></ListBox>
                         <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 200'}" Margin="0 5 0 0" Style="{StaticResource StandardButtonStyle}" Visibility="{Binding CanAddNewClass,ElementName=popUpAirlinerSeatsConfiguration,Converter={StaticResource BooleanToVisibility}}" Click="btnAdd_Click">
                         </Button>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1002'}" Tag="Facilities" BorderThickness="0">
+                    <TabItem.Style>
+                        <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Type.TypeAirliner,ElementName=popUpAirlinerSeatsConfiguration}" Value="Cargo">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Type.TypeAirliner,ElementName=popUpAirlinerSeatsConfiguration}" Value="Helicopter">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TabItem.Style>
                     <StackPanel Margin="0 10 0 0">
                         <ListBox ItemsSource="{Binding Classes, ElementName=popUpAirlinerSeatsConfiguration}" BorderThickness="0" Style="{StaticResource VerticalListBoxStyle}"  VerticalAlignment="Bottom">
                             <ListBox.ItemTemplate>
@@ -111,10 +169,38 @@
                         </ListBox>
                     </StackPanel>
                 </TabItem>
-                </TabControl>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1004'}" Tag="Engine">
+                    <TabItem.Style>
+                        <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Engines.Count,ElementName=popUpAirlinerSeatsConfiguration}" Value="0">
+                                    <Setter Property="TabItem.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TabItem.Style>
+                    <StackPanel Margin="0 10 0 0">
+                       <WrapPanel>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1005'}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
+                        <ComboBox  ItemsSource="{Binding Engines,ElementName=popUpAirlinerSeatsConfiguration}" Name="cbEngine" Width="250" Style="{StaticResource ComboBoxTransparentStyle}" SelectedItem="{Binding SelectedEngine,ElementName=popUpAirlinerSeatsConfiguration,Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                            <Image Source="{Binding Manufacturer.Logo}" VerticalAlignment="Bottom"
+                       RenderOptions.BitmapScalingMode="HighQuality" Width="20" />
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Model}" Margin="5 0 0 0"></TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </WrapPanel>
+                        <ContentControl Content="{Binding SelectedItem,ElementName=cbEngine}" ContentTemplate="{DynamicResource EngineItem}" Margin="0 5 0 0" VerticalAlignment="Bottom"></ContentControl>
+                        </StackPanel>
+                </TabItem>
+            </TabControl>
             <WrapPanel Margin="0 10 0 0">
-                <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 201'}" Style="{StaticResource StandardButtonStyle}" Click="btnSave_Click"/>
-                <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 202'}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" Click="btnCancel_Click"/>
+                <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" IsDefault="True" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 201'}" Style="{StaticResource StandardButtonStyle}" Click="btnSave_Click"/>
+                <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" IsCancel="True" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 202'}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" Click="btnCancel_Click"/>
 
             </WrapPanel>
         </StackPanel>

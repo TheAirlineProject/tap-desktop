@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.Model.AirlinerModel;
+using TheAirline.Models.Airliners;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -59,7 +59,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             int i = 0;
             foreach (AirlinerFacility.FacilityType type in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
             {
-                AirlinerFacility facility = aClass.getFacility(type);
+                AirlinerFacility facility = aClass.GetFacility(type);
                 
                 lbFacilities[i] = new ListBox();
                 lbFacilities[i].ItemContainerStyleSelector = new ListBoxItemStyleSelector();
@@ -118,7 +118,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             int i = 0;
             foreach (AirlinerFacility.FacilityType type in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
             {
-                AirlinerFacility facility = this.AirlinerClass.getFacility(type);
+                AirlinerFacility facility = this.AirlinerClass.GetFacility(type);
 
                 lbFacilities[i].Items.Clear();
                 lbFacilities[i].Items.Add(new AirlinerFacilityItem(this.AirlinerClass, facility));
@@ -146,13 +146,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 AirlinerFacility facility = (AirlinerFacility)PopUpAirlinerFacility.ShowPopUp(item.AirlinerClass, item.Facility.Type);
 
-                if (facility != null && item.AirlinerClass.getFacility(item.Facility.Type) != facility)
+                if (facility != null && item.AirlinerClass.GetFacility(item.Facility.Type) != facility)
                 {
 
                     if (facility.Type == AirlinerFacility.FacilityType.Seat)
                         item.AirlinerClass.SeatingCapacity = Convert.ToInt16(Convert.ToDouble(item.AirlinerClass.RegularSeatingCapacity) / facility.SeatUses);
 
-                    item.AirlinerClass.setFacility(null, facility);
+                    item.AirlinerClass.SetFacility(null, facility);
 
                     showFacilities();
 

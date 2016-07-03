@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Wajima">
+  <months>
+    <month month="1" precipitation="212">
+      <temp min="0" max="6" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="142">
+      <temp min="0" max="7" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="133">
+      <temp min="1" max="10" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="113">
+      <temp min="6" max="16" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="128">
+      <temp min="11" max="21" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="163">
+      <temp min="16" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="202">
+      <temp min="20" max="28" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="156">
+      <temp min="22" max="30" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="214">
+      <temp min="18" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="156">
+      <temp min="11" max="21" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="228">
+      <temp min="6" max="15" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="254">
+      <temp min="2" max="10" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

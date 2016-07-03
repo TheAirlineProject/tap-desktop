@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Shaheen Air" iata="NL" color="Gold" country="202" CEO="Safdar Khan" mentality="Moderate" market="Regional" preferedairport="KHI">
+  <narrative narrative="Shaheen Air was founded in 1993 and is based at Karachi's Jinnah Intl. Airport, although it focuses more on serving North Pakistan such as Islamabad and Lahore. Besides Pakistan they flt to Iran,the UAE,Oman,Kuwait,Qatar, and Saudi Arabia serving 20 destinations. Their fleet of 19 planes consists of ten 737-400's, sic A320's and three A330's." />
+  </profile>
+  <info real="True" from="1993" to="2199"></info>
+</airline>

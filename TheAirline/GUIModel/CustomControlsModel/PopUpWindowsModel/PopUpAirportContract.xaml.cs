@@ -14,8 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.Model.AirportModel;
-using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Helpers;
+using TheAirline.Models.Airports;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {

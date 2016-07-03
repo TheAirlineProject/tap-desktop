@@ -1,0 +1,72 @@
+
+
+<majordestinations>
+  <majordestination airport="BOG">
+    <destinations>
+      <destination airport="MDE" pax="1836" />
+      <destination airport="CLO" pax="1517" />
+      <destination airport="CTG" pax="1231" />
+      <destination airport="BAQ" pax="968" />
+      <destination airport="BGA" pax="707" />
+      <destination airport="SMR" pax="653" />
+      <destination airport="CUC" pax="501" />
+      <destination airport="PEI" pax="475" />
+      <destination airport="ADZ" pax="443" />
+      <destination airport="MTR" pax="368" />
+      <destination airport="MIA" pax="460" />
+      <destination airport="MAD" pax="427" />
+      <destination airport="PTY" pax="410" />
+      <destination airport="LIM" pax="340" />
+      <destination airport="UIO" pax="290" />
+      <destination airport="FLL" pax="227" />
+      <destination airport="MEX" pax="501" cargo="77" />
+      <destination airport="CCS" pax="222" />
+      <destination airport="CDG" pax="168" />
+      <destination airport="IAH" pax="158" />
+      <destination airport="GRU" pax="155" />
+      <destination airport="JFK" pax="110" />
+      <destination airport="LGA" pax="42" />
+      <destination airport="SCL" pax="134" />
+      <destination airport="FRA" pax="132" />
+      <destination airport="EZE" pax="130" />
+      <destination airport="MCO" pax="103" />
+      <destination airport="SJO" pax="80" />
+      <destination airport="GYE" pax="71" />
+      <destination airport="EWR" pax="68" />
+      <destination airport="YYZ" pax="67" />
+    </destinations>
+  </majordestination>
+  <majordestination airport="CCS">
+    <destinations>
+      <destination airport="DFW" pax="13" cargo="2" />
+    </destinations>
+  </majordestination>
+  <majordestination airport="EZE">
+    <destinations>
+      <destination airport="DFW" pax="140" cargo="22" />
+      <destination airport="MEX" pax="139" cargo="21" />
+    </destinations>
+  </majordestination>
+  <majordestination airport="GIG">
+    <destinations>
+      <destination airport="DFW" pax="1" />
+          </destinations>
+  </majordestination>
+  <majordestination airport="GRU">
+    <destinations>
+      <destination airport="DFW" pax="154" cargo="24" />
+      <destination airport="MEX" pax="324" cargo="50" />
+    </destinations>
+  </majordestination>
+  <majordestination airport="LIM">
+    <destinations>
+      <destination airport="MEX" pax="369" cargo="57" />
+    </destinations>
+  </majordestination>
+  <majordestination airport="SCL">
+    <destinations>
+      <destination airport="DFW" pax="114" cargo="18" />
+      <destination airport="MEX" pax="188" cargo="29" />
+    </destinations>
+  </majordestination>
+</majordestinations>

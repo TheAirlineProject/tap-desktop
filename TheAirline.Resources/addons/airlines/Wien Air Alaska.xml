@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Wien Air Alaska" iata="WC" logo="WC" color="Orange" country="122" CEO="Noel Wien" mentality="Aggressive" market="Domestic" preferedairport="ANC">
+    <narrative narrative=" Wien Air Alaska operated from 1927-1985 and were the second oldest airline in the U.S. at the time of it's folding. They pioneered jet service to gravel runways and helped develope the 737 Combi configuration, making a plane part passnger plane and part freighter. In 1984 their schedule included 19 Alaskan airports, and 9 west coast U.S.A cities in the lower 48 states. Seattle was also another base for them outside Anchorage. In the 80s some planes they flew  were 737-200's, 727-200's and DC-8 Freighters on contract for UPS. " /></profile>
+  <info real="True" from="1927" to="1985" />
+</airline>

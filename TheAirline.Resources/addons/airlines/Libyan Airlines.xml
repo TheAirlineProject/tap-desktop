@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Libyan Airlines" iata="LN" color="Brown" country="125" CEO="Khaled Ben Alewa" mentality="Aggressive" market="Global" preferedairport="TIP">
+    <narrative narrative="Libyan Airlines is the flag carrier of Libya, based at Tripoli, the countries capital and largest city. It was founded in 1964 as the Kingdom of Libya Airlines, and was changed to Libya Arab Airlines in 1969 after the coup. It was changed to Libyan Airlines in 2006. They currently serve 22 destinations in Africa,the Middle East and Europe, and have started flying to most the destinations that had to be terminated as a result of the civil war again. They have 20 planes, eight A320's, two A330's, two ATR-42's, and eight CRJ900's. They have two A330's on order and six A350-900's." /></profile>
+  <info real="True" from="1964" to="2199" />
+</airline>

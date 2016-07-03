@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air Botswana" iata="BP" color="LightBlue" country="258" CEO="Letlhogonolo Bantsi" mentality="Moderate" market="Regional" preferedairport="GBE">
+    <narrative narrative="Air Botswana is the state owned national carrier of Botswana and is based at Gaborone the countries capital and largest city. It was founded in 1972. As of October 2012 it operates at 13 airports all of which are in Southern and Central Africa. It only has 7 planes as of 2014, some ATR 42's, an ATR-72, a BAe 146 and two AVro RJ85's. However it has 15 Antonov An-158's ordered." /></profile>
+  <info real="True" from="1972" to="2199" />
+</airline>

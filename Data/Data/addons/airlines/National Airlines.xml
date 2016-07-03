@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="National Airlines" iata="NA" logo="NA" color="Orange" country="122" CEO="Louis 'Bud' Maytag" mentality="Aggressive" market="Global" preferedairport="MIA">
+    <narrative narrative=" National Airlines was based at Miami,FL and existed from 1934-1980 when Pan Am bought it. They also had focus cities at Jacksonville,FL, New York JFK, New Orleans,LA , and Tampa,FL. They had 44 destinations in the U.S they served over their life, most of them being on the East Coast but served a few in every area of the U.S. They also served 7 international destinations, Havana,Cuba, Paris, Amsterdam, San Juan, Puerto Rico (U.S Territory though), Zurich, London, and Frankfurt. They were one of the only three U.S airlines from 1970-1978 to have schduled passenger flights to Europe. In 1980 they had 43 727's, and 16 DC-10's.   " /></profile>
+  <info real="True" from="1934" to="1980" />
+</airline>

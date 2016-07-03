@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Nepal Airlines" iata="RA" color="Red" country="251" CEO="Yagya Prasad Gautam" mentality="Safe"
+           market="Regional" preferedairport="KTM">
+            <narrative
+      narrative="Nepal Airlines (formerly known as Royal Nepal Airlines) is the flag carrier airline of Nepal. Its head office is in the NAC Building (formerly RNAC Building) in Kathmandu, and its main base is Tribhuvan International Airport, Kathmandu. The airline was established in July 1958 as Royal Nepal Airlines Corporation (RNAC). The airline's first aircraft was a single Douglas DC-3, used to serve domestic routes and a handful of destinations in India." />
+  </profile>
+     <info real="True" from="1958" to="2199"></info>
+</airline>

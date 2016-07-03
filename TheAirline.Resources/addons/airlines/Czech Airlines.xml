@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Czech Airlines" iata="OK" color="Red" country="166" CEO="Philippe Moreels" mentality="Aggressive" market="Global" preferedairport="PRG">
+    <narrative narrative="Czech Airlines was founded in 1923 and is one of oldest airlines in the world, and are the flag carrier of present day Czech Republic. Based in Prague, they were only the second airline to ever use a jet succesfully and the first to fly one on a regular jet-only route, between Prague and Moscow. As of today they serve 43 destinations and have 23 planes. They serve every continent besides Australia and of course Antarctica." />
+  </profile>
+  <info real="True" from="1923" to="2199" />
+</airline>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Canadian North" iata="5T" color="DarkBlue" country="113" CEO="Steve Hankirk" mentality="Moderate" market="Domestic" preferedairport="YZF">
+  <narrative narrative="Canadian North operate exactly where their name suggests they do, most of their 19 destinations are in Northern Canada in the province of Nunavut. Their hub is at Yellowknife Airport in the Northwest Territories. Thier fleet of 18 planes include 14 older 737-200 and 737-300 types and four Dash 8 100's." />
+  </profile>
+  <info real="True" from="1989" to="2199"></info>
+</airline>

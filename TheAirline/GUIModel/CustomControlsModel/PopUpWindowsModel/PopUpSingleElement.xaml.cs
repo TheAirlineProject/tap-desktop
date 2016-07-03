@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Models.General;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -40,7 +31,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Height = 125;
 
-            this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             StackPanel mainPanel = new StackPanel();
             mainPanel.Margin = new Thickness(10, 10, 10, 10);
@@ -58,20 +49,22 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Button btnOk = new Button();
             btnOk.Uid = "100";
-            btnOk.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
+            btnOk.SetResourceReference(StyleProperty, "StandardButtonStyle");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;
             btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
+            btnOk.IsDefault = true;
     
             buttonsPanel.Children.Add(btnOk);
 
             Button btnCancel = new Button();
             btnCancel.Uid = "101";
-            btnCancel.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
+            btnCancel.SetResourceReference(StyleProperty, "StandardButtonStyle");
             btnCancel.Height = Double.NaN;
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
             btnCancel.Width = Double.NaN;
+            btnCancel.IsCancel = true;
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnCancel.Content = Translator.GetInstance().GetString("General", btnCancel.Uid);
          

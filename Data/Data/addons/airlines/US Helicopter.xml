@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="US Helicopter" iata="UH" color="DarkBlue" country="122" CEO="John F. Haskins" mentality="Moderate"
+           market="Local" preferedairport="JFK" routefocus="Helicopter">
+    <narrative
+      narrative="US Helicopter is an independent air shuttle service that operated regularly scheduled helicopter flights from Manhattan to Newark and JFK airports. Flights left from Downtown and Midtown Manhattan Heliports to Delta Air Lines Terminal 3 at John F. Kennedy International Airport (JFK)." />
+  </profile>
+  <info real="True" from="2004" to="2009" />
+  
+</airline>

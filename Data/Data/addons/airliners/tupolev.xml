@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+<airliner manufacturer="Tupolev" name="Tupolev Tu-124" price="1600000"> <!--2100000-->
+<type body="NarrowBody" rangetype="MediumRange" engine="Jet"/>
+<specs wingspan="25.55" length="30.60" range="2100" speed="800" fuelcapacity="12650" consumption="0.052" runwaylengthrequired="2600"/>
+<capacity passengers="56" cockpitcrew="3" cabincrew="2" maxclasses="2"/>
+<produced from="1960" to="1965" rate="38"/>
+</airliner>
+<airliner manufacturer="Tupolev" name="Tupolev Tu-134" price="1800000"> <!--2100000-->
+<type body="NarrowBody" rangetype="MediumRange" engine="Jet"/>
+<specs wingspan="29.00" length="35.00" range="2000" speed="800" fuelcapacity="12650" consumption="0.052" runwaylengthrequired="2600"/>
+<capacity passengers="70" cockpitcrew="4" cabincrew="3" maxclasses="2"/>
+<produced from="1966" to="1970" rate="38"/>
+</airliner>
+<airliner manufacturer="Tupolev" name="Tupolev Tu-134A" price="1917810"> <!--2100000-->
+<type body="NarrowBody" rangetype="MediumRange" engine="Jet"/>
+<specs wingspan="29.00" length="37.10" range="2100" speed="850" fuelcapacity="13200" consumption="0.045" runwaylengthrequired="2600"/>
+<capacity passengers="76" cockpitcrew="4" cabincrew="3" maxclasses="2"/>
+<produced from="1970" to="1980" rate="38"/>
+</airliner>
+<airliner manufacturer="Tupolev" name="Tupolev Tu-134B" price="2200000"> <!--2100000-->
+<type body="NarrowBody" rangetype="MediumRange" engine="Jet"/>
+<specs wingspan="29.00" length="37.10" range="2020" speed="880" fuelcapacity="14400" consumption="0.045" runwaylengthrequired="2600"/>
+<capacity passengers="80" cockpitcrew="3" cabincrew="3" maxclasses="2"/>
+<produced from="1970" to="1980" rate="38"/>
+</airliner>
+<airliner manufacturer="Tupolev" name="Tupolev Tu-154" price="2974500"> <!--4200000-->
+<type body="NarrowBody" rangetype="MediumRange" engine="Jet"/>
+<specs wingspan="37.55" length="47.90" range="2500" speed="900" fuelcapacity="43000" consumption="0.044" runwaylengthrequired="2500"/>
+<capacity passengers="164" cockpitcrew="3" cabincrew="4" maxclasses="2"/>
+<produced from="1972" to="1975" rate="24"/>
+</airliner>
+<airliner manufacturer="Tupolev" name="Tupolev Tu-154B" price="3100000"> <!--4200000-->
+<type body="NarrowBody" rangetype="MediumRange" engine="Jet"/>
+<specs wingspan="37.55" length="47.90" range="2800" speed="900" fuelcapacity="47000" consumption="0.044" runwaylengthrequired="2500"/>
+<capacity passengers="172" cockpitcrew="3" cabincrew="4" maxclasses="2"/>
+<produced from="1975" to="1986" rate="24"/>
+</airliner>
+<airliner manufacturer="Tupolev" name="Tupolev Tu-154M" price="3500000"> <!--4200000-->
+<type body="NarrowBody" rangetype="MediumRange" engine="Jet"/>
+<specs wingspan="37.55" length="47.90" range="3900" speed="900" fuelcapacity="49700" consumption="0.031" runwaylengthrequired="2500"/>
+<capacity passengers="172" cockpitcrew="3" cabincrew="4" maxclasses="2"/>
+<produced from="1984" to="2013" rate="24"/>
+</airliner>
+<airliner manufacturer="Tupolev" name="Tupolev Tu-204-100" price="9545800"> <!--4200000-->
+<type body="NarrowBody" rangetype="MediumRange" engine="Jet"/>
+<specs wingspan="41.8" length="46.14" range="4400" speed="810" fuelcapacity="30812" consumption="0.033" runwaylengthrequired="2150"/>
+<capacity passengers="214" cockpitcrew="3" cabincrew="5" maxclasses="3"/>
+<produced from="1996" to="2025" rate="14"/>
+</airliner>
+<airliner manufacturer="Tupolev" name="Tupolev Tu-204-120" price="1005200"> <!--4200000-->
+<type body="NarrowBody" rangetype="MediumRange" engine="Jet"/>
+<specs wingspan="41.8" length="46.14" range="4500" speed="850" fuelcapacity="30812" consumption="0.032" runwaylengthrequired="2150"/>
+<capacity passengers="214" cockpitcrew="3" cabincrew="5" maxclasses="3"/>
+<produced from="1998" to="2025" rate="14"/>
+</airliner>
+<airliner manufacturer="Tupolev" name="Tupolev Tu-204-300" price="8854200"> <!--4200000-->
+<type body="NarrowBody" rangetype="MediumRange" engine="Jet"/>
+<specs wingspan="42.2" length="40.19" range="6500" speed="850" fuelcapacity="45000" consumption="0.041" runwaylengthrequired="2050"/>
+<capacity passengers="166" cockpitcrew="3" cabincrew="4" maxclasses="2"/>
+<produced from="1997" to="2025" rate="8"/>
+</airliner>
+</airliners>

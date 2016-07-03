@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="airBlue" iata="PA" logo="PA2" color="Blue" country="202" CEO="Shahid Khaqan Abbasi" mentality="Moderate" market="Regional" preferedairport="KHI">
+  <narrative narrative="airBlue is currently Pakistan's second largest airline serving 20% of it's domestic routes. It is based a Jinnah Intl. in Karachi and serves 10 destinations. International destinations include the United Arab Emirates,Saudi Arabia and Oman. They have a small fleet of four A320's," />
+  </profile>
+  <info real="True" from="2004" to="2199"></info>
+</airline>

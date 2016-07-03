@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Niki" iata="HG" color="DarkRed" country="169" CEO="Niki Lauda" mentality="Aggressive" market="Global" preferedairport="VIE">
+    <narrative narrative="Niki was formed in 2003 when former Grand Prix driver and Lauda Air founder Niki Lauda aquired Aero Lloyd Austria, and was called flyNiki for a short time. They are now a subsidiary of Air Berlin and an affiliate of the Russian airline S7 who plans to merge with Air Berlin and Niki in the future to become an even bigger airline. It is Germany's second largest airline. It operates to over 50 destinations in Europe, Africa and Asia. It's base is Vienna,Austria and a focus city at Salzburg. It's 23 planes as of 2014 are 12 A320's, 4 A321's and 7 Embraer 190's. Each of Niki's aircraft is named after a type of dance. For example, the Embraer 190 registered OE-IHB is called Lambada and an A321-200 (OE-LES) is called Boogie Woogie. " /></profile>
+  <info real="True" from="2003" to="2199" />
+</airline>

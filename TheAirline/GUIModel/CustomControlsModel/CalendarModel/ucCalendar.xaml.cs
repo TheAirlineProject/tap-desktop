@@ -1,22 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.ComponentModel;
-using TheAirline.Model.AirportModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.AirlinerModel.RouteModel;
-using TheAirline.Model.GeneralModel.HolidaysModel;
-using TheAirline.Model.AirlinerModel;
+using TheAirline.Infrastructure;
+using TheAirline.Models.General;
+using TheAirline.Models.General.Countries;
+using TheAirline.Models.General.Holidays;
 
 namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 {
@@ -128,7 +119,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 
                         }
                         else
-                            dbcDay.DayVisibility = System.Windows.Visibility.Collapsed;
+                            dbcDay.DayVisibility = Visibility.Collapsed;
 
                         
 
@@ -180,7 +171,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
             
             if (airliners.Count > 0)
             {
-                items.Add(new CalendarItem(CalendarItem.ItemType.Airliner_Order, date, "Delivery of airliners", string.Join("\r\n", from a in airliners select a.Name)));    
+                items.Add(new CalendarItem(CalendarItem.ItemType.AirlinerOrder, date, "Delivery of airliners", string.Join("\r\n", from a in airliners select a.Name)));    
             }
 
             foreach (CalendarItem item in CalendarItems.GetCalendarItems(date))

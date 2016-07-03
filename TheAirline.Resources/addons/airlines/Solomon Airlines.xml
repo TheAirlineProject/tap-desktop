@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Solomon Airlines" iata="IE" color="LightBlue" country="289" CEO="Ron Sumsum" mentality="Moderate"
+           market="Regional" preferedairport="HIR">
+    <narrative narrative="Solomon Airlines is the national airline of the Solomon Islands, based in Honiara." />
+  </profile>
+  <info real="True" from="1962" to="2199"></info>
+</airline>

@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-	<profile name="Pan American World Airways" iata="PA" color="LightBlue" country="122" CEO="Russell Ray" mentality="Aggressive" market="Global" preferedairport="JFK"/>
-	<narrative narrative="Pan Am was the largest international air carrier in the United States for over half a century. In 1990, it was operating a fleet of 152 aircraft to over 100 destinations throughout the world. A financial collapse in 1991 ended the airline's long tenure."/>
-	<info real="True" from="1927" to="1991"></info>
-</airline>

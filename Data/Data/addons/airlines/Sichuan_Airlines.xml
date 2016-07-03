@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<airline>
+  <profile name="Sichuan Airlines" iata="3U" color="aquamarine" country="148" CEO="Nan Xinguo" mentality="Aggressive"
+           market="Global" preferedairport="CTU">
+            <narrative
+      narrative="Sichuan Airlines is a regional airline headquartered on the grounds of Chengdu Shuangliu International Airport in Chengdu, Sichuan in the People's Republic of China." />
+  </profile>
+   <info real="True" from="1986" to="2199"></info>
+</airline>

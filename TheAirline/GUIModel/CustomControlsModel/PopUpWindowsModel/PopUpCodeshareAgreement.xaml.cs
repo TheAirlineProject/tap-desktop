@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
-using TheAirline.Model.AirlineModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Helpers;
+using TheAirline.Models.Airlines;
+using TheAirline.Models.General;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {
@@ -44,7 +32,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
         }
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            this.Selected = rbBothWays.IsChecked.Value ? CodeshareAgreement.CodeshareType.Both_Ways : CodeshareAgreement.CodeshareType.One_Way;
+            this.Selected = rbBothWays.IsChecked.Value ? CodeshareAgreement.CodeshareType.BothWays : CodeshareAgreement.CodeshareType.OneWay;
             this.Close();
         }
 

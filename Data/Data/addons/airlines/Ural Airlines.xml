@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Ural Airlines" iata="U6" color="Teal" country="149" CEO="Sergey Skuratov " mentality="Aggressive" market="Global" preferedairport="SVX">
+    <narrative narrative="Ural Airlines was founded in 1943 as Sverdlovsk State Air Enterprises and soon became part of the Soviet Unions flag carrier Aeroflot. Ural Airlines acted as Aeroflots
+    Yekaterinburg sector, which is where they still call home today but have not been a part of Aeroflot since 1993. Koltsolvo Airport is its home. They operate to 40 destinations throughout Europe and Asia. They operate 
+    all A320 family aircraft." />
+  </profile>
+  <info real="True" from="1943" to="2199" />
+</airline>

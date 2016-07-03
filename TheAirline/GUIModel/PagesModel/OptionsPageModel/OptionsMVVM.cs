@@ -2,125 +2,210 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
-using TheAirline.Model.GeneralModel;
+using TheAirline.Helpers;
+using TheAirline.Infrastructure;
+using TheAirline.Infrastructure.Enums;
+using TheAirline.Models.General;
+using Settings = TheAirline.Properties.Settings;
 
 namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {
     public class OptionsMVVM : INotifyPropertyChanged
     {
-        public Settings.Intervals AutoSave { get; set; }
-        public Settings.Intervals ClearStats { get; set; }
-
-        private Language _selectedLanguage;
-        public Language SelectedLanguage
-        {
-            get { return _selectedLanguage; }
-            set { _selectedLanguage = value; NotifyPropertyChanged("SelectedLanguage"); }
-        }
-
-        private Settings.AirportCode _selectedAirportCode;
-        public Settings.AirportCode SelectedAirportCode 
-        {
-            get { return _selectedAirportCode; }
-            set { _selectedAirportCode = value; NotifyPropertyChanged("SelectedAirportCode"); }
-        }
-
-        private Boolean _mailsOnLanding;
-        public Boolean MailsOnLandings 
-        {
-            get { return _mailsOnLanding; }
-            set { _mailsOnLanding = value; NotifyPropertyChanged("MailsOnLandings"); } 
-        }
-
-        private Boolean _mailsOnAirlineDestinations;
-         public Boolean MailsOnAirlineDestinations
-         {
-             get { return _mailsOnAirlineDestinations; }
-             set { _mailsOnAirlineDestinations = value; NotifyPropertyChanged("MailsOnAirlineDestinations"); } 
-        }
-
-
-         private Boolean _mailsOnBadWeather;
-        public Boolean MailsOnBadWeather
-        {
-            get { return _mailsOnBadWeather; }
-            set { _mailsOnBadWeather = value; NotifyPropertyChanged("MailsOnBadWeather"); }
-        }
-
-        private Boolean _shortenCurrency;
-        public Boolean ShortenCurrency
-        {
-            get { return _shortenCurrency; }
-            set { _shortenCurrency = value; NotifyPropertyChanged("ShortenCurrency"); }
-        }
-    
-        public Boolean HourRoundEnabled { get; set; }
-
-        private int _selectedGameMinutes;
-        public int SelectedGameMinutes
-        {
-            get { return _selectedGameMinutes; }
-            set { _selectedGameMinutes = value; NotifyPropertyChanged("SelectedGameMinutes"); }
-        }
-       
-        public ObservableCollection<int> GameMinutes { get; set; }
+        #region Fields
 
         private int _currentGameSpeed;
-        public int CurrentGameSpeed
-        {
-            get { return _currentGameSpeed; }
-            set { _currentGameSpeed = value; NotifyPropertyChanged("CurrentGameSpeed"); }
-        }
 
         private DoubleCollection _gameSpeeds;
-        public DoubleCollection GameSpeeds 
-        {
-            get { return _gameSpeeds; }
-            set { _gameSpeeds = value; NotifyPropertyChanged("GameSpeeds"); } 
-        }
-        public List<Language> AllLanguages { get { return Languages.GetLanguages().FindAll(l => l.IsEnabled); } private set { ;} }
+
+        private Boolean _mailsOnAirlineDestinations;
+
+        private Boolean _mailsOnBadWeather;
+
+        private Boolean _mailsOnLanding;
+
+        private AirportCode _selectedAirportCode;
+
+        private int _selectedGameMinutes;
+
+        private Language _selectedLanguage;
+
+        private Boolean _shortenCurrency;
+
+        #endregion
+
+        #region Constructors and Destructors
+
         public OptionsMVVM()
         {
             setValues();
-                
         }
-        //sets the values
-        private void setValues()
+
+        #endregion
+
+        #region Public Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Public Properties
+
+        public List<Language> AllLanguages
         {
-            this.SelectedLanguage = AppSettings.GetInstance().getLanguage();
-            this.SelectedAirportCode = Settings.GetInstance().AirportCodeDisplay;
-            this.MailsOnLandings = Settings.GetInstance().MailsOnLandings;
-            this.MailsOnBadWeather = Settings.GetInstance().MailsOnBadWeather;
-            this.ShortenCurrency = Settings.GetInstance().CurrencyShorten;
-            this.MailsOnAirlineDestinations = Settings.GetInstance().MailsOnAirlineRoutes;
-            this.HourRoundEnabled = !GameObject.GetInstance().DayRoundEnabled;
-            this.SelectedGameMinutes = Settings.GetInstance().MinutesPerTurn;
-            this.GameMinutes = new ObservableCollection<int>() { 15, 30, 60 };
-            this.CurrentGameSpeed = (int)Settings.GetInstance().GameSpeed;
-
-            this.AutoSave = Settings.GetInstance().AutoSave;
-            this.ClearStats = Settings.GetInstance().ClearStats;
-
-            DoubleCollection cGameSpeeds = new DoubleCollection();
-         
-            foreach (GeneralHelpers.GameSpeedValue speed in Enum.GetValues(typeof(GeneralHelpers.GameSpeedValue)))
-                cGameSpeeds.Insert(0,(double)speed);
-
-            this.GameSpeeds = cGameSpeeds;
-
-        
+            get
+            {
+                return Languages.GetLanguages().FindAll(l => l.IsEnabled);
+            }
+            private set
+            {
+                ;
+            }
         }
+
+        public Intervals AutoSave { get; set; }
+
+        public Intervals ClearStats { get; set; }
+
+        public int CurrentGameSpeed
+        {
+            get
+            {
+                return _currentGameSpeed;
+            }
+            set
+            {
+                _currentGameSpeed = value;
+                NotifyPropertyChanged("CurrentGameSpeed");
+            }
+        }
+
+        public ObservableCollection<int> GameMinutes { get; set; }
+
+        public DoubleCollection GameSpeeds
+        {
+            get
+            {
+                return _gameSpeeds;
+            }
+            set
+            {
+                _gameSpeeds = value;
+                NotifyPropertyChanged("GameSpeeds");
+            }
+        }
+
+        public Boolean HourRoundEnabled { get; set; }
+
+        public Boolean MailsOnAirlineDestinations
+        {
+            get
+            {
+                return _mailsOnAirlineDestinations;
+            }
+            set
+            {
+                _mailsOnAirlineDestinations = value;
+                NotifyPropertyChanged("MailsOnAirlineDestinations");
+            }
+        }
+
+        public Boolean MailsOnBadWeather
+        {
+            get
+            {
+                return _mailsOnBadWeather;
+            }
+            set
+            {
+                _mailsOnBadWeather = value;
+                NotifyPropertyChanged("MailsOnBadWeather");
+            }
+        }
+
+        public Boolean MailsOnLandings
+        {
+            get
+            {
+                return _mailsOnLanding;
+            }
+            set
+            {
+                _mailsOnLanding = value;
+                NotifyPropertyChanged("MailsOnLandings");
+            }
+        }
+
+        public AirportCode SelectedAirportCode
+        {
+            get
+            {
+                return _selectedAirportCode;
+            }
+            set
+            {
+                _selectedAirportCode = value;
+                NotifyPropertyChanged("SelectedAirportCode");
+            }
+        }
+
+        public int SelectedGameMinutes
+        {
+            get
+            {
+                return _selectedGameMinutes;
+            }
+            set
+            {
+                _selectedGameMinutes = value;
+                NotifyPropertyChanged("SelectedGameMinutes");
+            }
+        }
+
+        public Language SelectedLanguage
+        {
+            get
+            {
+                return _selectedLanguage;
+            }
+            set
+            {
+                _selectedLanguage = value;
+                NotifyPropertyChanged("SelectedLanguage");
+            }
+        }
+
+        public Boolean ShortenCurrency
+        {
+            get
+            {
+                return _shortenCurrency;
+            }
+            set
+            {
+                _shortenCurrency = value;
+                NotifyPropertyChanged("ShortenCurrency");
+            }
+        }
+
+        #endregion
+
         //undos the changes
+
+        #region Public Methods and Operators
+
         public void undoChanges()
         {
             setValues();
         }
-        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Methods
+
         private void NotifyPropertyChanged(String propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -128,23 +213,53 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
-         
         }
+
+        private void setValues()
+        {
+            SelectedLanguage = AppSettings.GetInstance().GetLanguage();
+            SelectedAirportCode = Infrastructure.Settings.GetInstance().AirportCodeDisplay;
+            MailsOnLandings = Infrastructure.Settings.GetInstance().MailsOnLandings;
+            MailsOnBadWeather = Infrastructure.Settings.GetInstance().MailsOnBadWeather;
+            ShortenCurrency = Infrastructure.Settings.GetInstance().CurrencyShorten;
+            MailsOnAirlineDestinations = Infrastructure.Settings.GetInstance().MailsOnAirlineRoutes;
+            HourRoundEnabled = !GameObject.GetInstance().DayRoundEnabled;
+            SelectedGameMinutes = Infrastructure.Settings.GetInstance().MinutesPerTurn;
+            GameMinutes = new ObservableCollection<int> { 15, 30, 60 };
+            CurrentGameSpeed = (int)Infrastructure.Settings.GetInstance().GameSpeed;
+
+            AutoSave = Infrastructure.Settings.GetInstance().AutoSave;
+            ClearStats = Infrastructure.Settings.GetInstance().ClearStats;
+
+            var cGameSpeeds = new DoubleCollection();
+
+            foreach (GeneralHelpers.GameSpeedValue speed in Enum.GetValues(typeof(GeneralHelpers.GameSpeedValue)))
+            {
+                cGameSpeeds.Insert(0, (double)speed);
+            }
+
+            GameSpeeds = cGameSpeeds;
+        }
+
+        #endregion
     }
+
     public class GameSpeedConverter : IValueConverter
     {
+        #region Public Methods and Operators
 
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             int gameSpeed = System.Convert.ToInt16(value);
 
             return (GeneralHelpers.GameSpeedValue)Enum.ToObject(typeof(GeneralHelpers.GameSpeedValue), gameSpeed);
-      
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

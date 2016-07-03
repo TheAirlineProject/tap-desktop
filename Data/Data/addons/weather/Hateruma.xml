@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Hateruma">
+  <months>
+    <month month="1" precipitation="151">
+      <temp min="16" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="128">
+      <temp min="16" max="22" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="158">
+      <temp min="18" max="24" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="148">
+      <temp min="21" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="210">
+      <temp min="23" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="244">
+      <temp min="26" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="118">
+      <temp min="27" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="253">
+      <temp min="27" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="308">
+      <temp min="25" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="204">
+      <temp min="23" max="29" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="151">
+      <temp min="21" max="26" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="154">
+      <temp min="18" max="23" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

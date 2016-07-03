@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Beijing Capital Airlines" iata="JD" color="Red" country="148" CEO="Chen Feng" mentality="Aggressive" market="Domestic" preferedairport="PEK">
+<narrative narrative="Founded in 1995 as Deer Jet Airlines, Beijing Capital Airlines base is at the airport it takes its name from, Beijing Capital Airport. 70% owned by Hainan airlines its entire fleet of
+46 Airbus A320's and A319's are leased from Hainan Airlines. Deer Jet was spun off into its own charter airline in 2010 and the main airline was renamed Beijing Capital Airline."/>
+</profile>
+<info real="True" from="1995" to="2199"></info>
+</airline>

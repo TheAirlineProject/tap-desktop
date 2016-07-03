@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Canadian Airlines" iata="CP" logo="CP" color="DarkBlue" country="113" CEO="Kevin Benson" mentality="Aggressive" market="Global" preferedairport="YYC">
+    <narrative narrative=" Canadian Airlines, not to be confused with the much earlier Canadan Airways, was founded in 1987 and lasted until 2000 when it's main competitor Air Canada bought it. It was the second largest airline in Canada at the time. It was formed when Pacific Western Airlines purchased Canadian Pacific Air Lines, which in turn had recently acquired Eastern Provincial Airways and Nordair. American Airlines held a 25% stake in the company and was one of the airlines that tried to purchase it in 2000. It's headquarters were in Calgary,Alberta with a hub there. Other hubs were at Montreal, Toronto and Vancouver. It operated at 64 Canadian airports. 15 in the U.S, 2 in Mexico, 9 in Europe, 10 in Asia, 3 in Australia/Oceania, and 5 in South America. It had 163 planes, such as 737-200's, A320's, 767's, 747-400's, DC-10-30's, and Fokker F28-1000's as far as jets go. Some turboprops it had was Dah 8 100's and 300's, ATR 42 and 72's,Beech 1900D's, and British Aerospace J-31's.   " /></profile>
+  <info real="True" from="1987" to="2000" />
+</airline>

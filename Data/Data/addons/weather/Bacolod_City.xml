@@ -1,0 +1,54 @@
+
+
+<weather type="town" value="Bacolod City">
+  <months>
+    <month month="1" precipitation="39">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="2" precipitation="37">
+      <temp min="23" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="3" precipitation="38">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="4" precipitation="57">
+      <temp min="25" max="34" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="5" precipitation="156">
+      <temp min="25" max="33" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="6" precipitation="237">
+      <temp min="25" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="7" precipitation="376">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="8" precipitation="338">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="9" precipitation="250">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="10" precipitation="191">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="11" precipitation="134">
+      <temp min="24" max="32" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+    <month month="12" precipitation="114">
+      <temp min="24" max="31" />
+      <wind min="Calm" max="Hurricane" />
+    </month>
+  </months>
+</weather>

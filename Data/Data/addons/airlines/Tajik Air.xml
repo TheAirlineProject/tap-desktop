@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Tajik Air" iata="7J" color="Orange" country="240" CEO="Ashutosh Beenessreesingh" mentality="Moderate" market="Regional" preferedairport="DYU">
+    <narrative narrative="Air Tajik, is the flag carrier of Tajikistan, based out of Dushanbe. They have been in operation since 1923 and operate a fleet of 12 aircraft. They serve 19 destinations, 4 of them in Tajistan, and fly to 9 countries outside of their home country including 8 
+    Russian cities. Their fleet is varied and inludes 737's,757's and several Russian made aircraft from Antonov,Tupolev,and Yakolev. They have also ordered 2 Sukoi Superjet 100's." />
+  </profile>
+  <info real="True" from="1923" to="2199" />
+</airline>

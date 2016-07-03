@@ -1,0 +1,29 @@
+<airline>
+  <profile name="Silver Airways" iata="3M" color="Silver" country="122" CEO="Dave Pflieger" mentality="Moderate" market="Regional" preferedairport="FLL">
+    <narrative narrative="Silver Airways started out as Gulfstream International Airlines in 1988 and got its current name on December 15th,2011. Their company headquarters are at Fort Lauderedale and that is one of their main hubs also. Other hubs include Tampa, Atlanta, and Washington Dulles. They operate out of Dulles uned the United Express brand. They have about 28 destinations in the U.S, all in the South and Eastern U.S, in 7 states. They also fly to 7 destinations in the Bahamas, making them a regional airline. Their current fleet consists of 28 Saab 340B's with 2 on order and have some Beechcraft 1900D's and have had a few Brasilia 120's. " />
+  </profile>
+  <info real="True" from="1988" to="2199" />
+  
+  <startdata>
+  
+  <prefereds aircrafts="Beechcraft 1900D ,EMB 120 Brasilia ,Saab 340B"></prefereds>
+  
+     
+	    	    
+	    
+	     <!--the airliners the airline would start with which isn't on a route earyl (2012) late (2020)-->
+	         <airliners>
+	    <airliner type="Saab 340B" early="41" late="20"></airliner>
+	     </airliners>
+	   
+	     <!--the airliners the airline would start with which isn't on a route earyl (1999) late (2015)-->
+	         <airliners>
+	    <airliner type="Beechcraft 1900D" early="21" late="4"></airliner>
+	     </airliners>
+	   
+	 
+	  
+  </startdata>
+  
+ </airline>
+
